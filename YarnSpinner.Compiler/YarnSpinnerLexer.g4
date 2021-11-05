@@ -3,161 +3,24 @@ lexer grammar YarnSpinnerLexer;
 tokens { INDENT, DEDENT }
 
 channels {
+    WHITESPACE,
     COMMENTS
 }
+
+options {
+    superClass=IndentAwareLexer;
+}
  
-@lexer::header{
-using System.Linq;
-using System.Text.RegularExpressions;
-}
-
-@lexer::members {
-	// A queue where extra tokens are pushed on (see the NEWLINE lexer rule).
-	private System.Collections.Generic.LinkedList<IToken> Tokens = new System.Collections.Generic.LinkedList<IToken>();
-	// The stack that keeps track of the indentation level.
-	private System.Collections.Generic.Stack<int> Indents = new System.Collections.Generic.Stack<int>();
-	// The amount of opened braces, brackets and parenthesis.
-	private int Opened = 0;
-	// The most recently produced token.
-	private IToken LastToken = null;
-
-	public override void Emit(IToken token)
-    {
-        base.Token = token;
-        Tokens.AddLast(token);
-    }
-
-    private CommonToken CommonToken(int type, string text)
-    {
-        int stop = CharIndex - 1;
-        int start = text.Length == 0 ? stop : stop - text.Length + 1;
-        var tokenFactorySourcePair = Tuple.Create((ITokenSource)this, (ICharStream)InputStream);
-        return new CommonToken(tokenFactorySourcePair, type, DefaultTokenChannel, start, stop);
-    }
-
-	private IToken CreateDedent()
-	{
-	    var dedent = CommonToken(YarnSpinnerParser.DEDENT, "");
-	    dedent.Line = LastToken.Line;
-	    return dedent;
-	}
-
-	public override IToken NextToken()
-	{
-	    // Check if the end-of-file is ahead and there are still some DEDENTS expected.
-	    if (InputStream.LA(1) == Eof && Indents.Count != 0)
-	    {
-            // Remove any trailing EOF tokens from our buffer.
-            for (var node  = Tokens.First; node != null; )
-            {
-                var temp = node.Next;
-                if (node.Value.Type == Eof)
-                {
-                    Tokens.Remove(node);
-                }
-                node = temp;
-            }
-            
-            // First emit an extra line break that serves as the end of the statement.
-            this.Emit(CommonToken(YarnSpinnerParser.NEWLINE, "\n"));
-
-	        // Now emit as much DEDENT tokens as needed.
-	        while (Indents.Count != 0)
-	        {
-	            Emit(CreateDedent());
-	            Indents.Pop();
-	        }
-
-	        // Put the EOF back on the token stream.
-	        Emit(CommonToken(YarnSpinnerParser.Eof, "<EOF>"));
-	    }
-
-	    var next = base.NextToken();
-	    if (next.Channel == DefaultTokenChannel)
-	    {
-	        // Keep track of the last token on the default channel.
-	        LastToken = next;
-	    }
-
-	    if (Tokens.Count == 0)
-	    {
-	        return next;
-	    }
-	    else
-	    {
-	        var x = Tokens.First.Value;
-	        Tokens.RemoveFirst();
-	        return x;
-	    }
-	}
-
-    // Calculates the indentation of the provided spaces, taking the
-    // following rules into account:
-    //
-    // "Tabs are replaced (from left to right) by one to eight spaces
-    //  such that the total number of characters up to and including
-    //  the replacement is a multiple of eight [...]"
-    //
-    //  -- https://docs.python.org/3.1/reference/lexical_analysis.html#indentation
-    static int GetIndentationCount(string spaces)
-    {
-        int count = 0;
-        foreach (char ch in spaces.ToCharArray())
-        {
-            count += ch == '\t' ? 8 - (count % 8) : 1;
-        }
-        return count;
-    }
-
-    bool AtStartOfInput()
-    {
-        return Column == 0 && Line == 1;
-    }
-
-    void CreateIndentIfNeeded(int type = NEWLINE) {
-
-        var newLine = (new Regex("[^\r\n\f]+")).Replace(Text, "");
-		var spaces = (new Regex("[\r\n\f]+")).Replace(Text, "");
-		// Strip newlines inside open clauses except if we are near EOF. We keep NEWLINEs near EOF to
-		// satisfy the final newline needed by the single_put rule used by the REPL.
-		int next = InputStream.LA(1);
-		int nextnext = InputStream.LA(2);
-        
-        // '-1' indicates 'do not emit the newline here but do emit indents/dedents'
-        if (type != -1) {
-            Emit(CommonToken(type, newLine));
-        }
-        int indent = GetIndentationCount(spaces);
-        int previous = Indents.Count == 0 ? 0 : Indents.Peek();
-        if (indent == previous)
-        {
-            // skip indents of the same size as the present indent-size            
-        }
-        else if (indent > previous) {
-            Indents.Push(indent);
-            Emit(CommonToken(YarnSpinnerParser.INDENT, spaces));
-        }
-        else {
-            // Possibly emit more than 1 DEDENT token.
-            while(Indents.Count != 0 && Indents.Peek() > indent)
-            {
-                this.Emit(CreateDedent());
-                Indents.Pop();
-            }        
-		}
-    }
-}
-
 // Root mode: skip whitespaces, set up some commonly-seen 
 // tokens
 WS : ([ \t])+ -> skip;
 
 COMMENT: '//' ~('\r'|'\n')* -> channel(COMMENTS);
 
-fragment SPACES: [ \t]+ ; // used in NEWLINE tokens to calculate the text following a newline
-
-// Some commonly-seen tokens that other lexer modes will use
-NEWLINE: [\r\n]+ SPACES? { CreateIndentIfNeeded(-1); } -> skip;
+// Newlines are lexed and normally not used in the parser, but we'll put them in a
+// separate channel here (rather than skipping them) so that the indent
+// checker has access to them
+NEWLINE: ( '\r'? '\n' | '\r' ) [ \t]* -> channel(WHITESPACE);
 
 ID : IDENTIFIER_HEAD IDENTIFIER_CHARACTERS?;
 
@@ -200,15 +63,15 @@ HASHTAG : '#' -> pushMode(HashtagMode);
 mode HeaderMode;
 // Allow arbitrary text up to the end of the line.
 REST_OF_LINE : ~('\r'|'\n')+;
-HEADER_NEWLINE : NEWLINE SPACES? {CreateIndentIfNeeded(HEADER_NEWLINE);} -> popMode;
+HEADER_NEWLINE : NEWLINE -> type(NEWLINE), channel(WHITESPACE), popMode;
 
 // The main body of a node.
 mode BodyMode;
 
 // Ignore all whitespace and comments
 BODY_WS : WS -> skip;
-BODY_NEWLINE : NEWLINE SPACES? {CreateIndentIfNeeded(-1);} -> skip;
-BODY_COMMENT : COMMENT -> channel(COMMENTS) ;
+BODY_NEWLINE : NEWLINE -> type(NEWLINE), channel(WHITESPACE);
+BODY_COMMENT : COMMENT -> type(COMMENT), channel(COMMENTS) ;
 
 // End of this node; return to global mode (eg node headers)
 // or end of file
@@ -238,7 +101,16 @@ ANY: .  -> type(TEXT), pushMode(TextMode);
 // Arbitrary text, punctuated by expressions, and ended by 
 // hashtags and/or a newline.
 mode TextMode;
-TEXT_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(TEXT_NEWLINE);} -> popMode;
+
+// Newlines while in text mode are syntactically relevant, so we emit them
+// into the default channel (rather than into WHITESPACE).
+TEXT_NEWLINE: NEWLINE -> type(NEWLINE), popMode;
+
+// An escaped markup bracket. Markup is parsed by a separate phase (see
+// LineParser.cs in the C# code), and we want to pass escaped markers
+// directly through, so we'll match this and report it as TEXT before
+// matching the more general 'escaped character' rule.
+TEXT_ESCAPED_MARKUP_BRACKET: ('\\[' | '\\]') -> type(TEXT);
 
 // An escape marker. Skip this token and enter escaped text mode, which 
 // allows escaping characters that would otherwise be syntactically 
@@ -261,19 +133,22 @@ TEXT_COMMAND_START: '<<' -> type(COMMAND_START), mode(TextCommandOrHashtagMode),
 // Comments after free text.
 TEXT_COMMENT: COMMENT -> channel(COMMENTS);
 
-// Finally, lex anything up to a newline, a hashtag, the start of an
-// expression as free text, or a command-start marker.
-TEXT: TEXT_FRAG+ ;
-TEXT_FRAG: {
-      !(InputStream.LA(1) == '<' && InputStream.LA(2) == '<') // start-of-command marker
-    &&!(InputStream.LA(1) == '/' && InputStream.LA(2) == '/') // start of a comment
-    }? ~[\r\n#{\\] ;
-
-// TODO: support detecting a comment at the end of a line by looking 
-// ahead and seeing '//', then skipping the rest of the line. 
-// Currently "woo // foo" is parsed as one whole TEXT.
+// Finally, lex text. We'll read either everything up to (but not including) a
+// newline, a hashtag, the start of an expression, the start of an escape, the 
+// start of a command, or the start of a comma. We'll also lex a _single_ 
+// chevron or slash as a text; we know that they won't be a command or a 
+// comment, because the earlier rules for TEXT_COMMAND_START and TEXT_COMMENT 
+// would have caught them. By lexing a single one of these and then stopping,
+// we'll force the lexer to restart scanning after the current character, which
+// means we'll correctly lex things like "<<<" as "TEXT(<) COMMAND_START(<<)".
+TEXT: TEXT_FRAG+ | '<' | '/' ;
+fragment TEXT_FRAG: ~[\r\n#{\\</];
 
 mode TextEscapedMode;
+
+// Lex a single escapable character as text. (When we enter this mode,
+// TEXT_ESCAPE has already skipped the leading \ that marks an escaped
+// character, so we only need to lex the character itself.)
 TEXT_ESCAPED_CHARACTER: [\\<>{}#/] -> type(TEXT), popMode ; 
 
 mode TextCommandOrHashtagMode;
@@ -286,7 +161,9 @@ TEXT_COMMANDHASHTAG_COMMAND_START: '<<' -> type(COMMAND_START), pushMode(Command
 
 TEXT_COMMANDHASHTAG_HASHTAG: '#' -> type(HASHTAG), pushMode(HashtagMode);
 
-TEXT_COMMANDHASHTAG_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(TEXT_NEWLINE);} -> type(TEXT_NEWLINE), popMode;
+// Newlines while in text mode are syntactically relevant, so we emit them
+// into the default channel (rather than into WHITESPACE).
+TEXT_COMMANDHASHTAG_NEWLINE: NEWLINE -> type(NEWLINE),  popMode;
 
 TEXT_COMMANDHASHTAG_ERROR: . ; 
 

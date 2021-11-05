@@ -1,0 +1,11 @@
+title: Start
+---
+// This Yarn file should not compile, because it has a duplicate line tag.
+Line one #line:line1
+Line two #line:line2
+===
+title: SecondNode
+---
+// This node contains a duplicate line for "line:line1"
+Line three #line:line1
+===

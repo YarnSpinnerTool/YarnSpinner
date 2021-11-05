@@ -12,7 +12,68 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Removed
 
-## [v2.0.0-beta5] 2021-08-17
+## [2.0.0-beta6] 2021-10-23
+
+### Added
+
+- The Compiler will no longer throw a `ParseException`, `TypeException` or `CompilerException` when an error is encountered during compilation. Instead, `CompilationResult.Diagnostics` contains a collection of `Diagnostic` objects, which represent errors, warnings, or other diagnostic information related to the compiled program.
+  - This change was implemented so that if multiple problems can be detected in a program, they can all be reported at once, rather than the compiler stopping at the first one.
+  - This also allows the compiler to issue non-fatal diagnostic messages, like warnings, that do not prevent the script from being compiled, but might indicate a problem with the code.
+  - Exceptions will continue to be thrown if the compiler encounters an internal error (in other words, if Yarn Spinner itself has a bug.)
+- If an error is encountered during compilation, `CompilationResult.Program` will be `null`.
+- This change means that compilation failures will not cause  `Compiler.Compile()` to throw an exception; code that was previously using a `try...catch` to detect problems will need to be rewritten to check the `CompilationResult.Diagnostics` property to find the actual problem.
+
+### Changed
+
+- Made the lexer not use semantic predicates when lexing the TEXT rule, which reduces the amount of C# code present in the grammar file.
+- Markup can now be escaped, using the `\` character:
+
+```
+\[b\]hello\[/b\]
+// will appear to the user as "[b]hello[/b]", and will not 
+// be treated as markup
+```
+- `Dialogue.SetSelectedOption` can now be called within the options handler itself. 
+  - If you do this, the `Dialogue` will continue executing after the options handler returns, and you do not need to call `Continue`.
+
+- The compiler now generates better error messages for syntax errors. For example, given the following code (note the lack of an `<<endif>>` at the end):
+
+```yarn
+<<if $has_key>>
+  Guard: You found the key! Let me unlock the door.
+```
+
+The compiler will produce the following error message:
+
+```
+Expected an <<endif>> to match the <<if>> statement on line 1
+```
+
+- The compiler's new error messages now also report additional information about the context of a syntax error. For example, given the following code:
+
+```yarn
+<<if hasCompletedObjective("find_key" >>
+  // error! we forgot to add an ')'!
+<<endif>>
+```
+
+The compiler will produce the following error message:
+
+```
+Unexpected ">>" while reading a function call
+```
+
+- `VirtualMachine.executionState` has been renamed to `VirtualMachine.CurrentExecutionState`.
+
+- It is now a compiler error if the same line ID is used on more than one line.
+
+- Dialogue.VariableStorage is now public.
+
+### Removed
+
+- The ParseException, TypeException and CompilerException classes have been removed.
+
+## [2.0.0-beta5] 2021-08-17
 
 ### Added
 
@@ -92,7 +153,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 <<declare $coins = 0 "The number of coins the player has">>
 ```
 
-## [v2.0.0-beta4] 
+## [2.0.0-beta4] 
 
 ### Added
 
@@ -125,7 +186,7 @@ TD-110: Let me see your identification.
 
 ### Removed
 
-## [v2.0.0-beta2] 2021-01-14
+## [2.0.0-beta2] 2021-01-14
 
 ### Added
 
@@ -224,7 +285,7 @@ Will be rewritten to:
 
 ### Removed
 
-## [v2.0.0-beta1] 2020-10-20
+## [2.0.0-beta1] 2020-10-20
 
 ### Added
 - Version 2 of the Yarn language requires variables to be declared in order to use them. It's now an error to set or get a value from a variable that isn't declared.
@@ -264,7 +325,7 @@ Will be rewritten to:
   - The previous, related syntax for jumping to another node, (`[[DestinationNode]]`), has also been removed, and has been replaced with the `<<jump>>` command.
 - Functions registered with the `Library` class can no longer accept an unlimited number of parametes.
 
-## [v1.2.0] 2020-05-04
+## [1.2.0] 2020-05-04
 
 ### Added
 
@@ -276,7 +337,7 @@ Will be rewritten to:
 
 ### Removed
 
-## [v1.2.0-beta1] 2020-05-28
+## [1.2.0-beta1] 2020-05-28
 
 ### Added
 
@@ -294,11 +355,11 @@ Will be rewritten to:
 
 ### Removed
 
-## [v1.1.0] - 2020-04-01
+## [1.1.0] - 2020-04-01
 
 Final release of v1.1.0.
 
-## [v1.1.0-beta3]
+## [1.1.0-beta3]
 
 ### Added
 
@@ -306,7 +367,7 @@ Final release of v1.1.0.
 
 - Fixed a bug that caused `<<else>>` to be incorrectly parsed as a command, not an `else` statement, which meant that flow control didn't work correctly.
 
-## [v1.0.0-beta2]
+## [1.0.0-beta2]
 
 ### Added
 

@@ -83,6 +83,8 @@ namespace YarnSpinner.Tests
             // a temporary location.)
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(expectedOutputFiles) );
+
+            Assert.Empty(result.Diagnostics);
             
             stringTable = result.StringTable;
 

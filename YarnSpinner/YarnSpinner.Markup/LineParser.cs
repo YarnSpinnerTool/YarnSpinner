@@ -173,6 +173,28 @@ namespace Yarn.Markup
             {
                 char c = (char)nextCharacter;
 
+                if (c == '\\')
+                {
+                    // This may be the start of an escaped bracket ("\[" or
+                    // "\]"). Peek ahead to see if it is.
+                    var nextC = (char)this.stringReader.Peek();
+
+                    if (nextC == '[' || nextC == ']')
+                    {
+                        // It is! We'll discard this '\', and read the next
+                        // character as plain text.
+                        c = (char)this.stringReader.Read();
+                        stringBuilder.Append(c);
+                        this.sourcePosition += 1;
+                        continue;
+                    }
+                    else
+                    {
+                        // It wasn't an escaped bracket. Continue on, and
+                        // parse the '\' as a normal character.
+                    }
+                }
+
                 if (c == '[')
                 {
                     // How long is our current string, in text elements

@@ -406,17 +406,17 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitVariable([NotNull] YarnSpinnerParser.VariableContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.function"/>.
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.function_call"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFunction([NotNull] YarnSpinnerParser.FunctionContext context) { }
+	public virtual void EnterFunction_call([NotNull] YarnSpinnerParser.Function_callContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.function"/>.
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.function_call"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFunction([NotNull] YarnSpinnerParser.FunctionContext context) { }
+	public virtual void ExitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.enumCase"/>.
 	/// <para>The default implementation does nothing.</para>

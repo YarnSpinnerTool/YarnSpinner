@@ -163,6 +163,18 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// </summary>
+        /// <param name="source">The source code to parse.</param>
+        /// <returns></returns>
+        public static (FileParseResult, IEnumerable<Diagnostic>) ParseSource(string source)
+        {
+            var diagnostics = new List<Diagnostic>();
+            var result = Compiler.ParseSyntaxTree("<input>", source, ref diagnostics);
+
+            return (result, diagnostics);
+        }
+
+        /// <summary>
         /// Generates a new unique line tag that is not present in
         /// `existingKeys`.
         /// </summary>

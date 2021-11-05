@@ -2,8 +2,9 @@
 name: Bug report (Yarn Spinner 2.0 Beta)
 about: Create a report to help us improve Yarn Spinner 2.0!
 title: ''
-labels: bug beta
-assignees: 
+labels: ''
+assignees: ''
+
 ---
 
 <!-- PLEASE NOTE: 

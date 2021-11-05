@@ -20,7 +20,7 @@ namespace YarnSpinner.Tests
 
         public string locale = "en";
         
-        protected bool errorsCauseFailures = true;
+        protected bool runtimeErrorsCauseFailures = true;
 
         // Returns the path that contains the test case files.
 
@@ -87,7 +87,7 @@ namespace YarnSpinner.Tests
                 Console.WriteLine ("ERROR: " + message);
                 Console.ResetColor ();
 
-                if (errorsCauseFailures == true) {
+                if (runtimeErrorsCauseFailures == true) {
                     Assert.NotNull(message);
                 }
                     

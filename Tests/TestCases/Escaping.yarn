@@ -20,6 +20,11 @@ Here's some TMP-style styling with a color code: <color=\#fff>wow</color>
 
 Here's a url: http:\/\/github.com\/YarnSpinnerTool
 
+// Escaped markup is handled by the LineParser class, not the main grammar
+// itself
+Here's some markup: [a]hello[/a]
+Here's some escaped markup: \[a\]hello\[/a\]
+
 -> Here's an option with a hashtag #hashtag
 -> Here's an option with an escaped hashtag \#hashtag
 
@@ -40,4 +45,10 @@ Here's a url: http:\/\/github.com\/YarnSpinnerTool
 
 
 -> Here's a url: http:\/\/github.com\/YarnSpinnerTool
+
+// Escaped markup is handled by the LineParser class, not the main grammar
+// itself
+-> Here's some markup: [a]hello[/a]
+-> Here's some escaped markup: \[a\]hello\[/a\]
+
 ===

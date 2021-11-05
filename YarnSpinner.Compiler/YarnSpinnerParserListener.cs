@@ -346,15 +346,15 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitVariable([NotNull] YarnSpinnerParser.VariableContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.function"/>.
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.function_call"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterFunction([NotNull] YarnSpinnerParser.FunctionContext context);
+	void EnterFunction_call([NotNull] YarnSpinnerParser.Function_callContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.function"/>.
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.function_call"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitFunction([NotNull] YarnSpinnerParser.FunctionContext context);
+	void ExitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.enumCase"/>.
 	/// </summary>

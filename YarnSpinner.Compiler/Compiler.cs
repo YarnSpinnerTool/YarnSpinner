@@ -1,4 +1,4 @@
-// Uncomment to ensure that all expressions have a known type at compile time
+﻿// Uncomment to ensure that all expressions have a known type at compile time
 // #define VALIDATE_ALL_EXPRESSIONS
 
 namespace Yarn.Compiler
@@ -83,6 +83,19 @@ namespace Yarn.Compiler
             {
                 StringTable.Add(entry.Key, entry.Value);
             }
+        }
+
+        /// <summary>
+        /// Checks to see if this string table already contains a line with
+        /// the line ID <paramref name="lineID"/>.
+        /// </summary>
+        /// <param name="lineID">The line ID to check for.</param>
+        /// <returns><see langword="true"/> if the string table already
+        /// contains a line with this ID, <see langword="false"/>
+        /// otherwise.</returns>
+        internal bool ContainsKey(string lineID)
+        {
+            return this.StringTable.ContainsKey(lineID);
         }
     }
 
@@ -286,6 +299,8 @@ namespace Yarn.Compiler
 
         public Dictionary<string, IEnumerable<string>> FileTags { get; internal set; }
 
+        public IEnumerable<Diagnostic> Diagnostics { get; internal set; }
+
         internal static CompilationResult CombineCompilationResults(IEnumerable<CompilationResult> results, StringTableManager stringTableManager)
         {
             CompilationResult finalResult;
@@ -293,6 +308,7 @@ namespace Yarn.Compiler
             var programs = new List<Program>();
             var declarations = new List<Declaration>();
             var tags = new Dictionary<string, IEnumerable<string>>();
+            var diagnostics = new List<Diagnostic>();
 
             foreach (var result in results)
             {
@@ -311,6 +327,10 @@ namespace Yarn.Compiler
                     }
                 }
 
+                if (result.Diagnostics != null)
+                {
+                    diagnostics.AddRange(result.Diagnostics);
+                }
             }
 
             return new CompilationResult
@@ -320,6 +340,7 @@ namespace Yarn.Compiler
                 Declarations = declarations,
                 ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
                 FileTags = tags,
+                Diagnostics = diagnostics,
             };
         }
     }
@@ -353,10 +374,7 @@ namespace Yarn.Compiler
         /// </summary>
         internal Program Program { get; private set; }
 
-        /// <summary>
-        /// The name of the file we are currently parsing from.
-        /// </summary>
-        private readonly string fileName;
+        internal FileParseResult fileParseResult { get; private set; }
 
         /// <summary>
         /// The list of variable declarations known to the compiler.
@@ -372,10 +390,20 @@ namespace Yarn.Compiler
         /// </summary>
         internal Library Library { get; private set; }
 
-        internal Compiler(string fileName)
+        /// <summary>
+        /// Gets the list of new <see cref="Diagnostic"/> objects created
+        /// during code generation. This does not include any existing
+        /// diagnostics, such as parse errors.
+        /// </summary>
+        internal IEnumerable<Diagnostic> Diagnostics { get => this.diagnostics; }
+
+        private List<Diagnostic> diagnostics = new List<Diagnostic>();
+
+
+        internal Compiler(FileParseResult fileParseResult)
         {
             Program = new Program();
-            this.fileName = fileName;
+            this.fileParseResult = fileParseResult;
         }
 
 #if DEBUG
@@ -403,16 +431,25 @@ namespace Yarn.Compiler
                 knownVariableDeclarations.AddRange(compilationJob.VariableDeclarations);
             }
 
-            // Get function declarations from the Standard Library
-            knownVariableDeclarations.AddRange(GetDeclarationsFromLibrary(new Dialogue.StandardLibrary()));
+            var diagnostics = new List<Diagnostic>();
+            {
+                // Get function declarations from the Standard Library
+                (IEnumerable<Declaration> declarations, IEnumerable<Diagnostic> declarationDiagnostics) = GetDeclarationsFromLibrary(new Dialogue.StandardLibrary());
+
+                diagnostics.AddRange(declarationDiagnostics);
+
+                knownVariableDeclarations.AddRange(declarations);
+            }
 
             // Get function declarations from the library, if provided
             if (compilationJob.Library != null)
             {
-                knownVariableDeclarations.AddRange(GetDeclarationsFromLibrary(compilationJob.Library));
+                (IEnumerable<Declaration> declarations, IEnumerable<Diagnostic> declarationDiagnostics) = GetDeclarationsFromLibrary(compilationJob.Library);
+                knownVariableDeclarations.AddRange(declarations);
+                diagnostics.AddRange(declarationDiagnostics);
             }
 
-            var compiledTrees = new List<(string name, IParseTree tree, CommonTokenStream tokens)>();
+            var parsedFiles = new List<FileParseResult>();
 
             // First pass: parse all files, generate their syntax trees,
             // and figure out what variables they've declared
@@ -420,10 +457,10 @@ namespace Yarn.Compiler
 
             foreach (var file in compilationJob.Files)
             {
-                var tree = ParseSyntaxTree(file);
-                compiledTrees.Add((file.FileName, tree.tree, tree.tokens));
+                var parseResult = ParseSyntaxTree(file, ref diagnostics);
+                parsedFiles.Add(parseResult);
 
-                RegisterStrings(file.FileName, stringTableManager, tree.tree);
+                RegisterStrings(file.FileName, stringTableManager, parseResult.Tree, ref diagnostics);
             }
 
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
@@ -435,39 +472,47 @@ namespace Yarn.Compiler
                     ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
                     Program = null,
                     StringTable = stringTableManager.StringTable,
+                    Diagnostics = diagnostics,
                 };
             }
 
             // Find the type definitions in these files.
             var walker = new ParseTreeWalker();
-            foreach (var parsedFile in compiledTrees) {
-                var typeDeclarationVisitor = new TypeDeclarationListener(parsedFile.name, parsedFile.tokens, parsedFile.tree, ref typeDeclarations);
+            foreach (var parsedFile in parsedFiles)
+            {
+                var typeDeclarationVisitor = new TypeDeclarationListener(parsedFile.Name, parsedFile.Tokens, parsedFile.Tree, ref typeDeclarations);
 
-                walker.Walk(typeDeclarationVisitor, parsedFile.tree);
+                walker.Walk(typeDeclarationVisitor, parsedFile.Tree);
+
+                diagnostics.AddRange(typeDeclarationVisitor.Diagnostics);
             }
 
             var fileTags = new Dictionary<string, IEnumerable<string>>();
 
             // Find the variable declarations in these files.
-            foreach (var parsedFile in compiledTrees)
+            foreach (var parsedFile in parsedFiles)
             {
-                GetDeclarations(parsedFile.name, parsedFile.tokens, parsedFile.tree, knownVariableDeclarations, out var newDeclarations, typeDeclarations, out var newFileTags);
+                GetDeclarations(parsedFile, knownVariableDeclarations, out var newDeclarations, typeDeclarations, out var newFileTags, out var declarationDiagnostics);
 
                 derivedVariableDeclarations.AddRange(newDeclarations);
                 knownVariableDeclarations.AddRange(newDeclarations);
+                diagnostics.AddRange(declarationDiagnostics);
 
-                fileTags.Add(parsedFile.name, newFileTags);
+                fileTags.Add(parsedFile.Name, newFileTags);
             }
 
-            foreach (var parsedFile in compiledTrees) {
-                var checker = new TypeCheckVisitor(parsedFile.name, knownVariableDeclarations, typeDeclarations);
+            foreach (var parsedFile in parsedFiles)
+            {
+                var checker = new TypeCheckVisitor(parsedFile.Name, knownVariableDeclarations, typeDeclarations);
 
-                checker.Visit(parsedFile.tree);
+                checker.Visit(parsedFile.Tree);
                 derivedVariableDeclarations.AddRange(checker.NewDeclarations);
                 knownVariableDeclarations.AddRange(checker.NewDeclarations);
+                diagnostics.AddRange(checker.Diagnostics);
 
 #if VALIDATE_ALL_EXPRESSIONS
-                // Validate that the type checker assigned a type to every expression
+                // Validate that the type checker assigned a type to every
+                // expression
                 var allExpressions = FlattenParseTree(parsedFile.tree).OfType<YarnSpinnerParser.ExpressionContext>();
 
                 var expressionsWithNoType = allExpressions.Where(e => e.Type == BuiltinTypes.Undefined);
@@ -490,12 +535,13 @@ namespace Yarn.Compiler
                     Program = null,
                     StringTable = null,
                     FileTags = fileTags,
+                    Diagnostics = diagnostics,
                 };
             }
 
-            foreach (var parsedFile in compiledTrees)
+            foreach (var parsedFile in parsedFiles)
             {
-                CompilationResult compilationResult = GenerateCode(parsedFile.name, knownVariableDeclarations, compilationJob, parsedFile.tree, stringTableManager);
+                CompilationResult compilationResult = GenerateCode(parsedFile, knownVariableDeclarations, compilationJob, stringTableManager);
                 results.Add(compilationResult);
             }
 
@@ -512,22 +558,38 @@ namespace Yarn.Compiler
                     continue;
                 }
 
+                if (declaration.Type == BuiltinTypes.Undefined)
+                {
+                    // This declaration has an undefined type; we will
+                    // already have created an error message for this, so
+                    // skip this one.
+                    continue;
+                }
+
                 Operand value;
 
                 if (declaration.DefaultValue == null)
                 {
-                    throw new NullReferenceException($"Variable declaration {declaration.Name} (type {declaration.Type.Name}) has a null default value. This is not allowed.");
+                    diagnostics.Add(new Diagnostic($"Variable declaration {declaration.Name} (type {declaration.Type?.Name ?? "undefined"}) has a null default value. This is not allowed."));
+                    continue;
                 }
 
-                if (declaration.Type == BuiltinTypes.String) {
+                if (declaration.Type == BuiltinTypes.String)
+                {
                     value = new Operand(Convert.ToString(declaration.DefaultValue));
-                } else if (declaration.Type == BuiltinTypes.Number) {
+                }
+                else if (declaration.Type == BuiltinTypes.Number)
+                {
                     value = new Operand(Convert.ToSingle(declaration.DefaultValue));
-                } else if (declaration.Type == BuiltinTypes.Boolean) {
+                }
+                else if (declaration.Type == BuiltinTypes.Boolean)
+                {
                     value = new Operand(Convert.ToBoolean(declaration.DefaultValue));
                 } else if (declaration.Type is EnumType enumType) {
                     value = new Operand(Convert.ToSingle(declaration.DefaultValue));
-                } else {
+                }
+                else
+                {
                     throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.Type.Name}");
                 }
 
@@ -538,56 +600,59 @@ namespace Yarn.Compiler
 
             finalResult.FileTags = fileTags;
 
+            finalResult.Diagnostics = finalResult.Diagnostics.Concat(diagnostics).Distinct();
+
+            // Do not return a program if any Errors were generated (even
+            // if bytecode happened to be produced; it is not guaranteed to
+            // work correctly.)
+            if (finalResult.Diagnostics.Any(p => p.Severity == Diagnostic.DiagnosticSeverity.Error))
+            {
+                finalResult.Program = null;
+            }
+
             return finalResult;
         }
 
-        private static void RegisterStrings(string fileName, StringTableManager stringTableManager, IParseTree tree)
+        private static void RegisterStrings(string fileName, StringTableManager stringTableManager, IParseTree tree, ref List<Diagnostic> diagnostics)
         {
             var visitor = new StringTableGeneratorVisitor(fileName, stringTableManager);
             visitor.Visit(tree);
+            diagnostics.AddRange(visitor.Diagnostics);
         }
 
-        private static void GetDeclarations(string sourceFileName, CommonTokenStream tokenStream, IParseTree tree, IEnumerable<Declaration> existingDeclarations, out IEnumerable<Declaration> newDeclarations, IEnumerable<IType> typeDeclarations, out IEnumerable<string> fileTags)
+        private static void GetDeclarations(FileParseResult parsedFile, IEnumerable<Declaration> existingDeclarations, out IEnumerable<Declaration> newDeclarations, IEnumerable<IType> typeDeclarations, out IEnumerable<string> fileTags, out IEnumerable<Diagnostic> diagnostics)
         {
-            var variableDeclarationVisitor = new DeclarationVisitor(sourceFileName, existingDeclarations, typeDeclarations, tokenStream);
+            var variableDeclarationVisitor = new DeclarationVisitor(parsedFile.Name, existingDeclarations, typeDeclarations, parsedFile.Tokens);
 
-            try
-            {
-                variableDeclarationVisitor.Visit(tree);
-            }
-            catch (TypeException e)
-            {
-                throw new TypeException(e.Context, e.InternalMessage, sourceFileName);
-            }
+            var newDiagnosticList = new List<Diagnostic>();
+
+            variableDeclarationVisitor.Visit(parsedFile.Tree);
+
+            newDiagnosticList.AddRange(variableDeclarationVisitor.Diagnostics);
 
             // Upon exit, newDeclarations will now contain every variable
             // declaration we found
             newDeclarations = variableDeclarationVisitor.NewDeclarations;
 
             fileTags = variableDeclarationVisitor.FileTags;
+
+            diagnostics = newDiagnosticList;
         }
 
-        private static CompilationResult GenerateCode(string fileName, IEnumerable<Declaration> variableDeclarations, CompilationJob job, IParseTree tree, StringTableManager stringTableManager)
+        private static CompilationResult GenerateCode(FileParseResult fileParseResult, IEnumerable<Declaration> variableDeclarations, CompilationJob job, StringTableManager stringTableManager)
         {
-            Compiler compiler = new Compiler(fileName);
+            Compiler compiler = new Compiler(fileParseResult);
 
             compiler.Library = job.Library;
             compiler.VariableDeclarations = variableDeclarations;
-
-            try
-            {
-                compiler.Compile(tree);
-            }
-            catch (TypeException e)
-            {
-                throw new TypeException(e.Context, e.InternalMessage, fileName);
-            }
+            compiler.Compile();
 
             return new CompilationResult
             {
                 Program = compiler.Program,
                 StringTable = stringTableManager.StringTable,
                 ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
+                Diagnostics = compiler.Diagnostics,
             };
         }
 
@@ -602,9 +667,11 @@ namespace Yarn.Compiler
         /// <paramref name="library"/> has an invalid return type, an
         /// invalid parameter type, an optional parameter, or an out
         /// parameter.</throws>
-        internal static IEnumerable<Declaration> GetDeclarationsFromLibrary(Library library)
+        internal static (IEnumerable<Declaration>, IEnumerable<Diagnostic>) GetDeclarationsFromLibrary(Library library)
         {
             var declarations = new List<Declaration>();
+
+            var diagnostics = new List<Diagnostic>();
 
             foreach (var function in library.Delegates)
             {
@@ -625,7 +692,8 @@ namespace Yarn.Compiler
                 // that Yarn Spinner can use?
                 if (BuiltinTypes.TypeMappings.TryGetValue(method.ReturnType, out var yarnReturnType) == false)
                 {
-                    throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: {method.ReturnType} is not a valid return type.");
+                    diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: {method.ReturnType} is not a valid return type."));
+                    continue;
                 }
 
                 // Define a new type for this function
@@ -644,23 +712,27 @@ namespace Yarn.Compiler
 
                     if (paramInfo.IsOptional)
                     {
-                        throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is optional, which isn't supported.");
+                        diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is optional, which isn't supported."));
+                        continue;
                     }
 
                     if (paramInfo.IsOut)
                     {
-                        throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is an out parameter, which isn't supported.");
+                        diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is an out parameter, which isn't supported."));
+                        continue;
                     }
 
                     if (BuiltinTypes.TypeMappings.TryGetValue(paramInfo.ParameterType, out var yarnParameterType) == false)
                     {
-                        throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used.");
+                        diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used in Yarn functions"));
+                        continue;
                     }
 
                     functionType.AddParameter(yarnParameterType);
                 }
 
-                if (includeMethod == false) {
+                if (includeMethod == false)
+                {
                     continue;
                 }
 
@@ -679,13 +751,19 @@ namespace Yarn.Compiler
                 declarations.Add(declaration);
             }
 
-            return declarations;
+            return (declarations, diagnostics);
         }
 
-        private static (IParseTree tree, CommonTokenStream tokens) ParseSyntaxTree(CompilationJob.File file)
+        private static FileParseResult ParseSyntaxTree(CompilationJob.File file, ref List<Diagnostic> diagnostics)
         {
             string source = file.Source;
-            
+            string fileName = file.FileName;
+
+            return ParseSyntaxTree(fileName, source, ref diagnostics);
+        }
+
+        internal static FileParseResult ParseSyntaxTree(string fileName, string source, ref List<Diagnostic> diagnostics)
+        {
             ICharStream input = CharStreams.fromstring(source);
 
             YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
@@ -694,34 +772,26 @@ namespace Yarn.Compiler
             YarnSpinnerParser parser = new YarnSpinnerParser(tokens);
 
             // turning off the normal error listener and using ours
+            var parserErrorListener = new ParserErrorListener();
+            var lexerErrorListener = new LexerErrorListener();
+
+            parser.ErrorHandler = new ErrorStrategy();
+
             parser.RemoveErrorListeners();
-            parser.AddErrorListener(ParserErrorListener.Instance);
+            parser.AddErrorListener(parserErrorListener);
 
             lexer.RemoveErrorListeners();
-            lexer.AddErrorListener(LexerErrorListener.Instance);
+            lexer.AddErrorListener(lexerErrorListener);
 
             IParseTree tree;
-            try
-            {
-                tree = parser.dialogue();
-            }
-            catch (ParseException e)
-            {
-#if DEBUG
-                var tokenStringList = new List<string>();
-                tokens.Reset();
-                foreach (var token in tokens.GetTokens())
-                {
-                    tokenStringList.Add($"{token.Line}:{token.Column} {YarnSpinnerLexer.DefaultVocabulary.GetDisplayName(token.Type)} \"{token.Text}\"");
-                }
 
-                throw new ParseException(e.Context, $"{e.Message}\n\nTokens:\n{string.Join("\n", tokenStringList)}", file.FileName);
-#else
-                throw new ParseException(e.Context, e.Message, file.FileName);
-#endif // DEBUG
-            }
+            tree = parser.dialogue();
 
-            return (tree, tokens);
+            var newDiagnostics = lexerErrorListener.Diagnostics.Concat(parserErrorListener.Diagnostics);
+
+            diagnostics.AddRange(newDiagnostics);
+
+            return new FileParseResult(fileName, tree, tokens);
         }
 
         /// <summary>
@@ -811,10 +881,11 @@ namespace Yarn.Compiler
         /// Extracts a line ID from a collection of <see
         /// cref="YarnSpinnerParser.HashtagContext"/>s, if one exists.
         /// </summary>
-        /// <param name="hashtagContexts">The hashtag parsing contexts.</param>
+        /// <param name="hashtagContexts">The hashtag parsing
+        /// contexts.</param>
         /// <returns>The line ID if one is present in the hashtag contexts,
         /// otherwise `null`.</returns>
-        internal static string GetLineID(YarnSpinnerParser.HashtagContext[] hashtagContexts)
+        internal static YarnSpinnerParser.HashtagContext GetLineIDTag(YarnSpinnerParser.HashtagContext[] hashtagContexts)
         {
             // if there are any hashtags
             if (hashtagContexts != null)
@@ -824,7 +895,7 @@ namespace Yarn.Compiler
                     string tagText = hashtagContext.text.Text;
                     if (tagText.StartsWith("line:", StringComparison.InvariantCulture))
                     {
-                        return tagText;
+                        return hashtagContext;
                     }
                 }
             }
@@ -836,10 +907,10 @@ namespace Yarn.Compiler
         // walking the parse tree emitting byte code as it goes along this
         // will all get stored into our program var needs a tree to walk,
         // this comes from the ANTLR Parser/Lexer steps
-        internal void Compile(IParseTree tree)
+        internal void Compile()
         {
             ParseTreeWalker walker = new ParseTreeWalker();
-            walker.Walk(this, tree);
+            walker.Walk(this, this.fileParseResult.Tree);
         }
 
         // we have found a new node set up the currentNode var ready to
@@ -882,7 +953,7 @@ namespace Yarn.Compiler
                 // characters
                 if (invalidNodeTitleNameRegex.IsMatch(CurrentNode.Name))
                 {
-                    throw new ParseException(context, $"The node '{CurrentNode.Name}' contains illegal characters in its title.");
+                    diagnostics.Add(new Diagnostic(fileParseResult.Name, context, $"The node '{CurrentNode.Name}' contains illegal characters in its title."));
                 }
             }
 
@@ -922,7 +993,8 @@ namespace Yarn.Compiler
                     visitor.Visit(statement);
                 }
             }
-            // We are a rawText node. Don't compile it; instead, note the string
+            // We are a rawText node. Don't compile it; instead, note the
+            // string
             else
             {
                 CurrentNode.SourceTextStringID = Compiler.GetLineIDForNodeName(CurrentNode.Name);
@@ -934,45 +1006,10 @@ namespace Yarn.Compiler
             return "line:" + name;
         }
 
-        // exiting the body of the node, time for last minute work before
-        // moving onto the next node Does this node end after emitting
-        // AddOptions codes without calling ShowOptions?
         public override void ExitBody(YarnSpinnerParser.BodyContext context)
         {
-            // Note: this only works when we know that we don't have
-            // AddOptions and then Jump up back into the code to run
-            // them. TODO: A better solution would be for the parser to
-            // flag whether a node has Options at the end.
-            var hasRemainingOptions = false;
-            foreach (var instruction in CurrentNode.Instructions)
-            {
-                if (instruction.Opcode == OpCode.AddOption)
-                {
-                    hasRemainingOptions = true;
-                }
-                if (instruction.Opcode == OpCode.ShowOptions)
-                {
-                    hasRemainingOptions = false;
-                }
-            }
-
-            // If this compiled node has no lingering options to show
-            // at the end of the node, then stop at the end
-            if (hasRemainingOptions == false)
-            {
-                Emit(CurrentNode, OpCode.Stop);
-            }
-            else
-            {
-                // Otherwise, show the accumulated nodes and then jump
-                // to the selected node
-                Emit(CurrentNode, OpCode.ShowOptions);
-
-                // Showing options will make the execution stop; the
-                // user will have invoked code that pushes the name of
-                // a node onto the stack, which RunNode handles
-                Emit(CurrentNode, OpCode.RunNode);
-            }
+            // We have exited the body; emit a 'stop' opcode here.
+            Emit(CurrentNode, OpCode.Stop);
         }
 
         /// <summary>
@@ -1031,7 +1068,8 @@ namespace Yarn.Compiler
                 if (subsequentComments != null)
                 {
                     var subsequentDocComment = subsequentComments
-                        // This comment is on the same line as the end of the declaration
+                        // This comment is on the same line as the end of
+                        // the declaration
                         .Where(t => t.Line == context.Stop.Line)
                         // The comment starts with a triple-slash
                         .Where(t => t.Text.StartsWith("///"))
@@ -1048,6 +1086,37 @@ namespace Yarn.Compiler
             }
 
             return description;
+        }
+    }
+
+    public struct FileParseResult
+    {
+        public string Name { get; }
+        public IParseTree Tree { get; }
+        public CommonTokenStream Tokens { get; }
+
+        public FileParseResult(string name, IParseTree tree, CommonTokenStream tokens)
+        {
+            this.Name = name;
+            this.Tree = tree;
+            this.Tokens = tokens;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is FileParseResult other &&
+                   this.Name == other.Name &&
+                   EqualityComparer<IParseTree>.Default.Equals(this.Tree, other.Tree) &&
+                   EqualityComparer<CommonTokenStream>.Default.Equals(this.Tokens, other.Tokens);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -1713343069;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.Name);
+            hashCode = hashCode * -1521134295 + EqualityComparer<IParseTree>.Default.GetHashCode(this.Tree);
+            hashCode = hashCode * -1521134295 + EqualityComparer<CommonTokenStream>.Default.GetHashCode(this.Tokens);
+            return hashCode;
         }
     }
 }

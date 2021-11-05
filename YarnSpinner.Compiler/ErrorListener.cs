@@ -1,48 +1,123 @@
 ﻿namespace Yarn.Compiler
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
     using System.Text;
     using Antlr4.Runtime;
+    
+    public sealed class Diagnostic
+    {
+        public string FileName = "(not set)";
+        public int Line;
+        public int Column;
+        public string Message = "(internal error: no message provided)";
+
+        public string Context = null;
+        public DiagnosticSeverity Severity = DiagnosticSeverity.Error;
+
+        public Diagnostic(string fileName, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        {
+            this.FileName = fileName;
+            this.Message = message;
+            this.Severity = severity;
+        }
+        
+        public Diagnostic(string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        : this(null, message, severity)
+        {
+        }
+
+        public Diagnostic(string fileName, ParserRuleContext context, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        {
+            this.FileName = fileName;
+            this.Column = context?.Start.Column ?? 0;
+            this.Line = context?.Start.Line ?? 0;
+            this.Message = message;
+            this.Context = context.GetTextWithWhitespace();
+            this.Severity = severity;
+        }
+
+        public Diagnostic(string fileName, int line, int column, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error) {
+            this.FileName = fileName;
+            this.Column = column;
+            this.Line = line;
+            this.Message = message;
+            this.Severity = severity;
+        }
+
+        public enum DiagnosticSeverity
+        {
+            Error,
+            Warning,
+            Info
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.Append($"{this.Line}:{this.Column}: {this.Severity}: {this.Message}");
+
+            if (string.IsNullOrEmpty(this.Context) == false)
+            {
+                sb.AppendLine();
+                sb.AppendLine(this.Context);
+            }
+
+            return sb.ToString();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Diagnostic problem &&
+                   this.FileName == problem.FileName &&
+                   this.Line == problem.Line &&
+                   this.Column == problem.Column &&
+                   this.Message == problem.Message &&
+                   this.Context == problem.Context &&
+                   this.Severity == problem.Severity;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -1856104752;
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.FileName);
+            hashCode = (hashCode * -1521134295) + this.Line.GetHashCode();
+            hashCode = (hashCode * -1521134295) + this.Column.GetHashCode();
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Message);
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Context);
+            hashCode = (hashCode * -1521134295) + this.Severity.GetHashCode();
+            return hashCode;
+        }
+    }
 
     internal sealed class LexerErrorListener : IAntlrErrorListener<int>
     {
-        private static readonly LexerErrorListener instance = new LexerErrorListener();
+        private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
 
-        public static LexerErrorListener Instance => instance;
+        public IEnumerable<Diagnostic> Diagnostics => this.diagnostics;
 
         public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
-            StringBuilder builder = new StringBuilder();
-            builder.Append($"Error on line {line} at position {charPositionInLine + 1}:");
-            builder.AppendLine(msg);
-
-            throw new ParseException(builder.ToString());
-
+            this.diagnostics.Add(new Diagnostic(null, line, charPositionInLine, msg));
         }
     }
 
     internal sealed class ParserErrorListener : BaseErrorListener
     {
-        public static ParserErrorListener Instance { get; } = new ParserErrorListener();
+        private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
+
+        public IEnumerable<Diagnostic> Diagnostics => this.diagnostics;
 
         public override void SyntaxError(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
-            StringBuilder builder = new StringBuilder();
-
-            // the human readable message
-            object[] format = new object[] { line, charPositionInLine + 1 };
-            builder.AppendFormat(CultureInfo.CurrentCulture, "Error on line {0} at position {1}:\n", format);
-
-            // the actual error message
-            builder.AppendLine(msg);
-#if DEBUG
-            builder.AppendLine($"Debug: Offending symbol type: {recognizer.Vocabulary.GetSymbolicName(offendingSymbol.Type)}");
-#endif
-
+            var diagnostic = new Diagnostic(null, line, charPositionInLine, msg);
+            
             if (offendingSymbol.TokenSource != null)
             {
+                StringBuilder builder = new StringBuilder();
+
                 // the line with the error on it
                 string input = offendingSymbol.TokenSource.InputStream.ToString();
                 string[] lines = input.Split('\n');
@@ -71,9 +146,11 @@
                         }
                     }
                 }
+
+                diagnostic.Context = builder.ToString();
             }
 
-            throw new ParseException(null, builder.ToString(), null);
+            this.diagnostics.Add(diagnostic);
         }
     }
 }

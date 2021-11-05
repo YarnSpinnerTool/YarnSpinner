@@ -16,7 +16,7 @@ node
     ;
 
 header 
-    : header_key=ID HEADER_DELIMITER  header_value=REST_OF_LINE? HEADER_NEWLINE
+    : header_key=ID HEADER_DELIMITER  header_value=REST_OF_LINE?
     ;
 
 body
@@ -41,13 +41,13 @@ line_statement
         line_formatted_text // text, interspersed with expressions
         line_condition? // a line condition
         hashtag*  // any number of hashtags
-        TEXT_NEWLINE // the end of the line
+        NEWLINE
     ;
 
 line_formatted_text
-    : ( TEXT+ // a chunk of text to show to the player
+    : ( TEXT+ // one or more chunks of text to show to the player
       | EXPRESSION_START expression EXPRESSION_END // an expression to evaluate
-      )* 
+      )+ 
     ;
 
 hashtag
@@ -77,7 +77,7 @@ value
     | variable       #valueVar
     | STRING #valueString
     | KEYWORD_NULL   #valueNull
-    | function       #valueFunc
+    | function_call       #valueFunc
     | enumCase #valueEnumCase
 
     ;
@@ -85,7 +85,7 @@ variable
     : VAR_ID
     ;
 
-function 
+function_call 
     : FUNC_ID '(' expression? (COMMA expression)* ')' ;
 
 enumCase
@@ -116,11 +116,11 @@ set_statement
     ;
 
 call_statement
-    : COMMAND_START COMMAND_CALL function COMMAND_END
+    : COMMAND_START COMMAND_CALL function_call COMMAND_END
     ;
 
 command_statement
-    : COMMAND_START command_formatted_text COMMAND_TEXT_END (hashtag* TEXT_NEWLINE)?
+    : COMMAND_START command_formatted_text COMMAND_TEXT_END (hashtag*)
     ;
 
 command_formatted_text

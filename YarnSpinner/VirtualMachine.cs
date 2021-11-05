@@ -9,19 +9,23 @@ namespace Yarn
     /// <summary>
     /// A value used by an Instruction.
     /// </summary>
-    public partial class Operand {
+    public partial class Operand
+    {
         // Define some convenience constructors for the Operand type, so
         // that we don't need to have two separate steps for creating and
         // then preparing the Operand
-        public Operand(bool value) : base() {
+        public Operand(bool value) : base()
+        {
             this.BoolValue = value;
         }
 
-        public Operand(string value) : base() {
+        public Operand(string value) : base()
+        {
             this.StringValue = value;
         }
 
-        public Operand(float value) : base() {
+        public Operand(float value) : base()
+        {
             this.FloatValue = value;
         }
     }
@@ -98,7 +102,8 @@ namespace Yarn
     internal class VirtualMachine
     {
 
-        internal class State {
+        internal class State
+        {
 
             /// <summary>The name of the node that we're currently
             /// in.</summary>
@@ -177,37 +182,41 @@ namespace Yarn
         public LineHandler LineHandler;
         public OptionsHandler OptionsHandler;
         public CommandHandler CommandHandler;
-		public NodeStartHandler NodeStartHandler;
-		public NodeCompleteHandler NodeCompleteHandler;
+        public NodeStartHandler NodeStartHandler;
+        public NodeCompleteHandler NodeCompleteHandler;
         public DialogueCompleteHandler DialogueCompleteHandler;
         public PrepareForLinesHandler PrepareForLinesHandler;
 
         private Dialogue dialogue;
 
+        /// <summary>
+        /// The <see cref="Program"/> that this virtual machine is running.
+        /// </summary>
         internal Program Program { get; set; }
 
         private State state = new State();
 
-        public string currentNodeName {
-            get {
+        public string currentNodeName
+        {
+            get
+            {
                 return state.currentNodeName;
             }
         }
 
-        public enum ExecutionState {
+        public enum ExecutionState
+        {
             /// <summary>
             /// The VirtualMachine is not running a node.
             /// </summary>
             Stopped,
-            
+
             /// <summary>
             /// The VirtualMachine is waiting on option selection. Call
             /// <see cref="SetSelectedOption(int)"/> before calling <see
             /// cref="Continue"/>.
             /// </summary>
             WaitingOnOptionSelection,
-            
-
 
             /// <summary>
             /// The VirtualMachine has finished delivering content to the
@@ -221,7 +230,7 @@ namespace Yarn
             /// commmand to the client game.
             /// </summary>
             DeliveringContent,
-            
+
             /// <summary>
             /// The VirtualMachine is in the middle of executing code.
             /// </summary>
@@ -229,38 +238,45 @@ namespace Yarn
         }
 
         private ExecutionState _executionState;
-        public ExecutionState executionState {
-            get {
+        public ExecutionState CurrentExecutionState
+        {
+            get
+            {
                 return _executionState;
             }
-            private set {
+            private set
+            {
                 _executionState = value;
-                if (_executionState == ExecutionState.Stopped) {
-                    ResetState ();
+                if (_executionState == ExecutionState.Stopped)
+                {
+                    ResetState();
                 }
             }
         }
 
         Node currentNode;
 
-        public bool SetNode(string nodeName) {
+        public bool SetNode(string nodeName)
+        {
 
-            if (Program == null || Program.Nodes.Count == 0) {
+            if (Program == null || Program.Nodes.Count == 0)
+            {
                 throw new DialogueException($"Cannot load node {nodeName}: No nodes have been loaded.");
             }
 
-            if (Program.Nodes.ContainsKey(nodeName) == false) {
-                executionState = ExecutionState.Stopped;
-                throw new DialogueException($"No node named {nodeName} has been loaded.");                
+            if (Program.Nodes.ContainsKey(nodeName) == false)
+            {
+                CurrentExecutionState = ExecutionState.Stopped;
+                throw new DialogueException($"No node named {nodeName} has been loaded.");
             }
 
-            dialogue.LogDebugMessage?.Invoke ("Running node " + nodeName);
+            dialogue.LogDebugMessage?.Invoke("Running node " + nodeName);
 
-            currentNode = Program.Nodes [nodeName];
-            ResetState ();
+            currentNode = Program.Nodes[nodeName];
+            ResetState();
             state.currentNodeName = nodeName;
 
-			NodeStartHandler?.Invoke(nodeName);
+            NodeStartHandler?.Invoke(nodeName);
 
             // Do we have a way to let the client know that certain lines
             // might be run?
@@ -296,20 +312,24 @@ namespace Yarn
             return true;
         }
 
-        public void Stop() {
-            executionState = ExecutionState.Stopped;
+        public void Stop()
+        {
+            CurrentExecutionState = ExecutionState.Stopped;
         }
 
-        public void SetSelectedOption(int selectedOptionID) {
+        public void SetSelectedOption(int selectedOptionID)
+        {
 
-            if (executionState != ExecutionState.WaitingOnOptionSelection) {
+            if (CurrentExecutionState != ExecutionState.WaitingOnOptionSelection)
+            {
 
                 throw new DialogueException(@"SetSelectedOption was called, but Dialogue wasn't waiting for a selection.
                 This method should only be called after the Dialogue is waiting for the user to select an option.");
             }
 
-            if (selectedOptionID < 0 || selectedOptionID >= state.currentOptions.Count) {
-                throw new ArgumentOutOfRangeException($"{selectedOptionID} is not a valid option ID (expected a number between 0 and {state.currentOptions.Count-1}.");
+            if (selectedOptionID < 0 || selectedOptionID >= state.currentOptions.Count)
+            {
+                throw new ArgumentOutOfRangeException($"{selectedOptionID} is not a valid option ID (expected a number between 0 and {state.currentOptions.Count - 1}.");
             }
 
             // We now know what number option was selected; push the
@@ -322,7 +342,7 @@ namespace Yarn
             state.currentOptions.Clear();
 
             // We're no longer in the WaitingForOptions state; we are now waiting for our game to let us continue
-            executionState = ExecutionState.WaitingForContinue;
+            CurrentExecutionState = ExecutionState.WaitingForContinue;
         }
 
         /// Resumes execution.
@@ -330,21 +350,22 @@ namespace Yarn
         {
             CheckCanContinue();
 
-            if (executionState == ExecutionState.DeliveringContent) {
+            if (CurrentExecutionState == ExecutionState.DeliveringContent)
+            {
                 // We were delivering a line, option set, or command, and
                 // the client has called Continue() on us. We're still
                 // inside the stack frame of the client callback, so to
                 // avoid recursion, we'll note that our state has changed
                 // back to Running; when we've left the callback, we'll
                 // continue executing instructions.
-                executionState = ExecutionState.Running;
+                CurrentExecutionState = ExecutionState.Running;
                 return;
             }
 
-            executionState = ExecutionState.Running;
+            CurrentExecutionState = ExecutionState.Running;
 
             // Execute instructions until something forces us to stop
-            while (executionState == ExecutionState.Running)
+            while (CurrentExecutionState == ExecutionState.Running)
             {
                 Instruction currentInstruction = currentNode.Instructions[state.programCounter];
 
@@ -355,7 +376,7 @@ namespace Yarn
                 if (state.programCounter >= currentNode.Instructions.Count)
                 {
                     NodeCompleteHandler(currentNode.Name);
-                    executionState = ExecutionState.Stopped;
+                    CurrentExecutionState = ExecutionState.Stopped;
                     DialogueCompleteHandler();
                     dialogue.LogDebugMessage("Run complete.");
                 }
@@ -378,7 +399,7 @@ namespace Yarn
                 throw new DialogueException("Cannot continue running dialogue. No node has been selected.");
             }
 
-            if (executionState == ExecutionState.WaitingOnOptionSelection)
+            if (CurrentExecutionState == ExecutionState.WaitingOnOptionSelection)
             {
                 throw new DialogueException("Cannot continue running dialogue. Still waiting on option selection.");
             }
@@ -402,24 +423,21 @@ namespace Yarn
             {
                 throw new DialogueException($"Cannot continue running dialogue. {nameof(NodeCompleteHandler)} has not been set.");
             }
-
-            if (NodeCompleteHandler == null)
-            {
-                throw new DialogueException($"Cannot continue running dialogue. {nameof(NodeCompleteHandler)} has not been set.");
-            }
         }
 
         /// Looks up the instruction number for a named label in the current node.
-        internal int FindInstructionPointForLabel(string labelName) {
+        internal int FindInstructionPointForLabel(string labelName)
+        {
 
-            if (currentNode.Labels.ContainsKey(labelName) == false) {
+            if (currentNode.Labels.ContainsKey(labelName) == false)
+            {
                 // Couldn't find the node..
-                throw new IndexOutOfRangeException (
+                throw new IndexOutOfRangeException(
                     $"Unknown label {labelName} in node {state.currentNodeName}"
                 );
             }
 
-            return currentNode.Labels [labelName];
+            return currentNode.Labels[labelName];
         }
 
         internal void RunInstruction(Instruction i)
@@ -445,13 +463,14 @@ namespace Yarn
                         string stringKey = i.Operands[0].StringValue;
 
                         Line line = new Line(stringKey);
-                        
+
                         // The second operand, if provided (compilers prior
                         // to v1.1 don't include it), indicates the number
                         // of expressions in the line. We need to pop these
                         // values off the stack and deliver them to the
                         // line handler.
-                        if (i.Operands.Count > 1) {
+                        if (i.Operands.Count > 1)
+                        {
                             // TODO: we only have float operands, which is
                             // unpleasant. we should make 'int' operands a
                             // valid type, but doing that implies that the
@@ -461,22 +480,24 @@ namespace Yarn
 
                             var strings = new string[expressionCount];
 
-                            for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--) {
+                            for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--)
+                            {
                                 strings[expressionIndex] = state.PopValue().ConvertTo<string>();
                             }
-                            
+
                             line.Substitutions = strings;
                         }
 
                         // Suspend execution, because we're about to deliver content
-                        executionState = ExecutionState.DeliveringContent;
+                        CurrentExecutionState = ExecutionState.DeliveringContent;
 
                         LineHandler(line);
 
-                        if (executionState == ExecutionState.DeliveringContent) {
+                        if (CurrentExecutionState == ExecutionState.DeliveringContent)
+                        {
                             // The client didn't call Continue, so we'll
                             // wait here.
-                            executionState = ExecutionState.WaitingForContinue;
+                            CurrentExecutionState = ExecutionState.WaitingForContinue;
                         }
 
                         break;
@@ -487,15 +508,16 @@ namespace Yarn
                         /// - RunCommand
                         /** Passes a string to the client as a custom command
                          */
-                        
+
                         string commandText = i.Operands[0].StringValue;
-                        
+
                         // The second operand, if provided (compilers prior
                         // to v1.1 don't include it), indicates the number
                         // of expressions in the command. We need to pop
                         // these values off the stack and deliver them to
                         // the line handler.
-                        if (i.Operands.Count > 1) {
+                        if (i.Operands.Count > 1)
+                        {
                             // TODO: we only have float operands, which is
                             // unpleasant. we should make 'int' operands a
                             // valid type, but doing that implies that the
@@ -507,24 +529,26 @@ namespace Yarn
 
                             // Get the values from the stack, and
                             // substitute them into the command text
-                            for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--) {
+                            for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--)
+                            {
                                 var substitution = state.PopValue().ConvertTo<string>();
 
                                 commandText = commandText.Replace("{" + expressionIndex + "}", substitution);
                             }
-                            
+
                         }
 
-                        executionState = ExecutionState.DeliveringContent;
-                         
+                        CurrentExecutionState = ExecutionState.DeliveringContent;
+
                         var command = new Command(commandText);
 
                         CommandHandler(command);
 
-                        if (executionState == ExecutionState.DeliveringContent) {
+                        if (CurrentExecutionState == ExecutionState.DeliveringContent)
+                        {
                             // The client didn't call Continue, so we'll
                             // wait here.
-                            executionState = ExecutionState.WaitingForContinue;
+                            CurrentExecutionState = ExecutionState.WaitingForContinue;
                         }
 
                         break;
@@ -626,7 +650,7 @@ namespace Yarn
                         // Get the parameters, which were pushed in reverse
                         Value[] parameters = new Value[actualParamCount];
                         var parametersToUse = new object[actualParamCount];
-                        
+
                         for (int param = actualParamCount - 1; param >= 0; param--)
                         {
                             var value = state.PopValue();
@@ -635,22 +659,26 @@ namespace Yarn
                             parametersToUse[param] = value.ConvertTo(parameterType);
                         }
 
-                        
+
                         // Invoke the function
-                        try {
-                            IConvertible returnValue = (IConvertible) function.DynamicInvoke(parametersToUse);
+                        try
+                        {
+                            IConvertible returnValue = (IConvertible)function.DynamicInvoke(parametersToUse);
                             // If the function returns a value, push it
                             bool functionReturnsValue = function.Method.ReturnType != typeof(void);
 
                             if (functionReturnsValue)
                             {
-                                if (BuiltinTypes.TypeMappings.TryGetValue(returnValue.GetType(), out var yarnType)) {
+                                if (BuiltinTypes.TypeMappings.TryGetValue(returnValue.GetType(), out var yarnType))
+                                {
                                     Value yarnValue = new Value(yarnType, returnValue);
 
                                     this.state.PushValue(yarnValue);
                                 }
                             }
-                        } catch (System.Reflection.TargetInvocationException ex) {
+                        }
+                        catch (System.Reflection.TargetInvocationException ex)
+                        {
                             // The function threw an exception. Re-throw the exception it threw.
                             throw ex.InnerException;
                         }
@@ -664,12 +692,12 @@ namespace Yarn
                         /** Get the contents of a variable, push that onto the stack.
                          */
                         var variableName = i.Operands[0].StringValue;
-                        
+
                         Value loadedValue;
-                        
+
                         var didLoadValue = dialogue.VariableStorage.TryGetValue<IConvertible>(variableName, out var loadedObject);
 
-                        
+
                         if (didLoadValue)
                         {
                             System.Type loadedObjectType = loadedObject.GetType();
@@ -727,13 +755,20 @@ namespace Yarn
                         var topValue = state.PeekValue();
                         var destinationVariableName = i.Operands[0].StringValue;
 
-                        if (topValue.Type == BuiltinTypes.Number) {
+                        if (topValue.Type == BuiltinTypes.Number)
+                        {
                             dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<float>());
-                        } else if (topValue.Type == BuiltinTypes.String) {
+                        }
+                        else if (topValue.Type == BuiltinTypes.String)
+                        {
                             dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<string>());
-                        } else if (topValue.Type == BuiltinTypes.Boolean) {
+                        }
+                        else if (topValue.Type == BuiltinTypes.Boolean)
+                        {
                             dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<bool>());
-                        } else {
+                        }
+                        else
+                        {
                             throw new ArgumentOutOfRangeException($"Invalid Yarn value type {topValue.Type}");
                         }
 
@@ -747,7 +782,7 @@ namespace Yarn
                          */
                         NodeCompleteHandler(currentNode.Name);
                         DialogueCompleteHandler();
-                        executionState = ExecutionState.Stopped;
+                        CurrentExecutionState = ExecutionState.Stopped;
 
                         break;
                     }
@@ -763,13 +798,13 @@ namespace Yarn
                         string nodeName = state.PopValue().ConvertTo<string>();
 
                         NodeCompleteHandler(currentNode.Name);
-                        
+
                         SetNode(nodeName);
 
                         // Decrement program counter here, because it will
                         // be incremented when this function returns, and
                         // would mean skipping the first instruction
-                        state.programCounter -= 1; 
+                        state.programCounter -= 1;
 
                         break;
                     }
@@ -782,7 +817,8 @@ namespace Yarn
 
                         var line = new Line(i.Operands[0].StringValue);
 
-                        if (i.Operands.Count > 2) {
+                        if (i.Operands.Count > 2)
+                        {
                             // TODO: we only have float operands, which is
                             // unpleasant. we should make 'int' operands a
                             // valid type, but doing that implies that the
@@ -797,11 +833,12 @@ namespace Yarn
 
                             // pop the expression values off the stack in
                             // reverse order, and store the list of substitutions
-                            for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--) {
+                            for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--)
+                            {
                                 string substitution = state.PopValue().ConvertTo<string>();
                                 strings[expressionIndex] = substitution;
                             }
-                            
+
                             line.Substitutions = strings;
                         }
 
@@ -810,7 +847,8 @@ namespace Yarn
                         // conditions that were attached to the option.
                         var lineConditionPassed = true;
 
-                        if (i.Operands.Count > 3) {
+                        if (i.Operands.Count > 3)
+                        {
                             // The fourth operand is a bool that indicates
                             // whether this option had a condition or not.
                             // If it does, then a bool value will exist on
@@ -843,7 +881,7 @@ namespace Yarn
                          */
                         if (state.currentOptions.Count == 0)
                         {
-                            executionState = ExecutionState.Stopped;
+                            CurrentExecutionState = ExecutionState.Stopped;
                             DialogueCompleteHandler();
                             break;
                         }
@@ -859,12 +897,21 @@ namespace Yarn
 
                         // We can't continue until our client tell us which
                         // option to pick
-                        executionState = ExecutionState.WaitingOnOptionSelection;
+                        CurrentExecutionState = ExecutionState.WaitingOnOptionSelection;
 
                         // Pass the options set to the client, as well as a
                         // delegate for them to call when the user has made
                         // a selection
                         OptionsHandler(new OptionSet(optionChoices.ToArray()));
+
+                        if (CurrentExecutionState == ExecutionState.WaitingForContinue)
+                        {
+                            // we are no longer waiting on an option
+                            // selection - the options handler must have
+                            // called SetSelectedOption! Continue running
+                            // immediately.
+                            CurrentExecutionState = ExecutionState.Running;
+                        }
 
                         break;
                     }
@@ -875,7 +922,7 @@ namespace Yarn
                         /** Whoa, no idea what OpCode this is. Stop the program
                          * and throw an exception.
                         */
-                        executionState = ExecutionState.Stopped;
+                        CurrentExecutionState = ExecutionState.Stopped;
                         throw new ArgumentOutOfRangeException(
                             $"Unknown opcode {i.Opcode}"
                         );

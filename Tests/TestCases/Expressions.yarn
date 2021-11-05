@@ -9,6 +9,7 @@ title: Start
 
 <<set $int to 1>>
 <<call assert($int == 1)>>
+<<call assert($int != 2)>>
 
 // Test unary operators
 

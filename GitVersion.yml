@@ -1,0 +1,9 @@
+assembly-versioning-scheme: MajorMinorPatchTag
+mode: ContinuousDelivery
+branches:
+  develop:
+    mode: ContinuousDelivery
+    tag: beta
+ignore:
+  sha: []
+merge-message-formats: {}

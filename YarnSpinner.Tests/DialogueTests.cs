@@ -24,6 +24,8 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(compilationJob);
 
+            Assert.Empty(result.Diagnostics);
+
             dialogue.SetProgram (result.Program);
 
             Assert.True (dialogue.NodeExists ("Sally"));
@@ -55,6 +57,8 @@ namespace YarnSpinner.Tests
             
             var result = Compiler.Compile(compilationJob);
 
+            Assert.Empty(result.Diagnostics);
+
             stringTable = result.StringTable;
 
             dialogue.SetProgram(result.Program);
@@ -73,6 +77,8 @@ namespace YarnSpinner.Tests
                 Path.Combine(SpaceDemoScriptsPath, "Sally.yarn"),
             }, dialogue.Library));
 
+            Assert.Empty(result.Diagnostics);
+
             dialogue.SetProgram (result.Program);
             
             dialogue.Analyse (context);
@@ -89,6 +95,8 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "Example.yarn");
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
+            Assert.Empty(result.Diagnostics);
+
             dialogue.SetProgram (result.Program);
 
             var byteCode = dialogue.GetByteCode ();
@@ -102,10 +110,12 @@ namespace YarnSpinner.Tests
             var path = Path.Combine (TestDataPath, "TestCases", "Smileys.yarn");
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+
+            Assert.Empty(result.Diagnostics);
             
             dialogue.SetProgram (result.Program);
 
-            errorsCauseFailures = false;
+            runtimeErrorsCauseFailures = false;
 
             Assert.Throws<DialogueException>( () => dialogue.SetNode("THIS NODE DOES NOT EXIST"));            
         }
@@ -119,6 +129,8 @@ namespace YarnSpinner.Tests
             compilationJob.Library = dialogue.Library;
             
             var result = Compiler.Compile(compilationJob);
+
+            Assert.Empty(result.Diagnostics);
             
             dialogue.SetProgram (result.Program);
 
@@ -140,6 +152,8 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
+            Assert.Empty(result.Diagnostics);
+
             dialogue.SetProgram (result.Program);
 
             stringTable = result.StringTable;
@@ -157,6 +171,9 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "Example.yarn");
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+
+            Assert.Empty(result.Diagnostics);
+
             dialogue.SetProgram (result.Program);
 
 			var source = dialogue.GetTagsForNode ("LearnMore");
@@ -173,6 +190,8 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "TaggedLines.yarn");
             
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+
+            Assert.Empty(result.Diagnostics);
 
             stringTable = result.StringTable;
             
@@ -221,6 +240,8 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
+            Assert.Empty(result.Diagnostics);
+
             stringTable = result.StringTable;
 
             dialogue.SetProgram(result.Program);
@@ -242,7 +263,78 @@ namespace YarnSpinner.Tests
             Assert.Equal(3, floatValue);
 
             this.storage.TryGetValue<bool>("$bool", out var boolValue);
-            Assert.Equal(false, boolValue);
+            Assert.False(boolValue);
+        }
+
+        [Fact]
+        public void TestSelectingOptionFromInsideOptionCallback() {
+            var testCase = new TestPlanBuilder()
+                .AddOption("option 1")
+                .AddOption("option 2")
+                .AddSelect(0)
+                .AddLine("final line")
+                .GetPlan();
+            
+            dialogue.LineHandler = (line) => {
+                var lineText = stringTable[line.ID];
+                var parsedText = dialogue.ParseMarkup(lineText.text).Text;
+                testCase.Next();
+
+                Assert.Equal(TestPlan.Step.Type.Line, testCase.nextExpectedType);
+                Assert.Equal(testCase.nextExpectedValue, parsedText);
+
+                dialogue.Continue();
+            };
+
+            dialogue.OptionsHandler = (optionSet) => {
+                testCase.Next();
+
+                int optionCount = optionSet.Options.Count();
+
+                Assert.Equal(TestPlan.Step.Type.Select, testCase.nextExpectedType);
+                
+                // Assert that the list of options we were given is
+                // identical to the list of options we expect
+                var actualOptionList = optionSet.Options
+                    .Select(o => (GetComposedTextForLine(o.Line), o.IsAvailable))
+                    .ToList();
+                Assert.Equal(testCase.nextExpectedOptions, actualOptionList);
+
+                var expectedOptionCount = testCase.nextExpectedOptions.Count();
+
+                Assert.Equal (expectedOptionCount, optionCount);
+
+                dialogue.SetSelectedOption(0);
+            };
+
+            dialogue.CommandHandler = (command) => {
+                testCase.Next();
+                Assert.Equal(TestPlan.Step.Type.Command, testCase.nextExpectedType);
+                dialogue.Continue();
+            };
+
+            dialogue.DialogueCompleteHandler = () => {
+                testCase.Next();
+                Assert.Equal(TestPlan.Step.Type.Stop, testCase.nextExpectedType);
+                dialogue.Continue();
+            };
+
+            var code = CreateTestNode("-> option 1\n->option 2\nfinal line\n");
+
+            var job = CompilationJob.CreateFromString("input", code);
+
+            var result = Compiler.Compile(job);
+
+            Assert.Empty(result.Diagnostics);
+
+            this.stringTable = result.StringTable;
+
+            dialogue.SetProgram(result.Program);
+            dialogue.SetNode("Start");
+
+            dialogue.Continue();
+            
+
         }
 
     }

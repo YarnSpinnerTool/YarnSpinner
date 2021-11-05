@@ -184,5 +184,8 @@ namespace Yarn.Compiler
 
             this.typeDeclarations.Add(enumType);
         }
+        public IEnumerable<Diagnostic> Diagnostics { get => this.diagnostics; }
+        
+        private List<Diagnostic> diagnostics = new List<Diagnostic>();
     }
 }
