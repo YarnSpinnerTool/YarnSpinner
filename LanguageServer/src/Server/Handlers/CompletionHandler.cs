@@ -78,7 +78,7 @@ namespace YarnLanguageServer.Handlers
                 {
                     switch (rule.Key)
                     {
-                        case YarnSpinnerParser.RULE_jump_destination:
+                        case YarnSpinnerParser.RULE_jump_statement:
                             results.AddRange(
                                  workspace.GetNodeTitles().Select((nodeTitle, _) =>
                                  new CompletionItem
@@ -107,21 +107,7 @@ namespace YarnLanguageServer.Handlers
                             );
                             break;
 
-                        case YarnSpinnerParser.RULE_function_name:
-                            results.AddRange(
-                                workspace.GetFunctions().Select(command =>
-                                new CompletionItem
-                                {
-                                    Label = command.YarnName,
-                                    Kind = CompletionItemKind.Function,
-                                    Detail = "What goes here?",
-                                    Documentation = $"{command.Signature}\n{command.Documentation}",
-                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = command.YarnName, Range = indexTokenRange }),
-                                })
-                            );
-                            break;
-
-                        case YarnSpinnerParser.RULE_command_name_rule:
+                        case YarnSpinnerParser.RULE_command_statement:
                             results.AddRange(
                                 workspace.GetCommands().Select(command =>
                                 new CompletionItem
@@ -176,11 +162,11 @@ namespace YarnLanguageServer.Handlers
 
         public static readonly HashSet<int> PreferedRules = new HashSet<int>
         {
-            YarnSpinnerParser.RULE_command_name_rule,
+            YarnSpinnerParser.RULE_command_statement,
             YarnSpinnerParser.RULE_variable,
             YarnSpinnerParser.RULE_function_call,
-            YarnSpinnerParser.RULE_function_name,
-            YarnSpinnerParser.RULE_jump_destination,
+            YarnSpinnerParser.RULE_function_call,
+            YarnSpinnerParser.RULE_jump_statement,
 
             // YarnSpinnerLexer.FUNC_ID,
             // YarnSpinnerLexer.COMMAND_NAME,
@@ -222,7 +208,6 @@ namespace YarnLanguageServer.Handlers
             YarnSpinnerLexer.COMMAND_END,
             YarnSpinnerLexer.FUNC_ID, // This and var id ideally taken care of with rules
             YarnSpinnerLexer.VAR_ID,
-            YarnSpinnerLexer.MALFORMED_VAR_ID,
         };
 
         public static readonly Dictionary<string, string> UserFriendlyTokenText = new Dictionary<string, string>

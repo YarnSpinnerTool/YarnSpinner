@@ -88,10 +88,10 @@ namespace YarnLanguageServer
             return base.VisitShortcut_option(context);
         }
 
-        public override bool VisitFunction_name([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.Function_nameContext context)
+        public override bool VisitFunction_call([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.Function_callContext context)
         {
-            AddTokenType(context.Start, SemanticTokenType.Function); // function name
-            return base.VisitFunction_name(context);
+            AddTokenType(context.FUNC_ID().Symbol, SemanticTokenType.Function); // function name
+            return base.VisitFunction_call(context);
         }
 
         public override bool VisitLine_condition([NotNull] YarnSpinnerParser.Line_conditionContext context)
@@ -191,29 +191,31 @@ namespace YarnLanguageServer
             return base.VisitCall_statement(context);
         }
 
-        public override bool VisitCommand_name_rule([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.Command_name_ruleContext context)
-        {
-            AddTokenType(context.COMMAND_NAME(), SemanticTokenType.Function);
-            return base.VisitCommand_name_rule(context);
-        }
-
-        public override bool VisitCommand_formatted_text([NotNull] YarnSpinnerParser.Command_formatted_textContext context)
-        {
-            for (var i = 0; i < context.ChildCount; i++)
-            {
-                if (i != 0)
-                {
-                    AddTokenType(context.children[i], context.children[i], SemanticTokenType.Parameter);
-                }
-            }
-
-            return base.VisitCommand_formatted_text(context);
-        }
-
         public override bool VisitCommand_statement([NotNull] YarnSpinnerParser.Command_statementContext context)
         {
+            string commandText = context.command_formatted_text().GetText();
+
+            var commandItems = CommandTextSplitter.SplitCommandText(commandText);
+
+            var firstToken = context.command_formatted_text().Start;
+
+            var tokens = commandItems.Select(c =>
+            {
+                var token = new CommonToken(YarnSpinnerLexer.COMMAND_TEXT, c.Text)
+                {
+                    Line = firstToken.Line,
+                    Column = firstToken.Column + c.Offset,
+                };
+                return token;
+            });
+
+            AddTokenType(tokens.First(), SemanticTokenType.Function);
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword);
             AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword);
+
+            foreach (var token in tokens.Skip(1)) {
+                AddTokenType(token, SemanticTokenType.Parameter);
+            }
 
             return base.VisitCommand_statement(context);
         }
@@ -224,7 +226,7 @@ namespace YarnLanguageServer
             AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword); // >>
 
             AddTokenType(context.COMMAND_JUMP(), SemanticTokenType.Function); // jump
-            AddTokenType(context.jump_destination(), SemanticTokenType.Class); // node_name
+            AddTokenType(context.destination, SemanticTokenType.Class); // node_name
 
             return base.VisitJump_statement(context);
         }
