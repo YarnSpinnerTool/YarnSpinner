@@ -198,13 +198,16 @@ namespace YarnLanguageServer
             var commandItems = CommandTextSplitter.SplitCommandText(commandText);
 
             var firstToken = context.command_formatted_text().Start;
+            var firstTextToken = context.command_formatted_text().Start;
 
             var tokens = commandItems.Select(c =>
             {
                 var token = new CommonToken(YarnSpinnerLexer.COMMAND_TEXT, c.Text)
                 {
-                    Line = firstToken.Line,
-                    Column = firstToken.Column + c.Offset,
+                    Line = firstTextToken.Line,
+                    Column = firstTextToken.Column + c.Offset,
+                    StartIndex = firstTextToken.StartIndex + c.Offset,
+                    StopIndex = firstTextToken.StartIndex + c.Offset + c.Text.Length - 1,
                 };
                 return token;
             });

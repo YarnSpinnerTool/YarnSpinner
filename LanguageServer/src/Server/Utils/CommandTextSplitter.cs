@@ -76,8 +76,10 @@ namespace YarnLanguageServer
                         // We encountered a whitespace character, but
                         // didn't have any characters queued up. Skip this
                         // character.
+                        currentComponentOffset = position + 1;
                     }
 
+                    position += 1;
                     continue;
                 }
                 else if (c == '\"')

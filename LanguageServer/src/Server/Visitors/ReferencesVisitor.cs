@@ -168,6 +168,8 @@ namespace YarnLanguageServer
                 {
                     Line = firstTextToken.Line,
                     Column = firstTextToken.Column + c.Offset,
+                    StartIndex = firstTextToken.StartIndex + c.Offset,
+                    StopIndex = firstTextToken.StartIndex + c.Offset + c.Text.Length - 1,
                 };
                 return token;
             });
