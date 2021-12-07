@@ -439,6 +439,44 @@ namespace Yarn.Compiler
                 diagnostics.AddRange(declarationDiagnostics);
 
                 knownVariableDeclarations.AddRange(declarations);
+
+                #warning FIXME: Remove TGS Internal Override: set_objective_complete and is_objective_complete have overridden decls.
+                
+                // The following exists because TGS makes use of two functions,
+                // 'set_objective_complete' and 'is_objective_complete', which
+                // take a single parameter: an enum with a raw value type of
+                // string. 
+                //
+                // Because these methods must work with _any_ enum-of-string
+                // type, we hit a flaw in the current type system: it's not
+                // possible to declare that a function accept this type. (it's
+                // also pretty messy, and interferes with the whole concept of
+                // what enums are meant to be about in the first place.)
+                //
+                // as an expeditious hack, i'm hard-coding a declaration for
+                // these methods to allow them to take an Any-typed value. this
+                // fixes the type checker's complaint, and gives us room to
+                // investigate and implement a better solution.
+                //
+                // JM, 7 Dec 2021
+                
+                var setObjectiveFunctionType = new FunctionType();
+                setObjectiveFunctionType.ReturnType = BuiltinTypes.Boolean;
+                setObjectiveFunctionType.AddParameter(BuiltinTypes.Any);
+
+                var isObjectiveActiveFunctionType = new FunctionType();
+                isObjectiveActiveFunctionType.ReturnType = BuiltinTypes.Boolean;
+                isObjectiveActiveFunctionType.AddParameter(BuiltinTypes.Any);
+
+                knownVariableDeclarations.Add(new Declaration {
+                    Name = "set_objective_complete",
+                    Type = setObjectiveFunctionType,
+                });
+
+                knownVariableDeclarations.Add(new Declaration {
+                    Name = "is_objective_active",
+                    Type = isObjectiveActiveFunctionType,
+                });
             }
 
             // Get function declarations from the library, if provided

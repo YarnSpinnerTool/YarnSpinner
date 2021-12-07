@@ -165,9 +165,26 @@ namespace Yarn.Compiler
 
         }
 
+        public override IType VisitCall_statement([NotNull] YarnSpinnerParser.Call_statementContext context)
+        {
+            if (context.function_call() != null) {
+                return VisitFunction_call(context.function_call());
+            } else {
+                return BuiltinTypes.Undefined;
+            }
+        }
+
         public override Yarn.IType VisitValueFunc(YarnSpinnerParser.ValueFuncContext context)
         {
-            string functionName = context.function_call().FUNC_ID().GetText();
+
+            YarnSpinnerParser.Function_callContext functionCall = context.function_call();
+
+            return VisitFunction_call(functionCall);
+        }
+
+        public override IType VisitFunction_call(YarnSpinnerParser.Function_callContext functionCall)
+        {
+            string functionName = functionCall.FUNC_ID().GetText();
 
             Declaration functionDeclaration = Declarations
                 .Where(d => d.Type is FunctionType)
@@ -188,17 +205,17 @@ namespace Yarn.Compiler
                     Name = functionName,
                     Type = functionType,
                     IsImplicit = true,
-                    Description = $"Implicit declaration of function at {sourceFileName}:{context.Start.Line}:{context.Start.Column}",
+                    Description = $"Implicit declaration of function at {sourceFileName}:{functionCall.Start.Line}:{functionCall.Start.Column}",
                     SourceFileName = sourceFileName,
-                    SourceFileLine = context.Start.Line,
+                    SourceFileLine = functionCall.Start.Line,
                     SourceNodeName = currentNodeName,
-                    SourceNodeLine = context.Start.Line - (this.currentNodeContext.BODY_START().Symbol.Line + 1),
+                    SourceNodeLine = functionCall.Start.Line - (this.currentNodeContext.BODY_START().Symbol.Line + 1),
                 };
 
                 // Create the array of parameters for this function based
                 // on how many we've seen in this call. Set them all to be
                 // undefined; we'll bind their type shortly.
-                var parameterTypes = context.function_call().expression()
+                var parameterTypes = functionCall.expression()
                     .Select(e => BuiltinTypes.Undefined)
                     .ToList();
 
@@ -219,7 +236,7 @@ namespace Yarn.Compiler
             }
 
             // Check each parameter of the function
-            var suppliedParameters = context.function_call().expression();
+            var suppliedParameters = functionCall.expression();
 
             var expectedParameters = functionType.Parameters;
 
@@ -228,7 +245,7 @@ namespace Yarn.Compiler
                 // Wrong number of parameters supplied
                 var parameters = expectedParameters.Count() == 1 ? "parameter" : "parameters";
 
-                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context,  $"Function {functionName} expects {expectedParameters.Count()} {parameters}, but received {suppliedParameters.Length}"));
+                this.diagnostics.Add(new Diagnostic(this.sourceFileName, functionCall, $"Function {functionName} expects {expectedParameters.Count()} {parameters}, but received {suppliedParameters.Length}"));
 
                 return functionType.ReturnType;
             }
@@ -252,7 +269,7 @@ namespace Yarn.Compiler
 
                 if (TypeUtil.IsSubType(expectedType, suppliedType) == false)
                 {
-                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"{functionName} parameter {i + 1} expects a {expectedType.Name}, not a {suppliedType.Name}"));
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, functionCall, $"{functionName} parameter {i + 1} expects a {expectedType.Name}, not a {suppliedType.Name}"));
                     return functionType.ReturnType;
                 }
             }
