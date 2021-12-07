@@ -47,6 +47,10 @@ namespace YarnSpinner.Tests
                 try {
                     type = reader.ReadNext<Type>();
 
+                    if (type == Type.Stop) {
+                        return;
+                    }
+
                     var delimiter = (char)reader.Read();
                     if (delimiter != ':') {
                         throw new ArgumentException("Expected ':' after step type");
