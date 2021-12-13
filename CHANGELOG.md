@@ -12,6 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Removed
 
+## [2.0.0-rc1] 2021-12-13
+
+v2.0.0-rc1 contains no user-facing features or bug fixes; it exists to be in sync with the corresponding v2.0.0-rc1 tag for Yarn Spinner for Unity.
+
 ## [2.0.0-beta6] 2021-10-23
 
 ### Added
