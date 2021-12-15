@@ -1,5 +1,8 @@
 namespace Yarn.Compiler
 {
+    using Antlr4.Runtime;
+    using Antlr4.Runtime.Misc;
+    using Antlr4.Runtime.Tree;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -128,38 +131,36 @@ namespace Yarn.Compiler
         /// added.</returns>
         public static string AddTagsToLines(string contents, ICollection<string> existingLineTags = null)
         {
-            var compileJob = CompilationJob.CreateFromString("input", contents);
+            // First, get the parse tree for this source code.
+            var (parseSource, diagnostics) = ParseSource(contents);
 
-            compileJob.CompilationType = CompilationJob.Type.StringsOnly;
-
-            var result = Compiler.Compile(compileJob);
-
-            var untaggedLines = result.StringTable.Where(entry => entry.Value.isImplicitTag);
-
-            var allSourceLines = contents.Split(new[] { "\n", "\r\n", "\n" }, StringSplitOptions.None);
-
-
-            HashSet<string> existingLines;
-            if (existingLineTags != null) {
-                existingLines = new HashSet<string>(existingLineTags);
-            } else {
-                existingLines = new HashSet<string>();
+            // Were there any error-level diagnostics?
+            if (diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error)) {
+                // We encountered a parse error. Bail here; we aren't confident
+                // in our ability to correctly insert a line tag.
+                return null;
             }
 
-            foreach (var untaggedLine in untaggedLines)
-            {
-                var lineNumber = untaggedLine.Value.lineNumber;
-                var tag = "#" + GenerateString(existingLines);
-
-                var sourceLine = allSourceLines[lineNumber - 1];
-                var updatedSourceLine = sourceLine.Replace(untaggedLine.Value.text, $"{untaggedLine.Value.text} {tag}");
-
-                allSourceLines[lineNumber - 1] = updatedSourceLine;
-
-                existingLines.Add(tag);
+            // Make sure we have a list of line tags to work with.
+            if (existingLineTags == null) {
+                existingLineTags = new List<string>();
             }
 
-            return string.Join(Environment.NewLine, allSourceLines);
+            // Create the line listener, which will produce TextReplacements for
+            // each new line tag.
+            var untaggedLineListener = new UntaggedLineListener(new List<string>(existingLineTags), parseSource.Tokens);
+
+            // Walk the tree with this listener, and generate text replacements
+            // containing line tags.
+            var walker = new ParseTreeWalker();
+            walker.Walk(untaggedLineListener, parseSource.Tree);
+
+            // Apply these text replacements to the original source and return
+            // it.
+            return Upgrader.LanguageUpgrader.ApplyReplacements(
+                contents, 
+                untaggedLineListener.Replacements
+            );
         }
 
         /// <summary>
@@ -192,6 +193,146 @@ namespace Yarn.Compiler
             while (existingKeys.Contains(tag));
 
             return tag;
+        }
+
+        /// <summary>
+        /// An <see cref="IYarnSpinnerParserListener"/> that produces line tags.
+        /// </summary>
+        private class UntaggedLineListener : YarnSpinnerParserBaseListener
+        {
+            /// <summary>
+            /// A collection of <see cref="Upgrader.TextReplacement"/> objects,
+            /// each containing a line tag to add.
+            /// </summary>
+            public List<Upgrader.TextReplacement> Replacements { get; private set; }
+            
+            private readonly IList<string> existingStrings;
+
+            private readonly CommonTokenStream TokenStream;
+
+            /// <summary>
+            /// Creates a new instance of <see cref="UntaggedLineListener"/>.
+            /// </summary>
+            /// <param name="existingStrings">A collection of line IDs that
+            /// should not be used. This list will be added to as this instance
+            /// works.</param>
+            /// <param name="tokenStream">The token stream used to generate the
+            /// <see cref="IParseTree"/> this instance is operating on.</param>
+            public UntaggedLineListener(IList<string> existingStrings, CommonTokenStream tokenStream) {
+                this.Replacements = new List<Upgrader.TextReplacement>();
+                this.existingStrings = existingStrings;
+                this.TokenStream = tokenStream;
+            }
+
+            /// <inheritdoc/>
+            public override void ExitLine_statement([NotNull] YarnSpinnerParser.Line_statementContext context)
+            {
+                // We're looking at a complete line statement.
+
+                // First, figure out if this line statement already has a line
+                // tag. Start by taking the hashtags...
+                var hashtags = context.hashtag();
+
+                // Get the text for all of these hashtags...
+                var texts = StringTableGeneratorVisitor.GetHashtagTexts(hashtags);
+
+                // And then look for a line ID hashtag.
+                foreach (var text in texts) {
+                    if (text.StartsWith("line:")) {
+                        // This line contains a line code. Nothing left to do.
+                        return;
+                    }
+                }
+                
+                // Find the index of the first token on the default channel to
+                // the left of the newline.
+                var previousTokenIndex = IndexOfPreviousTokenOnChannel(
+                    TokenStream, 
+                    context.NEWLINE().Symbol.TokenIndex, 
+                    YarnSpinnerLexer.DefaultTokenChannel
+                );
+
+                // Did we find one?
+                if (previousTokenIndex == -1) {
+                    // No token was found before this newline. This is an
+                    // internal error - there must be at least one symbol
+                    // besides the terminating newline.
+                    throw new InvalidOperationException($"Internal error: failed to find any tokens before the newline in line statement on line {context.Start.Line}");
+                }
+
+                // Get the token at this index. We'll put our tag after it.
+                var previousToken = TokenStream.Get(previousTokenIndex);
+
+                // Generate a new, unique line ID.
+                string newLineID = Utility.GenerateString(existingStrings);
+
+                // Record that we've used this new line ID, so that we don't
+                // accidentally use it twice.
+                existingStrings.Add(newLineID);
+                
+                // Create a text replacement that inserts a space followed by
+                // the line tag at the end of the line.
+                var replacement = new Upgrader.TextReplacement() {
+                    Start = previousToken.StopIndex + 1,
+                    StartLine = previousToken.Line,
+                    OriginalText = "",
+                    ReplacementText = $" #{newLineID} ",
+                    Comment = "Added line tag"
+                };
+
+                // Add this replacement to the list.
+                this.Replacements.Add(replacement);
+            }
+
+            /// <summary>
+            /// Gets the index of the first token to the left of the token at
+            /// <paramref name="index"/> that's on <paramref name="channel"/>.
+            /// If there are no tokens that match, return -1.
+            /// </summary>
+            /// <param name="tokenStream">The token stream to search
+            /// within.</param>
+            /// <param name="index">The index of the token to start searching
+            /// from.</param>
+            /// <param name="channel">The channel to find tokens on.</param>
+            /// <returns>The index of the first token before the token at
+            /// <paramref name="index"/> that is on the channel <paramref
+            /// name="channel"/>. If none is found, returns -1. If <paramref
+            /// name="index"/> is beyond the size of <paramref
+            /// name="tokenStream"/>, returns the index of the last token in the
+            /// stream.</returns>
+            private static int IndexOfPreviousTokenOnChannel(CommonTokenStream tokenStream, int index, int channel)
+            {
+
+                // Are we beyond the list of tokens?
+                if (index >= tokenStream.Size)
+                {
+                    // Return the final token in the channel, which will be an
+                    // EOF.
+                    return tokenStream.Size - 1;
+                }
+
+                // 'index' is the token we want to start searching from. We want
+                // to find items before it, so start looking from the token
+                // before it.
+                var currentIndex = index -= 1;
+
+                // Walk backwards through the tokens list.
+                while (currentIndex >= 0)
+                {
+                    IToken token = tokenStream.Get(currentIndex);
+
+                    // Is this token on the channel we're looking for?
+                    if (token.Channel == channel)
+                    {
+                        // We're done - we found one! Return it.
+                        return currentIndex;
+                    }
+                    currentIndex -= 1;
+                }
+
+                // We found nothing. Return the 'not found' value.
+                return -1;
+            }
         }
     }
 }

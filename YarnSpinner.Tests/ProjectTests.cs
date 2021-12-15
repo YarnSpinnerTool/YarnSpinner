@@ -91,6 +91,17 @@ A single line, with a line tag. #line:expected_abc123
 A line with no tag, but a comment at the end. // a comment
 A line with a tag, and a comment. #line:expected_ghi789 // a comment
 
+A line with a conditional and no line tag. <<if false>>
+A line with a conditional, a comment, and no line tag. <<if false>> // a comment
+
+A line with a conditional and a line tag. <<if false>> #line:expected_jkl123
+A line with a conditional, a comment and a line tag. <<if false>>  #line:expected_mno456 // a comment
+
+-> An option with a conditional and no line tag. <<if false>>
+-> An option with a conditional, a comment, and no line tag. <<if false>> // a comment
+-> An option with a conditional and a line tag.  <<if false>> #line:expected_pqr789
+-> An option with a conditional, a comment and a line tag.  <<if false>> #line:expected_stu123 // a comment
+
 // A comment with no text:
 //
 // A comment with a single space:
@@ -98,7 +109,19 @@ A line with a tag, and a comment. #line:expected_ghi789 // a comment
 
 ===";
 
+            {
+                // This original input should compile without errors.
+                var originalCompilationJob = CompilationJob.CreateFromString("input", originalText);
+                originalCompilationJob.CompilationType = CompilationJob.Type.StringsOnly;
+
+                var originalCompilationResult = Compiler.Compile(originalCompilationJob);
+
+                Assert.Empty(originalCompilationResult.Diagnostics);
+            }
+
             // Act
+
+
             var output = Utility.AddTagsToLines(originalText);
 
             var compilationJob = CompilationJob.CreateFromString("input", output);
@@ -114,8 +137,8 @@ A line with a tag, and a comment. #line:expected_ghi789 // a comment
             var lineTagAfterComment = new Regex(@"\/\/.*#line:\w+");
 
             // Ensure that the right number of tags in total is present
-            var expectedExistingTags = 3;
-            var expectedNewTags = 3;
+            var expectedExistingTags = 7;
+            var expectedNewTags = 7;
             var expectedTotalTags = expectedExistingTags + expectedNewTags;
 
             Assert.Equal(expectedTotalTags, lineTagRegex.Matches(output).Count);
@@ -130,6 +153,19 @@ A line with a tag, and a comment. #line:expected_ghi789 // a comment
                 ("line:expected_abc123", "A single line, with a line tag."),
                 ("line:expected_def456", "An option, with a line tag."),
                 ("line:expected_ghi789", "A line with a tag, and a comment."),
+                
+                (null, "A line with a conditional and no line tag."),
+                (null, "A line with a conditional, a comment, and no line tag."),
+
+                ("line:expected_jkl123", "A line with a conditional and a line tag."),
+                ("line:expected_mno456", "A line with a conditional, a comment and a line tag."),
+
+                (null, "An option with a conditional and no line tag."),
+                (null, "An option with a conditional, a comment, and no line tag."),
+
+                ("line:expected_pqr789", "An option with a conditional and a line tag."),
+                ("line:expected_stu123", "An option with a conditional, a comment and a line tag."),
+
                 (null, "A single line, with no line tag."),
                 (null, "An option, with no line tag."),
                 (null, "A line with no tag, but a comment at the end."),
