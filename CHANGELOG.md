@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Fixed an issue where line tags could be added at an incorrect place in a line, if that line contained a condition.
+
 ### Removed
 
 ## [2.0.0-rc1] 2021-12-13
