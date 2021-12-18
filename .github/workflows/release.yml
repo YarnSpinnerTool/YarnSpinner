@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
@@ -45,7 +45,7 @@ jobs:
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         run: |
           dotnet pack -c Release /p:Version=${{ steps.gitversion.outputs.nuGetVersionV2}} -o "nuget"
-          dotnet push nuget/*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push nuget/*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
 
       - name: Extract release notes
         id: extract-release-notes
