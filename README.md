@@ -1,4 +1,4 @@
-# Yarn Spinner
+# Yarn Spinner 2.0
 
 <img src="https://yarnspinner.dev/img/YarnSpinnerLogo.png" alt="Yarn Spinner logo" width="100px;" align="right">
 
@@ -22,18 +22,6 @@ These packages are written by the Yarn Spinner team, and are officially supporte
 
 * **[Yarn Spinner for Unity](https://github.com/YarnSpinnerTool/YarnSpinner-Unity/releases/latest)** (2019.4 LTS or later)
 
-### Community Projects
-
-Community projects are written by our wonderful community.
-
-If you've written a high-quality project that works with Yarn Spinner, please get in touch via [Twitter](https://twitter.com/YarnSpinnerTool) or [Discord](https://discord.gg/yarnspinner)!
-
-* [Yarn Spinner Language Server](https://github.com/pappleby/YarnSpinnerLanguageServer), by [pappleby](https://github.com/pappleby): An implementation of a Language Server for the Yarn Spinner compiler, designed for use with Visual Studio and Visual Studio Code.
-* [Crochet](https://github.com/FaultyFunctions/Crochet), by [FaultyFunctions](https://github.com/FaultyFunctions/): A visual editor for writing Yarn script.
-* [GDYarn](https://github.com/kyperbelt/GDYarn), by [Kyperbelt](https://github.com/kyperbelt/): An implementation of the Yarn Spinner compiler in GDScript.
-* [Wol](https://github.com/bram-dingelstad/Wol), by [Bram Dingelstad](https://github.com/bram-dingelstad/): An implementation of Yarn Spinner for the [Godot](http://godotengine.org) game engine, based on GDYarn.
-* [Yarn Loom](https://github.com/TranquilMarmot/YarnLoom), by [TranquilMarmot](https://github.com/TranquilMarmot): A Visual Studio Code extension that embeds the Yarn Classic editor.
-
 ## Learning More
 
 Full documentation, tutorials, and additional information is available in the [Yarn Spinner documentation](https://docs.yarnspinner.dev).
@@ -52,7 +40,7 @@ Yarn Spinner's development is made possible in part by [NYU Game Center](https:/
 
 ## Help Us Make Yarn Spinner!
 
-Yarn Spinner needs your help to be as awesome as it can be! You don't have to be a coder to help out - we'd love to have your help in improving our [documentation](https://yarnspinner.dev/docs/tutorial), in spreading the word, and in finding bugs.
+Yarn Spinner needs your help to be as awesome as it can be! You don't have to be a coder to help out - we'd love to have your help in improving our [documentation](https://docs.yarnspinner.dev), in spreading the word, and in finding bugs.
 
 * Yarn Spinner's development is powered by our wonderful Patreon supporters. [Become a patron](https://patreon.com/secretlab), and help us make Yarn Spinner be amazing.
 * Our [issues page](https://github.com/YarnSpinnerTool/YarnSpinner/issues) contains a list of things we'd love your help in improving.
