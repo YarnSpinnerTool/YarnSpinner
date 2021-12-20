@@ -375,7 +375,7 @@ namespace Yarn
     /// files should be loaded.
     ///
     /// This method serves to provide a hint to the game that a line _may_
-    /// be run. Not every line indicated in <paramref ref="lineIDs"/> may
+    /// be run. Not every line indicated in <paramref name="lineIDs"/> may
     /// end up actually running.
     ///
     /// This method may be called any number of times during a dialogue
