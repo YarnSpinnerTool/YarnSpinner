@@ -1,4 +1,4 @@
-﻿// Uncomment to ensure that all expressions have a known type at compile time
+// Uncomment to ensure that all expressions have a known type at compile time
 // #define VALIDATE_ALL_EXPRESSIONS
 
 namespace Yarn.Compiler
@@ -178,6 +178,12 @@ namespace Yarn.Compiler
                 this.metadata = new string[] { };
             }
 
+        }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return $"{text} ({fileName}:{lineNumber})";
         }
     }
 
