@@ -55,7 +55,7 @@ namespace Yarn.Compiler
 
         public override Value VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
         {
-            if (float.TryParse(context.GetText(), out var result))
+            if (float.TryParse(context.GetText(), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var result))
             {
                 return new Value(BuiltinTypes.Number, result);
             }
