@@ -1,0 +1,24 @@
+title: Node_First
+---
+This is a node whose name contains a period, which isn't allowed.
+
+A jump to "Node.Second"
+
+<<jump Node_Second>>
+===
+title: Node_Second
+---
+An option referring to "Node.First"
+
+// Option "Some destination" moved to the end of this node
+// Option "Other destination" moved to the end of this node
+
+-> Some destination
+    <<jump Node_First>>
+-> Other destination
+    <<jump Node_End>>
+===
+title: Node_End
+---
+End line.
+===

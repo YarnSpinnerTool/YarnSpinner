@@ -38,6 +38,11 @@ namespace Yarn.Compiler.Upgrader
 
         private class OptionsVisitor : YarnSpinnerV1ParserBaseVisitor<int>
         {
+            private const string NodesWereRenamedDescription = "Node names containing a period were renamed to have underscores.";
+            private const string OptionSyntaxChangedDescription = "Options using deprecated syntax were moved to the end of the node.";
+            private const string OptionDestinationsWereRenamedDescription = "Option destinations containing a period were renamed to have underscores.";
+            private const string OptionsWereMovedDescription = "An option using deprecated syntax was moved to the end of the node.";
+            private const string JumpSyntaxWasUpgradedDescription = "A jump was upgraded to use updated syntax.";
             private readonly ICollection<TextReplacement> replacements;
 
             private readonly List<OptionLink> currentNodeOptionLinks = new List<OptionLink>();
@@ -80,6 +85,8 @@ namespace Yarn.Compiler.Upgrader
                 // and add shortcut options
                 var newShortcutOptionEntries = new List<string>();
 
+                bool optionsWereRenamed = false;
+
                 foreach (var optionLink in this.currentNodeOptionLinks)
                 {
                     // If this option link has any hashtags, the newline at
@@ -98,7 +105,7 @@ namespace Yarn.Compiler.Upgrader
                         StartLine = optionLink.Context.Start.Line,
                         OriginalText = GetContextTextWithWhitespace(optionLink.Context),
                         ReplacementText = replacementText,
-                        Comment = "An option using deprecated syntax was moved to the end of the node.",
+                        Comment = OptionsWereMovedDescription,
                     };
 
                     this.replacements.Add(replacement);
@@ -107,6 +114,12 @@ namespace Yarn.Compiler.Upgrader
                     // shortcut replacement
                     var optionLine = GetContextTextWithWhitespace(optionLink.Context.option_formatted_text());
                     var optionDestination = optionLink.Context.NodeName?.Text ?? "<ERROR: invalid destination>";
+
+                    if (optionDestination.Contains(".")) {
+                        optionDestination = optionDestination.Replace(".", "_");
+                        optionsWereRenamed = true;
+                    }
+
                     var hashtags = optionLink.Context.hashtag().Select(hashtag => GetContextTextWithWhitespace(hashtag));
 
                     var conditions = optionLink.Conditions.Select(c =>
@@ -160,13 +173,15 @@ namespace Yarn.Compiler.Upgrader
                 // Finally, create a replacement that injects the newly created shortcut options
                 var endOfNode = context.BODY_END().Symbol;
 
+                string replacementDescription = $"{OptionSyntaxChangedDescription}{(optionsWereRenamed ? " " + OptionDestinationsWereRenamedDescription : string.Empty)}";
+
                 var newOptionsReplacement = new TextReplacement
                 {
                     Start = endOfNode.StartIndex,
                     OriginalText = string.Empty,
                     ReplacementText = string.Join(string.Empty, newShortcutOptionEntries),
                     StartLine = endOfNode.Line,
-                    Comment = "Options using deprecated syntax were moved to the end of the node.",
+                    Comment = replacementDescription,
                 };
 
                 this.replacements.Add(newOptionsReplacement);
@@ -178,12 +193,20 @@ namespace Yarn.Compiler.Upgrader
             {
                 var destination = context.NodeName.Text;
 
+                var nodesWereRenamed = false;
+                if (destination.Contains(".")) {
+                    destination = destination.Replace(".", "_");
+                    nodesWereRenamed = true;
+                }
+
+                var comment = JumpSyntaxWasUpgradedDescription + (nodesWereRenamed ? " " + OptionDestinationsWereRenamedDescription : string.Empty);
+
                 var replacement = new TextReplacement {
                     OriginalText = GetContextTextWithWhitespace(context),
                     ReplacementText = $"<<jump {destination}>>",
                     Start = context.Start.StartIndex,
                     StartLine = context.Start.Line,
-                    Comment = "A jump was upgraded to use updated syntax.",
+                    Comment = comment,
                 };
 
                 this.replacements.Add(replacement);
@@ -275,6 +298,34 @@ namespace Yarn.Compiler.Upgrader
                 this.currentNodeOptionLinks.Add(link);
 
                 return base.VisitOptionLink(context);
+            }
+
+            public override int VisitHeader([NotNull] YarnSpinnerV1Parser.HeaderContext context)
+            {
+                // When we encounter a "title:" header, replace any periods in
+                // it with underscores.
+                if (context.header_key.Text != "title") {
+                    return base.VisitHeader(context);
+                }
+
+                var nodeName = context.header_value.Text;
+
+                if (nodeName.Contains(".")) {
+                    var newNodeName = nodeName.Replace(".", "_");
+
+                    var replacement = new TextReplacement
+                    {
+                        Start = context.header_value.StartIndex,
+                        StartLine = context.header_value.Line,
+                        OriginalText = nodeName,
+                        ReplacementText = newNodeName,
+                        Comment = NodesWereRenamedDescription,
+                    };
+
+                    this.replacements.Add(replacement);
+                }
+
+                return base.VisitHeader(context);
             }
 
             private struct OptionLink

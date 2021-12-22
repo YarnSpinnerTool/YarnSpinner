@@ -10,6 +10,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- The v1 to v2 language upgrader now renames node names that have a period (`.`) in their names to use underscores (`_`) instead. Jumps and options are also updated to use these new names.
+
+### Removed
+
+## [2.0.0]
+
+### Added
+
+### Changed
+
 - Fixed an issue where line tags could be added at an incorrect place in a line, if that line contained a condition.
 
 ### Removed
