@@ -58,7 +58,8 @@ namespace Yarn.Compiler.Upgrader
             public string Path;
             public IEnumerable<TextReplacement> Replacements;
             public string OriginalSource;
-            public string UpgradedSource;
+            public string UpgradedSource => LanguageUpgrader.ApplyReplacements(this.OriginalSource, this.Replacements);
+
             public IEnumerable<Diagnostic> Diagnostics;
 
             /// <summary>
@@ -78,7 +79,6 @@ namespace Yarn.Compiler.Upgrader
                 this.Path = path;
                 this.Replacements = replacements;
                 this.OriginalSource = originalSource;
-                this.UpgradedSource = LanguageUpgrader.ApplyReplacements(originalSource, replacements);
                 this.IsNewFile = false;
                 this.Diagnostics = diagnostics ?? new List<Diagnostic>();
             }
@@ -89,8 +89,7 @@ namespace Yarn.Compiler.Upgrader
                 IEnumerable<Diagnostic> diagnostics = null)
             {
                 this.Path = path;
-                this.UpgradedSource = newContent;
-                this.OriginalSource = string.Empty;
+                this.OriginalSource = newContent;
                 this.Replacements = new List<TextReplacement>();
                 this.IsNewFile = true;
                 this.Diagnostics = diagnostics ?? new List<Diagnostic>();
