@@ -6,7 +6,7 @@ title: Start
 <<declare $myFloat = 1.2 as number>>
 
 // Expressions
-<<if 1.2 > 1.2>>
+<<if 1.2 >= 1.2>>
     Success
 <<endif>>
 
