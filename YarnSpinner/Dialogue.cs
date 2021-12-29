@@ -221,13 +221,20 @@ namespace Yarn
         void SetValue(string variableName, bool boolValue);
 
         /// <summary>
-        /// Retrieves a <see cref="Value"/> by name.
+        /// Retrieves a value of type <typeparamref name="T"/> by name.
         /// </summary>
-        /// <param name="variableName">The name of the variable to retrieve
-        /// the value of.</param>
-        /// <returns>The <see cref="Value"/>. If a variable by the name of
-        /// `variableName` is not present, returns a value representing
-        /// `null`.</returns>
+        /// <typeparam name="T">The type of the variable to
+        /// retrieve.</typeparam>
+        /// <param name="variableName">The name of the variable to retrieve the
+        /// value of.</param>
+        /// <param name="result">On return, if this method returned true,
+        /// contains the retrieved value. If this method returned false,
+        /// contains the default value of <typeparamref name="T"/> (for example,
+        /// <c>0</c> for <see cref="float"/> values, <see langword="null"/> for
+        /// strings, and so on.)</param>
+        /// <returns><see langword="true"/> if a value named <paramref
+        /// name="variableName"/> of type <typeparamref name="T"/> was
+        /// retrieved; <see langword="false"/> otherwise.</returns>
         bool TryGetValue<T>(string variableName, out T result);
 
         /// <summary>
