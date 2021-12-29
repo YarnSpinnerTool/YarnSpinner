@@ -954,7 +954,7 @@ namespace Yarn
 
             // Attempt to parse the value as a double, so we can determine
             // its plural class
-            if (double.TryParse(value, out var doubleValue) == false)
+            if (double.TryParse(value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var doubleValue) == false)
             {
                 throw new ArgumentException($"Error while pluralising line: '{value}' is not a number");
             }
