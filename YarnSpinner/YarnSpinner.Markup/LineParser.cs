@@ -641,7 +641,7 @@ namespace Yarn.Markup
                     var fraction = this.ParseInteger();
 
                     // convert it to a float
-                    var fractionDigits = fraction.ToString().Length;
+                    var fractionDigits = fraction.ToString(System.Globalization.CultureInfo.InvariantCulture).Length;
                     float floatValue = integer + (float)(fraction / Math.Pow(10, fractionDigits));
 
                     return new MarkupValue { FloatValue = floatValue, Type = MarkupValueType.Float };
