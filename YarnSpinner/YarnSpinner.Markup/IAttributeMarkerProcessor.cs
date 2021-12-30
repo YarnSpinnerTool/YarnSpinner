@@ -32,13 +32,13 @@ namespace Yarn.Markup
     internal interface IAttributeMarkerProcessor
     {
         /// <summary>
-        /// Produces the replacement text that should be inserted into a
-        /// parse result for a given attribute.
+        /// Produces the replacement text that should be inserted into a parse
+        /// result for a given attribute.
         /// </summary>
         /// <remarks>
-        /// If the marker is an _open_ marker, the text from the marker's
-        /// position to its corresponding closing marker is provided as a
-        /// string property called `contents`.
+        /// If the marker is an <i>open</i> marker, the text from the marker's
+        /// position to its corresponding closing marker is provided as a string
+        /// property called <c>contents</c>.
         /// </remarks>
         /// <param name="marker">The marker that should have text
         /// inserted.</param>

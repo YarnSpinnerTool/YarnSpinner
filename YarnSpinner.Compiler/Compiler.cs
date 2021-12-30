@@ -136,8 +136,8 @@ namespace Yarn.Compiler
         /// <remarks>
         /// Implicitly generated line IDs are not guaranteed to remain the
         /// same across multiple compilations. To ensure that a line ID
-        /// remains the same, you must define it by adding a [line
-        /// tag]({{|ref "/docs/unity/localisation.md"|}}) to the line.
+        /// remains the same, you must define it by adding a line tag to the
+        /// line.
         /// </remarks>
         public bool isImplicitTag;
 
@@ -146,7 +146,7 @@ namespace Yarn.Compiler
         /// </summary>
         /// <remarks>
         /// This array will contain any hashtags associated with this
-        /// string besides the `#line:` hashtag.
+        /// string besides the <c>#line:</c> hashtag.
         /// </remarks>
         public string[] metadata;
 
@@ -158,7 +158,7 @@ namespace Yarn.Compiler
         /// <param name="fileName">The file name.</param>
         /// <param name="nodeName">The node name.</param>
         /// <param name="lineNumber">The line number.</param>
-        /// <param name="isImplicitTag">If `true`, this string info is
+        /// <param name="isImplicitTag">If <c>true</c>, this string info is
         /// stored with an implicit line ID.</param>
         /// <param name="metadata">The string's metadata.</param>
         internal StringInfo(string text, string fileName, string nodeName, int lineNumber, bool isImplicitTag, string[] metadata)
@@ -1019,7 +1019,7 @@ namespace Yarn.Compiler
         /// <param name="hashtagContexts">The hashtag parsing
         /// contexts.</param>
         /// <returns>The line ID if one is present in the hashtag contexts,
-        /// otherwise `null`.</returns>
+        /// otherwise <c>null</c>.</returns>
         internal static YarnSpinnerParser.HashtagContext GetLineIDTag(YarnSpinnerParser.HashtagContext[] hashtagContexts)
         {
             // if there are any hashtags

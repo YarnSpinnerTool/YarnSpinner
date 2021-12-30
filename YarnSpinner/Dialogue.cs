@@ -465,7 +465,7 @@ namespace Yarn
         /// </summary>
         /// <remarks>
         /// <para>
-        /// This code is used to determine how the `plural` and `ordinal`
+        /// This code is used to determine how the <c>plural</c> and <c>ordinal</c>
         /// markers determine the plural class of numbers.
         /// </para>
         /// <para>
@@ -655,7 +655,7 @@ namespace Yarn
         /// </para>
         /// </remarks>
         /// <throws cref="DialogueException">Thrown when no node named
-        /// `startNode` has been loaded.</throws>
+        /// <c>startNode</c> has been loaded.</throws>
         public void SetNode(string startNode = DefaultStartNodeName)
         {
             this.vm.SetNode(startNode);
@@ -680,7 +680,7 @@ namespace Yarn
         /// user selected.</param>
         /// <throws cref="DialogueException">Thrown when the Dialogue is not
         /// expecting an option to be selected.</throws> <throws
-        /// cref="ArgumentOutOfRangeException">Thrown when `selectedOptionID` is
+        /// cref="ArgumentOutOfRangeException">Thrown when <c>selectedOptionID</c> is
         /// not a valid option ID.</throws>
         /// <seealso cref="Yarn.OptionsHandler"/>
         /// <seealso cref="OptionSet"/>
@@ -865,7 +865,7 @@ namespace Yarn
         /// Program.
         /// </summary>
         /// <param name="nodeName">The name of the node.</param>
-        /// <returns><see langword="true"/> if a node named `nodeName`
+        /// <returns><see langword="true"/> if a node named <c>nodeName</c>
         /// exists in the Program, <see langword="false"/>
         /// otherwise.</returns>
         public bool NodeExists(string nodeName)
@@ -898,8 +898,8 @@ namespace Yarn
         /// </summary>
         /// <remarks>
         /// The <see cref="MarkupParseResult"/>'s <see
-        /// cref="MarkupParseResult.Text"/> will have any `select`,
-        /// `plural` or `ordinal` markers replaced with the appropriate
+        /// cref="MarkupParseResult.Text"/> will have any <c>select</c>,
+        /// <c>plural</c> or <c>ordinal</c> markers replaced with the appropriate
         /// text, following this <see cref="Dialogue"/>'s <see
         /// cref="LanguageCode"/>.
         /// </remarks>
@@ -950,7 +950,7 @@ namespace Yarn
         /// <throws cref="InvalidOperationException"></throws> <throws
         /// cref="KeyNotFoundException"></throws> <throws
         /// cref="ArgumentException">Thrown when the string contains a
-        /// `plural` or `ordinal` marker, but the specified value cannot be
+        /// <c>plural</c> or <c>ordinal</c> marker, but the specified value cannot be
         /// parsed as a number.</throws>
         string IAttributeMarkerProcessor.ReplacementTextForMarker(MarkupAttributeMarker marker)
         {

@@ -19,11 +19,11 @@ namespace Yarn
         /// using the specified object.
         /// </summary>
         /// <remarks>
-        /// If the `value` is another <see cref="Value"/>, its contents
+        /// If the <c>value</c> is another <see cref="Value"/>, its contents
         /// will be copied into the new instance.
         /// </remarks>
         /// <throws cref="ArgumentException">
-        /// Thrown when the `value` is not a <see cref="Value"/>, string,
+        /// Thrown when the <c>value</c> is not a <see cref="Value"/>, string,
         /// int, float, double, bool, or null.
         /// </throws>
         /// <param name="value">The value that this <see cref="Value"/>
@@ -46,11 +46,11 @@ namespace Yarn
         }
 
         /// <summary>
-        /// Compares this <see cref="Value"/> to another object. The other object must either be another instance of <see cref="Value"/>, or `null`.
+        /// Compares this <see cref="Value"/> to another object. The other object must either be another instance of <see cref="Value"/>, or <c>null</c>.
         /// </summary>
         /// <param name="obj">The object to compare to.</param>
         /// <returns>Returns the same results as <see cref="CompareTo(Value)"/>.</returns>
-        /// <exception cref="ArgumentException">Thrown when `obj` is not a <see cref="Value"/>.</exception>
+        /// <exception cref="ArgumentException">Thrown when <c>obj</c> is not a <see cref="Value"/>.</exception>
         public int CompareTo(object obj)
         {
             // not a value

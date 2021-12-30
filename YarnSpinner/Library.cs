@@ -25,7 +25,7 @@ namespace Yarn
         /// retrieve.</param>
         /// <returns>The <see cref="Delegate"/>.</returns>
         /// <throws cref="InvalidOperationException">Thrown when a function
-        /// named `name` is not present in the library.</throws>
+        /// named <c>name</c> is not present in the library.</throws>
         public Delegate GetFunction(string name)
         {
             try
@@ -131,10 +131,10 @@ namespace Yarn
         }
 
         /// <summary>
-        /// Gets a value indicating whether this <see cref="Library"/> contains a function named `name`.
+        /// Gets a value indicating whether this <see cref="Library"/> contains a function named <c>name</c>.
         /// </summary>
         /// <param name="name">The name of the function to look for.</param>
-        /// <returns>`true` if a function exists in this Library; `false` otherwise.</returns>
+        /// <returns><c>true</c> if a function exists in this Library; <c>false</c> otherwise.</returns>
         public bool FunctionExists(string name) {
             return Delegates.ContainsKey(name);
         }

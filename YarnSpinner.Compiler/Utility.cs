@@ -20,31 +20,30 @@ namespace Yarn.Compiler
         /// Generates a Yarn script that contains a node that declares
         /// variables.
         /// </summary>
-        /// <remarks>This method is intended to be called by tools that let
-        /// the user manage variable declarations. Such tools can read the
-        /// existing variable declarations in from a script (by compiling
-        /// the script with the `DeclarationsOnly` <see
-        /// cref="CompilationJob.CompilationType"/>), allow the user to
-        /// make changes, and then write the changes to disk by calling
-        /// this method and saving the results.</remarks>
+        /// <remarks>This method is intended to be called by tools that let the
+        /// user manage variable declarations. Such tools can read the existing
+        /// variable declarations in from a script (by compiling the script with
+        /// the <see cref="CompilationJob.CompilationType"/> value set to  <see
+        /// cref="CompilationJob.Type.DeclarationsOnly"/>), allow the user to
+        /// make changes, and then write the changes to disk by calling this
+        /// method and saving the results.</remarks>
         /// <param name="declarations">The collection of <see
         /// cref="Declaration"/> objects to include in the output.</param>
         /// <param name="title">The title of the node that should be
         /// generated.</param>
-        /// <param name="tags">The collection of tags that should be
-        /// generated for the node. If this is <see langword="null"/>, no
-        /// tags will be generated.</param>
-        /// <param name="headers">The collection of additional headers that
-        /// should be generated for the node. If this is <see
-        /// langword="null"/>, no additional headers will be
+        /// <param name="tags">The collection of tags that should be generated
+        /// for the node. If this is <see langword="null"/>, no tags will be
         /// generated.</param>
+        /// <param name="headers">The collection of additional headers that
+        /// should be generated for the node. If this is <see langword="null"/>,
+        /// no additional headers will be generated.</param>
         /// <returns>A string containing a Yarn script that declares the
         /// specified variables.</returns>
-        /// <throws cref="ArgumentOutOfRangeException">Thrown when any of
-        /// the <see cref="Declaration"/> objects in <paramref
-        /// name="declarations"/> is not a variable declaration, or if the
-        /// <see cref="Declaration.ReturnType"/> of any of the declarations
-        /// is an invalid value.</throws>
+        /// <throws cref="ArgumentOutOfRangeException">Thrown when any of the
+        /// <see cref="Declaration"/> objects in <paramref name="declarations"/>
+        /// is not a variable declaration, or if the <see
+        /// cref="Declaration.Type"/> of any of the declarations is an
+        /// invalid value.</throws>
         public static string GenerateYarnFileWithDeclarations(
             IEnumerable<Yarn.Compiler.Declaration> declarations,
             string title = "Program",
@@ -114,12 +113,15 @@ namespace Yarn.Compiler
         /// Given Yarn source code, adds line tags to the ends of all lines
         /// that need one and do not already have one.
         /// </summary>
-        /// <remarks>This method ensures that it does not generate line
+        /// <remarks><para>
+        /// This method ensures that it does not generate line
         /// tags that are already present in the file, or present in the
         /// <paramref name="existingLineTags"/> collection.
-        ///
+        /// </para>
+        /// <para>
         /// Line tags are added to any line of source code that contains
         /// user-visible text: lines, options, and shortcut options.
+        /// </para>
         /// </remarks>
         /// <param name="contents">The source code to add line tags
         /// to.</param>
@@ -164,9 +166,14 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// Parses a string of Yarn source code, and produces a FileParseResult
+        /// and (if there were any problems) a collection of diagnostics.
         /// </summary>
         /// <param name="source">The source code to parse.</param>
-        /// <returns></returns>
+        /// <returns>A tuple containing a <see cref="FileParseResult"/> that
+        /// stores the parse tree and tokens, and a collection of <see
+        /// cref="Diagnostic"/> objects that describe problems in the source
+        /// code.</returns>
         public static (FileParseResult, IEnumerable<Diagnostic>) ParseSource(string source)
         {
             var diagnostics = new List<Diagnostic>();
@@ -177,12 +184,12 @@ namespace Yarn.Compiler
 
         /// <summary>
         /// Generates a new unique line tag that is not present in
-        /// `existingKeys`.
+        /// <c>existingKeys</c>.
         /// </summary>
-        /// <param name="existingKeys">The collection of keys that should
-        /// be considered when generating a new, unique line tag.</param>
-        /// <returns>A unique line tag that is not already present in
-        /// `existingKeys`.</returns>
+        /// <param name="existingKeys">The collection of keys that should be
+        /// considered when generating a new, unique line tag.</param>
+        /// <returns>A unique line tag that is not already present in <paramref
+        /// name="existingKeys"/>.</returns>
         private static string GenerateString(ICollection<string> existingKeys)
         {
             string tag;
@@ -201,8 +208,8 @@ namespace Yarn.Compiler
         private class UntaggedLineListener : YarnSpinnerParserBaseListener
         {
             /// <summary>
-            /// A collection of <see cref="Upgrader.TextReplacement"/> objects,
-            /// each containing a line tag to add.
+            /// Gets a collection of <see cref="Upgrader.TextReplacement"/>
+            /// objects, each containing a line tag to add.
             /// </summary>
             public List<Upgrader.TextReplacement> Replacements { get; private set; }
             
@@ -211,7 +218,8 @@ namespace Yarn.Compiler
             private readonly CommonTokenStream TokenStream;
 
             /// <summary>
-            /// Creates a new instance of <see cref="UntaggedLineListener"/>.
+            /// Initializes a new instance of the <see
+            /// cref="UntaggedLineListener"/> class.
             /// </summary>
             /// <param name="existingStrings">A collection of line IDs that
             /// should not be used. This list will be added to as this instance
