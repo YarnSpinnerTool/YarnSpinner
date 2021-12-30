@@ -60,7 +60,7 @@ namespace Yarn
         /// called from a Yarn program.
         /// </summary>
         /// <param name="name">The name of the function.</param>
-        /// <param name="implementation">The <see cref="Func{TResult}"/> to
+        /// <param name="implementation">The method to
         /// be invoked when the function is called.</param>
         /// <typeparam name="TResult">The return type of the
         /// function.</typeparam>
@@ -126,10 +126,6 @@ namespace Yarn
 
         /// <inheritdoc cref="RegisterFunction{TResult}(string,
         /// Func{TResult})"/>
-        /// <param name="name">The name of the function.</param>
-        /// <param name="implementation">The <see cref="Delegate"/> that
-        /// should be invoked when this function is called from Yarn
-        /// scripts.</param>
         public void RegisterFunction(string name, Delegate implementation) {
             Delegates.Add(name, implementation);
         }
