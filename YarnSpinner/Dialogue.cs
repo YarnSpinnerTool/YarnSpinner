@@ -694,26 +694,32 @@ namespace Yarn
         /// Starts, or continues, execution of the current Program.
         /// </summary>
         /// <remarks>
+        /// <para>
         /// This method repeatedly executes instructions until one of the
         /// following conditions is encountered:
+        /// </para>
+        /// <list type="bullet">
+        /// <item>The <see cref="LineHandler"/> or <see cref="CommandHandler"/>
+        /// is called. After calling either of these handlers, the Dialogue will
+        /// wait until <see cref="Continue"/> is called. Continue may be called
+        /// from inside the <see cref="LineHandler"/> or <see
+        /// cref="CommandHandler"/>, or may be called at any future time.</item>
         ///
-        /// * The <see cref="LineHandler"/> or <see cref="CommandHandler"/>
-        /// is called. After calling either of these handlers, the Dialogue
-        /// will wait until <see cref="Continue"/> is called. Continue may
-        /// be called from inside the <see cref="LineHandler"/> or <see
-        /// cref="CommandHandler"/>, or may be called at any future time. *
-        /// The <see cref="OptionsHandler"/> is called. When this occurs,
-        /// the Dialogue is waiting for the user to specify which of the
-        /// options has been selected, and <see
-        /// cref="SetSelectedOption(int)"/> must be called before <see
-        /// cref="Continue"/> is called again.) * The Program reaches its
-        /// end. When this occurs, <see cref="SetNode(string)"/> must be
-        /// called before <see cref="Continue"/> is called again. * An
-        /// error occurs while executing the Program.
+        /// <item>The <see cref="OptionsHandler"/> is called. When this occurs,
+        /// the Dialogue is waiting for the user to specify which of the options
+        /// has been selected, and <see cref="SetSelectedOption(int)"/> must be
+        /// called before <see cref="Continue"/> is called again.)</item>
         ///
-        /// This method has no effect if it is called while the <see
+        /// <item>The Program reaches its end. When this occurs, <see
+        /// cref="SetNode(string)"/> must be called before <see
+        /// cref="Continue"/> is called again.</item>
+        ///
+        /// <item>An error occurs while executing the Program.</item>
+        /// </list>
+        ///
+        /// <para>This method has no effect if it is called while the <see
         /// cref="Dialogue"/> is currently in the process of executing
-        /// instructions.
+        /// instructions.</para>
         /// </remarks>
         /// <seealso cref="Yarn.LineHandler"/>
         /// <seealso cref="Yarn.OptionsHandler"/>
