@@ -204,7 +204,8 @@ namespace Yarn
 
 
     /// <summary>
-    /// A [node]({{|ref "/docs/writing/nodes-and-content.md#nodes"|}}), contained within a <see cref="Program"/>, and containing <see cref="Instruction"/>s.
+    /// A node of Yarn script, contained within a <see cref="Program"/>, and
+    /// containing <see cref="Instruction"/>s.
     /// </summary>
     public partial class Node
     {
