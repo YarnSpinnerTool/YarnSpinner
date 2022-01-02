@@ -12,7 +12,7 @@ export async function activate(context: ExtensionContext) {
     interface IDotnetAcquireResult {
         dotnetPath: string;
     }
-    const commandRes = await commands.executeCommand<IDotnetAcquireResult>('dotnet.acquire', { version: '5.0', requestingExtensionId: 'yarn-spinner-language-server'});
+    const commandRes = await commands.executeCommand<IDotnetAcquireResult>('dotnet.acquire', { version: '6.0', requestingExtensionId: 'yarn-spinner-language-server'});
     const dotnetPath = commandRes!.dotnetPath;
     if (!dotnetPath) {
            throw new Error('Could not resolve the dotnet path!');
@@ -21,7 +21,7 @@ export async function activate(context: ExtensionContext) {
     const languageServerExe = dotnetPath;
     const languageServerPath =
         isDebugMode() ?
-            path.resolve(context.asAbsolutePath("../LanguageServer/bin/Debug/net5.0/YarnLanguageServer.dll")) :
+            path.resolve(context.asAbsolutePath("../LanguageServer/bin/Debug/net6.0/YarnLanguageServer.dll")) :
             path.resolve(context.asAbsolutePath("/Server/YarnLanguageServer.dll"));
 
     let languageServerOptions: ServerOptions = {
