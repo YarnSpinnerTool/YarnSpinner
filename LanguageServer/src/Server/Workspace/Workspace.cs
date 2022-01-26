@@ -31,6 +31,14 @@ namespace YarnLanguageServer
         {
             this.LanguageServer = languageServer;
 
+            // If we don't have a root directory, attempting to enumerate the
+            // files in 'Root' will throw an exception, which will cause big
+            // problems since the server can't be initialized. Workaround: skip
+            // over it all if we don't have a root.
+            if (Root == null) {
+                return;
+            }
+
             LoadExternalInfo();
 
             var yarnFiles = System.IO.Directory.EnumerateFiles(Root, "*.yarn", System.IO.SearchOption.AllDirectories);
