@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -79,16 +79,51 @@ namespace YarnLanguageServer.Handlers
                     switch (rule.Key)
                     {
                         case YarnSpinnerParser.RULE_jump_statement:
-                            results.AddRange(
-                                 workspace.GetNodeTitles().Select((nodeTitle, _) =>
-                                 new CompletionItem
-                                 {
-                                     Label = nodeTitle.title,
-                                     Kind = CompletionItemKind.Function,
-                                     Detail = System.IO.Path.GetFileName(nodeTitle.uri.AbsolutePath),
-                                     TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = nodeTitle.title, Range = indexTokenRange }),
-                                 })
-                             );
+
+                            // We could be completing a jump rule. We don't
+                            // currently know if we're at the start of the jump
+                            // rule (i.e. the 'jump' keyword exists), or if
+                            // we're in the middle of one (the 'jump' keyword
+                            // DOES exist).
+                            //
+                            // Check the previous token, and if it's not
+                            // COMMAND_JUMP, offer that as our completion.
+                            var previousToken = yarnFile.Tokens[index > 0 ? index ?? -1 : 0];
+
+                            if (previousToken.Type != YarnSpinnerLexer.COMMAND_JUMP)
+                            {
+                                // The previous token was not 'jump'. Offer to
+                                // complete with a full jump statement.
+                                const string jumpSnippet = "jump ${1:node}";
+                                results.Add(
+                                    new CompletionItem
+                                    {
+                                        Label = "jump",
+                                        Documentation = $"jump statement",
+                                        Kind = CompletionItemKind.Keyword,
+                                        InsertText = jumpSnippet,
+                                        TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = jumpSnippet, Range = indexTokenRange }),
+                                        InsertTextFormat = InsertTextFormat.Snippet,
+                                    }
+                                );
+                            }
+                            else
+                            {
+                                // We're in the middle of a jump statement.
+                                // Offer the list of node names we could jump
+                                // to.
+                                results.AddRange(
+                                    workspace.GetNodeTitles().Select((nodeTitle, _) =>
+                                    new CompletionItem
+                                    {
+                                        Label = nodeTitle.title,
+                                        Kind = CompletionItemKind.Function,
+                                        Detail = System.IO.Path.GetFileName(nodeTitle.uri.AbsolutePath),
+                                        TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = nodeTitle.title, Range = indexTokenRange.CollapseToEnd() }),
+                                    })
+                                );
+                            }
+
                             break;
 
                         case YarnSpinnerParser.RULE_function_call:
