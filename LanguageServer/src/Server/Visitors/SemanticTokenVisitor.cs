@@ -90,7 +90,7 @@ namespace YarnLanguageServer
 
         public override bool VisitFunction_call([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.Function_callContext context)
         {
-            AddTokenType(context.FUNC_ID().Symbol, SemanticTokenType.Function); // function name
+            AddTokenType(context.FUNC_ID(), SemanticTokenType.Function); // function name
             return base.VisitFunction_call(context);
         }
 
