@@ -42,10 +42,14 @@ namespace YarnLanguageServer
         public Uri Uri { get; set; }
         public Workspace Workspace { get; protected set; }
 
+        public string Text { get; set; }
+
         public YarnFileData(string text, Uri uri, Workspace workspace)
         {
             Uri = uri;
             Workspace = workspace;
+            Text = text;
+
             Update(text, workspace);
 
             // maybe we do the initial parsing, but don't do diagnostics / symbolic tokens until it's actually opened?
@@ -102,6 +106,27 @@ namespace YarnLanguageServer
             // Can save parsing/lexing errors here, becuase they should only change when the file needs to be reparsed
             CompilerDiagnostics = parserDiagnosticErrorListener.Errors.Concat(lexerDiagnosticErrorListener.Errors);
             PublishDiagnostics();
+        }
+
+        internal void ApplyContentChange(TextDocumentContentChangeEvent contentChange)
+        {
+            if (contentChange.Range == null) {
+                this.Text = contentChange.Text;
+                return;
+            } else {
+                var range = contentChange.Range;
+
+                var startIndex = LineStarts[range.Start.Line] + range.Start.Character;
+                var endIndex = LineStarts[range.End.Line] + range.End.Character;
+
+                var stringBuilder = new System.Text.StringBuilder();
+
+                stringBuilder.Append(this.Text, 0, startIndex)
+                    .Append(contentChange.Text)
+                    .Append(this.Text, endIndex, this.Text.Length - endIndex);
+
+                this.Text = stringBuilder.ToString();
+            }
         }
 
         public void PublishDiagnostics()

@@ -42,18 +42,38 @@ namespace YarnLanguageServer.Handlers
         public override Task<Unit> Handle(DidChangeTextDocumentParams request, CancellationToken cancellationToken)
         {
             var uri = request.TextDocument.Uri.ToUri();
-            var text = request.ContentChanges.First().Text;
-
+            
             if (!uri.IsFile) { return Unit.Task; }
 
             if (!workspace.YarnFiles.TryGetValue(uri, out var yarnDocument))
             {
-                yarnDocument = new YarnFileData(text, uri, workspace);
+                // We don't know about this document yet. Hopefully, this first
+                // change is a full update (i.e. Range is null, so Text is the
+                // full text of the document.)
+                //
+                // In this case, create a new document and fill it with this
+                // content. (If it's not a full update, we have to default to
+                // something; in this case, I'm going with the empty string.)
+
+                // Get the first content change
+                var firstChange = request.ContentChanges.First();
+
+                // Figure out the the content
+                var initialContent = firstChange.Range == null ? firstChange.Text : string.Empty;
+
+                // Create the new document
+                yarnDocument = new YarnFileData(initialContent, uri, workspace);
                 workspace.YarnFiles[uri] = yarnDocument;
-                yarnDocument.Open(text, workspace);
+                yarnDocument.Open(initialContent, workspace);
             }
 
-            yarnDocument.Update(text, workspace);
+            // Next, go through each content change, and apply it.
+            foreach (var contentChange in request.ContentChanges) {
+                yarnDocument.ApplyContentChange(contentChange);
+            }
+
+            // Finally, update our model using the new content.
+            yarnDocument.Update(yarnDocument.Text, workspace);
 
             return Unit.Task;
         }
