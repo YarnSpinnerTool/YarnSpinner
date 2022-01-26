@@ -107,7 +107,7 @@ namespace YarnLanguageServer
             AddTokenType(context.Start, SemanticTokenType.Keyword);
             AddTokenType(context.Stop, SemanticTokenType.Keyword);
             AddTokenType(context.COMMAND_DECLARE(), SemanticTokenType.Keyword); // declare
-            AddTokenType(context.OPERATOR_ASSIGNMENT(), SemanticTokenType.Keyword); // =
+            AddTokenType(context.OPERATOR_ASSIGNMENT(), SemanticTokenType.Operator); // =
 
             return base.VisitDeclare_statement(context);
         }
@@ -179,8 +179,9 @@ namespace YarnLanguageServer
         {
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword);
             AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword);
-            AddTokenType(context.op, context.op, SemanticTokenType.Keyword); // =
+            AddTokenType(context.op, context.op, SemanticTokenType.Operator); // =
             AddTokenType(context.COMMAND_SET(), context.COMMAND_SET(),SemanticTokenType.Keyword);
+
             // AddTokenType(context.expression(), context.expression(), SemanticTokenType.Variable); // $variablename
 
             return base.VisitSet_statement(context);
@@ -188,6 +189,10 @@ namespace YarnLanguageServer
 
         public override bool VisitCall_statement([NotNull] YarnSpinnerParser.Call_statementContext context)
         {
+            AddTokenType(context.Start, SemanticTokenType.Keyword); // <<
+            AddTokenType(context.COMMAND_CALL(), SemanticTokenType.Keyword);
+
+            AddTokenType(context.Stop, SemanticTokenType.Keyword); // >>
             return base.VisitCall_statement(context);
         }
 
