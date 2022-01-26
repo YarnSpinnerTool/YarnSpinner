@@ -16,6 +16,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VisualStudioExtensionBase",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualStudio2019Extension", "VisualStudio2019Extension\VisualStudio2019Extension.csproj", "{ED8613E2-4CD6-4A43-AC15-3B1625F8C43C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageServer.Tests", "LanguageServer.Tests\LanguageServer.Tests.csproj", "{10A8654B-AF89-4A21-8D24-A269372F45C2}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		VisualStudioExtensionBase\VisualStudioExtensionBase.projitems*{0df0be3f-6822-402c-b37e-fed4e50f0552}*SharedItemsImports = 4
@@ -53,6 +55,14 @@ Global
 		{ED8613E2-4CD6-4A43-AC15-3B1625F8C43C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ED8613E2-4CD6-4A43-AC15-3B1625F8C43C}.Release|x86.ActiveCfg = Release|x86
 		{ED8613E2-4CD6-4A43-AC15-3B1625F8C43C}.Release|x86.Build.0 = Release|x86
+		{10A8654B-AF89-4A21-8D24-A269372F45C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10A8654B-AF89-4A21-8D24-A269372F45C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10A8654B-AF89-4A21-8D24-A269372F45C2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{10A8654B-AF89-4A21-8D24-A269372F45C2}.Debug|x86.Build.0 = Debug|Any CPU
+		{10A8654B-AF89-4A21-8D24-A269372F45C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10A8654B-AF89-4A21-8D24-A269372F45C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10A8654B-AF89-4A21-8D24-A269372F45C2}.Release|x86.ActiveCfg = Release|Any CPU
+		{10A8654B-AF89-4A21-8D24-A269372F45C2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
