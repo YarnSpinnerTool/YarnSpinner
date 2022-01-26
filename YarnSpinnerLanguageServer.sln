@@ -5,16 +5,10 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YarnLanguageServer", "LanguageServer\YarnLanguageServer.csproj", "{BA097514-97BC-4095-81DF-44071343E546}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualStudio2022Extension", "VisualStudio2022Extension\VisualStudio2022Extension.csproj", "{0DF0BE3F-6822-402C-B37E-FED4E50F0552}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A5806B58-3435-4CDF-9349-A50922A8F1DF}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig.inferred = .editorconfig.inferred
 	EndProjectSection
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VisualStudioExtensionBase", "VisualStudioExtensionBase\VisualStudioExtensionBase.shproj", "{EC811347-62B4-44F9-BC85-6C4F9ABD7C9D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualStudio2019Extension", "VisualStudio2019Extension\VisualStudio2019Extension.csproj", "{ED8613E2-4CD6-4A43-AC15-3B1625F8C43C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageServer.Tests", "LanguageServer.Tests\LanguageServer.Tests.csproj", "{10A8654B-AF89-4A21-8D24-A269372F45C2}"
 EndProject
@@ -39,22 +33,6 @@ Global
 		{BA097514-97BC-4095-81DF-44071343E546}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BA097514-97BC-4095-81DF-44071343E546}.Release|x86.ActiveCfg = Release|Any CPU
 		{BA097514-97BC-4095-81DF-44071343E546}.Release|x86.Build.0 = Release|Any CPU
-		{0DF0BE3F-6822-402C-B37E-FED4E50F0552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0DF0BE3F-6822-402C-B37E-FED4E50F0552}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0DF0BE3F-6822-402C-B37E-FED4E50F0552}.Debug|x86.ActiveCfg = Debug|x86
-		{0DF0BE3F-6822-402C-B37E-FED4E50F0552}.Debug|x86.Build.0 = Debug|x86
-		{0DF0BE3F-6822-402C-B37E-FED4E50F0552}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0DF0BE3F-6822-402C-B37E-FED4E50F0552}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0DF0BE3F-6822-402C-B37E-FED4E50F0552}.Release|x86.ActiveCfg = Release|x86
-		{0DF0BE3F-6822-402C-B37E-FED4E50F0552}.Release|x86.Build.0 = Release|x86
-		{ED8613E2-4CD6-4A43-AC15-3B1625F8C43C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ED8613E2-4CD6-4A43-AC15-3B1625F8C43C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ED8613E2-4CD6-4A43-AC15-3B1625F8C43C}.Debug|x86.ActiveCfg = Debug|x86
-		{ED8613E2-4CD6-4A43-AC15-3B1625F8C43C}.Debug|x86.Build.0 = Debug|x86
-		{ED8613E2-4CD6-4A43-AC15-3B1625F8C43C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ED8613E2-4CD6-4A43-AC15-3B1625F8C43C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ED8613E2-4CD6-4A43-AC15-3B1625F8C43C}.Release|x86.ActiveCfg = Release|x86
-		{ED8613E2-4CD6-4A43-AC15-3B1625F8C43C}.Release|x86.Build.0 = Release|x86
 		{10A8654B-AF89-4A21-8D24-A269372F45C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10A8654B-AF89-4A21-8D24-A269372F45C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10A8654B-AF89-4A21-8D24-A269372F45C2}.Debug|x86.ActiveCfg = Debug|Any CPU
