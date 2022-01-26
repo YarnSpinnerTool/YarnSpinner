@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -69,6 +69,7 @@ namespace YarnLanguageServer.Handlers
                         Label = label,
                         Kind = CompletionItemKind.Keyword,
                         Documentation = $"{label} keyword",
+                        InsertText = text,
                         TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = text, Range = indexTokenRange }),
                         InsertTextFormat = (text == label) ? InsertTextFormat.PlainText : InsertTextFormat.Snippet,
                     });
@@ -247,8 +248,8 @@ namespace YarnLanguageServer.Handlers
 
         public static readonly Dictionary<string, string> UserFriendlyTokenText = new Dictionary<string, string>
         {
-            { "COMMAND_IF", "if " }, { "COMMAND_ELSEIF", "elseif " }, { "COMMAND_ELSE", "else" }, { "COMMAND_SET", "set " },
-            { "COMMAND_ENDIF", "endif" }, { "COMMAND_CALL", "call " }, { "COMMAND_DECLARE", "declare " }, { "COMMAND_JUMP", "jump " },
+            { "COMMAND_IF", "if" }, { "COMMAND_ELSEIF", "elseif" }, { "COMMAND_ELSE", "else" }, { "COMMAND_SET", "set" },
+            { "COMMAND_ENDIF", "endif" }, { "COMMAND_CALL", "call" }, { "COMMAND_DECLARE", "declare" }, { "COMMAND_JUMP", "jump " },
             { "KEYWORD_FALSE", "false" }, { "KEYWORD_TRUE", "true" }, { "KEYWORD_NULL", "null" },
         };
 
