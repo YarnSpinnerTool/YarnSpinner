@@ -57,5 +57,11 @@ public class CommandTests : LanguageServerTestsBase
               .Headers.Should().Contain(h => h.Key == "tags", "because Node2 has a 'tags' header")
               .Which
               .Value.Should().Be("wow incredible", "because Node2's 'tags' header has this value");
+
+        result.Should().Contain(n => n.Title == "Start")
+            .Which
+            .Jumps.Should().NotBeNullOrEmpty("because the Start node contains jumps")
+            .And
+            .Contain(j => j.DestinationTitle == "Node2", "because the Start node has a jump to Node2");
     }
 }

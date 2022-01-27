@@ -1,4 +1,5 @@
 using Antlr4.Runtime;
+using Newtonsoft.Json;
 
 namespace YarnLanguageServer;
 
@@ -7,11 +8,13 @@ public record NodeHeader
     /// <summary>
     /// Gets the name of the header.
     /// </summary>
+    [JsonProperty("key")]
     public string Key { get; init; }
 
     /// <summary>
     /// Gets the value of the header.
     /// </summary>
+    [JsonProperty("value")]
     public string Value { get; init; }
 
     /// <summary>
