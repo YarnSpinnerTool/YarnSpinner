@@ -66,10 +66,21 @@ namespace YarnLanguageServer
 
         public override bool VisitHeader([NotNull] YarnSpinnerParser.HeaderContext context)
         {
-            if (context.header_key != null && context.header_key.Text == "title" && context.header_value != null)
+            if (context.header_key != null && context.header_value != null)
             {
-                currentNodeInfo.Title = context.header_value.Text;
-                currentNodeInfo.TitleToken = context.header_value;
+                if (context.header_key.Text == "title")
+                {
+                    currentNodeInfo.Title = context.header_value.Text;
+                    currentNodeInfo.TitleToken = context.header_value;
+                }
+
+                currentNodeInfo.Headers.Add(new NodeHeader
+                {
+                    Key = context.header_key.Text,
+                    Value = context.header_value.Text,
+                    KeyToken = context.header_key,
+                    ValueToken = context.header_value,
+                });
             }
 
             return base.VisitHeader(context);

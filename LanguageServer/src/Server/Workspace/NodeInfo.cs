@@ -9,7 +9,8 @@ public record NodeInfo
     public string Title { get; set; } = string.Empty;
     public int BodyStartLine { get; set; } = 0;
     public int HeaderStartLine { get; set; } = 0;
-
+    public List<NodeHeader> Headers { get; init; } = new ();
+    
     internal YarnFileData File { get; init; }
 
     internal IToken TitleToken { get; set; }
