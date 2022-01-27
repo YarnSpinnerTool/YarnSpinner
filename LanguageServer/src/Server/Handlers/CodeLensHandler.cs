@@ -21,7 +21,7 @@ namespace YarnLanguageServer.Handlers
         {
             if (workspace.YarnFiles.TryGetValue(request.TextDocument.Uri.ToUri(), out var yarnFile))
             {
-                var results = yarnFile.NodeTitles.Select(titleToken =>
+                var results = yarnFile.NodeDefinitions.Select(titleToken =>
                    {
                        var referenceLocations = ReferencesHandler.GetReferences(titleToken.Text, YarnSymbolType.Node, workspace);
                        var count = referenceLocations.Count() - 1; // This is a count of 'other' references, so don't include the declaration

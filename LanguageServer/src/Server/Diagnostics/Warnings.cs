@@ -24,7 +24,7 @@ namespace YarnLanguageServer.Diagnostics
             // Todo: create new config flag for this, functions can be defined in more places than C#.
             if (workspace.Configuration.CSharpLookup)
             {
-                var undefinedFunctions = yarnFile.FunctionInfos.Concat(yarnFile.CommandInfos)
+                var undefinedFunctions = yarnFile.FunctionReferences.Concat(yarnFile.CommandReferences)
                     .Where(fi => !workspace.LookupFunctions(fi.Name).Any());
 
                 var warnings = undefinedFunctions.Select(f => new Diagnostic
@@ -43,7 +43,7 @@ namespace YarnLanguageServer.Diagnostics
 
         private static IEnumerable<Diagnostic> UndeclaredVariables(YarnFileData yarnFile, Workspace workspace)
         {
-            var undeclaredVariables = yarnFile.Variables.Where(v => !workspace.GetVariables(v.Text).Any());
+            var undeclaredVariables = yarnFile.VariableReferences.Where(v => !workspace.GetVariables(v.Text).Any());
 
             var warnings = undeclaredVariables.Select(v => new Diagnostic
             {

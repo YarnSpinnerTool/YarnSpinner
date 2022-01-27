@@ -156,12 +156,25 @@ namespace YarnLanguageServer
 
         public IEnumerable<(Uri uri, string title, Range range)> GetNodeTitles()
         {
-            return YarnFiles.Values.SelectMany(yarnFile => yarnFile.NodeTitles.Select(titleToken => (yarnFile.Uri, titleToken.Text, PositionHelper.GetRange(yarnFile.LineStarts, titleToken))).Distinct()).Distinct();
+            var allNodeInfos = YarnFiles.Values.SelectMany(y => y.NodeInfos);
+
+            return allNodeInfos
+                .Select(n => (
+                    n.File.Uri,
+                    n.TitleToken.Text,
+                    PositionHelper.GetRange(n.File.LineStarts, n.TitleToken))
+                    )
+                .Distinct();
         }
 
         public IEnumerable<string> GetVariableNames()
         {
-            return YarnFiles.Values.SelectMany(yarnFile => yarnFile.Variables.Select(variableToken => variableToken.Text).Distinct()).Distinct();
+            var allNodeInfos = YarnFiles.Values.SelectMany(y => y.NodeInfos);
+
+            return allNodeInfos
+                .SelectMany(n => n.VariableReferences)
+                .Select(variableToken => variableToken.Text)
+                .Distinct();
         }
 
         public IEnumerable<YarnVariableDeclaration> GetVariables(string name = null, bool fuzzyMatch = false)
@@ -172,11 +185,11 @@ namespace YarnLanguageServer
                 var file = fileEntry.Value;
                 if (!fuzzyMatch)
                 {
-                    results = results.Concat(file.DeclaredVariables.Where(v => name == null || v.Name == name));
+                    results = results.Concat(file.VariableDeclarations.Where(v => name == null || v.Name == name));
                 }
                 else if (fuzzyMatch)
                 {
-                    results = results.Concat(file.DeclaredVariables);
+                    results = results.Concat(file.VariableDeclarations);
                 }
             }
 

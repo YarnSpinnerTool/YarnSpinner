@@ -41,9 +41,9 @@ namespace YarnLanguageServer.Handlers
                         return Task.FromResult<LocationOrLocationLinks>(new LocationOrLocationLinks(locations));
 
                     case YarnSymbolType.Variable:
-                        var vDefinitionMatches = workspace.YarnFiles.Values.SelectMany(yf => yf.DeclaredVariables.Where(dv => dv.Name == token.Text).Select(t => (yf.Uri, t.DefinitionRange)));
+                        var vDefinitionMatches = workspace.YarnFiles.Values.SelectMany(yf => yf.VariableDeclarations.Where(dv => dv.Name == token.Text).Select(t => (yf.Uri, t.DefinitionRange)));
                         locations = vDefinitionMatches.Select(definition =>
-                            new LocationOrLocationLink(new Location { Uri = definition.Uri, Range = definition.Item2 })
+                            new LocationOrLocationLink(new Location { Uri = definition.Uri, Range = definition.DefinitionRange })
                         );
                         return Task.FromResult<LocationOrLocationLinks>(new LocationOrLocationLinks(locations));
 

@@ -23,7 +23,7 @@ namespace YarnLanguageServer.Diagnostics
         {
             var allVariables = workspace.GetVariables();
             var duplicates = allVariables
-                .Where(workspaceDeclarations => yarnFile.DeclaredVariables.Any(dv => dv.Name == workspaceDeclarations.Name))
+                .Where(workspaceDeclarations => yarnFile.VariableDeclarations.Any(dv => dv.Name == workspaceDeclarations.Name))
                 .GroupBy(v => v.Name)
                 .Where(g => g.Count() > 1)
                 .SelectMany(grouping => grouping
@@ -47,7 +47,7 @@ namespace YarnLanguageServer.Diagnostics
             // Todo: create new config flag for this, functions can be defined in more places than C#.
             if (workspace.Configuration.CSharpLookup)
             {
-                yarnFile.FunctionInfos.Concat(yarnFile.CommandInfos).ForEach(fi =>
+                yarnFile.FunctionReferences.Concat(yarnFile.CommandReferences).ForEach(fi =>
                 {
                     var defs = workspace.LookupFunctions(fi.Name).Where(def => def.IsCommand == fi.IsCommand);
                     if (!defs.Any()) { return; }

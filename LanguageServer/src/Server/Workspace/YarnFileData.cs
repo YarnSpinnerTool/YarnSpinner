@@ -19,25 +19,53 @@ namespace YarnLanguageServer
 {
     internal class YarnFileData
     {
+        public record NodeJump {
+            public string DestinationTitle { get; init; }
+            public IToken DestinationToken { get; init; }
+        }
+
+        public record NodeInfo
+        {
+            public YarnFileData File { get; init; }
+            public string Title { get; set; } = string.Empty;
+
+            public IToken TitleToken { get; set; }
+
+            public int HeaderStartLine { get; set; } = 0;
+            public int BodyStartLine { get; set; } = 0;
+
+            public List<NodeJump> Jumps { get; init; } = new List<NodeJump>();
+            public List<YarnFunctionCall> FunctionCalls { get; init; } = new ();
+            public List<YarnFunctionCall> CommandCalls { get; init; } = new ();
+            public List<YarnVariableDeclaration> VariableDeclarations { get; init; } = new ();
+            public List<IToken> VariableReferences { get; init; } = new();
+
+
+            //     position: { x: number, y: number } = { x: 0, y: 0 }
+            //     destinations: string[] = []
+            //     tags: string[] = []
+            //     line: number = 0
+            //     bodyLine: number = 0
+
+            //     start: Position = { line: 0, character: 0 };
+            //     end: Position = { line: 0, character: 0 };
+            // }
+        }
+
+        
         public YarnSpinnerLexer Lexer { get; protected set; }
         public YarnSpinnerParser Parser { get; protected set; }
         public YarnSpinnerParser.DialogueContext ParseTree { get; protected set; }
         public IList<IToken> Tokens { get; protected set; }
         public IList<IToken> CommentTokens { get; protected set; }
-        public IList<YarnVariableDeclaration> DeclaredVariables { get; protected set; }
         public IEnumerable<DocumentSymbol> DocumentSymbols { get; protected set; }
 
-        public IList<IToken> NodeTitles { get; protected set; }
-        public IList<IToken> NodeJumps { get; protected set; }
-        public IList<IToken> Variables { get; protected set; }
         public IEnumerable<Diagnostic> CompilerDiagnostics { get; protected set; }
         public bool HasSemanticDiagnostics { get; protected set;  }
         public ImmutableArray<int> LineStarts { get; protected set; }
-        public List<IToken> Commands { get; protected set; }
-        public List<YarnFunctionCall> CommandInfos { get; protected set; }
-        public List<IToken> Functions { get; protected set; }
-        public List<YarnFunctionCall> FunctionInfos { get; protected set; }
         public CodeCompletionCore CodeCompletionCore { get; protected set; }
+
+        public List<NodeInfo> NodeInfos { get; protected set; }
 
         public Uri Uri { get; set; }
         public Workspace Workspace { get; protected set; }
@@ -97,8 +125,8 @@ namespace YarnLanguageServer
             ParseTree = Parser.dialogue(); // Dialogue is the root node of the syntax tree
 
             // should probably just set these directly inside the visit function, or refactor all these into a references object
-            (NodeTitles, NodeJumps, Commands, CommandInfos, Functions, FunctionInfos,
-                Variables, DeclaredVariables) = ReferencesVisitor.Visit(this, tokenStream);
+            NodeInfos = ReferencesVisitor.Visit(this, tokenStream).ToList();
+
             DocumentSymbols = DocumentSymbolsVisitor.Visit(this);
 
             CodeCompletionCore = new CodeCompletionCore(Parser, Handlers.CompletionHandler.PreferedRules, Handlers.CompletionHandler.IgnoredTokens);
@@ -158,37 +186,79 @@ namespace YarnLanguageServer
             return result;
         }
 
+        /// <summary>
+        /// Gets the collection of all references to commands in this file.
+        /// </summary>
+        public IEnumerable<YarnFunctionCall> CommandReferences => NodeInfos
+            .SelectMany(n => n.CommandCalls);
+
+        /// <summary>
+        /// Gets the collection of all jumps to nodes in this file.
+        /// </summary>
+        public IEnumerable<NodeJump> NodeJumps => NodeInfos
+            .SelectMany(n => n.Jumps);
+
+        /// <summary>
+        /// Gets the collection of all tokens in this file that represent the
+        /// title in a node definition.
+        /// </summary>
+        public IEnumerable<IToken> NodeDefinitions => NodeInfos
+            .Select(n => n.TitleToken);
+
+        /// <summary>
+        /// Gets the collection of all function references in this file.
+        /// </summary>
+        public IEnumerable<YarnFunctionCall> FunctionReferences => NodeInfos
+            .SelectMany(n => n.FunctionCalls);
+
+
+        /// <summary>
+        /// Gets the collection of all tokens in this file that represent
+        /// variables.
+        /// </summary>
+        public IEnumerable<IToken> VariableReferences => NodeInfos
+            .SelectMany(n => n.VariableReferences)
+            .Select(variableToken => variableToken);
+
+        /// <summary>
+        /// Gets the collection of all variable declarations in this file.
+        /// </summary>
+        public IEnumerable<YarnVariableDeclaration> VariableDeclarations => NodeInfos.SelectMany(n => n.VariableDeclarations);
+
+        /// <summary>
+        /// Given a position in the file, returns the type of symbol it
+        /// represents (if any), and the token at that position (if any).
+        /// </summary>
+        /// <param name="position">The position to query for.</param>
+        /// <returns>A tuple containing the type and token of the symbol at
+        /// <paramref name="position"/>.</returns>
         public (YarnSymbolType yarnSymbolType, IToken token) GetTokenAndType(Position position)
         {
-            IToken resultToken = null;
-
             Func<IToken, bool> isTokenMatch = (IToken t) => PositionHelper.DoesPositionContainToken(position, t);
+
+            var allSymbolTokens = new IEnumerable<(IToken Token, YarnSymbolType Type)>[] {
+                // Jumps
+                NodeInfos.SelectMany(n => n.Jumps).Select(j => (j.DestinationToken, YarnSymbolType.Node)),
+
+                // Commands
+                NodeInfos.SelectMany(n => n.CommandCalls).Select(c => (c.NameToken, YarnSymbolType.Command)),
+
+                // Variables
+                NodeInfos.SelectMany(n => n.VariableReferences).Select(v => (v, YarnSymbolType.Variable)),
+
+                // Functions
+                NodeInfos.SelectMany(n => n.FunctionCalls).Select(f => (f.NameToken, YarnSymbolType.Function)),
+            };
+
+
+            foreach (var tokenInfo in allSymbolTokens.SelectMany(g => g)) {
+                if (isTokenMatch(tokenInfo.Token)) {
+                    return (tokenInfo.Type, tokenInfo.Token);
+                }
+            }
 
             // TODO Speed these searches up using binary search on the token positions
             // see getTokenFromList() in PositionHelper.cs
-            resultToken = Commands.FirstOrDefault(isTokenMatch);
-            if (resultToken != null)
-            {
-                return (YarnSymbolType.Command, resultToken);
-            }
-
-            resultToken = NodeTitles.Concat(NodeJumps).FirstOrDefault(isTokenMatch);
-            if (resultToken != null)
-            {
-                return (YarnSymbolType.Node, resultToken);
-            }
-
-            resultToken = Variables.FirstOrDefault(isTokenMatch);
-            if (resultToken != null)
-            {
-                return (YarnSymbolType.Variable, resultToken);
-            }
-
-            resultToken = Functions.FirstOrDefault(isTokenMatch);
-            if (resultToken != null)
-            {
-                return (YarnSymbolType.Function, resultToken);
-            }
 
             return (YarnSymbolType.Unknown, null);
         }
@@ -229,13 +299,13 @@ namespace YarnLanguageServer
         private YarnFunctionCall? GetFunctionInfo(Position position)
         {
             // Strategy is to look for rightmost start function parameter, and if there are none, check command parameters
-            var functionMatches = FunctionInfos.Where(fi => fi.ExpressionRange.Contains(position)).OrderByDescending(fi => fi.ExpressionRange.Start);
+            var functionMatches = NodeInfos.SelectMany(n => n.FunctionCalls).Where(fi => fi.ExpressionRange.Contains(position)).OrderByDescending(fi => fi.ExpressionRange.Start);
             if (functionMatches.Any())
             {
                 return functionMatches.FirstOrDefault();
             }
 
-            var commandMatches = CommandInfos.Where(fi => fi.ExpressionRange.Contains(position));
+            var commandMatches = NodeInfos.SelectMany(n => n.CommandCalls).Where(fi => fi.ExpressionRange.Contains(position));
             if (commandMatches.Any())
             {
                 return commandMatches.FirstOrDefault();

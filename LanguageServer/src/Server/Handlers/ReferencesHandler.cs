@@ -27,15 +27,15 @@ namespace YarnLanguageServer.Handlers
             switch (yarnSymbolType)
             {
                 case YarnSymbolType.Node:
-                    tokenSelector = (yf) => yf.NodeTitles.Concat(yf.NodeJumps);
+                    tokenSelector = (yf) => yf.NodeDefinitions.Concat(yf.NodeJumps.Select(j => j.DestinationToken));
                     break;
 
                 case YarnSymbolType.Command:
-                    tokenSelector = (yf) => yf.Commands; // maybe add in c# references too
+                    tokenSelector = (yf) => yf.CommandReferences.Select(c => c.NameToken); // maybe add in c# references too
                     break;
 
                 case YarnSymbolType.Variable:
-                    tokenSelector = yf => yf.Variables;
+                    tokenSelector = yf => yf.VariableReferences;
                     break;
 
                 default:

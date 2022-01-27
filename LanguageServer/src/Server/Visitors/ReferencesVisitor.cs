@@ -10,14 +10,10 @@ namespace YarnLanguageServer
 {
     internal class ReferencesVisitor : YarnSpinnerParserBaseVisitor<bool>
     {
-        private readonly List<IToken> titles = new List<IToken>();
-        private readonly List<IToken> jumps = new List<IToken>();
-        private readonly List<IToken> commands = new List<IToken>();
-        private readonly List<YarnFunctionCall> commandInfos = new List<YarnFunctionCall>();
-        private readonly List<IToken> functions = new List<IToken>();
-        private readonly List<YarnFunctionCall> functionInfos = new List<YarnFunctionCall>();
-        private readonly List<IToken> variables = new List<IToken>();
-        private readonly List<YarnVariableDeclaration> declarations = new List<YarnVariableDeclaration>();
+        private readonly List<YarnFileData.NodeInfo> nodeInfos = new ();
+
+        private YarnFileData.NodeInfo currentNodeInfo = null;
+
         private YarnFileData yarnFileData;
 
         /// <summary>
@@ -26,9 +22,7 @@ namespace YarnLanguageServer
         /// </summary>
         private CommonTokenStream tokens;
 
-        public static (
-            List<IToken> titles, List<IToken> jumps, List<IToken> commands, List<YarnFunctionCall> commandInfos,
-            List<IToken> functions, List<YarnFunctionCall> functionInfos, List<IToken> variables, List<YarnVariableDeclaration> declarations)
+        public static IEnumerable<YarnFileData.NodeInfo>
             Visit(YarnFileData yarnFileData, CommonTokenStream tokens)
         {
             var visitor = new ReferencesVisitor
@@ -41,19 +35,32 @@ namespace YarnLanguageServer
                 try
                 {
                     visitor.Visit(yarnFileData.ParseTree);
+                    return visitor.nodeInfos;
                 }
                 catch (Exception e) {
                     // Don't want an exception while parsing to take out the entire language server
                 }
             }
+            return Enumerable.Empty<YarnFileData.NodeInfo>();
+        }
 
-            return (visitor.titles, visitor.jumps, visitor.commands, visitor.commandInfos,
-                visitor.functions, visitor.functionInfos, visitor.variables, visitor.declarations);
+        public override bool VisitNode([NotNull] YarnSpinnerParser.NodeContext context)
+        {
+            currentNodeInfo = new YarnFileData.NodeInfo
+            {
+                File = yarnFileData,
+            };
+
+            base.VisitNode(context);
+
+            nodeInfos.Add(currentNodeInfo);
+
+            return true;
         }
 
         public override bool VisitVariable([NotNull] YarnSpinnerParser.VariableContext context)
         {
-            variables.Add(context.Stop);
+            currentNodeInfo.VariableReferences.Add(context.Stop);
             return base.VisitVariable(context);
         }
 
@@ -61,7 +68,8 @@ namespace YarnLanguageServer
         {
             if (context.header_key != null && context.header_key.Text == "title" && context.header_value != null)
             {
-                titles.Add(context.header_value);
+                currentNodeInfo.Title = context.header_value.Text;
+                currentNodeInfo.TitleToken = context.header_value;
             }
 
             return base.VisitHeader(context);
@@ -69,14 +77,19 @@ namespace YarnLanguageServer
 
         public override bool VisitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context)
         {
-            jumps.Add(context.destination);
+            var jump = new YarnFileData.NodeJump
+            {
+                DestinationTitle = context.destination.Text,
+                DestinationToken = context.destination,
+            };
+
+            currentNodeInfo.Jumps.Add(jump);
+
             return base.VisitJump_statement(context);
         }
 
         public override bool VisitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context)
         {
-            functions.Add(context.FUNC_ID().Symbol);
-            
             try
             {
                 Range parametersRange;
@@ -109,7 +122,7 @@ namespace YarnLanguageServer
 
 
 
-                functionInfos.Add(new YarnFunctionCall
+                currentNodeInfo.FunctionCalls.Add(new YarnFunctionCall
                 {
                     NameToken = context.FUNC_ID().Symbol,
                     Name = context.FUNC_ID().Symbol.Text,
@@ -137,9 +150,10 @@ namespace YarnLanguageServer
                 Documentation = documentation,
                 Name = token.Text,
             };
-            declarations.Add(declaration);
 
-            variables.Add(token);
+            currentNodeInfo.VariableDeclarations.Add(declaration);
+            currentNodeInfo.VariableReferences.Add(token);
+
             return base.VisitDeclare_statement(context);
         }
 
@@ -175,8 +189,6 @@ namespace YarnLanguageServer
             });
 
             CommonToken commandName = tokens.First();
-
-            commands.Add(commandName);
 
             var parameterRangeStart = PositionHelper.GetRange(yarnFileData.LineStarts, commandName).End
                 .Delta(0, 1); // need at least one white space character after the command name before any parameters
@@ -214,8 +226,8 @@ namespace YarnLanguageServer
 
             result.ExpressionRange = new Range(result.ExpressionRange.Start, result.ExpressionRange.End.Delta(0, -2)); // should get right up to the left of >>
 
-            commandInfos.Add(result);
-            
+            currentNodeInfo.CommandCalls.Add(result);
+
 
             return base.VisitCommand_statement(context);
         }
