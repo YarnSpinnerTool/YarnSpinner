@@ -116,7 +116,7 @@ namespace YarnLanguageServer.Tests
             options.WithRootPath(PathToTestData);
         }
 
-        protected void ConfigureServer(LanguageServerOptions options)
+        protected static void ConfigureServer(LanguageServerOptions options)
         {
             YarnLanguageServer.ConfigureOptions(options);
         }
