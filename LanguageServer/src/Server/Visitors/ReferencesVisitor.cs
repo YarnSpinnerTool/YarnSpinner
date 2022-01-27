@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Antlr4.Runtime;
@@ -49,6 +49,8 @@ namespace YarnLanguageServer
             currentNodeInfo = new NodeInfo
             {
                 File = yarnFileData,
+                // antlr lines start at 1, but LSP lines start at 0
+                HeaderStartLine = context.Start.Line - 1,
             };
 
             base.VisitNode(context);
@@ -84,6 +86,16 @@ namespace YarnLanguageServer
             }
 
             return base.VisitHeader(context);
+        }
+
+        public override bool VisitBody([NotNull] YarnSpinnerParser.BodyContext context) {
+            // The start token is the '---' delimiter; we'll set the body start
+            // line to be the line after that. (We're not adding 1 here, because
+            // ANTLR lines start at 1, and LSP lines start at 0, so we'll just
+            // inherit this natural offset.)
+            currentNodeInfo.BodyStartLine = context.Start.Line;
+
+            return base.VisitBody(context);
         }
 
         public override bool VisitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context)
