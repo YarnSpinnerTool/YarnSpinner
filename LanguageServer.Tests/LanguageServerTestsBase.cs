@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using OmniSharp.Extensions.JsonRpc.Testing;
@@ -9,14 +12,9 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Xunit;
 using Xunit.Abstractions;
-using System.Linq;
-using System.Collections.Generic;
-
-using System.IO;
 
 using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client;
-using FluentAssertions.Execution;
 
 #pragma warning disable CS0162
 
@@ -45,7 +43,7 @@ namespace YarnLanguageServer.Tests
 
                 if (directoryContainingProject != null)
                 {
-                    return System.IO.Path.Combine(directoryContainingProject.FullName, "TestData");
+                    return Path.Combine(directoryContainingProject.FullName, "TestData");
                 }
                 else
                 {

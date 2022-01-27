@@ -15,7 +15,7 @@ public record NodeInfo
 
     internal IToken TitleToken { get; set; }
 
-    internal List<NodeJump> Jumps { get; init; } = new List<NodeJump>();
+    internal List<NodeJump> Jumps { get; init; } = new ();
     internal List<YarnFunctionCall> FunctionCalls { get; init; } = new();
     internal List<YarnFunctionCall> CommandCalls { get; init; } = new();
     internal List<YarnVariableDeclaration> VariableDeclarations { get; init; } = new();
