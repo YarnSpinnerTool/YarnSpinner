@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 using OmniSharp.Extensions.LanguageServer.Server;
+using OmniSharp.Extensions.LanguageServer.Protocol.Workspace;
+using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System.Collections.Generic;
 
 namespace YarnLanguageServer
 {
@@ -75,7 +78,32 @@ namespace YarnLanguageServer
 
                 ;
 
+            // Register 'List Nodes' command
+            options.OnExecuteCommand<Container<NodeInfo>>(
+                (commandParams) => ListNodesInDocumentAsync(workspace, commandParams),
+                (_, _) => new ExecuteCommandRegistrationOptions
+                {
+                    Commands = new[] { Commands.ListNodes },
+                }
+            );
+
             return options;
+        }
+
+        private static Task<Container<NodeInfo>> ListNodesInDocumentAsync(Workspace workspace, ExecuteCommandParams<Container<NodeInfo>> commandParams)
+        {
+            var result = new List<NodeInfo>();
+
+            var yarnDocumentUriString = commandParams.Arguments[0].ToString();
+
+            Uri yarnDocumentUri = new (yarnDocumentUriString);
+
+            if (workspace.YarnFiles.TryGetValue(yarnDocumentUri, out var yarnFile))
+            {
+                result = yarnFile.NodeInfos.ToList();
+            }
+
+            return Task.FromResult<Container<NodeInfo>>(result);
         }
     }
 }
