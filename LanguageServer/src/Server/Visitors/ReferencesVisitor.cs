@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Antlr4.Runtime;
@@ -10,9 +10,9 @@ namespace YarnLanguageServer
 {
     internal class ReferencesVisitor : YarnSpinnerParserBaseVisitor<bool>
     {
-        private readonly List<YarnFileData.NodeInfo> nodeInfos = new ();
+        private readonly List<NodeInfo> nodeInfos = new ();
 
-        private YarnFileData.NodeInfo currentNodeInfo = null;
+        private NodeInfo currentNodeInfo = null;
 
         private YarnFileData yarnFileData;
 
@@ -22,7 +22,7 @@ namespace YarnLanguageServer
         /// </summary>
         private CommonTokenStream tokens;
 
-        public static IEnumerable<YarnFileData.NodeInfo>
+        public static IEnumerable<NodeInfo>
             Visit(YarnFileData yarnFileData, CommonTokenStream tokens)
         {
             var visitor = new ReferencesVisitor
@@ -41,12 +41,12 @@ namespace YarnLanguageServer
                     // Don't want an exception while parsing to take out the entire language server
                 }
             }
-            return Enumerable.Empty<YarnFileData.NodeInfo>();
+            return Enumerable.Empty<NodeInfo>();
         }
 
         public override bool VisitNode([NotNull] YarnSpinnerParser.NodeContext context)
         {
-            currentNodeInfo = new YarnFileData.NodeInfo
+            currentNodeInfo = new NodeInfo
             {
                 File = yarnFileData,
             };
@@ -77,7 +77,7 @@ namespace YarnLanguageServer
 
         public override bool VisitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context)
         {
-            var jump = new YarnFileData.NodeJump
+            var jump = new NodeJump
             {
                 DestinationTitle = context.destination.Text,
                 DestinationToken = context.destination,

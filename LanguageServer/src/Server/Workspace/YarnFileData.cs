@@ -19,40 +19,6 @@ namespace YarnLanguageServer
 {
     internal class YarnFileData
     {
-        public record NodeJump {
-            public string DestinationTitle { get; init; }
-            public IToken DestinationToken { get; init; }
-        }
-
-        public record NodeInfo
-        {
-            public YarnFileData File { get; init; }
-            public string Title { get; set; } = string.Empty;
-
-            public IToken TitleToken { get; set; }
-
-            public int HeaderStartLine { get; set; } = 0;
-            public int BodyStartLine { get; set; } = 0;
-
-            public List<NodeJump> Jumps { get; init; } = new List<NodeJump>();
-            public List<YarnFunctionCall> FunctionCalls { get; init; } = new ();
-            public List<YarnFunctionCall> CommandCalls { get; init; } = new ();
-            public List<YarnVariableDeclaration> VariableDeclarations { get; init; } = new ();
-            public List<IToken> VariableReferences { get; init; } = new();
-
-
-            //     position: { x: number, y: number } = { x: 0, y: 0 }
-            //     destinations: string[] = []
-            //     tags: string[] = []
-            //     line: number = 0
-            //     bodyLine: number = 0
-
-            //     start: Position = { line: 0, character: 0 };
-            //     end: Position = { line: 0, character: 0 };
-            // }
-        }
-
-        
         public YarnSpinnerLexer Lexer { get; protected set; }
         public YarnSpinnerParser Parser { get; protected set; }
         public YarnSpinnerParser.DialogueContext ParseTree { get; protected set; }
