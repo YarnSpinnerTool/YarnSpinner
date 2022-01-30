@@ -46,7 +46,7 @@ namespace YarnLanguageServer
             foreach (var file in yarnFiles)
             {
                 var text = System.IO.File.ReadAllText(file);
-                var uri = new Uri(file);
+                var uri = new Uri("file://" + file);
                 YarnFiles[uri] = new YarnFileData(text, uri, this);
             }
         }
