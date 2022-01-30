@@ -100,6 +100,22 @@ namespace YarnLanguageServer
             // Can save parsing/lexing errors here, becuase they should only change when the file needs to be reparsed
             CompilerDiagnostics = parserDiagnosticErrorListener.Errors.Concat(lexerDiagnosticErrorListener.Errors);
             PublishDiagnostics();
+
+            PublishNodeInfos();
+        }
+
+        /// <summary>
+        /// Sends the DidChangeNodesNotification message to the client, which
+        /// contains semantic information about the nodes in this file.
+        /// </summary>
+        /// <seealso cref="Commands.DidChangeNodesNotification"/>
+        private void PublishNodeInfos()
+        {
+            Workspace.LanguageServer.SendNotification(Commands.DidChangeNodesNotification, new NodesChangedParams
+            {
+                Uri = this.Uri,
+                Nodes = this.NodeInfos,
+            });
         }
 
         internal void ApplyContentChange(TextDocumentContentChangeEvent contentChange)

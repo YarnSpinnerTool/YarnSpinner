@@ -73,6 +73,52 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
+        public async Task Server_OnOpeningDocument_SendsNodesChangedNotification()
+        {
+            var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+
+            var nodeInfo = await GetNodesChangedNotificationAsync();
+
+            nodeInfo.Should().NotBeNull("because this notification always carries a parameters object");
+            nodeInfo.Nodes.Should().NotBeNullOrEmpty("because this notification always contains a list of node infos, even if it's empty");
+
+            nodeInfo.Nodes.Should().Contain(ni => ni.Title == "Start", "because this file contains a node with this title");
+
+            nodeInfo.Nodes.Should()
+                .Contain(
+                    ni => ni.Title == "Node2", 
+                    "because this file contains a node with this title")
+                .Which.Headers.Should()
+                .Contain(
+                    h => h.Key == "tags" && h.Value == "wow incredible", 
+                    "because this node contains a tags header"
+                );
+        }
+
+        [Fact]
+        public async Task Server_OnChangingDocument_SendsNodesChangedNotification()
+        {
+            var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+            
+            var filePath = Path.Combine(PathToTestData, "Test.yarn");
+
+            NodesChangedParams? nodeInfo;
+            
+            nodeInfo = await GetNodesChangedNotificationAsync();
+
+            nodeInfo.Uri.Should().Be(filePath, "because this is the URI of the file we opened");
+
+            nodeInfo.Nodes.Should().HaveCount(2, "because there are two nodes in the file before we make changes");
+
+            ChangeTextInDocument(client, filePath, new Position(19, 0), "title: Node3\n---\n===\n");
+
+            nodeInfo = await GetNodesChangedNotificationAsync();
+
+            nodeInfo.Nodes.Should().HaveCount(3, "because we added a new node");
+            nodeInfo.Nodes.Should().Contain(n => n.Title == "Node3", "because the new node we added has this title");
+        }
+
+        [Fact]
         public async Task Server_OnInvalidChanges_ProducesSyntaxErrors()
         {
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
@@ -111,8 +157,11 @@ namespace YarnLanguageServer.Tests
             var filePath = Path.Combine(PathToTestData, "Test.yarn");
             CompletionList? completions;
 
+            // The line in Test.yarn we're inserting the new jump command on.
+            const int Line = 11;
+
             // Start typing the jump command: start with the '<<'
-            ChangeTextInDocument(client, filePath, new Position(8, 0), "<<");
+            ChangeTextInDocument(client, filePath, new Position(Line, 0), "<<");
 
             // Request completions at the end of the '<<'
             completions = await client.RequestCompletion(new CompletionParams
@@ -121,14 +170,14 @@ namespace YarnLanguageServer.Tests
                 {
                     Uri = filePath
                 },
-                Position = new Position(8, 2),
+                Position = new Position(Line, 2),
             });
 
             completions.Should().Contain(c => c.Label == "jump" && c.Kind == CompletionItemKind.Keyword,
                 "because we have not yet entered the word 'jump'.");
 
             // Type in the 'jump'.
-            ChangeTextInDocument(client, filePath, new Position(8, 2), "jump ");
+            ChangeTextInDocument(client, filePath, new Position(Line, 2), "jump ");
 
             // Request completions at the end of '<<jump '.
             completions = await client.RequestCompletion(new CompletionParams
@@ -137,7 +186,7 @@ namespace YarnLanguageServer.Tests
                 {
                     Uri = filePath
                 },
-                Position = new Position(8, 7),
+                Position = new Position(Line, 7),
             });
 
             using (new AssertionScope())

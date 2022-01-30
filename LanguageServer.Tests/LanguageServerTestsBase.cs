@@ -33,6 +33,8 @@ namespace YarnLanguageServer.Tests
 
         TaskCompletionSource<List<Diagnostic>> ReceivedDiagnosticsNotification = new();
 
+        TaskCompletionSource<NodesChangedParams> NodesChangedNotification = new();
+
         protected static string PathToTestData
         {
             get
@@ -111,12 +113,41 @@ namespace YarnLanguageServer.Tests
                 ReceivedDiagnosticsNotification.TrySetResult(diagnostics);
             });
 
+            void OnNodesChangedNotification(NodesChangedParams nodesChangedParams)
+            {
+                NodesChangedNotification.TrySetResult(nodesChangedParams);
+            }
+
+            options.OnNotification(Commands.DidChangeNodesNotification, (Action<NodesChangedParams>)OnNodesChangedNotification);
+
             options.WithRootPath(PathToTestData);
         }
 
         protected static void ConfigureServer(LanguageServerOptions options)
         {
             YarnLanguageServer.ConfigureOptions(options);
+        }
+
+        protected async Task<T> GetTaskResultOrTimeoutAsync<T>(TaskCompletionSource<T> task, Action onCompletion, double timeout = 2f) {
+            try
+            {
+                // Timeout.
+                var winner = await Task.WhenAny(
+                    task.Task,
+                    Task.Delay(
+                        TimeSpan.FromSeconds(timeout),
+                        CancellationToken
+                    )
+                );
+                task.Task.Should().BeSameAs(winner, "because the result should arrive within {0} seconds", timeout);
+
+                return await task.Task;
+            }
+            finally
+            {
+                // Get ready for the next call
+                onCompletion();
+            }
         }
 
         /// <summary>
@@ -130,27 +161,19 @@ namespace YarnLanguageServer.Tests
         /// <returns>A collection of <see cref="Diagnostic"/> objects.</returns>
         protected async Task<IEnumerable<Diagnostic>> GetDiagnosticsAsync(double timeout = 2f)
         {
-            try
-            {
-                // Timeout.
-                var winner = await Task.WhenAny(
-                    ReceivedDiagnosticsNotification.Task,
-                    Task.Delay(
-                        TimeSpan.FromSeconds(timeout),
-                        CancellationToken
-                    )
-                );
-                ReceivedDiagnosticsNotification.Task.Should().BeSameAs(winner);
+            return await GetTaskResultOrTimeoutAsync(
+                ReceivedDiagnosticsNotification, 
+                () => ReceivedDiagnosticsNotification = new(),
+                timeout
+            );
+        }
 
-                Assert.Same(ReceivedDiagnosticsNotification.Task, winner);
-
-                return await ReceivedDiagnosticsNotification.Task;
-            }
-            finally
-            {
-                // Get ready for the next call
-                ReceivedDiagnosticsNotification = new();
-            }
+        protected async Task<NodesChangedParams> GetNodesChangedNotificationAsync(double timeout = 2f) {
+            return await GetTaskResultOrTimeoutAsync(
+                NodesChangedNotification, 
+                () => NodesChangedNotification = new(),
+                timeout
+            );
         }
     }
 }
