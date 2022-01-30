@@ -89,6 +89,9 @@ namespace YarnLanguageServer.Handlers
 
         public override Task<Unit> Handle(DidCloseTextDocumentParams request, CancellationToken cancellationToken)
         {
+            // Remove this Yarn file from the ones we're tracking
+            var uri = request.TextDocument.Uri.ToUri();
+            workspace.YarnFiles.Remove(uri);
             return Unit.Task;
         }
 
