@@ -19,10 +19,10 @@ namespace YarnLanguageServer
 
         private static async Task Main(string[] args)
         {
-            // if (args.Contains("--waitForDebugger"))
-            // {
-            //     while (!Debugger.IsAttached) { await Task.Delay(100); }
-            // }
+            if (args.Contains("--waitForDebugger"))
+            {
+                while (!Debugger.IsAttached) { await Task.Delay(100); }
+            }
 
             server = await LanguageServer.From(
                 options => ConfigureOptions(options)
