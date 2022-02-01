@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -10,6 +10,7 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Workspace;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using OmniSharp.Extensions.LanguageServer.Protocol.Window;
 
 namespace YarnLanguageServer
 {
@@ -249,18 +250,33 @@ namespace YarnLanguageServer
                 yarnFile = workspace.OpenFile(yarnDocumentUri);
                 if (yarnFile == null)
                 {
+                    workspace.LanguageServer.Window.ShowMessage(new ShowMessageParams
+                    {
+                        Message = $"Can't remove node: failed to open file ${yarnDocumentUri}",
+                        Type = MessageType.Error,
+                    });
+
                     // Failed to open it. Return no change.
                     return Task.FromResult(emptyResult);
                 }
             }
 
             // First: does this file contain a node with this title?
-            var node = yarnFile.NodeInfos.Find(n => n.Title == nodeTitle);
+            var nodes = yarnFile.NodeInfos.Where(n => n.Title == nodeTitle);
 
-            if (node == null) {
-                // No node with this title found. Return a no-op result.
+            if (nodes.Count() != 1) {
+                // We need precisely 1 node to remove.
+                var multipleNodesMessage = $"multiple nodes named {nodeTitle} exist in this file";
+                var noNodeMessage = $"no node named {nodeTitle} exists in this file";
+                workspace.LanguageServer.Window.ShowMessage(new ShowMessageParams
+                {
+                    Message = $"Can't remove node: {(nodes.Any() ? multipleNodesMessage : noNodeMessage)}. Modify the source code directly.",
+                    Type = MessageType.Error,
+                });
                 return Task.FromResult(emptyResult);
             }
+
+            var node = nodes.Single();
 
             // Work out the edit needed to remove the node.
             var deletionStart = new Position(node.HeaderStartLine, 0);
@@ -315,18 +331,26 @@ namespace YarnLanguageServer
             }
 
             // Does this file contain a node with this title?
-            var node = yarnFile.NodeInfos.Find(n => n.Title == nodeTitle);
+            var nodes = yarnFile.NodeInfos.Where(n => n.Title == nodeTitle);
 
-            if (node == null)
-            {
-                // No node with this name; send a no-op
+            if (nodes.Count() != 1) {
+                // We need precisely 1 node to modify.
+                var multipleNodesMessage = $"multiple nodes named {nodeTitle} exist in this file";
+                var noNodeMessage = $"no node named {nodeTitle} exists in this file";
+                workspace.LanguageServer.Window.ShowMessage(new ShowMessageParams
+                {
+                    Message = $"Can't update header node: {(nodes.Any() ? multipleNodesMessage : noNodeMessage)}. Modify the source code directly.",
+                    Type = MessageType.Error,
+                });
                 return Task.FromResult(emptyResult);
             }
+
+            var node = nodes.Single();
 
             // Does this node contain a header with this title?
             var existingHeader = node.Headers.Find(h => h.Key == headerKey);
 
-            var headerText = $"{headerKey}: {headerValue}{Environment.NewLine}";
+            var headerText = $"{headerKey}: {headerValue}";
 
             Position startPosition;
             Position endPosition;
