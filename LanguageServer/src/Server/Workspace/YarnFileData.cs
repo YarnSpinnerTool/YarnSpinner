@@ -236,7 +236,7 @@ namespace YarnLanguageServer
 
             var chars = Text.ToCharArray();
 
-            while (chars[start + offset] != '\r' && chars[start + offset] != '\n') {
+            while ((start + offset) < chars.Length && chars[start + offset] != '\r' && chars[start + offset] != '\n') {
                 offset += 1;
             }
 
