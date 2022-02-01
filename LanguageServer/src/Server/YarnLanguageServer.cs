@@ -96,6 +96,15 @@ namespace YarnLanguageServer
                 }
             );
 
+            // Register 'Remove Node' command
+            options.OnExecuteCommand<TextDocumentEdit>(
+                (commandParams) => RemoveNodeFromDocumentAsync(workspace, commandParams),
+                (_, _) => new ExecuteCommandRegistrationOptions
+                {
+                    Commands = new[] { Commands.RemoveNode },
+                }
+            );
+
             return options;
         }
 
@@ -196,6 +205,65 @@ namespace YarnLanguageServer
                     new TextEdit {
                         Range = new OmniSharp.Extensions.LanguageServer.Protocol.Models.Range(position, position),
                         NewText = newNodeText.ToString(),
+                    },
+                },
+            });
+        }
+
+        private static Task<TextDocumentEdit> RemoveNodeFromDocumentAsync(Workspace workspace, ExecuteCommandParams<TextDocumentEdit> commandParams)
+        {
+            var yarnDocumentUriString = commandParams.Arguments[0].ToString();
+
+            var nodeTitle = commandParams.Arguments[1].ToString();
+
+            Uri yarnDocumentUri = new (yarnDocumentUriString);
+
+            TextDocumentEdit emptyResult = new TextDocumentEdit
+            {
+                TextDocument = new OptionalVersionedTextDocumentIdentifier
+                {
+                    Uri = yarnDocumentUri,
+                },
+                Edits = new List<TextEdit>(),
+            };
+
+            if (workspace.YarnFiles.TryGetValue(yarnDocumentUri, out var yarnFile) == false)
+            {
+                // Try and add this file to the workspace
+                yarnFile = workspace.OpenFile(yarnDocumentUri);
+                if (yarnFile == null)
+                {
+                    // Failed to open it. Return no change.
+                    return Task.FromResult(emptyResult);
+                }
+            }
+
+            // First: does this file contain a node with this title?
+            var node = yarnFile.NodeInfos.Find(n => n.Title == nodeTitle);
+
+            if (node == null) {
+                // No node with this title found. Return a no-op result.
+                return Task.FromResult(emptyResult);
+            }
+
+            // Work out the edit needed to remove the node.
+            var deletionStart = new Position(node.HeaderStartLine, 0);
+            var deletionEnd = new Position(node.BodyEndLine, yarnFile.GetLineLength(node.BodyEndLine));
+
+            // Figure out the name of the new node.
+            var allNodeTitles = workspace.YarnFiles.Values.SelectMany(yf => yf.NodeInfos).Select(n => n.Title);
+
+            // Return the edit that removes this node
+            return Task.FromResult(new TextDocumentEdit
+            {
+                TextDocument = new OptionalVersionedTextDocumentIdentifier
+                {
+                    Uri = yarnDocumentUri,
+                },
+                Edits = new[] {
+                    new TextEdit {
+                        Range = new OmniSharp.Extensions.LanguageServer.Protocol.Models.Range(deletionStart, deletionEnd),
+                        NewText = string.Empty,
                     },
                 },
             });

@@ -104,4 +104,40 @@ public class CommandTests : LanguageServerTestsBase
             .Contain(h => h.Key == "position" && h.Value == "100,100",
                 "because we specified these coordinates when creating the node");
     }
+
+    [Fact]
+    public async Task Server_OnRemoveNodeCommand_ReturnsTextEdit()
+    {
+        // Set up the server
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+        var filePath = Path.Combine(PathToTestData, "Test.yarn");
+
+        NodesChangedParams? nodeInfo;
+
+        nodeInfo = await GetNodesChangedNotificationAsync();
+
+        nodeInfo.Nodes.Should().HaveCount(2, "because the file has two nodes");
+
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
+        {
+            Command = Commands.RemoveNode,
+            Arguments = new JArray {
+                filePath,
+                "Start"
+            }
+        });
+
+        result.Should().NotBeNull();
+        result.Edits.Should().NotBeNullOrEmpty();
+        result.TextDocument.Uri.ToString().Should().Be("file://" + filePath);
+
+        ChangeTextInDocument(client, result);
+
+        nodeInfo = await GetNodesChangedNotificationAsync();
+
+        nodeInfo.Nodes.Should().HaveCount(1, "because we removed a node");
+        nodeInfo.Nodes.Should()
+            .Contain(n => n.Title == "Node2",
+                "because the only remaining node is Node2");
+    }
 }

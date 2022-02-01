@@ -23,6 +23,11 @@ public static class Commands
     public const string AddNode = "yarnspinner.create-node";
 
     /// <summary>
+    /// The command to remove a node with a given title from the file.
+    /// </summary>
+    public const string RemoveNode = "yarnspinner.remove-node";
+
+    /// <summary>
     /// A notification that the nodes in a file have changed.
     /// </summary>
     /// <seealso cref="NodesChangedParams"/>
