@@ -43,11 +43,39 @@ namespace YarnLanguageServer
 
             var yarnFiles = System.IO.Directory.EnumerateFiles(Root, "*.yarn", System.IO.SearchOption.AllDirectories);
             yarnFiles = yarnFiles.Where(f => !f.Contains("PackageCache") && !f.Contains("Library"));
-            foreach (var file in yarnFiles)
+            foreach (var path in yarnFiles)
             {
-                var text = System.IO.File.ReadAllText(file);
-                var uri = new Uri("file://" + file);
-                YarnFiles[uri] = new YarnFileData(text, uri, this);
+                OpenFile(path);
+            }
+        }
+
+        public YarnFileData? OpenFile(string path)
+        {
+            try
+            {
+                var text = System.IO.File.ReadAllText(path);
+                var uri = new Uri("file://" + path);
+
+                var yarnFileData = new YarnFileData(text, uri, this);
+                YarnFiles[uri] = yarnFileData;
+
+                return yarnFileData;
+            } catch (System.IO.IOException) {
+                return null;
+            }
+        }
+
+        public YarnFileData? OpenFile(Uri uri) {
+            try {
+                var path = uri.AbsolutePath;
+                var text = System.IO.File.ReadAllText(path);
+
+                var yarnFileData = new YarnFileData(text, uri, this);
+                YarnFiles[uri] = yarnFileData;
+
+                return yarnFileData;
+            } catch (System.IO.IOException) {
+                return null;
             }
         }
 
