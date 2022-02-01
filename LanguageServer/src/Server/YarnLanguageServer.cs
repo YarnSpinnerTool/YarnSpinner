@@ -106,6 +106,15 @@ namespace YarnLanguageServer
                 }
             );
 
+            // Register 'Update Header' command
+            options.OnExecuteCommand<TextDocumentEdit>(
+                (commandParams) => UpdateNodeHeaderAsync(workspace, commandParams),
+                (_, _) => new ExecuteCommandRegistrationOptions
+                {
+                    Commands = new[] { Commands.UpdateNodeHeader },
+                }
+            );
+
             return options;
         }
 
@@ -257,9 +266,6 @@ namespace YarnLanguageServer
             var deletionStart = new Position(node.HeaderStartLine, 0);
             var deletionEnd = new Position(node.BodyEndLine, yarnFile.GetLineLength(node.BodyEndLine));
 
-            // Figure out the name of the new node.
-            var allNodeTitles = workspace.YarnFiles.Values.SelectMany(yf => yf.NodeInfos).Select(n => n.Title);
-
             // Return the edit that removes this node
             return Task.FromResult(new TextDocumentEdit
             {
@@ -271,6 +277,84 @@ namespace YarnLanguageServer
                     new TextEdit {
                         Range = new OmniSharp.Extensions.LanguageServer.Protocol.Models.Range(deletionStart, deletionEnd),
                         NewText = string.Empty,
+                    },
+                },
+            });
+        }
+
+        private static Task<TextDocumentEdit> UpdateNodeHeaderAsync(Workspace workspace, ExecuteCommandParams<TextDocumentEdit> commandParams)
+        {
+            var yarnDocumentUriString = commandParams.Arguments[0].ToString();
+
+            var nodeTitle = commandParams.Arguments[1].ToString();
+
+            var headerKey = commandParams.Arguments[2].ToString();
+
+            var headerValue = commandParams.Arguments[3].ToString();
+
+            Uri yarnDocumentUri = new (yarnDocumentUriString);
+
+            TextDocumentEdit emptyResult = new TextDocumentEdit
+            {
+                TextDocument = new OptionalVersionedTextDocumentIdentifier
+                {
+                    Uri = yarnDocumentUri,
+                },
+                Edits = new List<TextEdit>(),
+            };
+
+            if (workspace.YarnFiles.TryGetValue(yarnDocumentUri, out var yarnFile) == false)
+            {
+                // Try and add this file to the workspace
+                yarnFile = workspace.OpenFile(yarnDocumentUri);
+                if (yarnFile == null)
+                {
+                    // Failed to open it. Return no change.
+                    return Task.FromResult(emptyResult);
+                }
+            }
+
+            // Does this file contain a node with this title?
+            var node = yarnFile.NodeInfos.Find(n => n.Title == nodeTitle);
+
+            if (node == null)
+            {
+                // No node with this name; send a no-op
+                return Task.FromResult(emptyResult);
+            }
+
+            // Does this node contain a header with this title?
+            var existingHeader = node.Headers.Find(h => h.Key == headerKey);
+
+            var headerText = $"{headerKey}: {headerValue}{Environment.NewLine}";
+
+            Position startPosition;
+            Position endPosition;
+
+            if (existingHeader != null) {
+                // Create an edit to replace it
+                var line = existingHeader.KeyToken.Line - 1;
+                startPosition = new Position(line, 0);
+                endPosition = new Position(line, yarnFile.GetLineLength(line));
+            } else {
+                // Create an edit to insert it immediately before the body start
+                // delimiter
+                var line = node.BodyStartLine - 1;
+                startPosition = new Position(line, 0);
+                endPosition = new Position(line, 0);
+            }
+
+            // Return the edit that creates or updates this header
+            return Task.FromResult(new TextDocumentEdit
+            {
+                TextDocument = new OptionalVersionedTextDocumentIdentifier
+                {
+                    Uri = yarnDocumentUri,
+                },
+                Edits = new[] {
+                    new TextEdit {
+                        Range = new OmniSharp.Extensions.LanguageServer.Protocol.Models.Range(startPosition, endPosition),
+                        NewText = headerText,
                     },
                 },
             });

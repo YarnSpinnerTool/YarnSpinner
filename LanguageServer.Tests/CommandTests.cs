@@ -141,4 +141,106 @@ public class CommandTests : LanguageServerTestsBase
             .Contain(n => n.Title == "Node2",
                 "because the only remaining node is Node2");
     }
+
+    [Fact]
+    public async Task Server_OnUpdateHeaderCommand_ReturnsTextEditCreatingHeader()
+    {
+        // Set up the server
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+        var filePath = Path.Combine(PathToTestData, "Test.yarn");
+
+        NodesChangedParams? nodeInfo;
+
+        nodeInfo = await GetNodesChangedNotificationAsync();
+
+        nodeInfo
+            .Nodes.Should()
+            .Contain(n => n.Title == "Start")
+            .Which.Headers.Should()
+            .NotContain(n => n.Key == "position", 
+                "because this node doesn't have this header");
+
+
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
+        {
+            Command = Commands.UpdateNodeHeader,
+            Arguments = new JArray {
+                filePath,
+                "Start", // this node doesn't have this header, so we're creating it
+                "position",
+                "100,100"
+            }
+        });
+
+        result.Should().NotBeNull();
+        result.Edits.Should().NotBeNullOrEmpty();
+        result.TextDocument.Uri.ToString().Should().Be("file://" + filePath);
+
+        ChangeTextInDocument(client, result);
+
+        nodeInfo = await GetNodesChangedNotificationAsync();
+
+        nodeInfo.Nodes.Should()
+            .Contain(n => n.Title == "Start")
+            .Which.Headers.Should()
+            .Contain(n => n.Key == "position",
+                "because we added this new header")
+            .Which.Value.Should()
+            .Be("100,100",
+                "because we specified this value");
+    }
+
+    [Fact]
+    public async Task Server_OnUpdateHeaderCommand_ReturnsTextEditModifyingHeader()
+    {
+        // Set up the server
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+        var filePath = Path.Combine(PathToTestData, "Test.yarn");
+
+        NodesChangedParams? nodeInfo;
+
+        nodeInfo = await GetNodesChangedNotificationAsync();
+
+        const string headerName = "tags";
+        const string headerOldValue = "wow incredible";
+        const string headerNewValue = "something different";
+
+        nodeInfo
+            .Nodes.Should()
+            .Contain(n => n.Title == "Node2")
+            .Which.Headers.Should()
+            .HaveCount(2)
+            .And
+            .Contain(n => n.Key == headerName && n.Value == headerOldValue,
+                "because this node has this header");
+
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
+        {
+            Command = Commands.UpdateNodeHeader,
+            Arguments = new JArray {
+                filePath,
+                "Node2", // this node already has this header, so we're replacing it
+                headerName,
+                headerNewValue
+            }
+        });
+
+        result.Should().NotBeNull();
+        result.Edits.Should().NotBeNullOrEmpty();
+        result.TextDocument.Uri.ToString().Should().Be("file://" + filePath);
+
+        ChangeTextInDocument(client, result);
+
+        nodeInfo = await GetNodesChangedNotificationAsync();
+
+        nodeInfo.Nodes.Should()
+            .Contain(n => n.Title == "Node2")
+            .Which.Headers.Should()
+            .HaveCount(2, "because we added no new headers")
+            .And.Contain(n => n.Key == headerName,
+                "because we updated this header")
+            .Which.Value.Should()
+            .Be(headerNewValue,
+                "because we specified this value");
+    }
 }
