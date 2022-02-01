@@ -208,6 +208,32 @@ namespace YarnLanguageServer
         public IEnumerable<YarnVariableDeclaration> VariableDeclarations => NodeInfos.SelectMany(n => n.VariableDeclarations);
 
         /// <summary>
+        /// Gets the number of lines in this file.
+        /// </summary>
+        public int LineCount => LineStarts.Length;
+
+        /// <summary>
+        /// Gets the length of the line at the specified index.
+        /// </summary>
+        /// <param name="lineIndex">The zero-based index of the line to get the
+        /// length of.</param>
+        /// <returns>The length of the line.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref
+        /// name="lineIndex"/> is less than zero, or equal to or greater than
+        /// <see cref="LineCount"/>.</exception>
+        public int GetLineLength(int lineIndex) {
+            if (lineIndex < 0 || lineIndex >= LineCount) {
+                throw new ArgumentOutOfRangeException(nameof(lineIndex), $"Must be between zero and {nameof(LineCount)}");
+            }
+
+            if (lineIndex == LineCount - 1) {
+                return Text.Length - LineStarts[lineIndex];
+            } else {
+                return LineStarts[lineIndex + 1] - LineStarts[lineIndex];
+            }
+        }
+
+        /// <summary>
         /// Given a position in the file, returns the type of symbol it
         /// represents (if any), and the token at that position (if any).
         /// </summary>
