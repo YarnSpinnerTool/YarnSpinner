@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
@@ -25,6 +26,16 @@ namespace YarnLanguageServer.Handlers
                    {
                        var referenceLocations = ReferencesHandler.GetReferences(titleToken.Text, YarnSymbolType.Node, workspace);
                        var count = referenceLocations.Count() - 1; // This is a count of 'other' references, so don't include the declaration
+
+                       // OmniSharp Locations, Ranges and Positions have
+                       // PascalCase property names, but the LSP wants
+                       // camelCase. Provide our own serialization here to
+                       // ensure this.
+                       var serializer = new Newtonsoft.Json.JsonSerializer
+                       {
+                           ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                       };
+
                        return new CodeLens
                        {
                            Range = PositionHelper.GetRange(yarnFile.LineStarts, titleToken),
@@ -34,8 +45,8 @@ namespace YarnLanguageServer.Handlers
                                Name = "yarn.showReferences",
                                Arguments = new JArray
                                {
-                                    JToken.FromObject(PositionHelper.GetPosition(yarnFile.LineStarts, titleToken.StartIndex)),
-                                    JToken.FromObject(referenceLocations),
+                                    JToken.FromObject(PositionHelper.GetPosition(yarnFile.LineStarts, titleToken.StartIndex), serializer),
+                                    JToken.FromObject(referenceLocations, serializer),
                                },
                            },
                        };
