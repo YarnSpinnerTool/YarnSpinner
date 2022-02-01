@@ -213,7 +213,8 @@ namespace YarnLanguageServer
         public int LineCount => LineStarts.Length;
 
         /// <summary>
-        /// Gets the length of the line at the specified index.
+        /// Gets the length of the line at the specified index, up to but not
+        /// including the line terminator.
         /// </summary>
         /// <param name="lineIndex">The zero-based index of the line to get the
         /// length of.</param>
@@ -226,11 +227,20 @@ namespace YarnLanguageServer
                 throw new ArgumentOutOfRangeException(nameof(lineIndex), $"Must be between zero and {nameof(LineCount)}");
             }
 
-            if (lineIndex == LineCount - 1) {
-                return Text.Length - LineStarts[lineIndex];
-            } else {
-                return LineStarts[lineIndex + 1] - LineStarts[lineIndex];
+            var start = LineStarts[lineIndex];
+            var offset = 0;
+
+            if (Text.Length == 0) {
+                return 0;
             }
+
+            var chars = Text.ToCharArray();
+
+            while (chars[start + offset] != '\r' && chars[start + offset] != '\n') {
+                offset += 1;
+            }
+
+            return offset;
         }
 
         /// <summary>
