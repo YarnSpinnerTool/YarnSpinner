@@ -83,8 +83,9 @@ public class CommandTests : LanguageServerTestsBase
             Command = Commands.AddNode,
             Arguments = new JArray {
                 filePath,
-                100, // x position of new node
-                100 // y position of new node
+                new JObject(
+                    new JProperty("position", "100,100")
+                )
             }
         });
 

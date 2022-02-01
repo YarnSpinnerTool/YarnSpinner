@@ -9,6 +9,7 @@ using OmniSharp.Extensions.LanguageServer.Server;
 using OmniSharp.Extensions.LanguageServer.Protocol.Workspace;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace YarnLanguageServer
 {
@@ -112,14 +113,14 @@ namespace YarnLanguageServer
         {
             var yarnDocumentUriString = commandParams.Arguments[0].ToString();
 
-            int xPosition = 0, yPosition = 0;
+            var headers = new Dictionary<string, string>();
 
-            if (commandParams.Arguments.Count >= 2)
-            {
-                // Try to parse x and y coordinates
-                int.TryParse(commandParams.Arguments[1].ToString(), System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out xPosition);
+            if (commandParams.Arguments.Count >= 2) {
+                var headerObject = commandParams.Arguments[1] as JObject;
 
-                int.TryParse(commandParams.Arguments[2].ToString(), System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out yPosition);
+                foreach (var property in headerObject) {
+                    headers.Add(property.Key, property.Value.ToString());
+                }
             }
 
             Uri yarnDocumentUri = new (yarnDocumentUriString);
@@ -157,8 +158,14 @@ namespace YarnLanguageServer
             }
 
             var newNodeText = new System.Text.StringBuilder()
-                .AppendLine($"title: {candidateName}")
-                .AppendLine($"position: {xPosition},{yPosition}")
+                .AppendLine($"title: {candidateName}");
+           
+            // Add the headers
+            foreach (var h in headers) {
+                newNodeText.AppendLine($"{h.Key}: {h.Value}");
+            }
+
+            newNodeText
                 .AppendLine("---")
                 .AppendLine()
                 .AppendLine("===");
