@@ -64,4 +64,44 @@ public class CommandTests : LanguageServerTestsBase
             .And
             .Contain(j => j.DestinationTitle == "Node2", "because the Start node has a jump to Node2");
     }
+
+    [Fact]
+    public async Task Server_OnAddNodeCommand_ReturnsTextEdit()
+    {
+        // Set up the server
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+        var filePath = Path.Combine(PathToTestData, "Test.yarn");
+
+        NodesChangedParams? nodeInfo;
+
+        nodeInfo = await GetNodesChangedNotificationAsync();
+
+        nodeInfo.Nodes.Should().HaveCount(2, "because the file has two nodes");
+
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
+        {
+            Command = Commands.AddNode,
+            Arguments = new JArray {
+                filePath,
+                100, // x position of new node
+                100 // y position of new node
+            }
+        });
+
+        result.Should().NotBeNull();
+        result.Edits.Should().NotBeNullOrEmpty();
+        result.TextDocument.Uri.ToString().Should().Be("file://" + filePath);
+
+        ChangeTextInDocument(client, result);
+
+        nodeInfo = await GetNodesChangedNotificationAsync();
+
+        nodeInfo.Nodes.Should().HaveCount(3, "because we added a node");
+        nodeInfo.Nodes.Should()
+            .Contain(n => n.Title == "Node",
+                "because the new node should be called Title")
+            .Which.Headers.Should()
+            .Contain(h => h.Key == "position" && h.Value == "100,100",
+                "because we specified these coordinates when creating the node");
+    }
 }

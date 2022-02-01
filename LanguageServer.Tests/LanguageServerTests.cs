@@ -106,7 +106,7 @@ namespace YarnLanguageServer.Tests
             
             nodeInfo = await GetNodesChangedNotificationAsync();
 
-            nodeInfo.Uri.Should().Be(filePath, "because this is the URI of the file we opened");
+            nodeInfo.Uri.ToString().Should().Be("file://" + filePath, "because this is the URI of the file we opened");
 
             nodeInfo.Nodes.Should().HaveCount(2, "because there are two nodes in the file before we make changes");
 

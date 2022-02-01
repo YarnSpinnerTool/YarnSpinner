@@ -18,6 +18,11 @@ public static class Commands
     public const string ListNodes = "yarnspinner.list-nodes";
 
     /// <summary>
+    /// The command to create a new node in the file.
+    /// </summary>
+    public const string AddNode = "yarnspinner.create-node";
+
+    /// <summary>
     /// A notification that the nodes in a file have changed.
     /// </summary>
     /// <seealso cref="NodesChangedParams"/>

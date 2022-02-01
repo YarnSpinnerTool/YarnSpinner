@@ -94,6 +94,25 @@ namespace YarnLanguageServer.Tests
             });
         }
 
+        protected static void ChangeTextInDocument(ILanguageClient client, TextDocumentEdit documentEdit)
+        {
+            foreach (var edit in documentEdit.Edits) {
+                client.DidChangeTextDocument(new DidChangeTextDocumentParams
+                {
+                    TextDocument = new OptionalVersionedTextDocumentIdentifier
+                    {
+                        Uri = documentEdit.TextDocument.Uri,
+                    },
+                    ContentChanges = new[] {
+                        new TextDocumentContentChangeEvent {
+                            Range = edit.Range,
+                            Text = edit.NewText,
+                        },
+                    }
+                });
+            }
+        }
+
         protected void ConfigureClient(LanguageClientOptions options)
         {
             options.OnRequest("keepalive", ct => Task.FromResult(true));
