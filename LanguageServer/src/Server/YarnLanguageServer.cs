@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -366,6 +366,9 @@ namespace YarnLanguageServer
                 var line = node.BodyStartLine - 1;
                 startPosition = new Position(line, 0);
                 endPosition = new Position(line, 0);
+                
+                // Add a newline so that the delimiter stays on its own line
+                headerText += Environment.NewLine;
             }
 
             // Return the edit that creates or updates this header
