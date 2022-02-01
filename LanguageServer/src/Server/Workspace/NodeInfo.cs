@@ -10,12 +10,29 @@ public record NodeInfo
     [JsonProperty("title")]
     public string Title { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Gets or sets the line on which body content starts.
+    /// </summary>
+    /// <remarks>
+    /// This is the first line of the body that contains content. The line
+    /// previous to this will contain the start-of-body delimiter.
+    /// </remarks>
     [JsonProperty("bodyStartLine")]
     public int BodyStartLine { get; set; } = 0;
 
+    /// <summary>
+    /// Gets or sets the line on which body content stops.
+    /// </summary>
+    /// <remarks>
+    /// This is the final line of the body that contains content. The line after
+    /// this will contain the end-of-body delimiter.
+    /// </remarks>
     [JsonProperty("bodyEndLine")]
     public int BodyEndLine { get; set; } = 0;
 
+    /// <summary>
+    /// Gets or sets the line on which the first header appears.
+    /// </summary>
     [JsonProperty("headerStartLine")]
     public int HeaderStartLine { get; set; } = 0;
 

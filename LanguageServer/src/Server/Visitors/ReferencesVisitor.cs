@@ -89,16 +89,10 @@ namespace YarnLanguageServer
         }
 
         public override bool VisitBody([NotNull] YarnSpinnerParser.BodyContext context) {
-            // The start token is the '---' delimiter; we consider the body's
-            // first line to be the first place where content could appear, so
-            // we'll set the body start line to be the line after the delimiter.
-            // (We're not adding 1 here, because ANTLR lines start at 1, and LSP
-            // lines start at 0, so we'll just inherit this natural offset.)
-            currentNodeInfo.BodyStartLine = context.Start.Line;
+            // ANTLR lines are the line number (1-based), while LSP lines are
+            // the line index (0-based).
+            currentNodeInfo.BodyStartLine = context.Start.Line - 1;
 
-            // However, a node end is not guaranteed to have any lines of text
-            // after it, so the 'end' line is the line at which content stops -
-            // which is where the delimeter is.
             currentNodeInfo.BodyEndLine = context.Stop.Line - 1;
 
             return base.VisitBody(context);
