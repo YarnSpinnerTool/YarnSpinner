@@ -13,6 +13,9 @@ public record NodeInfo
     [JsonProperty("bodyStartLine")]
     public int BodyStartLine { get; set; } = 0;
 
+    [JsonProperty("bodyEndLine")]
+    public int BodyEndLine { get; set; } = 0;
+
     [JsonProperty("headerStartLine")]
     public int HeaderStartLine { get; set; } = 0;
 
