@@ -57,6 +57,34 @@ namespace YarnLanguageServer
 
             nodeInfos.Add(currentNodeInfo);
 
+            // ANTLR lines are the line number (1-based), while LSP lines are
+            // the line index (0-based).
+            if (context.BODY_START() != null)
+            {
+                var bodyStartLineIndex = context.BODY_START().Symbol.Line - 1;
+
+                // The first line after the BODY_START
+                currentNodeInfo.BodyStartLine = bodyStartLineIndex + 1;
+            } else {
+                currentNodeInfo.BodyStartLine = currentNodeInfo.HeaderStartLine;
+            }
+
+            if (context.BODY_END() != null) {
+                var bodyEndLineIndex = context.BODY_END().Symbol.Line - 1;
+
+                // The line before the BODY_END
+                currentNodeInfo.BodyEndLine = bodyEndLineIndex - 1;
+            } else {
+                currentNodeInfo.BodyEndLine = currentNodeInfo.BodyStartLine;
+            }
+
+            // Zero-length nodes will have "the line before BODY_END" be before
+            // "the line after BODY_START", which is no good. In these cases,
+            // ensure that the body starts and ends on the same line.
+            if (currentNodeInfo.BodyEndLine < currentNodeInfo.BodyStartLine) {
+                currentNodeInfo.BodyEndLine = currentNodeInfo.BodyStartLine;
+            }
+
             return true;
         }
 
@@ -86,16 +114,6 @@ namespace YarnLanguageServer
             }
 
             return base.VisitHeader(context);
-        }
-
-        public override bool VisitBody([NotNull] YarnSpinnerParser.BodyContext context) {
-            // ANTLR lines are the line number (1-based), while LSP lines are
-            // the line index (0-based).
-            currentNodeInfo.BodyStartLine = context.Start.Line - 1;
-
-            currentNodeInfo.BodyEndLine = context.Stop.Line - 1;
-
-            return base.VisitBody(context);
         }
 
         public override bool VisitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context)
