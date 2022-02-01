@@ -280,7 +280,11 @@ namespace YarnLanguageServer
 
             // Work out the edit needed to remove the node.
             var deletionStart = new Position(node.HeaderStartLine, 0);
-            var deletionEnd = new Position(node.BodyEndLine, yarnFile.GetLineLength(node.BodyEndLine));
+
+            // Stop deleting at the start of the line after the end-of-body
+            // delimiter (which is 2 lines down from the final line of body
+            // text)
+            var deletionEnd = new Position(node.BodyEndLine + 2, 0);
 
             // Return the edit that removes this node
             return Task.FromResult(new TextDocumentEdit
