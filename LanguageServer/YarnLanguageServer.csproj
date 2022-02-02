@@ -56,35 +56,20 @@
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Remove="C:\Users\kufu91\.nuget\packages\microsoft.visualstudio.threading.analyzers\16.10.56\build\AdditionalFiles\vs-threading.LegacyThreadSwitchingMembers.txt" />
+      <None Include="src\Server\Documentation\BuiltInFunctionsAndCommands.ysls.json" />
+      <None Include="src\Server\Documentation\ysls.schema.json" />
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Remove="C:\Users\kufu91\.nuget\packages\microsoft.visualstudio.threading.analyzers\16.10.56\build\AdditionalFiles\vs-threading.MainThreadAssertingMethods.txt" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <AdditionalFiles Remove="C:\Users\kufu91\.nuget\packages\microsoft.visualstudio.threading.analyzers\16.10.56\build\AdditionalFiles\vs-threading.MainThreadSwitchingMethods.txt" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <AdditionalFiles Remove="C:\Users\kufu91\.nuget\packages\microsoft.visualstudio.threading.analyzers\16.10.56\build\AdditionalFiles\vs-threading.MembersRequiringMainThread.txt" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="src\Server\Documentation\BuiltInFunctionsAndCommands.ysls.json" />
-      <None Remove="src\Server\Documentation\ysls.schema.json" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="src\Server\Documentation\ysls.schema.json">
+      <ContentWithTargetPath Include="src\Server\Documentation\ysls.schema.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
+        <TargetPath>ysls.schema.json</TargetPath>
+      </ContentWithTargetPath>
     </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Include="src\Server\Documentation\BuiltInFunctionsAndCommands.ysls.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </EmbeddedResource>
     </ItemGroup>
 
