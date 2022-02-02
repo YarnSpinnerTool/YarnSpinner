@@ -57,17 +57,21 @@ namespace YarnLanguageServer
                 .WithHandler<Handlers.FileOperationsHandler>()
                 .OnInitialize(async (server, request, token) =>
                 {
-                    workspace.Root = request.RootPath;
+                    try {
+                        workspace.Root = request.RootPath;
 
-                    // avoid re-initializing if possible by getting config settings in early
-                    if (request.InitializationOptions != null)
-                    {
-                        workspace.Configuration.Initialize(request.InitializationOptions as Newtonsoft.Json.Linq.JArray);
+                        // avoid re-initializing if possible by getting config settings in early
+                        if (request.InitializationOptions != null)
+                        {
+                            workspace.Configuration.Initialize(request.InitializationOptions as Newtonsoft.Json.Linq.JArray);
+                        }
+                        
+                        workspace.Initialize(server);
+                        await Task.CompletedTask;
+                    } catch (Exception e) {
+                        server.Window.ShowError($"Yarn Spinner language server failed to start: {e}");
+                        await Task.FromException(e);
                     }
-
-                    workspace.Initialize(server);
-
-                    await Task.CompletedTask;
                 })
                 .OnInitialized(async (server, request, response, token) =>
                 {
