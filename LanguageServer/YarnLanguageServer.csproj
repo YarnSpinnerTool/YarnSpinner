@@ -8,6 +8,7 @@
         <StartupObject></StartupObject>
         <ApplicationIcon />
         <GenerateDocumentationFile>False</GenerateDocumentationFile>
+        <UseAppHost>False</UseAppHost>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -16,8 +17,6 @@
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
       <PlatformTarget>AnyCPU</PlatformTarget>
-      <DebugType>None</DebugType>
-      <DebugSymbols>false</DebugSymbols>
     </PropertyGroup>
 
     <ItemGroup>
