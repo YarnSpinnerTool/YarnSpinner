@@ -43,14 +43,14 @@ namespace Yarn.Markup
         public const string ReplacementMarkerContents = "contents";
 
         /// <summary>
-        /// The name of the implicitly-generated `character` attribute.
+        /// The name of the implicitly-generated <c>character</c> attribute.
         /// </summary>
         /// <seealso cref="CharacterAttributeNameProperty"/>
         public const string CharacterAttribute = "character";
 
         /// <summary>
         /// The name of the 'name' property, on the implicitly-generated
-        /// `character` attriubte.
+        /// <c>character</c> attriubte.
         /// </summary>
         /// <seealso cref="CharacterAttribute"/>
         public const string CharacterAttributeNameProperty = "name";
@@ -120,10 +120,10 @@ namespace Yarn.Markup
         /// When a marker processor is registered for a marker name, the
         /// parser will ask the processor for text to insert into the plain
         /// text. This allows users of the <see cref="LineParser"/> class
-        /// to dynamically replace text in a line. The `nomarkup` tag is
+        /// to dynamically replace text in a line. The <c>nomarkup</c> tag is
         /// implemented in this way by the <see cref="LineParser"/> class
         /// directly; the <see cref="Dialogue"/> class uses this mechanism
-        /// to implement the `select`, `plural` and `ordinal` markers.
+        /// to implement the <c>select</c>, <c>plural</c> and <c>ordinal</c> markers.
         /// </remarks>
         /// <param name="attributeName">The name of the marker that should
         /// use this marker processor.</param>
@@ -600,23 +600,27 @@ namespace Yarn.Markup
         /// <remarks>
         /// Permitted value types are:
         ///
-        /// - Integers
+        /// <list type="bullet">
+        /// <item>Integers</item>
         ///
-        /// - Floating-point numbers
+        /// <item>Floating-point numbers</item>
         ///
-        /// - Strings (delimited by double quotes)
+        /// <item>Strings (delimited by double quotes). (Strings may contain
+        /// escaped quotes with a backslash.)</item>
         ///
-        ///     - Strings may contain escaped quotes with a backslash.
+        /// <item>The words <c>true</c> or <c>false</c>
+        /// </item>
         ///
-        /// - The words `true` or `false`
+        /// <item>Runs of alphanumeric characters, up to but not including a
+        /// whitespace or the end of a tag; these are interpreted as a string
+        /// (e.g. <c>[mood=happy]</c> is interpreted the same as
+        /// <c>[mood="happy"]</c>
+        /// </item>
         ///
-        /// - Runs of alphanumeric characters, up to but not including a
-        /// whitespace or the end of a tag; these are interpreted as a
-        /// string (e.g. `[mood=happy]` is interpreted the same as
-        /// `[mood="happy"]`
-        ///
-        /// - Expressions (delimited by curly braces), which are processed
+        /// <item>Expressions (delimited by curly braces), which are processed
         /// as inline expressions.
+        /// </item>
+        /// </list>
         /// </remarks>
         /// <returns>The parsed value.</returns>
         private MarkupValue ParseValue()
@@ -637,7 +641,7 @@ namespace Yarn.Markup
                     var fraction = this.ParseInteger();
 
                     // convert it to a float
-                    var fractionDigits = fraction.ToString().Length;
+                    var fractionDigits = fraction.ToString(System.Globalization.CultureInfo.InvariantCulture).Length;
                     float floatValue = integer + (float)(fraction / Math.Pow(10, fractionDigits));
 
                     return new MarkupValue { FloatValue = floatValue, Type = MarkupValueType.Float };
@@ -938,12 +942,12 @@ namespace Yarn.Markup
         /// Reads and discards whitespace, up to the first non-whitespace
         /// character.
         /// </summary>
-        /// <param name="allowEndOfLine">If `false`, a <see
-        /// cref="MarkupParseException"/> will be thrown if the end of the
-        /// line is reached while reading whitespace.</param>
-        /// <throws cref="MarkupParseException">Thrown when the end of the
-        /// line is reached, and <paramref name="allowEndOfLine"/> is
-        /// `false`.</throws>
+        /// <param name="allowEndOfLine">If <see langword="false"/>, a <see
+        /// cref="MarkupParseException"/> will be thrown if the end of the line
+        /// is reached while reading whitespace.</param>
+        /// <throws cref="MarkupParseException">Thrown when the end of the line
+        /// is reached, and <paramref name="allowEndOfLine"/> is <see
+        /// langword="false"/>.</throws>
         private void ConsumeWhitespace(bool allowEndOfLine = false)
         {
             while (true)

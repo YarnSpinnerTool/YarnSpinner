@@ -91,7 +91,7 @@ namespace Yarn.Compiler
             var lineIDTag = Compiler.GetLineIDTag(hashtags);
             var lineID = lineIDTag?.text.Text ?? null;
 
-            var hashtagText = this.GetHashtagTexts(hashtags);
+            var hashtagText = GetHashtagTexts(hashtags);
 
             GenerateFormattedText(context.line_formatted_text().children, out var composedString, out var expressionCount);
 
@@ -125,7 +125,7 @@ namespace Yarn.Compiler
             return 0;
         }
 
-        private string[] GetHashtagTexts(YarnSpinnerParser.HashtagContext[] hashtags)
+        internal static string[] GetHashtagTexts(YarnSpinnerParser.HashtagContext[] hashtags)
         {
             // Add hashtag
             var hashtagText = new List<string>();

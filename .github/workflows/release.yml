@@ -12,14 +12,51 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+
+      - name: Fetch all commits
+        run: git fetch --unshallow
+
+      - uses: gittools/actions/gitversion/setup@v0.9.10
+        name: Install GitVersion
+        with:
+            versionSpec: '5.x'
+
+      - uses: gittools/actions/gitversion/execute@v0.9.10
+        name: Execute GitVersion
+        id: gitversion # step id used as reference for output values
+        with:
+          updateAssemblyInfo: true
+        
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test --no-build --configuration Release --verbosity normal
+        
+      - name: Deploy to NuGet
+        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+        run: |
+          dotnet pack -c Release /p:Version=${{ steps.gitversion.outputs.nuGetVersionV2}} -o "nuget"
+          dotnet nuget push nuget/*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
+
       - name: Extract release notes
         id: extract-release-notes
         uses: ffurrer2/extract-release-notes@v1
+
       - name: Read release notes preface
         id: release_preface
         uses: juliangruber/read-file-action@v1
         with:
           path: .github/RELEASE_TEMPLATE.md
+
       - name: Create release
         uses: actions/create-release@v1
         env:

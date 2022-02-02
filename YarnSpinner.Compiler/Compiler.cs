@@ -1,4 +1,4 @@
-﻿// Uncomment to ensure that all expressions have a known type at compile time
+// Uncomment to ensure that all expressions have a known type at compile time
 // #define VALIDATE_ALL_EXPRESSIONS
 
 namespace Yarn.Compiler
@@ -136,8 +136,8 @@ namespace Yarn.Compiler
         /// <remarks>
         /// Implicitly generated line IDs are not guaranteed to remain the
         /// same across multiple compilations. To ensure that a line ID
-        /// remains the same, you must define it by adding a [line
-        /// tag]({{|ref "/docs/unity/localisation.md"|}}) to the line.
+        /// remains the same, you must define it by adding a line tag to the
+        /// line.
         /// </remarks>
         public bool isImplicitTag;
 
@@ -146,7 +146,7 @@ namespace Yarn.Compiler
         /// </summary>
         /// <remarks>
         /// This array will contain any hashtags associated with this
-        /// string besides the `#line:` hashtag.
+        /// string besides the <c>#line:</c> hashtag.
         /// </remarks>
         public string[] metadata;
 
@@ -158,7 +158,7 @@ namespace Yarn.Compiler
         /// <param name="fileName">The file name.</param>
         /// <param name="nodeName">The node name.</param>
         /// <param name="lineNumber">The line number.</param>
-        /// <param name="isImplicitTag">If `true`, this string info is
+        /// <param name="isImplicitTag">If <c>true</c>, this string info is
         /// stored with an implicit line ID.</param>
         /// <param name="metadata">The string's metadata.</param>
         internal StringInfo(string text, string fileName, string nodeName, int lineNumber, bool isImplicitTag, string[] metadata)
@@ -179,8 +179,23 @@ namespace Yarn.Compiler
             }
 
         }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return $"{text} ({fileName}:{lineNumber})";
+        }
     }
 
+    /// <summary>
+    /// An object that contains Yarn source code to compile, and instructions on
+    /// how to compile it.
+    /// </summary>
+    /// <remarks>
+    /// Instances of this struct are used with <see
+    /// cref="Compiler.Compile(CompilationJob)"/> to produce <see
+    /// cref="CompilationResult"/> objects.
+    /// </remarks>
     public struct CompilationJob
     {
 
@@ -189,10 +204,25 @@ namespace Yarn.Compiler
         /// </summary>
         public struct File
         {
+            /// <summary>
+            /// The name of the file. 
+            /// </summary>
+            /// <remarks>
+            /// This may be a full path, or just the filename or anything in
+            /// between. This is useful for diagnostics, and for attributing
+            /// <see cref="Line"/> objects to their original source
+            /// files.</remarks>
             public string FileName;
+
+            /// <summary>
+            /// The source code of this file.
+            /// </summary>
             public string Source;
         }
 
+        /// <summary>
+        /// The type of compilation that the compiler will do.
+        /// </summary>
         public enum Type
         {
             /// <summary>The compiler will do a full compilation, and
@@ -233,10 +263,12 @@ namespace Yarn.Compiler
         public IEnumerable<Declaration> VariableDeclarations;
 
         /// <summary>
-        /// Creates a new <see cref="CompilationJob"/> using the contents
-        /// of a collection of files.
+        /// Creates a new <see cref="CompilationJob"/> using the contents of a
+        /// collection of files.
         /// </summary>
         /// <param name="paths">The paths to the files.</param>
+        /// <param name="library">The <see cref="Library"/> containing functions
+        /// to use for this compilation.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
         public static CompilationJob CreateFromFiles(IEnumerable<string> paths, Library library = null)
         {
@@ -259,6 +291,9 @@ namespace Yarn.Compiler
             };
         }
 
+        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, Library)" path="/summary"/>
+        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, Library)" path="/param[@name='paths']"/>
+        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, Library)" path="/returns"/>
         public static CompilationJob CreateFromFiles(params string[] paths)
         {
             return CreateFromFiles((IEnumerable<string>)paths);
@@ -287,24 +322,113 @@ namespace Yarn.Compiler
         }
     }
 
+    /// <summary>
+    /// The result of a compilation.
+    /// </summary>
+    /// <remarks>
+    /// Instances of this struct are produced as a result of supplying a <see
+    /// cref="CompilationJob"/> to <see
+    /// cref="Compiler.Compile(CompilationJob)"/>.
+    /// </remarks>
     public struct CompilationResult
     {
+        /// <summary>
+        /// Gets the compiled Yarn program that the <see cref="Compiler"/>
+        /// produced.
+        /// </summary>
+        /// <remarks>
+        /// <para>This value will be <see langword="null"/> if there were errors
+        /// in the compilation. If this is the case, <see cref="Diagnostics"/>
+        /// will contain information describing the errors.</para>
+        /// <para>
+        /// It will also be <see langword="null"/> if the <see
+        /// cref="CompilationJob"/> object's <see
+        /// cref="CompilationJob.CompilationType"/> value was not <see
+        /// cref="CompilationJob.Type.FullCompilation"/>.
+        /// </para>
+        /// </remarks>
         public Program Program { get; internal set; }
 
+        /// <summary>
+        /// Gets a dictionary mapping line IDs to StringInfo objects.
+        /// </summary>
+        /// <remarks>
+        /// The string table contains the extracted line text found in the
+        /// provided source code. The keys of this dictionary are the line IDs
+        /// for each line - either through explicit line tags indicated through
+        /// the <c>#line:</c> tag, or implicitly-generated line IDs that the
+        /// compiler added during compilation.
+        /// </remarks>
         public IDictionary<string, StringInfo> StringTable { get; internal set; }
 
+        /// <summary>
+        /// Gets the collection of variable declarations that were found during
+        /// compilation.
+        /// </summary>
+        /// <remarks>
+        /// This value will be <see langword="null"/> if the <see
+        /// cref="CompilationJob"/> object's <see
+        /// cref="CompilationJob.CompilationType"/> value was not <see
+        /// cref="CompilationJob.Type.DeclarationsOnly"/> or <see
+        /// cref="CompilationJob.Type.FullCompilation"/>.
         public IEnumerable<Declaration> Declarations { get; internal set; }
 
+        /// <summary>
+        /// Gets a value indicating whether the compiler had to create line IDs
+        /// for lines in the source code that lacked <c>#line:</c> tags.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Every line is required to have a line ID. If a line doesn't have a
+        /// line ID specified in the source code (via a <c>#line:</c> tag), the
+        /// compiler will create one.
+        /// </para>
+        /// <para>
+        /// Implicit line IDs are guaranteed to remain the same between
+        /// compilations when the source file does not change. If you want line
+        /// IDs to remain the same when the source code may be modified in the
+        /// future, add a <c>#line:</c> tag to the line. This may be done by
+        /// hand, or added using the <see cref="Utility.AddTagsToLines(string,
+        /// ICollection{string})"/> method.
+        /// </para>
+        /// </remarks>
         public bool ContainsImplicitStringTags { get; internal set; }
 
+        /// <summary>
+        /// Gets the collection of file-level tags found in the source code.
+        /// </summary>
+        /// <remarks>The keys of this dictionary are the file names (as
+        /// indicated by the <see cref="CompilationJob.File.FileName"/> property
+        /// of the <see cref="CompilationJob"/>'s <see
+        /// cref="CompilationJob.Files"/> collection), and the values are the
+        /// file tags associated with that file.
         public Dictionary<string, IEnumerable<string>> FileTags { get; internal set; }
 
+        /// <summary>
+        /// Gets the collection of <see cref="Diagnostic"/> objects that
+        /// describe problems in the source code.
+        /// </summary>
+        /// <remarks>
+        /// If the compiler encounters errors while compiling source code, the
+        /// <see cref="CompilationResult"/> it produces will have a <see
+        /// cref="Program"/> value of <see langword="null"/>. To help figure out
+        /// what the error is, users should consult the contents of this
+        /// property.
+        /// </remarks>
         public IEnumerable<Diagnostic> Diagnostics { get; internal set; }
 
+        /// <summary>
+        /// Combines multiple <see cref="CompilationResult"/> objects together
+        /// into one object.
+        /// </summary>
+        /// <param name="results">The compilation result objects to merge
+        /// together.</param>
+        /// <param name="stringTableManager">A string table builder containing
+        /// lines from all of the compilation results in <paramref
+        /// name="results"/>.</param>
+        /// <returns>The combined compilation result.</returns>
         internal static CompilationResult CombineCompilationResults(IEnumerable<CompilationResult> results, StringTableManager stringTableManager)
         {
-            CompilationResult finalResult;
-
             var programs = new List<Program>();
             var declarations = new List<Declaration>();
             var tags = new Dictionary<string, IEnumerable<string>>();
@@ -363,8 +487,8 @@ namespace Yarn.Compiler
         internal Node CurrentNode { get; private set; }
 
         /// <summary>
-        /// Gets whether we are currently parsing the current node as a
-        /// 'raw text' node, or as a fully syntactic node.
+        /// Gets or sets a value indicating whether we are currently parsing the
+        /// current node as a 'raw text' node, or as a fully syntactic node.
         /// </summary>
         /// <value>Whether this is a raw text node or not.</value>
         internal bool RawTextNode { get; set; } = false;
@@ -378,28 +502,39 @@ namespace Yarn.Compiler
 
         /// <summary>
         /// The list of variable declarations known to the compiler.
-        /// Supplied as part of a <see cref="CompilationJob"/>, or by <see
-        /// cref="GetDeclarations"/>
         /// </summary>
+        /// <remarks>
+        /// This is supplied as part of a <see cref="CompilationJob"/>, or by
+        /// <see cref="GetDeclarations"/>.
+        /// </remarks>
         internal IEnumerable<Declaration> VariableDeclarations = new List<Declaration>();
 
         /// <summary>
-        /// The Library, which contains the function declarations known to
-        /// the compiler. Supplied as part of a <see
-        /// cref="CompilationJob"/>.
+        /// The Library, which contains the function declarations known to the
+        /// compiler.
         /// </summary>
+        /// <remarks>
+        /// This is supplied as part of a <see cref="CompilationJob"/>.
+        /// </remarks>
         internal Library Library { get; private set; }
 
         /// <summary>
-        /// Gets the list of new <see cref="Diagnostic"/> objects created
-        /// during code generation. This does not include any existing
-        /// diagnostics, such as parse errors.
+        /// Gets the list of new <see cref="Diagnostic"/> objects created during
+        /// code generation.
         /// </summary>
+        /// <remarks>
+        /// This does not include any existing diagnostics, such as parse
+        /// errors.
+        /// </remarks>
         internal IEnumerable<Diagnostic> Diagnostics { get => this.diagnostics; }
 
         private List<Diagnostic> diagnostics = new List<Diagnostic>();
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Compiler"/> class.
+        /// </summary>
+        /// <param name="fileParseResult">The file parse result to use.</param>
         internal Compiler(FileParseResult fileParseResult)
         {
             Program = new Program();
@@ -411,6 +546,13 @@ namespace Yarn.Compiler
         internal List<string> tokens;
 #endif
 
+        /// <summary>
+        /// Compiles Yarn code, as specified by a compilation job.
+        /// </summary>
+        /// <param name="compilationJob">The compilation job to perform.</param>
+        /// <returns>The results of the compilation.</returns>
+        /// <seealso cref="CompilationJob"/>
+        /// <seealso cref="CompilationResult"/>
         public static CompilationResult Compile(CompilationJob compilationJob)
         {
             var results = new List<CompilationResult>();
@@ -698,13 +840,9 @@ namespace Yarn.Compiler
         /// Returns a collection of <see cref="Declaration"/> structs that
         /// describe the functions present in <paramref name="library"/>.
         /// </summary>
-        /// <param name="library">The <see cref="Library"/> to get
-        /// declarations from.</param>
+        /// <param name="library">The <see cref="Library"/> to get declarations
+        /// from.</param>
         /// <returns>The <see cref="Declaration"/> structs found.</returns>
-        /// <throws cref="TypeException">Thrown when a function in
-        /// <paramref name="library"/> has an invalid return type, an
-        /// invalid parameter type, an optional parameter, or an out
-        /// parameter.</throws>
         internal static (IEnumerable<Declaration>, IEnumerable<Diagnostic>) GetDeclarationsFromLibrary(Library library)
         {
             var declarations = new List<Declaration>();
@@ -833,13 +971,12 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
-        /// Lexes a string containing source code, and returns a list of
-        /// tokens found in the source code.
+        /// Reads the contents of a text file containing source code, and
+        /// returns a list of tokens found in that source code.
         /// </summary>
-        /// <param name="path">The path of the file containing source code
-        /// to extract tokens from.</param>
-        /// <returns>The list of tokens extracted from the source
-        /// code.</returns>
+        /// <param name="path">The path of the file to load the source code
+        /// from.</param>
+        /// <inheritdoc cref="GetTokensFromString(string)" path="/returns"/>
         internal static List<string> GetTokensFromFile(string path)
         {
             var text = File.ReadAllText(path);
@@ -847,8 +984,8 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
-        /// Lexes a string containing source code, and returns a list of
-        /// tokens found in the source code.
+        /// Reads a string containing source code, and returns a list of
+        /// tokens found in that source code.
         /// </summary>
         /// <param name="text">The source code to extract tokens
         /// from.</param>
@@ -922,7 +1059,7 @@ namespace Yarn.Compiler
         /// <param name="hashtagContexts">The hashtag parsing
         /// contexts.</param>
         /// <returns>The line ID if one is present in the hashtag contexts,
-        /// otherwise `null`.</returns>
+        /// otherwise <c>null</c>.</returns>
         internal static YarnSpinnerParser.HashtagContext GetLineIDTag(YarnSpinnerParser.HashtagContext[] hashtagContexts)
         {
             // if there are any hashtags
@@ -1073,6 +1210,25 @@ namespace Yarn.Compiler
                 .Concat(new[] { node });
         }
 
+        /// <summary>
+        /// Gets the text of the documentation comments that either immediately
+        /// precede <paramref name="context"/>, or are on the same line as
+        /// <paramref name="context"/>.
+        /// </summary>
+        /// <remarks>
+        /// Documentation comments begin with a triple-slash (<c>///</c>), and
+        /// are used to describe variable declarations. If documentation
+        /// comments precede a declaration (that is, they're not on the same
+        /// line as the declaration), then they may span multiple lines, as long
+        /// as each line begins with a triple-slash.
+        /// </remarks>
+        /// <param name="tokens">The token stream to search.</param>
+        /// <param name="context">The parser rule context to get documentation
+        /// comments for.</param>
+        /// <param name="allowCommentsAfter">If true, this method will search
+        /// for documentation comments that come after <paramref
+        /// name="context"/>'s last token and are on the same line.</param>
+        /// <returns>The text of the documentation comments.</returns>
         public static string GetDocumentComments(CommonTokenStream tokens, ParserRuleContext context, bool allowCommentsAfter = true)
         {
             string description = null;
@@ -1127,12 +1283,38 @@ namespace Yarn.Compiler
         }
     }
 
+    /// <summary>
+    /// Contains the result of parsing a single file of source code.
+    /// </summary>
+    /// <remarks>
+    /// This class provides only syntactic information about a parse - that is,
+    /// it provides access to the parse tree, and the stream of tokens used to
+    /// produce that parse tree.
+    /// </remarks>
     public struct FileParseResult
     {
+        /// <summary>
+        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream)" path="/param[@name='name']"/>
+        /// </summary>
         public string Name { get; }
+
+        /// <summary>
+        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream)" path="/param[@name='tree']"/>
+        /// </summary>
         public IParseTree Tree { get; }
+
+        /// <summary>
+        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream)" path="/param[@name='tokens']"/>
+        /// </summary>
         public CommonTokenStream Tokens { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileParseResult"/>
+        /// struct.
+        /// </summary>
+        /// <param name="name">The name of the file.</param>
+        /// <param name="tree">The parse tree extracted from the file.</param>
+        /// <param name="tokens">The tokens extracted from the file.</param>
         public FileParseResult(string name, IParseTree tree, CommonTokenStream tokens)
         {
             this.Name = name;
@@ -1140,6 +1322,7 @@ namespace Yarn.Compiler
             this.Tokens = tokens;
         }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             return obj is FileParseResult other &&
@@ -1148,6 +1331,7 @@ namespace Yarn.Compiler
                    EqualityComparer<CommonTokenStream>.Default.Equals(this.Tokens, other.Tokens);
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             int hashCode = -1713343069;

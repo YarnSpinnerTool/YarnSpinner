@@ -26,7 +26,7 @@ SOFTWARE.
 
 namespace Yarn.Markup
 {
-    /// <summary>A markup text processor that implements the `[nomarkup]`
+    /// <summary>A markup text processor that implements the <c>[nomarkup]</c>
     /// attribute's behaviour.</summary>
     internal class NoMarkupTextProcessor : IAttributeMarkerProcessor
     {
@@ -39,9 +39,9 @@ namespace Yarn.Markup
             }
             else
             {
-                // this is only possible when it's a tag like [raw/], in
-                // which case there's no text to provide, so we'll provide
-                // the empty string here
+                // this is only possible when this marker is self-closing (i.e.
+                // it's '[nomarkup/]'), in which case there's no text to
+                // provide, so we'll provide the empty string here
                 return string.Empty;
             }
         }

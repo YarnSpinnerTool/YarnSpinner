@@ -8,6 +8,7 @@ using System.Linq;
 
 using Yarn.Compiler;
 using CLDRPlurals;
+using System.Globalization;
 
 namespace YarnSpinner.Tests
 {
@@ -203,6 +204,67 @@ namespace YarnSpinner.Tests
             }
 
 
+        }
+
+        [Theory]
+        [MemberData(nameof(FileSources), "TestCases")]
+        [MemberData(nameof(FileSources), "Issues")]
+        public void TestCompilationShouldNotBeCultureDependent(string file)
+        { 
+            var path = Path.Combine(TestDataPath, file);
+
+            var source = File.ReadAllText(path);
+
+            var targetCultures = new[] {
+                "en",
+                "zh-Hans",
+                "ru",
+                "es-US",
+                "es",
+                "sw",
+                "ar",
+                "pt-BR",
+                "de",
+                "fr",
+                "fr-FR",
+                "ja",
+                "pl",
+                "ko",
+            };
+
+            CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+
+            var (invariantParseResult, _) = Utility.ParseSource(source);
+
+            var invariantCompilationJob = CompilationJob.CreateFromString("input", source);
+            var invariantResult = Compiler.Compile(invariantCompilationJob);
+
+            var invariantDiagnostics = invariantResult.Diagnostics.Select(d => d.ToString());
+            var invariantProgram = invariantResult.Program;
+            var invariantStringTable = invariantResult.StringTable.Values.Select(s => s.ToString());
+            var invariantParseTree = FormatParseTreeAsText(invariantParseResult.Tree);
+            
+            foreach (var cultureName in targetCultures) {
+                CultureInfo.CurrentCulture = new CultureInfo(cultureName);
+
+                var (targetParseResult, _) = Utility.ParseSource(source);
+
+                var targetCompilationJob = CompilationJob.CreateFromString("input", source);
+                var targetResult = Compiler.Compile(targetCompilationJob);
+
+                var targetDiagnostics = targetResult.Diagnostics.Select(d => d.ToString());
+                var targetProgram = targetResult.Program;
+                var targetStringTable = targetResult.StringTable.Values.Select(s => s.ToString());
+                var targetParseTree = FormatParseTreeAsText(targetParseResult.Tree);
+
+                Assert.Equal(invariantParseTree, targetParseTree);
+                Assert.Equal(invariantDiagnostics, targetDiagnostics);
+                Assert.Equal(invariantProgram, targetProgram);
+                Assert.Equal(invariantStringTable, targetStringTable);
+                
+            }
+
+            CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
         }
 
         // Test every file in Tests/TestCases

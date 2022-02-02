@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
@@ -11,6 +11,41 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 ### Removed
+
+## [2.0.2] 2022-01-08
+
+### Added
+
+### Changed
+
+- Fixed an error when a constant float value inside a marker was parsed and the user's current locale doesn't use a period (`.`) as the decimal separator.
+
+### Removed
+
+## [2.0.1] 2021-12-23
+
+### Added
+
+- The v1 to v2 language upgrader now renames node names that have a period (`.`) in their names to use underscores (`_`) instead. Jumps and options are also updated to use these new names.
+
+### Changed
+
+- Fixed a crash in the compiler when producing an error message about an undeclared function.
+- Fixed an error when a constant float value (such as in a `<<declare>>` statement) was parsed and the user's current locale doesn't use a period (`.`) as the decimal separator.
+
+## [2.0.0] 2021-12-20
+
+### Added
+
+### Changed
+
+- Fixed an issue where line tags could be added at an incorrect place in a line, if that line contained a condition.
+
+### Removed
+
+## [2.0.0-rc1] 2021-12-13
+
+v2.0.0-rc1 contains no user-facing features or bug fixes; it exists to be in sync with the corresponding v2.0.0-rc1 tag for Yarn Spinner for Unity.
 
 ## [2.0.0-beta6] 2021-10-23
 

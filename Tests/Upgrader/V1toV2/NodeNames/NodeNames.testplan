@@ -1,0 +1,7 @@
+line: This is a node whose name contains a period, which isn't allowed.
+line: A jump to "Node.Second"
+line: An option referring to "Node.First"
+option: Some destination
+option: Other destination
+select: 2
+line: End line.

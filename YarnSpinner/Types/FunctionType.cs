@@ -61,7 +61,7 @@ namespace Yarn
         /// <remarks>
         /// The length of this list also determines the number of
         /// parameters this function accepts (also known as the function's
-        /// *arity*).
+        /// <i>arity</i>).
         /// </remarks>
         public List<IType> Parameters { get; } = new List<IType>();
 

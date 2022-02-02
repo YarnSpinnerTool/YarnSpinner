@@ -1,6 +1,6 @@
 <!-- RELEASE_TEMPLATE.md is not a formally supported file used by GitHub. This file is used by .github/workflows/release.yml to add a release notes preface. -->
 
-This is the beta release of the compiler for Yarn Spinner. If you want to check out the [v2.0 beta for Yarn Spinner for Unity](https://github.com/YarnSpinnerTool/YarnSpinner-Unity/releases/), you should head to the beta release!
+This is the compiler for Yarn Spinner. If you want to use Yarn Spinner in a Unity game, please see [the releases page for Yarn Spinner for Unity](https://github.com/YarnSpinnerTool/YarnSpinner-Unity/releases/)!
 
 Yarn Spinner is made possible by your generous patronage. Please consider supporting Yarn Spinner's development by [becoming a patron](https://patreon.com/secretlab)!
 

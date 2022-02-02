@@ -92,15 +92,18 @@ namespace Yarn.Markup
         /// <paramref name="attribute"/> Position and Length properties.
         /// </summary>
         /// <remarks>
+        /// <para>
         /// If the attribute's <see cref="MarkupAttribute.Length"/>
         /// property is zero, this method returns the empty string.
-        ///
+        /// </para>
+        /// <para>
         /// This method does not check to see if <paramref
         /// name="attribute"/> is an attribute belonging to this
         /// MarkupParseResult. As a result, if you pass an attribute that
         /// doesn't belong, it may describe a range of text that does not
         /// appear in <see cref="Text"/>. If this occurs, an <see
         /// cref="System.IndexOutOfRangeException"/> will be thrown.
+        /// </para>
         /// </remarks>
         /// <param name="attribute">The attribute to get the text
         /// for.</param>
@@ -129,40 +132,56 @@ namespace Yarn.Markup
         /// </summary>
         /// <remarks>
         /// This method deletes the range of text covered by <paramref
-        /// name="attributeToDelete"/>, and updates the other attributes in
-        /// this markup as follows:
+        /// name="attributeToDelete"/>, and updates the other attributes in this
+        /// markup as follows:
         ///
-        /// - Attributes that start and end before the deleted attribute
-        /// are unmodified.
+        /// <list type="bullet">
+        /// <item>
+        /// Attributes that start and end before the deleted attribute are
+        /// unmodified.
+        /// </item>
         ///
-        /// - Attributes that start before the deleted attribute and end
-        /// inside it are truncated to remove the part overlapping the
+        /// <item>
+        /// Attributes that start before the deleted attribute and end inside it
+        /// are truncated to remove the part overlapping the deleted attribute.
+        /// </item>
+        ///
+        /// <item>
+        /// Attributes that have the same position and length as the deleted
+        /// attribute are deleted, if they apply to any text.
+        /// </item>
+        ///
+        /// <item>
+        /// Attributes that start and end within the deleted attribute are
+        /// deleted.
+        /// </item>
+        ///
+        /// <item>
+        /// Attributes that start within the deleted attribute, and end outside
+        /// it, have their start truncated to remove the part overlapping the
         /// deleted attribute.
+        /// </item>
         ///
-        /// - Attributes that have the same position and length as the
-        /// deleted attribute are deleted, if they apply to any text.
+        /// <item>
+        /// Attributes that start after the deleted attribute have their start
+        /// point adjusted to account for the deleted text.
+        /// </item>
+        /// </list>
         ///
-        /// - Attributes that start and end within the deleted attribute
-        /// are deleted.
+        /// <para>
+        /// This method does not modify the current object. A new <see
+        /// cref="MarkupParseResult"/> is returned.
+        /// </para>
         ///
-        /// - Attributes that start within the deleted attribute, and end
-        /// outside it, have their start truncated to remove the part
-        /// overlapping the deleted attribute.
-        ///
-        /// - Attributes that start after the deleted attribute have their
-        /// start point adjusted to account for the deleted text.
-        ///
-        /// This method does not modify the current object. A new
-        /// MarkupParseResult is returned.
-        ///
-        /// If <paramref name="attributeToDelete"/> is not an attribute of
-        /// this <see cref="MarkupParseResult"/>, the behaviour is
-        /// undefined.
+        /// <para>
+        /// If <paramref name="attributeToDelete"/> is not an attribute of this
+        /// <see cref="MarkupParseResult"/>, the behaviour is undefined.
+        /// </para>
         /// </remarks>
-        /// <param name="attributeToDelete">The attribute to
-        /// remove.</param>
-        /// <returns>A new MarkupParseResult, with the plain text modified
-        /// and an updated collection of attributes.</returns>
+        /// <param name="attributeToDelete">The attribute to remove.</param>
+        /// <returns>A new <see cref="MarkupParseResult"/> object, with the
+        /// plain text modified and an updated collection of
+        /// attributes.</returns>
         public MarkupParseResult DeleteRange(MarkupAttribute attributeToDelete)
         {
             var newAttributes = new List<MarkupAttribute>();
@@ -475,7 +494,7 @@ namespace Yarn.Markup
     }
 
     /// <summary>
-    /// Represents a marker (e.g. `[a]`) in line of marked up text.
+    /// Represents a marker (e.g. <c>[a]</c>) in line of marked up text.
     /// </summary>
     /// <remarks>
     /// You do not create instances of this struct yourself. It is created
@@ -503,9 +522,11 @@ namespace Yarn.Markup
         }
 
         /// <summary>
-        /// Gets the name of the marker. For example, the marker `[wave]` has
-        /// the name `wave`.
+        /// Gets the name of the marker.
         /// </summary>
+        /// <remarks>
+        /// For example, the marker <c>[wave]</c> has the name <c>wave</c>.
+        /// </remarks>
         public string Name { get; private set; }
 
         /// <summary>

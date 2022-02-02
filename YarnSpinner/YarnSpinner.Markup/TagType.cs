@@ -32,22 +32,22 @@ namespace Yarn.Markup
     internal enum TagType
     {
         /// <summary>
-        /// An open marker. For example, `[a]`.
+        /// An open marker. For example, <c>[a]</c>.
         /// </summary>
         Open,
 
         /// <summary>
-        /// A closing marker. For example, `[/a]`.
+        /// A closing marker. For example, <c>[/a]</c>.
         /// </summary>
         Close,
 
         /// <summary>
-        /// A self-closing marker. For example, `[a/]`.
+        /// A self-closing marker. For example, <c>[a/]</c>.
         /// </summary>
         SelfClosing,
 
         /// <summary>
-        /// The close-all marker, `[/]`.
+        /// The close-all marker, <c>[/]</c>.
         /// </summary>
         CloseAll,
     }

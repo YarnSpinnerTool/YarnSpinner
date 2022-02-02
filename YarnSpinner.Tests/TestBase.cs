@@ -7,6 +7,7 @@ using System.Reflection;
 using System.IO;
 using System.Linq;
 using System.Globalization;
+using Yarn.Compiler;
 
 namespace YarnSpinner.Tests
 {
@@ -281,6 +282,77 @@ namespace YarnSpinner.Tests
             {
                 return new string[] { };
             }
+        }
+
+        /// <summary>
+        /// Given a parse tree, returns a string containing a textual
+        /// representation of that tree.
+        /// </summary>
+        /// <param name="tree">The parse tree to evaluate.</param>
+        /// <param name="indentPrefix">A string to use for each indent level of
+        /// the parse tree.</param>
+        /// <returns>The text version of <paramref name="tree"/>.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when <paramref
+        /// name="tree"/> contains a parse node that isn't a token or a parse
+        /// rule.</exception>
+        protected static string FormatParseTreeAsText(Antlr4.Runtime.Tree.IParseTree tree, string indentPrefix = "| ")
+        {
+            var stack = new Stack<(int Indent, Antlr4.Runtime.Tree.IParseTree Node)>();
+
+            stack.Push((0, tree));
+
+            var sb = new System.Text.StringBuilder();
+
+            while (stack.Count > 0)
+            {
+                var current = stack.Pop();
+
+                sb.Append(string.Concat(Enumerable.Repeat(indentPrefix, current.Indent)));
+
+                string item;
+
+                switch (current.Node.Payload)
+                {
+                    case Antlr4.Runtime.IToken token:
+                        {
+                            // Display this token's name and text. Tokens have
+                            // no children, so there's nothing else to do here.
+                            var tokenName = YarnSpinnerLexer.DefaultVocabulary.GetSymbolicName(token.Type);
+                            var tokenText = token.Text.Replace("\n", "\\n");
+                            item = $"{token.Line}:{token.Column} {tokenName} \"{tokenText}\"";
+                            break;
+                        }
+
+                    case Antlr4.Runtime.ParserRuleContext ruleContext:
+                        {
+                            // Display this rule's name (not its text, because
+                            // that's comprised of all of the child tokens.)
+                            var ruleName = YarnSpinnerParser.ruleNames[ruleContext.RuleIndex];
+                            var start = ruleContext.Start;
+                            item = $"{start.Line}:{start.Column} {ruleName}";
+
+                            // Push all children into our stack; do this in
+                            // reverse order of child, so that we encounter them
+                            // in a reasonable order (i.e. child 0 will be the
+                            // next item we see)
+                            for (int i = ruleContext.ChildCount - 1; i >= 0; i--)
+                            {
+                                var child = ruleContext.GetChild(i);
+                                stack.Push((current.Indent + 1, child));
+                            }
+
+                            break;
+                        }
+
+                    default:
+                        throw new InvalidOperationException($"Unexpected parse node type {current.Node.GetType()}");
+                }
+
+                sb.AppendLine(item);
+            }
+
+            var result = sb.ToString();
+            return result;
         }
     }
 }
