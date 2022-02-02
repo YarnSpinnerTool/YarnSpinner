@@ -130,6 +130,7 @@ namespace YarnLanguageServer
             var regMatches = commandRegMatches.Concat(functionRegMatches);
 
             (var commandBridges, var unmatchableBridges) = regMatches
+                .Where(e => e.m.ArgumentList.Arguments.Count >= 2)
                 .Select(e =>
                     (YarnName: e.m.ArgumentList.Arguments[0].ToString().Trim('\"'), Expression: e.m.ArgumentList.Arguments[1].Expression, IsCommand: e.Item2))
                 .Partition(b =>
