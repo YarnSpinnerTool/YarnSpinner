@@ -21,20 +21,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="src\Compiler\CodeGenerationVisitor.cs" />
-      <Compile Remove="src\Compiler\Compiler.cs" />
-      <Compile Remove="src\Compiler\ConstantValueVisitor.cs" />
-      <Compile Remove="src\Compiler\Declaration.cs" />
-      <Compile Remove="src\Compiler\DeclarationVisitor.cs" />
-      <Compile Remove="src\Compiler\oldYarnSpinnerLexer.cs" />
-      <Compile Remove="src\Compiler\StringTableGeneratorVisitor.cs" />
-      <Compile Remove="src\Compiler\TypeCheckVisitor.cs" />
-      <Compile Remove="src\Compiler\Utility.cs" />
-      <Compile Remove="src\Server\Utils\Extensions.cs" />
-      <Compile Remove="YarnExamples\VNManager.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
 		<PackageReference Include="Antlr4.Runtime.Standard" Version="4.8.0" />
 		<PackageReference Include="Fastenshtein" Version="1.0.0.7" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.0-3.final" />
