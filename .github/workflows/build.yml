@@ -2,9 +2,9 @@ name: Build Yarn Spinner
 
 on:
   push:
-    branches: [ develop, 'feature/**' ]
+    branches: [ main, 'feature/**' ]
   pull_request:
-    branches: [ develop, 'feature/**' ]
+    branches: [ main, 'feature/**' ]
   workflow_dispatch:
 
 jobs:
