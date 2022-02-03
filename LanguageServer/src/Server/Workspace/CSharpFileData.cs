@@ -90,10 +90,16 @@ namespace YarnLanguageServer
 
             foreach (var command in commandAttributeMatches)
             {
-                var yarnName =
-                    command.AttributeLists.First().Attributes.First(a => a.Name.ToString().Contains("YarnCommand"))
-                    .ArgumentList.Arguments.First().ToString()
-                    .Trim('\"');
+                var yarnCommandAttribute = command.AttributeLists.First().Attributes.First(a => a.Name.ToString().Contains("YarnCommand"));
+
+                // Attempt to get the command name from the first parameter, if
+                // it has one. Otherwise, use the name of the method itself, and if _that_ fails, fall back to an error string.
+                string yarnCommandAttributeName = yarnCommandAttribute
+                                    .ArgumentList?.Arguments.FirstOrDefault()?.ToString()
+                                    .Trim('\"');
+
+                var yarnName = yarnCommandAttributeName ?? command.Identifier.ToString() ?? "<unknown method>";
+
                 Definitions[yarnName] = CreateFunctionObject(Uri, yarnName, command, true, 2, true);
                 Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == yarnName); // Matched some comands, can mark them off the list!
             }
