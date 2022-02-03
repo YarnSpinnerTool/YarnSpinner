@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from /Users/desplesda/Work/yarnspinner/YarnSpinner.Compiler/YarnSpinnerParser.g4 by ANTLR 4.8
+// Generated from /Users/desplesda/Work/YarnSpinner/YarnSpinner.Compiler/YarnSpinnerParser.g4 by ANTLR 4.8
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -536,17 +536,33 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// Enter a parse tree produced by the <c>jumpToNodeName</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.jump_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context) { }
+	public virtual void EnterJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// Exit a parse tree produced by the <c>jumpToNodeName</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.jump_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context) { }
+	public virtual void ExitJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>jumpToExpression</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>jumpToExpression</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

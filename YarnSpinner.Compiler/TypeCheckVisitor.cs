@@ -723,5 +723,11 @@ namespace Yarn.Compiler
 
             return BuiltinTypes.String;
         }
+
+        public override IType VisitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
+        {
+            // The expression's type must resolve to a string.
+            return CheckOperation(context, new[] { context.expression() }, Operator.None, "jump statement", BuiltinTypes.String);
+        }
     }
 }

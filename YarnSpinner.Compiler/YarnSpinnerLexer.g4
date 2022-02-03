@@ -269,7 +269,7 @@ COMMAND_CALL: 'call' [\p{White_Space}] -> pushMode(ExpressionMode);
 
 COMMAND_DECLARE: 'declare' [\p{White_Space}] -> pushMode(ExpressionMode);
 
-COMMAND_JUMP: 'jump' [\p{White_Space}] -> pushMode(CommandIDMode);
+COMMAND_JUMP: 'jump' [\p{White_Space}] -> pushMode(CommandIDOrExpressionMode);
 
 COMMAND_ENUM: 'enum' [\p{White_Space}] -> pushMode(CommandIDMode);
 
@@ -299,3 +299,16 @@ COMMAND_TEXT: ~[>{]+;
 mode CommandIDMode;
 COMMAND_ID: ID -> type(ID), popMode;
 COMMAND_ID_END: '>>' -> type(COMMAND_END), popMode; // almost certainly a parse error, but not a lex error
+
+// A mode in which we expect to parse a node ID, or an expression.
+mode CommandIDOrExpressionMode;
+
+// We saw an ID; leave this mode immediately
+COMMAND_ID_OR_EXPRESSION_ID: ID -> type(ID), popMode;
+
+// The start of an expression. Switch to expression mode; it will pop back to
+// our previous mode.
+COMMAND_ID_OR_EXPRESSION_START: EXPRESSION_START -> type(EXPRESSION_START), mode(ExpressionMode) ;
+
+// The end of the command. Leave this mode.
+COMMAND_ID_OR_EXPRESSION_END: '>>' -> type(COMMAND_END), popMode; 
