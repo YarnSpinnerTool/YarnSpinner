@@ -618,6 +618,22 @@ namespace Yarn.Compiler
                 };
             }
 
+            // THIS IS TEMPORARY TIM
+            HashSet<string> trackingNodes = new HashSet<string>();
+            HashSet<string> ignoringNodes = new HashSet<string>();
+            foreach (var parsedFile in parsedFiles)
+            {
+                var thingy = new NodeTrackingVisitor(trackingNodes, ignoringNodes);
+                thingy.Visit(parsedFile.Tree);
+            }
+            
+            trackingNodes.ExceptWith(ignoringNodes);
+
+            foreach (var node in trackingNodes)
+            {
+                Console.WriteLine($"asked to track {node}");
+            }
+
             // Find the type definitions in these files.
             var walker = new ParseTreeWalker();
             foreach (var parsedFile in parsedFiles)
