@@ -2,22 +2,9 @@ namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Antlr4.Runtime;
     using Antlr4.Runtime.Misc;
 
-    /*
-    ok so need to be a visitor
-    this has two different pieces
-    firts piece goes into functions:
-        look for any visited or visited_count functions
-        if they exist visit their expression
-            if it is a constant add that to the list of tracking
-            otherwise throw up a warning or ignore it for now?
-    second piece will go into the headers:
-        look for a title so we can set the node name
-        look for tracking key so we can work out if we need to track or not
-    */
     class NodeTrackingVisitor : YarnSpinnerParserBaseVisitor<string>
     {
         HashSet<string> TrackingNode;
@@ -42,7 +29,6 @@ namespace Yarn.Compiler
 
                 if (result != null)
                 {
-                    Console.WriteLine($"tracking {result}");
                     TrackingNode.Add(result);
                 }
             }
@@ -57,24 +43,34 @@ namespace Yarn.Compiler
 
         public override string VisitNode([NotNull] YarnSpinnerParser.NodeContext context)
         {
-            /*
-            title = null
-            tracking = null
-            
-            foreach header in headers
-                if header is "title"
-                    title = header.value
-                if header is "tracking"
-                    tracking = header.value
-            
-            if header and tracking
-                if tracking is always
-                    add to trackingnodes
-                else
-                    add to ignoreNodes
-            */
+            string title = null;
+            string tracking = null;
+            foreach (var header in context.header())
+            {
+                var headerKey = header.header_key.Text;
+                if (headerKey.Equals("title"))
+                {
+                    title = header.header_value?.Text;
+                }
+                else if (headerKey.Equals("tracking"))
+                {
+                    tracking = header.header_value?.Text;
+                }
+            }
 
-            return null;
+            if (title != null && tracking != null)
+            {
+                if (tracking.Equals("always"))
+                {
+                    TrackingNode.Add(title);
+                }
+                else if (tracking.Equals("never"))
+                {
+                    NeverVisitNodes.Add(title);
+                }
+            }
+
+            return Visit(context.body());
         }
     }
 }
