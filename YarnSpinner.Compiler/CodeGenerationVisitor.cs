@@ -18,9 +18,12 @@ namespace Yarn.Compiler
     {
         internal Compiler compiler;
 
-        public CodeGenerationVisitor(Compiler compiler)
+        internal string trackingEnabled = null;
+
+        public CodeGenerationVisitor(Compiler compiler, string trackingEnabled)
         {
             this.compiler = compiler;
+            this.trackingEnabled = trackingEnabled;
         }
 
         private int GenerateCodeForExpressionsInFormattedText(IList<IParseTree> nodes)
@@ -438,6 +441,20 @@ namespace Yarn.Compiler
             // Call that function.
             this.compiler.Emit(OpCode.CallFunc, new Operand(functionName));
         }
+        
+        private void GenerateTrackingCode(string variableName)
+        {
+            Console.WriteLine($"tracking var: {variableName}");
+            // pushing the var and the increment onto the stack
+            this.compiler.Emit(OpCode.PushVariable, new Operand(variableName));
+            this.compiler.Emit(OpCode.PushFloat, new Operand(1));
+
+            // Indicate that we are pushing this many items for comparison
+            this.compiler.Emit(OpCode.PushFloat, new Operand(2));
+
+            // calling the function
+            this.compiler.Emit(OpCode.CallFunc, new Operand("Number.Add"));
+        }
 
         // * / %
         public override int VisitExpMultDivMod(YarnSpinnerParser.ExpMultDivModContext context)
@@ -554,6 +571,11 @@ namespace Yarn.Compiler
         // its name.
         public override int VisitJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context)
         {
+            if (trackingEnabled != null)
+            {
+                Console.WriteLine("emiting code for the tracking");
+                GenerateTrackingCode(trackingEnabled);
+            }
             compiler.Emit(OpCode.PushString, new Operand(context.destination.Text));
             compiler.Emit(OpCode.RunNode);
 
@@ -564,6 +586,11 @@ namespace Yarn.Compiler
         // an expression that resolves to a node's name.
         public override int VisitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
         {
+            if (trackingEnabled != null)
+            {
+                Console.WriteLine("emiting code for the tracking");
+                GenerateTrackingCode(trackingEnabled);
+            }
             // Evaluate the expression, and jump to the result on the stack.
             Visit(context.expression());
             compiler.Emit(OpCode.RunNode);

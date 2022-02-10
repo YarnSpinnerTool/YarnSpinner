@@ -530,6 +530,8 @@ namespace Yarn.Compiler
 
         private List<Diagnostic> diagnostics = new List<Diagnostic>();
 
+        // the list of nodes we have to ensure we track visitation
+        private HashSet<string> TrackingNodes;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Compiler"/> class.
@@ -618,22 +620,6 @@ namespace Yarn.Compiler
                 };
             }
 
-            // THIS IS TEMPORARY TIM
-            HashSet<string> trackingNodes = new HashSet<string>();
-            HashSet<string> ignoringNodes = new HashSet<string>();
-            foreach (var parsedFile in parsedFiles)
-            {
-                var thingy = new NodeTrackingVisitor(trackingNodes, ignoringNodes);
-                thingy.Visit(parsedFile.Tree);
-            }
-            
-            trackingNodes.ExceptWith(ignoringNodes);
-
-            foreach (var node in trackingNodes)
-            {
-                Console.WriteLine($"asked to track {node}");
-            }
-
             // Find the type definitions in these files.
             var walker = new ParseTreeWalker();
             foreach (var parsedFile in parsedFiles)
@@ -697,9 +683,26 @@ namespace Yarn.Compiler
                 };
             }
 
+            // determining the nodes we need to track visits on
+            HashSet<string> trackingNodes = new HashSet<string>();
+            HashSet<string> ignoringNodes = new HashSet<string>();
             foreach (var parsedFile in parsedFiles)
             {
-                CompilationResult compilationResult = GenerateCode(parsedFile, knownVariableDeclarations, compilationJob, stringTableManager);
+                var thingy = new NodeTrackingVisitor(trackingNodes, ignoringNodes);
+                thingy.Visit(parsedFile.Tree);
+            }
+
+            // removing all nodes we are told explicitly to not track
+            trackingNodes.ExceptWith(ignoringNodes);
+
+            // foreach (var node in trackingNodes)
+            // {
+            //     Console.WriteLine($"asked to track {node}");
+            // }
+
+            foreach (var parsedFile in parsedFiles)
+            {
+                CompilationResult compilationResult = GenerateCode(parsedFile, knownVariableDeclarations, compilationJob, stringTableManager, trackingNodes);
                 results.Add(compilationResult);
             }
 
@@ -795,10 +798,11 @@ namespace Yarn.Compiler
             diagnostics = newDiagnosticList;
         }
 
-        private static CompilationResult GenerateCode(FileParseResult fileParseResult, IEnumerable<Declaration> variableDeclarations, CompilationJob job, StringTableManager stringTableManager)
+        private static CompilationResult GenerateCode(FileParseResult fileParseResult, IEnumerable<Declaration> variableDeclarations, CompilationJob job, StringTableManager stringTableManager, HashSet<string> trackingNodes)
         {
             Compiler compiler = new Compiler(fileParseResult);
 
+            compiler.TrackingNodes = trackingNodes;
             compiler.Library = job.Library;
             compiler.VariableDeclarations = variableDeclarations;
             compiler.Compile();
@@ -996,6 +1000,20 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// Generates a unique tracking variable name.
+        /// This is intended to be used to generate names for visting.
+        /// Ideally these will very reproduceable and sensible.
+        /// For now it will be something terrible and easy.
+        /// </summary>
+        /// <param name="nodeName">The name of the node that needs to
+        /// have a tracking variable created.</param>
+        /// <returns>The new variable name.</returns>
+        internal string GenerateUniqueVisitedVariableForNode(string nodeName)
+        {
+            return $"$Yarn.Internal.Visiting.{nodeName}";
+        }
+
+        /// <summary>
         /// Creates a new instruction, and appends it to a node in the <see
         /// cref="Program" />.
         /// </summary>
@@ -1137,7 +1155,9 @@ namespace Yarn.Compiler
                 // label at this point.
                 CurrentNode.Labels.Add(RegisterLabel(), CurrentNode.Instructions.Count);
 
-                CodeGenerationVisitor visitor = new CodeGenerationVisitor(this);
+                string track = TrackingNodes.Contains(CurrentNode.Name) ? GenerateUniqueVisitedVariableForNode(CurrentNode.Name) : null;
+
+                CodeGenerationVisitor visitor = new CodeGenerationVisitor(this, track);
 
                 foreach (var statement in context.statement())
                 {
