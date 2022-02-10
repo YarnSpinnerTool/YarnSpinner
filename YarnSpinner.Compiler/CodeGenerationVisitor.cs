@@ -444,7 +444,6 @@ namespace Yarn.Compiler
         
         private void GenerateTrackingCode(string variableName)
         {
-            Console.WriteLine($"tracking var: {variableName}");
             // pushing the var and the increment onto the stack
             this.compiler.Emit(OpCode.PushVariable, new Operand(variableName));
             this.compiler.Emit(OpCode.PushFloat, new Operand(1));

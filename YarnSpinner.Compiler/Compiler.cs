@@ -669,6 +669,31 @@ namespace Yarn.Compiler
 #endif
             }
 
+            // determining the nodes we need to track visits on
+            // this needs to be done before we finish up with declarations
+            // so that any tracking variables are included in the compiled declarations
+            HashSet<string> trackingNodes = new HashSet<string>();
+            HashSet<string> ignoringNodes = new HashSet<string>();
+            foreach (var parsedFile in parsedFiles)
+            {
+                var thingy = new NodeTrackingVisitor(trackingNodes, ignoringNodes);
+                thingy.Visit(parsedFile.Tree);
+            }
+
+            // removing all nodes we are told explicitly to not track
+            trackingNodes.ExceptWith(ignoringNodes);
+
+            var trackingDeclarations = new List<Declaration>();
+            foreach (var node in trackingNodes)
+            {
+                trackingDeclarations.Add(Declaration.CreateVariable(GenerateUniqueVisitedVariableForNode(node), BuiltinTypes.Number, 0, $"The generated variable for tracking visits of node {node}"));
+            }
+
+            // adding the generated tracking variables into the declaration list
+            // this way any future variable storage system will know about them
+            // if we didn't do this later stages wouldn't be able to interface with them
+            derivedVariableDeclarations.AddRange(trackingDeclarations);
+
             if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
             {
                 // Stop at this point
@@ -682,23 +707,6 @@ namespace Yarn.Compiler
                     Diagnostics = diagnostics,
                 };
             }
-
-            // determining the nodes we need to track visits on
-            HashSet<string> trackingNodes = new HashSet<string>();
-            HashSet<string> ignoringNodes = new HashSet<string>();
-            foreach (var parsedFile in parsedFiles)
-            {
-                var thingy = new NodeTrackingVisitor(trackingNodes, ignoringNodes);
-                thingy.Visit(parsedFile.Tree);
-            }
-
-            // removing all nodes we are told explicitly to not track
-            trackingNodes.ExceptWith(ignoringNodes);
-
-            // foreach (var node in trackingNodes)
-            // {
-            //     Console.WriteLine($"asked to track {node}");
-            // }
 
             foreach (var parsedFile in parsedFiles)
             {
@@ -1008,7 +1016,7 @@ namespace Yarn.Compiler
         /// <param name="nodeName">The name of the node that needs to
         /// have a tracking variable created.</param>
         /// <returns>The new variable name.</returns>
-        internal string GenerateUniqueVisitedVariableForNode(string nodeName)
+        internal static string GenerateUniqueVisitedVariableForNode(string nodeName)
         {
             return $"$Yarn.Internal.Visiting.{nodeName}";
         }
