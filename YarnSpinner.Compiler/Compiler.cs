@@ -686,7 +686,7 @@ namespace Yarn.Compiler
             var trackingDeclarations = new List<Declaration>();
             foreach (var node in trackingNodes)
             {
-                trackingDeclarations.Add(Declaration.CreateVariable(GenerateUniqueVisitedVariableForNode(node), BuiltinTypes.Number, 0, $"The generated variable for tracking visits of node {node}"));
+                trackingDeclarations.Add(Declaration.CreateVariable(Yarn.Library.GenerateUniqueVisitedVariableForNode(node), BuiltinTypes.Number, 0, $"The generated variable for tracking visits of node {node}"));
             }
 
             // adding the generated tracking variables into the declaration list
@@ -1008,20 +1008,6 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
-        /// Generates a unique tracking variable name.
-        /// This is intended to be used to generate names for visting.
-        /// Ideally these will very reproduceable and sensible.
-        /// For now it will be something terrible and easy.
-        /// </summary>
-        /// <param name="nodeName">The name of the node that needs to
-        /// have a tracking variable created.</param>
-        /// <returns>The new variable name.</returns>
-        internal static string GenerateUniqueVisitedVariableForNode(string nodeName)
-        {
-            return $"$Yarn.Internal.Visiting.{nodeName}";
-        }
-
-        /// <summary>
         /// Creates a new instruction, and appends it to a node in the <see
         /// cref="Program" />.
         /// </summary>
@@ -1163,7 +1149,7 @@ namespace Yarn.Compiler
                 // label at this point.
                 CurrentNode.Labels.Add(RegisterLabel(), CurrentNode.Instructions.Count);
 
-                string track = TrackingNodes.Contains(CurrentNode.Name) ? GenerateUniqueVisitedVariableForNode(CurrentNode.Name) : null;
+                string track = TrackingNodes.Contains(CurrentNode.Name) ? Yarn.Library.GenerateUniqueVisitedVariableForNode(CurrentNode.Name) : null;
 
                 CodeGenerationVisitor visitor = new CodeGenerationVisitor(this, track);
 
