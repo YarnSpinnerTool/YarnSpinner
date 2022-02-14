@@ -8,6 +8,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- The `<<jump>>` statement can now take an expression.
+
+```yarn
+<<set $myDestination = "Home">>
+<<jump {$myDestination}>>
+```
+
+- Previously, the `jump` statement required the name of a node. With this change, it can now also take an expression that resolves to the name of a node.
+- Jump expressions may be a constant string, a variable, a function call, or any other type of expression.
+- These expressions must be wrapped in curly braces (`{` `}`), and must produce a string.
+
 ### Changed
 
 ### Removed

@@ -147,5 +147,6 @@ enum_case_statement
     ;
 
 jump_statement
-    : COMMAND_START COMMAND_JUMP destination=ID COMMAND_END
+    : COMMAND_START COMMAND_JUMP destination=ID COMMAND_END #jumpToNodeName
+    | COMMAND_START COMMAND_JUMP EXPRESSION_START expression EXPRESSION_END COMMAND_END #jumpToExpression
     ;

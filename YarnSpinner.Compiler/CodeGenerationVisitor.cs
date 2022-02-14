@@ -578,10 +578,22 @@ namespace Yarn.Compiler
             return 0;
         }
 
-        // A <<jump>> command, which immediately jumps to another node.
-        public override int VisitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context)
+        // A <<jump>> command, which immediately jumps to another node, given
+        // its name.
+        public override int VisitJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context)
         {
             compiler.Emit(OpCode.PushString, new Operand(context.destination.Text));
+            compiler.Emit(OpCode.RunNode);
+
+            return 0;
+        }
+
+        // A <<jump>> command, which immediately jumps to another node, given
+        // an expression that resolves to a node's name.
+        public override int VisitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
+        {
+            // Evaluate the expression, and jump to the result on the stack.
+            Visit(context.expression());
             compiler.Emit(OpCode.RunNode);
 
             return 0;

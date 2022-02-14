@@ -1,10 +1,24 @@
 title: Start
 ---
-Start line
-<<jump Destination>>
-This line will never be shown.
+Start
+// Jump to a node name
+<<jump NodeNameDestination>>
+Error! This line should not be seen.
 ===
-title: Destination
+title: NodeNameDestination
 ---
-Destination line
+NodeNameDestination
+// Jump to a node based on a constant expression
+<<jump {"NodeNameConstantExpression"}>>
+===
+title: NodeNameConstantExpression
+---
+NodeNameExpression
+// Jump to a node based on a non-constant expression
+<<declare $myNodeName = "NodeNameVariableExpression">>
+<<jump {$myNodeName}>>
+===
+title: NodeNameVariableExpression
+---
+NodeNameVariableExpression
 ===

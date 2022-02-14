@@ -1,0 +1,6 @@
+title: Start
+---
+// Error: jump destinations must resolve to strings
+<<declare $myDestination = 5>>
+<<jump {$myDestination}>>
+===
