@@ -453,6 +453,10 @@ namespace Yarn.Compiler
 
             // calling the function
             this.compiler.Emit(OpCode.CallFunc, new Operand("Number.Add"));
+
+            // now store the variable and clean up the stack
+            this.compiler.Emit(OpCode.StoreVariable, new Operand(variableName));
+            this.compiler.Emit(OpCode.Pop);
         }
 
         // * / %
