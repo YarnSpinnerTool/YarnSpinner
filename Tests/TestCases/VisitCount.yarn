@@ -1,0 +1,23 @@
+title: Start
+---
+<<declare $someVar = 5>>
+entered start
+seconds visited count is {visited_count("second")}
+<<jump second>>
+===
+
+title: second
+---
+<<if visited_count("second") < 3>>
+second visited {visited_count("second")} times // initially will be 0,1,2 and then fail
+<<jump second>>
+<<else>>
+<<jump third>>
+<<endif>>
+===
+
+title: third
+---
+entered third
+seconds was visited a total of {visited_count("second")} times // will be 4
+===

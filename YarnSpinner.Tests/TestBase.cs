@@ -201,7 +201,7 @@ namespace YarnSpinner.Tests
             // node with the given name has been run before. For type
             // correctness, we stub it out here with an implementation that
             // just returns false
-            dialogue.Library.RegisterFunction("visited", (string nodeName) => false );
+            // dialogue.Library.RegisterFunction("visited", (string nodeName) => false );
 
         }
 

@@ -561,7 +561,7 @@ namespace Yarn.Compiler
 
             // All variable declarations that we've encountered during this
             // compilation job
-            var derivedVariableDeclarations = new List<Declaration>();
+            // var derivedVariableDeclarations = new List<Declaration>();
 
             // All variable declarations that we've encountered, PLUS the
             // ones we knew about before
@@ -638,7 +638,7 @@ namespace Yarn.Compiler
             {
                 GetDeclarations(parsedFile, knownVariableDeclarations, out var newDeclarations, typeDeclarations, out var newFileTags, out var declarationDiagnostics);
 
-                derivedVariableDeclarations.AddRange(newDeclarations);
+                // derivedVariableDeclarations.AddRange(newDeclarations);
                 knownVariableDeclarations.AddRange(newDeclarations);
                 diagnostics.AddRange(declarationDiagnostics);
 
@@ -650,7 +650,7 @@ namespace Yarn.Compiler
                 var checker = new TypeCheckVisitor(parsedFile.Name, knownVariableDeclarations, typeDeclarations);
 
                 checker.Visit(parsedFile.Tree);
-                derivedVariableDeclarations.AddRange(checker.NewDeclarations);
+                // derivedVariableDeclarations.AddRange(checker.NewDeclarations);
                 knownVariableDeclarations.AddRange(checker.NewDeclarations);
                 diagnostics.AddRange(checker.Diagnostics);
 
@@ -692,14 +692,15 @@ namespace Yarn.Compiler
             // adding the generated tracking variables into the declaration list
             // this way any future variable storage system will know about them
             // if we didn't do this later stages wouldn't be able to interface with them
-            derivedVariableDeclarations.AddRange(trackingDeclarations);
+            // derivedVariableDeclarations.AddRange(trackingDeclarations);
+            knownVariableDeclarations.AddRange(trackingDeclarations);
 
             if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
             {
                 // Stop at this point
                 return new CompilationResult
                 {
-                    Declarations = derivedVariableDeclarations,
+                    Declarations = knownVariableDeclarations, // ok this is a quick fix for now later make it so that its filtered by the isImplicit tag
                     ContainsImplicitStringTags = false,
                     Program = null,
                     StringTable = null,
@@ -763,7 +764,7 @@ namespace Yarn.Compiler
                 finalResult.Program.InitialValues.Add(declaration.Name, value);
             }
 
-            finalResult.Declarations = derivedVariableDeclarations;
+            finalResult.Declarations = knownVariableDeclarations; // likewise here, need to filter this to just implicit ones
 
             finalResult.FileTags = fileTags;
 
