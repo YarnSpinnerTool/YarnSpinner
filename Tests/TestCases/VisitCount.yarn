@@ -1,15 +1,14 @@
 title: Start
 ---
-<<declare $someVar = 5>>
 entered start
-seconds visited count is {visited_count("second")}
+seconds visited count is {visited_count("second")} // will default to 0
 <<jump second>>
 ===
 
 title: second
 ---
 <<if visited_count("second") < 3>>
-second visited {visited_count("second")} times // initially will be 0,1,2 and then fail
+second visited {visited_count("second")} times // will be 0,1,2
 <<jump second>>
 <<else>>
 <<jump third>>

@@ -38,12 +38,6 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void QuickTest()
-        {
-            Assert.Equal(1, 1);
-        }
-
-        [Fact]
         public void TestAnalysis() 
         {
 

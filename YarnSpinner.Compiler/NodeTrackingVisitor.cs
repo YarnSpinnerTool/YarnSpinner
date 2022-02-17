@@ -68,7 +68,11 @@ namespace Yarn.Compiler
                 }
             }
 
-            return Visit(context.body());
+            if (context.body() != null)
+            {
+                return Visit(context.body());
+            }
+            return null;
         }
     }
 }
