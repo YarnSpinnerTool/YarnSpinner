@@ -51,6 +51,16 @@ public record NodeInfo
     internal List<YarnVariableDeclaration> VariableDeclarations { get; init; } = new();
     internal List<IToken> VariableReferences { get; init; } = new();
 
+    /// <summary>
+    /// Gets a value indicating whether this <see cref="NodeInfo"/> has a valid
+    /// title.
+    /// </summary>
+    /// <remarks>
+    /// This value is <see langword="true"/> when <see cref="Title"/> is not
+    /// <see langword="null"/>, empty or whitespace, and <see
+    /// cref="TitleToken"/> is not null.
+    /// </remarks>
+    public bool HasTitle => !string.IsNullOrWhiteSpace(Title) && TitleToken != null;
 
     //     position: { x: number, y: number } = { x: 0, y: 0 }
     //     destinations: string[] = []

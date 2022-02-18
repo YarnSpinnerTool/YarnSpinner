@@ -184,8 +184,7 @@ namespace YarnLanguageServer
         /// Gets the collection of all tokens in this file that represent the
         /// title in a node definition.
         /// </summary>
-        public IEnumerable<IToken> NodeDefinitions => NodeInfos
-            .Select(n => n.TitleToken);
+        public IEnumerable<IToken> NodeDefinitions => NodeInfos.Where(n => n.HasTitle).Select(n => n.TitleToken);
 
         /// <summary>
         /// Gets the collection of all function references in this file.

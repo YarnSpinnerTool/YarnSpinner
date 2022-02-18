@@ -44,8 +44,17 @@ namespace YarnLanguageServer.Handlers
             }
 
             results = workspace.YarnFiles
-                        .SelectMany(yf => tokenSelector(yf.Value)
-                        .Where(nj => nj.Text == name).Select(n => new Location { Uri = yf.Value.Uri, Range = PositionHelper.GetRange(yf.Value.LineStarts, n) }));
+                .SelectMany(
+                    yf => tokenSelector(yf.Value)
+                        .Where(nj => nj?.Text == name)
+                        .Select(n => new Location
+                        {
+                            Uri = yf.Value.Uri,
+                            Range = PositionHelper.GetRange(
+                                yf.Value.LineStarts,
+                                n),
+                        })
+                    );
 
             return results;
         }
