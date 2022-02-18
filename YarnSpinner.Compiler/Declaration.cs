@@ -10,6 +10,37 @@ namespace Yarn.Compiler
     public class Range
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Range"/> class, given
+        /// start and end information.
+        /// </summary>
+        /// <param name="startLine">The zero-indexed line number of the start of
+        /// the range.</param>
+        /// <param name="startCharacter">The zero-indexed character number of
+        /// the start of the range.</param>
+        /// <param name="endLine">The zero-indexed line number of the end of the
+        /// range.</param>
+        /// <param name="endCharacter">The zero-indexed character number of the
+        /// end of the range.</param>
+        public Range(int startLine, int startCharacter, int endLine, int endCharacter)
+        {
+            this.Start = new Position { Line = startLine, Character = startCharacter };
+            this.End = new Position { Line = endLine, Character = endCharacter };
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Range"/> class.
+        /// </summary>
+        /// <remarks>
+        /// The <see cref="Start"/> and <see cref="End"/> positions will both be
+        /// set to have a line and character index of -1.
+        /// </remarks>
+        public Range()
+        {
+            this.Start = new Position();
+            this.End = new Position();
+        }
+
+        /// <summary>
         /// Gets or sets the start position of this range.
         /// </summary>
         public Position Start { get; set; } = new Position();
