@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [2.1.0] 2022-02-17
+
+### Added
+
 - The `<<jump>>` statement can now take an expression.
 
 ```yarn
