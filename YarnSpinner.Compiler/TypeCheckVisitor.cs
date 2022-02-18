@@ -333,7 +333,7 @@ namespace Yarn.Compiler
                         var decl = new Declaration
                         {
                             Name = variableName,
-                            Description = $"{System.IO.Path.GetFileName(sourceFileName)}, node {currentNodeName}, line {context.Start.Line - nodePositionInFile}",
+                            Description = $"Implicitly declared in {System.IO.Path.GetFileName(sourceFileName)}, node {currentNodeName}",
                             Type = expressionType,
                             DefaultValue = DefaultValueForType(expressionType),
                             SourceFileName = sourceFileName,
@@ -507,7 +507,7 @@ namespace Yarn.Compiler
                     var decl = new Declaration
                     {
                         Name = undefinedVariableContext.VAR_ID().GetText(),
-                        Description = $"{System.IO.Path.GetFileName(sourceFileName)}, node {currentNodeName}, line {positionInFile - nodePositionInFile}",
+                        Description = $"Implicitly declared in {System.IO.Path.GetFileName(sourceFileName)}, node {currentNodeName}",
                         Type = expressionType,
                         DefaultValue = DefaultValueForType(expressionType),
                         SourceFileName = sourceFileName,

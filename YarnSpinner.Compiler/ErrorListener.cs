@@ -1,4 +1,4 @@
-namespace Yarn.Compiler
+﻿namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -10,8 +10,7 @@ namespace Yarn.Compiler
     public sealed class Diagnostic
     {
         public string FileName = "(not set)";
-        public int Line;
-        public int Column;
+        public Range Range = new Range();
         public string Message = "(internal error: no message provided)";
 
         public string Context = null;
@@ -32,17 +31,23 @@ namespace Yarn.Compiler
         public Diagnostic(string fileName, ParserRuleContext context, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
-            this.Column = context?.Start.Column ?? 0;
-            this.Line = context?.Start.Line ?? 0;
+
+            if (context != null)
+            {
+                this.Range = new Range(
+                    context.Start.Line - 1,
+                    context.Start.Column,
+                    context.Stop.Line - 1,
+                    context.Stop.Column + context.Stop.Text.Length);
+            }
             this.Message = message;
             this.Context = context.GetTextWithWhitespace();
             this.Severity = severity;
         }
 
-        public Diagnostic(string fileName, int line, int column, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error) {
+        public Diagnostic(string fileName, Range range, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error) {
             this.FileName = fileName;
-            this.Column = column;
-            this.Line = line;
+            this.Range = range;
             this.Message = message;
             this.Severity = severity;
         }
@@ -57,7 +62,7 @@ namespace Yarn.Compiler
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append($"{this.Line}:{this.Column}: {this.Severity}: {this.Message}");
+            sb.Append($"{this.Range.Start.Line + 1}:{this.Range.Start.Character}: {this.Severity}: {this.Message}");
 
             if (string.IsNullOrEmpty(this.Context) == false)
             {
@@ -72,8 +77,7 @@ namespace Yarn.Compiler
         {
             return obj is Diagnostic problem &&
                    this.FileName == problem.FileName &&
-                   this.Line == problem.Line &&
-                   this.Column == problem.Column &&
+                   this.Range.Equals(problem.Range) &&
                    this.Message == problem.Message &&
                    this.Context == problem.Context &&
                    this.Severity == problem.Severity;
@@ -83,8 +87,7 @@ namespace Yarn.Compiler
         {
             int hashCode = -1856104752;
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.FileName);
-            hashCode = (hashCode * -1521134295) + this.Line.GetHashCode();
-            hashCode = (hashCode * -1521134295) + this.Column.GetHashCode();
+            hashCode = (hashCode * -1521134295) + this.Range.GetHashCode();
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Message);
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Context);
             hashCode = (hashCode * -1521134295) + this.Severity.GetHashCode();
@@ -106,7 +109,8 @@ namespace Yarn.Compiler
 
         public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
-            this.diagnostics.Add(new Diagnostic(null, line, charPositionInLine, msg));
+            Range range = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
+            this.diagnostics.Add(new Diagnostic(this.fileName, range, msg));
         }
     }
 
@@ -123,7 +127,9 @@ namespace Yarn.Compiler
 
         public override void SyntaxError(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
-            var diagnostic = new Diagnostic(null, line, charPositionInLine, msg);
+            Range range = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
+
+            var diagnostic = new Diagnostic(this.fileName, range, msg);
             
             if (offendingSymbol.TokenSource != null)
             {
@@ -159,6 +165,8 @@ namespace Yarn.Compiler
                 }
 
                 diagnostic.Context = builder.ToString();
+
+                diagnostic.Range = new Range(offendingSymbol.Line - 1, offendingSymbol.Column, offendingSymbol.Line - 1, offendingSymbol.Column + offendingSymbol.Text.Length);
             }
 
             this.diagnostics.Add(diagnostic);
