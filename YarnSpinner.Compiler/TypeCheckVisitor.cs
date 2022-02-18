@@ -254,7 +254,7 @@ namespace Yarn.Compiler
 
                 if (TypeUtil.IsSubType(expectedType, suppliedType) == false)
                 {
-                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"{functionName} parameter {i + 1} expects a {expectedType.Name}, not a {(suppliedType?.Name ?? "undefined")}"));
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"{functionName} parameter {i + 1} expects a {expectedType?.Name ?? "undefined"}, not a {suppliedType?.Name ?? "undefined"}"));
                     return functionType.ReturnType;
                 }
             }
@@ -290,13 +290,19 @@ namespace Yarn.Compiler
 
         public override Yarn.IType VisitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context)
         {
-            var expressionType = Visit(context.expression());
             var variableContext = context.variable();
+            var expressionContext = context.expression();
+
+            if (expressionContext == null || variableContext == null) {
+                return BuiltinTypes.Undefined;
+            }
+
+            var expressionType = base.Visit(expressionContext);
             var variableType = base.Visit(variableContext);
 
             var variableName = variableContext.GetText();
 
-            ParserRuleContext[] terms = { variableContext, context.expression() };
+            ParserRuleContext[] terms = { variableContext, expressionContext };
 
             Yarn.IType type;
 
