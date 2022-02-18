@@ -181,9 +181,20 @@ namespace Yarn.Compiler
                     IsImplicit = true,
                     Description = $"Implicit declaration of function at {sourceFileName}:{context.Start.Line}:{context.Start.Column}",
                     SourceFileName = sourceFileName,
-                    SourceFileLine = context.Start.Line,
                     SourceNodeName = currentNodeName,
-                    SourceNodeLine = context.Start.Line - (this.currentNodeContext.BODY_START().Symbol.Line + 1),
+                    Range = new Range
+                    {
+                        Start =
+                        {
+                            Line = context.Start.Line - 1,
+                            Character = context.Start.Column,
+                        },
+                        End =
+                        {
+                            Line = context.Stop.Line - 1,
+                            Character = context.Stop.Column + context.Stop.Text.Length,
+                        },
+                    },
                 };
 
                 // Create the array of parameters for this function based
@@ -280,11 +291,12 @@ namespace Yarn.Compiler
         public override Yarn.IType VisitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context)
         {
             var expressionType = Visit(context.expression());
-            var variableType = Visit(context.variable());
+            var variableContext = context.variable();
+            var variableType = base.Visit(variableContext);
 
-            var variableName = context.variable().GetText();
+            var variableName = variableContext.GetText();
 
-            ParserRuleContext[] terms = { context.variable(), context.expression() };
+            ParserRuleContext[] terms = { variableContext, context.expression() };
 
             Yarn.IType type;
 
@@ -319,9 +331,20 @@ namespace Yarn.Compiler
                             Type = expressionType,
                             DefaultValue = DefaultValueForType(expressionType),
                             SourceFileName = sourceFileName,
-                            SourceFileLine = context.Start.Line,
                             SourceNodeName = currentNodeName,
-                            SourceNodeLine = context.Start.Line - nodePositionInFile,
+                            Range = new Range
+                            {
+                                Start =
+                                {
+                                    Line = variableContext.Start.Line - 1,
+                                    Character = variableContext.Start.Column,
+                                },
+                                End =
+                                {
+                                    Line = variableContext.Stop.Line - 1,
+                                    Character = variableContext.Stop.Column + variableContext.GetText().Length,
+                                },
+                            },
                             IsImplicit = true,
                         };
                         NewDeclarations.Add(decl);
@@ -454,17 +477,13 @@ namespace Yarn.Compiler
                 .Concat(terms.OfType<YarnSpinnerParser.ValueVarContext>().Select(v => v.variable()))
                 .Where(c => c != null);
 
-            // Get their names
-            var variableNames = variableContexts
-                .Select(v => v.VAR_ID().GetText())
+            // Build the list of variable contexts that we don't have a
+            // declaration for. We'll check for explicit declarations first.
+            var undefinedVariableContexts = variableContexts
+                .Where(v => Declarations.Any(d => d.Name == v.VAR_ID().GetText()) == false)
                 .Distinct();
 
-            // Build the list of variable names that we don't have a
-            // declaration for. We'll check for explicit declarations first.
-            var undefinedVariableNames = variableNames
-                .Where(name => Declarations.Any(d => d.Name == name) == false);
-
-            if (undefinedVariableNames.Count() > 0)
+            if (undefinedVariableContexts.Count() > 0)
             {
                 // We have references to variables that we don't have a an
                 // explicit declaration for! Time to create implicit
@@ -476,19 +495,30 @@ namespace Yarn.Compiler
                 // The start line of the body is the line after the delimiter
                 int nodePositionInFile = this.currentNodeContext.BODY_START().Symbol.Line + 1;
 
-                foreach (var undefinedVariableName in undefinedVariableNames)
+                foreach (var undefinedVariableContext in undefinedVariableContexts)
                 {
                     // Generate a declaration for this variable here.
                     var decl = new Declaration
                     {
-                        Name = undefinedVariableName,
+                        Name = undefinedVariableContext.VAR_ID().GetText(),
                         Description = $"{System.IO.Path.GetFileName(sourceFileName)}, node {currentNodeName}, line {positionInFile - nodePositionInFile}",
                         Type = expressionType,
                         DefaultValue = DefaultValueForType(expressionType),
                         SourceFileName = sourceFileName,
-                        SourceFileLine = positionInFile,
                         SourceNodeName = currentNodeName,
-                        SourceNodeLine = positionInFile - nodePositionInFile,
+                        Range = new Range
+                        {
+                            Start =
+                            {
+                                Line = undefinedVariableContext.Start.Line - 1,
+                                Character = undefinedVariableContext.Start.Column,
+                            },
+                            End =
+                            {
+                                Line = undefinedVariableContext.Stop.Line - 1,
+                                Character = undefinedVariableContext.Stop.Column + undefinedVariableContext.Stop.Text.Length,
+                            },
+                        },
                         IsImplicit = true,
                     };
                     NewDeclarations.Add(decl);

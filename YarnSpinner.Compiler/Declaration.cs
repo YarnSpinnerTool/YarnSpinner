@@ -2,6 +2,74 @@ namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
+
+    /// <summary>
+    /// Represents a range of text in a multi-line string.
+    /// </summary>
+    [System.Serializable]
+    public class Range
+    {
+        /// <summary>
+        /// Gets or sets the start position of this range.
+        /// </summary>
+        public Position Start { get; set; } = new Position();
+
+        /// <summary>
+        /// Gets or sets the end position of this range.
+        /// </summary>
+        public Position End { get; set; } = new Position();
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            return obj is Range range &&
+                   EqualityComparer<Position>.Default.Equals(this.Start, range.Start) &&
+                   EqualityComparer<Position>.Default.Equals(this.End, range.End);
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            int hashCode = -1676728671;
+            hashCode = (hashCode * -1521134295) + EqualityComparer<Position>.Default.GetHashCode(this.Start);
+            hashCode = (hashCode * -1521134295) + EqualityComparer<Position>.Default.GetHashCode(this.End);
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// Represents a position in a multi-line string.
+    /// </summary>
+    public class Position
+    {
+
+        /// <summary>
+        /// Gets or sets the zero-indexed line of this position.
+        /// </summary>
+        public int Line { get; set; } = -1;
+
+        /// <summary>
+        /// Gets or sets the zero-indexed character number of this position.
+        /// </summary>
+        public int Character { get; set; } = -1;
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            return obj is Position position &&
+                   this.Line == position.Line &&
+                   this.Character == position.Character;
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            int hashCode = 1927683087;
+            hashCode = (hashCode * -1521134295) + this.Line.GetHashCode();
+            hashCode = (hashCode * -1521134295) + this.Character.GetHashCode();
+            return hashCode;
+        }
+    }
     
     [System.Serializable]
     public class Declaration
@@ -100,17 +168,7 @@ namespace Yarn.Compiler
         /// If this <see cref="Declaration"/> was not found in a Yarn
         /// source file, this will be -1.
         /// </remarks>
-        public int SourceFileLine { get => sourceFileLine; internal set => sourceFileLine = value; }
-
-        /// <summary>
-        /// Gets the line number at which this Declaration was found in the node
-        /// indicated by <see cref="SourceNodeName"/>.
-        /// </summary>
-        /// <remarks>
-        /// If this <see cref="Declaration"/> was not found in a Yarn
-        /// source file, this will be -1.
-        /// </remarks>
-        public int SourceNodeLine { get => sourceNodeLine; internal set => sourceNodeLine = value; }
+        public int SourceFileLine => Range.Start.Line;
 
         /// <summary>
         /// Get or sets a value indicating whether this Declaration was implicitly
@@ -129,14 +187,23 @@ namespace Yarn.Compiler
         /// </summary>
         public const string ExternalDeclaration = "(External)";
 
+        /// <summary>
+        /// Gets the range of text at which this declaration occurs.
+        /// </summary>
+        /// <remarks>
+        /// This range refers to the declaration of the symbol itself, and not
+        /// any syntax surrounding it. For example, the declaration
+        /// <c>&lt;&lt;declare $x = 1&gt;&gt;</c> would have a Range referring
+        /// to the <c>$x</c> symbol.
+        /// </remarks>
+        public Range Range { get; internal set; } = new Range();
+
         private string name;
         private IConvertible defaultValue;
         private Yarn.IType type;
         private string description;
         private string sourceFileName;
         private string sourceNodeName;
-        private int sourceFileLine;
-        private int sourceNodeLine;
         
         public Declaration()
         {
@@ -182,5 +249,6 @@ namespace Yarn.Compiler
                 ^ this.DefaultValue.GetHashCode()
                 ^ (this.Description ?? string.Empty).GetHashCode();
         }
+
     }
 }

@@ -878,8 +878,7 @@ namespace Yarn.Compiler
                 {
                     Name = function.Key,
                     Type = functionType,
-                    SourceFileLine = -1,
-                    SourceNodeLine = -1,
+                    Range = { },
                     SourceFileName = Declaration.ExternalDeclaration,
                     SourceNodeName = null,
                 };

@@ -45,7 +45,16 @@ namespace YarnSpinner.Tests
                     Name = "$int",
                     Type = BuiltinTypes.Number,
                     DefaultValue = 5f,
-                    SourceNodeLine = 1,
+                    Range = new Yarn.Compiler.Range {
+                        Start = {
+                            Line = 3,
+                            Character = 22,
+                        },
+                        End = {
+                            Line = 3,
+                            Character = 26,
+                        }
+                    },
                     SourceNodeName = "Start",
                     SourceFileName = "input",
                 },
@@ -53,7 +62,16 @@ namespace YarnSpinner.Tests
                     Name = "$str",
                     Type = BuiltinTypes.String,
                     DefaultValue = "yes",
-                    SourceNodeLine = 2,
+                    Range = new Yarn.Compiler.Range {
+                        Start = {
+                            Line = 4,
+                            Character = 22,
+                        },
+                        End = {
+                            Line = 4,
+                            Character = 26,
+                        }
+                    },
                     SourceNodeName = "Start",
                     SourceFileName = "input",
                 },
@@ -61,7 +79,16 @@ namespace YarnSpinner.Tests
                     Name = "$bool",
                     Type = BuiltinTypes.Boolean,
                     DefaultValue = true,
-                    SourceNodeLine = 11,
+                    Range = new Yarn.Compiler.Range {
+                        Start = {
+                            Line = 13,
+                            Character = 22,
+                        },
+                        End = {
+                            Line = 13,
+                            Character = 27,
+                        }
+                    },
                     SourceNodeName = "Start",
                     SourceFileName = "input",
                 },
@@ -77,7 +104,7 @@ namespace YarnSpinner.Tests
                 Assert.Equal(expected.Name, actual.Name);
                 Assert.Equal(expected.Type, actual.Type);
                 Assert.Equal(expected.DefaultValue, actual.DefaultValue);
-                Assert.Equal(expected.SourceNodeLine, actual.SourceNodeLine);
+                Assert.Equal(expected.Range, actual.Range);
                 Assert.Equal(expected.SourceNodeName, actual.SourceNodeName);
                 Assert.Equal(expected.SourceFileName, actual.SourceFileName);
             }
@@ -696,7 +723,7 @@ namespace YarnSpinner.Tests
 
             // Both declarations that resulted from the compile should be functions found on line 1
             foreach (var decl in result.Declarations) {
-                Assert.Equal(1, decl.SourceNodeLine);
+                Assert.Equal(3, decl.Range.Start.Line);
                 Assert.IsType<FunctionType>(decl.Type);
             }
 
