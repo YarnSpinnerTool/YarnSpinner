@@ -444,19 +444,24 @@ namespace Yarn.Compiler
         
         private void GenerateTrackingCode(string variableName)
         {
+            GenerateTrackingCode(this.compiler, variableName);
+        }
+        // really ought to make this emit like a list of opcodes actually
+        public static void GenerateTrackingCode(Compiler compiler, string variableName)
+        {
             // pushing the var and the increment onto the stack
-            this.compiler.Emit(OpCode.PushVariable, new Operand(variableName));
-            this.compiler.Emit(OpCode.PushFloat, new Operand(1));
+            compiler.Emit(OpCode.PushVariable, new Operand(variableName));
+            compiler.Emit(OpCode.PushFloat, new Operand(1));
 
             // Indicate that we are pushing this many items for comparison
-            this.compiler.Emit(OpCode.PushFloat, new Operand(2));
+            compiler.Emit(OpCode.PushFloat, new Operand(2));
 
             // calling the function
-            this.compiler.Emit(OpCode.CallFunc, new Operand("Number.Add"));
+            compiler.Emit(OpCode.CallFunc, new Operand("Number.Add"));
 
             // now store the variable and clean up the stack
-            this.compiler.Emit(OpCode.StoreVariable, new Operand(variableName));
-            this.compiler.Emit(OpCode.Pop);
+            compiler.Emit(OpCode.StoreVariable, new Operand(variableName));
+            compiler.Emit(OpCode.Pop);
         }
 
         // * / %

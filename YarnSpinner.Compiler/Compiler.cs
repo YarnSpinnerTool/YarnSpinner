@@ -1146,6 +1146,10 @@ namespace Yarn.Compiler
         // everything from that point onwards
         public override void EnterBody(YarnSpinnerParser.BodyContext context)
         {
+            // ok so something in here needs to be a bit different
+            // also need to emit tracking code here for when we fall out of a node that needs tracking?
+            // or should do I do in inside the codegenvisitor?
+
             // if it is a regular node
             if (!RawTextNode)
             {
@@ -1177,6 +1181,18 @@ namespace Yarn.Compiler
 
         public override void ExitBody(YarnSpinnerParser.BodyContext context)
         {
+            // this gives us the final increment at the end of the node
+            // this is for when we visit and complete a node without a jump
+            // theoretically this does mean that there might be redundant increments
+            // but I don't think it will matter because a jump always prevents
+            // the extra increment being reached
+            // a bit inelegant to do it this way but the codegen visitor doesn't exit a node
+            // will do for now, shouldn't be hard to refactor this later
+            string track = TrackingNodes.Contains(CurrentNode.Name) ? Yarn.Library.GenerateUniqueVisitedVariableForNode(CurrentNode.Name) : null;
+            if (track != null)
+            {
+                CodeGenerationVisitor.GenerateTrackingCode(this, track);
+            }
             // We have exited the body; emit a 'stop' opcode here.
             Emit(CurrentNode, OpCode.Stop);
         }
