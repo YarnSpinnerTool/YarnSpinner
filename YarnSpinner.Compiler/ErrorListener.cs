@@ -1,4 +1,4 @@
-﻿namespace Yarn.Compiler
+namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -95,8 +95,14 @@
     internal sealed class LexerErrorListener : IAntlrErrorListener<int>
     {
         private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
+        private readonly string fileName;
 
         public IEnumerable<Diagnostic> Diagnostics => this.diagnostics;
+
+        public LexerErrorListener(string fileName) : base() {
+            this.fileName = fileName;
+        }
+
 
         public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
@@ -107,8 +113,13 @@
     internal sealed class ParserErrorListener : BaseErrorListener
     {
         private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
+        private readonly string fileName;
 
         public IEnumerable<Diagnostic> Diagnostics => this.diagnostics;
+
+        public ParserErrorListener(string fileName) : base() {
+            this.fileName = fileName;
+        }
 
         public override void SyntaxError(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {

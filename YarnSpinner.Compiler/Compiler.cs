@@ -907,8 +907,8 @@ namespace Yarn.Compiler
             YarnSpinnerParser parser = new YarnSpinnerParser(tokens);
 
             // turning off the normal error listener and using ours
-            var parserErrorListener = new ParserErrorListener();
-            var lexerErrorListener = new LexerErrorListener();
+            var parserErrorListener = new ParserErrorListener(fileName);
+            var lexerErrorListener = new LexerErrorListener(fileName);
 
             parser.ErrorHandler = new ErrorStrategy();
 
