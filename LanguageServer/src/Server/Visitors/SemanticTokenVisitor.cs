@@ -228,7 +228,7 @@ namespace YarnLanguageServer
             return base.VisitCommand_statement(context);
         }
 
-        public override bool VisitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context)
+        public override bool VisitJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context)
         {
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
             AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword); // >>
@@ -236,7 +236,17 @@ namespace YarnLanguageServer
             AddTokenType(context.COMMAND_JUMP(), SemanticTokenType.Function); // jump
             AddTokenType(context.destination, SemanticTokenType.Class); // node_name
 
-            return base.VisitJump_statement(context);
+            return base.VisitJumpToNodeName(context);
+        }
+
+        public override bool VisitJumpToExpression ([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
+        {
+            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
+            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword); // >>
+
+            AddTokenType(context.COMMAND_JUMP(), SemanticTokenType.Function); // jump
+
+            return base.VisitJumpToExpression(context);
         }
 
         public override bool VisitHashtag([NotNull] YarnSpinnerParser.HashtagContext context)

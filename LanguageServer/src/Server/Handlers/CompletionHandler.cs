@@ -165,8 +165,14 @@ namespace YarnLanguageServer.Handlers
                                 {
                                     Label = variableDeclaration.Name,
                                     Kind = CompletionItemKind.Variable,
-                                    Documentation = variableDeclaration.Documentation.OrDefault($"(variable) {variableDeclaration.Name}"),
-                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = variableDeclaration.Name, Range = indexTokenRange }),
+                                    Documentation = variableDeclaration.Description.OrDefault($"(variable) {variableDeclaration.Name}"),
+                                    TextEdit = new TextEditOrInsertReplaceEdit(
+                                        new TextEdit
+                                        {
+                                            NewText = variableDeclaration.Name,
+                                            Range = indexTokenRange,
+                                        }
+                                    ),
                                 }
                             );
                             results.AddRange(variableResults);

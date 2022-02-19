@@ -43,17 +43,24 @@ namespace YarnLanguageServer.Diagnostics
 
         private static IEnumerable<Diagnostic> UndeclaredVariables(YarnFileData yarnFile, Workspace workspace)
         {
-            var undeclaredVariables = yarnFile.VariableReferences.Where(v => !workspace.GetVariables(v.Text).Any());
+            // Find all variable references in this file where the declaration,
+            // if any, is an implicit one. If it is, then we should suggest that
+            // the user create a declaration for it.
+            var undeclaredVariables = yarnFile.VariableReferences
+                .Where(@ref => workspace
+                    .GetVariables(@ref.Text)
+                    .FirstOrDefault()?
+                    .IsImplicit ?? false
+                );
 
-            var warnings = undeclaredVariables.Select(v => new Diagnostic
+            return undeclaredVariables.Select(v => new Diagnostic
             {
-                Message = $"Could not find variable declaration",
+                Message = "Variable should be declared",
                 Severity = DiagnosticSeverity.Warning,
                 Range = PositionHelper.GetRange(yarnFile.LineStarts, v),
                 Code = nameof(YarnDiagnosticCode.YRNMsngVarDec),
                 Data = JToken.FromObject(v.Text),
             });
-            return warnings;
         }
     }
 }

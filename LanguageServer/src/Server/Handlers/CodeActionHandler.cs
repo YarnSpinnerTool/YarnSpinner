@@ -61,8 +61,12 @@ namespace YarnLanguageServer.Handlers
             var name = diagnostic.Data?.ToString();
             if (string.IsNullOrEmpty(name)) { return Enumerable.Empty<CommandOrCodeAction>(); }
 
+            // Suggest potential renamings by fuzzy-searching for the existing
+            // input, and offering suggestions that replace the text.
             var suggestions =
-                workspace.GetVariables(name, true).DistinctBy(d => d.Name)
+                workspace.GetVariables(name, true)
+                .Where(decl => decl.Name != name)
+                .DistinctBy(d => d.Name)
                 .Take(10)
                 .Select(declaration =>
                 {
@@ -80,22 +84,44 @@ namespace YarnLanguageServer.Handlers
                 .Select(s => new CommandOrCodeAction(s));
 
             var insertDeclarationEdit = new Dictionary<DocumentUri, IEnumerable<TextEdit>>();
-            var insertPosition = new Position(diagnostic.Range.Start.Line, 0);
-            insertDeclarationEdit[uri] = new List<TextEdit> {
-                new TextEdit {
-                    NewText = $"<<declare {name} = 0>>\n", // TODO: possible to indent / space in line with other statements?
-                    Range = new Range(insertPosition, insertPosition), }, };
-            suggestions = suggestions.Prepend(
-                new CommandOrCodeAction(
-                    new CodeAction
-                    {
-                        Title = $"Generate variable declaration '{name}'",
-                        Kind = CodeActionKind.QuickFix,
-                        IsPreferred = true,
-                        Edit = new WorkspaceEdit { Changes = insertDeclarationEdit },
-                    }
-                )
+
+            var existingDeclaration = workspace.GetVariables(name).FirstOrDefault(decl => decl.IsImplicit);
+
+            if (existingDeclaration != null)
+            {
+                // We have the implicit declaration of this variable, so we know
+                // its type and its initial value. Create a declaration using
+                // this.
+                string type;
+                string defaultValue;
+                
+                DeclarationHelper.GetDeclarationInfo(existingDeclaration, out type, out defaultValue);
+
+                // TODO: possible to indent / space in line with other
+                // statements?
+                var declarationText = $"<<declare {name} = {defaultValue} as {type}>>\n";
+
+                var insertPosition = new Position(diagnostic.Range.Start.Line, 0);
+
+                insertDeclarationEdit[uri] = new List<TextEdit> {
+                    new TextEdit {
+                        NewText = declarationText,
+                        Range = new Range(insertPosition, insertPosition),
+                    },
+                };
+
+                suggestions = suggestions.Prepend(
+                    new CommandOrCodeAction(
+                        new CodeAction
+                        {
+                            Title = $"Generate variable declaration '{name}'",
+                            Kind = CodeActionKind.QuickFix,
+                            IsPreferred = true,
+                            Edit = new WorkspaceEdit { Changes = insertDeclarationEdit },
+                        }
+                    )
                 );
+            }
             return suggestions;
         }
 

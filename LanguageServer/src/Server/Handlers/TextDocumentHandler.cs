@@ -36,6 +36,8 @@ namespace YarnLanguageServer.Handlers
             // probably don't need text parameter here, but could be a good sanity check
             yarnDocument.Open(text, workspace);
 
+            workspace.UpdateWorkspace();
+
             return Unit.Task;
         }
 
@@ -75,6 +77,8 @@ namespace YarnLanguageServer.Handlers
             // Finally, update our model using the new content.
             yarnDocument.Update(yarnDocument.Text, workspace);
 
+            workspace.UpdateWorkspace();
+
             return Unit.Task;
         }
 
@@ -89,9 +93,6 @@ namespace YarnLanguageServer.Handlers
 
         public override Task<Unit> Handle(DidCloseTextDocumentParams request, CancellationToken cancellationToken)
         {
-            // Remove this Yarn file from the ones we're tracking
-            var uri = request.TextDocument.Uri.ToUri();
-            workspace.YarnFiles.Remove(uri);
             return Unit.Task;
         }
 

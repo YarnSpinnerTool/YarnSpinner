@@ -40,14 +40,6 @@ namespace YarnLanguageServer
         public string Documentation; // Is there a good place to get this or should we just look at the header lines?
     }
 
-    public struct YarnVariableDeclaration
-    {
-        public string Name;
-        public Uri DefinitionFile; // more like declaration but w/e
-        public Range DefinitionRange;
-        public string Documentation;
-    }
-
     /// <summary>
     /// Info about a single function or command call expression including whitespace and parenthesis.
     /// </summary>

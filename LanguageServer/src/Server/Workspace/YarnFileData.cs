@@ -14,6 +14,7 @@ using YarnLanguageServer.Diagnostics;
 // OmniSharp.Extensions.LanguageServer.Protocol.Models.Diagnostic and
 // Yarn.Compiler.Diagnostic
 using Diagnostic = OmniSharp.Extensions.LanguageServer.Protocol.Models.Diagnostic;
+using Position = OmniSharp.Extensions.LanguageServer.Protocol.Models.Position;
 
 namespace YarnLanguageServer
 {
@@ -81,11 +82,6 @@ namespace YarnLanguageServer
 
             // Turn off compiler error listeners, and replace with our friendly / error tolerant ones
             Lexer.RemoveErrorListeners();
-            var lexerDiagnosticErrorListener = new LexerDiagnosticErrorListener();
-            Lexer.AddErrorListener(lexerDiagnosticErrorListener);
-            Parser.RemoveErrorListeners();
-            var parserDiagnosticErrorListener = new ParserDiagnosticErrorListener();
-            Parser.AddErrorListener(parserDiagnosticErrorListener);
 
             // Attempt actual parse
             ParseTree = Parser.dialogue(); // Dialogue is the root node of the syntax tree
@@ -96,10 +92,6 @@ namespace YarnLanguageServer
             DocumentSymbols = DocumentSymbolsVisitor.Visit(this);
 
             CodeCompletionCore = new CodeCompletionCore(Parser, Handlers.CompletionHandler.PreferedRules, Handlers.CompletionHandler.IgnoredTokens);
-
-            // Can save parsing/lexing errors here, becuase they should only change when the file needs to be reparsed
-            CompilerDiagnostics = parserDiagnosticErrorListener.Errors.Concat(lexerDiagnosticErrorListener.Errors);
-            PublishDiagnostics();
 
             PublishNodeInfos();
         }
@@ -139,23 +131,7 @@ namespace YarnLanguageServer
             }
         }
 
-        public void PublishDiagnostics()
-        {
-            // Here are the diagnostics that might change depending on other things in the workspace
-            var diagnostics = Warnings.GetWarnings(this, Workspace);
-            diagnostics = diagnostics.Concat(SemanticErrors.GetErrors(this, Workspace));
-            this.HasSemanticDiagnostics = diagnostics.Any();
-
-            diagnostics = diagnostics.Concat(CompilerDiagnostics);
-
-            Workspace.LanguageServer.TextDocument.PublishDiagnostics(
-                new PublishDiagnosticsParams
-                {
-                    Uri = Uri,
-                    Version = null,
-                    Diagnostics = new Container<Diagnostic>(diagnostics),
-                });
-        }
+        
         public int? GetRawToken(Position position)
         {
             // TODO: Not sure if it's even worth using a visitor vs just iterating through the token list.
@@ -200,11 +176,6 @@ namespace YarnLanguageServer
         public IEnumerable<IToken> VariableReferences => NodeInfos
             .SelectMany(n => n.VariableReferences)
             .Select(variableToken => variableToken);
-
-        /// <summary>
-        /// Gets the collection of all variable declarations in this file.
-        /// </summary>
-        public IEnumerable<YarnVariableDeclaration> VariableDeclarations => NodeInfos.SelectMany(n => n.VariableDeclarations);
 
         /// <summary>
         /// Gets the number of lines in this file.

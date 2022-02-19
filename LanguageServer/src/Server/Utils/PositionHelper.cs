@@ -57,5 +57,14 @@ namespace YarnLanguageServer
                 End = GetPosition(lineStarts, end + 1),
             };
         }
+
+        public static Range GetRange(Yarn.Compiler.Range range) {
+            return new Range(
+                range.Start.Line,
+                range.Start.Character,
+                range.End.Line,
+                range.End.Character
+            );
+        }
     }
 }

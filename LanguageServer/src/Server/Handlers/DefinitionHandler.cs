@@ -41,18 +41,34 @@ namespace YarnLanguageServer.Handlers
                         return Task.FromResult<LocationOrLocationLinks>(new LocationOrLocationLinks(locations));
 
                     case YarnSymbolType.Variable:
-                        var vDefinitionMatches = workspace.YarnFiles.Values.SelectMany(yf => yf.VariableDeclarations.Where(dv => dv.Name == token.Text).Select(t => (yf.Uri, t.DefinitionRange)));
+                        var vDefinitionMatches = workspace.Declarations.Where(dv => dv.Name == token.Text)
+                        .Select(d => (Uri: d.SourceFileName, d.Range));
+
                         locations = vDefinitionMatches.Select(definition =>
-                            new LocationOrLocationLink(new Location { Uri = definition.Uri, Range = definition.DefinitionRange })
+                            new LocationOrLocationLink(
+                                new Location
+                                {
+                                    Uri = definition.Uri,
+                                    Range = PositionHelper.GetRange(definition.Range),
+                                }
+                            )
                         );
                         return Task.FromResult<LocationOrLocationLinks>(new LocationOrLocationLinks(locations));
 
                     case YarnSymbolType.Node:
-                        var nDefinitionMatches = workspace.GetNodeTitles().Where(nt => nt.title == token.Text);
+                        var nDefinitionMatches = workspace.GetNodeTitles()
+                            .Where(nt => nt.title == token.Text);
+
                         locations = nDefinitionMatches.Select(definition =>
-                            new LocationOrLocationLink(new Location { Uri = definition.uri, Range = definition.range })
+                            new LocationOrLocationLink(
+                                new Location
+                                {
+                                    Uri = definition.uri,
+                                    Range = definition.range,
+                                }
+                            )
                         );
-                        return Task.FromResult<LocationOrLocationLinks>(new LocationOrLocationLinks(locations));
+                        return Task.FromResult(new LocationOrLocationLinks(locations));
                 }
             }
 

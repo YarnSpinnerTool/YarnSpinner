@@ -116,7 +116,7 @@ namespace YarnLanguageServer
             return base.VisitHeader(context);
         }
 
-        public override bool VisitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context)
+        public override bool VisitJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context)
         {
             var jump = new NodeJump
             {
@@ -126,7 +126,7 @@ namespace YarnLanguageServer
 
             currentNodeInfo.Jumps.Add(jump);
 
-            return base.VisitJump_statement(context);
+            return base.VisitJumpToNodeName(context);
         }
 
         public override bool VisitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context)
@@ -184,15 +184,6 @@ namespace YarnLanguageServer
             var token = context.variable().VAR_ID().Symbol;
             var documentation = GetDocumentComments(context, true).OrDefault($"(variable) {token.Text}");
 
-            var declaration = new YarnVariableDeclaration
-            {
-                DefinitionFile = yarnFileData.Uri,
-                DefinitionRange = PositionHelper.GetRange(yarnFileData.LineStarts, context.Start, context.Stop),
-                Documentation = documentation,
-                Name = token.Text,
-            };
-
-            currentNodeInfo.VariableDeclarations.Add(declaration);
             currentNodeInfo.VariableReferences.Add(token);
 
             return base.VisitDeclare_statement(context);

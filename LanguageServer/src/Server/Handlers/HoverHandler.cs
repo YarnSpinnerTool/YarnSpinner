@@ -53,18 +53,30 @@ namespace YarnLanguageServer.Handlers
                         {
                             var definition = variableDefinitions
                                 .OrderBy(v =>
-                                    v.DefinitionFile == request.TextDocument.Uri ? // definitions in the current file get priority
-                                        Math.Abs(token.Line - v.DefinitionRange.Start.Line) // within a file, closest definition wins
+                                    v.SourceFileName == request.TextDocument.Uri ? // definitions in the current file get priority
+                                        Math.Abs(token.Line - v.Range.Start.Line) // within a file, closest definition wins
                                         : 100_000) // don't care what order out of current file definitions come in
                                 .First();
+
+                            DeclarationHelper.GetDeclarationInfo(definition, out var type, out var defaultValue);
+
+                            var description = new System.Text.StringBuilder()
+                                .AppendFormat("`(variable) {0} : {1}`", definition.Name ?? "<unknown>", type)
+                                .AppendLine()
+                                .AppendLine()
+                                .AppendLine(definition.Description)
+                                .AppendLine()
+                                .AppendFormat($"Initial value: {defaultValue}")
+                                .ToString();
 
                             var result = new Hover
                             {
                                 Contents = new MarkedStringsOrMarkupContent(
-                                    new MarkedString[]
-                                    {
-                                        new MarkedString("text", definition.Documentation.OrDefault($"(variable) {definition.Name}")),
-                                    }),
+                                    new MarkupContent {
+                                        Kind = MarkupKind.Markdown,
+                                        Value = description,
+                                    }
+                                ),
                                 Range = PositionHelper.GetRange(yarnFile.LineStarts, token),
                             };
                             return Task.FromResult(result);

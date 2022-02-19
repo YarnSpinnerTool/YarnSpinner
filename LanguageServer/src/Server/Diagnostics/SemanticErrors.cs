@@ -13,30 +13,7 @@ namespace YarnLanguageServer.Diagnostics
         {
             var results = Enumerable.Empty<Diagnostic>();
 
-            results = results.Concat(VariableAlreadyDeclared(yarnFile, workspace));
             results = results.Concat(WrongParameterCountFunctions(yarnFile, workspace));
-
-            return results;
-        }
-
-        private static IEnumerable<Diagnostic> VariableAlreadyDeclared(YarnFileData yarnFile, Workspace workspace)
-        {
-            var allVariables = workspace.GetVariables();
-            var duplicates = allVariables
-                .Where(workspaceDeclarations => yarnFile.VariableDeclarations.Any(dv => dv.Name == workspaceDeclarations.Name))
-                .GroupBy(v => v.Name)
-                .Where(g => g.Count() > 1)
-                .SelectMany(grouping => grouping
-                    .Where(item => item.DefinitionFile == yarnFile.Uri))
-                ;
-            var results = duplicates
-                .Select(d => new Diagnostic
-                {
-                    Message = $" A variable named {d.Name} is already declared.",
-                    Severity = DiagnosticSeverity.Error,
-                    Range = d.DefinitionRange,
-                    Code = new DiagnosticCode(nameof(YarnDiagnosticCode.YRNDupVarDec)),
-                });
 
             return results;
         }

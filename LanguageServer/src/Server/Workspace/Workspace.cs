@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using MoreLinq;
+using OmniSharp.Extensions.LanguageServer.Protocol.Document;
+using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
+using YarnLanguageServer.Diagnostics;
 
 namespace YarnLanguageServer
 {
@@ -17,7 +20,15 @@ namespace YarnLanguageServer
         public ILanguageServer LanguageServer { get; protected set; }
         public List<(string YarnName, string DefinitionName, bool IsCommand, string FileName)> UnmatchedDefinitions { get; protected set; }
 
+        public IEnumerable<Yarn.Compiler.Declaration> Declarations { get; private set; }
+
         private Dictionary<string, RegisteredDefinition> functionDefinitionCache = new Dictionary<string, RegisteredDefinition>();
+
+        /// <summary>
+        /// The diagnostics messages produced from the last time this workspace
+        /// was updated.
+        /// </summary>
+        private IEnumerable<Yarn.Compiler.Diagnostic> Diagnostics = new List<Yarn.Compiler.Diagnostic>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Workspace"/> class.
@@ -45,11 +56,21 @@ namespace YarnLanguageServer
             yarnFiles = yarnFiles.Where(f => !f.Contains("PackageCache") && !f.Contains("Library"));
             foreach (var path in yarnFiles)
             {
-                OpenFile(path);
+                OpenFile(path, false);
             }
+            UpdateWorkspace();
         }
 
-        public YarnFileData? OpenFile(string path)
+        /// <summary>
+        /// Opens and begins tracking a Yarn file.
+        /// </summary>
+        /// <param name="path">The path to the Yarn file.</param>
+        /// <param name="updateWorkspace">Whether to update the workspace after opening.</param>
+        /// <remarks>
+        /// If you are opening multiple files at once (through repeated calls to <see cref="OpenFile"/>, pass false as the value for updateWorkspace, and call <see cref="UpdateWorkspace"/>.)
+        /// </remarks>
+        /// <returns>The new Yarn file data.</returns>
+        public YarnFileData? OpenFile(string path, bool updateWorkspace = true)
         {
             try
             {
@@ -62,6 +83,10 @@ namespace YarnLanguageServer
                 return yarnFileData;
             } catch (System.IO.IOException) {
                 return null;
+            } finally {
+                if (updateWorkspace) {
+                    UpdateWorkspace();
+                }
             }
         }
 
@@ -177,9 +202,6 @@ namespace YarnLanguageServer
             }
 
             FillFunctionDefinitionCache();
-
-            // Might be faster to only republish yarn files that already have semantic errors (ie errors that depend on the entire workspace)
-            YarnFiles.ForEach(yf => yf.Value.PublishDiagnostics());
         }
 
         public IEnumerable<(Uri uri, string title, Range range)> GetNodeTitles()
@@ -205,48 +227,41 @@ namespace YarnLanguageServer
                 .Distinct();
         }
 
-        public IEnumerable<YarnVariableDeclaration> GetVariables(string name = null, bool fuzzyMatch = false)
+        public IEnumerable<Yarn.Compiler.Declaration> GetVariables(string name = null, bool fuzzyMatch = false)
         {
-            var results = Enumerable.Empty<YarnVariableDeclaration>();
-            foreach (var fileEntry in YarnFiles)
+            if (name == null)
             {
-                var file = fileEntry.Value;
-                if (!fuzzyMatch)
-                {
-                    results = results.Concat(file.VariableDeclarations.Where(v => name == null || v.Name == name));
-                }
-                else if (fuzzyMatch)
-                {
-                    results = results.Concat(file.VariableDeclarations);
-                }
+                return this.Declarations;
             }
 
-            if (fuzzyMatch)
+            if (fuzzyMatch == false)
             {
-                // Todo: Refactor this part out and use for variables and functions
-                var threshold = Configuration.DidYouMeanThreshold;
-                var lev = new Fastenshtein.Levenshtein(name.ToLower());
-                results = results
-                    .Select(fd =>
+                return this.Declarations.Where(d => d.Name == name);
+            }
+
+            // Todo: Refactor this part out and use for variables and functions
+            var threshold = Configuration.DidYouMeanThreshold;
+            var lev = new Fastenshtein.Levenshtein(name.ToLower());
+
+            return Declarations.Select(declaration =>
+                {
+                    float distance = lev.DistanceFrom(declaration.Name.ToLower());
+                    var normalizedDistance = distance / Math.Max(Math.Max(name.Length, declaration.Name.Length), 1);
+
+                    if (distance <= 1
+                        || declaration.Name.Contains(name, StringComparison.OrdinalIgnoreCase)
+                        || name.Contains(declaration.Name, StringComparison.OrdinalIgnoreCase))
                     {
-                        float distance = lev.DistanceFrom(fd.Name.ToLower());
-                        var normalizedDistance = distance / Math.Max(Math.Max(name.Length, fd.Name.Length), 1);
+                        // include strings that contain each other even if they don't meet the threshold
+                        // usecase is more the user didn't finish typing instead of the user made a typo
+                        normalizedDistance = Math.Min(normalizedDistance, threshold);
+                    }
 
-                        if (distance <= 1 || fd.Name.ToLower().Contains(name.ToLower()) || name.ToLower().Contains(fd.Name.ToLower()))
-                        {
-                            // include strings that contain each other even if they don't meet the threshold
-                            // usecase is more the user didn't finish typing instead of the user made a typo
-                            normalizedDistance = Math.Min(normalizedDistance, threshold);
-                        }
-
-                        return (fd, normalizedDistance);
-                    })
-                    .Where(scoredfd => scoredfd.normalizedDistance <= threshold)
-                    .OrderBy(scorefd => scorefd.normalizedDistance)
-                    .Select(scoredfd => scoredfd.fd);
-            }
-
-            return results;
+                    return (Declaration: declaration, Distance: normalizedDistance);
+                })
+                .Where(scoredfd => scoredfd.Distance <= threshold)
+                .OrderBy(scorefd => scorefd.Distance)
+                .Select(scoredfd => scoredfd.Declaration);
         }
 
         public IEnumerable<RegisteredDefinition> GetFunctions()
@@ -305,31 +320,141 @@ namespace YarnLanguageServer
             return results;
         }
 
+        internal void UpdateWorkspace()
+        {
+            // Compile all files in the workspace.
+            var compilationJob = new Yarn.Compiler.CompilationJob
+            {
+                Files = YarnFiles.Select(pair => {
+                    var uri = pair.Key;
+                    var file = pair.Value;
+
+                    return new Yarn.Compiler.CompilationJob.File
+                    {
+                        FileName = uri.ToString(),
+                        Source = file.Text,
+                    };
+                }),
+                CompilationType = Yarn.Compiler.CompilationJob.Type.DeclarationsOnly,
+            };
+
+            var result = Yarn.Compiler.Compiler.Compile(compilationJob);
+
+            this.Diagnostics = result.Diagnostics;
+            this.Declarations = result.Declarations;
+
+            PublishDiagnostics();
+        }
+
+        public void PublishDiagnostics()
+        {
+            
+            // Here are the diagnostics that might change depending on other things in the workspace
+            // var diagnostics =  Warnings.GetWarnings(this, Workspace);
+            // diagnostics = diagnostics.Concat(SemanticErrors.GetErrors(this, Workspace));
+            // this.HasSemanticDiagnostics = diagnostics.Any();
+
+            // diagnostics = diagnostics.Concat(CompilerDiagnostics);
+
+            foreach (var filePair in this.YarnFiles) {
+
+                    var uri = filePair.Key;
+                    var diagnostics = this.Diagnostics
+                        .Where(d => d.FileName == uri.ToString())
+                        .Select(d => ConvertDiagnostic(d)).ToList();
+
+                // Add warnings for this file
+                diagnostics = diagnostics.Concat(Warnings.GetWarnings(filePair.Value, this)).ToList();
+
+                LanguageServer.TextDocument.PublishDiagnostics(
+                        new PublishDiagnosticsParams
+                        {
+                            Uri = uri,
+                            Diagnostics = diagnostics,
+                        }
+                    );
+            }
+
+        }
+
+        /// <summary>
+        /// Converts a <see cref="Yarn.Compiler.Diagnostic"/> object to a <see
+        /// cref="Diagnostic"/>.
+        /// </summary>
+        /// <param name="d">The <see cref="Yarn.Compiler.Diagnostic"/> to
+        /// convert.</param>
+        /// <returns>The converted <see cref="Diagnostic"/>.</returns>
+        private static Diagnostic ConvertDiagnostic(Yarn.Compiler.Diagnostic d)
+        {
+            return new Diagnostic
+            {
+                Range = new Range(
+                    d.Range.Start.Line,
+                    d.Range.Start.Character,
+                    d.Range.End.Line,
+                    d.Range.End.Character
+                ),
+                Message = d.Message,
+                Severity = d.Severity switch
+                {
+                    Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error => DiagnosticSeverity.Error,
+                    Yarn.Compiler.Diagnostic.DiagnosticSeverity.Warning => DiagnosticSeverity.Warning,
+                    Yarn.Compiler.Diagnostic.DiagnosticSeverity.Info => DiagnosticSeverity.Information,
+                    _ => DiagnosticSeverity.Error,
+                },
+                Source = d.FileName,
+            };
+        }
+
         private void FillFunctionDefinitionCache()
         {
             functionDefinitionCache.Clear();
 
-            var results = JsonConfigFiles.Values.Select(v => (IDefinitionsProvider)v).Concat(CSharpFiles.Values.Select(v => v)).SelectMany(fp => fp.Definitions.Values.Select(v => v));
+            var results = JsonConfigFiles.Values
+                .Cast<IDefinitionsProvider>()
+                .Concat(CSharpFiles.Values.Select(v => v))
+                .SelectMany(fp => fp.Definitions.Values.Select(v => v));
 
             // Now we need to merge any json / c# versions of definitons, where json is the base, and c# fills in anything missing
             // TODO: There's probably a better way to do this merge
             // Test cases to consider, multiple json entries and no csharp entries. Multiple valid definitions in csharp.
             results = results
-                .GroupBy(f => f.YarnName).Select(g => {
-                    if (g.Count() == 1) { return g.First(); }
-                    if (g.All(f => f.DefinitionFile.ToString().EndsWith(".cs"))) { return g.OrderBy(f => f.Priority).First(); }
+                .GroupBy(f => f.YarnName).Select(g =>
+                {
+                    if (g.Count() == 1)
+                    {
+                        return g.First();
+                    }
+
+                    if (g.All(f => f.DefinitionFile.ToString().EndsWith(".cs")))
+                    {
+                        return g.OrderBy(f => f.Priority).First();
+                    }
+
                     var jsonDef = g.FirstOrDefault(f => f.DefinitionFile.ToString().EndsWith(".json"));
-                    var csharpDef = g.OrderBy(f => f.Priority).FirstOrDefault(f => f.DefinitionFile.ToString().EndsWith(".cs") && !f.Signature.EndsWith("(?)"));
-                    if (string.IsNullOrWhiteSpace(csharpDef.YarnName)) { csharpDef = g.FirstOrDefault(f => f.DefinitionFile.ToString().EndsWith(".cs")); }
+
+                    var csharpDef = g.OrderBy(f => f.Priority)
+                        .FirstOrDefault(
+                            f => f.DefinitionFile.ToString().EndsWith(".cs")
+                                && !f.Signature.EndsWith("(?)")
+                        );
+
+                    if (string.IsNullOrWhiteSpace(csharpDef.YarnName))
+                    {
+                        csharpDef = g.FirstOrDefault(
+                            f => f.DefinitionFile.ToString().EndsWith(".cs")
+                        );
+                    }
 
                     jsonDef.DefinitionFile = csharpDef.DefinitionFile;
                     jsonDef.DefinitionRange = csharpDef.DefinitionRange;
-                    jsonDef.Parameters = jsonDef.Parameters ?? csharpDef.Parameters;
-                    jsonDef.MinParameterCount = jsonDef.MinParameterCount ?? csharpDef.MinParameterCount;
-                    jsonDef.MaxParameterCount = jsonDef.MaxParameterCount ?? csharpDef.MaxParameterCount;
-                    jsonDef.Documentation = jsonDef.Documentation ?? csharpDef.Documentation;
-                    jsonDef.Signature = jsonDef.Signature ?? csharpDef.Signature;
+                    jsonDef.Parameters ??= csharpDef.Parameters;
+                    jsonDef.MinParameterCount ??= csharpDef.MinParameterCount;
+                    jsonDef.MaxParameterCount ??= csharpDef.MaxParameterCount;
+                    jsonDef.Documentation ??= csharpDef.Documentation;
+                    jsonDef.Signature ??= csharpDef.Signature;
                     jsonDef.Language = Utils.CSharpLanguageID;
+
                     // Recalculate these just in case
                     jsonDef.MinParameterCount = jsonDef.Parameters?.Count(p => p.DefaultValue == null && !p.IsParamsArray);
                     jsonDef.MaxParameterCount = jsonDef.Parameters?.Any(p => p.IsParamsArray) == true ? null : jsonDef.Parameters.Count();
