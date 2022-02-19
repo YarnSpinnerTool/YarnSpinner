@@ -7,33 +7,96 @@
     using System.Text;
     using Antlr4.Runtime;
     
+    /// <summary>
+    /// A diagnostic message that describes an error, warning or informational
+    /// message that the user can take action on.
+    /// </summary>
+    /// <remarks>
+    /// Diagnostics are presented to the user as the result of compilation,
+    /// through the <see cref="CompilationResult"/> class's <see
+    /// cref="CompilationResult.Diagnostics"/> property.
+    /// </remarks>
     public sealed class Diagnostic
     {
+        /// <summary>
+        /// The path, URI or file-name that the issue occurred in.
+        /// </summary>
         public string FileName = "(not set)";
+
+        /// <summary>
+        /// The range of the file indicated by <see cref="FileName"/> that the
+        /// issue occurred in.
+        /// </summary>
         public Range Range = new Range();
+
+        /// <summary>
+        /// The description of the issue.
+        /// </summary>
         public string Message = "(internal error: no message provided)";
 
+        /// <summary>
+        /// The source text of <see cref="FileName"/> containing the issue.
+        /// </summary>
         public string Context = null;
+
+        /// <summary>
+        /// The severity of the issue.
+        /// </summary>
         public DiagnosticSeverity Severity = DiagnosticSeverity.Error;
 
+        /// <summary>
+        /// Gets the zero-indexed line number in FileName at which the issue begins.
+        /// </summary>
         [Obsolete("Use Range.Start.Line")]
         public int Line => Range.Start.Line;
 
+        /// <summary>
+        /// Gets the zero-indexed character number in FileName at which the issue
+        /// begins.
+        /// </summary>
         [Obsolete("Use Range.Start.Character")]
         public int Column => Range.Start.Character;
 
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Diagnostic"/> class.
+        /// </summary>
+        /// <param name="fileName"><inheritdoc cref="FileName"
+        /// path="/summary/node()"/></param>
+        /// <param name="message"><inheritdoc cref="Message"
+        /// path="/summary/node()"/></param>
+        /// <param name="severity"><inheritdoc cref="Severity"
+        /// path="/summary/node()"/></param>
         public Diagnostic(string fileName, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
             this.Message = message;
             this.Severity = severity;
         }
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Diagnostic"/> class.
+        /// </summary>
+        /// <param name="message"><inheritdoc cref="Message"
+        /// path="/summary/node()"/></param>
+        /// <param name="severity"><inheritdoc cref="Severity"
+        /// path="/summary/node()"/></param>
         public Diagnostic(string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         : this(null, message, severity)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Diagnostic"/> class.
+        /// </summary>
+        /// <param name="fileName"><inheritdoc cref="FileName"
+        /// path="/summary/node()"/></param>
+        /// <param name="context">The parse node at which the error
+        /// occurred.</param>
+        /// <param name="message"><inheritdoc cref="Message"
+        /// path="/summary/node()"/></param>
+        /// <param name="severity"><inheritdoc cref="Severity"
+        /// path="/summary/node()"/></param>
         public Diagnostic(string fileName, ParserRuleContext context, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
@@ -51,6 +114,17 @@
             this.Severity = severity;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Diagnostic"/> class.
+        /// </summary>
+        /// <param name="fileName"><inheritdoc cref="FileName"
+        /// path="/summary/node()"/></param>
+        /// <param name="range"><inheritdoc cref="Range"
+        /// path="/summary/node()"/></param>
+        /// <param name="message"><inheritdoc cref="Message"
+        /// path="/summary/node()"/></param>
+        /// <param name="severity"><inheritdoc cref="Severity"
+        /// path="/summary/node()"/></param>
         public Diagnostic(string fileName, Range range, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error) {
             this.FileName = fileName;
             this.Range = range;
@@ -58,13 +132,40 @@
             this.Severity = severity;
         }
 
+        /// <summary>
+        /// The severity of the issue.
+        /// </summary>
         public enum DiagnosticSeverity
         {
+            /// <summary>
+            /// An error.
+            /// </summary>
+            /// <remarks>
+            /// If a Yarn source file contains errors, it cannot be compiled,
+            /// and the compilation process will fail.
+            /// </remarks>
             Error,
+
+            /// <summary>
+            /// An warning.
+            /// </summary>
+            /// <remarks>
+            /// Warnings represent possible problems that the user should fix,
+            /// but do not cause the compilation process to fail.
+            /// </remarks>
             Warning,
-            Info
+
+            /// <summary>
+            /// An informational diagnostic.
+            /// </summary>
+            /// <remarks>
+            /// Infos represent possible issues or steps that the user may wish
+            /// to fix, but are unlikely to cause problems.
+            /// </remarks>
+            Info,
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -79,6 +180,7 @@
             return sb.ToString();
         }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             return obj is Diagnostic problem &&
@@ -89,6 +191,7 @@
                    this.Severity == problem.Severity;
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             int hashCode = -1856104752;
