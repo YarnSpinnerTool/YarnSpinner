@@ -73,7 +73,7 @@ namespace YarnSpinner.Tests
                     d =>
                     {
                         Assert.Contains("Variable names need to start with a $", d.Message);
-                        Assert.Equal(4, d.Line);
+                        Assert.Equal(3, d.Range.Start.Line);
                     }
                 );            
             }

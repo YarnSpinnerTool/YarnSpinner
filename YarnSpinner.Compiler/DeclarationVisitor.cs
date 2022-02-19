@@ -117,7 +117,8 @@ namespace Yarn.Compiler
             string description = Compiler.GetDocumentComments(tokens, context);
 
             // Get the name of the variable we're declaring
-            string variableName = context.variable().GetText();
+            var variableContext = context.variable();
+            string variableName = variableContext.GetText();
 
             // Does this variable name already exist in our declarations?
             var existingExplicitDeclaration = Declarations.Where(d => d.IsImplicit == false).FirstOrDefault(d => d.Name == variableName);
@@ -177,10 +178,21 @@ namespace Yarn.Compiler
                 Type = value.Type,
                 DefaultValue = value.InternalValue,
                 Description = description,
-                SourceFileName = sourceFileName,
-                SourceFileLine = positionInFile,
-                SourceNodeName = currentNodeName,
-                SourceNodeLine = positionInFile - nodePositionInFile,
+                SourceFileName = this.sourceFileName,
+                SourceNodeName = this.currentNodeName,
+                Range = new Range
+                {
+                    Start =
+                    {
+                        Line = variableContext.Start.Line - 1,
+                        Character = variableContext.Start.Column,
+                    },
+                    End =
+                    {
+                        Line = variableContext.Stop.Line - 1,
+                        Character = variableContext.Stop.Column + variableContext.GetText().Length,
+                    },
+                },
                 IsImplicit = false,
             };
 
