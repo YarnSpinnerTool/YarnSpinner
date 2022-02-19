@@ -172,7 +172,7 @@ namespace Yarn.Compiler
         }
 
         // emits the required bytecode for the function call
-        private void HandleFunction(string functionName, YarnSpinnerParser.ExpressionContext[] parameters)
+        private void GenerateCodeForFunctionCall(string functionName, YarnSpinnerParser.ExpressionContext[] parameters)
         {
             // generate the instructions for all of the parameters
             foreach (var parameter in parameters)
@@ -192,7 +192,7 @@ namespace Yarn.Compiler
         {
             string functionName = context.FUNC_ID().GetText();
 
-            this.HandleFunction(functionName, context.expression());
+            this.GenerateCodeForFunctionCall(functionName, context.expression());
 
             return 0;
         }
