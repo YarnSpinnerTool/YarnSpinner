@@ -16,6 +16,12 @@
         public string Context = null;
         public DiagnosticSeverity Severity = DiagnosticSeverity.Error;
 
+        [Obsolete("Use Range.Start.Line")]
+        public int Line => Range.Start.Line;
+
+        [Obsolete("Use Range.Start.Character")]
+        public int Column => Range.Start.Character;
+
         public Diagnostic(string fileName, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
