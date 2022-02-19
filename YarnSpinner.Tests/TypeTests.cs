@@ -788,5 +788,55 @@ namespace YarnSpinner.Tests
 
             Assert.NotEmpty(allBuiltinTypes);
         }
+
+        [Fact]
+        public void TestDeclarationBuilderCanBuildDeclarations()
+        {
+            // Given
+            var declaration = new DeclarationBuilder()
+                .WithName("$myVar")
+                .WithDescription("my description")
+                .WithImplicit(false)
+                .WithSourceFileName("MyFile.yarn")
+                .WithSourceNodeName("Test")
+                .WithRange(new Yarn.Compiler.Range(0, 0, 0, 10))
+                .WithType(BuiltinTypes.String)
+                .Declaration;
+
+            var expectedDeclaration = new Declaration
+            {
+                Name = "$myVar",
+                Description = "my description",
+                IsImplicit = false,
+                SourceFileName = "MyFile.yarn",
+                SourceNodeName = "Test",
+                Range = new Yarn.Compiler.Range(0, 0, 0, 10),
+                Type = BuiltinTypes.String
+            };
+
+            // Then
+            Assert.Equal(expectedDeclaration, declaration);
+        }
+
+        [Fact]
+        public void TestFunctionTypeBuilderCanBuildTypes() {
+            // Given
+            var expectedFunctionType = new FunctionType();
+            expectedFunctionType.ReturnType = BuiltinTypes.String;
+            expectedFunctionType.AddParameter(BuiltinTypes.String);
+            expectedFunctionType.AddParameter(BuiltinTypes.Number);
+
+            var functionType = new FunctionTypeBuilder()
+                .WithParameter(BuiltinTypes.String)
+                .WithParameter(BuiltinTypes.Number)
+                .WithReturnType(BuiltinTypes.String)
+                .FunctionType;
+
+            // Then
+            Assert.Equal(expectedFunctionType.Parameters.Count, functionType.Parameters.Count);
+            Assert.Equal(expectedFunctionType.Parameters[0], functionType.Parameters[0]);
+            Assert.Equal(expectedFunctionType.Parameters[1], functionType.Parameters[1]);
+            Assert.Equal(expectedFunctionType.ReturnType, functionType.ReturnType);
+        }
     }
 }
