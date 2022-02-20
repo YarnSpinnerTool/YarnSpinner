@@ -190,5 +190,28 @@ A line with a conditional, a comment and a line tag. <<if false>>  #line:expecte
             }
             
         }
+
+        [Fact]
+        public void TestDebugOutputIsProduced()
+        {
+            var input = CreateTestNode(@"This is a test node.", "DebugTesting");
+
+            var compilationJob = CompilationJob.CreateFromString("input", input);
+
+            var compilationResult = Compiler.Compile(compilationJob);
+
+            Assert.NotNull(compilationResult.DebugInfo);
+            Assert.Single(compilationResult.DebugInfo);
+
+            // The first instruction of the only node should begin on the third
+            // line
+            var success = compilationResult.DebugInfo.First().Value.TryGetLineInfo(0, out var firstLineInfo);
+
+            Assert.True(success, "Node debug info should exist for instruction zero");
+            Assert.Equal("input", firstLineInfo.FileName);
+            Assert.Equal("DebugTesting", firstLineInfo.NodeName);
+            Assert.Equal(2, firstLineInfo.LineNumber);
+            Assert.Equal(0, firstLineInfo.CharacterNumber);
+        }
     }
 }

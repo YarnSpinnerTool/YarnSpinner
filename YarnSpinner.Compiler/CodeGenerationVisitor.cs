@@ -77,7 +77,7 @@ namespace Yarn.Compiler
 
             var lineID = lineIDTag.text.Text;
 
-            this.compiler.Emit(OpCode.RunLine, new Operand(lineID), new Operand(expressionCount));
+            this.compiler.Emit(OpCode.RunLine, context.Start, new Operand(lineID), new Operand(expressionCount));
 
             return 0;
         }
@@ -95,26 +95,26 @@ namespace Yarn.Compiler
                     this.Visit(context.expression());
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_ADDITION_EQUALS:
-                    this.GenerateCodeForOperation(Operator.Add, context.expression().Type, context.variable(), context.expression());
+                    this.GenerateCodeForOperation(Operator.Add, context.op, context.expression().Type, context.variable(), context.expression());
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_SUBTRACTION_EQUALS:
-                    this.GenerateCodeForOperation(Operator.Minus, context.expression().Type, context.variable(), context.expression());
+                    this.GenerateCodeForOperation(Operator.Minus, context.op, context.expression().Type, context.variable(), context.expression());
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION_EQUALS:
-                    this.GenerateCodeForOperation(Operator.Multiply, context.expression().Type, context.variable(), context.expression());
+                    this.GenerateCodeForOperation(Operator.Multiply, context.op, context.expression().Type, context.variable(), context.expression());
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_DIVISION_EQUALS:
-                    this.GenerateCodeForOperation(Operator.Divide, context.expression().Type, context.variable(), context.expression());
+                    this.GenerateCodeForOperation(Operator.Divide, context.op, context.expression().Type, context.variable(), context.expression());
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_MODULUS_EQUALS:
-                    this.GenerateCodeForOperation(Operator.Modulo, context.expression().Type, context.variable(), context.expression());
+                    this.GenerateCodeForOperation(Operator.Modulo, context.op, context.expression().Type, context.variable(), context.expression());
                     break;
             }
 
             // now store the variable and clean up the stack
             string variableName = context.variable().GetText();
-            this.compiler.Emit(OpCode.StoreVariable, new Operand(variableName));
-            this.compiler.Emit(OpCode.Pop);
+            this.compiler.Emit(OpCode.StoreVariable, context.Start, new Operand(variableName));
+            this.compiler.Emit(OpCode.Pop, context.Start);
             return 0;
         }
 
@@ -161,10 +161,10 @@ namespace Yarn.Compiler
                 case "stop":
                     // "stop" is a special command that immediately stops
                     // execution
-                    this.compiler.Emit(OpCode.Stop);
+                    this.compiler.Emit(OpCode.Stop, context.command_formatted_text().Start);
                     break;
                 default:
-                    this.compiler.Emit(OpCode.RunCommand, new Operand(composedString), new Operand(expressionCount));
+                    this.compiler.Emit(OpCode.RunCommand, context.command_formatted_text().Start, new Operand(composedString), new Operand(expressionCount));
                     break;
             }
 
@@ -172,7 +172,7 @@ namespace Yarn.Compiler
         }
 
         // emits the required bytecode for the function call
-        private void GenerateCodeForFunctionCall(string functionName, YarnSpinnerParser.ExpressionContext[] parameters)
+        private void GenerateCodeForFunctionCall(string functionName, YarnSpinnerParser.Function_callContext functionContext, YarnSpinnerParser.ExpressionContext[] parameters)
         {
             // generate the instructions for all of the parameters
             foreach (var parameter in parameters)
@@ -181,10 +181,10 @@ namespace Yarn.Compiler
             }
 
             // push the number of parameters onto the stack
-            this.compiler.Emit(OpCode.PushFloat, new Operand(parameters.Length));
+            this.compiler.Emit(OpCode.PushFloat, functionContext.Start, new Operand(parameters.Length));
 
             // then call the function itself
-            this.compiler.Emit(OpCode.CallFunc, new Operand(functionName));
+            this.compiler.Emit(OpCode.CallFunc, functionContext.Start, new Operand(functionName));
         }
 
         // handles emiting the correct instructions for the function
@@ -192,7 +192,7 @@ namespace Yarn.Compiler
         {
             string functionName = context.FUNC_ID().GetText();
 
-            this.GenerateCodeForFunctionCall(functionName, context.expression());
+            this.GenerateCodeForFunctionCall(functionName, context, context.expression());
 
             return 0;
         }
@@ -207,19 +207,19 @@ namespace Yarn.Compiler
 
             // handle the if
             var ifClause = context.if_clause();
-            this.GenerateClause(endOfIfStatementLabel, ifClause.statement(), ifClause.expression());
+            this.GenerateClause(endOfIfStatementLabel, ifClause, ifClause.statement(), ifClause.expression());
 
             // all elseifs
             foreach (var elseIfClause in context.else_if_clause())
             {
-                this.GenerateClause(endOfIfStatementLabel, elseIfClause.statement(), elseIfClause.expression());
+                this.GenerateClause(endOfIfStatementLabel, elseIfClause, elseIfClause.statement(), elseIfClause.expression());
             }
 
             // the else, if there is one
             var elseClause = context.else_clause();
             if (elseClause != null)
             {
-                this.GenerateClause(endOfIfStatementLabel, elseClause.statement(), null);
+                this.GenerateClause(endOfIfStatementLabel, elseClause, elseClause.statement(), null);
             }
 
             this.compiler.CurrentNode.Labels.Add(endOfIfStatementLabel, this.compiler.CurrentNode.Instructions.Count);
@@ -227,7 +227,7 @@ namespace Yarn.Compiler
             return 0;
         }
 
-        private void GenerateClause(string jumpLabel, YarnSpinnerParser.StatementContext[] children, YarnSpinnerParser.ExpressionContext expression)
+        private void GenerateClause(string jumpLabel, ParserRuleContext clauseContext, YarnSpinnerParser.StatementContext[] children, YarnSpinnerParser.ExpressionContext expression)
         {
             string endOfClauseLabel = this.compiler.RegisterLabel("skipclause");
 
@@ -238,7 +238,7 @@ namespace Yarn.Compiler
                 // Code-generate the expression
                 this.Visit(expression);
 
-                this.compiler.Emit(OpCode.JumpIfFalse, new Operand(endOfClauseLabel));
+                this.compiler.Emit(OpCode.JumpIfFalse, expression.Start, new Operand(endOfClauseLabel));
             }
 
             // running through all of the children statements
@@ -247,12 +247,12 @@ namespace Yarn.Compiler
                 this.Visit(child);
             }
 
-            this.compiler.Emit(OpCode.JumpTo, new Operand(jumpLabel));
+            this.compiler.Emit(OpCode.JumpTo, clauseContext.Stop, new Operand(jumpLabel));
 
             if (expression != null)
             {
                 this.compiler.CurrentNode.Labels.Add(endOfClauseLabel, this.compiler.CurrentNode.Instructions.Count);
-                this.compiler.Emit(OpCode.Pop);
+                this.compiler.Emit(OpCode.Pop, clauseContext.Stop);
             }
         }
 
@@ -309,6 +309,7 @@ namespace Yarn.Compiler
                 // And add this option to the list.
                 this.compiler.Emit(
                     OpCode.AddOption,
+                    shortcut.line_statement().Start,
                     new Operand(lineID),
                     new Operand(optionDestinationLabel),
                     new Operand(expressionCount),
@@ -318,11 +319,11 @@ namespace Yarn.Compiler
             }
 
             // All of the options that we intend to show are now ready to go.
-            this.compiler.Emit(OpCode.ShowOptions);
+            this.compiler.Emit(OpCode.ShowOptions, context.Stop);
 
             // The top of the stack now contains the name of the label we want
             // to jump to. Jump to it now.
-            this.compiler.Emit(OpCode.Jump);
+            this.compiler.Emit(OpCode.Jump, context.Stop);
 
             // We'll now emit the labels and code associated with each option.
             optionCount = 0;
@@ -339,7 +340,7 @@ namespace Yarn.Compiler
                 }
 
                 // Jump to the end of this shortcut option group.
-                this.compiler.Emit(OpCode.JumpTo, new Operand(endOfGroupLabel));
+                this.compiler.Emit(OpCode.JumpTo, shortcut.Stop, new Operand(endOfGroupLabel));
 
                 optionCount++;
             }
@@ -347,7 +348,7 @@ namespace Yarn.Compiler
             // We made it to the end! Mark the end of the group, so we can jump
             // to it.
             this.compiler.CurrentNode.Labels.Add(endOfGroupLabel, this.compiler.CurrentNode.Instructions.Count);
-            this.compiler.Emit(OpCode.Pop);
+            this.compiler.Emit(OpCode.Pop, context.Stop);
 
             return 0;
         }
@@ -365,7 +366,7 @@ namespace Yarn.Compiler
         // -expression
         public override int VisitExpNegative(YarnSpinnerParser.ExpNegativeContext context)
         {
-            this.GenerateCodeForOperation(Operator.UnaryMinus, context.Type, context.expression());
+            this.GenerateCodeForOperation(Operator.UnaryMinus, context.op, context.Type, context.expression());
 
             return 0;
         }
@@ -373,7 +374,7 @@ namespace Yarn.Compiler
         // (not NOT !)expression
         public override int VisitExpNot(YarnSpinnerParser.ExpNotContext context)
         {
-            this.GenerateCodeForOperation(Operator.Not, context.Type, context.expression());
+            this.GenerateCodeForOperation(Operator.Not, context.op, context.Type, context.expression());
 
             return 0;
         }
@@ -397,7 +398,7 @@ namespace Yarn.Compiler
         /// <param name="type">The type of the expression.</param>
         /// <param name="operands">The operands to perform the operation
         /// <paramref name="op"/> on.</param>
-        private void GenerateCodeForOperation(Operator op, Yarn.IType type, params ParserRuleContext[] operands)
+        private void GenerateCodeForOperation(Operator op, IToken operatorToken, Yarn.IType type, params ParserRuleContext[] operands)
         {
             // Generate code for each of the operands, so that their value is
             // now on the stack.
@@ -407,7 +408,7 @@ namespace Yarn.Compiler
             }
 
             // Indicate that we are pushing this many items for comparison
-            this.compiler.Emit(OpCode.PushFloat, new Operand(operands.Length));
+            this.compiler.Emit(OpCode.PushFloat, operatorToken, new Operand(operands.Length));
 
             // Figure out the canonical name for the method that the VM should
             // invoke in order to perform this work
@@ -423,13 +424,13 @@ namespace Yarn.Compiler
             string functionName = TypeUtil.GetCanonicalNameForMethod(implementingType, op.ToString());
 
             // Call that function.
-            this.compiler.Emit(OpCode.CallFunc, new Operand(functionName));
+            this.compiler.Emit(OpCode.CallFunc, operatorToken, new Operand(functionName));
         }
 
         // * / %
         public override int VisitExpMultDivMod(YarnSpinnerParser.ExpMultDivModContext context)
         {
-            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.Type, context.expression(0), context.expression(1));
+            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.Type, context.expression(0), context.expression(1));
 
             return 0;
         }
@@ -437,7 +438,7 @@ namespace Yarn.Compiler
         // + -
         public override int VisitExpAddSub(YarnSpinnerParser.ExpAddSubContext context)
         {
-            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.Type, context.expression(0), context.expression(1));
+            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.Type, context.expression(0), context.expression(1));
 
             return 0;
         }
@@ -445,7 +446,7 @@ namespace Yarn.Compiler
         // < <= > >=
         public override int VisitExpComparison(YarnSpinnerParser.ExpComparisonContext context)
         {
-            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.Type, context.expression(0), context.expression(1));
+            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.Type, context.expression(0), context.expression(1));
 
             return 0;
         }
@@ -453,7 +454,7 @@ namespace Yarn.Compiler
         // == !=
         public override int VisitExpEquality(YarnSpinnerParser.ExpEqualityContext context)
         {
-            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.Type, context.expression(0), context.expression(1));
+            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.Type, context.expression(0), context.expression(1));
 
             return 0;
         }
@@ -461,7 +462,7 @@ namespace Yarn.Compiler
         // and && or || xor ^
         public override int VisitExpAndOrXor(YarnSpinnerParser.ExpAndOrXorContext context)
         {
-            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.Type, context.expression(0), context.expression(1));
+            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.Type, context.expression(0), context.expression(1));
 
             return 0;
         }
@@ -479,28 +480,28 @@ namespace Yarn.Compiler
         public override int VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
         {
             float number = float.Parse(context.NUMBER().GetText(), CultureInfo.InvariantCulture);
-            this.compiler.Emit(OpCode.PushFloat, new Operand(number));
+            this.compiler.Emit(OpCode.PushFloat, context.Start, new Operand(number));
 
             return 0;
         }
 
         public override int VisitValueTrue(YarnSpinnerParser.ValueTrueContext context)
         {
-            this.compiler.Emit(OpCode.PushBool, new Operand(true));
+            this.compiler.Emit(OpCode.PushBool, context.Start, new Operand(true));
 
             return 0;
         }
 
         public override int VisitValueFalse(YarnSpinnerParser.ValueFalseContext context)
         {
-            this.compiler.Emit(OpCode.PushBool, new Operand(false));
+            this.compiler.Emit(OpCode.PushBool, context.Start, new Operand(false));
             return 0;
         }
 
         public override int VisitVariable(YarnSpinnerParser.VariableContext context)
         {
             string variableName = context.VAR_ID().GetText();
-            this.compiler.Emit(OpCode.PushVariable, new Operand(variableName));
+            this.compiler.Emit(OpCode.PushVariable, context.Start, new Operand(variableName));
 
             return 0;
         }
@@ -511,7 +512,7 @@ namespace Yarn.Compiler
             // want?
             string stringVal = context.STRING().GetText().Trim('"');
 
-            this.compiler.Emit(OpCode.PushString, new Operand(stringVal));
+            this.compiler.Emit(OpCode.PushString, context.Start, new Operand(stringVal));
 
             return 0;
         }
@@ -528,7 +529,7 @@ namespace Yarn.Compiler
         // null value
         public override int VisitValueNull(YarnSpinnerParser.ValueNullContext context)
         {
-            this.compiler.Emit(OpCode.PushNull);
+            this.compiler.Emit(OpCode.PushNull, context.Start);
             return 0;
         }
         #endregion
@@ -543,8 +544,8 @@ namespace Yarn.Compiler
         // its name.
         public override int VisitJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context)
         {
-            this.compiler.Emit(OpCode.PushString, new Operand(context.destination.Text));
-            this.compiler.Emit(OpCode.RunNode);
+            this.compiler.Emit(OpCode.PushString, context.destination, new Operand(context.destination.Text));
+            this.compiler.Emit(OpCode.RunNode, context.Start);
 
             return 0;
         }
@@ -555,7 +556,7 @@ namespace Yarn.Compiler
         {
             // Evaluate the expression, and jump to the result on the stack.
             this.Visit(context.expression());
-            this.compiler.Emit(OpCode.RunNode);
+            this.compiler.Emit(OpCode.RunNode, context.Start);
 
             return 0;
         }
