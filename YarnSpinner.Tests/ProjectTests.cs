@@ -200,14 +200,15 @@ A line with a conditional, a comment and a line tag. <<if false>>  #line:expecte
 
             var compilationResult = Compiler.Compile(compilationJob);
 
+            // We should have a single DebugInfo object, because we compiled a
+            // single node
             Assert.NotNull(compilationResult.DebugInfo);
             Assert.Single(compilationResult.DebugInfo);
 
             // The first instruction of the only node should begin on the third
             // line
-            var success = compilationResult.DebugInfo.First().Value.TryGetLineInfo(0, out var firstLineInfo);
+            var firstLineInfo = compilationResult.DebugInfo.First().Value.GetLineInfo(0);
 
-            Assert.True(success, "Node debug info should exist for instruction zero");
             Assert.Equal("input", firstLineInfo.FileName);
             Assert.Equal("DebugTesting", firstLineInfo.NodeName);
             Assert.Equal(2, firstLineInfo.LineNumber);
