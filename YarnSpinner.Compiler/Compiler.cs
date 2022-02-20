@@ -20,7 +20,7 @@ namespace Yarn.Compiler
         {
             get
             {
-                foreach (var item in StringTable)
+                foreach (var item in this.StringTable)
                 {
                     if (item.Value.isImplicitTag)
                     {
@@ -81,7 +81,7 @@ namespace Yarn.Compiler
         {
             foreach (var entry in otherStringTable)
             {
-                StringTable.Add(entry.Key, entry.Value);
+                this.StringTable.Add(entry.Key, entry.Value);
             }
         }
 
@@ -183,7 +183,7 @@ namespace Yarn.Compiler
         /// <inheritdoc/>
         public override string ToString()
         {
-            return $"{text} ({fileName}:{lineNumber})";
+            return $"{this.text} ({this.fileName}:{this.lineNumber})";
         }
     }
 
@@ -645,7 +645,7 @@ namespace Yarn.Compiler
         /// <param name="fileParseResult">The file parse result to use.</param>
         internal Compiler(FileParseResult fileParseResult)
         {
-            Program = new Program();
+            this.Program = new Program();
             this.fileParseResult = fileParseResult;
         }
 
@@ -1091,7 +1091,7 @@ namespace Yarn.Compiler
         /// <returns>The new label name.</returns>
         internal string RegisterLabel(string commentary = null)
         {
-            return "L" + labelCount++ + commentary;
+            return "L" + this.labelCount++ + commentary;
         }
 
         /// <summary>
@@ -1138,7 +1138,7 @@ namespace Yarn.Compiler
         /// instruction.</param>
         internal void Emit(OpCode code, IToken startToken, params Operand[] operands)
         {
-            Emit(this.CurrentNode, this.CurrentDebugInfo, startToken?.Line - 1 ?? -1, startToken?.Column ?? -1, code, operands);
+            this.Emit(this.CurrentNode, this.CurrentDebugInfo, startToken?.Line - 1 ?? -1, startToken?.Column ?? -1, code, operands);
         }
 
         /// <summary>
@@ -1181,24 +1181,24 @@ namespace Yarn.Compiler
         // hold it and otherwise continue
         public override void EnterNode(YarnSpinnerParser.NodeContext context)
         {
-            CurrentNode = new Node();
-            CurrentDebugInfo = new DebugInfo();
-            RawTextNode = false;
+            this.CurrentNode = new Node();
+            this.CurrentDebugInfo = new DebugInfo();
+            this.RawTextNode = false;
         }
 
         // have left the current node store it into the program wipe the
         // var and make it ready to go again
         public override void ExitNode(YarnSpinnerParser.NodeContext context)
         {
-            Program.Nodes[CurrentNode.Name] = CurrentNode;
+            this.Program.Nodes[this.CurrentNode.Name] = this.CurrentNode;
 
-            CurrentDebugInfo.NodeName = CurrentNode.Name;
-            CurrentDebugInfo.FileName = fileParseResult.Name;
+            this.CurrentDebugInfo.NodeName = this.CurrentNode.Name;
+            this.CurrentDebugInfo.FileName = this.fileParseResult.Name;
 
-            DebugInfos.Add(CurrentDebugInfo);
+            this.DebugInfos.Add(this.CurrentDebugInfo);
 
-            CurrentNode = null;
-            RawTextNode = false;
+            this.CurrentNode = null;
+            this.RawTextNode = false;
         }
 
         // have finished with the header so about to enter the node body
@@ -1218,13 +1218,13 @@ namespace Yarn.Compiler
             if (headerKey.Equals("title", StringComparison.InvariantCulture))
             {
                 // Set the name of the node
-                CurrentNode.Name = headerValue;
+                this.CurrentNode.Name = headerValue;
 
                 // Throw an exception if this node name contains illegal
                 // characters
-                if (invalidNodeTitleNameRegex.IsMatch(CurrentNode.Name))
+                if (this.invalidNodeTitleNameRegex.IsMatch(this.CurrentNode.Name))
                 {
-                    diagnostics.Add(new Diagnostic(fileParseResult.Name, context, $"The node '{CurrentNode.Name}' contains illegal characters in its title."));
+                    this.diagnostics.Add(new Diagnostic(this.fileParseResult.Name, context, $"The node '{this.CurrentNode.Name}' contains illegal characters in its title."));
                 }
             }
 
@@ -1233,13 +1233,13 @@ namespace Yarn.Compiler
                 // Split the list of tags by spaces, and use that
                 var tags = headerValue.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-                CurrentNode.Tags.Add(tags);
+                this.CurrentNode.Tags.Add(tags);
 
-                if (CurrentNode.Tags.Contains("rawText"))
+                if (this.CurrentNode.Tags.Contains("rawText"))
                 {
                     // This is a raw text node. Flag it as such for future
                     // compilation.
-                    RawTextNode = true;
+                    this.RawTextNode = true;
                 }
             }
         }
@@ -1251,11 +1251,11 @@ namespace Yarn.Compiler
         public override void EnterBody(YarnSpinnerParser.BodyContext context)
         {
             // if it is a regular node
-            if (!RawTextNode)
+            if (!this.RawTextNode)
             {
                 // This is the start of a node that we can jump to. Add a
                 // label at this point.
-                CurrentNode.Labels.Add(RegisterLabel(), CurrentNode.Instructions.Count);
+                this.CurrentNode.Labels.Add(this.RegisterLabel(), this.CurrentNode.Instructions.Count);
 
                 CodeGenerationVisitor visitor = new CodeGenerationVisitor(this);
 
@@ -1268,7 +1268,7 @@ namespace Yarn.Compiler
             // string
             else
             {
-                CurrentNode.SourceTextStringID = Compiler.GetLineIDForNodeName(CurrentNode.Name);
+                this.CurrentNode.SourceTextStringID = Compiler.GetLineIDForNodeName(this.CurrentNode.Name);
             }
         }
 
@@ -1280,7 +1280,7 @@ namespace Yarn.Compiler
         public override void ExitBody(YarnSpinnerParser.BodyContext context)
         {
             // We have exited the body; emit a 'stop' opcode here.
-            Emit(CurrentNode, CurrentDebugInfo, context.Stop.Line - 1, 0, OpCode.Stop);
+            this.Emit(this.CurrentNode, this.CurrentDebugInfo, context.Stop.Line - 1, 0, OpCode.Stop);
         }
 
         /// <summary>
