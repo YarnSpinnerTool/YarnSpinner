@@ -9,16 +9,39 @@ namespace Yarn
     {
         // Helper functions that allow us to easily cast method groups of
         // certain types to System.Delegate - i.e. we can say:
-        // ```
+        // 
         // int DoCoolThing(Value a, Value b) { ... }
         // var doCoolThingDelegate = TypeUtil.GetMethod(DoCoolThing);
-        // ```
         internal static System.Delegate GetMethod<TResult>(System.Func<Value, Value, TResult> f) => f;
 
         internal static System.Delegate GetMethod<T>(System.Func<Value, T> f) => f;
 
         internal static System.Delegate GetMethod<T>(System.Func<T> f) => f;
 
+        /// <summary>
+        /// Returns the type that contains the actual implementation of the
+        /// method indicated by <paramref name="methodName"/>, given a type or
+        /// sub-type.
+        /// </summary>
+        /// <remarks>
+        /// This method checks to see if <paramref name="type"/> contains a
+        /// concrete implementation of a method named <paramref
+        /// name="methodName"/>. If it does, <paramref name="type"/> is
+        /// returned; otherwise, the parent of <paramref name="type"/> is
+        /// checked, and so on up the hierarchy. If no type in <paramref
+        /// name="type"/>'s parent chain implements a method named <paramref
+        /// name="methodName"/>, this method returns <see langword="null"/>.
+        /// </remarks>
+        /// <param name="type">The type, or sub-type, to start searching for an
+        /// implementation for the method.</param>
+        /// <param name="methodName">The name of the method to search
+        /// for.</param>
+        /// <returns>The <see cref="IType"/> object that contains an
+        /// implementation of <paramref name="methodName"/>.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref
+        /// name="type"/> is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentException">Thrown if methodName is <see
+        /// langword="null"/> or empty.</exception>
         internal static IType FindImplementingTypeForMethod(IType type, string methodName)
         {
             if (type is null)

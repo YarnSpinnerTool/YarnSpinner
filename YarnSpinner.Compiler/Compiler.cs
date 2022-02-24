@@ -20,7 +20,7 @@ namespace Yarn.Compiler
         {
             get
             {
-                foreach (var item in StringTable)
+                foreach (var item in this.StringTable)
                 {
                     if (item.Value.isImplicitTag)
                     {
@@ -81,7 +81,7 @@ namespace Yarn.Compiler
         {
             foreach (var entry in otherStringTable)
             {
-                StringTable.Add(entry.Key, entry.Value);
+                this.StringTable.Add(entry.Key, entry.Value);
             }
         }
 
@@ -183,7 +183,7 @@ namespace Yarn.Compiler
         /// <inheritdoc/>
         public override string ToString()
         {
-            return $"{text} ({fileName}:{lineNumber})";
+            return $"{this.text} ({this.fileName}:{this.lineNumber})";
         }
     }
 
@@ -418,6 +418,12 @@ namespace Yarn.Compiler
         public IEnumerable<Diagnostic> Diagnostics { get; internal set; }
 
         /// <summary>
+        /// Gets the collection of <see cref="DebugInfo"/> objects for each node
+        /// in <see cref="Program"/>.
+        /// </summary>
+        public IReadOnlyDictionary<string, DebugInfo> DebugInfo { get; internal set; }
+
+        /// <summary>
         /// Combines multiple <see cref="CompilationResult"/> objects together
         /// into one object.
         /// </summary>
@@ -433,6 +439,7 @@ namespace Yarn.Compiler
             var declarations = new List<Declaration>();
             var tags = new Dictionary<string, IEnumerable<string>>();
             var diagnostics = new List<Diagnostic>();
+            var nodeDebugInfos = new Dictionary<string, DebugInfo>();
 
             foreach (var result in results)
             {
@@ -455,6 +462,14 @@ namespace Yarn.Compiler
                 {
                     diagnostics.AddRange(result.Diagnostics);
                 }
+
+                if (result.DebugInfo != null)
+                {
+                    foreach (var kvp in result.DebugInfo)
+                    {
+                        nodeDebugInfos.Add(kvp.Key, kvp.Value);
+                    }
+                }
             }
 
             return new CompilationResult
@@ -462,10 +477,95 @@ namespace Yarn.Compiler
                 Program = Program.Combine(programs.ToArray()),
                 StringTable = stringTableManager.StringTable,
                 Declarations = declarations,
+                DebugInfo = nodeDebugInfos,
                 ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
                 FileTags = tags,
                 Diagnostics = diagnostics,
             };
+        }
+    }
+
+    /// <summary>
+    /// Contains debug information for a node in a Yarn file.
+    /// </summary>
+    public class DebugInfo
+    {
+        /// <summary>
+        /// Gets or sets the file that this DebugInfo was produced from.
+        /// </summary>
+        internal string FileName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the node that this DebugInfo was produced from.
+        /// </summary>
+        internal string NodeName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the mapping of instruction numbers to line and
+        /// character information in the file indicated by <see
+        /// cref="FileName"/>.
+        /// </summary>
+        internal Dictionary<int, (int Line, int Character)> LineInfos { get; set; } = new Dictionary<int, (int Line, int Character)>();
+
+        /// <summary>
+        /// Gets a <see cref="LineInfo"/> object that describes the specified
+        /// instruction at the index <paramref name="instructionNumber"/>.
+        /// </summary>
+        /// <param name="instructionNumber">The index of the instruction to
+        /// retrieve information for.</param>
+        /// <returns>A <see cref="LineInfo"/> object that describes the position
+        /// of the instruction.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref
+        /// name="instructionNumber"/> is less than zero, or greater than the
+        /// number of instructions present in the node.</exception>
+        public LineInfo GetLineInfo(int instructionNumber)
+        {
+            if (this.LineInfos.TryGetValue(instructionNumber, out var info))
+            {
+                return new LineInfo
+                {
+                    FileName = this.FileName,
+                    NodeName = this.NodeName,
+                    LineNumber = info.Line,
+                    CharacterNumber = info.Character,
+                };
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(instructionNumber));
+            }
+        }
+
+        /// <summary>
+        /// Contains positional information about an instruction.
+        /// </summary>
+        public struct LineInfo
+        {
+            /// <summary>
+            /// The file name of the source that this intruction was produced
+            /// from.
+            /// </summary>
+            public string FileName;
+
+            /// <summary>
+            /// The node name of the source that this intruction was produced
+            /// from.
+            /// </summary>
+            public string NodeName;
+
+            /// <summary>
+            /// The zero-indexed line number in <see cref="FileName"/> that
+            /// contains the statement or expression that this line was produced
+            /// from.
+            /// </summary>
+            public int LineNumber;
+
+            /// <summary>
+            /// The zero-indexed character number in <see cref="FileName"/> that
+            /// contains the statement or expression that this line was produced
+            /// from.
+            /// </summary>
+            public int CharacterNumber;
         }
     }
 
@@ -487,6 +587,12 @@ namespace Yarn.Compiler
         internal Node CurrentNode { get; private set; }
 
         /// <summary>
+        /// Gets the current debug information that describes <see
+        /// cref="CurrentNode"/>.
+        /// </summary>
+        private DebugInfo CurrentDebugInfo { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether we are currently parsing the
         /// current node as a 'raw text' node, or as a fully syntactic node.
         /// </summary>
@@ -497,6 +603,8 @@ namespace Yarn.Compiler
         /// Gets the program being generated by the compiler.
         /// </summary>
         internal Program Program { get; private set; }
+
+        internal IList<DebugInfo> DebugInfos { get; private set; } = new List<DebugInfo>();
 
         internal FileParseResult fileParseResult { get; private set; }
 
@@ -537,7 +645,7 @@ namespace Yarn.Compiler
         /// <param name="fileParseResult">The file parse result to use.</param>
         internal Compiler(FileParseResult fileParseResult)
         {
-            Program = new Program();
+            this.Program = new Program();
             this.fileParseResult = fileParseResult;
         }
 
@@ -827,9 +935,17 @@ namespace Yarn.Compiler
             compiler.VariableDeclarations = variableDeclarations;
             compiler.Compile();
 
+            var debugInfoDictionary = new Dictionary<string, DebugInfo>();
+
+            foreach (var debugInfo in compiler.DebugInfos)
+            {
+                debugInfoDictionary.Add(debugInfo.NodeName, debugInfo);
+            }
+
             return new CompilationResult
             {
                 Program = compiler.Program,
+                DebugInfo = debugInfoDictionary,
                 StringTable = stringTableManager.StringTable,
                 ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
                 Diagnostics = compiler.Diagnostics,
@@ -1015,7 +1131,7 @@ namespace Yarn.Compiler
         /// <returns>The new label name.</returns>
         internal string RegisterLabel(string commentary = null)
         {
-            return "L" + labelCount++ + commentary;
+            return "L" + this.labelCount++ + commentary;
         }
 
         /// <summary>
@@ -1023,32 +1139,46 @@ namespace Yarn.Compiler
         /// cref="Program" />.
         /// </summary>
         /// <param name="node">The node to append instructions to.</param>
+        /// <param name="debugInfo">The <see cref="DebugInfo"/> object to add
+        /// line debugging information to.</param>
+        /// <param name="sourceLine">The zero-indexed line in the source input
+        /// corresponding to this instruction.</param>
+        /// <param name="sourceCharacter">The zero-indexed character in the
+        /// source input corresponding to this instruction.</param>
         /// <param name="code">The opcode of the instruction.</param>
         /// <param name="operands">The operands to associate with the
         /// instruction.</param>
-        void Emit(Node node, OpCode code, params Operand[] operands)
+        void Emit(Node node, DebugInfo debugInfo, int sourceLine, int sourceCharacter, OpCode code, params Operand[] operands)
         {
             var instruction = new Instruction
             {
-                Opcode = code
+                Opcode = code,
             };
 
             instruction.Operands.Add(operands);
+
+            debugInfo.LineInfos.Add(node.Instructions.Count, (sourceLine, sourceCharacter));
 
             node.Instructions.Add(instruction);
         }
 
         /// <summary>
-        /// Creates a new instruction, and appends it to the current node
-        /// in the <see cref="Program"/>. Called by instances of <see
-        /// cref="CodeGenerationVisitor"/> while walking the parse tree.
+        /// Creates a new instruction, and appends it to the current node in the
+        /// <see cref="Program"/>.
         /// </summary>
+        /// <remarks>
+        /// Called by instances of <see
+        /// cref="CodeGenerationVisitor"/> while walking the parse tree.
+        /// </remarks>
         /// <param name="code">The opcode of the instruction.</param>
+        /// <param name="startToken">The first token in the expression or
+        /// statement that was responsible for emitting this
+        /// instruction.</param>
         /// <param name="operands">The operands to associate with the
         /// instruction.</param>
-        internal void Emit(OpCode code, params Operand[] operands)
+        internal void Emit(OpCode code, IToken startToken, params Operand[] operands)
         {
-            Emit(this.CurrentNode, code, operands);
+            this.Emit(this.CurrentNode, this.CurrentDebugInfo, startToken?.Line - 1 ?? -1, startToken?.Column ?? -1, code, operands);
         }
 
         /// <summary>
@@ -1091,17 +1221,24 @@ namespace Yarn.Compiler
         // hold it and otherwise continue
         public override void EnterNode(YarnSpinnerParser.NodeContext context)
         {
-            CurrentNode = new Node();
-            RawTextNode = false;
+            this.CurrentNode = new Node();
+            this.CurrentDebugInfo = new DebugInfo();
+            this.RawTextNode = false;
         }
 
         // have left the current node store it into the program wipe the
         // var and make it ready to go again
         public override void ExitNode(YarnSpinnerParser.NodeContext context)
         {
-            Program.Nodes[CurrentNode.Name] = CurrentNode;
-            CurrentNode = null;
-            RawTextNode = false;
+            this.Program.Nodes[this.CurrentNode.Name] = this.CurrentNode;
+
+            this.CurrentDebugInfo.NodeName = this.CurrentNode.Name;
+            this.CurrentDebugInfo.FileName = this.fileParseResult.Name;
+
+            this.DebugInfos.Add(this.CurrentDebugInfo);
+
+            this.CurrentNode = null;
+            this.RawTextNode = false;
         }
 
         // have finished with the header so about to enter the node body
@@ -1121,13 +1258,13 @@ namespace Yarn.Compiler
             if (headerKey.Equals("title", StringComparison.InvariantCulture))
             {
                 // Set the name of the node
-                CurrentNode.Name = headerValue;
+                this.CurrentNode.Name = headerValue;
 
                 // Throw an exception if this node name contains illegal
                 // characters
-                if (invalidNodeTitleNameRegex.IsMatch(CurrentNode.Name))
+                if (this.invalidNodeTitleNameRegex.IsMatch(this.CurrentNode.Name))
                 {
-                    diagnostics.Add(new Diagnostic(fileParseResult.Name, context, $"The node '{CurrentNode.Name}' contains illegal characters in its title."));
+                    this.diagnostics.Add(new Diagnostic(this.fileParseResult.Name, context, $"The node '{this.CurrentNode.Name}' contains illegal characters in its title."));
                 }
             }
 
@@ -1136,13 +1273,13 @@ namespace Yarn.Compiler
                 // Split the list of tags by spaces, and use that
                 var tags = headerValue.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-                CurrentNode.Tags.Add(tags);
+                this.CurrentNode.Tags.Add(tags);
 
-                if (CurrentNode.Tags.Contains("rawText"))
+                if (this.CurrentNode.Tags.Contains("rawText"))
                 {
                     // This is a raw text node. Flag it as such for future
                     // compilation.
-                    RawTextNode = true;
+                    this.RawTextNode = true;
                 }
             }
         }
@@ -1154,11 +1291,11 @@ namespace Yarn.Compiler
         public override void EnterBody(YarnSpinnerParser.BodyContext context)
         {
             // if it is a regular node
-            if (!RawTextNode)
+            if (!this.RawTextNode)
             {
                 // This is the start of a node that we can jump to. Add a
                 // label at this point.
-                CurrentNode.Labels.Add(RegisterLabel(), CurrentNode.Instructions.Count);
+                this.CurrentNode.Labels.Add(this.RegisterLabel(), this.CurrentNode.Instructions.Count);
 
                 CodeGenerationVisitor visitor = new CodeGenerationVisitor(this);
 
@@ -1171,7 +1308,7 @@ namespace Yarn.Compiler
             // string
             else
             {
-                CurrentNode.SourceTextStringID = Compiler.GetLineIDForNodeName(CurrentNode.Name);
+                this.CurrentNode.SourceTextStringID = Compiler.GetLineIDForNodeName(this.CurrentNode.Name);
             }
         }
 
@@ -1183,7 +1320,7 @@ namespace Yarn.Compiler
         public override void ExitBody(YarnSpinnerParser.BodyContext context)
         {
             // We have exited the body; emit a 'stop' opcode here.
-            Emit(CurrentNode, OpCode.Stop);
+            this.Emit(this.CurrentNode, this.CurrentDebugInfo, context.Stop.Line - 1, 0, OpCode.Stop);
         }
 
         /// <summary>
