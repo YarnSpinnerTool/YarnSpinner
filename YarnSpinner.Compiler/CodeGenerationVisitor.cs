@@ -547,11 +547,11 @@ namespace Yarn.Compiler
             // Raw values are permitted to be a string, or a number
             if (rawValue.Type == BuiltinTypes.String)
             {
-                this.compiler.Emit(OpCode.PushString, new Operand(rawValue.ConvertTo<string>()));
+                this.compiler.Emit(OpCode.PushString, context.Start, new Operand(rawValue.ConvertTo<string>()));
             }
             else if (rawValue.Type == BuiltinTypes.Number)
             {
-                this.compiler.Emit(OpCode.PushFloat, new Operand(rawValue.ConvertTo<float>()));
+                this.compiler.Emit(OpCode.PushFloat, context.Start, new Operand(rawValue.ConvertTo<float>()));
             }
             else
             {
