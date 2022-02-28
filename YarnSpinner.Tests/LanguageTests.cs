@@ -270,6 +270,7 @@ namespace YarnSpinner.Tests
         // Test every file in Tests/TestCases
         [Theory]
         [MemberData(nameof(FileSources), "TestCases")]
+        [MemberData(nameof(FileSources), "TestCases/ParseFailures")]
         [MemberData(nameof(FileSources), "Issues")]
         public void TestSources(string file)
         {
