@@ -270,6 +270,7 @@ namespace YarnSpinner.Tests
         // Test every file in Tests/TestCases
         [Theory]
         [MemberData(nameof(FileSources), "TestCases")]
+        [MemberData(nameof(FileSources), "TestCases/ParseFailures")]
         [MemberData(nameof(FileSources), "Issues")]
         public void TestSources(string file)
         {
@@ -281,6 +282,8 @@ namespace YarnSpinner.Tests
 
             var scriptFilePath = Path.Combine(TestDataPath, file);
 
+            // Attempt to compile this. If there are errors, we do not expect an
+            // exception to be thrown.
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
             compilationJob.Library = dialogue.Library;
 

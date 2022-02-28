@@ -1,0 +1,8 @@
+title: Title
+---
+// This option condition has no expression, and is therefore invalid.
+-> One <<if>>
+    You chose option one!
+-> Two
+    You chose option two!
+===
