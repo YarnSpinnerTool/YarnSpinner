@@ -16,6 +16,9 @@ namespace Yarn.Compiler
     /// </summary>
     internal class TypeCheckVisitor : YarnSpinnerParserBaseVisitor<Yarn.IType>
     {
+        // {0} = variable name
+        private const string CantDetermineVariableTypeError = "Can't figure out the type of variable {0} given its context. Specify its type with a <<declare>> statement.";
+
         // The collection of variable declarations we know about before
         // starting our work
         private readonly IEnumerable<Declaration> existingDeclarations;
@@ -329,13 +332,22 @@ namespace Yarn.Compiler
                         // The start line of the body is the line after the delimiter
                         int nodePositionInFile = this.currentNodeContext.BODY_START().Symbol.Line + 1;
 
+                        // Attempt to get a default value for the given type. If
+                        // we can't get one, we can't create the definition.
+                        var canCreateDefaultValue = TryGetDefaultValueForType(expressionType, out var defaultValue);
+
+                        if (!canCreateDefaultValue) {
+                            diagnostics.Add(new Diagnostic(sourceFileName, variableContext, string.Format(CantDetermineVariableTypeError, variableName)));
+                            break;
+                        }
+
                         // Generate a declaration for this variable here.
                         var decl = new Declaration
                         {
                             Name = variableName,
                             Description = $"Implicitly declared in {System.IO.Path.GetFileName(sourceFileName)}, node {currentNodeName}",
                             Type = expressionType,
-                            DefaultValue = DefaultValueForType(expressionType),
+                            DefaultValue = defaultValue,
                             SourceFileName = sourceFileName,
                             SourceNodeName = currentNodeName,
                             Range = new Range
@@ -503,13 +515,28 @@ namespace Yarn.Compiler
 
                 foreach (var undefinedVariableContext in undefinedVariableContexts)
                 {
+                    // We can only create an implicit declaration for a variable
+                    // if we have a default value for it, because all variables
+                    // are required to have a value. If we can't, it's generally
+                    // because we couldn't figure out a concrete type for the
+                    // variable given the context.
+                    var canGetDefaultValue = TryGetDefaultValueForType(expressionType, out var defaultValue);
+
+                    // If we can't produce this, then we can't generate the
+                    // declaration.
+                    if (!canGetDefaultValue) 
+                    {
+                        this.diagnostics.Add(new Diagnostic(sourceFileName, undefinedVariableContext, string.Format(CantDetermineVariableTypeError, undefinedVariableContext.VAR_ID().GetText())));
+                        continue;
+                    }
+
                     // Generate a declaration for this variable here.
                     var decl = new Declaration
                     {
                         Name = undefinedVariableContext.VAR_ID().GetText(),
                         Description = $"Implicitly declared in {System.IO.Path.GetFileName(sourceFileName)}, node {currentNodeName}",
                         Type = expressionType,
-                        DefaultValue = DefaultValueForType(expressionType),
+                        DefaultValue = defaultValue,
                         SourceFileName = sourceFileName,
                         SourceNodeName = currentNodeName,
                         Range = new Range
@@ -627,23 +654,27 @@ namespace Yarn.Compiler
             }
         }
 
-        private static IConvertible DefaultValueForType(Yarn.IType expressionType)
+        private static bool TryGetDefaultValueForType(Yarn.IType expressionType, out IConvertible defaultValue)
         {
             if (expressionType == BuiltinTypes.String)
             {
-                return string.Empty;
+                defaultValue = string.Empty;
+                return true;
             }
             else if (expressionType == BuiltinTypes.Number)
             {
-                return default(float);
+                defaultValue = default(float);
+                return true;
             }
             else if (expressionType == BuiltinTypes.Boolean)
             {
-                return default(bool);
+                defaultValue = default(bool);
+                return true;
             }
             else
             {
-                throw new ArgumentOutOfRangeException($"No default value for type {expressionType.Name} exists.");
+                defaultValue = null;
+                return false;
             }
         }
 

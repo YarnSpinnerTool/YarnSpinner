@@ -282,6 +282,8 @@ namespace YarnSpinner.Tests
 
             var scriptFilePath = Path.Combine(TestDataPath, file);
 
+            // Attempt to compile this. If there are errors, we do not expect an
+            // exception to be thrown.
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
             compilationJob.Library = dialogue.Library;
 
