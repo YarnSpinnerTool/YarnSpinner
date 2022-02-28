@@ -283,7 +283,7 @@ namespace Yarn.Compiler
                 // 'Add Option' instruction that indicates that a condition
                 // exists.
                 bool hasLineCondition = false;
-                if (shortcut.line_statement().line_condition() != null)
+                if (shortcut.line_statement()?.line_condition()?.expression() != null)
                 {
                     // Evaluate the condition, and leave it on the stack
                     this.Visit(shortcut.line_statement().line_condition().expression());
