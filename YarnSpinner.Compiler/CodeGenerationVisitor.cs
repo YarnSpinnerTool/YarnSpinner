@@ -569,18 +569,12 @@ namespace Yarn.Compiler
         // its name.
         public override int VisitJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context)
         {
-// <<<<<<< HEAD
             if (trackingEnabled != null)
             {
-                Console.WriteLine("emiting code for the tracking");
                 GenerateTrackingCode(trackingEnabled);
             }
             compiler.Emit(OpCode.PushString, context.destination, new Operand(context.destination.Text));
             compiler.Emit(OpCode.RunNode, context.Start);
-// =======
-            // this.compiler.Emit(OpCode.PushString, context.destination, new Operand(context.destination.Text));
-            // this.compiler.Emit(OpCode.RunNode, context.Start);
-// >>>>>>> main
 
             return 0;
         }
@@ -591,7 +585,6 @@ namespace Yarn.Compiler
         {
             if (trackingEnabled != null)
             {
-                Console.WriteLine("emiting code for the tracking");
                 GenerateTrackingCode(trackingEnabled);
             }
             // Evaluate the expression, and jump to the result on the stack.
