@@ -1174,6 +1174,24 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// Creates a new instruction, and appends it to the current node in the
+        /// <see cref="Program"/>.
+        /// Differs from the other Emit call by not requiring a start token.
+        /// This enables its use in pure synthesised elements of the Yarn.
+        /// </summary>
+        /// <remarks>
+        /// Called by instances of <see
+        /// cref="CodeGenerationVisitor"/> while walking the parse tree.
+        /// </remarks>
+        /// <param name="code">The opcode of the instruction.</param>
+        /// <param name="operands">The operands to associate with the
+        /// instruction.</param>
+        internal void Emit(OpCode code, params Operand[] operands)
+        {
+            this.Emit(this.CurrentNode, this.CurrentDebugInfo, -1, -1, code, operands);
+        }
+
+        /// <summary>
         /// Extracts a line ID from a collection of <see
         /// cref="YarnSpinnerParser.HashtagContext"/>s, if one exists.
         /// </summary>
