@@ -9,6 +9,8 @@
         <ApplicationIcon />
         <GenerateDocumentationFile>False</GenerateDocumentationFile>
         <UseAppHost>False</UseAppHost>
+
+        <YarnSpinnerDevelopmentPath>../../../YarnSpinner</YarnSpinnerDevelopmentPath>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -37,7 +39,19 @@
 		<PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
 		<PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
 		<PackageReference Include="Nerdbank.Streams" Version="2.8.46" />
-    <PackageReference Include="YarnSpinner.Compiler" Version="2.0.1" />
+    </ItemGroup>
+
+    <!-- If Yarn Spinner doesn't exist at YarnSpinnerDevelopmentPath, then pull
+    the most recent version from NuGet. -->
+    <ItemGroup Condition="!Exists('$(YarnSpinnerDevelopmentPath)')">
+        <PackageReference Include="YarnSpinner" Version="*" />
+        <PackageReference Include="YarnSpinner.Compiler" Version="*" />
+    </ItemGroup>
+
+    <!-- If Yarn Spinner DOES exist at YarnSpinnerDevelopmentPath, use that. -->
+    <ItemGroup Condition="Exists('$(YarnSpinnerDevelopmentPath)')">
+        <ProjectReference Include="$(YarnSpinnerDevelopmentPath)/YarnSpinner/YarnSpinner.csproj" />
+        <ProjectReference Include="$(YarnSpinnerDevelopmentPath)/YarnSpinner.Compiler/YarnSpinner.Compiler.csproj" />
     </ItemGroup>
 
     <ItemGroup>
