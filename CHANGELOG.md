@@ -11,10 +11,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added `DeclarationBuilder` and `FunctionTypeBuilder` classes. These classes allow external libraries to construct new `Declaration` and `FunctionType` objects, without having to have access to the internal setters.
 - `CompilationResult.DebugInfo` now provides per-instruction positional debug information.
   - This allows users of the `Compiler` class to access positional information for each instruction, which is an important first step for source-level debugging.
+- Made `Diagnostic` and `Declaration` serializable, for easier communication with language servers and other utilities.
 
 ### Changed
 
 - `Declaration` and `Diagnostic` now provide position information via a `Range` object, which specifies the start and end position of the relevant parts of the document.
+- Fixed an issue where attempting to access the value of a variable with insufficient context to figure out its type would crash the compiler. (This could happen when you used a variable in a line, like `Variable: {$myVar}` with no other uses of `$myVar`.)
+- Fixed an issue where an option condition with no expression (for example: `-> Option one <<if>>`) would crash the compiler.
+- The compiler will no longer attempt to generate code if the Yarn script contains errors. (Previously, it was generating code, and then discarding it, but this allows for potential errors and crashes if code-generation is attempted on an invalid parse tree.)
 
 ### Removed
 

@@ -16,47 +16,49 @@
     /// through the <see cref="CompilationResult"/> class's <see
     /// cref="CompilationResult.Diagnostics"/> property.
     /// </remarks>
+    [Serializable]
     public sealed class Diagnostic
     {
         /// <summary>
-        /// The path, URI or file-name that the issue occurred in.
+        /// Gets or sets the path, URI or file-name that the issue occurred in.
         /// </summary>
-        public string FileName = "(not set)";
+        public string FileName { get; set; } = "(not set)";
 
         /// <summary>
-        /// The range of the file indicated by <see cref="FileName"/> that the
-        /// issue occurred in.
+        /// Gets or sets the range of the file indicated by <see
+        /// cref="FileName"/> that the issue occurred in.
         /// </summary>
-        public Range Range = new Range();
+        public Range Range { get; set; } = new Range();
 
         /// <summary>
-        /// The description of the issue.
+        /// Gets or sets the description of the issue.
         /// </summary>
-        public string Message = "(internal error: no message provided)";
+        public string Message { get; set; } = "(internal error: no message provided)";
 
         /// <summary>
-        /// The source text of <see cref="FileName"/> containing the issue.
+        /// Gets or sets the source text of <see cref="FileName"/> containing
+        /// the issue.
         /// </summary>
-        public string Context = null;
+        public string Context { get; set; } = null;
 
         /// <summary>
-        /// The severity of the issue.
+        /// Gets or sets the severity of the issue.
         /// </summary>
-        public DiagnosticSeverity Severity = DiagnosticSeverity.Error;
+        public DiagnosticSeverity Severity { get; set; } = DiagnosticSeverity.Error;
 
         /// <summary>
-        /// Gets the zero-indexed line number in FileName at which the issue begins.
+        /// Gets the zero-indexed line number in FileName at which the issue
+        /// begins.
         /// </summary>
         [Obsolete("Use Range.Start.Line")]
         public int Line => Range.Start.Line;
 
         /// <summary>
-        /// Gets the zero-indexed character number in FileName at which the issue
-        /// begins.
+        /// Gets the zero-indexed character number in FileName at which the
+        /// issue begins.
         /// </summary>
         [Obsolete("Use Range.Start.Character")]
         public int Column => Range.Start.Character;
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Diagnostic"/> class.
