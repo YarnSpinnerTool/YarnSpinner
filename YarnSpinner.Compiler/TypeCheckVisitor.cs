@@ -307,7 +307,7 @@ namespace Yarn.Compiler
 
             ParserRuleContext[] terms = { variableContext, expressionContext };
 
-            Yarn.IType type;
+            Yarn.IType type = BuiltinTypes.Undefined;
 
             Operator @operator;
 
@@ -392,6 +392,11 @@ namespace Yarn.Compiler
                     break;
                 default:
                     throw new InvalidOperationException($"Internal error: {nameof(VisitSet_statement)} got unexpected operand {context.op.Text}");
+            }
+
+            if (type != BuiltinTypes.Undefined)
+            {
+                return type;
             }
 
             if (expressionType == BuiltinTypes.Undefined)
