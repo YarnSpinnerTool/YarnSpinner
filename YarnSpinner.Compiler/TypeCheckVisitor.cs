@@ -307,8 +307,6 @@ namespace Yarn.Compiler
 
             ParserRuleContext[] terms = { variableContext, expressionContext };
 
-            Yarn.IType type = BuiltinTypes.Undefined;
-
             Operator @operator;
 
             switch (context.op.Type)
@@ -371,47 +369,103 @@ namespace Yarn.Compiler
                 case YarnSpinnerLexer.OPERATOR_MATHS_ADDITION_EQUALS:
                     // += supports strings and numbers
                     @operator = CodeGenerationVisitor.TokensToOperators[YarnSpinnerLexer.OPERATOR_MATHS_ADDITION];
-                    type = CheckOperation(context, terms, @operator, context.op.Text);
+                    expressionType = CheckOperation(context, terms, @operator, context.op.Text);
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_SUBTRACTION_EQUALS:
                     // -=, *=, /=, %= supports only numbers
                     @operator = CodeGenerationVisitor.TokensToOperators[YarnSpinnerLexer.OPERATOR_MATHS_SUBTRACTION];
-                    type = CheckOperation(context, terms, @operator, context.op.Text);
+                    expressionType = CheckOperation(context, terms, @operator, context.op.Text);
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION_EQUALS:
                     @operator = CodeGenerationVisitor.TokensToOperators[YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION];
-                    type = CheckOperation(context, terms, @operator, context.op.Text);
+                    expressionType = CheckOperation(context, terms, @operator, context.op.Text);
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_DIVISION_EQUALS:
                     @operator = CodeGenerationVisitor.TokensToOperators[YarnSpinnerLexer.OPERATOR_MATHS_DIVISION];
-                    type = CheckOperation(context, terms, @operator, context.op.Text);
+                    expressionType = CheckOperation(context, terms, @operator, context.op.Text);
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_MODULUS_EQUALS:
                     @operator = CodeGenerationVisitor.TokensToOperators[YarnSpinnerLexer.OPERATOR_MATHS_MODULUS];
-                    type = CheckOperation(context, terms, @operator, context.op.Text);
+                    expressionType = CheckOperation(context, terms, @operator, context.op.Text);
                     break;
                 default:
                     throw new InvalidOperationException($"Internal error: {nameof(VisitSet_statement)} got unexpected operand {context.op.Text}");
             }
 
-            if (type != BuiltinTypes.Undefined)
+            // we don't know the type of the expression but do know the type of the variable we can force the issue
+            // this can only happen (I think) when the expression is using an unknown function
+            // because of this we can make an assumption that the expression will be a matching type to the variable
+            // as such we can codify that assumption and then later see if it breaks down
+            // so given a statement like <<set $var to function()>>, where we know the type of $var (for this example its .Number)
+            // 1. Try to resolve the expression that is function() and return .Undefined
+            // 2. Look at the type of $var and see it is .Number
+            // 3. Update the function() definition so its return type matches $var (.Number)
+            // 4. Return the new expression type
+
+            // ok there is one more piece needed to fix this
+            // basically because we already have made diagnostics it is fucking shit up (I think)
+            // so I need to remove or rework the diagnostic side of things
+            // for now I am gonna just destroy them...
+            if (expressionType == BuiltinTypes.Undefined && variableType != BuiltinTypes.Undefined)
             {
-                return type;
+                if (expressionContext is YarnSpinnerParser.ExpValueContext)
+                {
+                    var value = ((YarnSpinnerParser.ExpValueContext)expressionContext).value();
+                    if (value is YarnSpinnerParser.ValueFuncContext)
+                    {
+                        // we now know it is a function so we can update the info of that function and then return
+                        var id = ((YarnSpinnerParser.ValueFuncContext)value).function_call().FUNC_ID().GetText();
+
+                        Console.WriteLine($"function:_{id}_");
+                        Console.WriteLine($"1: There are {NewDeclarations.Count()} declarations");
+
+                        // getting the existing implicit function definition out and changing its return type to match the variables
+                        Declaration functionDeclaration = NewDeclarations.Where(d => d.Type is FunctionType).FirstOrDefault(d => d.Name == id);
+                        NewDeclarations.Remove(functionDeclaration);
+
+                        var func = functionDeclaration.Type as FunctionType;
+                        if (func == null)
+                        {
+                            // if for whatever reason we can't find the implict function (shouldn't happe)
+                            // we just bail out now
+                            return BuiltinTypes.Undefined;
+                        }
+
+                        Console.WriteLine($"assigning {id}'s return type to be _{variableType}_");
+                        func.ReturnType = variableType;
+                        functionDeclaration.Type = func;
+                        Console.WriteLine(((FunctionType)functionDeclaration.Type).ReturnType);
+                        NewDeclarations.Add(functionDeclaration);
+
+                        foreach(var dec in NewDeclarations)
+                        {
+                            var a = dec.Type as FunctionType;
+                            if (a == null)
+                            {
+                                Console.Write($"Skipping {dec.Name}");
+                                continue;
+                            }
+                            Console.WriteLine($"{dec.Name}:_{a.ReturnType}_");
+                        }
+                        Console.WriteLine($"2: There are {NewDeclarations.Count()} declarations");
+
+                        // Tim, this is temporary.
+                        // Repeat after me, temporary.
+                        // We agree we can't just blow away the errors and continue anyways, right?
+                        // Good.
+                        this.diagnostics.Clear();
+
+                        return variableType;
+                    }
+                }
             }
 
-            if (expressionType == BuiltinTypes.Undefined)
-            {
-                // We don't know what this is set to, so we'll have to
-                // assume it's ok. Return the variable type, if known.
-                return variableType;
-            }
-
+            // we have correctly determined the type here (or failed in every way possible)
             return expressionType;
         }
 
         private Yarn.IType CheckOperation(ParserRuleContext context, ParserRuleContext[] terms, Operator operationType, string operationDescription, params Yarn.IType[] permittedTypes)
         {
-
             var termTypes = new List<Yarn.IType>();
 
             var expressionType = BuiltinTypes.Undefined;
