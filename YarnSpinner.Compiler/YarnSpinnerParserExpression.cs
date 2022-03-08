@@ -23,7 +23,7 @@ namespace Yarn.Compiler
     }
 
     public partial class YarnSpinnerParser : Parser
-    {        
+    {
         public partial class ExpressionContext : ParserRuleContext
         {
             /// <summary>
@@ -32,6 +32,27 @@ namespace Yarn.Compiler
             /// object.
             /// </summary>
             public Yarn.IType Type { get; set; }
+
+            /// <summary>
+            /// Gets or sets a type hint for the expression.
+            /// This is mostly used by <see cref="TypeCheckVisitor"/>
+            /// to give a hint that can be used by functions to
+            /// influence their type when set to use inference.
+            /// Won't be used if a concrete type is already known.
+            /// </summary>
+            public Yarn.IType Hint { get; set; }
+        }
+
+        public partial class ValueContext : ParserRuleContext
+        {
+            /// <summary>
+            /// Gets or sets a type hint for the expression.
+            /// This is mostly used by <see cref="TypeCheckVisitor"/>
+            /// to give a hint that can be used by functions to
+            /// influence their type when set to use inference.
+            /// Won't be used if a concrete type is already known.
+            /// </summary>
+            public Yarn.IType Hint { get; set; }
         }
     }
 }
