@@ -174,8 +174,11 @@ namespace Yarn.Compiler
                 // We don't have a declaration for this function. Create an
                 // implicit one.
 
+                Console.WriteLine($"Hint for function:_{context.Hint}_");
+
                 functionType = new FunctionType();
-                functionType.ReturnType = BuiltinTypes.Undefined;
+                // because it is an implicit declaration we will use the type hint to give us a return type
+                functionType.ReturnType = context.Hint != BuiltinTypes.Undefined ? context.Hint : BuiltinTypes.Undefined;
 
                 functionDeclaration = new Declaration
                 {
@@ -216,6 +219,8 @@ namespace Yarn.Compiler
             }
             else
             {
+                var a = (FunctionType)functionDeclaration.Type;
+                Console.WriteLine($"Found an existing function definition for {functionName}:_{a.ReturnType}_");
                 functionType = functionDeclaration.Type as FunctionType;
                 if (functionType == null)
                 {
@@ -270,6 +275,8 @@ namespace Yarn.Compiler
 
         public override Yarn.IType VisitExpValue(YarnSpinnerParser.ExpValueContext context)
         {
+            // passing the hint from the expression down into the values within
+            context.value().Hint = context.Hint;
             // Value expressions have the type of their inner value
             Yarn.IType type = Visit(context.value());
             context.Type = type;
@@ -296,12 +303,21 @@ namespace Yarn.Compiler
             var variableContext = context.variable();
             var expressionContext = context.expression();
 
-            if (expressionContext == null || variableContext == null) {
+            if (expressionContext == null || variableContext == null)
+            {
                 return BuiltinTypes.Undefined;
             }
 
-            var expressionType = base.Visit(expressionContext);
             var variableType = base.Visit(variableContext);
+            if (variableType != BuiltinTypes.Undefined)
+            {
+                // giving the expression a hint just in case it is needed to help resolve any ambiguity on the expression
+                // currently this is only useful in situations where we have a function as the rvalue of a known lvalue
+                Console.WriteLine($"Giving {expressionContext.GetText()} a hint of {variableType}");
+                expressionContext.Hint = variableType;
+            }
+
+            var expressionType = base.Visit(expressionContext);
 
             var variableName = variableContext.GetText();
 
@@ -392,78 +408,24 @@ namespace Yarn.Compiler
                     throw new InvalidOperationException($"Internal error: {nameof(VisitSet_statement)} got unexpected operand {context.op.Text}");
             }
 
-            // we don't know the type of the expression but do know the type of the variable we can force the issue
-            // this can only happen (I think) when the expression is using an unknown function
-            // because of this we can make an assumption that the expression will be a matching type to the variable
-            // as such we can codify that assumption and then later see if it breaks down
-            // so given a statement like <<set $var to function()>>, where we know the type of $var (for this example its .Number)
-            // 1. Try to resolve the expression that is function() and return .Undefined
-            // 2. Look at the type of $var and see it is .Number
-            // 3. Update the function() definition so its return type matches $var (.Number)
-            // 4. Return the new expression type
-
-            // ok there is one more piece needed to fix this
-            // basically because we already have made diagnostics it is fucking shit up (I think)
-            // so I need to remove or rework the diagnostic side of things
-            // for now I am gonna just destroy them...
-            if (expressionType == BuiltinTypes.Undefined && variableType != BuiltinTypes.Undefined)
+            if (variableType == BuiltinTypes.Undefined && expressionType == BuiltinTypes.Undefined)
             {
-                if (expressionContext is YarnSpinnerParser.ExpValueContext)
-                {
-                    var value = ((YarnSpinnerParser.ExpValueContext)expressionContext).value();
-                    if (value is YarnSpinnerParser.ValueFuncContext)
-                    {
-                        // we now know it is a function so we can update the info of that function and then return
-                        var id = ((YarnSpinnerParser.ValueFuncContext)value).function_call().FUNC_ID().GetText();
-
-                        Console.WriteLine($"function:_{id}_");
-                        Console.WriteLine($"1: There are {NewDeclarations.Count()} declarations");
-
-                        // getting the existing implicit function definition out and changing its return type to match the variables
-                        Declaration functionDeclaration = NewDeclarations.Where(d => d.Type is FunctionType).FirstOrDefault(d => d.Name == id);
-                        NewDeclarations.Remove(functionDeclaration);
-
-                        var func = functionDeclaration.Type as FunctionType;
-                        if (func == null)
-                        {
-                            // if for whatever reason we can't find the implict function (shouldn't happe)
-                            // we just bail out now
-                            return BuiltinTypes.Undefined;
-                        }
-
-                        Console.WriteLine($"assigning {id}'s return type to be _{variableType}_");
-                        func.ReturnType = variableType;
-                        functionDeclaration.Type = func;
-                        Console.WriteLine(((FunctionType)functionDeclaration.Type).ReturnType);
-                        NewDeclarations.Add(functionDeclaration);
-
-                        foreach(var dec in NewDeclarations)
-                        {
-                            var a = dec.Type as FunctionType;
-                            if (a == null)
-                            {
-                                Console.Write($"Skipping {dec.Name}");
-                                continue;
-                            }
-                            Console.WriteLine($"{dec.Name}:_{a.ReturnType}_");
-                        }
-                        Console.WriteLine($"2: There are {NewDeclarations.Count()} declarations");
-
-                        // Tim, this is temporary.
-                        // Repeat after me, temporary.
-                        // We agree we can't just blow away the errors and continue anyways, right?
-                        // Good.
-                        this.diagnostics.Clear();
-
-                        return variableType;
-                    }
-                }
+                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"Type of expression \"{context.GetTextWithWhitespace()}\" can't be determined without more context. Please declare one or more terms.", Diagnostic.DiagnosticSeverity.Error));
             }
 
-            // we have correctly determined the type here (or failed in every way possible)
+            // at this point we have either fully resolved the type of the expression or been unable to do so
+            // we return the type of the expression regardless and rely on either elements to catch the issue
+            Console.WriteLine($"overall {context.GetText()} is _{expressionType}_");
             return expressionType;
         }
 
+        // ok so what do we actually need to do in here?
+        // we need to do a few different things
+        // basically we need to go through the various types in the expression
+        // if any are known we need to basically log that
+        // then at the end if there are still unknowns we check if the operation itself forces a type
+        // so if we have say Undefined = Undefined + Number then we know that only one operation supports + Number and that is Number + Number
+        // so we can slot the type into the various parts
         private Yarn.IType CheckOperation(ParserRuleContext context, ParserRuleContext[] terms, Operator operationType, string operationDescription, params Yarn.IType[] permittedTypes)
         {
             var termTypes = new List<Yarn.IType>();
@@ -514,6 +476,7 @@ namespace Yarn.Compiler
                     // given. Given no other information, we will assume
                     // that it is this type.
                     expressionType = typesImplementingMethod.First();
+                    Console.WriteLine($"forcing expression to be _{expressionType}_");
                 }
                 else if (typesImplementingMethod.Count() > 1)
                 {
@@ -531,6 +494,25 @@ namespace Yarn.Compiler
                     string message = $"Type of expression \"{context.GetTextWithWhitespace()}\" can't be determined without more context. Use a type cast on at least one of the terms (e.g. the string(), number(), bool() functions)";
                     this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
                     return BuiltinTypes.Undefined;
+                }
+            }
+
+            // ok to reach this point we have either worked out the final type of the expression
+            // or had to give up, and if we gave up we have nothing left to do
+            // there are then two parts to this, first we need to declare the implict type of any variables (that appears to be working)
+            // or the implicit type of any function.
+            // annoyingly the function will already have an implicit definition created for it
+            // we will have to strip that out and add in a new one with the new return type
+            var id = "madeupfunction";
+            Declaration functionDeclaration = NewDeclarations.Where(d => d.Type is FunctionType).FirstOrDefault(d => d.Name == id);
+            NewDeclarations.Remove(functionDeclaration);
+            if (functionDeclaration != null)
+            {
+                var func = functionDeclaration.Type as FunctionType;
+                if (func != null)
+                {
+                    func.ReturnType = expressionType;
+                    NewDeclarations.Add(functionDeclaration);
                 }
             }
 
