@@ -174,8 +174,6 @@ namespace Yarn.Compiler
                 // We don't have a declaration for this function. Create an
                 // implicit one.
 
-                Console.WriteLine($"Hint for function:_{context.Hint}_");
-
                 functionType = new FunctionType();
                 // because it is an implicit declaration we will use the type hint to give us a return type
                 functionType.ReturnType = context.Hint != BuiltinTypes.Undefined ? context.Hint : BuiltinTypes.Undefined;
@@ -220,7 +218,6 @@ namespace Yarn.Compiler
             else
             {
                 var a = (FunctionType)functionDeclaration.Type;
-                Console.WriteLine($"Found an existing function definition for {functionName}:_{a.ReturnType}_");
                 functionType = functionDeclaration.Type as FunctionType;
                 if (functionType == null)
                 {
@@ -313,7 +310,6 @@ namespace Yarn.Compiler
             {
                 // giving the expression a hint just in case it is needed to help resolve any ambiguity on the expression
                 // currently this is only useful in situations where we have a function as the rvalue of a known lvalue
-                Console.WriteLine($"Giving {expressionContext.GetText()} a hint of {variableType}");
                 expressionContext.Hint = variableType;
             }
 
@@ -350,7 +346,8 @@ namespace Yarn.Compiler
                         // we can't get one, we can't create the definition.
                         var canCreateDefaultValue = TryGetDefaultValueForType(expressionType, out var defaultValue);
 
-                        if (!canCreateDefaultValue) {
+                        if (!canCreateDefaultValue)
+                        {
                             diagnostics.Add(new Diagnostic(sourceFileName, variableContext, string.Format(CantDetermineVariableTypeError, variableName)));
                             break;
                         }
@@ -415,7 +412,6 @@ namespace Yarn.Compiler
 
             // at this point we have either fully resolved the type of the expression or been unable to do so
             // we return the type of the expression regardless and rely on either elements to catch the issue
-            Console.WriteLine($"overall {context.GetText()} is _{expressionType}_");
             return expressionType;
         }
 
@@ -476,7 +472,6 @@ namespace Yarn.Compiler
                     // given. Given no other information, we will assume
                     // that it is this type.
                     expressionType = typesImplementingMethod.First();
-                    Console.WriteLine($"forcing expression to be _{expressionType}_");
                 }
                 else if (typesImplementingMethod.Count() > 1)
                 {
@@ -497,22 +492,37 @@ namespace Yarn.Compiler
                 }
             }
 
-            // ok to reach this point we have either worked out the final type of the expression
+            // to reach this point we have either worked out the final type of the expression
             // or had to give up, and if we gave up we have nothing left to do
             // there are then two parts to this, first we need to declare the implict type of any variables (that appears to be working)
             // or the implicit type of any function.
             // annoyingly the function will already have an implicit definition created for it
             // we will have to strip that out and add in a new one with the new return type
-            var id = "madeupfunction";
-            Declaration functionDeclaration = NewDeclarations.Where(d => d.Type is FunctionType).FirstOrDefault(d => d.Name == id);
-            NewDeclarations.Remove(functionDeclaration);
-            if (functionDeclaration != null)
+            foreach (var term in terms)
             {
-                var func = functionDeclaration.Type as FunctionType;
-                if (func != null)
+                if (term is YarnSpinnerParser.ExpValueContext)
                 {
-                    func.ReturnType = expressionType;
-                    NewDeclarations.Add(functionDeclaration);
+                    var value = ((YarnSpinnerParser.ExpValueContext)term).value();
+                    if (value is YarnSpinnerParser.ValueFuncContext)
+                    {
+                        var id = ((YarnSpinnerParser.ValueFuncContext)value).function_call().FUNC_ID().GetText();
+
+                        Declaration functionDeclaration = NewDeclarations.Where(d => d.Type is FunctionType).FirstOrDefault(d => d.Name == id);
+                        if (functionDeclaration != null)
+                        {
+                            var func = functionDeclaration.Type as FunctionType;
+                            if (func?.ReturnType == BuiltinTypes.Undefined)
+                            {
+                                NewDeclarations.Remove(functionDeclaration);
+                                func.ReturnType = expressionType;
+                                NewDeclarations.Add(functionDeclaration);
+                            }
+                        }
+                        else
+                        {
+                            Visit(term);
+                        }
+                    }
                 }
             }
 
@@ -565,7 +575,7 @@ namespace Yarn.Compiler
 
                     // If we can't produce this, then we can't generate the
                     // declaration.
-                    if (!canGetDefaultValue) 
+                    if (!canGetDefaultValue)
                     {
                         this.diagnostics.Add(new Diagnostic(sourceFileName, undefinedVariableContext, string.Format(CantDetermineVariableTypeError, undefinedVariableContext.VAR_ID().GetText())));
                         continue;
@@ -762,8 +772,6 @@ namespace Yarn.Compiler
             context.Type = type;
             return type;
         }
-
-
 
         public override Yarn.IType VisitExpComparison(YarnSpinnerParser.ExpComparisonContext context)
         {
