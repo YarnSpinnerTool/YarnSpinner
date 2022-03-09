@@ -223,6 +223,16 @@ namespace Yarn.Compiler
                 {
                     throw new InvalidOperationException($"Internal error: decl's type is not a {nameof(FunctionType)}");
                 }
+
+                // we have an existing function but its undefined
+                // if we also have a type hint we can use that to update it
+                if (functionType.ReturnType == BuiltinTypes.Undefined && context.Hint != BuiltinTypes.Undefined)
+                {
+                    NewDeclarations.Remove(functionDeclaration);
+                    functionType.ReturnType = context.Hint;
+                    functionDeclaration.Type = functionType;
+                    NewDeclarations.Add(functionDeclaration);
+                }
             }
 
             // Check each parameter of the function
@@ -825,19 +835,6 @@ namespace Yarn.Compiler
             context.Type = type;
 
             return BuiltinTypes.Boolean;
-        }
-
-        public override Yarn.IType VisitLine_formatted_text([NotNull] YarnSpinnerParser.Line_formatted_textContext context)
-        {
-            // Type-check every expression in this line, using the None
-            // operator and permitting the expression to be of Any type
-            foreach (var expression in context.expression())
-            {
-                var type = CheckOperation(expression, new[] { expression }, Operator.None, "inline expression", BuiltinTypes.Any);
-                expression.Type = type;
-            }
-
-            return BuiltinTypes.String;
         }
 
         public override IType VisitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
