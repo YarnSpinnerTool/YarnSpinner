@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `Declaration` and `Diagnostic` now provide position information via a `Range` object, which specifies the start and end position of the relevant parts of the document.
 - Fixed an issue where attempting to access the value of a variable with insufficient context to figure out its type would crash the compiler. (This could happen when you used a variable in a line, like `Variable: {$myVar}` with no other uses of `$myVar`.)
 - Fixed an issue where an option condition with no expression (for example: `-> Option one <<if>>`) would crash the compiler.
+- The compiler will no longer attempt to generate code if the Yarn script contains errors. (Previously, it was generating code, and then discarding it, but this allows for potential errors and crashes if code-generation is attempted on an invalid parse tree.)
 - Typechecker now does partial backwards type inference, allowing for functions and variables to inform the type of the other regardless of them being the l- or r-value in an expression.
 
 ### Removed
