@@ -195,14 +195,6 @@ namespace YarnSpinner.Tests
                     }
                 }
             };
-
-            // The Space test scripts call a function called "visited",
-            // which is defined in the Unity runtime and returns true if a
-            // node with the given name has been run before. For type
-            // correctness, we stub it out here with an implementation that
-            // just returns false
-            dialogue.Library.RegisterFunction("visited", (string nodeName) => false );
-
         }
 
         /// <summary>

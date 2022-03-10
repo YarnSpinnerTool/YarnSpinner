@@ -38,6 +38,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Jump expressions may be a constant string, a variable, a function call, or any other type of expression.
 - These expressions must be wrapped in curly braces (`{` `}`), and must produce a string.
 
+- Automatic visitation tracking.
+
+You can use the `visit` and `visited_count` functions which take in the title of a node and return true of false in the first one, and the number of times visited in the second.
+This can be controlled and overriden by the use a header tag `tracking`.
+Setting `tracking: always` forces visitation tracking to be enabled even when there are no calls to either function for that node.
+Setting `tracking: never` forces no visit tracking regardless of function calls to that node.
+
 ### Changed
 
 ### Removed

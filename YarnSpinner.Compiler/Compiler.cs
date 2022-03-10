@@ -640,6 +640,8 @@ namespace Yarn.Compiler
 
         private List<Diagnostic> diagnostics = new List<Diagnostic>();
 
+        // the list of nodes we have to ensure we track visitation
+        private HashSet<string> TrackingNodes;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Compiler"/> class.
@@ -666,6 +668,9 @@ namespace Yarn.Compiler
         public static CompilationResult Compile(CompilationJob compilationJob)
         {
             var results = new List<CompilationResult>();
+
+            // I think it is bad that we have two variables with identical behaviours and almost identical data
+            // we should merge these or at least remove the needed duplication of work
 
             // All variable declarations that we've encountered during this
             // compilation job
@@ -746,8 +751,8 @@ namespace Yarn.Compiler
             {
                 GetDeclarations(parsedFile, knownVariableDeclarations, out var newDeclarations, typeDeclarations, out var newFileTags, out var declarationDiagnostics);
 
-                derivedVariableDeclarations.AddRange(newDeclarations);
                 knownVariableDeclarations.AddRange(newDeclarations);
+                derivedVariableDeclarations.AddRange(newDeclarations);
                 diagnostics.AddRange(declarationDiagnostics);
 
                 fileTags.Add(parsedFile.Name, newFileTags);
@@ -759,8 +764,8 @@ namespace Yarn.Compiler
                 var checker = new TypeCheckVisitor(parsedFile.Name, knownVariableDeclarations, typeDeclarations);
 
                 checker.Visit(parsedFile.Tree);
-                derivedVariableDeclarations.AddRange(checker.NewDeclarations);
                 knownVariableDeclarations.AddRange(checker.NewDeclarations);
+                derivedVariableDeclarations.AddRange(checker.NewDeclarations);
                 diagnostics.AddRange(checker.Diagnostics);
 
                 potentialIssues.AddRange(checker.deferredTypes);
@@ -780,6 +785,32 @@ namespace Yarn.Compiler
                 }
 #endif
             }
+
+            // determining the nodes we need to track visits on
+            // this needs to be done before we finish up with declarations
+            // so that any tracking variables are included in the compiled declarations
+            HashSet<string> trackingNodes = new HashSet<string>();
+            HashSet<string> ignoringNodes = new HashSet<string>();
+            foreach (var parsedFile in parsedFiles)
+            {
+                var thingy = new NodeTrackingVisitor(trackingNodes, ignoringNodes);
+                thingy.Visit(parsedFile.Tree);
+            }
+
+            // removing all nodes we are told explicitly to not track
+            trackingNodes.ExceptWith(ignoringNodes);
+
+            var trackingDeclarations = new List<Declaration>();
+            foreach (var node in trackingNodes)
+            {
+                trackingDeclarations.Add(Declaration.CreateVariable(Yarn.Library.GenerateUniqueVisitedVariableForNode(node), BuiltinTypes.Number, 0, $"The generated variable for tracking visits of node {node}"));
+            }
+
+            // adding the generated tracking variables into the declaration list
+            // this way any future variable storage system will know about them
+            // if we didn't do this later stages wouldn't be able to interface with them
+            knownVariableDeclarations.AddRange(trackingDeclarations);
+            derivedVariableDeclarations.AddRange(trackingDeclarations);
 
             var totalDeclarations = new List<Declaration>();
             totalDeclarations.AddRange(derivedVariableDeclarations);
@@ -829,7 +860,7 @@ namespace Yarn.Compiler
                 // files.
                 foreach (var parsedFile in parsedFiles)
                 {
-                    CompilationResult compilationResult = GenerateCode(parsedFile, knownVariableDeclarations, compilationJob, stringTableManager);
+                    CompilationResult compilationResult = GenerateCode(parsedFile, knownVariableDeclarations, compilationJob, stringTableManager, trackingNodes);
 
                     results.Add(compilationResult);
                 }
@@ -921,10 +952,11 @@ namespace Yarn.Compiler
             diagnostics = newDiagnosticList;
         }
 
-        private static CompilationResult GenerateCode(FileParseResult fileParseResult, IEnumerable<Declaration> variableDeclarations, CompilationJob job, StringTableManager stringTableManager)
+        private static CompilationResult GenerateCode(FileParseResult fileParseResult, IEnumerable<Declaration> variableDeclarations, CompilationJob job, StringTableManager stringTableManager, HashSet<string> trackingNodes)
         {
             Compiler compiler = new Compiler(fileParseResult);
 
+            compiler.TrackingNodes = trackingNodes;
             compiler.Library = job.Library;
             compiler.VariableDeclarations = variableDeclarations;
             compiler.Compile();
@@ -1176,6 +1208,24 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// Creates a new instruction, and appends it to the current node in the
+        /// <see cref="Program"/>.
+        /// Differs from the other Emit call by not requiring a start token.
+        /// This enables its use in pure synthesised elements of the Yarn.
+        /// </summary>
+        /// <remarks>
+        /// Called by instances of <see
+        /// cref="CodeGenerationVisitor"/> while walking the parse tree.
+        /// </remarks>
+        /// <param name="code">The opcode of the instruction.</param>
+        /// <param name="operands">The operands to associate with the
+        /// instruction.</param>
+        internal void Emit(OpCode code, params Operand[] operands)
+        {
+            this.Emit(this.CurrentNode, this.CurrentDebugInfo, -1, -1, code, operands);
+        }
+
+        /// <summary>
         /// Extracts a line ID from a collection of <see
         /// cref="YarnSpinnerParser.HashtagContext"/>s, if one exists.
         /// </summary>
@@ -1284,6 +1334,10 @@ namespace Yarn.Compiler
         // everything from that point onwards
         public override void EnterBody(YarnSpinnerParser.BodyContext context)
         {
+            // ok so something in here needs to be a bit different
+            // also need to emit tracking code here for when we fall out of a node that needs tracking?
+            // or should do I do in inside the codegenvisitor?
+
             // if it is a regular node
             if (!this.RawTextNode)
             {
@@ -1291,7 +1345,9 @@ namespace Yarn.Compiler
                 // label at this point.
                 this.CurrentNode.Labels.Add(this.RegisterLabel(), this.CurrentNode.Instructions.Count);
 
-                CodeGenerationVisitor visitor = new CodeGenerationVisitor(this);
+                string track = TrackingNodes.Contains(CurrentNode.Name) ? Yarn.Library.GenerateUniqueVisitedVariableForNode(CurrentNode.Name) : null;
+
+                CodeGenerationVisitor visitor = new CodeGenerationVisitor(this, track);
 
                 foreach (var statement in context.statement())
                 {
@@ -1313,6 +1369,18 @@ namespace Yarn.Compiler
 
         public override void ExitBody(YarnSpinnerParser.BodyContext context)
         {
+            // this gives us the final increment at the end of the node
+            // this is for when we visit and complete a node without a jump
+            // theoretically this does mean that there might be redundant increments
+            // but I don't think it will matter because a jump always prevents
+            // the extra increment being reached
+            // a bit inelegant to do it this way but the codegen visitor doesn't exit a node
+            // will do for now, shouldn't be hard to refactor this later
+            string track = TrackingNodes.Contains(CurrentNode.Name) ? Yarn.Library.GenerateUniqueVisitedVariableForNode(CurrentNode.Name) : null;
+            if (track != null)
+            {
+                CodeGenerationVisitor.GenerateTrackingCode(this, track);
+            }
             // We have exited the body; emit a 'stop' opcode here.
             this.Emit(this.CurrentNode, this.CurrentDebugInfo, context.Stop.Line - 1, 0, OpCode.Stop);
         }

@@ -1,0 +1,27 @@
+title: Start
+---
+beginning
+<<jump NoTrack>>
+===
+
+title: NoTrack
+tracking: never
+---
+entered NoTrack
+<<jump Track>>
+===
+
+title: Track
+tracking: always
+---
+entered Track
+<<jump End>>
+===
+
+title: End
+---
+entered End
+did we visit NoTrack? {visited("NoTrack")}!
+did we visit Track? {visited("Trac" + "k")}!
+done
+===

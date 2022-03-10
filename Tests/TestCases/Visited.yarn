@@ -1,0 +1,10 @@
+title: Start
+---
+entered start
+<<if visited("Start")>>
+we have visited Start before
+<<else>>
+we have not visited Start
+<<jump Start>>
+<<endif>>
+===

@@ -18,9 +18,12 @@ namespace Yarn.Compiler
     {
         private Compiler compiler;
 
-        public CodeGenerationVisitor(Compiler compiler)
+        internal string trackingEnabled = null;
+
+        public CodeGenerationVisitor(Compiler compiler, string trackingEnabled)
         {
             this.compiler = compiler;
+            this.trackingEnabled = trackingEnabled;
         }
 
         private int GenerateCodeForExpressionsInFormattedText(IList<IParseTree> nodes)
@@ -426,6 +429,28 @@ namespace Yarn.Compiler
             // Call that function.
             this.compiler.Emit(OpCode.CallFunc, operatorToken, new Operand(functionName));
         }
+        
+        private void GenerateTrackingCode(string variableName)
+        {
+            GenerateTrackingCode(this.compiler, variableName);
+        }
+        // really ought to make this emit like a list of opcodes actually
+        public static void GenerateTrackingCode(Compiler compiler, string variableName)
+        {
+            // pushing the var and the increment onto the stack
+            compiler.Emit(OpCode.PushVariable, new Operand(variableName));
+            compiler.Emit(OpCode.PushFloat, new Operand(1));
+
+            // Indicate that we are pushing this many items for comparison
+            compiler.Emit(OpCode.PushFloat, new Operand(2));
+
+            // calling the function
+            compiler.Emit(OpCode.CallFunc, new Operand("Number.Add"));
+
+            // now store the variable and clean up the stack
+            compiler.Emit(OpCode.StoreVariable, new Operand(variableName));
+            compiler.Emit(OpCode.Pop);
+        }
 
         // * / %
         public override int VisitExpMultDivMod(YarnSpinnerParser.ExpMultDivModContext context)
@@ -544,8 +569,12 @@ namespace Yarn.Compiler
         // its name.
         public override int VisitJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context)
         {
-            this.compiler.Emit(OpCode.PushString, context.destination, new Operand(context.destination.Text));
-            this.compiler.Emit(OpCode.RunNode, context.Start);
+            if (trackingEnabled != null)
+            {
+                GenerateTrackingCode(trackingEnabled);
+            }
+            compiler.Emit(OpCode.PushString, context.destination, new Operand(context.destination.Text));
+            compiler.Emit(OpCode.RunNode, context.Start);
 
             return 0;
         }
@@ -554,6 +583,10 @@ namespace Yarn.Compiler
         // expression that resolves to a node's name.
         public override int VisitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
         {
+            if (trackingEnabled != null)
+            {
+                GenerateTrackingCode(trackingEnabled);
+            }
             // Evaluate the expression, and jump to the result on the stack.
             this.Visit(context.expression());
             this.compiler.Emit(OpCode.RunNode, context.Start);

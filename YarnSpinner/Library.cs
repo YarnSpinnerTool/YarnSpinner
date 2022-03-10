@@ -179,5 +179,19 @@ namespace Yarn
                 this.RegisterFunction(canonicalName, methodImplementation);
             }
         }
+
+        /// <summary>
+        /// Generates a unique tracking variable name.
+        /// This is intended to be used to generate names for visting.
+        /// Ideally these will very reproduceable and sensible.
+        /// For now it will be something terrible and easy.
+        /// </summary>
+        /// <param name="nodeName">The name of the node that needs to
+        /// have a tracking variable created.</param>
+        /// <returns>The new variable name.</returns>
+        public static string GenerateUniqueVisitedVariableForNode(string nodeName)
+        {
+            return $"$Yarn.Internal.Visiting.{nodeName}";
+        }
     }
 }
