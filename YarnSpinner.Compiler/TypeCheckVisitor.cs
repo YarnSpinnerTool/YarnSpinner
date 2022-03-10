@@ -48,6 +48,9 @@ namespace Yarn.Compiler
 
         private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
 
+        // the list of variables we aren't actually sure about
+        public List<DeferredTypeDiagnostic> hmms = new List<DeferredTypeDiagnostic>();
+
         /// <summary>
         /// Gets the collection of all declarations - both the ones we received
         /// at the start, and the new ones we've derived ourselves.
@@ -152,11 +155,26 @@ namespace Yarn.Compiler
                 }
             }
 
+            // do we already have a potential warning about this?
+            // no need to make more
+            foreach (var hmm in hmms)
+            {
+                if (hmm.Name == name)
+                {
+                    return BuiltinTypes.Undefined;
+                }
+            }
+
+            // creating a new diagnostic for us having an undefined variable
+            // this won't get added into the existing diags though because its possible a later pass will clear it up
+            // so we save this as a potential diagnostic for the compiler itself to resolve
+            var diagnostic = new Diagnostic(sourceFileName, context, string.Format(CantDetermineVariableTypeError, name));
+            hmms.Add(DeferredTypeDiagnostic.DeferredTypeDiagnostic(name, diagnostic));
+
             // We don't have a declaration for this variable. Return
             // Undefined. Hopefully, other context will allow us to infer a
             // type.
             return BuiltinTypes.Undefined;
-
         }
 
         public override Yarn.IType VisitValueFunc(YarnSpinnerParser.ValueFuncContext context)

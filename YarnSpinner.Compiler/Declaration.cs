@@ -101,6 +101,25 @@ namespace Yarn.Compiler
             return hashCode;
         }
     }
+
+    public class DeferredTypeDiagnostic
+    {
+        public string Name { get; internal set; }
+        public Diagnostic diagnostic { get; set; }
+        public static DeferredTypeDiagnostic DeferredTypeDiagnostic(string name, Diagnostic diagnostic)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentException($"'{nameof(name)}' cannot be null or empty.", nameof(name));
+            }
+
+            return new DeferredTypeDiagnostic
+            {
+                Name = name,
+                diagnostic = diagnostic,
+            };
+        }
+    }
     
     [Serializable]
     public class Declaration
@@ -125,7 +144,6 @@ namespace Yarn.Compiler
         /// class.</returns>
         public static Declaration CreateVariable(string name, Yarn.IType type, IConvertible defaultValue, string description = null)
         {
-
             if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));

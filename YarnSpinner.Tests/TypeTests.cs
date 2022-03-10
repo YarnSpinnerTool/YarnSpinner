@@ -469,7 +469,8 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Collection(result.Diagnostics, p => Assert.Matches(@"Type \w+ does not match", p.Message));
+            Assert.Collection(result.Diagnostics, diag => Assert.Matches(@"Type \w+ does not match", diag.Message),
+                                                  diag => Assert.Matches(@"Can't figure out the type of variable \$\w+ given its context. Specify its type with a <<declare>> statement.", diag.Message));
         }
 
         [Fact]
