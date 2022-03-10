@@ -1,0 +1,5 @@
+title: Start
+---
+// Error: functions and vars still need some sort of type to get started
+<<set $a = somefunc()>>
+===

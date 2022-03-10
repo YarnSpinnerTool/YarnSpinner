@@ -14,14 +14,15 @@ using static Yarn.Instruction.Types;
 
 namespace Yarn.Analysis
 {
-    public class Diagnosis {
-
+    public class Diagnosis
+    {
         public string message;
         public string nodeName;
         public int lineNumber;
         public int columnNumber;
 
-        public enum Severity {
+        public enum Severity 
+        {
             Error,
             Warning,
             Note
@@ -44,7 +45,6 @@ namespace Yarn.Analysis
 
         public string ToString (bool showSeverity)
         {
-
             string contextLabel = "";
 
             if (showSeverity) {
@@ -63,8 +63,8 @@ namespace Yarn.Analysis
                 }
             }
 
-            if (this.nodeName != null) {
-
+            if (this.nodeName != null) 
+            {
                 contextLabel += this.nodeName;
                 if (this.lineNumber != -1) {
                     contextLabel += string.Format (CultureInfo.CurrentCulture, ": {0}", this.lineNumber);
@@ -77,16 +77,17 @@ namespace Yarn.Analysis
 
             string message;
 
-            if (string.IsNullOrEmpty(contextLabel)) {
+            if (string.IsNullOrEmpty(contextLabel))
+            {
                 message = this.message;
-            } else {
+            }
+            else
+            {
                 message = string.Format (CultureInfo.CurrentCulture, "{0}: {1}", contextLabel, this.message);
             }
 
             return message;
         }
-
-
     }
 
     public class Context {

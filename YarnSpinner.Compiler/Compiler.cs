@@ -753,6 +753,7 @@ namespace Yarn.Compiler
                 fileTags.Add(parsedFile.Name, newFileTags);
             }
 
+            List<DeferredTypeDiagnostic> potentialIssues = new List<DeferredTypeDiagnostic>();
             foreach (var parsedFile in parsedFiles)
             {
                 var checker = new TypeCheckVisitor(parsedFile.Name, knownVariableDeclarations, typeDeclarations);
@@ -762,19 +763,45 @@ namespace Yarn.Compiler
                 knownVariableDeclarations.AddRange(checker.NewDeclarations);
                 diagnostics.AddRange(checker.Diagnostics);
 
+                potentialIssues.AddRange(checker.deferredTypes);
+
 #if VALIDATE_ALL_EXPRESSIONS
                 // Validate that the type checker assigned a type to every
                 // expression
-                var allExpressions = FlattenParseTree(parsedFile.tree).OfType<YarnSpinnerParser.ExpressionContext>();
+                var allExpressions = FlattenParseTree(parsedFile.Tree).OfType<YarnSpinnerParser.ExpressionContext>();
 
                 var expressionsWithNoType = allExpressions.Where(e => e.Type == BuiltinTypes.Undefined);
 
-                if (expressionsWithNoType.Count() > 0) {
+                if (expressionsWithNoType.Count() > 0)
+                {
                     string report = string.Join(", ", expressionsWithNoType.Select(e => $"{e.GetTextWithWhitespace()} (line {e.Start.Line})"));
 
                     throw new InvalidOperationException($"Internal error: The following expressions were not assigned a type: {report}");
                 }
 #endif
+            }
+
+            var totalDeclarations = new List<Declaration>();
+            totalDeclarations.AddRange(derivedVariableDeclarations);
+            totalDeclarations.AddRange(knownVariableDeclarations);
+
+            // ok here we need to run through any deferredTypes we have and see if they got resolved
+            foreach (var hmm in potentialIssues)
+            {
+                var resolved = false;
+                foreach (var dec in totalDeclarations)
+                {
+                    if (dec.Name == hmm.Name)
+                    {
+                        resolved = true;
+                        break;
+                    }
+                }
+                if (resolved)
+                {
+                    continue;
+                }
+                diagnostics.Add(hmm.diagnostic);
             }
 
             if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
@@ -812,7 +839,7 @@ namespace Yarn.Compiler
 
             // Last step: take every variable declaration we found in all
             // of the inputs, and create an initial value registration for
-            // it. 
+            // it.
             foreach (var declaration in knownVariableDeclarations)
             {
                 // We only care about variable declarations here
