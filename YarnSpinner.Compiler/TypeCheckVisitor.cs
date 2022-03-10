@@ -49,7 +49,7 @@ namespace Yarn.Compiler
         private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
 
         // the list of variables we aren't actually sure about
-        public List<DeferredTypeDiagnostic> hmms = new List<DeferredTypeDiagnostic>();
+        public List<DeferredTypeDiagnostic> deferredTypes = new List<DeferredTypeDiagnostic>();
 
         /// <summary>
         /// Gets the collection of all declarations - both the ones we received
@@ -157,7 +157,7 @@ namespace Yarn.Compiler
 
             // do we already have a potential warning about this?
             // no need to make more
-            foreach (var hmm in hmms)
+            foreach (var hmm in deferredTypes)
             {
                 if (hmm.Name == name)
                 {
@@ -169,7 +169,7 @@ namespace Yarn.Compiler
             // this won't get added into the existing diags though because its possible a later pass will clear it up
             // so we save this as a potential diagnostic for the compiler itself to resolve
             var diagnostic = new Diagnostic(sourceFileName, context, string.Format(CantDetermineVariableTypeError, name));
-            hmms.Add(DeferredTypeDiagnostic.CreateDeferredTypeDiagnostic(name, diagnostic));
+            deferredTypes.Add(DeferredTypeDiagnostic.CreateDeferredTypeDiagnostic(name, diagnostic));
 
             // We don't have a declaration for this variable. Return
             // Undefined. Hopefully, other context will allow us to infer a

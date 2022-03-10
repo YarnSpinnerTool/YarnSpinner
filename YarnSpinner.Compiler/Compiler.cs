@@ -763,7 +763,7 @@ namespace Yarn.Compiler
                 knownVariableDeclarations.AddRange(checker.NewDeclarations);
                 diagnostics.AddRange(checker.Diagnostics);
 
-                potentialIssues.AddRange(checker.hmms);
+                potentialIssues.AddRange(checker.deferredTypes);
 
 #if VALIDATE_ALL_EXPRESSIONS
                 // Validate that the type checker assigned a type to every
@@ -785,7 +785,7 @@ namespace Yarn.Compiler
             totalDeclarations.AddRange(derivedVariableDeclarations);
             totalDeclarations.AddRange(knownVariableDeclarations);
 
-            // ok here we need to run through any hmms we have and see if they got resolved
+            // ok here we need to run through any deferredTypes we have and see if they got resolved
             foreach (var hmm in potentialIssues)
             {
                 var resolved = false;
