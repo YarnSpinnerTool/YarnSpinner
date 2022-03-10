@@ -472,9 +472,11 @@ namespace Yarn.Compiler
                 }
             }
 
+            Program combinedProgram = programs.Count > 0 ? Program.Combine(programs.ToArray()) : null;
+
             return new CompilationResult
             {
-                Program = Program.Combine(programs.ToArray()),
+                Program = combinedProgram,
                 StringTable = stringTableManager.StringTable,
                 Declarations = declarations,
                 DebugInfo = nodeDebugInfos,
@@ -816,10 +818,21 @@ namespace Yarn.Compiler
                 };
             }
 
-            foreach (var parsedFile in parsedFiles)
+
+            if (diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {
-                CompilationResult compilationResult = GenerateCode(parsedFile, knownVariableDeclarations, compilationJob, stringTableManager);
-                results.Add(compilationResult);
+                // We have errors, so we can't safely generate code.
+            }
+            else
+            {
+                // No errors! Go ahead and generate the code for all parsed
+                // files.
+                foreach (var parsedFile in parsedFiles)
+                {
+                    CompilationResult compilationResult = GenerateCode(parsedFile, knownVariableDeclarations, compilationJob, stringTableManager);
+
+                    results.Add(compilationResult);
+                }
             }
 
             var finalResult = CompilationResult.CombineCompilationResults(results, stringTableManager);
@@ -868,7 +881,9 @@ namespace Yarn.Compiler
                     throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.Type.Name}");
                 }
 
-                finalResult.Program.InitialValues.Add(declaration.Name, value);
+                if (finalResult.Program != null) {
+                    finalResult.Program.InitialValues.Add(declaration.Name, value);
+                }
             }
 
             finalResult.Declarations = derivedVariableDeclarations;
@@ -876,14 +891,6 @@ namespace Yarn.Compiler
             finalResult.FileTags = fileTags;
 
             finalResult.Diagnostics = finalResult.Diagnostics.Concat(diagnostics).Distinct();
-
-            // Do not return a program if any Errors were generated (even
-            // if bytecode happened to be produced; it is not guaranteed to
-            // work correctly.)
-            if (finalResult.Diagnostics.Any(p => p.Severity == Diagnostic.DiagnosticSeverity.Error))
-            {
-                finalResult.Program = null;
-            }
 
             return finalResult;
         }
