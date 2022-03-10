@@ -665,7 +665,7 @@ namespace YarnSpinner.Tests
                 .AddLine("True")
                 .AddLine("True")
                 .AddLine("True")
-                .AddLine("True")                
+                .AddLine("True")
                 .GetPlan();
 
             // the library is NOT attached to this compilation job; all
