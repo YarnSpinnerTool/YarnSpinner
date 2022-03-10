@@ -1,7 +1,5 @@
 title: Start
 ---
-// Error: functions can only have a single type
-// for this to be valid somefunc() needs to return both a number and a bool
 <<declare $a = 0>>
 <<declare $c = false>>
 <<declare $e = "blank">>
