@@ -571,10 +571,10 @@ namespace Yarn
             Library.ImportLibrary(new StandardLibrary());
 
             Library.RegisterFunction("visited", delegate(string node){
-                return visited(node);
+                return IsNodeVisited(node);
             });
             Library.RegisterFunction("visited_count", delegate(string node){
-                return visitedCount(node);
+                return GetNodeVisitCount(node);
             });
 
             lineParser = new LineParser();
@@ -1031,7 +1031,7 @@ namespace Yarn
 
         }
 
-        private bool visited(string nodeName)
+        private bool IsNodeVisited(string nodeName)
         {
             float count = 0;
             if (VariableStorage.TryGetValue<float>(Library.GenerateUniqueVisitedVariableForNode(nodeName), out count))
@@ -1040,7 +1040,7 @@ namespace Yarn
             }
             return false;
         }
-        private float visitedCount(string nodeName)
+        private float GetNodeVisitCount(string nodeName)
         {
             float count = 0;
             VariableStorage.TryGetValue<float>(Library.GenerateUniqueVisitedVariableForNode(nodeName), out count);
