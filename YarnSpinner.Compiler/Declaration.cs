@@ -106,7 +106,7 @@ namespace Yarn.Compiler
     {
         public string Name { get; internal set; }
         public Diagnostic diagnostic { get; set; }
-        public static DeferredTypeDiagnostic DeferredTypeDiagnostic(string name, Diagnostic diagnostic)
+        public static DeferredTypeDiagnostic CreateDeferredTypeDiagnostic(string name, Diagnostic diagnostic)
         {
             if (string.IsNullOrEmpty(name))
             {

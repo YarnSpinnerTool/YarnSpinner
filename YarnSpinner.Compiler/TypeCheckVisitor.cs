@@ -169,7 +169,7 @@ namespace Yarn.Compiler
             // this won't get added into the existing diags though because its possible a later pass will clear it up
             // so we save this as a potential diagnostic for the compiler itself to resolve
             var diagnostic = new Diagnostic(sourceFileName, context, string.Format(CantDetermineVariableTypeError, name));
-            hmms.Add(DeferredTypeDiagnostic.DeferredTypeDiagnostic(name, diagnostic));
+            hmms.Add(DeferredTypeDiagnostic.CreateDeferredTypeDiagnostic(name, diagnostic));
 
             // We don't have a declaration for this variable. Return
             // Undefined. Hopefully, other context will allow us to infer a
