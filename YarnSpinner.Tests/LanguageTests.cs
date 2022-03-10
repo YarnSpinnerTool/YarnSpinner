@@ -274,7 +274,6 @@ namespace YarnSpinner.Tests
         [MemberData(nameof(FileSources), "Issues")]
         public void TestSources(string file)
         {
-
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"INFO: Loading file {file}");
 
@@ -291,7 +290,8 @@ namespace YarnSpinner.Tests
 
             bool testPlanExists = File.Exists(testPlanFilePath);
 
-            if (testPlanExists == false) {
+            if (testPlanExists == false) 
+            {
                 // No test plan for this file exists, which indicates that
                 // the file is not expected to compile. We'll actually make
                 // it a test failure if it _does_ compile.
@@ -312,6 +312,11 @@ namespace YarnSpinner.Tests
 
                 dialogue.SetProgram(result.Program);
                 stringTable = result.StringTable;
+
+                // three basic dummy functions that can be used to test inference
+                dialogue.Library.RegisterFunction("dummy_bool", () => true);
+                dialogue.Library.RegisterFunction("dummy_number", () => 1);
+                dialogue.Library.RegisterFunction("dummy_string", () => "string");
 
                 // If this file contains a Start node, run the test case
                 // (otherwise, we're just testing its parsability, which

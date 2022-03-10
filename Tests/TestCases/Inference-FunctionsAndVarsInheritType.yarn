@@ -1,0 +1,27 @@
+title: Start
+---
+<<declare $a = 0>>
+<<declare $c = false>>
+<<declare $e = "blank">>
+
+// dummy_number() will be infered to be number
+<<set $a = dummy_number()>>
+{$a} // 1
+// $b will be inferred to be number
+<<set $b = dummy_number()>>
+{$b} // 1
+
+// dummy_bool() will be infered to be bool
+<<set $c = dummy_bool()>>
+{$c} // true
+// $d will be inferred to be bool
+<<set $d = dummy_bool()>>
+{$d} // true
+
+// dummy_string() will be infered to be string
+<<set $e = dummy_string()>>
+{$e} // string
+// $f will be inferred to be string
+<<set $f = dummy_string()>>
+{$f} //string
+===
