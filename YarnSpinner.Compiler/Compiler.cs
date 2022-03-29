@@ -720,6 +720,14 @@ namespace Yarn.Compiler
                 RegisterStrings(file.FileName, stringTableManager, parseResult.Tree, ref diagnostics);
             }
 
+            // ok now we will add in our lastline tags
+            // this should probably be a flag instead of every time
+            foreach (var parsedFile in parsedFiles)
+            {
+                var lastLineTagger = new LastLineBeforeOptionsVisitor();
+                lastLineTagger.Visit(parsedFile.Tree);
+            }
+
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
             {
                 // Stop at this point
