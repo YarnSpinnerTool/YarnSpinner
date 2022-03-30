@@ -167,5 +167,16 @@ line before call #line:4
             info = result.StringTable["line:4"];
             Assert.DoesNotContain("lastline", info.metadata);
         }
+
+        [Fact]
+        void TestLineIsLastBeforeAnotherNodeNotTagged()
+        {
+            var source = "title: Start\n---\nlast line #line:0\n===\ntitle: Second\n---\n-> option 1\n===\n";
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            Assert.Empty(result.Diagnostics);
+
+            var info = result.StringTable["line:0"];
+            Assert.DoesNotContain("lastline", info.metadata);
+        }
     }
 }
