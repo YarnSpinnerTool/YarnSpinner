@@ -149,6 +149,8 @@ line before set #line:2
 -> option 1
 line before jump #line:3
 <<jump nodename>>
+line before call #line:4
+<<call function()>>
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
@@ -161,6 +163,8 @@ line before jump #line:3
             info = result.StringTable["line:2"];
             Assert.DoesNotContain("lastline", info.metadata);
             info = result.StringTable["line:3"];
+            Assert.DoesNotContain("lastline", info.metadata);
+            info = result.StringTable["line:4"];
             Assert.DoesNotContain("lastline", info.metadata);
         }
     }
