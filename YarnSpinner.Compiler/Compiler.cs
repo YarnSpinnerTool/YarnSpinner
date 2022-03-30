@@ -306,6 +306,8 @@ namespace Yarn.Compiler
         /// <param name="fileName">The name to assign to the compiled
         /// file.</param>
         /// <param name="source">The text to compile.</param>
+        /// <param name="library">Library of function definitions to use
+        /// during compilation.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
         public static CompilationJob CreateFromString(string fileName, string source, Library library = null)
         {
@@ -717,15 +719,13 @@ namespace Yarn.Compiler
                 var parseResult = ParseSyntaxTree(file, ref diagnostics);
                 parsedFiles.Add(parseResult);
 
-                RegisterStrings(file.FileName, stringTableManager, parseResult.Tree, ref diagnostics);
-            }
-
-            // ok now we will add in our lastline tags
-            // this should probably be a flag instead of every time
-            foreach (var parsedFile in parsedFiles)
-            {
+                // ok now we will add in our lastline tags
+                // we do this BEFORE we build our strings table otherwise the tags will get missed
+                // this should probably be a flag instead of every time though
                 var lastLineTagger = new LastLineBeforeOptionsVisitor();
-                lastLineTagger.Visit(parsedFile.Tree);
+                lastLineTagger.Visit(parseResult.Tree);
+
+                RegisterStrings(file.FileName, stringTableManager, parseResult.Tree, ref diagnostics);
             }
 
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
