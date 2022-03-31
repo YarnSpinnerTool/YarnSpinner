@@ -12,6 +12,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `CompilationResult.DebugInfo` now provides per-instruction positional debug information.
   - This allows users of the `Compiler` class to access positional information for each instruction, which is an important first step for source-level debugging.
 - Made `Diagnostic` and `Declaration` serializable, for easier communication with language servers and other utilities.
+- The compiler now does a last-line-before-options tagging pass.
+  - This will add a `#lastline` tag onto any dialogue line that immediately precedes a block of options.
+  - This is intended to used by other parts of the game to modify dialogue view behaviours.
 
 ### Changed
 
