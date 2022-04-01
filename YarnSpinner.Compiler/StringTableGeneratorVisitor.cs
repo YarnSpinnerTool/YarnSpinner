@@ -131,7 +131,7 @@ namespace Yarn.Compiler
             var hashtagText = new List<string>();
             foreach (var tag in hashtags)
             {
-                hashtagText.Add(tag.HASHTAG_TEXT().GetText());
+                hashtagText.Add(tag.text.Text);
             }
 
             return hashtagText.ToArray();
