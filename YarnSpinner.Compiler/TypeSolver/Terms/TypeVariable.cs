@@ -1,7 +1,7 @@
 namespace TypeChecker
 {
 
-    public class TypeVariable : TypeTerm
+    public class TypeVariable : ITypeTerm
     {
         public string Name { get; set; }
 
@@ -12,7 +12,7 @@ namespace TypeChecker
 
         public override string ToString() => Name;
 
-        public override TypeTerm Substitute(Substitution s)
+        public ITypeTerm Substitute(Substitution s)
         {
             if (s.ContainsKey(this))
             {
@@ -24,7 +24,7 @@ namespace TypeChecker
             }
         }
 
-        public override bool Equals(TypeTerm other)
+        public bool Equals(ITypeTerm other)
         {
             return other is TypeVariable otherVariable && otherVariable.Name == Name;
         }

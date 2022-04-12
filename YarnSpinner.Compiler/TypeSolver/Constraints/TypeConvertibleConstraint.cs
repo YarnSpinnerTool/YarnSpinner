@@ -8,9 +8,9 @@ namespace TypeChecker
 
     public class TypeConvertibleConstraint : TypeConstraint
     {
-        public TypeTerm Type { get; set; }
-        public TypeTerm ConvertibleToType { get; set; }
-        public TypeConvertibleConstraint(TypeTerm type, TypeTerm convertibleToType)
+        public ITypeTerm Type { get; set; }
+        public ITypeTerm ConvertibleToType { get; set; }
+        public TypeConvertibleConstraint(ITypeTerm type, ITypeTerm convertibleToType)
         {
             Type = type;
             ConvertibleToType = convertibleToType;

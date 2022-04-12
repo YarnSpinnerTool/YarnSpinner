@@ -9,28 +9,16 @@ namespace TypeChecker
     /// <summary>
     /// An abstract parent class for all types and type variables.
     /// </summary>
-    public abstract class TypeTerm : IEquatable<TypeTerm>
+    public interface ITypeTerm : IEquatable<ITypeTerm>
     {
-        public abstract bool Equals(TypeTerm other);
+        bool Equals(ITypeTerm other);
 
         /// <summary>
         /// Applies a substitution to this term.
         /// </summary>
         /// <param name="s">The substitution to apply.</param>
         /// <returns>The substituted value.</returns>
-        public abstract TypeTerm Substitute(Substitution s);
-
-        public override bool Equals(object obj)
-        {
-            if (obj is TypeTerm term)
-            {
-                return Equals(term);
-            }
-            else
-            {
-                return base.Equals(obj);
-            }
-        }
+        ITypeTerm Substitute(Substitution s);
     }
 
 }

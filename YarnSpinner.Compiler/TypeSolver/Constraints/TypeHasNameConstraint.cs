@@ -4,13 +4,13 @@ namespace TypeChecker
 {
     internal class TypeHasNameConstraint : TypeConstraint
     {
-        public TypeHasNameConstraint(TypeTerm type, string name)
+        public TypeHasNameConstraint(ITypeTerm type, string name)
         {
             this.Type = type;
             this.Name = name;
         }
 
-        public TypeTerm Type { get; private set; }
+        public ITypeTerm Type { get; private set; }
         public string Name { get; private set; }
 
         public override TypeConstraint Simplify(Substitution subst)

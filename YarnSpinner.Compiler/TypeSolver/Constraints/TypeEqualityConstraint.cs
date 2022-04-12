@@ -6,10 +6,10 @@ namespace TypeChecker
 
     public class TypeEqualityConstraint : TypeConstraint
     {
-        public TypeTerm Left { get; set; }
-        public TypeTerm Right { get; set; }
+        public ITypeTerm Left { get; set; }
+        public ITypeTerm Right { get; set; }
 
-        public TypeEqualityConstraint(TypeTerm left, TypeTerm right)
+        public TypeEqualityConstraint(ITypeTerm left, ITypeTerm right)
         {
             Left = left;
             Right = right;

@@ -671,23 +671,15 @@ namespace Yarn.Compiler
         {
             var results = new List<CompilationResult>();
 
-            // I think it is bad that we have two variables with identical behaviours and almost identical data
-            // we should merge these or at least remove the needed duplication of work
+            // All variable declarations that we've encountered
+            var variableDeclarations = new List<Declaration>();
 
-            // All variable declarations that we've encountered during this
-            // compilation job
-            var derivedVariableDeclarations = new List<Declaration>();
-
-            // All variable declarations that we've encountered, PLUS the
-            // ones we knew about before
-            var knownVariableDeclarations = new List<Declaration>();
-
-            // All type definitions that we've encountered while parsing.
+            // All type definitions that we've encountered while parsing. We'll add to this list when we encounter user-defined types.
             var typeDeclarations = new List<IType>(BuiltinTypes.AllBuiltinTypes);
 
             if (compilationJob.VariableDeclarations != null)
             {
-                knownVariableDeclarations.AddRange(compilationJob.VariableDeclarations);
+                variableDeclarations.AddRange(compilationJob.VariableDeclarations);
             }
 
             var diagnostics = new List<Diagnostic>();
@@ -697,14 +689,14 @@ namespace Yarn.Compiler
 
                 diagnostics.AddRange(declarationDiagnostics);
 
-                knownVariableDeclarations.AddRange(declarations);
+                variableDeclarations.AddRange(declarations);
             }
 
             // Get function declarations from the library, if provided
             if (compilationJob.Library != null)
             {
                 (IEnumerable<Declaration> declarations, IEnumerable<Diagnostic> declarationDiagnostics) = GetDeclarationsFromLibrary(compilationJob.Library);
-                knownVariableDeclarations.AddRange(declarations);
+                variableDeclarations.AddRange(declarations);
                 diagnostics.AddRange(declarationDiagnostics);
             }
 
@@ -741,58 +733,19 @@ namespace Yarn.Compiler
                 };
             }
 
-            // Find the type definitions in these files.
+            // Run the type checker on the files, and produce type variables and constraints.
+            
             var walker = new ParseTreeWalker();
             foreach (var parsedFile in parsedFiles)
             {
-                var typeDeclarationVisitor = new TypeDeclarationListener(parsedFile.Name, parsedFile.Tokens, parsedFile.Tree, ref typeDeclarations);
+                var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, parsedFile.Tree, ref typeDeclarations);
 
-                walker.Walk(typeDeclarationVisitor, parsedFile.Tree);
+                walker.Walk(typeCheckerListener, parsedFile.Tree);
 
-                diagnostics.AddRange(typeDeclarationVisitor.Diagnostics);
+                diagnostics.AddRange(typeCheckerListener.Diagnostics);
             }
 
             var fileTags = new Dictionary<string, IEnumerable<string>>();
-
-            // Find the variable declarations in these files.
-            foreach (var parsedFile in parsedFiles)
-            {
-                GetDeclarations(parsedFile, knownVariableDeclarations, out var newDeclarations, typeDeclarations, out var newFileTags, out var declarationDiagnostics);
-
-                knownVariableDeclarations.AddRange(newDeclarations);
-                derivedVariableDeclarations.AddRange(newDeclarations);
-                diagnostics.AddRange(declarationDiagnostics);
-
-                fileTags.Add(parsedFile.Name, newFileTags);
-            }
-
-            List<DeferredTypeDiagnostic> potentialIssues = new List<DeferredTypeDiagnostic>();
-            foreach (var parsedFile in parsedFiles)
-            {
-                var checker = new TypeCheckVisitor(parsedFile.Name, knownVariableDeclarations, typeDeclarations);
-
-                checker.Visit(parsedFile.Tree);
-                knownVariableDeclarations.AddRange(checker.NewDeclarations);
-                derivedVariableDeclarations.AddRange(checker.NewDeclarations);
-                diagnostics.AddRange(checker.Diagnostics);
-
-                potentialIssues.AddRange(checker.deferredTypes);
-
-#if VALIDATE_ALL_EXPRESSIONS
-                // Validate that the type checker assigned a type to every
-                // expression
-                var allExpressions = FlattenParseTree(parsedFile.Tree).OfType<YarnSpinnerParser.ExpressionContext>();
-
-                var expressionsWithNoType = allExpressions.Where(e => e.Type == BuiltinTypes.Undefined);
-
-                if (expressionsWithNoType.Count() > 0)
-                {
-                    string report = string.Join(", ", expressionsWithNoType.Select(e => $"{e.GetTextWithWhitespace()} (line {e.Start.Line})"));
-
-                    throw new InvalidOperationException($"Internal error: The following expressions were not assigned a type: {report}");
-                }
-#endif
-            }
 
             // determining the nodes we need to track visits on
             // this needs to be done before we finish up with declarations
@@ -817,31 +770,11 @@ namespace Yarn.Compiler
             // adding the generated tracking variables into the declaration list
             // this way any future variable storage system will know about them
             // if we didn't do this later stages wouldn't be able to interface with them
-            knownVariableDeclarations.AddRange(trackingDeclarations);
-            derivedVariableDeclarations.AddRange(trackingDeclarations);
+            variableDeclarations.AddRange(trackingDeclarations);
+            
+            // TODO: constrain all visited variables to be of type Number
 
-            var totalDeclarations = new List<Declaration>();
-            totalDeclarations.AddRange(derivedVariableDeclarations);
-            totalDeclarations.AddRange(knownVariableDeclarations);
-
-            // ok here we need to run through any deferredTypes we have and see if they got resolved
-            foreach (var hmm in potentialIssues)
-            {
-                var resolved = false;
-                foreach (var dec in totalDeclarations)
-                {
-                    if (dec.Name == hmm.Name)
-                    {
-                        resolved = true;
-                        break;
-                    }
-                }
-                if (resolved)
-                {
-                    continue;
-                }
-                diagnostics.Add(hmm.diagnostic);
-            }
+            // TODO: solve all type equations
 
             if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
             {

@@ -1,19 +1,21 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Yarn;
 
 namespace TypeChecker
 {
 
-    public class TypeLiteral : TypeTerm
+    public class TypeLiteral : ITypeTerm, IType
     {
         public TypeLiteral Parent { get; set; }
         public string Name { get; set; }
 
-        public Dictionary<string, TypeTerm> Members { get; private set; } = new Dictionary<string, TypeTerm>();
+        public Dictionary<string, ITypeTerm> Members { get; private set; } = new Dictionary<string, ITypeTerm>();
 
         public HashSet<TypeLiteral> ConvertibleToTypes = new HashSet<TypeLiteral>();
 
-        public void AddMember(string name, TypeTerm type)
+        public void AddMember(string name, ITypeTerm type)
         {
             Members.Add(name, type);
         }
@@ -50,7 +52,7 @@ namespace TypeChecker
 
         public string ToStringWithMembers() => Members.Count == 0 ? ToString() : ToString() + "{" + string.Join(", ", Members.Keys) + "}";
 
-        public override TypeTerm Substitute(Substitution s)
+        public ITypeTerm Substitute(Substitution s)
         {
             return new TypeLiteral(Name, Parent)
             {
@@ -58,12 +60,12 @@ namespace TypeChecker
             };
         }
 
-        public override bool Equals(TypeTerm other)
+        public bool Equals(ITypeTerm other)
         {
             return other is TypeLiteral otherLiteral && otherLiteral.Name == Name;
         }
 
-        public static bool operator ==(TypeLiteral a, TypeTerm b)
+        public static bool operator ==(TypeLiteral a, ITypeTerm b)
         {
             if (a is null && b is null)
             {
@@ -72,7 +74,7 @@ namespace TypeChecker
             return a?.Equals(b) ?? false;
         }
 
-        public static bool operator !=(TypeLiteral a, TypeTerm b)
+        public static bool operator !=(TypeLiteral a, ITypeTerm b)
         {
             return !(a == b);
         }
@@ -122,6 +124,12 @@ namespace TypeChecker
                 return depth;
             }
         }
+
+        IType IType.Parent => this.Parent;
+
+        public string Description => Name;
+
+        public IReadOnlyDictionary<string, Delegate> Methods => throw new NotImplementedException();
 
         public override bool Equals(object obj)
         {

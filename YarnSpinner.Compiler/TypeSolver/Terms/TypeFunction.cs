@@ -4,12 +4,12 @@ using System.Linq;
 namespace TypeChecker
 {
 
-    public class TypeFunction : TypeTerm
+    public class TypeFunction : ITypeTerm
     {
-        public TypeTerm ReturnType { get; set; }
-        public IEnumerable<TypeTerm> ArgumentTypes { get; set; }
+        public ITypeTerm ReturnType { get; set; }
+        public IEnumerable<ITypeTerm> ArgumentTypes { get; set; }
 
-        public TypeFunction(TypeTerm returnType, params TypeTerm[] argumentTypes)
+        public TypeFunction(ITypeTerm returnType, params ITypeTerm[] argumentTypes)
         {
             ReturnType = returnType ?? Types.Error;
             ArgumentTypes = argumentTypes;
@@ -17,14 +17,18 @@ namespace TypeChecker
 
         public string ToString() => $"({string.Join(", ", ArgumentTypes)}) -> {ReturnType}";
 
-        public override TypeTerm Substitute(Substitution s)
+        public ITypeTerm Substitute(Substitution s)
         {
             return new TypeFunction(ReturnType.Substitute(s), ArgumentTypes.Select(a => a.Substitute(s)).ToArray());
         }
 
-        public override bool Equals(TypeTerm other)
+        public bool Equals(ITypeTerm other)
         {
-            return other is TypeFunction otherFunction && otherFunction.ReturnType == ReturnType && ArgumentTypes.Zip(otherFunction.ArgumentTypes, (a,b) => (First: a, Second: b)).All(pair => pair.First == pair.Second);
+            return other is TypeFunction otherFunction
+                && otherFunction.ReturnType == ReturnType
+                && ArgumentTypes
+                    .Zip(otherFunction.ArgumentTypes, (a, b) => (First: a, Second: b))
+                    .All(pair => pair.First == pair.Second);
         }
     }
 }

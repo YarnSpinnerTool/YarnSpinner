@@ -7,10 +7,10 @@ namespace TypeChecker
 
     internal class TypeHasMemberConstraint : TypeConstraint
     {
-        public TypeTerm Type { get; private set; }
+        public ITypeTerm Type { get; private set; }
         public string MemberName { get; private set; }
 
-        public TypeHasMemberConstraint(TypeTerm type, string memberName)
+        public TypeHasMemberConstraint(ITypeTerm type, string memberName)
         {
             this.Type = type;
             this.MemberName = memberName;

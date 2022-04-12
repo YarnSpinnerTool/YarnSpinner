@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace TypeChecker
 {
 
-    public class Substitution : Dictionary<TypeVariable, TypeTerm>
+    public class Substitution : Dictionary<TypeVariable, ITypeTerm>
     {
         public List<string> FailureChain { get; private set; } = new List<string>();
         public bool IsFailed => FailureChain.Count > 0;

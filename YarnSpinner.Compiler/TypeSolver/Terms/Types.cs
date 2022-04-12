@@ -66,24 +66,6 @@ namespace TypeChecker
             allTypes.Add(t);
             return t;
         }
-
-        /// <summary>
-        /// Registers a new enum type.
-        /// </summary>
-        /// <param name="name">The name of the new type.</param>
-        /// <param name="parent">The parent of the type. If <see langword="null"/>,
-        /// <see cref="Types.Any"/> is used.</param>
-        /// <returns>The newly registered type.</returns>
-        public static TypeLiteral RegisterEnumType(string name, TypeLiteral parent = null)
-        {
-            if (allTypes == null) {
-                allTypes = new List<TypeLiteral>();
-            }
-            
-            var t = new TypeLiteral(name, parent ?? Types.Any);
-            allTypes.Add(t);
-            return t;
-        }
     }
 
 
