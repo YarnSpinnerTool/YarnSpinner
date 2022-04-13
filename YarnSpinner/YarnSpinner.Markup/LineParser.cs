@@ -787,7 +787,7 @@ namespace Yarn.Markup
             this.ConsumeWhitespace();
             var idStringBuilder = new StringBuilder();
 
-            // Read the first character, which must be a letter
+            // Read the first character, which must be a letter, number, or underscore
             int tempNext = this.stringReader.Read();
             this.sourcePosition += 1;
             this.AssertNotEndOfInput(tempNext);
@@ -805,7 +805,7 @@ namespace Yarn.Markup
                 idStringBuilder.Append(nextChar);
                 idStringBuilder.Append(nextNextChar);
             }
-            else if (char.IsLetter(nextChar) || nextChar == '_')
+            else if (char.IsLetterOrDigit(nextChar) || nextChar == '_')
             {
                 idStringBuilder.Append((char)tempNext);
             }
