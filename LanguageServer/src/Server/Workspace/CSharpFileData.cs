@@ -37,6 +37,7 @@ namespace YarnLanguageServer
             // TODO: Making these come later to remove any corresponding entries in Workspace.UnmatchedDefinitions is definitly some code smell.
             // Might be cleaner to build the functionDefinitionCache as we go instead of storing things up in c# file datas.
             RegisterCommandAttributeMatches();
+            RegisterFunctionAttributeMatches();
             RegisterCommentTaggedCommandsAndFunctions();
 
             // Let's check off any functions we can while we have everything open
@@ -102,6 +103,29 @@ namespace YarnLanguageServer
 
                 Definitions[yarnName] = CreateFunctionObject(Uri, yarnName, command, true, 2, true);
                 Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == yarnName); // Matched some comands, can mark them off the list!
+            }
+        }
+
+        private void RegisterFunctionAttributeMatches()
+        {
+            var functionAttributeMatches = root.DescendantNodes()
+                .OfType<MethodDeclarationSyntax>()
+                .Where(m => m.AttributeLists.Any(a =>
+                a.Attributes.Any(a2 =>
+                a2.Name.ToString().Contains("YarnFunction"))));
+
+            foreach (var command in functionAttributeMatches)
+            {
+                var yarnFunctionAttribute = command.AttributeLists.First().Attributes.First(a => a.Name.ToString().Contains("YarnFunction"));
+
+                // // Attempt to get the function name from the first parameter, if
+                // // it has one. Otherwise, use the name of the method itself, and if _that_ fails, fall back to an error string.
+                string yarnFunctionAttributeName = yarnFunctionAttribute.ArgumentList?.Arguments.FirstOrDefault()?.ToString().Trim('\"');
+
+                var yarnName = yarnFunctionAttributeName ?? command.Identifier.ToString() ?? "<unknown method>";
+
+                Definitions[yarnName] = CreateFunctionObject(Uri, yarnName, command, true, 2, true);
+                Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == yarnName); // Matched some functions, can mark them off the list!
             }
         }
 
