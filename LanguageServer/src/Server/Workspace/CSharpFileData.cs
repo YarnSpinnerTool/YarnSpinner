@@ -91,7 +91,7 @@ namespace YarnLanguageServer
 
             foreach (var command in commandAttributeMatches)
             {
-                var yarnCommandAttribute = command.AttributeLists.First().Attributes.First(a => a.Name.ToString().Contains("YarnCommand"));
+                var yarnCommandAttribute = command.AttributeLists.Where(z => z.Attributes.Any(y => y.Name.ToString().Contains("YarnCommand"))).First().Attributes.First();
 
                 // Attempt to get the command name from the first parameter, if
                 // it has one. Otherwise, use the name of the method itself, and if _that_ fails, fall back to an error string.
@@ -116,7 +116,7 @@ namespace YarnLanguageServer
 
             foreach (var command in functionAttributeMatches)
             {
-                var yarnFunctionAttribute = command.AttributeLists.First().Attributes.First(a => a.Name.ToString().Contains("YarnFunction"));
+                var yarnFunctionAttribute = command.AttributeLists.Where(z => z.Attributes.Any(y => y.Name.ToString().Contains("YarnFunction"))).First().Attributes.First();
 
                 // // Attempt to get the function name from the first parameter, if
                 // // it has one. Otherwise, use the name of the method itself, and if _that_ fails, fall back to an error string.
