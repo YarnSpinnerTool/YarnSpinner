@@ -295,5 +295,21 @@ namespace YarnSpinner.Tests
             Assert.Equal(0, markup.Attributes[0].Position);
             Assert.Equal(18, markup.Attributes[0].Length);
         }
+
+        [Fact]
+        public void TestNumericProperties() {
+            var line = @"[select value=1 1=one 2=two 3=three /]";
+            var markup = dialogue.ParseMarkup(line);
+
+            Assert.Single(markup.Attributes);
+            Assert.Equal("select", markup.Attributes[0].Name);
+            Assert.Equal(4, markup.Attributes[0].Properties.Count);
+            Assert.Equal(1, markup.Attributes[0].Properties["value"].IntegerValue);
+            Assert.Equal("one", markup.Attributes[0].Properties["1"].StringValue);
+            Assert.Equal("two", markup.Attributes[0].Properties["2"].StringValue);
+            Assert.Equal("three", markup.Attributes[0].Properties["3"].StringValue);
+
+            Assert.Equal("one", markup.Text);
+        }
     }
 }
