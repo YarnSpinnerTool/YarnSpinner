@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using Yarn;
 
 namespace TypeChecker
 {
 
-    public class Substitution : Dictionary<TypeVariable, ITypeTerm>
+    public class Substitution : Dictionary<TypeVariable, IType>
     {
         public List<string> FailureChain { get; private set; } = new List<string>();
         public bool IsFailed => FailureChain.Count > 0;

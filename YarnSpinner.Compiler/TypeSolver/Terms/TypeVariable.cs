@@ -1,9 +1,19 @@
+using System;
+using System.Collections.Generic;
+using Yarn;
+
 namespace TypeChecker
 {
 
-    public class TypeVariable : ITypeTerm
+    public class TypeVariable : IType
     {
         public string Name { get; set; }
+
+        public IType Parent => throw new NotImplementedException();
+
+        public string Description => throw new NotImplementedException();
+
+        public IReadOnlyDictionary<string, Delegate> Methods => throw new NotImplementedException();
 
         public TypeVariable(string name)
         {
@@ -12,19 +22,9 @@ namespace TypeChecker
 
         public override string ToString() => Name;
 
-        public ITypeTerm Substitute(Substitution s)
-        {
-            if (s.ContainsKey(this))
-            {
-                return s[this].Substitute(s);
-            }
-            else
-            {
-                return this;
-            }
-        }
+        
 
-        public bool Equals(ITypeTerm other)
+        public bool Equals(IType other)
         {
             return other is TypeVariable otherVariable && otherVariable.Name == Name;
         }

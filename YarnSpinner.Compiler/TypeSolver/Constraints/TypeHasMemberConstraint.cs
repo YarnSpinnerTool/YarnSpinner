@@ -1,16 +1,17 @@
 #define DISALLOW_NULL_EQUATION_TERMS
 
 using System.Linq;
+using Yarn;
 
 namespace TypeChecker
 {
 
     internal class TypeHasMemberConstraint : TypeConstraint
     {
-        public ITypeTerm Type { get; private set; }
+        public IType Type { get; private set; }
         public string MemberName { get; private set; }
 
-        public TypeHasMemberConstraint(ITypeTerm type, string memberName)
+        public TypeHasMemberConstraint(IType type, string memberName)
         {
             this.Type = type;
             this.MemberName = memberName;

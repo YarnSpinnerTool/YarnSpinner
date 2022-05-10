@@ -39,5 +39,4 @@ namespace TypeChecker
             return this;
         }
     }
-
 }

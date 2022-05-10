@@ -1,15 +1,25 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Yarn;
 
 namespace TypeChecker
 {
 
-    public class TypeFunction : ITypeTerm
+    public class TypeFunction : IType
     {
-        public ITypeTerm ReturnType { get; set; }
-        public IEnumerable<ITypeTerm> ArgumentTypes { get; set; }
+        public IType ReturnType { get; set; }
+        public IEnumerable<IType> ArgumentTypes { get; set; }
 
-        public TypeFunction(ITypeTerm returnType, params ITypeTerm[] argumentTypes)
+        public string Name => "Function";
+
+        public IType Parent => throw new NotImplementedException();
+
+        public string Description => ToString();
+
+        public IReadOnlyDictionary<string, Delegate> Methods => throw new NotImplementedException();
+
+        public TypeFunction(IType returnType, params IType[] argumentTypes)
         {
             ReturnType = returnType ?? Types.Error;
             ArgumentTypes = argumentTypes;
@@ -17,12 +27,9 @@ namespace TypeChecker
 
         public string ToString() => $"({string.Join(", ", ArgumentTypes)}) -> {ReturnType}";
 
-        public ITypeTerm Substitute(Substitution s)
-        {
-            return new TypeFunction(ReturnType.Substitute(s), ArgumentTypes.Select(a => a.Substitute(s)).ToArray());
-        }
+        
 
-        public bool Equals(ITypeTerm other)
+        public bool Equals(IType other)
         {
             return other is TypeFunction otherFunction
                 && otherFunction.ReturnType == ReturnType

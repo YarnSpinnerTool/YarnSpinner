@@ -2,26 +2,29 @@
 
 
 using System.Linq;
+using Yarn;
 
 namespace TypeChecker
 {
-
     public class TypeConvertibleConstraint : TypeConstraint
     {
-        public ITypeTerm Type { get; set; }
-        public ITypeTerm ConvertibleToType { get; set; }
-        public TypeConvertibleConstraint(ITypeTerm type, ITypeTerm convertibleToType)
+        public IType Type { get; set; }
+        public IType ConvertibleToType { get; set; }
+
+        public TypeConvertibleConstraint(IType type, IType convertibleToType)
         {
-            Type = type;
-            ConvertibleToType = convertibleToType;
+            this.Type = type;
+            this.ConvertibleToType = convertibleToType;
         }
 
-        public override string ToString() => $"{Type} <c {ConvertibleToType}";
+        /// <inheritdoc/>
+        public override string ToString() => $"{this.Type} <c {this.ConvertibleToType}";
 
+        /// <inheritdoc/>
         public override TypeConstraint Simplify(Substitution subst)
         {
-            var resolvedParentTerm = ConvertibleToType.Substitute(subst);
-            var resolvedChildTerm = Type.Substitute(subst);
+            var resolvedParentTerm = this.ConvertibleToType.Substitute(subst);
+            var resolvedChildTerm = this.Type.Substitute(subst);
 
             if (resolvedChildTerm.Equals(resolvedParentTerm))
             {
@@ -30,9 +33,8 @@ namespace TypeChecker
                 return null;
             }
 
-            if (resolvedChildTerm is TypeLiteral childLiteral)
+            if (resolvedChildTerm is TypeBase childLiteral)
             {
-
                 var possibleChildTypes = Types.AllTypes.Where(other => childLiteral.IsConvertibleTo(other));
 
                 if (possibleChildTypes.Count() == 1)
@@ -57,5 +59,4 @@ namespace TypeChecker
             }
         }
     }
-
 }

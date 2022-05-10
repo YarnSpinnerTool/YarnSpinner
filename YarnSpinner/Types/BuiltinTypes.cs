@@ -7,12 +7,6 @@ namespace Yarn
     /// </summary>
     public static class BuiltinTypes
     {
-        /// <summary>An undefined type.</summary>
-        /// <remarks>This value is not valid except during compilation. It
-        /// is used to represent values that have not yet been assigned a
-        /// type by the type system.</remarks>
-        internal const IType Undefined = null;
-
         /// <summary>Gets the type representing strings.</summary>
         public static IType String { get; } = new StringType();
 
@@ -24,6 +18,9 @@ namespace Yarn
 
         /// <summary>Gets the type representing any value.</summary>
         public static IType Any { get; } = new AnyType();
+
+        /// <summary>Gets the type representing a typing error.</summary>
+        internal static IType Error { get; } = new ErrorType();
 
         /// <summary>
         /// Gets a dictionary that maps CLR types to their corresponding

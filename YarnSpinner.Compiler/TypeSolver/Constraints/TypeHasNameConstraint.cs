@@ -1,16 +1,17 @@
 using System.Linq;
+using Yarn;
 
 namespace TypeChecker
 {
     internal class TypeHasNameConstraint : TypeConstraint
     {
-        public TypeHasNameConstraint(ITypeTerm type, string name)
+        public TypeHasNameConstraint(IType type, string name)
         {
             this.Type = type;
             this.Name = name;
         }
 
-        public ITypeTerm Type { get; private set; }
+        public IType Type { get; private set; }
         public string Name { get; private set; }
 
         public override TypeConstraint Simplify(Substitution subst)

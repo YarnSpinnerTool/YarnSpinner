@@ -15,7 +15,7 @@ namespace Yarn.Compiler
     {
         private readonly ParserRuleContext context;
         private readonly string sourceFileName;
-        private readonly IEnumerable<IType> types;
+        private readonly IEnumerable<Declaration> declarations;
         private List<Diagnostic> diagnostics;
 
         /// <summary>
@@ -26,11 +26,11 @@ namespace Yarn.Compiler
         /// <param name="sourceFileName">The name of the file that is being
         /// visited by this instance.</param>
         /// <param name="types">The types of values known to this instance.</param>
-        public ConstantValueVisitor(ParserRuleContext context, string sourceFileName, IEnumerable<IType> types, ref List<Diagnostic> diagnostics)
+        public ConstantValueVisitor(ParserRuleContext context, string sourceFileName, IEnumerable<Declaration> declarations, ref List<Diagnostic> diagnostics)
         {
             this.context = context;
             this.sourceFileName = sourceFileName;
-            this.types = types;
+            this.declarations = declarations;
             this.diagnostics = diagnostics;
         }
 
@@ -42,7 +42,7 @@ namespace Yarn.Compiler
             {
                 string message = $"Expected a constant type";
                 this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
-                return new Value(BuiltinTypes.Undefined, null);
+                return new Value(BuiltinTypes.Error, null);
             }
         }
 
@@ -50,7 +50,7 @@ namespace Yarn.Compiler
         {
             const string message = "Null is not a permitted type in Yarn Spinner 2.0 and later";
             this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
-            return new Value(BuiltinTypes.Undefined, null);
+            return new Value(BuiltinTypes.Error, null);
         }
 
         public override Value VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)

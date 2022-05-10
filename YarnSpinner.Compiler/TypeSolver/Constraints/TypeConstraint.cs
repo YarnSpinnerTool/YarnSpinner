@@ -16,17 +16,20 @@ namespace TypeChecker
         /// <summary>
         /// Simplifies this constraint, producing either a <see
         /// cref="TypeEqualityConstraint"/> or a <see
-        /// cref="DisjunctionConstraint"/>.
+        /// cref="DisjunctionConstraint"/>, or <see langword="null"/>.
         /// </summary>
         /// <remarks>
-        /// If this method returns null, it represents that the constraint has
-        /// determined that it is a tautology (e.g. 'T0 == T0'), and does not need
-        /// further evaluation.
+        /// If this method returns <see langword="null"/>, it represents that
+        /// the constraint has determined that it is a tautology (e.g. 'T0 ==
+        /// T0'), and does not need further evaluation.
         /// </remarks>
-        /// <param name="subst">A <see cref="Substitution"/> that the constraint can
-        /// use to help decide how to simplify.</param>
-        /// <returns>A TypeEqualityConstraint or a DisjunctionConstraint that
-        /// represents a simplified version of this constraint, or null.</returns>
+        /// <param name="subst">A <see cref="Substitution"/> that the constraint
+        /// can use to help decide how to simplify.</param>
+        /// <returns>A <see cref="TypeEqualityConstraint"/> or a <see
+        /// cref="DisjunctionConstraint"/> that represents a simplified version
+        /// of this constraint, or null.</returns>
         public abstract TypeConstraint Simplify(Substitution subst);
+
+
     }
 }

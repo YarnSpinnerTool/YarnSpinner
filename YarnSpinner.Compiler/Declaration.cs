@@ -142,7 +142,7 @@ namespace Yarn.Compiler
         /// declaration.</param>
         /// <returns>A new instance of the <see cref="Declaration"/>
         /// class.</returns>
-        public static Declaration CreateVariable(string name, TypeChecker.ITypeTerm type, IConvertible defaultValue, string description = null)
+        public static Declaration CreateVariable(string name, TypeChecker.IIType type, IConvertible defaultValue, string description = null)
         {
             if (type is null)
             {
@@ -221,9 +221,9 @@ namespace Yarn.Compiler
 
         /// <summary>
         /// Gets the type of the variable, as represented by an object that
-        /// implements <see cref="ITypeTerm"/>.
+        /// implements <see cref="IType"/>.
         /// </summary>
-        public TypeChecker.ITypeTerm Type { get; internal set; }
+        public IType Type { get; internal set; }
 
         /// <summary>
         /// The string used for <see cref="SourceFileName"/> if the

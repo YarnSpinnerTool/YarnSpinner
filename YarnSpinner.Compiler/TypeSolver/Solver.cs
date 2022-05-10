@@ -2,13 +2,14 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Yarn;
 
 namespace TypeChecker
 {
 
     public static class Solver
     {
-        public static Substitution Unify(ITypeTerm x, ITypeTerm y)
+        public static Substitution Unify(IType x, IType y)
         {
             var subst = new Substitution();
             Unify(x, y, subst);
@@ -32,7 +33,7 @@ namespace TypeChecker
         /// <param name="subst">The <see cref="Substitution"/> to use and
         /// update.</param>
         /// <returns>The updated <see cref="Substitution"/>.</returns>
-        public static Substitution Unify(ITypeTerm x, ITypeTerm y, Substitution subst)
+        public static Substitution Unify(IType x, IType y, Substitution subst)
         {
             if (subst.IsFailed)
             {
@@ -101,7 +102,7 @@ namespace TypeChecker
         /// <param name="term">The term to unify.</param>
         /// <param name="subst">The current substitution.</param>
         /// <returns>The updated substitution.</returns>
-        private static Substitution UnifyVariable(TypeVariable var, ITypeTerm term, Substitution subst)
+        private static Substitution UnifyVariable(TypeVariable var, IType term, Substitution subst)
         {
             // If we already have a unifier for var, then unify term with it.
             if (subst.ContainsKey(var))
@@ -146,7 +147,7 @@ namespace TypeChecker
         /// <param name="subst">The current substitution.</param>
         /// <returns><see langword="true"/> if <paramref name="var"/> exists in
         /// <paramref name="term"/>, <see langword="false"/> otherwise.</returns>
-        private static bool OccursCheck(TypeVariable var, ITypeTerm term, Substitution subst)
+        private static bool OccursCheck(TypeVariable var, IType term, Substitution subst)
         {
             // Does the variable 'var' occur anywhere inside 'term'?
 
