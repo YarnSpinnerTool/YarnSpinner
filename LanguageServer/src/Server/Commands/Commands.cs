@@ -37,5 +37,11 @@ public static class Commands
     /// </summary>
     /// <seealso cref="NodesChangedParams"/>
     public const string DidChangeNodesNotification = "textDocument/yarnSpinner/didChangeNodes";
+
+    /// <summary>
+    /// The command to compile a Yarn project and get back the string 
+    /// table and byte array of the compiled program
+    /// </summary>
+    public const string Compile = "yarnspinner.compile";
     
 }

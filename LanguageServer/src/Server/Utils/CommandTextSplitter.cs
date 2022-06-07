@@ -44,7 +44,7 @@ namespace YarnLanguageServer
         /// <c>\"</c> will be converted to <c>"</c>.</item>
         /// </list>
         /// </remarks>
-        public static IEnumerable<CommandTextItem> SplitCommandText(string input)
+        public static IEnumerable<CommandTextItem> SplitCommandText(string input, bool addBackInTheQuotes = false)
         {
             var reader = new System.IO.StringReader(input.Normalize());
 
@@ -126,7 +126,11 @@ namespace YarnLanguageServer
                         }
                     }
 
-                    results.Add(new CommandTextItem(currentComponent.ToString(), currentComponentOffset));
+                    var output = addBackInTheQuotes ? $"\"{currentComponent.ToString()}\"" : currentComponent.ToString();
+
+                    var bork = new CommandTextItem(output, currentComponentOffset);
+                    results.Add(bork);
+                    // results.Add(new CommandTextItem(currentComponent.ToString(), currentComponentOffset));
                     currentComponent.Clear();
                     currentComponentOffset = position + 1;
                 }

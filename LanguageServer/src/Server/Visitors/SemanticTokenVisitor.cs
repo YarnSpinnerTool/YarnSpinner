@@ -200,7 +200,7 @@ namespace YarnLanguageServer
         {
             string commandText = context.command_formatted_text().GetText();
 
-            var commandItems = CommandTextSplitter.SplitCommandText(commandText);
+            var commandItems = CommandTextSplitter.SplitCommandText(commandText, true);
 
             var firstToken = context.command_formatted_text().Start;
             var firstTextToken = context.command_formatted_text().Start;

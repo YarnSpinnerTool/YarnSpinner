@@ -39,7 +39,7 @@ namespace YarnLanguageServer
         }
 
         public void Initialize(ILanguageServer languageServer)
-        {
+        {            
             this.LanguageServer = languageServer;
 
             // If we don't have a root directory, attempting to enumerate the

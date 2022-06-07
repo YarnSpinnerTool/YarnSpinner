@@ -31,7 +31,7 @@ namespace YarnLanguageServer
             var tree = CSharpSyntaxTree.ParseText(text);
 
             root = tree.GetCompilationUnitRoot();
-
+            
             RegisterCommandAndFunctionBridges(); // Technically this doesn't register them until going through unmatched commands
 
             // TODO: Making these come later to remove any corresponding entries in Workspace.UnmatchedDefinitions is definitly some code smell.
@@ -177,7 +177,6 @@ namespace YarnLanguageServer
                 // so let's mark them as unmatched for now, and then mark off what we can in this first pass
                 Workspace.UnmatchedDefinitions.Add((cb.YarnName, cb.Expression.ToString().Split('.').LastOrDefault().Trim(), cb.IsCommand, null));
             }
-
         }
 
         private RegisteredDefinition CreateFunctionObject(Uri uri, string yarnName, MethodDeclarationSyntax methodDeclaration, bool isCommand, int priority, bool isAttributeMatch = false)
@@ -277,6 +276,9 @@ namespace YarnLanguageServer
                 });
             }
 
+            // so it looks like the range stuff is correct, needs deeper investigation
+            // in the meantime get the addcommand stuff working
+            var drange = PositionHelper.GetRange(LineStarts, methodDeclaration.GetLocation().SourceSpan.Start, methodDeclaration.GetLocation().SourceSpan.End);
             return new RegisteredDefinition
             {
                 YarnName = yarnName,
@@ -288,7 +290,7 @@ namespace YarnLanguageServer
                 Priority = priority,
                 MinParameterCount = parameters.Count(p => p.DefaultValue == null && !p.IsParamsArray),
                 MaxParameterCount = parameters.Any(p => p.IsParamsArray) ? null : parameters.Count(),
-                DefinitionRange = PositionHelper.GetRange(LineStarts, methodDeclaration.GetLocation().SourceSpan.Start, methodDeclaration.GetLocation().SourceSpan.End),
+                DefinitionRange = drange,//PositionHelper.GetRange(LineStarts, methodDeclaration.GetLocation().SourceSpan.Start, methodDeclaration.GetLocation().SourceSpan.End),
                 Documentation = documentation,
                 Language = Utils.CSharpLanguageID,
                 Signature = $"{methodDeclaration.Identifier.Text}{methodDeclaration.ParameterList}",

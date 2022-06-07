@@ -11,6 +11,7 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using OmniSharp.Extensions.LanguageServer.Protocol.Window;
+using Google.Protobuf;
 
 namespace YarnLanguageServer
 {
@@ -117,6 +118,15 @@ namespace YarnLanguageServer
                 (_, _) => new ExecuteCommandRegistrationOptions
                 {
                     Commands = new[] { Commands.UpdateNodeHeader },
+                }
+            );
+
+            // Register 'Compile' command
+            options.OnExecuteCommand<CompilerOutput>(
+                (commandParams) => CompileWorkspace(workspace, commandParams),
+                (_, _) => new ExecuteCommandRegistrationOptions
+                {
+                    Commands = new[] { Commands.Compile },
                 }
             );
 
@@ -409,6 +419,44 @@ namespace YarnLanguageServer
             }
 
             return Task.FromResult<Container<NodeInfo>>(result);
+        }
+
+        private static Task<CompilerOutput> CompileWorkspace(Workspace workspace, ExecuteCommandParams<CompilerOutput> commandParams)
+        {
+            var job = new Yarn.Compiler.CompilationJob
+            {
+                Files = workspace.YarnFiles.Select(pair =>
+                {
+                    var uri = pair.Key;
+                    var file = pair.Value;
+
+                    return new Yarn.Compiler.CompilationJob.File
+                    {
+                        FileName = uri.ToString(),
+                        Source = file.Text,
+                    };
+                }),
+                CompilationType = Yarn.Compiler.CompilationJob.Type.FullCompilation,
+            };
+
+            var result = Yarn.Compiler.Compiler.Compile(job);
+            
+            // should check in here if it worked I suppose...
+            var e = result.Diagnostics.Where(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error).Select(d => d.Message).ToArray();
+
+            var strings = new Dictionary<string, string>();
+            foreach (var line in result.StringTable)
+            {
+                strings[line.Key] = line.Value.text;
+            }
+
+            var output = new CompilerOutput
+            {
+                Data = result.Program?.ToByteArray(),
+                StringTable = strings,
+                Errors = e,
+            };
+            return Task.FromResult<CompilerOutput>(output);
         }
     }
 }
