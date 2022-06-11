@@ -23,7 +23,6 @@
     }
   ],
   "Functions": [
-
     {
       "YarnName": "string",
       "DefinitionName": "string",
@@ -61,6 +60,193 @@
         {
           "Name": "value",
           "Type": "Any",
+          "Documentation": "",
+          "IsParamsArray": false
+        }
+      ]
+    },
+    {
+      "YarnName": "visited",
+      "DefinitionName": "visited",
+      "Documentation": "Returns a boolean value of true if the node with the title of node_name has been entered and exited at least once before, otherwise returns false. Will return false if node_name doesn't match a node in project.",
+      "Signature": "visited(node_name)",
+      "Parameters": [
+        {
+          "Name": "node_name",
+          "Type": "String",
+          "Documentation": "",
+          "IsParamsArray": false
+        }
+      ]
+    },
+    {
+      "YarnName": "visited_count",
+      "DefinitionName": "visited_count",
+      "Documentation": "Returns a number value of the number of times the node with the title of node_name has been entered and exited, otherwise returns 0. Will return 0 if node_name doesn't match a node in project.",
+      "Signature": "visited_count(node_name)",
+      "Parameters": [
+        {
+          "Name": "node_name",
+          "Type": "String",
+          "Documentation": "",
+          "IsParamsArray": false
+        }
+      ]
+    },
+    {
+      "YarnName": "random",
+      "DefinitionName": "random",
+      "Documentation": "Returns a random number between 0 and 1 each time you call it.",
+      "Signature": "random()",
+      "Parameters": []
+    },
+    {
+      "YarnName": "random_range",
+      "DefinitionName": "random_range",
+      "Documentation": "Returns a random integer between a and b, inclusive.",
+      "Signature": "random_range(a, b)",
+      "Parameters": [
+        {
+          "Name": "a",
+          "Type": "Number",
+          "Documentation": "Lower bound (inclusive)",
+          "IsParamsArray": false
+        },
+        {
+          "Name": "b",
+          "Type": "Number",
+          "Documentation": "Upper bound (inclusive)",
+          "IsParamsArray": false
+        }
+      ]
+    },
+    {
+      "YarnName": "dice",
+      "DefinitionName": "dice",
+      "Documentation": "Returns a random integer between 1 and sides, inclusive.",
+      "Signature": "dice(sides)",
+      "Parameters": [
+        {
+          "Name": "sides",
+          "Type": "Number",
+          "Documentation": "",
+          "IsParamsArray": false
+        }
+      ]
+    },
+    {
+      "YarnName": "round",
+      "DefinitionName": "round",
+      "Documentation": "Rounds n to the nearest integer.",
+      "Signature": "round(n)",
+      "Parameters": [
+        {
+          "Name": "n",
+          "Type": "Number",
+          "Documentation": "",
+          "IsParamsArray": false
+        }
+      ]
+    },
+    {
+      "YarnName": "round_places",
+      "DefinitionName": "round_places",
+      "Documentation": "Rounds n to the nearest number with places decimal points.",
+      "Signature": "round_places(n, places)",
+      "Parameters": [
+        {
+          "Name": "n",
+          "Type": "Number",
+          "Documentation": "",
+          "IsParamsArray": false
+        },
+        {
+          "Name": "places",
+          "Type": "Number",
+          "Documentation": "",
+          "IsParamsArray": false
+        }
+      ]
+    },
+    {
+      "YarnName": "floor",
+      "DefinitionName": "floor",
+      "Documentation": "Rounds n down to the nearest integer, towards negative infinity.",
+      "Signature": "floor(n)",
+      "Parameters": [
+        {
+          "Name": "n",
+          "Type": "Number",
+          "Documentation": "",
+          "IsParamsArray": false
+        }
+      ]
+    },
+    {
+      "YarnName": "ceil",
+      "DefinitionName": "ceil",
+      "Documentation": "Rounds n up to the nearest integer, towards positive infinity.",
+      "Signature": "ceil(n)",
+      "Parameters": [
+        {
+          "Name": "n",
+          "Type": "Number",
+          "Documentation": "",
+          "IsParamsArray": false
+        }
+      ]
+    },
+    {
+      "YarnName": "inc",
+      "DefinitionName": "inc",
+      "Documentation": "Rounds n up to the nearest integer. If n is already an integer, returns n+1.",
+      "Signature": "inc(n)",
+      "Parameters": [
+        {
+          "Name": "n",
+          "Type": "Number",
+          "Documentation": "",
+          "IsParamsArray": false
+        }
+      ]
+    },
+    {
+      "YarnName": "dec",
+      "DefinitionName": "dec",
+      "Documentation": "Rounds n down to the nearest integer. If n is already an integer, returns n-1",
+      "Signature": "dec(n)",
+      "Parameters": [
+        {
+          "Name": "n",
+          "Type": "Number",
+          "Documentation": "",
+          "IsParamsArray": false
+        }
+      ]
+    },
+    {
+      "YarnName": "decimal",
+      "DefinitionName": "decimal",
+      "Documentation": "Returns the decimal portion of n. This will always be a number between 0 and 1. For example, decimal(4.51) will return 0.51.",
+      "Signature": "decimal(n)",
+      "Parameters": [
+        {
+          "Name": "n",
+          "Type": "Number",
+          "Documentation": "",
+          "IsParamsArray": false
+        }
+      ]
+    },
+    {
+      "YarnName": "int",
+      "DefinitionName": "int",
+      "Documentation": "Rounds n down to the nearest integer, towards zero. (This is different to floor, because floor rounds to negative infinity.)",
+      "Signature": "int(n)",
+      "Parameters": [
+        {
+          "Name": "n",
+          "Type": "Number",
           "Documentation": "",
           "IsParamsArray": false
         }
