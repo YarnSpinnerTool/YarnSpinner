@@ -9,6 +9,8 @@ using System.Linq;
 using Yarn.Compiler;
 using CLDRPlurals;
 
+using FluentAssertions;
+
 namespace YarnSpinner.Tests
 {
 
@@ -38,7 +40,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
@@ -101,12 +103,12 @@ namespace YarnSpinner.Tests
                 Declaration expected = expectedDeclarations[i];
                 Declaration actual = actualDeclarations[i];
 
-                Assert.Equal(expected.Name, actual.Name);
-                Assert.Equal(expected.Type, actual.Type);
-                Assert.Equal(expected.DefaultValue, actual.DefaultValue);
-                Assert.Equal(expected.Range, actual.Range);
-                Assert.Equal(expected.SourceNodeName, actual.SourceNodeName);
-                Assert.Equal(expected.SourceFileName, actual.SourceFileName);
+                actual.Name.Should().Be(expected.Name);
+                actual.Type.Should().Be(expected.Type);
+                actual.DefaultValue.Should().Be(expected.DefaultValue);
+                actual.Range.Should().Be(expected.Range);
+                actual.SourceNodeName.Should().Be(expected.SourceNodeName);
+                actual.SourceFileName.Should().Be(expected.SourceFileName);
             }
         }
 
@@ -135,7 +137,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
         }
 
         [Fact]
@@ -161,15 +163,15 @@ namespace YarnSpinner.Tests
             // Should compile with no errors because $int was declared
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             // No variables are declared in the source code, so we should
             // expect an empty collection of variable declarations
-            Assert.Empty(result.Declarations);
+            result.Declarations.Should().BeEmpty();
         }
 
         [Fact]
-        void TestVariableDeclarationsDisallowDuplicates()
+        public void TestVariableDeclarationsDisallowDuplicates()
         {
             var source = CreateTestNode(@"
             <<declare $int = 5>>
@@ -178,7 +180,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("$int has already been declared", p.Message));
+            result.Diagnostics.Should().Contain(p => p.Message.Contains("$int has already been declared"));
         }
 
         [Fact]
@@ -190,8 +192,8 @@ namespace YarnSpinner.Tests
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("$int (Number) cannot be assigned a String", p.Message));
+
+            result.Diagnostics.Should().Contain(p => p.Message == "$int (Number) cannot be assigned a String");
         }
 
         [Theory]
@@ -204,8 +206,8 @@ namespace YarnSpinner.Tests
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            
-            Assert.Empty(result.Diagnostics);         
+
+            result.Diagnostics.Should().BeEmpty();
         }
 
         [Theory]
@@ -251,7 +253,11 @@ namespace YarnSpinner.Tests
             // Should compile with no exceptions
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            Assert.Empty(result.Diagnostics);
+            result.Declarations.Should().Contain(d => d.Name == "$int").Which.Type.Should().Be(BuiltinTypes.Number);
+            result.Declarations.Should().Contain(d => d.Name == "$bool").Which.Type.Should().Be(BuiltinTypes.Boolean);
+            result.Declarations.Should().Contain(d => d.Name == "$str").Which.Type.Should().Be(BuiltinTypes.String);
+
+            result.Diagnostics.Should().BeEmpty();
         }
 
         [Fact]
@@ -262,8 +268,8 @@ namespace YarnSpinner.Tests
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("Null is not a permitted type", p.Message));
+
+            result.Diagnostics.Should().Contain(p => p.Message.Contains("Null is not a permitted type"));
         }
 
         [Theory]
@@ -319,7 +325,11 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Empty(result.Diagnostics);
+            result.Declarations.Should().Contain(d => d.Name == "$var")
+                .Which.Type.Should().Be(BuiltinTypes.Number);
+
+            result.Diagnostics.Should().BeEmpty();
+
         }
 
         [Fact]
@@ -446,14 +456,13 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
-            Assert.Collection(
-                result.Declarations.Where(d => d.Name.StartsWith("$")),
-                d => { Assert.Equal(d.Name, "$str");  Assert.Equal(d.Type.Name, "String"); },
-                d => { Assert.Equal(d.Name, "$int");  Assert.Equal(d.Type.Name, "Number"); },
-                d => { Assert.Equal(d.Name, "$bool"); Assert.Equal(d.Type.Name, "Bool"); }
-            );
+            var variableDeclarations = result.Declarations.Where(d => d.Name.StartsWith("$"));
+
+            variableDeclarations.Should().Contain(d => d.Name == "$str").Which.Type.Should().Be(BuiltinTypes.String);
+            variableDeclarations.Should().Contain(d => d.Name == "$int").Which.Type.Should().Be(BuiltinTypes.Number);
+            variableDeclarations.Should().Contain(d => d.Name == "$bool").Which.Type.Should().Be(BuiltinTypes.Boolean);
         }
 
         
@@ -469,8 +478,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Collection(result.Diagnostics, diag => Assert.Matches(@"Type \w+ does not match", diag.Message),
-                                                  diag => Assert.Matches(@"Can't figure out the type of variable \$\w+ given its context. Specify its type with a <<declare>> statement.", diag.Message));
+            result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
         }
 
         [Fact]
@@ -692,11 +700,10 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
-            var declarations = result.Declarations.Where(d => d.Name == "$v");
-
-            Assert.Collection(declarations, d => Assert.Equal(d.Type.Name, typeName));
+            result.Declarations.Should().ContainSingle(d => d.Name == "$v")
+                .Which.Type.Name.Should().Be(typeName);
         }
 
         [Fact]
