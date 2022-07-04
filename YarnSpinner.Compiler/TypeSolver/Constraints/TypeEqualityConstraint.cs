@@ -1,12 +1,13 @@
 #define DISALLOW_NULL_EQUATION_TERMS
 
 
+using System.Collections.Generic;
 using Yarn;
 
 namespace TypeChecker
 {
 
-    public class TypeEqualityConstraint : TypeConstraint
+    internal class TypeEqualityConstraint : TypeConstraint
     {
         public IType Left { get; set; }
         public IType Right { get; set; }
@@ -19,7 +20,7 @@ namespace TypeChecker
 
         public override string ToString() => $"{Left} == {Right}";
 
-        public override TypeConstraint Simplify(Substitution subst)
+        public override TypeConstraint Simplify(Substitution subst, IEnumerable<TypeBase> knownTypes)
         {
             // Equality constraints are already at their most simple - they can't be
             // simplified further

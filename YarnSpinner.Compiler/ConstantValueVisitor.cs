@@ -42,7 +42,7 @@ namespace Yarn.Compiler
             {
                 string message = $"Expected a constant type";
                 this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
-                return new Value(BuiltinTypes.Error, null);
+                return new Value(Types.Error, null);
             }
         }
 
@@ -50,36 +50,36 @@ namespace Yarn.Compiler
         {
             const string message = "Null is not a permitted type in Yarn Spinner 2.0 and later";
             this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
-            return new Value(BuiltinTypes.Error, null);
+            return new Value(Types.Error, null);
         }
 
         public override Value VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
         {
             if (float.TryParse(context.GetText(), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var result))
             {
-                return new Value(BuiltinTypes.Number, result);
+                return new Value(Types.Number, result);
             }
             else
             {
                 string message = $"Failed to parse {context.GetText()} as a float";
                 this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
-                return new Value(BuiltinTypes.Number, 0f);
+                return new Value(Types.Number, 0f);
             }
         }
 
         public override Value VisitValueString(YarnSpinnerParser.ValueStringContext context)
         {
-            return new Value(BuiltinTypes.String, context.STRING().GetText().Trim('"'));
+            return new Value(Types.String, context.STRING().GetText().Trim('"'));
         }
 
         public override Value VisitValueFalse(YarnSpinnerParser.ValueFalseContext context)
         {
-            return new Value(BuiltinTypes.Boolean, false);
+            return new Value(Types.Boolean, false);
         }
 
         public override Value VisitValueTrue(YarnSpinnerParser.ValueTrueContext context)
         {
-            return new Value(BuiltinTypes.Boolean, true);
+            return new Value(Types.Boolean, true);
         }
     }
 }

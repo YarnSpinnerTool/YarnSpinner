@@ -1,5 +1,6 @@
 #define DISALLOW_NULL_EQUATION_TERMS
 
+using System.Collections.Generic;
 using System.Linq;
 using Yarn;
 
@@ -22,12 +23,12 @@ namespace TypeChecker
             return $"{Type}.[{MemberName}]";
         }
 
-        public override TypeConstraint Simplify(Substitution subst)
+        public override TypeConstraint Simplify(Substitution subst, IEnumerable<TypeBase> knownTypes)
         {
             // Find all types that have this member and return a disjunction
             // constraint that checks each of them
             return new DisjunctionConstraint(
-                Types.AllTypes
+                knownTypes
                 .Where(e => e.Members.ContainsKey(MemberName))
                 .Select(e => new TypeEqualityConstraint(this.Type, e))
                 );

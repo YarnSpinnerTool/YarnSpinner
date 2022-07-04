@@ -10,8 +10,8 @@ namespace Yarn.Compiler.Upgrader
 {
     internal class VariableDeclarationUpgrader : ILanguageUpgrader
     {
-        
-        
+        public const IType UndefinedType = null;
+
         public UpgradeResult Upgrade(UpgradeJob upgradeJob)
         {
             var potentialTypeBindings = new OrderedSet<TypeBinding>();
@@ -87,9 +87,9 @@ namespace Yarn.Compiler.Upgrader
                 // default value.
                 var typesToStrings = new Dictionary<IType, string>
                 {
-                    { BuiltinTypes.Boolean, "false as bool" },
-                    { BuiltinTypes.Number, "0 as number" },
-                    { BuiltinTypes.String, @""""" as string" },
+                    { Types.Boolean, "false as bool" },
+                    { Types.Number, "0 as number" },
+                    { Types.String, @""""" as string" },
                 };
 
                 foreach (var variableName in allSeenVariables)
@@ -102,10 +102,10 @@ namespace Yarn.Compiler.Upgrader
                     }
                     else
                     {
-                        type = BuiltinTypes.Undefined;
+                        type = UndefinedType;
                     }
 
-                    var typeIsDefined = type != BuiltinTypes.Undefined;
+                    var typeIsDefined = type != UndefinedType;
 
                     declarationsNodeStringBuilder.Append("<<declare ");
                     declarationsNodeStringBuilder.Append(variableName);
@@ -164,26 +164,26 @@ namespace Yarn.Compiler.Upgrader
             // This class generates replacements if a Replacements collection was provided.
             public bool GenerateReplacements => this.replacements != null;
 
-            protected override Yarn.IType DefaultResult => BuiltinTypes.Undefined;
+            protected override Yarn.IType DefaultResult => UndefinedType;
 
             public override Yarn.IType VisitValueString(YarnSpinnerV1Parser.ValueStringContext context)
             {
-                return BuiltinTypes.String;
+                return Types.String;
             }
 
             public override Yarn.IType VisitValueTrue(YarnSpinnerV1Parser.ValueTrueContext context)
             {
-                return BuiltinTypes.Boolean;
+                return Types.Boolean;
             }
 
             public override Yarn.IType VisitValueFalse(YarnSpinnerV1Parser.ValueFalseContext context)
             {
-                return BuiltinTypes.Boolean;
+                return Types.Boolean;
             }
 
             public override Yarn.IType VisitValueNumber(YarnSpinnerV1Parser.ValueNumberContext context)
             {
-                return BuiltinTypes.Number;
+                return Types.Number;
             }
 
             public override Yarn.IType VisitValueVar(YarnSpinnerV1Parser.ValueVarContext context)
@@ -209,14 +209,14 @@ namespace Yarn.Compiler.Upgrader
                 // we have more than one.)
                 var bindings = this.potentialTypeBindings.Where(b => b.VariableName == name);
 
-                return bindings.Count() != 1 ? BuiltinTypes.Undefined : bindings.First().Type;
+                return bindings.Count() != 1 ? UndefinedType : bindings.First().Type;
             }
 
             public override Yarn.IType VisitValueNull(YarnSpinnerV1Parser.ValueNullContext context)
             {
                 // Null is not a permitted type in Yarn Spinner, so we have
                 // to return undefined here
-                return BuiltinTypes.Undefined;
+                return UndefinedType;
             }
 
             public override Yarn.IType VisitValueFunc(YarnSpinnerV1Parser.ValueFuncContext context)
@@ -238,7 +238,7 @@ namespace Yarn.Compiler.Upgrader
                     this.Visit(suppliedParameter);
                 }
 
-                return BuiltinTypes.Undefined;
+                return UndefinedType;
             }
 
             public override Yarn.IType VisitExpValue(YarnSpinnerV1Parser.ExpValueContext context)
@@ -255,7 +255,7 @@ namespace Yarn.Compiler.Upgrader
 
             public override Yarn.IType VisitExpAndOrXor(YarnSpinnerV1Parser.ExpAndOrXorContext context)
             {
-                return CheckOperation(context, context.expression(), context.op.Text, BuiltinTypes.Boolean);
+                return CheckOperation(context, context.expression(), context.op.Text, Types.Boolean);
             }
 
             private Yarn.IType CheckOperation(ParserRuleContext context, ParserRuleContext[] terms, string operationType, params Yarn.IType[] permittedTypes)
@@ -275,8 +275,8 @@ namespace Yarn.Compiler.Upgrader
                     .Where(c => c.GetChild<YarnSpinnerV1Parser.ValueVarContext>(0) == null);
                 
                 foreach (var term in nonVariableTerms) {
-                    if (termsToTypes[term] == BuiltinTypes.Undefined) {
-                        return BuiltinTypes.Undefined;
+                    if (termsToTypes[term] == UndefinedType) {
+                        return UndefinedType;
                     }
                 }
                 
@@ -308,7 +308,7 @@ namespace Yarn.Compiler.Upgrader
                 // will ideally be exactly one.
                 var potentialExpressionTypes = termTypes
                     .Concat(variableTypes)
-                    .Where(t => t != BuiltinTypes.Undefined)
+                    .Where(t => t != UndefinedType)
                     .Distinct();
 
                 // If we have precisely one type of this expression, then
@@ -323,7 +323,7 @@ namespace Yarn.Compiler.Upgrader
                         // operation doesn't permit that type. This
                         // expression is therefore invalid, and therefore
                         // its type is undefined.
-                        return BuiltinTypes.Undefined;
+                        return UndefinedType;
                     }
 
                     // Create a type binding for each variable to this
@@ -348,7 +348,7 @@ namespace Yarn.Compiler.Upgrader
                     // operand to a string.
                     //
                     // For the moment, return Undefined.
-                    return BuiltinTypes.Undefined;
+                    return UndefinedType;
                 }
             }
 
@@ -357,7 +357,7 @@ namespace Yarn.Compiler.Upgrader
                 YarnSpinnerV1Parser.ExpressionContext expressionContext = context.expression();
                 this.CheckAndRewriteIfClause(context, expressionContext);
 
-                return BuiltinTypes.Boolean;
+                return Types.Boolean;
             }
 
             public override Yarn.IType VisitElse_if_clause(YarnSpinnerV1Parser.Else_if_clauseContext context)
@@ -365,7 +365,7 @@ namespace Yarn.Compiler.Upgrader
                 YarnSpinnerV1Parser.ExpressionContext expressionContext = context.expression();
                 this.CheckAndRewriteIfClause(context, expressionContext);
 
-                return BuiltinTypes.Boolean;
+                return Types.Boolean;
             }
 
             private void CheckAndRewriteIfClause(ParserRuleContext context, YarnSpinnerV1Parser.ExpressionContext expressionContext)
@@ -378,9 +378,9 @@ namespace Yarn.Compiler.Upgrader
                 // running it through the checker with 'upgrades' enabled
                 var expressions = new[] { expressionContext };
 
-                var type = this.CheckOperation(context, expressions, "if statement", BuiltinTypes.Boolean, BuiltinTypes.Number);
+                var type = this.CheckOperation(context, expressions, "if statement", Types.Boolean, Types.Number);
 
-                if (this.GenerateReplacements && type == BuiltinTypes.Number)
+                if (this.GenerateReplacements && type == Types.Number)
                 {
 
                     // This if statement resolved to a number expression,
@@ -434,10 +434,10 @@ namespace Yarn.Compiler.Upgrader
                 {
                     case "+":
                         // + supports strings and numbers
-                        return CheckOperation(context, expressions, context.op.Text, BuiltinTypes.String, BuiltinTypes.Number);
+                        return CheckOperation(context, expressions, context.op.Text, Types.String, Types.Number);
                     case "-":
                         // - supports only numbers
-                        return CheckOperation(context, expressions, context.op.Text, BuiltinTypes.Number);
+                        return CheckOperation(context, expressions, context.op.Text, Types.Number);
                     default:
                         throw new InvalidOperationException($"Internal error: {nameof(VisitExpAddSub)} got unexpected op {context.op.Text}");
                 }
@@ -448,7 +448,7 @@ namespace Yarn.Compiler.Upgrader
                 var expressions = context.expression();
 
                 // *, /, % all support numbers only
-                return CheckOperation(context, expressions, context.op.Text, BuiltinTypes.Number);
+                return CheckOperation(context, expressions, context.op.Text, Types.Number);
             }
 
             public override Yarn.IType VisitExpPlusMinusEquals(YarnSpinnerV1Parser.ExpPlusMinusEqualsContext context)
@@ -459,10 +459,10 @@ namespace Yarn.Compiler.Upgrader
                 {
                     case "+=":
                         // + supports strings and numbers
-                        return CheckOperation(context, terms, context.op.Text, BuiltinTypes.String, BuiltinTypes.Number);
+                        return CheckOperation(context, terms, context.op.Text, Types.String, Types.Number);
                     case "-=":
                         // - supports only numbers
-                        return CheckOperation(context, terms, context.op.Text, BuiltinTypes.Number);
+                        return CheckOperation(context, terms, context.op.Text, Types.Number);
                     default:
                         throw new InvalidOperationException($"Internal error: {nameof(VisitExpMultDivMod)} got unexpected op {context.op.Text}");
                 }
@@ -473,7 +473,7 @@ namespace Yarn.Compiler.Upgrader
                 ParserRuleContext[] terms = { context.variable(), context.expression() };
 
                 // *, /, % all support numbers only
-                return CheckOperation(context, terms, context.op.Text, BuiltinTypes.Number);
+                return CheckOperation(context, terms, context.op.Text, Types.Number);
             }
 
             public override Yarn.IType VisitExpComparison(YarnSpinnerV1Parser.ExpComparisonContext context)
@@ -481,10 +481,10 @@ namespace Yarn.Compiler.Upgrader
                 ParserRuleContext[] terms = context.expression();
 
                 // <, <=, >, >= all support numbers only
-                CheckOperation(context, terms, context.op.Text, BuiltinTypes.Number);
+                CheckOperation(context, terms, context.op.Text, Types.Number);
 
                 // Comparisons always return bool
-                return BuiltinTypes.Boolean;
+                return Types.Boolean;
             }
 
             public override Yarn.IType VisitExpEquality(YarnSpinnerV1Parser.ExpEqualityContext context)
@@ -493,10 +493,10 @@ namespace Yarn.Compiler.Upgrader
 
                 // == and != support any defined type, as long as terms are the
                 // same type
-                CheckOperation(context, terms, context.op.Text, BuiltinTypes.Number, BuiltinTypes.String, BuiltinTypes.Boolean);
+                CheckOperation(context, terms, context.op.Text, Types.Number, Types.String, Types.Boolean);
 
                 // Equality checks always return bool
-                return BuiltinTypes.Boolean;
+                return Types.Boolean;
             }
 
             public override Yarn.IType VisitExpNegative(YarnSpinnerV1Parser.ExpNegativeContext context)
@@ -504,7 +504,7 @@ namespace Yarn.Compiler.Upgrader
                 ParserRuleContext[] terms = new[] { context.expression() };
 
                 // - supports only number types
-                return CheckOperation(context, terms, "-", BuiltinTypes.Number);
+                return CheckOperation(context, terms, "-", Types.Number);
 
             }
 
@@ -513,7 +513,7 @@ namespace Yarn.Compiler.Upgrader
                 ParserRuleContext[] terms = new[] { context.expression() };
 
                 // ! supports only bool types
-                return CheckOperation(context, terms, "!", BuiltinTypes.Boolean);
+                return CheckOperation(context, terms, "!", Types.Boolean);
             }
 
             public override IType VisitSetExpression([NotNull] YarnSpinnerV1Parser.SetExpressionContext context)

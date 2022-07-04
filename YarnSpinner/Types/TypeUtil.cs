@@ -42,7 +42,7 @@ namespace Yarn
         /// name="type"/> is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentException">Thrown if methodName is <see
         /// langword="null"/> or empty.</exception>
-        internal static IType FindImplementingTypeForMethod(IType type, string methodName)
+        internal static TypeBase FindImplementingTypeForMethod(IType type, string methodName)
         {
             if (type is null)
             {
@@ -60,18 +60,24 @@ namespace Yarn
             // implements a method by this name
             while (currentType != null)
             {
-                if (currentType.Methods != null && currentType.Methods.ContainsKey(methodName))
+                // If this is a type literal (i.e. a concrete type), then check
+                // its methods list to see if we have a definition for this
+                // method here.
+                if (currentType is TypeBase currentTypeLiteral 
+                && currentTypeLiteral.Methods != null 
+                && currentTypeLiteral.Methods.ContainsKey(methodName))
                 {
-                    return currentType;
+                    return currentTypeLiteral;
                 }
 
+                // If not, walk up to the parent.
                 currentType = currentType.Parent;
             }
 
             return null;
         }
 
-        internal static string GetCanonicalNameForMethod(IType implementingType, string methodName)
+        internal static string GetCanonicalNameForMethod(TypeBase implementingType, string methodName)
         {
             if (implementingType is null)
             {
@@ -119,38 +125,14 @@ namespace Yarn
         /// langword="false"/> otherwise.</returns>
         internal static bool IsSubType(IType parentType, IType subType)
         {
-            if (subType == BuiltinTypes.Undefined && parentType == BuiltinTypes.Any)
+            if (parentType is TypeBase parentTypeLiteral && subType is TypeBase subTypeLiteral)
             {
-                // Special case: the undefined type is always a subtype of
-                // the Any type, because ALL types are a subtype of the Any
-                // type.
-                return true;
+                return parentTypeLiteral.IsAncestorOf(subTypeLiteral);
             }
-
-            if (subType == BuiltinTypes.Undefined)
+            else
             {
-                // The subtype is undefined. Assume that it is not a
-                // subtype of parentType.
                 return false;
             }
-
-            var currentType = subType;
-
-            while (currentType != null)
-            {
-                // TODO: this is a strict object comparison; a more
-                // sophisticated type unification might be better
-                if (currentType == parentType)
-                {
-                    return true;
-                }
-
-                currentType = currentType.Parent;
-            }
-
-            // We reached the top of the type hierarchy, and didn't find
-            // parentType. subType is not a subtype of parentType.
-            return false;
         }
     }
 }

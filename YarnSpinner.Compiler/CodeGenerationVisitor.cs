@@ -415,7 +415,7 @@ namespace Yarn.Compiler
 
             // Figure out the canonical name for the method that the VM should
             // invoke in order to perform this work
-            Yarn.IType implementingType = TypeUtil.FindImplementingTypeForMethod(type, op.ToString());
+            TypeBase implementingType = TypeUtil.FindImplementingTypeForMethod(type, op.ToString());
 
             // Couldn't find an implementation method? That's an error! The type
             // checker should have caught this.

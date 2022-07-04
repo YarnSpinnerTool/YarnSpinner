@@ -22,7 +22,7 @@ namespace Yarn
         public override string Name => "String";
 
         /// <inheritdoc/>
-        public override IType Parent => BuiltinTypes.Any;
+        public override IType Parent => Types.Any;
 
         /// <inheritdoc/>
         public override string Description { get; }

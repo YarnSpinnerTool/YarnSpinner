@@ -8,7 +8,7 @@ namespace TypeChecker
     /// Stores information that a Solver can use to solve a system of type
     /// equations.
     /// </summary>
-    public abstract class TypeConstraint
+    internal abstract class TypeConstraint
     {
         /// <inheritdoc/>
         new public abstract string ToString();
@@ -25,11 +25,10 @@ namespace TypeChecker
         /// </remarks>
         /// <param name="subst">A <see cref="Substitution"/> that the constraint
         /// can use to help decide how to simplify.</param>
+        /// <param name="knownTypes">The collection of all currently known types.</param>
         /// <returns>A <see cref="TypeEqualityConstraint"/> or a <see
         /// cref="DisjunctionConstraint"/> that represents a simplified version
         /// of this constraint, or null.</returns>
-        public abstract TypeConstraint Simplify(Substitution subst);
-
-
+        public abstract TypeConstraint Simplify(Substitution subst, System.Collections.Generic.IEnumerable<Yarn.TypeBase> knownTypes);
     }
 }

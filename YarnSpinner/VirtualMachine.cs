@@ -131,17 +131,17 @@ namespace Yarn
 
             public void PushValue(string s)
             {
-                stack.Push(new Value(BuiltinTypes.String, s));
+                stack.Push(new Value(Types.String, s));
             }
 
             public void PushValue(float f)
             {
-                stack.Push(new Value(BuiltinTypes.Number, f));
+                stack.Push(new Value(Types.Number, f));
             }
 
             public void PushValue(bool b)
             {
-                stack.Push(new Value(BuiltinTypes.Boolean, b));
+                stack.Push(new Value(Types.Boolean, b));
             }
 
             /// <summary>Removes a value from the top of the stack, and
@@ -669,7 +669,7 @@ namespace Yarn
 
                             if (functionReturnsValue)
                             {
-                                if (BuiltinTypes.TypeMappings.TryGetValue(returnValue.GetType(), out var yarnType))
+                                if (Types.TypeMappings.TryGetValue(returnValue.GetType(), out var yarnType))
                                 {
                                     Value yarnValue = new Value(yarnType, returnValue);
 
@@ -702,7 +702,7 @@ namespace Yarn
                         {
                             System.Type loadedObjectType = loadedObject.GetType();
 
-                            var hasType = BuiltinTypes.TypeMappings.TryGetValue(loadedObjectType, out var yarnType);
+                            var hasType = Types.TypeMappings.TryGetValue(loadedObjectType, out var yarnType);
 
                             if (hasType)
                             {
@@ -724,13 +724,13 @@ namespace Yarn
                                 switch (value.ValueCase)
                                 {
                                     case Operand.ValueOneofCase.StringValue:
-                                        loadedValue = new Value(BuiltinTypes.String, value.StringValue);
+                                        loadedValue = new Value(Types.String, value.StringValue);
                                         break;
                                     case Operand.ValueOneofCase.BoolValue:
-                                        loadedValue = new Value(BuiltinTypes.Boolean, value.BoolValue);
+                                        loadedValue = new Value(Types.Boolean, value.BoolValue);
                                         break;
                                     case Operand.ValueOneofCase.FloatValue:
-                                        loadedValue = new Value(BuiltinTypes.Number, value.FloatValue);
+                                        loadedValue = new Value(Types.Number, value.FloatValue);
                                         break;
                                     default:
                                         throw new ArgumentOutOfRangeException($"Unknown initial value type {value.ValueCase} for variable {variableName}");
@@ -755,15 +755,15 @@ namespace Yarn
                         var topValue = state.PeekValue();
                         var destinationVariableName = i.Operands[0].StringValue;
 
-                        if (topValue.Type == BuiltinTypes.Number)
+                        if (topValue.Type == Types.Number)
                         {
                             dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<float>());
                         }
-                        else if (topValue.Type == BuiltinTypes.String)
+                        else if (topValue.Type == Types.String)
                         {
                             dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<string>());
                         }
-                        else if (topValue.Type == BuiltinTypes.Boolean)
+                        else if (topValue.Type == Types.Boolean)
                         {
                             dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<bool>());
                         }

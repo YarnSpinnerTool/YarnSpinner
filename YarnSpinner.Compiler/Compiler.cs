@@ -672,31 +672,31 @@ namespace Yarn.Compiler
             var results = new List<CompilationResult>();
 
             // All variable declarations that we've encountered
-            var variableDeclarations = new List<Declaration>();
+            var declarations = new List<Declaration>();
 
             // All type definitions that we've encountered while parsing. We'll add to this list when we encounter user-defined types.
-            var typeDeclarations = new List<IType>(BuiltinTypes.AllBuiltinTypes);
+            var knownTypes = Types.AllBuiltinTypes.ToList();
 
             if (compilationJob.VariableDeclarations != null)
             {
-                variableDeclarations.AddRange(compilationJob.VariableDeclarations);
+                declarations.AddRange(compilationJob.VariableDeclarations);
             }
 
             var diagnostics = new List<Diagnostic>();
             {
                 // Get function declarations from the Standard Library
-                (IEnumerable<Declaration> declarations, IEnumerable<Diagnostic> declarationDiagnostics) = GetDeclarationsFromLibrary(new Dialogue.StandardLibrary());
+                (IEnumerable<Declaration> newDeclarations, IEnumerable<Diagnostic> declarationDiagnostics) = GetDeclarationsFromLibrary(new Dialogue.StandardLibrary());
 
                 diagnostics.AddRange(declarationDiagnostics);
 
-                variableDeclarations.AddRange(declarations);
+                declarations.AddRange(newDeclarations);
             }
 
             // Get function declarations from the library, if provided
             if (compilationJob.Library != null)
             {
-                (IEnumerable<Declaration> declarations, IEnumerable<Diagnostic> declarationDiagnostics) = GetDeclarationsFromLibrary(compilationJob.Library);
-                variableDeclarations.AddRange(declarations);
+                (IEnumerable<Declaration> newDeclarations, IEnumerable<Diagnostic> declarationDiagnostics) = GetDeclarationsFromLibrary(compilationJob.Library);
+                declarations.AddRange(newDeclarations);
                 diagnostics.AddRange(declarationDiagnostics);
             }
 
@@ -734,15 +734,18 @@ namespace Yarn.Compiler
             }
 
             // Run the type checker on the files, and produce type variables and constraints.
-            
+
+            List<TypeChecker.TypeConstraint> typeConstraints = new List<TypeChecker.TypeConstraint>();
+
             var walker = new ParseTreeWalker();
             foreach (var parsedFile in parsedFiles)
             {
-                var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, parsedFile.Tree, ref typeDeclarations);
+                var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, parsedFile.Tree, ref knownTypes, ref declarations);
 
                 walker.Walk(typeCheckerListener, parsedFile.Tree);
 
                 diagnostics.AddRange(typeCheckerListener.Diagnostics);
+                typeConstraints.AddRange(typeCheckerListener.TypeEquations);
             }
 
             var fileTags = new Dictionary<string, IEnumerable<string>>();
@@ -764,24 +767,35 @@ namespace Yarn.Compiler
             var trackingDeclarations = new List<Declaration>();
             foreach (var node in trackingNodes)
             {
-                trackingDeclarations.Add(Declaration.CreateVariable(Yarn.Library.GenerateUniqueVisitedVariableForNode(node), BuiltinTypes.Number, 0, $"The generated variable for tracking visits of node {node}"));
+                trackingDeclarations.Add(Declaration.CreateVariable(Yarn.Library.GenerateUniqueVisitedVariableForNode(node), Types.Number, 0, $"The generated variable for tracking visits of node {node}"));
             }
 
             // adding the generated tracking variables into the declaration list
             // this way any future variable storage system will know about them
             // if we didn't do this later stages wouldn't be able to interface with them
-            variableDeclarations.AddRange(trackingDeclarations);
-            
+            declarations.AddRange(trackingDeclarations);
+
             // TODO: constrain all visited variables to be of type Number
 
-            // TODO: solve all type equations
+            // We now have declarations for variables in the program, which are
+            // all type variables. We also have a number of type equations that
+            // constrain those variables. 
+
+            // Solve all type equations, producing a Substitution.
+
+            var substitution = TypeChecker.Solver.Solve(typeConstraints, knownTypes.OfType<TypeBase>());
+
+            // Apply this substitution to all declarations.
+            foreach (var decl in declarations) {
+                decl.Type = TypeChecker.ITypeExtensions.Substitute(decl.Type, substitution);
+            }
 
             if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
             {
                 // Stop at this point
                 return new CompilationResult
                 {
-                    Declarations = derivedVariableDeclarations,
+                    Declarations = declarations,
                     ContainsImplicitStringTags = false,
                     Program = null,
                     StringTable = null,
@@ -801,7 +815,7 @@ namespace Yarn.Compiler
                 // files.
                 foreach (var parsedFile in parsedFiles)
                 {
-                    CompilationResult compilationResult = GenerateCode(parsedFile, knownVariableDeclarations, compilationJob, stringTableManager, trackingNodes);
+                    CompilationResult compilationResult = GenerateCode(parsedFile, declarations, compilationJob, stringTableManager, trackingNodes);
 
                     results.Add(compilationResult);
                 }
@@ -812,7 +826,7 @@ namespace Yarn.Compiler
             // Last step: take every variable declaration we found in all
             // of the inputs, and create an initial value registration for
             // it.
-            foreach (var declaration in knownVariableDeclarations)
+            foreach (var declaration in declarations)
             {
                 // We only care about variable declarations here
                 if (declaration.Type is FunctionType)
@@ -820,9 +834,9 @@ namespace Yarn.Compiler
                     continue;
                 }
 
-                if (declaration.Type == BuiltinTypes.Undefined)
+                if (declaration.Type == Types.Error)
                 {
-                    // This declaration has an undefined type; we will
+                    // This declaration has an error type; we will
                     // already have created an error message for this, so
                     // skip this one.
                     continue;
@@ -836,15 +850,15 @@ namespace Yarn.Compiler
                     continue;
                 }
 
-                if (declaration.Type == BuiltinTypes.String)
+                if (declaration.Type == Types.String)
                 {
                     value = new Operand(Convert.ToString(declaration.DefaultValue));
                 }
-                else if (declaration.Type == BuiltinTypes.Number)
+                else if (declaration.Type == Types.Number)
                 {
                     value = new Operand(Convert.ToSingle(declaration.DefaultValue));
                 }
-                else if (declaration.Type == BuiltinTypes.Boolean)
+                else if (declaration.Type == Types.Boolean)
                 {
                     value = new Operand(Convert.ToBoolean(declaration.DefaultValue));
                 }
@@ -858,7 +872,7 @@ namespace Yarn.Compiler
                 }
             }
 
-            finalResult.Declarations = derivedVariableDeclarations;
+            finalResult.Declarations = declarations;
 
             finalResult.FileTags = fileTags;
 
@@ -872,25 +886,6 @@ namespace Yarn.Compiler
             var visitor = new StringTableGeneratorVisitor(fileName, stringTableManager);
             visitor.Visit(tree);
             diagnostics.AddRange(visitor.Diagnostics);
-        }
-
-        private static void GetDeclarations(FileParseResult parsedFile, IEnumerable<Declaration> existingDeclarations, out IEnumerable<Declaration> newDeclarations, IEnumerable<IType> typeDeclarations, out IEnumerable<string> fileTags, out IEnumerable<Diagnostic> diagnostics)
-        {
-            var variableDeclarationVisitor = new DeclarationVisitor(parsedFile.Name, existingDeclarations, typeDeclarations, parsedFile.Tokens);
-
-            var newDiagnosticList = new List<Diagnostic>();
-
-            variableDeclarationVisitor.Visit(parsedFile.Tree);
-
-            newDiagnosticList.AddRange(variableDeclarationVisitor.Diagnostics);
-
-            // Upon exit, newDeclarations will now contain every variable
-            // declaration we found
-            newDeclarations = variableDeclarationVisitor.NewDeclarations;
-
-            fileTags = variableDeclarationVisitor.FileTags;
-
-            diagnostics = newDiagnosticList;
         }
 
         private static CompilationResult GenerateCode(FileParseResult fileParseResult, IEnumerable<Declaration> variableDeclarations, CompilationJob job, StringTableManager stringTableManager, HashSet<string> trackingNodes)
@@ -949,7 +944,7 @@ namespace Yarn.Compiler
 
                 // Does the return type of this delegate map to a value
                 // that Yarn Spinner can use?
-                if (BuiltinTypes.TypeMappings.TryGetValue(method.ReturnType, out var yarnReturnType) == false)
+                if (Types.TypeMappings.TryGetValue(method.ReturnType, out var yarnReturnType) == false)
                 {
                     diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: {method.ReturnType} is not a valid return type."));
                     continue;
@@ -981,7 +976,7 @@ namespace Yarn.Compiler
                         continue;
                     }
 
-                    if (BuiltinTypes.TypeMappings.TryGetValue(paramInfo.ParameterType, out var yarnParameterType) == false)
+                    if (Types.TypeMappings.TryGetValue(paramInfo.ParameterType, out var yarnParameterType) == false)
                     {
                         diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used in Yarn functions"));
                         continue;

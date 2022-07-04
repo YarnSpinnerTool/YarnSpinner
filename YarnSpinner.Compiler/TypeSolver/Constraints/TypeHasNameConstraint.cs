@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Yarn;
 
@@ -14,12 +15,12 @@ namespace TypeChecker
         public IType Type { get; private set; }
         public string Name { get; private set; }
 
-        public override TypeConstraint Simplify(Substitution subst)
+        public override TypeConstraint Simplify(Substitution subst, IEnumerable<TypeBase> knownTypes)
         {
             // Find all types that have this name, and return a disjunction
             // containing an equality constraint of each possibility.
             return new DisjunctionConstraint(
-                Types.AllTypes.Where(t => t.Name == this.Name)
+                knownTypes.Where(t => t.Name == this.Name)
                 .Select(t => new TypeEqualityConstraint(this.Type, t))
             );
         }

@@ -1071,9 +1071,9 @@ namespace Yarn
                 });
 
                 // Register the built-in types.
-                this.RegisterMethods(BuiltinTypes.Number);
-                this.RegisterMethods(BuiltinTypes.String);
-                this.RegisterMethods(BuiltinTypes.Boolean);
+                this.RegisterMethods((TypeBase)Types.Number);
+                this.RegisterMethods((TypeBase)Types.String);
+                this.RegisterMethods((TypeBase)Types.Boolean);
 
                 #endregion Operators
             }

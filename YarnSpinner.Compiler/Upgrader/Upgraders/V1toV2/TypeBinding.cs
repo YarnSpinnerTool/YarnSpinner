@@ -58,7 +58,7 @@ namespace Yarn.Compiler.Upgrader
             {
                 // If there is precisely one type binding, keep it, if it's
                 // defined
-                var definedBindings = bindingGroup.Where(b => b.Type != BuiltinTypes.Undefined);
+                var definedBindings = bindingGroup.Where(b => b.Type != VariableDeclarationUpgrader.UndefinedType);
 
                 if (definedBindings.Count() == 1)
                 {
@@ -68,7 +68,7 @@ namespace Yarn.Compiler.Upgrader
                 // Otherwise, this type is undefined, because either it has
                 // too many defined bindings, or only has an undefined
                 // binding
-                return new TypeBinding { VariableName = bindingGroup.Key, Type = BuiltinTypes.Undefined };
+                return new TypeBinding { VariableName = bindingGroup.Key, Type = VariableDeclarationUpgrader.UndefinedType };
             }).ToList();
 
             return unifiedVariableBindings;

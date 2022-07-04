@@ -21,20 +21,20 @@ namespace Yarn.Compiler
         private string name;
         private CommonTokenStream tokens;
         private IParseTree tree;
-
+        private ICollection<IType> knownTypes;
         private List<Declaration> knownDeclarations;
         private int typeParameterCount = 0;
 
         private string sourceFileName = "<not set>";
         private string currentNodeName = null;
 
-        public TypeCheckerListener(string name, CommonTokenStream tokens, IParseTree tree, ref List<Declaration> knownDeclarations)
+        public TypeCheckerListener(string name, CommonTokenStream tokens, IParseTree tree, ref List<IType> knownTypes, ref List<Declaration> knownDeclarations)
         {
             this.name = name;
             this.tokens = tokens;
             this.tree = tree;
-
-            this.knownDeclarations = new List<Declaration>(knownDeclarations);
+            this.knownTypes = knownTypes;
+            this.knownDeclarations = knownDeclarations;
         }
 
         private Declaration GetKnownDeclaration(string name) => this.knownDeclarations.FirstOrDefault(d => d.Name == name);
@@ -58,7 +58,7 @@ namespace Yarn.Compiler
             }
 #endif
 
-            TypeEqualityConstraint item = new TypeEqualityConstraint(a ?? BuiltinTypes.Error, b ?? BuiltinTypes.Error);
+            TypeEqualityConstraint item = new TypeEqualityConstraint(a ?? Types.Error, b ?? Types.Error);
             this.TypeEquations.Add(item);
             return item;
         }
@@ -77,7 +77,7 @@ namespace Yarn.Compiler
             }
 #endif
 
-            TypeConvertibleConstraint item = new TypeConvertibleConstraint(from ?? BuiltinTypes.Error, to ?? BuiltinTypes.Error);
+            TypeConvertibleConstraint item = new TypeConvertibleConstraint(from ?? Types.Error, to ?? Types.Error);
             this.TypeEquations.Add(item);
             return item;
         }
@@ -124,7 +124,7 @@ namespace Yarn.Compiler
 
         public IEnumerable<Diagnostic> Diagnostics => this.diagnostics;
 
-        private List<Diagnostic> diagnostics;
+        private List<Diagnostic> diagnostics = new List<Diagnostic>();
 
         public override void ExitHeader([NotNull] YarnSpinnerParser.HeaderContext context)
         {
@@ -143,6 +143,8 @@ namespace Yarn.Compiler
             var name = variableContext?.VAR_ID()?.GetText();
             Declaration declaration = this.GetKnownDeclaration(name);
 
+            // Do we already have a explicit declaration for a variable with
+            // this name? It's an error if we do.
             if (declaration != null && declaration.IsImplicit == false)
             {
                 this.AddDiagnostic(context, $"Redeclaration of existing variable {name}");
@@ -214,22 +216,22 @@ namespace Yarn.Compiler
 
         public override void ExitValueTrue([NotNull] YarnSpinnerParser.ValueTrueContext context)
         {
-            context.Type = BuiltinTypes.Boolean;
+            context.Type = Types.Boolean;
         }
 
         public override void ExitValueFalse([NotNull] YarnSpinnerParser.ValueFalseContext context)
         {
-            context.Type = BuiltinTypes.Boolean;
+            context.Type = Types.Boolean;
         }
 
         public override void ExitValueNumber([NotNull] YarnSpinnerParser.ValueNumberContext context)
         {
-            context.Type = BuiltinTypes.Number;
+            context.Type = Types.Number;
         }
 
         public override void ExitValueString([NotNull] YarnSpinnerParser.ValueStringContext context)
         {
-            context.Type = BuiltinTypes.String;
+            context.Type = Types.String;
         }
 
         public override void ExitVariable([NotNull] YarnSpinnerParser.VariableContext context)
@@ -290,7 +292,7 @@ namespace Yarn.Compiler
         {
             // The result of a comparison is boolean; the types of the
             // expressions must be identical.
-            context.Type = BuiltinTypes.Boolean;
+            context.Type = Types.Boolean;
             this.AddEqualityConstraint(context.expression(0)?.Type, context.expression(1)?.Type);
         }
 
@@ -298,7 +300,7 @@ namespace Yarn.Compiler
         {
             // The result of an equality is boolean; the types of the
             // expressions must be identical.
-            context.Type = BuiltinTypes.Boolean;
+            context.Type = Types.Boolean;
             this.AddEqualityConstraint(context.expression(0)?.Type, context.expression(1)?.Type);
         }
 
@@ -306,8 +308,8 @@ namespace Yarn.Compiler
         {
             // The result of a logical and, or, or xor is boolean; the types of
             // the expressions must also be boolean.
-            context.Type = BuiltinTypes.Boolean;
-            this.AddEqualityConstraint(context.expression(0)?.Type, BuiltinTypes.Boolean);
+            context.Type = Types.Boolean;
+            this.AddEqualityConstraint(context.expression(0)?.Type, Types.Boolean);
             this.AddEqualityConstraint(context.expression(0)?.Type, context.expression(1)?.Type);
         }
 
@@ -315,16 +317,16 @@ namespace Yarn.Compiler
         {
             // The result of a logical not is boolean; the type of the operand
             // must also be boolean.
-            context.Type = BuiltinTypes.Boolean;
-            this.AddEqualityConstraint(context.expression()?.Type, BuiltinTypes.Boolean);
+            context.Type = Types.Boolean;
+            this.AddEqualityConstraint(context.expression()?.Type, Types.Boolean);
         }
 
         public override void ExitExpNegative([NotNull] YarnSpinnerParser.ExpNegativeContext context)
         {
             // The result of a negation is a number; the type of the operand
             // must also be a number.
-            context.Type = BuiltinTypes.Number;
-            this.AddEqualityConstraint(context.expression()?.Type, BuiltinTypes.Number);
+            context.Type = Types.Number;
+            this.AddEqualityConstraint(context.expression()?.Type, Types.Number);
         }
 
         public override void ExitExpValue([NotNull] YarnSpinnerParser.ExpValueContext context)
@@ -337,13 +339,13 @@ namespace Yarn.Compiler
         public override void ExitIf_clause([NotNull] YarnSpinnerParser.If_clauseContext context)
         {
             // The condition for an if statement must be a boolean
-            AddEqualityConstraint(context.expression().Type, BuiltinTypes.Boolean);
+            AddEqualityConstraint(context.expression().Type, Types.Boolean);
         }
 
         public override void ExitElse_if_clause([NotNull] YarnSpinnerParser.Else_if_clauseContext context)
         {
             // The condition for an elseif statement must be a boolean
-            AddEqualityConstraint(context.expression().Type, BuiltinTypes.Boolean);
+            AddEqualityConstraint(context.expression().Type, Types.Boolean);
             base.ExitElse_if_clause(context);
         }
 

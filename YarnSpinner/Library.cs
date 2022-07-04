@@ -159,9 +159,9 @@ namespace Yarn
         /// Registers the methods found inside a type.
         /// </summary>
         /// <param name="type">The type to register methods from.</param>
-        protected void RegisterMethods(IType type)
+        internal void RegisterMethods(TypeBase typeLiteral)
         {
-            var methods = type.Methods;
+            var methods = typeLiteral.Methods;
 
             if (methods == null)
             {
@@ -174,10 +174,11 @@ namespace Yarn
                 var methodName = methodDefinition.Key;
                 var methodImplementation = methodDefinition.Value;
 
-                var canonicalName = TypeUtil.GetCanonicalNameForMethod(type, methodName);
+                var canonicalName = TypeUtil.GetCanonicalNameForMethod(typeLiteral, methodName);
 
                 this.RegisterFunction(canonicalName, methodImplementation);
             }
+            
         }
 
         /// <summary>

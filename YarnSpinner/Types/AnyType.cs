@@ -1,5 +1,6 @@
 namespace Yarn
 {
+    using System.Collections.Generic;
     using MethodCollection = System.Collections.Generic.IReadOnlyDictionary<string, System.Delegate>;
 
     /// <summary>
@@ -22,6 +23,8 @@ namespace Yarn
         public string Description { get => "Any type."; }
 
         /// <inheritdoc/>
-        public MethodCollection Methods => null;
+        public MethodCollection Methods => new Dictionary<string, System.Delegate>();
+
+        public IReadOnlyDictionary<string, IType> Members =>  new Dictionary<string, Yarn.IType>();
     }
 }

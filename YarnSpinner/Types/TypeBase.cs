@@ -12,6 +12,9 @@ namespace Yarn
         public abstract IType Parent { get; }
         public abstract string Description { get; }
 
+        /// <summary>
+        /// Gets the collection of methods that are defined on this type.
+        /// </summary>
         public IReadOnlyDictionary<string, Delegate> Methods => methods;
 
         internal Dictionary<string, Delegate> methods = new Dictionary<string, Delegate>();
@@ -25,6 +28,34 @@ namespace Yarn
         internal HashSet<IType> convertibleToTypes = new HashSet<IType>();
 
         /// <summary>
+        /// Gets the depth of this type in the hierarchy, measured as the total
+        /// number of parent-child relationships between this type and a root of
+        /// the type system.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="Types.Any"/> and <see cref="Types.Error"/> have a depth
+        /// of zero.
+        /// </remarks>
+        public int TypeDepth
+        {
+            get
+            {
+                // Start with zero depth, in case we have no parent
+                int depth = 0;
+
+                IType parent = this.Parent;
+                
+                // Walk up the parent hierarchy, adding 1 to our depth each time
+                while (parent != null)
+                {
+                    depth += 1;
+                    parent = parent.Parent;
+                }
+                return depth;
+            }
+        }
+
+        /// <summary>
         /// Registers that this type is convertible to <paramref name="otherType"/>.
         /// </summary>
         /// <param name="otherType"></param>
@@ -35,15 +66,30 @@ namespace Yarn
 
         public bool IsConvertibleTo(TypeBase otherType)
         {
-            // A type is convertible to another type if 1. there is an explicit
-            // conversion available, or 2. it is a descendant of that type, or
+            // A type is convertible to another type if:
+            // 1. there is an explicit conversion available, or 
+            // 2. it is a descendant of that type, or
             // 3. the two types are identical.
             if (convertibleToTypes.Contains(otherType))
             {
+                // An explicit conversion exists.
                 return true;
             }
 
-            return this == otherType || otherType.IsAncestorOf(this);
+            if (otherType.IsAncestorOf(this))
+            {
+                // This type is a descendant of otherType.
+                return true;
+            }
+
+            if (this.Equals(otherType))
+            {
+                // The two types are identical.
+                return true;
+            }
+
+            // This type is not convertible to otherType.
+            return false;
         }
 
         protected TypeBase(IReadOnlyDictionary<string, Delegate> methods) {

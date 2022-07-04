@@ -47,7 +47,7 @@ namespace Yarn
         }
 
         /// <inheritdoc/>
-        public IType Parent { get => BuiltinTypes.Any; }
+        public IType Parent { get => Types.Any; }
 
         /// <summary>
         /// Gets the type of value that this function returns.
@@ -68,6 +68,8 @@ namespace Yarn
         /// <inheritdoc/>
         // Functions do not have any methods themselves
         public MethodCollection Methods => null;
+
+        public IReadOnlyDictionary<string, IType> Members => new Dictionary<string, IType>();
 
         /// <summary>
         /// Adds a new parameter to the function.

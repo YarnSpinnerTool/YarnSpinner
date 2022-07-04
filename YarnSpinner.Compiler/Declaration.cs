@@ -142,7 +142,7 @@ namespace Yarn.Compiler
         /// declaration.</param>
         /// <returns>A new instance of the <see cref="Declaration"/>
         /// class.</returns>
-        public static Declaration CreateVariable(string name, TypeChecker.IIType type, IConvertible defaultValue, string description = null)
+        public static Declaration CreateVariable(string name, IType type, IConvertible defaultValue, string description = null)
         {
             if (type is null)
             {

@@ -15,14 +15,14 @@ namespace TypeChecker
 
         public IReadOnlyDictionary<string, Delegate> Methods => throw new NotImplementedException();
 
+        public IReadOnlyDictionary<string, IType> Members => throw new NotImplementedException();
+
         public TypeVariable(string name)
         {
             Name = name;
         }
 
         public override string ToString() => Name;
-
-        
 
         public bool Equals(IType other)
         {

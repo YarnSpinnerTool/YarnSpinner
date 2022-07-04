@@ -43,7 +43,7 @@ namespace YarnSpinner.Tests
             var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
                     Name = "$int",
-                    Type = BuiltinTypes.Number,
+                    Type = Types.Number,
                     DefaultValue = 5f,
                     Range = new Yarn.Compiler.Range {
                         Start = {
@@ -60,7 +60,7 @@ namespace YarnSpinner.Tests
                 },
                 new Declaration {
                     Name = "$str",
-                    Type = BuiltinTypes.String,
+                    Type = Types.String,
                     DefaultValue = "yes",
                     Range = new Yarn.Compiler.Range {
                         Start = {
@@ -77,7 +77,7 @@ namespace YarnSpinner.Tests
                 },
                 new Declaration {
                     Name = "$bool",
-                    Type = BuiltinTypes.Boolean,
+                    Type = Types.Boolean,
                     DefaultValue = true,
                     Range = new Yarn.Compiler.Range {
                         Start = {
@@ -148,7 +148,7 @@ namespace YarnSpinner.Tests
             var declarations = new[] {
                 new Declaration {
                     Name = "$int",
-                    Type = BuiltinTypes.Number,
+                    Type = Types.Number,
                     DefaultValue = 0,
                 }
             };
@@ -294,7 +294,7 @@ namespace YarnSpinner.Tests
 
             // The type of the variable should be Boolean, because that's
             // the return type of all of the functions we declared.
-            Assert.Same(BuiltinTypes.Boolean, variableDeclaration.Type);
+            Assert.Same(Types.Boolean, variableDeclaration.Type);
 
         }
 
@@ -405,17 +405,17 @@ namespace YarnSpinner.Tests
             compilationJob.VariableDeclarations = new[] {
                 new Declaration {
                     Name = "$external_str",
-                    Type = BuiltinTypes.String,
+                    Type = Types.String,
                     DefaultValue = "Hello",
                 },
                 new Declaration {
                     Name = "$external_int",
-                    Type = BuiltinTypes.Boolean,
+                    Type = Types.Boolean,
                     DefaultValue = true,
                 },
                 new Declaration {
                     Name = "$external_bool",
-                    Type = BuiltinTypes.Number,
+                    Type = Types.Number,
                     DefaultValue = 42,
                 },
             };
@@ -450,9 +450,9 @@ namespace YarnSpinner.Tests
 
             Assert.Collection(
                 result.Declarations.Where(d => d.Name.StartsWith("$")),
-                d => { Assert.Equal(d.Name, "$str");  Assert.Equal(d.Type.Name, "String"); },
-                d => { Assert.Equal(d.Name, "$int");  Assert.Equal(d.Type.Name, "Number"); },
-                d => { Assert.Equal(d.Name, "$bool"); Assert.Equal(d.Type.Name, "Bool"); }
+                d => { Assert.Equal("$str", d.Name);  Assert.Equal("String", d.Type.Name); },
+                d => { Assert.Equal("$int", d.Name);  Assert.Equal("Number", d.Type.Name); },
+                d => { Assert.Equal("$bool", d.Name); Assert.Equal("Bool", d.Type.Name); }
             );
         }
 
@@ -508,49 +508,49 @@ namespace YarnSpinner.Tests
             var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
                     Name = "$prefix_int",
-                    Type = BuiltinTypes.Number,
+                    Type = Types.Number,
                     DefaultValue = 42f,
                     Description = "prefix: a number",
                 },
                 new Declaration {
                     Name = "$prefix_str",
-                    Type = BuiltinTypes.String,
+                    Type = Types.String,
                     DefaultValue = "Hello",
                     Description = "prefix: a string",
                 },
                 new Declaration {
                     Name = "$prefix_bool",
-                    Type = BuiltinTypes.Boolean,
+                    Type = Types.Boolean,
                     DefaultValue = true,
                     Description = "prefix: a bool",
                 },
                 new Declaration {
                     Name = "$suffix_int",
-                    Type = BuiltinTypes.Number,
+                    Type = Types.Number,
                     DefaultValue = 42f,
                     Description = "suffix: a number",
                 },
                 new Declaration {
                     Name = "$suffix_str",
-                    Type = BuiltinTypes.String,
+                    Type = Types.String,
                     DefaultValue = "Hello",
                     Description = "suffix: a string",
                 },
                 new Declaration {
                     Name = "$suffix_bool",
-                    Type = BuiltinTypes.Boolean,
+                    Type = Types.Boolean,
                     DefaultValue = true,
                     Description = "suffix: a bool",
                 },
                 new Declaration {
                     Name = "$none_int",
-                    Type = BuiltinTypes.Number,
+                    Type = Types.Number,
                     DefaultValue = 42f,
                     Description = null,
                 },
                 new Declaration {
                     Name = "$multiline",
-                    Type = BuiltinTypes.Number,
+                    Type = Types.Number,
                     DefaultValue = 42f,
                     Description = "Multi-line doc comment",
                 },
@@ -783,11 +783,11 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestBuiltinTypesAreEnumerated()
+        public void TestTypesAreEnumerated()
         {
-            var allBuiltinTypes = BuiltinTypes.AllBuiltinTypes;
+            var allTypes = Types.AllBuiltinTypes;
 
-            Assert.NotEmpty(allBuiltinTypes);
+            Assert.NotEmpty(allTypes);
         }
 
         [Fact]
@@ -801,7 +801,7 @@ namespace YarnSpinner.Tests
                 .WithSourceFileName("MyFile.yarn")
                 .WithSourceNodeName("Test")
                 .WithRange(new Yarn.Compiler.Range(0, 0, 0, 10))
-                .WithType(BuiltinTypes.String)
+                .WithType(Types.String)
                 .Declaration;
 
             var expectedDeclaration = new Declaration
@@ -812,7 +812,7 @@ namespace YarnSpinner.Tests
                 SourceFileName = "MyFile.yarn",
                 SourceNodeName = "Test",
                 Range = new Yarn.Compiler.Range(0, 0, 0, 10),
-                Type = BuiltinTypes.String
+                Type = Types.String
             };
 
             // Then
@@ -823,14 +823,14 @@ namespace YarnSpinner.Tests
         public void TestFunctionTypeBuilderCanBuildTypes() {
             // Given
             var expectedFunctionType = new FunctionType();
-            expectedFunctionType.ReturnType = BuiltinTypes.String;
-            expectedFunctionType.AddParameter(BuiltinTypes.String);
-            expectedFunctionType.AddParameter(BuiltinTypes.Number);
+            expectedFunctionType.ReturnType = Types.String;
+            expectedFunctionType.AddParameter(Types.String);
+            expectedFunctionType.AddParameter(Types.Number);
 
             var functionType = new FunctionTypeBuilder()
-                .WithParameter(BuiltinTypes.String)
-                .WithParameter(BuiltinTypes.Number)
-                .WithReturnType(BuiltinTypes.String)
+                .WithParameter(Types.String)
+                .WithParameter(Types.Number)
+                .WithReturnType(Types.String)
                 .FunctionType;
 
             // Then

@@ -89,11 +89,11 @@ namespace Yarn.Compiler
 
                 stringBuilder.Append($"<<declare {decl.Name} = ");
 
-                if (decl.Type == BuiltinTypes.Number) {
+                if (decl.Type == Types.Number) {
                     stringBuilder.Append(decl.DefaultValue);
-                } else if (decl.Type == BuiltinTypes.String) {
+                } else if (decl.Type == Types.String) {
                     stringBuilder.Append('"' + (string)decl.DefaultValue + '"');
-                } else if (decl.Type == BuiltinTypes.Boolean) {
+                } else if (decl.Type == Types.Boolean) {
                     stringBuilder.Append((bool)decl.DefaultValue ? "true" : "false");
                 } else {
                     throw new ArgumentOutOfRangeException($"Declaration {decl.Name}'s type must not be {decl.Type.Name}.");

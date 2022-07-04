@@ -199,7 +199,7 @@ namespace TypeChecker
         /// <exception cref="System.ArgumentOutOfRangeException">Thrown when
         /// <paramref name="typeConstraints"/> contains a type of constraint that
         /// could not be handled.</exception>
-        public static Substitution Solve(IEnumerable<TypeConstraint> typeConstraints, Substitution partialSolution = null)
+        internal static Substitution Solve(IEnumerable<TypeConstraint> typeConstraints, IEnumerable<TypeBase> knownTypes, Substitution partialSolution = null)
         {
 
             var subst = partialSolution ?? new TypeChecker.Substitution();
@@ -249,7 +249,7 @@ namespace TypeChecker
                         potentialConstraintSet.Add(constraint);
 
                         // Attempt to solve with this new list
-                        var substitution = Solve(potentialConstraintSet, clonedSubst);
+                        var substitution = Solve(potentialConstraintSet, knownTypes, clonedSubst);
 
                         if (substitution.IsFailed == false)
                         {
@@ -274,11 +274,11 @@ namespace TypeChecker
                     // can solve using the above procedures.
 
 #if VERBOSE_SOLVER
-                Console.WriteLine($"Solving {otherConstraint.ToString()}");
+                    Console.WriteLine($"Solving {otherConstraint.ToString()}");
 #endif
                     // Simplify the constraint, and replace it with its simplified
                     // version
-                    var simplifiedConstraint = otherConstraint.Simplify(subst);
+                    var simplifiedConstraint = otherConstraint.Simplify(subst, knownTypes);
 
 
                     if (simplifiedConstraint == null)
@@ -288,10 +288,11 @@ namespace TypeChecker
                     else
                     {
 #if VERBOSE_SOLVER
-                    Console.WriteLine($"Simplified it to {simplifiedConstraint.ToString()}");
+                        Console.WriteLine($"Simplified it to {simplifiedConstraint.ToString()}");
 #endif
                         remainingConstraints.Add(simplifiedConstraint);
                     }
+
                     remainingConstraints.Remove(otherConstraint);
                 }
 

@@ -19,6 +19,8 @@ namespace TypeChecker
 
         public IReadOnlyDictionary<string, Delegate> Methods => throw new NotImplementedException();
 
+        public IReadOnlyDictionary<string, IType> Members => new Dictionary<string, IType>();
+
         public TypeFunction(IType returnType, params IType[] argumentTypes)
         {
             ReturnType = returnType ?? Types.Error;

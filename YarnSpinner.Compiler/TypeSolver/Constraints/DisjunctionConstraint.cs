@@ -7,7 +7,7 @@ using System.Linq;
 namespace TypeChecker
 {
 
-    public class DisjunctionConstraint : TypeConstraint, IEnumerable<TypeConstraint>
+    internal class DisjunctionConstraint : TypeConstraint, IEnumerable<TypeConstraint>
     {
         public IEnumerable<TypeConstraint> Constraints { get; private set; }
 
@@ -33,7 +33,7 @@ namespace TypeChecker
             return ((IEnumerable)Constraints).GetEnumerator();
         }
 
-        public override TypeConstraint Simplify(Substitution subst)
+        public override TypeConstraint Simplify(Substitution subst, IEnumerable<Yarn.TypeBase> knownTypes)
         {
             // TODO: simplify disjunctions by elimiminating redundant terms
             return this;
