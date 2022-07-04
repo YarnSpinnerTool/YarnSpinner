@@ -34,11 +34,6 @@ namespace Yarn
             this.InternalValue = value.InternalValue;
         }
 
-        public Value(IBridgeableType<IConvertible> type) {
-            this.Type = type;
-            this.InternalValue = type.DefaultValue;
-        }
-
         public Value(IType type, IConvertible internalValue)
         {
             this.Type = type;

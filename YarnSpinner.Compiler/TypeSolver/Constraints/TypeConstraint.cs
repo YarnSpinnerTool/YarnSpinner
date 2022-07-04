@@ -30,5 +30,17 @@ namespace TypeChecker
         /// cref="DisjunctionConstraint"/> that represents a simplified version
         /// of this constraint, or null.</returns>
         public abstract TypeConstraint Simplify(Substitution subst, System.Collections.Generic.IEnumerable<Yarn.TypeBase> knownTypes);
+
+        /// <summary>
+        /// Gets or sets the range of text that contained the expression that
+        /// produced this constraint.
+        /// </summary>
+        public Yarn.Compiler.Range SourceRange { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the file that contained the expression that
+        /// produced this constraint.
+        /// </summary>
+        public string SourceFileName { get; set; }
     }
 }

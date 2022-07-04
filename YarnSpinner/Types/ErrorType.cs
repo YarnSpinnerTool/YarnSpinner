@@ -14,5 +14,7 @@ namespace Yarn
         public override IType Parent => null;
 
         public override string Description => "(type error)";
+
+        internal override System.IConvertible DefaultValue => throw new InvalidOperationException();
     }
 }

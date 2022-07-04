@@ -129,7 +129,7 @@
         /// path="/summary/node()"/></param>
         public Diagnostic(string fileName, Range range, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error) {
             this.FileName = fileName;
-            this.Range = range;
+            this.Range = range ?? new Range();
             this.Message = message;
             this.Severity = severity;
         }

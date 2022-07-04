@@ -199,9 +199,8 @@ namespace TypeChecker
         /// <exception cref="System.ArgumentOutOfRangeException">Thrown when
         /// <paramref name="typeConstraints"/> contains a type of constraint that
         /// could not be handled.</exception>
-        internal static Substitution Solve(IEnumerable<TypeConstraint> typeConstraints, IEnumerable<TypeBase> knownTypes, Substitution partialSolution = null)
+        internal static Substitution Solve(IEnumerable<TypeConstraint> typeConstraints, IEnumerable<TypeBase> knownTypes, ref List<Yarn.Compiler.Diagnostic> diagnostics, Substitution partialSolution = null, bool failuresAreErrors = true)
         {
-
             var subst = partialSolution ?? new TypeChecker.Substitution();
             var remainingConstraints = new HashSet<TypeConstraint>(typeConstraints);
 
@@ -220,11 +219,14 @@ namespace TypeChecker
                 // then disjunctions, then any other constraint (since they simplify
                 // into equalities and disjunctions).
 
+                TypeConstraint currentConstraint = null;
+
                 if (TryGetConstraint<TypeEqualityConstraint>(out var equalityConstraint))
                 {
 #if VERBOSE_SOLVER
                 Console.WriteLine($"Solving {equalityConstraint.ToString()}");
 #endif
+                    currentConstraint = equalityConstraint;
                     subst = Unify(equalityConstraint.Left, equalityConstraint.Right, subst);
                     remainingConstraints.Remove(equalityConstraint);
                 }
@@ -233,6 +235,9 @@ namespace TypeChecker
 #if VERBOSE_SOLVER
                 Console.WriteLine($"Solving {disjunctionConstraint.ToString()}");
 #endif
+
+                    currentConstraint = disjunctionConstraint;
+
                     // Try each of the constraints in the disjunction, attempting to
                     // solve for it.
                     foreach (var constraint in disjunctionConstraint)
@@ -249,7 +254,7 @@ namespace TypeChecker
                         potentialConstraintSet.Add(constraint);
 
                         // Attempt to solve with this new list
-                        var substitution = Solve(potentialConstraintSet, knownTypes, clonedSubst);
+                        var substitution = Solve(potentialConstraintSet, knownTypes, ref diagnostics, clonedSubst, false);
 
                         if (substitution.IsFailed == false)
                         {
@@ -272,6 +277,8 @@ namespace TypeChecker
                     // If it's any other type of constraint, then we'll simplify it,
                     // which turns it into equalities and/or disjunctions, which we
                     // can solve using the above procedures.
+
+                    currentConstraint = equalityConstraint;
 
 #if VERBOSE_SOLVER
                     Console.WriteLine($"Solving {otherConstraint.ToString()}");
@@ -296,9 +303,21 @@ namespace TypeChecker
                     remainingConstraints.Remove(otherConstraint);
                 }
 
-
                 if (subst.IsFailed)
                 {
+                    if (failuresAreErrors)
+                    {
+                        // We want to log a diagnostic for this constraint's
+                        // failure to apply.
+                        if (currentConstraint == null)
+                        {
+                            // We have an error, but we don't know what
+                            // constraint caused it? Internal error.
+                            throw new System.InvalidOperationException($"Unexpected null value for {nameof(currentConstraint)}");
+                        } else {
+                            diagnostics.Add(new Yarn.Compiler.Diagnostic(currentConstraint.SourceFileName, currentConstraint.SourceRange, $"Failed to resolve {currentConstraint.ToString()}"));
+                        }
+                    }
                     // Early out if we've failed
                     return subst;
                 }

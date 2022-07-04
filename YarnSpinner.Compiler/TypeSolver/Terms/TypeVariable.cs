@@ -9,13 +9,13 @@ namespace TypeChecker
     {
         public string Name { get; set; }
 
-        public IType Parent => throw new NotImplementedException();
+        public IType Parent => null;
 
-        public string Description => throw new NotImplementedException();
+        public string Description => $"Type variable representing \"{Name}\"";
 
-        public IReadOnlyDictionary<string, Delegate> Methods => throw new NotImplementedException();
+        public IReadOnlyDictionary<string, Delegate> Methods => new Dictionary<string, Delegate>();
 
-        public IReadOnlyDictionary<string, IType> Members => throw new NotImplementedException();
+        public IReadOnlyDictionary<string, IType> Members => new Dictionary<string, IType>();
 
         public TypeVariable(string name)
         {

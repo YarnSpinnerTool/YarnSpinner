@@ -455,7 +455,7 @@ namespace Yarn.Compiler
         // * / %
         public override int VisitExpMultDivMod(YarnSpinnerParser.ExpMultDivModContext context)
         {
-            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.Type, context.expression(0), context.expression(1));
+            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.expression(0).Type, context.expression(0), context.expression(1));
 
             return 0;
         }
@@ -463,7 +463,7 @@ namespace Yarn.Compiler
         // + -
         public override int VisitExpAddSub(YarnSpinnerParser.ExpAddSubContext context)
         {
-            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.Type, context.expression(0), context.expression(1));
+            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.expression(0).Type, context.expression(0), context.expression(1));
 
             return 0;
         }
@@ -471,7 +471,7 @@ namespace Yarn.Compiler
         // < <= > >=
         public override int VisitExpComparison(YarnSpinnerParser.ExpComparisonContext context)
         {
-            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.Type, context.expression(0), context.expression(1));
+            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.expression(0).Type, context.expression(0), context.expression(1));
 
             return 0;
         }
@@ -479,7 +479,7 @@ namespace Yarn.Compiler
         // == !=
         public override int VisitExpEquality(YarnSpinnerParser.ExpEqualityContext context)
         {
-            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.Type, context.expression(0), context.expression(1));
+            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.expression(0).Type, context.expression(0), context.expression(1));
 
             return 0;
         }
@@ -487,7 +487,7 @@ namespace Yarn.Compiler
         // and && or || xor ^
         public override int VisitExpAndOrXor(YarnSpinnerParser.ExpAndOrXorContext context)
         {
-            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.Type, context.expression(0), context.expression(1));
+            this.GenerateCodeForOperation(TokensToOperators[context.op.Type], context.op, context.expression(0).Type, context.expression(0), context.expression(1));
 
             return 0;
         }

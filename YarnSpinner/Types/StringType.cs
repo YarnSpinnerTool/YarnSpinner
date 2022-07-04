@@ -4,10 +4,9 @@ namespace Yarn
     using MethodCollection = System.Collections.Generic.IReadOnlyDictionary<string, System.Delegate>;
 
     /// <summary>
-    /// An <see cref="IBridgeableType{T}"/> that bridges to <see
-    /// cref="string"/> values.
+    /// A type that represents string values.
     /// </summary>
-    internal class StringType : TypeBase, IBridgeableType<string>
+    internal class StringType : TypeBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StringType"/>
@@ -28,7 +27,7 @@ namespace Yarn
         public override string Description { get; }
 
         /// <inheritdoc/>
-        public string DefaultValue => string.Empty;
+        internal override System.IConvertible DefaultValue => string.Empty;
 
         private static MethodCollection DefaultMethods => new Dictionary<string, System.Delegate>
         {

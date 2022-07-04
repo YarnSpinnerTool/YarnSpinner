@@ -783,13 +783,72 @@ namespace Yarn.Compiler
 
             // Solve all type equations, producing a Substitution.
 
-            var substitution = TypeChecker.Solver.Solve(typeConstraints, knownTypes.OfType<TypeBase>());
+            var substitution = TypeChecker.Solver.Solve(typeConstraints, knownTypes.OfType<TypeBase>(), ref diagnostics);
 
             // Apply this substitution to all declarations.
             foreach (var decl in declarations) {
                 decl.Type = TypeChecker.ITypeExtensions.Substitute(decl.Type, substitution);
+
+                // If this was an implicit declaration, then we didn't have an
+                // initial value to use. Instead, set its default value to one
+                // provided by the type.
+                if (decl.IsImplicit && decl.Type is TypeBase typeLiteral)
+                {
+                    decl.DefaultValue = typeLiteral.DefaultValue;
+                }
+
+                // If, after substituting for the solver's result, the type is
+                // STILL a variable, then we weren't able to determine its type,
+                // and its type becomes the error type.
+                if (decl.Type is TypeChecker.TypeVariable) {
+                    diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.Range, $"Can't determine type of {decl.Name} given its usage. Manually specify its type with a declare statement."));
+
+                    decl.Type = Types.Error;
+                }
             }
 
+            // We've solved for our variable declarations; we also need to apply
+            // these solutions to the parse tree, so that we know the type of
+            // each expression.
+            foreach (var parsedFile in parsedFiles) {
+                Stack<IParseTree> stack = new Stack<IParseTree>();
+                stack.Push(parsedFile.Tree.Payload as IParseTree);
+
+                while (stack.Count > 0) 
+                {
+                    var tree = stack.Pop();
+                    if (tree.Payload is ITypedContext typedContext)
+                    {
+                        typedContext.Type = TypeChecker.ITypeExtensions.Substitute(typedContext.Type, substitution);
+
+                        if (typedContext.Type is TypeChecker.TypeVariable)
+                        {
+                            // This context's type failed to be resolved to a
+                            // literal; we don't know the type of this context.
+                            // Compile error!
+                            if (typedContext is ParserRuleContext parserRuleContext)
+                            {
+                                diagnostics.Add(new Diagnostic(parsedFile.Name, parserRuleContext, "Can't determine the type of this expression."));
+                            }
+                            else
+                            {
+                                // It's a typed context, but for some reason not
+                                // a parser rule context? That's an internal
+                                // error.
+                                throw new InvalidOperationException($"Internal error: Expected parse tree node {typedContext} to be a {nameof(ParserRuleContext)}, but it was a {typedContext.GetType().FullName}");
+                            }
+                        }
+                    }
+
+                    for (int i = 0; i < tree.ChildCount; i++) {
+                        // Push its children onto our stack to check those
+                        stack.Push(tree.GetChild(i));
+                    }
+                }
+            }
+
+            // All declarations must now have a concrete type. If they don't,
+            // then we couldn't solve for their type, and can't continue.
             if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
             {
                 // Stop at this point
@@ -803,7 +862,6 @@ namespace Yarn.Compiler
                     Diagnostics = diagnostics,
                 };
             }
-
 
             if (diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {

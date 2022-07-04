@@ -27,6 +27,8 @@ namespace Yarn
 
         internal HashSet<IType> convertibleToTypes = new HashSet<IType>();
 
+        internal abstract IConvertible DefaultValue { get; }
+
         /// <summary>
         /// Gets the depth of this type in the hierarchy, measured as the total
         /// number of parent-child relationships between this type and a root of
