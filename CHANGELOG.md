@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Markup attributes may now begin with a digit, letter or underscore. Previously, they were required to begin with a letter or an underscore. This allows the `select` marker to work with numbers: `[select value=1 1=one 2=two 3=three /]`
+- A means to detect and return runs of lines through basic block analysis to the Utils. This is called via the `Yarn.Compiler.Utility.ExtractStringBlocks` function.
 
 ## [2.2.0] 2022-04-08
 
