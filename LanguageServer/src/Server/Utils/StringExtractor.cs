@@ -154,7 +154,7 @@ namespace YarnLanguageServer
             this.csv.NextRecord();
         }
 
-        public void Format(HashSet<string> characters) { /*does nothing in CSV */ }
+        public void Format(HashSet<string> characters) { /* does nothing in CSV */ }
 
         public byte[] ReturnFile()
         {

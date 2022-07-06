@@ -495,7 +495,13 @@ namespace YarnLanguageServer
                 // we have no errors so we can run through the nodes and build up our blocks of lines
                 var lineBlocks = Yarn.Compiler.Utility.ExtractStringBlocks(result.Program.Nodes.Values).Select(bs => bs.ToArray()).ToArray();
 
-                fileData = StringExtractor.ExportStrings(lineBlocks, result.StringTable, new string[] { "character", "text", "id", "file", "zorp" }, "xlsx", "Player", true);
+                // I hate this
+                var format = commandParams.Arguments[0].ToString();
+                var columns = commandParams.Arguments[1].ToObject<string[]>();
+                var defaultName = commandParams.Arguments[2].ToString();
+                var useCharacters = commandParams.Arguments[3].ToObject<Boolean>();
+
+                fileData = StringExtractor.ExportStrings(lineBlocks, result.StringTable, columns, format, defaultName, useCharacters);
             }
 
             var output = new BlocksOfLines
