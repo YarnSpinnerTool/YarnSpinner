@@ -18,24 +18,18 @@ namespace YarnLanguageServer
             // bail out if we don't have at least an id and text
             if (columns.Length > 0)
             {
-                bool hasID = false;
-                bool hasText = false;
-                foreach (var column in columns)
-                {
-                    if (column.Equals("id"))
-                    {
-                        hasID = true;
-                    }
-                    else if (column.Equals("text"))
-                    {
-                        hasText = true;
-                    }
-                }
-
-                if (!(hasID && hasText))
+                if (Array.IndexOf(columns, "text") == -1)
                 {
                     return null;
                 }
+                if (Array.IndexOf(columns, "id") == -1)
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
             }
             
             StringWriter writer;
