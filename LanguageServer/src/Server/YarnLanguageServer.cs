@@ -131,7 +131,7 @@ namespace YarnLanguageServer
             );
 
             // Register 'lineblock' command
-            options.OnExecuteCommand<BlocksOfLines>(
+            options.OnExecuteCommand<VOStringExport>(
                 (commandParams) => BlockExtraction(workspace, commandParams), (_,_) => new ExecuteCommandRegistrationOptions
                 {
                     Commands = new[] { Commands.Extract },
@@ -467,7 +467,7 @@ namespace YarnLanguageServer
             return Task.FromResult<CompilerOutput>(output);
         }
 
-        private static Task<BlocksOfLines> BlockExtraction(Workspace workspace, ExecuteCommandParams<BlocksOfLines> commandParams)
+        private static Task<VOStringExport> BlockExtraction(Workspace workspace, ExecuteCommandParams<VOStringExport> commandParams)
         {
             // compiling the whole workspace so we can get access to the program to make sure it works
             var job = new Yarn.Compiler.CompilationJob
@@ -504,9 +504,9 @@ namespace YarnLanguageServer
                 fileData = StringExtractor.ExportStrings(lineBlocks, result.StringTable, columns, format, defaultName, useCharacters);
             }
 
-            var output = new BlocksOfLines
+            var output = new VOStringExport
             {
-                LineBlocks = fileData,
+                File = fileData,
                 Errors = e,
             };
             return Task.FromResult(output);

@@ -3,10 +3,10 @@ using Newtonsoft.Json;
 
 namespace YarnLanguageServer;
 
-public record BlocksOfLines
+public record VOStringExport
 {
-    [JsonProperty("lineBlocks")]
-    public byte[] LineBlocks { get; set; }
+    [JsonProperty("file")]
+    public byte[] File { get; set; }
 
     [JsonProperty("errors")]
     public string[] Errors { get; set; }
