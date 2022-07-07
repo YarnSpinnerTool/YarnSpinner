@@ -130,6 +130,14 @@ namespace YarnLanguageServer
                 }
             );
 
+            // Register 'lineblock' command
+            options.OnExecuteCommand<VOStringExport>(
+                (commandParams) => BlockExtraction(workspace, commandParams), (_,_) => new ExecuteCommandRegistrationOptions
+                {
+                    Commands = new[] { Commands.Extract },
+                }
+            );
+
             return options;
         }
 
@@ -457,6 +465,51 @@ namespace YarnLanguageServer
                 Errors = e,
             };
             return Task.FromResult<CompilerOutput>(output);
+        }
+
+        private static Task<VOStringExport> BlockExtraction(Workspace workspace, ExecuteCommandParams<VOStringExport> commandParams)
+        {
+            // compiling the whole workspace so we can get access to the program to make sure it works
+            var job = new Yarn.Compiler.CompilationJob
+            {
+                Files = workspace.YarnFiles.Select(pair =>
+                {
+                    var uri = pair.Key;
+                    var file = pair.Value;
+
+                    return new Yarn.Compiler.CompilationJob.File
+                    {
+                        FileName = uri.ToString(),
+                        Source = file.Text,
+                    };
+                }),
+                CompilationType = Yarn.Compiler.CompilationJob.Type.FullCompilation,
+            };
+
+            var result = Yarn.Compiler.Compiler.Compile(job);
+
+            byte[] fileData = {};
+            var e = result.Diagnostics.Where(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error).Select(d => d.Message).ToArray();
+            if (e.Length == 0)
+            {
+                // we have no errors so we can run through the nodes and build up our blocks of lines
+                var lineBlocks = Yarn.Compiler.Utility.ExtractStringBlocks(result.Program.Nodes.Values).Select(bs => bs.ToArray()).ToArray();
+
+                // I hate this
+                var format = commandParams.Arguments[0].ToString();
+                var columns = commandParams.Arguments[1].ToObject<string[]>();
+                var defaultName = commandParams.Arguments[2].ToString();
+                var useCharacters = commandParams.Arguments[3].ToObject<Boolean>();
+
+                fileData = StringExtractor.ExportStrings(lineBlocks, result.StringTable, columns, format, defaultName, useCharacters);
+            }
+
+            var output = new VOStringExport
+            {
+                File = fileData,
+                Errors = e,
+            };
+            return Task.FromResult(output);
         }
     }
 }

@@ -43,5 +43,9 @@ public static class Commands
     /// table and byte array of the compiled program
     /// </summary>
     public const string Compile = "yarnspinner.compile";
-    
+
+    /// <summary>
+    /// The command to compile a Yarn project and get a spreadsheet
+    /// </summary>
+    public const string Extract = "yarnspinner.extract";
 }
