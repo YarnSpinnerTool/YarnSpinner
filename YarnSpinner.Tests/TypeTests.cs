@@ -96,20 +96,28 @@ namespace YarnSpinner.Tests
                 },
             };
 
-            var actualDeclarations = new List<Declaration>(result.Declarations);
+            var actualDeclarations = new List<Declaration>(result.Declarations).Where(d => d.Name.StartsWith("$"));
 
-            for (int i = 0; i < expectedDeclarations.Count; i++)
-            {
-                Declaration expected = expectedDeclarations[i];
-                Declaration actual = actualDeclarations[i];
+            actualDeclarations.Should().BeEquivalentTo(expectedDeclarations, (config) => {
+                return config.WithTracing();
+            });
 
-                actual.Name.Should().Be(expected.Name);
-                actual.Type.Should().Be(expected.Type);
-                actual.DefaultValue.Should().Be(expected.DefaultValue);
-                actual.Range.Should().Be(expected.Range);
-                actual.SourceNodeName.Should().Be(expected.SourceNodeName);
-                actual.SourceFileName.Should().Be(expected.SourceFileName);
-            }
+            // foreach (var variableDeclaration in actualDeclarations) {
+            //     expectedDeclarations.Should().ContainEquivalentOf(variableDeclaration);
+            // }
+
+            // for (int i = 0; i < expectedDeclarations.Where(d => d.Name.StartsWith("$")).Count(); i++)
+            // {
+            //     Declaration expected = expectedDeclarations[i];
+            //     Declaration actual = actualDeclarations[i];
+
+            //     actual.Name.Should().Be(expected.Name);
+            //     actual.Type.Should().Be(expected.Type);
+            //     actual.DefaultValue.Should().Be(expected.DefaultValue);
+            //     actual.Range.Should().Be(expected.Range);
+            //     actual.SourceNodeName.Should().Be(expected.SourceNodeName);
+            //     actual.SourceFileName.Should().Be(expected.SourceFileName);
+            // }
         }
 
         [Fact]
@@ -152,6 +160,7 @@ namespace YarnSpinner.Tests
                     Name = "$int",
                     Type = Types.Number,
                     DefaultValue = 0,
+                    SourceFileName = Declaration.ExternalDeclaration,
                 }
             };
 
@@ -165,9 +174,9 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
 
-            // No variables are declared in the source code, so we should
-            // expect an empty collection of variable declarations
-            result.Declarations.Should().BeEmpty();
+            // The only variable declarations we should know about should be
+            // external
+            result.Declarations.Where(d => d.Name.StartsWith("$")).Should().OnlyContain(d => d.SourceFileName == Declaration.ExternalDeclaration);
         }
 
         [Fact]
@@ -564,20 +573,15 @@ namespace YarnSpinner.Tests
                 },
             };
 
-            var actualDeclarations = new List<Declaration>(result.Declarations);
+            var actualDeclarations = new List<Declaration>(result.Declarations).Where(d => d.Name.StartsWith("$"));
 
-            Assert.Equal(expectedDeclarations.Count(), actualDeclarations.Count());
-
-            for (int i = 0; i < expectedDeclarations.Count; i++)
-            {
-                Declaration expected = expectedDeclarations[i];
-                Declaration actual = actualDeclarations[i];
-
-                Assert.Equal(expected.Name, actual.Name);
-                Assert.Equal(expected.Type, actual.Type);
-                Assert.Equal(expected.DefaultValue, actual.DefaultValue);
-                Assert.Equal(expected.Description, actual.Description);
-            }
+            actualDeclarations.Should().BeEquivalentTo(expectedDeclarations, config =>
+                config
+                    .Including(o => o.Name)
+                    .Including(o => o.Type)
+                    .Including(o => o.DefaultValue)
+                    .Including(o => o.Description)
+            );
 
         }
 
@@ -785,8 +789,8 @@ namespace YarnSpinner.Tests
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("Terms of 'if statement' must be Bool, not String", p.Message));
+
+            result.Diagnostics.Should().ContainSingle().Which.Message.Contains("if statement's expression must be a Boolean, not a String");
         }
 
         [Fact]
@@ -823,7 +827,7 @@ namespace YarnSpinner.Tests
             };
 
             // Then
-            Assert.Equal(expectedDeclaration, declaration);
+            declaration.Should().BeEquivalentTo(expectedDeclaration);
         }
 
         [Fact]
