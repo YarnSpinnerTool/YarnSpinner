@@ -12,6 +12,8 @@ namespace Yarn
         public abstract IType Parent { get; }
         public abstract string Description { get; }
 
+        public override string ToString() => Name;
+        
         /// <summary>
         /// Gets the collection of methods that are defined on this type.
         /// </summary>
