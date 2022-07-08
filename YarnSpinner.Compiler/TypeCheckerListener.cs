@@ -18,10 +18,8 @@ namespace Yarn.Compiler
         private const string NodeHeaderTitle = "title";
         public List<TypeConstraint> TypeEquations = new List<TypeConstraint>();
 
-        private string name;
         private CommonTokenStream tokens;
         private IParseTree tree;
-        private ICollection<IType> knownTypes;
         private List<Declaration> knownDeclarations;
         private int typeParameterCount = 0;
 
@@ -39,12 +37,11 @@ namespace Yarn.Compiler
             { "bool", Types.Boolean },
         };
 
-        public TypeCheckerListener(string name, CommonTokenStream tokens, IParseTree tree, ref List<IType> knownTypes, ref List<Declaration> knownDeclarations)
+        public TypeCheckerListener(string sourceFileName, CommonTokenStream tokens, IParseTree tree, ref List<Declaration> knownDeclarations)
         {
-            this.name = name;
+            this.sourceFileName = sourceFileName;
             this.tokens = tokens;
             this.tree = tree;
-            this.knownTypes = knownTypes;
             this.knownDeclarations = knownDeclarations;
         }
 

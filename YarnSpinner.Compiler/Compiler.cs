@@ -740,7 +740,7 @@ namespace Yarn.Compiler
             var walker = new ParseTreeWalker();
             foreach (var parsedFile in parsedFiles)
             {
-                var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, parsedFile.Tree, ref knownTypes, ref declarations);
+                var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, parsedFile.Tree, ref declarations);
 
                 walker.Walk(typeCheckerListener, parsedFile.Tree);
 
