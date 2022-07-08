@@ -256,30 +256,5 @@ namespace Yarn.Compiler
                 return result + $" (\"{this.Description}\")";
             }
         }
-
-        /// <inheritdoc/>
-        public override bool Equals(object obj)
-        {
-            if (obj == null || !(obj is Declaration otherDecl))
-            {
-                return false;
-            }
-
-            return this.Name == otherDecl.Name &&
-                this.Type == otherDecl.Type &&
-                this.DefaultValue == otherDecl.DefaultValue &&
-                this.Description == otherDecl.Description;
-        }
-
-        /// <inheritdoc/>
-        public override int GetHashCode()
-        {
-            
-            return this.Name.GetHashCode()
-                ^ this.Type.GetHashCode()
-                ^ this.DefaultValue.GetHashCode()
-                ^ (this.Description ?? string.Empty).GetHashCode();
-        }
-
     }
 }
