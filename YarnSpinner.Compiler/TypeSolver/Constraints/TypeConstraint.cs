@@ -4,6 +4,8 @@
 namespace TypeChecker
 {
 
+    delegate string FailureMessageProvider(Substitution subst);
+
     /// <summary>
     /// Stores information that a Solver can use to solve a system of type
     /// equations.
@@ -42,5 +44,9 @@ namespace TypeChecker
         /// produced this constraint.
         /// </summary>
         public string SourceFileName { get; set; }
+
+        public string GetFailureMessage(Substitution subst) => FailureMessageProvider?.Invoke(subst) ?? this.ToString();
+        
+        public FailureMessageProvider FailureMessageProvider;
     }
 }

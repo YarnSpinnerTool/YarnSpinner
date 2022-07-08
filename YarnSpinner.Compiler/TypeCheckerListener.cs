@@ -55,7 +55,7 @@ namespace Yarn.Compiler
             this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message, severity));
         }
 
-        private TypeEqualityConstraint AddEqualityConstraint(IType a, IType b, ParserRuleContext context)
+        private TypeEqualityConstraint AddEqualityConstraint(IType a, IType b, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
         {
 #if DISALLOW_NULL_EQUATION_TERMS
             if (a == null)
@@ -72,12 +72,13 @@ namespace Yarn.Compiler
             TypeEqualityConstraint item = new TypeEqualityConstraint(a ?? Types.Error, b ?? Types.Error);
             item.SourceFileName = sourceFileName;
             item.SourceRange = GetRange(context);
-            
+            item.FailureMessageProvider = failureMessageProvider;
+
             this.TypeEquations.Add(item);
             return item;
         }
 
-        private TypeConvertibleConstraint AddConvertibleConstraint(IType from, IType to, ParserRuleContext context)
+        private TypeConvertibleConstraint AddConvertibleConstraint(IType from, IType to, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
         {
 #if DISALLOW_NULL_EQUATION_TERMS
             if (from == null)
@@ -94,12 +95,13 @@ namespace Yarn.Compiler
             TypeConvertibleConstraint item = new TypeConvertibleConstraint(from ?? Types.Error, to ?? Types.Error);
             item.SourceFileName = sourceFileName;
             item.SourceRange = GetRange(context);
+            item.FailureMessageProvider = failureMessageProvider;
 
             this.TypeEquations.Add(item);
             return item;
         }
 
-        private void AddHasEnumMemberConstraint(IType type, string memberName, ParserRuleContext context)
+        private void AddHasEnumMemberConstraint(IType type, string memberName, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
         {
 #if DISALLOW_NULL_EQUATION_TERMS
             if (type == null)
@@ -110,11 +112,12 @@ namespace Yarn.Compiler
             TypeHasMemberConstraint item = new TypeHasMemberConstraint(type, memberName);
             item.SourceFileName = sourceFileName;
             item.SourceRange = GetRange(context);
-            
+            item.FailureMessageProvider = failureMessageProvider;
+
             this.TypeEquations.Add(item);
         }
 
-        private void AddHasNameConstraint(IType type, string name, ParserRuleContext context)
+        private void AddHasNameConstraint(IType type, string name, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
         {
 #if DISALLOW_NULL_EQUATION_TERMS
             if (type == null)
@@ -126,7 +129,8 @@ namespace Yarn.Compiler
             TypeHasNameConstraint item = new TypeHasNameConstraint(type, name);
             item.SourceFileName = sourceFileName;
             item.SourceRange = GetRange(context);
-            
+            item.FailureMessageProvider = failureMessageProvider;
+
             this.TypeEquations.Add(item);
         }
 
@@ -181,7 +185,7 @@ namespace Yarn.Compiler
             var typeIdentifier = this.GenerateTypeVariable(name);
 
             // The type of this identifier is equal to the type of its default value.
-            this.AddEqualityConstraint(typeIdentifier, value.Type, context);
+            this.AddEqualityConstraint(typeIdentifier, value.Type, context, s => $"The type of {name}'s initial value \"{context.value().GetText()}\" ({value.Type.Substitute(s)}) doesn't match the type of the variable {typeIdentifier.Substitute(s)}.");
 
             if (context.type != null)
             {
@@ -191,13 +195,13 @@ namespace Yarn.Compiler
 
                 if (LanguageTypeNames.TryGetValue(typeName, out var type)) {
                     // Constrain the type of this variable to the named type.
-                    this.AddEqualityConstraint(typeIdentifier, type, context);
+                    this.AddEqualityConstraint(typeIdentifier, type, context, s => $"{name}'s type ({typeIdentifier.Substitute(s)}) must be {type.Substitute(s)}");
                 } else {
                     // We don't have a built-in mapping of this name to a type.
                     // Add a constraint such that, whatever the type this
                     // variable is, the type's name is equal to what's specified
                     // here.
-                    this.AddHasNameConstraint(typeIdentifier, typeName, context);
+                    this.AddHasNameConstraint(typeIdentifier, typeName, context, s => $"{name}'s type must be {typeName}");
                 }
             }
 
@@ -209,7 +213,7 @@ namespace Yarn.Compiler
                 // Before we replace it, we need to make sure that the type
                 // variable (which other constraints might rely on!) is
                 // connected to the type of the new declaration.
-                this.AddEqualityConstraint(declaration.Type, typeIdentifier, context);
+                this.AddEqualityConstraint(declaration.Type, typeIdentifier, context, s => $"{name} was declared to be a {typeIdentifier.Substitute(s)}, but it was used elsewhere as a {declaration.Type.Substitute(s)}");
 
                 // Remove the implicit declaration from the known declarations
                 // in preparation for adding the new one.
@@ -308,23 +312,35 @@ namespace Yarn.Compiler
         {
             // The type of a parentheses expression is equal to the type of its
             // child.
-            context.Type = context.expression()?.Type;
+            context.Type = context.expression()?.Type ?? Types.Error;
         }
 
         public override void ExitExpAddSub([NotNull] YarnSpinnerParser.ExpAddSubContext context)
         {
             var type = this.GenerateTypeVariable();
             context.Type = type;
-            this.AddEqualityConstraint(type, context.expression(0)?.Type, context);
-            this.AddEqualityConstraint(context.expression(0)?.Type, context.expression(1)?.Type, context);
+
+            IType operandAType = context.expression(0)?.Type ?? Types.Error;
+            IType operandBType = context.expression(1)?.Type ?? Types.Error;
+
+            string op = context.op.Text;
+
+            this.AddEqualityConstraint(type, operandAType, context, s => $"Operation '{op}' can't be used with a value of type {operandAType.Substitute(s)}");
+            this.AddEqualityConstraint(operandAType, operandBType, context, s => $"Operation '{op}'s values must both be the same type, not {operandAType.Substitute(s)} and {operandBType.Substitute(s)}");
         }
 
         public override void ExitExpMultDivMod([NotNull] YarnSpinnerParser.ExpMultDivModContext context)
         {
             var type = this.GenerateTypeVariable();
             context.Type = type;
-            this.AddEqualityConstraint(type, context.expression(0)?.Type, context);
-            this.AddEqualityConstraint(context.expression(0)?.Type, context.expression(1)?.Type, context);
+
+            IType operandAType = context.expression(0)?.Type ?? Types.Error;
+            IType operandBType = context.expression(1)?.Type ?? Types.Error;
+
+            string op = context.op.Text;
+
+            this.AddEqualityConstraint(type, operandAType, context, s => $"Operation '{op}' can't be used with a value of type {operandAType.Substitute(s)}");
+            this.AddEqualityConstraint(operandAType, operandBType, context, s => $"Operation '{op}'s values must both be the same type, not {operandAType.Substitute(s)} and {operandBType.Substitute(s)}");
         }
 
         public override void ExitExpComparison([NotNull] YarnSpinnerParser.ExpComparisonContext context)
@@ -332,7 +348,13 @@ namespace Yarn.Compiler
             // The result of a comparison is boolean; the types of the
             // expressions must be identical.
             context.Type = Types.Boolean;
-            this.AddEqualityConstraint(context.expression(0)?.Type, context.expression(1)?.Type, context);
+
+            IType operandAType = context.expression(0)?.Type ?? Types.Error;
+            IType operandBType = context.expression(1)?.Type ?? Types.Error;
+
+            string op = context.op.Text;
+
+            this.AddEqualityConstraint(operandAType, operandBType, context, s => $"Operation '{op}'s values must both be the same type, not {operandAType.Substitute(s)} and {operandBType.Substitute(s)}");
         }
 
         public override void ExitExpEquality([NotNull] YarnSpinnerParser.ExpEqualityContext context)
@@ -340,7 +362,13 @@ namespace Yarn.Compiler
             // The result of an equality is boolean; the types of the
             // expressions must be identical.
             context.Type = Types.Boolean;
-            this.AddEqualityConstraint(context.expression(0)?.Type, context.expression(1)?.Type, context);
+            
+            IType operandAType = context.expression(0)?.Type ?? Types.Error;
+            IType operandBType = context.expression(1)?.Type ?? Types.Error;
+
+            string op = context.op.Text;
+
+            this.AddEqualityConstraint(operandAType, operandBType, context, s => $"Operation '{op}'s values must both be the same type, not {operandAType.Substitute(s)} and {operandBType.Substitute(s)}");
         }
 
         public override void ExitExpAndOrXor([NotNull] YarnSpinnerParser.ExpAndOrXorContext context)
@@ -348,8 +376,8 @@ namespace Yarn.Compiler
             // The result of a logical and, or, or xor is boolean; the types of
             // the expressions must also be boolean.
             context.Type = Types.Boolean;
-            this.AddEqualityConstraint(context.expression(0)?.Type, Types.Boolean, context);
-            this.AddEqualityConstraint(context.expression(0)?.Type, context.expression(1)?.Type, context);
+            this.AddEqualityConstraint(context.expression(0)?.Type, Types.Boolean, context, null);
+            this.AddEqualityConstraint(context.expression(0)?.Type, context.expression(1)?.Type, context, null);
         }
 
         public override void ExitExpNot([NotNull] YarnSpinnerParser.ExpNotContext context)
@@ -357,7 +385,7 @@ namespace Yarn.Compiler
             // The result of a logical not is boolean; the type of the operand
             // must also be boolean.
             context.Type = Types.Boolean;
-            this.AddEqualityConstraint(context.expression()?.Type, Types.Boolean, context);
+            this.AddEqualityConstraint(context.expression()?.Type, Types.Boolean, context, null);
         }
 
         public override void ExitExpNegative([NotNull] YarnSpinnerParser.ExpNegativeContext context)
@@ -365,7 +393,7 @@ namespace Yarn.Compiler
             // The result of a negation is a number; the type of the operand
             // must also be a number.
             context.Type = Types.Number;
-            this.AddEqualityConstraint(context.expression()?.Type, Types.Number, context);
+            this.AddEqualityConstraint(context.expression()?.Type, Types.Number, context, null);
         }
 
         public override void ExitExpValue([NotNull] YarnSpinnerParser.ExpValueContext context)
@@ -378,20 +406,21 @@ namespace Yarn.Compiler
         public override void ExitIf_clause([NotNull] YarnSpinnerParser.If_clauseContext context)
         {
             // The condition for an if statement must be a boolean
-            AddEqualityConstraint(context.expression().Type, Types.Boolean, context.expression());
+            AddEqualityConstraint(context.expression().Type, Types.Boolean, context.expression(), s => $"if statement's expression must be a {Types.Boolean}, not a {context.expression().Type.Substitute(s)}");
+            base.ExitIf_clause(context);
         }
 
         public override void ExitElse_if_clause([NotNull] YarnSpinnerParser.Else_if_clauseContext context)
         {
             // The condition for an elseif statement must be a boolean
-            AddEqualityConstraint(context.expression().Type, Types.Boolean, context.expression());
+            AddEqualityConstraint(context.expression().Type, Types.Boolean, context.expression(), s => $"else if statement's expression must be a {Types.Boolean}, not a {context.expression().Type.Substitute(s)}");
             base.ExitElse_if_clause(context);
         }
 
         public override void ExitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context)
         {
             // The type of the expression must be equal to the type of the variable
-            AddEqualityConstraint(context.expression().Type, context.variable().Type, context);
+            AddEqualityConstraint(context.expression().Type, context.variable().Type, context, s => $"{context.variable().GetText()} ({context.variable().Type.Substitute(s)}) cannot be assigned a {context.expression().Type.Substitute(s)}");
             base.ExitSet_statement(context);
         }
 

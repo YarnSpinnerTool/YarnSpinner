@@ -315,7 +315,8 @@ namespace TypeChecker
                             // constraint caused it? Internal error.
                             throw new System.InvalidOperationException($"Unexpected null value for {nameof(currentConstraint)}");
                         } else {
-                            diagnostics.Add(new Yarn.Compiler.Diagnostic(currentConstraint.SourceFileName, currentConstraint.SourceRange, $"Failed to resolve {currentConstraint.ToString()}"));
+                            var failureMessage = currentConstraint.GetFailureMessage(subst);
+                            diagnostics.Add(new Yarn.Compiler.Diagnostic(currentConstraint.SourceFileName, currentConstraint.SourceRange, failureMessage));
                         }
                     }
                     // Early out if we've failed
