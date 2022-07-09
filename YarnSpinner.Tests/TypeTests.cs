@@ -189,7 +189,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Should().Contain(p => p.Message == "Redeclaration of existing variable $int");
+            result.Diagnostics.Should().ContainSingle().Which.Message.Should().Be("Redeclaration of existing variable $int");
         }
 
         [Fact]
@@ -202,7 +202,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Should().Contain(p => p.Message == "$int (Number) cannot be assigned a String");
+            result.Diagnostics.Should().ContainSingle().Which.Message.Should().Be("$int (Number) cannot be assigned a String");
         }
 
         [Theory]
@@ -684,6 +684,8 @@ namespace YarnSpinner.Tests
             // functions will be implicitly declared
             var compilationJob = CompilationJob.CreateFromString("input", source);
             var result = Compiler.Compile(compilationJob);
+
+            result.Diagnostics.Should().BeEmpty();
 
             Assert.Empty(result.Diagnostics);
 

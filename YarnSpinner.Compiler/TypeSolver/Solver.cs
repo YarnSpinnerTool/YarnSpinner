@@ -230,6 +230,19 @@ namespace TypeChecker
                     subst = Unify(equalityConstraint.Left, equalityConstraint.Right, subst);
                     remainingConstraints.Remove(equalityConstraint);
                 }
+                else if (TryGetConstraint<ConjunctionConstraint>(out var conjunctionConstraint))
+                {
+#if VERBOSE_SOLVER
+                Console.WriteLine($"Solving {conjunctionConstraint.ToString()}");
+#endif
+                    currentConstraint = conjunctionConstraint;
+                    
+                    // All of these constraints must resolve, so simply add them to the list
+                    foreach (var constraint in conjunctionConstraint) {
+                        remainingConstraints.Add(constraint);
+                    }
+                    remainingConstraints.Remove(conjunctionConstraint);
+                }
                 else if (TryGetConstraint<DisjunctionConstraint>(out var disjunctionConstraint))
                 {
 #if VERBOSE_SOLVER
@@ -278,7 +291,7 @@ namespace TypeChecker
                     // which turns it into equalities and/or disjunctions, which we
                     // can solve using the above procedures.
 
-                    currentConstraint = equalityConstraint;
+                    currentConstraint = otherConstraint;
 
 #if VERBOSE_SOLVER
                     Console.WriteLine($"Solving {otherConstraint.ToString()}");
@@ -318,13 +331,12 @@ namespace TypeChecker
                             var failureMessage = currentConstraint.GetFailureMessage(subst);
                             diagnostics.Add(new Yarn.Compiler.Diagnostic(currentConstraint.SourceFileName, currentConstraint.SourceRange, failureMessage));
                         }
+                    } else {
+                        // Early out if we've failed
+                        return subst;
                     }
-                    // Early out if we've failed
-                    return subst;
                 }
             }
-
-
 
             return subst;
         }

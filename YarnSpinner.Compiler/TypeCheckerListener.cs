@@ -416,12 +416,106 @@ namespace Yarn.Compiler
 
         public override void ExitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context)
         {
-            // The type of the expression must be equal to the type of the variable
-            AddEqualityConstraint(context.expression().Type, context.variable().Type, context, s => $"{context.variable().GetText()} ({context.variable().Type.Substitute(s)}) cannot be assigned a {context.expression().Type.Substitute(s)}");
+            // The type of the expression must be convertible to the type of the variable
+            IType variableType = context.variable().Type;
+            IType expressionType = context.expression().Type;
+            string variableName = context.variable().GetText();
+
+            this.AddConvertibleConstraint(context.expression().Type, context.variable().Type, context, s => $"{variableName} ({variableType.Substitute(s)}) cannot be assigned a {expressionType.Substitute(s)}");
             base.ExitSet_statement(context);
         }
 
-        // TODO: functions seem like the next obvious step, then set statements
+        public override void ExitValueFunc([NotNull] YarnSpinnerParser.ValueFuncContext context)
+        {
+            // ValueFunc is just a wrapper around a function call, so it just
+            // uses the same type variable
+            context.Type = context.function_call().Type;
+            base.ExitValueFunc(context);
+        }
+
+        public override void ExitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context)
+        {
+            // If we already have a declaration for this function, then use information from that
+            string functionName = context.FUNC_ID().GetText();
+            var functionDecl = this.GetKnownDeclaration(functionName);
+
+            FunctionType functionType;
+
+            if (functionDecl == null) {
+                // We don't know about this function. We'll need to create a new declaration.
+
+                functionType = new FunctionType();
+
+                functionType.ReturnType = this.GenerateTypeVariable($"return from {functionName}");
+
+                int count = 1;
+                foreach (var expression in context.expression()) {
+                    var parameterType = GenerateTypeVariable($"{context.FUNC_ID()} param {count}");
+                    functionType.AddParameter(parameterType);
+
+
+                    count++;
+                }
+
+                functionDecl = new Declaration
+                {
+                    Name = functionName,
+                    IsImplicit = true,
+                    SourceFileName = sourceFileName,
+                    Range = GetRange(context),
+                    Type = functionType,
+                };
+
+                this.knownDeclarations.Add(functionDecl);
+            } else {
+                functionType = (FunctionType)functionDecl.Type;
+            }
+
+            context.Type = GenerateTypeVariable();
+
+            int actualParameters = context.expression().Count();
+            int expectedParameters = functionType.Parameters.Count();
+
+            // Check to see if we have the expected number of parameters
+            if (actualParameters != expectedParameters) {
+                // We don't! Create a diagnostic message and make this
+                // expression be the Error type.
+
+                string message;
+
+                var expectedEnglishPlural = expectedParameters != 1;
+                var actualEnglishPlural = actualParameters != 1;
+
+                // If the function declaration is implicit, give a message here
+                // that hedges a bit - we don't know if _this_ call is the
+                // incorrect one.
+                if (functionDecl.IsImplicit) {
+                    message = $"{functionName} was called elsewhere with {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, but is called with {actualParameters} {(actualEnglishPlural ? "parameters" : "parameter")} here";
+                } else {
+                    message = $"{functionName} expects {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, not {actualParameters}";
+                }
+
+                diagnostics.Add(new Diagnostic(sourceFileName, context, message));
+                context.Type = Types.Error;
+                return;
+            }
+
+            for (int paramID = 0; paramID < expectedParameters; paramID ++)
+            {
+                var expectedType = functionType.Parameters[paramID];
+                var parameterExpression = context.expression()[paramID];
+                var actualType = parameterExpression.Type;
+
+                AddConvertibleConstraint(actualType, expectedType, parameterExpression, s => $"{parameterExpression.GetText()} ({parameterExpression.Type.Substitute(s)}) is not convertible to {expectedType.Substitute(s)}");
+            }
+
+            // The type of this function call is the return type of the function
+            AddEqualityConstraint(context.Type, functionType.ReturnType, context, null);
+
+            base.ExitFunction_call(context);
+        }
+
+        
     }
 
     public interface ITypedContext {

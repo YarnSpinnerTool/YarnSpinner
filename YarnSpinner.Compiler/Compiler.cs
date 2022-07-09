@@ -821,14 +821,14 @@ namespace Yarn.Compiler
                     {
                         typedContext.Type = TypeChecker.ITypeExtensions.Substitute(typedContext.Type, substitution);
 
-                        if (typedContext.Type is TypeChecker.TypeVariable)
+                        if (typedContext.Type is TypeChecker.TypeVariable variable)
                         {
                             // This context's type failed to be resolved to a
                             // literal; we don't know the type of this context.
                             // Compile error!
                             if (typedContext is ParserRuleContext parserRuleContext)
                             {
-                                diagnostics.Add(new Diagnostic(parsedFile.Name, parserRuleContext, "Can't determine the type of this expression."));
+                                diagnostics.Add(new Diagnostic(parsedFile.Name, parserRuleContext, $"Can't determine the type of this expression."));
                             }
                             else
                             {

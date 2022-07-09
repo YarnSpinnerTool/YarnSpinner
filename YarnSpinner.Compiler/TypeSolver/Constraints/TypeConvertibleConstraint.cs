@@ -12,67 +12,88 @@ namespace TypeChecker
         /// <summary>
         /// Gets or sets the type that is being constrained.
         /// </summary>
-        public IType Type { get; set; }
+        public IType FromType { get; set; }
 
         /// <summary>
-        /// Gets or sets the type that <see cref="Type"/> can be converted to.
+        /// Gets or sets the type that <see cref="FromType"/> can be converted to.
         /// </summary>
-        public IType ConvertibleToType { get; set; }
+        public IType ToType { get; set; }
 
         public TypeConvertibleConstraint(IType type, IType convertibleToType)
         {
-            this.Type = type;
-            this.ConvertibleToType = convertibleToType;
+            this.FromType = type;
+            this.ToType = convertibleToType;
         }
 
         /// <inheritdoc/>
-        public override string ToString() => $"{this.Type} <c {this.ConvertibleToType}";
+        public override string ToString() => $"{this.FromType} c> {this.ToType}";
 
         /// <inheritdoc/>
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<TypeBase> knownTypes)
         {
-            var resolvedParentTerm = this.ConvertibleToType.Substitute(subst);
-            var resolvedChildTerm = this.Type.Substitute(subst);
-
-            if (resolvedChildTerm.Equals(resolvedParentTerm))
+            if (this.FromType.Equals(this.ToType))
             {
                 // Early out: if the terms are identical, there's no additional
                 // constraints to generate.
                 return null;
             }
 
-            if (resolvedChildTerm is TypeBase childLiteral)
-            {
-                // This constraint indicates that the type is convertible to
-                // some other type. To simplify this constraint, we'll also get
-                // all builtin literals that THAT other type is convertible to; we are
-                // transitively convertible to them.
-
-                var possibleChildTypes = knownTypes.Where(other => childLiteral.IsConvertibleTo(other));
-
-                if (possibleChildTypes.Count() == 1)
-                {
-                    // There's only a single possible type that ConvertibleTo could be. Constrain Term to be equal to it.
-                    return new TypeEqualityConstraint(resolvedChildTerm, possibleChildTypes.Single());
-                }
-
-                // This type could be convertible to a number of other literals.
-                // Create a disjunction of type equality constraints (i.e. (T1
-                // == T2 or T1 == T3 or ...) )
-
-                // Sort the list by descending depth - we want the most specific
-                // type to be checked first
-                possibleChildTypes = possibleChildTypes.OrderByDescending(t => t.TypeDepth);
-
-                var possibleConstraints = possibleChildTypes.Select(subtype => new TypeEqualityConstraint(resolvedChildTerm, subtype));
-
-                return new DisjunctionConstraint(possibleConstraints);
+            IEnumerable<TypeBase> AllTypesConvertibleFrom(TypeBase from) {
+                return knownTypes.Where(other => from.IsConvertibleTo(other)).OrderByDescending(t => t.TypeDepth);
             }
-            else
+
+            IEnumerable<TypeBase> AllTypesConvertibleTo(TypeBase to) {
+                return knownTypes.Where(other => other.IsConvertibleTo(to)).OrderByDescending(t => t.TypeDepth);
+            }
+
+            IEnumerable<IType> fromTypes;
+            IEnumerable<IType> toTypes;
+
+            if (FromType is TypeBase fromLiteral) {
+                // We know 'from' is a literal. This means 'to' must be a type
+                // that is convertible from 'from'.
+                fromTypes = new[] { fromLiteral };
+                toTypes = AllTypesConvertibleFrom(fromLiteral);
+            } else if (ToType is TypeBase toLiteral) {
+                // We know 'to' is a literal. This means 'from' must be a type
+                // that is convertible to 'to'.
+                fromTypes = AllTypesConvertibleTo(toLiteral);
+                toTypes = new[] { toLiteral };
+            } else {
+                // Neither 'from' nor 'to' are literals. They could be anything;
+                // check all pairs. TODO: this is really inefficient!!
+                fromTypes = knownTypes;
+                toTypes = knownTypes;
+            }
+
+            var allPairs = new[] { fromTypes, toTypes }.CartesianProduct();
+
+            var allPossibleEqualities = allPairs.Select(pair =>
             {
-                // It's something else. The only useful constraint we can generate
-                // is that they're the same.
-                return new TypeEqualityConstraint(resolvedParentTerm, resolvedChildTerm);
+                var fromConstraint = new TypeEqualityConstraint(pair.ElementAt(0), this.FromType);
+                var toConstraint = new TypeEqualityConstraint(pair.ElementAt(1), this.ToType);
+                
+                toConstraint.FailureMessageProvider = this.FailureMessageProvider;
+                fromConstraint.FailureMessageProvider = this.FailureMessageProvider;
+
+                return new ConjunctionConstraint(
+                    fromConstraint,
+                    toConstraint
+                );
+            });
+
+            if (allPossibleEqualities.Count() == 1) {
+                // Precisely one possible equality. Return a single constraint
+                // constraint.
+                var equality = allPossibleEqualities.Single();
+                equality.FailureMessageProvider = this.FailureMessageProvider;
+                return equality;
+            } else {
+                // More than one possible equality. Return a disjunction
+                // constraint.
+                var disjunction = new DisjunctionConstraint(allPossibleEqualities);
+                disjunction.FailureMessageProvider = this.FailureMessageProvider;
+                return disjunction;
             }
         }
     }
