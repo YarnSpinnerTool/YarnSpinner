@@ -76,10 +76,18 @@ namespace TypeChecker
                 toConstraint.FailureMessageProvider = this.FailureMessageProvider;
                 fromConstraint.FailureMessageProvider = this.FailureMessageProvider;
 
-                return new ConjunctionConstraint(
-                    fromConstraint,
-                    toConstraint
-                );
+                var constraints = new[] {
+                        fromConstraint,
+                        toConstraint,
+                }.WithoutTautologies();
+
+                if (constraints.Count() == 1) {
+                    return constraints.Single();
+                } else {
+                    var conjunction = new ConjunctionConstraint(constraints);
+                    conjunction.FailureMessageProvider = this.FailureMessageProvider;
+                    return conjunction;
+                }
             });
 
             if (allPossibleEqualities.Count() == 1) {

@@ -32,5 +32,11 @@ namespace TypeChecker
                 return term;
             }
         }
+
+        internal static IEnumerable<TypeConstraint> WithoutTautologies(this IEnumerable<TypeConstraint> collection) {
+            return collection.Where(c =>
+                !(c is TypeEqualityConstraint equality && equality.Left == equality.Right)
+            );
+        }
     }
 }
