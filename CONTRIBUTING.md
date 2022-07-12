@@ -30,7 +30,7 @@ Here are a few things you can do that will increase the likelihood of your pull 
 
 ### Branches
 
-All of Yarn Spinner's in-progress work happens on the `develop` branch. When we make a release, we merge from `develop` into `main`. This means that `main` is always in a releasable state.
+All of Yarn Spinner's in-progress work happens on the `main` branch. When we make a release, we create a new release directly from `main`. This means that `main` is always in a state of flux.
 
 ### Code and other contributions
 
