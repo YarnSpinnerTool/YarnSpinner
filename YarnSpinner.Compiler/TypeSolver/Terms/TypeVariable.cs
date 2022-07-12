@@ -22,16 +22,23 @@ namespace TypeChecker
             Name = name;
         }
 
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            return obj is IType type && this.Equals(type);
+        }
+        
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
+
         public override string ToString() => Name;
 
         public bool Equals(IType other)
         {
             return other is TypeVariable otherVariable && otherVariable.Name == Name;
-        }
-
-        public override int GetHashCode()
-        {
-            return Name.GetHashCode();
         }
 
         public static implicit operator TypeVariable(string input)
