@@ -514,7 +514,12 @@ namespace Yarn.Compiler
             base.ExitFunction_call(context);
         }
 
-        
+        public override void ExitLine_condition([NotNull] YarnSpinnerParser.Line_conditionContext context) {
+            if (context.expression() != null) {
+                AddEqualityConstraint(context.expression().Type, Types.Boolean, context, s => $"line condition's expression must be a {Types.Boolean}, not a {context.expression().Type.Substitute(s)}");
+            }
+            base.ExitLine_condition(context);
+        }
     }
 
     public interface ITypedContext {
