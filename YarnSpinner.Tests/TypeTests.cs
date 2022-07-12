@@ -262,11 +262,11 @@ namespace YarnSpinner.Tests
             // Should compile with no exceptions
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Declarations.Should().Contain(d => d.Name == "$int").Which.Type.Should().Be(Types.Number);
+            result.Diagnostics.Should().BeEmpty();
+
             result.Declarations.Should().Contain(d => d.Name == "$bool").Which.Type.Should().Be(Types.Boolean);
             result.Declarations.Should().Contain(d => d.Name == "$str").Which.Type.Should().Be(Types.String);
 
-            result.Diagnostics.Should().BeEmpty();
         }
 
         [Fact]
@@ -716,7 +716,7 @@ namespace YarnSpinner.Tests
         public void TestNestedImplicitFunctionDeclarations()
         {
             var source = CreateTestNode(@"
-            {func_bool_bool(bool(func_int_bool(1)))}
+            {func_bool_bool(func_int_bool(1) and true) and true}
             ");
 
             dialogue.Library.RegisterFunction("func_int_bool", (int i) => i == 1);
@@ -733,13 +733,17 @@ namespace YarnSpinner.Tests
 
             Assert.Empty(result.Diagnostics);
 
-            Assert.Equal(2, result.Declarations.Count());
+            Assert.Equal(5, result.Declarations.Count());
 
-            // Both declarations that resulted from the compile should be functions found on line 1
-            foreach (var decl in result.Declarations) {
-                Assert.Equal(3, decl.Range.Start.Line);
-                Assert.IsType<FunctionType>(decl.Type);
-            }
+            var expectedIntBoolFunctionType = new FunctionTypeBuilder().WithParameter(Types.Number).WithReturnType(Types.Boolean).FunctionType;
+            var expectedBoolBoolFunctionType = new FunctionTypeBuilder().WithParameter(Types.Boolean).WithReturnType(Types.Boolean).FunctionType;
+
+            result.Declarations.Should().ContainSingle(d => d.Name == "func_int_bool")
+                .Which.Type.Should().BeEquivalentTo(expectedIntBoolFunctionType);
+
+            result.Declarations.Should().ContainSingle(d => d.Name == "func_bool_bool")
+                .Which.Type.Should().BeEquivalentTo(expectedBoolBoolFunctionType);
+            
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -848,6 +852,31 @@ namespace YarnSpinner.Tests
             Assert.Equal(expectedFunctionType.Parameters[0], functionType.Parameters[0]);
             Assert.Equal(expectedFunctionType.Parameters[1], functionType.Parameters[1]);
             Assert.Equal(expectedFunctionType.ReturnType, functionType.ReturnType);
+        }
+
+        [Fact]
+        public void TestSolverCanResolveConvertabilityConstraints()
+        {
+            var boolType = Types.Boolean;
+            var anyType = Types.Any;
+            var unknownType1 = new TypeChecker.TypeVariable("T1");
+            var unknownType2 = new TypeChecker.TypeVariable("T2");
+
+
+            var constraints = new TypeChecker.TypeConstraint[] {
+                new TypeChecker.TypeConvertibleConstraint(unknownType1, anyType),
+                new TypeChecker.TypeEqualityConstraint(unknownType1, unknownType2),
+                new TypeChecker.TypeEqualityConstraint(unknownType2, boolType),
+            };
+
+            var diagnostics = new List<Diagnostic>();
+
+            var solution = TypeChecker.Solver.Solve(constraints, Types.AllBuiltinTypes.OfType<TypeBase>(), ref diagnostics);
+
+            using (new FluentAssertions.Execution.AssertionScope()) {
+                diagnostics.Should().BeEmpty();
+                solution.IsFailed.Should().BeFalse();
+            }
         }
     }
 }
