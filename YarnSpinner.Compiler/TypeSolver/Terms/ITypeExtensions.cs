@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Yarn;
 namespace TypeChecker
@@ -20,11 +21,11 @@ namespace TypeChecker
                     return term;
                 }
             }
-            else if (term is TypeFunction function)
+            else if (term is FunctionType function)
             {
                 // Functions are substituted by applying the substitution to
                 // their return types and to each of their argument types.
-                return new TypeFunction(function.ReturnType.Substitute(s), function.ArgumentTypes.Select(a => a.Substitute(s)).ToArray());
+                return new FunctionType(function.ReturnType.Substitute(s), function.Parameters.Select(a => a.Substitute(s)).ToArray());
             }
             else
             {

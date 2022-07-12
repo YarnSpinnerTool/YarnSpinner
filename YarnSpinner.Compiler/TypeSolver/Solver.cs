@@ -65,22 +65,22 @@ namespace TypeChecker
                 return UnifyVariable(varY, x, subst);
             }
 
-            if (x is TypeFunction xFunc && y is TypeFunction yFunc)
+            if (x is FunctionType xFunc && y is FunctionType yFunc)
             {
                 // If they're both function applications, attempt to unify them.
 
                 // We cannot unify two function applications if they don't have the
                 // same number of parameters.
-                if (xFunc.ArgumentTypes.Count() != yFunc.ArgumentTypes.Count())
+                if (xFunc.Parameters.Count() != yFunc.Parameters.Count())
                 {
                     subst.Fail($"{xFunc} and {yFunc} have different parameters");
                     return subst;
                 }
 
                 // For each argument in the function applications, unify them.
-                for (int i = 0; i < xFunc.ArgumentTypes.Count(); i++)
+                for (int i = 0; i < xFunc.Parameters.Count(); i++)
                 {
-                    subst = Unify(xFunc.ArgumentTypes.ElementAt(i), yFunc.ArgumentTypes.ElementAt(i), subst);
+                    subst = Unify(xFunc.Parameters.ElementAt(i), yFunc.Parameters.ElementAt(i), subst);
                 }
 
                 // Unify the return types, too.
@@ -166,11 +166,11 @@ namespace TypeChecker
                 // for.
                 return OccursCheck(var, subst[termVar], subst);
             }
-            else if (term is TypeFunction app)
+            else if (term is FunctionType app)
             {
                 // If term is a function application, then check var against each of
                 // the function's arguments, and its return type.
-                foreach (var arg in app.ArgumentTypes)
+                foreach (var arg in app.Parameters)
                 {
                     if (OccursCheck(var, arg, subst))
                     {
@@ -272,7 +272,7 @@ namespace TypeChecker
                         if (substitution.IsFailed == false)
                         {
                             // This solution works! Return it!
-                            return clonedSubst;
+                            return substitution;
                         }
                         else
                         {

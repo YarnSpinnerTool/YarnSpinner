@@ -803,6 +803,9 @@ namespace Yarn.Compiler
                 if (decl.Type is TypeChecker.TypeVariable) {
                     diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.Range, $"Can't determine type of {decl.Name} given its usage. Manually specify its type with a declare statement."));
 
+                    // TODO: print out a valid declare statement that would
+                    // (partly) fix the error
+
                     decl.Type = Types.Error;
                 }
             }
@@ -1009,7 +1012,7 @@ namespace Yarn.Compiler
                 }
 
                 // Define a new type for this function
-                FunctionType functionType = new FunctionType();
+                var functionType = new FunctionType(Types.Any);
 
                 var includeMethod = true;
 

@@ -444,15 +444,14 @@ namespace Yarn.Compiler
             if (functionDecl == null) {
                 // We don't know about this function. We'll need to create a new declaration.
 
-                functionType = new FunctionType();
+                TypeVariable returnType = this.GenerateTypeVariable($"return from {functionName}");
 
-                functionType.ReturnType = this.GenerateTypeVariable($"return from {functionName}");
+                functionType = new FunctionType(returnType);
 
                 int count = 1;
                 foreach (var expression in context.expression()) {
                     var parameterType = GenerateTypeVariable($"{context.FUNC_ID()} param {count}");
                     functionType.AddParameter(parameterType);
-
 
                     count++;
                 }

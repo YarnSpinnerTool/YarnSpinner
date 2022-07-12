@@ -16,7 +16,7 @@ namespace Yarn.Compiler
         /// Gets the <see cref="FunctionType"/> instance constructed by this
         /// <see cref="FunctionTypeBuilder"/>.
         /// </summary>
-        public FunctionType FunctionType { get; } = new FunctionType();
+        public FunctionType FunctionType { get; } = new FunctionType(Types.Error);
 
         /// <summary>
         /// Sets the <see cref="FunctionType.ReturnType"/> of the <see

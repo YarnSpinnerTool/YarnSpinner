@@ -1,6 +1,7 @@
 namespace Yarn
 {
     using System.Collections.Generic;
+    using System.Linq;
     using MethodCollection = System.Collections.Generic.IReadOnlyDictionary<string, System.Delegate>;
 
     /// <summary>
@@ -71,6 +72,12 @@ namespace Yarn
 
         public IReadOnlyDictionary<string, IType> Members => new Dictionary<string, IType>();
 
+        public FunctionType(IType returnType, params IType[] parameterTypes)
+        {
+            ReturnType = returnType ?? Types.Error;
+            Parameters = parameterTypes.ToList();
+        }
+
         /// <summary>
         /// Adds a new parameter to the function.
         /// </summary>
@@ -79,6 +86,17 @@ namespace Yarn
         internal void AddParameter(IType parameterType)
         {
             this.Parameters.Add(parameterType);
+        }
+
+        public string ToString() => $"({string.Join(", ", Parameters)}) -> {ReturnType}";
+
+        public bool Equals(IType other)
+        {
+            return other is FunctionType otherFunction
+                && otherFunction.ReturnType == ReturnType
+                && Parameters
+                    .Zip(otherFunction.Parameters, (a, b) => (First: a, Second: b))
+                    .All(pair => pair.First == pair.Second);
         }
     }
 }

@@ -835,11 +835,8 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestFunctionTypeBuilderCanBuildTypes() {
             // Given
-            var expectedFunctionType = new FunctionType();
-            expectedFunctionType.ReturnType = Types.String;
-            expectedFunctionType.AddParameter(Types.String);
-            expectedFunctionType.AddParameter(Types.Number);
-
+            var expectedFunctionType = new FunctionType(Types.String, Types.String, Types.Number);
+            
             var functionType = new FunctionTypeBuilder()
                 .WithParameter(Types.String)
                 .WithParameter(Types.Number)
