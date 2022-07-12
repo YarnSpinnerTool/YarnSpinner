@@ -1,0 +1,482 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" class="railroad-diagram" width="862" height="134" viewBox="0 0 862 134">
+<style>
+ body {
+    padding-left: 20px;
+}
+
+svg {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+
+/* ATN graphs */
+
+.transition {
+    fill: none;
+    stroke: #AAA;
+    stroke-width: 2px;
+}
+
+.marker {
+    fill: #999;
+    stroke: none;
+}
+
+.stateLabel {
+    font: bold 11pt "Helvetica Neue", Arial, sans-serif;
+    fill: white;
+    text-anchor: middle;
+    pointer-events: none;
+}
+
+.stateTypeLabel {
+    font: bold 7pt monospace;
+    fill: #EEE;
+    text-anchor: middle;
+    pointer-events: none;
+}
+
+.linkLabel {
+    font: bold 9pt "Helvetica Neue", Arial, sans-serif;
+    fill: #606060;
+    text-anchor: middle;
+    pointer-events: none;
+}
+
+.state {
+    stroke: #505050;
+    stroke-width: 3px;
+    cursor: move;
+    pointer-events: all;
+    /*filter: url(#black-glow);*/
+}
+
+.state.BASIC {
+    fill: #AAA;
+}
+
+.state.START {
+    fill: #36bde0;
+}
+
+.state.BSTART {
+    fill: #f39900;
+}
+
+.state.PBSTART {
+    fill: #98c000;
+}
+
+.state.SBSTART {
+    fill: #607dbd;
+}
+
+.state.TSTART {
+    fill: #ffd300;
+}
+
+.state.STOP {
+    fill: #2baa5b;
+}
+
+.state.BEND {
+    fill: #c2c269;
+}
+
+.state.SLBACK {
+    fill: #608b4e;
+}
+
+.state.SLENTRY {
+    fill: #a260cb;
+}
+
+.state.PLBACK {
+    fill: #517979;
+}
+
+.state.LEND {
+    fill: #9b90c3;
+}
+
+.state.RULE {
+    fill: #b73645;
+}
+
+.state.RULE.recursive {
+    fill: #36bde0;
+}
+
+
+/* Railroad diagrams */
+
+svg.railroad-diagram path {
+    /* The connection lines. */
+    stroke-width: 2;
+    stroke: darkgray;
+    fill: rgba(0, 0, 0, 0);
+}
+
+svg.railroad-diagram text {
+    /* All text except comments. */
+    font: bold 12px Hack, "Source Code Pro", monospace;
+    text-anchor: middle;
+    fill: #404040;
+    /* Use fill instead of color for svg text. */
+}
+
+svg.railroad-diagram text.comment {
+    /* Comment text */
+    font: italic 10px Hack, "Source Code Pro", monospace;
+    fill: #404040;
+}
+
+svg.railroad-diagram g.non-terminal rect {
+    /* The non-terminal boxes. */
+    stroke-width: 2;
+    stroke: #404040;
+    fill: rgba(255, 255, 255, 1);
+}
+
+svg.railroad-diagram g.terminal rect {
+    /* The terminal boxes. */
+    stroke-width: 2;
+    stroke: #404040;
+    fill: rgba(0, 0, 0, 0.1);
+}
+
+svg.railroad-diagram text.diagram-text {
+    /* Multiple choice text, not working atm. */
+    font-size: 12px Hack, "Source Code Pro", monospace;
+    fill: red;
+}
+
+svg.railroad-diagram path.diagram-text {
+    /* Multiple choice text, not working atm. */
+    stroke-width: 1;
+    stroke: red;
+    fill: red;
+    cursor: help;
+}
+
+svg.railroad-diagram g.diagram-text:hover path.diagram-text {
+    /* Multiple choice text, not working atm. */
+    fill: #f00;
+}
+
+
+/* Call graphs */
+
+.node {
+    font: 200 10px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.link {
+    stroke: #000;
+    stroke-opacity: .2;
+    fill: none;
+    pointer-events: none;
+    animation: fadeIn 0.25s ease-out 0.2s 1 normal backwards;
+}
+
+.module-1 {
+    fill: #0ca9fd;
+}
+
+.module-2 {
+    fill: #63bf8d;
+}
+
+.module-3 {
+    fill: #ff8801;
+}
+
+.module-4 {
+    fill: #b9fc34;
+}
+
+.module-5 {
+    fill: #90e0e0;
+}
+
+.module-6 {
+    fill: #b4a3f5;
+}
+
+.module-7 {
+    fill: #f92672;
+}
+
+.module-8 {
+    fill: #e9e901;
+}
+
+.module-9 {
+    fill: #83be69;
+}
+
+.module-10 {
+    fill: #f1d18c;
+}
+
+.node:hover {
+    fill: #000;
+}
+
+.node:hover,
+.node-source,
+.node-target {
+    font: 700 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    cursor: pointer;
+}
+
+.node-source {
+    fill: #ff5711;
+}
+
+.node-target {
+    fill: #45aa73;
+}
+
+.link-source,
+.link-target {
+    stroke-opacity: 1;
+    stroke-width: 2px;
+    animation: none;
+}
+
+.link-source {
+    stroke: #3dcd92;
+}
+
+.link-target {
+    stroke: #ff5711;
+}
+
+@keyframes fadeOut {
+    0% {
+        stroke-opacity: 0.2;
+    }
+    100% {
+        stroke-opacity: 0.075;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        stroke-opacity: 0.075;
+    }
+    100% {
+        stroke-opacity: 0.2;
+    }
+}
+
+.link-dimmed {
+    stroke-opacity: 0.075;
+    animation: fadeOut 0.25s ease-out 0.1s 1 normal backwards;
+}
+
+
+/* Parse trees */
+.tree-node {
+    stroke-width: 2;
+    stroke: #C0C0C0;
+    fill: rgba(255, 255, 255, 1);
+}
+
+.tree-root {
+    stroke-width: 2;
+    fill: #7db6dd;
+    stroke: #7db6dd;
+}
+
+.tree-leaf {
+    cursor: default;
+    stroke-width: 2;
+    fill: rgba(160, 171, 136, 1);
+    stroke: rgba(117, 119, 91, 1);
+}
+
+.tree-error {
+    stroke-width: 2;
+    fill: #dd8f7d;
+    stroke: rgba(188, 106, 122, 1);
+}
+
+.tree-node text {
+    cursor: default;
+    font: 16px "Helvetica Neue", sans-serif;
+    fill: rgba(41, 41, 41, 1);
+    stroke: none;
+}
+
+.tree-leaf text,
+.tree-root text,
+.tree-error text {
+    font: 16px "Helvetica Neue", sans-serif;
+    fill: #ffffff;
+    stroke: none;
+}
+
+.tree-link {
+    stroke-width: 2px;
+    fill: none;
+    stroke: rgba(128, 128, 128, 1);
+}
+
+g .token-value {
+    fill: #404040;
+    stroke: none;
+    font: 14pt "Source Code Pro", "Hack", "Consolas", "Andale Mono", monospace;
+}
+
+g .token-range {
+    fill: rgba(0, 77, 98, 1);
+    stroke: none;
+    font: 8pt "Source Code Pro", "Hack", "Consolas", "Andale Mono", monospace;
+}
+
+/* Internal elements, only used in vscode */
+
+.header {
+    font-size: 12pt;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45px;
+    background-color: var(--background-color);
+    cursor: default;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.graph-initial {
+    font-size: 30pt;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.rule-index {
+    font-size: 8pt;
+}
+
+#container {
+    margin-top: 45px;
+}
+
+.action-box {
+    font: 10pt monospace;
+    margin-left: 15px;
+    padding: 5px;
+    border: dotted 1px #606060;
+    cursor: default;
+}
+
+.atn-graph-color {
+    color: rgba(206, 11, 70, 1);
+}
+
+.atn-graph-save-image {
+    background: rgba(206, 11, 70, 1) url('../misc/save.png');
+    vertical-align: middle;
+    margin-left: 5px;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.rrd-color {
+    color: rgba(10, 188, 80, 1);
+}
+
+.rrd-save-image {
+    background: rgba(10, 188, 80, 1) url('../misc/save.png');
+    vertical-align: middle;
+    margin-left: 5px;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.call-graph-color {
+    color: rgba(255, 191, 15, 1);
+}
+
+.call-graph-save-image {
+    background: rgba(255, 191, 15, 1) url('../misc/save.png');
+    vertical-align: middle;
+    margin-left: 5px;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.parse-tree-color {
+    color: rgba(49, 112, 212, 1);
+}
+
+.parse-tree-save-image {
+    background: rgba(49, 112, 212, 1) url('../misc/save.png');
+    vertical-align: middle;
+    margin-left: 5px;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.switch label {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+
+.switch input {
+	display: none;
+}
+
+.switch > span {
+    display: inline-block;
+    top: 3px;
+	transition: left 0.2s;
+}
+
+.switch-border {
+	height: 12px;
+	width: 24px;
+	position: relative;
+    border: 1px solid rgba(49, 112, 212, 0.75);
+    background-color: rgba(49, 112, 212, 0.75);
+	border-radius: 3.5em;
+}
+
+.switch-handle-top {
+	width: 12px;
+	height: 12px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 4;
+	background-color: white;
+	border-radius: 2.5em;
+	transition: left 0.2s;
+}
+
+.switch input:checked~.switch-handle-top  {
+    top: 0px;
+    left: 12px;
+}
+</style>
+<g transform="translate(.5 .5)"><path d="M 20 69 v 20 m 0 -10 h 20.5"></path><g><path d="M40 79h0"></path><path d="M822 79h0"></path><path d="M40 79h20"></path><g><path d="M60 79h0"></path><path d="M802 79h0"></path><g class="terminal"><path d="M60 79h0"></path><path d="M170 79h0"></path><rect x="60" y="68" width="110" height="22" rx="0" ry="0"></rect><text x="115" y="83">IDENTIFIER</text></g><path d="M170 79h10"></path><path d="M180 79h10"></path><g class="terminal"><path d="M190 79h0"></path><path d="M244 79h0"></path><rect x="190" y="68" width="54" height="22" rx="0" ry="0"></rect><text x="217" y="83">'('</text></g><path d="M244 79h10"></path><g><path d="M254 79h0"></path><path d="M738 79h0"></path><path d="M254 79a10 10 0 0 0 10 -10v-39a10 10 0 0 1 10 -10"></path><g><path d="M274 20h444"></path></g><path d="M718 20a10 10 0 0 1 10 10v39a10 10 0 0 0 10 10"></path><path d="M254 79h20"></path><g><path d="M274 79h0"></path><path d="M718 79h0"></path><path d="M274 79h20"></path><g><path d="M294 79h0"></path><path d="M698 79h0"></path><g class="non-terminal"><path d="M294 79h0"></path><path d="M404 79h0"></path><rect x="294" y="68" width="110" height="22" rx="8" ry="8"></rect><text x="349" y="83">expression</text></g><path d="M404 79h10"></path><g><path d="M414 79h0"></path><path d="M698 79h0"></path><path d="M414 79a10 10 0 0 0 10 -10v-15a10 10 0 0 1 10 -10"></path><g><path d="M434 44h244"></path></g><path d="M678 44a10 10 0 0 1 10 10v15a10 10 0 0 0 10 10"></path><path d="M414 79h20"></path><g><path d="M434 79h0"></path><path d="M678 79h0"></path><path d="M434 79h10"></path><g><path d="M444 79h0"></path><path d="M668 79h0"></path><path d="M444 79h20"></path><g><path d="M464 79h0"></path><path d="M648 79h0"></path><g class="terminal"><path d="M464 79h0"></path><path d="M518 79h0"></path><rect x="464" y="68" width="54" height="22" rx="0" ry="0"></rect><text x="491" y="83">','</text></g><path d="M518 79h10"></path><path d="M528 79h10"></path><g class="non-terminal"><path d="M538 79h0"></path><path d="M648 79h0"></path><rect x="538" y="68" width="110" height="22" rx="8" ry="8"></rect><text x="593" y="83">expression</text></g></g><path d="M648 79h20"></path></g><path d="M668 79h10"></path><path d="M444 79a10 10 0 0 0 -10 10v15a10 10 0 0 0 10 10"></path><g><path d="M444 114h224"></path></g><path d="M668 114a10 10 0 0 0 10 -10v-15a10 10 0 0 0 -10 -10"></path></g><path d="M678 79h20"></path></g></g><path d="M698 79h20"></path></g><path d="M718 79h20"></path></g><path d="M738 79h10"></path><g class="terminal"><path d="M748 79h0"></path><path d="M802 79h0"></path><rect x="748" y="68" width="54" height="22" rx="0" ry="0"></rect><text x="775" y="83">')'</text></g></g><path d="M802 79h20"></path></g><path d="M 822 79 h 20 m 0 -10 v 20"></path></g></svg>
