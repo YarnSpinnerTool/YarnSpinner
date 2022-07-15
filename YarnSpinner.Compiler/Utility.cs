@@ -467,6 +467,26 @@ namespace Yarn.Compiler
 
             return lineBlocks;
         }
+
+        /// <summary>
+        /// Finds and collates every jump in every node.
+        /// </summary>
+        /// <param name="YarnFileContents">The collection of yarn file content to parse and walk</param>
+        /// <returns>A list of tuples each containing a node and all its jumps.</returns>
+        public static List<(string node, List<string> jumps)> DetermineNodeConnections(string[] YarnFileContents)
+        {
+            var walker = new ParseTreeWalker();
+            List<(string, List<string>)> connections = new List<(string, List<string>)>();
+            foreach (var contents in YarnFileContents)
+            {
+                var (parseSource, diagnostics) = ParseSource(contents);
+
+                var jumpListener = new JumpGraphListener(connections);
+                walker.Walk(jumpListener, parseSource.Tree);
+            }
+
+            return connections;
+        }
     }
 
     /// <summary>

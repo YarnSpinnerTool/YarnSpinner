@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- a new utility `DetermineNodeConnections` that analyses Yarn files and returns a directed graph of node connections.
+
 ### Changed
 
 ### Removed
