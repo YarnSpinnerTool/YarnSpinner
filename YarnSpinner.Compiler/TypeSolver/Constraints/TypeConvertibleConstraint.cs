@@ -71,12 +71,12 @@ namespace TypeChecker
             IEnumerable<IType> fromTypes;
             IEnumerable<IType> toTypes;
 
-            if (FromType is TypeBase fromLiteral) {
+            if (substitutedFromType is TypeBase fromLiteral) {
                 // We know 'from' is a literal. This means 'to' must be a type
                 // that is convertible from 'from'.
                 fromTypes = new[] { fromLiteral };
                 toTypes = AllTypesConvertibleFrom(fromLiteral);
-            } else if (ToType is TypeBase toLiteral) {
+            } else if (substitutedToType is TypeBase toLiteral) {
                 // We know 'to' is a literal. This means 'from' must be a type
                 // that is convertible to 'to'.
                 fromTypes = AllTypesConvertibleTo(toLiteral);
