@@ -280,6 +280,9 @@ namespace Yarn.Compiler
 
             if (variableID == null)
             {
+                // This is a parse error, so the type of this node is the error
+                // type.
+                context.Type = Types.Error;
                 return;
             }
 
