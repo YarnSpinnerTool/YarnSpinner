@@ -368,11 +368,11 @@ namespace YarnSpinner.Tests
         }
 
         [Theory]
-        [InlineData("<<set $bool = func_void_bool(1)>>", "expects 0 parameters, but received 1")]
-        [InlineData("<<set $bool = func_int_bool()>>", "expects 1 parameter, but received 0")]
-        [InlineData("<<set $bool = func_int_bool(true)>>", "expects a Number, not a Bool")]
-        [InlineData(@"<<set $bool = func_string_string_bool(""1"", 2)>>", "expects a String, not a Number")]
-        [InlineData("<<set $int = func_void_bool()>>", @"\$int \(Number\) cannot be assigned a Bool")]
+        [InlineData("<<set $bool = func_void_bool(1)>>", "* expects 0 parameters, not 1")]
+        [InlineData("<<set $bool = func_int_bool()>>", "* expects 1 parameter, not 0")]
+        [InlineData("<<set $bool = func_int_bool(true)>>", "true (Bool) is not convertible to Number")]
+        [InlineData(@"<<set $bool = func_string_string_bool(""1"", 2)>>", "2 (Number) is not convertible to String")]
+        [InlineData("<<set $int = func_void_bool()>>", @"$int (Number) cannot be assigned a Bool")]
         public void TestFailingFunctionSignatures(string source, string expectedExceptionMessage)
         {
             dialogue.Library.RegisterFunction("func_void_bool", () => true);
