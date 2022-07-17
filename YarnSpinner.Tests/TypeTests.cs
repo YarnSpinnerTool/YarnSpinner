@@ -1,20 +1,15 @@
 using Xunit;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Yarn;
-using System.IO;
 using System.Linq;
 
 using Yarn.Compiler;
-using CLDRPlurals;
 
 using FluentAssertions;
 
 namespace YarnSpinner.Tests
 {
-
-
     public class TypeTests : TestBase
     {
         public TypeTests() : base()
@@ -22,7 +17,7 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        void TestVariableDeclarationsParsed()
+        public void TestVariableDeclarationsParsed()
         {
             var source = CreateTestNode(@"
             <<declare $int = 5>>            
@@ -98,26 +93,10 @@ namespace YarnSpinner.Tests
 
             var actualDeclarations = new List<Declaration>(result.Declarations).Where(d => d.Name.StartsWith("$"));
 
-            actualDeclarations.Should().BeEquivalentTo(expectedDeclarations, (config) => {
+            actualDeclarations.Should().BeEquivalentTo(expectedDeclarations, (config) =>
+            {
                 return config.WithTracing();
             });
-
-            // foreach (var variableDeclaration in actualDeclarations) {
-            //     expectedDeclarations.Should().ContainEquivalentOf(variableDeclaration);
-            // }
-
-            // for (int i = 0; i < expectedDeclarations.Where(d => d.Name.StartsWith("$")).Count(); i++)
-            // {
-            //     Declaration expected = expectedDeclarations[i];
-            //     Declaration actual = actualDeclarations[i];
-
-            //     actual.Name.Should().Be(expected.Name);
-            //     actual.Type.Should().Be(expected.Type);
-            //     actual.DefaultValue.Should().Be(expected.DefaultValue);
-            //     actual.Range.Should().Be(expected.Range);
-            //     actual.SourceNodeName.Should().Be(expected.SourceNodeName);
-            //     actual.SourceFileName.Should().Be(expected.SourceFileName);
-            // }
         }
 
         [Fact]
@@ -337,10 +316,10 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestFailingFunctionDeclarationReturnType() {
-            
+        public void TestFailingFunctionDeclarationReturnType()
+        {
             dialogue.Library.RegisterFunction("func_invalid_return", () => new List<int> { 1, 2, 3 });
-            
+
             var source = CreateTestNode(@"Hello");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
@@ -372,7 +351,7 @@ namespace YarnSpinner.Tests
             dialogue.Library.RegisterFunction("func_int_bool", (int i) => true);
             dialogue.Library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
             dialogue.Library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
-            
+
             var failingSource = CreateTestNode($@"
                 <<declare $bool = false>>
                 <<declare $int = 1>>
@@ -382,7 +361,7 @@ namespace YarnSpinner.Tests
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, dialogue.Library));
 
             var diagnosticMessages = result.Diagnostics.Select(d => d.Message);
-    
+
             diagnosticMessages.Should().ContainMatch(expectedExceptionMessage);
         }
 
@@ -469,9 +448,6 @@ namespace YarnSpinner.Tests
             variableDeclarations.Should().Contain(d => d.Name == "$bool").Which.Type.Should().Be(Types.Boolean);
         }
 
-        
-
-
         [Theory]
         [InlineData(@"<<declare $str = ""hello"" as number>>")]
         [InlineData(@"<<declare $int = 1 as bool>>")]
@@ -512,7 +488,7 @@ namespace YarnSpinner.Tests
             <<declare $multiline = 42>>
 
             ");
-            
+
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
             result.Diagnostics.Should().BeEmpty();
@@ -614,7 +590,7 @@ namespace YarnSpinner.Tests
 
         [Theory]
         [InlineData(@"{number(""hello"")}")]
-        [InlineData(@"{bool(""hello"")}")]        
+        [InlineData(@"{bool(""hello"")}")]
         public void TestTypeConversionFailure(string test)
         {
             var source = CreateTestNode(test);
@@ -688,7 +664,7 @@ namespace YarnSpinner.Tests
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
-            
+
             RunStandardTestcase();
         }
 
@@ -696,7 +672,8 @@ namespace YarnSpinner.Tests
         [InlineData("1", "Number")]
         [InlineData("\"hello\"", "String")]
         [InlineData("true", "Bool")]
-        public void TestImplicitVariableDeclarations(string value, string typeName) {
+        public void TestImplicitVariableDeclarations(string value, string typeName)
+        {
             var source = CreateTestNode($@"
             <<set $v = {value}>>
             ");
@@ -719,9 +696,9 @@ namespace YarnSpinner.Tests
             dialogue.Library.RegisterFunction("func_int_bool", (int i) => i == 1);
             dialogue.Library.RegisterFunction("func_bool_bool", (bool b) => b);
 
-             testPlan = new TestPlanBuilder()
-                .AddLine("True")
-                .GetPlan();
+            testPlan = new TestPlanBuilder()
+               .AddLine("True")
+               .GetPlan();
 
             // the library is NOT attached to this compilation job; all
             // functions will be implicitly declared
@@ -740,11 +717,11 @@ namespace YarnSpinner.Tests
 
             result.Declarations.Should().ContainSingle(d => d.Name == "func_bool_bool")
                 .Which.Type.Should().BeEquivalentTo(expectedBoolBoolFunctionType);
-            
+
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
-            
+
             RunStandardTestcase();
 
         }
@@ -821,10 +798,11 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestFunctionTypeBuilderCanBuildTypes() {
+        public void TestFunctionTypeBuilderCanBuildTypes()
+        {
             // Given
             var expectedFunctionType = new FunctionType(Types.String, Types.String, Types.Number);
-            
+
             var functionType = new FunctionTypeBuilder()
                 .WithParameter(Types.String)
                 .WithParameter(Types.Number)
@@ -857,14 +835,16 @@ namespace YarnSpinner.Tests
 
             var solution = TypeChecker.Solver.Solve(constraints, Types.AllBuiltinTypes.OfType<TypeBase>(), ref diagnostics);
 
-            using (new FluentAssertions.Execution.AssertionScope()) {
+            using (new FluentAssertions.Execution.AssertionScope())
+            {
                 diagnostics.Should().BeEmpty();
                 solution.IsFailed.Should().BeFalse();
             }
         }
 
         [Fact]
-        public void TestSolverCannotResolveMismatchedConvertabilityConstraint() {
+        public void TestSolverCannotResolveMismatchedConvertabilityConstraint()
+        {
             var boolType = Types.Boolean;
             var numberType = Types.Number;
             var unknownType1 = new TypeChecker.TypeVariable("T1");
@@ -882,7 +862,8 @@ namespace YarnSpinner.Tests
 
             var solution = TypeChecker.Solver.Solve(constraints, Types.AllBuiltinTypes.OfType<TypeBase>(), ref diagnostics);
 
-            using (new FluentAssertions.Execution.AssertionScope()) {
+            using (new FluentAssertions.Execution.AssertionScope())
+            {
                 diagnostics.Should().NotBeEmpty();
                 solution.IsFailed.Should().BeTrue();
             }
