@@ -298,19 +298,14 @@ namespace YarnSpinner.Tests
             // Should compile with no exceptions
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, dialogue.Library));
 
-            Assert.Empty(result.Diagnostics);
+            // We should have no diagnostics.
+            result.Diagnostics.Should().BeEmpty();
 
-            // The variable '$bool' should have an implicit declaration.
-            var variableDeclarations = result.Declarations.Where(d => d.Name == "$bool");
-
-            Assert.Single(variableDeclarations);
-
-            var variableDeclaration = variableDeclarations.First();
-
-            // The type of the variable should be Boolean, because that's
-            // the return type of all of the functions we declared.
-            Assert.Same(Types.Boolean, variableDeclaration.Type);
-
+            // The variable '$bool' should have an implicit declaration. The
+            // type of the variable should be Boolean, because that's the return
+            // type of all of the functions we declared.
+            result.Declarations.Where(d => d.Name == "$bool")
+                .Should().ContainSingle().Which.Type.Should().Be(Types.Boolean);
         }
 
         [Theory, CombinatorialData]
@@ -388,7 +383,9 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, dialogue.Library));
 
-            Assert.Collection(result.Diagnostics, p => Assert.Matches(expectedExceptionMessage, p.Message));
+            var diagnosticMessages = result.Diagnostics.Select(d => d.Message);
+    
+            diagnosticMessages.Should().ContainMatch(expectedExceptionMessage);
         }
 
         [Fact]
@@ -762,7 +759,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("expects 1 parameter, but received 2", p.Message));
+            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("func was called elsewhere with 1 parameter, but is called with 2 parameters here");
         }
 
         [Fact]
