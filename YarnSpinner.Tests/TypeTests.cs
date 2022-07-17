@@ -289,19 +289,14 @@ namespace YarnSpinner.Tests
             // Should compile with no exceptions
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, dialogue.Library));
 
-            Assert.Empty(result.Diagnostics);
+            // We should have no diagnostics.
+            result.Diagnostics.Should().BeEmpty();
 
-            // The variable '$bool' should have an implicit declaration.
-            var variableDeclarations = result.Declarations.Where(d => d.Name == "$bool");
-
-            Assert.Single(variableDeclarations);
-
-            var variableDeclaration = variableDeclarations.First();
-
-            // The type of the variable should be Boolean, because that's
-            // the return type of all of the functions we declared.
-            Assert.Same(BuiltinTypes.Boolean, variableDeclaration.Type);
-
+            // The variable '$bool' should have an implicit declaration. The
+            // type of the variable should be Boolean, because that's the return
+            // type of all of the functions we declared.
+            result.Declarations.Where(d => d.Name == "$bool")
+                .Should().ContainSingle().Which.Type.Should().Be(BuiltinTypes.Boolean);
         }
 
         [Theory, CombinatorialData]
@@ -363,7 +358,7 @@ namespace YarnSpinner.Tests
         [InlineData("<<set $bool = func_int_bool()>>", "expects 1 parameter, but received 0")]
         [InlineData("<<set $bool = func_int_bool(true)>>", "expects a Number, not a Bool")]
         [InlineData(@"<<set $bool = func_string_string_bool(""1"", 2)>>", "expects a String, not a Number")]
-        [InlineData("<<set $int = func_void_bool()>>", @"\$int \(Number\) cannot be assigned a Bool")]
+        [InlineData("<<set $int = func_void_bool()>>", @"$int (Number) cannot be assigned a Bool")]
         public void TestFailingFunctionSignatures(string source, string expectedExceptionMessage)
         {
             dialogue.Library.RegisterFunction("func_void_bool", () => true);
@@ -379,7 +374,9 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, dialogue.Library));
 
-            Assert.Collection(result.Diagnostics, p => Assert.Matches(expectedExceptionMessage, p.Message));
+            var diagnosticMessages = result.Diagnostics.Select(d => d.Message);
+    
+            diagnosticMessages.Should().ContainMatch($"*{expectedExceptionMessage}*");
         }
 
         [Fact]
@@ -752,7 +749,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("expects 1 parameter, but received 2", p.Message));
+            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("Function func expects 1 parameter, but received 2");
         }
 
         [Fact]
