@@ -46,6 +46,28 @@ namespace TypeChecker
                 return knownTypes.Where(other => other.IsConvertibleTo(to)).OrderByDescending(t => t.TypeDepth);
             }
 
+            var substitutedFromType = FromType.Substitute(subst);
+            var substitutedToType = ToType.Substitute(subst);
+
+            if (substitutedFromType is TypeBase actualFromLiteral 
+            && substitutedToType is TypeBase actualToLiteral) {
+                // We know their concrete types already! We can do a fast check
+                // to see if 'from' is convertible to 'to'.
+                if (actualFromLiteral.IsConvertibleTo(actualToLiteral)) {
+                    // The two types are convertible because they're declared to be.
+
+                    // Return a constraint that we know will work: fromLiteral == fromLiteral
+                    var equality = new TypeEqualityConstraint(actualFromLiteral, actualFromLiteral);
+                    equality.FailureMessageProvider = this.FailureMessageProvider;
+                    return equality;
+                } else {
+                    // We know their concrete types and they're not convertible. Return a constraint that is guaranteed to fail: from fromLiteral == toLiteral
+                    var equality = new TypeEqualityConstraint(actualFromLiteral, actualToLiteral);
+                    equality.FailureMessageProvider = this.FailureMessageProvider;
+                    return equality;
+                }
+            }
+
             IEnumerable<IType> fromTypes;
             IEnumerable<IType> toTypes;
 
@@ -60,10 +82,11 @@ namespace TypeChecker
                 fromTypes = AllTypesConvertibleTo(toLiteral);
                 toTypes = new[] { toLiteral };
             } else {
-                // Neither 'from' nor 'to' are literals. They could be anything;
-                // check all pairs. TODO: this is really inefficient!!
-                fromTypes = knownTypes;
-                toTypes = knownTypes;
+                // Neither 'from' nor 'to' are literals, so we have no way to
+                // produce a reduced list of candidates for equalities. The best
+                // we can do is to assert that they're equal.
+                fromTypes = new[] { FromType };
+                toTypes = new[] { ToType };
             }
 
             var allPairs = new[] { fromTypes, toTypes }.CartesianProduct();

@@ -878,5 +878,31 @@ namespace YarnSpinner.Tests
                 solution.IsFailed.Should().BeFalse();
             }
         }
+
+        [Fact]
+        public void TestSolverCannotResolveMismatchedConvertabilityConstraint() {
+            var boolType = Types.Boolean;
+            var numberType = Types.Number;
+            var unknownType1 = new TypeChecker.TypeVariable("T1");
+            var unknownType2 = new TypeChecker.TypeVariable("T2");
+
+            // Attempt to solve the following unresolvable system of equations:
+            // T1 c> T2 ; T1 == Bool ; T2 == Number
+            var constraints = new TypeChecker.TypeConstraint[] {
+                new TypeChecker.TypeConvertibleConstraint(unknownType1, unknownType2),
+                new TypeChecker.TypeEqualityConstraint(unknownType1, boolType),
+                new TypeChecker.TypeEqualityConstraint(unknownType2, numberType),
+            };
+
+            var diagnostics = new List<Diagnostic>();
+
+            var solution = TypeChecker.Solver.Solve(constraints, Types.AllBuiltinTypes.OfType<TypeBase>(), ref diagnostics);
+
+            using (new FluentAssertions.Execution.AssertionScope()) {
+                diagnostics.Should().NotBeEmpty();
+                solution.IsFailed.Should().BeTrue();
+            }
+
+        }
     }
 }
