@@ -243,8 +243,8 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
 
-            result.Declarations.Should().Contain(d => d.Name == "$bool").Which.Type.Should().Be(Types.Boolean);
-            result.Declarations.Should().Contain(d => d.Name == "$str").Which.Type.Should().Be(Types.String);
+            result.Declarations.Should().ContainSingle(d => d.Name == "$bool").Which.Type.Should().Be(Types.Boolean);
+            result.Declarations.Should().ContainSingle(d => d.Name == "$str").Which.Type.Should().Be(Types.String);
 
         }
 
@@ -824,7 +824,8 @@ namespace YarnSpinner.Tests
             var unknownType1 = new TypeChecker.TypeVariable("T1");
             var unknownType2 = new TypeChecker.TypeVariable("T2");
 
-
+            // Attempt to solve the following system of equations:
+            // T1 c> Any ; T1 == T2 ; T2 == Boolean
             var constraints = new TypeChecker.TypeConstraint[] {
                 new TypeChecker.TypeConvertibleConstraint(unknownType1, anyType),
                 new TypeChecker.TypeEqualityConstraint(unknownType1, unknownType2),
