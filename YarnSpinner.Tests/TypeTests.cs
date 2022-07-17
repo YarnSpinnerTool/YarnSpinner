@@ -345,8 +345,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("not a valid return type", p.Message));
-
+            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("*not a valid return type*");
         }
 
         [Fact]
@@ -358,8 +357,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("parameter listOfInts's type (System.Collections.Generic.List`1[System.Int32]) cannot be used in Yarn functions", p.Message));
-
+            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("parameter listOfInts's type (System.Collections.Generic.List`1[System.Int32]) cannot be used in Yarn functions");
         }
 
         [Theory]
@@ -438,7 +436,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             this.storage.SetValue("$external_str", "Hello");
             this.storage.SetValue("$external_int", 42);
@@ -517,7 +515,7 @@ namespace YarnSpinner.Tests
             
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
@@ -607,7 +605,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -624,17 +622,21 @@ namespace YarnSpinner.Tests
                 .AddLine("test failure if seen")
                 .GetPlan();
 
-            Assert.Throws<FormatException>( () => {
+            Action act = () =>
+            {
+
                 var compilationJob = CompilationJob.CreateFromString("input", source, dialogue.Library);
                 var result = Compiler.Compile(compilationJob);
 
-                Assert.Empty(result.Diagnostics);
+                result.Diagnostics.Should().BeEmpty();
 
                 dialogue.SetProgram(result.Program);
                 stringTable = result.StringTable;
 
                 RunStandardTestcase();
-            });
+            };
+
+            act.Should().ThrowExactly<FormatException>();
         }
 
         [Fact]
@@ -684,8 +686,6 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
 
-            Assert.Empty(result.Diagnostics);
-
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
             
@@ -728,9 +728,9 @@ namespace YarnSpinner.Tests
             var compilationJob = CompilationJob.CreateFromString("input", source);
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
-            Assert.Equal(5, result.Declarations.Count());
+            result.Declarations.Should().HaveCount(5);
 
             var expectedIntBoolFunctionType = new FunctionTypeBuilder().WithParameter(Types.Number).WithReturnType(Types.Boolean).FunctionType;
             var expectedBoolBoolFunctionType = new FunctionTypeBuilder().WithParameter(Types.Boolean).WithReturnType(Types.Boolean).FunctionType;
@@ -788,7 +788,7 @@ namespace YarnSpinner.Tests
         {
             var allTypes = Types.AllBuiltinTypes;
 
-            Assert.NotEmpty(allTypes);
+            allTypes.Should().NotBeEmpty();
         }
 
         [Fact]
@@ -832,10 +832,10 @@ namespace YarnSpinner.Tests
                 .FunctionType;
 
             // Then
-            Assert.Equal(expectedFunctionType.Parameters.Count, functionType.Parameters.Count);
-            Assert.Equal(expectedFunctionType.Parameters[0], functionType.Parameters[0]);
-            Assert.Equal(expectedFunctionType.Parameters[1], functionType.Parameters[1]);
-            Assert.Equal(expectedFunctionType.ReturnType, functionType.ReturnType);
+            expectedFunctionType.Parameters.Count.Should().Be(functionType.Parameters.Count);
+            expectedFunctionType.Parameters[0].Should().Be(functionType.Parameters[0]);
+            expectedFunctionType.Parameters[1].Should().Be(functionType.Parameters[1]);
+            expectedFunctionType.ReturnType.Should().Be(functionType.ReturnType);
         }
 
         [Fact]
