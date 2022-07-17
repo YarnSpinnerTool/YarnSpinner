@@ -135,7 +135,7 @@ line before options #line:0
         }
 
         [Fact]
-        void TestInterruptedLinesNotTagged()
+        public void TestInterruptedLinesNotTagged()
         {
             var source = CreateTestNode(@"
 line before command #line:0
@@ -150,7 +150,7 @@ line before set #line:2
 line before jump #line:3
 <<jump nodename>>
 line before call #line:4
-<<call function()>>
+<<call string(5)>>
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
