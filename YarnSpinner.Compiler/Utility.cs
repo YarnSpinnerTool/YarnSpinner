@@ -75,7 +75,9 @@ namespace Yarn.Compiler
             {
                 if (decl.Type is FunctionType)
                 {
-                    throw new ArgumentOutOfRangeException($"Declaration {decl.Name} is a {decl.Type.Name}; it must be a variable.");
+                    // Ignore function types; they can't be declared in Yarn
+                    // script
+                    continue;
                 }
 
                 if (string.IsNullOrEmpty(decl.Description) == false)
