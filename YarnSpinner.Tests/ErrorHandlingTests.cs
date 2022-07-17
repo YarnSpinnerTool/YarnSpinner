@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Yarn;
 using System.IO;
 using System.Linq;
+using FluentAssertions;
 
 using Yarn.Compiler;
 
@@ -67,15 +68,9 @@ namespace YarnSpinner.Tests
             
             foreach (var source in new[] { source1, source2}) {
 
-                var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));             
+                var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
 
-                Assert.Collection(result.Diagnostics,
-                    d =>
-                    {
-                        Assert.Contains("Variable names need to start with a $", d.Message);
-                        Assert.Equal(3, d.Range.Start.Line);
-                    }
-                );            
+                result.Diagnostics.Should().Contain(d => d.Message == "Variable names need to start with a $");
             }
         }
 
