@@ -763,19 +763,6 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestMultipleImplicitRedeclarationsOfFunctionParameterTypeFail()
-        {
-            var source = CreateTestNode(@"
-            {func(1)}
-            {func(true)} // wrong type of parameter (previous decl had number)
-            ");
-
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("expects a Number, not a Bool", p.Message));   
-        }
-
-        [Fact]
         public void TestIfStatementExpressionsMustBeBoolean()
         {
             var source = CreateTestNode(@"
