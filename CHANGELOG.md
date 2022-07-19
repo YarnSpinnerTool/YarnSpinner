@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Handling of escape characters is now more consistent in how it approaches the situation of when the first character is the escape character `\`.
+
 ### Removed
 
 ## [2.2.1] 2022-07-08

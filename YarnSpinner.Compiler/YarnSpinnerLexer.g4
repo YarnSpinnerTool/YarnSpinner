@@ -96,6 +96,8 @@ EXPRESSION_START: '{' -> pushMode(TextMode), pushMode(ExpressionMode);
 
 // Any other text means this is a Line. Lex this first character as
 // TEXT, and enter TextMode.
+// We special case when the the line starts with an escape character because otherwise it will be detected as regular text BEFORE it has a chance to be pushed into TextEscapedMode
+ESCAPED_ANY : '\\' -> skip, pushMode(TextMode), pushMode(TextEscapedMode);
 ANY: .  -> type(TEXT), pushMode(TextMode);
 
 // Arbitrary text, punctuated by expressions, and ended by 
@@ -149,7 +151,11 @@ mode TextEscapedMode;
 // Lex a single escapable character as text. (When we enter this mode,
 // TEXT_ESCAPE has already skipped the leading \ that marks an escaped
 // character, so we only need to lex the character itself.)
-TEXT_ESCAPED_CHARACTER: [\\<>{}#/] -> type(TEXT), popMode ; 
+TEXT_ESCAPED_CHARACTER: [\\<>{}#/] -> type(TEXT), popMode ;
+// catches the situation where someone has escaped a character that is not allowed to be escaped
+// previously this was impossible but with the changes to ANY and ESCAPED_ANY that can now happen
+// as such we need to just go back to regular mode and mark the token as invalid
+UNESCAPABLE_CHARACTER : . -> popMode;
 
 mode TextCommandOrHashtagMode;
 TEXT_COMMANDHASHTAG_WS: WS -> skip;
