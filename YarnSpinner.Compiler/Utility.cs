@@ -169,10 +169,7 @@ namespace Yarn.Compiler
 
             // Apply these text replacements to the original source and return
             // it.
-            return Upgrader.LanguageUpgrader.ApplyReplacements(
-                contents, 
-                untaggedLineListener.Replacements
-            );
+            return untaggedLineListener.RewrittenNodes();
         }
 
         /// <summary>
@@ -216,16 +213,12 @@ namespace Yarn.Compiler
         /// An <see cref="IYarnSpinnerParserListener"/> that produces line tags.
         /// </summary>
         private class UntaggedLineListener : YarnSpinnerParserBaseListener
-        {
-            /// <summary>
-            /// Gets a collection of <see cref="Upgrader.TextReplacement"/>
-            /// objects, each containing a line tag to add.
-            /// </summary>
-            public List<Upgrader.TextReplacement> Replacements { get; private set; }
-            
+        {   
             private readonly IList<string> existingStrings;
 
             private readonly CommonTokenStream TokenStream;
+
+            private TokenStreamRewriter rewriter;
 
             /// <summary>
             /// Initializes a new instance of the <see
@@ -238,9 +231,9 @@ namespace Yarn.Compiler
             /// <see cref="IParseTree"/> this instance is operating on.</param>
             public UntaggedLineListener(IList<string> existingStrings, CommonTokenStream tokenStream)
             {
-                this.Replacements = new List<Upgrader.TextReplacement>();
                 this.existingStrings = existingStrings;
                 this.TokenStream = tokenStream;
+                this.rewriter = new TokenStreamRewriter(TokenStream);
             }
 
             /// <inheritdoc/>
@@ -256,7 +249,8 @@ namespace Yarn.Compiler
                 var texts = StringTableGeneratorVisitor.GetHashtagTexts(hashtags);
 
                 // And then look for a line ID hashtag.
-                foreach (var text in texts) {
+                foreach (var text in texts)
+                {
                     if (text.StartsWith("line:"))
                     {
                         // This line contains a line code. Nothing left to do.
@@ -267,7 +261,7 @@ namespace Yarn.Compiler
                 // Find the index of the first token on the default channel to
                 // the left of the newline.
                 var previousTokenIndex = IndexOfPreviousTokenOnChannel(
-                    TokenStream, 
+                    TokenStream,
                     context.NEWLINE().Symbol.TokenIndex, 
                     YarnSpinnerLexer.DefaultTokenChannel
                 );
@@ -290,20 +284,8 @@ namespace Yarn.Compiler
                 // Record that we've used this new line ID, so that we don't
                 // accidentally use it twice.
                 existingStrings.Add(newLineID);
-                
-                // Create a text replacement that inserts a space followed by
-                // the line tag at the end of the line.
-                var replacement = new Upgrader.TextReplacement()
-                {
-                    Start = previousToken.StopIndex + 1,
-                    StartLine = previousToken.Line,
-                    OriginalText = "",
-                    ReplacementText = $" #{newLineID} ",
-                    Comment = "Added line tag"
-                };
 
-                // Add this replacement to the list.
-                this.Replacements.Add(replacement);
+                this.rewriter.InsertAfter(previousToken, $" #{newLineID} ");
             }
 
             /// <summary>
@@ -354,6 +336,11 @@ namespace Yarn.Compiler
 
                 // We found nothing. Return the 'not found' value.
                 return -1;
+            }
+
+            public string RewrittenNodes()
+            {
+                return this.rewriter.GetText();
             }
         }
 
