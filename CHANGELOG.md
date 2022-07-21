@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Handling of escape characters is now more consistent in how it approaches the situation of when the first character is the escape character `\`.
+- Tagging lines that contain multiwidth characters should no longer create weird invalid split characters in the dialogue.
 
 ### Removed
 

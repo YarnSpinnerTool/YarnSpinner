@@ -233,21 +233,23 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
 
             Assert.Equal(expectedResults.Length, lineTagRegexMatches);
 
+            // used to keep track of all line ids we have already seen
+            // this is because we need to make sure we see every line in the string table
+            HashSet<string> visitedIDs = new HashSet<string>();
+
             foreach (var result in expectedResults)
             {
                 if (result.tag != null)
                 {
                     Assert.Equal(compilationResult.StringTable[result.tag].text, result.line);
+                    // flagging this ID as having been visited
+                    visitedIDs.Add(result.tag);
                 }
                 else
                 {
                     // a line exists that has this text
-                    var matchingEntries = compilationResult.StringTable.Where(s => s.Value.text == result.line);
-                    Assert.Single(matchingEntries);
-
-                    // ah ok so the issue is we are scraping the string table to find somethig that matches the text of the line
-                    // and it needs it to be individual so that it knows that you haven't already done that line
-                    // I dislike that hmm...
+                    var matchingEntries = compilationResult.StringTable.Where(s => s.Value.text == result.line).Where(s => !visitedIDs.Contains(s.Key));
+                    Assert.NotEmpty(matchingEntries);
 
                     // that line has a line tag
                     var lineTag = matchingEntries.First().Key;
@@ -256,9 +258,14 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
                     // that line is not a duplicate of any other line tag
                     var allLineTags = compilationResult.StringTable.Keys;
                     Assert.Equal(1, allLineTags.Count(t => t == lineTag));
+
+                    // flagging this ID as having been visited
+                    visitedIDs.Add(lineTag);
                 }
             }
-            
+
+            // we now should have seen every line ID
+            Assert.Equal(visitedIDs.Count, compilationResult.StringTable.Count);
         }
 
         [Fact]
