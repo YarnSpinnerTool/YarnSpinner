@@ -13,7 +13,7 @@ options {
  
 // Root mode: skip whitespaces, set up some commonly-seen 
 // tokens
-WS : ([ \t])+ -> skip;
+WS : ([ \t])+ -> channel(HIDDEN);
 
 COMMENT: '//' ~('\r'|'\n')* -> channel(COMMENTS);
 
@@ -69,7 +69,7 @@ HEADER_NEWLINE : NEWLINE -> type(NEWLINE), channel(WHITESPACE), popMode;
 mode BodyMode;
 
 // Ignore all whitespace and comments
-BODY_WS : WS -> skip;
+BODY_WS : WS -> channel(HIDDEN);
 BODY_NEWLINE : NEWLINE -> type(NEWLINE), channel(WHITESPACE);
 BODY_COMMENT : COMMENT -> type(COMMENT), channel(COMMENTS) ;
 
@@ -158,7 +158,7 @@ TEXT_ESCAPED_CHARACTER: [\\<>{}#/] -> type(TEXT), popMode ;
 UNESCAPABLE_CHARACTER : . -> popMode;
 
 mode TextCommandOrHashtagMode;
-TEXT_COMMANDHASHTAG_WS: WS -> skip;
+TEXT_COMMANDHASHTAG_WS: WS -> channel(HIDDEN);
 
 // Comments following hashtags and line conditions.
 TEXT_COMMANDHASHTAG_COMMENT: COMMENT -> channel(COMMENTS);
