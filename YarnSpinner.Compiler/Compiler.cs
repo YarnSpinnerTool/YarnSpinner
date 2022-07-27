@@ -776,8 +776,6 @@ namespace Yarn.Compiler
             // if we didn't do this later stages wouldn't be able to interface with them
             declarations.AddRange(trackingDeclarations);
 
-            // TODO: constrain all visited variables to be of type Number
-
             // We now have declarations for variables in the program, which are
             // all type variables. We also have a number of type equations that
             // constrain those variables. 
