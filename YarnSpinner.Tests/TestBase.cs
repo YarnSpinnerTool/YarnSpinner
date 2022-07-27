@@ -174,8 +174,9 @@ namespace YarnSpinner.Tests
                 }
             };
 
-            dialogue.Library.RegisterFunction ("assert", delegate(Yarn.Value value) {
-                if (value.ConvertTo<bool>() == false) {
+            dialogue.Library.RegisterFunction ("assert", delegate(object value) {
+                if (value is IConvertible convertible 
+                && convertible.ToBoolean(CultureInfo.InvariantCulture) == false) {
                         Assert.NotNull ("Assertion failed");
                 }
                 return true;
