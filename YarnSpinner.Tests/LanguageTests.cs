@@ -10,6 +10,8 @@ using Yarn.Compiler;
 using CLDRPlurals;
 using System.Globalization;
 
+using FluentAssertions;
+
 namespace YarnSpinner.Tests
 {
 	public class LanguageTests : TestBase
@@ -32,7 +34,7 @@ namespace YarnSpinner.Tests
             
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
             
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -58,14 +60,15 @@ namespace YarnSpinner.Tests
             var resultSallyAndShip = Compiler.Compile(compilationJobSallyAndShip);
 
 
-            Assert.Empty(resultSally.Diagnostics);
-            Assert.Empty(resultSallyAndShip.Diagnostics);
+            resultSally.Diagnostics.Should().BeEmpty();
+            resultSallyAndShip.Diagnostics.Should().BeEmpty();
 
             // Loading code with the same contents should throw
-            Assert.Throws<InvalidOperationException>(delegate ()
+            var combiningPrograms = delegate ()
             {
                 var combinedNotWorking = Program.Combine(resultSally.Program, resultSallyAndShip.Program);
-            });
+            };
+            combiningPrograms.Should().Throw<InvalidOperationException>();
         }
 
 
@@ -77,13 +80,13 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
             
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
 
             dialogue.OptionsHandler = delegate (OptionSet optionSets) {
-                Assert.False(true, "Options should not be shown to the user in this test.");
+                throw new InvalidOperationException("Options should not be shown to the user in this test.");
             };
 
             dialogue.SetNode();
@@ -97,19 +100,19 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "Headers.yarn");
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
             
-            Assert.Equal(4, result.Program.Nodes.Count);
+            result.Program.Nodes.Count.Should().Be(4);
 
             foreach (var tag in new[] {"one", "two", "three"}) {
-                Assert.Contains(tag, result.Program.Nodes["Tags"].Tags);
+                result.Program.Nodes["Tags"].Tags.Should().Contain(tag);
             }
 
-            // Assert.Contains("version:2", result.FileTags);
-            Assert.Contains(path, result.FileTags.Keys);
-            Assert.Single(result.FileTags);
-            Assert.Single(result.FileTags[path]);
-            Assert.Contains("file_header", result.FileTags[path]);
+            // result.FileTags.Should().Contain("version:2");
+            result.FileTags.Keys.Should().Contain(path);
+            result.FileTags.Should().ContainSingle();
+            result.FileTags[path].Should().ContainSingle();
+            result.FileTags[path].Should().Contain("file_header");
         }
 
         [Fact]
@@ -119,7 +122,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.NotEmpty(result.Diagnostics);
+            result.Diagnostics.Should().NotBeEmpty();
 
         }
 
@@ -196,11 +199,11 @@ namespace YarnSpinner.Tests
             };
 
             foreach (var test in cardinalTests) {
-                Assert.Equal(test.Item3, CLDRPlurals.NumberPlurals.GetCardinalPluralCase(test.Item1, test.Item2));
+                CLDRPlurals.NumberPlurals.GetCardinalPluralCase(test.Item1, test.Item2).Should().Be(test.Item3);
             }
 
             foreach (var test in ordinalTests) {
-                Assert.Equal(test.Item3, CLDRPlurals.NumberPlurals.GetOrdinalPluralCase(test.Item1, test.Item2));
+                CLDRPlurals.NumberPlurals.GetOrdinalPluralCase(test.Item1, test.Item2).Should().Be(test.Item3);
             }
 
 
@@ -257,10 +260,10 @@ namespace YarnSpinner.Tests
                 var targetStringTable = targetResult.StringTable.Values.Select(s => s.ToString());
                 var targetParseTree = FormatParseTreeAsText(targetParseResult.Tree);
 
-                Assert.Equal(invariantParseTree, targetParseTree);
-                Assert.Equal(invariantDiagnostics, targetDiagnostics);
-                Assert.Equal(invariantProgram, targetProgram);
-                Assert.Equal(invariantStringTable, targetStringTable);
+                targetParseTree.Should().Be(invariantParseTree);
+                targetDiagnostics.Should().ContainInOrder(invariantDiagnostics);
+                targetProgram.Should().Be(invariantProgram);
+                targetStringTable.Should().ContainInOrder(invariantStringTable);
                 
             }
 
@@ -297,16 +300,16 @@ namespace YarnSpinner.Tests
                 // it a test failure if it _does_ compile.
 
                 var result = Compiler.Compile(compilationJob);
-                Assert.NotEmpty(result.Diagnostics);
+                result.Diagnostics.Should().NotBeEmpty("{0} is expected to have compile errors", file);
             }
             else
             {
                 // Compile the job, and expect it to succeed.
                 var result = Compiler.Compile(compilationJob);
 
-                Assert.Empty(result.Diagnostics);
+                result.Diagnostics.Should().BeEmpty("{0} is expected to have no compile errors", file);
 
-                Assert.NotNull(result.Program);
+                result.Program.Should().NotBeNull();
             
                 LoadTestPlan(testPlanFilePath);
 
