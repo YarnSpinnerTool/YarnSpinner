@@ -737,6 +737,8 @@ namespace Yarn.Compiler
 
             List<TypeChecker.TypeConstraint> typeConstraints = new List<TypeChecker.TypeConstraint>();
 
+            var fileTags = new Dictionary<string, IEnumerable<string>>();
+
             var walker = new ParseTreeWalker();
             foreach (var parsedFile in parsedFiles)
             {
@@ -746,9 +748,8 @@ namespace Yarn.Compiler
 
                 diagnostics.AddRange(typeCheckerListener.Diagnostics);
                 typeConstraints.AddRange(typeCheckerListener.TypeEquations);
+                fileTags.Add(parsedFile.Name, typeCheckerListener.FileTags);
             }
-
-            var fileTags = new Dictionary<string, IEnumerable<string>>();
 
             // determining the nodes we need to track visits on
             // this needs to be done before we finish up with declarations

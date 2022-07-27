@@ -26,6 +26,13 @@ namespace Yarn.Compiler
         private string sourceFileName = "<not set>";
         private string currentNodeName = null;
 
+        /// <summary>
+        /// Gets the collection of file-level hashtags that were found as a
+        /// result of using this <see cref="TypeCheckerListener"/> to visit a
+        /// <see cref="ParserRuleContext"/>.
+        /// </summary>
+        public ICollection<string> FileTags { get; } = new List<string>();
+
         // Maps the names of types as they appear in the language (string, bool,
         // number) to actual type objects.
         //
@@ -149,6 +156,11 @@ namespace Yarn.Compiler
         public IEnumerable<Diagnostic> Diagnostics => this.diagnostics;
 
         private List<Diagnostic> diagnostics = new List<Diagnostic>();
+
+        public override void ExitFile_hashtag([NotNull] YarnSpinnerParser.File_hashtagContext context)
+        {
+            this.FileTags.Add(context.text.Text);
+        }
 
         public override void ExitHeader([NotNull] YarnSpinnerParser.HeaderContext context)
         {
