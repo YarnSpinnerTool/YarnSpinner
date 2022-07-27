@@ -557,6 +557,34 @@ namespace Yarn.Compiler
             this.compiler.Emit(OpCode.PushNull, context.Start);
             return 0;
         }
+
+        // enum member. ConstantValueVisitor will have set the context's
+        // EnumMember property, so we just need to pull it back out, get
+        // its internal representation, and push it
+        public override int VisitValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context)
+        {
+            // The member of the enum that this value represents
+            EnumMember enumMember = context.EnumMember;
+
+            // The 'real', internal value of this member (a number)
+            var rawValue = enumMember.RawValue;
+
+            // Raw values are permitted to be a string, or a number
+            if (rawValue.Type == BuiltinTypes.String)
+            {
+                this.compiler.Emit(OpCode.PushString, context.Start, new Operand(rawValue.ConvertTo<string>()));
+            }
+            else if (rawValue.Type == BuiltinTypes.Number)
+            {
+                this.compiler.Emit(OpCode.PushFloat, context.Start, new Operand(rawValue.ConvertTo<float>()));
+            }
+            else
+            {
+                throw new InvalidOperationException($"Internal error: enum case \"{enumMember.Name}\" has raw value type {rawValue.Type.Name}, which is not allowed.");
+            }
+
+            return 0;
+        }
         #endregion
 
         public override int VisitDeclare_statement(YarnSpinnerParser.Declare_statementContext context)

@@ -920,6 +920,8 @@ namespace Yarn.Compiler
                 else if (declaration.Type == Types.Boolean)
                 {
                     value = new Operand(Convert.ToBoolean(declaration.DefaultValue));
+                } else if (declaration.Type is EnumType enumType) {
+                    value = new Operand(Convert.ToSingle(declaration.DefaultValue));
                 }
                 else
                 {

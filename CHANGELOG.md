@@ -8,6 +8,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- Enums have been added to the Yarn language.
+  - Enums are a type of value that are allowed to be one of a specific set of named values. For example:
+
+```
+// Create a new enum called Food
+<<enum Food>>
+  <<case Apple>>
+  <<case Orange>>
+  <<case Pear>>
+<<endenum>>
+
+// Declare a new variable with the default value Food.Apple
+<<declare $favouriteFood = Food.Apple>>
+
+<<if $favouriteFood == Food.Apple>>
+  I love apples!
+<<endif>>
+```
+
+- Enums only support being compared to other values of the same type. 
+  - For example, if you created a new enum called `Food`, and another enum called `Drink`, you can't compare `Food.Apple` to `Drink.Soda`. (You could compare apples to oranges, though, since they're both members of the `Food` type.)
+- The only valid operators that can be used with them are `==` (equal to) and `!=` (not equal to).
+- Enum values are stored in the host variable storage as a number.
+
 ### Changed
 
 ### Removed

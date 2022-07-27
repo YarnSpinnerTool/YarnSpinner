@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from /Users/mcjones/Development/YarnSpinner/YarnSpinner.Compiler/YarnSpinnerParser.g4 by ANTLR 4.9.2
+// Generated from /Users/desplesda/Work/YarnSpinner/YarnSpinner.Compiler/YarnSpinnerParser.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -381,6 +381,20 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitValueFunc([NotNull] YarnSpinnerParser.ValueFuncContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>valueEnumCase</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>valueEnumCase</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.variable"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -404,6 +418,18 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.enumCase"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterEnumCase([NotNull] YarnSpinnerParser.EnumCaseContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.enumCase"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitEnumCase([NotNull] YarnSpinnerParser.EnumCaseContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.if_statement"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -536,6 +562,30 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.enum_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterEnum_statement([NotNull] YarnSpinnerParser.Enum_statementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.enum_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitEnum_statement([NotNull] YarnSpinnerParser.Enum_statementContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.enum_case_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterEnum_case_statement([NotNull] YarnSpinnerParser.Enum_case_statementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.enum_case_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitEnum_case_statement([NotNull] YarnSpinnerParser.Enum_case_statementContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>jumpToNodeName</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.jump_statement"/>.

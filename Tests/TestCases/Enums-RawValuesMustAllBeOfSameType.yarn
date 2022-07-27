@@ -1,0 +1,7 @@
+title: Start
+---
+<<enum Food>>
+    <<case Apple = 1>>
+    <<case Orange = "Orange">> // error! can't mix types for raw values
+<<endenum>>
+===

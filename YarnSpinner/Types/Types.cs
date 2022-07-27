@@ -22,6 +22,9 @@ namespace Yarn
         /// <summary>Gets the type representing a typing error.</summary>
         internal static IType Error { get; } = new ErrorType();
 
+        /// <summary>Gets the type representing all enums.</summary>
+        public static IType Enum { get; } = new EnumType();        
+
         /// <summary>
         /// Gets the collection of all built-in types.
         /// </summary>
@@ -48,6 +51,7 @@ namespace Yarn
             { typeof(long), Types.Number },
             { typeof(ulong), Types.Number },
             { typeof(decimal), Types.Number },
+            { typeof(System.Enum), BuiltinTypes.Enum },
             { typeof(object), Types.Any },
         };
     }

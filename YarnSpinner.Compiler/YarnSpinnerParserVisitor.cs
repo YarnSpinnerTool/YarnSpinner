@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from /Users/mcjones/Development/YarnSpinner/YarnSpinner.Compiler/YarnSpinnerParser.g4 by ANTLR 4.9.2
+// Generated from /Users/desplesda/Work/YarnSpinner/YarnSpinner.Compiler/YarnSpinnerParser.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -205,6 +205,13 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitValueFunc([NotNull] YarnSpinnerParser.ValueFuncContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>valueEnumCase</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.variable"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -216,6 +223,12 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.enumCase"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitEnumCase([NotNull] YarnSpinnerParser.EnumCaseContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.if_statement"/>.
 	/// </summary>
@@ -282,6 +295,18 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.enum_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitEnum_statement([NotNull] YarnSpinnerParser.Enum_statementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.enum_case_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitEnum_case_statement([NotNull] YarnSpinnerParser.Enum_case_statementContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>jumpToNodeName</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.jump_statement"/>.

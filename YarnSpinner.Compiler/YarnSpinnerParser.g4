@@ -31,6 +31,7 @@ statement
     | call_statement
     | command_statement
     | declare_statement
+    | enum_statement
     | jump_statement
     | INDENT statement* DEDENT
     ;
@@ -77,6 +78,7 @@ value
     | STRING #valueString
     | KEYWORD_NULL   #valueNull
     | function_call       #valueFunc
+    | enumCase #valueEnumCase
 
     ;
 variable
@@ -85,6 +87,10 @@ variable
 
 function_call 
     : FUNC_ID '(' expression? (COMMA expression)* ')' ;
+
+enumCase
+    : enumName=FUNC_ID '.' memberName=FUNC_ID
+    ;
 
 if_statement
     : if_clause                                 // <<if foo>> statements...
@@ -131,6 +137,14 @@ shortcut_option
 
 declare_statement
     : COMMAND_START COMMAND_DECLARE variable OPERATOR_ASSIGNMENT value ('as' type=FUNC_ID)? COMMAND_END ;
+
+enum_statement
+    : COMMAND_START COMMAND_ENUM name=ID COMMAND_END enum_case_statement+ COMMAND_START COMMAND_ENDENUM COMMAND_END
+    ;
+
+enum_case_statement
+    : INDENT? COMMAND_START COMMAND_CASE name=FUNC_ID (OPERATOR_ASSIGNMENT rawValue=value)? COMMAND_END DEDENT?
+    ;
 
 jump_statement
     : COMMAND_START COMMAND_JUMP destination=ID COMMAND_END #jumpToNodeName

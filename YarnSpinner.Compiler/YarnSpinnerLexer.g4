@@ -279,7 +279,7 @@ COMMAND_JUMP: 'jump' [\p{White_Space}] -> pushMode(CommandIDOrExpressionMode);
 
 COMMAND_ENUM: 'enum' [\p{White_Space}] -> pushMode(CommandIDMode);
 
-COMMAND_CASE: 'case' [\p{White_Space}] -> pushMode(CommandIDMode);
+COMMAND_CASE: 'case' [\p{White_Space}] -> pushMode(ExpressionMode);
 
 COMMAND_ENDENUM: 'endenum' [\p{White_Space}]?;
 

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from /Users/mcjones/Development/YarnSpinner/YarnSpinner.Compiler/YarnSpinnerLexer.g4 by ANTLR 4.9.2
+// Generated from /Users/desplesda/Work/YarnSpinner/YarnSpinner.Compiler/YarnSpinnerLexer.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -822,7 +822,7 @@ public partial class YarnSpinnerLexer : IndentAwareLexer {
 		'\x2', '\x2DB', '\x2DC', '\a', 'u', '\x2', '\x2', '\x2DC', '\x2DD', '\a', 
 		'g', '\x2', '\x2', '\x2DD', '\x2DE', '\x3', '\x2', '\x2', '\x2', '\x2DE', 
 		'\x2DF', '\t', '\r', '\x2', '\x2', '\x2DF', '\x2E0', '\x3', '\x2', '\x2', 
-		'\x2', '\x2E0', '\x2E1', '\b', '_', '\x19', '\x2', '\x2E1', '\xC9', '\x3', 
+		'\x2', '\x2E0', '\x2E1', '\b', '_', '\xF', '\x2', '\x2E1', '\xC9', '\x3', 
 		'\x2', '\x2', '\x2', '\x2E2', '\x2E3', '\a', 'g', '\x2', '\x2', '\x2E3', 
 		'\x2E4', '\a', 'p', '\x2', '\x2', '\x2E4', '\x2E5', '\a', '\x66', '\x2', 
 		'\x2', '\x2E5', '\x2E6', '\a', 'g', '\x2', '\x2', '\x2E6', '\x2E7', '\a', 

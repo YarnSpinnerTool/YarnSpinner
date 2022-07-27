@@ -1074,6 +1074,7 @@ namespace Yarn
                 this.RegisterMethods((TypeBase)Types.Number);
                 this.RegisterMethods((TypeBase)Types.String);
                 this.RegisterMethods((TypeBase)Types.Boolean);
+                this.RegisterMethods((TypeBase)Types.Enum);
 
                 #endregion Operators
             }
