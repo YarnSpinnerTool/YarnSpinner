@@ -800,10 +800,9 @@ namespace Yarn.Compiler
                 // STILL a variable, then we weren't able to determine its type,
                 // and its type becomes the error type.
                 if (decl.Type is TypeChecker.TypeVariable) {
-                    diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.Range, $"Can't determine type of {decl.Name} given its usage. Manually specify its type with a declare statement."));
+                    var suggestion = decl.Name.StartsWith("$") ? $" For example: <<declare {decl.Name} = (initial value) >>" : string.Empty;
 
-                    // TODO: print out a valid declare statement that would
-                    // (partly) fix the error
+                    diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.Range, $"Can't determine type of {decl.Name} given its usage. Manually specify its type with a declare statement.{suggestion}"));
 
                     decl.Type = Types.Error;
                 }
