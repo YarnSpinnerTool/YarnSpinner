@@ -8,7 +8,7 @@ namespace TypeChecker
 {
     internal class ConjunctionConstraint : TypeConstraint, IEnumerable<TypeConstraint>
     {
-                public IEnumerable<TypeConstraint> Constraints { get; private set; }
+        public IEnumerable<TypeConstraint> Constraints { get; private set; }
 
         public ConjunctionConstraint(TypeConstraint left, TypeConstraint right)
         {
@@ -34,8 +34,7 @@ namespace TypeChecker
 
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<Yarn.TypeBase> knownTypes)
         {
-            // TODO: simplify conjunctions by elimiminating redundant terms
-            return this;
+            return new ConjunctionConstraint(Constraints.Distinct());
         }
     }
 }

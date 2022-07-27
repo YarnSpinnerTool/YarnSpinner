@@ -35,8 +35,7 @@ namespace TypeChecker
 
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<Yarn.TypeBase> knownTypes)
         {
-            // TODO: simplify disjunctions by elimiminating redundant terms
-            return this;
+            return new DisjunctionConstraint(this.Constraints.Distinct());
         }
     }
 }
