@@ -462,6 +462,18 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestJumpExpressionsMustBeStrings()
+        {
+            var source = CreateTestNode(@"<<set $x = 5>>
+            <<jump {$x}>>
+            ");
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+
+            result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+        }
+
+        [Fact]
         public void TestVariableDeclarationAnnotations()
         {
             var source = CreateTestNode(@"
