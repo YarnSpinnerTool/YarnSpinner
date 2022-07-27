@@ -523,6 +523,19 @@ namespace Yarn.Compiler
             }
             base.ExitLine_condition(context);
         }
+
+        public override void ExitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
+        {
+            if (context.expression() != null) {
+                // The type of the expression must resolve to a string.
+                AddEqualityConstraint(context.expression()?.Type,
+                    Types.String,
+                    context,
+                    s => $"jump statement's expression must be a {Types.String}, not a {context.expression().Type.Substitute(s)}");
+            }
+
+            base.ExitJumpToExpression(context);
+        }
     }
 
     public interface ITypedContext {
