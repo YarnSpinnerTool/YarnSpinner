@@ -107,6 +107,36 @@ A line with a conditional, a comment and a line tag. <<if false>>  #line:expecte
 // A comment with a single space:
 // 
 
+// single symbol tests
+🧑🏾‍❤️‍💋‍🧑🏻
+🧑🏾‍❤️‍💋‍🧑🏻 // with comment
+🧑🏾‍❤️‍💋‍🧑🏻#line:abc122
+🧑🏾‍❤️‍💋‍🧑🏻 #line:abc124 // with a comment
+
+// after emoji tests
+🧑🏾‍❤️‍💋‍🧑🏻 text after emoji
+🧑🏾‍❤️‍💋‍🧑🏻 text after emoji // with a comment
+🧑🏾‍❤️‍💋‍🧑🏻 text after emoji #line:abc125
+🧑🏾‍❤️‍💋‍🧑🏻 text after emoji #line:abc126 // with a comment
+
+// before emoji tests
+text before emoji 🧑🏾‍❤️‍💋‍🧑🏻
+text before emoji 🧑🏾‍❤️‍💋‍🧑🏻 // with a comment
+text before emoji 🧑🏾‍❤️‍💋‍🧑🏻 #line:abc127
+text before emoji 🧑🏾‍❤️‍💋‍🧑🏻 #line:abc128 // with a comment
+
+// emoji between tests
+before 🧑🏾‍❤️‍💋‍🧑🏻after
+before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc129
+before 🧑🏾‍❤️‍💋‍🧑🏻after // with a comment
+before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
+
+// multi-moji tests
+🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻
+🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻 // with a comment
+🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻 #line:abc131
+🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻 #line:abc132 // with a comment
+
 ===";
 
             {
@@ -120,7 +150,6 @@ A line with a conditional, a comment and a line tag. <<if false>>  #line:expecte
             }
 
             // Act
-
 
             var output = Utility.AddTagsToLines(originalText);
 
@@ -137,11 +166,12 @@ A line with a conditional, a comment and a line tag. <<if false>>  #line:expecte
             var lineTagAfterComment = new Regex(@"\/\/.*#line:\w+");
 
             // Ensure that the right number of tags in total is present
-            var expectedExistingTags = 7;
-            var expectedNewTags = 7;
+            var expectedExistingTags = 17;
+            var expectedNewTags = 17;
             var expectedTotalTags = expectedExistingTags + expectedNewTags;
 
-            Assert.Equal(expectedTotalTags, lineTagRegex.Matches(output).Count);
+            var lineTagRegexMatches = lineTagRegex.Matches(output).Count;
+            Assert.Equal(expectedTotalTags, lineTagRegexMatches);
 
             // No tags were added after a comment
             foreach (var line in output.Split('\n')) {
@@ -169,15 +199,57 @@ A line with a conditional, a comment and a line tag. <<if false>>  #line:expecte
                 (null, "A single line, with no line tag."),
                 (null, "An option, with no line tag."),
                 (null, "A line with no tag, but a comment at the end."),
+
+                // single symbol tests
+                (null, "🧑🏾‍❤️‍💋‍🧑🏻"),
+                (null, "🧑🏾‍❤️‍💋‍🧑🏻"),
+                ("line:abc122", "🧑🏾‍❤️‍💋‍🧑🏻"),
+                ("line:abc124", "🧑🏾‍❤️‍💋‍🧑🏻"),
+
+                // // after emoji tests
+                (null, "🧑🏾‍❤️‍💋‍🧑🏻 text after emoji"),
+                (null, "🧑🏾‍❤️‍💋‍🧑🏻 text after emoji"),
+                ("line:abc125", "🧑🏾‍❤️‍💋‍🧑🏻 text after emoji"),
+                ("line:abc126", "🧑🏾‍❤️‍💋‍🧑🏻 text after emoji"),
+
+                // // before emoji tests
+                (null, "text before emoji 🧑🏾‍❤️‍💋‍🧑🏻"),
+                (null, "text before emoji 🧑🏾‍❤️‍💋‍🧑🏻"),
+                ("line:abc127", "text before emoji 🧑🏾‍❤️‍💋‍🧑🏻"),
+                ("line:abc128", "text before emoji 🧑🏾‍❤️‍💋‍🧑🏻"),
+
+                // // emoji between tests
+                (null, "before 🧑🏾‍❤️‍💋‍🧑🏻after"),
+                ("line:abc129", "before 🧑🏾‍❤️‍💋‍🧑🏻after"),
+                (null, "before 🧑🏾‍❤️‍💋‍🧑🏻after"),
+                ("line:abc130", "before 🧑🏾‍❤️‍💋‍🧑🏻after"),
+
+                // // multi-moji tests
+                (null, "🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻"),
+                (null, "🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻"),
+                ("line:abc131", "🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻"),
+                ("line:abc132", "🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻"),
             };
 
-            foreach (var result in expectedResults) {
-                if (result.tag != null) {
+            Assert.Equal(expectedResults.Length, lineTagRegexMatches);
+
+            // used to keep track of all line ids we have already seen
+            // this is because we need to make sure we see every line in the string table
+            HashSet<string> visitedIDs = new HashSet<string>();
+
+            foreach (var result in expectedResults)
+            {
+                if (result.tag != null)
+                {
                     Assert.Equal(compilationResult.StringTable[result.tag].text, result.line);
-                } else {
+                    // flagging this ID as having been visited
+                    visitedIDs.Add(result.tag);
+                }
+                else
+                {
                     // a line exists that has this text
-                    var matchingEntries = compilationResult.StringTable.Where(s => s.Value.text == result.line);
-                    Assert.Single(matchingEntries);
+                    var matchingEntries = compilationResult.StringTable.Where(s => s.Value.text == result.line).Where(s => !visitedIDs.Contains(s.Key));
+                    Assert.NotEmpty(matchingEntries);
 
                     // that line has a line tag
                     var lineTag = matchingEntries.First().Key;
@@ -186,9 +258,14 @@ A line with a conditional, a comment and a line tag. <<if false>>  #line:expecte
                     // that line is not a duplicate of any other line tag
                     var allLineTags = compilationResult.StringTable.Keys;
                     Assert.Equal(1, allLineTags.Count(t => t == lineTag));
+
+                    // flagging this ID as having been visited
+                    visitedIDs.Add(lineTag);
                 }
             }
-            
+
+            // we now should have seen every line ID
+            Assert.Equal(visitedIDs.Count, compilationResult.StringTable.Count);
         }
 
         [Fact]

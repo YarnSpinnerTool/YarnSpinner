@@ -8,6 +8,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [2.2.2] 2022-07-22
+
+### Changed
+
+- Handling of escape characters is now more consistent in how it approaches the situation of when the first character is the escape character `\`.
+- Tagging lines that contain multiwidth characters should no longer create weird invalid split characters in the dialogue.
+
+## [2.2.1] 2022-07-08
+
+### Added
+
+- Added a means to detect and return runs of lines through basic block analysis to the Utils. This is called via the `Yarn.Compiler.Utility.ExtractStringBlocks` function.
+
+### Changed
+
 - Markup attributes may now begin with a digit, letter or underscore. Previously, they were required to begin with a letter or an underscore. This allows the `select` marker to work with numbers: `[select value=1 1=one 2=two 3=three /]`
 
 ## [2.2.0] 2022-04-08
