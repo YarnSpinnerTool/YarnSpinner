@@ -472,21 +472,35 @@ namespace Yarn.Compiler
         /// Finds and collates every jump in every node.
         /// </summary>
         /// <param name="YarnFileContents">The collection of yarn file content to parse and walk</param>
-        /// <returns>A list of tuples each containing a node and all its jumps.</returns>
-        public static List<(string node, List<string> jumps)> DetermineNodeConnections(string[] YarnFileContents)
+        /// <returns>A list of lists of GraphingNode each containing a node, its jumps, and any positional info.</returns>
+        public static List<List<GraphingNode>> DetermineNodeConnections(string[] YarnFileContents)
         {
             var walker = new ParseTreeWalker();
-            List<(string, List<string>)> connections = new List<(string, List<string>)>();
+
+            // alright so the change is instead of making it a list
+            // we make it a list of lists
+            List<List<GraphingNode>> cluster = new List<List<GraphingNode>>();
             foreach (var contents in YarnFileContents)
             {
                 var (parseSource, diagnostics) = ParseSource(contents);
 
+                List<GraphingNode> connections = new List<GraphingNode>();
                 var jumpListener = new JumpGraphListener(connections);
                 walker.Walk(jumpListener, parseSource.Tree);
+
+                cluster.Add(connections);
             }
 
-            return connections;
+            return cluster;
         }
+    }
+
+    public struct GraphingNode
+    {
+        public string node;
+        public string[] jumps;
+        public bool hasPositionalInformation;
+        public (int x, int y) position;
     }
 
     /// <summary>

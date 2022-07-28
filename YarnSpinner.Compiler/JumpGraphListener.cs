@@ -8,10 +8,12 @@ namespace Yarn.Compiler
     {
         private List<string> jumps;
         private string currentNode;
+        private (int x, int y) position;
+        private bool hasPositionalInformation; // tuples are value type so I can't null check them
 
-        private List<(string, List<string>)> connections;
+        private List<GraphingNode> connections;
 
-        public JumpGraphListener(List<(string, List<string>)> connections)
+        public JumpGraphListener(List<GraphingNode> connections)
         {
             this.connections = connections;
         }
@@ -20,12 +22,20 @@ namespace Yarn.Compiler
         {
             jumps = new List<string>();
             currentNode = null;
+            hasPositionalInformation = false;
         }
         public override void ExitNode([NotNull] YarnSpinnerParser.NodeContext context)
         {
             if (jumps.Count() > 0 && !string.IsNullOrEmpty(currentNode))
             {
-                connections.Add((currentNode, jumps));
+                var node = new GraphingNode
+                {
+                    node = this.currentNode,
+                    jumps = this.jumps.ToArray(),
+                    hasPositionalInformation = this.hasPositionalInformation,
+                    position = this.position,
+                };
+                this.connections.Add(node);
             }
         }
 
@@ -35,21 +45,22 @@ namespace Yarn.Compiler
             {
                 currentNode = context.header_value.Text;
             }
-            // later make it also extract x and y where possible
-            // else if (context.header_key.Text.Equals("position"))
-            // {
-            //     var positionalString = context.header_value.Text;
-            //     var split = positionalString.Split(',');
-            //     var xString = split[0].Trim();
-            //     var yString = split[1].Trim();
+            else if (context.header_key.Text.Equals("position"))
+            {
+                // later make it also extract x and y where possible
+                var positionalString = context.header_value.Text;
+                var split = positionalString.Split(',');
+                var xString = split[0].Trim();
+                var yString = split[1].Trim();
                 
-            //     int x;
-            //     int y;
-            //     if (int.TryParse(xString, out x) && int.TryParse(yString, out y))
-            //     {
-            //         var position = (x, y);
-            //     }
-            // }
+                int x;
+                int y;
+                if (int.TryParse(xString, out x) && int.TryParse(yString, out y))
+                {
+                    hasPositionalInformation = true;
+                    position = (x, y);
+                }
+            }
         }
 
         public override void EnterJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context)
