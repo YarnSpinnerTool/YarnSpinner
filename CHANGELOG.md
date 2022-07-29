@@ -8,8 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- Diagnostics and type information now come from the Yarn Spinner compiler,
-  rather than an independent parsing pass.
+- Diagnostics and type information now come from the Yarn Spinner compiler, rather than an independent parsing pass.
+- New command "yarnspinner.graph" that exports a string which is a graph representation in either mermaid or dot format depending on config.
 
 ### Changed
 
