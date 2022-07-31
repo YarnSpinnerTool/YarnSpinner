@@ -15,6 +15,9 @@ title: Start
 // The 'as Food' can be left out, because the compiler will figure it out
 <<declare $secondFavouriteFood = Food.Orange>>
 
+// The 'Food' can be left out too, because the compiler will figure it out
+<<declare $thirdFavouriteFood = .Pear>>
+
 // Enum variables can be compared to each other
 <<if $favouriteFood == Food.Apple>>
     I like apples!
@@ -42,6 +45,9 @@ title: Start
 <<else>>
     I like oranges now!
 <<endif>>
+
+// You can skip the enum name if Yarn can infer the enum that it came from
+<<set $favouriteFood to .Pear>>
 
 // Declare two new enums that have explicit raw values: one of numbers, and
 // one of strings

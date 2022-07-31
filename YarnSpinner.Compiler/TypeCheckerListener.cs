@@ -294,13 +294,15 @@ namespace Yarn.Compiler
 
         public override void ExitValueTypeMemberReference([NotNull] YarnSpinnerParser.ValueTypeMemberReferenceContext context)
         {
-            if (context.typeMemberReference() == null || context.typeMemberReference().memberName == null) {
+            var typeName = context.typeMemberReference()?.typeName?.Text ?? null;
+            var memberName = context.typeMemberReference()?.memberName?.Text ?? null;
+
+            // If we don't have a type member reference parse node, or if we
+            // don't have a member name, then that's an error.
+            if (context.typeMemberReference() == null || memberName == null) {
                 context.Type = Types.Error;
                 return;
             }
-
-            var typeName = context.typeMemberReference().typeName.Text;
-            var memberName = context.typeMemberReference().memberName.Text;
 
             context.Type = GenerateTypeVariable();
 
