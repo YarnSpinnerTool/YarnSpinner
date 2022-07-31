@@ -76,7 +76,6 @@ value
     | KEYWORD_FALSE  #valueFalse
     | variable       #valueVar
     | STRING #valueString
-    | KEYWORD_NULL   #valueNull
     | function_call       #valueFunc
     | typeMemberReference #valueTypeMemberReference
 

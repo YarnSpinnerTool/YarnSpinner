@@ -551,13 +551,6 @@ namespace Yarn.Compiler
             return 0;
         }
 
-        // null value
-        public override int VisitValueNull(YarnSpinnerParser.ValueNullContext context)
-        {
-            this.compiler.Emit(OpCode.PushNull, context.Start);
-            return 0;
-        }
-
         // A reference to a constant property member of a type (eg Food.Apple).
         // We need to find the underlying value of that type and push that.
         public override int VisitValueTypeMemberReference([NotNull] YarnSpinnerParser.ValueTypeMemberReferenceContext context)

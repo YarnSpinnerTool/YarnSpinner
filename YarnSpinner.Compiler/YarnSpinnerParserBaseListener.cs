@@ -353,20 +353,6 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitValueString([NotNull] YarnSpinnerParser.ValueStringContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>valueNull</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterValueNull([NotNull] YarnSpinnerParser.ValueNullContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>valueNull</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitValueNull([NotNull] YarnSpinnerParser.ValueNullContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by the <c>valueFunc</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
 	/// <para>The default implementation does nothing.</para>

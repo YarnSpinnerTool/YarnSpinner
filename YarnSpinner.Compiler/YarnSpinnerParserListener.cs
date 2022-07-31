@@ -300,18 +300,6 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitValueString([NotNull] YarnSpinnerParser.ValueStringContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>valueNull</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterValueNull([NotNull] YarnSpinnerParser.ValueNullContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>valueNull</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitValueNull([NotNull] YarnSpinnerParser.ValueNullContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>valueFunc</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
 	/// </summary>

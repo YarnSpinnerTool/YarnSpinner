@@ -43,13 +43,6 @@ namespace Yarn.Compiler
             }
         }
 
-        public override Value VisitValueNull([NotNull] YarnSpinnerParser.ValueNullContext context)
-        {
-            const string message = "Null is not a permitted type in Yarn Spinner 2.0 and later";
-            this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
-            return new Value(Types.Error, null);
-        }
-
         public override Value VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
         {
             if (float.TryParse(context.GetText(), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var result))

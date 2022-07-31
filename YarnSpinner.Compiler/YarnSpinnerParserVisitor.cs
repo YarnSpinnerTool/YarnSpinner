@@ -191,13 +191,6 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitValueString([NotNull] YarnSpinnerParser.ValueStringContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>valueNull</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitValueNull([NotNull] YarnSpinnerParser.ValueNullContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>valueFunc</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
 	/// </summary>
