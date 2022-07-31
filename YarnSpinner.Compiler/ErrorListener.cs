@@ -103,6 +103,9 @@
         {
             this.FileName = fileName;
 
+            // TODO: maybe fail instead of silently dropping this? if the
+            // context is null, then the range is set to (0,0-0,0), which isn't
+            // super useful
             if (context != null)
             {
                 this.Range = new Range(
@@ -113,6 +116,21 @@
             }
             this.Message = message;
             this.Context = context.GetTextWithWhitespace();
+            this.Severity = severity;
+        }
+
+        public Diagnostic(string fileName, IToken token, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        {
+            this.FileName = fileName;
+
+            this.Range = new Range(
+                token.Line - 1,
+                token.Column,
+                token.Line - 1,
+                token.Column + token.Text.Length);
+        
+            this.Message = message;
+            this.Context = token.Text;
             this.Severity = severity;
         }
 
