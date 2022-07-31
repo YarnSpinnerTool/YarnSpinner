@@ -19,10 +19,11 @@ namespace TypeChecker
         {
             // Find all types that have this name, and return a disjunction
             // containing an equality constraint of each possibility.
-            return new DisjunctionConstraint(
-                knownTypes.Where(t => t.Name == this.Name)
-                .Select(t => new TypeEqualityConstraint(this.Type, t))
-            );
+            TypeConstraint typeConstraint = new DisjunctionConstraint(
+                            knownTypes.Where(t => t.Name == this.Name)
+                            .Select(t => new TypeEqualityConstraint(this.Type, t))).Simplify(subst, knownTypes);
+            typeConstraint.FailureMessageProvider = this.FailureMessageProvider;
+            return typeConstraint;
         }
 
         public override string ToString()

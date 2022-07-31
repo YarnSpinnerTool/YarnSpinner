@@ -27,11 +27,14 @@ namespace TypeChecker
         {
             // Find all types that have this member and return a disjunction
             // constraint that checks each of them
-            return new DisjunctionConstraint(
+            var typeConstraint = new DisjunctionConstraint(
                 knownTypes
-                .Where(e => e.Members.ContainsKey(MemberName))
-                .Select(e => new TypeEqualityConstraint(this.Type, e))
-                );
+                .Where(e => e.TypeMembers.ContainsKey(MemberName))
+                .Select(e => new TypeEqualityConstraint(this.Type, e)))
+            .Simplify(subst, knownTypes);
+
+            typeConstraint.FailureMessageProvider = this.FailureMessageProvider;
+            return typeConstraint;
         }
     }
 }

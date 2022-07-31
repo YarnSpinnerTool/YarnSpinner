@@ -41,7 +41,9 @@ namespace TypeChecker
             }
             else
             {
-                return new DisjunctionConstraint(this.Constraints.Distinct());
+                var disjunct = new DisjunctionConstraint(this.Constraints.Distinct());
+                disjunct.FailureMessageProvider = this.FailureMessageProvider;
+                return disjunct;
             }
         }
     }
