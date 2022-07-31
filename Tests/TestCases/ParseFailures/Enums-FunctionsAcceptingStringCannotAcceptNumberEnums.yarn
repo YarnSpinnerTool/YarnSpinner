@@ -14,6 +14,8 @@ title: Start
     <<case Three = 3>>
 <<endenum>>
 
+// Error: set_objective_complete expects a string, so it can't be passed an enum
+// that has numbers as its raw value type
 <<call set_objective_complete(EnumA.One)>>
 <<call set_objective_complete(EnumB.One)>>
 
