@@ -89,6 +89,24 @@ namespace Yarn
                 throw new System.ArgumentException($"'{nameof(methodName)}' cannot be null or empty.", nameof(methodName));
             }
 
+            if (implementingType is EnumType) {
+                // TODO: Come up with a better way for multiple types to share
+                // the same methods. The reason why we do this is because if we
+                // have two enums, A and B, the current mechanism would come up
+                // with a different name for 'EqualTo' for each of them:
+                // 'A.EqualTo' and 'B.EqualTo', even though they do the exact
+                // same thing. Worse, runners don't know that A and B exist,
+                // because they only know to register the built-in types and
+                // their methods.
+                //
+                // A better solution would be to let types identify the
+                // canonical names for their methods themselves - i.e. enum A
+                // could say 'my EqualTo method is named Enum.EqualTo'.
+                //
+                // (See also note in the constructor for StandardLibrary.)
+                return $"Enum.{methodName}";
+            }
+
             return $"{implementingType.Name}.{methodName}";
         }
 

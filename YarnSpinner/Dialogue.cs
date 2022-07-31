@@ -1074,7 +1074,10 @@ namespace Yarn
                 this.RegisterMethods((TypeBase)Types.Number);
                 this.RegisterMethods((TypeBase)Types.String);
                 this.RegisterMethods((TypeBase)Types.Boolean);
-                this.RegisterMethods((TypeBase)Types.Enum);
+
+                // NOTE: This is part of a workaround for supporting 'EqualTo'
+                // in Enums. See note in TypeUtil.GetCanonicalNameForMethod.
+                this.RegisterMethods(new EnumType("Enum", null, null));
 
                 #endregion Operators
             }
