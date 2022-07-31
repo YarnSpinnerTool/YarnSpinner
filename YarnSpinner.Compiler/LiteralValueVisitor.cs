@@ -7,30 +7,27 @@ namespace Yarn.Compiler
     using Antlr4.Runtime.Misc;
 
     /// <summary>
-    /// A visitor that visits any valid constant value, and returns a <see
-    /// cref="Value"/>. Currently only supports terminals, not expressions,
-    /// even if those expressions would be constant.
+    /// A visitor that visits any valid literal (i.e. numbers, bools, strings),
+    /// and returns a <see cref="Value"/>.
     /// </summary>
-    internal class ConstantValueVisitor : YarnSpinnerParserBaseVisitor<Value>
+    internal class LiteralValueVisitor : YarnSpinnerParserBaseVisitor<Value>
     {
         private readonly ParserRuleContext context;
         private readonly string sourceFileName;
-        private readonly IEnumerable<Declaration> declarations;
         private List<Diagnostic> diagnostics;
 
         /// <summary>
         /// Initializes a new instance of the <see
-        /// cref="ConstantValueVisitor"/> class.
+        /// cref="LiteralValueVisitor"/> class.
         /// </summary>
         /// <param name="context">The parser context for this value.</param>
         /// <param name="sourceFileName">The name of the file that is being
         /// visited by this instance.</param>
         /// <param name="types">The types of values known to this instance.</param>
-        public ConstantValueVisitor(ParserRuleContext context, string sourceFileName, IEnumerable<Declaration> declarations, ref List<Diagnostic> diagnostics)
+        public LiteralValueVisitor(ParserRuleContext context, string sourceFileName, ref List<Diagnostic> diagnostics)
         {
             this.context = context;
             this.sourceFileName = sourceFileName;
-            this.declarations = declarations;
             this.diagnostics = diagnostics;
         }
 
@@ -81,38 +78,17 @@ namespace Yarn.Compiler
         {
             return new Value(Types.Boolean, true);
         }
+    }
 
-        public override Value VisitValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context)
-        {
-            var enumName = context.enumCase().enumName.Text;
-            var memberName = context.enumCase().memberName.Text;
-
-            // Ensure that a type with this name exists, and that it is an Enum
-            var enumType = types.OfType<EnumType>().FirstOrDefault(t => t.Name == enumName);
-
-            if (enumType == null) {
-                this.diagnostics.Add(new Diagnostic(
-                    sourceFileName,
-                    context,
-                    $"{enumName} is not a valid enum name"));
-                return new Value(BuiltinTypes.Undefined, null);
-            }
-
-            // Ensure that this enum has a member of this name
-            var member = enumType.Members.FirstOrDefault(m => m.Name == memberName);
-
-            if (member == null) {
-                this.diagnostics.Add(new Diagnostic(
-                    sourceFileName,
-                    context,
-                    $"Enum {enumName} does not have a member called {memberName}"));
-                return new Value(BuiltinTypes.Undefined, null);
-            }
-
-            context.EnumType = enumType;
-            context.EnumMember = member;
-
-            return new Value(context.EnumType, member.RawValue.InternalValue);
-        }
+    // Mark numbers, true/false, and string as literals, so that other parts of
+    // the code can more easily determine whether a parse node is a literal or
+    // not. (We do this so that a declaration can check to see if its initial
+    // value was of a literal, or of a reference to an identifier.)
+    public partial class YarnSpinnerParser {
+        public interface ILiteralContext { }
+        public partial class ValueNumberContext : ILiteralContext { }
+        public partial class ValueFalseContext : ILiteralContext { }
+        public partial class ValueTrueContext : ILiteralContext { }
+        public partial class ValueStringContext : ILiteralContext { }
     }
 }

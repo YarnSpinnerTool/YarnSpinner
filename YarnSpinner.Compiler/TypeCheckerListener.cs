@@ -187,10 +187,9 @@ namespace Yarn.Compiler
                 return;
             }
 
-            // Figure out the value and its type
-            var constantValueVisitor = new ConstantValueVisitor(context, name, this.knownDeclarations, ref this.diagnostics);
-            var value = constantValueVisitor.Visit(context.value());
-
+            // Figure out the type of the declaration; we'll determine its initial value later
+            var constantValueVisitor = new LiteralValueVisitor(context, name, ref this.diagnostics);
+            
             var typeIdentifier = this.GenerateTypeVariable(name);
 
             // The type of this identifier is equal to the type of its default value.
@@ -590,7 +589,7 @@ namespace Yarn.Compiler
                 else
                 {
                     // This case statement has a raw value. Parse it.
-                    Value value = new ConstantValueVisitor(context, this.sourceFileName, this.typeDeclarations, ref this.diagnostics).Visit(caseStatement.rawValue);
+                    Value value = new LiteralValueVisitor(context, this.sourceFileName, ref this.diagnostics).Visit(caseStatement.rawValue);
 
                     caseStatement.RawValue = value;
 
