@@ -1,0 +1,12 @@
+title: Start
+---
+
+<<enum EnumA>>
+    <<case One>>
+    <<case Two>>
+    <<case Three>>
+<<endenum>>
+
+<<set $x = .Four>> // error - no type exists that has .Four as a member
+
+===
