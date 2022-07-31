@@ -1,29 +1,38 @@
 #define DISALLOW_NULL_EQUATION_TERMS
 
-
-using System.Collections.Generic;
-using System.Linq;
-using Yarn;
-
 namespace TypeChecker
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Yarn;
+
     internal class TypeConvertibleConstraint : TypeConstraint
     {
         /// <summary>
-        /// Gets or sets the type that is being constrained.
+        /// Initializes a new instance of the <see
+        /// cref="TypeConvertibleConstraint"/> class.
         /// </summary>
-        public IType FromType { get; set; }
-
-        /// <summary>
-        /// Gets or sets the type that <see cref="FromType"/> can be converted to.
-        /// </summary>
-        public IType ToType { get; set; }
-
+        /// <param name="type">The type to constraint to one that is convertible
+        /// to <paramref name="convertibleToType"/></param>
+        /// <param name="convertibleToType">The type that <paramref
+        /// name="type"/> should be constrained to be convertible to.</param>
         public TypeConvertibleConstraint(IType type, IType convertibleToType)
         {
             this.FromType = type;
             this.ToType = convertibleToType;
         }
+
+        /// <summary>
+        /// Gets or sets the type that is being constrained to one that is
+        /// convertible to <see cref="ToType"/>.
+        /// </summary>
+        public IType FromType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type that <see cref="FromType"/> can be converted
+        /// to.
+        /// </summary>
+        public IType ToType { get; set; }
 
         /// <inheritdoc/>
         public override string ToString() => $"{this.FromType} c> {this.ToType}";
@@ -38,30 +47,40 @@ namespace TypeChecker
                 return null;
             }
 
-            IEnumerable<TypeBase> AllTypesConvertibleFrom(TypeBase from) {
+            IEnumerable<TypeBase> AllTypesConvertibleFrom(TypeBase from)
+            {
                 return knownTypes.Where(other => from.IsConvertibleTo(other)).OrderByDescending(t => t.TypeDepth);
             }
 
-            IEnumerable<TypeBase> AllTypesConvertibleTo(TypeBase to) {
+            IEnumerable<TypeBase> AllTypesConvertibleTo(TypeBase to)
+            {
                 return knownTypes.Where(other => other.IsConvertibleTo(to)).OrderByDescending(t => t.TypeDepth);
             }
 
-            var substitutedFromType = FromType.Substitute(subst);
-            var substitutedToType = ToType.Substitute(subst);
+            var substitutedFromType = this.FromType.Substitute(subst);
+            var substitutedToType = this.ToType.Substitute(subst);
 
-            if (substitutedFromType is TypeBase actualFromLiteral 
-            && substitutedToType is TypeBase actualToLiteral) {
+            if (substitutedFromType is TypeBase actualFromLiteral
+            && substitutedToType is TypeBase actualToLiteral)
+            {
                 // We know their concrete types already! We can do a fast check
                 // to see if 'from' is convertible to 'to'.
-                if (actualFromLiteral.IsConvertibleTo(actualToLiteral)) {
-                    // The two types are convertible because they're declared to be.
+                if (actualFromLiteral.IsConvertibleTo(actualToLiteral))
+                {
+                    // The two types are convertible because they're declared to
+                    // be.
 
-                    // Return a constraint that we know will work: fromLiteral == fromLiteral
+                    // Return a constraint that we know will work: fromLiteral
+                    // == fromLiteral
                     var equality = new TypeEqualityConstraint(actualFromLiteral, actualFromLiteral);
                     equality.FailureMessageProvider = this.FailureMessageProvider;
                     return equality;
-                } else {
-                    // We know their concrete types and they're not convertible. Return a constraint that is guaranteed to fail: from fromLiteral == toLiteral
+                }
+                else
+                {
+                    // We know their concrete types and they're not convertible.
+                    // Return a constraint that is guaranteed to fail: from
+                    // fromLiteral == toLiteral
                     var equality = new TypeEqualityConstraint(actualFromLiteral, actualToLiteral);
                     equality.FailureMessageProvider = this.FailureMessageProvider;
                     return equality;
@@ -71,22 +90,27 @@ namespace TypeChecker
             IEnumerable<IType> fromTypes;
             IEnumerable<IType> toTypes;
 
-            if (substitutedFromType is TypeBase fromLiteral) {
+            if (substitutedFromType is TypeBase fromLiteral)
+            {
                 // We know 'from' is a literal. This means 'to' must be a type
                 // that is convertible from 'from'.
                 fromTypes = new[] { fromLiteral };
                 toTypes = AllTypesConvertibleFrom(fromLiteral);
-            } else if (substitutedToType is TypeBase toLiteral) {
+            }
+            else if (substitutedToType is TypeBase toLiteral)
+            {
                 // We know 'to' is a literal. This means 'from' must be a type
                 // that is convertible to 'to'.
                 fromTypes = AllTypesConvertibleTo(toLiteral);
                 toTypes = new[] { toLiteral };
-            } else {
+            }
+            else
+            {
                 // Neither 'from' nor 'to' are literals, so we have no way to
                 // produce a reduced list of candidates for equalities. The best
                 // we can do is to assert that they're equal.
-                fromTypes = new[] { FromType };
-                toTypes = new[] { ToType };
+                fromTypes = new[] { this.FromType };
+                toTypes = new[] { this.ToType };
             }
 
             var allPairs = new[] { fromTypes, toTypes }.CartesianProduct();
@@ -95,31 +119,38 @@ namespace TypeChecker
             {
                 var fromConstraint = new TypeEqualityConstraint(pair.ElementAt(0), this.FromType);
                 var toConstraint = new TypeEqualityConstraint(pair.ElementAt(1), this.ToType);
-                
+
                 toConstraint.FailureMessageProvider = this.FailureMessageProvider;
                 fromConstraint.FailureMessageProvider = this.FailureMessageProvider;
 
-                var constraints = new[] {
+                var constraints = new[]
+                {
                         fromConstraint,
                         toConstraint,
                 }.WithoutTautologies();
 
-                if (constraints.Count() == 1) {
+                if (constraints.Count() == 1)
+                {
                     return constraints.Single();
-                } else {
+                }
+                else
+                {
                     var conjunction = new ConjunctionConstraint(constraints);
                     conjunction.FailureMessageProvider = this.FailureMessageProvider;
                     return conjunction;
                 }
             });
 
-            if (allPossibleEqualities.Count() == 1) {
+            if (allPossibleEqualities.Count() == 1)
+            {
                 // Precisely one possible equality. Return a single constraint
                 // constraint.
                 var equality = allPossibleEqualities.Single();
                 equality.FailureMessageProvider = this.FailureMessageProvider;
                 return equality;
-            } else {
+            }
+            else
+            {
                 // More than one possible equality. Return a disjunction
                 // constraint.
                 var disjunction = new DisjunctionConstraint(allPossibleEqualities);

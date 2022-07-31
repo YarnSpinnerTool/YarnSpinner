@@ -194,6 +194,10 @@ namespace TypeChecker
         }
 
 
+        /// <summary>Attempts to unify <paramref name="x"/> with <paramref
+        /// name="y"/>, producing a new <see cref="Substitution"/>.</summary>
+        /// <inheritdoc cref="Unify(IType, IType, Substitution)" path="/param"/>
+        /// <returns>A new <see cref="Substitution"/>.</returns>
         internal static Substitution Unify(IType x, IType y)
         {
             var subst = new Substitution();
