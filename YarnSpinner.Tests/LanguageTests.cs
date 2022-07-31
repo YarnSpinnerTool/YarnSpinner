@@ -289,6 +289,9 @@ namespace YarnSpinner.Tests
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
             compilationJob.Library = dialogue.Library;
 
+            dialogue.Library.RegisterFunction("set_objective_complete", (string objective) => true);
+            dialogue.Library.RegisterFunction("is_objective_active", (string objective) => true);
+
             var testPlanFilePath = Path.ChangeExtension(scriptFilePath, ".testplan");
 
             bool testPlanExists = File.Exists(testPlanFilePath);
