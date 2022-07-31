@@ -4,10 +4,50 @@ using System.Collections.Generic;
 namespace Yarn
 {
     /// <summary>
+    /// Provides properties used to work with members of a type.
+    /// </summary>
+    public interface ITypeMember {
+        /// <summary>
+        /// Gets or sets the type of this member.
+        /// </summary>
+        IType Type { get; }
+    }
+
+    /// <summary>
+    /// Represents a property that belongs to a type and contains a read-only
+    /// value.
+    /// </summary>
+    /// <remarks>
+    /// This kind of type member is useful for constant properties, like enum
+    /// cases.
+    /// </remarks>
+    internal class ConstantTypeProperty : ITypeMember
+    {
+        public IType Type { get; }
+
+        /// <summary>
+        /// Gets the value that is stored in this property.
+        /// </summary>
+        public IConvertible Value { get; }
+
+        public string Description { get; }
+
+        public ConstantTypeProperty(IType type, IConvertible value, string description)
+        {
+            this.Type = type;
+            this.Value = value;
+            this.Description = description;
+        }
+    }
+
+    /// <summary>
     /// Provides the base class for all concrete types.
     /// </summary>
     internal abstract class TypeBase : IType, IEquatable<TypeBase>
     {
+
+        public static readonly IReadOnlyDictionary<string, ITypeMember> EmptyTypeMemberDictionary = new Dictionary<string, ITypeMember>();
+
         public abstract string Name { get; }
         public abstract IType Parent { get; }
         public abstract string Description { get; }
@@ -21,9 +61,9 @@ namespace Yarn
 
         internal Dictionary<string, Delegate> methods = new Dictionary<string, Delegate>();
 
-        public IReadOnlyDictionary<string, IType> Members => members;
+        public IReadOnlyDictionary<string, ITypeMember> TypeMembers => typeMembers;
 
-        internal Dictionary<string, IType> members = new Dictionary<string, IType>();
+        protected Dictionary<string, ITypeMember> typeMembers = new Dictionary<string, ITypeMember>();
 
         public IReadOnlyCollection<IType> ConvertibleToTypes => convertibleToTypes;
 

@@ -24,9 +24,8 @@ namespace Yarn
         string Description { get; }
 
         /// <summary>
-        /// Gets the collection of type information for members that are
-        /// available on this type.
+        /// Gets the collection of type information for this type's type members.
         /// </summary>
-        System.Collections.Generic.IReadOnlyDictionary<string, IType> Members { get; }
+        System.Collections.Generic.IReadOnlyDictionary<string, ITypeMember> TypeMembers { get; }
     }
 }
