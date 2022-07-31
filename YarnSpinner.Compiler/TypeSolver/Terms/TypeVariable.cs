@@ -17,6 +17,9 @@ namespace TypeChecker
 
         public IReadOnlyDictionary<string, IType> Members => new Dictionary<string, IType>();
 
+        // Type variables do not have any members.
+        public IReadOnlyDictionary<string, ITypeMember> TypeMembers => TypeBase.EmptyTypeMemberDictionary;
+
         public TypeVariable(string name)
         {
             Name = name;
