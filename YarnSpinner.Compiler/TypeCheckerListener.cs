@@ -19,9 +19,15 @@ namespace Yarn.Compiler
         public List<TypeConstraint> TypeEquations = new List<TypeConstraint>();
 
         private CommonTokenStream tokens;
-        private IParseTree tree;
         private List<Declaration> knownDeclarations;
         private int typeParameterCount = 0;
+
+        /// <summary>
+        /// Contains the list of all named type declarations found so far, from
+        /// both built-in types (string, number, etc) and user-defined types
+        /// (enums). This doesn't include function types.
+        /// </summary>
+        private List<TypeBase> knownTypes;
 
         private string sourceFileName = "<not set>";
         private string currentNodeName = null;
@@ -44,12 +50,12 @@ namespace Yarn.Compiler
             { "bool", Types.Boolean },
         };
 
-        public TypeCheckerListener(string sourceFileName, CommonTokenStream tokens, IParseTree tree, ref List<Declaration> knownDeclarations)
+        public TypeCheckerListener(string sourceFileName, CommonTokenStream tokens, ref List<Declaration> knownDeclarations, ref List<TypeBase> knownTypes)
         {
             this.sourceFileName = sourceFileName;
             this.tokens = tokens;
-            this.tree = tree;
             this.knownDeclarations = knownDeclarations;
+            this.knownTypes = knownTypes;
         }
 
         private Declaration GetKnownDeclaration(string name) => this.knownDeclarations.FirstOrDefault(d => d.Name == name);
@@ -562,17 +568,16 @@ namespace Yarn.Compiler
             base.ExitJumpToExpression(context);
         }
 
-        /*
-        MERGED FROM features/enums
-
         public override void ExitEnum_statement([NotNull] YarnSpinnerParser.Enum_statementContext context)
         {
             // We've just finished walking an enum statement! We're almost
             // ready to add its declaration.
 
             // First: are there any types with the same name as this?
-            if (this.typeDeclarations.Any(t => t.Name == context.name.Text))
+            if (this.knownTypes.Any(t => t.Name == context.name.Text))
             {
+                // There is! That's not allowed. Issue a diagnostic and return
+                // without registering the new type.
                 this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"Cannot declare new enum {context.name.Text}: a type with this name already exists"));
                 return;
             }
@@ -580,21 +585,14 @@ namespace Yarn.Compiler
             // Get its description, if any
             var description = Compiler.GetDocumentComments(this.tokens, context, false);
 
-            // Create the new type.
-            var enumType = new EnumType(context.name.Text, description);
-
-            // What is the type of this enum's raw values?
-            var permittedRawValueTypes = new[]
-            {
-                BuiltinTypes.Number,
-                BuiltinTypes.String,
-            };
-
-            // The type of the raw values this enum is using.
-            IType typeOfRawValues = null;
-
+            // Get the collection of case values that this enum can have.
             foreach (var caseStatement in context.enum_case_statement())
             {
+                var caseDescription = Compiler.GetDocumentComments(this.tokens, caseStatement);
+
+                caseStatement.Description = caseDescription;
+
+                // Did the case statement have a raw value syntax node?
                 if (caseStatement.rawValue == null)
                 {
                     // No raw value in this case statement.
@@ -606,115 +604,163 @@ namespace Yarn.Compiler
                     Value value = new LiteralValueVisitor(context, this.sourceFileName, ref this.diagnostics).Visit(caseStatement.rawValue);
 
                     caseStatement.RawValue = value;
+                }
+            }
 
-                    if (typeOfRawValues == null)
+            // Decide on the raw type of this enum.
+            var allRawTypes = context.enum_case_statement().Select(c => c.RawValue?.Type).NotNull().Distinct();
+
+            IType rawType;
+
+            if (allRawTypes.Count() == 0)
+            {
+                // No case had a raw type. Default the raw type to Number, and
+                // set them all to be monotonically increasing values (0, 1, 2,
+                // etc)
+                rawType = Types.Number;
+
+                int index = 0;
+                foreach (var @case in context.enum_case_statement())
+                {
+                    @case.RawValue = new Value(Types.Number, index);
+                    index += 1;
+                }
+            }
+            else if (allRawTypes.Count() > 1)
+            {
+                // More than one raw value type is present. That's not allowed!
+
+                // Issue a diagnostic and return without registering the new
+                // type.
+                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context.name, $"Enum member raw values may only be of a single type (they can't be a combination of {string.Join(" and ", allRawTypes)})"));
+                return;
+            }
+            else if (allRawTypes.Count() == 1)
+            {
+                // We only saw one raw value type.
+                rawType = allRawTypes.Single();
+
+                var permittedRawTypes = new[]
+                {
+                    Types.String as TypeBase,
+                    Types.Number as TypeBase,
+                };
+
+                var typeIsAllowed = false;
+                foreach (var permittedType in permittedRawTypes)
+                {
+                    if (rawType is TypeBase literal)
                     {
-                        // This is the first raw value we've seen; set the
-                        // raw type of the enum to this type.
-                        typeOfRawValues = value.Type;
+                        if (literal.IsConvertibleTo(permittedType))
+                        {
+                            typeIsAllowed = true;
+                            break;
+                        }
                     }
-                    else if (TypeUtil.IsSubType(typeOfRawValues, value.Type) == false)
+                }
+
+                if (typeIsAllowed == false)
+                {
+                    // The type is not one of our allowed ones! That's not
+                    // allowed. Generate a diagnostic and return without
+                    // registering the type.
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"Enum raw values must be {string.Join(" or ", (IEnumerable<TypeBase>)permittedRawTypes)}, not {rawType}"));
+                    return;
+                }
+
+                // Next: if one case has a raw value, they all need to.
+
+                // Do we have any cases that are missing values?
+                var casesMissingValues = context.enum_case_statement().Where(c => c.RawValue == null);
+
+                if (casesMissingValues.Any())
+                {
+                    // Some cases don't have raw values. That's not allowed -
+                    // either none of them have raw values, or they all do.
+
+                    // Generate diagnostics for all cases that don't have a
+                    // value and return without registering the type.
+                    foreach (var @case in casesMissingValues)
                     {
-                        // We already had a raw type, and this case
-                        // statement uses an incompatible type. Report an error.
-                        this.diagnostics.Add(new Diagnostic(this.sourceFileName, caseStatement, $"Enum member raw values may only be of a single type (they can't be {typeOfRawValues.Name} and {value.Type.Name})"));
-                        return;
+                        this.diagnostics.Add(new Diagnostic(this.sourceFileName, @case, $"Enum case {@case.name.Text} must also have a raw value (if any cases have a value, then they all must have one)"));
                     }
 
-                    // Report an error if this value isn't an allowable type.
-                    if (permittedRawValueTypes.Contains(value.Type) == false)
-                    {
-                        this.diagnostics.Add(new Diagnostic(
-                            this.sourceFileName,
-                            caseStatement,
-                            $"Invalid type: enum raw values cannot be {value.Type?.Name ?? "undefined"} (they must be of type {string.Join(" or ", permittedRawValueTypes.Select(t => t.Name))})"));
+                    return;
+                }
 
-                        return;
+                // Next: all cases must have a unique value.
+                var valueGroups = context.enum_case_statement().GroupBy(c => c.RawValue.InternalValue);
+
+                var anyDuplicateNames = false;
+
+                foreach (var group in valueGroups)
+                {
+                    if (group.Count() > 1)
+                    {
+                        // Two or more cases have the same name! That's not
+                        // allowed.
+                        anyDuplicateNames = true;
+                        foreach (var duplicateCase in group)
+                        {
+                            this.diagnostics.Add(new Diagnostic(this.sourceFileName, duplicateCase, $"Enum case {@duplicateCase.name.Text} must have a unique raw value ({duplicateCase.RawValue.InternalValue} is used by {group.Count() - 1} other case(s).)"));
+                        }
+                    }
+                }
+
+                if (anyDuplicateNames)
+                {
+                    // Return; we'll have already generated the appropriate diagnostics.
+                    return;
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("Internal error");
+            }
+
+            var nameGroups = context.enum_case_statement().GroupBy(c => c.name.Text);
+
+            bool anyDuplicates = false;
+
+            // All cases must have unique names.
+            foreach (var group in nameGroups)
+            {
+                if (group.Count() > 1)
+                {
+                    // Two or more cases have the same name! That's not
+                    // allowed.
+                    anyDuplicates = true;
+                    foreach (var duplicateCase in group)
+                    {
+                        this.diagnostics.Add(new Diagnostic(this.sourceFileName, duplicateCase, $"Enum case {@duplicateCase.name.Text} must have a unique name.)"));
                     }
                 }
             }
 
-            if (typeOfRawValues == null)
+            if (anyDuplicates)
             {
-                // We never saw a raw value, so default it to number.
-                typeOfRawValues = BuiltinTypes.Number;
+                return;
             }
 
-            // If typeOfRawValues is BuiltinTypes.Number, we will use this
-            // value to automatically assign a number to each successive
-            // one.
-            int numberIncrement = 0;
+            // Create the new type.
+            var newEnumType = new EnumType(context.name.Text, description, (TypeBase)rawType);
 
-            // The hash codes of the raw values we've assigned
-            var rawValueHashes = new HashSet<int>();
-
-            // Now walk through the list of case statements, generating
-            // EnumMembers for each one.
-            for (int i = 0; i < context.enum_case_statement().Length; i++)
+            // Register the cases for this enum.
+            foreach (var @case in context.enum_case_statement())
             {
-                var @case = context.enum_case_statement(i);
+                newEnumType.AddMember(
+                    @case.name.Text,
+                    new ConstantTypeProperty(
+                        newEnumType,
+                        @case.RawValue.InternalValue,
+                        @case.Description));
+            }
 
-                // Report an error if we have a duplicate member
-                if (enumType.Members.Any(existingMember => existingMember.Name == @case.name.Text))
-                {
-                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, @case, $"Enum {enumType.Name} already has a case called {@case.name.Text}"));
-                    return;
-                }
+            // Finally, register the type!
+            this.knownTypes.Add(newEnumType);
 
-                // Get the documentation comments for this case, if any
-                var caseDescription = Compiler.GetDocumentComments(this.tokens, @case);
-
-                // Does this case statement have a raw value?
-                Value rawValue;
-
-                if (typeOfRawValues == BuiltinTypes.Number)
-                {
-                    if (@case.RawValue != null)
-                    {
-                        rawValue = @case.RawValue;
-
-                        // Start incrementing from this point
-                        numberIncrement = @case.RawValue.ConvertTo<int>();
-                    }
-                    else
-                    {
-                        rawValue = new Value(BuiltinTypes.Number, numberIncrement);
-                    }
-
-                    numberIncrement += 1;
-                }
-                else if (typeOfRawValues == BuiltinTypes.String)
-                {
-                    if (@case.RawValue != null)
-                    {
-                        rawValue = @case.RawValue;
-                    }
-                    else
-                    {
-                        // We don't have a default we can use!
-                        this.diagnostics.Add(new Diagnostic(this.sourceFileName, @case, "All enum cases must have a value, if strings are used"));
-                        return;
-                    }
-                }
-                else
-                {
-                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, @case, $"Internal error: invalid enum case raw value type {typeOfRawValues.Name}"));
-                    return;
-                }
-
-                // Check to see if we've assigned this raw value already
-                var hash = rawValue.InternalValue.GetHashCode();
-
-                if (rawValueHashes.Contains(hash))
-                {
-                    // They're not allowed to be the same!
-                    this.diagnostics.Add(new Diagnostic(
-                        this.sourceFileName,
-                        @case,
-                        $"Enum member raw values must be unique"
-                    ));
-                    return;
-                }
+            base.ExitEnum_statement(context);
+        }
 
                 rawValueHashes.Add(hash);
 
@@ -765,28 +811,17 @@ namespace Yarn.Compiler
         }
 
         public partial class Enum_case_statementContext : ParserRuleContext {
+
             /// <summary>
             /// Gets or sets the 'raw value' of this enum case, which is
             /// the underlying value that this enum represents.
             /// </summary>
             internal Yarn.Value RawValue { get; set; }
-        }
-
-        public partial class ValueEnumCaseContext : ValueContext
-        {
-            /// <summary>
-            /// Gets or sets the enum type object that this value context
-            /// refers to.
-            /// </summary>
-            /// <value></value>
-            internal Yarn.EnumType EnumType { get; set; }
 
             /// <summary>
-            /// Gets or sets the enum member that this value context
-            /// represents.
+            /// Gets or sets the descriptive text for this enum case.
             /// </summary>
-            /// <value></value>
-            internal Yarn.EnumMember EnumMember { get; set; }
+            internal string Description { get; set; }
         }
     }
 }

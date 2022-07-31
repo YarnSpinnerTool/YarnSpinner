@@ -1,5 +1,6 @@
 namespace Yarn
 {
+    using System;
     using System.Collections.Generic;
     using MethodCollection = System.Collections.Generic.IReadOnlyDictionary<string, System.Delegate>;
 
@@ -9,54 +10,37 @@ namespace Yarn
     internal class EnumType : TypeBase
     {
         private string name;
-        private IType parent;
         private string description;
-
-        private List<EnumMember> members = new List<EnumMember>();
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EnumType"/> class
-        /// that represents the base Enum type. This type has the name
-        /// 'Enum', is a subtype of <see cref="BuiltinTypes.Any"/>, and
-        /// implements operators common to all Enum subtypes.
-        /// </summary>
-        public EnumType()
-            : base(DefaultMethods)
-        {
-            this.name = "Enum";
-            this.parent = BuiltinTypes.Any;
-        }
+        private TypeBase rawType;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EnumType"/> class
-        /// that represents a subtype of the base Enum type. This type has
-        /// no methods of its own, and is a subtype of <see
-        /// cref="BuiltinTypes.Enum"/>.
+        /// Initializes a new instance of the <see cref="EnumType"/> class that
+        /// represents an enum type. This type has no methods of its own, and is
+        /// a subtype of <see cref="Types.Any"/>.
         /// </summary>
         /// <param name="name">The name of this method.</param>
         /// <param name="description">A string that describes this
         /// method.</param>
-        public EnumType(string name, string description)
-            : base(null)
+        /// <param name="rawType"></param>
+        public EnumType(string name, string description, TypeBase rawType)
+            : base(DefaultMethods)
         {
             this.name = name;
-            this.parent = BuiltinTypes.Enum;
             this.description = description;
+            this.AddConvertibleTo(rawType);
+            this.rawType = rawType;
         }
 
         /// <inheritdoc/>
         public override string Name => name;
 
         /// <inheritdoc/>
-        public override IType Parent => parent;
+        public override IType Parent => Types.Any;
 
         /// <inheritdoc/>
         public override string Description => description;
-        
-        /// <summary>
-        /// Gets the collection of members that this enumeration type has.
-        /// </summary>
-        public IEnumerable<EnumMember> Members { get => this.members; }
+
+        internal TypeBase RawType => rawType;
 
         private static MethodCollection DefaultMethods => new Dictionary<string, System.Delegate>
         {
@@ -64,18 +48,36 @@ namespace Yarn
             { Operator.NotEqualTo.ToString(), TypeUtil.GetMethod((a, b) => !MethodEqualTo(a, b)) },
         };
 
+        internal override IConvertible DefaultValue {
+            get {
+                // The default value for an enum type is the first case found
+                // in it. 
+                if (this.typeMembers.Count == 0) {
+                    throw new InvalidOperationException($"Cannot get a default value for enum {Name}, because it has no members (which is not allowed)");
+                } else {
+                    var member = System.Linq.Enumerable.First(this.typeMembers).Value;
+                    return (member as ConstantTypeProperty)?.Value;
+                }
+            }
+        }
+
         /// <summary>
-        /// Adds a new <see cref="EnumMember"/> to this enumeration type.
+        /// Adds a new case to this enumeration type.
         /// </summary>
-        /// <param name="member">The member to add.</param>
-        internal void AddMember(EnumMember member)
+        /// <param name="name">The name of the case.</param>
+        /// <param name="member">The member to add for the given name.</param>
+        internal void AddMember(string name, ConstantTypeProperty member)
         {
-            this.members.Add(member);
+            this.typeMembers.Add(name, member);
         }
 
         private static bool MethodEqualTo(Value a, Value b)
         {
-            return a.ConvertTo<int>() == b.ConvertTo<int>();
+            if (a.InternalValue is string) {
+                return a.ConvertTo<string>() == b.ConvertTo<string>();
+            } else {
+                return a.ConvertTo<int>() == b.ConvertTo<int>();
+            }
         }
     }
 }

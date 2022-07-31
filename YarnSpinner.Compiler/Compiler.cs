@@ -675,7 +675,7 @@ namespace Yarn.Compiler
             var declarations = new List<Declaration>();
 
             // All type definitions that we've encountered while parsing. We'll add to this list when we encounter user-defined types.
-            var knownTypes = Types.AllBuiltinTypes.ToList();
+            var knownTypes = Types.AllBuiltinTypes.Cast<TypeBase>().ToList();
 
             if (compilationJob.VariableDeclarations != null)
             {
@@ -742,7 +742,7 @@ namespace Yarn.Compiler
             var walker = new ParseTreeWalker();
             foreach (var parsedFile in parsedFiles)
             {
-                var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, parsedFile.Tree, ref declarations);
+                var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, ref declarations, ref knownTypes);
 
                 walker.Walk(typeCheckerListener, parsedFile.Tree);
 
