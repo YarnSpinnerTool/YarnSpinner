@@ -24,7 +24,7 @@ namespace Yarn.Compiler
         /// <param name="sourceFileName">The name of the file that is being
         /// visited by this instance.</param>
         /// <param name="types">The types of values known to this instance.</param>
-        public LiteralValueVisitor(ParserRuleContext context, string sourceFileName, ref List<Diagnostic> diagnostics)
+        public LiteralValueVisitor(ParserRuleContext context, string sourceFileName, List<Diagnostic> diagnostics)
         {
             this.context = context;
             this.sourceFileName = sourceFileName;
