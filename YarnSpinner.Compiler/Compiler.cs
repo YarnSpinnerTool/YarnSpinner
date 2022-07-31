@@ -882,6 +882,9 @@ namespace Yarn.Compiler
 
             var finalResult = CompilationResult.CombineCompilationResults(results, stringTableManager);
 
+            // Now that we know for sure the types of every node in the parse tree, we can correctly determine the initial values for every <<declare>> statement (because we know how to resolve a )
+            TypeCheckerListener.ResolveInitialValues(ref declarations, ref diagnostics);
+
             // Last step: take every variable declaration we found in all
             // of the inputs, and create an initial value registration for
             // it.

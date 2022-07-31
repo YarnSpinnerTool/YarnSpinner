@@ -239,11 +239,12 @@ namespace Yarn.Compiler
                 Name = name,
                 Type = typeIdentifier,
                 Description = description,
-                DefaultValue = value.InternalValue,
+                DefaultValue = null,
                 SourceFileName = this.sourceFileName,
                 SourceNodeName = this.currentNodeName,
                 Range = GetRange(variableContext),
                 IsImplicit = false,
+                InitialValueParserContext = context.value(),
             };
 
             this.knownDeclarations.Add(declaration);
@@ -762,21 +763,47 @@ namespace Yarn.Compiler
             base.ExitEnum_statement(context);
         }
 
-                rawValueHashes.Add(hash);
+        /// <summary>
+        /// </summary>
+        /// <param name="declarations"></param>
+        /// <param name="knownTypes"></param>
+        /// <param name="diagnostics"></param>
+        public static void ResolveInitialValues(ref List<Declaration> declarations, ref List<Diagnostic> diagnostics) {
+            foreach (var decl in declarations) {
+                if (decl.InitialValueParserContext is YarnSpinnerParser.ILiteralContext) {
 
-                var member = new EnumMember
-                {
-                    Name = @case.name.Text,
-                    RawValue = rawValue,
-                    Description = caseDescription,
-                };
+                    // The initial value was a literal. Parse it and turn it
+                    // into a value we can store.
+                    var literalVisitor = new LiteralValueVisitor(decl.InitialValueParserContext, decl.SourceFileName, ref diagnostics);
 
-                enumType.AddMember(member);
+                    var value = literalVisitor.Visit(decl.InitialValueParserContext);
+
+                    decl.DefaultValue = value.InternalValue;
+                } else if (decl.InitialValueParserContext is YarnSpinnerParser.ValueTypeMemberReferenceContext memberReference) {
+                    // The initial value was a reference to a member of a type.
+                    // Get that member's value.
+                    var memberName = memberReference.typeMemberReference().memberName.Text;
+                    var type = memberReference.Type;
+
+                    if (!(type is TypeBase actualType)) {
+                        diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.InitialValueParserContext, $"Can't determine the type of {decl.InitialValueParserContext.GetTextWithWhitespace()}"));
+                        continue;
+                    }
+
+                    if (!actualType.TypeMembers.TryGetValue(memberName, out var member)) {
+                        diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.InitialValueParserContext, $"{actualType.Name} doesn't have a member named {memberName}"));
+                        continue;
+                    }
+
+                    if (!(member is ConstantTypeProperty property)) {
+                        diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.InitialValueParserContext, $"{actualType.Name}.{memberName} is not a constant property"));
+                        continue;
+                    }
+
+                    decl.DefaultValue = property.Value;
+                }
             }
-
-            this.typeDeclarations.Add(enumType);
         }
-        */
     }
 
     public interface ITypedContext {
@@ -788,9 +815,8 @@ namespace Yarn.Compiler
         public partial class ExpressionContext : ITypedContext
         {
             /// <summary>
-            /// Gets or sets the type that this expression has been
-            /// determined to be by a <see cref="TypeCheckVisitor"/>
-            /// object.
+            /// Gets or sets the type that this expression has been determined
+            /// to be by a <see cref="TypeCheckerListener"/> object.
             /// </summary>
             public IType Type { get; set; }
         }
