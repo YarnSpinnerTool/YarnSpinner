@@ -8,11 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- Enums have been added to the Yarn language.
-  - Enums are a type of value that are allowed to be one of a specific set of named values. For example:
+#### Enums
+
+Enums have been added to the Yarn language.
+
+Enums are a type of variable that are allowed to be one of a specific set of named values. For example:
 
 ```
-// Create a new enum called Food
+// Create a new enum called Food.
 <<enum Food>>
   <<case Apple>>
   <<case Orange>>
@@ -22,19 +25,50 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 // Declare a new variable with the default value Food.Apple
 <<declare $favouriteFood = Food.Apple>>
 
+// You can set $favouriteFood to the 'apple', 'orange' or 'pear'
+// cases, but nothing else!
+<<set $favouriteFood to Food.Orange>>
+
+// You can use enums in if statements, like any other type of value:
 <<if $favouriteFood == Food.Apple>>
   I love apples!
 <<endif>>
+
+// You can even skip the name of the enum if Yarn Spinner can 
+// figure it out from context!
+<<set $favouriteFood = .Orange>>
 ```
 
-- Enums only support being compared to other values of the same type. 
-  - For example, if you created a new enum called `Food`, and another enum called `Drink`, you can't compare `Food.Apple` to `Drink.Soda`. (You could compare apples to oranges, though, since they're both members of the `Food` type.)
-- The only valid operators that can be used with them are `==` (equal to) and `!=` (not equal to).
-- Enum values are stored in the host variable storage as a number.
+The only valid operators that can be used with enums are `==` (equal to) and `!=` (not equal to).
+
+Enums only support being compared to other values of the same type. 
+
+> For example, if you created a new enum called `Food`, and another enum called `Drink`, you can't compare `Food.Apple` to `Drink.Soda`, because they're different enums.
+
+#### Enum Cases
+
+You declare an enum using the `enum`...`endenum` statement. This can be anywhere in your code. 
+
+Inside your `enum` statement, you put one or more `case` statements, which define one of the values that that enum can be. Each case statement must be unique inside the enum, but you can reuse the same case across different enums.
+
+#### Raw Values
+
+When you add an enum case, you can specify its 'raw value'. This is useful for when you want to use an enum to represent a specific set of numbers or strings. Raw values can be either strings, or numbers. 
+
+Each raw value must be unique inside the enum, but you can reuse the same raw value across different enums. If you specify the raw value of any of an enum's cases, they all must have a raw value. All raw values in an enum must be the same type.
+
+If you don't specify any raw values for an enum, then Yarn Spinner will choose numbers for you as the raw values.
+
+#### Enums and Functions
+
+Functions can receive enums as parameters, as long as the enum's raw value type matches the parameter type. For example, if you have a function `print` that takes a string as a parameter, you can pass any enum to it that uses strings for its raw values; if you have a function `multiplyByTwo` that takes a number as a parameter, you can pass any enum to it that uses numbers for its raw values.
 
 ### Changed
 
 ### Removed
+
+- Removed `null` from the Yarn grammar.
+  - `null` was removed from the language in version 2.0.0, but it was kept in the grammar to make it possible to emit special error messages when it was used that explained that the language had changed.
 
 ## [2.2.2] 2022-07-22
 
