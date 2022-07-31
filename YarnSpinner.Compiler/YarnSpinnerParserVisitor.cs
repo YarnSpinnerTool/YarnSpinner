@@ -205,12 +205,12 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitValueFunc([NotNull] YarnSpinnerParser.ValueFuncContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>valueEnumCase</c>
+	/// Visit a parse tree produced by the <c>valueTypeMemberReference</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context);
+	Result VisitValueTypeMemberReference([NotNull] YarnSpinnerParser.ValueTypeMemberReferenceContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.variable"/>.
 	/// </summary>
@@ -224,11 +224,11 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.enumCase"/>.
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.typeMemberReference"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitEnumCase([NotNull] YarnSpinnerParser.EnumCaseContext context);
+	Result VisitTypeMemberReference([NotNull] YarnSpinnerParser.TypeMemberReferenceContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.if_statement"/>.
 	/// </summary>

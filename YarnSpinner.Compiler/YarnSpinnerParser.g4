@@ -78,7 +78,7 @@ value
     | STRING #valueString
     | KEYWORD_NULL   #valueNull
     | function_call       #valueFunc
-    | enumCase #valueEnumCase
+    | typeMemberReference #valueTypeMemberReference
 
     ;
 variable
@@ -88,8 +88,8 @@ variable
 function_call 
     : FUNC_ID '(' expression? (COMMA expression)* ')' ;
 
-enumCase
-    : enumName=FUNC_ID '.' memberName=FUNC_ID
+typeMemberReference
+    : (typeName=FUNC_ID)? '.' memberName=FUNC_ID
     ;
 
 if_statement

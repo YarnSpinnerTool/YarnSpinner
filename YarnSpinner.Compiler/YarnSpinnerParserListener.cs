@@ -324,17 +324,17 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitValueFunc([NotNull] YarnSpinnerParser.ValueFuncContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>valueEnumCase</c>
+	/// Enter a parse tree produced by the <c>valueTypeMemberReference</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context);
+	void EnterValueTypeMemberReference([NotNull] YarnSpinnerParser.ValueTypeMemberReferenceContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>valueEnumCase</c>
+	/// Exit a parse tree produced by the <c>valueTypeMemberReference</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context);
+	void ExitValueTypeMemberReference([NotNull] YarnSpinnerParser.ValueTypeMemberReferenceContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.variable"/>.
 	/// </summary>
@@ -356,15 +356,15 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.enumCase"/>.
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.typeMemberReference"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterEnumCase([NotNull] YarnSpinnerParser.EnumCaseContext context);
+	void EnterTypeMemberReference([NotNull] YarnSpinnerParser.TypeMemberReferenceContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.enumCase"/>.
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.typeMemberReference"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitEnumCase([NotNull] YarnSpinnerParser.EnumCaseContext context);
+	void ExitTypeMemberReference([NotNull] YarnSpinnerParser.TypeMemberReferenceContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.if_statement"/>.
 	/// </summary>

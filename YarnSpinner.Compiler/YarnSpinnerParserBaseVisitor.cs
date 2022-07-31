@@ -312,7 +312,7 @@ public partial class YarnSpinnerParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// <return>The visitor result.</return>
 	public virtual Result VisitValueFunc([NotNull] YarnSpinnerParser.ValueFuncContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by the <c>valueEnumCase</c>
+	/// Visit a parse tree produced by the <c>valueTypeMemberReference</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
@@ -321,7 +321,7 @@ public partial class YarnSpinnerParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context) { return VisitChildren(context); }
+	public virtual Result VisitValueTypeMemberReference([NotNull] YarnSpinnerParser.ValueTypeMemberReferenceContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.variable"/>.
 	/// <para>
@@ -343,7 +343,7 @@ public partial class YarnSpinnerParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// <return>The visitor result.</return>
 	public virtual Result VisitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.enumCase"/>.
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.typeMemberReference"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -351,7 +351,7 @@ public partial class YarnSpinnerParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitEnumCase([NotNull] YarnSpinnerParser.EnumCaseContext context) { return VisitChildren(context); }
+	public virtual Result VisitTypeMemberReference([NotNull] YarnSpinnerParser.TypeMemberReferenceContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.if_statement"/>.
 	/// <para>
