@@ -1423,7 +1423,9 @@ namespace Yarn.Compiler
         /// <param name="allowCommentsAfter">If true, this method will search
         /// for documentation comments that come after <paramref
         /// name="context"/>'s last token and are on the same line.</param>
-        /// <returns>The text of the documentation comments.</returns>
+        /// <returns>The text of the documentation comments, or <see
+        /// langword="null"/> if no documentation comments were
+        /// present.</returns>
         public static string GetDocumentComments(CommonTokenStream tokens, ParserRuleContext context, bool allowCommentsAfter = true)
         {
             string description = null;
