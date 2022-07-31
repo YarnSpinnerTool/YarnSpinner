@@ -193,7 +193,7 @@ namespace Yarn.Compiler
             var typeIdentifier = this.GenerateTypeVariable(name);
 
             // The type of this identifier is equal to the type of its default value.
-            this.AddEqualityConstraint(typeIdentifier, value.Type, context, s => $"The type of {name}'s initial value \"{context.value().GetText()}\" ({value.Type.Substitute(s)}) doesn't match the type of the variable {typeIdentifier.Substitute(s)}.");
+            this.AddEqualityConstraint(typeIdentifier, context.value().Type, context, s => $"The type of {name}'s initial value \"{context.value().GetText()}\" ({context.value().Type.Substitute(s)}) doesn't match the type of the variable {typeIdentifier.Substitute(s)}.");
 
             if (context.type != null)
             {
@@ -386,9 +386,19 @@ namespace Yarn.Compiler
         {
             // The result of a logical and, or, or xor is boolean; the types of
             // the expressions must also be boolean.
+            var exp0Type = context.expression(0)?.Type;
+            var exp1Type = context.expression(1)?.Type;
+            if (exp0Type == null || exp1Type == null) {
+                context.Type = Types.Error;
+                return;
+            }
+
             context.Type = Types.Boolean;
-            this.AddEqualityConstraint(context.expression(0)?.Type, Types.Boolean, context, null);
-            this.AddEqualityConstraint(context.expression(0)?.Type, context.expression(1)?.Type, context, null);
+            IType type0 = context.expression(0).Type;
+            IType type1 = context.expression(1).Type;
+
+            this.AddEqualityConstraint(type0, Types.Boolean, context, s => $"{context.op.Text} operands must be {Types.Boolean}, not {type0.Substitute(s)}");
+            this.AddEqualityConstraint(type0, type1, context, s => $"{context.op.Text} operands must be the same type, not {type0} and {type1}");
         }
 
         public override void ExitExpNot([NotNull] YarnSpinnerParser.ExpNotContext context)
@@ -396,7 +406,10 @@ namespace Yarn.Compiler
             // The result of a logical not is boolean; the type of the operand
             // must also be boolean.
             context.Type = Types.Boolean;
-            this.AddEqualityConstraint(context.expression()?.Type, Types.Boolean, context, null);
+            
+            IType type = context.expression()?.Type ?? Types.Error;
+
+            this.AddEqualityConstraint(type, Types.Boolean, context,  s => $"{context.op.Text} operand must be {Types.Boolean}, not {type.Substitute(s)}");
         }
 
         public override void ExitExpNegative([NotNull] YarnSpinnerParser.ExpNegativeContext context)
@@ -404,7 +417,8 @@ namespace Yarn.Compiler
             // The result of a negation is a number; the type of the operand
             // must also be a number.
             context.Type = Types.Number;
-            this.AddEqualityConstraint(context.expression()?.Type, Types.Number, context, null);
+            IType type = context.expression()?.Type ?? Types.Error;
+            this.AddEqualityConstraint(type, Types.Number, context, s => $"{context.op.Text} operand must be {Types.Boolean}, not {type.Substitute(s)}");
         }
 
         public override void ExitExpValue([NotNull] YarnSpinnerParser.ExpValueContext context)
@@ -523,7 +537,7 @@ namespace Yarn.Compiler
             }
 
             // The type of this function call is the return type of the function
-            AddEqualityConstraint(context.Type, functionType.ReturnType, context, null);
+            AddEqualityConstraint(context.Type, functionType.ReturnType, context, s => $"Call to {functionDecl.Name} returns {functionType.ReturnType}, not {context.Type}");
 
             base.ExitFunction_call(context);
         }
