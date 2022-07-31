@@ -67,10 +67,8 @@ namespace Yarn
         public List<IType> Parameters { get; } = new List<IType>();
 
         /// <inheritdoc/>
-        // Functions do not have any methods themselves
-        public MethodCollection Methods => null;
-
-        public IReadOnlyDictionary<string, IType> Members => new Dictionary<string, IType>();
+        // Functions do not have any type members
+        public IReadOnlyDictionary<string, ITypeMember> TypeMembers => TypeBase.EmptyTypeMemberDictionary;
 
         public FunctionType(IType returnType, params IType[] parameterTypes)
         {
