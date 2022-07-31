@@ -66,6 +66,19 @@ namespace Yarn.Compiler
             hashCode = (hashCode * -1521134295) + EqualityComparer<Position>.Default.GetHashCode(this.End);
             return hashCode;
         }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            if (this.Start.Equals(this.End))
+            {
+                return this.Start.ToString();
+            }
+            else
+            {
+                return $"{this.Start}-{this.End}";
+            }
+        }
     }
 
     /// <summary>
@@ -99,6 +112,11 @@ namespace Yarn.Compiler
             hashCode = (hashCode * -1521134295) + this.Line.GetHashCode();
             hashCode = (hashCode * -1521134295) + this.Character.GetHashCode();
             return hashCode;
+        }
+
+        public override string ToString()
+        {
+            return $"{this.Line}:{this.Character}";
         }
     }
 
