@@ -24,6 +24,12 @@ title: Start
     It's an error if you see this!
 <<endif>>
 
+<<if $secondFavouriteFood == Food.Orange>>
+    Oranges are okay in a pinch!
+<<else>>
+    It's an error if you see this!
+<<endif>>
+
 // Enum variables can be modified, just like all other variables
 <<set $favouriteFood to Food.Orange>>
 
@@ -42,20 +48,13 @@ title: Start
 
 <<enum Planets>>
     <<case Mercury = 1>>
-    <<case Venus>>
-    <<case Earth>>
-    <<case Mars>>
-    <<case Jupiter>>
-    <<case Saturn>>
-    <<case Uranus>>
-    <<case Neptune>>
-<<endenum>>
-
-<<enum ImportantNumbers>>
-    <<case HackerNumber = 1337>>
-    <<case HackerNumberPlusOne>>
-    <<case UltimateAnswer = 42>>
-    <<case UltimateAnswerPlusOne>>
+    <<case Venus = 2>>
+    <<case Earth = 3>>
+    <<case Mars = 4>>
+    <<case Jupiter = 5>>
+    <<case Saturn = 6>>
+    <<case Uranus = 7>>
+    <<case Neptune = 8>>
 <<endenum>>
 
 <<enum QuestObjectives>>
@@ -66,27 +65,14 @@ title: Start
 
 <<if string(QuestObjectives.Objective1) == "DoObjective1">>
     ok 1
+<<else>>
+    error
 <<endif>>
 
 <<if number(Planets.Earth) == 3>>
     ok 2
+<<else>>
+    error
 <<endif>>
-
-<<if number(ImportantNumbers.HackerNumber) == 1337>>
-    ok 3
-<<endif>>
-
-<<if number(ImportantNumbers.HackerNumberPlusOne) == 1338>>
-    ok 4
-<<endif>>
-
-<<if number(ImportantNumbers.UltimateAnswer) == 42>>
-    ok 5
-<<endif>>
-
-<<if number(ImportantNumbers.UltimateAnswerPlusOne) == 43>>
-    ok 6
-<<endif>>
-
 
 ===

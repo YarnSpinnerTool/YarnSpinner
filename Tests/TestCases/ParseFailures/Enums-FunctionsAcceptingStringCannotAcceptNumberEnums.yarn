@@ -9,15 +9,10 @@ title: Start
 <<endenum>>
 
 <<enum EnumB>>
-    <<case One>>
-    <<case Two>>
-    <<case Three>>
+    <<case One = 1>>
+    <<case Two = 2>>
+    <<case Three = 3>>
 <<endenum>>
-
-// stop before calling these methods; this test case only cares about
-// compilation, not runtime results
-
-<<stop>>
 
 <<call set_objective_complete(EnumA.One)>>
 <<call set_objective_complete(EnumB.One)>>
