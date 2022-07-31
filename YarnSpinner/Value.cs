@@ -86,5 +86,10 @@ namespace Yarn
                 this.Type.Name,
                 this.ConvertTo<string>());
         }
+
+        public override int GetHashCode()
+        {
+            return InternalValue.GetHashCode();
+        }
     }
 }
