@@ -6,10 +6,195 @@ using Yarn;
 
 namespace TypeChecker
 {
-
-    public static class Solver
+    /// <summary>
+    /// Contains methods for solving systems of type equations.
+    /// </summary>
+    /// <remarks>
+    /// This class contains the central algorithms used for solving the system
+    /// of type equations produced by <see
+    /// cref="Yarn.Compiler.TypeCheckerListener"/>.
+    /// </remarks>
+    internal static class Solver
     {
-        public static Substitution Unify(IType x, IType y)
+        /// <summary>
+        /// Solves a collection of type constraints, and produces a
+        /// substitution.
+        /// </summary>
+        /// <remarks>
+        /// If the constraints cannot be solved, the returned substitution's
+        /// <see cref="Substitution.IsFailed"/> will be <see langword="true"/>.
+        /// </remarks>
+        /// <param name="typeConstraints">The collection of type constraints to
+        /// solve.</param>
+        /// <param name="knownTypes">The list of types known to the
+        /// solver.</param>
+        /// <param name="diagnostics">The list of diagnostics. This list will be
+        /// added to during operation.</param>
+        /// <param name="partialSolution">A Substitution object containing a
+        /// partial solution to the solver's list of type constraints, or <see
+        /// langword="null"/>.</param>
+        /// <param name="failuresAreErrors">If true, a constraint's failure to
+        /// unify will result in an error Diagnostic being added to <paramref
+        /// name="diagnostics"/>.</param>
+        /// <returns>A Substitution containing either the solution, or a reason
+        /// why the equations cannot be solved.</returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">Thrown when
+        /// <paramref name="typeConstraints"/> contains a type of constraint
+        /// that could not be handled.</exception>
+        internal static Substitution Solve(IEnumerable<TypeConstraint> typeConstraints, IEnumerable<TypeBase> knownTypes, ref List<Yarn.Compiler.Diagnostic> diagnostics, Substitution partialSolution = null, bool failuresAreErrors = true)
+        {
+            var subst = partialSolution ?? new TypeChecker.Substitution();
+            var remainingConstraints = new HashSet<TypeConstraint>(typeConstraints.WithoutTautologies());
+
+            bool TryGetConstraint<T>(out T constraint) where T : TypeConstraint
+            {
+                constraint = remainingConstraints?.OfType<T>().FirstOrDefault();
+                return constraint != null;
+            }
+
+            while (remainingConstraints.Count > 0)
+            {
+                // Any constraint that depends upon the current contents of
+                // partialSolution should be deferred as late as possible, so
+                // that the substitution can have the most information. So,
+                // we'll solve the constraints, one at a time, solving the
+                // equalities first, then conjunctions, then disjunctions, then
+                // any other constraint (since they simplify into equalities and
+                // disjunctions).
+
+                TypeConstraint currentConstraint = null;
+
+                if (TryGetConstraint<TypeEqualityConstraint>(out var equalityConstraint))
+                {
+#if VERBOSE_SOLVER
+                Console.WriteLine($"Solving {equalityConstraint.ToString()}");
+#endif
+                    currentConstraint = equalityConstraint;
+                    subst = Unify(equalityConstraint.Left, equalityConstraint.Right, subst);
+                    remainingConstraints.Remove(equalityConstraint);
+                }
+                else if (TryGetConstraint<ConjunctionConstraint>(out var conjunctionConstraint))
+                {
+#if VERBOSE_SOLVER
+                Console.WriteLine($"Solving {conjunctionConstraint.ToString()}");
+#endif
+                    currentConstraint = conjunctionConstraint;
+
+                    // All of these constraints must resolve, so simply add them to the list
+                    foreach (var constraint in conjunctionConstraint)
+                    {
+                        remainingConstraints.Add(constraint);
+                    }
+                    remainingConstraints.Remove(conjunctionConstraint);
+                }
+                else if (TryGetConstraint<DisjunctionConstraint>(out var disjunctionConstraint))
+                {
+#if VERBOSE_SOLVER
+                Console.WriteLine($"Solving {disjunctionConstraint.ToString()}");
+#endif
+
+                    currentConstraint = disjunctionConstraint;
+
+                    // Try each of the constraints in the disjunction, attempting to
+                    // solve for it.
+                    foreach (var constraint in disjunctionConstraint)
+                    {
+#if VERBOSE_SOLVER
+                    Console.WriteLine($"Trying... {constraint.ToString()}");
+#endif
+                        var clonedSubst = subst.Clone();
+
+                        // Create a new list of constraints where the disjunction is
+                        // replaced with one of its terms
+                        var potentialConstraintSet = new HashSet<TypeConstraint>(remainingConstraints);
+                        potentialConstraintSet.Remove(disjunctionConstraint);
+                        potentialConstraintSet.Add(constraint);
+
+                        // Attempt to solve with this new list
+                        var substitution = Solve(potentialConstraintSet, knownTypes, ref diagnostics, clonedSubst, false);
+
+                        if (substitution.IsFailed == false)
+                        {
+                            // This solution works! Return it!
+                            return substitution;
+                        }
+                        else
+                        {
+#if VERBOSE_SOLVER
+                        Console.WriteLine($"{constraint.ToString()} didn't work.");
+#endif
+                        }
+                    }
+                    // If we got here, then none of our options worked.
+                    subst.Fail($"No solution found for any option of: {disjunctionConstraint.ToString()}");
+                    remainingConstraints.Remove(disjunctionConstraint);
+                }
+                else if (TryGetConstraint<TypeConstraint>(out var otherConstraint))
+                {
+                    // If it's any other type of constraint, then we'll simplify it,
+                    // which turns it into equalities and/or disjunctions, which we
+                    // can solve using the above procedures.
+
+                    currentConstraint = otherConstraint;
+
+#if VERBOSE_SOLVER
+                    Console.WriteLine($"Solving {otherConstraint.ToString()}");
+#endif
+                    // Simplify the constraint, and replace it with its simplified
+                    // version
+                    var simplifiedConstraint = otherConstraint.Simplify(subst, knownTypes);
+
+
+                    if (simplifiedConstraint == null)
+                    {
+                        // Nothing to do!
+                    }
+                    else
+                    {
+#if VERBOSE_SOLVER
+                        Console.WriteLine($"Simplified it to {simplifiedConstraint.ToString()}");
+#endif
+                        remainingConstraints.Add(simplifiedConstraint);
+                    }
+
+                    remainingConstraints.Remove(otherConstraint);
+                }
+
+                if (subst.IsFailed)
+                {
+                    // Is this failure something we need to produce an error
+                    // for?
+                    if (failuresAreErrors)
+                    {
+                        // We want to log a diagnostic for this constraint's
+                        // failure to apply.
+                        if (currentConstraint == null)
+                        {
+                            // We have an error, but we don't know what
+                            // constraint caused it? Internal error.
+                            throw new System.InvalidOperationException($"Unexpected null value for {nameof(currentConstraint)}");
+                        }
+                        else
+                        {
+                            var failureMessage = currentConstraint.GetFailureMessage(subst);
+                            diagnostics.Add(new Yarn.Compiler.Diagnostic(currentConstraint.SourceFileName, currentConstraint.SourceRange, failureMessage));
+                        }
+                    }
+                    else
+                    {
+                        // We've failed, but we're not in a state where we need
+                        // to report this error (because we're testing one part
+                        // of a disjunction). Return the failed subst silently.
+                        return subst;
+                    }
+                }
+            }
+
+            return subst;
+        }
+
+
+        internal static Substitution Unify(IType x, IType y)
         {
             var subst = new Substitution();
             Unify(x, y, subst);
@@ -33,7 +218,7 @@ namespace TypeChecker
         /// <param name="subst">The <see cref="Substitution"/> to use and
         /// update.</param>
         /// <returns>The updated <see cref="Substitution"/>.</returns>
-        public static Substitution Unify(IType x, IType y, Substitution subst)
+        internal static Substitution Unify(IType x, IType y, Substitution subst)
         {
             if (subst.IsFailed)
             {
@@ -184,162 +369,5 @@ namespace TypeChecker
                 return false;
             }
         }
-
-        /// <summary>
-        /// Solves a collection of type constraints, and produces a substitution.
-        /// </summary>
-        /// <remarks>
-        /// If the constraints cannot be solved, the returned substitution's <see
-        /// cref="Substitution.IsFailed"/> will be <see langword="true"/>.
-        /// </remarks>
-        /// <param name="typeConstraints">The collection of type constraints to
-        /// solve.</param>
-        /// <returns>A Substitution containing either the solution, or a reason why
-        /// the equations cannot be solved.</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException">Thrown when
-        /// <paramref name="typeConstraints"/> contains a type of constraint that
-        /// could not be handled.</exception>
-        internal static Substitution Solve(IEnumerable<TypeConstraint> typeConstraints, IEnumerable<TypeBase> knownTypes, ref List<Yarn.Compiler.Diagnostic> diagnostics, Substitution partialSolution = null, bool failuresAreErrors = true)
-        {
-            var subst = partialSolution ?? new TypeChecker.Substitution();
-            var remainingConstraints = new HashSet<TypeConstraint>(typeConstraints.WithoutTautologies());
-
-            bool TryGetConstraint<T>(out T constraint) where T : TypeConstraint
-            {
-                constraint = remainingConstraints?.OfType<T>().FirstOrDefault();
-                return constraint != null;
-            }
-
-            while (remainingConstraints.Count > 0)
-            {
-                // Any constraint that depends upon the current contents of
-                // partialSolution should be deferred as late as possible, so that
-                // the substitution can have the most information. So, we'll solve
-                // the constraints, one at a time, solving the equalities first,
-                // then disjunctions, then any other constraint (since they simplify
-                // into equalities and disjunctions).
-
-                TypeConstraint currentConstraint = null;
-
-                if (TryGetConstraint<TypeEqualityConstraint>(out var equalityConstraint))
-                {
-#if VERBOSE_SOLVER
-                Console.WriteLine($"Solving {equalityConstraint.ToString()}");
-#endif
-                    currentConstraint = equalityConstraint;
-                    subst = Unify(equalityConstraint.Left, equalityConstraint.Right, subst);
-                    remainingConstraints.Remove(equalityConstraint);
-                }
-                else if (TryGetConstraint<ConjunctionConstraint>(out var conjunctionConstraint))
-                {
-#if VERBOSE_SOLVER
-                Console.WriteLine($"Solving {conjunctionConstraint.ToString()}");
-#endif
-                    currentConstraint = conjunctionConstraint;
-                    
-                    // All of these constraints must resolve, so simply add them to the list
-                    foreach (var constraint in conjunctionConstraint) {
-                        remainingConstraints.Add(constraint);
-                    }
-                    remainingConstraints.Remove(conjunctionConstraint);
-                }
-                else if (TryGetConstraint<DisjunctionConstraint>(out var disjunctionConstraint))
-                {
-#if VERBOSE_SOLVER
-                Console.WriteLine($"Solving {disjunctionConstraint.ToString()}");
-#endif
-
-                    currentConstraint = disjunctionConstraint;
-
-                    // Try each of the constraints in the disjunction, attempting to
-                    // solve for it.
-                    foreach (var constraint in disjunctionConstraint)
-                    {
-#if VERBOSE_SOLVER
-                    Console.WriteLine($"Trying... {constraint.ToString()}");
-#endif
-                        var clonedSubst = subst.Clone();
-
-                        // Create a new list of constraints where the disjunction is
-                        // replaced with one of its terms
-                        var potentialConstraintSet = new HashSet<TypeConstraint>(remainingConstraints);
-                        potentialConstraintSet.Remove(disjunctionConstraint);
-                        potentialConstraintSet.Add(constraint);
-
-                        // Attempt to solve with this new list
-                        var substitution = Solve(potentialConstraintSet, knownTypes, ref diagnostics, clonedSubst, false);
-
-                        if (substitution.IsFailed == false)
-                        {
-                            // This solution works! Return it!
-                            return substitution;
-                        }
-                        else
-                        {
-#if VERBOSE_SOLVER
-                        Console.WriteLine($"{constraint.ToString()} didn't work.");
-#endif
-                        }
-                    }
-                    // If we got here, then none of our options worked.
-                    subst.Fail($"No solution found for any option of: {disjunctionConstraint.ToString()}");
-                    remainingConstraints.Remove(disjunctionConstraint);
-                }
-                else if (TryGetConstraint<TypeConstraint>(out var otherConstraint))
-                {
-                    // If it's any other type of constraint, then we'll simplify it,
-                    // which turns it into equalities and/or disjunctions, which we
-                    // can solve using the above procedures.
-
-                    currentConstraint = otherConstraint;
-
-#if VERBOSE_SOLVER
-                    Console.WriteLine($"Solving {otherConstraint.ToString()}");
-#endif
-                    // Simplify the constraint, and replace it with its simplified
-                    // version
-                    var simplifiedConstraint = otherConstraint.Simplify(subst, knownTypes);
-
-
-                    if (simplifiedConstraint == null)
-                    {
-                        // Nothing to do!
-                    }
-                    else
-                    {
-#if VERBOSE_SOLVER
-                        Console.WriteLine($"Simplified it to {simplifiedConstraint.ToString()}");
-#endif
-                        remainingConstraints.Add(simplifiedConstraint);
-                    }
-
-                    remainingConstraints.Remove(otherConstraint);
-                }
-
-                if (subst.IsFailed)
-                {
-                    if (failuresAreErrors)
-                    {
-                        // We want to log a diagnostic for this constraint's
-                        // failure to apply.
-                        if (currentConstraint == null)
-                        {
-                            // We have an error, but we don't know what
-                            // constraint caused it? Internal error.
-                            throw new System.InvalidOperationException($"Unexpected null value for {nameof(currentConstraint)}");
-                        } else {
-                            var failureMessage = currentConstraint.GetFailureMessage(subst);
-                            diagnostics.Add(new Yarn.Compiler.Diagnostic(currentConstraint.SourceFileName, currentConstraint.SourceRange, failureMessage));
-                        }
-                    } else {
-                        // Early out if we've failed
-                        return subst;
-                    }
-                }
-            }
-
-            return subst;
-        }
     }
-
 }
