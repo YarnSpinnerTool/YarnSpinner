@@ -804,7 +804,7 @@ namespace Yarn.Compiler
                 // Next: all cases must have a unique value.
                 var valueGroups = context.enum_case_statement().GroupBy(c => c.RawValue.InternalValue);
 
-                var anyDuplicateNames = false;
+                var anyDuplicateValues = false;
 
                 foreach (var group in valueGroups)
                 {
@@ -812,7 +812,7 @@ namespace Yarn.Compiler
                     {
                         // Two or more cases have the same name! That's not
                         // allowed.
-                        anyDuplicateNames = true;
+                        anyDuplicateValues = true;
                         foreach (var duplicateCase in group)
                         {
                             this.diagnostics.Add(new Diagnostic(this.sourceFileName, duplicateCase, $"Enum case {@duplicateCase.name.Text} must have a unique raw value ({duplicateCase.RawValue.InternalValue} is used by {group.Count() - 1} other case(s).)"));
@@ -820,9 +820,10 @@ namespace Yarn.Compiler
                     }
                 }
 
-                if (anyDuplicateNames)
+                if (anyDuplicateValues)
                 {
-                    // Return; we'll have already generated the appropriate diagnostics.
+                    // Return; we'll have already generated the appropriate
+                    // diagnostics.
                     return;
                 }
             }
@@ -831,18 +832,17 @@ namespace Yarn.Compiler
                 throw new InvalidOperationException("Internal error");
             }
 
+            // Last check: regardless of any raw values (or lack thereof), all
+            // cases must have unique names.
             var nameGroups = context.enum_case_statement().GroupBy(c => c.name.Text);
-
-            bool anyDuplicates = false;
-
-            // All cases must have unique names.
+            bool anyDuplicateNames = false;
             foreach (var group in nameGroups)
             {
                 if (group.Count() > 1)
                 {
                     // Two or more cases have the same name! That's not
                     // allowed.
-                    anyDuplicates = true;
+                    anyDuplicateNames = true;
                     foreach (var duplicateCase in group)
                     {
                         this.diagnostics.Add(new Diagnostic(this.sourceFileName, duplicateCase, $"Enum case {@duplicateCase.name.Text} must have a unique name.)"));
@@ -850,8 +850,10 @@ namespace Yarn.Compiler
                 }
             }
 
-            if (anyDuplicates)
+            if (anyDuplicateNames)
             {
+                // Return; we'll have already generated the appropriate
+                // diagnostics.
                 return;
             }
 
