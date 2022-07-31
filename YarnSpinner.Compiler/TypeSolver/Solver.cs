@@ -202,7 +202,7 @@ namespace TypeChecker
         internal static Substitution Solve(IEnumerable<TypeConstraint> typeConstraints, IEnumerable<TypeBase> knownTypes, ref List<Yarn.Compiler.Diagnostic> diagnostics, Substitution partialSolution = null, bool failuresAreErrors = true)
         {
             var subst = partialSolution ?? new TypeChecker.Substitution();
-            var remainingConstraints = new HashSet<TypeConstraint>(typeConstraints);
+            var remainingConstraints = new HashSet<TypeConstraint>(typeConstraints.WithoutTautologies());
 
             bool TryGetConstraint<T>(out T constraint) where T : TypeConstraint
             {
