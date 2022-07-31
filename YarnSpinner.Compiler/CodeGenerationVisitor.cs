@@ -558,29 +558,40 @@ namespace Yarn.Compiler
             return 0;
         }
 
-        // enum member. ConstantValueVisitor will have set the context's
-        // EnumMember property, so we just need to pull it back out, get
-        // its internal representation, and push it
-        public override int VisitValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context)
+        // A reference to a constant property member of a type (eg Food.Apple).
+        // We need to find the underlying value of that type and push that.
+        public override int VisitValueTypeMemberReference([NotNull] YarnSpinnerParser.ValueTypeMemberReferenceContext context)
         {
-            // The member of the enum that this value represents
-            EnumMember enumMember = context.EnumMember;
+            var type = context.Type;
 
-            // The 'real', internal value of this member (a number)
-            var rawValue = enumMember.RawValue;
+            var memberName = context.typeMemberReference().memberName.Text;
+
+            if (type.TypeMembers.TryGetValue(memberName, out var member) == false) {
+                throw new System.InvalidOperationException($"Internal error during code generation: type {type} has no member {memberName}");
+            }
+
+            if (!(member is ConstantTypeProperty property)) {
+                throw new System.InvalidOperationException($"Internal error during code generation: {type.Name}.{memberName} is not a {nameof(ConstantTypeProperty)}");
+            }
+
+            var value = property.Value;
+
+            var propertyType = property.Type;
+            if (propertyType is EnumType @enum) {
+                propertyType = @enum.RawType;
+            }
 
             // Raw values are permitted to be a string, or a number
-            if (rawValue.Type == BuiltinTypes.String)
-            {
-                this.compiler.Emit(OpCode.PushString, context.Start, new Operand(rawValue.ConvertTo<string>()));
+            if (propertyType == Types.String) {
+                this.compiler.Emit(OpCode.PushString, context.Start, new Operand(value.ToString()));
             }
-            else if (rawValue.Type == BuiltinTypes.Number)
+            else if (propertyType == Types.Number)
             {
-                this.compiler.Emit(OpCode.PushFloat, context.Start, new Operand(rawValue.ConvertTo<float>()));
+                this.compiler.Emit(OpCode.PushFloat, context.Start, new Operand(value.ToSingle(CultureInfo.InvariantCulture)));
             }
             else
             {
-                throw new InvalidOperationException($"Internal error: enum case \"{enumMember.Name}\" has raw value type {rawValue.Type.Name}, which is not allowed.");
+                throw new InvalidOperationException($"Internal error: {type.Name}.{memberName} has type {property.Type.Name}, which is not allowed.");
             }
 
             return 0;

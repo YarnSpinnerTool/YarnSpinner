@@ -292,6 +292,31 @@ namespace Yarn.Compiler
             context.Type = context.variable().Type;
         }
 
+        public override void ExitValueTypeMemberReference([NotNull] YarnSpinnerParser.ValueTypeMemberReferenceContext context)
+        {
+            if (context.typeMemberReference() == null || context.typeMemberReference().memberName == null) {
+                context.Type = Types.Error;
+                return;
+            }
+
+            var typeName = context.typeMemberReference().typeName.Text;
+            var memberName = context.typeMemberReference().memberName.Text;
+
+            context.Type = GenerateTypeVariable();
+
+            if (typeName != null) {
+                // Constrain to a type named typeName, containing a member named
+                // memberName
+                AddHasNameConstraint(context.Type, typeName, context.typeMemberReference(), s => $"No type called {typeName} could be found");
+
+                AddHasEnumMemberConstraint(context.Type, memberName, context.typeMemberReference(), s => $"{typeName} does not have a member named {memberName}");
+            } else {
+                // We don't have a type name, so we can only constrain based on
+                // the member name.
+                AddHasEnumMemberConstraint(context.Type, memberName, context.typeMemberReference(), s => $"No type containing a member named {memberName} could be found");
+            }
+        }
+
         public override void ExitVariable([NotNull] YarnSpinnerParser.VariableContext context)
         {
             var variableID = context.VAR_ID();
