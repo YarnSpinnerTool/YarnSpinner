@@ -24,16 +24,16 @@ namespace YarnLanguageServer
         {
             if (args.Contains("--waitForDebugger"))
             {
-                while (!Debugger.IsAttached) { await Task.Delay(100); }
+                while (!Debugger.IsAttached) { await Task.Delay(100).ConfigureAwait(false); }
             }
 
             server = await LanguageServer.From(
                 options => ConfigureOptions(options)
                     .WithInput(Console.OpenStandardInput())
                     .WithOutput(Console.OpenStandardOutput())
-            );
+            ).ConfigureAwait(false);
 
-            await server.WaitForExit;
+            await server.WaitForExit.ConfigureAwait(false);
         }
 
         public static LanguageServerOptions ConfigureOptions(LanguageServerOptions options)
@@ -61,6 +61,8 @@ namespace YarnLanguageServer
                     try {
                         workspace.Root = request.RootPath;
 
+                        server.Log("Server initialize.");
+
                         // avoid re-initializing if possible by getting config settings in early
                         if (request.InitializationOptions != null)
                         {
@@ -68,19 +70,19 @@ namespace YarnLanguageServer
                         }
                         
                         workspace.Initialize(server);
-                        await Task.CompletedTask;
+                        await Task.CompletedTask.ConfigureAwait(false);
                     } catch (Exception e) {
                         server.Window.ShowError($"Yarn Spinner language server failed to start: {e}");
-                        await Task.FromException(e);
+                        await Task.FromException(e).ConfigureAwait(false);
                     }
                 })
                 .OnInitialized(async (server, request, response, token) =>
                 {
-                    await Task.CompletedTask;
+                    await Task.CompletedTask.ConfigureAwait(false);
                 })
                 .OnStarted(async (server, token) =>
                 {
-                    await Task.CompletedTask;
+                    await Task.CompletedTask.ConfigureAwait(false);
                 })
 
                 ;
