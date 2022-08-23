@@ -179,6 +179,19 @@ namespace TypeChecker
                             var failureMessage = currentConstraint.GetFailureMessage(subst);
                             diagnostics.Add(new Yarn.Compiler.Diagnostic(currentConstraint.SourceFileName, currentConstraint.SourceRange, failureMessage));
                         }
+
+                        // We're going to continue evaluating other constraints,
+                        // but we already know that the variables involved in
+                        // this constraint can't be correctly resolved. Remove
+                        // all constraints that involve a variable involved in
+                        // this one.
+                        IEnumerable<TypeVariable> failedConstraintVariables = currentConstraint.AllVariables;
+                        var constraintsToDiscard = new HashSet<TypeConstraint>(
+                            remainingConstraints.Where(c => c.AllVariables.Any(v => failedConstraintVariables.Contains(v))));
+
+                        foreach (var c in constraintsToDiscard) {
+                            remainingConstraints.Remove(c);
+                        }
                     }
                     else
                     {
