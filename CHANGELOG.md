@@ -67,6 +67,14 @@ Functions can receive enums as parameters, as long as the enum's raw value type 
 
 ### Removed
 
+## [2.2.3] 2022-08-28
+
+### Added
+
+- a new utility `DetermineNodeConnections` that analyses Yarn files and returns a directed graph of node connections.
+
+### Removed
+
 - Removed `null` from the Yarn grammar.
   - `null` was removed from the language in version 2.0.0, but it was kept in the grammar to make it possible to emit special error messages when it was used that explained that the language had changed.
 
