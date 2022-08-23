@@ -1,0 +1,26 @@
+title: Start
+---
+
+<<enum EnumA>>
+<<case One>>
+<<case Two>>
+<<endenum>>
+
+<<enum EnumB>>
+<<case One>>
+<<case Two>>
+<<endenum>>
+
+<<stop>>
+
+<<if some_function(EnumA.One)>>
+<<endif>>
+
+<<if some_function(EnumB.One)>>
+<<endif>>
+
+<<declare $x = "">>
+
+<<set $x = some_function(EnumA.One)>>
+
+===
