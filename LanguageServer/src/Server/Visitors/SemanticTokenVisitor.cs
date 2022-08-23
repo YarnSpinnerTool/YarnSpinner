@@ -6,11 +6,18 @@ using Antlr4.Runtime.Tree;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Yarn.Compiler;
+using Position = Yarn.Compiler.Position;
 
 namespace YarnLanguageServer
 {
     internal class SemanticTokenVisitor : YarnSpinnerParserBaseVisitor<bool>
     {
+        /// <summary>
+        /// The regular expression that matches a character name at the start of
+        /// a line.
+        /// </summary>
+        private static readonly System.Text.RegularExpressions.Regex NameRegex = new (@"^\s*(.*?):");
+
         public static void BuildSemanticTokens(SemanticTokensBuilder builder, YarnFileData yarnFile)
         {
             var visitor = new SemanticTokenVisitor();
@@ -21,17 +28,17 @@ namespace YarnLanguageServer
 
             visitor.Visit(yarnFile.ParseTree);
 
-            foreach (var (start, stop, tokenType, tokenModifiers) in visitor.tokens.OrderBy(t => t.start.StartIndex))
+            foreach (var (start, length, tokenType, tokenModifiers) in visitor.positions.OrderBy(t => t.start.Line).ThenBy(t => t.start.Character))
             {
-                builder.Push(start.Line - 1, start.Column, stop.StopIndex - start.StartIndex + 1, tokenType as SemanticTokenType?, tokenModifiers);
+                builder.Push(start.Line, start.Character, length, tokenType as SemanticTokenType?, tokenModifiers);
             }
         }
 
-        private List<(IToken start, IToken stop, SemanticTokenType tokenType, SemanticTokenModifier[] tokenModifier)> tokens;
+        private List<(Position start, int length, SemanticTokenType tokenType, SemanticTokenModifier[] tokenModifiers)> positions;
 
         private SemanticTokenVisitor()
         {
-            this.tokens = new List<(IToken, IToken, SemanticTokenType, SemanticTokenModifier[])>();
+            this.positions = new List<(Position start, int length, SemanticTokenType tokenType, SemanticTokenModifier[] tokenModifiers)>();
         }
 
         #region Utility Functions
@@ -54,8 +61,18 @@ namespace YarnLanguageServer
         {
             if (start is not null && stop is not null)
             {
-                tokens.Add((start, stop, tokenType, tokenModifier));
+                int length = stop.StopIndex - start.StartIndex + 1;
+
+                positions.Add(
+                    (start.ToPosition(), length, tokenType, tokenModifier)
+                );
             }
+        }
+
+        private void AddTokenType(Position start, int length, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier) {
+            positions.Add(
+                (start, length, tokenType, tokenModifier)
+            );
         }
 
         #endregion Utility Functions
@@ -267,6 +284,24 @@ namespace YarnLanguageServer
             return base.VisitVariable(context);
         }
 
+        public override bool VisitLine_statement([NotNull] YarnSpinnerParser.Line_statementContext context)
+        {
+            // The text from the start of the line up to its first colon is considered the character's name.
+            var text = context.GetTextWithWhitespace();
+            var nameMatch = NameRegex.Match(text);
+            if (nameMatch.Success) {
+                var nameGroup = nameMatch.Groups[0];
+
+                var startPosition = context.Start.ToPosition();
+                startPosition.Character += nameGroup.Index;
+
+                AddTokenType(startPosition, nameGroup.Length, SemanticTokenType.Label);
+            }
+
+            return base.VisitLine_statement(context);
+        }
+
+        
         #endregion Visitor Method Overrides
     }
 }
