@@ -140,6 +140,14 @@ namespace YarnLanguageServer
                 }
             );
 
+            // register graph dialogue command
+            options.OnExecuteCommand<string>(
+                (commandParams) => GenerateDialogueGraph(workspace, commandParams), (_,_) => new ExecuteCommandRegistrationOptions
+                {
+                    Commands = new[] { Commands.Graph },
+                }
+            );
+
             return options;
         }
 
@@ -468,6 +476,124 @@ namespace YarnLanguageServer
             };
             return Task.FromResult<CompilerOutput>(output);
         }
+
+        private static Task<string> GenerateDialogueGraph(Workspace workspace, ExecuteCommandParams<string> commandParams)
+        {
+            // alright so first we get the text of every file
+            var fileText = workspace.YarnFiles.Select(pair => { return pair.Value.Text; }).ToArray();
+
+            // then we give that to the util that generates the runs
+            var graph = Yarn.Compiler.Utility.DetermineNodeConnections(fileText);
+
+            // then we build up the dot/mermaid file (copy from ysc)
+            string graphString;
+
+            // I hate this
+            var format = commandParams.Arguments[0].ToString();
+            var clustering = commandParams.Arguments[1].ToObject<Boolean>();
+
+            if (format.Equals("dot"))
+            {
+                graphString = DrawDot(graph, clustering);
+            }
+            else
+            {
+                graphString = DrawMermaid(graph, clustering);
+            }
+            
+            // then we send that back over
+            return Task.FromResult(graphString);
+        }
+
+        // copied from YSC
+        private static string DrawMermaid(List<List<Yarn.Compiler.GraphingNode>> graph, bool clustering)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.AppendLine("flowchart TB");
+
+            int i = 0;
+            foreach (var cluster in graph)
+            {
+                if (cluster.Count == 0)
+                {
+                    continue;
+                }
+
+                if (clustering)
+                {
+                    sb.AppendLine($"\tsubgraph a{i}");
+                }
+                foreach (var node in cluster)
+                {
+                    foreach (var jump in node.jumps)
+                    {
+                        sb.AppendLine($"\t{node.node}-->{jump}");
+                    }
+                }
+                if (clustering)
+                {
+                    sb.AppendLine("\tend");
+                }
+                i++;
+            }
+            return sb.ToString();
+        }
+        private static string DrawDot(List<List<Yarn.Compiler.GraphingNode>> graph, bool clustering)
+        {
+            // using three individual builders is a bit lazy but it means I can turn stuff on and off as needed
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            System.Text.StringBuilder links = new System.Text.StringBuilder();
+            System.Text.StringBuilder sub = new System.Text.StringBuilder();
+            sb.AppendLine("digraph dialogue {");
+
+            if (clustering)
+            {
+                int i = 0;
+                foreach (var cluster in graph)
+                {
+                    if (cluster.Count == 0)
+                    {
+                        continue;
+                    }
+                    
+                    // they need to be named clusterSomething to be clustered
+                    sub.AppendLine($"\tsubgraph cluster{i}{{");
+                    sub.Append("\t\t");
+                    foreach (var node in cluster)
+                    {
+                        sub.Append($"{node.node} ");
+                    }
+                    sub.AppendLine(";");
+                    sub.AppendLine("\t}");
+                    i++;
+                }
+            }
+
+            foreach (var cluster in graph)
+            {
+                foreach (var connection in cluster)
+                {
+                    if (connection.hasPositionalInformation)
+                    {
+                        sb.AppendLine($"\t{connection.node} [");
+                        sb.AppendLine($"\t\tpos = \"{connection.position.x},{connection.position.y}\"");
+                        sb.AppendLine("\t]");
+                    }
+
+                    foreach (var link in connection.jumps)
+                    {
+                        links.AppendLine($"\t{connection.node} -> {link};");
+                    }
+                }
+            }   
+
+            sb.Append(links);
+            sb.Append(sub);
+
+            sb.AppendLine("}");
+            return sb.ToString();
+        }
+
 
         private static Task<VOStringExport> BlockExtraction(Workspace workspace, ExecuteCommandParams<VOStringExport> commandParams)
         {
