@@ -1,6 +1,8 @@
 #define DISALLOW_NULL_EQUATION_TERMS
 
 
+using System.Collections.Generic;
+
 namespace TypeChecker
 {
 
@@ -48,5 +50,10 @@ namespace TypeChecker
         public string GetFailureMessage(Substitution subst) => FailureMessageProvider?.Invoke(subst) ?? this.ToString();
         
         public FailureMessageProvider FailureMessageProvider;
+
+        /// <summary>
+        /// Gets the collection of all variables involved in this constraint.
+        /// </summary>
+        public abstract IEnumerable<TypeVariable> AllVariables { get; }
     }
 }

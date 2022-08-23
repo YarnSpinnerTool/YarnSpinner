@@ -35,6 +35,9 @@ namespace TypeChecker
         public IType ToType { get; set; }
 
         /// <inheritdoc/>
+        public override IEnumerable<TypeVariable> AllVariables => new[] { this.FromType, this.ToType }.OfType<TypeVariable>();
+
+        /// <inheritdoc/>
         public override string ToString() => $"{this.FromType} c> {this.ToType}";
 
         /// <inheritdoc/>

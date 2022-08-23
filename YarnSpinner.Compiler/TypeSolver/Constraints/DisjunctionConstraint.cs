@@ -10,6 +10,9 @@ namespace TypeChecker
     internal class DisjunctionConstraint : TypeConstraint, IEnumerable<TypeConstraint>
     {
         public IEnumerable<TypeConstraint> Constraints { get; private set; }
+        
+        /// <inheritdoc/>
+        public override IEnumerable<TypeVariable> AllVariables => Constraints.SelectMany(c => c.AllVariables).Distinct();
 
         public DisjunctionConstraint(TypeConstraint left, TypeConstraint right)
         {
@@ -35,6 +38,10 @@ namespace TypeChecker
 
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<Yarn.TypeBase> knownTypes)
         {
+            // There are two ways to simplify a disjunction:
+            //
+            // 1. If we have only a single term, simplify to that term.
+            // 2. Otherwise, discard any redundant terms.
             if (this.Constraints.Count() == 1)
             {
                 return this.Constraints.Single();

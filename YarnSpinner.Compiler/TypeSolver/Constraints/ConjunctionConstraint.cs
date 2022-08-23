@@ -10,6 +10,9 @@ namespace TypeChecker
     {
         public IEnumerable<TypeConstraint> Constraints { get; private set; }
 
+        /// <inheritdoc/>
+        public override IEnumerable<TypeVariable> AllVariables => Constraints.SelectMany(c => c.AllVariables).Distinct();
+
         public ConjunctionConstraint(TypeConstraint left, TypeConstraint right)
         {
             Constraints = new[] { left, right };

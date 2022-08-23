@@ -12,6 +12,9 @@ namespace TypeChecker
         public IType Type { get; private set; }
         public string MemberName { get; private set; }
 
+        /// <inheritdoc/>
+        public override IEnumerable<TypeVariable> AllVariables => new[] { Type }.OfType<TypeVariable>();
+
         public TypeHasMemberConstraint(IType type, string memberName)
         {
             this.Type = type;

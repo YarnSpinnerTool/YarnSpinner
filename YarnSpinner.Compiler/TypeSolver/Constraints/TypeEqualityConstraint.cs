@@ -2,6 +2,7 @@
 
 
 using System.Collections.Generic;
+using System.Linq;
 using Yarn;
 
 namespace TypeChecker
@@ -11,6 +12,9 @@ namespace TypeChecker
     {
         public IType Left { get; set; }
         public IType Right { get; set; }
+
+        /// <inheritdoc/>
+        public override IEnumerable<TypeVariable> AllVariables => new[] { Left, Right }.OfType<TypeVariable>();
 
         public TypeEqualityConstraint(IType left, IType right)
         {
