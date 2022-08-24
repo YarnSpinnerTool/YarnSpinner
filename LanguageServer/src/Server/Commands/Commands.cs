@@ -47,11 +47,11 @@ public static class Commands
     /// <summary>
     /// The command to compile a Yarn project and get a spreadsheet
     /// </summary>
-    public const string Extract = "yarnspinner.extract";
+    public const string Extract = "yarnspinner.extract-spreadsheet";
 
     /// <summary>
     /// The command to generate a graph of the Yarn Project.
     /// Will be presented as a directed graph of nodes and jumps.
     /// </summary>
-    public const string Graph = "yarnspinner.graph";
+    public const string Graph = "yarnspinner.create-graph";
 }
