@@ -53,6 +53,13 @@ namespace YarnLanguageServer
                 HeaderStartLine = context.Start.Line - 1,
             };
 
+            // Get the first few lines of the node's body as a preview
+            if (context.body() != null) {
+                var bodyLines = context.body().GetTextWithWhitespace().Split('\n').Where(line => string.IsNullOrWhiteSpace(line) == false).Take(3).Select(line => line.Trim());
+
+                currentNodeInfo.PreviewText = string.Join(Environment.NewLine, bodyLines);
+            }
+
             base.VisitNode(context);
 
             nodeInfos.Add(currentNodeInfo);

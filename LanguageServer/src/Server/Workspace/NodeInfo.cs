@@ -42,6 +42,13 @@ public record NodeInfo
     [JsonProperty("jumps")]
     public List<NodeJump> Jumps { get; init; } = new();
 
+    /// <summary>
+    /// Gets or sets the text that can be shown as a short preview of the
+    /// contents of this node.
+    /// </summary>
+    [JsonProperty("previewText")]
+    public string PreviewText { get; set; } = string.Empty;
+
     internal YarnFileData File { get; init; }
 
     internal IToken TitleToken { get; set; }
