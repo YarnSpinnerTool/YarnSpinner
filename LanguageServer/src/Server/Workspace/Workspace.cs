@@ -75,7 +75,8 @@ namespace YarnLanguageServer
             try
             {
                 var text = System.IO.File.ReadAllText(path);
-                var uri = new Uri("file://" + path);
+                
+                var uri = OmniSharp.Extensions.LanguageServer.Protocol.DocumentUri.FromFileSystemPath(path).ToUri();
 
                 var yarnFileData = new YarnFileData(text, uri, this);
                 YarnFiles[uri] = yarnFileData;
