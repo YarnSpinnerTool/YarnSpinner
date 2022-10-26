@@ -40,7 +40,7 @@ namespace Yarn.Compiler
                     // nothing to do; string assembly will have been done by the
                     // StringTableGeneratorVisitor
                 }
-                else if (child is ParserRuleContext)
+                else if (child is YarnSpinnerParser.ExpressionContext)
                 {
                     // assume that this is an expression (the parser only
                     // permits them to be expressions, but we can't specify that

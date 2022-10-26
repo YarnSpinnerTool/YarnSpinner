@@ -250,6 +250,14 @@ NUMBER
 fragment INT: DIGIT+ ;
 fragment DIGIT: [0-9];
 
+// The start of substitution formatter.
+SUBSTITUTION_FORMATTER_START: ':' -> pushMode(SubstitutionFormatterMode);
+
+mode SubstitutionFormatterMode;
+fragment SUBSTITUTION_FORMATTER_SEG: ~('{' | '}') | '{{' | '}}' ;
+SUBSTITUTION_FORMATTER: ( SUBSTITUTION_FORMATTER_SEG | '{' SUBSTITUTION_FORMATTER? '}' )+ ;
+SUBSTITUTION_FORMATTER_END:	'}' -> popMode, popMode;
+
 // Commands; these are either specific ones that the compiler has a special 
 // behaviour for, like if, else, set; otherwise, they are arbitrary text 
 // (which may contain expressions), which are passed to the game.

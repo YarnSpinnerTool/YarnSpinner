@@ -65,7 +65,16 @@ namespace YarnSpinner.Tests
 
         public string GetComposedTextForLine(Line line) {
 
-            var substitutedText = Dialogue.ExpandSubstitutions(stringTable[line.ID].text, line.Substitutions);
+            // var substitutedText = Dialogue.ExpandSubstitutions(stringTable[line.ID].text, line.Substitutions);
+            var substitutedText = stringTable[line.ID].text;
+            try
+            {
+                substitutedText = string.Format(substitutedText, line.RawSubstitutions);
+            }
+            catch
+            {
+
+            }
 
             return dialogue.ParseMarkup(substitutedText).Text;
         }

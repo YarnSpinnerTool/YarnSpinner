@@ -479,13 +479,17 @@ namespace Yarn
                             var expressionCount = (int)i.Operands[1].FloatValue;
 
                             var strings = new string[expressionCount];
+                            var objects = new object[expressionCount];
 
                             for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--)
                             {
-                                strings[expressionIndex] = state.PopValue().ConvertTo<string>();
+                                var value = state.PopValue();
+                                strings[expressionIndex] = value.ConvertTo<string>();
+                                objects[expressionIndex] = value.InternalValue;
                             }
 
                             line.Substitutions = strings;
+                            line.RawSubstitutions = objects;
                         }
 
                         // Suspend execution, because we're about to deliver content
@@ -830,16 +834,19 @@ namespace Yarn
                             var expressionCount = (int)i.Operands[2].FloatValue;
 
                             var strings = new string[expressionCount];
+                            var objects = new object[expressionCount];
 
                             // pop the expression values off the stack in
                             // reverse order, and store the list of substitutions
                             for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--)
                             {
-                                string substitution = state.PopValue().ConvertTo<string>();
-                                strings[expressionIndex] = substitution;
+                                var value = state.PopValue();
+                                strings[expressionIndex] = value.ConvertTo<string>();
+                                objects[expressionIndex] = value.InternalValue;
                             }
 
                             line.Substitutions = strings;
+                            line.RawSubstitutions = objects;
                         }
 
                         // Indicates whether the VM believes that the

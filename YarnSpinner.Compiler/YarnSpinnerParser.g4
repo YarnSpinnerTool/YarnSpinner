@@ -45,8 +45,17 @@ line_statement
 
 line_formatted_text
     : ( TEXT+ // one or more chunks of text to show to the player
-      | EXPRESSION_START expression EXPRESSION_END // an expression to evaluate
+      | EXPRESSION_START expression line_substitution_alignment? EXPRESSION_END // an expression to evaluate
+      | EXPRESSION_START expression line_substitution_alignment? SUBSTITUTION_FORMATTER_START line_substitution_formatter SUBSTITUTION_FORMATTER_END // an expression with formatter
       )+ 
+    ;
+
+line_substitution_alignment
+    : COMMA ('+' | '-')? NUMBER
+    ;
+
+line_substitution_formatter
+    : SUBSTITUTION_FORMATTER
     ;
 
 hashtag

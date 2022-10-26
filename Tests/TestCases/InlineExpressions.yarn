@@ -14,6 +14,14 @@ String: {"string"}
 Bool: {true}
 Variable: {$var}
 
+// Lines with alignment and formatters
+Number: {86:0000}
+Number: {86,10:F4}
+Number: {86,5}+{4,-5}={86+4}
+
+// this is left unhandled as a compability to SmartFormat/Unity Localization, but the expression should be replaced with index
+Number: {4:plural: is {} item|are {} items}
+
 // Lines with the expresion at the start (issue #243)
 {$var} is great!
 

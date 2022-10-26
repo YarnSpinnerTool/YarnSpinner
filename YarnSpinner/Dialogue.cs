@@ -60,6 +60,7 @@ namespace Yarn
         {
             this.ID = stringID;
             this.Substitutions = new string[] { };
+            this.RawSubstitutions = Array.Empty<object>();
         }
 
         /// <summary>
@@ -72,6 +73,12 @@ namespace Yarn
         /// before delivery.
         /// </summary>
         public string[] Substitutions;
+
+        /// <summary>
+        /// The values that should be inserted into the user-facing text
+        /// before delivery, in their raw type.
+        /// </summary>
+        public object[] RawSubstitutions;
     }
 
     /// <summary>

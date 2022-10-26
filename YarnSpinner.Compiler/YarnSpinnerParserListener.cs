@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from /Users/mcjones/Development/YarnSpinner/YarnSpinner.Compiler/YarnSpinnerParser.g4 by ANTLR 4.9.2
+// Generated from c:\Projects\YarnSpinner\YarnSpinner.Compiler\YarnSpinnerParser.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -111,6 +111,26 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitLine_formatted_text([NotNull] YarnSpinnerParser.Line_formatted_textContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.line_substitution_alignment"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLine_substitution_alignment([NotNull] YarnSpinnerParser.Line_substitution_alignmentContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.line_substitution_alignment"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLine_substitution_alignment([NotNull] YarnSpinnerParser.Line_substitution_alignmentContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.line_substitution_formatter"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLine_substitution_formatter([NotNull] YarnSpinnerParser.Line_substitution_formatterContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.line_substitution_formatter"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLine_substitution_formatter([NotNull] YarnSpinnerParser.Line_substitution_formatterContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.hashtag"/>.
 	/// </summary>

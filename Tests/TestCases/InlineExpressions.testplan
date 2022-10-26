@@ -5,6 +5,12 @@ line: String: string
 line: Bool: True
 line: Variable: variable
 
+line: Number: 0086
+line: Number:    86.0000
+line: Number:    86+4    =90
+
+line: Number: {0:plural: is {} item|are {} items}
+
 line: variable is great!
 
 # options

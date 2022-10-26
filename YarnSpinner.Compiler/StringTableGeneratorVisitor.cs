@@ -152,7 +152,7 @@ namespace Yarn.Compiler
                 {
                     composedString.Append(child.GetText());
                 }
-                else if (child is ParserRuleContext)
+                else if (child is YarnSpinnerParser.ExpressionContext)
                 {
                     // Expressions in the final string are denoted as the
                     // index of the expression, surrounded by braces { }.
@@ -162,6 +162,14 @@ namespace Yarn.Compiler
                     // the expression count.
                     composedString.Append(expressionCount);
                     expressionCount += 1;
+                }
+                else if (child is YarnSpinnerParser.Line_substitution_formatterContext formatterContext)
+                {
+                    composedString.Append(formatterContext.GetText());
+                }
+                else if (child is YarnSpinnerParser.Line_substitution_alignmentContext alignmentContext)
+                {
+                    composedString.Append(alignmentContext.GetText());
                 }
             }
 
