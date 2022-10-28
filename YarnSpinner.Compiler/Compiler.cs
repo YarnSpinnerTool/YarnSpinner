@@ -728,6 +728,11 @@ namespace Yarn.Compiler
                 RegisterStrings(file.FileName, stringTableManager, parseResult.Tree, ref diagnostics);
             }
 
+            // Ensure that all nodes names in this compilation are unique. Node
+            // name uniqueness is important for several processes, so we do this
+            // check here.
+            AddErrorsForDuplicateNodeNames(parsedFiles, ref diagnostics);
+
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
             {
                 // Stop at this point
@@ -934,6 +939,71 @@ namespace Yarn.Compiler
             return finalResult;
         }
 
+        /// <summary>
+        /// Checks every node name in <paramref name="parseResults"/>, and
+        /// ensure that they're all unique. If there are duplicates, create
+        /// diagnostics where any node overlaps.
+        /// </summary>
+        /// <param name="parseResults">A collection of file parse results to
+        /// check.</param>
+        /// <param name="diagnostics">A collection of diagnostics to add
+        /// to.</param>
+        private static void AddErrorsForDuplicateNodeNames(List<FileParseResult> parseResults, ref List<Diagnostic> diagnostics)
+        {
+            var allNodes = parseResults.SelectMany(r =>
+            {
+                var dialogue = r.Tree.Payload as YarnSpinnerParser.DialogueContext;
+                if (dialogue == null)
+                {
+                    return Enumerable.Empty<(YarnSpinnerParser.NodeContext Node, FileParseResult File)>();
+                }
+
+                return dialogue.node().Select(n => (Node: n, File: r));
+            });
+
+            // Pair up every node with its name, and filter out any that don't
+            // have a name
+            var nodesWithNames = allNodes.Select(n =>
+            {
+                var titleHeader = GetHeadersWithKey(n.Node, "title").FirstOrDefault();
+                if (titleHeader == null)
+                {
+                    return (
+                        Name: null,
+                        Header: null,
+                        Node: n.Node,
+                        File: n.File);
+                }
+                else
+                {
+                    return (
+                        Name: titleHeader.header_value.Text, 
+                        Header: titleHeader,
+                        Node: n.Node,
+                        File: n.File);
+                }
+            }).Where(kv => kv.Name != null);
+
+            var nodesByName = nodesWithNames.GroupBy(n => n.Name);
+
+            // Find groups of nodes with the same name and generate diagnostics
+            // for each
+            foreach (var group in nodesByName)
+            {
+                if (group.Count() == 1)
+                {
+                    continue;
+                }
+
+                // More than one node has this name! Report an error on both.
+                foreach (var entry in group)
+                {
+                    var d = new Diagnostic(entry.File.Name, entry.Header, $"More than one node is named {entry.Name}");
+                    diagnostics.Add(d);
+                }
+            }
+        }
+
         private static void RegisterStrings(string fileName, StringTableManager stringTableManager, IParseTree tree, ref List<Diagnostic> diagnostics)
         {
             var visitor = new StringTableGeneratorVisitor(fileName, stringTableManager);
@@ -971,9 +1041,14 @@ namespace Yarn.Compiler
 
             var debugInfoDictionary = new Dictionary<string, DebugInfo>();
 
-            foreach (var debugInfo in compiler.DebugInfos)
+            // Don't attempt to generate debug information if compilation
+            // produced errors
+            if (!compiler.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {
-                debugInfoDictionary.Add(debugInfo.NodeName, debugInfo);
+                foreach (var debugInfo in compiler.DebugInfos)
+                {
+                    debugInfoDictionary.Add(debugInfo.NodeName, debugInfo);
+                }
             }
 
             return new CompilationResult
@@ -1158,6 +1233,17 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// Finds all header parse contexts in the given node with the given key.
+        /// </summary>
+        /// <param name="nodeContext">The node context to search.</param>
+        /// <param name="name">The key to search for</param>
+        /// <returns>A collection of header contexts.</returns>
+        internal static IEnumerable<YarnSpinnerParser.HeaderContext> GetHeadersWithKey(YarnSpinnerParser.NodeContext nodeContext, string name)
+        {
+            return nodeContext.header().Where(h => h.header_key?.Text == name);
+        }
+
+        /// <summary>
         /// Generates a unique label name to use in the program.
         /// </summary>
         /// <param name="commentary">Any additional text to append to the
@@ -1282,12 +1368,31 @@ namespace Yarn.Compiler
         // var and make it ready to go again
         public override void ExitNode(YarnSpinnerParser.NodeContext context)
         {
-            this.Program.Nodes[this.CurrentNode.Name] = this.CurrentNode;
+            if (string.IsNullOrEmpty(this.CurrentNode.Name)) {
+                // We don't have a name for this node. We can't emit code for
+                // it.
+                this.diagnostics.Add(new Diagnostic(
+                    this.fileParseResult.Name,
+                    context,
+                    "Missing title header for node"));
+            }
+            else
+            {
+                if (!this.Program.Nodes.ContainsKey(this.CurrentNode.Name))
+                {
+                    this.Program.Nodes[this.CurrentNode.Name] = this.CurrentNode;
+                }
+                else
+                {
+                    // Duplicate node name! We'll have caught this during the
+                    // declarations pass, so no need to issue an error here.
+                }
 
-            this.CurrentDebugInfo.NodeName = this.CurrentNode.Name;
-            this.CurrentDebugInfo.FileName = this.fileParseResult.Name;
+                this.CurrentDebugInfo.NodeName = this.CurrentNode.Name;
+                this.CurrentDebugInfo.FileName = this.fileParseResult.Name;
 
-            this.DebugInfos.Add(this.CurrentDebugInfo);
+                this.DebugInfos.Add(this.CurrentDebugInfo);
+            }
 
             this.CurrentNode = null;
             this.RawTextNode = false;
