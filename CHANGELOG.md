@@ -18,7 +18,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- a new utility `DetermineNodeConnections` that analyses Yarn files and returns a directed graph of node connections.
+- Added a new method, `Utility.DetermineNodeConnections`, that analyses Yarn files and returns a directed graph of node connections.
+  - This feature is used in the Language Server to produce reports like voice-over scripts.
 
 ## [2.2.2] 2022-07-22
 
