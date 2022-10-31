@@ -59,4 +59,9 @@ public static class Commands
     /// The command to show references to a named Yarn node.
     /// </summary>
     public const string ShowReferences = "yarn.showReferences";
+
+    /// <summary>
+    /// The command to show a specific Yarn node in a graph view.
+    /// </summary>
+    public const string ShowNodeInGraphView = "yarn.showNodeInGraphView";
 }

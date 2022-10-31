@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
@@ -22,7 +22,7 @@ namespace YarnLanguageServer.Handlers
         {
             if (workspace.YarnFiles.TryGetValue(request.TextDocument.Uri.ToUri(), out var yarnFile))
             {
-                var results = yarnFile.NodeDefinitions.Select(titleToken =>
+                var results = yarnFile.NodeDefinitions.SelectMany(titleToken =>
                    {
                        var referenceLocations = ReferencesHandler.GetReferences(titleToken.Text, YarnSymbolType.Node, workspace);
                        var count = referenceLocations.Count() - 1; // This is a count of 'other' references, so don't include the declaration
@@ -36,8 +36,9 @@ namespace YarnLanguageServer.Handlers
                            ContractResolver = new CamelCasePropertyNamesContractResolver(),
                        };
 
-                       return new CodeLens
+                       return new CodeLens[]
                        {
+                        new CodeLens {
                            Range = PositionHelper.GetRange(yarnFile.LineStarts, titleToken),
                            Command = new Command
                            {
@@ -49,6 +50,20 @@ namespace YarnLanguageServer.Handlers
                                     JToken.FromObject(referenceLocations, serializer),
                                },
                            },
+                        },
+                        new CodeLens {
+                           Range = PositionHelper.GetRange(yarnFile.LineStarts, titleToken),
+                           Command = new Command
+                           {
+                               Title = "Show in Graph View",
+                               Name = Commands.ShowNodeInGraphView,
+                               Arguments = new JArray
+                               {
+                                    yarnFile.Uri,
+                                    titleToken.Text,
+                               },
+                           },
+                        },
                        };
                    });
 
