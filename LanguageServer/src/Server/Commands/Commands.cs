@@ -54,4 +54,9 @@ public static class Commands
     /// Will be presented as a directed graph of nodes and jumps.
     /// </summary>
     public const string Graph = "yarnspinner.create-graph";
+
+    /// <summary>
+    /// The command to show references to a named Yarn node.
+    /// </summary>
+    public const string ShowReferences = "yarn.showReferences";
 }

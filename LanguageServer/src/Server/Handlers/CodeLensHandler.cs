@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
@@ -42,7 +42,7 @@ namespace YarnLanguageServer.Handlers
                            Command = new Command
                            {
                                Title = count == 1 ? "1 reference" : $"{count} references",
-                               Name = "yarn.showReferences",
+                               Name = Commands.ShowReferences,
                                Arguments = new JArray
                                {
                                     JToken.FromObject(PositionHelper.GetPosition(yarnFile.LineStarts, titleToken.StartIndex), serializer),
