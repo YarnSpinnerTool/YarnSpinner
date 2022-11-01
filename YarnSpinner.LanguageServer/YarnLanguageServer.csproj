@@ -9,8 +9,6 @@
         <ApplicationIcon />
         <GenerateDocumentationFile>False</GenerateDocumentationFile>
         <UseAppHost>False</UseAppHost>
-
-        <YarnSpinnerDevelopmentPath>../../../YarnSpinner</YarnSpinnerDevelopmentPath>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -41,19 +39,11 @@
 		<PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
     </ItemGroup>
 
-    <!-- If Yarn Spinner doesn't exist at YarnSpinnerDevelopmentPath, then pull
-    the most recent version from NuGet. -->
-    <ItemGroup Condition="!Exists('$(YarnSpinnerDevelopmentPath)')">
-        <PackageReference Include="YarnSpinner" Version="2.2.4" />
-        <PackageReference Include="YarnSpinner.Compiler" Version="2.2.4" />
+    <ItemGroup>
+    <ProjectReference Include="../YarnSpinner/YarnSpinner.csproj" />
+    <ProjectReference Include="../YarnSpinner.Compiler/YarnSpinner.Compiler.csproj" />
     </ItemGroup>
-
-    <!-- If Yarn Spinner DOES exist at YarnSpinnerDevelopmentPath, use that. -->
-    <ItemGroup Condition="Exists('$(YarnSpinnerDevelopmentPath)')">
-        <ProjectReference Include="$(YarnSpinnerDevelopmentPath)/YarnSpinner/YarnSpinner.csproj" />
-        <ProjectReference Include="$(YarnSpinnerDevelopmentPath)/YarnSpinner.Compiler/YarnSpinner.Compiler.csproj" />
-    </ItemGroup>
-
+    
     <ItemGroup>
       <None Include="src\Server\Documentation\BuiltInFunctionsAndCommands.ysls.json" />
       <None Include="src\Server\Documentation\ysls.schema.json" />

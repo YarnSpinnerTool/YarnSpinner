@@ -28,6 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Added a new method, `Utility.DetermineNodeConnections`, that analyses Yarn files and returns a directed graph of node connections.
   - This feature is used in the Language Server to produce reports like voice-over scripts.
+- Language Server: New command "yarnspinner.graph" that exports a string which is a graph representation in either mermaid or dot format depending on config.
 
 ## [2.2.2] 2022-07-22
 
@@ -57,6 +58,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - The compiler now does a last-line-before-options tagging pass.
   - This will add a `#lastline` tag onto any dialogue line that immediately precedes a block of options.
   - This is intended to used by other parts of the game to modify dialogue view behaviours.
+- Language Server: Diagnostics and type information now come from the Yarn Spinner compiler, rather than an independent parsing pass.
+- Language Server: Started adding unit tests.
 
 ### Changed
 

@@ -18,7 +18,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <ProjectReference Include="../LanguageServer/YarnLanguageServer.csproj" />
+    <ProjectReference Include="../YarnSpinner.LanguageServer/YarnLanguageServer.csproj" />
 
     <!-- <ProjectReference Include="/Users/desplesda/Work/csharp-language-server-protocol/src/Server/Server.csproj" /> -->
     <!-- <ProjectReference Include="/Users/desplesda/Work/csharp-language-server-protocol/src/Testing/Testing.csproj" /> -->
