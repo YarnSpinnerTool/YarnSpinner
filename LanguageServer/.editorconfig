@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CA1051: Do not declare visible instance fields
+dotnet_diagnostic.CA1051.severity = silent
