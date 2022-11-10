@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Merged LanguageServer projects into the core YarnSpinner repository.
+
 ### Removed
 
 ## [2.2.4] 2022-10-31
