@@ -54,8 +54,25 @@ namespace YarnLanguageServer
             };
 
             // Get the first few lines of the node's body as a preview
-            if (context.body() != null) {
-                var bodyLines = context.body().GetTextWithWhitespace().Split('\n').Where(line => string.IsNullOrWhiteSpace(line) == false).Take(3).Select(line => line.Trim());
+            if (context.BODY_START != null)
+            {
+                var nodeStartLine = context.Start.Line;
+                var bodyStartLine = context.BODY_START().Symbol.Line + 1;
+                var bodyEndLine = context.BODY_END()?.Symbol.Line ?? bodyStartLine;
+
+                int previewLineLength = 10;
+
+                if (bodyStartLine + previewLineLength > bodyEndLine)
+                {
+                    previewLineLength = bodyEndLine - bodyStartLine;
+                }
+
+                var bodyLines = context.GetTextWithWhitespace()
+                                   .Split('\n')
+                                   .Skip(bodyStartLine - nodeStartLine)
+                                   .Where(line => string.IsNullOrWhiteSpace(line) == false)
+                                   .Take(previewLineLength)
+                                   .Select(line => line.Trim());
 
                 currentNodeInfo.PreviewText = string.Join(Environment.NewLine, bodyLines);
             }
