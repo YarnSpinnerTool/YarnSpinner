@@ -97,12 +97,15 @@ namespace TypeChecker
             IEnumerable<IType> fromTypes;
             IEnumerable<IType> toTypes;
 
+            IEnumerable<IEnumerable<IType>> allPairs;
+
             if (substitutedFromType is TypeBase fromLiteral)
             {
                 // We know 'from' is a literal. This means 'to' must be a type
                 // that is convertible from 'from'.
                 fromTypes = new[] { fromLiteral };
                 toTypes = AllTypesConvertibleFrom(fromLiteral);
+                allPairs = new[] { fromTypes, toTypes }.CartesianProduct();
             }
             else if (substitutedToType is TypeBase toLiteral)
             {
@@ -110,17 +113,20 @@ namespace TypeChecker
                 // that is convertible to 'to'.
                 fromTypes = AllTypesConvertibleTo(toLiteral);
                 toTypes = new[] { toLiteral };
+                allPairs = new[] { fromTypes, toTypes }.CartesianProduct();
             }
             else
             {
                 // Neither 'from' nor 'to' are literals, so we have no way to
                 // produce a reduced list of candidates for equalities. The best
-                // we can do is to assert that they're equal.
+                // we can do is to test all possible combinations (which is a
+                // lot of work!)
                 fromTypes = new[] { this.FromType };
                 toTypes = new[] { this.ToType };
-            }
 
-            var allPairs = new[] { fromTypes, toTypes }.CartesianProduct();
+                allPairs = new[] { fromTypes, knownTypes }.CartesianProduct()
+                    .Concat(new[] { toTypes, knownTypes }.CartesianProduct());
+            }
 
             var allPossibleEqualities = allPairs.Select(pair =>
             {
@@ -139,7 +145,10 @@ namespace TypeChecker
                         toConstraint,
                 }.WithoutTautologies();
 
-                if (constraints.Count() == 1)
+                if (constraints.Count() == 0)
+                {
+                    return new TrueConstraint();
+                } else if (constraints.Count() == 1)
                 {
                     return constraints.Single();
                 }
