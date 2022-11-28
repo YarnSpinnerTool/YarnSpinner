@@ -28,17 +28,17 @@ public static class DeclarationHelper
     /// langword="false"/> otherwise.</returns>
     public static bool GetDeclarationInfo(Yarn.Compiler.Declaration existingDeclaration, out string type, out string defaultValue)
     {
-        if (existingDeclaration.Type == Yarn.BuiltinTypes.String)
+        if (existingDeclaration.Type == Yarn.Types.String)
         {
             type = "string";
             defaultValue = $"\"{existingDeclaration.DefaultValue}\"";
         }
-        else if (existingDeclaration.Type == Yarn.BuiltinTypes.Number)
+        else if (existingDeclaration.Type == Yarn.Types.Number)
         {
             type = "number";
             defaultValue = $"{existingDeclaration.DefaultValue}";
         }
-        else if (existingDeclaration.Type == Yarn.BuiltinTypes.Boolean)
+        else if (existingDeclaration.Type == Yarn.Types.Boolean)
         {
             type = "bool";
             defaultValue = $"{existingDeclaration.DefaultValue.ToString().ToLowerInvariant()}";
