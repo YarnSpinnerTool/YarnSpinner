@@ -44,17 +44,24 @@ namespace TypeChecker
             // 2. Otherwise, discard any redundant terms.
             if (this.Constraints.Count() == 1)
             {
-                return this.Constraints.Single();
+                return this.Constraints.Single().Simplify(subst, knownTypes);
             }
             else
             {
                 var disjunct = new DisjunctionConstraint(
-                    this.Constraints.Distinct());
+                    this.Constraints.Distinct()
+                                    .Select(c => c.Simplify(subst, knownTypes))
+                                    .Where(t => t.GetType() != typeof(TrueConstraint)));
                 disjunct.FailureMessageProvider = this.FailureMessageProvider;
                 disjunct.SourceFileName = this.SourceFileName;
                 disjunct.SourceRange = this.SourceRange;
                 return disjunct;
             }
+        }
+
+        public override IEnumerable<TypeConstraint> DescendantsAndSelf()
+        {
+            return Constraints.SelectMany(c => c.DescendantsAndSelf()).Prepend(this);
         }
     }
 }

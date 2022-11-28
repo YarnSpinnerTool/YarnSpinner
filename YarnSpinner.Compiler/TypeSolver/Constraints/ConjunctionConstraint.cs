@@ -41,7 +41,10 @@ namespace TypeChecker
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<Yarn.TypeBase> knownTypes)
         {
             var conjunctionConstraint = new ConjunctionConstraint(
-                Constraints.Distinct());
+                Constraints.Distinct()
+                           .Select(c => c.Simplify(subst, knownTypes))
+                           .Where(t => t.GetType() != typeof(TrueConstraint))
+                           );
 
             conjunctionConstraint.SourceFileName = this.SourceFileName;
             conjunctionConstraint.SourceRange = this.SourceRange;
