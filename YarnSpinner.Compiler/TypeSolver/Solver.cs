@@ -16,6 +16,13 @@ namespace TypeChecker
     /// </remarks>
     internal static class Solver
     {
+        private static void VerboseLog(int depth, string message) {
+#if VERBOSE_SOLVER
+            System.Console.Write(new string('.', depth));
+            System.Console.Write(" ");
+            System.Console.WriteLine(message);
+#endif
+        }
         /// <summary>
         /// Solves a collection of type constraints, and produces a
         /// substitution.
@@ -41,13 +48,22 @@ namespace TypeChecker
         /// <exception cref="System.ArgumentOutOfRangeException">Thrown when
         /// <paramref name="typeConstraints"/> contains a type of constraint
         /// that could not be handled.</exception>
-        internal static Substitution Solve(IEnumerable<TypeConstraint> typeConstraints, IEnumerable<TypeBase> knownTypes, ref List<Yarn.Compiler.Diagnostic> diagnostics, Substitution partialSolution = null, bool failuresAreErrors = true)
+        internal static Substitution Solve(IEnumerable<TypeConstraint> typeConstraints, IEnumerable<TypeBase> knownTypes, ref List<Yarn.Compiler.Diagnostic> diagnostics, Substitution partialSolution = null, bool failuresAreErrors = true, int depth = 0)
         {
             var subst = partialSolution ?? new TypeChecker.Substitution();
             var remainingConstraints = new HashSet<TypeConstraint>(typeConstraints.WithoutTautologies());
 
-            bool TryGetConstraint<T>(out T constraint) where T : TypeConstraint
+            bool TryGetConstraint<T>(out T constraint, params System.Type[] hintTypes) where T : TypeConstraint
             {
+                foreach (var hintType in hintTypes) {
+                    if (typeof(T).IsAssignableFrom(hintType) == false) {
+                        throw new System.ArgumentException($"{hintType} cannot be cast to {typeof(T)}");
+                    }
+                    constraint = (T)remainingConstraints?.FirstOrDefault(c => c.GetType() == hintType);
+                    if (constraint != null) {
+                        return true;
+                    }
+                }
                 constraint = remainingConstraints?.OfType<T>().FirstOrDefault();
                 return constraint != null;
             }
@@ -66,18 +82,14 @@ namespace TypeChecker
 
                 if (TryGetConstraint<TypeEqualityConstraint>(out var equalityConstraint))
                 {
-#if VERBOSE_SOLVER
-                Console.WriteLine($"Solving {equalityConstraint.ToString()}");
-#endif
+                    VerboseLog(depth, $"Solving {equalityConstraint.ToString()}");
                     currentConstraint = equalityConstraint;
                     subst = Unify(equalityConstraint.Left, equalityConstraint.Right, subst);
                     remainingConstraints.Remove(equalityConstraint);
                 }
                 else if (TryGetConstraint<ConjunctionConstraint>(out var conjunctionConstraint))
                 {
-#if VERBOSE_SOLVER
-                Console.WriteLine($"Solving {conjunctionConstraint.ToString()}");
-#endif
+                    VerboseLog(depth, $"Solving {conjunctionConstraint.ToString()}");
                     currentConstraint = conjunctionConstraint;
 
                     // All of these constraints must resolve, so simply add them to the list
@@ -89,9 +101,7 @@ namespace TypeChecker
                 }
                 else if (TryGetConstraint<DisjunctionConstraint>(out var disjunctionConstraint))
                 {
-#if VERBOSE_SOLVER
-                Console.WriteLine($"Solving {disjunctionConstraint.ToString()}");
-#endif
+                    VerboseLog(depth, $"Solving {disjunctionConstraint.ToString()}");
 
                     currentConstraint = disjunctionConstraint;
 
@@ -99,9 +109,7 @@ namespace TypeChecker
                     // solve for it.
                     foreach (var constraint in disjunctionConstraint)
                     {
-#if VERBOSE_SOLVER
-                    Console.WriteLine($"Trying... {constraint.ToString()}");
-#endif
+                        VerboseLog(depth, $"Trying... {constraint.ToString()}");
                         var clonedSubst = subst.Clone();
 
                         // Create a new list of constraints where the disjunction is
@@ -111,7 +119,7 @@ namespace TypeChecker
                         potentialConstraintSet.Add(constraint);
 
                         // Attempt to solve with this new list
-                        var substitution = Solve(potentialConstraintSet, knownTypes, ref diagnostics, clonedSubst, false);
+                        var substitution = Solve(potentialConstraintSet, knownTypes, ref diagnostics, clonedSubst, false, depth + 1);
 
                         if (substitution.IsFailed == false)
                         {
@@ -120,9 +128,7 @@ namespace TypeChecker
                         }
                         else
                         {
-#if VERBOSE_SOLVER
-                        Console.WriteLine($"{constraint.ToString()} didn't work.");
-#endif
+                            VerboseLog(depth+1, $"{constraint.ToString()} didn't work: {substitution.FailureReason}");
                         }
                     }
                     // If we got here, then none of our options worked.
@@ -137,9 +143,8 @@ namespace TypeChecker
 
                     currentConstraint = otherConstraint;
 
-#if VERBOSE_SOLVER
-                    Console.WriteLine($"Solving {otherConstraint.ToString()}");
-#endif
+                    VerboseLog(depth, $"Solving {otherConstraint.ToString()} (need to simplify it)");
+
                     // Simplify the constraint, and replace it with its simplified
                     // version
                     var simplifiedConstraint = otherConstraint.Simplify(subst, knownTypes);
@@ -151,9 +156,7 @@ namespace TypeChecker
                     }
                     else
                     {
-#if VERBOSE_SOLVER
-                        Console.WriteLine($"Simplified it to {simplifiedConstraint.ToString()}");
-#endif
+                        VerboseLog(depth, $"Simplified it to {simplifiedConstraint.ToString()}");
                         remainingConstraints.Add(simplifiedConstraint);
                     }
 
@@ -166,6 +169,7 @@ namespace TypeChecker
                     // for?
                     if (failuresAreErrors)
                     {
+                        VerboseLog(depth, $"Fatal: Constraint {currentConstraint} failed: {subst.FailureReason}");
                         // We want to log a diagnostic for this constraint's
                         // failure to apply.
                         if (currentConstraint == null)
@@ -200,6 +204,8 @@ namespace TypeChecker
                         // of a disjunction). Return the failed subst silently.
                         return subst;
                     }
+                } else {
+                    VerboseLog(depth + 1, "Success.");
                 }
             }
 
