@@ -19,8 +19,8 @@ title: Start
 <<if some_function(EnumB.One)>>
 <<endif>>
 
-<<declare $x = "">>
+// <<declare $x = "">>
 
-<<set $x = some_function(EnumA.One)>>
+// <<set $x = some_function(EnumA.One)>>
 
 ===
