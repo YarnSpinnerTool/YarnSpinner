@@ -18,6 +18,11 @@ namespace TypeChecker
         /// <inheritdoc/>
         public override IEnumerable<TypeVariable> AllVariables => new[] { Type }.OfType<TypeVariable>();
 
+        public override IEnumerable<TypeConstraint> DescendantsAndSelf()
+        {
+            yield return this;
+        }
+
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<TypeBase> knownTypes)
         {
             // Find all types that have this name, and return a disjunction

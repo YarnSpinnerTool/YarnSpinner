@@ -55,5 +55,7 @@ namespace TypeChecker
         /// Gets the collection of all variables involved in this constraint.
         /// </summary>
         public abstract IEnumerable<TypeVariable> AllVariables { get; }
+
+        public abstract IEnumerable<TypeConstraint> DescendantsAndSelf();
     }
 }

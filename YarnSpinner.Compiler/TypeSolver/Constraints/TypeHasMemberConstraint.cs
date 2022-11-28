@@ -41,5 +41,10 @@ namespace TypeChecker
             typeConstraint.FailureMessageProvider = this.FailureMessageProvider;
             return typeConstraint;
         }
+
+        public override IEnumerable<TypeConstraint> DescendantsAndSelf()
+        {
+            yield return this;
+        }
     }
 }

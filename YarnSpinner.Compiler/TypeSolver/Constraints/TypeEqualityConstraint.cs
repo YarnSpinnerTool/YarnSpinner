@@ -30,5 +30,10 @@ namespace TypeChecker
             // simplified further
             return this;
         }
+
+        public override IEnumerable<TypeConstraint> DescendantsAndSelf()
+        {
+            yield return this;
+        }
     }
 }

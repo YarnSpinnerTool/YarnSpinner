@@ -174,5 +174,10 @@ namespace TypeChecker
                 return disjunction;
             }
         }
+
+        public override IEnumerable<TypeConstraint> DescendantsAndSelf()
+        {
+            yield return this;
+        }
     }
 }
