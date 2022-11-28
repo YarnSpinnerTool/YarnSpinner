@@ -229,7 +229,7 @@ namespace Yarn.Compiler
             this.TypeEquations.Add(item);
         }
 
-        private TypeVariable GenerateTypeVariable(string name = null)
+        private TypeVariable GenerateTypeVariable(string name, ParserRuleContext context)
         {
             string variableName;
             if (name != null)
@@ -241,7 +241,7 @@ namespace Yarn.Compiler
                 variableName = "T" + typeParameterCount++;
             }
 
-            return new TypeVariable(variableName);
+            return new TypeVariable(variableName, context);
         }
 
         /// <summary>
@@ -281,7 +281,7 @@ namespace Yarn.Compiler
             // Figure out the type of the declaration; we'll determine its initial value later
             var constantValueVisitor = new LiteralValueVisitor(context, name, this.diagnostics);
             
-            var typeIdentifier = this.GenerateTypeVariable(name);
+            var typeIdentifier = this.GenerateTypeVariable(name + " declaration", context);
 
             // The type of this identifier is equal to the type of its default value.
             this.AddEqualityConstraint(typeIdentifier, context.value().Type, context, s => $"The type of {name}'s initial value \"{context.value().GetText()}\" ({context.value().Type.Substitute(s)}) doesn't match the type of the variable {typeIdentifier.Substitute(s)}.");
@@ -389,7 +389,7 @@ namespace Yarn.Compiler
                 return;
             }
 
-            context.Type = this.GenerateTypeVariable();
+            context.Type = this.GenerateTypeVariable(null, context);
 
             if (typeName != null) {
                 // Constrain to a type named typeName, containing a member named
@@ -421,7 +421,7 @@ namespace Yarn.Compiler
 
             if (declaration == null)
             {
-                var typeVariable = this.GenerateTypeVariable(name);
+                var typeVariable = this.GenerateTypeVariable(name, context);
                 declaration = new Declaration
                 {
                     Name = name,
@@ -447,7 +447,7 @@ namespace Yarn.Compiler
 
         public override void ExitExpAddSub([NotNull] YarnSpinnerParser.ExpAddSubContext context)
         {
-            var type = this.GenerateTypeVariable();
+            var type = this.GenerateTypeVariable(null, context);
             context.Type = type;
 
             IType operandAType = context.expression(0)?.Type ?? Types.Error;
@@ -461,7 +461,7 @@ namespace Yarn.Compiler
 
         public override void ExitExpMultDivMod([NotNull] YarnSpinnerParser.ExpMultDivModContext context)
         {
-            var type = this.GenerateTypeVariable();
+            var type = this.GenerateTypeVariable(null, context);
             context.Type = type;
 
             IType operandAType = context.expression(0)?.Type ?? Types.Error;
@@ -591,13 +591,13 @@ namespace Yarn.Compiler
             if (functionDecl == null) {
                 // We don't know about this function. We'll need to create a new declaration.
 
-                TypeVariable returnType = this.GenerateTypeVariable($"return from {functionName}");
+                TypeVariable returnType = this.GenerateTypeVariable($"return from {functionName}", context);
 
                 functionType = new FunctionType(returnType);
 
                 int count = 1;
                 foreach (var expression in context.expression()) {
-                    var parameterType = this.GenerateTypeVariable($"{context.FUNC_ID()} param {count}");
+                    var parameterType = this.GenerateTypeVariable($"{context.FUNC_ID()} param {count}", context);
                     functionType.AddParameter(parameterType);
 
                     count++;
@@ -617,7 +617,7 @@ namespace Yarn.Compiler
                 functionType = (FunctionType)functionDecl.Type;
             }
 
-            context.Type = this.GenerateTypeVariable();
+            context.Type = this.GenerateTypeVariable(null, context);
 
             int actualParameters = context.expression().Count();
             int expectedParameters = functionType.Parameters.Count();

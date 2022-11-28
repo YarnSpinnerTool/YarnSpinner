@@ -25,13 +25,16 @@ namespace TypeChecker
             TypeConstraint typeConstraint = new DisjunctionConstraint(
                             knownTypes.Where(t => t.Name == this.Name)
                             .Select(t => new TypeEqualityConstraint(this.Type, t))).Simplify(subst, knownTypes);
+
+            typeConstraint.SourceRange = this.SourceRange;
+            typeConstraint.SourceFileName = this.SourceFileName;
             typeConstraint.FailureMessageProvider = this.FailureMessageProvider;
             return typeConstraint;
         }
 
         public override string ToString()
         {
-            return $"nameof({Type}) == \"{this.Name}\"";
+            return $"nameof({Type}) == \"{this.Name}\" ({SourceRange})";
         }
     }
 }

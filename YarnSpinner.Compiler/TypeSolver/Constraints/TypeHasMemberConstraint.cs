@@ -23,7 +23,7 @@ namespace TypeChecker
 
         public override string ToString()
         {
-            return $"{Type}.[{MemberName}]";
+            return $"{Type}.[{MemberName}] ({SourceRange})";
         }
 
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<TypeBase> knownTypes)
@@ -36,6 +36,8 @@ namespace TypeChecker
                 .Select(e => new TypeEqualityConstraint(this.Type, e)))
             .Simplify(subst, knownTypes);
 
+            typeConstraint.SourceRange = this.SourceRange;
+            typeConstraint.SourceFileName = this.SourceFileName;
             typeConstraint.FailureMessageProvider = this.FailureMessageProvider;
             return typeConstraint;
         }

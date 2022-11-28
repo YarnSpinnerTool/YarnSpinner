@@ -821,8 +821,8 @@ namespace YarnSpinner.Tests
         {
             var boolType = Types.Boolean;
             var anyType = Types.Any;
-            var unknownType1 = new TypeChecker.TypeVariable("T1");
-            var unknownType2 = new TypeChecker.TypeVariable("T2");
+            var unknownType1 = new TypeChecker.TypeVariable("T1", null);
+            var unknownType2 = new TypeChecker.TypeVariable("T2", null);
 
             // Attempt to solve the following system of equations:
             // T1 c> Any ; T1 == T2 ; T2 == Boolean
@@ -848,8 +848,8 @@ namespace YarnSpinner.Tests
         {
             var boolType = Types.Boolean;
             var numberType = Types.Number;
-            var unknownType1 = new TypeChecker.TypeVariable("T1");
-            var unknownType2 = new TypeChecker.TypeVariable("T2");
+            var unknownType1 = new TypeChecker.TypeVariable("T1", null);
+            var unknownType2 = new TypeChecker.TypeVariable("T2", null);
 
             // Attempt to solve the following unresolvable system of equations:
             // T1 c> T2 ; T1 == Bool ; T2 == Number

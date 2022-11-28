@@ -20,10 +20,13 @@ namespace TypeChecker
 
         public ConjunctionConstraint(IEnumerable<TypeConstraint> constraints)
         {
+            if (constraints.Count() == 0) {
+                throw new System.ArgumentException($"{nameof(ConjunctionConstraint)} received no terms");
+            }
             Constraints = constraints;
         }
 
-        public override string ToString() => string.Join(" ∧ ", Constraints.Select(t => t.ToString()));
+        public override string ToString() => string.Join(" ∧ ", Constraints.Select(t => $"({t.ToString()})"));
 
         public IEnumerator<TypeConstraint> GetEnumerator()
         {
@@ -37,7 +40,17 @@ namespace TypeChecker
 
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<Yarn.TypeBase> knownTypes)
         {
-            return new ConjunctionConstraint(Constraints.Distinct());
+            var conjunctionConstraint = new ConjunctionConstraint(
+                Constraints.Distinct());
+
+            conjunctionConstraint.SourceFileName = this.SourceFileName;
+            conjunctionConstraint.SourceRange = this.SourceRange;
+            return conjunctionConstraint;
+        }
+
+        public override IEnumerable<TypeConstraint> DescendantsAndSelf()
+        {
+            return Constraints.SelectMany(c => c.DescendantsAndSelf()).Prepend(this);
         }
     }
 }

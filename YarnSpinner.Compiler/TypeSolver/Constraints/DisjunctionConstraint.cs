@@ -24,7 +24,7 @@ namespace TypeChecker
             Constraints = constraints;
         }
 
-        public override string ToString() => string.Join(" ∨ ", Constraints.Select(t => t.ToString()));
+        public override string ToString() => string.Join(" ∨ ", Constraints.Select(t => $"({t.ToString()})"));
 
         public IEnumerator<TypeConstraint> GetEnumerator()
         {
@@ -48,8 +48,11 @@ namespace TypeChecker
             }
             else
             {
-                var disjunct = new DisjunctionConstraint(this.Constraints.Distinct());
+                var disjunct = new DisjunctionConstraint(
+                    this.Constraints.Distinct());
                 disjunct.FailureMessageProvider = this.FailureMessageProvider;
+                disjunct.SourceFileName = this.SourceFileName;
+                disjunct.SourceRange = this.SourceRange;
                 return disjunct;
             }
         }

@@ -1,3 +1,4 @@
+using Antlr4.Runtime;
 using System;
 using System.Collections.Generic;
 using Yarn;
@@ -8,6 +9,8 @@ namespace TypeChecker
     public class TypeVariable : IType
     {
         public string Name { get; set; }
+        
+        public ParserRuleContext Context { get; }
 
         public IType Parent => null;
 
@@ -20,9 +23,10 @@ namespace TypeChecker
         // Type variables do not have any members.
         public IReadOnlyDictionary<string, ITypeMember> TypeMembers => TypeBase.EmptyTypeMemberDictionary;
 
-        public TypeVariable(string name)
+        public TypeVariable(string name, Antlr4.Runtime.ParserRuleContext context)
         {
             Name = name;
+            Context = context;
         }
 
         // override object.Equals
@@ -37,7 +41,14 @@ namespace TypeChecker
             return Name.GetHashCode();
         }
 
-        public override string ToString() => Name;
+        public override string ToString()
+        {
+            if (Context != null) {
+                return $@"{Name} ('{Context.GetText()}')";
+            } else {
+                return Name;
+            }
+        }
 
         public bool Equals(IType other)
         {
@@ -46,7 +57,7 @@ namespace TypeChecker
 
         public static implicit operator TypeVariable(string input)
         {
-            return new TypeVariable(input);
+            return new TypeVariable(input, null);
         }
     }
 
