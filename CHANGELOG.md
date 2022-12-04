@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- A document to serve as a roadmap for current and future changes until Yarn 3 is released.
+
 ### Changed
 
 - Merged LanguageServer projects into the core YarnSpinner repository.
