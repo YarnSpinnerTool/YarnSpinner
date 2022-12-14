@@ -4,6 +4,7 @@ using System.IO;
 using Yarn.Compiler.Upgrader;
 using Yarn.Compiler;
 using System.Linq;
+using FluentAssertions;
 
 namespace YarnSpinner.Tests
 {
@@ -46,7 +47,7 @@ namespace YarnSpinner.Tests
 
             // The upgrade result should produce as many files as there are
             // expected output files
-            Assert.Equal(expectedOutputFiles.Count(), upgradeResult.Files.Count());
+            upgradeResult.Files.Count().Should().Be(expectedOutputFiles.Count());
             
             // For each file produced by the upgrade job, its content
             // should match that of the corresponding expected output
@@ -60,11 +61,11 @@ namespace YarnSpinner.Tests
                     continue;
                 }
 
-                Assert.True(File.Exists(expectedOutputFilePath), $"Expected file {expectedOutputFilePath} to exist");
+                File.Exists(expectedOutputFilePath).Should().BeTrue();
 
                 var expectedOutputFileContents = File.ReadAllText(expectedOutputFilePath);
 
-                Assert.Equal(expectedOutputFileContents, outputFile.UpgradedSource);
+                outputFile.UpgradedSource.Should().Be(expectedOutputFileContents);
             }
 
             // If the test case doesn't contain a test plan file, it's not
@@ -84,7 +85,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(expectedOutputFiles) );
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
             
             stringTable = result.StringTable;
 
@@ -130,7 +131,7 @@ namespace YarnSpinner.Tests
 
             var replacedText = LanguageUpgrader.ApplyReplacements(text, replacements);
 
-            Assert.Equal(expectedReplacement, replacedText);
+            replacedText.Should().Be(expectedReplacement);
         }
 
         [Fact]
@@ -146,7 +147,12 @@ namespace YarnSpinner.Tests
                 },                
             };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => LanguageUpgrader.ApplyReplacements(text, replacements));
+            var applyingInvalidReplacement = new Action(() =>
+            {
+                LanguageUpgrader.ApplyReplacements(text, replacements);
+            });
+
+            applyingInvalidReplacement.Should().Throw<ArgumentOutOfRangeException>();
         }
 
         [Fact]
@@ -162,7 +168,12 @@ namespace YarnSpinner.Tests
                 },                
             };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => LanguageUpgrader.ApplyReplacements(text, replacements));
+            var applyingOutOfRangeReplacement = new Action(() =>
+            {
+                LanguageUpgrader.ApplyReplacements(text, replacements);
+            });
+            
+            applyingOutOfRangeReplacement.Should().Throw<ArgumentOutOfRangeException>();
         }
     }
 }

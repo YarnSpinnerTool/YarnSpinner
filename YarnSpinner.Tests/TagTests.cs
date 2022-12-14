@@ -1,5 +1,6 @@
 using Xunit;
 using Yarn.Compiler;
+using FluentAssertions;
 
 namespace YarnSpinner.Tests
 {
@@ -15,11 +16,11 @@ namespace YarnSpinner.Tests
             var source = "title:Start\n---\nline without options #line:1\n===\n";
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             var info = result.StringTable["line:1"];
 
-            Assert.DoesNotContain("lastline",info.metadata);
+            info.metadata.Should().NotContain("lastline");
         }
 
         [Fact]
@@ -28,11 +29,11 @@ namespace YarnSpinner.Tests
             var source = "title:Start\n---\nline before options #line:1\n-> option 1\n-> option 2\n===\n";
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             var info = result.StringTable["line:1"];
 
-            Assert.Contains("lastline",info.metadata);
+            info.metadata.Should().Contain("lastline");
         }
 
         [Fact]
@@ -41,11 +42,11 @@ namespace YarnSpinner.Tests
             var source = "title:Start\n---\nline not before options #line:0\nline before options #line:1\n-> option 1\n-> option 2\n===\n";
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             var info = result.StringTable["line:0"];
 
-            Assert.DoesNotContain("lastline", info.metadata);
+            info.metadata.Should().NotContain("lastline");
         }
 
         [Fact]
@@ -54,11 +55,11 @@ namespace YarnSpinner.Tests
             var source = "title:Start\n---\nline before options #line:1\n-> option 1\n-> option 2\nline after options #line:2\n===\n";
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             var info = result.StringTable["line:2"];
 
-            Assert.DoesNotContain("lastline", info.metadata);
+            info.metadata.Should().NotContain("lastline");
         }
 
         [Fact]
@@ -76,12 +77,12 @@ line before options #line:1
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
             var info = result.StringTable["line:1"];
-            Assert.Contains("lastline", info.metadata);
+            info.metadata.Should().Contain("lastline");
 
             info = result.StringTable["line:1b"];
-            Assert.Contains("lastline", info.metadata);
+            info.metadata.Should().Contain("lastline");
         }
 
         [Fact]
@@ -96,9 +97,9 @@ line before options #line:0
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
             var info = result.StringTable["line:0"];
-            Assert.Contains("lastline", info.metadata);
+            info.metadata.Should().Contain("lastline");
         }
         [Fact]
         void TestIfInteriorLinesNotTaggedLastLine()
@@ -112,9 +113,9 @@ line before options #line:0
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
             var info = result.StringTable["line:0"];
-            Assert.DoesNotContain("lastline", info.metadata);
+            info.metadata.Should().NotContain("lastline");
         }
 
         [Fact]
@@ -128,10 +129,10 @@ line before options #line:0
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             var info = result.StringTable["line:1a"];
-            Assert.DoesNotContain("lastline", info.metadata);
+            info.metadata.Should().NotContain("lastline");
         }
 
         [Fact]
@@ -154,18 +155,18 @@ line before call #line:4
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             var info = result.StringTable["line:0"];
-            Assert.DoesNotContain("lastline", info.metadata);
+            info.metadata.Should().NotContain("lastline");
             info = result.StringTable["line:1"];
-            Assert.DoesNotContain("lastline", info.metadata);
+            info.metadata.Should().NotContain("lastline");
             info = result.StringTable["line:2"];
-            Assert.DoesNotContain("lastline", info.metadata);
+            info.metadata.Should().NotContain("lastline");
             info = result.StringTable["line:3"];
-            Assert.DoesNotContain("lastline", info.metadata);
+            info.metadata.Should().NotContain("lastline");
             info = result.StringTable["line:4"];
-            Assert.DoesNotContain("lastline", info.metadata);
+            info.metadata.Should().NotContain("lastline");
         }
 
         [Fact]
@@ -173,10 +174,10 @@ line before call #line:4
         {
             var source = "title: Start\n---\nlast line #line:0\n===\ntitle: Second\n---\n-> option 1\n===\n";
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             var info = result.StringTable["line:0"];
-            Assert.DoesNotContain("lastline", info.metadata);
+            info.metadata.Should().NotContain("lastline");
         }
     }
 }

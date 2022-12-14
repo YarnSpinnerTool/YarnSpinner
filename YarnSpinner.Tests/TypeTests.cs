@@ -561,17 +561,17 @@ namespace YarnSpinner.Tests
 
             var actualDeclarations = new List<Declaration>(result.Declarations);
 
-            Assert.Equal(expectedDeclarations.Count(), actualDeclarations.Count());
+            actualDeclarations.Count().Should().Be(expectedDeclarations.Count());
 
             for (int i = 0; i < expectedDeclarations.Count; i++)
             {
                 Declaration expected = expectedDeclarations[i];
                 Declaration actual = actualDeclarations[i];
 
-                Assert.Equal(expected.Name, actual.Name);
-                Assert.Equal(expected.Type, actual.Type);
-                Assert.Equal(expected.DefaultValue, actual.DefaultValue);
-                Assert.Equal(expected.Description, actual.Description);
+                actual.Name.Should().Be(expected.Name);
+                actual.Type.Should().Be(expected.Type);
+                actual.DefaultValue.Should().Be(expected.DefaultValue);
+                actual.Description.Should().Be(expected.Description);
             }
 
         }
@@ -730,8 +730,8 @@ namespace YarnSpinner.Tests
 
             // Both declarations that resulted from the compile should be functions found on line 1
             foreach (var decl in result.Declarations) {
-                Assert.Equal(3, decl.Range.Start.Line);
-                Assert.IsType<FunctionType>(decl.Type);
+                decl.Range.Start.Line.Should().Be(3);
+                decl.Type.Should().BeOfType<FunctionType>();
             }
 
             dialogue.SetProgram(result.Program);
@@ -763,8 +763,8 @@ namespace YarnSpinner.Tests
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("expects a Number, not a Bool", p.Message));   
+
+            result.Diagnostics.Should().Contain(d => d.Message.Contains("expects a Number, not a Bool"));
         }
 
         [Fact]
@@ -784,8 +784,8 @@ namespace YarnSpinner.Tests
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("Terms of 'if statement' must be Bool, not String", p.Message));
+
+            result.Diagnostics.Should().Contain(d => d.Message.Contains("Terms of 'if statement' must be Bool, not String"));
         }
 
         [Fact]
@@ -822,7 +822,7 @@ namespace YarnSpinner.Tests
             };
 
             // Then
-            Assert.Equal(expectedDeclaration, declaration);
+            declaration.Should().Be(expectedDeclaration);
         }
 
         [Fact]
