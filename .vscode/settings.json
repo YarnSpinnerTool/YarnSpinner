@@ -19,4 +19,5 @@
         "coverage*.info",
     ],
     "omnisharp.useModernNet": true,
+    "dotnet-test-explorer.testProjectPath": "**/*Tests.csproj",
 }
