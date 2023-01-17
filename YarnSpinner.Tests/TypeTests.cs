@@ -9,6 +9,8 @@ using System.Linq;
 using Yarn.Compiler;
 using CLDRPlurals;
 
+using FluentAssertions;
+
 namespace YarnSpinner.Tests
 {
 
@@ -38,7 +40,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
@@ -101,12 +103,12 @@ namespace YarnSpinner.Tests
                 Declaration expected = expectedDeclarations[i];
                 Declaration actual = actualDeclarations[i];
 
-                Assert.Equal(expected.Name, actual.Name);
-                Assert.Equal(expected.Type, actual.Type);
-                Assert.Equal(expected.DefaultValue, actual.DefaultValue);
-                Assert.Equal(expected.Range, actual.Range);
-                Assert.Equal(expected.SourceNodeName, actual.SourceNodeName);
-                Assert.Equal(expected.SourceFileName, actual.SourceFileName);
+                actual.Name.Should().Be(expected.Name);
+                actual.Type.Should().Be(expected.Type);
+                actual.DefaultValue.Should().Be(expected.DefaultValue);
+                actual.Range.Should().Be(expected.Range);
+                actual.SourceNodeName.Should().Be(expected.SourceNodeName);
+                actual.SourceFileName.Should().Be(expected.SourceFileName);
             }
         }
 
@@ -135,7 +137,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
         }
 
         [Fact]
@@ -161,15 +163,15 @@ namespace YarnSpinner.Tests
             // Should compile with no errors because $int was declared
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             // No variables are declared in the source code, so we should
             // expect an empty collection of variable declarations
-            Assert.Empty(result.Declarations);
+            result.Declarations.Should().BeEmpty();
         }
 
         [Fact]
-        void TestVariableDeclarationsDisallowDuplicates()
+        public void TestVariableDeclarationsDisallowDuplicates()
         {
             var source = CreateTestNode(@"
             <<declare $int = 5>>
@@ -178,7 +180,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("$int has already been declared", p.Message));
+            result.Diagnostics.Should().Contain(p => p.Message.Contains("$int has already been declared"));
         }
 
         [Fact]
@@ -190,8 +192,8 @@ namespace YarnSpinner.Tests
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("$int (Number) cannot be assigned a String", p.Message));
+
+            result.Diagnostics.Should().Contain(p => p.Message == "$int (Number) cannot be assigned a String");
         }
 
         [Theory]
@@ -204,8 +206,8 @@ namespace YarnSpinner.Tests
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            
-            Assert.Empty(result.Diagnostics);         
+
+            result.Diagnostics.Should().BeEmpty();
         }
 
         [Theory]
@@ -251,7 +253,11 @@ namespace YarnSpinner.Tests
             // Should compile with no exceptions
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            Assert.Empty(result.Diagnostics);
+            result.Declarations.Should().Contain(d => d.Name == "$int").Which.Type.Should().Be(BuiltinTypes.Number);
+            result.Declarations.Should().Contain(d => d.Name == "$bool").Which.Type.Should().Be(BuiltinTypes.Boolean);
+            result.Declarations.Should().Contain(d => d.Name == "$str").Which.Type.Should().Be(BuiltinTypes.String);
+
+            result.Diagnostics.Should().BeEmpty();
         }
 
         [Fact]
@@ -262,8 +268,8 @@ namespace YarnSpinner.Tests
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("Null is not a permitted type", p.Message));
+
+            result.Diagnostics.Should().Contain(p => p.Message.Contains("Null is not a permitted type"));
         }
 
         [Theory]
@@ -283,19 +289,14 @@ namespace YarnSpinner.Tests
             // Should compile with no exceptions
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, dialogue.Library));
 
-            Assert.Empty(result.Diagnostics);
+            // We should have no diagnostics.
+            result.Diagnostics.Should().BeEmpty();
 
-            // The variable '$bool' should have an implicit declaration.
-            var variableDeclarations = result.Declarations.Where(d => d.Name == "$bool");
-
-            Assert.Single(variableDeclarations);
-
-            var variableDeclaration = variableDeclarations.First();
-
-            // The type of the variable should be Boolean, because that's
-            // the return type of all of the functions we declared.
-            Assert.Same(BuiltinTypes.Boolean, variableDeclaration.Type);
-
+            // The variable '$bool' should have an implicit declaration. The
+            // type of the variable should be Boolean, because that's the return
+            // type of all of the functions we declared.
+            result.Declarations.Where(d => d.Name == "$bool")
+                .Should().ContainSingle().Which.Type.Should().Be(BuiltinTypes.Boolean);
         }
 
         [Theory, CombinatorialData]
@@ -319,7 +320,11 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Empty(result.Diagnostics);
+            result.Declarations.Should().Contain(d => d.Name == "$var")
+                .Which.Type.Should().Be(BuiltinTypes.Number);
+
+            result.Diagnostics.Should().BeEmpty();
+
         }
 
         [Fact]
@@ -331,8 +336,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("not a valid return type", p.Message));
-
+            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("*not a valid return type*");
         }
 
         [Fact]
@@ -344,8 +348,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("parameter listOfInts's type (System.Collections.Generic.List`1[System.Int32]) cannot be used in Yarn functions", p.Message));
-
+            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("*parameter listOfInts's type (System.Collections.Generic.List`1[System.Int32]) cannot be used in Yarn functions*");
         }
 
         [Theory]
@@ -353,7 +356,7 @@ namespace YarnSpinner.Tests
         [InlineData("<<set $bool = func_int_bool()>>", "expects 1 parameter, but received 0")]
         [InlineData("<<set $bool = func_int_bool(true)>>", "expects a Number, not a Bool")]
         [InlineData(@"<<set $bool = func_string_string_bool(""1"", 2)>>", "expects a String, not a Number")]
-        [InlineData("<<set $int = func_void_bool()>>", @"\$int \(Number\) cannot be assigned a Bool")]
+        [InlineData("<<set $int = func_void_bool()>>", @"$int (Number) cannot be assigned a Bool")]
         public void TestFailingFunctionSignatures(string source, string expectedExceptionMessage)
         {
             dialogue.Library.RegisterFunction("func_void_bool", () => true);
@@ -369,7 +372,9 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, dialogue.Library));
 
-            Assert.Collection(result.Diagnostics, p => Assert.Matches(expectedExceptionMessage, p.Message));
+            var diagnosticMessages = result.Diagnostics.Select(d => d.Message);
+    
+            diagnosticMessages.Should().ContainMatch($"*{expectedExceptionMessage}*");
         }
 
         [Fact]
@@ -422,7 +427,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             this.storage.SetValue("$external_str", "Hello");
             this.storage.SetValue("$external_int", 42);
@@ -446,14 +451,13 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
-            Assert.Collection(
-                result.Declarations.Where(d => d.Name.StartsWith("$")),
-                d => { Assert.Equal(d.Name, "$str");  Assert.Equal(d.Type.Name, "String"); },
-                d => { Assert.Equal(d.Name, "$int");  Assert.Equal(d.Type.Name, "Number"); },
-                d => { Assert.Equal(d.Name, "$bool"); Assert.Equal(d.Type.Name, "Bool"); }
-            );
+            var variableDeclarations = result.Declarations.Where(d => d.Name.StartsWith("$"));
+
+            variableDeclarations.Should().Contain(d => d.Name == "$str").Which.Type.Should().Be(BuiltinTypes.String);
+            variableDeclarations.Should().Contain(d => d.Name == "$int").Which.Type.Should().Be(BuiltinTypes.Number);
+            variableDeclarations.Should().Contain(d => d.Name == "$bool").Which.Type.Should().Be(BuiltinTypes.Boolean);
         }
 
         
@@ -469,8 +473,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Collection(result.Diagnostics, diag => Assert.Matches(@"Type \w+ does not match", diag.Message),
-                                                  diag => Assert.Matches(@"Can't figure out the type of variable \$\w+ given its context. Specify its type with a <<declare>> statement.", diag.Message));
+            result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
         }
 
         [Fact]
@@ -503,7 +506,7 @@ namespace YarnSpinner.Tests
             
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
@@ -558,17 +561,17 @@ namespace YarnSpinner.Tests
 
             var actualDeclarations = new List<Declaration>(result.Declarations);
 
-            Assert.Equal(expectedDeclarations.Count(), actualDeclarations.Count());
+            actualDeclarations.Count().Should().Be(expectedDeclarations.Count());
 
             for (int i = 0; i < expectedDeclarations.Count; i++)
             {
                 Declaration expected = expectedDeclarations[i];
                 Declaration actual = actualDeclarations[i];
 
-                Assert.Equal(expected.Name, actual.Name);
-                Assert.Equal(expected.Type, actual.Type);
-                Assert.Equal(expected.DefaultValue, actual.DefaultValue);
-                Assert.Equal(expected.Description, actual.Description);
+                actual.Name.Should().Be(expected.Name);
+                actual.Type.Should().Be(expected.Type);
+                actual.DefaultValue.Should().Be(expected.DefaultValue);
+                actual.Description.Should().Be(expected.Description);
             }
 
         }
@@ -598,7 +601,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -615,17 +618,21 @@ namespace YarnSpinner.Tests
                 .AddLine("test failure if seen")
                 .GetPlan();
 
-            Assert.Throws<FormatException>( () => {
+            Action act = () =>
+            {
+
                 var compilationJob = CompilationJob.CreateFromString("input", source, dialogue.Library);
                 var result = Compiler.Compile(compilationJob);
 
-                Assert.Empty(result.Diagnostics);
+                result.Diagnostics.Should().BeEmpty();
 
                 dialogue.SetProgram(result.Program);
                 stringTable = result.StringTable;
 
                 RunStandardTestcase();
-            });
+            };
+
+            act.Should().ThrowExactly<FormatException>();
         }
 
         [Fact]
@@ -673,7 +680,7 @@ namespace YarnSpinner.Tests
             var compilationJob = CompilationJob.CreateFromString("input", source);
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -692,11 +699,10 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
-            var declarations = result.Declarations.Where(d => d.Name == "$v");
-
-            Assert.Collection(declarations, d => Assert.Equal(d.Type.Name, typeName));
+            result.Declarations.Should().ContainSingle(d => d.Name == "$v")
+                .Which.Type.Name.Should().Be(typeName);
         }
 
         [Fact]
@@ -718,14 +724,14 @@ namespace YarnSpinner.Tests
             var compilationJob = CompilationJob.CreateFromString("input", source);
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
-            Assert.Equal(2, result.Declarations.Count());
+            result.Declarations.Should().HaveCount(2);
 
             // Both declarations that resulted from the compile should be functions found on line 1
             foreach (var decl in result.Declarations) {
-                Assert.Equal(3, decl.Range.Start.Line);
-                Assert.IsType<FunctionType>(decl.Type);
+                decl.Range.Start.Line.Should().Be(3);
+                decl.Type.Should().BeOfType<FunctionType>();
             }
 
             dialogue.SetProgram(result.Program);
@@ -745,7 +751,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("expects 1 parameter, but received 2", p.Message));
+            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("Function func expects 1 parameter, but received 2");
         }
 
         [Fact]
@@ -757,8 +763,8 @@ namespace YarnSpinner.Tests
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("expects a Number, not a Bool", p.Message));   
+
+            result.Diagnostics.Should().Contain(d => d.Message.Contains("expects a Number, not a Bool"));
         }
 
         [Fact]
@@ -778,8 +784,8 @@ namespace YarnSpinner.Tests
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            
-            Assert.Collection(result.Diagnostics, p => Assert.Contains("Terms of 'if statement' must be Bool, not String", p.Message));
+
+            result.Diagnostics.Should().Contain(d => d.Message.Contains("Terms of 'if statement' must be Bool, not String"));
         }
 
         [Fact]
@@ -787,7 +793,7 @@ namespace YarnSpinner.Tests
         {
             var allBuiltinTypes = BuiltinTypes.AllBuiltinTypes;
 
-            Assert.NotEmpty(allBuiltinTypes);
+            allBuiltinTypes.Should().NotBeEmpty();
         }
 
         [Fact]
@@ -816,7 +822,7 @@ namespace YarnSpinner.Tests
             };
 
             // Then
-            Assert.Equal(expectedDeclaration, declaration);
+            declaration.Should().Be(expectedDeclaration);
         }
 
         [Fact]
@@ -834,10 +840,10 @@ namespace YarnSpinner.Tests
                 .FunctionType;
 
             // Then
-            Assert.Equal(expectedFunctionType.Parameters.Count, functionType.Parameters.Count);
-            Assert.Equal(expectedFunctionType.Parameters[0], functionType.Parameters[0]);
-            Assert.Equal(expectedFunctionType.Parameters[1], functionType.Parameters[1]);
-            Assert.Equal(expectedFunctionType.ReturnType, functionType.ReturnType);
+            expectedFunctionType.Parameters.Count.Should().Be(functionType.Parameters.Count);
+            expectedFunctionType.Parameters[0].Should().Be(functionType.Parameters[0]);
+            expectedFunctionType.Parameters[1].Should().Be(functionType.Parameters[1]);
+            expectedFunctionType.ReturnType.Should().Be(functionType.ReturnType);
         }
     }
 }

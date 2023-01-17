@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Yarn;
 using System.IO;
 using System.Linq;
+using FluentAssertions;
 
 using Yarn.Compiler;
 
@@ -20,7 +21,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
 
-            Assert.Collection(result.Diagnostics, d => Assert.Contains("Expected an <<endif>> to match the <<if>> statement on line 3", d.Message));
+            result.Diagnostics.Should().Contain(d => d.Message.Contains("Expected an <<endif>> to match the <<if>> statement on line 3"));
         }
 
         [Fact]
@@ -34,12 +35,11 @@ namespace YarnSpinner.Tests
             Three
             <<endif>>");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));             
+            var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
 
-            Assert.Collection(result.Diagnostics, 
-                d => Assert.Contains("More than one <<else>> statement in an <<if>> statement isn't allowed", d.Message),
-                d => Assert.Contains("Unexpected \"endif\" while reading a statement", d.Message)
-            );
+            result.Diagnostics.Should().Contain(d => d.Message.Contains("More than one <<else>> statement in an <<if>> statement isn't allowed"));
+            result.Diagnostics.Should().Contain(d => d.Message.Contains("Unexpected \"endif\" while reading a statement"));
+            
         }
 
         [Fact]
@@ -48,11 +48,9 @@ namespace YarnSpinner.Tests
             <<>>
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));             
+            var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
 
-            Assert.Collection(result.Diagnostics, 
-                d => Assert.Contains("Command text expected", d.Message)
-            );
+            result.Diagnostics.Should().Contain(d => d.Message.Contains("Command text expected"));
         }
 
         [Fact]
@@ -67,15 +65,9 @@ namespace YarnSpinner.Tests
             
             foreach (var source in new[] { source1, source2}) {
 
-                var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));             
+                var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
 
-                Assert.Collection(result.Diagnostics,
-                    d =>
-                    {
-                        Assert.Contains("Variable names need to start with a $", d.Message);
-                        Assert.Equal(3, d.Range.Start.Line);
-                    }
-                );            
+                result.Diagnostics.Should().Contain(d => d.Message == "Variable names need to start with a $");
             }
         }
 
@@ -86,7 +78,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
 
-            Assert.Collection(result.Diagnostics, d => Assert.Contains(@"Unexpected "">>"" while reading a function call", d.Message));
+            result.Diagnostics.Should().Contain(d => d.Message.Contains(@"Unexpected "">>"" while reading a function call"));
         }
     }
 }

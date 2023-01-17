@@ -7,6 +7,7 @@ using Yarn;
 using Yarn.Compiler;
 using System.Linq;
 using System.Text.RegularExpressions;
+using FluentAssertions;
 
 namespace YarnSpinner.Tests
 {
@@ -22,7 +23,7 @@ namespace YarnSpinner.Tests
             
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
             
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -30,11 +31,11 @@ namespace YarnSpinner.Tests
             // high-level test: load the file, verify it has the nodes we want,
             // and run one
             
-            Assert.Equal(3, dialogue.NodeNames.Count());
+            dialogue.NodeNames.Count().Should().Be(3);
 
-            Assert.True(dialogue.NodeExists("TestNode"));
-            Assert.True(dialogue.NodeExists("AnotherTestNode"));
-            Assert.True(dialogue.NodeExists("ThirdNode"));
+            dialogue.NodeExists("TestNode").Should().BeTrue();
+            dialogue.NodeExists("AnotherTestNode").Should().BeTrue();
+            dialogue.NodeExists("ThirdNode").Should().BeTrue();
             
         }
 
@@ -64,7 +65,7 @@ custom: yes
 
             var result = Compiler.Compile(job);
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             var headers = new Dictionary<string,string> {
                 { "custom", "yes"}
@@ -73,7 +74,7 @@ custom: yes
 
             var generatedOutput = Utility.GenerateYarnFileWithDeclarations(result.Declarations, "Program", tags, headers);
 
-            Assert.Equal(originalText, generatedOutput);
+            generatedOutput.Should().Be(originalText);
         }
 
         [Fact]
@@ -146,7 +147,7 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
 
                 var originalCompilationResult = Compiler.Compile(originalCompilationJob);
 
-                Assert.Empty(originalCompilationResult.Diagnostics);
+                originalCompilationResult.Diagnostics.Should().BeEmpty();
             }
 
             // Act
@@ -158,7 +159,7 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
 
             var compilationResult = Compiler.Compile(compilationJob);
 
-            Assert.Empty(compilationResult.Diagnostics);
+            compilationResult.Diagnostics.Should().BeEmpty();
 
             // Assert
             var lineTagRegex = new Regex(@"#line:\w+");
@@ -171,13 +172,12 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
             var expectedTotalTags = expectedExistingTags + expectedNewTags;
 
             var lineTagRegexMatches = lineTagRegex.Matches(output).Count;
-            Assert.Equal(expectedTotalTags, lineTagRegexMatches);
+            lineTagRegexMatches.Should().Be(expectedTotalTags);
 
             // No tags were added after a comment
             foreach (var line in output.Split('\n')) {
-                Assert.False(lineTagAfterComment.IsMatch(line), $"'{line}' should not contain a tag after a comment");
+                lineTagAfterComment.IsMatch(line).Should().BeFalse($"'{line}' should not contain a tag after a comment");
             }
-                
 
             var expectedResults = new (string tag, string line)[] {
                 ("line:expected_abc123", "A single line, with a line tag."),
@@ -231,7 +231,7 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
                 ("line:abc132", "🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻"),
             };
 
-            Assert.Equal(expectedResults.Length, lineTagRegexMatches);
+            lineTagRegexMatches.Should().Be(expectedResults.Length);
 
             // used to keep track of all line ids we have already seen
             // this is because we need to make sure we see every line in the string table
@@ -241,7 +241,7 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
             {
                 if (result.tag != null)
                 {
-                    Assert.Equal(compilationResult.StringTable[result.tag].text, result.line);
+                    result.line.Should().Be(compilationResult.StringTable[result.tag].text);
                     // flagging this ID as having been visited
                     visitedIDs.Add(result.tag);
                 }
@@ -249,15 +249,15 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
                 {
                     // a line exists that has this text
                     var matchingEntries = compilationResult.StringTable.Where(s => s.Value.text == result.line).Where(s => !visitedIDs.Contains(s.Key));
-                    Assert.NotEmpty(matchingEntries);
+                    matchingEntries.Should().NotBeEmpty();
 
                     // that line has a line tag
                     var lineTag = matchingEntries.First().Key;
-                    Assert.StartsWith("line:", lineTag);
+                    lineTag.Should().StartWith("line:");
 
                     // that line is not a duplicate of any other line tag
                     var allLineTags = compilationResult.StringTable.Keys;
-                    Assert.Equal(1, allLineTags.Count(t => t == lineTag));
+                    allLineTags.Count(t => t == lineTag).Should().Be(1);
 
                     // flagging this ID as having been visited
                     visitedIDs.Add(lineTag);
@@ -265,7 +265,7 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
             }
 
             // we now should have seen every line ID
-            Assert.Equal(visitedIDs.Count, compilationResult.StringTable.Count);
+            compilationResult.StringTable.Count.Should().Be(visitedIDs.Count);
         }
 
         [Fact]
@@ -279,17 +279,17 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
 
             // We should have a single DebugInfo object, because we compiled a
             // single node
-            Assert.NotNull(compilationResult.DebugInfo);
-            Assert.Single(compilationResult.DebugInfo);
+            compilationResult.DebugInfo.Should().NotBeNull();
+            compilationResult.DebugInfo.Should().ContainSingle();
 
             // The first instruction of the only node should begin on the third
             // line
             var firstLineInfo = compilationResult.DebugInfo.First().Value.GetLineInfo(0);
 
-            Assert.Equal("input", firstLineInfo.FileName);
-            Assert.Equal("DebugTesting", firstLineInfo.NodeName);
-            Assert.Equal(2, firstLineInfo.LineNumber);
-            Assert.Equal(0, firstLineInfo.CharacterNumber);
+            firstLineInfo.FileName.Should().Be("input");
+            firstLineInfo.NodeName.Should().Be("DebugTesting");
+            firstLineInfo.LineNumber.Should().Be(2);
+            firstLineInfo.CharacterNumber.Should().Be(0);
         }
     }
 }

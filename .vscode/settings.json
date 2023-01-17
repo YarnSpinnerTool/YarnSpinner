@@ -18,5 +18,6 @@
     "coverage-gutters.coverageFileNames": [
         "coverage*.info",
     ],
-    "omnisharp.useModernNet": true
+    "omnisharp.useModernNet": true,
+    "dotnet-test-explorer.testProjectPath": "**/*Tests.csproj",
 }

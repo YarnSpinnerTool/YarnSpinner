@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Merged LanguageServer projects into the core YarnSpinner repository.
 - `NodeInfo.PreviewText` no longer removes comments from the preview.
+- Migrated tests from xUnit's `Assert` tests to [Fluent Assertions](https://fluentassertions.com).
 
 ### Removed
 

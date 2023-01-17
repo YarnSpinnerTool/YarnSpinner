@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using Yarn.Compiler;
 using Yarn.Markup;
+using FluentAssertions;
 
 namespace YarnSpinner.Tests
 {
@@ -19,11 +20,11 @@ namespace YarnSpinner.Tests
             var line = "A [b]B[/b]";
             var markup = dialogue.ParseMarkup(line);
             
-            Assert.Equal("A B", markup.Text);
-            Assert.Single(markup.Attributes);
-            Assert.Equal("b", markup.Attributes[0].Name);
-            Assert.Equal(2, markup.Attributes[0].Position);
-            Assert.Equal(1, markup.Attributes[0].Length);
+            markup.Text.Should().Be("A B");
+            markup.Attributes.Should().ContainSingle();
+            markup.Attributes[0].Name.Should().Be("b");
+            markup.Attributes[0].Position.Should().Be(2);
+            markup.Attributes[0].Length.Should().Be(1);
         }
 
         [Fact]
@@ -32,10 +33,10 @@ namespace YarnSpinner.Tests
 
             var markup = dialogue.ParseMarkup(line);
 
-            Assert.Equal(3, markup.Attributes.Count);
-            Assert.Equal("a", markup.Attributes[0].Name);
-            Assert.Equal("b", markup.Attributes[1].Name);
-            Assert.Equal("c", markup.Attributes[2].Name);
+            markup.Attributes.Count.Should().Be(3);
+            markup.Attributes[0].Name.Should().Be("a");
+            markup.Attributes[1].Name.Should().Be("b");
+            markup.Attributes[2].Name.Should().Be("c");
 
         }
 
@@ -45,8 +46,8 @@ namespace YarnSpinner.Tests
 
             var markup = dialogue.ParseMarkup(line);
 
-            Assert.Equal("B C", markup.TextForAttribute(markup.Attributes[0]));
-            Assert.Equal("C", markup.TextForAttribute(markup.Attributes[1]));
+            markup.TextForAttribute(markup.Attributes[0]).Should().Be("B C");
+            markup.TextForAttribute(markup.Attributes[1]).Should().Be("C");
         }
 
         [Fact]
@@ -61,34 +62,34 @@ namespace YarnSpinner.Tests
             var originalMarkup = dialogue.ParseMarkup(line);
 
             // Remove the "X" attribute
-            Assert.Equal("X", originalMarkup.Attributes[3].Name);
+            originalMarkup.Attributes[3].Name.Should().Be("X");
             var trimmedMarkup = originalMarkup.DeleteRange(originalMarkup.Attributes[3]);
             
-            Assert.Equal("A x x B C", originalMarkup.Text);
-            Assert.Equal(6, originalMarkup.Attributes.Count);
+            originalMarkup.Text.Should().Be("A x x B C");
+            originalMarkup.Attributes.Count.Should().Be(6);
 
-            Assert.Equal("A  B C", trimmedMarkup.Text);
-            Assert.Equal(4, trimmedMarkup.Attributes.Count);
+            trimmedMarkup.Text.Should().Be("A  B C");
+            trimmedMarkup.Attributes.Count.Should().Be(4);
             
-            Assert.Equal("a", trimmedMarkup.Attributes[0].Name);
-            Assert.Equal(0, trimmedMarkup.Attributes[0].Position);
-            Assert.Equal(6, trimmedMarkup.Attributes[0].Length);
+            trimmedMarkup.Attributes[0].Name.Should().Be("a");
+            trimmedMarkup.Attributes[0].Position.Should().Be(0);
+            trimmedMarkup.Attributes[0].Length.Should().Be(6);
 
-            Assert.Equal("b", trimmedMarkup.Attributes[1].Name);
-            Assert.Equal(0, trimmedMarkup.Attributes[1].Position);
-            Assert.Equal(2, trimmedMarkup.Attributes[1].Length);
+            trimmedMarkup.Attributes[1].Name.Should().Be("b");
+            trimmedMarkup.Attributes[1].Position.Should().Be(0);
+            trimmedMarkup.Attributes[1].Length.Should().Be(2);
 
             // "c" will have been removed along with "X" because it had a
             // length of >0 before deletion, and was reduced to zero
             // characters
 
-            Assert.Equal("d", trimmedMarkup.Attributes[2].Name);
-            Assert.Equal(2, trimmedMarkup.Attributes[2].Position);
-            Assert.Equal(2, trimmedMarkup.Attributes[2].Length);
+            trimmedMarkup.Attributes[2].Name.Should().Be("d");
+            trimmedMarkup.Attributes[2].Position.Should().Be(2);
+            trimmedMarkup.Attributes[2].Length.Should().Be(2);
 
-            Assert.Equal("e", trimmedMarkup.Attributes[3].Name);
-            Assert.Equal(5, trimmedMarkup.Attributes[3].Position);
-            Assert.Equal(1, trimmedMarkup.Attributes[3].Length);
+            trimmedMarkup.Attributes[3].Name.Should().Be("e");
+            trimmedMarkup.Attributes[3].Position.Should().Be(5);
+            trimmedMarkup.Attributes[3].Length.Should().Be(1);
 
         }
 
@@ -103,13 +104,13 @@ namespace YarnSpinner.Tests
             
             found = markup.TryGetAttributeWithName("b", out attribute);
 
-            Assert.True(found);
-            Assert.Equal(attribute, markup.Attributes[0]);
-            Assert.NotEqual(attribute, markup.Attributes[1]);
+            found.Should().BeTrue();
+            markup.Attributes[0].Should().Be(attribute);
+            markup.Attributes[1].Should().NotBe(attribute);
 
             found = markup.TryGetAttributeWithName("c", out _);
 
-            Assert.False(found);                        
+            found.Should().BeFalse();                        
         }
 
         [Theory]
@@ -125,9 +126,9 @@ namespace YarnSpinner.Tests
             // All versions of this string should have the same position
             // and length of the attribute, despite the presence of
             // multibyte characters
-            Assert.Single(markup.Attributes);
-            Assert.Equal(2, markup.Attributes[0].Position);
-            Assert.Equal(1, markup.Attributes[0].Length);
+            markup.Attributes.Should().ContainSingle();
+            markup.Attributes[0].Position.Should().Be(2);
+            markup.Attributes[0].Length.Should().Be(1);
         }
 
         [Theory]
@@ -135,9 +136,12 @@ namespace YarnSpinner.Tests
         [InlineData("[/b]")]
         [InlineData("[a][/][/b]")]
         public void TestUnexpectedCloseMarkerThrows(string input) {
-            Assert.Throws<MarkupParseException>(delegate {
+            var parsingInvalidMarkup = new Action(() => 
+            {
                 var markup = dialogue.ParseMarkup(input);
-            });            
+            });
+
+            parsingInvalidMarkup.Should().Throw<MarkupParseException>();
         }
 
         [Fact]
@@ -148,16 +152,16 @@ namespace YarnSpinner.Tests
             // Should have a single attribute, "a", at position 0 and
             // length 1
             var attribute = markup.Attributes[0];
-            Assert.Equal("a", attribute.Name);
-            Assert.Equal(0, attribute.Position);
-            Assert.Equal(1, attribute.Length);
+            attribute.Name.Should().Be("a");
+            attribute.Position.Should().Be(0);
+            attribute.Length.Should().Be(1);
 
             // Should have a single property on this attribute, "a". Value
             // should be an integer, 1
             var value = attribute.Properties["a"];
             
-            Assert.Equal(MarkupValueType.Integer, value.Type);
-            Assert.Equal(1, value.IntegerValue);
+            value.Type.Should().Be(MarkupValueType.Integer);
+            value.IntegerValue.Should().Be(1);
         }
 
         [Fact]
@@ -165,17 +169,17 @@ namespace YarnSpinner.Tests
             var line = "[a p1=1 p2=2]s[/a]";
             var markup = dialogue.ParseMarkup(line);
 
-            Assert.Equal("a", markup.Attributes[0].Name);
+            markup.Attributes[0].Name.Should().Be("a");
             
-            Assert.Equal(2, markup.Attributes[0].Properties.Count);
+            markup.Attributes[0].Properties.Count.Should().Be(2);
 
             var p1 = markup.Attributes[0].Properties["p1"];
-            Assert.Equal(MarkupValueType.Integer, p1.Type);
-            Assert.Equal(1, p1.IntegerValue);
+            p1.Type.Should().Be(MarkupValueType.Integer);
+            p1.IntegerValue.Should().Be(1);
 
             var p2 = markup.Attributes[0].Properties["p2"];
-            Assert.Equal(MarkupValueType.Integer, p2.Type);
-            Assert.Equal(2, p2.IntegerValue);
+            p2.Type.Should().Be(MarkupValueType.Integer);
+            p2.IntegerValue.Should().Be(2);
             
         }
 
@@ -193,8 +197,8 @@ namespace YarnSpinner.Tests
             var attribute = markup.Attributes[0];
             var propertyValue= attribute.Properties["p"];
 
-            Assert.Equal(expectedType, propertyValue.Type);
-            Assert.Equal(expectedValueAsString, propertyValue.ToString());
+            propertyValue.Type.Should().Be(expectedType);
+            propertyValue.ToString().Should().Be(expectedValueAsString);
         }
 
         [Theory]
@@ -204,19 +208,19 @@ namespace YarnSpinner.Tests
         public void TestMultipleAttributes(string input) {
             var markup = dialogue.ParseMarkup(input);
 
-            Assert.Equal("A B C D", markup.Text);
+            markup.Text.Should().Be("A B C D");
 
-            Assert.Equal(2, markup.Attributes.Count);
+            markup.Attributes.Count.Should().Be(2);
 
-            Assert.Equal("b", markup.Attributes[0].Name);
-            Assert.Equal(2, markup.Attributes[0].Position);
-            Assert.Equal(2, markup.Attributes[0].SourcePosition);
-            Assert.Equal(3, markup.Attributes[0].Length);
+            markup.Attributes[0].Name.Should().Be("b");
+            markup.Attributes[0].Position.Should().Be(2);
+            markup.Attributes[0].SourcePosition.Should().Be(2);
+            markup.Attributes[0].Length.Should().Be(3);
 
-            Assert.Equal("c", markup.Attributes[1].Name);
-            Assert.Equal(4, markup.Attributes[1].Position);
-            Assert.Equal(7, markup.Attributes[1].SourcePosition);
-            Assert.Equal(1, markup.Attributes[1].Length);
+            markup.Attributes[1].Name.Should().Be("c");
+            markup.Attributes[1].Position.Should().Be(4);
+            markup.Attributes[1].SourcePosition.Should().Be(7);
+            markup.Attributes[1].Length.Should().Be(1);
         }
 
         [Fact]
@@ -224,14 +228,14 @@ namespace YarnSpinner.Tests
             var line = "A [a/] B";
             var markup = dialogue.ParseMarkup(line);
 
-            Assert.Equal("A B", markup.Text);
+            markup.Text.Should().Be("A B");
 
-            Assert.Single(markup.Attributes);
+            markup.Attributes.Should().ContainSingle();
 
-            Assert.Equal("a", markup.Attributes[0].Name);
-            Assert.Equal(0, markup.Attributes[0].Properties.Count);
-            Assert.Equal(2, markup.Attributes[0].Position);
-            Assert.Equal(0, markup.Attributes[0].Length);
+            markup.Attributes[0].Name.Should().Be("a");
+            markup.Attributes[0].Properties.Count.Should().Be(0);
+            markup.Attributes[0].Position.Should().Be(2);
+            markup.Attributes[0].Length.Should().Be(0);
         }
 
         [Theory]
@@ -244,7 +248,7 @@ namespace YarnSpinner.Tests
         public void TestAttributesMayTrimTrailingWhitespace(string input, string expectedText) {
             var markup = dialogue.ParseMarkup(input);
 
-            Assert.Equal(expectedText, markup.Text);
+            markup.Text.Should().Be(expectedText);
         }
 
         [Theory]
@@ -255,15 +259,15 @@ namespace YarnSpinner.Tests
         public void TestImplicitCharacterAttributeParsing(string input) {
             var markup = dialogue.ParseMarkup(input);
 
-            Assert.Equal("Mae: Wow!", markup.Text);
-            Assert.Single(markup.Attributes);
+            markup.Text.Should().Be("Mae: Wow!");
+            markup.Attributes.Should().ContainSingle();
 
-            Assert.Equal("character", markup.Attributes[0].Name);
-            Assert.Equal(0, markup.Attributes[0].Position);
-            Assert.Equal(5, markup.Attributes[0].Length);
+            markup.Attributes[0].Name.Should().Be("character");
+            markup.Attributes[0].Position.Should().Be(0);
+            markup.Attributes[0].Length.Should().Be(5);
 
-            Assert.Equal(1, markup.Attributes[0].Properties.Count);
-            Assert.Equal("Mae", markup.Attributes[0].Properties["name"].StringValue);
+            markup.Attributes[0].Properties.Count.Should().Be(1);
+            markup.Attributes[0].Properties["name"].StringValue.Should().Be("Mae");
         }
 
         [Fact]
@@ -271,17 +275,17 @@ namespace YarnSpinner.Tests
             var line = "S [a]S[/a] [nomarkup][a]S;][/a][/nomarkup]";
             var markup = dialogue.ParseMarkup(line);
 
-            Assert.Equal("S S [a]S;][/a]", markup.Text);
+            markup.Text.Should().Be("S S [a]S;][/a]");
 
-            Assert.Equal(2, markup.Attributes.Count);
+            markup.Attributes.Count.Should().Be(2);
 
-            Assert.Equal("a", markup.Attributes[0].Name);
-            Assert.Equal(2, markup.Attributes[0].Position);
-            Assert.Equal(1, markup.Attributes[0].Length);
+            markup.Attributes[0].Name.Should().Be("a");
+            markup.Attributes[0].Position.Should().Be(2);
+            markup.Attributes[0].Length.Should().Be(1);
 
-            Assert.Equal("nomarkup", markup.Attributes[1].Name);
-            Assert.Equal(4, markup.Attributes[1].Position);
-            Assert.Equal(10, markup.Attributes[1].Length);
+            markup.Attributes[1].Name.Should().Be("nomarkup");
+            markup.Attributes[1].Position.Should().Be(4);
+            markup.Attributes[1].Length.Should().Be(10);
         }
 
         [Fact]
@@ -289,11 +293,11 @@ namespace YarnSpinner.Tests
             var line = @"[a]hello \[b\]hello\[/b\][/a]";
             var markup = dialogue.ParseMarkup(line);
 
-            Assert.Equal("hello [b]hello[/b]", markup.Text);
-            Assert.Single(markup.Attributes);
-            Assert.Equal("a", markup.Attributes[0].Name);
-            Assert.Equal(0, markup.Attributes[0].Position);
-            Assert.Equal(18, markup.Attributes[0].Length);
+            markup.Text.Should().Be("hello [b]hello[/b]");
+            markup.Attributes.Should().ContainSingle();
+            markup.Attributes[0].Name.Should().Be("a");
+            markup.Attributes[0].Position.Should().Be(0);
+            markup.Attributes[0].Length.Should().Be(18);
         }
 
         [Fact]
@@ -301,15 +305,15 @@ namespace YarnSpinner.Tests
             var line = @"[select value=1 1=one 2=two 3=three /]";
             var markup = dialogue.ParseMarkup(line);
 
-            Assert.Single(markup.Attributes);
-            Assert.Equal("select", markup.Attributes[0].Name);
-            Assert.Equal(4, markup.Attributes[0].Properties.Count);
-            Assert.Equal(1, markup.Attributes[0].Properties["value"].IntegerValue);
-            Assert.Equal("one", markup.Attributes[0].Properties["1"].StringValue);
-            Assert.Equal("two", markup.Attributes[0].Properties["2"].StringValue);
-            Assert.Equal("three", markup.Attributes[0].Properties["3"].StringValue);
+            markup.Attributes.Should().ContainSingle();
+            markup.Attributes[0].Name.Should().Be("select");
+            markup.Attributes[0].Properties.Count.Should().Be(4);
+            markup.Attributes[0].Properties["value"].IntegerValue.Should().Be(1);
+            markup.Attributes[0].Properties["1"].StringValue.Should().Be("one");
+            markup.Attributes[0].Properties["2"].StringValue.Should().Be("two");
+            markup.Attributes[0].Properties["3"].StringValue.Should().Be("three");
 
-            Assert.Equal("one", markup.Text);
+            markup.Text.Should().Be("one");
         }
     }
 }

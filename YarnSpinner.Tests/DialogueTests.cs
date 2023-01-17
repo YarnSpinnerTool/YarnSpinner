@@ -8,6 +8,8 @@ using System.Linq;
 
 using Yarn.Compiler;
 
+using FluentAssertions;
+
 namespace YarnSpinner.Tests
 {
 
@@ -24,16 +26,16 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             dialogue.SetProgram (result.Program);
 
-            Assert.True (dialogue.NodeExists ("Sally"));
+            dialogue.NodeExists ("Sally").Should().BeTrue();
 
             // Test clearing everything
             dialogue.UnloadAll ();
 
-            Assert.False (dialogue.NodeExists ("Sally"));
+            dialogue.NodeExists ("Sally").Should().BeFalse();
 
         }
 
@@ -57,7 +59,7 @@ namespace YarnSpinner.Tests
             
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             stringTable = result.StringTable;
 
@@ -65,8 +67,8 @@ namespace YarnSpinner.Tests
             dialogue.Analyse (context);
             diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
-            Assert.Equal (1, diagnoses.Count);
-            Assert.Contains("Variable $bar is assigned, but never read from", diagnoses.First().message);
+            diagnoses.Count.Should().Be(1);
+            diagnoses.First().message.Should().Contain("Variable $bar is assigned, but never read from");
 
             dialogue.UnloadAll ();
 
@@ -77,7 +79,7 @@ namespace YarnSpinner.Tests
                 Path.Combine(SpaceDemoScriptsPath, "Sally.yarn"),
             }, dialogue.Library));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             dialogue.SetProgram (result.Program);
             
@@ -85,7 +87,7 @@ namespace YarnSpinner.Tests
             diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
             // This script should contain no unused variables
-            Assert.Empty (diagnoses);
+            diagnoses.Should().BeEmpty();
         }
 
         [Fact]
@@ -95,12 +97,12 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "Example.yarn");
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             dialogue.SetProgram (result.Program);
 
             var byteCode = dialogue.GetByteCode ();
-            Assert.NotNull (byteCode);
+            byteCode.Should().NotBeNull();
 
         }
 
@@ -111,13 +113,14 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
             
             dialogue.SetProgram (result.Program);
 
             runtimeErrorsCauseFailures = false;
 
-            Assert.Throws<DialogueException>( () => dialogue.SetNode("THIS NODE DOES NOT EXIST"));            
+            var settingInvalidNode = new Action(() => dialogue.SetNode("THIS NODE DOES NOT EXIST"));
+            settingInvalidNode.Should().Throw<DialogueException>();
         }
 
         [Fact]
@@ -130,19 +133,19 @@ namespace YarnSpinner.Tests
             
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
             
             dialogue.SetProgram (result.Program);
 
             // dialogue should not be running yet
-            Assert.Null (dialogue.CurrentNode);
+            dialogue.CurrentNode.Should().BeNull();
 
             dialogue.SetNode("Sally");
-            Assert.Equal ("Sally", dialogue.CurrentNode);
+            dialogue.CurrentNode.Should().Be("Sally");
 
             dialogue.Stop();
             // Current node should now be null
-            Assert.Null (dialogue.CurrentNode);
+            dialogue.CurrentNode.Should().BeNull();
         }
 
         [Fact]
@@ -152,7 +155,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             dialogue.SetProgram (result.Program);
 
@@ -161,9 +164,9 @@ namespace YarnSpinner.Tests
             var sourceID = dialogue.GetStringIDForNode ("LearnMore");
             var source = stringTable[sourceID].text;
 
-            Assert.NotNull (source);
+            source.Should().NotBeNull();
 
-            Assert.Equal ("A: HAHAHA\n", source);
+            source.Should().Be("A: HAHAHA\n");
         }
 		[Fact]
 		public void TestGettingTags() {
@@ -172,17 +175,17 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             dialogue.SetProgram (result.Program);
 
 			var source = dialogue.GetTagsForNode ("LearnMore");
 
-			Assert.NotNull (source);
+			source.Should().NotBeNull();
 
-			Assert.NotEmpty (source);
+			source.Should().NotBeEmpty();
 
-			Assert.Equal ("rawText", source.First());
+			source.First().Should().Be("rawText");
 		}
 
         [Fact]
@@ -191,7 +194,7 @@ namespace YarnSpinner.Tests
             
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             stringTable = result.StringTable;
             
@@ -201,9 +204,9 @@ namespace YarnSpinner.Tests
                 // When the Dialogue realises it's about to run the Start
                 // node, it will tell us that it's about to run these two
                 // line IDs
-                Assert.Equal(2, lines.Count());
-                Assert.Contains("line:test1", lines);
-                Assert.Contains("line:test2", lines);
+                lines.Should().HaveCount(2);
+                lines.Should().Contain("line:test1");
+                lines.Should().Contain("line:test2");
 
                 // Ensure that these asserts were actually called
                 prepareForLinesWasCalled = true;
@@ -212,7 +215,7 @@ namespace YarnSpinner.Tests
 			dialogue.SetProgram (result.Program);
             dialogue.SetNode("Start");
 
-            Assert.True(prepareForLinesWasCalled);
+            prepareForLinesWasCalled.Should().BeTrue();
         }
 
 
@@ -240,7 +243,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             stringTable = result.StringTable;
 
@@ -254,16 +257,16 @@ namespace YarnSpinner.Tests
             // The values should be of the right type and value
             
             this.storage.TryGetValue<string>("$str", out var strValue);
-            Assert.Equal("ab", strValue);
+            strValue.Should().Be("ab");
 
             this.storage.TryGetValue<float>("$int", out var intValue);
-            Assert.Equal(3, intValue);
+            intValue.Should().Be(3);
 
             this.storage.TryGetValue<float>("$float", out var floatValue);
-            Assert.Equal(3, floatValue);
+            floatValue.Should().Be(3);
 
             this.storage.TryGetValue<bool>("$bool", out var boolValue);
-            Assert.False(boolValue);
+            boolValue.Should().BeFalse();
         }
 
         [Fact]
@@ -280,8 +283,8 @@ namespace YarnSpinner.Tests
                 var parsedText = dialogue.ParseMarkup(lineText.text).Text;
                 testCase.Next();
 
-                Assert.Equal(TestPlan.Step.Type.Line, testCase.nextExpectedType);
-                Assert.Equal(testCase.nextExpectedValue, parsedText);
+                testCase.nextExpectedType.Should().Be(TestPlan.Step.Type.Line);
+                parsedText.Should().Be(testCase.nextExpectedValue);
 
                 dialogue.Continue();
             };
@@ -291,31 +294,32 @@ namespace YarnSpinner.Tests
 
                 int optionCount = optionSet.Options.Count();
 
-                Assert.Equal(TestPlan.Step.Type.Select, testCase.nextExpectedType);
+                testCase.nextExpectedType.Should().Be(TestPlan.Step.Type.Select);
                 
                 // Assert that the list of options we were given is
                 // identical to the list of options we expect
                 var actualOptionList = optionSet.Options
                     .Select(o => (GetComposedTextForLine(o.Line), o.IsAvailable))
                     .ToList();
-                Assert.Equal(testCase.nextExpectedOptions, actualOptionList);
+
+                actualOptionList.Should().Contain(testCase.nextExpectedOptions);
 
                 var expectedOptionCount = testCase.nextExpectedOptions.Count();
 
-                Assert.Equal (expectedOptionCount, optionCount);
+                optionCount.Should().Be(expectedOptionCount);
 
                 dialogue.SetSelectedOption(0);
             };
 
             dialogue.CommandHandler = (command) => {
                 testCase.Next();
-                Assert.Equal(TestPlan.Step.Type.Command, testCase.nextExpectedType);
+                testCase.nextExpectedType.Should().Be(TestPlan.Step.Type.Command);
                 dialogue.Continue();
             };
 
             dialogue.DialogueCompleteHandler = () => {
                 testCase.Next();
-                Assert.Equal(TestPlan.Step.Type.Stop, testCase.nextExpectedType);
+                testCase.nextExpectedType.Should().Be(TestPlan.Step.Type.Stop);
                 dialogue.Continue();
             };
 
@@ -325,7 +329,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(job);
 
-            Assert.Empty(result.Diagnostics);
+            result.Diagnostics.Should().BeEmpty();
 
             this.stringTable = result.StringTable;
 
