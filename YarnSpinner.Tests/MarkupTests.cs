@@ -315,5 +315,32 @@ namespace YarnSpinner.Tests
 
             markup.Text.Should().Be("one");
         }
+
+        [Fact]
+        public void TestNumberPluralisation() {
+
+            var testCases = new[] {
+                (Value: 1, Locale: "en", Expected: "a single cat"),
+                (Value: 2, Locale: "en", Expected: "2 cats"),
+                (Value: 3, Locale: "en", Expected: "3 cats"),
+                (Value: 1, Locale: "en-AU", Expected: "a single cat"),
+                (Value: 2, Locale: "en-AU", Expected: "2 cats"),
+                (Value: 3, Locale: "en-AU", Expected: "3 cats"),
+            };
+
+            using (new FluentAssertions.Execution.AssertionScope())
+            {
+
+                foreach (var testCase in testCases)
+                {
+                    var line = "[plural value=" + testCase.Value + " one=\"a single cat\" other=\"% cats\"/]";
+
+                    dialogue.LanguageCode = testCase.Locale;
+                    var markup = dialogue.ParseMarkup(line);
+                    markup.Text.Should().Be(testCase.Expected, $"{testCase.Value} in locale {testCase.Locale} should have the correct plural case");
+                }
+            }
+
+        }
     }
 }
