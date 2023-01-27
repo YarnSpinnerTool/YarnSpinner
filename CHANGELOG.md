@@ -10,22 +10,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+### Removed
+
+## [2.2.5] 2023-01-27
+
+### Changed
+
+- Number pluralisation rules have been updated. The rules have now use CLDR version 42.0 (previously, 36.1)
 - Merged LanguageServer projects into the core YarnSpinner repository.
 - `NodeInfo.PreviewText` no longer removes comments from the preview.
 - Migrated tests from xUnit's `Assert` tests to [Fluent Assertions](https://fluentassertions.com).
 - Fixed an issue where pluralisation markup (i.e. the `plural` and `ordinal` tags) would not work correctly with country-specific locales (for example "en-AU").
 
-### Removed
-
 ## [2.2.4] 2022-10-31
-
-### Added
 
 ### Changed
 
 - The compiler will now produce more useful error messages when two or more nodes in a compilation share the same name.
-
-### Removed
 
 ## [2.2.3] 2022-08-28
 
