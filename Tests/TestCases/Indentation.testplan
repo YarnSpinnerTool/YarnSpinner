@@ -1,0 +1,19 @@
+line: zero indent if with equal line
+line: zero indent if with one indent line
+line: zero indent if with two indent line
+line: one indent if with equal indent line
+line: zero indent line
+line: one indent if with two indent line
+line: zero indent line
+line: one indent line
+line: one indent if with zero indent line and endif
+line: zero indent if with one indent line and endif
+line: zero indent if and line with one indent 
+line: one indent if and endif with zero indent line
+
+option: option with subline
+select: 1
+line: subline
+
+option: option below blank line
+select: 1
