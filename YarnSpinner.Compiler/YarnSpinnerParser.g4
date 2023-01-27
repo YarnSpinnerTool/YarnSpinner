@@ -2,7 +2,7 @@ parser grammar YarnSpinnerParser;
 
 options { tokenVocab=YarnSpinnerLexer; }
 
-dialogue 
+dialogue
     : (file_hashtag*) node+ 
     ;
 
@@ -36,7 +36,7 @@ statement
     ;
 
 line_statement
-    : 
+    :
         line_formatted_text // text, interspersed with expressions
         line_condition? // a line condition
         hashtag*  // any number of hashtags
@@ -122,7 +122,7 @@ command_formatted_text
 	;
 
 shortcut_option_statement
-    : shortcut_option+
+    : shortcut_option* (shortcut_option BLANK_LINE_FOLLOWING_OPTION?)
     ;
 
 shortcut_option
