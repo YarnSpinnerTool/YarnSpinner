@@ -138,6 +138,12 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
 🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻 #line:abc131
 🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻 #line:abc132 // with a comment
 
+// testing command structures to make sure the tagger hasn't botched the whitespace
+<<declare $a = 0>>
+<<set $a to 5>>
+<<if $a == 5>>
+<<generic command goes here>>
+<<endif>>
 ===";
 
             {
@@ -175,11 +181,13 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
             lineTagRegexMatches.Should().Be(expectedTotalTags);
 
             // No tags were added after a comment
-            foreach (var line in output.Split('\n')) {
+            foreach (var line in output.Split('\n'))
+            {
                 lineTagAfterComment.IsMatch(line).Should().BeFalse($"'{line}' should not contain a tag after a comment");
             }
 
-            var expectedResults = new (string tag, string line)[] {
+            var expectedResults = new (string tag, string line)[]
+            {
                 ("line:expected_abc123", "A single line, with a line tag."),
                 ("line:expected_def456", "An option, with a line tag."),
                 ("line:expected_ghi789", "A line with a tag, and a comment."),
