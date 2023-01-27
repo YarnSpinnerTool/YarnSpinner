@@ -74,7 +74,7 @@ line before options #line:1
     -> option 1b
 -> option 2
 -> option 3
-            ");
+");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
             result.Diagnostics.Should().BeEmpty();
@@ -110,7 +110,7 @@ line before options #line:0
 <<endif>>
 -> option 1
 -> option 2
-            ");
+");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
             result.Diagnostics.Should().BeEmpty();
@@ -126,7 +126,7 @@ line before options #line:0
     inside options #line:1a
 -> option 2
 -> option 3
-            ");
+");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
             result.Diagnostics.Should().BeEmpty();
