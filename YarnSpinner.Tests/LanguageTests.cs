@@ -102,10 +102,65 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
             
-            result.Program.Nodes.Count.Should().Be(4);
+            result.Program.Nodes.Count.Should().Be(6);
 
-            foreach (var tag in new[] {"one", "two", "three"}) {
+            foreach (var tag in new[] {"one", "two", "three"})
+            {
                 result.Program.Nodes["Tags"].Tags.Should().Contain(tag);
+            }
+
+            var headers = new Dictionary<string, List<(string, string)>>();
+            headers.Add("EmptyTags", new List<(string, string)>{
+                ("title","EmptyTags"),
+                ("tags", null)
+            });
+            headers.Add("Tags", new List<(string, string)>{
+                ("title", "Tags"),("tags",
+                 "one two three")
+            });
+            headers.Add("ArbitraryHeaderWithValue", new List<(string, string)>{
+                ("title", "ArbitraryHeaderWithValue"),
+                ("arbitraryheader", "some-arbitrary-text")
+            });
+            headers.Add("Comments", new List<(string, string)>{
+                ("title", "Comments"),("tags",
+                 "one two three")
+            });
+            headers.Add("SingleTagOnly", new List<(string, string)>{
+                ("title", "SingleTagOnly")
+            });
+            headers.Add("LotsOfHeaders", new List<(string, string)>{
+                ("title", "LotsOfHeaders"),
+                ("this", "node"),
+                ("contains", "lots"),
+                ("of", null),
+                ("headers", ""),
+                ("some", "are"),
+                ("blank", null),
+                ("others", "are"),
+                ("not", "")
+            });
+
+            headers.Count.Should().Be(result.Program.Nodes.Count);
+            foreach (var pair in headers)
+            {
+                result.Program.Nodes[pair.Key].Headers.Count.Should().Be(pair.Value.Count);
+
+                // go through each item in the headers and ensure they are in the header list
+                foreach (var header in result.Program.Nodes[pair.Key].Headers)
+                {
+                    var match = pair.Value.Where(t => t.Item1.Equals(header.Key)).First();
+                    match.Item1.Should().Be(header.Key);
+
+                    if (match.Item2 == null)
+                    {
+                        header.Value.Should().BeNullOrEmpty();
+                    }
+                    else
+                    {
+                        match.Item2.Should().Be(header.Value);
+                    }
+                }
             }
 
             // result.FileTags.Should().Contain("version:2");

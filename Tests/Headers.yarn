@@ -22,3 +22,19 @@ tags: one two three
 ---
 This node demonstrates the use of comments in node headers.
 ===
+title: SingleTagOnly
+---
+This node only possesses a single tag, the title.
+===
+title: LotsOfHeaders
+this: node
+contains: lots
+of:
+headers:
+some: are
+blank:
+others: are
+not:
+---
+body empty
+===
