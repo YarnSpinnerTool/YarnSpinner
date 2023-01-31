@@ -926,7 +926,8 @@ namespace Yarn.Compiler
                     throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.Type.Name}");
                 }
 
-                if (finalResult.Program != null) {
+                if (finalResult.Program != null)
+                {
                     finalResult.Program.InitialValues.Add(declaration.Name, value);
                 }
             }
@@ -1369,7 +1370,8 @@ namespace Yarn.Compiler
         // var and make it ready to go again
         public override void ExitNode(YarnSpinnerParser.NodeContext context)
         {
-            if (string.IsNullOrEmpty(this.CurrentNode.Name)) {
+            if (string.IsNullOrEmpty(this.CurrentNode.Name))
+            {
                 // We don't have a name for this node. We can't emit code for
                 // it.
                 this.diagnostics.Add(new Diagnostic(
@@ -1440,6 +1442,11 @@ namespace Yarn.Compiler
                     this.RawTextNode = true;
                 }
             }
+
+            var header = new Header();
+            header.Key = headerKey;
+            header.Value = headerValue;
+            this.CurrentNode.Headers.Add(header);
         }
 
         // have entered the body the header should have finished being
