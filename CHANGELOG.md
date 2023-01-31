@@ -8,7 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- Nodes inside the Yarn Program now contains a Header field which is a collection of key value pairs of any headers the node has.
+
 ### Changed
+
+- Large changes to IndentAwareLexer, this fixes numerous issues but as a side-effect some yarn indentation constructs that previously worked fine when inside an option block will no longer compile.
 
 ### Removed
 
