@@ -114,30 +114,30 @@ namespace YarnSpinner.Tests
                 ("title","EmptyTags"),
                 ("tags", null)
             });
-            headers.Add("Tags", new List<(string, string)>{
-                ("title", "Tags"),("tags",
-                 "one two three")
-            });
             headers.Add("ArbitraryHeaderWithValue", new List<(string, string)>{
                 ("title", "ArbitraryHeaderWithValue"),
                 ("arbitraryheader", "some-arbitrary-text")
             });
-            headers.Add("Comments", new List<(string, string)>{
-                ("title", "Comments"),("tags",
+            headers.Add("Tags", new List<(string, string)>{
+                ("title", "Tags"),("tags",
                  "one two three")
             });
             headers.Add("SingleTagOnly", new List<(string, string)>{
                 ("title", "SingleTagOnly")
             });
+            headers.Add("Comments", new List<(string, string)>{
+                ("title", "Comments"),
+                ("tags", "one two three")
+            });
             headers.Add("LotsOfHeaders", new List<(string, string)>{
-                ("title", "LotsOfHeaders"),
-                ("this", "node"),
                 ("contains", "lots"),
+                ("title", "LotsOfHeaders"),
+                ("this", "node"),                
                 ("of", null),
-                ("headers", ""),
-                ("some", "are"),
                 ("blank", null),
                 ("others", "are"),
+                ("headers", ""),
+                ("some", "are"),
                 ("not", "")
             });
 
