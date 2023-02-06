@@ -75,6 +75,10 @@ namespace Yarn.Compiler
             { "bool", BuiltinTypes.Boolean },
         };
 
+        /// <summary>A regular expression used to detect illegal characters
+        /// in node titles.</summary>
+        private System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(@"[\[<>\]{}\|:\s#\$]");
+
         public DeclarationVisitor(string sourceFileName, IEnumerable<Declaration> existingDeclarations, IEnumerable<IType> typeDeclarations, CommonTokenStream tokens)
         {
             this.ExistingDeclarations = existingDeclarations;
@@ -100,6 +104,11 @@ namespace Yarn.Compiler
                 if (header.header_key.Text == "title")
                 {
                     currentNodeName = header.header_value.Text;
+
+                    if (regex.IsMatch(currentNodeName))
+                    {
+                        this.diagnostics.Add(new Diagnostic(this.sourceFileName, header, $"The node '{currentNodeName}' contains illegal characters."));
+                    }
                 }
             }
 

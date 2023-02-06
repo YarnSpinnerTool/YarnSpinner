@@ -579,10 +579,6 @@ namespace Yarn.Compiler
     /// </summary>
     public class Compiler : YarnSpinnerParserBaseListener
     {
-        /// <summary>A regular expression used to detect illegal characters
-        /// in node titles.</summary>
-        private readonly Regex invalidNodeTitleNameRegex = new Regex(@"[\[<>\]{}\|:\s#\$]");
-
         private int labelCount = 0;
 
         /// <summary>
@@ -1419,13 +1415,6 @@ namespace Yarn.Compiler
             {
                 // Set the name of the node
                 this.CurrentNode.Name = headerValue;
-
-                // Throw an exception if this node name contains illegal
-                // characters
-                if (this.invalidNodeTitleNameRegex.IsMatch(this.CurrentNode.Name))
-                {
-                    this.diagnostics.Add(new Diagnostic(this.fileParseResult.Name, context, $"The node '{this.CurrentNode.Name}' contains illegal characters in its title."));
-                }
             }
 
             if (headerKey.Equals("tags", StringComparison.InvariantCulture))

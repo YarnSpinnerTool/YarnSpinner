@@ -347,34 +347,31 @@ namespace YarnLanguageServer
             PublishDiagnostics();
         }
 
-        public void PublishDiagnostics()
+        public void PublishSpecificDiagnostics(IEnumerable<Yarn.Compiler.Diagnostic> diagnostics)
         {
-            
-            // Here are the diagnostics that might change depending on other things in the workspace
-            // var diagnostics =  Warnings.GetWarnings(this, Workspace);
-            // diagnostics = diagnostics.Concat(SemanticErrors.GetErrors(this, Workspace));
-            // this.HasSemanticDiagnostics = diagnostics.Any();
-
-            // diagnostics = diagnostics.Concat(CompilerDiagnostics);
-
-            foreach (var filePair in this.YarnFiles) {
-
+            foreach (var filePair in this.YarnFiles)
+            {
                     var uri = filePair.Key;
-                    var diagnostics = this.Diagnostics
+                    var diags = diagnostics
                         .Where(d => d.FileName == uri.ToString())
                         .Select(d => ConvertDiagnostic(d)).ToList();
 
                 // Add warnings for this file
-                diagnostics = diagnostics.Concat(Warnings.GetWarnings(filePair.Value, this)).ToList();
+                diags = diags.Concat(Warnings.GetWarnings(filePair.Value, this)).ToList();
 
                 LanguageServer.TextDocument.PublishDiagnostics(
                         new PublishDiagnosticsParams
                         {
                             Uri = uri,
-                            Diagnostics = diagnostics,
+                            Diagnostics = diags,
                         }
                     );
             }
+        }
+        public void PublishDiagnostics()
+        {
+            
+            PublishSpecificDiagnostics(this.Diagnostics);
 
         }
 
