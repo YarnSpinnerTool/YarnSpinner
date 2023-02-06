@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Large changes to IndentAwareLexer, this fixes numerous issues but as a side-effect some yarn indentation constructs that previously worked fine when inside an option block will no longer compile.
+- Node title verification now occurs at declaration time instead of code gen. This means invalid titles will be caught and presented as a problem earlier on to aid in debugging issues.
 
 ### Removed
 
