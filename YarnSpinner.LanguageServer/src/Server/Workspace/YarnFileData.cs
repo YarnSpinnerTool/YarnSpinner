@@ -29,7 +29,6 @@ namespace YarnLanguageServer
         public IEnumerable<Diagnostic> CompilerDiagnostics { get; protected set; }
         public bool HasSemanticDiagnostics { get; protected set;  }
         public ImmutableArray<int> LineStarts { get; protected set; }
-        // public CodeCompletionCore CodeCompletionCore { get; protected set; }
 
         public List<NodeInfo> NodeInfos { get; protected set; }
 
