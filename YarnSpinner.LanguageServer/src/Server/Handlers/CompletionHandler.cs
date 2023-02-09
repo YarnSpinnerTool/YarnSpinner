@@ -25,7 +25,7 @@ namespace YarnLanguageServer.Handlers
                     Label = "if command",
                     Kind = CompletionItemKind.Keyword,
                     Documentation = "If statements selects a block of statements to present based on the value of an expression.",
-                    InsertText = "if ${0:expression}",
+                    InsertText = "if ${1:expression}",
                     InsertTextFormat = InsertTextFormat.Snippet,
                 },
                 new CompletionItem
@@ -33,7 +33,7 @@ namespace YarnLanguageServer.Handlers
                     Label = "jump command",
                     Kind = CompletionItemKind.Keyword,
                     Documentation = "Jump to another node",
-                    InsertText = "jump ${0:node}",
+                    InsertText = "jump ${1:node}",
                     InsertTextFormat = InsertTextFormat.Snippet,
                 },
                 new CompletionItem
@@ -41,7 +41,7 @@ namespace YarnLanguageServer.Handlers
                     Label = "else if command",
                     Kind = CompletionItemKind.Keyword,
                     Documentation = "Else if statements are used with if statements to present content based on a different condition.",
-                    InsertText = "elseif ${0:expression}",
+                    InsertText = "elseif ${1:expression}",
                     InsertTextFormat = InsertTextFormat.Snippet,
                 },
                 new CompletionItem
@@ -64,7 +64,7 @@ namespace YarnLanguageServer.Handlers
                 {
                     Label = "declare command",
                     Kind = CompletionItemKind.Keyword,
-                    InsertText = "declare ${0:\\$variable} = ${1:value} as ${2:type}",
+                    InsertText = "declare ${1:\\$variable} = ${2:value} as ${3:type}",
                     Documentation = "Declares a variable with a name, an initial value, and optionally a type.\nIf you don't provide a type it will instead be inferred.",
                     InsertTextFormat = InsertTextFormat.Snippet,
                 },
@@ -72,7 +72,7 @@ namespace YarnLanguageServer.Handlers
                 {
                     Label = "set command",
                     Kind = CompletionItemKind.Keyword,
-                    InsertText = "set ${0:\\$variable} to ${1:value}",
+                    InsertText = "set ${1:\\$variable} to ${2:value}",
                     Documentation = "Set assigns the value of the expression to a variable",
                     InsertTextFormat = InsertTextFormat.Snippet,
                 },
@@ -146,7 +146,7 @@ namespace YarnLanguageServer.Handlers
                         {
                             builder.Append(cmd.YarnName);
 
-                            int i = 0;
+                            int i = 1;
                             foreach (var param in cmd.Parameters)
                             {
                                 if (param.IsParamsArray)
@@ -187,7 +187,7 @@ namespace YarnLanguageServer.Handlers
                             builder.Append("(");
 
                             var parameters = new List<string>();
-                            int i = 0;
+                            int i = 1;
                             foreach (var param in cmd.Parameters)
                             {
                                 if (param.IsParamsArray)
