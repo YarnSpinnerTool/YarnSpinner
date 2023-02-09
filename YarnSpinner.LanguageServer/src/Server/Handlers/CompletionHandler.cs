@@ -99,22 +99,6 @@ namespace YarnLanguageServer.Handlers
 
                 var indexToken = yarnFile.Tokens[index.Value];
 
-                // things fall apart with opening braces for some reason
-                // if (indexToken.Type == YarnSpinnerLexer.COMMAND_START || indexToken.Type == YarnSpinnerLexer.LPAREN || indexToken.Type == YarnSpinnerLexer.EXPRESSION_START)
-                // {
-                //     // if we are at the right edge of <<, then use what ever the next token is to get completions
-                //     if (PositionHelper.GetRange(yarnFile.LineStarts, indexToken).End == request.Position)
-                //     {
-                //         index++;
-                //         indexToken = yarnFile.Tokens[index.Value];
-                //     }
-                //     else
-                //     {
-                //         // don't run completions for left and middle of <<
-                //         return Task.FromResult<CompletionList>(null);
-                //     }
-                // }
-
                 var indexTokenRange = PositionHelper.GetRange(yarnFile.LineStarts, indexToken);
                 if (indexToken.Type == YarnSpinnerLexer.COMMAND_END || indexToken.Type == YarnSpinnerLexer.RPAREN || indexToken.Type == YarnSpinnerLexer.EXPRESSION_END)
                 {

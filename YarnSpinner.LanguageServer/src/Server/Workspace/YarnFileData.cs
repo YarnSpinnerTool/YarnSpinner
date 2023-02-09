@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using Antlr4.Runtime;
-using Antlr4CodeCompletion.Core.CodeCompletion;
 using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
@@ -30,7 +29,7 @@ namespace YarnLanguageServer
         public IEnumerable<Diagnostic> CompilerDiagnostics { get; protected set; }
         public bool HasSemanticDiagnostics { get; protected set;  }
         public ImmutableArray<int> LineStarts { get; protected set; }
-        public CodeCompletionCore CodeCompletionCore { get; protected set; }
+        // public CodeCompletionCore CodeCompletionCore { get; protected set; }
 
         public List<NodeInfo> NodeInfos { get; protected set; }
 
@@ -90,8 +89,6 @@ namespace YarnLanguageServer
             NodeInfos = ReferencesVisitor.Visit(this, tokenStream).ToList();
 
             DocumentSymbols = DocumentSymbolsVisitor.Visit(this);
-
-            CodeCompletionCore = new CodeCompletionCore(Parser, Handlers.CompletionHandler.PreferedRules, Handlers.CompletionHandler.IgnoredTokens);
 
             PublishNodeInfos();
         }
