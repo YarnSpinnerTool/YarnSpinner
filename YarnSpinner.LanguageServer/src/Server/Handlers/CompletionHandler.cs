@@ -79,7 +79,7 @@ namespace YarnLanguageServer.Handlers
                 new CompletionItem
                 {
                     Label = "stop command",
-                    Kind = CompletionItemKind.Keyword,
+                    Kind = CompletionItemKind.Function,
                     InsertText = "stop",
                     Documentation = "Stop ends the current dialogue.",
                     InsertTextFormat = InsertTextFormat.PlainText,
