@@ -17,8 +17,19 @@ namespace Yarn.Compiler
             // that just concatenates the text of all captured tokens,
             // and doesn't include text on hidden channels (e.g.
             // whitespace and comments).
-            var interval = new Interval(context.Start.StartIndex, context.Stop.StopIndex);
-            return context.Start.InputStream.GetText(interval);
+
+            // some times it seems that vscode can request a negative interval
+            // almost certainly something wrong we are doing
+            // but as a non-crashing fallback we prevent this
+            if (context.Start.StartIndex > context.Stop.StopIndex)
+            {
+                return context.GetText();
+            }
+            else
+            {
+                var interval = new Interval(context.Start.StartIndex, context.Stop.StopIndex);
+                return context.Start.InputStream.GetText(interval);   
+            }
         }
     }
 
