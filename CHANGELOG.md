@@ -14,6 +14,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Large changes to IndentAwareLexer, this fixes numerous issues but as a side-effect some yarn indentation constructs that previously worked fine when inside an option block will no longer compile.
 - Node title verification now occurs at declaration time instead of code gen. This means invalid titles will be caught and presented as a problem earlier on to aid in debugging issues.
+- Code completion in the LSP has been completely rewritten. It is now much less flexible but *way* more performant. For most situations the changes will not be noticeable.
+- Fixed a crash in the LSP when encountering declaration statements without a variable.
 
 ### Removed
 
