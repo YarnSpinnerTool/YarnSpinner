@@ -579,10 +579,6 @@ namespace Yarn.Compiler
     /// </summary>
     public class Compiler : YarnSpinnerParserBaseListener
     {
-        /// <summary>A regular expression used to detect illegal characters
-        /// in node titles.</summary>
-        private readonly Regex invalidNodeTitleNameRegex = new Regex(@"[\[<>\]{}\|:\s#\$]");
-
         private int labelCount = 0;
 
         /// <summary>
@@ -724,7 +720,7 @@ namespace Yarn.Compiler
             // Ensure that all nodes names in this compilation are unique. Node
             // name uniqueness is important for several processes, so we do this
             // check here.
-            AddErrorsForDuplicateNodeNames(parsedFiles, ref diagnostics);
+            AddErrorsForInvalidNodeNames(parsedFiles, ref diagnostics);
 
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
             {
@@ -937,7 +933,8 @@ namespace Yarn.Compiler
                     throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.Type.Name}");
                 }
 
-                if (finalResult.Program != null) {
+                if (finalResult.Program != null)
+                {
                     finalResult.Program.InitialValues.Add(declaration.Name, value);
                 }
             }
@@ -953,15 +950,19 @@ namespace Yarn.Compiler
 
         /// <summary>
         /// Checks every node name in <paramref name="parseResults"/>, and
-        /// ensure that they're all unique. If there are duplicates, create
-        /// diagnostics where any node overlaps.
+        /// ensure that they're all unique and valid. If there are duplicates or
+        /// invalid node names, create diagnostics for them.
         /// </summary>
         /// <param name="parseResults">A collection of file parse results to
         /// check.</param>
         /// <param name="diagnostics">A collection of diagnostics to add
         /// to.</param>
-        private static void AddErrorsForDuplicateNodeNames(List<FileParseResult> parseResults, ref List<Diagnostic> diagnostics)
+        private static void AddErrorsForInvalidNodeNames(List<FileParseResult> parseResults, ref List<Diagnostic> diagnostics)
         {
+            /// A regular expression used to detect illegal characters
+            /// in node titles.
+            Regex invalidTitleCharacters = new System.Text.RegularExpressions.Regex(@"[\[<>\]{}\|:\s#\$]");
+            
             var allNodes = parseResults.SelectMany(r =>
             {
                 var dialogue = r.Tree.Payload as YarnSpinnerParser.DialogueContext;
@@ -995,6 +996,14 @@ namespace Yarn.Compiler
                         File: n.File);
                 }
             }).Where(kv => kv.Name != null);
+
+            // Find nodes whose titles have invalid characters, and generate
+            // diagnostics for them
+            var nodesWithIllegalTitleCharacters = nodesWithNames.Where(n => invalidTitleCharacters.IsMatch(n.Name));
+
+            foreach (var node in nodesWithIllegalTitleCharacters) {
+                diagnostics.Add(new Diagnostic(node.File.Name, node.Header, $"The node '{node.Name}' contains illegal characters."));
+            }
 
             var nodesByName = nodesWithNames.GroupBy(n => n.Name);
 
@@ -1361,7 +1370,8 @@ namespace Yarn.Compiler
         // var and make it ready to go again
         public override void ExitNode(YarnSpinnerParser.NodeContext context)
         {
-            if (string.IsNullOrEmpty(this.CurrentNode.Name)) {
+            if (string.IsNullOrEmpty(this.CurrentNode.Name))
+            {
                 // We don't have a name for this node. We can't emit code for
                 // it.
                 this.diagnostics.Add(new Diagnostic(
@@ -1409,13 +1419,6 @@ namespace Yarn.Compiler
             {
                 // Set the name of the node
                 this.CurrentNode.Name = headerValue;
-
-                // Throw an exception if this node name contains illegal
-                // characters
-                if (this.invalidNodeTitleNameRegex.IsMatch(this.CurrentNode.Name))
-                {
-                    this.diagnostics.Add(new Diagnostic(this.fileParseResult.Name, context, $"The node '{this.CurrentNode.Name}' contains illegal characters in its title."));
-                }
             }
 
             if (headerKey.Equals("tags", StringComparison.InvariantCulture))
@@ -1432,6 +1435,11 @@ namespace Yarn.Compiler
                     this.RawTextNode = true;
                 }
             }
+
+            var header = new Header();
+            header.Key = headerKey;
+            header.Value = headerValue;
+            this.CurrentNode.Headers.Add(header);
         }
 
         // have entered the body the header should have finished being

@@ -1003,15 +1003,44 @@ namespace Yarn
                 throw new ArgumentException($"Error while pluralising line: '{value}' is not a number");
             }
 
+            // CLDRPlurals only works with 'neutral' locale names (i.e. "en"),
+            // not 'specific' locale names. We need to check to see if
+            // this.LanguageCode is the name of a 'specific' locale name. If is,
+            // we'll fetch its parent, which will be 'neutral', and use that.
+            string languageCode;
+            try
+            {
+                var culture = new System.Globalization.CultureInfo(this.LanguageCode);
+                if (culture.IsNeutralCulture)
+                {
+                    languageCode = culture.Name;
+                }
+                else
+                {
+                    culture = culture.Parent;
+                    if (culture != null) {
+                        languageCode = culture.Name;
+                    } else {
+                        languageCode = this.LanguageCode;
+                    }
+                }
+            }
+            catch (System.Globalization.CultureNotFoundException)
+            {
+                // this.LanguageCode doesn't represent a known culture. Fall
+                // back to using what the user provided.
+                languageCode = this.LanguageCode;
+            }
+
             CLDRPlurals.PluralCase pluralCase;
 
             switch (marker.Name)
             {
                 case "plural":
-                    pluralCase = CLDRPlurals.NumberPlurals.GetCardinalPluralCase(this.LanguageCode, doubleValue);
+                    pluralCase = CLDRPlurals.NumberPlurals.GetCardinalPluralCase(languageCode, doubleValue);
                     break;
                 case "ordinal":
-                    pluralCase = CLDRPlurals.NumberPlurals.GetOrdinalPluralCase(this.LanguageCode, doubleValue);
+                    pluralCase = CLDRPlurals.NumberPlurals.GetOrdinalPluralCase(languageCode, doubleValue);
                     break;
                 default:
                     throw new InvalidOperationException($"Invalid marker name {marker.Name}");

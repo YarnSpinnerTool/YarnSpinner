@@ -8,6 +8,8 @@ using Yarn.Compiler;
 
 using FluentAssertions;
 
+using FluentAssertions;
+
 namespace YarnSpinner.Tests
 {
     public class TypeTests : TestBase

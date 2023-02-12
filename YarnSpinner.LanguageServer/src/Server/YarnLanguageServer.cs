@@ -461,6 +461,7 @@ namespace YarnLanguageServer
             
             // should check in here if it worked I suppose...
             var e = result.Diagnostics.Where(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error).Select(d => d.Message).ToArray();
+            workspace.PublishSpecificDiagnostics(result.Diagnostics);
 
             var strings = new Dictionary<string, string>();
             foreach (var line in result.StringTable)

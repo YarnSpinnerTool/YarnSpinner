@@ -1,0 +1,60 @@
+title: Start
+---
+<<set $bar to true>>
+
+// works fine
+<<if $bar == true>>
+zero indent if with equal line
+<<endif>>
+
+// works fine
+<<if $bar == true>>
+  zero indent if with one indent line
+<<endif>>
+
+// works fine
+  <<if $bar == true>>
+    zero indent if with two indent line
+  <<endif>>
+
+// works fine
+  <<if $bar == true>>
+  one indent if with equal indent line
+  <<endif>>
+
+// works fine
+zero indent line
+  <<if $bar == true>>
+    one indent if with two indent line
+  <<endif>>
+
+// works fine
+zero indent line
+  one indent line
+
+// doesn't work
+  <<if $bar == true>>
+one indent if with zero indent line and endif
+<<endif>>
+
+// doesn't work
+<<if $bar == true>>
+  zero indent if with one indent line and endif
+  <<endif>>
+
+// doesn't work
+<<if $bar == true>>
+zero indent if and line with one indent 
+  <<endif>>
+
+// doesn't work
+  <<if $bar == true>>
+one indent if and endif with zero indent line
+  <<endif>>
+
+-> option with subline
+  subline
+
+-> option below blank line
+
+===

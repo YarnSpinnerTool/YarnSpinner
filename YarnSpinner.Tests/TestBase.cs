@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Globalization;
 using Yarn.Compiler;
+using FluentAssertions;
 
 namespace YarnSpinner.Tests
 {
@@ -89,7 +90,7 @@ namespace YarnSpinner.Tests
                 Console.ResetColor ();
 
                 if (runtimeErrorsCauseFailures == true) {
-                    Assert.NotNull(message);
+                    message.Should().NotBeNull();
                 }
                     
             };
@@ -97,7 +98,7 @@ namespace YarnSpinner.Tests
             dialogue.LineHandler = delegate (Line line) {
                 var id = line.ID;
 
-                Assert.Contains(id, stringTable.Keys);
+                stringTable.Keys.Should().Contain(id);
 
                 var lineNumber = stringTable[id].lineNumber;
 
@@ -109,7 +110,7 @@ namespace YarnSpinner.Tests
                     testPlan.Next();
 
                     if (testPlan.nextExpectedType == TestPlan.Step.Type.Line) {
-                        Assert.Equal($"Line {lineNumber}: {testPlan.nextExpectedValue}", $"Line {lineNumber}: {text}");
+                        $"Line {lineNumber}: {text}".Should().Be($"Line {lineNumber}: {testPlan.nextExpectedValue}");
                     } else {
                         throw new Xunit.Sdk.XunitException($"Received line {text}, but was expecting a {testPlan.nextExpectedType.ToString()}");
                     }
@@ -137,11 +138,11 @@ namespace YarnSpinner.Tests
                     var actualOptionList = optionSet.Options
                         .Select(o => (GetComposedTextForLine(o.Line), o.IsAvailable))
                         .ToList();
-                    Assert.Equal(testPlan.nextExpectedOptions, actualOptionList);
+                    actualOptionList.Should().Contain(testPlan.nextExpectedOptions);
 
                     var expectedOptionCount = testPlan.nextExpectedOptions.Count();
 
-                    Assert.Equal (expectedOptionCount, optionCount);
+                    optionCount.Should().Be(expectedOptionCount);
                     
                     if (testPlan.nextOptionToSelect != -1) {
                         dialogue.SetSelectedOption(testPlan.nextOptionToSelect - 1);                    
@@ -169,7 +170,7 @@ namespace YarnSpinner.Tests
                         // virtual machine. The VM can do this because
                         // commands are not localised, so we don't need to
                         // refer to the string table to get the text.
-                        Assert.Equal(testPlan.nextExpectedValue, command.Text);
+                        command.Text.Should().Be(testPlan.nextExpectedValue);
                     }
                 }
             };

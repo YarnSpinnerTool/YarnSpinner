@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- Nodes inside the Yarn Program now contains a Header field which is a collection of key value pairs of any headers the node has.
+
 #### Enums
 
 Enums have been added to the Yarn language.
@@ -63,22 +65,31 @@ If you don't specify any raw values for an enum, then Yarn Spinner will choose n
 
 Functions can receive enums as parameters, as long as the enum's raw value type matches the parameter type. For example, if you have a function `print` that takes a string as a parameter, you can pass any enum to it that uses strings for its raw values; if you have a function `multiplyByTwo` that takes a number as a parameter, you can pass any enum to it that uses numbers for its raw values.
 
+
 ### Changed
 
-- Merged LanguageServer projects into the core YarnSpinner repository.
-- `NodeInfo.PreviewText` no longer removes comments from the preview.
+- Large changes to IndentAwareLexer, this fixes numerous issues but as a side-effect some yarn indentation constructs that previously worked fine when inside an option block will no longer compile.
+- Node title verification now occurs at declaration time instead of code gen. This means invalid titles will be caught and presented as a problem earlier on to aid in debugging issues.
+- Code completion in the LSP has been completely rewritten. It is now much less flexible but *way* more performant. For most situations the changes will not be noticeable.
+- Fixed a crash in the LSP when encountering declaration statements without a variable.
 
 ### Removed
 
-## [2.2.4] 2022-10-31
+## [2.2.5] 2023-01-27
 
-### Added
+### Changed
+
+- Number pluralisation rules have been updated. The rules have now use CLDR version 42.0 (previously, 36.1)
+- Merged LanguageServer projects into the core YarnSpinner repository.
+- `NodeInfo.PreviewText` no longer removes comments from the preview.
+- Migrated tests from xUnit's `Assert` tests to [Fluent Assertions](https://fluentassertions.com).
+- Fixed an issue where pluralisation markup (i.e. the `plural` and `ordinal` tags) would not work correctly with country-specific locales (for example "en-AU").
+
+## [2.2.4] 2022-10-31
 
 ### Changed
 
 - The compiler will now produce more useful error messages when two or more nodes in a compilation share the same name.
-
-### Removed
 
 ## [2.2.3] 2022-08-28
 

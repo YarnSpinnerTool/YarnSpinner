@@ -1,6 +1,6 @@
 lexer grammar YarnSpinnerLexer;
 
-tokens { INDENT, DEDENT }
+tokens { INDENT, DEDENT, BLANK_LINE_FOLLOWING_OPTION }
 
 channels {
     WHITESPACE,
@@ -175,7 +175,7 @@ TEXT_COMMANDHASHTAG_ERROR: . ;
 
 // Hashtags at the end of a Line or Command.
 mode HashtagMode;
-HASHTAG_WS: WS -> skip;
+HASHTAG_WS: WS -> channel(HIDDEN);
 HASHTAG_TAG: HASHTAG -> type(HASHTAG);
 
 // The text of the hashtag. After we parse it, we're done parsing this
@@ -184,7 +184,7 @@ HASHTAG_TEXT: ~[ \t\r\n#$<]+ -> popMode;
 
 // Expressions, involving values and operations on values.
 mode ExpressionMode;
-EXPR_WS : WS -> skip;
+EXPR_WS : WS -> channel(HIDDEN);
 
 // Simple values
 KEYWORD_TRUE  : 'true' ;
@@ -255,7 +255,7 @@ fragment DIGIT: [0-9];
 // (which may contain expressions), which are passed to the game.
 mode CommandMode;
 
-COMMAND_WS: WS -> skip;
+COMMAND_WS: WS -> channel(HIDDEN);
 
 // Special keywords that can appear in commands. If we see one of these after 
 // the <<, it's part of the Yarn language and used for flow control. If we

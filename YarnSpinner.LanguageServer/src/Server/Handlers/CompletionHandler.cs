@@ -12,10 +12,79 @@ namespace YarnLanguageServer.Handlers
     internal class CompletionHandler : ICompletionHandler
     {
         private Workspace workspace;
+        private List<CompletionItem> specialCommands;
 
         public CompletionHandler(Workspace workspace)
         {
             this.workspace = workspace;
+
+            this.specialCommands = new List<CompletionItem>()
+            {
+                new CompletionItem
+                {
+                    Label = "if command",
+                    Kind = CompletionItemKind.Keyword,
+                    Documentation = "If statements selects a block of statements to present based on the value of an expression.",
+                    InsertText = "if ${1:expression}",
+                    InsertTextFormat = InsertTextFormat.Snippet,
+                },
+                new CompletionItem
+                {
+                    Label = "jump command",
+                    Kind = CompletionItemKind.Keyword,
+                    Documentation = "Jump to another node",
+                    InsertText = "jump ${1:node}",
+                    InsertTextFormat = InsertTextFormat.Snippet,
+                },
+                new CompletionItem
+                {
+                    Label = "else if command",
+                    Kind = CompletionItemKind.Keyword,
+                    Documentation = "Else if statements are used with if statements to present content based on a different condition.",
+                    InsertText = "elseif ${1:expression}",
+                    InsertTextFormat = InsertTextFormat.Snippet,
+                },
+                new CompletionItem
+                {
+                    Label = "else command",
+                    Kind = CompletionItemKind.Keyword,
+                    Documentation = "Else statements are used with if statements to present an alternate path",
+                    InsertText = "else",
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                },
+                new CompletionItem
+                {
+                    Label = "endif command",
+                    Kind = CompletionItemKind.Keyword,
+                    Documentation = "Endif ends an if, else, or else if statement",
+                    InsertText = "endif",
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                },
+                new CompletionItem
+                {
+                    Label = "declare command",
+                    Kind = CompletionItemKind.Keyword,
+                    InsertText = "declare ${1:\\$variable} = ${2:value} as ${3:type}",
+                    Documentation = "Declares a variable with a name, an initial value, and optionally a type.\nIf you don't provide a type it will instead be inferred.",
+                    InsertTextFormat = InsertTextFormat.Snippet,
+                },
+                new CompletionItem
+                {
+                    Label = "set command",
+                    Kind = CompletionItemKind.Keyword,
+                    InsertText = "set ${1:\\$variable} to ${2:value}",
+                    Documentation = "Set assigns the value of the expression to a variable",
+                    InsertTextFormat = InsertTextFormat.Snippet,
+                },
+                new CompletionItem
+                {
+                    Label = "stop command",
+                    Kind = CompletionItemKind.Function,
+                    InsertText = "stop",
+                    Documentation = "Stop ends the current dialogue.",
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                }
+            };
         }
 
         public Task<CompletionList> Handle(CompletionParams request, CancellationToken cancellationToken)
@@ -30,169 +99,138 @@ namespace YarnLanguageServer.Handlers
 
                 var indexToken = yarnFile.Tokens[index.Value];
 
-                // things fall apart with opening braces for some reason
-                if (indexToken.Type == YarnSpinnerLexer.COMMAND_START || indexToken.Type == YarnSpinnerLexer.LPAREN || indexToken.Type == YarnSpinnerLexer.EXPRESSION_START)
-                {
-                    // if we are at the right edge of <<, then use what ever the next token is to get completions
-                    if (PositionHelper.GetRange(yarnFile.LineStarts, indexToken).End == request.Position)
-                    {
-                        index++;
-                        indexToken = yarnFile.Tokens[index.Value];
-                    }
-                    else
-                    {
-                        // don't run completions for left and middle of <<
-                        return Task.FromResult<CompletionList>(null);
-                    }
-                }
-
                 var indexTokenRange = PositionHelper.GetRange(yarnFile.LineStarts, indexToken);
                 if (indexToken.Type == YarnSpinnerLexer.COMMAND_END || indexToken.Type == YarnSpinnerLexer.RPAREN || indexToken.Type == YarnSpinnerLexer.EXPRESSION_END)
                 {
                     indexTokenRange = indexTokenRange.CollapseToStart(); // don't replace closing braces
                 }
 
-                var candidates = yarnFile.CodeCompletionCore.CollectCandidates(index.Value, null);
                 var results = new List<CompletionItem>();
-                var vocabulary = yarnFile.Parser.Vocabulary;
-                foreach (var token in candidates.Tokens)
+
+                var vocabulary = yarnFile.Lexer.Vocabulary;
+                var tokenName = vocabulary.GetSymbolicName(indexToken.Type);
+
+                switch (indexToken.Type)
                 {
-                    var tokenname = vocabulary.GetSymbolicName(token.Key);
-
-                    if (tokenname == null) { continue; } // unrecognized token
-
-                    var label = UserFriendlyTokenText.GetValueOrDefault(tokenname, tokenname);
-                    var text = TokenSnippets.GetValueOrDefault(tokenname, label);
-
-                    results.Add(new CompletionItem
+                    case YarnSpinnerLexer.COMMAND_JUMP:
                     {
-                        Label = label,
-                        Kind = CompletionItemKind.Keyword,
-                        Documentation = $"{label} keyword",
-                        InsertText = text,
-                        TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = text, Range = indexTokenRange }),
-                        InsertTextFormat = (text == label) ? InsertTextFormat.PlainText : InsertTextFormat.Snippet,
-                    });
-                }
+                        foreach (var node in workspace.GetNodeTitles())
+                        {
+                            results.Add(new CompletionItem
+                            {
+                                Label = node.title,
+                                Kind = CompletionItemKind.Method,
+                                Detail = System.IO.Path.GetFileName(node.uri.AbsolutePath),
+                                TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = node.title, Range = indexTokenRange.CollapseToEnd() }),
+                            });
+                        }
 
-                foreach (var rule in candidates.Rules)
-                {
-                    switch (rule.Key)
+                        break;
+                    }
+                    
+                    case YarnSpinnerLexer.COMMAND_START:
                     {
-                        case YarnSpinnerParser.RULE_jump_statement:
-
-                            // We could be completing a jump rule. We don't
-                            // currently know if we're at the start of the jump
-                            // rule (i.e. the 'jump' keyword exists), or if
-                            // we're in the middle of one (the 'jump' keyword
-                            // DOES exist).
-                            //
-                            // Check the previous token, and if it's not
-                            // COMMAND_JUMP, offer that as our completion.
-                            var previousToken = yarnFile.Tokens[index > 0 ? index ?? -1 : 0];
-
-                            if (previousToken.Type != YarnSpinnerLexer.COMMAND_JUMP)
+                        // giving every special command the requisite text edit range
+                        foreach (var cmd in specialCommands)
+                        {   
+                            var copy = cmd with
                             {
-                                // The previous token was not 'jump'. Offer to
-                                // complete with a full jump statement.
-                                const string jumpSnippet = "jump ${1:node}";
-                                results.Add(
-                                    new CompletionItem
-                                    {
-                                        Label = "jump",
-                                        Documentation = $"jump statement",
-                                        Kind = CompletionItemKind.Keyword,
-                                        InsertText = jumpSnippet,
-                                        TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = jumpSnippet, Range = indexTokenRange }),
-                                        InsertTextFormat = InsertTextFormat.Snippet,
-                                    }
-                                );
-                            }
-                            else
+                                TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = cmd.InsertText, Range = indexTokenRange.CollapseToEnd() }),
+                            };
+                            results.Add(copy);
+                        }
+
+                        // adding any known commands
+                        System.Text.StringBuilder builder = new System.Text.StringBuilder();
+                        foreach (var cmd in workspace.GetCommands())
+                        {
+                            builder.Append(cmd.YarnName);
+
+                            int i = 1;
+                            foreach (var param in cmd.Parameters)
                             {
-                                // We're in the middle of a jump statement.
-                                // Offer the list of node names we could jump
-                                // to.
-                                results.AddRange(
-                                    workspace.GetNodeTitles().Select((nodeTitle, _) =>
-                                    new CompletionItem
-                                    {
-                                        Label = nodeTitle.title,
-                                        Kind = CompletionItemKind.Function,
-                                        Detail = System.IO.Path.GetFileName(nodeTitle.uri.AbsolutePath),
-                                        TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = nodeTitle.title, Range = indexTokenRange.CollapseToEnd() }),
-                                    })
-                                );
-                            }
-
-                            break;
-
-                        case YarnSpinnerParser.RULE_function_call:
-
-                            results.AddRange(
-                                workspace.GetFunctions().Select(command =>
-                                new CompletionItem
+                                if (param.IsParamsArray)
                                 {
-                                    Label = command.YarnName,
-                                    Kind = CompletionItemKind.Function,
-                                    Documentation = $"{command.Signature}\n{command.Documentation}",
-                                    InsertTextFormat = InsertTextFormat.Snippet,
-                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = $"{command.YarnName}($0)", Range = indexTokenRange }),
-                                    Command = Utils.TriggerParameterHintsCommand,
-                                })
-                            );
-                            break;
-
-                        case YarnSpinnerParser.RULE_command_statement:
-                            results.AddRange(
-                                workspace.GetCommands().Select(command =>
-                                new CompletionItem
-                                {
-                                    Label = command.YarnName,
-                                    Kind = CompletionItemKind.Function,
-                                    Detail = command.DefinitionFile == null || command.IsBuiltIn ? null : System.IO.Path.GetFileName(command.DefinitionFile.AbsolutePath),
-                                    Documentation = $"{command.Signature}\n{command.Documentation}",
-                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = command.YarnName, Range = indexTokenRange }),
-                                })
-                            );
-                            break;
-
-                        case YarnSpinnerParser.RULE_variable:
-                            var variableResults = Enumerable.Empty<CompletionItem>();
-
-                            variableResults = workspace.GetVariables().Select(variableDeclaration =>
-                                new CompletionItem
-                                {
-                                    Label = variableDeclaration.Name,
-                                    Kind = CompletionItemKind.Variable,
-                                    Documentation = variableDeclaration.Description.OrDefault($"(variable) {variableDeclaration.Name}"),
-                                    TextEdit = new TextEditOrInsertReplaceEdit(
-                                        new TextEdit
-                                        {
-                                            NewText = variableDeclaration.Name,
-                                            Range = indexTokenRange,
-                                        }
-                                    ),
+                                    builder.Append($" ${{{i}:{param.Name}...}}");
                                 }
-                            );
-                            results.AddRange(variableResults);
-
-                            if (!workspace.Configuration.OnlySuggestDeclaredVariables)
-                            {
-                                results.AddRange(
-                                workspace.GetVariableNames()
-                                    .Where(variableName => !variableResults.Any(vr => vr.Label == variableName)) // Filter out any declared variables
-                                    .Select(variableName =>
-                                        new CompletionItem
-                                        {
-                                            Label = variableName,
-                                            Kind = CompletionItemKind.Variable,
-                                            Documentation = string.Empty,
-                                            TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = variableName, Range = indexTokenRange }),
-                                        }));
+                                else
+                                {
+                                    builder.Append($" ${{{i}:{param.Name}}}");
+                                }
+                                i++;
                             }
 
-                            break;
+                            results.Add(new CompletionItem
+                            {
+                                Label = cmd.DefinitionName,
+                                Kind = CompletionItemKind.Function,
+                                Documentation = cmd.Documentation,
+                                Detail = cmd.DefinitionFile == null || cmd.IsBuiltIn ? null : System.IO.Path.GetFileName(cmd.DefinitionFile.AbsolutePath),
+                                TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
+                                InsertTextFormat = InsertTextFormat.Snippet,
+                            });
+                            builder.Clear();
+                        }
+
+                        break;
+                    }
+
+                    // inline expressions, if, and elseif are the same thing
+                    case YarnSpinnerLexer.EXPRESSION_START:
+                    case YarnSpinnerLexer.COMMAND_IF:
+                    case YarnSpinnerLexer.COMMAND_ELSEIF:
+                    {
+                        System.Text.StringBuilder builder = new System.Text.StringBuilder();
+                        foreach (var cmd in workspace.GetFunctions())
+                        {
+                            builder.Append(cmd.YarnName);
+                            builder.Append("(");
+
+                            var parameters = new List<string>();
+                            int i = 1;
+                            foreach (var param in cmd.Parameters)
+                            {
+                                if (param.IsParamsArray)
+                                {
+                                    parameters.Add($"${{{i}:{param.Name}...}}");
+                                }
+                                else
+                                {
+                                    parameters.Add($"${{{i}:{param.Name}}}");
+                                }
+                                i++;
+                            }
+                            builder.Append(string.Join(", ", parameters));
+
+                            builder.Append(")");
+
+                            results.Add(new CompletionItem
+                            {
+                                Label = cmd.DefinitionName,
+                                Kind = CompletionItemKind.Function,
+                                Documentation = cmd.Documentation,
+                                // would be good in the future to also show the return type but we don't know that at this stage, something for the future
+                                Detail = cmd.DefinitionFile == null || cmd.IsBuiltIn ? null : System.IO.Path.GetFileName(cmd.DefinitionFile.AbsolutePath),
+                                TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
+                                InsertTextFormat = InsertTextFormat.Snippet,
+                            });
+                            builder.Clear();
+                        }
+
+                        foreach (var variable in workspace.GetVariables())
+                        {
+                            results.Add(new CompletionItem
+                            {
+                                Label = variable.Name,
+                                Kind = CompletionItemKind.Variable,
+                                Documentation = variable.Description,
+                                Detail = variable.Type.Name,
+                                TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = variable.Name, Range = indexTokenRange.CollapseToEnd() }),
+                                InsertTextFormat = InsertTextFormat.PlainText,
+                            });
+                        }
+
+                        break;
                     }
                 }
 
@@ -269,7 +307,7 @@ namespace YarnLanguageServer.Handlers
             return new CompletionRegistrationOptions
             {
                 DocumentSelector = Utils.YarnDocumentSelector,
-                TriggerCharacters = new Container<string>(new List<string> { "$", "<" }),
+                TriggerCharacters = new Container<string>(new List<string> { "$", "<", " ", "{" }),
                 AllCommitCharacters = new Container<string>(new List<string> { " " }), // maybe >> or }
             };
         }
