@@ -8,8 +8,6 @@ using Yarn.Compiler;
 
 using FluentAssertions;
 
-using FluentAssertions;
-
 namespace YarnSpinner.Tests
 {
     public class TypeTests : TestBase
@@ -333,10 +331,13 @@ namespace YarnSpinner.Tests
         [InlineData("<<set $bool = func_void_bool(1)>>", "* expects 0 parameters, not 1")]
         [InlineData("<<set $bool = func_int_bool()>>", "* expects 1 parameter, not 0")]
         [InlineData("<<set $bool = func_int_bool(true)>>", "true (Bool) is not convertible to Number")]
+        [InlineData(@"<<set $bool = func_int_int_bool(""1"", 2)>>", "\"1\" (String) is not convertible to Number")]
         [InlineData(@"<<set $bool = func_string_string_bool(""1"", 2)>>", "2 (Number) is not convertible to String")]
         [InlineData("<<set $int = func_void_bool()>>", @"$int (Number) cannot be assigned a Bool")]
+        [InlineData("<<set $bool = func_void_int()>>", @"$bool (Bool) cannot be assigned a Number")]
         public void TestFailingFunctionSignatures(string source, string expectedExceptionMessage)
         {
+            dialogue.Library.RegisterFunction("func_void_int", () => 1);
             dialogue.Library.RegisterFunction("func_void_bool", () => true);
             dialogue.Library.RegisterFunction("func_int_bool", (int i) => true);
             dialogue.Library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
@@ -636,14 +637,6 @@ namespace YarnSpinner.Tests
             {true and func_str_bool(""hello"")}
             ");
 
-            dialogue.Library.RegisterFunction("func_void_bool", () => true);
-            dialogue.Library.RegisterFunction("func_void_int", () => 1);
-            dialogue.Library.RegisterFunction("func_void_str", () => "llo");
-
-            dialogue.Library.RegisterFunction("func_int_bool", (int i) => true);
-            dialogue.Library.RegisterFunction("func_bool_bool", (bool b) => true);
-            dialogue.Library.RegisterFunction("func_str_bool", (string s) => true);
-
             testPlan = new TestPlanBuilder()
                 .AddLine("True")
                 .AddLine("True")
@@ -657,12 +650,45 @@ namespace YarnSpinner.Tests
                 .AddLine("True")
                 .GetPlan();
 
-            // the library is NOT attached to this compilation job; all
-            // functions will be implicitly declared
+            // A list of function names that are referred to in the above source
+            // code, and the method signatures that should be inferred for them
+            var expectedFunctions = new (string Name, string Description)[]{
+                ("func_void_bool", "() -> Bool"),
+                ("func_void_int", "() -> Number"),
+                ("func_void_str", "() -> String"),
+                ("func_int_bool", "(Number) -> Bool"),
+                ("func_bool_bool", "(Bool) -> Bool"),
+                ("func_str_bool", "(String) -> Bool"),
+            };
+
+            // all functions will be implicitly declared
             var compilationJob = CompilationJob.CreateFromString("input", source);
             var result = Compiler.Compile(compilationJob);
 
+            var functions = result.Declarations.Where(d => d.Type is FunctionType);
+
+
+            foreach (var expectedFunction in expectedFunctions)
+            {
+                functions.Should().ContainEquivalentOf(new
+                {
+                    Name = expectedFunction.Name,
+                    Type = new
+                    {
+                        Description = expectedFunction.Description
+                    }
+                });
+            }
+
             result.Diagnostics.Should().BeEmpty();
+
+            dialogue.Library.RegisterFunction("func_void_bool", () => true);
+            dialogue.Library.RegisterFunction("func_void_int", () => 1);
+            dialogue.Library.RegisterFunction("func_void_str", () => "llo");
+
+            dialogue.Library.RegisterFunction("func_int_bool", (int i) => true);
+            dialogue.Library.RegisterFunction("func_bool_bool", (bool b) => true);
+            dialogue.Library.RegisterFunction("func_str_bool", (string s) => true);
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -842,6 +868,10 @@ namespace YarnSpinner.Tests
             {
                 diagnostics.Should().BeEmpty();
                 solution.IsFailed.Should().BeFalse();
+
+                // T1 should resolve to Bool
+                solution.TryResolveTypeVariable(unknownType1, out var result).Should().BeTrue();
+                result.Should().Be(boolType);
             }
         }
 
