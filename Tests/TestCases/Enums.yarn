@@ -49,6 +49,9 @@ title: Start
 // You can skip the enum name if Yarn can infer the enum that it came from
 <<set $favouriteFood to .Pear>>
 
+// Yarn can infer the type of an implicitly declared variable, too:
+<<set $aDifferentFood = .Apple>>
+
 // Declare two new enums that have explicit raw values: one of numbers, and
 // one of strings
 
