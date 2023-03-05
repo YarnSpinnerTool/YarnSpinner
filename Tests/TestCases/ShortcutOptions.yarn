@@ -47,21 +47,15 @@ Bea: line text
 -> A
 	B
 
-(Break up the options)
-
 // Shortcut options and line tags should work regardless of whitespace
 
 // No whitespace between condition and line tag
 -> Option A <<if true>>#line:0e8a7ce
 -> Option B #line:0405c66
 
-(Break up the options)
-
 // Whitespace between condition and line tag
 -> Option A <<if true>> #line:0e8a7cd
 -> Option B #line:0405c67
-
-(Break up the options)
 
 // Single-line shortcut options inside an indented context
 <<if true>>
