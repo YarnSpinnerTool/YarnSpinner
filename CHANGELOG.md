@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [2.3.0] 2023-03-06
+
+### Added
+
 - Yarn Programs now store all headers for their nodes.
   - Prior to this change, only the `tags` header was stored.
 
@@ -59,9 +67,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
       This change was made in response to user reports that the previous behaviour didn't behave the way they expected.
 
-- Large changes to IndentAwareLexer, this fixes numerous issues but as a side-effect some yarn indentation constructs that previously worked fine when inside an option block will no longer compile.
 - Node title verification now occurs at declaration time instead of code generation. This means invalid titles will be caught and presented as a problem earlier on, to aid in debugging issues.
-- Code completion in the Language Server has been completely rewritten. It is now much less flexible but *way* more performant. For most situations, the changes will not be noticeable.
+- Code completion in the Language Server has been completely rewritten. It is now much less flexible, but *way* more performant. For most situations, the changes will not be noticeable.
 - Fixed a crash in the Language Server when encountering declaration statements without a variable.
 
 ## [2.2.5] 2023-01-27
