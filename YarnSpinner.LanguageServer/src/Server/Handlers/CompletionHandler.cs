@@ -83,7 +83,7 @@ namespace YarnLanguageServer.Handlers
                     InsertText = "stop",
                     Documentation = "Stop ends the current dialogue.",
                     InsertTextFormat = InsertTextFormat.PlainText,
-                }
+                },
             };
         }
 
@@ -113,125 +113,129 @@ namespace YarnLanguageServer.Handlers
                 switch (indexToken.Type)
                 {
                     case YarnSpinnerLexer.COMMAND_JUMP:
-                    {
-                        foreach (var node in workspace.GetNodeTitles())
                         {
-                            results.Add(new CompletionItem
+                            foreach (var node in workspace.GetNodeTitles())
                             {
-                                Label = node.title,
-                                Kind = CompletionItemKind.Method,
-                                Detail = System.IO.Path.GetFileName(node.uri.AbsolutePath),
-                                TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = node.title, Range = indexTokenRange.CollapseToEnd() }),
-                            });
-                        }
-
-                        break;
-                    }
-                    
-                    case YarnSpinnerLexer.COMMAND_START:
-                    {
-                        // giving every special command the requisite text edit range
-                        foreach (var cmd in specialCommands)
-                        {   
-                            var copy = cmd with
-                            {
-                                TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = cmd.InsertText, Range = indexTokenRange.CollapseToEnd() }),
-                            };
-                            results.Add(copy);
-                        }
-
-                        // adding any known commands
-                        System.Text.StringBuilder builder = new System.Text.StringBuilder();
-                        foreach (var cmd in workspace.GetCommands())
-                        {
-                            builder.Append(cmd.YarnName);
-
-                            int i = 1;
-                            foreach (var param in cmd.Parameters)
-                            {
-                                if (param.IsParamsArray)
+                                results.Add(new CompletionItem
                                 {
-                                    builder.Append($" ${{{i}:{param.Name}...}}");
-                                }
-                                else
-                                {
-                                    builder.Append($" ${{{i}:{param.Name}}}");
-                                }
-                                i++;
+                                    Label = node.title,
+                                    Kind = CompletionItemKind.Method,
+                                    Detail = System.IO.Path.GetFileName(node.uri.AbsolutePath),
+                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = node.title, Range = indexTokenRange.CollapseToEnd() }),
+                                });
                             }
 
-                            results.Add(new CompletionItem
-                            {
-                                Label = cmd.DefinitionName,
-                                Kind = CompletionItemKind.Function,
-                                Documentation = cmd.Documentation,
-                                Detail = cmd.DefinitionFile == null || cmd.IsBuiltIn ? null : System.IO.Path.GetFileName(cmd.DefinitionFile.AbsolutePath),
-                                TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
-                                InsertTextFormat = InsertTextFormat.Snippet,
-                            });
-                            builder.Clear();
+                            break;
                         }
 
-                        break;
-                    }
+                    case YarnSpinnerLexer.COMMAND_START:
+                        {
+                            // giving every special command the requisite text edit range
+                            foreach (var cmd in specialCommands)
+                            {
+                                var copy = cmd with
+                                {
+                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = cmd.InsertText, Range = indexTokenRange.CollapseToEnd() }),
+                                };
+                                results.Add(copy);
+                            }
+
+                            // adding any known commands
+                            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+                            foreach (var cmd in workspace.GetCommands())
+                            {
+                                builder.Append(cmd.YarnName);
+
+                                int i = 1;
+                                foreach (var param in cmd.Parameters)
+                                {
+                                    if (param.IsParamsArray)
+                                    {
+                                        builder.Append($" ${{{i}:{param.Name}...}}");
+                                    }
+                                    else
+                                    {
+                                        builder.Append($" ${{{i}:{param.Name}}}");
+                                    }
+
+                                    i++;
+                                }
+
+                                results.Add(new CompletionItem
+                                {
+                                    Label = cmd.DefinitionName,
+                                    Kind = CompletionItemKind.Function,
+                                    Documentation = cmd.Documentation,
+                                    Detail = cmd.DefinitionFile == null || cmd.IsBuiltIn ? null : System.IO.Path.GetFileName(cmd.DefinitionFile.AbsolutePath),
+                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
+                                    InsertTextFormat = InsertTextFormat.Snippet,
+                                });
+                                builder.Clear();
+                            }
+
+                            break;
+                        }
 
                     // inline expressions, if, and elseif are the same thing
                     case YarnSpinnerLexer.EXPRESSION_START:
                     case YarnSpinnerLexer.COMMAND_IF:
                     case YarnSpinnerLexer.COMMAND_ELSEIF:
-                    {
-                        System.Text.StringBuilder builder = new System.Text.StringBuilder();
-                        foreach (var cmd in workspace.GetFunctions())
                         {
-                            builder.Append(cmd.YarnName);
-                            builder.Append("(");
-
-                            var parameters = new List<string>();
-                            int i = 1;
-                            foreach (var param in cmd.Parameters)
+                            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+                            foreach (var cmd in workspace.GetFunctions())
                             {
-                                if (param.IsParamsArray)
+                                builder.Append(cmd.YarnName);
+                                builder.Append("(");
+
+                                var parameters = new List<string>();
+                                int i = 1;
+                                foreach (var param in cmd.Parameters)
                                 {
-                                    parameters.Add($"${{{i}:{param.Name}...}}");
+                                    if (param.IsParamsArray)
+                                    {
+                                        parameters.Add($"${{{i}:{param.Name}...}}");
+                                    }
+                                    else
+                                    {
+                                        parameters.Add($"${{{i}:{param.Name}}}");
+                                    }
+
+                                    i++;
                                 }
-                                else
+
+                                builder.Append(string.Join(", ", parameters));
+
+                                builder.Append(")");
+
+                                results.Add(new CompletionItem
                                 {
-                                    parameters.Add($"${{{i}:{param.Name}}}");
-                                }
-                                i++;
+                                    Label = cmd.DefinitionName,
+                                    Kind = CompletionItemKind.Function,
+                                    Documentation = cmd.Documentation,
+
+                                    // would be good in the future to also show the return type but we don't know that at this stage, something for the future
+                                    Detail = cmd.DefinitionFile == null || cmd.IsBuiltIn ? null : System.IO.Path.GetFileName(cmd.DefinitionFile.AbsolutePath),
+                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
+                                    InsertTextFormat = InsertTextFormat.Snippet,
+                                });
+                                builder.Clear();
                             }
-                            builder.Append(string.Join(", ", parameters));
 
-                            builder.Append(")");
-
-                            results.Add(new CompletionItem
+                            foreach (var variable in workspace.GetVariables())
                             {
-                                Label = cmd.DefinitionName,
-                                Kind = CompletionItemKind.Function,
-                                Documentation = cmd.Documentation,
-                                // would be good in the future to also show the return type but we don't know that at this stage, something for the future
-                                Detail = cmd.DefinitionFile == null || cmd.IsBuiltIn ? null : System.IO.Path.GetFileName(cmd.DefinitionFile.AbsolutePath),
-                                TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
-                                InsertTextFormat = InsertTextFormat.Snippet,
-                            });
-                            builder.Clear();
-                        }
+                                results.Add(new CompletionItem
+                                {
+                                    Label = variable.Name,
+                                    Kind = CompletionItemKind.Variable,
+                                    Documentation = variable.Description,
+                                    Detail = variable.Type.Name,
+                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = variable.Name, Range = indexTokenRange.CollapseToEnd() }),
+                                    InsertTextFormat = InsertTextFormat.PlainText,
+                                });
+                            }
 
-                        foreach (var variable in workspace.GetVariables())
-                        {
-                            results.Add(new CompletionItem
-                            {
-                                Label = variable.Name,
-                                Kind = CompletionItemKind.Variable,
-                                Documentation = variable.Description,
-                                Detail = variable.Type.Name,
-                                TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = variable.Name, Range = indexTokenRange.CollapseToEnd() }),
-                                InsertTextFormat = InsertTextFormat.PlainText,
-                            });
+                            break;
                         }
-
-                        break;
-                    }
                 }
 
                 return Task.FromResult(new CompletionList(results));
