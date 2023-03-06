@@ -7,72 +7,75 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Yarn.Compiler;
 
+using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
+
 namespace YarnLanguageServer.Handlers
 {
     internal class CompletionHandler : ICompletionHandler
     {
         private Workspace workspace;
-        private List<CompletionItem> specialCommands;
+        private List<CompletionItem> statementCompletions;
+        private List<CompletionItem> keywordCompletions;
 
         public CompletionHandler(Workspace workspace)
         {
             this.workspace = workspace;
 
-            this.specialCommands = new List<CompletionItem>()
+            this.statementCompletions = new List<CompletionItem>()
             {
                 new CompletionItem
                 {
-                    Label = "if command",
-                    Kind = CompletionItemKind.Keyword,
+                    Label = "if statement",
+                    Kind = CompletionItemKind.Snippet,
                     Documentation = "If statements selects a block of statements to present based on the value of an expression.",
-                    InsertText = "if ${1:expression}",
+                    InsertText = "<<if ${1:expression}>>\n    ${2}\n<<endif>>",
                     InsertTextFormat = InsertTextFormat.Snippet,
                 },
                 new CompletionItem
                 {
                     Label = "jump command",
-                    Kind = CompletionItemKind.Keyword,
+                    Kind = CompletionItemKind.Snippet,
                     Documentation = "Jump to another node",
-                    InsertText = "jump ${1:node}",
+                    InsertText = "<<jump ${1:node}>>",
                     InsertTextFormat = InsertTextFormat.Snippet,
                 },
                 new CompletionItem
                 {
-                    Label = "else if command",
-                    Kind = CompletionItemKind.Keyword,
+                    Label = "elseif statement",
+                    Kind = CompletionItemKind.Snippet,
                     Documentation = "Else if statements are used with if statements to present content based on a different condition.",
-                    InsertText = "elseif ${1:expression}",
+                    InsertText = "<<elseif ${1:expression}>>",
                     InsertTextFormat = InsertTextFormat.Snippet,
                 },
                 new CompletionItem
                 {
-                    Label = "else command",
-                    Kind = CompletionItemKind.Keyword,
+                    Label = "else statement",
+                    Kind = CompletionItemKind.Snippet,
                     Documentation = "Else statements are used with if statements to present an alternate path",
-                    InsertText = "else",
+                    InsertText = "<<else>>",
                     InsertTextFormat = InsertTextFormat.PlainText,
                 },
                 new CompletionItem
                 {
-                    Label = "endif command",
-                    Kind = CompletionItemKind.Keyword,
+                    Label = "endif statement",
+                    Kind = CompletionItemKind.Snippet,
                     Documentation = "Endif ends an if, else, or else if statement",
-                    InsertText = "endif",
+                    InsertText = "<<endif>>",
                     InsertTextFormat = InsertTextFormat.PlainText,
                 },
                 new CompletionItem
                 {
-                    Label = "declare command",
-                    Kind = CompletionItemKind.Keyword,
-                    InsertText = "declare ${1:\\$variable} = ${2:value} as ${3:type}",
+                    Label = "declare statement",
+                    Kind = CompletionItemKind.Snippet,
+                    InsertText = "<<declare ${1:\\$variable} = ${2:value} as ${3:type}>>",
                     Documentation = "Declares a variable with a name, an initial value, and optionally a type.\nIf you don't provide a type it will instead be inferred.",
                     InsertTextFormat = InsertTextFormat.Snippet,
                 },
                 new CompletionItem
                 {
-                    Label = "set command",
-                    Kind = CompletionItemKind.Keyword,
-                    InsertText = "set ${1:\\$variable} to ${2:value}",
+                    Label = "set statement",
+                    Kind = CompletionItemKind.Snippet,
+                    InsertText = "<<set ${1:\\$variable} to ${2:value}>>",
                     Documentation = "Set assigns the value of the expression to a variable",
                     InsertTextFormat = InsertTextFormat.Snippet,
                 },
@@ -85,12 +88,94 @@ namespace YarnLanguageServer.Handlers
                     InsertTextFormat = InsertTextFormat.PlainText,
                 },
             };
+
+            this.keywordCompletions = new List<CompletionItem> {
+                new CompletionItem
+                {
+                    Label = "if",
+                    Kind = CompletionItemKind.Keyword,
+                    Documentation = "If statements selects a block of statements to present based on the value of an expression.",
+                    InsertText = "if",
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                },
+                new CompletionItem
+                {
+                    Label = "jump",
+                    Kind = CompletionItemKind.Keyword,
+                    Documentation = "Jump to another node",
+                    InsertText = "jump",
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                },
+                new CompletionItem
+                {
+                    Label = "elseif",
+                    Kind = CompletionItemKind.Keyword,
+                    Documentation = "Else if statements are used with if statements to present content based on a different condition.",
+                    InsertText = "elseif",
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                },
+                new CompletionItem
+                {
+                    Label = "else",
+                    Kind = CompletionItemKind.Keyword,
+                    Documentation = "Else statements are used with if statements to present an alternate path",
+                    InsertText = "else",
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                },
+                new CompletionItem
+                {
+                    Label = "endif",
+                    Kind = CompletionItemKind.Keyword,
+                    Documentation = "Endif ends an if, else, or else if statement",
+                    InsertText = "endif",
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                },
+                new CompletionItem
+                {
+                    Label = "declare",
+                    Kind = CompletionItemKind.Keyword,
+                    InsertText = "declare",
+                    Documentation = "Declares a variable with a name, an initial value, and optionally a type.\nIf you don't provide a type it will instead be inferred.",
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                },
+                new CompletionItem
+                {
+                    Label = "set",
+                    Kind = CompletionItemKind.Keyword,
+                    InsertText = "set",
+                    Documentation = "Set assigns the value of the expression to a variable",
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                },
+            };
         }
 
         public Task<CompletionList> Handle(CompletionParams request, CancellationToken cancellationToken)
         {
             if (workspace.YarnFiles.TryGetValue(request.TextDocument.Uri.ToUri(), out var yarnFile))
             {
+                var startOfLine = request.Position with
+                {
+                    Character = 0,
+                };
+
+                if (yarnFile.IsNullOrWhitespace(startOfLine, request.Position))
+                {
+                    // There are no tokens on this line. Offer to code-complete
+                    // full statements.
+                    var statementCompletions = new List<CompletionItem>();
+
+                    // giving every special command the requisite text edit range
+                    foreach (var cmd in this.statementCompletions)
+                    {
+                        statementCompletions.Add(cmd with
+                        {
+                            TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = cmd.InsertText, Range = new Range(request.Position, request.Position) }),
+                        });
+                    }
+
+                    return Task.FromResult(new CompletionList(statementCompletions));
+                }
+
                 var index = yarnFile.GetRawToken(request.Position);
                 if (!index.HasValue)
                 {
@@ -130,14 +215,12 @@ namespace YarnLanguageServer.Handlers
 
                     case YarnSpinnerLexer.COMMAND_START:
                         {
-                            // giving every special command the requisite text edit range
-                            foreach (var cmd in specialCommands)
-                            {
-                                var copy = cmd with
+                            // Add keyword completions
+                            foreach (var keyword in keywordCompletions) {
+                                results.Add(keyword with
                                 {
-                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = cmd.InsertText, Range = indexTokenRange.CollapseToEnd() }),
-                                };
-                                results.Add(copy);
+                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = keyword.InsertText, Range = new Range(request.Position, request.Position) }),
+                                });
                             }
 
                             // adding any known commands
