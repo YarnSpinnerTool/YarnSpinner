@@ -52,19 +52,19 @@ namespace YarnLanguageServer.Tests
 
             using (new AssertionScope())
             {
-                completions.Should().Contain(c => c.Label == "set command" && c.Kind == CompletionItemKind.Keyword,
+                completions.Should().Contain(c => c.Label == "set" && c.Kind == CompletionItemKind.Keyword,
                     "because 'set' is a keyword in Yarn");
 
-                completions.Should().Contain(c => c.Label == "declare command" && c.Kind == CompletionItemKind.Keyword,
+                completions.Should().Contain(c => c.Label == "declare" && c.Kind == CompletionItemKind.Keyword,
                     "because 'declare' is part of the Yarn syntax ");
 
-                completions.Should().Contain(c => c.Label == "jump command" && c.Kind == CompletionItemKind.Keyword,
+                completions.Should().Contain(c => c.Label == "jump" && c.Kind == CompletionItemKind.Keyword,
                     "because 'jump' is part of the Yarn syntax ");
 
                 completions.Should().Contain(c => c.Label == "wait" && c.Kind == CompletionItemKind.Function,
                     "because 'wait' is a built-in Yarn command");
 
-                completions.Should().Contain(c => c.Label == "stop command" && c.Kind == CompletionItemKind.Function,
+                completions.Should().Contain(c => c.Label == "stop" && c.Kind == CompletionItemKind.Function,
                      "because 'stop' is a built-in Yarn command");
 
                 completions.Should().NotContain(c => c.Label == "Start",
@@ -173,7 +173,7 @@ namespace YarnLanguageServer.Tests
                 Position = new Position(Line, 2),
             });
 
-            completions.Should().Contain(c => c.Label == "jump command" && c.Kind == CompletionItemKind.Keyword,
+            completions.Should().Contain(c => c.Label == "jump" && c.Kind == CompletionItemKind.Keyword,
                 "because we have not yet entered the word 'jump'.");
 
             // Type in the 'jump'.
