@@ -124,7 +124,7 @@ namespace YarnLanguageServer
 
                 var yarnName = yarnFunctionAttributeName ?? command.Identifier.ToString() ?? "<unknown method>";
 
-                Definitions[yarnName] = CreateFunctionObject(Uri, yarnName, command, true, 2, true);
+                Definitions[yarnName] = CreateFunctionObject(Uri, yarnName, command, false, 2, true);
                 Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == yarnName); // Matched some functions, can mark them off the list!
             }
         }
