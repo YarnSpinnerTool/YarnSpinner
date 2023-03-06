@@ -161,12 +161,16 @@ namespace YarnLanguageServer.Handlers
                                     i++;
                                 }
 
+                                string detailText = (cmd.DefinitionFile == null || cmd.IsBuiltIn)
+                                    ? null
+                                    : $"{cmd.DefinitionName} ({System.IO.Path.GetFileName(cmd.DefinitionFile.AbsolutePath)})";
+
                                 results.Add(new CompletionItem
                                 {
-                                    Label = cmd.DefinitionName,
+                                    Label = cmd.YarnName,
                                     Kind = CompletionItemKind.Function,
                                     Documentation = cmd.Documentation,
-                                    Detail = cmd.DefinitionFile == null || cmd.IsBuiltIn ? null : System.IO.Path.GetFileName(cmd.DefinitionFile.AbsolutePath),
+                                    Detail = detailText,
                                     TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
                                     InsertTextFormat = InsertTextFormat.Snippet,
                                 });
