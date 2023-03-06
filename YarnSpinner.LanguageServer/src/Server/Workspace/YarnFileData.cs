@@ -14,6 +14,7 @@ using YarnLanguageServer.Diagnostics;
 // Yarn.Compiler.Diagnostic
 using Diagnostic = OmniSharp.Extensions.LanguageServer.Protocol.Models.Diagnostic;
 using Position = OmniSharp.Extensions.LanguageServer.Protocol.Models.Position;
+using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
 namespace YarnLanguageServer
 {
@@ -273,6 +274,37 @@ namespace YarnLanguageServer
             }
 
             return (info, null);
+        }
+
+        /// <summary>
+        /// Indicates whether the text specified by the given range is null,
+        /// empty, or consists only of white-space characters.
+        /// </summary>
+        /// <param name="range">The range to check.</param>
+        /// <returns><see langword="true"/> if the specified range is null,
+        /// empty, or consists only of white-space characters.</returns>
+        public bool IsNullOrWhitespace(Range range) {
+            if (range.IsEmpty()) {
+                return true;
+            }
+            var rangeStartIndex = LineStarts[range.Start.Line] + range.Start.Character;
+            var rangeEndIndex = LineStarts[range.End.Line] + range.End.Character;
+
+            var slice = this.Text.Substring(rangeStartIndex, rangeEndIndex);
+
+            return string.IsNullOrWhiteSpace(slice);
+        }
+
+        /// <inheritdoc cref="IsNullOrWhitespace(Range)"/>
+        /// <param name="start">The start of the range to check.</param>
+        /// <param name="end">The end of the range to check.</param>
+        public bool IsNullOrWhitespace(Position start, Position end) {
+            if (start > end) {
+                // Invalid range.
+                return false;
+            }
+
+            return IsNullOrWhitespace(new Range(start, end));
         }
 
         public void ClearDiagnostics(Workspace workspace)
