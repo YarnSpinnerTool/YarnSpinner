@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Fixed a bug in the language server that caused crashes when code-completion was requested at a position more than 50% of the way through a document.
+
 ### Removed
 
 ## [2.3.0] 2023-03-06

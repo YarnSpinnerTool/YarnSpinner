@@ -290,7 +290,7 @@ namespace YarnLanguageServer
             var rangeStartIndex = LineStarts[range.Start.Line] + range.Start.Character;
             var rangeEndIndex = LineStarts[range.End.Line] + range.End.Character;
 
-            var slice = this.Text.Substring(rangeStartIndex, rangeEndIndex);
+            var slice = this.Text.Substring(rangeStartIndex, rangeEndIndex - rangeStartIndex);
 
             return string.IsNullOrWhiteSpace(slice);
         }
