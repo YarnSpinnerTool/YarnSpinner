@@ -4,154 +4,154 @@ package Yarn;
 // A complete Yarn program.
 message Program {
 
-	// The name of the program.
-	string name = 1;
-	
-	// The collection of nodes in this program.
+    // The name of the program.
+    string name = 1;
+    
+    // The collection of nodes in this program.
     map<string, Node> nodes = 2;   	
-	
-	// The collection of initial values for variables; if a PUSH_VARIABLE
-	// instruction is run, and the value is not found in the storage, this
-	// value will be used
-	map<string, Operand> initial_values = 3;
+    
+    // The collection of initial values for variables; if a PUSH_VARIABLE
+    // instruction is run, and the value is not found in the storage, this
+    // value will be used
+    map<string, Operand> initial_values = 3;
 }
 
 // A collection of instructions
 message Node {
-	// The name of this node.
-	string name = 1;
-	
-	// The list of instructions in this node.
+    // The name of this node.
+    string name = 1;
+    
+    // The list of instructions in this node.
     repeated Instruction instructions = 2;
 
     // A jump table, mapping the names of labels to positions in the
     // instructions list.
-	map<string, int32> labels = 3;
-	
-	// The tags associated with this node.
-	repeated string tags = 4;
+    map<string, int32> labels = 3;
+    
+    // The tags associated with this node.
+    repeated string tags = 4;
 
-	// the entry in the program's string table that contains the original
-	// text of this node; null if this is not available    
-	string sourceTextStringID = 5;
+    // the entry in the program's string table that contains the original
+    // text of this node; null if this is not available    
+    string sourceTextStringID = 5;
 
-	repeated Header headers = 6;
+    repeated Header headers = 6;
 }
 
 message Header {
-	string key = 1;
-	string value = 2;
+    string key = 1;
+    string value = 2;
 }
 
 // A single Yarn instruction.
 message Instruction {
 
-	// The operation that this instruction will perform.
-	OpCode opcode = 1;
+    // The operation that this instruction will perform.
+    OpCode opcode = 1;
 
-	// The list of operands, if any, that this instruction uses.
+    // The list of operands, if any, that this instruction uses.
     repeated Operand operands = 2;
 
-	// The type of instruction that this is.
+    // The type of instruction that this is.
     enum OpCode {
-		
-		// Jumps to a named position in the node.
-		// opA = string: label name
-		JUMP_TO = 0; 
-		
-		// Peeks a string from stack, and jumps to that named position in
-		// the node. 
-		// No operands.
-		JUMP = 1; 
-		
-		// Delivers a string ID to the client.
-		// opA = string: string ID
-		RUN_LINE = 2; 
-		
-		// Delivers a command to the client.
-		// opA = string: command text
-		RUN_COMMAND = 3; 
-		
-		// Adds an entry to the option list (see ShowOptions).
-		// - opA = string: string ID for option to add
-		// - opB = string: destination to go to if this option is selected
-		// - opC = number: number of expressions on the stack to insert
-		//   into the line
-		// - opD = bool: whether the option has a condition on it (in which
-		//   case a value should be popped off the stack and used to signal
-		//   the game that the option should be not available)
-		ADD_OPTION = 4; 
-		
-		// Presents the current list of options to the client, then clears
-		// the list. The most recently selected option will be on the top
-		// of the stack when execution resumes.
-		// No operands.
-		SHOW_OPTIONS = 5; 
-		
-		// Pushes a string onto the stack.
-		// opA = string: the string to push to the stack.
-		PUSH_STRING = 6; 
-		
-		// Pushes a floating point number onto the stack.
-		// opA = float: number to push to stack
-		PUSH_FLOAT = 7; 
-		
-		// Pushes a boolean onto the stack.
-		// opA = bool: the bool to push to stack
-		PUSH_BOOL = 8; 
-		
-		// Pushes a null value onto the stack.
-		// No operands.
-		PUSH_NULL = 9; 
-		
-		// Jumps to the named position in the the node, if the top of the
-		// stack is not null, zero or false.
-		// opA = string: label name 
-		JUMP_IF_FALSE = 10; 
-		
-		// Discards top of stack.
-		// No operands.
-		POP = 11; 
-		
-		// Calls a function in the client. Pops as many arguments as the
-		// client indicates the function receives, and the result (if any)
-		// is pushed to the stack.		
-		// opA = string: name of the function
-		CALL_FUNC = 12; 
-		
-		// Pushes the contents of a variable onto the stack.
-		// opA = name of variable 
-		PUSH_VARIABLE = 13; 
-		
-		// Stores the contents of the top of the stack in the named
-		// variable. 
-		// opA = name of variable
-		STORE_VARIABLE = 14; 
-		
-		// Stops execution of the program.
-		// No operands.
-		STOP = 15; 
-		
-		// Pops a string off the top of the stack, and runs the node with
-		// that name.
-		// No operands.
-		RUN_NODE = 16; 
+        
+        // Jumps to a named position in the node.
+        // opA = string: label name
+        JUMP_TO = 0; 
+        
+        // Peeks a string from stack, and jumps to that named position in
+        // the node. 
+        // No operands.
+        JUMP = 1; 
+        
+        // Delivers a string ID to the client.
+        // opA = string: string ID
+        RUN_LINE = 2; 
+        
+        // Delivers a command to the client.
+        // opA = string: command text
+        RUN_COMMAND = 3; 
+        
+        // Adds an entry to the option list (see ShowOptions).
+        // - opA = string: string ID for option to add
+        // - opB = string: destination to go to if this option is selected
+        // - opC = number: number of expressions on the stack to insert
+        //   into the line
+        // - opD = bool: whether the option has a condition on it (in which
+        //   case a value should be popped off the stack and used to signal
+        //   the game that the option should be not available)
+        ADD_OPTION = 4; 
+        
+        // Presents the current list of options to the client, then clears
+        // the list. The most recently selected option will be on the top
+        // of the stack when execution resumes.
+        // No operands.
+        SHOW_OPTIONS = 5; 
+        
+        // Pushes a string onto the stack.
+        // opA = string: the string to push to the stack.
+        PUSH_STRING = 6; 
+        
+        // Pushes a floating point number onto the stack.
+        // opA = float: number to push to stack
+        PUSH_FLOAT = 7; 
+        
+        // Pushes a boolean onto the stack.
+        // opA = bool: the bool to push to stack
+        PUSH_BOOL = 8; 
+        
+        // Pushes a null value onto the stack.
+        // No operands.
+        PUSH_NULL = 9; 
+        
+        // Jumps to the named position in the the node, if the top of the
+        // stack is not null, zero or false.
+        // opA = string: label name 
+        JUMP_IF_FALSE = 10; 
+        
+        // Discards top of stack.
+        // No operands.
+        POP = 11; 
+        
+        // Calls a function in the client. Pops as many arguments as the
+        // client indicates the function receives, and the result (if any)
+        // is pushed to the stack.		
+        // opA = string: name of the function
+        CALL_FUNC = 12; 
+        
+        // Pushes the contents of a variable onto the stack.
+        // opA = name of variable 
+        PUSH_VARIABLE = 13; 
+        
+        // Stores the contents of the top of the stack in the named
+        // variable. 
+        // opA = name of variable
+        STORE_VARIABLE = 14; 
+        
+        // Stops execution of the program.
+        // No operands.
+        STOP = 15; 
+        
+        // Pops a string off the top of the stack, and runs the node with
+        // that name.
+        // No operands.
+        RUN_NODE = 16; 
     }
 }
 
 // A value used by an Instruction.
 message Operand {
 
-	// The type of operand this is.
+    // The type of operand this is.
     oneof value {
-		
-		// A string.
-		string string_value = 1;
-		
-		// A boolean (true or false).
-		bool bool_value = 2;
+        
+        // A string.
+        string string_value = 1;
+        
+        // A boolean (true or false).
+        bool bool_value = 2;
 
-		// A floating point number.
-		float float_value = 3;
+        // A floating point number.
+        float float_value = 3;
     }
 }
