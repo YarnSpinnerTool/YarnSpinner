@@ -56,6 +56,7 @@ public record NodeInfo
     internal List<YarnFunctionCall> FunctionCalls { get; init; } = new();
     internal List<YarnFunctionCall> CommandCalls { get; init; } = new();
     internal List<IToken> VariableReferences { get; init; } = new();
+    internal List<(string Name, int LineIndex)> CharacterNames { get; init; } = new();
 
     /// <summary>
     /// Gets a value indicating whether this <see cref="NodeInfo"/> has a valid

@@ -161,8 +161,42 @@ namespace YarnLanguageServer.Handlers
                 if (yarnFile.IsNullOrWhitespace(startOfLine, request.Position))
                 {
                     // There are no tokens on this line. Offer to code-complete
-                    // full statements.
+                    // full statements, or character names.
                     var statementCompletions = new List<CompletionItem>();
+
+                    var cursorLineIndex = request.Position.Line;
+
+                    // Build a list of character names, sorted by distance from
+                    // the cursor.
+                    //
+                    // To do this, get all (character name, line index) pairs
+                    // from all nodes in the file, calculate the distance from
+                    // the line they appear on from the current position, group
+                    // them by name, pick the closest one of each name, and then
+                    // finally sort the list by distance.
+                    var charactersByDistance = yarnFile.NodeInfos
+                        .SelectMany(ni => ni.CharacterNames)
+                        .Select(c => (Name: c.Name, Distance: System.Math.Abs(cursorLineIndex - c.LineIndex)))
+                        .GroupBy(c => c.Name)
+                        .Select(group => group.MinBy(c => c.Distance))
+                        .OrderBy(c => c.Distance);
+
+                    foreach (var character in charactersByDistance) {
+                        var newText = $"{character.Name}: ";
+                        statementCompletions.Add(new CompletionItem
+                        {
+                            Label = character.Name,
+                            Kind = CompletionItemKind.Text,
+                            InsertText = newText,
+                            Documentation = "Add a character name",
+                            InsertTextFormat = InsertTextFormat.PlainText,
+                            TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit
+                            {
+                                NewText = newText,
+                                Range = new Range(request.Position, request.Position),
+                            }),
+                        });
+                    }
 
                     // giving every special command the requisite text edit range
                     foreach (var cmd in this.statementCompletions)
