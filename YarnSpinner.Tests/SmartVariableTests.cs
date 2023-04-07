@@ -25,6 +25,52 @@ namespace YarnSpinner.Tests
             smartVariables.Should().ContainSingle(d => d.Name == "$smart_var").Which.Type.Should().Be(Types.Number);           
         }
 
+        [Fact]
+        public void TestSmartVariablesCanTakeAnyValidExpressionType()
+        {
+            // Given
+            var source = CreateTestNode(new[] {
+                "<<declare $smart_var_number = 1 + 1>>",
+                "<<declare $smart_var_string = \"hello\" + \" yes\">>",
+                "<<declare $smart_var_bool = true || false>>",
+            });
+        
+            // When
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+        
+            // Then
+            result.Diagnostics.Should().BeEmpty();
+
+            var smartVariables = result.Declarations.Where(decl => decl.IsInlineExpansion);
+            smartVariables.Should().HaveCount(3);
+            
+            smartVariables.Should().Contain(v => v.Name == "$smart_var_number").Which.Type.Should().Be(Types.Number);
+            smartVariables.Should().Contain(v => v.Name == "$smart_var_string").Which.Type.Should().Be(Types.String);
+            smartVariables.Should().Contain(v => v.Name == "$smart_var_bool").Which.Type.Should().Be(Types.Boolean);
+        }
+
+        [Fact]
+        public void TestSmartVariablesCanReferenceOtherSmartVariables()
+        {
+            // Given
+            var source = CreateTestNode(new[] {
+                "<<declare $smart_var_number = 1 + 1>>",
+                "<<declare $smart_var_bool = $smart_var_number == 2>>",
+                "{$smart_var_bool}"
+            });
+
+            var testPlan = new TestPlanBuilder()
+                .AddLine("True")
+                .AddStop()
+                .GetPlan();
+
+            // When
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+
+            // Then
+            RunTestPlan(result, testPlan);
+        }
+
         [InlineData("1 + 1")]
         [InlineData("number(\"2\")")]
         [InlineData("$some_other_int")]
