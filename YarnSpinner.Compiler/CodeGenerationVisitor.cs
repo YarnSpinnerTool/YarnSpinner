@@ -526,7 +526,22 @@ namespace Yarn.Compiler
         public override int VisitVariable(YarnSpinnerParser.VariableContext context)
         {
             string variableName = context.VAR_ID().GetText();
-            this.compiler.Emit(OpCode.PushVariable, context.Start, new Operand(variableName));
+
+            // Get the declaration for this variable
+            if (this.compiler.VariableDeclarations.TryGetValue(variableName, out var declaration) == false) {
+                throw new System.InvalidOperationException($"Internal error during code generation: variable {variableName} has no declaration");
+            }
+
+            // Is this variable a 'smart variable'?
+            if (declaration.IsInlineExpansion) {
+                // Then code-generate its parse tree. (We won't hit an infinite
+                // loop, because we already checked that during type-checking.)
+                this.Visit(declaration.InitialValueParserContext);
+            } else {
+                // Otherwise, generate the code that fetches the variable from
+                // storage.
+                this.compiler.Emit(OpCode.PushVariable, context.Start, new Operand(variableName));
+            }
 
             return 0;
         }

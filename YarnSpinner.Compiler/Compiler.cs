@@ -48,13 +48,13 @@ namespace Yarn.Compiler
         internal FileParseResult fileParseResult { get; private set; }
 
         /// <summary>
-        /// The list of variable declarations known to the compiler.
+        /// The collection of variable declarations known to the compiler.
         /// </summary>
         /// <remarks>
         /// This is supplied as part of a <see cref="CompilationJob"/>, or by
         /// <see cref="GetDeclarations"/>.
         /// </remarks>
-        internal IEnumerable<Declaration> VariableDeclarations = new List<Declaration>();
+        internal Dictionary<string, Declaration> VariableDeclarations = new Dictionary<string, Declaration>();
 
         /// <summary>
         /// The Library, which contains the function declarations known to the
@@ -304,6 +304,9 @@ namespace Yarn.Compiler
                 };
             }
 
+            // Now that we know for sure the types of every node in all parse trees, we can correctly determine the initial values for every <<declare>> statement.
+            TypeCheckerListener.ResolveInitialValues(ref declarations, ref diagnostics);
+
             if (diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {
                 // We have errors, so we can't safely generate code.
@@ -321,9 +324,6 @@ namespace Yarn.Compiler
             }
 
             var finalResult = CompilationResult.CombineCompilationResults(results, stringTableManager);
-
-            // Now that we know for sure the types of every node in the parse tree, we can correctly determine the initial values for every <<declare>> statement (because we know how to resolve a )
-            TypeCheckerListener.ResolveInitialValues(ref declarations, ref diagnostics);
 
             // Last step: take every variable declaration we found in all
             // of the inputs, and create an initial value registration for
@@ -484,7 +484,9 @@ namespace Yarn.Compiler
 
             compiler.TrackingNodes = trackingNodes;
             compiler.Library = job.Library;
-            compiler.VariableDeclarations = variableDeclarations;
+            compiler.VariableDeclarations = variableDeclarations
+                .Where(d => d.Type is FunctionType == false)
+                .ToDictionary(d => d.Name, d => d);
             compiler.Compile();
 
             var debugInfoDictionary = new Dictionary<string, DebugInfo>();

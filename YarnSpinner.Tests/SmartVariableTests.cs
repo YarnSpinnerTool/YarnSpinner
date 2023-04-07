@@ -52,6 +52,26 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestSmartVariablesCanBeEvaluatedInScript()
+        {
+            // Given
+            this.testPlan = new TestPlanBuilder()
+                .AddLine("2")
+                .AddStop()
+                .GetPlan();
+
+            var source = CreateTestNode(new[] {
+                "<<declare $smart_var = 1 + 1>>",
+                "{$smart_var}"
+            });
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+
+            // Then
+            RunTestPlan(result, testPlan);
+        }
+
+        [Fact]
         public void TestSmartVariablesCannotContainDependencyLoops()
         {
             // Given

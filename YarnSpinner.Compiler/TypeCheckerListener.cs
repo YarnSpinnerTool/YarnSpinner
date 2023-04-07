@@ -960,7 +960,7 @@ namespace Yarn.Compiler
             var smartVariableDeclarationDict = smartVariableDeclarations.ToDictionary(d => d.Name, d => d);
 
             foreach (var decl in smartVariableDeclarations) {
-                if (DeclarationContainsLoop(decl.InitialValueParserContext, smartVariableDeclarationDict))
+                if (CheckDeclarationForLoop(decl.InitialValueParserContext, smartVariableDeclarationDict))
                 {
                     diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.InitialValueParserContext, $"Smart variable {decl.Name} contains a dependency loop"));
                 }
@@ -968,7 +968,15 @@ namespace Yarn.Compiler
 
         }
 
-        private static bool DeclarationContainsLoop(YarnSpinnerParser.ExpressionContext context, IDictionary<string, Declaration> decls) {
+        /// <summary>
+        /// Performs a depth-first search on an expression, expanding any smart
+        /// variables encountered, and returns true if a loop is found.
+        /// </summary>
+        /// <param name="context">An expression to check for loops.</param>
+        /// <param name="decls">A dictionary containing smart variable
+        /// declarations.</param>
+        /// <returns><see langword="true"/> if a loop was discovered.</returns>
+        internal static bool CheckDeclarationForLoop(YarnSpinnerParser.ExpressionContext context, IDictionary<string, Declaration> decls) {
             
             var seenDecls = new HashSet<string>();
             var searchStack = new Stack<ParserRuleContext>();
