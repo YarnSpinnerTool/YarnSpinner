@@ -943,7 +943,7 @@ namespace Yarn.Compiler
 
                         decl.DefaultValue = property.Value;
                     }
-                } else {
+                } else if (decl.InitialValueParserContext is YarnSpinnerParser.ExpressionContext) {
                     // The value of the expression is runtime-evaluated. This
                     // declaration is for an inline-expanded expression (a
                     // 'smart variable'). No default value is provided; instead,
@@ -952,6 +952,65 @@ namespace Yarn.Compiler
                     decl.IsInlineExpansion = true;
                 }
             }
+
+            // Now that we've identified a value for every declaration, we need
+            // to check if there are any dependency loops between smart
+            // declarations.
+            var smartVariableDeclarations = declarations.Where(d => d.IsInlineExpansion);
+            var smartVariableDeclarationDict = smartVariableDeclarations.ToDictionary(d => d.Name, d => d);
+
+            foreach (var decl in smartVariableDeclarations) {
+                if (DeclarationContainsLoop(decl.InitialValueParserContext, smartVariableDeclarationDict))
+                {
+                    diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.InitialValueParserContext, $"Smart variable {decl.Name} contains a dependency loop"));
+                }
+            }
+
+        }
+
+        private static bool DeclarationContainsLoop(YarnSpinnerParser.ExpressionContext context, IDictionary<string, Declaration> decls) {
+            
+            var seenDecls = new HashSet<string>();
+            var searchStack = new Stack<ParserRuleContext>();
+            searchStack.Push(context);
+
+            while (searchStack.Count > 0) {
+                var item = searchStack.Pop();
+
+                if (item is YarnSpinnerParser.VariableContext variable) {
+                    // This item is a variable. If it's a smart variable, check
+                    // to see if we've encountered a loop.
+                    string variableName = variable.VAR_ID().GetText();
+                    if (decls.ContainsKey(variableName)) {
+                        // This is a smart variable. Have we seen it before?
+                        if (seenDecls.Contains(variableName))
+                        {
+                            // We have! Loop detected!
+                            return true;
+                        }
+
+                        // Mark that we've seen this smart variable before.
+                        seenDecls.Add(variableName);
+
+                        // Add the parse tree to our search stack, so that we
+                        // check its contents.
+                        searchStack.Push(decls[variableName].InitialValueParserContext);
+                    }
+                }
+
+                var childContexts = item.children
+                    .Where(tree => tree.Payload is ParserRuleContext)
+                    .Select(tree => tree.Payload as ParserRuleContext)
+                    .Where(tree => tree != null);
+
+                foreach (var child in childContexts)
+                {
+                    searchStack.Push(child);
+                }
+            }
+
+            // We searched the entire declaration and found no loop.
+            return false;
         }
     }
 
