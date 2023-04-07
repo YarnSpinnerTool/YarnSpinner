@@ -8,7 +8,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- Nodes inside the Yarn Program now contains a Header field which is a collection of key value pairs of any headers the node has.
+### Changed
+
+- Fixed a bug in the language server that caused crashes when code-completion was requested at a position more than 50% of the way through a document.
+
+### Removed
+
+## [2.3.0] 2023-03-06
+
+### Added
+
+- Yarn Programs now store all headers for their nodes.
+  - Prior to this change, only the `tags` header was stored.
 
 #### Enums
 
@@ -68,12 +79,55 @@ Functions can receive enums as parameters, as long as the enum's raw value type 
 
 ### Changed
 
-- Large changes to IndentAwareLexer, this fixes numerous issues but as a side-effect some yarn indentation constructs that previously worked fine when inside an option block will no longer compile.
-- Node title verification now occurs at declaration time instead of code gen. This means invalid titles will be caught and presented as a problem earlier on to aid in debugging issues.
-- Code completion in the LSP has been completely rewritten. It is now much less flexible but *way* more performant. For most situations the changes will not be noticeable.
-- Fixed a crash in the LSP when encountering declaration statements without a variable.
+- The Yarn Spinner compiler's indentation tracking has been rewritten to be more consistent in how it works.
+  - **🚨 Breaking Change:** `if` statements must now all be at the same level of indentation as their corresponding `else`, `elseif`, and `endif` statements.
+    - This was already strongly encouraged for readability, but is now a requirement.
+    - If an `if` statement is at a different indentation level to its corresponding statements, a compiler error will now be generated.
+    - The lines and other content inside an `if` statement can be indented as much as you like, as long as it's not _less_ indented than the initial `if` statement.
+    
+      For example, the following code will work:
+      ```
+      // With indentation
+      <<if $something>>
+          A line!
+      <<else>>
+          A different line!
+      <<endif>>
 
-### Removed
+      // Without indentation
+      <<if $something>>
+      A line!
+      <<else>>
+      A different line!
+      <<endif>>
+      ```
+
+      The following code will **not** work:
+
+      ```
+      // With indentation
+      <<if $something>>
+        A line!
+        <<else>>
+      A different line!
+      <<endif>>
+      ```
+  - **🚨 Breaking Change:** Empty lines between options now split up different option groups.
+    - Previously, the following code would appear as a single option group (with the options 'A', 'B', 'C', 'D'):
+      ```
+      -> A
+      -> B
+
+      -> C
+      -> D
+      ```
+      In Yarn Spinner 2.3 and above, this will appear as _two_ option groups: one containing the options 'A', 'B', and another containing 'C', 'D'.
+
+      This change was made in response to user reports that the previous behaviour didn't behave the way they expected.
+
+- Node title verification now occurs at declaration time instead of code generation. This means invalid titles will be caught and presented as a problem earlier on, to aid in debugging issues.
+- Code completion in the Language Server has been completely rewritten. It is now much less flexible, but *way* more performant. For most situations, the changes will not be noticeable.
+- Fixed a crash in the Language Server when encountering declaration statements without a variable.
 
 ## [2.2.5] 2023-01-27
 

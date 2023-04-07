@@ -16,7 +16,7 @@ namespace YarnLanguageServer
         /// The regular expression that matches a character name at the start of
         /// a line.
         /// </summary>
-        private static readonly System.Text.RegularExpressions.Regex NameRegex = new (@"^\s*(.*?):");
+        internal static readonly System.Text.RegularExpressions.Regex NameRegex = new (@"^\s*(.*?):");
 
         public static void BuildSemanticTokens(SemanticTokensBuilder builder, YarnFileData yarnFile)
         {

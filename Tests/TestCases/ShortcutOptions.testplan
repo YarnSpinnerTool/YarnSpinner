@@ -30,19 +30,13 @@ option: A
 select: 1
 line: B
 
-line: (Break up the options)
-
 option: Option A
 option: Option B
 select: 1
 
-line: (Break up the options)
-
 option: Option A
 option: Option B
 select: 1
-
-line: (Break up the options)
 
 option: Option1
 select: 1

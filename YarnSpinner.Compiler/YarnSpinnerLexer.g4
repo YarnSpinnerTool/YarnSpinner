@@ -255,6 +255,9 @@ fragment DIGIT: [0-9];
 // (which may contain expressions), which are passed to the game.
 mode CommandMode;
 
+// Newlines aren't allowed in commands, so match against them inside the 
+// CommandMode to produce a token that will lead to parse errors
+COMMAND_NEWLINE: NEWLINE;
 COMMAND_WS: WS -> channel(HIDDEN);
 
 // Special keywords that can appear in commands. If we see one of these after 
@@ -297,12 +300,14 @@ COMMAND_ARBITRARY: . -> type(COMMAND_TEXT), mode(CommandTextMode);
 
 // Arbitrary commands, which may contain expressions, and end with a '>>'.
 mode CommandTextMode;
+COMMAND_TEXT_NEWLINE: NEWLINE;
 COMMAND_TEXT_END: '>>' -> popMode;
 COMMAND_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
-COMMAND_TEXT: ~[>{]+;
+COMMAND_TEXT: ~[>{\r\n]+;
 
 // A mode in which we expect to parse a node ID.
 mode CommandIDMode;
+COMMAND_ID_NEWLINE: NEWLINE;
 COMMAND_ID: ID -> type(ID), popMode;
 COMMAND_ID_END: '>>' -> type(COMMAND_END), popMode; // almost certainly a parse error, but not a lex error
 
