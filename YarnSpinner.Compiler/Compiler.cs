@@ -179,7 +179,7 @@ namespace Yarn.Compiler
 
             var fileTags = new Dictionary<string, IEnumerable<string>>();
 
-            var walker = new ParseTreeWalker();
+            var walker = new Antlr4.Runtime.Tree.ParseTreeWalker();
             foreach (var parsedFile in parsedFiles)
             {
                 var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, ref declarations, ref knownTypes);
@@ -801,7 +801,7 @@ namespace Yarn.Compiler
         // this comes from the ANTLR Parser/Lexer steps
         internal void Compile()
         {
-            ParseTreeWalker walker = new ParseTreeWalker();
+            Antlr4.Runtime.Tree.ParseTreeWalker walker = new Antlr4.Runtime.Tree.ParseTreeWalker();
             walker.Walk(this, this.fileParseResult.Tree);
         }
 

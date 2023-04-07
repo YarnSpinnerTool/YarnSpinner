@@ -166,7 +166,7 @@ namespace Yarn.Compiler
 
             // Walk the tree with this listener, and generate text replacements
             // containing line tags.
-            var walker = new ParseTreeWalker();
+            var walker = new Antlr4.Runtime.Tree.ParseTreeWalker();
             walker.Walk(untaggedLineListener, parseSource.Tree);
 
             // Apply these text replacements to the original source and return
@@ -464,7 +464,7 @@ namespace Yarn.Compiler
         /// <returns>A list of lists of GraphingNode each containing a node, its jumps, and any positional info.</returns>
         public static List<List<GraphingNode>> DetermineNodeConnections(string[] YarnFileContents)
         {
-            var walker = new ParseTreeWalker();
+            var walker = new Antlr4.Runtime.Tree.ParseTreeWalker();
 
             // alright so the change is instead of making it a list
             // we make it a list of lists

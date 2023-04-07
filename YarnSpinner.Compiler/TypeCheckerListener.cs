@@ -1023,6 +1023,65 @@ namespace Yarn.Compiler
     }
 
     /// <summary>
+    /// Provides methods for walking a parse tree.
+    /// </summary>
+    internal static class ParseTreeWalker {
+        /// <summary>
+        /// Walks a parse tree, starting at <paramref name="startContext"/>, and
+        /// calls <paramref name="handler"/> for each <see
+        /// cref="ParserRuleContext"/> it encounters.
+        /// </summary>
+        /// <param name="startContext">The parser rule context to begin walking
+        /// from.</param>
+        /// <param name="handler">The delegate to call for each parser rule
+        /// context encountered.</param>
+        public static void WalkTree(ParserRuleContext startContext, Action<ParserRuleContext> handler)
+        {
+            WalkTree<ParserRuleContext>(startContext, handler);
+        }
+
+        /// <summary>
+        /// Walks a parse tree, starting at <paramref name="startContext"/>, and
+        /// calls <paramref name="handler"/> for each <typeparamref
+        /// name="TContext"/> it encounters.
+        /// </summary>
+        /// <typeparam name="TContext">The type of parser rule context to call
+        /// <paramref name="handler"/> for.</typeparam>
+        /// <param name="startContext">The parser rule context to begin walking
+        /// from.</param>
+        /// <param name="handler">The delegate to call for each parser rule
+        /// context encountered.</param>
+        public static void WalkTree<TContext>(ParserRuleContext startContext, Action<TContext> handler)
+            where TContext : ParserRuleContext
+        {
+            var searchStack = new Stack<ParserRuleContext>();
+            searchStack.Push(startContext);
+            while (searchStack.Count > 0)
+            {
+                var item = searchStack.Pop();
+
+                if (item is TContext context)
+                {
+                    handler(context);
+                }
+
+                if (item.children != null)
+                {
+                    var childContexts = item.children
+                        .Where(tree => tree.Payload is ParserRuleContext)
+                        .Select(tree => tree.Payload as ParserRuleContext)
+                        .Where(tree => tree != null);
+
+                    foreach (var child in childContexts)
+                    {
+                        searchStack.Push(child);
+                    }
+                }
+            }
+        }
+    }
+
+    /// <summary>
     /// Contains properties common to all parse nodes that have a type
     /// associated with them.
     /// </summary>
