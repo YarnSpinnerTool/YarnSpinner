@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- A document to serve as a roadmap for current and future changes until Yarn 3 is released.
+
 ### Changed
 
 - Fixed a bug in the language server that caused crashes when code-completion was requested at a position more than 50% of the way through a document.
