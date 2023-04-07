@@ -284,7 +284,7 @@ namespace Yarn.Compiler
             var typeIdentifier = this.GenerateTypeVariable(name + " declaration", context);
 
             // The type of this identifier is equal to the type of its default value.
-            this.AddEqualityConstraint(typeIdentifier, context.value().Type, context, s => $"The type of {name}'s initial value \"{context.value().GetText()}\" ({context.value().Type.Substitute(s)}) doesn't match the type of the variable {typeIdentifier.Substitute(s)}.");
+            this.AddEqualityConstraint(typeIdentifier, context.expression().Type, context, s => $"The type of {name}'s initial value \"{context.expression().GetText()}\" ({context.expression().Type.Substitute(s)}) doesn't match the type of the variable {typeIdentifier.Substitute(s)}.");
 
             if (context.type != null)
             {
@@ -329,7 +329,8 @@ namespace Yarn.Compiler
                 SourceNodeName = this.currentNodeName,
                 Range = GetRange(variableContext),
                 IsImplicit = false,
-                InitialValueParserContext = context.value(),
+                IsInlineExpansion = false,
+                InitialValueParserContext = context.expression(),
             };
 
             this.knownDeclarations.Add(declaration);
@@ -429,6 +430,7 @@ namespace Yarn.Compiler
                     Description = $"Implicitly declared in {this.sourceFileName}, node {this.currentNodeName}",
                     Range = GetRange(context),
                     IsImplicit = true,
+                    IsInlineExpansion = false,
                     SourceFileName = this.sourceFileName,
                     SourceNodeName = this.currentNodeName,
                 };
@@ -896,37 +898,58 @@ namespace Yarn.Compiler
             }
 
             foreach (var decl in declarations) {
-                if (decl.InitialValueParserContext is YarnSpinnerParser.ILiteralContext) {
+                if (decl.InitialValueParserContext is YarnSpinnerParser.ExpValueContext valueContext
+                    && !(valueContext.value() is YarnSpinnerParser.ValueFuncContext)
+                    && !(valueContext.value() is YarnSpinnerParser.ValueVarContext))
+                {
+                    // If the value of a declaration is a plain value (and not a
+                    // more complex expression AND not a function call AND not a
+                    // variable), then the declaration is of a stored variable
+                    // with an initial value.
+                    if (valueContext.value() is YarnSpinnerParser.ILiteralContext)
+                    {
+                        // The initial value was a literal. Parse it and turn it
+                        // into a value we can store.
+                        var literalVisitor = new LiteralValueVisitor(valueContext.value(), decl.SourceFileName, diagnostics);
 
-                    // The initial value was a literal. Parse it and turn it
-                    // into a value we can store.
-                    var literalVisitor = new LiteralValueVisitor(decl.InitialValueParserContext, decl.SourceFileName, diagnostics);
+                        var value = literalVisitor.Visit(valueContext.value());
 
-                    var value = literalVisitor.Visit(decl.InitialValueParserContext);
-
-                    decl.DefaultValue = value.InternalValue;
-                } else if (decl.InitialValueParserContext is YarnSpinnerParser.ValueTypeMemberReferenceContext memberReference) {
-                    // The initial value was a reference to a member of a type.
-                    // Get that member's value.
-                    var memberName = memberReference.typeMemberReference().memberName.Text;
-                    var type = memberReference.Type;
-
-                    if (!(type is TypeBase actualType)) {
-                        diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.InitialValueParserContext, $"Can't determine the type of {decl.InitialValueParserContext.GetTextWithWhitespace()}"));
-                        continue;
+                        decl.DefaultValue = value.InternalValue;
                     }
+                    else if (valueContext.value() is YarnSpinnerParser.ValueTypeMemberReferenceContext memberReference)
+                    {
+                        // The initial value was a reference to a member of a type.
+                        // Get that member's value.
+                        var memberName = memberReference.typeMemberReference().memberName.Text;
+                        var type = memberReference.Type;
 
-                    if (!actualType.TypeMembers.TryGetValue(memberName, out var member)) {
-                        diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.InitialValueParserContext, $"{actualType.Name} doesn't have a member named {memberName}"));
-                        continue;
+                        if (!(type is TypeBase actualType))
+                        {
+                            diagnostics.Add(new Diagnostic(decl.SourceFileName, valueContext.value(), $"Can't determine the type of {valueContext.value().GetTextWithWhitespace()}"));
+                            continue;
+                        }
+
+                        if (!actualType.TypeMembers.TryGetValue(memberName, out var member))
+                        {
+                            diagnostics.Add(new Diagnostic(decl.SourceFileName, valueContext.value(), $"{actualType.Name} doesn't have a member named {memberName}"));
+                            continue;
+                        }
+
+                        if (!(member is ConstantTypeProperty property))
+                        {
+                            diagnostics.Add(new Diagnostic(decl.SourceFileName, valueContext.value(), $"{actualType.Name}.{memberName} is not a constant property"));
+                            continue;
+                        }
+
+                        decl.DefaultValue = property.Value;
                     }
-
-                    if (!(member is ConstantTypeProperty property)) {
-                        diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.InitialValueParserContext, $"{actualType.Name}.{memberName} is not a constant property"));
-                        continue;
-                    }
-
-                    decl.DefaultValue = property.Value;
+                } else {
+                    // The value of the expression is runtime-evaluated. This
+                    // declaration is for an inline-expanded expression (a
+                    // 'smart variable'). No default value is provided; instead,
+                    // this variable is inline-expanded when it's encountered
+                    // during code generation.
+                    decl.IsInlineExpansion = true;
                 }
             }
         }

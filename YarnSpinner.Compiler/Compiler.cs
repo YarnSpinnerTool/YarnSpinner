@@ -336,6 +336,14 @@ namespace Yarn.Compiler
                     continue;
                 }
 
+                // Inline-expanded declarations ('smart variables') don't have
+                // an initial value stored, because they are computed at
+                // runtime.
+                if (declaration.IsInlineExpansion)
+                {
+                    continue;
+                }
+
                 if (declaration.Type == Types.Error)
                 {
                     // This declaration has an error type; we will

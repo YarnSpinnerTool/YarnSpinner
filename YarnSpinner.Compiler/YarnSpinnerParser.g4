@@ -135,7 +135,8 @@ shortcut_option
     ;
 
 declare_statement
-    : COMMAND_START COMMAND_DECLARE variable OPERATOR_ASSIGNMENT value ('as' type=FUNC_ID)? COMMAND_END ;
+    : COMMAND_START COMMAND_DECLARE variable OPERATOR_ASSIGNMENT expression ('as' type=FUNC_ID)? COMMAND_END
+    ;
 
 enum_statement
     : COMMAND_START COMMAND_ENUM name=ID COMMAND_END enum_case_statement+ COMMAND_START COMMAND_ENDENUM COMMAND_END

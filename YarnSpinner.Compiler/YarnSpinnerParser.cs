@@ -2681,8 +2681,8 @@ public partial class YarnSpinnerParser : Parser {
 			return GetRuleContext<VariableContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OPERATOR_ASSIGNMENT() { return GetToken(YarnSpinnerParser.OPERATOR_ASSIGNMENT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ValueContext value() {
-			return GetRuleContext<ValueContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
+			return GetRuleContext<ExpressionContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMAND_END() { return GetToken(YarnSpinnerParser.COMMAND_END, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXPRESSION_AS() { return GetToken(YarnSpinnerParser.EXPRESSION_AS, 0); }
@@ -2727,7 +2727,7 @@ public partial class YarnSpinnerParser : Parser {
 			State = 306;
 			Match(OPERATOR_ASSIGNMENT);
 			State = 307;
-			value();
+			expression(0);
 			State = 310;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
@@ -3354,7 +3354,7 @@ public partial class YarnSpinnerParser : Parser {
 		'\x2', '\x130', '\x33', '\x3', '\x2', '\x2', '\x2', '\x131', '\x132', 
 		'\a', '\x11', '\x2', '\x2', '\x132', '\x133', '\a', 'H', '\x2', '\x2', 
 		'\x133', '\x134', '\x5', '\x1A', '\xE', '\x2', '\x134', '\x135', '\a', 
-		'!', '\x2', '\x2', '\x135', '\x138', '\x5', '\x18', '\r', '\x2', '\x136', 
+		'!', '\x2', '\x2', '\x135', '\x138', '\x5', '\x16', '\f', '\x2', '\x136', 
 		'\x137', '\a', '\x39', '\x2', '\x2', '\x137', '\x139', '\a', ';', '\x2', 
 		'\x2', '\x138', '\x136', '\x3', '\x2', '\x2', '\x2', '\x138', '\x139', 
 		'\x3', '\x2', '\x2', '\x2', '\x139', '\x13A', '\x3', '\x2', '\x2', '\x2', 

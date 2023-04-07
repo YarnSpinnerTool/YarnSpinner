@@ -593,7 +593,8 @@ namespace Yarn.Compiler
 
         public override int VisitDeclare_statement(YarnSpinnerParser.Declare_statementContext context)
         {
-            // Declare statements do not participate in code generation
+            // Declare statements for variables do not participate in code
+            // generation. (Declarations for smart variables are code-generated at a different stage.)
             return 0;
         }
 

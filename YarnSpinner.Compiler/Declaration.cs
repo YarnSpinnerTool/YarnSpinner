@@ -229,8 +229,15 @@ namespace Yarn.Compiler
         public int SourceFileLine => this.Range.Start.Line;
 
         /// <summary>
-        /// Gets a value indicating whether get or sets a value indicating
-        /// whether this Declaration was implicitly inferred from usage.
+        /// Gets a value indicating that this Declaration does not refer to a
+        /// stored variable, and instead represents an inline-expanded
+        /// expression (a 'smart variable').
+        /// </summary>
+        public bool IsInlineExpansion { get; internal set; }
+
+        /// <summary>
+        /// Gets a value indicating whether this Declaration was implicitly
+        /// inferred from usage.
         /// </summary>
         /// <value>If <see langword="true"/>, this Declaration was implicitly
         /// inferred from usage. If <see langword="false"/>, this Declaration
@@ -266,7 +273,7 @@ namespace Yarn.Compiler
         /// variable declarations, not functions (because functions don't have a
         /// value.)
         /// </summary>
-        internal YarnSpinnerParser.ValueContext InitialValueParserContext { get; set; }
+        internal YarnSpinnerParser.ExpressionContext InitialValueParserContext { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
