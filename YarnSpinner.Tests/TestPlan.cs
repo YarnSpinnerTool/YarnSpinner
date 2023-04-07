@@ -108,7 +108,7 @@ namespace YarnSpinner.Tests
             }
 
             internal Step(Type type) {
-
+                this.type = type;
             }
 
             private class Reader : StringReader
