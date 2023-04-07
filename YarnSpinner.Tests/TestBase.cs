@@ -200,6 +200,32 @@ namespace YarnSpinner.Tests
         }
 
         /// <summary>
+        /// Runs the result of a Yarn script compilation, checking its behaviour
+        /// against a test plan.
+        /// </summary>
+        /// <param name="compilationResult">The compilation result to
+        /// execute.</param>
+        /// <param name="plan">The test plan to execute.</param>
+        /// <param name="nodeName">The node name to start executing
+        /// from.</param>
+        /// <param name="config">A delegate that is called immediately before
+        /// running the test, and can be used to configure the state of the <see
+        /// cref="Dialogue"/> object that runs the script.</param>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref
+        /// name="plan"/> is <see langword="null"/>.</exception>
+        protected void RunTestPlan(CompilationResult compilationResult, TestPlan plan, string nodeName = "Start", Action<Dialogue> config = null) {
+            compilationResult.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+
+            dialogue.SetProgram(compilationResult.Program);
+            stringTable = compilationResult.StringTable;
+            testPlan = plan ?? throw new ArgumentNullException(nameof(plan));
+
+            config?.Invoke(dialogue);
+
+            RunStandardTestcase(nodeName);
+        }
+
+        /// <summary>
         /// Executes the named node, and checks any assertions made during
         /// execution. Fails the test if an assertion made in Yarn fails.
         /// </summary>
@@ -222,6 +248,9 @@ namespace YarnSpinner.Tests
         protected string CreateTestNode(string source, string name="Start") {
             return $"title: {name}\n---\n{source}\n===";
             
+        }
+        protected string CreateTestNode(string[] sourceLines, string name="Start") {
+            return $"title: {name}\n---\n{string.Join("\n", sourceLines)}\n===";
         }
 
         /// <summary>
