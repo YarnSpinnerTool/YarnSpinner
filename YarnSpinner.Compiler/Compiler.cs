@@ -307,6 +307,10 @@ namespace Yarn.Compiler
             // Now that we know for sure the types of every node in all parse trees, we can correctly determine the initial values for every <<declare>> statement.
             TypeCheckerListener.ResolveInitialValues(ref declarations, ref diagnostics);
 
+            // Check to see if there are any set statements that attempt to
+            // modify smart variables (which are readonly)
+            AddErrorsForSettingReadonlyVariables(parsedFiles, declarations, diagnostics);
+
             if (diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {
                 // We have errors, so we can't safely generate code.
@@ -392,6 +396,29 @@ namespace Yarn.Compiler
             finalResult.Diagnostics = finalResult.Diagnostics.Concat(diagnostics).Distinct();
 
             return finalResult;
+        }
+
+        private static void AddErrorsForSettingReadonlyVariables(List<FileParseResult> parsedFiles, IEnumerable<Declaration> declarations, List<Diagnostic> diagnostics)
+        {
+            var smartVariables = declarations.Where(d => d.IsInlineExpansion).ToDictionary(d => d.Name, d => d);
+
+            foreach (var file in parsedFiles) {
+                var dialogueContext = file.Tree.Payload as YarnSpinnerParser.DialogueContext;
+
+                // Visit every 'set' statement in the parse tree.
+                ParseTreeWalker.WalkTree<YarnSpinnerParser.Set_statementContext>(dialogueContext, (setStatement) =>
+                {
+                    if (setStatement.variable() != null && setStatement.variable().VAR_ID() != null) {
+                        var variableName = setStatement.variable().VAR_ID().GetText();
+                        if (smartVariables.ContainsKey(variableName)) {
+                            // This set statement is attempting to set a value to a
+                            // smart variable. That's not allowed, because smart
+                            // variables are read-only.
+                            diagnostics.Add(new Diagnostic(file.Name, setStatement.variable(), $"{variableName} cannot be modified"));
+                        }
+                    }
+                });
+            }
         }
 
         /// <summary>

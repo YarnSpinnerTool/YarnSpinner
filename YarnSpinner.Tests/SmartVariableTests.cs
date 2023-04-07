@@ -99,5 +99,23 @@ namespace YarnSpinner.Tests
                 .Should().Contain(d => d.Message.Contains("Smart variable $smart_var_1 contains a dependency loop"))
                 .Which.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
         }
+
+        [Fact]
+        public void TestSmartVariablesCannotBeWrittenTo()
+        {
+            // Given
+            var source = CreateTestNode(new[] {
+                "<<declare $smart_var = 1 + 1>>",
+                "<<set $smart_var to 3>>", // error!
+            });
+        
+            // When
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+
+            // Then
+            result.Diagnostics.Should()
+                .Contain(d => d.Message == "$smart_var cannot be modified")
+                .Which.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+        }
     }
 }
