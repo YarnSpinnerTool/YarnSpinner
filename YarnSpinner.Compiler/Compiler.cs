@@ -225,7 +225,8 @@ namespace Yarn.Compiler
             var substitution = TypeChecker.Solver.Solve(typeConstraints, knownTypes.OfType<TypeBase>(), ref diagnostics);
 
             // Apply this substitution to all declarations.
-            foreach (var decl in declarations) {
+            foreach (var decl in declarations)
+            {
                 decl.Type = TypeChecker.ITypeExtensions.Substitute(decl.Type, substitution);
 
                 // If this was an implicit declaration, then we didn't have an
@@ -239,7 +240,8 @@ namespace Yarn.Compiler
                 // If, after substituting for the solver's result, the type is
                 // STILL a variable, then we weren't able to determine its type,
                 // and its type becomes the error type.
-                if (decl.Type is TypeChecker.TypeVariable) {
+                if (decl.Type is TypeChecker.TypeVariable)
+                {
                     var suggestion = decl.Name.StartsWith("$") ? $" For example: <<declare {decl.Name} = (initial value) >>" : string.Empty;
 
                     diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.Range, $"Can't determine type of {decl.Name} given its usage. Manually specify its type with a declare statement.{suggestion}"));
@@ -251,11 +253,12 @@ namespace Yarn.Compiler
             // We've solved for our variable declarations; we also need to apply
             // these solutions to the parse tree, so that we know the type of
             // each expression.
-            foreach (var parsedFile in parsedFiles) {
+            foreach (var parsedFile in parsedFiles)
+            {
                 Stack<IParseTree> stack = new Stack<IParseTree>();
                 stack.Push(parsedFile.Tree.Payload as IParseTree);
 
-                while (stack.Count > 0) 
+                while (stack.Count > 0)
                 {
                     var tree = stack.Pop();
                     if (tree.Payload is ITypedContext typedContext)
@@ -281,7 +284,8 @@ namespace Yarn.Compiler
                         }
                     }
 
-                    for (int i = 0; i < tree.ChildCount; i++) {
+                    for (int i = 0; i < tree.ChildCount; i++)
+                    {
                         // Push its children onto our stack to check those
                         stack.Push(tree.GetChild(i));
                     }
@@ -329,6 +333,19 @@ namespace Yarn.Compiler
 
             var finalResult = CompilationResult.CombineCompilationResults(results, stringTableManager);
 
+            // For each smart variable, generate a node that contains code that
+            // evaluates the variable's expression.
+            if (finalResult.Program != null)
+            {
+                var smartVarCompiler = new SmartVariableCompiler(declarations.ToDictionary(d => d.Name, d => d));
+                foreach (var decl in declarations.Where(d => d.IsInlineExpansion))
+                {
+                    smartVarCompiler.Compile(decl, out var node, out _);
+
+                    finalResult.Program.Nodes.Add(node.Name, node);
+                }
+            }
+
             // Last step: take every variable declaration we found in all
             // of the inputs, and create an initial value registration for
             // it.
@@ -375,7 +392,9 @@ namespace Yarn.Compiler
                 else if (declaration.Type == Types.Boolean)
                 {
                     value = new Operand(Convert.ToBoolean(declaration.DefaultValue));
-                } else if (declaration.Type is EnumType enumType) {
+                }
+                else if (declaration.Type is EnumType enumType)
+                {
                     value = new Operand(Convert.ToSingle(declaration.DefaultValue));
                 }
                 else
@@ -402,15 +421,18 @@ namespace Yarn.Compiler
         {
             var smartVariables = declarations.Where(d => d.IsInlineExpansion).ToDictionary(d => d.Name, d => d);
 
-            foreach (var file in parsedFiles) {
+            foreach (var file in parsedFiles)
+            {
                 var dialogueContext = file.Tree.Payload as YarnSpinnerParser.DialogueContext;
 
                 // Visit every 'set' statement in the parse tree.
                 ParseTreeWalker.WalkTree<YarnSpinnerParser.Set_statementContext>(dialogueContext, (setStatement) =>
                 {
-                    if (setStatement.variable() != null && setStatement.variable().VAR_ID() != null) {
+                    if (setStatement.variable() != null && setStatement.variable().VAR_ID() != null)
+                    {
                         var variableName = setStatement.variable().VAR_ID().GetText();
-                        if (smartVariables.ContainsKey(variableName)) {
+                        if (smartVariables.ContainsKey(variableName))
+                        {
                             // This set statement is attempting to set a value to a
                             // smart variable. That's not allowed, because smart
                             // variables are read-only.
@@ -435,7 +457,7 @@ namespace Yarn.Compiler
             /// A regular expression used to detect illegal characters
             /// in node titles.
             Regex invalidTitleCharacters = new System.Text.RegularExpressions.Regex(@"[\[<>\]{}\|:\s#\$]");
-            
+
             var allNodes = parseResults.SelectMany(r =>
             {
                 var dialogue = r.Tree.Payload as YarnSpinnerParser.DialogueContext;
@@ -463,7 +485,7 @@ namespace Yarn.Compiler
                 else
                 {
                     return (
-                        Name: titleHeader.header_value.Text, 
+                        Name: titleHeader.header_value.Text,
                         Header: titleHeader,
                         Node: n.Node,
                         File: n.File);
@@ -474,7 +496,8 @@ namespace Yarn.Compiler
             // diagnostics for them
             var nodesWithIllegalTitleCharacters = nodesWithNames.Where(n => invalidTitleCharacters.IsMatch(n.Name));
 
-            foreach (var node in nodesWithIllegalTitleCharacters) {
+            foreach (var node in nodesWithIllegalTitleCharacters)
+            {
                 diagnostics.Add(new Diagnostic(node.File.Name, node.Header, $"The node '{node.Name}' contains illegal characters."));
             }
 
@@ -1071,9 +1094,69 @@ namespace Yarn.Compiler
             return description;
         }
 
+        void ICodeEmitter.AddLabel(string name, int position) {
+            this.CurrentNode.Labels.Add(name, position);
+        }
+    }
+
+    internal class SmartVariableCompiler : ICodeEmitter {
+        private int labelCount;
+
+        public Node CurrentNode { get; private set; }
+        public DebugInfo CurrentDebugInfo { get; private set; }
+        public IDictionary<string, Declaration> VariableDeclarations { get; private set; }
+
+        public SmartVariableCompiler(IDictionary<string, Declaration> variableDeclarations)
+        {
+            this.VariableDeclarations = variableDeclarations;
+        }
+
+        /// <summary>
+        /// Compiles a Declaration describing a smart variable, and produces a
+        /// <see cref="Node"/> and a <see cref="DebugInfo"/>.
+        /// </summary>
+        /// <param name="decl">The Declaration to generate an implementation
+        /// node for.</param>
+        /// <param name="node">The resulting implementation node.</param>
+        /// <param name="debugInfo">The debug info for <paramref
+        /// name="node"/>.</param>
+        public void Compile(Declaration decl, out Node node, out DebugInfo debugInfo)
+        {
+            this.CurrentNode = new Node();
+            this.CurrentDebugInfo = new DebugInfo();
+
+            this.CurrentNode.Name = decl.Name;
+            this.CurrentNode.Tags.Add(Program.SmartVariableNodeTag);
+
+            var codeGenerator = new CodeGenerationVisitor(this, trackingEnabled: null);
+            codeGenerator.Visit(decl.InitialValueParserContext);
+
+            node = this.CurrentNode;
+            debugInfo = this.CurrentDebugInfo;
+        }
+
+        /// <inheritdoc />
         public void AddLabel(string name, int position)
         {
             this.CurrentNode.Labels.Add(name, position);
+        }
+
+        /// <inheritdoc />
+        public string RegisterLabel(string commentary = null)
+        {
+            return "L" + this.labelCount++ + commentary;
+        }
+
+        /// <inheritdoc />
+        void ICodeEmitter.Emit(OpCode code, IToken startToken, params Operand[] operands)
+        {
+            Compiler.Emit(this.CurrentNode, this.CurrentDebugInfo, startToken?.Line - 1 ?? -1, startToken?.Column ?? -1, code, operands);
+        }
+
+        /// <inheritdoc />
+        void ICodeEmitter.Emit(OpCode code, params Operand[] operands)
+        {
+            Compiler.Emit(this.CurrentNode, this.CurrentDebugInfo, -1, -1, code, operands);
         }
     }
 }

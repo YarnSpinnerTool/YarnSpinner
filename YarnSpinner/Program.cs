@@ -12,6 +12,8 @@ namespace Yarn
     /// </summary>
     public partial class Program
     {
+        internal const string SmartVariableNodeTag = "Yarn.SmartVariable";
+
         internal string DumpCode(Library l)
         {
             var sb = new System.Text.StringBuilder();

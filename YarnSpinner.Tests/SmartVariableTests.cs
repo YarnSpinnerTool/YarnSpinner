@@ -118,6 +118,28 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestSmartVariablesCompileToNodes()
+        {
+            // Given
+            var source = CreateTestNode(new[] {
+                "<<declare $smart_var_number = 1 + 1>>",
+                "<<declare $smart_var_string = \"hello\" + \" yes\">>",
+                "<<declare $smart_var_bool = true || false>>",
+            });
+        
+            // When
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+
+            // Then
+            result.Program.SmartVariableNodes.Should().HaveCount(3);
+            result.Program.SmartVariableNodes.Select(n => n.Name).Should().Contain(new[] {
+                "$smart_var_number",
+                "$smart_var_string",
+                "$smart_var_bool",
+            });
+        }
+
+        [Fact]
         public void TestSmartVariablesCannotContainDependencyLoops()
         {
             // Given
