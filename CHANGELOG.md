@@ -8,19 +8,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-### Changed
-
-- Fixed a bug in the language server that caused crashes when code-completion was requested at a position more than 50% of the way through a document.
-
-### Removed
-
-## [2.3.0] 2023-03-06
-
-### Added
-
-- Yarn Programs now store all headers for their nodes.
-  - Prior to this change, only the `tags` header was stored.
-
 #### Enums
 
 Enums have been added to the Yarn language.
@@ -76,6 +63,18 @@ If you don't specify any raw values for an enum, then Yarn Spinner will choose n
 
 Functions can receive enums as parameters, as long as the enum's raw value type matches the parameter type. For example, if you have a function `print` that takes a string as a parameter, you can pass any enum to it that uses strings for its raw values; if you have a function `multiplyByTwo` that takes a number as a parameter, you can pass any enum to it that uses numbers for its raw values.
 
+### Changed
+
+- Fixed a bug in the language server that caused crashes when code-completion was requested at a position more than 50% of the way through a document.
+
+### Removed
+
+## [2.3.0] 2023-03-06
+
+### Added
+
+- Yarn Programs now store all headers for their nodes.
+  - Prior to this change, only the `tags` header was stored.
 
 ### Changed
 
