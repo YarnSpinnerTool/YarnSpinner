@@ -131,7 +131,14 @@ namespace Yarn.Compiler
             if (compilationJob.Library != null)
             {
                 (IEnumerable<Declaration> newDeclarations, IEnumerable<Diagnostic> declarationDiagnostics) = GetDeclarationsFromLibrary(compilationJob.Library);
-                declarations.AddRange(newDeclarations);
+
+                // Add declarations, as long as they don't conflict with entries
+                // that we added from the Standard Library
+
+                declarations.AddRange(
+                    newDeclarations.Where(d => declarations.Any(other => other.Name == d.Name) == false)
+                );
+
                 diagnostics.AddRange(declarationDiagnostics);
             }
 
