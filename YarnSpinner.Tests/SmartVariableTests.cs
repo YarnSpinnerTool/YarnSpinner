@@ -142,7 +142,7 @@ namespace YarnSpinner.Tests
             // (We should also have errors about the others, but an error in one
             // is sufficient to demonstrate that a loop can be detected.)
             result.Diagnostics
-                .Should().Contain(d => d.Message.Contains("Smart variable $smart_var_1 contains a dependency loop"))
+                .Should().Contain(d => d.Message.Contains("Smart variables cannot contain reference loops (referencing $smart_var_1 here creates a loop for the smart variable $smart_var_1)"))
                 .Which.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
         }
 
@@ -160,7 +160,7 @@ namespace YarnSpinner.Tests
 
             // Then
             result.Diagnostics.Should()
-                .Contain(d => d.Message == "$smart_var cannot be modified")
+                .Contain(d => d.Message == "$smart_var cannot be modified (it's a smart variable and is always equal to 1 + 1)")
                 .Which.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
         }
     }

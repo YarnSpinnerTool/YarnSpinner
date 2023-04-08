@@ -960,9 +960,9 @@ namespace Yarn.Compiler
             var smartVariableDeclarationDict = smartVariableDeclarations.ToDictionary(d => d.Name, d => d);
 
             foreach (var decl in smartVariableDeclarations) {
-                if (CheckDeclarationForLoop(decl.InitialValueParserContext, smartVariableDeclarationDict))
+                if (CheckDeclarationForLoop(decl, smartVariableDeclarationDict, out ParserRuleContext loopCause))
                 {
-                    diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.InitialValueParserContext, $"Smart variable {decl.Name} contains a dependency loop"));
+                    diagnostics.Add(new Diagnostic(decl.SourceFileName, loopCause, $"Smart variables cannot contain reference loops (referencing {loopCause.GetTextWithWhitespace()} here creates a loop for the smart variable {decl.Name})"));
                 }
             }
 
@@ -976,11 +976,12 @@ namespace Yarn.Compiler
         /// <param name="decls">A dictionary containing smart variable
         /// declarations.</param>
         /// <returns><see langword="true"/> if a loop was discovered.</returns>
-        internal static bool CheckDeclarationForLoop(YarnSpinnerParser.ExpressionContext context, IDictionary<string, Declaration> decls) {
+        internal static bool CheckDeclarationForLoop(Declaration startDecl, IDictionary<string, Declaration> decls, out ParserRuleContext loopCause) {
             
             var seenDecls = new HashSet<string>();
             var searchStack = new Stack<ParserRuleContext>();
-            searchStack.Push(context);
+            searchStack.Push(startDecl.InitialValueParserContext);
+            seenDecls.Add(startDecl.Name);
 
             while (searchStack.Count > 0) {
                 var item = searchStack.Pop();
@@ -994,6 +995,7 @@ namespace Yarn.Compiler
                         if (seenDecls.Contains(variableName))
                         {
                             // We have! Loop detected!
+                            loopCause = variable;
                             return true;
                         }
 
@@ -1018,6 +1020,7 @@ namespace Yarn.Compiler
             }
 
             // We searched the entire declaration and found no loop.
+            loopCause = null;
             return false;
         }
     }

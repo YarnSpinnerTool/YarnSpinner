@@ -414,7 +414,7 @@ namespace Yarn.Compiler
                             // This set statement is attempting to set a value to a
                             // smart variable. That's not allowed, because smart
                             // variables are read-only.
-                            diagnostics.Add(new Diagnostic(file.Name, setStatement.variable(), $"{variableName} cannot be modified"));
+                            diagnostics.Add(new Diagnostic(file.Name, setStatement.variable(), $"{variableName} cannot be modified (it's a smart variable and is always equal to {smartVariables[variableName].InitialValueParserContext.GetTextWithWhitespace()})"));
                         }
                     }
                 });
