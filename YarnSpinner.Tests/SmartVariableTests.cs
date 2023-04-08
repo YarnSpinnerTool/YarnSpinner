@@ -103,14 +103,21 @@ namespace YarnSpinner.Tests
             // Given
             this.testPlan = new TestPlanBuilder()
                 .AddLine("2")
+                .AddLine("pass")
                 .AddStop()
                 .GetPlan();
 
             var source = CreateTestNode(new[] {
                 "<<declare $smart_var = 1 + 1>>",
-                "{$smart_var}"
+                // smart variables can be used in inline expressions...
+                "{$smart_var}", 
+                // ...and can be used in any expression
+                "<<if string($smart_var) == \"2\">>", 
+                "pass",
+                "<<endif>>",
             });
 
+            // When
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
             // Then
@@ -163,12 +170,13 @@ namespace YarnSpinner.Tests
             // Create a dependency loop: 1 -> 2 -> 3 -> 1. 
             //
             // We add the number 1 to the first variable to force the type
-            // checker to interpret $smart_var_1 as a number, preventing a type
-            // check failure (which is not what we're trying to test for.)
+            // checker to interpret all of the variables as numbers, preventing
+            // a type check failure (which is not what we're trying to test
+            // for.)
             var source = CreateTestNode(new[] {
                 "<<declare $smart_var_1 = $smart_var_2 + 1>>",
                 "<<declare $smart_var_2 = $smart_var_3>>",
-                "<<declare $smart_var_3 = $smart_var_1>>",
+                "<<declare $smart_var_3 = $smart_var_1>>", // error! loop created!
             });
 
             // When
