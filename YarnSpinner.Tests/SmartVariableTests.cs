@@ -185,6 +185,29 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestSmartVariablesCanBeChained()
+        {
+            // Given
+            var source = CreateTestNode(new[] {
+                "<<declare $smart_var_1 = $smart_var_2>>",
+                "<<declare $smart_var_2 = $smart_var_3>>",
+                "<<declare $smart_var_3 = 1 + 1>>",
+                "{$smart_var_1}"
+            });
+
+            this.testPlan = new TestPlanBuilder()
+                .AddLine("2")
+                .AddStop()
+                .GetPlan();
+
+            // When
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+        
+            // Then
+            RunTestPlan(result, testPlan);
+        }
+
+        [Fact]
         public void TestSmartVariablesCannotBeWrittenTo()
         {
             // Given
