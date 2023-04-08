@@ -1076,6 +1076,116 @@ namespace Yarn
             return count;
         }
 
+        private struct SmartVariable<T> where T : IConvertible {
+
+            public string Name => implementationNode.Name;
+
+            public T Value {
+                get {
+                    var vm = this.dialogue.vm;
+
+                    // Back up our current state and handlers
+                    var previousState = vm.state;
+                    var oldNodeCompleteHandler = vm.NodeCompleteHandler;
+                    var oldDialogueCompleteHandler = vm.DialogueCompleteHandler;
+
+                    // Start the state new and jump to the implementation node
+                    vm.state = new VirtualMachine.State();
+                    vm.currentNode = this.implementationNode;
+
+                    Value result = null;
+
+                    // Set up new handlers - we want to do nothing when dialogue
+                    // completes, and we want to grab the top of the result
+                    // stack before the VM resets.
+                    this.dialogue.vm.DialogueCompleteHandler = EmptyDialogueCompleteHandler;
+                    this.dialogue.vm.NodeCompleteHandler = (name) =>
+                    {
+                        result = vm.state.PeekValue();
+                        if (result == null) {
+                            throw new InvalidOperationException($"Smart variable implementation node {name} did not produce a value");
+                        }
+                    };
+
+                    // Execute the node; when this method call returns, 'result'
+                    // will be non-null
+                    vm.Continue();
+
+                    // Restore our backed-up configuration
+                    vm.NodeCompleteHandler = oldNodeCompleteHandler;
+                    vm.DialogueCompleteHandler = oldDialogueCompleteHandler;
+                    vm.state = previousState;
+
+                    // Convert the result to the desired type and we're done!
+                    return result.ConvertTo<T>();
+                }
+            }
+            
+            private readonly Dialogue dialogue;
+            private readonly Node implementationNode;
+
+            private static readonly DialogueCompleteHandler EmptyDialogueCompleteHandler = () => { };
+            
+            public SmartVariable(Dialogue dialogue, Node implementationNode)
+            {
+                this.dialogue = dialogue;
+                this.implementationNode = implementationNode;
+            }            
+        }
+
+        /// <summary>
+        /// Given a variable name, attempts to fetch a value for the variable,
+        /// either from storage, initial values, or by evaluating a smart
+        /// variable.
+        /// </summary>
+        /// <typeparam name="T">The type of the value to return. The fetched
+        /// value will be converted to this type.</typeparam>
+        /// <param name="name">The name of the variable.</param>
+        /// <param name="result">If this method returns <see langword="true"/>,
+        /// this parameter will contain the fetched value.</param>
+        /// <returns><see langword="true"/> if a value could be fetched; <see
+        /// langword="false"/> otherwise.</returns>
+        internal bool TryGetVariable<T>(string name, out T result) where T : IConvertible {
+            if (this.program.InitialValues.ContainsKey(name)) {
+                // This is a stored value. First, attempt to fetch it from the
+                // variable storage.
+                if (VariableStorage.TryGetValue<T>(name, out result)) {
+                    // We successfully fetched it from storage.
+                    return true;
+                } else {
+                    // Attempt to fetch it from the program's initial values.
+                    var initialValue = program.InitialValues[name];
+                    switch (initialValue.ValueCase)
+                    {
+                        case Operand.ValueOneofCase.StringValue:
+                            result = (T)Convert.ChangeType(initialValue.StringValue, typeof(T), System.Globalization.CultureInfo.InvariantCulture);
+                            return true;
+                        case Operand.ValueOneofCase.BoolValue:
+                            result = (T)Convert.ChangeType(initialValue.BoolValue, typeof(T), System.Globalization.CultureInfo.InvariantCulture);
+                            return true;
+                        case Operand.ValueOneofCase.FloatValue:
+                            result = (T)Convert.ChangeType(initialValue.FloatValue, typeof(T), System.Globalization.CultureInfo.InvariantCulture);
+                            return true;
+                        default:
+                            throw new InvalidOperationException($"Internal error: invalid value type {initialValue.ValueCase}");
+                    }
+                }
+            } else {
+                // The variable may be a smart variable.
+                foreach (var node in this.program.SmartVariableNodes) {
+                    if (node.Name == name) {
+                        var variable = new SmartVariable<T>(this, node);
+                        result = variable.Value;
+                        return true;
+                    }
+                }
+
+                // No smart variable was found. This is not a known variable.
+                result = default;
+                return false;
+            }
+        }
+
         // The standard, built-in library of functions and operators.
         internal class StandardLibrary : Library
         {

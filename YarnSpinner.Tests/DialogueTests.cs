@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -339,6 +339,33 @@ namespace YarnSpinner.Tests
             dialogue.Continue();
             
 
+        }
+
+        [Fact]
+        public void TestDialogueStorageCanRetrieveValues()
+        {
+            // Given
+            var source = CreateTestNode(new[] {
+                "<<declare $numVar = 42>>",
+                "<<declare $stringVar = \"hello\">>",
+                "<<declare $boolVar = true>>",
+            });
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            dialogue.SetProgram(result.Program);
+
+            // When
+            var canGetNumber = dialogue.TryGetVariable<int>("$numVar", out var numResult);
+            var canGetString = dialogue.TryGetVariable<string>("$stringVar", out var stringResult);
+            var canGetBool = dialogue.TryGetVariable<bool>("$boolVar", out var boolResult);
+
+            // Then
+            canGetNumber.Should().BeTrue();
+            canGetString.Should().BeTrue();
+            canGetBool.Should().BeTrue();
+
+            numResult.Should().Be(42);
+            stringResult.Should().Be("hello");
+            boolResult.Should().Be(true);
         }
 
     }

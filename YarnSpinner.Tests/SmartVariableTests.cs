@@ -140,6 +140,22 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestSmartVariablesCanBeEvaluatedExternally()
+        {
+            // Given
+            var source = CreateTestNode("<<declare $smart_var = 1 + 1>>");
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            this.dialogue.SetProgram(result.Program);
+
+            // When
+            bool success = this.dialogue.TryGetVariable<int>("$smart_var", out var evaluationResult);
+            
+            // Then
+            success.Should().BeTrue();
+            evaluationResult.Should().Be(2);
+        }
+
+        [Fact]
         public void TestSmartVariablesCannotContainDependencyLoops()
         {
             // Given

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -194,7 +194,7 @@ namespace Yarn
         /// </summary>
         internal Program Program { get; set; }
 
-        private State state = new State();
+        internal State state = new State();
 
         public string currentNodeName
         {

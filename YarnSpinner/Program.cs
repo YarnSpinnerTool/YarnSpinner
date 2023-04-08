@@ -57,6 +57,20 @@ namespace Yarn
             return Nodes[nodeName].Tags;
         }
 
+        /// <summary>
+        /// Gets the collection of nodes that contain the code for evaluating a
+        /// smart variable.
+        /// </summary>
+        internal IEnumerable<Node> SmartVariableNodes {
+            get {
+                foreach (var node in this.Nodes.Values) {
+                    if (node.Tags.Contains(SmartVariableNodeTag)) {
+                        yield return node;
+                    }
+                }
+            }
+        }
+
         // TODO: this behaviour belongs in the VM as a "load additional program" feature, not in the Program data object
 
 		/// <summary>
