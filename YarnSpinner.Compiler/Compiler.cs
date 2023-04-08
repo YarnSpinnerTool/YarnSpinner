@@ -15,7 +15,7 @@ namespace Yarn.Compiler
     /// <summary>
     /// Compiles Yarn code.
     /// </summary>
-    public class Compiler : YarnSpinnerParserBaseListener
+    public class Compiler : YarnSpinnerParserBaseListener, ICodeEmitter
     {
         private int labelCount = 0;
 
@@ -23,7 +23,7 @@ namespace Yarn.Compiler
         /// Gets the current node to which instructions are being added.
         /// </summary>
         /// <value>The current node.</value>
-        internal Node CurrentNode { get; private set; }
+        public Node CurrentNode { get; private set; }
 
         /// <summary>
         /// Gets the current debug information that describes <see
@@ -54,7 +54,7 @@ namespace Yarn.Compiler
         /// This is supplied as part of a <see cref="CompilationJob"/>, or by
         /// <see cref="GetDeclarations"/>.
         /// </remarks>
-        internal Dictionary<string, Declaration> VariableDeclarations = new Dictionary<string, Declaration>();
+        public IDictionary<string, Declaration> VariableDeclarations { get; set; } = new Dictionary<string, Declaration>();
 
         /// <summary>
         /// The Library, which contains the function declarations known to the
@@ -726,7 +726,7 @@ namespace Yarn.Compiler
         /// <param name="commentary">Any additional text to append to the
         /// end of the label.</param>
         /// <returns>The new label name.</returns>
-        internal string RegisterLabel(string commentary = null)
+        public string RegisterLabel(string commentary = null)
         {
             return "L" + this.labelCount++ + commentary;
         }
@@ -745,7 +745,7 @@ namespace Yarn.Compiler
         /// <param name="code">The opcode of the instruction.</param>
         /// <param name="operands">The operands to associate with the
         /// instruction.</param>
-        void Emit(Node node, DebugInfo debugInfo, int sourceLine, int sourceCharacter, OpCode code, params Operand[] operands)
+        internal static void Emit(Node node, DebugInfo debugInfo, int sourceLine, int sourceCharacter, OpCode code, params Operand[] operands)
         {
             var instruction = new Instruction
             {
@@ -773,9 +773,9 @@ namespace Yarn.Compiler
         /// instruction.</param>
         /// <param name="operands">The operands to associate with the
         /// instruction.</param>
-        internal void Emit(OpCode code, IToken startToken, params Operand[] operands)
+        void ICodeEmitter.Emit(OpCode code, IToken startToken, params Operand[] operands)
         {
-            this.Emit(this.CurrentNode, this.CurrentDebugInfo, startToken?.Line - 1 ?? -1, startToken?.Column ?? -1, code, operands);
+            Emit(this.CurrentNode, this.CurrentDebugInfo, startToken?.Line - 1 ?? -1, startToken?.Column ?? -1, code, operands);
         }
 
         /// <summary>
@@ -791,9 +791,9 @@ namespace Yarn.Compiler
         /// <param name="code">The opcode of the instruction.</param>
         /// <param name="operands">The operands to associate with the
         /// instruction.</param>
-        internal void Emit(OpCode code, params Operand[] operands)
+        void ICodeEmitter.Emit(OpCode code, params Operand[] operands)
         {
-            this.Emit(this.CurrentNode, this.CurrentDebugInfo, -1, -1, code, operands);
+            Emit(this.CurrentNode, this.CurrentDebugInfo, -1, -1, code, operands);
         }
 
         /// <summary>
@@ -971,7 +971,7 @@ namespace Yarn.Compiler
                 CodeGenerationVisitor.GenerateTrackingCode(this, track);
             }
             // We have exited the body; emit a 'stop' opcode here.
-            this.Emit(this.CurrentNode, this.CurrentDebugInfo, context.Stop.Line - 1, 0, OpCode.Stop);
+            Emit(this.CurrentNode, this.CurrentDebugInfo, context.Stop.Line - 1, 0, OpCode.Stop);
         }
 
         /// <summary>
@@ -1069,6 +1069,11 @@ namespace Yarn.Compiler
             }
 
             return description;
+        }
+
+        public void AddLabel(string name, int position)
+        {
+            this.CurrentNode.Labels.Add(name, position);
         }
     }
 }

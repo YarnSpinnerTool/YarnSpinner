@@ -254,7 +254,7 @@ namespace Yarn
             }
         }
 
-        Node currentNode;
+        internal Node currentNode;
 
         public bool SetNode(string nodeName)
         {

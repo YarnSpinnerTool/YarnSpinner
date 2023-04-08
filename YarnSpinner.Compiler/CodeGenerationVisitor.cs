@@ -16,11 +16,11 @@ namespace Yarn.Compiler
     // Instructions
     internal partial class CodeGenerationVisitor : YarnSpinnerParserBaseVisitor<int>
     {
-        private Compiler compiler;
+        private ICodeEmitter compiler;
 
         internal string trackingEnabled = null;
 
-        public CodeGenerationVisitor(Compiler compiler, string trackingEnabled)
+        public CodeGenerationVisitor(ICodeEmitter compiler, string trackingEnabled)
         {
             this.compiler = compiler;
             this.trackingEnabled = trackingEnabled;
@@ -225,7 +225,7 @@ namespace Yarn.Compiler
                 this.GenerateClause(endOfIfStatementLabel, elseClause, elseClause.statement(), null);
             }
 
-            this.compiler.CurrentNode.Labels.Add(endOfIfStatementLabel, this.compiler.CurrentNode.Instructions.Count);
+            this.compiler.AddLabel(endOfIfStatementLabel, this.compiler.CurrentNode.Instructions.Count);
 
             return 0;
         }
@@ -254,7 +254,7 @@ namespace Yarn.Compiler
 
             if (expression != null)
             {
-                this.compiler.CurrentNode.Labels.Add(endOfClauseLabel, this.compiler.CurrentNode.Instructions.Count);
+                this.compiler.AddLabel(endOfClauseLabel, this.compiler.CurrentNode.Instructions.Count);
                 this.compiler.Emit(OpCode.Pop, clauseContext.Stop);
             }
         }
@@ -435,7 +435,7 @@ namespace Yarn.Compiler
             GenerateTrackingCode(this.compiler, variableName);
         }
         // really ought to make this emit like a list of opcodes actually
-        public static void GenerateTrackingCode(Compiler compiler, string variableName)
+        public static void GenerateTrackingCode(ICodeEmitter compiler, string variableName)
         {
             // pushing the var and the increment onto the stack
             compiler.Emit(OpCode.PushVariable, new Operand(variableName));
