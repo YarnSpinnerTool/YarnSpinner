@@ -196,9 +196,50 @@ namespace Yarn
     /// <param name="message">The text that should be logged.</param>
     public delegate void Logger(string message);
 
-    /// <summary>Provides a mechanism for storing and retrieving instances
-    /// of the <see cref="Value"/> class.</summary>
-    public interface IVariableStorage
+    /// <summary>
+    /// Represents different kinds of variables that can be fetched from a <see
+    /// cref="Dialogue"/> using <see cref="Dialogue.TryGetValue"/>.
+    /// </summary>
+    public enum VariableKind {
+        /// <summary>
+        /// The kind of the variable cannot be determined. It may not be known
+        /// to the system.
+        /// </summary>
+        Unknown,
+        /// <summary>
+        /// The variable's value is stored in memory, and may be persisted to
+        /// disk.
+        /// </summary>
+        Stored,
+        /// <summary>
+        /// The variable's value is computed at run-time, and is not persisted
+        /// to disk. 
+        /// </summary>
+        Smart
+    }
+
+    /// <summary>Provides a mechanism for retrieving values.</summary>
+    public interface IVariableAccess {
+        /// <summary>
+        /// Retrieves a value of type <typeparamref name="T"/> by name.
+        /// </summary>
+        /// <typeparam name="T">The type of the variable to
+        /// retrieve.</typeparam>
+        /// <param name="variableName">The name of the variable to retrieve the
+        /// value of.</param>
+        /// <param name="result">On return, if this method returned true,
+        /// contains the retrieved value. If this method returned false,
+        /// contains the default value of <typeparamref name="T"/> (for example,
+        /// <c>0</c> for <see cref="float"/> values, <see langword="null"/> for
+        /// strings, and so on.)</param>
+        /// <returns><see langword="true"/> if a value named <paramref
+        /// name="variableName"/> of type <typeparamref name="T"/> was
+        /// retrieved; <see langword="false"/> otherwise.</returns>
+        bool TryGetValue<T>(string variableName, out T result);
+    }
+
+    /// <summary>Provides a mechanism for storing values.</summary>
+    public interface IVariableStorage : IVariableAccess
     {
         /// <summary>
         /// Stores a <see cref="string"/> in this VariableStorage.
@@ -223,23 +264,6 @@ namespace Yarn
         /// variable.</param>
         /// <param name="boolValue">The boolean value to store.</param>
         void SetValue(string variableName, bool boolValue);
-
-        /// <summary>
-        /// Retrieves a value of type <typeparamref name="T"/> by name.
-        /// </summary>
-        /// <typeparam name="T">The type of the variable to
-        /// retrieve.</typeparam>
-        /// <param name="variableName">The name of the variable to retrieve the
-        /// value of.</param>
-        /// <param name="result">On return, if this method returned true,
-        /// contains the retrieved value. If this method returned false,
-        /// contains the default value of <typeparamref name="T"/> (for example,
-        /// <c>0</c> for <see cref="float"/> values, <see langword="null"/> for
-        /// strings, and so on.)</param>
-        /// <returns><see langword="true"/> if a value named <paramref
-        /// name="variableName"/> of type <typeparamref name="T"/> was
-        /// retrieved; <see langword="false"/> otherwise.</returns>
-        bool TryGetValue<T>(string variableName, out T result);
 
         /// <summary>
         /// Removes all variables from storage.
@@ -405,7 +429,7 @@ namespace Yarn
     /// <summary>
     /// Co-ordinates the execution of Yarn programs.
     /// </summary>
-    public class Dialogue : IAttributeMarkerProcessor
+    public class Dialogue : IAttributeMarkerProcessor, IVariableAccess
     {
 
         /// <summary>
@@ -440,8 +464,20 @@ namespace Yarn
 
                 vm.Program = value;
                 vm.ResetState();
+
+                smartVariableNames.Clear();
+
+                foreach (var node in program.SmartVariableNodes) {
+                    smartVariableNames.Add(node.Name);
+                }
             }
         }
+
+        /// <summary>
+        /// A cached collection of the names of nodes that implement smart
+        /// variables.
+        /// </summary>
+        private HashSet<string> smartVariableNames = new HashSet<string>();
 
         /// <summary>
         /// Gets a value indicating whether the Dialogue is currently executing
@@ -1076,7 +1112,7 @@ namespace Yarn
             return count;
         }
 
-        private struct SmartVariable<T> where T : IConvertible {
+        private struct SmartVariable<T> {
 
             public string Name => implementationNode.Name;
 
@@ -1088,42 +1124,70 @@ namespace Yarn
                     var previousState = vm.state;
                     var oldNodeCompleteHandler = vm.NodeCompleteHandler;
                     var oldDialogueCompleteHandler = vm.DialogueCompleteHandler;
+                    var oldLogHandler = dialogue.LogDebugMessage;
+                    var oldCurrentNode = vm.currentNode;
+                    var oldExecutionState = vm._executionState;
 
-                    // Start the state new and jump to the implementation node
-                    vm.state = new VirtualMachine.State();
-                    vm.currentNode = this.implementationNode;
-
-                    Value result = null;
-
-                    // Set up new handlers - we want to do nothing when dialogue
-                    // completes, and we want to grab the top of the result
-                    // stack before the VM resets.
-                    this.dialogue.vm.DialogueCompleteHandler = EmptyDialogueCompleteHandler;
-                    this.dialogue.vm.NodeCompleteHandler = (name) =>
+                    try
                     {
-                        result = vm.state.PeekValue();
-                        if (result == null) {
-                            throw new InvalidOperationException($"Smart variable implementation node {name} did not produce a value");
+                        // Start the state new and jump to the implementation
+                        // node
+                        vm.state = new VirtualMachine.State();
+                        vm.currentNode = this.implementationNode;
+                        vm._executionState = VirtualMachine.ExecutionState.Stopped;
+
+                        Value result = null;
+
+                        // Set up new handlers - we want to do nothing when
+                        // dialogue completes, and we want to grab the top of
+                        // the result stack before the VM resets.
+                        this.dialogue.LogDebugMessage = EmptyLogDebugMessage;
+                        this.dialogue.vm.DialogueCompleteHandler = EmptyDialogueCompleteHandler;
+                        this.dialogue.vm.NodeCompleteHandler = (name) =>
+                        {
+                            result = vm.state.PeekValue();
+                            if (result == null)
+                            {
+                                throw new InvalidOperationException($"Smart variable implementation node {name} did not produce a value");
+                            }
+                        };
+
+                        // Execute the node; when this method call returns,
+                        // 'result' will be non-null
+                        vm.Continue();
+
+                        Type resultType = result.InternalValue.GetType();
+                        if (typeof(T).IsAssignableFrom(resultType))
+                        {
+                            return (T)result.InternalValue;
                         }
-                    };
-
-                    // Execute the node; when this method call returns, 'result'
-                    // will be non-null
-                    vm.Continue();
-
-                    // Restore our backed-up configuration
-                    vm.NodeCompleteHandler = oldNodeCompleteHandler;
-                    vm.DialogueCompleteHandler = oldDialogueCompleteHandler;
-                    vm.state = previousState;
-
-                    // Convert the result to the desired type and we're done!
-                    return result.ConvertTo<T>();
+                        else
+                        {
+                            // We can't cast it directly. Try using Convert to
+                            // convert the type to T.
+                            try {
+                                return (T)Convert.ChangeType(result.InternalValue, typeof(T), System.Globalization.CultureInfo.InvariantCulture);
+                            } catch (InvalidCastException e) {
+                                throw new InvalidCastException($"Cannot convert smart variable {Name} ({resultType}) to {typeof(T)}", e);
+                            }
+                        }
+                    } finally {
+                        // Restore our backed-up configuration
+                        vm.NodeCompleteHandler = oldNodeCompleteHandler;
+                        vm.DialogueCompleteHandler = oldDialogueCompleteHandler;
+                        vm.state = previousState;
+                        vm.currentNode = oldCurrentNode;
+                        vm._executionState = oldExecutionState;
+                        this.dialogue.LogDebugMessage = oldLogHandler;
+                    }
                 }
             }
+
             
             private readonly Dialogue dialogue;
             private readonly Node implementationNode;
 
+            private static readonly Logger EmptyLogDebugMessage = (string message) => { };
             private static readonly DialogueCompleteHandler EmptyDialogueCompleteHandler = () => { };
             
             public SmartVariable(Dialogue dialogue, Node implementationNode)
@@ -1140,50 +1204,78 @@ namespace Yarn
         /// </summary>
         /// <typeparam name="T">The type of the value to return. The fetched
         /// value will be converted to this type.</typeparam>
-        /// <param name="name">The name of the variable.</param>
+        /// <param name="variableName">The name of the variable.</param>
         /// <param name="result">If this method returns <see langword="true"/>,
         /// this parameter will contain the fetched value.</param>
         /// <returns><see langword="true"/> if a value could be fetched; <see
         /// langword="false"/> otherwise.</returns>
-        internal bool TryGetVariable<T>(string name, out T result) where T : IConvertible {
-            if (this.program.InitialValues.ContainsKey(name)) {
-                // This is a stored value. First, attempt to fetch it from the
-                // variable storage.
-                if (VariableStorage.TryGetValue<T>(name, out result)) {
-                    // We successfully fetched it from storage.
-                    return true;
-                } else {
-                    // Attempt to fetch it from the program's initial values.
-                    var initialValue = program.InitialValues[name];
-                    switch (initialValue.ValueCase)
-                    {
-                        case Operand.ValueOneofCase.StringValue:
-                            result = (T)Convert.ChangeType(initialValue.StringValue, typeof(T), System.Globalization.CultureInfo.InvariantCulture);
-                            return true;
-                        case Operand.ValueOneofCase.BoolValue:
-                            result = (T)Convert.ChangeType(initialValue.BoolValue, typeof(T), System.Globalization.CultureInfo.InvariantCulture);
-                            return true;
-                        case Operand.ValueOneofCase.FloatValue:
-                            result = (T)Convert.ChangeType(initialValue.FloatValue, typeof(T), System.Globalization.CultureInfo.InvariantCulture);
-                            return true;
-                        default:
-                            throw new InvalidOperationException($"Internal error: invalid value type {initialValue.ValueCase}");
-                    }
-                }
-            } else {
-                // The variable may be a smart variable.
-                foreach (var node in this.program.SmartVariableNodes) {
-                    if (node.Name == name) {
-                        var variable = new SmartVariable<T>(this, node);
-                        result = variable.Value;
+        public bool TryGetValue<T>(string variableName, out T result) {
+            switch (GetVariableKind(variableName))
+            {
+                case VariableKind.Stored:
+                    // This is a stored value. First, attempt to fetch it from the
+                    // variable storage.
+                    if (VariableStorage.TryGetValue(variableName, out result)) {
+                        // We successfully fetched it from storage.
                         return true;
+                    } else {
+                        // Attempt to fetch it from the program's initial values.
+                        var initialValue = program.InitialValues[variableName];
+                        try
+                        {
+                            switch (initialValue.ValueCase)
+                            {
+                                case Operand.ValueOneofCase.StringValue:
+                                    result = (T)(object)initialValue.StringValue;
+                                    return true;
+                                case Operand.ValueOneofCase.BoolValue:
+                                    result = (T)(object)initialValue.BoolValue;
+                                    return true;
+                                case Operand.ValueOneofCase.FloatValue:
+                                    result = (T)(object)initialValue.FloatValue;
+                                    return true;
+                                default:
+                                    throw new InvalidOperationException($"Internal error: invalid value type {initialValue.ValueCase}");
+                            }
+                        } catch (InvalidCastException e) {
+                            throw new InvalidCastException($"Can't fetch variable {variableName} (a {initialValue.ValueCase}) as {typeof(T)}", e);
+                        }
+                    }
+                case VariableKind.Smart:
+                    // The variable is a smart variable. Find the node that
+                    // implements it, and use that to get the variable's current
+                    // value.
+                    var node = this.program.Nodes[variableName];
+                    var variable = new SmartVariable<T>(this, node);
+                    result = variable.Value;
+                    return true;
+                case VariableKind.Unknown:
+                default:
+                    // The variable is not known.
+                    result = default;
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Gets the kind of variable named <paramref name="name"/>.
+        /// </summary>
+        /// <param name="name">The name of the variable.</param>
+        /// <returns>A <see cref="VariableKind"/> enum representing the kind of
+        /// the variable named <paramref name="name"/>.</returns>
+        public VariableKind GetVariableKind(string name) {
+            if (this.program.InitialValues.ContainsKey(name)) {
+                return VariableKind.Stored;
+            } else {
+                foreach (var node in this.program.SmartVariableNodes)
+                {
+                    if (node.Name == name)
+                    {
+                        return VariableKind.Smart;
                     }
                 }
-
-                // No smart variable was found. This is not a known variable.
-                result = default;
-                return false;
             }
+            return VariableKind.Unknown;
         }
 
         // The standard, built-in library of functions and operators.

@@ -237,7 +237,7 @@ namespace Yarn
             Running,
         }
 
-        private ExecutionState _executionState;
+        internal ExecutionState _executionState;
         public ExecutionState CurrentExecutionState
         {
             get

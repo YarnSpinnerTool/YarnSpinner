@@ -354,9 +354,9 @@ namespace YarnSpinner.Tests
             dialogue.SetProgram(result.Program);
 
             // When
-            var canGetNumber = dialogue.TryGetVariable<int>("$numVar", out var numResult);
-            var canGetString = dialogue.TryGetVariable<string>("$stringVar", out var stringResult);
-            var canGetBool = dialogue.TryGetVariable<bool>("$boolVar", out var boolResult);
+            var canGetNumber = dialogue.TryGetValue<int>("$numVar", out var numResult);
+            var canGetString = dialogue.TryGetValue<string>("$stringVar", out var stringResult);
+            var canGetBool = dialogue.TryGetValue<bool>("$boolVar", out var boolResult);
 
             // Then
             canGetNumber.Should().BeTrue();
