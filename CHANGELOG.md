@@ -63,6 +63,32 @@ If you don't specify any raw values for an enum, then Yarn Spinner will choose n
 
 Functions can receive enums as parameters, as long as the enum's raw value type matches the parameter type. For example, if you have a function `print` that takes a string as a parameter, you can pass any enum to it that uses strings for its raw values; if you have a function `multiplyByTwo` that takes a number as a parameter, you can pass any enum to it that uses numbers for its raw values.
 
+#### Smart Variables
+
+Smart variables have been added to the Yarn language.
+
+A smart variable is one that determines its value at run-time, rather than setting and retrieving a value from storage.
+
+Smart variables give you a simple way to create more complex expressions, and re-use them across your project.
+
+To create a smart variable, declare it using the `declare` statement and provide an expression, rather than a single value:
+
+```
+// $player_can_afford_pie is a boolean value that is 'true' 
+// when the player has more than 10 money
+<<declare $player_can_afford_pie = $player_money > 10>>
+```
+
+Smart variables can be accessed anywhere a regular variable would be used:
+
+```
+// Run some lines if the player can afford 
+<<if $player_can_afford_pie>>
+  Player: One pie, please.
+  PieMaker: Certainly!
+<<endif>>
+```
+
 ### Changed
 
 - Fixed a bug in the language server that caused crashes when code-completion was requested at a position more than 50% of the way through a document.
