@@ -957,57 +957,71 @@ namespace Yarn.Compiler
             // to check if there are any dependency loops between smart
             // declarations.
             var smartVariableDeclarations = declarations.Where(d => d.IsInlineExpansion);
-            var smartVariableDeclarationDict = smartVariableDeclarations.ToDictionary(d => d.Name, d => d);
+            var allDeclsDict = declarations.ToDictionary(d => d.Name, d => d);
 
-            foreach (var decl in smartVariableDeclarations) {
-                if (CheckDeclarationForLoop(decl, smartVariableDeclarationDict, out ParserRuleContext loopCause))
-                {
-                    diagnostics.Add(new Diagnostic(decl.SourceFileName, loopCause, $"Smart variables cannot contain reference loops (referencing {loopCause.GetTextWithWhitespace()} here creates a loop for the smart variable {decl.Name})"));
+            // Calculate the dependencies for each smart variable, catching any loops
+            foreach (var smartVariableDecl in smartVariableDeclarations) {
+                var dependencies = GetDependenciesForVariable(smartVariableDecl, allDeclsDict, out var error);
+                if (error != null) {
+                    diagnostics.Add(error);
+                    continue;
+                }
+
+                smartVariableDecl.Dependencies = dependencies;
+                foreach (var dependency in dependencies) {
+                    dependency.Dependents = (dependency.Dependents ?? Enumerable.Empty<Declaration>()).Append(smartVariableDecl);
                 }
             }
 
+            // Make all dependency lists distinct
+            foreach (var decl in declarations) {
+                decl.Dependencies = decl.Dependencies?.Distinct() ?? Enumerable.Empty<Declaration>();
+                decl.Dependents = decl.Dependents?.Distinct() ?? Enumerable.Empty<Declaration>();
+            }
         }
 
-        /// <summary>
-        /// Performs a depth-first search on an expression, expanding any smart
-        /// variables encountered, and returns true if a loop is found.
-        /// </summary>
-        /// <param name="context">An expression to check for loops.</param>
-        /// <param name="decls">A dictionary containing smart variable
-        /// declarations.</param>
-        /// <returns><see langword="true"/> if a loop was discovered.</returns>
-        internal static bool CheckDeclarationForLoop(Declaration startDecl, IDictionary<string, Declaration> decls, out ParserRuleContext loopCause) {
-            
-            var seenDecls = new HashSet<string>();
+        internal static IEnumerable<Declaration> GetDependenciesForVariable(Declaration startDecl, IDictionary<string, Declaration> decls, out Diagnostic loopError)
+        {
+            var dependencies = new HashSet<Declaration>();
             var searchStack = new Stack<ParserRuleContext>();
             searchStack.Push(startDecl.InitialValueParserContext);
-            seenDecls.Add(startDecl.Name);
 
-            while (searchStack.Count > 0) {
+            while (searchStack.Count > 0)
+            {
                 var item = searchStack.Pop();
 
-                if (item is YarnSpinnerParser.VariableContext variable) {
-                    // This item is a variable. If it's a smart variable, check
-                    // to see if we've encountered a loop.
+                if (item is YarnSpinnerParser.VariableContext variable)
+                {
+                    // This item is a variable. Find its declaration.
                     string variableName = variable.VAR_ID().GetText();
-                    if (decls.ContainsKey(variableName)) {
-                        // This is a smart variable. Have we seen it before?
-                        if (seenDecls.Contains(variableName))
+                    if (decls.TryGetValue(variableName, out var dependencyDecl))
+                    {
+                        // Have we looped back to the start declaration? 
+                        if (dependencyDecl == startDecl)
                         {
-                            // We have! Loop detected!
-                            loopCause = variable;
-                            return true;
+                            // We've found a dependency loop!
+                            loopError = new Diagnostic(startDecl.SourceFileName, variable, $"Smart variables cannot contain reference loops (referencing {variable.GetTextWithWhitespace()} here creates a loop for the smart variable {startDecl.Name})");
+                            return null;
                         }
 
-                        // Mark that we've seen this smart variable before.
-                        seenDecls.Add(variableName);
+                        // Add this variable to the set of dependencies of
+                        // startDecl.
+                        dependencies.Add(dependencyDecl);
 
-                        // Add the parse tree to our search stack, so that we
-                        // check its contents.
-                        searchStack.Push(decls[variableName].InitialValueParserContext);
+                        if (dependencyDecl.IsInlineExpansion)
+                        {
+                            // Add this smart variable's definition to our search.
+                            searchStack.Push(dependencyDecl.InitialValueParserContext);
+                        }
+                    }
+                    else
+                    {
+                        // We couldn't find a declaration for this variable.
+                        throw new InvalidOperationException($"Internal error: found undeclared variable {variableName} while finding dependencies of {startDecl.Name}");
                     }
                 }
 
+                // Add all children to the search.
                 var childContexts = item.children
                     .Where(tree => tree.Payload is ParserRuleContext)
                     .Select(tree => tree.Payload as ParserRuleContext)
@@ -1019,10 +1033,18 @@ namespace Yarn.Compiler
                 }
             }
 
-            // We searched the entire declaration and found no loop.
-            loopCause = null;
-            return false;
+            loopError = null;
+            return dependencies;
         }
+
+        /// <summary>
+        /// Performs a depth-first search on an expression, expanding any smart
+        /// variables encountered, and returns true if a loop is found.
+        /// </summary>
+        /// <param name="context">An expression to check for loops.</param>
+        /// <param name="decls">A dictionary containing smart variable
+        /// declarations.</param>
+        /// <returns><see langword="true"/> if a loop was discovered.</returns>
     }
 
     /// <summary>

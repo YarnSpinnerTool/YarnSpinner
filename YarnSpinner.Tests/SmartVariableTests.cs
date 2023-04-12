@@ -232,5 +232,59 @@ namespace YarnSpinner.Tests
                 .Contain(d => d.Message == "$smart_var cannot be modified (it's a smart variable and is always equal to 1 + 1)")
                 .Which.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
         }
+
+        [Fact]
+        public void TestSmartVariablesHaveDependencies()
+        {
+            // Given
+            var source = CreateTestNode(new[] {
+                "<<declare $smart_var_1 = $smart_var_2 or $stored_var_1>>",
+                "<<declare $smart_var_2 = $stored_var_2 > 5>>",
+            });
+
+            /*
+            Dependency Tree:
+
+                       $smart_var_1
+                      /            \
+            $stored_var_1         $smart_var_2
+                                        |
+                                  $stored_var_2
+            */
+
+            // When
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+
+            // Then
+            var smartVar1 = result.Declarations.Should()
+                .Contain(d => d.Name == "$smart_var_1").Subject;
+            var smartVar2 = result.Declarations.Should()
+                .Contain(d => d.Name == "$smart_var_2").Subject;
+            var storedVar1 = result.Declarations.Should()
+                .Contain(d => d.Name == "$stored_var_1").Subject;
+            var storedVar2 = result.Declarations.Should()
+                .Contain(d => d.Name == "$stored_var_2").Subject;
+            
+            smartVar1.IsInlineExpansion.Should().BeTrue();
+            smartVar2.IsInlineExpansion.Should().BeTrue();
+
+            storedVar1.IsInlineExpansion.Should().BeFalse();
+            storedVar2.IsInlineExpansion.Should().BeFalse();
+
+            smartVar1.Dependents.Should().BeEmpty("nothing depends on smartVar1");
+            smartVar1.Dependencies.Should().Contain(
+                new[] { smartVar2, storedVar1, storedVar2 },
+                "smart_var_1 depends on smart_var_2, stored_var_1, and stored_var_2"
+                );
+
+            smartVar2.Dependents.Should().Contain(smartVar1, "smart_var_1 depends on smartVar2");
+            smartVar2.Dependencies.Should().Contain(new[] { storedVar2 }, "smart_var_2 depends on storedVar2");
+
+            storedVar1.Dependents.Should().Contain(smartVar1, "smart_var_1 depends on stored_var_1");
+            storedVar1.Dependencies.Should().BeEmpty("stored_var_1 doesn't depend on anything");
+
+            storedVar2.Dependents.Should().Contain(new[] {smartVar1, smartVar2}, "smart_var_1 and smart_var_2 depend on stored_var_2");
+            storedVar2.Dependencies.Should().BeEmpty("stored_var_2 doesn't depend on anything");
+        }
     }
 }

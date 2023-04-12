@@ -274,6 +274,9 @@ namespace Yarn.Compiler
         /// value.)
         /// </summary>
         internal YarnSpinnerParser.ExpressionContext InitialValueParserContext { get; set; }
+        
+        public IEnumerable<Declaration> Dependents { get; internal set; }
+        public IEnumerable<Declaration> Dependencies { get; internal set; }
 
         /// <inheritdoc/>
         public override string ToString()
