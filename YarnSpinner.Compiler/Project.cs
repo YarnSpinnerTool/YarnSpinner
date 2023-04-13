@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.FileSystemGlobbing;
 
 namespace Yarn.Compiler
 {
@@ -39,7 +40,7 @@ namespace Yarn.Compiler
         [JsonPropertyName("sourceFiles")]
         public IEnumerable<string> SourceFilePatterns { get; set; } = new[] { "**/*.yarn" };
 
-        public Dictionary<string, LocalizationInfo> Localisation = new Dictionary<string,LocalizationInfo>();
+        public Dictionary<string, LocalizationInfo> Localisation { get; set; } = new Dictionary<string,LocalizationInfo>();
 
         [JsonRequired]
         public string BaseLanguage { get; set; }
@@ -52,5 +53,20 @@ namespace Yarn.Compiler
         }
 
         public Dictionary<string, object> CompilerOptions { get; set; } = new Dictionary<string, object>();
+
+        [JsonIgnore]
+        public IEnumerable<string> SourceFiles
+        {
+            get
+            {
+                Matcher matcher = new Matcher(StringComparison.OrdinalIgnoreCase);
+
+                matcher.AddIncludePatterns(this.SourceFilePatterns);
+
+                var searchDirectory = System.IO.Path.GetDirectoryName(this.Path);
+
+                return matcher.GetResultsInFullPath(searchDirectory);
+            }
+        }
     }
 }

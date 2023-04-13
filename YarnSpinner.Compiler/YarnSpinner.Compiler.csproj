@@ -25,6 +25,7 @@ This package provides support for compiling Yarn source code, so that you can ex
     <PackageReference Include="CsvHelper" Version="12.2.2" />
     <PackageReference Include="YarnSpinner" Version="1.1.0" />
     <PackageReference Include="System.Text.Json" Version="7.0.2" />
+    <PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="7.0.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
