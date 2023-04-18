@@ -52,7 +52,7 @@ namespace Yarn.Compiler
 
         [JsonPropertyName("projectFileVersion")]
         [JsonRequired]
-        public int FileVersion { get; set; }
+        public int FileVersion { get; set; } = 2;
 
         public string Path { get; private set; }
 
