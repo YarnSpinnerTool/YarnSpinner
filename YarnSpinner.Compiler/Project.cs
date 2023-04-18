@@ -23,17 +23,19 @@ namespace Yarn.Compiler
 
         public const int CurrentProjectFileVersion = 2;
 
+        private static readonly JsonSerializerOptions SerializationOptions = new JsonSerializerOptions
+        {
+            AllowTrailingCommas = true,
+            ReadCommentHandling = JsonCommentHandling.Skip,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            
+            PropertyNameCaseInsensitive = true,
+        };
+
         public static Project LoadFromFile(string path) {
             var text = System.IO.File.ReadAllText(path);
-            var config = new JsonSerializerOptions
-            {
-                AllowTrailingCommas = true,
-                ReadCommentHandling = JsonCommentHandling.Skip,
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                PropertyNameCaseInsensitive = true,
-            };
-
-            var project = JsonSerializer.Deserialize<Project>(text, config);
+            
+            var project = JsonSerializer.Deserialize<Project>(text, SerializationOptions);
 
             if (project.FileVersion != CurrentProjectFileVersion) {
                 throw new ArgumentException($"Project file at {path} has incorrect file version (expected {CurrentProjectFileVersion}, got {project.FileVersion})");
@@ -43,6 +45,10 @@ namespace Yarn.Compiler
 
             return project;
         }
+
+        public void SaveToFile(string path) => System.IO.File.WriteAllText(path, this.GetJson());
+
+        public string GetJson() => JsonSerializer.Serialize(this, SerializationOptions);
 
         [JsonPropertyName("projectFileVersion")]
         [JsonRequired]

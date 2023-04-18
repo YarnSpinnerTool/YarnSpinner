@@ -53,6 +53,55 @@ namespace YarnSpinner.Tests
             relativeFiles.Should().NotContain("Space.yarnproject");
 
         }
+
+        [Fact]
+        public void TestProjectsCanSave()
+        {
+            // Given
+            var project = new Yarn.Compiler.Project();
+            var path = Path.GetTempFileName();
+            System.Console.WriteLine($"Temporary file for {nameof(TestProjectsCanSave)} is {path}");
+
+            // When
+            project.SaveToFile(path);
+            var loadedProject = Yarn.Compiler.Project.LoadFromFile(path);
+
+            // Then
+            loadedProject.Should().BeEquivalentTo(
+                project, 
+                (options) => options
+                    .Excluding(o => o.Path) // paths will be different
+                    .Excluding(o => o.SourceFiles) // source files will be different (because paths are different)
+            );
+        }
+
+        [Fact]
+        public void TestProjectsCanBeModifiedAndSaved()
+        {
+            // Given
+            Yarn.Compiler.Project project = Yarn.Compiler.Project.LoadFromFile(ProjectFilePath);
+
+            project.Localisation.Add("fr", new Yarn.Compiler.Project.LocalizationInfo
+            {
+                Strings = "French.csv",
+                Assets = "./French/"
+            });
+
+            var path = Path.GetTempFileName();
+            System.Console.WriteLine($"Temporary file for {nameof(TestProjectsCanBeModifiedAndSaved)} is {path}");
+
+            // When
+            project.SaveToFile(path);
+            var newProject = Yarn.Compiler.Project.LoadFromFile(path);
+
+            // Then
+            newProject.Should().BeEquivalentTo(
+                project, 
+                (options) => options
+                    .Excluding(o => o.Path) // paths will be different
+                    .Excluding(o => o.SourceFiles) // source files will be different (because paths are different)
+            );
+        }
     }
 
 }
