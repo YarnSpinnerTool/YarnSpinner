@@ -8,6 +8,19 @@ namespace Yarn.Compiler
 {
     public class Project
     {
+        private static System.Globalization.CultureInfo CurrentNeutralCulture
+        {
+            get
+            {
+                var current = System.Globalization.CultureInfo.CurrentCulture;
+                if (current.IsNeutralCulture == false)
+                {
+                    current = current.Parent;
+                }
+                return current;
+            }
+        }
+
         public const int CurrentProjectFileVersion = 2;
 
         public static Project LoadFromFile(string path) {
@@ -43,7 +56,7 @@ namespace Yarn.Compiler
         public Dictionary<string, LocalizationInfo> Localisation { get; set; } = new Dictionary<string,LocalizationInfo>();
 
         [JsonRequired]
-        public string BaseLanguage { get; set; }
+        public string BaseLanguage { get; set; } = CurrentNeutralCulture.Name;
 
         public string Definitions { get; set; }
 
