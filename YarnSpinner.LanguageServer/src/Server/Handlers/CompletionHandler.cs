@@ -210,6 +210,8 @@ namespace YarnLanguageServer.Handlers
                     return Task.FromResult(new CompletionList(statementCompletions));
                 }
 
+                var context = ParseTreeFromPosition(yarnFile.ParseTree, request.Position.Character, request.Position.Line + 1);
+
                 var index = yarnFile.GetRawToken(request.Position);
                 if (!index.HasValue)
                 {
@@ -229,131 +231,54 @@ namespace YarnLanguageServer.Handlers
                 var vocabulary = yarnFile.Lexer.Vocabulary;
                 var tokenName = vocabulary.GetSymbolicName(indexToken.Type);
 
+                void ExpandRangeToPreviousToken(int tokenType, int startIndex, ref Range range) {
+                    var startToken = yarnFile.Tokens[startIndex];
+                    var current = startToken;
+                    var index = startIndex;
+                    while (index >= 0 && current.Line == startToken.Line) {
+                        if (current.Type == tokenType) {
+                            var newRange = new Range
+                            {
+                                End = range.End,
+                                Start = PositionHelper.GetPosition(yarnFile.LineStarts, current.StopIndex + 1),
+                            };
+                            range = newRange;
+                            return;
+                        }
+                        current = yarnFile.Tokens[--index];
+                    }
+                }
+
                 switch (indexToken.Type)
                 {
                     case YarnSpinnerLexer.COMMAND_JUMP:
                         {
-                            foreach (var node in workspace.GetNodeTitles())
-                            {
-                                results.Add(new CompletionItem
-                                {
-                                    Label = node.title,
-                                    Kind = CompletionItemKind.Method,
-                                    Detail = System.IO.Path.GetFileName(node.uri.AbsolutePath),
-                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = node.title, Range = indexTokenRange.CollapseToEnd() }),
-                                });
-                            }
+                            GetNodeNameCompletions(indexTokenRange, results);
 
                             break;
                         }
 
                     case YarnSpinnerLexer.COMMAND_START:
                         {
-                            // Add keyword completions
-                            foreach (var keyword in keywordCompletions) {
-                                results.Add(keyword with
-                                {
-                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = keyword.InsertText, Range = new Range(request.Position, request.Position) }),
-                                });
-                            }
+                            GetCommandCompletions(request, indexTokenRange, results);
 
-                            // adding any known commands
-                            System.Text.StringBuilder builder = new System.Text.StringBuilder();
-                            foreach (var cmd in workspace.GetCommands())
-                            {
-                                builder.Append(cmd.YarnName);
-
-                                int i = 1;
-                                foreach (var param in cmd.Parameters)
-                                {
-                                    if (param.IsParamsArray)
-                                    {
-                                        builder.Append($" ${{{i}:{param.Name}...}}");
-                                    }
-                                    else
-                                    {
-                                        builder.Append($" ${{{i}:{param.Name}}}");
-                                    }
-
-                                    i++;
-                                }
-
-                                string detailText = (cmd.DefinitionFile == null || cmd.IsBuiltIn)
-                                    ? null
-                                    : $"{cmd.DefinitionName} ({System.IO.Path.GetFileName(cmd.DefinitionFile.AbsolutePath)})";
-
-                                results.Add(new CompletionItem
-                                {
-                                    Label = cmd.YarnName,
-                                    Kind = CompletionItemKind.Function,
-                                    Documentation = cmd.Documentation,
-                                    Detail = detailText,
-                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
-                                    InsertTextFormat = InsertTextFormat.Snippet,
-                                });
-                                builder.Clear();
-                            }
+                            break;
+                        }
+                    case YarnSpinnerLexer.COMMAND_TEXT:
+                        {
+                            ExpandRangeToPreviousToken(YarnSpinnerLexer.COMMAND_START, index.Value, ref indexTokenRange);
+                            GetCommandCompletions(request, indexTokenRange, results);
 
                             break;
                         }
 
                     // inline expressions, if, and elseif are the same thing
                     case YarnSpinnerLexer.EXPRESSION_START:
+                    case YarnSpinnerLexer.COMMAND_EXPRESSION_START:
                     case YarnSpinnerLexer.COMMAND_IF:
                     case YarnSpinnerLexer.COMMAND_ELSEIF:
                         {
-                            System.Text.StringBuilder builder = new System.Text.StringBuilder();
-                            foreach (var cmd in workspace.GetFunctions())
-                            {
-                                builder.Append(cmd.YarnName);
-                                builder.Append("(");
-
-                                var parameters = new List<string>();
-                                int i = 1;
-                                foreach (var param in cmd.Parameters)
-                                {
-                                    if (param.IsParamsArray)
-                                    {
-                                        parameters.Add($"${{{i}:{param.Name}...}}");
-                                    }
-                                    else
-                                    {
-                                        parameters.Add($"${{{i}:{param.Name}}}");
-                                    }
-
-                                    i++;
-                                }
-
-                                builder.Append(string.Join(", ", parameters));
-
-                                builder.Append(")");
-
-                                results.Add(new CompletionItem
-                                {
-                                    Label = cmd.DefinitionName,
-                                    Kind = CompletionItemKind.Function,
-                                    Documentation = cmd.Documentation,
-
-                                    // would be good in the future to also show the return type but we don't know that at this stage, something for the future
-                                    Detail = cmd.DefinitionFile == null || cmd.IsBuiltIn ? null : System.IO.Path.GetFileName(cmd.DefinitionFile.AbsolutePath),
-                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
-                                    InsertTextFormat = InsertTextFormat.Snippet,
-                                });
-                                builder.Clear();
-                            }
-
-                            foreach (var variable in workspace.GetVariables())
-                            {
-                                results.Add(new CompletionItem
-                                {
-                                    Label = variable.Name,
-                                    Kind = CompletionItemKind.Variable,
-                                    Documentation = variable.Description,
-                                    Detail = variable.Type.Name,
-                                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = variable.Name, Range = indexTokenRange.CollapseToEnd() }),
-                                    InsertTextFormat = InsertTextFormat.PlainText,
-                                });
-                            }
+                            GetVariableNameCompletions(indexTokenRange, results);
 
                             break;
                         }
@@ -363,6 +288,125 @@ namespace YarnLanguageServer.Handlers
             }
 
             return Task.FromResult<CompletionList>(null);
+        }
+
+        private void GetNodeNameCompletions(Range indexTokenRange, List<CompletionItem> results)
+        {
+            foreach (var node in workspace.GetNodeTitles())
+            {
+                results.Add(new CompletionItem
+                {
+                    Label = node.title,
+                    Kind = CompletionItemKind.Method,
+                    Detail = System.IO.Path.GetFileName(node.uri.AbsolutePath),
+                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = node.title, Range = indexTokenRange.CollapseToEnd() }),
+                });
+            }
+        }
+
+        private void GetVariableNameCompletions(Range indexTokenRange, List<CompletionItem> results)
+        {
+            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            foreach (var cmd in workspace.GetFunctions())
+            {
+                builder.Append(cmd.YarnName);
+                builder.Append("(");
+
+                var parameters = new List<string>();
+                int i = 1;
+                foreach (var param in cmd.Parameters)
+                {
+                    if (param.IsParamsArray)
+                    {
+                        parameters.Add($"${{{i}:{param.Name}...}}");
+                    }
+                    else
+                    {
+                        parameters.Add($"${{{i}:{param.Name}}}");
+                    }
+
+                    i++;
+                }
+
+                builder.Append(string.Join(", ", parameters));
+
+                builder.Append(")");
+
+                results.Add(new CompletionItem
+                {
+                    Label = cmd.DefinitionName,
+                    Kind = CompletionItemKind.Function,
+                    Documentation = cmd.Documentation,
+
+                    // would be good in the future to also show the return type but we don't know that at this stage, something for the future
+                    Detail = cmd.DefinitionFile == null || cmd.IsBuiltIn ? null : System.IO.Path.GetFileName(cmd.DefinitionFile.AbsolutePath),
+                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
+                    InsertTextFormat = InsertTextFormat.Snippet,
+                });
+                builder.Clear();
+            }
+
+            foreach (var variable in workspace.GetVariables())
+            {
+                results.Add(new CompletionItem
+                {
+                    Label = variable.Name,
+                    Kind = CompletionItemKind.Variable,
+                    Documentation = variable.Description,
+                    Detail = variable.Type.Name,
+                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = variable.Name, Range = indexTokenRange.CollapseToEnd() }),
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                });
+            }
+        }
+
+        private void GetCommandCompletions(CompletionParams request, Range indexTokenRange, List<CompletionItem> results)
+        {
+            // Add keyword completions
+            foreach (var keyword in keywordCompletions)
+            {
+                results.Add(keyword with
+                {
+                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = keyword.InsertText, Range = new Range(request.Position, request.Position) }),
+                });
+            }
+
+            // adding any known commands
+            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            foreach (var cmd in workspace.GetCommands())
+            {
+                builder.Append(cmd.YarnName);
+
+                int i = 1;
+                foreach (var param in cmd.Parameters)
+                {
+                    if (param.IsParamsArray)
+                    {
+                        builder.Append($" ${{{i}:{param.Name}...}}");
+                    }
+                    else
+                    {
+                        builder.Append($" ${{{i}:{param.Name}}}");
+                    }
+
+                    i++;
+                }
+
+                string detailText = (cmd.DefinitionFile == null || cmd.IsBuiltIn)
+                    ? null
+                    : $"{cmd.DefinitionName} ({System.IO.Path.GetFileName(cmd.DefinitionFile.AbsolutePath)})";
+
+                results.Add(new CompletionItem
+                {
+                    Label = cmd.YarnName,
+                    Kind = CompletionItemKind.Function,
+                    Documentation = cmd.Documentation,
+                    Detail = detailText,
+                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
+                    InsertTextFormat = InsertTextFormat.Snippet,
+                });
+                builder.Clear();
+            }
         }
 
         public static readonly HashSet<int> PreferedRules = new HashSet<int>
@@ -435,6 +479,105 @@ namespace YarnLanguageServer.Handlers
                 TriggerCharacters = new Container<string>(new List<string> { "$", "<", " ", "{" }),
                 AllCommitCharacters = new Container<string>(new List<string> { " " }), // maybe >> or }
             };
+        }
+
+        /// <summary>
+        /// Checks to see if a parse rule context of type <typeparamref
+        /// name="T"/> is an ancestor of <paramref name="tree"/>.
+        /// </summary>
+        /// <typeparam name="T">A type of <see
+        /// cref="Antlr4.Runtime.ParserRuleContext"/>. </typeparam>
+        /// <param name="tree">The tree to check.</param>
+        /// <returns>true if any parent of <paramref name="tree"/> is of type
+        /// <typeparamref name="T"/>.</returns>
+        public static bool IsChildOfContext<T>(Antlr4.Runtime.Tree.IParseTree tree)
+            where T : Antlr4.Runtime.ParserRuleContext
+        {
+            var type = typeof(T);
+            var current = tree;
+            while (current != null)
+            {
+                if (type.IsAssignableFrom(tree.Payload.GetType()))
+                {
+                    return true;
+                }
+                current = current.Parent;
+            }
+            return false;
+        }
+
+        public static Antlr4.Runtime.Tree.IParseTree ParseTreeFromPosition(Antlr4.Runtime.Tree.IParseTree root, int column, int row) {
+            if (root is Antlr4.Runtime.Tree.ITerminalNode terminal) {
+                var token = terminal.Symbol;
+                if (token.Line != row)
+                {
+                    return null;
+                }
+
+                var tokenStop = token.Column + (token.StopIndex - token.StartIndex + 1);
+                if (token.Column <= column && tokenStop >= column)
+                {
+                    return terminal;
+                }
+                return null;
+            }
+            else if (root is Antlr4.Runtime.ParserRuleContext context)
+            {
+                if (context.Start == null || context.Stop == null)
+                { // Invalid tree?
+                    return null;
+                }
+
+                if (context.Start.Line > row || (context.Start.Line == row && column < context.Start.Column))
+                {
+                    return null;
+                }
+
+                var tokenStop = context.Stop.Column + (context.Stop.StopIndex - context.Stop.StartIndex + 1);
+                if (context.Stop.Line < row || (context.Stop.Line == row && tokenStop < column))
+                {
+                    return null;
+                }
+
+                if (context.ChildCount > 0)
+                {
+                    foreach (var child in context.children)
+                    {
+                        var result = ParseTreeFromPosition(child, column, row);
+                        if (result != null)
+                        {
+                            return result;
+                        }
+                    }
+                }
+                return context;
+            } else {
+                return null;
+            }
+
+        }
+    }
+
+    static class ContextExtensions {
+        public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree)
+            where T : Antlr4.Runtime.ParserRuleContext
+        {
+            return IsChildOfContext<T>(tree, out _);
+        }
+        public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree, out T result)
+            where T : Antlr4.Runtime.ParserRuleContext
+        {
+            var type = typeof(T);
+            var current = tree;
+            while (tree != null) {
+                if (type.IsAssignableFrom(tree.Payload.GetType())) {
+                    result = (T)tree;
+                    return true;
+                }
+                tree = tree.Parent;
+            }
+            result = default;
+            return false;
         }
     }
 }
