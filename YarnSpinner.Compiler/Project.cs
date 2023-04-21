@@ -28,8 +28,9 @@ namespace Yarn.Compiler
             AllowTrailingCommas = true,
             ReadCommentHandling = JsonCommentHandling.Skip,
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            
+            WriteIndented = true,
             PropertyNameCaseInsensitive = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         };
 
         public static Project LoadFromFile(string path) {
