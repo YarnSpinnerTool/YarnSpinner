@@ -55,6 +55,7 @@ namespace Yarn.Compiler
         [JsonRequired]
         public int FileVersion { get; set; } = 2;
 
+        [JsonIgnore]
         public string Path { get; private set; }
 
         [JsonPropertyName("sourceFiles")]
