@@ -88,6 +88,37 @@ Smart variables can be accessed anywhere a regular variable would be used:
   PieMaker: Certainly!
 <<endif>>
 ```
+#### Yarn Projects
+
+- Added support for JSON-based Yarn Project files.
+  - Yarn Project files contain information that the Yarn Spinner compiler can use to compile multiple Yarn scripts at the same time. Yarn Projects are designed to be used by game engines to identify how Yarn content should be imported into the game.
+  - Yarn Project files have the following syntax:
+  ```json
+  {
+    "projectFileVersion": 2,
+    "sourceFiles": ["**/*.yarn"],
+    "baseLanguage": "en",
+    "localisation": {
+        "en": {
+            "assets": "./voiceover/en/"
+        },
+        "de": {
+            "strings": "./de.csv",
+            "assets": "../voiceover/de/"
+        }
+    },
+    "definitions": "Functions.ysls.json",
+    "compilerOptions": {}
+  }
+  ```
+  - `projectFileVersion` is used to identify which version of the project file format is being used, and is currently required to be the number 2.
+  - `sourceFiles` is an array of search paths used to find the Yarn files that should be compiled as part of this project. [Glob patterns](https://en.wikipedia.org/wiki/Glob_(programming)), including globstar, are supported.
+  - `baseLanguage` is a [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) indicating the language that the source scripts are written in (for example, `en` for English.)
+  - `localisation` _(optional)_ is a dictionary containing zero or more objects that describe where locale-specific resources can be found, where the key is a language tag and the value is an object of the following layout:
+    - `strings`: The path to a file containing the localised line text for the project. (This is typically, but not required to be, a CSV file.)
+    - `assets`: The path to a directory containing the localised assets (for example, voiceover audio) for the project.
+  - `definitions` _(optional)_ is the path to a JSON file containing command and function definitions used by the project.
+  - `compilerOptions` _(optional)_ is an object containing additional settings used by the Yarn Spinner compiler.
 
 ### Changed
 

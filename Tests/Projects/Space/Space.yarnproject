@@ -1,0 +1,15 @@
+{
+    "projectFileVersion": 2,
+    "sourceFiles": ["**/*.yarn"],
+    "baseLanguage": "en",
+    "localisation": {
+        "en": {
+            "assets": "../LocalisedAssets/English"
+        },
+        "de": {
+            "strings": "../German.csv",
+            "assets": "../LocalisedAssets/German"
+        }
+    },
+    "definitions": "Functions.ysls.json"
+}
