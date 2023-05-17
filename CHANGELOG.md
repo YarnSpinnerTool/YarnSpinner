@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   {
     "projectFileVersion": 2,
     "sourceFiles": ["**/*.yarn"],
+    "excludeFiles": ["DontInclude.yarn"],
     "baseLanguage": "en",
     "localisation": {
         "en": {
@@ -33,6 +34,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   ```
   - `projectFileVersion` is used to identify which version of the project file format is being used, and is currently required to be the number 2.
   - `sourceFiles` is an array of search paths used to find the Yarn files that should be compiled as part of this project. [Glob patterns](https://en.wikipedia.org/wiki/Glob_(programming)), including globstar, are supported.
+  - `excludeFiles` (_optional_) is an array of search paths used to find Yarn files that should _not_ be compiled. The same kinds of patterns as `sourceFiles` are supported.
   - `baseLanguage` is a [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) indicating the language that the source scripts are written in (for example, `en` for English.)
   - `localisation` _(optional)_ is a dictionary containing zero or more objects that describe where locale-specific resources can be found, where the key is a language tag and the value is an object of the following layout:
     - `strings`: The path to a file containing the localised line text for the project. (This is typically, but not required to be, a CSV file.)

@@ -61,6 +61,9 @@ namespace Yarn.Compiler
         [JsonPropertyName("sourceFiles")]
         public IEnumerable<string> SourceFilePatterns { get; set; } = new[] { "**/*.yarn" };
 
+        [JsonPropertyName("excludeFiles")]
+        public IEnumerable<string> ExcludeFilePatterns { get; set; } = new string[] { };
+
         public Dictionary<string, LocalizationInfo> Localisation { get; set; } = new Dictionary<string,LocalizationInfo>();
 
         [JsonRequired]
@@ -83,6 +86,7 @@ namespace Yarn.Compiler
                 Matcher matcher = new Matcher(StringComparison.OrdinalIgnoreCase);
 
                 matcher.AddIncludePatterns(this.SourceFilePatterns);
+                matcher.AddExcludePatterns(this.ExcludeFilePatterns);
 
                 var searchDirectory = System.IO.Path.GetDirectoryName(this.Path);
 

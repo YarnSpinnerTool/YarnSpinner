@@ -55,6 +55,23 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestProjectsCanExcludeFiles()
+        {
+            // Given
+            Yarn.Compiler.Project project = Yarn.Compiler.Project.LoadFromFile(ProjectFilePath);
+            project.ExcludeFilePatterns = new[] { "Ship.yarn" };
+
+            // When
+            IEnumerable<string> files = project.SourceFiles;
+            IEnumerable<string> relativeFiles = files.Select(f => Path.GetRelativePath(ProjectFolderPath, f));
+
+            // Then
+            relativeFiles.Should().Contain("Sally.yarn");
+            relativeFiles.Should().NotContain("Ship.yarn");
+            relativeFiles.Should().NotContain("Space.yarnproject");
+        }
+
+        [Fact]
         public void TestProjectsCanSave()
         {
             // Given
