@@ -52,6 +52,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - `NodeCompleteHandler`
   - `DialogueCompleteHandler`
   - Note that `OptionsCompleteHandler` remains _not_ optional, and is required to be set.
+- `Dialogue` now calls `DialogueCompleteHandler` when the `Stop()` method is called.
 
 ### Removed
 
