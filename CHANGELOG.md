@@ -45,6 +45,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Fixed a bug in the language server that caused crashes when code-completion was requested at a position more than 50% of the way through a document.
+- The following event handlers on the `Dialogue` class, which were previously required to be set, are now optional and may be set to `null`:
+  - `LineHandler`
+  - `CommandHandler`
+  - `NodeStartHandler`
+  - `NodeCompleteHandler`
+  - `DialogueCompleteHandler`
+  - Note that `OptionsCompleteHandler` remains _not_ optional, and is required to be set.
 
 ### Removed
 

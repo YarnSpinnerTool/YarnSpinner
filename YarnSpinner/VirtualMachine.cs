@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -375,9 +375,9 @@ namespace Yarn
 
                 if (state.programCounter >= currentNode.Instructions.Count)
                 {
-                    NodeCompleteHandler(currentNode.Name);
+                    NodeCompleteHandler?.Invoke(currentNode.Name);
                     CurrentExecutionState = ExecutionState.Stopped;
-                    DialogueCompleteHandler();
+                    DialogueCompleteHandler?.Invoke();
                     dialogue.LogDebugMessage("Run complete.");
                 }
             }
@@ -404,24 +404,9 @@ namespace Yarn
                 throw new DialogueException("Cannot continue running dialogue. Still waiting on option selection.");
             }
 
-            if (LineHandler == null)
-            {
-                throw new DialogueException($"Cannot continue running dialogue. {nameof(LineHandler)} has not been set.");
-            }
-
             if (OptionsHandler == null)
             {
                 throw new DialogueException($"Cannot continue running dialogue. {nameof(OptionsHandler)} has not been set.");
-            }
-
-            if (CommandHandler == null)
-            {
-                throw new DialogueException($"Cannot continue running dialogue. {nameof(CommandHandler)} has not been set.");
-            }
-
-            if (NodeCompleteHandler == null)
-            {
-                throw new DialogueException($"Cannot continue running dialogue. {nameof(NodeCompleteHandler)} has not been set.");
             }
         }
 
@@ -491,7 +476,7 @@ namespace Yarn
                         // Suspend execution, because we're about to deliver content
                         CurrentExecutionState = ExecutionState.DeliveringContent;
 
-                        LineHandler(line);
+                        LineHandler?.Invoke(line);
 
                         if (CurrentExecutionState == ExecutionState.DeliveringContent)
                         {
@@ -542,7 +527,7 @@ namespace Yarn
 
                         var command = new Command(commandText);
 
-                        CommandHandler(command);
+                        CommandHandler?.Invoke(command);
 
                         if (CurrentExecutionState == ExecutionState.DeliveringContent)
                         {
@@ -781,7 +766,7 @@ namespace Yarn
                         /** Immediately stop execution, and report that fact.
                          */
                         NodeCompleteHandler(currentNode.Name);
-                        DialogueCompleteHandler();
+                        DialogueCompleteHandler?.Invoke();
                         CurrentExecutionState = ExecutionState.Stopped;
 
                         break;
@@ -882,7 +867,7 @@ namespace Yarn
                         if (state.currentOptions.Count == 0)
                         {
                             CurrentExecutionState = ExecutionState.Stopped;
-                            DialogueCompleteHandler();
+                            DialogueCompleteHandler?.Invoke();
                             break;
                         }
 
