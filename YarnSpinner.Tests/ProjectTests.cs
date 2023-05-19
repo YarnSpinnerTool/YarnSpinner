@@ -110,8 +110,8 @@ A line with a conditional, a comment and a line tag. <<if false>>  #line:expecte
 
 // single symbol tests
 🧑🏾‍❤️‍💋‍🧑🏻
-🧑🏾‍❤️‍💋‍🧑🏻 // with comment
 🧑🏾‍❤️‍💋‍🧑🏻#line:abc122
+🧑🏾‍❤️‍💋‍🧑🏻 // with comment
 🧑🏾‍❤️‍💋‍🧑🏻 #line:abc124 // with a comment
 
 // after emoji tests
@@ -186,7 +186,7 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
                 lineTagAfterComment.IsMatch(line).Should().BeFalse($"'{line}' should not contain a tag after a comment");
             }
 
-            var expectedResults = new (string tag, string line)[]
+            var expectedResults = new List<(string tag, string line)>
             {
                 ("line:expected_abc123", "A single line, with a line tag."),
                 ("line:expected_def456", "An option, with a line tag."),
@@ -238,8 +238,26 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
                 ("line:abc131", "🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻"),
                 ("line:abc132", "🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻"),
             };
-
-            lineTagRegexMatches.Should().Be(expectedResults.Length);
+            expectedResults.Sort((a,b) => {
+                if (a.tag == null)
+                {
+                    if (b.tag == null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else if (b.tag == null)
+                {
+                    return -1;
+                }
+                return a.tag.CompareTo(b.tag);
+            });
+            
+            lineTagRegexMatches.Should().Be(expectedResults.Count);
 
             // used to keep track of all line ids we have already seen
             // this is because we need to make sure we see every line in the string table
@@ -273,6 +291,7 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
             }
 
             // we now should have seen every line ID
+            compilationResult.StringTable.Count.Should().Be(expectedResults.Count);
             compilationResult.StringTable.Count.Should().Be(visitedIDs.Count);
         }
 
