@@ -288,6 +288,30 @@ namespace YarnLanguageServer
             return base.VisitCommand_statement(context);
         }
 
+        public override bool VisitLine_statement([NotNull] YarnSpinnerParser.Line_statementContext context)
+        {
+            var lineText = context.line_formatted_text().GetTextWithWhitespace();
+
+            lineText = lineText.TrimStart();
+
+            // TODO: this isn't great, since we're running the NameRegex over
+            // lines twice (the semantic tokens visitor will return this, too.).
+            // TODO: find a way to fetch info from semantic tokens, or for
+            // semantic tokens to fetch info from this.
+            var nameMatch = SemanticTokenVisitor.NameRegex.Match(lineText);
+
+            if (nameMatch.Success) {
+                var nameGroup = nameMatch.Groups[1];
+
+                var startPosition = context.Start.ToPosition();
+                startPosition.Character += nameGroup.Index;
+
+                currentNodeInfo.CharacterNames.Add((nameGroup.ToString(), context.Start.Line - 1));
+            }
+
+            return base.VisitLine_statement(context);
+        }
+
         public string GetDocumentComments(ParserRuleContext context, bool allowCommentsAfter = true)
         {
             string description = null;

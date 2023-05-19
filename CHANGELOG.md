@@ -8,16 +8,112 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- Nodes inside the Yarn Program now contains a Header field which is a collection of key value pairs of any headers the node has.
+#### Yarn Projects
+
+- Added support for JSON-based Yarn Project files.
+  - Yarn Project files contain information that the Yarn Spinner compiler can use to compile multiple Yarn scripts at the same time. Yarn Projects are designed to be used by game engines to identify how Yarn content should be imported into the game.
+  - Yarn Project files have the following syntax:
+  ```json
+  {
+    "projectFileVersion": 2,
+    "sourceFiles": ["**/*.yarn"],
+    "excludeFiles": ["DontInclude.yarn"],
+    "baseLanguage": "en",
+    "localisation": {
+        "en": {
+            "assets": "./voiceover/en/"
+        },
+        "de": {
+            "strings": "./de.csv",
+            "assets": "../voiceover/de/"
+        }
+    },
+    "definitions": "Functions.ysls.json",
+    "compilerOptions": {}
+  }
+  ```
+  - `projectFileVersion` is used to identify which version of the project file format is being used, and is currently required to be the number 2.
+  - `sourceFiles` is an array of search paths used to find the Yarn files that should be compiled as part of this project. [Glob patterns](https://en.wikipedia.org/wiki/Glob_(programming)), including globstar, are supported.
+  - `excludeFiles` (_optional_) is an array of search paths used to find Yarn files that should _not_ be compiled. The same kinds of patterns as `sourceFiles` are supported.
+  - `baseLanguage` is a [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) indicating the language that the source scripts are written in (for example, `en` for English.)
+  - `localisation` _(optional)_ is a dictionary containing zero or more objects that describe where locale-specific resources can be found, where the key is a language tag and the value is an object of the following layout:
+    - `strings`: The path to a file containing the localised line text for the project. (This is typically, but not required to be, a CSV file.)
+    - `assets`: The path to a directory containing the localised assets (for example, voiceover audio) for the project.
+  - `definitions` _(optional)_ is the path to a JSON file containing command and function definitions used by the project.
+  - `compilerOptions` _(optional)_ is an object containing additional settings used by the Yarn Spinner compiler.
 
 ### Changed
 
-- Large changes to IndentAwareLexer, this fixes numerous issues but as a side-effect some yarn indentation constructs that previously worked fine when inside an option block will no longer compile.
-- Node title verification now occurs at declaration time instead of code gen. This means invalid titles will be caught and presented as a problem earlier on to aid in debugging issues.
-- Code completion in the LSP has been completely rewritten. It is now much less flexible but *way* more performant. For most situations the changes will not be noticeable.
-- Fixed a crash in the LSP when encountering declaration statements without a variable.
+- Fixed a bug in the language server that caused crashes when code-completion was requested at a position more than 50% of the way through a document.
+- The following event handlers on the `Dialogue` class, which were previously required to be set, are now optional and may be set to `null`:
+  - `LineHandler`
+  - `CommandHandler`
+  - `NodeStartHandler`
+  - `NodeCompleteHandler`
+  - `DialogueCompleteHandler`
+  - Note that `OptionsCompleteHandler` remains _not_ optional, and is required to be set.
+- `Dialogue` now calls `DialogueCompleteHandler` when the `Stop()` method is called.
 
 ### Removed
+
+## [2.3.0] 2023-03-06
+
+### Added
+
+- Yarn Programs now store all headers for their nodes.
+  - Prior to this change, only the `tags` header was stored.
+
+### Changed
+
+- The Yarn Spinner compiler's indentation tracking has been rewritten to be more consistent in how it works.
+  - **🚨 Breaking Change:** `if` statements must now all be at the same level of indentation as their corresponding `else`, `elseif`, and `endif` statements.
+    - This was already strongly encouraged for readability, but is now a requirement.
+    - If an `if` statement is at a different indentation level to its corresponding statements, a compiler error will now be generated.
+    - The lines and other content inside an `if` statement can be indented as much as you like, as long as it's not _less_ indented than the initial `if` statement.
+    
+      For example, the following code will work:
+      ```
+      // With indentation
+      <<if $something>>
+          A line!
+      <<else>>
+          A different line!
+      <<endif>>
+
+      // Without indentation
+      <<if $something>>
+      A line!
+      <<else>>
+      A different line!
+      <<endif>>
+      ```
+
+      The following code will **not** work:
+
+      ```
+      // With indentation
+      <<if $something>>
+        A line!
+        <<else>>
+      A different line!
+      <<endif>>
+      ```
+  - **🚨 Breaking Change:** Empty lines between options now split up different option groups.
+    - Previously, the following code would appear as a single option group (with the options 'A', 'B', 'C', 'D'):
+      ```
+      -> A
+      -> B
+
+      -> C
+      -> D
+      ```
+      In Yarn Spinner 2.3 and above, this will appear as _two_ option groups: one containing the options 'A', 'B', and another containing 'C', 'D'.
+
+      This change was made in response to user reports that the previous behaviour didn't behave the way they expected.
+
+- Node title verification now occurs at declaration time instead of code generation. This means invalid titles will be caught and presented as a problem earlier on, to aid in debugging issues.
+- Code completion in the Language Server has been completely rewritten. It is now much less flexible, but *way* more performant. For most situations, the changes will not be noticeable.
+- Fixed a crash in the Language Server when encountering declaration statements without a variable.
 
 ## [2.2.5] 2023-01-27
 
