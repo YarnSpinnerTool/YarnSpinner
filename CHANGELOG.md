@@ -97,6 +97,7 @@ Smart variables can be accessed anywhere a regular variable would be used:
   {
     "projectFileVersion": 2,
     "sourceFiles": ["**/*.yarn"],
+    "excludeFiles": ["DontInclude.yarn"],
     "baseLanguage": "en",
     "localisation": {
         "en": {
@@ -113,6 +114,7 @@ Smart variables can be accessed anywhere a regular variable would be used:
   ```
   - `projectFileVersion` is used to identify which version of the project file format is being used, and is currently required to be the number 2.
   - `sourceFiles` is an array of search paths used to find the Yarn files that should be compiled as part of this project. [Glob patterns](https://en.wikipedia.org/wiki/Glob_(programming)), including globstar, are supported.
+  - `excludeFiles` (_optional_) is an array of search paths used to find Yarn files that should _not_ be compiled. The same kinds of patterns as `sourceFiles` are supported.
   - `baseLanguage` is a [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) indicating the language that the source scripts are written in (for example, `en` for English.)
   - `localisation` _(optional)_ is a dictionary containing zero or more objects that describe where locale-specific resources can be found, where the key is a language tag and the value is an object of the following layout:
     - `strings`: The path to a file containing the localised line text for the project. (This is typically, but not required to be, a CSV file.)
@@ -123,6 +125,14 @@ Smart variables can be accessed anywhere a regular variable would be used:
 ### Changed
 
 - Fixed a bug in the language server that caused crashes when code-completion was requested at a position more than 50% of the way through a document.
+- The following event handlers on the `Dialogue` class, which were previously required to be set, are now optional and may be set to `null`:
+  - `LineHandler`
+  - `CommandHandler`
+  - `NodeStartHandler`
+  - `NodeCompleteHandler`
+  - `DialogueCompleteHandler`
+  - Note that `OptionsCompleteHandler` remains _not_ optional, and is required to be set.
+- `Dialogue` now calls `DialogueCompleteHandler` when the `Stop()` method is called.
 
 ### Removed
 
