@@ -467,9 +467,13 @@ namespace Yarn
 
                 smartVariableNames.Clear();
 
-                foreach (var node in program.SmartVariableNodes) {
-                    smartVariableNames.Add(node.Name);
+                if (program != null)
+                {
+                    foreach (var node in program.SmartVariableNodes) {
+                        smartVariableNames.Add(node.Name);
+                    }
                 }
+
             }
         }
 
