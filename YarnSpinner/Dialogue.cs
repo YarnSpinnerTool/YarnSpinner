@@ -220,22 +220,45 @@ namespace Yarn
 
     /// <summary>Provides a mechanism for retrieving values.</summary>
     public interface IVariableAccess {
+
         /// <summary>
-        /// Retrieves a value of type <typeparamref name="T"/> by name.
+        /// Given a variable name, attempts to fetch a value for the variable,
+        /// either from storage, initial values found in <see cref="Program"/>,
+        /// or by evaluating a smart variable found in <see cref="Program"/>.
         /// </summary>
-        /// <typeparam name="T">The type of the variable to
-        /// retrieve.</typeparam>
-        /// <param name="variableName">The name of the variable to retrieve the
-        /// value of.</param>
-        /// <param name="result">On return, if this method returned true,
-        /// contains the retrieved value. If this method returned false,
-        /// contains the default value of <typeparamref name="T"/> (for example,
-        /// <c>0</c> for <see cref="float"/> values, <see langword="null"/> for
-        /// strings, and so on.)</param>
-        /// <returns><see langword="true"/> if a value named <paramref
-        /// name="variableName"/> of type <typeparamref name="T"/> was
-        /// retrieved; <see langword="false"/> otherwise.</returns>
+        /// <typeparam name="T">The type of the value to return. The fetched
+        /// value will be converted to this type.</typeparam>
+        /// <param name="variableName">The name of the variable.</param>
+        /// <param name="result">If this method returns <see langword="true"/>,
+        /// this parameter will contain the fetched value.</param>
+        /// <returns><see langword="true"/> if a value could be fetched; <see
+        /// langword="false"/> otherwise.</returns>
         bool TryGetValue<T>(string variableName, out T result);
+
+        /// <summary>
+        /// Gets the kind of variable named <paramref name="name"/>.
+        /// </summary>
+        /// <param name="name">The name of the variable.</param>
+        /// <returns>A <see cref="VariableKind"/> enum representing the kind of
+        /// the variable named <paramref name="name"/>.</returns>
+        VariableKind GetVariableKind(string name);
+
+        /// <summary>
+        /// Gets or sets the Yarn <see cref="Program"/> that stores information
+        /// about the initial values of variables, and is able to produce values
+        /// for smart variables.
+        /// </summary>
+        Program Program { get; set; }
+
+        /// <summary>
+        /// Gets or sets the <see cref="Library"/> used when evaluating smart
+        /// variables.
+        /// </summary>
+        /// <remarks>
+        /// This should generally be the same <see cref="Library"/> object as
+        /// used by the <see cref="Dialogue"/> that uses this variable storage.
+        /// </remarks>
+        Library Library { get; set; }
     }
 
     /// <summary>Provides a mechanism for storing values.</summary>
@@ -279,24 +302,92 @@ namespace Yarn
     {
         private Dictionary<string, object> variables = new Dictionary<string, object>();
 
-        /// <inheritdoc/>
-        public bool TryGetValue<T>(string variableName, out T result)
-        {
-            if (this.variables.TryGetValue(variableName, out var foundValue))
+        private static bool TryGetAsType<T>(Dictionary<string,object>dictionary, string key, out T result) {
+            if (dictionary.TryGetValue(key, out var objectResult) == true 
+                && typeof(T).IsAssignableFrom(objectResult.GetType()))
             {
-                if (typeof(T).IsAssignableFrom(foundValue.GetType()))
-                {
-                    result = (T)foundValue;
-                    return true;
-                }
-                else
-                {
-                    throw new ArgumentException($"Variable {variableName} is present, but is of type {foundValue.GetType()}, not {typeof(T)}");
-                }
+                result = (T)objectResult;
+                return true;
             }
 
             result = default;
             return false;
+        }
+
+        /// <inheritdoc/>
+        public Program Program { get; set; }
+        /// <inheritdoc/>
+        public Library Library { get; set; }
+
+        // The VM that we'll use to evaluate smart variables
+        private VirtualMachine smartVariableVM = new VirtualMachine(null, null);
+
+        public bool TryGetValue<T>(string variableName, out T result) {
+            switch (GetVariableKind(variableName))
+            {
+                case VariableKind.Stored:
+                    // This is a stored value. First, attempt to fetch it from the
+                    // variable storage.
+
+                    // Try to get the value from the dictionary, and check to see that it's the 
+                    if (TryGetAsType(variables, variableName, out result)) {
+                        // We successfully fetched it from storage.
+                        return true;
+                    } else {
+                        // Attempt to fetch it from the program's initial values.
+                        var initialValue = Program.InitialValues[variableName];
+                        try
+                        {
+                            object convertObject;
+                            switch (initialValue.ValueCase)
+                            {
+                                case Operand.ValueOneofCase.StringValue:
+                                    convertObject = initialValue.StringValue;
+                                    break;
+                                case Operand.ValueOneofCase.BoolValue:
+                                    convertObject = initialValue.BoolValue;
+                                    break;
+                                case Operand.ValueOneofCase.FloatValue:
+                                    convertObject = initialValue.FloatValue;
+                                    break;
+                                default:
+                                    throw new InvalidOperationException($"Internal error: invalid value type {initialValue.ValueCase}");
+                            }
+                            if (typeof(T).IsInterface) {
+                                // T is an interface, so we can't directly
+                                // convert to it. Instead, attempt to cast to
+                                // whatever type T is. If this is invalid, we'll
+                                // throw an InvalidCastException (which we catch
+                                // below.).
+                                result = (T)convertObject;
+                            } else {
+                                // This is a concrete type. Use Convert to
+                                // convert to that type, if we're able.
+                                result = (T)Convert.ChangeType(convertObject, typeof(T), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                            return true;
+                        } catch (InvalidCastException e) {
+                            throw new InvalidCastException($"Can't fetch variable {variableName} (a {initialValue.ValueCase}) as {typeof(T)}", e);
+                        }
+                    }
+                case VariableKind.Smart:
+                    // The variable is a smart variable. Find the node that
+                    // implements it, and use that to get the variable's current
+                    // value.
+
+                    // Update the VM's settings, since ours might have changed
+                    // since we created the VM.
+                    this.smartVariableVM.Program = this.Program;
+                    this.smartVariableVM.Library = this.Library;
+                    this.smartVariableVM.VariableStorage = this;
+
+                    return this.smartVariableVM.TryGetSmartVariable(variableName, out result);
+                case VariableKind.Unknown:
+                default:
+                    // The variable is not known.
+                    result = default;
+                    return false;
+            }
         }
 
         /// <inheritdoc/>
@@ -321,6 +412,30 @@ namespace Yarn
         public void SetValue(string variableName, bool boolValue)
         {
             this.variables[variableName] = boolValue;
+        }
+
+        public VariableKind GetVariableKind(string name)
+        {
+            // Does this variable exist in our stored values?
+            if (this.variables.ContainsKey(name)) {
+                return VariableKind.Stored;
+            }
+            if (this.Program == null) {
+                // We don't have a Program, so we can't ask it for other
+                // information.
+                return VariableKind.Unknown;
+            }
+            // If it doesn't exist in stored values, does an initial value exist
+            // in the program?
+            if (this.Program.InitialValues.ContainsKey(name)) {
+                return VariableKind.Stored;
+            }
+            // If it doesn't exist there, then it might be a smart variable.
+            if (this.Program.IsSmartVariable(name)) {
+                return VariableKind.Smart;
+            }
+            // No idea!
+            return VariableKind.Unknown;
         }
     }
 
@@ -429,7 +544,7 @@ namespace Yarn
     /// <summary>
     /// Co-ordinates the execution of Yarn programs.
     /// </summary>
-    public class Dialogue : IAttributeMarkerProcessor, IVariableAccess
+    public class Dialogue : IAttributeMarkerProcessor
     {
 
         /// <summary>
@@ -603,8 +718,11 @@ namespace Yarn
         /// use.</param>
         public Dialogue(Yarn.IVariableStorage variableStorage)
         {
-            this.VariableStorage = variableStorage ?? throw new ArgumentNullException(nameof(variableStorage));
             Library = new Library();
+            
+            this.VariableStorage = variableStorage ?? throw new ArgumentNullException(nameof(variableStorage));
+            this.VariableStorage.Library = Library;
+
             this.vm = new VirtualMachine(this.Library, this.VariableStorage);
 
             Library.ImportLibrary(new StandardLibrary());
@@ -635,6 +753,7 @@ namespace Yarn
         public void SetProgram(Program program)
         {
             this.Program = program;
+            this.VariableStorage.Program = program;
         }
 
         /// <summary>
