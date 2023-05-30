@@ -920,6 +920,117 @@ namespace Yarn
             }
         }
 
+        public bool TryGetSmartVariable<T>(string name, out T result)
+        {
+            if (this.Program.Nodes.TryGetValue(name, out var implementationNode) == false)
+            {
+                result = default;
+                return false;
+            }
+
+            // Back up our current state and handlers
+            var previousState = this.state;
+            var oldNodeCompleteHandler = this.NodeCompleteHandler;
+            var oldDialogueCompleteHandler = this.DialogueCompleteHandler;
+            var oldLogHandler = LogDebugMessage;
+            var oldCurrentNode = this.currentNode;
+            var oldExecutionState = this._executionState;
+            var oldLineHandler = this.LineHandler;
+            var oldPrepareForLinesHandler = this.PrepareForLinesHandler;
+            var oldOptionsHandler = this.OptionsHandler;
+            var oldCommandHandler = this.CommandHandler;
+
+            try
+            {
+                // Start the state new and jump to the implementation
+                // node
+                this.state = new VirtualMachine.State();
+                this.currentNode = implementationNode;
+                this._executionState = VirtualMachine.ExecutionState.Stopped;
+
+                Value resultValue = null;
+
+                // Set up new handlers - we want to do nothing when
+                // dialogue completes, and we want to grab the top of
+                // the result stack before the VM resets.
+                this.LogDebugMessage = null;
+                this.DialogueCompleteHandler = null;
+
+                this.LineHandler = DummyLineHandler;
+                this.PrepareForLinesHandler = DummyPrepareForLinesHandler;
+                this.OptionsHandler = DummyOptionsHandler;
+                this.CommandHandler = DummyCommandHandler;
+                
+                this.NodeCompleteHandler = (nodeName) =>
+                {
+                    resultValue = state.PeekValue();
+                    if (resultValue == null)
+                    {
+                        // Smart variable implementation nodes are required to
+                        // terminate with a value at the top of the stack.
+                        throw new InvalidOperationException($"Smart variable implementation node {name} did not produce a value");
+                    }
+                };
+
+                // Execute the node; when this method call returns,
+                // 'resultValue' will be non-null
+                Continue();
+
+                Type resultType = resultValue.InternalValue.GetType();
+                if (typeof(T).IsAssignableFrom(resultType))
+                {
+                    result = (T)resultValue.InternalValue;
+                    return true;
+                }
+                else
+                {
+                    // We can't cast it directly. Try using Convert to
+                    // convert the type to T.
+                    try
+                    {
+                        result = (T)Convert.ChangeType(resultValue.InternalValue, typeof(T), System.Globalization.CultureInfo.InvariantCulture);
+                        return true;
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new InvalidCastException($"Cannot convert smart variable {name} ({resultType}) to {typeof(T)}", e);
+                    }
+                }
+            }
+            finally
+            {
+                // Restore our backed-up configuration
+                this.NodeCompleteHandler = oldNodeCompleteHandler;
+                this.DialogueCompleteHandler = oldDialogueCompleteHandler;
+                this.state = previousState;
+                this.currentNode = oldCurrentNode;
+                this._executionState = oldExecutionState;
+                this.LogDebugMessage = oldLogHandler;
+                this.LineHandler = oldLineHandler;
+                this.OptionsHandler = oldOptionsHandler;
+                this.CommandHandler = oldCommandHandler;
+                
+            }
+        }
+
+        private static void DummyCommandHandler(Command command)
+        {
+            throw new System.InvalidOperationException($"Smart node execution nodes must not run commands");
+        }
+
+        private static void DummyOptionsHandler(OptionSet options)
+        {
+            throw new System.InvalidOperationException($"Smart node execution nodes must not run options");
+        }
+
+        private static void DummyPrepareForLinesHandler(IEnumerable<string> lineIDs)
+        {
+            throw new System.InvalidOperationException($"Smart node execution nodes must not run lines");
+        }
+
+        private static void DummyLineHandler(Yarn.Line line) {
+            throw new System.InvalidOperationException($"Smart node execution nodes must not run lines");
+        }
     }
 }
 

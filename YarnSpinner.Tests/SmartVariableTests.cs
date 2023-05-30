@@ -286,5 +286,48 @@ namespace YarnSpinner.Tests
             storedVar2.Dependents.Should().Contain(new[] {smartVar1, smartVar2}, "smart_var_1 and smart_var_2 depend on stored_var_2");
             storedVar2.Dependencies.Should().BeEmpty("stored_var_2 doesn't depend on anything");
         }
+
+        public class FakeVariableStorage : IVariableStorage
+        {
+            public Program Program { get => null; set { } }
+            public Library Library { get => null; set { } }
+
+            public void Clear() {}
+
+            public VariableKind GetVariableKind(string name) => VariableKind.Unknown;
+
+            public void SetValue(string variableName, string stringValue) {}
+
+            public void SetValue(string variableName, float floatValue) {}
+
+            public void SetValue(string variableName, bool boolValue) {}
+
+            public bool TryGetValue<T>(string variableName, out T result)
+            {
+                result = default;
+                return false;
+            }
+        }
+
+        [Fact]
+        public void TestVirtualMachineCanEvaluateSmartVariable()
+        {
+            var library = new Library();
+            library.ImportLibrary(new Dialogue.StandardLibrary());
+            
+            var vm = new VirtualMachine(library, new FakeVariableStorage());
+            var source = CreateTestNode(new[] {
+                "<<declare $smart_var = 3 + 2>>",
+            });
+            var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+
+            vm.Program = result.Program;
+            var canGetSmartVariable = vm.TryGetSmartVariable("$smart_var", out int variableValue);
+
+            canGetSmartVariable.Should().BeTrue();
+            variableValue.Should().Be(5);
+
+        }
     }
 }
