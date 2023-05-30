@@ -605,8 +605,7 @@ namespace Yarn
         {
             this.VariableStorage = variableStorage ?? throw new ArgumentNullException(nameof(variableStorage));
             Library = new Library();
-
-            this.vm = new VirtualMachine(this);
+            this.vm = new VirtualMachine(this.Library, this.VariableStorage);
 
             Library.ImportLibrary(new StandardLibrary());
 

@@ -167,9 +167,10 @@ namespace Yarn
             }
         }
 
-        internal VirtualMachine(Dialogue d)
+        internal VirtualMachine(Library library, IVariableStorage storage)
         {
-            dialogue = d;
+            this.Library = library;
+            this.VariableStorage = storage;
             state = new State();
         }
 
@@ -187,7 +188,10 @@ namespace Yarn
         public DialogueCompleteHandler DialogueCompleteHandler;
         public PrepareForLinesHandler PrepareForLinesHandler;
 
-        private Dialogue dialogue;
+        public IVariableStorage VariableStorage { get; set; }
+        public Library Library { get; set; }
+        public Logger LogDebugMessage { get; set; }
+        public Logger LogErrorMessage { get; set; }
 
         /// <summary>
         /// The <see cref="Program"/> that this virtual machine is running.
@@ -270,7 +274,7 @@ namespace Yarn
                 throw new DialogueException($"No node named {nodeName} has been loaded.");
             }
 
-            dialogue.LogDebugMessage?.Invoke("Running node " + nodeName);
+            LogDebugMessage?.Invoke("Running node " + nodeName);
 
             currentNode = Program.Nodes[nodeName];
             ResetState();
@@ -379,7 +383,7 @@ namespace Yarn
                     NodeCompleteHandler?.Invoke(currentNode.Name);
                     CurrentExecutionState = ExecutionState.Stopped;
                     DialogueCompleteHandler?.Invoke();
-                    dialogue.LogDebugMessage("Run complete.");
+                    LogDebugMessage?.Invoke("Run complete.");
                 }
             }
         }
@@ -618,7 +622,7 @@ namespace Yarn
                          */
                         var functionName = i.Operands[0].StringValue;
 
-                        var function = dialogue.Library.GetFunction(functionName);
+                        var function = Library.GetFunction(functionName);
 
                         var parameterInfos = function.Method.GetParameters();
 
@@ -681,7 +685,7 @@ namespace Yarn
 
                         Value loadedValue;
 
-                        var didLoadValue = dialogue.VariableStorage.TryGetValue<IConvertible>(variableName, out var loadedObject);
+                        var didLoadValue = VariableStorage.TryGetValue<IConvertible>(variableName, out var loadedObject);
 
 
                         if (didLoadValue)
@@ -743,15 +747,15 @@ namespace Yarn
 
                         if (topValue.Type == Types.Number)
                         {
-                            dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<float>());
+                            VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<float>());
                         }
                         else if (topValue.Type == Types.String)
                         {
-                            dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<string>());
+                            VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<string>());
                         }
                         else if (topValue.Type == Types.Boolean)
                         {
-                            dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<bool>());
+                            VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<bool>());
                         }
                         else
                         {
