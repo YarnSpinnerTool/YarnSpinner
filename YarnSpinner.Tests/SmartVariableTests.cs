@@ -155,7 +155,7 @@ namespace YarnSpinner.Tests
             this.dialogue.SetProgram(result.Program);
 
             // When
-            bool success = this.dialogue.TryGetValue<int>("$smart_var", out var evaluationResult);
+            bool success = this.dialogue.VariableStorage.TryGetValue<int>("$smart_var", out var evaluationResult);
             
             // Then
             success.Should().BeTrue();

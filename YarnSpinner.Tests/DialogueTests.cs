@@ -1,4 +1,4 @@
-using Xunit;
+﻿using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -351,12 +351,13 @@ namespace YarnSpinner.Tests
                 "<<declare $boolVar = true>>",
             });
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
             dialogue.SetProgram(result.Program);
 
             // When
-            var canGetNumber = dialogue.TryGetValue<int>("$numVar", out var numResult);
-            var canGetString = dialogue.TryGetValue<string>("$stringVar", out var stringResult);
-            var canGetBool = dialogue.TryGetValue<bool>("$boolVar", out var boolResult);
+            var canGetNumber = dialogue.VariableStorage.TryGetValue<int>("$numVar", out var numResult);
+            var canGetString = dialogue.VariableStorage.TryGetValue<string>("$stringVar", out var stringResult);
+            var canGetBool = dialogue.VariableStorage.TryGetValue<bool>("$boolVar", out var boolResult);
 
             // Then
             canGetNumber.Should().BeTrue();
