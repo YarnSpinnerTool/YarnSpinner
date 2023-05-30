@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -412,6 +412,9 @@ namespace Yarn
             if (OptionsHandler == null)
             {
                 throw new DialogueException($"Cannot continue running dialogue. {nameof(OptionsHandler)} has not been set.");
+            }
+            if (Library == null) {
+                throw new DialogueException($"Cannot continue running dialogue. {nameof(Library)} has not been set.");
             }
         }
 
