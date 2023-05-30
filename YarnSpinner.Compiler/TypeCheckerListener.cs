@@ -957,7 +957,7 @@ namespace Yarn.Compiler
             // to check if there are any dependency loops between smart
             // declarations.
             var smartVariableDeclarations = declarations.Where(d => d.IsInlineExpansion);
-            var allDeclsDict = declarations.ToDictionary(d => d.Name, d => d);
+            var allDeclsDict = declarations.Where(d => d.Name != null).ToDictionary(d => d.Name, d => d);
 
             // Calculate the dependencies for each smart variable, catching any loops
             foreach (var smartVariableDecl in smartVariableDeclarations) {
