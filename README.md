@@ -32,11 +32,13 @@ For help, support, discussion, and chill community times, come and join the [Yar
 
 ## Credits
 
-Yarn Spinner is developed by [Secret Lab](https://secretlab.games/), along with a huge community of contributors.
+Yarn Spinner is developed by [Yarn Spinner Pty. Ltd.](https://yarnspinner.dev/), an Australian company. We are a spinoff of game development studio, [Secret Lab Pty. Ltd.](https://secretlab.games/). The project is supported along with a huge community of contributors.
 
 The logo was made by [Cecile Richard](https://www.cecile-richard.com/).
 
-Yarn Spinner's development is made possible in part by [NYU Game Center](https://gamecenter.nyu.edu/). This project has been assisted by the Australian Government through the [Australia Council](https://www.australiacouncil.gov.au/), its arts funding and advisory body.
+Yarn Spinner's development is made possible in part by [NYU Game Center](https://gamecenter.nyu.edu/), and an Epic Mega Grant.
+
+This project has also been assisted by the Australian Government through the [Australia Council](https://www.australiacouncil.gov.au/), its arts funding and advisory body.
 
 ## Help Us Make Yarn Spinner!
 
