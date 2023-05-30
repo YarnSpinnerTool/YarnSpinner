@@ -54,6 +54,8 @@ namespace YarnSpinner.Tests
                     },
                     SourceNodeName = "Start",
                     SourceFileName = "input",
+                    Dependents = Enumerable.Empty<Declaration>(),
+                    Dependencies = Enumerable.Empty<Declaration>(),
                 },
                 new Declaration {
                     Name = "$str",
@@ -71,6 +73,8 @@ namespace YarnSpinner.Tests
                     },
                     SourceNodeName = "Start",
                     SourceFileName = "input",
+                    Dependents = Enumerable.Empty<Declaration>(),
+                    Dependencies = Enumerable.Empty<Declaration>(),
                 },
                 new Declaration {
                     Name = "$bool",
@@ -88,6 +92,8 @@ namespace YarnSpinner.Tests
                     },
                     SourceNodeName = "Start",
                     SourceFileName = "input",
+                    Dependents = Enumerable.Empty<Declaration>(),
+                    Dependencies = Enumerable.Empty<Declaration>(),
                 },
             };
 
