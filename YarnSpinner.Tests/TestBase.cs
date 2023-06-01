@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -176,11 +176,11 @@ namespace YarnSpinner.Tests
             };
 
             dialogue.Library.RegisterFunction ("assert", delegate(object value) {
-                if (value is IConvertible convertible 
-                && convertible.ToBoolean(CultureInfo.InvariantCulture) == false) {
-                        Assert.NotNull ("Assertion failed");
+                if (((IConvertible)value).ToBoolean(CultureInfo.InvariantCulture) == false) {
+                    throw new Exception($"Assertion failed");
+                } else {
+                    return true;
                 }
-                return true;
             });
 
             
