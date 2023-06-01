@@ -1,4 +1,4 @@
-using Xunit;
+﻿using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -208,12 +208,50 @@ namespace YarnSpinner.Tests
                 throw new Xunit.Sdk.XunitException("Cannot run test: no test plan provided.");
             }
 
+            // Called when the test plan encounters a 'set' instruction. Receive
+            // the name of the variable and a string containing the expected
+            // value, and update variable storage appropriately.
+            testPlan.onSetVariable = (name, value) => {
+                if (dialogue.Program.InitialValues.TryGetValue(name, out var operand) == false) {
+                    throw new ArgumentException($"Variable {name} is not valid in program");
+                }
+
+                Console.WriteLine($"Setting {name} to {value}");
+
+                // The way we parse 'value' depends on the declared type of the
+                // variable, chich we can determine from the Program's initial
+                // values.
+
+                switch (operand.ValueCase)
+                {
+                    case Operand.ValueOneofCase.StringValue:
+                        // The variable is a string - use 'value' directly.
+                        dialogue.VariableStorage.SetValue(name, value);
+                        break;
+                    case Operand.ValueOneofCase.BoolValue:
+                        // The variable is boolean - parse it as a bool.
+                        dialogue.VariableStorage.SetValue(name, Convert.ToBoolean(value, CultureInfo.InvariantCulture));
+                        break;
+                    case Operand.ValueOneofCase.FloatValue:
+                        // The variable is number - parse it as a float.
+                        dialogue.VariableStorage.SetValue(name, Convert.ToSingle(value, CultureInfo.InvariantCulture));
+                        break;
+                    default:
+                        // We don't know what this is.
+                        throw new InvalidOperationException($"Invalid variable type {operand.ValueCase}");
+                }
+            };
+
+            while (testPlan.CurrentStep != null && testPlan.CurrentStep.type == TestPlan.Step.Type.Set) {
+                testPlan.Next();
+            }
+
             dialogue.SetNode(nodeName);
 
             do {
                 dialogue.Continue();
             } while (dialogue.IsActive);
-            
+
         }
 
         protected string CreateTestNode(string source, string name="Start") {

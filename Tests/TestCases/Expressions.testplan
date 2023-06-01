@@ -1,1 +1,2 @@
-# no lines in this file, just function calls
+set: $externally_set_bool true
+set: $externally_set_number 1
