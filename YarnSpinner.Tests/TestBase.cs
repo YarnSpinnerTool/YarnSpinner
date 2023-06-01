@@ -175,12 +175,9 @@ namespace YarnSpinner.Tests
                 }
             };
 
-            dialogue.Library.RegisterFunction ("assert", delegate(object value) {
-                if (((IConvertible)value).ToBoolean(CultureInfo.InvariantCulture) == false) {
-                    throw new Exception($"Assertion failed");
-                } else {
-                    return true;
-                }
+            dialogue.Library.RegisterFunction ("assert", delegate(bool value) {
+                value.Should().BeTrue("assertion should pass");
+                return true;
             });
 
             
