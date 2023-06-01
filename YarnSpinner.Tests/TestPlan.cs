@@ -32,6 +32,9 @@ namespace YarnSpinner.Tests
 
                 // sets a variable to a value
                 Set,
+
+                // runs a new node.
+                Run
             }
 
             public Type type {get;private set;}
@@ -94,6 +97,10 @@ namespace YarnSpinner.Tests
                             }
 
                             parameters.Add(intValue);
+                            break;
+                        case Type.Run:
+                            var nodeName = reader.ReadNext<string>();
+                            parameters.Add(nodeName);
                             break;
 
                         case Type.Set:
@@ -198,6 +205,9 @@ namespace YarnSpinner.Tests
         // name and the value.
         public Action<string, string> onSetVariable;
 
+        // The delegate to call when a 'run' step is run. Receives the node name.
+        public Action<string> onRunNode;
+
         internal TestPlan() {
             // Start with the empty step
         }
@@ -236,6 +246,10 @@ namespace YarnSpinner.Tests
                         var name = (string)currentStep.parameters[0];
                         var value = (string)currentStep.parameters[1];
                         onSetVariable(name, value);
+                        continue;
+                    case Step.Type.Run:
+                        var node = (string)currentStep.parameters[0];
+                        onRunNode(node);
                         continue;
                     case Step.Type.Stop:
                         nextExpectedType = currentStep.type;
