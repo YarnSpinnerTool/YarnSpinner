@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -175,10 +175,8 @@ namespace YarnSpinner.Tests
                 }
             };
 
-            dialogue.Library.RegisterFunction ("assert", delegate(Yarn.Value value) {
-                if (value.ConvertTo<bool>() == false) {
-                        "Assertion failed".Should().NotBeNull();
-                }
+            dialogue.Library.RegisterFunction ("assert", delegate(bool value) {
+                value.Should().BeTrue("assertion should pass");
                 return true;
             });
 
