@@ -4,6 +4,12 @@ title: Start
 <<declare $int = 0>>
 <<declare $bool = true>>
 <<declare $math = 0>>
+<<declare $externally_set_number = 0>>
+<<declare $externally_set_bool = false>>
+
+// These variables are set externally in the test plan, before the script begins running
+<<call assert($externally_set_bool == true)>>
+<<call assert($externally_set_number == 1)>>
 
 // Expression testing
 
