@@ -28,19 +28,19 @@ namespace YarnSpinner.Tests
 
                 // expecting to stop the test here (this is optional - a
                 // 'stop' at the end of a test plan is assumed)
-                Stop
+                Stop,
+
+                // sets a variable to a value
+                Set,
             }
 
             public Type type {get;private set;}
 
-            public string stringValue;
-            public int intValue;
-
-            public bool expectOptionEnabled = true;
+            public List<IConvertible> parameters;
             
             public Step(string s) {
-                intValue = -1;
-                stringValue = null;
+
+                parameters = new List<IConvertible>();
 
                 var reader = new Reader(s);
 
@@ -62,13 +62,16 @@ namespace YarnSpinner.Tests
                         case Type.Line:
                         case Type.Option:
                         case Type.Command:
-                            stringValue = reader.ReadToEnd().Trim();
+                            
+                            var stringValue = reader.ReadToEnd().Trim();
                             if (stringValue == "*") {
                                 // '*' represents "we want to see an option
                                 // but don't care what its text is" -
                                 // represent this as the null value
                                 stringValue = null; 
                             }
+
+                            bool expectOptionEnabled = true;
 
                             // Options whose text ends with " [disabled]"
                             // are expected to be present, but have their
@@ -77,20 +80,40 @@ namespace YarnSpinner.Tests
                                 expectOptionEnabled = false;
                                 stringValue = stringValue.Replace(" [disabled]", "");
                             }
+                            parameters.Add(stringValue);
+                            if (type == Type.Option) {
+                                parameters.Add(expectOptionEnabled);
+                            }
                             break;
-                        
+
                         case Type.Select:
-                            intValue = reader.ReadNext<int>();
+                            var intValue = reader.ReadNext<int>();
 
                             if (intValue < 1) {
                                 throw new ArgumentOutOfRangeException($"Cannot select option {intValue} - must be >= 1");
                             }
 
-                            break;                           
+                            parameters.Add(intValue);
+                            break;
+
+                        case Type.Set:
+                            var variableName = reader.ReadNext<string>();
+                            var value = reader.ReadNext<string>();
+
+                            if (variableName.StartsWith("$") == false) {
+                                throw new ArgumentException($"Variables must start with $");
+                            }
+
+                            parameters.Add(variableName);
+                            parameters.Add(value);
+                            break;
+
+                        default:
+                            throw new ArgumentException($"Unhandled type {type}");
                     }
                 } catch (Exception e) {
                     // there was a syntax or semantic error
-                    throw new ArgumentException($"Failed to parse step line: '{s}' (reason: {e.Message})");
+                    throw new ArgumentException($"Failed to parse step line: '{s}' (reason: {e.Message})", e);
                 }
                 
 
@@ -99,12 +122,12 @@ namespace YarnSpinner.Tests
 
             internal Step(Type type, string stringValue) {
                 this.type = type;
-                this.stringValue = stringValue;
+                this.parameters = new List<IConvertible> { stringValue };
             }
 
             internal Step(Type type, int intValue) {
                 this.type = type;
-                this.intValue = intValue;
+                this.parameters = new List<IConvertible> { intValue };
             }
 
             internal Step(Type type) {
@@ -136,8 +159,11 @@ namespace YarnSpinner.Tests
                         sb.Append((char)current);
 
                         var next = (char)Peek();
-                        if (char.IsLetterOrDigit(next) == false)
-                            break;
+                        if (char.IsLetterOrDigit(next))
+                            continue;
+                        if (next == '_')
+                            continue;
+                        break;
 
                     } while (true);
 
@@ -161,10 +187,16 @@ namespace YarnSpinner.Tests
 
         private int currentTestPlanStep = 0;
 
+        public Step CurrentStep => currentTestPlanStep < Steps.Count ? Steps[currentTestPlanStep] : null;
+        
         public TestPlan.Step.Type nextExpectedType;
         public List<(string line, bool enabled)> nextExpectedOptions = new List<(string line, bool enabled)>();
         public int nextOptionToSelect = -1;
         public string nextExpectedValue = null;
+
+        // The delegate to call when a 'set' step is run. Receives the variable
+        // name and the value.
+        public Action<string, string> onSetVariable;
 
         internal TestPlan() {
             // Start with the empty step
@@ -200,19 +232,25 @@ namespace YarnSpinner.Tests
                 currentTestPlanStep += 1;
 
                 switch (currentStep.type) {
-                    case Step.Type.Line:
-                    case Step.Type.Command:
-                    
+                    case Step.Type.Set:
+                        var name = (string)currentStep.parameters[0];
+                        var value = (string)currentStep.parameters[1];
+                        onSetVariable(name, value);
+                        continue;
                     case Step.Type.Stop:
                         nextExpectedType = currentStep.type;
-                        nextExpectedValue = currentStep.stringValue;
+                        goto done;
+                    case Step.Type.Line:
+                    case Step.Type.Command:
+                        nextExpectedType = currentStep.type;
+                        nextExpectedValue = (string)currentStep.parameters[0];
                         goto done;
                     case Step.Type.Select:
                         nextExpectedType = currentStep.type;
-                        nextOptionToSelect = currentStep.intValue;
+                        nextOptionToSelect = (int)currentStep.parameters[0];
                         goto done;
                     case Step.Type.Option:
-                        nextExpectedOptions.Add((currentStep.stringValue, currentStep.expectOptionEnabled));
+                        nextExpectedOptions.Add(((string)currentStep.parameters[0], (bool)currentStep.parameters[1]));
                         continue;                                           
                 }
             } 
@@ -246,7 +284,9 @@ namespace YarnSpinner.Tests
         }
 
         public TestPlanBuilder AddOption(string text = null) {
-            testPlan.Steps.Add(new TestPlan.Step(TestPlan.Step.Type.Option, text));
+            TestPlan.Step item = new TestPlan.Step(TestPlan.Step.Type.Option, text);
+            item.parameters.Add(true); // 'is command expected to be available' parameter
+            this.testPlan.Steps.Add(item);
             return this;
 
         }
