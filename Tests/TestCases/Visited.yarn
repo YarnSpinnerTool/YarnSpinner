@@ -5,6 +5,5 @@ entered start
 we have visited Start before
 <<else>>
 we have not visited Start
-<<jump Start>>
 <<endif>>
 ===

@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -241,6 +241,8 @@ namespace YarnSpinner.Tests
                         throw new InvalidOperationException($"Invalid variable type {operand.ValueCase}");
                 }
             };
+
+            testPlan.onRunNode = (name) => dialogue.SetNode(name);
 
             while (testPlan.CurrentStep != null && testPlan.CurrentStep.type == TestPlan.Step.Type.Set) {
                 testPlan.Next();
