@@ -244,7 +244,7 @@ namespace YarnSpinner.Tests
 
             testPlan.onRunNode = (name) => dialogue.SetNode(name);
 
-            while (testPlan.CurrentStep != null && testPlan.CurrentStep.type == TestPlan.Step.Type.Set) {
+            while (testPlan.CurrentStep != null && testPlan.CurrentStep.IsBlocking == false) {
                 testPlan.Next();
             }
 
