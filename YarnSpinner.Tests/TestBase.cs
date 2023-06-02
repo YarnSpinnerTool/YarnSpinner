@@ -244,12 +244,18 @@ namespace YarnSpinner.Tests
 
             testPlan.onRunNode = (name) => dialogue.SetNode(name);
 
+            // Step through any steps at the start of the plan that are not
+            // blocking, so that we execute any 'sets' or 'runs' or similar. (If
+            // we don't do this, then Next() will not be called until the first
+            // piece of content, and that means that the initial state won't be
+            // what the test plan specifies.)
             while (testPlan.CurrentStep != null && testPlan.CurrentStep.IsBlocking == false) {
                 testPlan.Next();
             }
 
             dialogue.SetNode(nodeName);
 
+            // Finally, run the program.
             do {
                 dialogue.Continue();
             } while (dialogue.IsActive);
