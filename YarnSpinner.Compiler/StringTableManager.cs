@@ -27,6 +27,65 @@ namespace Yarn.Compiler
             }
         }
 
+        private static class CRC32
+        {
+            private static readonly uint[] LookupTable;
+
+            static CRC32()
+            {
+                uint seedPolynomial = 0xedb88320;
+                LookupTable = new uint[256];
+                uint temp;
+                for (uint i = 0; i < LookupTable.Length; ++i)
+                {
+                    temp = i;
+                    for (int j = 8; j > 0; --j)
+                    {
+                        if ((temp & 1) == 1)
+                        {
+                            temp = (temp >> 1) ^ seedPolynomial;
+                        }
+                        else
+                        {
+                            temp >>= 1;
+                        }
+                    }
+
+                    LookupTable[i] = temp;
+                }
+            }
+
+            public static uint GetChecksum(byte[] bytes)
+            {
+                uint crc = 0xffffffff;
+                for (int i = 0; i < bytes.Length; ++i)
+                {
+                    byte index = (byte)((crc & 0xff) ^ bytes[i]);
+                    crc = (crc >> 8) ^ LookupTable[index];
+                }
+
+                return ~crc;
+            }
+
+            public static uint GetChecksum(string s) {
+                var bytes = System.Text.Encoding.UTF8.GetBytes(s);
+                return GetChecksum(bytes);
+            }
+
+            /// <summary>
+            /// Gets the CRC-32 hash of <paramref name="s"/> as a string
+            /// containing 8 lowercase hexadecimal characters.
+            /// </summary>
+            /// <param name="s">The string to get the checksum of.</param>
+            /// <returns>The string containing the checksum.</returns>
+            public static string GetChecksumString(string s)
+            {
+                uint checksum = GetChecksum(s);
+                byte[] bytes = System.BitConverter.GetBytes(checksum);
+                return System.BitConverter.ToString(bytes).ToLowerInvariant().Replace("-", string.Empty);
+            }
+        }
+
         /// <summary>
         /// Registers a new string in the string table.
         /// </summary>
@@ -54,7 +113,20 @@ namespace Yarn.Compiler
 
             if (lineID == null)
             {
-                lineIDUsed = $"line:{fileName}-{nodeName}-{this.StringTable.Count}";
+                string candidateSeed = $"{fileName}{nodeName}{this.StringTable.Count}";
+                int count = 0;
+                do
+                {
+                    if (count > 1000)
+                    {
+                        throw new DialogueException($"Internal error: string table failed to find a non-colliding hash for \"{candidateSeed}\" after {count} attempts");
+                    }
+
+                    string suffix = count != 0 ? count.ToString() : string.Empty;
+                    lineIDUsed = "line:" + CRC32.GetChecksumString(candidateSeed + suffix);
+                    count += 1;
+                }
+                while (this.StringTable.ContainsKey(lineIDUsed) == true);
 
                 isImplicit = true;
             }
