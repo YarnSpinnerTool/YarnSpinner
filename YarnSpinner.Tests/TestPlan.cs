@@ -38,6 +38,7 @@ namespace YarnSpinner.Tests
             }
 
             public Type type {get;private set;}
+            public bool IsBlocking => !(this.type == Type.Set || this.type == Type.Run);
 
             public List<IConvertible> parameters;
             
