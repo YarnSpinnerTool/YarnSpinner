@@ -180,7 +180,8 @@ namespace YarnSpinner.Tests
                 return true;
             });
 
-            
+            dialogue.Library.RegisterFunction("once", () => true);
+
             // When a node is complete, do nothing
             dialogue.NodeCompleteHandler = (string nodeName) => {};
 
