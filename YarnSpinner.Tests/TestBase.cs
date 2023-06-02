@@ -234,6 +234,8 @@ namespace YarnSpinner.Tests
                 throw new Xunit.Sdk.XunitException("Cannot run test: no test plan provided.");
             }
 
+            dialogue.SetNode(nodeName);
+
             // Called when the test plan encounters a 'set' instruction. Receive
             // the name of the variable and a string containing the expected
             // value, and update variable storage appropriately.
@@ -278,8 +280,6 @@ namespace YarnSpinner.Tests
             while (testPlan.CurrentStep != null && testPlan.CurrentStep.IsBlocking == false) {
                 testPlan.Next();
             }
-
-            dialogue.SetNode(nodeName);
 
             // Finally, run the program.
             do {
