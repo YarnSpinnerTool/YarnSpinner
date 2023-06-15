@@ -482,6 +482,10 @@ namespace Yarn.Compiler
 
             return cluster;
         }
+
+        public static string GetCompiledCodeAsString(Program program, Library l = null) {
+            return program.DumpCode(l);
+        }
     }
 
     public struct GraphingNode

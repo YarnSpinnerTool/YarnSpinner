@@ -537,6 +537,30 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitShortcut_option([NotNull] YarnSpinnerParser.Shortcut_optionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.line_group_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterLine_group_statement([NotNull] YarnSpinnerParser.Line_group_statementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.line_group_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitLine_group_statement([NotNull] YarnSpinnerParser.Line_group_statementContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.line_group_item"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterLine_group_item([NotNull] YarnSpinnerParser.Line_group_itemContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.line_group_item"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitLine_group_item([NotNull] YarnSpinnerParser.Line_group_itemContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.declare_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

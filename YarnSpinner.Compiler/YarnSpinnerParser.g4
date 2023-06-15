@@ -33,6 +33,7 @@ statement
     | declare_statement
     | enum_statement
     | jump_statement
+    | line_group_statement
     | INDENT statement* DEDENT
     ;
 
@@ -132,6 +133,14 @@ shortcut_option_statement
 
 shortcut_option
     : '->' line_statement (INDENT statement* DEDENT)?
+    ;
+
+line_group_statement
+    : line_group_item* (line_group_item BLANK_LINE_FOLLOWING_OPTION?)
+    ;
+
+line_group_item
+    : '=>' line_statement (INDENT statement* DEDENT)?
     ;
 
 declare_statement

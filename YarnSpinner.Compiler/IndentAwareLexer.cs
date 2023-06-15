@@ -144,6 +144,7 @@ namespace Yarn.Compiler
                     this.HandleEndOfFileToken(currentToken);
                     break;
 
+                case YarnSpinnerLexer.LINE_GROUP_ARROW:
                 case YarnSpinnerLexer.SHORTCUT_ARROW:
                     this.pendingTokens.Enqueue(currentToken);
                     this.lineContainsIndentTrackingToken = true;

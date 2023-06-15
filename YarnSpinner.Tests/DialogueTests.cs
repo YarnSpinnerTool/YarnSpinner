@@ -281,7 +281,7 @@ namespace YarnSpinner.Tests
             dialogue.LineHandler = (line) => {
                 var lineText = stringTable[line.ID];
                 var parsedText = dialogue.ParseMarkup(lineText.text).Text;
-                testCase.Next();
+                testCase.Run();
 
                 testCase.nextExpectedType.Should().Be(TestPlan.Step.Type.Line);
                 parsedText.Should().Be(testCase.nextExpectedValue);
@@ -290,7 +290,7 @@ namespace YarnSpinner.Tests
             };
 
             dialogue.OptionsHandler = (optionSet) => {
-                testCase.Next();
+                testCase.Run();
 
                 int optionCount = optionSet.Options.Count();
 
@@ -312,13 +312,13 @@ namespace YarnSpinner.Tests
             };
 
             dialogue.CommandHandler = (command) => {
-                testCase.Next();
+                testCase.Run();
                 testCase.nextExpectedType.Should().Be(TestPlan.Step.Type.Command);
                 dialogue.Continue();
             };
 
             dialogue.DialogueCompleteHandler = () => {
-                testCase.Next();
+                testCase.Run();
                 testCase.nextExpectedType.Should().Be(TestPlan.Step.Type.Stop);
                 dialogue.Continue();
             };

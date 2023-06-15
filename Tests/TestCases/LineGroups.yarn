@@ -1,0 +1,50 @@
+title: Start
+---
+// Scenario: A baker is selling pies.
+
+<<declare $knows_player = false>>
+<<declare $pies_bought = 0>>
+
+// The first time we speak to the baker, she'll say one of these two lines.
+// Depending on whether or not she knows the player, a different line will run.
+// TODO: Implement 'once' behaviour
+// <<if once()>>
+// => Baker: Hey there, friend! Made some fresh pies for you! <<if $knows_player>>
+// => Baker: Hey there! Fresh pies, right out of the oven! <<if not $knows_player>>
+// <<endif>>
+
+// Choose a single line to run.
+// These three will only appear if the player bought a pie earlier.
+=> Baker: Want another? <<if $pies_bought > 0>>
+=> Baker: How about another pie? <<if $pies_bought > 0>>
+=> Baker: Another pie? <<if $pies_bought > 0>>
+// This line will only appear if the player bought a pie AND the baker already knows us.
+=> Baker: Another pie for my best customer? <<if $knows_player && $pies_bought > 0>>
+// These lines can always appear.
+=> Baker: What d'ya say?
+=> Baker: How about it?
+=> Baker: Want one?
+// This line can always appear, but only ever one time.
+=> Baker: Made from my mother's recipe! #once
+
+-> Buy Pie
+    => Baker: Thank you kindly!
+    => Baker: Pleasure doin' business with you!
+    => Baker: Enjoy!
+    <<set $pies_bought += 1>>
+-> Don't Buy Pie
+    => Baker: Aw, that's a shame!
+    => Baker: Dang, no sale today!
+    => Baker: Come back another time, then!
+
+===
+title: BakerSeesPlayer
+---
+=> Baker: Hey there!
+=> Baker: Fresh pies!
+=> Baker: Fresh and hot!
+=> Baker: Popular pies! <<if $pies_bought > 2>>
+// This bark is long and complex, so we don't want to hear it too often.
+=> Baker: They're selling like hotcakes! Literally! <<if $pies_bought > 2>> #once
+===
+

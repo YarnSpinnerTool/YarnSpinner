@@ -22,9 +22,17 @@ namespace Yarn
             {
                 sb.AppendLine("Node " + entry.Key + ":");
 
+                Dictionary<int, string> labels = new Dictionary<int, string>();
+                foreach (var label in entry.Value.Labels) {
+                    labels[label.Value] = label.Key;
+                }
+
                 int instructionCount = 0;
                 foreach (var instruction in entry.Value.Instructions)
                 {
+                    if (labels.TryGetValue(instructionCount, out var labelName)) {
+                        sb.AppendLine(labelName + ":");
+                    }
                     string instructionText;
 
                     instructionText = "    " + instruction.ToString(this, l);
@@ -162,6 +170,11 @@ namespace Yarn
 
                 // Functions pop 0 or more values, and pop 0 or 1
                 case OpCode.CallFunc:
+                    if (l == null) {
+                        pops = -1;
+                        pushes = -1;
+                        break;
+                    }
                     var function = l.GetFunction(Operands[0].StringValue);
 
                     pops = function.Method.GetParameters().Length;

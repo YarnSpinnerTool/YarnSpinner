@@ -75,6 +75,9 @@ namespace Yarn.Compiler
 
             if (lineIDTag == null)
             {
+                // We should always have this, because if one wasn't present in
+                // the source code, the string table generator should have added
+                // one
                 throw new InvalidOperationException("Internal error: line should have an implicit or explicit line ID tag, but none was found");
             }
 
@@ -354,6 +357,162 @@ namespace Yarn.Compiler
             this.compiler.Emit(OpCode.Pop, context.Stop);
 
             return 0;
+        }
+
+        public override int VisitLine_group_statement(YarnSpinnerParser.Line_group_statementContext context)
+        {
+            var labels = new Dictionary<YarnSpinnerParser.Line_group_itemContext, string>();
+
+            int optionCount = 0;
+
+            // Register a label that all line group items should jump to when
+            // done.
+            var lineGroupCompleteLabel = this.compiler.RegisterLabel("linegroup_done");
+
+
+            // Each line group item works like this:
+            // - If present, the condition is evaluated.
+            //   - If the condition is false, this item is skipped.
+            // - If the condition is true or not present, a function call is
+            //   made:
+            //   - 'Yarn.Internal.add_line_group_candidate(label,
+            //     condition_count, line_id)'
+            //     - label: The point in the program to jump to if this
+            //       candidate is selected
+            //     - condition_count: The number of values present in the line's
+            //       condition (0 if not present)
+            //     - line_id: The line ID of the line (which also serves as a
+            //       unique ID for the line condition.)
+            // - Each call to add_line_candidate adds an entry to an internal
+            //   list in the VM.
+            // - Finally, after all line group items have been checked in this
+            //   way, a call to 'Yarn.Internal.select_line_candidate' is made.
+            //   This causes the VM to query its saliency strategy to find the
+            //   specific item to run, and returns the appropriate label to jump
+            //   to.
+
+            bool anyItemHadEmptyCondition = false;
+
+            foreach (var lineGroupItem in context.line_group_item())
+            {
+                // Generate and remember the label for this item
+                var lineLabel = this.compiler.RegisterLabel("linegroup_item_" + optionCount);
+                labels[lineGroupItem] = lineLabel;
+
+                // Evaluate the expression for the item, if present
+                var lineStatement = lineGroupItem.line_statement();
+                var expression = lineStatement.line_condition()?.expression();
+                
+                if (expression != null)
+                {
+                    var endOfExpressionEvalLabel = compiler.RegisterLabel("linegroup_item_" + optionCount + "condition_end");
+
+                    this.Visit(expression);
+
+                    // If this evaluates to false, skip to the end of the expression
+                    this.compiler.Emit(OpCode.JumpIfFalse, expression.Start, new Operand(endOfExpressionEvalLabel));
+
+                    // TODO: Evaluate and count the presence of a '#once' tag
+
+                    // Get the number of values that this expression examines
+                    var conditionCount = GetValuesInExpression(expression);
+
+                    // Call the 'add candidate' function
+                    EmitCodeForRegisteringLineGroupItem(lineGroupItem, conditionCount);
+
+                    this.compiler.AddLabel(endOfExpressionEvalLabel, this.compiler.CurrentNode.Instructions.Count);
+                }
+                else
+                {
+                    // There is no expression; call the add candidate function
+                    EmitCodeForRegisteringLineGroupItem(lineGroupItem, 0);
+
+                    anyItemHadEmptyCondition = true;
+                }
+
+                optionCount += 1;
+            }
+
+            void EmitCodeForRegisteringLineGroupItem(YarnSpinnerParser.Line_group_itemContext lineGroupItem, int conditionCount) {
+                var lineStatement = lineGroupItem.line_statement();
+                var lineIDTag = Compiler.GetLineIDTag(lineStatement.hashtag());
+                var lineID = lineIDTag?.text?.Text ?? throw new InvalidOperationException("Internal compiler error: line ID for line group item was not present");
+
+                // Push the parameters (label, condition count (= 0), line id) in reverse order
+                this.compiler.Emit(OpCode.PushString, lineStatement.Start, new Operand(lineID));
+                this.compiler.Emit(OpCode.PushFloat, lineStatement.Start, new Operand(conditionCount));
+                this.compiler.Emit(OpCode.PushString, lineStatement.Start, new Operand(labels[lineGroupItem]));
+                this.compiler.Emit(OpCode.PushFloat, lineGroupItem.Start, new Operand(3));
+                this.compiler.Emit(OpCode.CallFunc, lineGroupItem.Start, new Operand(VirtualMachine.AddLineGroupCandidateFunctionName));
+            }
+
+            if (anyItemHadEmptyCondition == false) {
+                // All items had a condition. We need to handle the event where
+                // all conditions fail, so we'll register an item that jumps
+                // straight to the end of the line group.
+                this.compiler.Emit(OpCode.PushString, context.Stop, new Operand("<none>"));
+                this.compiler.Emit(OpCode.PushFloat, context.Stop, new Operand(0));
+                this.compiler.Emit(OpCode.PushString, context.Stop, new Operand(lineGroupCompleteLabel));
+                this.compiler.Emit(OpCode.PushFloat, context.Stop, new Operand(3));
+                this.compiler.Emit(OpCode.CallFunc, context.Stop, new Operand(VirtualMachine.AddLineGroupCandidateFunctionName));
+            }
+
+            // We've added all of our candidates; now query which one to jump to
+            this.compiler.Emit(OpCode.PushFloat, context.Start
+            , new Operand(0));
+            this.compiler.Emit(OpCode.CallFunc, context.Start, new Operand(VirtualMachine.SelectLineGroupCandidateFunctionName));
+
+            // After this call, the appropriate label to jump to will be on the
+            // stack.
+            this.compiler.Emit(OpCode.Jump, context.Start);
+
+
+            // Now generate the code for each of the lines in the group.
+            foreach (var lineGroupItem in context.line_group_item())
+            {
+                // Create the label that we're jumping to
+                this.compiler.AddLabel(labels[lineGroupItem], this.compiler.CurrentNode.Instructions.Count);
+
+                // Evaluate this line
+                this.Visit(lineGroupItem.line_statement());
+
+                // For each child, evaluate that too
+                foreach (var childStatement in lineGroupItem.statement()) {
+                    this.Visit(childStatement);
+                }
+
+                this.compiler.Emit(OpCode.JumpTo, lineGroupItem.Stop, new Operand(lineGroupCompleteLabel));
+            }
+
+            // Create the label that all line group items jump to
+            this.compiler.AddLabel(lineGroupCompleteLabel, this.compiler.CurrentNode.Instructions.Count);
+
+            // Pop the label that represents the selected item
+            this.compiler.Emit(OpCode.Pop, context.Stop);
+
+            return 0;
+        }
+
+        /// <summary>
+        /// Gets the total number of values - functions calls, variables, and
+        /// constant values - present in an expression and its sub-expressions.
+        /// </summary>
+        /// <remarks>Function call arguments and their sub-expressions are not
+        /// included in the count.</remarks>
+        /// <param name="context">An expression.</param>
+        /// <returns>The total number of values in the expression.</returns>
+        private static int GetValuesInExpression(YarnSpinnerParser.ExpressionContext context) {
+            if (context is YarnSpinnerParser.ExpValueContext) {
+                return 1;
+            } else {
+                var accum = 0;
+                foreach (var child in context.children) {
+                    if (child is YarnSpinnerParser.ExpressionContext exp) {
+                        accum += GetValuesInExpression(exp);
+                    }
+                }
+                return accum;
+            }
         }
 
         // the calls for the various operations and expressions first the

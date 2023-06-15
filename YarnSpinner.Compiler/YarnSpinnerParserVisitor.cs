@@ -283,6 +283,18 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitShortcut_option([NotNull] YarnSpinnerParser.Shortcut_optionContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.line_group_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLine_group_statement([NotNull] YarnSpinnerParser.Line_group_statementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.line_group_item"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLine_group_item([NotNull] YarnSpinnerParser.Line_group_itemContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.declare_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

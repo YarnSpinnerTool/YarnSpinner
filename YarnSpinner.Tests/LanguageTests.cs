@@ -332,6 +332,9 @@ namespace YarnSpinner.Tests
         [MemberData(nameof(FileSources), "Issues")]
         public void TestSources(string file)
         {
+            // if (file.Contains("LineGroups") == false) {
+            //     return;
+            // }
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"INFO: Loading file {file}");
 

@@ -259,6 +259,8 @@ namespace Yarn
         }
 
         internal Node currentNode;
+        public const string AddLineGroupCandidateFunctionName = "Yarn.Internal.add_line_group_candidate";
+        public const string SelectLineGroupCandidateFunctionName = "Yarn.Internal.select_line_group_candidate";
 
         public bool SetNode(string nodeName)
         {
@@ -625,6 +627,17 @@ namespace Yarn
                          */
                         var functionName = i.Operands[0].StringValue;
 
+                        // If functionName is a special-cased internal compiler
+                        // function, handle that
+                        if (functionName.Equals(AddLineGroupCandidateFunctionName, StringComparison.Ordinal)) {
+                            this.HandleAddLineGroupCandidate();
+                            break;
+                        }
+                        if (functionName.Equals(SelectLineGroupCandidateFunctionName, StringComparison.Ordinal)) {
+                            this.HandleSelectLineGroupCandidate();
+                            break;
+                        }
+
                         var function = Library.GetFunction(functionName);
 
                         var parameterInfos = function.Method.GetParameters();
@@ -921,6 +934,70 @@ namespace Yarn
                         );
                     }
             }
+        }
+
+        private struct LineGroupCandidate {
+            public string label;
+            public int conditionValueCount;
+            public string lineID;
+        }
+
+        private List<LineGroupCandidate> lineGroupCandidates = new List<LineGroupCandidate>();
+
+        private void HandleSelectLineGroupCandidate()
+        {
+            // TODO: Implement pluggable saliency strategies
+
+            // Pop the parameter count, which is 0
+            var actualParamCount = state.PopValue().ConvertTo<int>();
+            const int expectedParamCount = 0;
+            if (actualParamCount != expectedParamCount) {
+                throw new InvalidOperationException($"Function {SelectLineGroupCandidateFunctionName} expected {expectedParamCount} parameters, but received {actualParamCount}");
+            }
+
+            // There is always at least one candidate (even if it's only the
+            // 'none' option that the compiler generates)
+            if (lineGroupCandidates.Count == 0) {
+                throw new InvalidOperationException($"Internal Yarn Spinner error: line group had zero candidates");
+            }
+
+            // Sort candidates by number of conditions
+            lineGroupCandidates.Sort(CompareLineGroupCandidates);
+
+            // Pick the first one
+            var candidate = lineGroupCandidates[0];
+
+            lineGroupCandidates.Clear();
+
+            // Push the label onto the stack
+            state.PushValue(candidate.label);
+        }
+
+        private static int CompareLineGroupCandidates(LineGroupCandidate a, LineGroupCandidate b) {
+            return b.conditionValueCount.CompareTo(a.conditionValueCount);
+        }
+
+        private void HandleAddLineGroupCandidate()
+        {
+            // 'Add Line Group Candidate' expects 3 parameters pushed in reverse order:
+            // -label (str)
+            // - condition count (num)
+            // - line id (str)
+            var actualParamCount = (int)state.PopValue().ConvertTo<int>();
+            const int expectedParamCount = 3;
+
+            if (expectedParamCount != actualParamCount)
+            {
+                throw new InvalidOperationException($"Function {AddLineGroupCandidateFunctionName} expected {expectedParamCount} parameters, but received {actualParamCount}");
+            }
+
+            var candidate = new LineGroupCandidate();
+
+            candidate.label = state.PopValue().ConvertTo<string>();
+            candidate.conditionValueCount = state.PopValue().ConvertTo<int>();
+            candidate.lineID = state.PopValue().ConvertTo<string>();
+
+            lineGroupCandidates.Add(candidate);
         }
 
         public bool TryGetSmartVariable<T>(string name, out T result)

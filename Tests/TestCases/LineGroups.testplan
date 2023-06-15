@@ -1,0 +1,33 @@
+set: $knows_player false
+set: $pies_bought 0
+
+# First time seeing this so we get the intro line
+# TODO: Implement 'once'
+#line: Hey there! Fresh pies, right out of the oven!
+
+# We haven't seen this '#once' line before
+# TODO: Implement once
+# line: Baker: Made from my mother's recipe!
+
+line: Baker: What d'ya say?
+
+# Choose to not buy a pie
+option: Buy Pie
+option: Don't Buy Pie
+select: 2
+
+line: Baker: Aw, that's a shame!
+stop:
+
+# Run the node again
+run: Start
+
+# We skip the intro line and get a different opening line
+line: Baker: What d'ya say?
+
+option: Buy Pie
+option: Don't Buy Pie
+select: 1
+
+line: Baker: Thank you kindly!
+

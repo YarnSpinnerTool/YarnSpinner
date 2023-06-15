@@ -80,6 +80,9 @@ BODY_END : '===' -> popMode;
 // The start of a shortcut option
 SHORTCUT_ARROW : '->' ;
 
+// The start of a line group entry
+LINE_GROUP_ARROW : '=>' ;
+
 // The start of a command
 COMMAND_START: '<<' -> pushMode(CommandMode) ;
 

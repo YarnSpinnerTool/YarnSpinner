@@ -189,6 +189,11 @@ namespace YarnSpinner.Tests
 
 
             }
+
+            public override string ToString()
+            {
+                return $"{this.type}: {string.Join(" ", this.parameters)}";
+            }
         }
 
         internal List<Step> Steps = new List<Step>();
@@ -220,9 +225,46 @@ namespace YarnSpinner.Tests
                 .Where(line => line.Trim() != "") // skip empty or blank lines
                 .Select(line => new Step(line)) // convert remaining lines to steps
                 .ToList();
+            
+            if (Steps.Count == 0 || Steps.Last().type != Step.Type.Stop) {
+                // Add a 'Stop' item at the end
+                Steps.Add(new Step(Step.Type.Stop));
+            }
         }
 
-        public void Next() {
+        public bool EvaluateStep(Step currentStep) {
+            switch (currentStep.type)
+            {
+                case Step.Type.Set:
+                    var name = (string)currentStep.parameters[0];
+                    var value = (string)currentStep.parameters[1];
+                    onSetVariable(name, value);
+                    return true;
+                case Step.Type.Run:
+                    var node = (string)currentStep.parameters[0];
+                    onRunNode(node);
+                    return true;
+                case Step.Type.Stop:
+                    nextExpectedType = currentStep.type;
+                    return false;
+                case Step.Type.Line:
+                case Step.Type.Command:
+                    nextExpectedType = currentStep.type;
+                    nextExpectedValue = (string)currentStep.parameters[0];
+                    return false;
+                case Step.Type.Select:
+                    nextExpectedType = currentStep.type;
+                    nextOptionToSelect = (int)currentStep.parameters[0];
+                    return false;
+                case Step.Type.Option:
+                    nextExpectedOptions.Add(((string)currentStep.parameters[0], (bool)currentStep.parameters[1]));
+                    return true;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(currentStep), $"{nameof(currentStep.type)}");
+            }
+        }
+
+        public void Run() {
             // step through the test plan until we hit an expectation to
             // see a line, option, or command. specifically, we're waiting
             // to see if we got a Line, Select, Command or Assert step
@@ -236,49 +278,35 @@ namespace YarnSpinner.Tests
                 nextOptionToSelect = 0;
             }
 
+            if (currentTestPlanStep >= Steps.Count) {
+                // We've reached the end - default to Stopped
+                this.nextExpectedType = Step.Type.Stop;
+                return;
+            }
+
             while (currentTestPlanStep < Steps.Count) {
                 
                 Step currentStep = Steps[currentTestPlanStep];
 
-                currentTestPlanStep += 1;
-
-                switch (currentStep.type) {
-                    case Step.Type.Set:
-                        var name = (string)currentStep.parameters[0];
-                        var value = (string)currentStep.parameters[1];
-                        onSetVariable(name, value);
-                        continue;
-                    case Step.Type.Run:
-                        var node = (string)currentStep.parameters[0];
-                        onRunNode(node);
-                        continue;
-                    case Step.Type.Stop:
-                        nextExpectedType = currentStep.type;
-                        goto done;
-                    case Step.Type.Line:
-                    case Step.Type.Command:
-                        nextExpectedType = currentStep.type;
-                        nextExpectedValue = (string)currentStep.parameters[0];
-                        goto done;
-                    case Step.Type.Select:
-                        nextExpectedType = currentStep.type;
-                        nextOptionToSelect = (int)currentStep.parameters[0];
-                        goto done;
-                    case Step.Type.Option:
-                        nextExpectedOptions.Add(((string)currentStep.parameters[0], (bool)currentStep.parameters[1]));
-                        continue;                                           
+                bool shouldContinue = EvaluateStep(currentStep);
+                GoToNextStep();
+                if (shouldContinue == false) {
+                    break;
                 }
+
             } 
 
-            // We've fallen off the end of the test plan step list. We
-            // expect a stop here.
-            nextExpectedType = Step.Type.Stop;
-
-            done:
             return;
         }
 
-
+        // Moves to, but does not evaluate, the next step in the plan
+        public void GoToNextStep()
+        {
+            currentTestPlanStep += 1;
+            if (currentTestPlanStep > Steps.Count) {
+                currentTestPlanStep = Steps.Count;
+            }
+        }
     }
 
     public class TestPlanBuilder {

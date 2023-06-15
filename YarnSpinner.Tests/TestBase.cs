@@ -107,7 +107,7 @@ namespace YarnSpinner.Tests
                 Console.WriteLine("Line: " + text);
 
                 if (testPlan != null) {
-                    testPlan.Next();
+                    testPlan.Run();
 
                     if (testPlan.nextExpectedType == TestPlan.Step.Type.Line) {
                         $"Line {lineNumber}: {text}".Should().Be($"Line {lineNumber}: {testPlan.nextExpectedValue}");
@@ -127,7 +127,7 @@ namespace YarnSpinner.Tests
                 }
 
                 if (testPlan != null) {
-                    testPlan.Next();
+                    testPlan.Run();
 
                     if (testPlan.nextExpectedType != TestPlan.Step.Type.Select) {
                         throw new Xunit.Sdk.XunitException($"Received {optionCount} options, but wasn't expecting them (was expecting {testPlan.nextExpectedType.ToString()})");
@@ -143,12 +143,12 @@ namespace YarnSpinner.Tests
                     var expectedOptionCount = testPlan.nextExpectedOptions.Count();
 
                     optionCount.Should().Be(expectedOptionCount);
-                    
-                    if (testPlan.nextOptionToSelect != -1) {
-                        dialogue.SetSelectedOption(testPlan.nextOptionToSelect - 1);                    
-                    } else {
-                        dialogue.SetSelectedOption(0);                    
-                    }
+
+                    var selection = testPlan.nextOptionToSelect != -1 ? testPlan.nextOptionToSelect - 1 : 0;
+
+                    Console.WriteLine($"Choosing option {selection} (\"{actualOptionList[selection]}\")");
+
+                    dialogue.SetSelectedOption(selection);
                 }
 
                 
@@ -158,7 +158,7 @@ namespace YarnSpinner.Tests
                 Console.WriteLine("Command: " + command.Text);
                 
                 if (testPlan != null) {
-                    testPlan.Next();
+                    testPlan.Run();
                     if (testPlan.nextExpectedType != TestPlan.Step.Type.Command)
                     {
                         throw new Xunit.Sdk.XunitException($"Received command {command.Text}, but wasn't expecting to select one (was expecting {testPlan.nextExpectedType.ToString()})");
@@ -188,7 +188,7 @@ namespace YarnSpinner.Tests
             // When dialogue is complete, check that we expected a stop
             dialogue.DialogueCompleteHandler = () => {
                 if (testPlan != null) {
-                    testPlan.Next();
+                    testPlan.Run();
 
                     if (testPlan.nextExpectedType != TestPlan.Step.Type.Stop) {
                         throw new Xunit.Sdk.XunitException($"Stopped dialogue, but wasn't expecting to select it (was expecting {testPlan.nextExpectedType.ToString()})");
@@ -279,7 +279,8 @@ namespace YarnSpinner.Tests
             // piece of content, and that means that the initial state won't be
             // what the test plan specifies.)
             while (testPlan.CurrentStep != null && testPlan.CurrentStep.IsBlocking == false) {
-                testPlan.Next();
+                testPlan.EvaluateStep(testPlan.CurrentStep);
+                testPlan.GoToNextStep();
             }
 
             // Finally, run the program.
