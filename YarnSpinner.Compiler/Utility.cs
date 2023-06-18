@@ -483,8 +483,8 @@ namespace Yarn.Compiler
             return cluster;
         }
 
-        public static string GetCompiledCodeAsString(Program program, Library l = null) {
-            return program.DumpCode(l);
+        public static string GetCompiledCodeAsString(Program program, Library l = null, System.Func<string,string> stringLookupHelper = null) {
+            return program.DumpCode(l, stringLookupHelper);
         }
     }
 

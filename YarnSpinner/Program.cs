@@ -14,7 +14,7 @@ namespace Yarn
     {
         internal const string SmartVariableNodeTag = "Yarn.SmartVariable";
 
-        internal string DumpCode(Library l)
+        internal string DumpCode(Library l, System.Func<string,string> stringLookupHelper = null)
         {
             var sb = new System.Text.StringBuilder();
 
@@ -35,7 +35,7 @@ namespace Yarn
                     }
                     string instructionText;
 
-                    instructionText = "    " + instruction.ToString(this, l);
+                    instructionText = "    " + instruction.ToString(this, l, stringLookupHelper);
 
                     string preface;
 
@@ -146,7 +146,7 @@ namespace Yarn
     public partial class Instruction
     {
 
-        internal string ToString(Program p, Library l)
+        internal string ToString(Program p, Library l, System.Func<string,string> stringLookupHelper = null)
         {
             // Generate a comment, if the instruction warrants it
             string comment = "";
@@ -220,10 +220,16 @@ namespace Yarn
                 case OpCode.RunLine:
                 case OpCode.AddOption:
 
+                    string actualString = Operands[0].StringValue;
+
+                    if (stringLookupHelper != null) {
+                        actualString = stringLookupHelper(actualString);
+                    }
+
                     // Add the string for this option, if it has one
-                    if (Operands[0].StringValue != "")
+                    if (actualString != null)
                     {
-                        comment += string.Format(CultureInfo.InvariantCulture, "\"{0}\"", Operands[0].StringValue);
+                        comment += string.Format(CultureInfo.InvariantCulture, "\"{0}\"", actualString);
                     }
 
                     break;
@@ -235,15 +241,18 @@ namespace Yarn
                 comment = "; " + comment;
             }
 
-            string opAString = Operands.Count > 0 ? Operands[0].ToString() : "";
-            string opBString = Operands.Count > 1 ? Operands[1].ToString() : "";
+
+            var operandsAsStrings = new List<string>();
+            foreach (var op in Operands) {
+                operandsAsStrings.Add(op.AsString);
+            }
+            
 
             return string.Format(
                 CultureInfo.InvariantCulture,
-                "{0,-15} {1,-10} {2,-10} {3, -10}",
+                "{0,-15} {1,-40} {2, -10}",
                 Opcode.ToString(),
-                opAString,
-                opBString,
+                string.Join(" ", operandsAsStrings),
                 comment);
         }
     }
@@ -256,5 +265,26 @@ namespace Yarn
     public partial class Node
     {
 
+    }
+
+    public partial class Operand {
+        internal string AsString
+        {
+            get
+            {
+                switch (this.ValueCase)
+                {
+                    case ValueOneofCase.StringValue:
+                        return this.StringValue;
+                    case ValueOneofCase.BoolValue:
+                        return this.BoolValue.ToString();
+                    case ValueOneofCase.FloatValue:
+                        return this.FloatValue.ToString(CultureInfo.InvariantCulture);
+                    default:
+                        return "<unknown>";
+                }
+            }
+
+        }
     }
 }
