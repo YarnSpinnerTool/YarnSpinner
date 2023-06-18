@@ -12,10 +12,40 @@ using FluentAssertions;
 
 namespace YarnSpinner.Tests
 {
+    class DebugMemoryVariableStore : MemoryVariableStore {
+        public override bool TryGetValue<T>(string variableName, out T result)
+        {
+            var fetched = base.TryGetValue(variableName, out result);
+            if (fetched) {
+                Console.WriteLine($"Get {typeof(T)} var {variableName}; no value found. Falling back to initial values.");
+            } else {
+                Console.WriteLine($"Get {typeof(T)} var {variableName}; got {result}");
+            }
+            return fetched;
+        }
+        
+        public override void SetValue(string variableName, bool boolValue)
+        {
+            Console.WriteLine($"Set var {variableName} to {boolValue}");
+            base.SetValue(variableName, boolValue);
+        }
+
+        public override void SetValue(string variableName, float floatValue)
+        {
+            Console.WriteLine($"Set var {variableName} to {floatValue}");
+            base.SetValue(variableName, floatValue);
+        }
+
+        public override void SetValue(string variableName, string stringValue)
+        {
+            Console.WriteLine($"Set var {variableName} to {stringValue}");
+            base.SetValue(variableName, stringValue);
+        }
+    }
 
     public class TestBase
     {
-        protected IVariableStorage storage = new MemoryVariableStore();
+        protected IVariableStorage storage = new DebugMemoryVariableStore();
         protected Dialogue dialogue;
         protected IDictionary<string, Yarn.Compiler.StringInfo> stringTable;
         protected IEnumerable<Yarn.Compiler.Declaration> declarations;

@@ -322,7 +322,7 @@ namespace Yarn
         // The VM that we'll use to evaluate smart variables
         private VirtualMachine smartVariableVM = new VirtualMachine(null, null);
 
-        public bool TryGetValue<T>(string variableName, out T result) {
+        public virtual bool TryGetValue<T>(string variableName, out T result) {
             switch (GetVariableKind(variableName))
             {
                 case VariableKind.Stored:
@@ -397,19 +397,19 @@ namespace Yarn
         }
 
         /// <inheritdoc/>
-        public void SetValue(string variableName, string stringValue)
+        public virtual void SetValue(string variableName, string stringValue)
         {
             this.variables[variableName] = stringValue;
         }
 
         /// <inheritdoc/>
-        public void SetValue(string variableName, float floatValue)
+        public virtual void SetValue(string variableName, float floatValue)
         {
             this.variables[variableName] = floatValue;
         }
 
         /// <inheritdoc/>
-        public void SetValue(string variableName, bool boolValue)
+        public virtual void SetValue(string variableName, bool boolValue)
         {
             this.variables[variableName] = boolValue;
         }
