@@ -3,13 +3,11 @@ set: $pies_bought 0
 
 # First time seeing this so we get the intro line
 # TODO: Implement 'once'
-#line: Hey there! Fresh pies, right out of the oven!
+line: Baker: Hey there! Fresh pies, right out of the oven!
 
 # We haven't seen this '#once' line before
 # TODO: Implement once
-# line: Baker: Made from my mother's recipe!
-
-line: Baker: What d'ya say?
+line: Baker: Made from my mother's recipe!
 
 # Choose to not buy a pie
 option: Buy Pie

@@ -108,6 +108,8 @@ namespace YarnSpinner.Tests
 
             dialogue.LanguageCode = "en";
 
+            dialogue.ContentSaliencyStrategy = new Yarn.Saliency.BestLeastRecentlyViewedSalienceStrategy(storage);
+
             dialogue.LogDebugMessage = delegate(string message) {
                 Console.ResetColor();
                 Console.WriteLine (message);
@@ -210,7 +212,15 @@ namespace YarnSpinner.Tests
                 return true;
             });
 
-            dialogue.Library.RegisterFunction("once", () => true);
+            HashSet<string> seenOnceTags = new HashSet<string>();
+
+            dialogue.Library.RegisterFunction("once", (string tag) => {
+                if (seenOnceTags.Contains(tag)) {
+                    return false;
+                }
+                seenOnceTags.Add(tag);
+                return true;
+            });
 
             // When a node is complete, do nothing
             dialogue.NodeCompleteHandler = (string nodeName) => {};

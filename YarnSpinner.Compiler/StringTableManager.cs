@@ -24,6 +24,9 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <summary>
+        /// Provides a method for generating CRC32 hashes of strings.
+        /// </summary>
         private static class CRC32
         {
             private static readonly uint[] LookupTable;
@@ -52,6 +55,13 @@ namespace Yarn.Compiler
                 }
             }
 
+            /// <summary>
+            /// Computes a CRC32 checksum from the given bytes.
+            /// </summary>
+            /// <param name="bytes">The bytes to generate a checksum
+            /// for.</param>
+            /// <returns>A CRC32 checksum derived from <paramref
+            /// name="bytes"/>.</returns>
             public static uint GetChecksum(byte[] bytes)
             {
                 uint crc = 0xffffffff;
@@ -64,15 +74,36 @@ namespace Yarn.Compiler
                 return ~crc;
             }
 
+            /// <summary>
+            /// Computes a CRC32 checksum from the given string.
+            /// </summary>
+            /// <remarks>
+            /// This method converts the string to a UTF-8 encoding, and then
+            /// computes a CRC32 checksum from those bytes.
+            /// </remarks>
+            /// <param name="s">The string to generate a checksum for.</param>
+            /// <returns>A CRC32 checksum derived from <paramref
+            /// name="s"/>.</returns>
             public static uint GetChecksum(string s) {
                 var bytes = System.Text.Encoding.UTF8.GetBytes(s);
                 return GetChecksum(bytes);
             }
 
             /// <summary>
+            /// Computes a CRC32 checksum from the given string.
+            /// </summary>
+            /// <param name="s">The string to generate a checksum for.</param>
+            /// <returns>A CRC32 checksum derived from <paramref
+            /// name="s"/>.</returns>
+
+            /// <summary>
             /// Gets the CRC-32 hash of <paramref name="s"/> as a string
             /// containing 8 lowercase hexadecimal characters.
             /// </summary>
+            /// <remarks>
+            /// This method converts the string to a UTF-8 encoding, and then
+            /// computes a CRC32 checksum from those bytes.
+            /// </remarks>
             /// <param name="s">The string to get the checksum of.</param>
             /// <returns>The string containing the checksum.</returns>
             public static string GetChecksumString(string s)

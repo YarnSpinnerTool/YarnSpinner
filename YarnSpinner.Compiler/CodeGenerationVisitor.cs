@@ -66,24 +66,62 @@ namespace Yarn.Compiler
             //
             // <<if true>> Mae: here's a line <<endif>>
 
+            // Get the lineID for this string from the hashtags
+            var lineID = Compiler.GetLineID(context);
+            Compiler.TryGetOnceHashtag(context.hashtag(), out var onceHashtag);
+
+            string endOfConditionLabel = this.compiler.RegisterLabel("line_once_condition");
+
+            // We generate check-and-skip code for a line that has a 'once'
+            // hashtag if it 1. has one and 2. isn't part of a line group. (If
+            // it's in a line group, the 'once' hashtag that belongs to this
+            // line will have already been evaluated (see
+            // VisitLine_group_statement), so if we're appearing, then we've
+            // already passed the check.)
+            bool generatesHashtagCheckCode = onceHashtag != null && !(context.Parent is YarnSpinnerParser.Line_group_itemContext);
+
+            // We always generate code that sets the 'once' variable if we have
+            // a 'once' hashtag.
+            bool generatesHashtagSetCode = onceHashtag != null;
+
+            string onceVariableName = Compiler.GetContentViewedVariableName(lineID);
+
+            if (generatesHashtagCheckCode) {
+                // Get the value of the variable
+                this.compiler.Emit(OpCode.PushVariable, onceHashtag.Start, new Operand(onceVariableName));
+
+                // 'not' it - we want to jump if the value is true
+                var notFunction = GetFunctionName(Types.Boolean, Operator.Not);
+                this.compiler.Emit(OpCode.PushFloat, onceHashtag.Start, new Operand(1));
+                this.compiler.Emit(OpCode.CallFunc, onceHashtag.Start, new Operand(notFunction));
+
+                // If the check returned false (i.e. the variable returned
+                // true), then skip this line.
+                this.compiler.Emit(OpCode.JumpIfFalse, onceHashtag.Start, new Operand(endOfConditionLabel));
+                this.compiler.Emit(OpCode.PushBool, onceHashtag.Start, new Operand(true));
+                this.compiler.Emit(OpCode.StoreVariable, onceHashtag.Start, new Operand(onceVariableName));
+                this.compiler.Emit(OpCode.Pop);
+            }
+
+            if (generatesHashtagSetCode) {
+                // Generate the code that marks that we've seen this line.
+                this.compiler.Emit(OpCode.PushBool, onceHashtag.Start, new Operand(true));
+                this.compiler.Emit(OpCode.StoreVariable, onceHashtag.Start, new Operand(onceVariableName));
+                this.compiler.Emit(OpCode.Pop);
+            }
+            
             // Evaluate the inline expressions and push the results onto the
             // stack.
             var expressionCount = this.GenerateCodeForExpressionsInFormattedText(context.line_formatted_text().children);
-
-            // Get the lineID for this string from the hashtags
-            var lineIDTag = Compiler.GetLineIDTag(context.hashtag());
-
-            if (lineIDTag == null)
-            {
-                // We should always have this, because if one wasn't present in
-                // the source code, the string table generator should have added
-                // one
-                throw new InvalidOperationException("Internal error: line should have an implicit or explicit line ID tag, but none was found");
-            }
-
-            var lineID = lineIDTag.text.Text;
-
+            
             this.compiler.Emit(OpCode.RunLine, context.Start, new Operand(lineID), new Operand(expressionCount));
+
+            // Finally, if we were generating code for checking and skipping the
+            // line, create the label to jump to
+            if (generatesHashtagCheckCode) {
+                this.compiler.AddLabel(endOfConditionLabel, this.compiler.CurrentNode.Instructions.Count);
+                this.compiler.Emit(OpCode.Pop, onceHashtag.Start);
+            }
 
             return 0;
         }
@@ -279,6 +317,9 @@ namespace Yarn.Compiler
             // options.
             foreach (var shortcut in context.shortcut_option())
             {
+                // Get the line ID for the shortcut's line
+                var lineID = Compiler.GetLineID(shortcut.line_statement());
+                
                 // Generate the name of internal label that we'll jump to if
                 // this option is selected. We'll emit the label itself later.
                 string optionDestinationLabel = this.compiler.RegisterLabel($"shortcutoption_{this.compiler.CurrentNode.Name ?? "node"}_{optionCount + 1}");
@@ -289,6 +330,7 @@ namespace Yarn.Compiler
                 // 'Add Option' instruction that indicates that a condition
                 // exists.
                 bool hasLineCondition = false;
+                bool hasOnceHashtag = false;
                 if (shortcut.line_statement()?.line_condition()?.expression() != null)
                 {
                     // Evaluate the condition, and leave it on the stack
@@ -297,20 +339,36 @@ namespace Yarn.Compiler
                     hasLineCondition = true;
                 }
 
+                if (Compiler.TryGetOnceHashtag(shortcut.line_statement()?.hashtag(), out var once))
+                {
+                    // Generate code that evaluates the 'viewed once' tag
+                    var variableName = Compiler.GetContentViewedVariableName(lineID);
+                    this.compiler.Emit(OpCode.PushVariable, once.Start, new Operand(variableName));
+
+                    // The stack now contains whether or not we've seen this
+                    // content before. We want to show the option when we have
+                    // NOT seen this before, so 'not' it.
+                    var notFunction = GetFunctionName(Types.Boolean, Operator.Not);
+                    this.compiler.Emit(OpCode.PushFloat, once.Start, new Operand(1));
+                    this.compiler.Emit(OpCode.CallFunc, once.Start, new Operand(notFunction));
+                    hasOnceHashtag = true;
+                }
+
+                if (hasLineCondition && hasOnceHashtag)
+                {
+                    // We have both a line condition's result and a #once
+                    // condition's result on the stack, so 'And' the two values
+                    // together.
+                    var andFunction = GetFunctionName(Types.Boolean, Operator.And);
+                    this.compiler.Emit(OpCode.PushFloat, once.Start, new Operand(2));
+                    this.compiler.Emit(OpCode.CallFunc, once.Start, new Operand(andFunction));
+                }
+
                 // We can now prepare and add the option.
 
                 // Start by figuring out the text that we want to add. This will
                 // involve evaluating any inline expressions.
                 var expressionCount = this.GenerateCodeForExpressionsInFormattedText(shortcut.line_statement().line_formatted_text().children);
-
-                // Get the line ID from the hashtags if it has one
-                var lineIDTag = Compiler.GetLineIDTag(shortcut.line_statement().hashtag());
-                string lineID = lineIDTag.text.Text;
-
-                if (lineIDTag == null)
-                {
-                    throw new InvalidOperationException("Internal error: no line ID provided");
-                }
 
                 // And add this option to the list.
                 this.compiler.Emit(
@@ -319,7 +377,7 @@ namespace Yarn.Compiler
                     new Operand(lineID),
                     new Operand(optionDestinationLabel),
                     new Operand(expressionCount),
-                    new Operand(hasLineCondition));
+                    new Operand(hasLineCondition || hasOnceHashtag));
 
                 optionCount++;
             }
@@ -337,6 +395,16 @@ namespace Yarn.Compiler
             {
                 // Emit the label for this option's code
                 this.compiler.CurrentNode.Labels.Add(labels[optionCount], this.compiler.CurrentNode.Instructions.Count);
+
+                if (Compiler.TryGetOnceHashtag(shortcut.line_statement().hashtag(), out var once)) {
+                    // This option had a #once hashtag. It was selected, so mark
+                    // that it's been seen.
+                    var lineID = Compiler.GetLineID(shortcut.line_statement());
+                    var onceVariableName = Compiler.GetContentViewedVariableName(lineID);
+                    this.compiler.Emit(OpCode.PushBool, once.Start, new Operand(true));
+                    this.compiler.Emit(OpCode.StoreVariable, once.Start, new Operand(onceVariableName));
+                    this.compiler.Emit(OpCode.Pop, once.Start);
+                }
 
                 // Run through all the children statements of the shortcut
                 // option.
@@ -402,20 +470,63 @@ namespace Yarn.Compiler
                 // Evaluate the expression for the item, if present
                 var lineStatement = lineGroupItem.line_statement();
                 var expression = lineStatement.line_condition()?.expression();
-                
-                if (expression != null)
+
+                Compiler.TryGetOnceHashtag(lineStatement.hashtag(), out var onceHashTag);
+
+                var lineID = Compiler.GetLineID(lineGroupItem.line_statement());
+
+                if (onceHashTag != null || expression != null)
                 {
                     var endOfExpressionEvalLabel = compiler.RegisterLabel("linegroup_item_" + optionCount + "condition_end");
 
-                    this.Visit(expression);
+                    IToken conditionToken = null;
+                    int conditionCount = 0;
+
+                    if (expression != null)
+                    {
+                        this.Visit(expression);
+                        conditionToken = expression.Start;
+
+                        // Get the number of values that this expression examines
+                        conditionCount += GetValuesInExpression(expression);
+                    }
+                    if (onceHashTag != null)
+                    {
+                        // Evaluate the 'once' variable
+                        var variableName = Compiler.GetContentViewedVariableName(lineID);
+                        this.compiler.Emit(OpCode.PushVariable, onceHashTag.Start, new Operand(variableName));
+                        // We want to add this item if we have NOT seen this
+                        // before, so 'not' the result
+                        var notFunction = GetFunctionName(Types.Boolean, Operator.Not);
+                        this.compiler.Emit(OpCode.PushFloat, onceHashTag.Start, new Operand(1));
+                        this.compiler.Emit(OpCode.CallFunc, onceHashTag.Start, new Operand(notFunction));
+
+                        conditionToken = onceHashTag.Start;
+
+                        // The presence of a #once hashtag counts as an
+                        // expression value
+                        conditionCount += 1;
+                    }
+
+                    if (expression != null && onceHashTag != null)
+                    {
+                        // We now have two bools on the stack, so 'and' them
+                        // together.
+
+                        // Find the name of the method to invoke for doing a
+                        // boolean And.
+                        Yarn.IType type = Yarn.Types.Boolean;
+                        Operator op = Operator.And;
+                        string functionName = GetFunctionName(type, op);
+
+                        // Peform the boolean 'and' with the two bools that are
+                        // currently on the stack
+                        this.compiler.Emit(OpCode.PushFloat, expression.Start, new Operand(2));
+                        this.compiler.Emit(OpCode.CallFunc, expression.Start, new Operand(functionName));
+                    }
 
                     // If this evaluates to false, skip to the end of the expression
-                    this.compiler.Emit(OpCode.JumpIfFalse, expression.Start, new Operand(endOfExpressionEvalLabel));
-
-                    // TODO: Evaluate and count the presence of a '#once' tag
-
-                    // Get the number of values that this expression examines
-                    var conditionCount = GetValuesInExpression(expression);
+                    this.compiler.Emit(OpCode.JumpIfFalse, conditionToken, new Operand(endOfExpressionEvalLabel));
 
                     // Call the 'add candidate' function
                     EmitCodeForRegisteringLineGroupItem(lineGroupItem, conditionCount);
@@ -450,7 +561,7 @@ namespace Yarn.Compiler
                 // All items had a condition. We need to handle the event where
                 // all conditions fail, so we'll register an item that jumps
                 // straight to the end of the line group.
-                this.compiler.Emit(OpCode.PushString, context.Stop, new Operand("<none>"));
+                this.compiler.Emit(OpCode.PushString, context.Stop, new Operand(VirtualMachine.LineGroupCandidate.NoneContentID));
                 this.compiler.Emit(OpCode.PushFloat, context.Stop, new Operand(0));
                 this.compiler.Emit(OpCode.PushString, context.Stop, new Operand(lineGroupCompleteLabel));
                 this.compiler.Emit(OpCode.PushFloat, context.Stop, new Operand(3));
@@ -458,14 +569,12 @@ namespace Yarn.Compiler
             }
 
             // We've added all of our candidates; now query which one to jump to
-            this.compiler.Emit(OpCode.PushFloat, context.Start
-            , new Operand(0));
+            this.compiler.Emit(OpCode.PushFloat, context.Start, new Operand(0));
             this.compiler.Emit(OpCode.CallFunc, context.Start, new Operand(VirtualMachine.SelectLineGroupCandidateFunctionName));
 
             // After this call, the appropriate label to jump to will be on the
             // stack.
             this.compiler.Emit(OpCode.Jump, context.Start);
-
 
             // Now generate the code for each of the lines in the group.
             foreach (var lineGroupItem in context.line_group_item())
@@ -473,7 +582,7 @@ namespace Yarn.Compiler
                 // Create the label that we're jumping to
                 this.compiler.AddLabel(labels[lineGroupItem], this.compiler.CurrentNode.Instructions.Count);
 
-                // Evaluate this line
+                // Evaluate this line. (If it had a once hashtag, this will set its variable.)
                 this.Visit(lineGroupItem.line_statement());
 
                 // For each child, evaluate that too
@@ -491,6 +600,18 @@ namespace Yarn.Compiler
             this.compiler.Emit(OpCode.Pop, context.Stop);
 
             return 0;
+        }
+
+        private static string GetFunctionName(IType type, Operator op)
+        {
+            TypeBase implementingType = TypeUtil.FindImplementingTypeForMethod(type, op.ToString());
+            if (implementingType == null)
+            {
+                throw new InvalidOperationException($"Internal error: Codegen failed to get implementation type for {op} given input type {type}.");
+            }
+
+            string functionName = TypeUtil.GetCanonicalNameForMethod(implementingType, op.ToString());
+            return functionName;
         }
 
         /// <summary>

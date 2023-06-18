@@ -181,6 +181,14 @@ namespace Yarn.Compiler
                 };
             }
 
+            // Go through all files and generate any necessary variables for
+            // their #once hashtags, and rewrite any once() functions to include
+            // the unique parameter.
+            foreach (var parsedFile in parsedFiles) {
+                var onceTagger = new ViewOnceVisitor(parsedFile.Name, declarations, diagnostics);
+                onceTagger.Visit(parsedFile.Tree);
+            }
+
             // Run the type checker on the files, and produce type variables and constraints.
 
             List<TypeChecker.TypeConstraint> typeConstraints = new List<TypeChecker.TypeConstraint>();
@@ -449,6 +457,19 @@ namespace Yarn.Compiler
                     }
                 });
             }
+        }
+
+
+        /// <summary>
+        /// Gets the name of the boolean variable that stores whether the
+        /// content identified by lineID has been seen by the player before.
+        /// </summary>
+        /// <param name="lineID">The line ID to generate a variable name
+        /// for.</param>
+        /// <returns>A variable name.</returns>
+        internal static string GetContentViewedVariableName(string lineID)
+        {
+            return $"$Yarn.Internal.Once.{lineID}";
         }
 
         /// <summary>
@@ -853,6 +874,50 @@ namespace Yarn.Compiler
             return null;
         }
 
+        /// <summary>
+        /// Gets a string containing the line ID from a line statement parser
+        /// context.
+        /// </summary>
+        /// <remarks>
+        /// The line ID is extracted from the <c>#line:</c> hashtag found on the
+        /// line. If it isn't present, then this method throws an exception.
+        /// </remarks>
+        /// <param name="line">The line statement to extract the line ID
+        /// from.</param>
+        /// <returns>The line ID found in this line.</returns>
+        /// <exception cref="ArgumentException">Thrown when the line does not
+        /// have a line ID.</exception>
+        internal static string GetLineID(YarnSpinnerParser.Line_statementContext line)
+        {
+            var lineIDHashTag = GetLineIDTag(line.hashtag());
+
+            if (lineIDHashTag == null)
+            {
+                throw new ArgumentException("Internal error: line does not have a line ID");
+            }
+
+            var lineID = lineIDHashTag.text.Text;
+            return lineID;
+        }
+
+        internal static bool TryGetOnceHashtag(IEnumerable<YarnSpinnerParser.HashtagContext> hashtags, out YarnSpinnerParser.HashtagContext result)
+        {
+            if (hashtags != null)
+            {
+                foreach (var hashtagContext in hashtags)
+                {
+                    string tagText = hashtagContext.text.Text;
+                    if (tagText.Equals("once", StringComparison.InvariantCulture))
+                    {
+                        result = hashtagContext;
+                        return true;
+                    }
+                }
+            }
+            result = null;
+            return false;
+        }
+
         // this replaces the CompileNode from the old compiler will start
         // walking the parse tree emitting byte code as it goes along this
         // will all get stored into our program var needs a tree to walk,
@@ -1165,6 +1230,48 @@ namespace Yarn.Compiler
         void ICodeEmitter.Emit(OpCode code, params Operand[] operands)
         {
             Compiler.Emit(this.CurrentNode, this.CurrentDebugInfo, -1, -1, code, operands);
+        }
+    }
+
+    public partial class YarnSpinnerParser
+    {
+        public partial class NodeContext
+        {
+            /// <summary>
+            /// Gets the title of this node, as specified in its '<c>title</c>'
+            /// header. If it is not present, returns <see langword="null"/>.
+            /// </summary>
+            public string NodeTitle
+            {
+                get
+                {
+                    var headers = this.header();
+
+                    if (headers == null)
+                    {
+                        return null;
+                    }
+
+                    foreach (var header in headers)
+                    {
+                        var headerType = header.header_key;
+                        var headerValue = header.header_value;
+                        if (headerType == null || headerValue == null)
+                        {
+                            continue;
+                        }
+
+                        if (headerType.Text.Equals("title", StringComparison.CurrentCulture) == false)
+                        {
+                            continue;
+                        }
+
+                        return headerValue.Text;
+                    }
+
+                    return null;
+                }
+            }
         }
     }
 }

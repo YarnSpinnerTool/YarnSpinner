@@ -1,0 +1,18 @@
+title: Start
+---
+<<if once("AppearOnce1")>>
+    This line appears once: 1.
+<<endif>>
+
+<<if once("AppearOnce1")>>
+    Error: this line should not appear.
+<<endif>>
+
+This line appears once: 2. #once
+This line appears every time.
+
+-> This option is selectable once. #once
+-> This option is also selectable once. #once
+-> This option is visible only once, regardless of whether it's selected. <<if once("OptionVisibleOnce")>>
+-> This option is selectable every time.
+===

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-
+using Yarn.Saliency;
 using static Yarn.Instruction.Types;
 
 namespace Yarn
@@ -257,6 +257,8 @@ namespace Yarn
                 }
             }
         }
+
+        public IContentSaliencyStrategy ContentSaliencyStrategy { get; internal set; }
 
         internal Node currentNode;
         public const string AddLineGroupCandidateFunctionName = "Yarn.Internal.add_line_group_candidate";
@@ -936,18 +938,21 @@ namespace Yarn
             }
         }
 
-        private struct LineGroupCandidate {
+        internal struct LineGroupCandidate : IContentSaliencyOption {
+            public const string NoneContentID = "Yarn.Internal.None";
             public string label;
             public int conditionValueCount;
             public string lineID;
+
+            public int ConditionValueCount => conditionValueCount;
+            public string ContentID => lineID;
         }
 
         private List<LineGroupCandidate> lineGroupCandidates = new List<LineGroupCandidate>();
 
         private void HandleSelectLineGroupCandidate()
         {
-            // TODO: Implement pluggable saliency strategies
-
+        
             // Pop the parameter count, which is 0
             var actualParamCount = state.PopValue().ConvertTo<int>();
             const int expectedParamCount = 0;
@@ -961,20 +966,19 @@ namespace Yarn
                 throw new InvalidOperationException($"Internal Yarn Spinner error: line group had zero candidates");
             }
 
-            // Sort candidates by number of conditions
-            lineGroupCandidates.Sort(CompareLineGroupCandidates);
+            if (ContentSaliencyStrategy == null) {
+                // We don't have a saliency strategy, so create and store a
+                // basic one.
+                ContentSaliencyStrategy = new Saliency.FirstSaliencyStrategy();
+            }
 
-            // Pick the first one
-            var candidate = lineGroupCandidates[0];
+            // Choose the content to present.
+            var selectedContent = ContentSaliencyStrategy.ChooseBestContent(lineGroupCandidates);
 
             lineGroupCandidates.Clear();
 
             // Push the label onto the stack
-            state.PushValue(candidate.label);
-        }
-
-        private static int CompareLineGroupCandidates(LineGroupCandidate a, LineGroupCandidate b) {
-            return b.conditionValueCount.CompareTo(a.conditionValueCount);
+            state.PushValue(selectedContent.label);
         }
 
         private void HandleAddLineGroupCandidate()
@@ -995,7 +999,19 @@ namespace Yarn
 
             candidate.label = state.PopValue().ConvertTo<string>();
             candidate.conditionValueCount = state.PopValue().ConvertTo<int>();
-            candidate.lineID = state.PopValue().ConvertTo<string>();
+
+            string lineID = state.PopValue().ConvertTo<string>();
+
+            if (string.Equals(lineID, LineGroupCandidate.NoneContentID, StringComparison.Ordinal))
+            {
+                // This content represents the 'none' option. Do not store a
+                // line ID for it.
+                candidate.lineID = null;
+            }
+            else
+            {
+                candidate.lineID = lineID;
+            }
 
             lineGroupCandidates.Add(candidate);
         }

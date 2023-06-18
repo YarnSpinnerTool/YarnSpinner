@@ -711,6 +711,20 @@ namespace Yarn
         public Library Library { get; internal set; }
 
         /// <summary>
+        /// Gets or sets the content saliency strategy used by this <see cref="Dialogue"/>.
+        /// </summary>
+        /// <remarks>
+        /// A content saliency strategy is a class that implements <see
+        /// cref="Yarn.Saliency.IContentSaliencyStrategy"/> and selects the most
+        /// appropriate content in a line group, or any other situation where
+        /// content saliency is relevant.
+        /// </remarks>
+        public Saliency.IContentSaliencyStrategy ContentSaliencyStrategy { 
+            get => this.vm.ContentSaliencyStrategy; 
+            set => this.vm.ContentSaliencyStrategy = value;
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Dialogue"/> class.
         /// </summary>
         /// <param name="variableStorage">The <see
