@@ -201,7 +201,9 @@ namespace YarnSpinner.Tests
         private int currentTestPlanStep = 0;
 
         public Step CurrentStep => currentTestPlanStep < Steps.Count ? Steps[currentTestPlanStep] : null;
-        
+
+        public bool IsEnded => currentTestPlanStep >= Steps.Count;
+
         public TestPlan.Step.Type nextExpectedType;
         public List<(string line, bool enabled)> nextExpectedOptions = new List<(string line, bool enabled)>();
         public int nextOptionToSelect = -1;

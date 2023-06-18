@@ -11,6 +11,7 @@ using CLDRPlurals;
 using System.Globalization;
 
 using FluentAssertions;
+using FluentAssertions.Extensions;
 
 namespace YarnSpinner.Tests
 {
@@ -332,9 +333,6 @@ namespace YarnSpinner.Tests
         [MemberData(nameof(FileSources), "Issues")]
         public void TestSources(string file)
         {
-            // if (file.Contains("LineGroups") == false) {
-            //     return;
-            // }
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"INFO: Loading file {file}");
 
@@ -387,7 +385,10 @@ namespace YarnSpinner.Tests
                 // we did in the last line)
                 if (dialogue.NodeExists("Start"))
                 {
-                    RunStandardTestcase();
+                    new Action(() =>
+                    {
+                        RunStandardTestcase();
+                    }).ExecutionTime().Should().BeLessThanOrEqualTo(1000.Milliseconds());
                 }
             }
         }
