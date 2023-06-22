@@ -28,6 +28,22 @@ namespace Yarn.Compiler
         };
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Project"/> class.
+        /// </summary>
+        public Project()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Project"/> class.
+        /// </summary>
+        /// <param name="path">The value to use for the new instance's <see cref="Path"/> property.</param>
+        public Project(string path)
+        {
+            this.Path = path;
+        }
+
+        /// <summary>
         /// Gets or sets the file version of the project.
         /// </summary>
         /// <remarks>
@@ -44,7 +60,7 @@ namespace Yarn.Compiler
         /// <remarks>
         /// This value is not stored when the file is saved, but is instead
         /// determined when the file is loaded by <see
-        /// cref="LoadFromFile(string)"/>.
+        /// cref="LoadFromFile(string)"/>, or provided when the <see cref="Project"/> is constructed.
         /// </remarks>
         [JsonIgnore]
         public string Path { get; private set; }
@@ -97,6 +113,18 @@ namespace Yarn.Compiler
         /// scripts.
         /// </remarks>
         public string Definitions { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating whether this Project is an 'implicit'
+        /// project (that is, it does not currently represent a file that exists
+        /// on disk.)
+        /// </summary>
+        /// <remarks>
+        /// An implicit project is created by tools like the Yarn Spinner
+        /// Language Server when opening a folder that contains Yarn files but
+        /// no Yarn Project file.
+        /// </remarks>
+        internal bool IsImplicit => !System.IO.File.Exists(this.Path);
 
         /// <summary>
         /// Gets or sets a dictionary containing instructions that control how
