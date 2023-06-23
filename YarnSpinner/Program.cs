@@ -138,6 +138,91 @@ namespace Yarn
             }
             return output;
         }
+
+        /// <summary>
+        /// Attempts to fetch a value for a variable named <paramref
+        /// name="variableName"/> from this program's collection of initial
+        /// values.
+        /// </summary>
+        /// <typeparam name="T">The type of variable to retrieve.</typeparam>
+        /// <param name="variableName">The name of the variable to retrieve a
+        /// value for.</param>
+        /// <param name="result">On return, contains the value of the variable,
+        /// or the default value of <typeparamref name="T"/> if not
+        /// known.</param>
+        /// <returns><see langword="true"/> if an initial value for <paramref
+        /// name="variableName"/> was found; <see langword="false"/>
+        /// otherwise.</returns>
+        /// <exception cref="InvalidOperationException">Thrown the stored
+        /// initial value found for <paramref name="variableName"/> is not known to
+        /// this version of Yarn Spinner.</exception>
+        /// <exception cref="InvalidCastException">Thrown when the initial value
+        /// found for <paramref name="variableName"/> cannot be cast or
+        /// converted to <typeparamref name="T"/>.</exception>
+        public bool TryGetInitialValue<T>(string variableName, out T result)
+        {
+            // Attempt to fetch it from the program's initial values.
+            if (this.InitialValues.ContainsKey(variableName) == false)
+            {
+                // This variable isn't known to this program.
+                result = default;
+                return false;
+            }
+            var initialValue = this.InitialValues[variableName];
+            try
+            {
+                object convertObject;
+                switch (initialValue.ValueCase)
+                {
+                    case Operand.ValueOneofCase.StringValue:
+                        convertObject = initialValue.StringValue;
+                        break;
+                    case Operand.ValueOneofCase.BoolValue:
+                        convertObject = initialValue.BoolValue;
+                        break;
+                    case Operand.ValueOneofCase.FloatValue:
+                        convertObject = initialValue.FloatValue;
+                        break;
+                    default:
+                        throw new InvalidOperationException($"Internal error: invalid value type {initialValue.ValueCase}");
+                }
+                if (typeof(T).IsInterface)
+                {
+                    // T is an interface, so we can't directly convert to it.
+                    // Instead, attempt to cast to whatever type T is. If this
+                    // is invalid, we'll throw an InvalidCastException (which we
+                    // catch below.).
+                    result = (T)convertObject;
+                }
+                else
+                {
+                    // This is a concrete type. Use Convert to convert to that
+                    // type, if we're able.
+                    result = (T)Convert.ChangeType(convertObject, typeof(T), System.Globalization.CultureInfo.InvariantCulture);
+                }
+                return true;
+            }
+            catch (InvalidCastException e)
+            {
+                throw new InvalidCastException($"Can't fetch variable {variableName} (a {initialValue.ValueCase}) as {typeof(T)}", e);
+            }
+        }
+
+        public VariableKind GetVariableKind(string name)
+        {
+            // If 'name' has an initial value, it is a stored variable
+            if (this.InitialValues.ContainsKey(name)) {
+                return VariableKind.Stored;
+            }
+            // If 'name' is the name of a node in our smart variable nodes, then 
+            foreach (var node in this.SmartVariableNodes) {
+                if (node.Name == name) {
+                    return VariableKind.Smart;
+                }
+            }
+            // We don't know what kind it is.
+            return VariableKind.Unknown;
+        }
     }
 
     /// <summary>
