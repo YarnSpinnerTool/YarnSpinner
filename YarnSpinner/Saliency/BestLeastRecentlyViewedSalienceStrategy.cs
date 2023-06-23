@@ -12,7 +12,7 @@ namespace Yarn.Saliency
     /// This strategy stores information about the number of times each piece of
     /// content has been seen in the provided <see cref="VariableStorage"/>.
     /// </remarks>
-    class BestLeastRecentlyViewedSalienceStrategy : IContentSaliencyStrategy
+    public class BestLeastRecentlyViewedSalienceStrategy : IContentSaliencyStrategy
     {
         /// <summary>
         /// Gets the variable storage to use for storing information about how

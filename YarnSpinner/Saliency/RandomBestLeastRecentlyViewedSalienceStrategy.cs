@@ -12,7 +12,7 @@ namespace Yarn.Saliency
     /// This strategy stores information about the number of times each piece of
     /// content has been seen in the provided <see cref="VariableStorage"/>.
     /// </remarks>
-    class RandomBestLeastRecentlyViewedSalienceStrategy : IContentSaliencyStrategy
+    public class RandomBestLeastRecentlyViewedSalienceStrategy : IContentSaliencyStrategy
     {
         /// <summary>
         /// Gets the variable storage to use for storing information about how
@@ -61,7 +61,7 @@ namespace Yarn.Saliency
                     // assume zero. Additionally, we'll keep the view count key
                     // for later, since we'll increment it when we're done.
                     string viewCountKey = GetViewCountKeyForContent(c);
-                    if (this.VariableStorage.TryGetValue<float>(viewCountKey, out var countAsFloat))
+                    if (!this.VariableStorage.TryGetValue<float>(viewCountKey, out var countAsFloat))
                     {
                         countAsFloat = 0;
                     }

@@ -14,7 +14,7 @@ namespace Yarn.Saliency
     /// that takes into account how recently content has been seen, see <see
     /// cref="BestLeastRecentlyViewedSalienceStrategy"/>.
     /// </remarks>
-    class BestSaliencyStrategy : IContentSaliencyStrategy
+    public class BestSaliencyStrategy : IContentSaliencyStrategy
     {
         /// <inheritdoc/>
         public TContent ChooseBestContent<TContent>(IEnumerable<TContent> options) where TContent : IContentSaliencyOption

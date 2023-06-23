@@ -11,7 +11,7 @@ namespace Yarn.Saliency
     /// This saliency strategy is used when a <see cref="Dialogue"/> has no
     /// provided saliency strategy, but is required to make a decision.
     /// </remarks>
-    class FirstSaliencyStrategy : IContentSaliencyStrategy
+    public class FirstSaliencyStrategy : IContentSaliencyStrategy
     {
         /// <inheritdoc/>
         public TContent ChooseBestContent<TContent>(IEnumerable<TContent> options) where TContent : IContentSaliencyOption
