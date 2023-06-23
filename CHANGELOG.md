@@ -171,7 +171,7 @@ The `once()` function is a function that takes a single string parameter, and re
 
 #### Select Content with Line Groups
 
-Yarn Spinner 2.3 introduces _line groups_. When the dialogue reaches a line group, Yarn Spinner chooses a single item from that group and runs it.
+Yarn Spinner &lt;next&gt; introduces _line groups_. When the dialogue reaches a line group, Yarn Spinner chooses a single item from that group and runs it.
 
 Line groups are especially useful for barks, and for any other situation where the game needs to decide what to show to the player.
 
@@ -230,7 +230,7 @@ Yarn Spinner ships with several saliency strategies to choose from:
 
 You can also create your own custom saliency strategy by creating a C# class that implements the interface `IContentSaliencyStrategy`.
 
-To set a saliency strategy, create an instance of the appropriate class, and set your `Dialogue` object's `ContentSaliencyStrategy` property to it:
+To set a saliency strategy, create an instance of the appropriate saliency strategy class, and set your `Dialogue` object's `ContentSaliencyStrategy` property to it:
 
 ```csharp
 VariableStorage storage = /* your game's variable storage */
