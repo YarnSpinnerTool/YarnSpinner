@@ -290,7 +290,8 @@ namespace YarnSpinner.Tests
         public class FakeVariableStorage : IVariableStorage
         {
             public Program Program { get => null; set { } }
-            public Library Library { get => null; set { } }
+            
+            public ISmartVariableEvaluator SmartVariableEvaluator { get => null; set => _ = 0; }
 
             public void Clear() {}
 
