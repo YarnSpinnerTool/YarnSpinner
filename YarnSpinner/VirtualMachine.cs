@@ -99,7 +99,14 @@ namespace Yarn
         Modulo,
     }
 
-    internal class VirtualMachine
+    /// <summary>
+    /// Contains methods for evaluating the value of smart variables
+    /// </summary>
+    public interface ISmartVariableEvaluator {
+        bool TryGetSmartVariable<T>(string name, out T result);
+    }
+
+    internal class VirtualMachine : ISmartVariableEvaluator
     {
 
         internal class State

@@ -79,23 +79,6 @@ namespace Yarn
             }
         }
 
-        /// <summary>
-        /// Determines if <paramref name="variableName"/> is the name of a smart
-        /// variable in the program.
-        /// </summary>
-        /// <param name="variableName">The name of the variable to
-        /// check.</param>
-        /// <returns><see langword="true"/> if <paramref name="variableName"/>
-        /// is the name of a smart variable.</returns>
-        internal bool IsSmartVariable(string variableName) {
-            foreach (var node in this.SmartVariableNodes) {
-                if (node.Name == variableName) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         // TODO: this behaviour belongs in the VM as a "load additional program" feature, not in the Program data object
 
 		/// <summary>

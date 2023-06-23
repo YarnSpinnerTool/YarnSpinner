@@ -251,14 +251,9 @@ namespace Yarn
         Program Program { get; set; }
 
         /// <summary>
-        /// Gets or sets the <see cref="Library"/> used when evaluating smart
-        /// variables.
+        /// Gets or sets the object to use when evaluating smart variables.
         /// </summary>
-        /// <remarks>
-        /// This should generally be the same <see cref="Library"/> object as
-        /// used by the <see cref="Dialogue"/> that uses this variable storage.
-        /// </remarks>
-        Library Library { get; set; }
+        ISmartVariableEvaluator SmartVariableEvaluator { get; set; }
     }
 
     /// <summary>Provides a mechanism for storing values.</summary>
@@ -302,8 +297,9 @@ namespace Yarn
     {
         private Dictionary<string, object> variables = new Dictionary<string, object>();
 
-        private static bool TryGetAsType<T>(Dictionary<string,object>dictionary, string key, out T result) {
-            if (dictionary.TryGetValue(key, out var objectResult) == true 
+        private static bool TryGetAsType<T>(Dictionary<string, object> dictionary, string key, out T result)
+        {
+            if (dictionary.TryGetValue(key, out var objectResult) == true
                 && typeof(T).IsAssignableFrom(objectResult.GetType()))
             {
                 result = (T)objectResult;
@@ -316,12 +312,10 @@ namespace Yarn
 
         /// <inheritdoc/>
         public Program Program { get; set; }
+
         /// <inheritdoc/>
-        public Library Library { get; set; }
-
-        // The VM that we'll use to evaluate smart variables
-        private VirtualMachine smartVariableVM = new VirtualMachine(null, null);
-
+        public ISmartVariableEvaluator SmartVariableEvaluator { get; set; }
+    
         public virtual bool TryGetValue<T>(string variableName, out T result) {
             switch (GetVariableKind(variableName))
             {
@@ -334,54 +328,14 @@ namespace Yarn
                         // We successfully fetched it from storage.
                         return true;
                     } else {
-                        // Attempt to fetch it from the program's initial values.
-                        var initialValue = Program.InitialValues[variableName];
-                        try
-                        {
-                            object convertObject;
-                            switch (initialValue.ValueCase)
-                            {
-                                case Operand.ValueOneofCase.StringValue:
-                                    convertObject = initialValue.StringValue;
-                                    break;
-                                case Operand.ValueOneofCase.BoolValue:
-                                    convertObject = initialValue.BoolValue;
-                                    break;
-                                case Operand.ValueOneofCase.FloatValue:
-                                    convertObject = initialValue.FloatValue;
-                                    break;
-                                default:
-                                    throw new InvalidOperationException($"Internal error: invalid value type {initialValue.ValueCase}");
-                            }
-                            if (typeof(T).IsInterface) {
-                                // T is an interface, so we can't directly
-                                // convert to it. Instead, attempt to cast to
-                                // whatever type T is. If this is invalid, we'll
-                                // throw an InvalidCastException (which we catch
-                                // below.).
-                                result = (T)convertObject;
-                            } else {
-                                // This is a concrete type. Use Convert to
-                                // convert to that type, if we're able.
-                                result = (T)Convert.ChangeType(convertObject, typeof(T), System.Globalization.CultureInfo.InvariantCulture);
-                            }
-                            return true;
-                        } catch (InvalidCastException e) {
-                            throw new InvalidCastException($"Can't fetch variable {variableName} (a {initialValue.ValueCase}) as {typeof(T)}", e);
-                        }
+                        // We didn't fetch it from storage. Fall back to the
+                        // program's initial value storage.
+                        return Program.TryGetInitialValue(variableName, out result);
                     }
                 case VariableKind.Smart:
-                    // The variable is a smart variable. Find the node that
-                    // implements it, and use that to get the variable's current
-                    // value.
-
-                    // Update the VM's settings, since ours might have changed
-                    // since we created the VM.
-                    this.smartVariableVM.Program = this.Program;
-                    this.smartVariableVM.Library = this.Library;
-                    this.smartVariableVM.VariableStorage = this;
-
-                    return this.smartVariableVM.TryGetSmartVariable(variableName, out result);
+                    // The variable is a smart variable. Ask our smart variable
+                    // evaluator.
+                    return this.SmartVariableEvaluator.TryGetSmartVariable(variableName, out result);
                 case VariableKind.Unknown:
                 default:
                     // The variable is not known.
@@ -425,17 +379,9 @@ namespace Yarn
                 // information.
                 return VariableKind.Unknown;
             }
-            // If it doesn't exist in stored values, does an initial value exist
-            // in the program?
-            if (this.Program.InitialValues.ContainsKey(name)) {
-                return VariableKind.Stored;
-            }
-            // If it doesn't exist there, then it might be a smart variable.
-            if (this.Program.IsSmartVariable(name)) {
-                return VariableKind.Smart;
-            }
-            // No idea!
-            return VariableKind.Unknown;
+            // Ask our Program about it. It will be able to tell if the variable
+            // is stored, smart, or unknown.
+            return this.Program.GetVariableKind(name);
         }
     }
 
@@ -544,7 +490,7 @@ namespace Yarn
     /// <summary>
     /// Co-ordinates the execution of Yarn programs.
     /// </summary>
-    public class Dialogue : IAttributeMarkerProcessor
+    public class Dialogue : IAttributeMarkerProcessor, ISmartVariableEvaluator
     {
 
         /// <summary>
@@ -579,24 +525,11 @@ namespace Yarn
 
                 vm.Program = value;
                 vm.ResetState();
-
-                smartVariableNames.Clear();
-
-                if (program != null)
-                {
-                    foreach (var node in program.SmartVariableNodes) {
-                        smartVariableNames.Add(node.Name);
-                    }
-                }
-
+                
+                smartVariableVM.Program = value;
+                smartVariableVM.ResetState();
             }
         }
-
-        /// <summary>
-        /// A cached collection of the names of nodes that implement smart
-        /// variables.
-        /// </summary>
-        private HashSet<string> smartVariableNames = new HashSet<string>();
 
         /// <summary>
         /// Gets a value indicating whether the Dialogue is currently executing
@@ -698,7 +631,20 @@ namespace Yarn
             set => vm.PrepareForLinesHandler = value;
         }
 
+        /// <summary>
+        /// The virtual machine to use when running dialogue.
+        /// </summary>
         private VirtualMachine vm;
+
+        /// <summary>
+        /// The virtual machine to use when evaluating smart variables.
+        /// </summary>
+        /// <remarks>
+        /// This is kept separate from the main VM in order to prevent
+        /// evaluating smart variables from modifying the evaluation state of
+        /// dialogue.
+        /// </remarks>
+        private VirtualMachine smartVariableVM;
 
         /// <summary>
         /// Gets the <see cref="Yarn.Library"/> that this Dialogue uses to
@@ -735,9 +681,11 @@ namespace Yarn
             Library = new Library();
             
             this.VariableStorage = variableStorage ?? throw new ArgumentNullException(nameof(variableStorage));
-            this.VariableStorage.Library = Library;
+            this.VariableStorage.SmartVariableEvaluator = this;
+            this.VariableStorage.Program = this.Program;
 
             this.vm = new VirtualMachine(this.Library, this.VariableStorage);
+            this.smartVariableVM = new VirtualMachine(this.Library, this.VariableStorage);
 
             Library.ImportLibrary(new StandardLibrary());
 
@@ -1248,9 +1196,11 @@ namespace Yarn
             return count;
         }
 
-        
-
-        
+        /// <inheritdoc />
+        public bool TryGetSmartVariable<T>(string name, out T result)
+        {
+            return ((ISmartVariableEvaluator)this.smartVariableVM).TryGetSmartVariable(name, out result);
+        }
 
         // The standard, built-in library of functions and operators.
         internal class StandardLibrary : Library
