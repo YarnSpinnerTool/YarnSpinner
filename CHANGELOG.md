@@ -122,53 +122,6 @@ Smart variables can be accessed anywhere a regular variable would be used:
   - `definitions` _(optional)_ is the path to a JSON file containing command and function definitions used by the project.
   - `compilerOptions` _(optional)_ is an object containing additional settings used by the Yarn Spinner compiler.
 
-#### Showing Content Once Using `#once` and `once()` 
-
-Two new tools for controlling when the player should see content have been added: the `#once` hashtag, and the `once()` function.
-
-The `#once` hashtag can be applied to lines and options, which makes that content available one time.
-
-Lines that have a `#once` hashtag will only ever be shown to the player once. 
-
-> For example, consider this script:
-> 
-> ```
-> Baker: Good to meet you! #once
-> Baker: How can I help?
-> ```
-> 
-> The first time this script is run, both lines will be shown. After the first time, only the second line will be shown.
-
-Behind the scenes, the Yarn Spinner compiler creates a boolean variable derived from the line's ID, and checks to see if this variable is `false`. If the test passes, the variable is set to true, and the line is shown. The variable is stored in the Dialogue's variable storage system, though it isn't available in the Yarn script itself.
-
-Options can also use the `#once` hashtag.  An option that has the `#once` hashtag is only available if it hasn't been selected before. 
-
-> For example, consider the following script:
-> 
-> ```
-> -> Tell me about your pies. #once
->   (content about pies...)
-> -> Tell me about your cakes. #once
->   (content about cakes...)
-> -> Goodbye.
-> ```
-> 
-> The first time that the player sees these options, all three of the options will be available. If they ask about pies or cakes, then the next time the options are seen, that option will no longer be available.
-
-The `once()` function is a function that takes a single string parameter, and returns true the first time that that parameter is used, and false every other time. The `once()` function can be used to control a larger amount of content, and can also be used in complex expressions where knowing whether the player has run the script before is important.
-
-> For example, consider this script:
-> ```
-> <<if once("meet_baker")>>
->   Baker: Hey, good to meet you!
->   Baker: I ask every new customer this question: pies, or cakes?
->   -> Pies!
->   -> Cakes!
-> <<endif>>
-> ```
-> 
-> In this example, the player will only see this content once. In all subsequent runs, all of this content will be skipped over. 
-
 #### Select Content with Line Groups
 
 Yarn Spinner &lt;next&gt; introduces _line groups_. When the dialogue reaches a line group, Yarn Spinner chooses a single item from that group and runs it.
@@ -201,23 +154,16 @@ Lines in a line group can have _conditions_ that control whether or not they're 
 >
 >If `$is_criminal` is true, then any of these lines may be run, but if `$is_criminal` is false, then one of only the first three lines may be run.
 
-Line groups can also make use of the `#once` hashtag to create lines that are only shown once. This is useful for creating lines that may be annoying if heard too often (also known as the '[arrow-in-the-knee](https://en.wikipedia.org/wiki/Arrow_in_the_knee)' problem):
-
-```
-=> Another day, guarding the bridge. Wish I'd get a transfer. #once
-=> You there! By order of the king, you are under arrest! <<if $is_criminal>> #once
-```
-
 Items in line groups can have 'child' items, which can be any kind of content: lines, options, commands, or any other valid syntax. You add child items to an item in a line group by indenting it.
 
 > For example, the 'wish I'd get a transfer' line in the previous example can be moved to a child line:
 > 
 > ```
-> => Another day, guarding the bridge. #once
+> => Another day, guarding the bridge. 
 >   Wish I'd get a transfer.
 > ```
 > 
-> In this example, if the dialogue system selects the line "Another day, guarding the bridge", that line will run, and then the line "Wish I'd get a transfer" will run. Because "Another day..." has the `#once` hashtag, both of these lines will only ever be seen once.
+> In this example, if the dialogue system selects the line "Another day, guarding the bridge", that line will run, and then the line "Wish I'd get a transfer" will run. 
 
 The way that Yarn Spinner chooses which specific item in a line group to run depends on your game. By default, Yarn Spinner will choose the _first item_ in the line group that passes its condition. However, you can customise this by providing a _saliency strategy_. 'Saliency' means how relevant a piece of content is to the player, and there are several ways to decide which items is the most salient.
 
