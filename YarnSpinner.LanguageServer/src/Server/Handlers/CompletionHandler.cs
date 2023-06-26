@@ -185,17 +185,17 @@ namespace YarnLanguageServer.Handlers
                 // list by distance.
                 var charactersByDistance = yarnFile.NodeInfos
                     .SelectMany(ni => ni.CharacterNames)
-                    .Select(c => (Name: c.Name, Distance: System.Math.Abs(cursorLineIndex - c.LineIndex)))
+                    .Select(c => (c.Name, Distance: System.Math.Abs(cursorLineIndex - c.LineIndex)))
                     .GroupBy(c => c.Name)
                     .Select(group => group.MinBy(c => c.Distance))
                     .OrderBy(c => c.Distance);
 
-                foreach (var character in charactersByDistance)
+                foreach (var (name, distance) in charactersByDistance)
                 {
-                    var newText = $"{character.Name}: ";
+                    var newText = $"{name}: ";
                     statementCompletions.Add(new CompletionItem
                     {
-                        Label = character.Name,
+                        Label = name,
                         Kind = CompletionItemKind.Text,
                         InsertText = newText,
                         Documentation = "Add a character name",
@@ -213,7 +213,13 @@ namespace YarnLanguageServer.Handlers
                 {
                     statementCompletions.Add(cmd with
                     {
-                        TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = cmd.InsertText, Range = new Range(request.Position, request.Position) }),
+                        TextEdit = new TextEditOrInsertReplaceEdit(
+                            new TextEdit
+                            {
+                                NewText = cmd?.InsertText ?? string.Empty,
+                                Range = new Range(request.Position, request.Position),
+                            }
+                        ),
                     });
                 }
 
@@ -225,7 +231,8 @@ namespace YarnLanguageServer.Handlers
             var index = yarnFile.GetRawToken(request.Position);
             if (!index.HasValue)
             {
-                return Task.FromResult<CompletionList>(null);
+                // We don't know what completions to offer for here.
+                return Task.FromResult(new CompletionList());
             }
 
             var indexToken = yarnFile.Tokens[index.Value];
@@ -258,6 +265,7 @@ namespace YarnLanguageServer.Handlers
                         range = newRange;
                         return;
                     }
+
                     current = yarnFile.Tokens[--index];
                 }
             }
@@ -277,6 +285,7 @@ namespace YarnLanguageServer.Handlers
 
                         break;
                     }
+
                 case YarnSpinnerLexer.COMMAND_TEXT:
                     {
                         ExpandRangeToPreviousToken(YarnSpinnerLexer.COMMAND_START, index.Value, ref indexTokenRange);
@@ -300,7 +309,7 @@ namespace YarnLanguageServer.Handlers
             return Task.FromResult(new CompletionList(results));
         }
 
-        private void GetNodeNameCompletions(Project project, Range indexTokenRange, List<CompletionItem> results)
+        private static void GetNodeNameCompletions(Project project, Range indexTokenRange, List<CompletionItem> results)
         {
             foreach (var node in project.Nodes)
             {
@@ -314,13 +323,13 @@ namespace YarnLanguageServer.Handlers
             }
         }
 
-        private void GetVariableNameCompletions(Project project, Range indexTokenRange, List<CompletionItem> results)
+        private static void GetVariableNameCompletions(Project project, Range indexTokenRange, List<CompletionItem> results)
         {
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            System.Text.StringBuilder builder = new ();
             foreach (var function in project.Functions)
             {
                 builder.Append(function.YarnName);
-                builder.Append("(");
+                builder.Append('(');
 
                 var parameters = new List<string>();
                 int i = 1;
@@ -340,7 +349,7 @@ namespace YarnLanguageServer.Handlers
 
                 builder.Append(string.Join(", ", parameters));
 
-                builder.Append(")");
+                builder.Append(')');
 
                 results.Add(new CompletionItem
                 {
@@ -377,7 +386,13 @@ namespace YarnLanguageServer.Handlers
             {
                 results.Add(keyword with
                 {
-                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = keyword.InsertText, Range = new Range(request.Position, request.Position) }),
+                    TextEdit = new TextEditOrInsertReplaceEdit(
+                        new TextEdit
+                        {
+                            NewText = keyword?.InsertText ?? string.Empty,
+                            Range = new Range(request.Position, request.Position),
+                        }
+                    ),
                 });
             }
 
@@ -385,7 +400,7 @@ namespace YarnLanguageServer.Handlers
             var project = workspace.GetProjectsForUri(uri).First();
 
             // adding any known commands
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            System.Text.StringBuilder builder = new ();
             foreach (var cmd in project.Commands)
             {
                 builder.Append(cmd.YarnName);
@@ -423,7 +438,7 @@ namespace YarnLanguageServer.Handlers
             }
         }
 
-        public static readonly HashSet<int> PreferedRules = new HashSet<int>
+        public static readonly HashSet<int> PreferedRules = new ()
         {
             YarnSpinnerParser.RULE_command_statement,
             YarnSpinnerParser.RULE_variable,
@@ -437,7 +452,7 @@ namespace YarnLanguageServer.Handlers
             // YarnSpinnerLexer.VAR_ID
         };
 
-        public static readonly HashSet<int> IgnoredTokens = new HashSet<int>
+        public static readonly HashSet<int> IgnoredTokens = new ()
         {
             YarnSpinnerLexer.OPERATOR_ASSIGNMENT,
             YarnSpinnerLexer.OPERATOR_MATHS_ADDITION,
@@ -473,16 +488,25 @@ namespace YarnLanguageServer.Handlers
             YarnSpinnerLexer.VAR_ID,
         };
 
-        public static readonly Dictionary<string, string> UserFriendlyTokenText = new Dictionary<string, string>
+        public static readonly Dictionary<string, string> UserFriendlyTokenText = new ()
         {
-            { "COMMAND_IF", "if" }, { "COMMAND_ELSEIF", "elseif" }, { "COMMAND_ELSE", "else" }, { "COMMAND_SET", "set" },
-            { "COMMAND_ENDIF", "endif" }, { "COMMAND_CALL", "call" }, { "COMMAND_DECLARE", "declare" }, { "COMMAND_JUMP", "jump " },
-            { "KEYWORD_FALSE", "false" }, { "KEYWORD_TRUE", "true" }, { "KEYWORD_NULL", "null" },
+            { "COMMAND_IF", "if" },
+            { "COMMAND_ELSEIF", "elseif" },
+            { "COMMAND_ELSE", "else" },
+            { "COMMAND_SET", "set" },
+            { "COMMAND_ENDIF", "endif" },
+            { "COMMAND_CALL", "call" },
+            { "COMMAND_DECLARE", "declare" },
+            { "COMMAND_JUMP", "jump " },
+            { "KEYWORD_FALSE", "false" },
+            { "KEYWORD_TRUE", "true" },
+            { "KEYWORD_NULL", "null" },
         };
 
-        public static readonly Dictionary<string, string> TokenSnippets = new Dictionary<string, string>
+        public static readonly Dictionary<string, string> TokenSnippets = new ()
         {
-            { "COMMAND_SET", "set \\$$1 to ${2:value}" }, { "COMMAND_DECLARE", "declare \\$$1 to ${2:value}" },
+            { "COMMAND_SET", "set \\$$1 to ${2:value}" },
+            { "COMMAND_DECLARE", "declare \\$$1 to ${2:value}" },
         };
 
         public CompletionRegistrationOptions GetRegistrationOptions(CompletionCapability capability, ClientCapabilities clientCapabilities)
@@ -515,8 +539,10 @@ namespace YarnLanguageServer.Handlers
                 {
                     return true;
                 }
+
                 current = current.Parent;
             }
+
             return false;
         }
 
@@ -535,6 +561,7 @@ namespace YarnLanguageServer.Handlers
                 {
                     return terminal;
                 }
+
                 return null;
             }
             else if (root is Antlr4.Runtime.ParserRuleContext context)
@@ -566,17 +593,17 @@ namespace YarnLanguageServer.Handlers
                         }
                     }
                 }
+
                 return context;
             }
             else
             {
                 return null;
             }
-
         }
     }
 
-    static class ContextExtensions
+    internal static class ContextExtensions
     {
         public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree)
             where T : Antlr4.Runtime.ParserRuleContext
@@ -596,6 +623,7 @@ namespace YarnLanguageServer.Handlers
                     result = (T)tree;
                     return true;
                 }
+
                 tree = tree.Parent;
             }
 

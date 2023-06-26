@@ -23,7 +23,7 @@ namespace YarnLanguageServer.Handlers
             var yarnDocument = project?.GetFileData(uri);
             if (yarnDocument == null)
             {
-                return Task.FromResult<SymbolInformationOrDocumentSymbolContainer>(null);
+                return Task.FromResult(new SymbolInformationOrDocumentSymbolContainer());
             }
             else
             {

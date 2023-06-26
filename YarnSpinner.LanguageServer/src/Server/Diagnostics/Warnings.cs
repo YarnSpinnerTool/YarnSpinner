@@ -90,7 +90,6 @@ namespace YarnLanguageServer.Diagnostics
                 Code = nameof(YarnDiagnosticCode.YRNMsngVarDec),
                 Data = JToken.FromObject(v.Text),
             });
-
         }
     }
 }

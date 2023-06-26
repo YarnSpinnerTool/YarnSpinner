@@ -19,7 +19,7 @@ namespace YarnLanguageServer.Handlers
             this.workspace = workspace;
         }
 
-        public Task<WorkspaceEdit> Handle(RenameParams request, CancellationToken cancellationToken)
+        public Task<WorkspaceEdit?> Handle(RenameParams request, CancellationToken cancellationToken)
         {
             var uri = request.TextDocument.Uri.ToUri();
             var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
@@ -27,18 +27,21 @@ namespace YarnLanguageServer.Handlers
 
             if (project == null || yarnFile == null)
             {
-                return Task.FromResult<WorkspaceEdit>(null);
+                return Task.FromResult<WorkspaceEdit?>(null);
             }
 
             (var tokenType, var token) = yarnFile.GetTokenAndType(request.Position);
-            if (tokenType != YarnSymbolType.Unknown)
+            if (tokenType != YarnSymbolType.Unknown && token != null)
             {
                 if (IsInvalidNewName(tokenType, request.NewName, out var message))
                 {
                     throw new OmniSharp.Extensions.JsonRpc.RpcErrorException(400, null, message);
                 }
 
-                var referenceLocations = ReferencesHandler.GetReferences(project, token.Text, tokenType, workspace).GroupBy(ls => ls.Uri);
+                var referenceLocations = ReferencesHandler
+                    .GetReferences(project, token.Text, tokenType)
+                    .GroupBy(ls => ls.Uri);
+
                 var t = referenceLocations.Select(locationsGroup =>
                 {
                     var edits = locationsGroup.Select(location => new TextEdit { Range = location.Range, NewText = request.NewName });
@@ -55,10 +58,10 @@ namespace YarnLanguageServer.Handlers
                     DocumentChanges = t.ToArray(),
                 };
 
-                return Task.FromResult(result);
+                return Task.FromResult<WorkspaceEdit?>(result);
             }
 
-            return Task.FromResult<WorkspaceEdit>(null);
+            return Task.FromResult<WorkspaceEdit?>(null);
         }
 
         public RenameRegistrationOptions GetRegistrationOptions(RenameCapability capability, ClientCapabilities clientCapabilities)
@@ -71,7 +74,7 @@ namespace YarnLanguageServer.Handlers
             };
         }
 
-        public Task<RangeOrPlaceholderRange> Handle(PrepareRenameParams request, CancellationToken cancellationToken)
+        public Task<RangeOrPlaceholderRange?> Handle(PrepareRenameParams request, CancellationToken cancellationToken)
         {
             var uri = request.TextDocument.Uri.ToUri();
             var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
@@ -79,20 +82,20 @@ namespace YarnLanguageServer.Handlers
 
             if (yarnFile == null)
             {
-                return Task.FromResult<RangeOrPlaceholderRange>(null);
+                return Task.FromResult<RangeOrPlaceholderRange?>(null);
             }
 
             (var tokenType, var token) = yarnFile.GetTokenAndType(request.Position);
-            if (tokenType != YarnSymbolType.Unknown)
+            if (tokenType != YarnSymbolType.Unknown && token != null)
             {
                 var range = PositionHelper.GetRange(yarnFile.LineStarts, token);
-                return Task.FromResult(new RangeOrPlaceholderRange(range));
+                return Task.FromResult<RangeOrPlaceholderRange?>(new RangeOrPlaceholderRange(range));
             }
 
-            return Task.FromResult<RangeOrPlaceholderRange>(null);
+            return Task.FromResult<RangeOrPlaceholderRange?>(null);
         }
 
-        private bool IsInvalidNewName(YarnSymbolType symbolType, string newName, out string message)
+        private static bool IsInvalidNewName(YarnSymbolType symbolType, string newName, out string message)
         {
             if (symbolType == YarnSymbolType.Variable && !newName.StartsWith('$'))
             {
@@ -107,7 +110,7 @@ namespace YarnLanguageServer.Handlers
                 return true;
             }
 
-            if (newName.Contains(" "))
+            if (newName.Contains(' '))
             {
                 message = "Spaces are not valid characters here.";
                 return true;

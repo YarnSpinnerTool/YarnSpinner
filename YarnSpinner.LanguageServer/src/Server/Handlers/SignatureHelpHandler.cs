@@ -17,7 +17,7 @@ namespace YarnLanguageServer.Handlers
             this.workspace = workspace;
         }
 
-        public Task<SignatureHelp> Handle(SignatureHelpParams request, CancellationToken cancellationToken)
+        public Task<SignatureHelp?> Handle(SignatureHelpParams request, CancellationToken cancellationToken)
         {
             var uri = request.TextDocument.Uri.ToUri();
             var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
@@ -25,7 +25,7 @@ namespace YarnLanguageServer.Handlers
 
             if (yarnFile == null || project == null)
             {
-                return Task.FromResult<SignatureHelp>(null);
+                return Task.FromResult<SignatureHelp?>(null);
             }
 
             (var info, var parameterIndex) = yarnFile.GetParameterInfo(request.Position);
@@ -73,10 +73,12 @@ namespace YarnLanguageServer.Handlers
                         };
                 }
 
-                return Task.FromResult(new SignatureHelp { Signatures = new Container<SignatureInformation>(results) });
+                return Task.FromResult<SignatureHelp?>(new SignatureHelp {
+                    Signatures = new Container<SignatureInformation>(results),
+                });
             }
 
-            return Task.FromResult<SignatureHelp>(null);
+            return Task.FromResult<SignatureHelp?>(null);
         }
 
         public SignatureHelpRegistrationOptions GetRegistrationOptions(SignatureHelpCapability capability, ClientCapabilities clientCapabilities)

@@ -30,13 +30,15 @@ namespace YarnLanguageServer.Handlers
 
             var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
 
-            if (project == null) {
+            if (project == null)
+            {
                 // We don't know what project handles this URI. Log an error.
                 workspace.Window?.LogError($"No known project for URI {uri}");
                 return Unit.Task;
             }
-            
-            if (project.GetFileData(uri) == null) {
+
+            if (project.GetFileData(uri) == null)
+            {
                 // The file is not already known to the project. Add it to the
                 // project.
                 project.AddNewFile(uri, request.TextDocument.Text);
@@ -58,7 +60,8 @@ namespace YarnLanguageServer.Handlers
             var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
             var yarnDocument = project?.GetFileData(uri);
 
-            if (project == null) {
+            if (project == null)
+            {
                 // We don't have a project that includes this URI. Nothing to
                 // be done.
                 return Unit.Task;
@@ -74,14 +77,15 @@ namespace YarnLanguageServer.Handlers
             }
 
             // Next, go through each content change, and apply it.
-            foreach (var contentChange in request.ContentChanges) {
+            foreach (var contentChange in request.ContentChanges)
+            {
                 yarnDocument.ApplyContentChange(contentChange);
             }
 
             // Finally, update our model using the new content.
             yarnDocument.Update(yarnDocument.Text);
             project.CompileProject(
-                notifyOnComplete: true, 
+                notifyOnComplete: true,
                 Yarn.Compiler.CompilationJob.Type.DeclarationsOnly
             );
 

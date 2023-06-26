@@ -32,7 +32,7 @@ namespace YarnLanguageServer.Handlers
 
             var results = yarnFile.NodeDefinitions.SelectMany(titleToken =>
                {
-                   var referenceLocations = ReferencesHandler.GetReferences(project, titleToken.Text, YarnSymbolType.Node, workspace);
+                   var referenceLocations = ReferencesHandler.GetReferences(project, titleToken.Text, YarnSymbolType.Node);
                    var count = referenceLocations.Count() - 1; // This is a count of 'other' references, so don't include the declaration
 
                    // OmniSharp Locations, Ranges and Positions have

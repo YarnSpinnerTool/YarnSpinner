@@ -19,7 +19,7 @@ namespace YarnLanguageServer.Handlers
             this.workspace = workspace;
         }
 
-        public static IEnumerable<Location> GetReferences(Project project, string name, YarnSymbolType yarnSymbolType, Workspace workspace)
+        public static IEnumerable<Location> GetReferences(Project project, string name, YarnSymbolType yarnSymbolType)
         {
             IEnumerable<Location> results;
             Func<YarnFileData, IEnumerable<IToken>> tokenSelector;
@@ -67,18 +67,18 @@ namespace YarnLanguageServer.Handlers
 
             if (project == null || yarnFile == null)
             {
-                return Task.FromResult<LocationContainer>(null);
+                return Task.FromResult(new LocationContainer());
             }
-            
+
             (var tokenType, var token) = yarnFile.GetTokenAndType(request.Position);
 
-            if (tokenType != YarnSymbolType.Unknown)
+            if (tokenType != YarnSymbolType.Unknown && token != null)
             {
-                var referenceLocations = GetReferences(project, token.Text, tokenType, workspace);
+                var referenceLocations = GetReferences(project, token.Text, tokenType);
                 return Task.FromResult(new LocationContainer(referenceLocations));
             }
 
-            return Task.FromResult<LocationContainer>(null);
+            return Task.FromResult(new LocationContainer());
         }
 
         public ReferenceRegistrationOptions GetRegistrationOptions(ReferenceCapability capability, ClientCapabilities clientCapabilities)

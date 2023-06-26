@@ -16,7 +16,7 @@ namespace YarnLanguageServer.Handlers
             this.workspace = workspace;
         }
 
-        public Task<Container<SymbolInformation>> Handle(WorkspaceSymbolParams request, CancellationToken cancellationToken)
+        public Task<Container<SymbolInformation>?> Handle(WorkspaceSymbolParams request, CancellationToken cancellationToken)
         {
             var matchingSymbols = workspace.Projects
                 .SelectMany(p => p.Files)
@@ -36,7 +36,7 @@ namespace YarnLanguageServer.Handlers
                         }));
 
             var result = new Container<SymbolInformation>(matchingSymbols);
-            return Task.FromResult(result);
+            return Task.FromResult<Container<SymbolInformation>?>(result);
         }
 
         public WorkspaceSymbolRegistrationOptions GetRegistrationOptions(WorkspaceSymbolCapability capability, ClientCapabilities clientCapabilities)

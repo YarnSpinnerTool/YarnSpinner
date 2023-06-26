@@ -130,7 +130,7 @@ namespace YarnLanguageServer
                 (commandParams) => CompileCurrentProject(workspace, commandParams),
                 (_, _) => new ExecuteCommandRegistrationOptions
                 {
-                    Commands = new[] { Commands.Compile },
+                    Commands = new[] { Commands.CompileCurrentProject },
                 }
             );
 
@@ -138,7 +138,7 @@ namespace YarnLanguageServer
             options.OnExecuteCommand<VOStringExport>(
                 (commandParams) => ExtractVoiceoverSpreadsheet(workspace, commandParams), (_,_) => new ExecuteCommandRegistrationOptions
                 {
-                    Commands = new[] { Commands.Extract },
+                    Commands = new[] { Commands.ExtractSpreadsheet },
                 }
             );
 
@@ -146,7 +146,7 @@ namespace YarnLanguageServer
             options.OnExecuteCommand<string>(
                 (commandParams) => GenerateDialogueGraph(workspace, commandParams), (_,_) => new ExecuteCommandRegistrationOptions
                 {
-                    Commands = new[] { Commands.Graph },
+                    Commands = new[] { Commands.CreateDialogueGraph },
                 }
             );
 
@@ -449,7 +449,7 @@ namespace YarnLanguageServer
         private static Task<CompilerOutput> CompileCurrentProject(Workspace workspace, ExecuteCommandParams<CompilerOutput> commandParams)
         {
             if (commandParams.Arguments == null) {
-                throw new ArgumentException(Commands.Compile + " expects arguments");
+                throw new ArgumentException(Commands.CompileCurrentProject + " expects arguments");
             }
 
             var projectOrDocumentUri = new Uri(commandParams.Arguments[0].ToString());
@@ -496,7 +496,7 @@ namespace YarnLanguageServer
         private static Task<string> GenerateDialogueGraph(Workspace workspace, ExecuteCommandParams<string> commandParams)
         {
             if (commandParams.Arguments == null) {
-                throw new ArgumentException(Commands.Graph + " expects arguments");
+                throw new ArgumentException(Commands.CreateDialogueGraph + " expects arguments");
             }
 
             var projectOrDocumentUri = new Uri(commandParams.Arguments[0].ToString());
@@ -625,7 +625,7 @@ namespace YarnLanguageServer
         private static Task<VOStringExport> ExtractVoiceoverSpreadsheet(Workspace workspace, ExecuteCommandParams<VOStringExport> commandParams)
         {
             if (commandParams.Arguments == null) {
-                throw new ArgumentException(Commands.Extract + " expects arguments");
+                throw new ArgumentException(Commands.ExtractSpreadsheet + " expects arguments");
             }
 
             var projectOrDocumentUri = new Uri(commandParams.Arguments[0].ToString());

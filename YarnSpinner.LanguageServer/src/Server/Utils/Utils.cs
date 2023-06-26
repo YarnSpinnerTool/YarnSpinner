@@ -29,7 +29,7 @@ namespace YarnLanguageServer
             Title = "editor.action.triggerParameterHints",
         };
 
-        public static string OrDefault(this string str, string @default = default(string))
+        public static string OrDefault(this string str, string @default = default)
         {
             return string.IsNullOrEmpty(str) ? @default : str;
         }

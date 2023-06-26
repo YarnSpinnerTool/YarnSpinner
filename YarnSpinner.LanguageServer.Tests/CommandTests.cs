@@ -254,7 +254,7 @@ public class CommandTests : LanguageServerTestsBase
         // When
         var result = await client.ExecuteCommand(new ExecuteCommandParams<VOStringExport>
         {
-            Command = Commands.Extract,
+            Command = Commands.ExtractSpreadsheet,
             Arguments = new JArray(
                 DocumentUri.FromFileSystemPath(filePath).ToString()
             )
@@ -275,7 +275,7 @@ public class CommandTests : LanguageServerTestsBase
         // When
         var result = await client.ExecuteCommand(new ExecuteCommandParams<string>
         {
-            Command = Commands.Graph,
+            Command = Commands.CreateDialogueGraph,
             Arguments = new JArray(
                 DocumentUri.FromFileSystemPath(filePath).ToString(),
                 "dot",
@@ -297,7 +297,7 @@ public class CommandTests : LanguageServerTestsBase
         // When
         var result = await client.ExecuteCommand(new ExecuteCommandParams<CompilerOutput>
         {
-            Command = Commands.Compile,
+            Command = Commands.CompileCurrentProject,
             Arguments = new JArray(
                 DocumentUri.FromFileSystemPath(filePath).ToString()
             )

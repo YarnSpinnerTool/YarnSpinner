@@ -25,12 +25,16 @@ namespace YarnLanguageServer.Handlers
 
             if (yarnFile == null || project == null)
             {
-                return Task.FromResult<LocationOrLocationLinks>(null);
+                return Task.FromResult(new LocationOrLocationLinks());
             }
 
             (var tokenType, var token) = yarnFile.GetTokenAndType(request.Position);
 
             IEnumerable<Action> functionDefinitionMatches;
+
+            if (token == null) {
+                return Task.FromResult(new LocationOrLocationLinks());
+            }
 
             switch (tokenType)
             {
@@ -82,7 +86,7 @@ namespace YarnLanguageServer.Handlers
                     return Task.FromResult(new LocationOrLocationLinks(locations));
             }
 
-            return Task.FromResult<LocationOrLocationLinks>(null);
+            return Task.FromResult(new LocationOrLocationLinks());
         }
 
         public DefinitionRegistrationOptions GetRegistrationOptions(DefinitionCapability capability, ClientCapabilities clientCapabilities)

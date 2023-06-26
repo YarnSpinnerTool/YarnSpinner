@@ -17,7 +17,7 @@ namespace YarnLanguageServer.Handlers
             this.workspace = workspace;
         }
 
-        public Task<Hover> Handle(HoverParams request, CancellationToken cancellationToken)
+        public Task<Hover?> Handle(HoverParams request, CancellationToken cancellationToken)
         {
             var uri = request.TextDocument.Uri.ToUri();
             var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
@@ -25,10 +25,15 @@ namespace YarnLanguageServer.Handlers
 
             if (yarnFile == null || project == null)
             {
-                return Task.FromResult<Hover>(null);
+                return Task.FromResult<Hover?>(null);
             }
 
             (var tokenType, var token) = yarnFile.GetTokenAndType(request.Position);
+
+            if (token == null) {
+                // No idea what this token is.
+                return Task.FromResult<Hover?>(null);
+            }
 
             switch (tokenType)
             {
@@ -49,7 +54,7 @@ namespace YarnLanguageServer.Handlers
                                 }),
                             Range = PositionHelper.GetRange(yarnFile.LineStarts, token),
                         };
-                        return Task.FromResult(result);
+                        return Task.FromResult<Hover?>(result);
                     }
 
                     break;
@@ -87,7 +92,7 @@ namespace YarnLanguageServer.Handlers
                             ),
                             Range = PositionHelper.GetRange(yarnFile.LineStarts, token),
                         };
-                        return Task.FromResult(result);
+                        return Task.FromResult<Hover?>(result);
                     }
 
                     break;
@@ -98,7 +103,7 @@ namespace YarnLanguageServer.Handlers
                     break;
             }
 
-            return Task.FromResult<Hover>(null);
+            return Task.FromResult<Hover?>(null);
         }
 
         public HoverRegistrationOptions GetRegistrationOptions(HoverCapability capability, ClientCapabilities clientCapabilities)
