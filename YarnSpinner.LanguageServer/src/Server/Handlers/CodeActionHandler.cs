@@ -64,7 +64,8 @@ namespace YarnLanguageServer.Handlers
             // Suggest potential renamings by fuzzy-searching for the existing
             // input, and offering suggestions that replace the text.
             var suggestions =
-                workspace.GetVariables(name, true)
+                workspace.GetProjectsForUri(uri)
+                .SelectMany(p => p.FindVariables(name, true))
                 .Where(decl => decl.Name != name)
                 .DistinctBy(d => d.Name)
                 .Take(10)
@@ -85,7 +86,9 @@ namespace YarnLanguageServer.Handlers
 
             var insertDeclarationEdit = new Dictionary<DocumentUri, IEnumerable<TextEdit>>();
 
-            var existingDeclaration = workspace.GetVariables(name).FirstOrDefault(decl => decl.IsImplicit);
+            var existingDeclaration = workspace.GetProjectsForUri(uri)
+                .SelectMany(p => p.FindVariables(name))
+                .FirstOrDefault(decl => decl.IsImplicit);
 
             if (existingDeclaration != null)
             {
@@ -94,7 +97,7 @@ namespace YarnLanguageServer.Handlers
                 // this.
                 string type;
                 string defaultValue;
-                
+
                 DeclarationHelper.GetDeclarationInfo(existingDeclaration, out type, out defaultValue);
 
                 // TODO: possible to indent / space in line with other
@@ -122,17 +125,21 @@ namespace YarnLanguageServer.Handlers
                     )
                 );
             }
+
             return suggestions;
         }
 
         private IEnumerable<CommandOrCodeAction> HandleYRNMsngCmdDef(Diagnostic diagnostic, DocumentUri uri)
         {
-            if (diagnostic.Data?.HasValues != true) { return Enumerable.Empty<CommandOrCodeAction>(); }
+            if (diagnostic.Data?.HasValues != true)
+            {
+                return Enumerable.Empty<CommandOrCodeAction>();
+            }
 
             var functionInfo = diagnostic.Data.ToObject<(string Name, bool IsCommand)>();
             var suggestions =
-                workspace.LookupFunctions(functionInfo.Name, true)
-                .Where(match => match.IsCommand == functionInfo.IsCommand)
+                workspace.GetProjectsForUri(uri)
+                .SelectMany(p => p.FindActions(functionInfo.Name, ActionType.Command, true))
                 .Take(10)
                 .Select(f =>
                 {

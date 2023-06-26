@@ -18,20 +18,22 @@ namespace YarnLanguageServer.Handlers
 
         public Task<Container<SymbolInformation>> Handle(WorkspaceSymbolParams request, CancellationToken cancellationToken)
         {
-            var matchingSymbols = workspace.YarnFiles.Values.SelectMany(
-                yarnFile => yarnFile.DocumentSymbols
-                .Where(ds => ds.Name.Contains(request.Query))
-                .Select(ds =>
-                    new SymbolInformation
-                    {
-                        Kind = ds.Kind,
-                        Name = ds.Name,
-                        Location = new Location
+            var matchingSymbols = workspace.Projects
+                .SelectMany(p => p.Files)
+                .SelectMany(
+                    yarnFile => yarnFile.DocumentSymbols
+                    .Where(ds => ds.Name.Contains(request.Query))
+                    .Select(ds =>
+                        new SymbolInformation
                         {
-                            Range = ds.Range,
-                            Uri = yarnFile.Uri,
-                        },
-                    }));
+                            Kind = ds.Kind,
+                            Name = ds.Name,
+                            Location = new Location
+                            {
+                                Range = ds.Range,
+                                Uri = yarnFile.Uri,
+                            },
+                        }));
 
             var result = new Container<SymbolInformation>(matchingSymbols);
             return Task.FromResult(result);

@@ -21,33 +21,41 @@ namespace YarnLanguageServer.Handlers
 
         public Task<WorkspaceEdit> Handle(RenameParams request, CancellationToken cancellationToken)
         {
-            if (workspace.YarnFiles.TryGetValue(request.TextDocument.Uri.ToUri(), out var yarnFile))
+            var uri = request.TextDocument.Uri.ToUri();
+            var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
+            var yarnFile = project?.GetFileData(uri);
+
+            if (project == null || yarnFile == null)
             {
-                (var tokenType, var token) = yarnFile.GetTokenAndType(request.Position);
-                if (tokenType != YarnSymbolType.Unknown)
+                return Task.FromResult<WorkspaceEdit>(null);
+            }
+
+            (var tokenType, var token) = yarnFile.GetTokenAndType(request.Position);
+            if (tokenType != YarnSymbolType.Unknown)
+            {
+                if (IsInvalidNewName(tokenType, request.NewName, out var message))
                 {
-                    if (IsInvalidNewName(tokenType, request.NewName, out var message)) {
-                        throw new OmniSharp.Extensions.JsonRpc.RpcErrorException(400, null, message);
-                    }
-
-                    var referenceLocations = ReferencesHandler.GetReferences(token.Text, tokenType, workspace).GroupBy(ls => ls.Uri);
-                    var t = referenceLocations.Select(locationsGroup => {
-                        var edits = locationsGroup.Select(location => new TextEdit { Range = location.Range, NewText = request.NewName });
-                        var tde = new TextDocumentEdit
-                        {
-                            TextDocument = new OptionalVersionedTextDocumentIdentifier { Uri = locationsGroup.Key },
-                            Edits = new TextEditContainer(edits),
-                        };
-                        return new WorkspaceEditDocumentChange(tde);
-                    });
-
-                    var result = new WorkspaceEdit
-                    {
-                        DocumentChanges = t.ToArray(),
-                    };
-
-                    return Task.FromResult(result);
+                    throw new OmniSharp.Extensions.JsonRpc.RpcErrorException(400, null, message);
                 }
+
+                var referenceLocations = ReferencesHandler.GetReferences(project, token.Text, tokenType, workspace).GroupBy(ls => ls.Uri);
+                var t = referenceLocations.Select(locationsGroup =>
+                {
+                    var edits = locationsGroup.Select(location => new TextEdit { Range = location.Range, NewText = request.NewName });
+                    var tde = new TextDocumentEdit
+                    {
+                        TextDocument = new OptionalVersionedTextDocumentIdentifier { Uri = locationsGroup.Key },
+                        Edits = new TextEditContainer(edits),
+                    };
+                    return new WorkspaceEditDocumentChange(tde);
+                });
+
+                var result = new WorkspaceEdit
+                {
+                    DocumentChanges = t.ToArray(),
+                };
+
+                return Task.FromResult(result);
             }
 
             return Task.FromResult<WorkspaceEdit>(null);
@@ -65,21 +73,29 @@ namespace YarnLanguageServer.Handlers
 
         public Task<RangeOrPlaceholderRange> Handle(PrepareRenameParams request, CancellationToken cancellationToken)
         {
-            if (workspace.YarnFiles.TryGetValue(request.TextDocument.Uri.ToUri(), out var yarnFile))
+            var uri = request.TextDocument.Uri.ToUri();
+            var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
+            var yarnFile = project?.GetFileData(uri);
+
+            if (yarnFile == null)
             {
-                (var tokenType, var token) = yarnFile.GetTokenAndType(request.Position);
-                if (tokenType != YarnSymbolType.Unknown)
-                {
-                    var range = PositionHelper.GetRange(yarnFile.LineStarts, token);
-                    return Task.FromResult(new RangeOrPlaceholderRange(range));
-                }
+                return Task.FromResult<RangeOrPlaceholderRange>(null);
+            }
+
+            (var tokenType, var token) = yarnFile.GetTokenAndType(request.Position);
+            if (tokenType != YarnSymbolType.Unknown)
+            {
+                var range = PositionHelper.GetRange(yarnFile.LineStarts, token);
+                return Task.FromResult(new RangeOrPlaceholderRange(range));
             }
 
             return Task.FromResult<RangeOrPlaceholderRange>(null);
         }
+
         private bool IsInvalidNewName(YarnSymbolType symbolType, string newName, out string message)
         {
-            if (symbolType == YarnSymbolType.Variable && !newName.StartsWith('$')) {
+            if (symbolType == YarnSymbolType.Variable && !newName.StartsWith('$'))
+            {
                 message = "Variable names must start with $ character";
                 return true;
             }

@@ -1,125 +1,65 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using MoreLinq;
+using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server;
-using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
+using OmniSharp.Extensions.LanguageServer.Protocol.Window;
 using YarnLanguageServer.Diagnostics;
 
 namespace YarnLanguageServer
 {
-    internal class Workspace
+    internal interface IActionSource
     {
-        public Dictionary<Uri, CSharpFileData> CSharpFiles { get; set; } = new Dictionary<Uri, CSharpFileData>();
-        public Dictionary<Uri, JsonConfigFile> JsonConfigFiles { get; set; } = new Dictionary<Uri, JsonConfigFile>();
-        public Dictionary<Uri, YarnFileData> YarnFiles { get; set; } = new Dictionary<Uri, YarnFileData>();
-        public Configuration Configuration { get; protected set; }
-        public string Root { protected get; set; }
-        public ILanguageServer LanguageServer { get; protected set; }
-        public List<(string YarnName, string DefinitionName, bool IsCommand, string FileName)> UnmatchedDefinitions { get; protected set; }
+        internal IEnumerable<Action> GetActions();
+    }
 
-        public IEnumerable<Yarn.Compiler.Declaration> Declarations { get; private set; }
+    internal interface IConfigurationSource
+    {
+        internal Configuration Configuration { get; }
+    }
 
-        private Dictionary<string, RegisteredDefinition> functionDefinitionCache = new Dictionary<string, RegisteredDefinition>();
+    public class Workspace : INotificationSender, IActionSource, IConfigurationSource
+    {
+        public string Root { get; internal set; }
+        internal Configuration Configuration { get; set; } = new Configuration();
+        internal IEnumerable<Project> Projects { get; set; }
 
-        /// <summary>
-        /// The diagnostics messages produced from the last time this workspace
-        /// was updated.
-        /// </summary>
-        private IEnumerable<Yarn.Compiler.Diagnostic> Diagnostics = new List<Yarn.Compiler.Diagnostic>();
+        private ILanguageServer? LanguageServer { get; set; }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Workspace"/> class.
-        /// </summary>
-        public Workspace()
-        {
-            Configuration = new Configuration(this);
-        }
-
-        public void Initialize(ILanguageServer languageServer)
-        {            
-            this.LanguageServer = languageServer;
-
-            // If we don't have a root directory, attempting to enumerate the
-            // files in 'Root' will throw an exception, which will cause big
-            // problems since the server can't be initialized. Workaround: skip
-            // over it all if we don't have a root.
-            if (Root == null) {
-                return;
-            }
-
-            LoadExternalInfo();
-
-            var yarnFiles = System.IO.Directory.EnumerateFiles(Root, "*.yarn", System.IO.SearchOption.AllDirectories);
-            yarnFiles = yarnFiles.Where(f => !f.Contains("PackageCache") && !f.Contains("Library"));
-            foreach (var path in yarnFiles)
-            {
-                OpenFile(path, false);
-            }
-            UpdateWorkspace();
-        }
+        public IWindowLanguageServer? Window => LanguageServer?.Window;
 
         /// <summary>
-        /// Opens and begins tracking a Yarn file.
+        /// Gets the projects that include the file at <paramref name="uri"/>.
         /// </summary>
-        /// <param name="path">The path to the Yarn file.</param>
-        /// <param name="updateWorkspace">Whether to update the workspace after opening.</param>
-        /// <remarks>
-        /// If you are opening multiple files at once (through repeated calls to <see cref="OpenFile"/>, pass false as the value for updateWorkspace, and call <see cref="UpdateWorkspace"/>.)
-        /// </remarks>
-        /// <returns>The new Yarn file data.</returns>
-        public YarnFileData? OpenFile(string path, bool updateWorkspace = true)
+        /// <param name="uri">The uri to get projects for.</param>
+        /// <returns>The collection of projects that include uri.</returns>
+        internal IEnumerable<Project> GetProjectsForUri(DocumentUri uri)
         {
-            try
+            foreach (var project in Projects)
             {
-                var text = System.IO.File.ReadAllText(path);
-                
-                var uri = OmniSharp.Extensions.LanguageServer.Protocol.DocumentUri.FromFileSystemPath(path).ToUri();
-
-                var yarnFileData = new YarnFileData(text, uri, this);
-                YarnFiles[uri] = yarnFileData;
-
-                return yarnFileData;
-            } catch (System.IO.IOException) {
-                return null;
-            } finally {
-                if (updateWorkspace) {
-                    UpdateWorkspace();
-                }
-            }
-        }
-
-        public YarnFileData? OpenFile(Uri uri) {
-            try {
-                var path = uri.AbsolutePath;
-                var text = System.IO.File.ReadAllText(path);
-
-                var yarnFileData = new YarnFileData(text, uri, this);
-                YarnFiles[uri] = yarnFileData;
-
-                return yarnFileData;
-            } catch (System.IO.IOException) {
-                return null;
-            }
-        }
-
-        public void LoadExternalInfo()
-        {
-            var jsonWorkspaceFiles = System.IO.Directory.EnumerateFiles(Root, "*.ysls.json", System.IO.SearchOption.AllDirectories);
-            foreach (var file in jsonWorkspaceFiles)
-            {
-                var uri = new Uri(file);
-                var text = System.IO.File.ReadAllText(file);
-                var docJsonConfig = new JsonConfigFile(text, uri, this, false);
-                if (docJsonConfig != null)
+                if (project.MatchesUri(uri))
                 {
-                    JsonConfigFiles[uri] = docJsonConfig;
+                    yield return project;
                 }
             }
+        }
 
-            // TODO Refactor this out into a method like (manifestPathPrefix) => (docuri, doctext)
+        /// <summary>
+        /// The collection of actions defined in the workspace's C# files.
+        /// </summary>
+        private HashSet<Action> workspaceActions = new HashSet<Action>();
+
+        Configuration IConfigurationSource.Configuration => this.Configuration;
+
+        internal void ReloadWorkspace()
+        {
+            // Find all actions defined in the workspace
+            this.workspaceActions = new HashSet<Action>(this.FindWorkspaceActions(this.Root));
+
+            // Find all actions built in to this DLL
             try
             {
                 var thisAssembly = typeof(Workspace).Assembly;
@@ -128,368 +68,253 @@ namespace YarnLanguageServer
 
                 foreach (var doc in jsonAssemblyFiles)
                 {
-                    var uri = new Uri("file:///assembly/" + doc); // a fake uri but we just need it for lookup and uniqueness
-                    string text = new System.IO.StreamReader(thisAssembly.GetManifestResourceStream(doc)).ReadToEnd();
-                    var docJsonConfig = new JsonConfigFile(text, uri, this, true);
-                    if (docJsonConfig != null)
+                    Stream? stream = thisAssembly.GetManifestResourceStream(doc);
+
+                    if (stream == null)
                     {
-                        JsonConfigFiles[uri] = docJsonConfig;
+                        LanguageServer?.LogError($"Error while loading built-in actions from {doc}: manifest resource stream is null");
+                        continue;
+                    }
+
+                    string text = new StreamReader(stream).ReadToEnd();
+                    var docJsonConfig = new JsonConfigFile(text, true);
+
+                    foreach (var action in docJsonConfig.GetActions())
+                    {
+                        this.workspaceActions.Add(action);
                     }
                 }
             }
-            catch (Exception) { }
+            catch (Exception e) {
+                LanguageServer?.LogError($"Error while loading built-in actions: " + e);
+            }
 
-            UnmatchedDefinitions = JsonConfigFiles.SelectMany(jcf => jcf.Value.Definitions.Where(f => f.Value.Language == "csharp").Select(kv => (kv.Value.YarnName, kv.Value.DefinitionName, kv.Value.IsCommand, kv.Value.FileName))).ToList();
+            var projects = new List<Project>();
 
-            if (Configuration.CSharpLookup)
+            // Find all .yarnprojects in the root and create Projects out of
+            // them
+            var yarnProjectFiles = Directory.EnumerateFiles(Root, "*.yarnproject", new EnumerationOptions { RecurseSubdirectories = true, MatchCasing = MatchCasing.CaseInsensitive });
+
+            // Create a project for each .yarnproject in the workspace.
+            this.Projects = yarnProjectFiles.Select(path =>
             {
-                CSharpFiles.Clear();
+                try {
+                    return new Project(path);
+                } catch (System.Exception e) {
+                    this.LanguageServer?.LogError($"Failed to create a project for {path}: " + e.ToString());
+                    return null;
+                }
+            }).NonNull().ToList();
 
-                var csharpWorkspaceFiles = System.IO.Directory.EnumerateFiles(Root, "*.cs", System.IO.SearchOption.AllDirectories);
-                csharpWorkspaceFiles = csharpWorkspaceFiles.Where(f => !f.Contains("PackageCache") && !f.Contains("Library"));
-                var unusedCSharpFiles = new List<string>();
+            if (!this.Projects.Any()) {
+                // There are no .yarnprojects in the workspace. Create a new
+                // 'implicit' project at the root of the workspace that owns ALL
+                // Yarn files, as a convenience.
+                //
+                // (We only do this if there are no .yarnproject files. This has
+                // the consequence where if a workspace does have project files,
+                // and a yarn file is not included in any of them, it is not
+                // considered to be part of the workspace and will not be
+                // compiled. This is consistent with how Yarn Spinner for Unity
+                // works - if a file is not in a project, it is not compiled.)
+                Project implicitProject = new (Root);
+                this.Projects = new[] { implicitProject };
+            }
 
-                foreach (var file in csharpWorkspaceFiles)
+            // Configure each project in the workspace
+            foreach (var project in this.Projects)
+            {
+                project.ActionSource = this;
+                project.ConfigurationSource = this;
+                project.NotificationSender = this;
+
+                // When a project reloads, publish diagnostics.
+                project.OnProjectCompiled += () =>
                 {
-                    var text = System.IO.File.ReadAllText(file);
-                    if (UnmatchedDefinitions.Any(ucn => !string.IsNullOrWhiteSpace(ucn.FileName) && file.Contains(ucn.FileName)) // if we know there's a file that we're looking for
-                     || text.ContainsAny("YarnCommand", "AddCommandHandler", "AddFunction") // built in yarn spinner linking
-                     || text.ContainsAny("yarnfunction", "yarncommand") // linked by structured comment
-                    )
+                    PublishDiagnostics();
+                    PublishNodeInfos();
+                };
+
+                // Reload the project without notifying. (When we load a
+                // workspace, all projects will reload at once, so we'll wait
+                // until they're all created.)
+                project.ReloadProjectFromDisk(false);
+            }
+
+            this.PublishDiagnostics();
+            this.PublishNodeInfos();
+        }
+
+        private IEnumerable<Action> FindWorkspaceActions(string root)
+        {
+            var csharpWorkspaceFiles = System.IO.Directory.EnumerateFiles(root, "*.cs", System.IO.SearchOption.AllDirectories);
+
+            // Filter out any C# files that are in Unity directories not
+            // directly authored by the user
+            csharpWorkspaceFiles = csharpWorkspaceFiles.Where(f => !f.Contains("PackageCache") && !f.Contains("Library"));
+
+            foreach (var file in csharpWorkspaceFiles)
+            {
+                var text = System.IO.File.ReadAllText(file);
+
+                if (!text.ContainsAny("YarnCommand", "YarnFunction", "AddCommandHandler", "AddFunction"))
+                {
+                    // This C# file doesn't contain any Yarn functions, so skip
+                    // it
+                    continue;
+                }
+
+                var uri = new Uri(file);
+                foreach (var action in CSharpFileData.ParseActionsFromCode(text, uri))
+                {
+                    yield return action;
+                }
+            }
+        }
+
+        internal Dictionary<Uri, IEnumerable<Diagnostic>> GetDiagnostics()
+        {
+            var result = new Dictionary<Uri, IEnumerable<Diagnostic>>();
+
+            IEnumerable<Yarn.Compiler.Diagnostic> diagnostics = this.Projects
+                .SelectMany(p => p.Diagnostics);
+
+            foreach (var file in this.Projects.SelectMany(p => p.Files))
+            {
+                var uri = file.Uri;
+                var diags = diagnostics
+                        .Where(d => d.FileName == uri.AbsolutePath)
+                        .Select(d => d.AsLSPDiagnostic());
+
+                // Add warnings for this file
+                diags = diags.Concat(Warnings.GetWarnings(file, this.Configuration));
+
+                // If there are any diagnostics for this file, add it to the
+                // result.
+                if (diags.Any()) {
+                    result[uri] = diags;
+                }
+            }
+
+            return result;
+        }
+
+        internal void PublishDiagnostics()
+        {
+            foreach (var pair in GetDiagnostics())
+            {
+                var uri = pair.Key;
+                var diags = pair.Value;
+
+                // Publish diagnostics for this file
+                LanguageServer?.TextDocument.PublishDiagnostics(
+                    new PublishDiagnosticsParams
                     {
-                        // add to list of csharp files of interest / subscribe to updates
-                        var uri = new Uri(file);
-                        CSharpFiles[uri] = new CSharpFileData(text, uri, this);
+                        Uri = uri,
+                        Diagnostics = diags.ToList(),
                     }
-                    else { unusedCSharpFiles.Add(file); }
-                }
+                );
+            }
+        }
 
-                foreach (var fileEntry in CSharpFiles)
-                {
-                    // Even if we don't have anymore unmatched commands, this will clean up any leftover syntax trees
-                    fileEntry.Value.LookForUnmatchedCommands(isLastTime: true);
-                }
-
-
-                if (Configuration.DeepCommandLookup)
-                {
-                    // If we don't have a definition name, we'll never find it by yarn name (already found everything by yarn name before deep command lookup.)
-                    UnmatchedDefinitions = UnmatchedDefinitions.Where(d => d.DefinitionName.Any()).ToList();
-
-                    foreach (var file in unusedCSharpFiles)
+        /// <summary>
+        /// Sends the DidChangeNodesNotification message to the client, which
+        /// contains semantic information about the nodes in this file.
+        /// </summary>
+        /// <seealso cref="Commands.DidChangeNodesNotification"/>
+        public void PublishNodeInfos() {
+            foreach (var file in this.Projects.SelectMany(p => p.Files))
+            {
+                this.LanguageServer?.SendNotification(
+                    Commands.DidChangeNodesNotification, new NodesChangedParams
                     {
-                        if (!UnmatchedDefinitions.Any())
-                        {
-                            break;
-                        }
-
-                        var text = System.IO.File.ReadAllText(file);
-                        if (text.ContainsAny(UnmatchedDefinitions.Select(ucn => ucn.DefinitionName).ToArray()))
-                        {
-                            var uri = new Uri(file);
-                            var fileData = new CSharpFileData(text, uri, this, true);
-                            if (fileData.Definitions.Any())
-                            {
-                                CSharpFiles[uri] = fileData;
-                            }
-                        }
-                    }
-                }
+                        Uri = file.Uri,
+                        Nodes = file.NodeInfos,
+                    });
             }
-            else
-            {
-                // Probably excesive
-                CSharpFiles.Clear();
-            }
-
-            FillFunctionDefinitionCache();
         }
 
-        public IEnumerable<(Uri uri, string title, Range range)> GetNodeTitles()
+        /// <summary>
+        /// Initializes this Workspace without a language server.
+        /// </summary>
+        /// <remarks>
+        /// Workspaces deliver information about the changing state of the
+        /// project via their language server. If a Workspace has no language
+        /// server, it will not report on any changes.
+        /// </remarks>
+        internal void Initialize()
         {
-            var allNodeInfos = YarnFiles.Values.SelectMany(y => y.NodeInfos);
-
-            return allNodeInfos
-                .Select(n => (
-                    n.File.Uri,
-                    n.TitleToken.Text,
-                    PositionHelper.GetRange(n.File.LineStarts, n.TitleToken))
-                    )
-                .Distinct();
+            ReloadWorkspace();
         }
 
-        public IEnumerable<string> GetVariableNames()
+        /// <summary>
+        /// Initializes this Workspace without a language server.
+        /// </summary>
+        /// <inheritdoc cref="Initialize" path="/remarks"/>
+        /// <param name="server">The language server to use.</param>
+        internal void Initialize(ILanguageServer server)
         {
-            var allNodeInfos = YarnFiles.Values.SelectMany(y => y.NodeInfos);
-
-            return allNodeInfos
-                .SelectMany(n => n.VariableReferences)
-                .Select(variableToken => variableToken.Text)
-                .Distinct();
+            this.LanguageServer = server;
+            Initialize();
         }
 
-        public IEnumerable<Yarn.Compiler.Declaration> GetVariables(string name = null, bool fuzzyMatch = false)
+        /// <summary>
+        /// Delivers a message to the user, through the configured language
+        /// server.
+        /// </summary>
+        /// <remarks>
+        /// If this Workspace was not initialized with a language server, this
+        /// method performs no action.
+        /// </remarks>
+        /// <param name="message">The text of the message to deliver.</param>
+        /// <param name="messageType">The type of the message to deliver.</param>
+        internal void ShowMessage(string message, MessageType messageType)
         {
-            if (name == null)
+            this.LanguageServer?.Window.ShowMessage(new ShowMessageParams
             {
-                return this.Declarations;
-            }
+                Message = message,
+                Type = messageType,
+            });
+        }
 
-            if (fuzzyMatch == false)
-            {
-                return this.Declarations.Where(d => d.Name == name);
-            }
+        public void SendNotification<T>(string method, T @params)
+        {
+            this.LanguageServer?.SendNotification<T>(method, @params);
+        }
 
-            // Todo: Refactor this part out and use for variables and functions
-            var threshold = Configuration.DidYouMeanThreshold;
+        internal static IEnumerable<T> FuzzySearchItem<T>(IEnumerable<(string Name, T Item)> items, string name, float threshold)
+        {
             var lev = new Fastenshtein.Levenshtein(name.ToLower());
 
-            return Declarations.Select(declaration =>
+            return items.Select(searchItem =>
                 {
-                    float distance = lev.DistanceFrom(declaration.Name.ToLower());
-                    var normalizedDistance = distance / Math.Max(Math.Max(name.Length, declaration.Name.Length), 1);
+                    float distance = lev.DistanceFrom(searchItem.Name.ToLower());
+                    var normalizedDistance = distance / Math.Max(Math.Max(name.Length, searchItem.Name.Length), 1);
 
                     if (distance <= 1
-                        || declaration.Name.Contains(name, StringComparison.OrdinalIgnoreCase)
-                        || name.Contains(declaration.Name, StringComparison.OrdinalIgnoreCase))
+                        || searchItem.Name.Contains(name, StringComparison.OrdinalIgnoreCase)
+                        || name.Contains(searchItem.Name, StringComparison.OrdinalIgnoreCase))
                     {
                         // include strings that contain each other even if they don't meet the threshold
                         // usecase is more the user didn't finish typing instead of the user made a typo
                         normalizedDistance = Math.Min(normalizedDistance, threshold);
                     }
 
-                    return (Declaration: declaration, Distance: normalizedDistance);
+                    return (searchItem.Item, Distance: normalizedDistance);
                 })
                 .Where(scoredfd => scoredfd.Distance <= threshold)
                 .OrderBy(scorefd => scorefd.Distance)
-                .Select(scoredfd => scoredfd.Declaration);
+                .Select(scoredfd => scoredfd.Item);
         }
 
-        public IEnumerable<RegisteredDefinition> GetFunctions()
+        IEnumerable<Action> IActionSource.GetActions() => this.workspaceActions;
+    }
+
+    internal static class EnumerableExtension {
+        public static IEnumerable<T> NonNull<T>(this IEnumerable<T?> enumerable)
+            where T : class
         {
-            return functionDefinitionCache.Select(kvp => kvp.Value).Where(f => !f.IsCommand);
-        }
-
-        public IEnumerable<RegisteredDefinition> GetCommands()
-        {
-            return functionDefinitionCache.Select(kvp => kvp.Value).Where(f => f.IsCommand);
-        }
-
-        /// <summary>
-        /// Get Function or Command definition information for command/functions registered with Yarn Spinner.
-        /// </summary>
-        /// <param name="functionName">Search string. Note that this is the registered Yarn name, not the name of what is defined in code.</param>
-        /// <param name="fuzzyMatch">Match names that contain or are close to the input, and not just an exact match.</param>
-        /// <returns>Enumerable of matches. Note that calling function needs to filter which of commands or functions that it wants.</returns>
-        public IEnumerable<RegisteredDefinition> LookupFunctions(string functionName, bool fuzzyMatch = false)
-        {
-            var results = Enumerable.Empty<RegisteredDefinition>();
-
-            if (!fuzzyMatch && functionDefinitionCache.TryGetValue(functionName, out var function))
-            {
-                return new List<RegisteredDefinition> { function };
-            }
-            else if (fuzzyMatch)
-            {
-                results = functionDefinitionCache.Select(kvp => kvp.Value);
-            }
-
-
-            if (fuzzyMatch) {
-                var threshold = Configuration.DidYouMeanThreshold;
-                var lev = new Fastenshtein.Levenshtein(functionName.ToLower());
-                results = results
-                    .Select(fd =>
-                    {
-                        float distance = lev.DistanceFrom(fd.YarnName.ToLower());
-                        var normalizedDistance = distance / Math.Max(Math.Max(functionName.Length, fd.YarnName.Length), 1);
-
-                        if (fd.YarnName.ToLower().Contains(functionName.ToLower()) || functionName.ToLower().Contains(fd.YarnName.ToLower()))
-                        {
-                            // include strings that contain each other even if they don't meet the threshold
-                            // usecase is more the user didn't finish typing instead of the user made a typo
-                            normalizedDistance = Math.Min(normalizedDistance, threshold);
-                        }
-
-                        return (fd, normalizedDistance);
-                    })
-                    .Where(scoredfd => scoredfd.normalizedDistance <= threshold)
-                    .OrderBy(scorefd => scorefd.normalizedDistance)
-                    .Select(scoredfd => scoredfd.fd);
-            }
-
-            return results;
-        }
-
-        internal void UpdateWorkspace()
-        {
-            // Compile all files in the workspace.
-            var compilationJob = new Yarn.Compiler.CompilationJob
-            {
-                Files = YarnFiles.Select(pair => {
-                    var uri = pair.Key;
-                    var file = pair.Value;
-
-                    return new Yarn.Compiler.CompilationJob.File
-                    {
-                        FileName = uri.ToString(),
-                        Source = file.Text,
-                    };
-                }),
-                CompilationType = Yarn.Compiler.CompilationJob.Type.DeclarationsOnly,
-            };
-
-            var result = Yarn.Compiler.Compiler.Compile(compilationJob);
-
-            this.Diagnostics = result.Diagnostics;
-            this.Declarations = result.Declarations;
-
-            PublishDiagnostics();
-        }
-
-        public void PublishSpecificDiagnostics(IEnumerable<Yarn.Compiler.Diagnostic> diagnostics)
-        {
-            foreach (var filePair in this.YarnFiles)
-            {
-                    var uri = filePair.Key;
-                    var diags = diagnostics
-                        .Where(d => d.FileName == uri.ToString())
-                        .Select(d => ConvertDiagnostic(d)).ToList();
-
-                // Add warnings for this file
-                diags = diags.Concat(Warnings.GetWarnings(filePair.Value, this)).ToList();
-
-                LanguageServer.TextDocument.PublishDiagnostics(
-                        new PublishDiagnosticsParams
-                        {
-                            Uri = uri,
-                            Diagnostics = diags,
-                        }
-                    );
-            }
-        }
-        public void PublishDiagnostics()
-        {
-            
-            PublishSpecificDiagnostics(this.Diagnostics);
-
-        }
-
-        /// <summary>
-        /// Converts a <see cref="Yarn.Compiler.Diagnostic"/> object to a <see
-        /// cref="Diagnostic"/>.
-        /// </summary>
-        /// <param name="d">The <see cref="Yarn.Compiler.Diagnostic"/> to
-        /// convert.</param>
-        /// <returns>The converted <see cref="Diagnostic"/>.</returns>
-        private static Diagnostic ConvertDiagnostic(Yarn.Compiler.Diagnostic d)
-        {
-            return new Diagnostic
-            {
-                Range = new Range(
-                    d.Range.Start.Line,
-                    d.Range.Start.Character,
-                    d.Range.End.Line,
-                    d.Range.End.Character
-                ),
-                Message = d.Message,
-                Severity = d.Severity switch
-                {
-                    Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error => DiagnosticSeverity.Error,
-                    Yarn.Compiler.Diagnostic.DiagnosticSeverity.Warning => DiagnosticSeverity.Warning,
-                    Yarn.Compiler.Diagnostic.DiagnosticSeverity.Info => DiagnosticSeverity.Information,
-                    _ => DiagnosticSeverity.Error,
-                },
-                Source = d.FileName,
-            };
-        }
-
-        private void FillFunctionDefinitionCache()
-        {
-            functionDefinitionCache.Clear();
-
-            var results = JsonConfigFiles.Values
-                .Cast<IDefinitionsProvider>()
-                .Concat(CSharpFiles.Values.Select(v => v))
-                .SelectMany(fp => fp.Definitions.Values.Select(v => v));
-
-            // Now we need to merge any json / c# versions of definitons, where json is the base, and c# fills in anything missing
-            // TODO: There's probably a better way to do this merge
-            // Test cases to consider, multiple json entries and no csharp entries. Multiple valid definitions in csharp.
-            results = results
-                .GroupBy(f => f.YarnName).Select(g =>
-                {
-                    if (g.Count() == 1)
-                    {
-                        return g.First();
-                    }
-
-                    if (g.All(f => f.DefinitionFile.ToString().EndsWith(".cs")))
-                    {
-                        return g.OrderBy(f => f.Priority).First();
-                    }
-
-                    var jsonDef = g.FirstOrDefault(f => f.DefinitionFile.ToString().EndsWith(".json"));
-
-                    var csharpDef = g.OrderBy(f => f.Priority)
-                        .FirstOrDefault(
-                            f => f.DefinitionFile.ToString().EndsWith(".cs")
-                                && !f.Signature.EndsWith("(?)")
-                        );
-
-                    if (string.IsNullOrWhiteSpace(csharpDef.YarnName))
-                    {
-                        csharpDef = g.FirstOrDefault(
-                            f => f.DefinitionFile.ToString().EndsWith(".cs")
-                        );
-                    }
-
-                    jsonDef.DefinitionFile = csharpDef.DefinitionFile;
-                    jsonDef.DefinitionRange = csharpDef.DefinitionRange;
-                    jsonDef.Parameters ??= csharpDef.Parameters;
-                    jsonDef.MinParameterCount ??= csharpDef.MinParameterCount;
-                    jsonDef.MaxParameterCount ??= csharpDef.MaxParameterCount;
-                    jsonDef.Documentation ??= csharpDef.Documentation;
-                    jsonDef.Signature ??= csharpDef.Signature;
-                    jsonDef.Language = Utils.CSharpLanguageID;
-
-                    // Recalculate these just in case
-                    jsonDef.MinParameterCount = jsonDef.Parameters?.Count(p => p.DefaultValue == null && !p.IsParamsArray);
-                    jsonDef.MaxParameterCount = jsonDef.Parameters?.Any(p => p.IsParamsArray) == true ? null : jsonDef.Parameters.Count();
-
-                    return jsonDef;
-                });
-            foreach (var fd in results)
-            {
-                functionDefinitionCache[fd.YarnName] = fd;
-            }
-
-            foreach (var f in CSharpFiles)
-            {
-                var uri = f.Key;
-                var file = f.Value;
-                if (file.UnmatchableBridges.Any())
-                {
-                    foreach (var bridge in file.UnmatchableBridges)
-                    {
-                        if (!functionDefinitionCache.ContainsKey(bridge.yarnName))
-                        {
-                            functionDefinitionCache[bridge.yarnName] = new RegisteredDefinition
-                            {
-                                DefinitionFile = uri,
-                                DefinitionName = bridge.yarnName,
-                                DefinitionRange = bridge.definitionRange,
-                                IsCommand = bridge.isCommand,
-                                Language = Utils.CSharpLanguageID,
-                                YarnName = bridge.yarnName,
-                                Documentation = string.Empty,
-                                Priority = 10,
-                                Signature = $"{bridge.yarnName}(?)",
-                            };
-                        }
-                    }
-                }
-            }
+            return enumerable.Where(item => item != null)!;
         }
     }
 }

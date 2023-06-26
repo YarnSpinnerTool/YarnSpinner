@@ -27,7 +27,7 @@ namespace YarnLanguageServer.Handlers
             var csChanges = request.Changes.Where(c => c.Uri.Path.EndsWith(".cs"));
             var jsonChanges = request.Changes.Where(c => c.Uri.Path.EndsWith(".ysls.json"));
 
-            bool reinitialize = false;
+            bool needsWorkspaceReload = false;
 
             // This is probably wordiest way to do this,
             // but these cases will become different as we replace the "redo everything" strategy with something more incremental
@@ -38,7 +38,7 @@ namespace YarnLanguageServer.Handlers
                     case FileChangeType.Created: // TODO: This might be a good place to start things out with a "default yarn file"
                         break;
                     case FileChangeType.Deleted:
-                        reinitialize = true;
+                        needsWorkspaceReload = true;
                         break;
                 }
             }
@@ -48,10 +48,10 @@ namespace YarnLanguageServer.Handlers
                 switch (change.Type)
                 {
                     case FileChangeType.Changed:
-                        reinitialize = true;
+                        needsWorkspaceReload = true;
                         break;
                     case FileChangeType.Deleted:
-                        reinitialize = true;
+                        needsWorkspaceReload = true;
                         break;
                 }
             }
@@ -63,15 +63,18 @@ namespace YarnLanguageServer.Handlers
                     case FileChangeType.Created:
                         break;
                     case FileChangeType.Changed: // TODO: Consider only accepting changed files that adhere to ysls schema
-                        reinitialize = true;
+                        needsWorkspaceReload = true;
                         break;
                     case FileChangeType.Deleted:
-                        reinitialize = true;
+                        needsWorkspaceReload = true;
                         break;
                 }
             }
 
-            if (reinitialize) { workspace.LoadExternalInfo(); }
+            if (needsWorkspaceReload)
+            {
+                workspace.ReloadWorkspace();
+            }
 
             return Unit.Task;
         }

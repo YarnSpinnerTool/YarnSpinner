@@ -19,7 +19,7 @@ namespace YarnLanguageServer.Handlers
             this.workspace = workspace;
         }
 
-        public static IEnumerable<Location> GetReferences(string name, YarnSymbolType yarnSymbolType, Workspace workspace)
+        public static IEnumerable<Location> GetReferences(Project project, string name, YarnSymbolType yarnSymbolType, Workspace workspace)
         {
             IEnumerable<Location> results;
             Func<YarnFileData, IEnumerable<IToken>> tokenSelector;
@@ -43,15 +43,15 @@ namespace YarnLanguageServer.Handlers
                     break;
             }
 
-            results = workspace.YarnFiles
+            results = project.Files
                 .SelectMany(
-                    yf => tokenSelector(yf.Value)
+                    yf => tokenSelector(yf)
                         .Where(nj => nj?.Text == name)
                         .Select(n => new Location
                         {
-                            Uri = yf.Value.Uri,
+                            Uri = yf.Uri,
                             Range = PositionHelper.GetRange(
-                                yf.Value.LineStarts,
+                                yf.LineStarts,
                                 n),
                         })
                     );
@@ -61,15 +61,21 @@ namespace YarnLanguageServer.Handlers
 
         public Task<LocationContainer> Handle(ReferenceParams request, CancellationToken cancellationToken)
         {
-            if (workspace.YarnFiles.TryGetValue(request.TextDocument.Uri.ToUri(), out var yarnFile))
-            {
-                (var tokenType, var token) = yarnFile.GetTokenAndType(request.Position);
+            var uri = request.TextDocument.Uri.ToUri();
+            var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
+            var yarnFile = project?.GetFileData(uri);
 
-                if (tokenType != YarnSymbolType.Unknown)
-                {
-                    var referenceLocations = GetReferences(token.Text, tokenType, workspace);
-                    return Task.FromResult(new LocationContainer(referenceLocations));
-                }
+            if (project == null || yarnFile == null)
+            {
+                return Task.FromResult<LocationContainer>(null);
+            }
+            
+            (var tokenType, var token) = yarnFile.GetTokenAndType(request.Position);
+
+            if (tokenType != YarnSymbolType.Unknown)
+            {
+                var referenceLocations = GetReferences(project, token.Text, tokenType, workspace);
+                return Task.FromResult(new LocationContainer(referenceLocations));
             }
 
             return Task.FromResult<LocationContainer>(null);

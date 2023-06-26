@@ -52,9 +52,9 @@ namespace YarnLanguageServer
             return false;
         }
 
-        public static bool Any(this string source)
+        public static bool Any(this string? source)
         {
-            return !string.IsNullOrWhiteSpace(source);
+            return string.IsNullOrWhiteSpace(source) == false;
         }
     }
 }

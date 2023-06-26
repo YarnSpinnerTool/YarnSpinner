@@ -19,17 +19,19 @@ namespace YarnLanguageServer.Handlers
         public Task<SymbolInformationOrDocumentSymbolContainer> Handle(DocumentSymbolParams request, CancellationToken cancellationToken)
         {
             var uri = request.TextDocument.Uri.ToUri();
-            if (workspace.YarnFiles.TryGetValue(request.TextDocument.Uri.ToUri(), out var yarnDocument))
+            var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
+            var yarnDocument = project?.GetFileData(uri);
+            if (yarnDocument == null)
+            {
+                return Task.FromResult<SymbolInformationOrDocumentSymbolContainer>(null);
+            }
+            else
             {
                 var result = new SymbolInformationOrDocumentSymbolContainer(
                     yarnDocument.DocumentSymbols.Select(
                         ds => new SymbolInformationOrDocumentSymbol(ds)));
 
                 return Task.FromResult(result);
-            }
-            else
-            {
-                return Task.FromResult<SymbolInformationOrDocumentSymbolContainer>(null);
             }
         }
 

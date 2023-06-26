@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using Antlr4.Runtime;
-using OmniSharp.Extensions.LanguageServer.Protocol;
-using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Yarn.Compiler;
-using YarnLanguageServer.Diagnostics;
 
 // Disambiguate between
 // OmniSharp.Extensions.LanguageServer.Protocol.Models.Diagnostic and
 // Yarn.Compiler.Diagnostic
-using Diagnostic = OmniSharp.Extensions.LanguageServer.Protocol.Models.Diagnostic;
 using Position = OmniSharp.Extensions.LanguageServer.Protocol.Models.Position;
 using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
 namespace YarnLanguageServer
 {
+    internal interface INotificationSender {
+        void SendNotification<T>(string method, T @params);
+    }
+
     internal class YarnFileData
     {
         public YarnSpinnerLexer Lexer { get; protected set; }
@@ -27,35 +27,25 @@ namespace YarnLanguageServer
         public IList<IToken> CommentTokens { get; protected set; }
         public IEnumerable<DocumentSymbol> DocumentSymbols { get; protected set; }
 
-        public IEnumerable<Diagnostic> CompilerDiagnostics { get; protected set; }
-        public bool HasSemanticDiagnostics { get; protected set;  }
         public ImmutableArray<int> LineStarts { get; protected set; }
 
         public List<NodeInfo> NodeInfos { get; protected set; }
 
         public Uri Uri { get; set; }
-        public Workspace Workspace { get; protected set; }
+        public INotificationSender? NotificationSender { get; protected set; }
 
         public string Text { get; set; }
 
-        public YarnFileData(string text, Uri uri, Workspace workspace)
+        public YarnFileData(string text, Uri uri, INotificationSender? notificationSender)
         {
             Uri = uri;
-            Workspace = workspace;
+            NotificationSender = notificationSender;
             Text = text;
 
-            Update(text, workspace);
-
-            // maybe we do the initial parsing, but don't do diagnostics / symbolic tokens until it's actually opened?
-            // for now maybe let's just do it all in one go and get lazy if things are slow
+            Update(text);
         }
 
-        public void Open(string text, Workspace workspace)
-        {
-            Update(text, workspace);
-        }
-
-        public void Update(string text, Workspace workspace)
+        public void Update(string text)
         {
             LineStarts = TextCoordinateConverter.GetLineStarts(text);
 
@@ -79,32 +69,18 @@ namespace YarnLanguageServer
             var tokenStream = new CommonTokenStream(Lexer);
             Parser = new YarnSpinnerParser(tokenStream);
 
-            // Turn off compiler error listeners, and replace with our friendly / error tolerant ones
+            // Turn off compiler error listeners
+            Parser.RemoveErrorListeners();
             Lexer.RemoveErrorListeners();
 
             // Attempt actual parse
             ParseTree = Parser.dialogue(); // Dialogue is the root node of the syntax tree
 
-            // should probably just set these directly inside the visit function, or refactor all these into a references object
+            // should probably just set these directly inside the visit
+            // function, or refactor all these into a references object
             NodeInfos = ReferencesVisitor.Visit(this, tokenStream).ToList();
 
             DocumentSymbols = DocumentSymbolsVisitor.Visit(this);
-
-            PublishNodeInfos();
-        }
-
-        /// <summary>
-        /// Sends the DidChangeNodesNotification message to the client, which
-        /// contains semantic information about the nodes in this file.
-        /// </summary>
-        /// <seealso cref="Commands.DidChangeNodesNotification"/>
-        private void PublishNodeInfos()
-        {
-            Workspace.LanguageServer.SendNotification(Commands.DidChangeNodesNotification, new NodesChangedParams
-            {
-                Uri = this.Uri,
-                Nodes = this.NodeInfos,
-            });
         }
 
         internal void ApplyContentChange(TextDocumentContentChangeEvent contentChange)
@@ -128,7 +104,6 @@ namespace YarnLanguageServer
             }
         }
 
-        
         public int? GetRawToken(Position position)
         {
             // TODO: Not sure if it's even worth using a visitor vs just iterating through the token list.
@@ -144,7 +119,7 @@ namespace YarnLanguageServer
         /// <summary>
         /// Gets the collection of all references to commands in this file.
         /// </summary>
-        public IEnumerable<YarnFunctionCall> CommandReferences => NodeInfos
+        public IEnumerable<YarnActionReference> CommandReferences => NodeInfos
             .SelectMany(n => n.CommandCalls);
 
         /// <summary>
@@ -162,9 +137,8 @@ namespace YarnLanguageServer
         /// <summary>
         /// Gets the collection of all function references in this file.
         /// </summary>
-        public IEnumerable<YarnFunctionCall> FunctionReferences => NodeInfos
+        public IEnumerable<YarnActionReference> FunctionReferences => NodeInfos
             .SelectMany(n => n.FunctionCalls);
-
 
         /// <summary>
         /// Gets the collection of all tokens in this file that represent
@@ -178,6 +152,17 @@ namespace YarnLanguageServer
         /// Gets the number of lines in this file.
         /// </summary>
         public int LineCount => LineStarts.Length;
+
+        /// <summary>
+        /// Gets or sets the <see cref="Project"/> objects that owns this file.
+        /// </summary>
+        /// <remarks>
+        /// A .yarn file may be a part of multiple Yarn projects. However, a
+        /// <see cref="YarnFileData"/> represents a Yarn file in the context of
+        /// a <i>single</i> Yarn project. Multiple <see cref="YarnFileData"/>
+        /// objects may exist for one file on disk.
+        /// </remarks>
+        public Project Project { get; internal set; }
 
         /// <summary>
         /// Gets the length of the line at the specified index, up to but not
@@ -217,7 +202,7 @@ namespace YarnLanguageServer
         /// <param name="position">The position to query for.</param>
         /// <returns>A tuple containing the type and token of the symbol at
         /// <paramref name="position"/>.</returns>
-        public (YarnSymbolType yarnSymbolType, IToken token) GetTokenAndType(Position position)
+        public (YarnSymbolType yarnSymbolType, IToken? token) GetTokenAndType(Position position)
         {
             Func<IToken, bool> isTokenMatch = (IToken t) => PositionHelper.DoesPositionContainToken(position, t);
 
@@ -235,7 +220,6 @@ namespace YarnLanguageServer
                 NodeInfos.SelectMany(n => n.FunctionCalls).Select(f => (f.NameToken, YarnSymbolType.Function)),
             };
 
-
             foreach (var tokenInfo in allSymbolTokens.SelectMany(g => g)) {
                 if (isTokenMatch(tokenInfo.Token)) {
                     return (tokenInfo.Type, tokenInfo.Token);
@@ -244,11 +228,10 @@ namespace YarnLanguageServer
 
             // TODO Speed these searches up using binary search on the token positions
             // see getTokenFromList() in PositionHelper.cs
-
             return (YarnSymbolType.Unknown, null);
         }
 
-        public (YarnFunctionCall?, int? activeParameterIndex) GetParameterInfo(Position position)
+        public (YarnActionReference?, int? activeParameterIndex) GetParameterInfo(Position position)
         {
             var info = GetFunctionInfo(position);
             if (info == null)
@@ -287,6 +270,7 @@ namespace YarnLanguageServer
             if (range.IsEmpty()) {
                 return true;
             }
+
             var rangeStartIndex = LineStarts[range.Start.Line] + range.Start.Character;
             var rangeEndIndex = LineStarts[range.End.Line] + range.End.Character;
 
@@ -307,12 +291,7 @@ namespace YarnLanguageServer
             return IsNullOrWhitespace(new Range(start, end));
         }
 
-        public void ClearDiagnostics(Workspace workspace)
-        {
-            workspace.LanguageServer.TextDocument.PublishDiagnostics(new PublishDiagnosticsParams { Uri = this.Uri });
-        }
-
-        private YarnFunctionCall? GetFunctionInfo(Position position)
+        private YarnActionReference? GetFunctionInfo(Position position)
         {
             // Strategy is to look for rightmost start function parameter, and if there are none, check command parameters
             var functionMatches = NodeInfos.SelectMany(n => n.FunctionCalls).Where(fi => fi.ExpressionRange.Contains(position)).OrderByDescending(fi => fi.ExpressionRange.Start);

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
@@ -18,58 +19,67 @@ namespace YarnLanguageServer.Handlers
 
         public Task<LocationOrLocationLinks> Handle(DefinitionParams request, CancellationToken cancellationToken)
         {
-            if (workspace.YarnFiles.TryGetValue(request.TextDocument.Uri.ToUri(), out var yarnFile))
+            System.Uri documentUri = request.TextDocument.Uri.ToUri();
+            var project = workspace.GetProjectsForUri(documentUri).FirstOrDefault();
+            var yarnFile = project?.GetFileData(documentUri);
+
+            if (yarnFile == null || project == null)
             {
-                (var tokenType, var token) = yarnFile.GetTokenAndType(request.Position);
+                return Task.FromResult<LocationOrLocationLinks>(null);
+            }
 
-                switch (tokenType)
-                {
-                    case YarnSymbolType.Command:
-                        var functionDefinitionMatchs = workspace.LookupFunctions(token.Text).Where(f => f.IsCommand);
+            (var tokenType, var token) = yarnFile.GetTokenAndType(request.Position);
 
-                        var locations = functionDefinitionMatchs.Select(definition =>
-                            new LocationOrLocationLink(new Location { Uri = definition.DefinitionFile, Range = definition.DefinitionRange }));
-                        return Task.FromResult<LocationOrLocationLinks>(new LocationOrLocationLinks(locations));
+            IEnumerable<Action> functionDefinitionMatches;
 
-                    case YarnSymbolType.Function:
-                        functionDefinitionMatchs = workspace.LookupFunctions(token.Text).Where(f => !f.IsCommand);
+            switch (tokenType)
+            {
+                case YarnSymbolType.Command:
+                    functionDefinitionMatches = project.FindActions(token.Text, ActionType.Command, fuzzySearch: true);
 
-                        locations = functionDefinitionMatchs.Select(definition =>
-                            new LocationOrLocationLink(new Location { Uri = definition.DefinitionFile, Range = definition.DefinitionRange })
-                        );
+                    var locations = functionDefinitionMatches.Select(definition =>
+                        new LocationOrLocationLink(new Location { Uri = definition.SourceFileUri, Range = definition.SourceRange }));
+                    return Task.FromResult(new LocationOrLocationLinks(locations));
 
-                        return Task.FromResult<LocationOrLocationLinks>(new LocationOrLocationLinks(locations));
+                case YarnSymbolType.Function:
+                    functionDefinitionMatches = project.FindActions(token.Text, ActionType.Function, fuzzySearch: true);
 
-                    case YarnSymbolType.Variable:
-                        var vDefinitionMatches = workspace.Declarations.Where(dv => dv.Name == token.Text)
-                        .Select(d => (Uri: d.SourceFileName, d.Range));
+                    locations = functionDefinitionMatches.Select(definition =>
+                        new LocationOrLocationLink(new Location { Uri = definition.SourceFileUri, Range = definition.SourceRange })
+                    );
 
-                        locations = vDefinitionMatches.Select(definition =>
-                            new LocationOrLocationLink(
-                                new Location
-                                {
-                                    Uri = definition.Uri,
-                                    Range = PositionHelper.GetRange(definition.Range),
-                                }
-                            )
-                        );
-                        return Task.FromResult<LocationOrLocationLinks>(new LocationOrLocationLinks(locations));
+                    return Task.FromResult(new LocationOrLocationLinks(locations));
 
-                    case YarnSymbolType.Node:
-                        var nDefinitionMatches = workspace.GetNodeTitles()
-                            .Where(nt => nt.title == token.Text);
+                case YarnSymbolType.Variable:
 
-                        locations = nDefinitionMatches.Select(definition =>
-                            new LocationOrLocationLink(
-                                new Location
-                                {
-                                    Uri = definition.uri,
-                                    Range = definition.range,
-                                }
-                            )
-                        );
-                        return Task.FromResult(new LocationOrLocationLinks(locations));
-                }
+                    var vDefinitionMatches = project.Variables.Where(dv => dv.Name == token.Text)
+                    .Select(d => (Uri: d.SourceFileName, d.Range));
+
+                    locations = vDefinitionMatches.Select(definition =>
+                        new LocationOrLocationLink(
+                            new Location
+                            {
+                                Uri = definition.Uri,
+                                Range = PositionHelper.GetRange(definition.Range),
+                            }
+                        )
+                    );
+                    return Task.FromResult<LocationOrLocationLinks>(new LocationOrLocationLinks(locations));
+
+                case YarnSymbolType.Node:
+                    var nDefinitionMatches = project.Nodes
+                        .Where(nt => nt.Title == token.Text);
+
+                    locations = nDefinitionMatches.Select(definition =>
+                        new LocationOrLocationLink(
+                            new Location
+                            {
+                                Uri = definition.File.Uri,
+                                Range = definition.TitleHeaderRange,
+                            }
+                        )
+                    );
+                    return Task.FromResult(new LocationOrLocationLinks(locations));
             }
 
             return Task.FromResult<LocationOrLocationLinks>(null);

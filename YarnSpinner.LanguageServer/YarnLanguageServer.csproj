@@ -9,6 +9,7 @@
         <ApplicationIcon />
         <GenerateDocumentationFile>False</GenerateDocumentationFile>
         <UseAppHost>False</UseAppHost>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

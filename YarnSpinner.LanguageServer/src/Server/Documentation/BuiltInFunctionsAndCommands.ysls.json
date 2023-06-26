@@ -70,6 +70,7 @@
       "DefinitionName": "visited",
       "Documentation": "Returns a boolean value of true if the node with the title of node_name has been entered and exited at least once before, otherwise returns false. Will return false if node_name doesn't match a node in project.",
       "Signature": "visited(node_name)",
+      "ReturnType": "bool",
       "Parameters": [
         {
           "Name": "node_name",
@@ -84,6 +85,7 @@
       "DefinitionName": "visited_count",
       "Documentation": "Returns a number value of the number of times the node with the title of node_name has been entered and exited, otherwise returns 0. Will return 0 if node_name doesn't match a node in project.",
       "Signature": "visited_count(node_name)",
+      "ReturnType": "number",
       "Parameters": [
         {
           "Name": "node_name",
