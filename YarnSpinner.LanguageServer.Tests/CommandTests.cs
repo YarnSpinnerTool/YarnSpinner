@@ -243,4 +243,68 @@ public class CommandTests : LanguageServerTestsBase
             .Be(headerNewValue,
                 "because we specified this value");
     }
+
+    [Fact]
+    public async Task Server_OnGettingVoiceoverSpreadsheet_ReturnsData()
+    {
+        // Given
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+
+        // When
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<VOStringExport>
+        {
+            Command = Commands.Extract,
+            Arguments = new JArray(
+                DocumentUri.FromFileSystemPath(filePath).ToString()
+            )
+        });
+
+        // Then
+        result.Errors.Should().BeEmpty();
+        result.File.Should().NotBeEmpty();
+    }
+
+    [Fact]
+    public async Task Server_OnGettingGraph_ReturnsData()
+    {
+        // Given
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+
+        // When
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<string>
+        {
+            Command = Commands.Graph,
+            Arguments = new JArray(
+                DocumentUri.FromFileSystemPath(filePath).ToString(),
+                "dot",
+                "true"
+            )
+        });
+
+        // Then
+        result.Should().NotBeEmpty();
+    }
+
+    [Fact]
+    public async Task Server_OnCompilingProject_GetsResult()
+    {
+        // Given
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+
+        // When
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<CompilerOutput>
+        {
+            Command = Commands.Compile,
+            Arguments = new JArray(
+                DocumentUri.FromFileSystemPath(filePath).ToString()
+            )
+        });
+
+        // Then
+        result.Errors.Should().BeEmpty();
+        result.Data.Should().NotBeEmpty();
+    }
 }
