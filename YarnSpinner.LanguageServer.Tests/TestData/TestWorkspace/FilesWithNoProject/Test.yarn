@@ -1,0 +1,4 @@
+title: NotIncludedInProject
+---
+// This file is not in a directory that has a .yarnproject file.
+===

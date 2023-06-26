@@ -1,13 +1,13 @@
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
+using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Workspace;
 using Xunit;
 using Xunit.Abstractions;
-using YarnLanguageServer;
-using System.Linq;
 
 namespace YarnLanguageServer.Tests;
 
@@ -24,7 +24,7 @@ public class CommandTests : LanguageServerTestsBase
     {
         // Set up the server
         var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-        var filePath = Path.Combine(PathToTestData, "Test.yarn");
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
         var result = await client.ExecuteCommand(new ExecuteCommandParams<Container<NodeInfo>>
         {
@@ -70,7 +70,7 @@ public class CommandTests : LanguageServerTestsBase
     {
         // Set up the server
         var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-        var filePath = Path.Combine(PathToTestData, "Test.yarn");
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
         NodesChangedParams? nodeInfo;
 
@@ -111,7 +111,7 @@ public class CommandTests : LanguageServerTestsBase
     {
         // Set up the server
         var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-        var filePath = Path.Combine(PathToTestData, "Test.yarn");
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
         NodesChangedParams? nodeInfo;
 
@@ -147,7 +147,7 @@ public class CommandTests : LanguageServerTestsBase
     {
         // Set up the server
         var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-        var filePath = Path.Combine(PathToTestData, "Test.yarn");
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
         NodesChangedParams? nodeInfo;
 
@@ -195,7 +195,7 @@ public class CommandTests : LanguageServerTestsBase
     {
         // Set up the server
         var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-        var filePath = Path.Combine(PathToTestData, "Test.yarn");
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
         NodesChangedParams? nodeInfo;
 

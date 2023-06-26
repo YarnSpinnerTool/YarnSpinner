@@ -152,3 +152,6 @@ export.log
 
 # Test coverage data
 YarnSpinner.Tests/coverage/
+
+# Folders marked as containing non-public data
+*DoNotCommit/

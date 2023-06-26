@@ -26,7 +26,7 @@
     <PackageReference Include="OmniSharp.Extensions.LanguageServer" Version="0.19.5" />
     <PackageReference Include="OmniSharp.Extensions.LanguageProtocol.Testing" Version="0.19.5" />
     
-    <PackageReference Include="FluentAssertions" Version="6.3.0" />
+    <PackageReference Include="FluentAssertions" Version="6.11.0" />
   </ItemGroup>
 
 </Project>
