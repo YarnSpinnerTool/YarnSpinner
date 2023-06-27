@@ -276,7 +276,6 @@ namespace Yarn
 
         public bool SetNode(string nodeName)
         {
-
             if (Program == null || Program.Nodes.Count == 0)
             {
                 throw new DialogueException($"Cannot load node {nodeName}: No nodes have been loaded.");
@@ -333,12 +332,12 @@ namespace Yarn
         public void Stop()
         {
             CurrentExecutionState = ExecutionState.Stopped;
+            currentNode = null;
             DialogueCompleteHandler?.Invoke();
         }
 
         public void SetSelectedOption(int selectedOptionID)
         {
-
             if (CurrentExecutionState != ExecutionState.WaitingOnOptionSelection)
             {
 
