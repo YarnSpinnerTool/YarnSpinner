@@ -7,6 +7,7 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server.Capabilities;
+using OmniSharp.Extensions.LanguageServer.Protocol.Window;
 
 namespace YarnLanguageServer.Handlers
 {
@@ -27,16 +28,25 @@ namespace YarnLanguageServer.Handlers
             var text = request.TextDocument.Text;
             if (!uri.IsFile) { return Unit.Task; }
 
-            if (!workspace.YarnFiles.TryGetValue(uri, out var yarnDocument))
+            var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
+
+            if (project == null)
             {
-                yarnDocument = new YarnFileData(text, uri, workspace);
-                workspace.YarnFiles[uri] = yarnDocument;
+                // We don't know what project handles this URI. Log an error.
+                workspace.Window?.LogError($"No known project for URI {uri}");
+                return Unit.Task;
             }
 
-            // probably don't need text parameter here, but could be a good sanity check
-            yarnDocument.Open(text, workspace);
+            if (project.GetFileData(uri) == null)
+            {
+                // The file is not already known to the project. Add it to the
+                // project.
+                project.AddNewFile(uri, request.TextDocument.Text);
 
-            workspace.UpdateWorkspace();
+                // Adding the document to the project may have changed the
+                // current diagnostics.
+                workspace.PublishDiagnostics();
+            }
 
             return Unit.Task;
         }
@@ -44,40 +54,40 @@ namespace YarnLanguageServer.Handlers
         public override Task<Unit> Handle(DidChangeTextDocumentParams request, CancellationToken cancellationToken)
         {
             var uri = request.TextDocument.Uri.ToUri();
-            
+
             if (!uri.IsFile) { return Unit.Task; }
 
-            if (!workspace.YarnFiles.TryGetValue(uri, out var yarnDocument))
+            var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
+            var yarnDocument = project?.GetFileData(uri);
+
+            if (project == null)
             {
-                // We don't know about this document yet. Hopefully, this first
-                // change is a full update (i.e. Range is null, so Text is the
-                // full text of the document.)
-                //
-                // In this case, create a new document and fill it with this
-                // content. (If it's not a full update, we have to default to
-                // something; in this case, I'm going with the empty string.)
+                // We don't have a project that includes this URI. Nothing to
+                // be done.
+                return Unit.Task;
+            }
 
-                // Get the first content change
-                var firstChange = request.ContentChanges.First();
-
-                // Figure out the the content
-                var initialContent = firstChange.Range == null ? firstChange.Text : string.Empty;
-
-                // Create the new document
-                yarnDocument = new YarnFileData(initialContent, uri, workspace);
-                workspace.YarnFiles[uri] = yarnDocument;
-                yarnDocument.Open(initialContent, workspace);
+            if (yarnDocument == null)
+            {
+                // We have a project that owns this URI, but no file data for
+                // it. It's likely that this file was just created. Add this
+                // file to the project as empty; we will then attempt to apply
+                // the content changes to this empty document.
+                yarnDocument = project.AddNewFile(uri, string.Empty);
             }
 
             // Next, go through each content change, and apply it.
-            foreach (var contentChange in request.ContentChanges) {
+            foreach (var contentChange in request.ContentChanges)
+            {
                 yarnDocument.ApplyContentChange(contentChange);
             }
 
             // Finally, update our model using the new content.
-            yarnDocument.Update(yarnDocument.Text, workspace);
-
-            workspace.UpdateWorkspace();
+            yarnDocument.Update(yarnDocument.Text);
+            project.CompileProject(
+                notifyOnComplete: true,
+                Yarn.Compiler.CompilationJob.Type.DeclarationsOnly
+            );
 
             return Unit.Task;
         }

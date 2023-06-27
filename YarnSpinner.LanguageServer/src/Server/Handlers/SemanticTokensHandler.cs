@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
@@ -22,11 +23,14 @@ namespace YarnLanguageServer.Handlers
 
         protected override Task Tokenize(SemanticTokensBuilder builder, ITextDocumentIdentifierParams identifier, CancellationToken cancellationToken)
         {
-            if (workspace.YarnFiles.TryGetValue(identifier.TextDocument.Uri.ToUri(), out var yarnFile))
+            var uri = identifier.TextDocument.Uri.ToUri();
+            var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
+            var yarnFile = project?.GetFileData(uri);
+
+            if (yarnFile != null)
             {
                 SemanticTokenVisitor.BuildSemanticTokens(builder, yarnFile);
             }
-
             return Task.CompletedTask;
         }
 

@@ -16,13 +16,35 @@ using Xunit.Abstractions;
 using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client;
 
+class NotificationListeners<T> : HashSet<(TaskCompletionSource<T> Task, System.Func<T, bool> Test)> {
+    public TaskCompletionSource<T> AddListener(Func<T, bool>? test) {
+        var completionSource = new TaskCompletionSource<T>();
+
+        if (test == null) {
+            // If no test is provided, use a test that always returns true.
+            test = (item) => true;
+        }
+
+        this.Add((Task: completionSource, Test: test));
+        return completionSource;
+    }
+
+    public void ApplyResult(T result) {
+        var completed = this.Where(item => item.Test(result)).ToList();
+        foreach (var item in completed) {
+            item.Task.TrySetResult(result);
+        }
+        this.ExceptWith(completed);
+    }
+}
+
 #pragma warning disable CS0162
 
 #pragma warning disable VSTHRD200 // async method names should end with "Async"
 
 namespace YarnLanguageServer.Tests
 {
-    public class LanguageServerTestsBase : LanguageProtocolTestBase
+    public abstract class LanguageServerTestsBase : LanguageProtocolTestBase
     {
         public LanguageServerTestsBase(ITestOutputHelper outputHelper) : base(
             new JsonRpcTestOptions()
@@ -31,43 +53,11 @@ namespace YarnLanguageServer.Tests
         {
         }
 
-        TaskCompletionSource<List<Diagnostic>> ReceivedDiagnosticsNotification = new();
+        NotificationListeners<PublishDiagnosticsParams> ReceivedDiagnosticsNotifications = new();
 
-        TaskCompletionSource<NodesChangedParams> NodesChangedNotification = new();
+        NotificationListeners<NodesChangedParams> NodesChangedNotification = new();
 
-        protected static string PathToTestData
-        {
-            get
-            {
-                var context = AppContext.BaseDirectory;
-
-                var directoryContainingProject = GetParentDirectoryContainingFile(new DirectoryInfo(context), "*.csproj");
-
-                if (directoryContainingProject != null)
-                {
-                    return Path.Combine(directoryContainingProject.FullName, "TestData");
-                }
-                else
-                {
-                    throw new InvalidOperationException("Failed to find path containing .csproj!");
-                }
-
-                static DirectoryInfo? GetParentDirectoryContainingFile(DirectoryInfo directory, string filePattern)
-                {
-                    var current = directory;
-                    do
-                    {
-                        if (current.EnumerateFiles(filePattern).Any())
-                        {
-                            return current;
-                        }
-                        current = current.Parent;
-                    } while (current != null);
-
-                    return null;
-                }
-            }
-        }
+        protected virtual string RootPath => TestUtility.PathToTestWorkspace;
 
         protected static void ChangeTextInDocument(ILanguageClient client, string fileURI, Position start, string text)
         {
@@ -128,18 +118,22 @@ namespace YarnLanguageServer.Tests
 
             options.OnPublishDiagnostics((diagnosticsParams) =>
             {
-                var diagnostics = diagnosticsParams.Diagnostics.ToList();
-                ReceivedDiagnosticsNotification.TrySetResult(diagnostics);
+                ReceivedDiagnosticsNotifications.ApplyResult(diagnosticsParams);
             });
 
             void OnNodesChangedNotification(NodesChangedParams nodesChangedParams)
             {
-                NodesChangedNotification.TrySetResult(nodesChangedParams);
+                NodesChangedNotification.ApplyResult(nodesChangedParams);
             }
 
             options.OnNotification(Commands.DidChangeNodesNotification, (Action<NodesChangedParams>)OnNodesChangedNotification);
 
-            options.WithRootPath(PathToTestData);
+            options.ConfigureConfiguration(config =>
+            {
+                config.Properties.Add("yarnspinner.CSharpLookup", true);
+            });
+
+            options.WithRootPath(this.RootPath);
         }
 
         protected static void ConfigureServer(LanguageServerOptions options)
@@ -147,7 +141,7 @@ namespace YarnLanguageServer.Tests
             YarnLanguageServer.ConfigureOptions(options);
         }
 
-        protected async Task<T> GetTaskResultOrTimeoutAsync<T>(TaskCompletionSource<T> task, Action onCompletion, double timeout = 2f) {
+        protected async Task<T> GetTaskResultOrTimeoutAsync<T>(TaskCompletionSource<T> task, System.Action? onCompletion, double timeout = 2f) {
             try
             {
                 // Timeout.
@@ -165,7 +159,7 @@ namespace YarnLanguageServer.Tests
             finally
             {
                 // Get ready for the next call
-                onCompletion();
+                onCompletion?.Invoke();
             }
         }
 
@@ -178,19 +172,19 @@ namespace YarnLanguageServer.Tests
         /// <param name="timeout">The amount of time to wait for
         /// diagnostics.</param>
         /// <returns>A collection of <see cref="Diagnostic"/> objects.</returns>
-        protected async Task<IEnumerable<Diagnostic>> GetDiagnosticsAsync(double timeout = 2f)
+        protected async Task<PublishDiagnosticsParams> GetDiagnosticsAsync(Func<PublishDiagnosticsParams, bool>? test = null, double timeout = 2f)
         {
             return await GetTaskResultOrTimeoutAsync(
-                ReceivedDiagnosticsNotification, 
-                () => ReceivedDiagnosticsNotification = new(),
+                ReceivedDiagnosticsNotifications.AddListener(test) , 
+                null,
                 timeout
             );
         }
 
-        protected async Task<NodesChangedParams> GetNodesChangedNotificationAsync(double timeout = 2f) {
+        protected async Task<NodesChangedParams> GetNodesChangedNotificationAsync(Func<NodesChangedParams, bool>? test = null, double timeout = 2f) {
             return await GetTaskResultOrTimeoutAsync(
-                NodesChangedNotification, 
-                () => NodesChangedNotification = new(),
+                NodesChangedNotification.AddListener(test), 
+                null,
                 timeout
             );
         }

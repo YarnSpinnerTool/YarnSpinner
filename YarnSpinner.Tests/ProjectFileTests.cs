@@ -117,6 +117,7 @@ namespace YarnSpinner.Tests
                 (options) => options
                     .Excluding(o => o.Path) // paths will be different
                     .Excluding(o => o.SourceFiles) // source files will be different (because paths are different)
+                    .Excluding(o => o.DefinitionsPath) // path is different
             );
         }
     }

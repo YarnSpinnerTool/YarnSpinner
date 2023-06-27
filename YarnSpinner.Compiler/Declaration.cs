@@ -271,6 +271,12 @@ namespace Yarn.Compiler
         /// </remarks>
         public Range Range { get; internal set; } = new Range();
 
+        /// <summary>
+        /// Gets a value indicating whether this Declaration represents a
+        /// variable.
+        /// </summary>
+        public bool IsVariable => !(this.Type is FunctionType);
+
         /// <inheritdoc/>
         public override string ToString()
         {

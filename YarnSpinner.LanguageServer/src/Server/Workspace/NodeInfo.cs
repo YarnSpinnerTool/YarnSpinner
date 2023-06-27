@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Antlr4.Runtime;
 
 using Newtonsoft.Json;
+using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
 namespace YarnLanguageServer;
 
@@ -53,8 +54,8 @@ public record NodeInfo
 
     internal IToken TitleToken { get; set; }
 
-    internal List<YarnFunctionCall> FunctionCalls { get; init; } = new();
-    internal List<YarnFunctionCall> CommandCalls { get; init; } = new();
+    internal List<YarnActionReference> FunctionCalls { get; init; } = new();
+    internal List<YarnActionReference> CommandCalls { get; init; } = new();
     internal List<IToken> VariableReferences { get; init; } = new();
     internal List<(string Name, int LineIndex)> CharacterNames { get; init; } = new();
 
@@ -68,6 +69,14 @@ public record NodeInfo
     /// cref="TitleToken"/> is not null.
     /// </remarks>
     public bool HasTitle => !string.IsNullOrWhiteSpace(Title) && TitleToken != null;
+
+    internal Range TitleHeaderRange {
+        get {
+            var start = TextCoordinateConverter.GetPosition(this.File.LineStarts, TitleToken.StartIndex);
+            var end = TextCoordinateConverter.GetPosition(this.File.LineStarts, TitleToken.StopIndex);
+            return new Range(start, end);
+        }
+    }
 
     //     position: { x: number, y: number } = { x: 0, y: 0 }
     //     destinations: string[] = []

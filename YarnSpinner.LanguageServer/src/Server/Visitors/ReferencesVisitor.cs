@@ -188,7 +188,7 @@ namespace YarnLanguageServer
 
 
 
-                currentNodeInfo.FunctionCalls.Add(new YarnFunctionCall
+                currentNodeInfo.FunctionCalls.Add(new YarnActionReference
                 {
                     NameToken = context.FUNC_ID().Symbol,
                     Name = context.FUNC_ID().Symbol.Text,
@@ -272,7 +272,7 @@ namespace YarnLanguageServer
                 parameterRanges[parameterCount - 1] = new Range(parameterRanges[parameterCount - 1].Start, parameterRangeEnd);
             }
 
-            var result = new YarnFunctionCall
+            var result = new YarnActionReference
             {
                 NameToken = commandName,
                 Name = commandName.Text,

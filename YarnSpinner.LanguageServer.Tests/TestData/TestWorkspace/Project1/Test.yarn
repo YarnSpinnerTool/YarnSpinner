@@ -5,7 +5,8 @@ This is a line.
 -> Option 1
 -> Option 2
 
-<<command>>
+// This command is unknown to the LSP and should produce a warning
+<<unknown_command>>
 
 <<jump Node2>>
 
