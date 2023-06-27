@@ -132,7 +132,9 @@ namespace YarnLanguageServer.Tests
         [Fact]
         public async Task Server_OnInvalidChanges_ProducesSyntaxErrors()
         {
-            Task<PublishDiagnosticsParams> getDiagnosticsTask = GetDiagnosticsAsync();
+            var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+
+            Task<PublishDiagnosticsParams> getDiagnosticsTask = GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains(filePath));
 
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
 
@@ -143,7 +145,6 @@ namespace YarnLanguageServer.Tests
             }
 
             // Introduce an error
-            var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
             getDiagnosticsTask = GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains(filePath));
 
             ChangeTextInDocument(client, filePath, new Position(9, 0), "<<set");
