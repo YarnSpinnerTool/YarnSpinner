@@ -22,7 +22,7 @@ namespace YarnLanguageServer
 
                 var result = LastCompilationResult.Value;
 
-                return result.Declarations.Where(d => d.IsVariable == false);
+                return result.Declarations.Where(d => d.IsVariable == true);
             }
         }
 
@@ -87,9 +87,9 @@ namespace YarnLanguageServer
 
             this.Uri = DocumentUri.FromFileSystemPath(projectFilePath);
 
-            if (File.Exists(yarnProject.Definitions))
+            if (File.Exists(yarnProject.DefinitionsPath))
             {
-                var definitionsText = File.ReadAllText(yarnProject.Definitions);
+                var definitionsText = File.ReadAllText(yarnProject.DefinitionsPath);
                 DefinitionsFile = new JsonConfigFile(definitionsText, false);
             }
         }

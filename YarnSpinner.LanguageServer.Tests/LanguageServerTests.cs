@@ -163,6 +163,46 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
+        public async Task Server_OnHoverVariable_ShouldReceiveHoverInfo()
+        {
+            var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+            var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+
+            // Hover at the start of a line; no hover information is NOT expected to
+            // be returned
+            var invalidHoverPosiition = new Position
+            {
+                Line = 16,
+                Character = 14,
+            };
+
+            // var expectedInvalidHoverResult = await client.RequestHover(new HoverParams
+            // {
+            //     Position = invalidHoverPosiition,
+            //     TextDocument = new TextDocumentIdentifier { Uri = filePath },
+            // });
+
+            // expectedInvalidHoverResult.Should().BeNull();
+
+            // Hover in the middle of the variable '$myVar'; hover information
+            // is expected to be returned
+            var validHoverPosition = new Position
+            {
+                Line = 18,
+                Character = 14,
+            };
+
+            var expectedValidHoverResult = await client.RequestHover(new HoverParams
+            {
+                Position = validHoverPosition,
+                TextDocument = new TextDocumentIdentifier { Uri = filePath },
+            });
+
+            expectedValidHoverResult.Should().NotBeNull();
+            expectedValidHoverResult?.Contents.Should().NotBeNull();
+        }
+
+        [Fact]
         public async Task Server_OnJumpCommand_ShouldReceiveNodeNameCompletions()
         {
             // Set up the server
