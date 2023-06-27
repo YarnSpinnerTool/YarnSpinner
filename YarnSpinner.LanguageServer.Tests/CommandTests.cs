@@ -109,13 +109,14 @@ public class CommandTests : LanguageServerTestsBase
     [Fact]
     public async Task Server_OnRemoveNodeCommand_ReturnsTextEdit()
     {
-        // Set up the server
-        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
         var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
-        NodesChangedParams? nodeInfo;
+        Task<NodesChangedParams> getInitialNodesChanged = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
-        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
+        // Set up the server
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+
+        NodesChangedParams? nodeInfo = await getInitialNodesChanged;
 
         nodeInfo.Nodes.Should().HaveCount(2, "because the file has two nodes");
 
@@ -145,13 +146,13 @@ public class CommandTests : LanguageServerTestsBase
     [Fact]
     public async Task Server_OnUpdateHeaderCommand_ReturnsTextEditCreatingHeader()
     {
+        var getInitialNodesChanged = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+        Task<NodesChangedParams> task = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(getInitialNodesChanged));
+
         // Set up the server
         var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
-        NodesChangedParams? nodeInfo;
-
-        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
+        NodesChangedParams? nodeInfo = await task;
 
         nodeInfo
             .Nodes.Should()
@@ -165,7 +166,7 @@ public class CommandTests : LanguageServerTestsBase
         {
             Command = Commands.UpdateNodeHeader,
             Arguments = new JArray {
-                filePath,
+                getInitialNodesChanged,
                 "Start", // this node doesn't have this header, so we're creating it
                 "position",
                 "100,100"
@@ -174,11 +175,11 @@ public class CommandTests : LanguageServerTestsBase
 
         result.Should().NotBeNull();
         result.Edits.Should().NotBeNullOrEmpty();
-        result.TextDocument.Uri.ToString().Should().Be("file://" + filePath);
+        result.TextDocument.Uri.ToString().Should().Be("file://" + getInitialNodesChanged);
 
         ChangeTextInDocument(client, result);
 
-        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
+        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(getInitialNodesChanged));
 
         nodeInfo.Nodes.Should()
             .Contain(n => n.Title == "Start")
@@ -193,13 +194,13 @@ public class CommandTests : LanguageServerTestsBase
     [Fact]
     public async Task Server_OnUpdateHeaderCommand_ReturnsTextEditModifyingHeader()
     {
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+        Task<NodesChangedParams> getInitialNodesChanged = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
+
         // Set up the server
         var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
-        NodesChangedParams? nodeInfo;
-
-        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
+        NodesChangedParams? nodeInfo = await getInitialNodesChanged;
 
         const string headerName = "tags";
         const string headerOldValue = "wow incredible";

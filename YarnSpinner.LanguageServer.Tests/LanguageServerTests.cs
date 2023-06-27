@@ -75,9 +75,13 @@ namespace YarnLanguageServer.Tests
         [Fact]
         public async Task Server_OnOpeningDocument_SendsNodesChangedNotification()
         {
+            Task<NodesChangedParams> getInitialNodesChanged = GetNodesChangedNotificationAsync(
+                n => n.Uri.ToString().Contains(Path.Combine("Project1", "Test.yarn"))
+            );
+
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
 
-            var nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(Path.Combine("Project1", "Test.yarn")));
+            var nodeInfo = await getInitialNodesChanged;
 
             nodeInfo.Should().NotBeNull("because this notification always carries a parameters object");
             nodeInfo.Nodes.Should().NotBeNullOrEmpty("because this notification always contains a list of node infos, even if it's empty");
@@ -98,7 +102,7 @@ namespace YarnLanguageServer.Tests
         [Fact]
         public async Task Server_OnChangingDocument_SendsNodesChangedNotification()
         {
-            var nodesChangedOnInitialization = GetNodesChangedNotificationAsync((nodesResult) => 
+            var getInitialNodesChanged = GetNodesChangedNotificationAsync((nodesResult) => 
                 nodesResult.Uri.AbsolutePath.Contains(Path.Combine("Project1", "Test.yarn"))
             );
 
@@ -109,7 +113,7 @@ namespace YarnLanguageServer.Tests
             NodesChangedParams? nodeInfo;
 
             // Await a notification that nodes changed in this file
-            nodeInfo = await nodesChangedOnInitialization;
+            nodeInfo = await getInitialNodesChanged;
 
             nodeInfo.Uri.ToString().Should().Be("file://" + filePath, "because this is the URI of the file we opened");
 
@@ -128,10 +132,12 @@ namespace YarnLanguageServer.Tests
         [Fact]
         public async Task Server_OnInvalidChanges_ProducesSyntaxErrors()
         {
+            Task<PublishDiagnosticsParams> getInitialDiagnosticsTask = GetDiagnosticsAsync();
+
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
 
             {
-                var errors = (await GetDiagnosticsAsync()).Diagnostics.Where(d => d.Severity == DiagnosticSeverity.Error);
+                var errors = (await getInitialDiagnosticsTask).Diagnostics.Where(d => d.Severity == DiagnosticSeverity.Error);
 
                 errors.Should().BeNullOrEmpty("because the original project contains no syntax errors");
             }
