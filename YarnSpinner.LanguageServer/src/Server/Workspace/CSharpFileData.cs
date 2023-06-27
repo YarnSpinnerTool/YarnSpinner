@@ -4,16 +4,13 @@ using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using static MoreLinq.Extensions.PartitionExtension;
 
 #nullable enable
 
 namespace YarnLanguageServer
 {
-
     internal static class CSharpFileData
     {
-
         public static IEnumerable<Action> ParseActionsFromCode(string text, Uri uri)
         {
             var lineStarts = TextCoordinateConverter.GetLineStarts(text);
@@ -25,7 +22,7 @@ namespace YarnLanguageServer
             string[] actionAttributeNames = new string[] { "YarnCommand", "YarnFunction" };
 
             // Build the collection of method declarations that have a Yarn action attribute on them
-            Dictionary<MethodDeclarationSyntax, AttributeSyntax> taggedMethods = new();
+            Dictionary<MethodDeclarationSyntax, AttributeSyntax> taggedMethods = new ();
 
             // Get all classes that do not have the GeneratedCode attribute
             var nonGeneratedClasses = root.DescendantNodes().OfType<ClassDeclarationSyntax>().Where(classDecl =>
@@ -40,7 +37,7 @@ namespace YarnLanguageServer
                 .SelectMany(c => c.DescendantNodes())
                 .OfType<MethodDeclarationSyntax>())
             {
-                AttributeSyntax actionAttribute = null;
+                AttributeSyntax? actionAttribute = null;
                 foreach (var list in method.AttributeLists)
                 {
                     foreach (var attribute in list.Attributes)
@@ -63,6 +60,7 @@ namespace YarnLanguageServer
                         break;
                     }
                 }
+
                 if (actionAttribute != null)
                 {
                     taggedMethods.Add(method, actionAttribute);
@@ -103,6 +101,7 @@ namespace YarnLanguageServer
 
                 yield return action;
             }
+
             foreach (var invocation in addFunctionInvocations)
             {
                 Action action = GetActionFromRuntimeRegistration(invocation, ActionType.Function);
@@ -268,7 +267,6 @@ namespace YarnLanguageServer
             }
         }
 
-
         private static string? GetDocumentation(MethodDeclarationSyntax methodDeclaration)
         {
             // The main string to use as the function's documentation.
@@ -391,13 +389,13 @@ namespace YarnLanguageServer
             return documentation;
         }
 
-        private static string ExtractStructuredTrivia(string tagName, Microsoft.CodeAnalysis.SyntaxNode triviaStructure)
+        private static string? ExtractStructuredTrivia(string tagName, Microsoft.CodeAnalysis.SyntaxNode triviaStructure)
         {
             // Find the tag that matches the requested name.
             var triviaMatch = triviaStructure
                 .ChildNodes()
                 .OfType<XmlElementSyntax>()
-                .FirstOrDefault(x => 
+                .FirstOrDefault(x =>
                     x.StartTag.Name.ToString() == tagName
                 );
 

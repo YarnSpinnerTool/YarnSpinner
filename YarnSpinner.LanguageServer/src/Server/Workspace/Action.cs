@@ -17,14 +17,11 @@ namespace YarnLanguageServer
     {
         public ActionType Type { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.AllowNull]
-        public string YarnName { get; set; }
+        public string YarnName { get; set; } = string.Empty;
 
-        [System.Diagnostics.CodeAnalysis.AllowNull]
-        public Uri SourceFileUri { get; set; }
+        public Uri? SourceFileUri { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.AllowNull]
-        public Range SourceRange { get; set; }
+        public Range? SourceRange { get; set; }
 
         public string? Documentation { get; set; }
 

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,23 +41,39 @@ namespace YarnLanguageServer.Handlers
                 case YarnSymbolType.Command:
                     functionDefinitionMatches = project.FindActions(token.Text, ActionType.Command, fuzzySearch: true);
 
-                    var locations = functionDefinitionMatches.Select(definition =>
-                        new LocationOrLocationLink(new Location { Uri = definition.SourceFileUri, Range = definition.SourceRange }));
+                    var locations = functionDefinitionMatches
+                        .Where(definition => definition.SourceFileUri != null 
+                            && definition.SourceRange != null)
+                        .Select(definition =>
+                        new LocationOrLocationLink(new Location
+                        {
+                            Uri = definition.SourceFileUri!,
+                            Range = definition.SourceRange!,
+                        })
+                    );
                     return Task.FromResult(new LocationOrLocationLinks(locations));
 
                 case YarnSymbolType.Function:
                     functionDefinitionMatches = project.FindActions(token.Text, ActionType.Function, fuzzySearch: true);
 
-                    locations = functionDefinitionMatches.Select(definition =>
-                        new LocationOrLocationLink(new Location { Uri = definition.SourceFileUri, Range = definition.SourceRange })
+                    locations = functionDefinitionMatches
+                        .Where(definition => definition.SourceFileUri != null
+                            && definition.SourceRange != null)
+                        .Select(definition =>
+                        new LocationOrLocationLink(new Location
+                        {
+                            Uri = definition.SourceFileUri!,
+                            Range = definition.SourceRange!,
+                        })
                     );
 
                     return Task.FromResult(new LocationOrLocationLinks(locations));
 
                 case YarnSymbolType.Variable:
 
-                    var vDefinitionMatches = project.Variables.Where(dv => dv.Name == token.Text)
-                    .Select(d => (Uri: d.SourceFileName, d.Range));
+                    var vDefinitionMatches = project.Variables
+                        .Where(dv => dv.Name == token.Text)
+                        .Select(d => (Uri: d.SourceFileName, d.Range));
 
                     locations = vDefinitionMatches.Select(definition =>
                         new LocationOrLocationLink(
