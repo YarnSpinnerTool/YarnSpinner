@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Compiler
 {
     using System;
@@ -393,14 +396,13 @@ namespace Yarn.Compiler
 
         /// <summary>
         /// Emits code that calls a method appropriate for the operator
-        /// <paramref name="op"/> on the type <paramref name="type"/>, given the
-        /// operands <paramref name="operands"/>.
+        /// <paramref name="op"/> on the type <paramref name="type"/>, given the operands <paramref name="operands"/>.
         /// </summary>
-        /// <param name="op">The operation to perform on <paramref
-        /// name="operands"/>.</param>
+        /// <param name="op">The operation to perform on <paramref name="operands"/>.</param>
+        /// <param name="operatorToken">The first token in the statement that is responsible for this operation.</param>
         /// <param name="type">The type of the expression.</param>
-        /// <param name="operands">The operands to perform the operation
-        /// <paramref name="op"/> on.</param>
+        /// <param name="operands">The operands to perform the operation <paramref name="op"/> on.</param>
+        /// <exception cref="InvalidOperationException">Thrown when there is no matching instructions for the <paramref name="op"/></exception>
         private void GenerateCodeForOperation(Operator op, IToken operatorToken, Yarn.IType type, params ParserRuleContext[] operands)
         {
             // Generate code for each of the operands, so that their value is
@@ -434,6 +436,7 @@ namespace Yarn.Compiler
         {
             GenerateTrackingCode(this.compiler, variableName);
         }
+
         // really ought to make this emit like a list of opcodes actually
         public static void GenerateTrackingCode(Compiler compiler, string variableName)
         {
@@ -573,6 +576,7 @@ namespace Yarn.Compiler
             {
                 GenerateTrackingCode(trackingEnabled);
             }
+
             compiler.Emit(OpCode.PushString, context.destination, new Operand(context.destination.Text));
             compiler.Emit(OpCode.RunNode, context.Start);
 
@@ -587,6 +591,7 @@ namespace Yarn.Compiler
             {
                 GenerateTrackingCode(trackingEnabled);
             }
+
             // Evaluate the expression, and jump to the result on the stack.
             this.Visit(context.expression());
             this.compiler.Emit(OpCode.RunNode, context.Start);

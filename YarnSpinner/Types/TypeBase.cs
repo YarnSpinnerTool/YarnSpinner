@@ -1,8 +1,11 @@
-using System;
-using System.Collections.Generic;
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
 
 namespace Yarn
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Provides the abstract base class for all types.
     /// </summary>

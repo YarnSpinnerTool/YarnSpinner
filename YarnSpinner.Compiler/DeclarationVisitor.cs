@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Compiler
 {
     using System;
@@ -14,7 +17,6 @@ namespace Yarn.Compiler
     /// </summary>
     internal class DeclarationVisitor : YarnSpinnerParserBaseVisitor<Yarn.IType>
     {
-
         /// <summary>
         /// The CommonTokenStream derived from the file we're parsing. This
         /// is used to find documentation comments for declarations.
@@ -69,7 +71,8 @@ namespace Yarn.Compiler
 
         private List<Diagnostic> diagnostics = new List<Diagnostic>();
 
-        private static readonly IReadOnlyDictionary<string, IType> KeywordsToBuiltinTypes = new Dictionary<string, IType> {
+        private static readonly IReadOnlyDictionary<string, IType> KeywordsToBuiltinTypes = new Dictionary<string, IType>
+        {
             { "string", BuiltinTypes.String },
             { "number", BuiltinTypes.Number },
             { "bool", BuiltinTypes.Boolean },
@@ -114,7 +117,8 @@ namespace Yarn.Compiler
 
             var body = context.body();
 
-            if (body != null) {
+            if (body != null)
+            {
                 base.Visit(body);
             }
 
@@ -137,14 +141,13 @@ namespace Yarn.Compiler
                 string v = $"{existingExplicitDeclaration.Name} has already been declared in {existingExplicitDeclaration.SourceFileName}, line {existingExplicitDeclaration.SourceFileLine}";
                 this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, v));
                 return BuiltinTypes.Undefined;
-                
             }
 
             // Figure out the value and its type
             var constantValueVisitor = new ConstantValueVisitor(context, sourceFileName, Types, ref this.diagnostics);
             var value = constantValueVisitor.Visit(context.value());
 
-            // Did the source code name an explicit type? 
+            // Did the source code name an explicit type?
             if (context.type != null)
             {
                 Yarn.IType explicitType;

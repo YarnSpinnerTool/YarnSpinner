@@ -50,7 +50,7 @@ namespace YarnSpinner.Tests
             // $foo is read from and written to
             // $bar is written to but never read
             // this means that there should be one diagnosis result
-            context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
+            context = new Yarn.Analysis.Context(typeof(Yarn.Analysis.UnusedVariableChecker));
 
             var path = Path.Combine(TestDataPath, "AnalysisTest.yarn");
 
@@ -72,7 +72,7 @@ namespace YarnSpinner.Tests
 
             dialogue.UnloadAll ();
 
-            context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
+            context = new Yarn.Analysis.Context(typeof(Yarn.Analysis.UnusedVariableChecker));
         
             result = Compiler.Compile(CompilationJob.CreateFromFiles(new[] {
                 Path.Combine(SpaceDemoScriptsPath, "Ship.yarn"),

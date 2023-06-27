@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn
 {
     using System.Collections.Generic;
@@ -14,7 +17,9 @@ namespace Yarn
         internal const IType Undefined = null;
 
         /// <summary>Gets the type representing strings.</summary>
+        #pragma warning disable CA1720
         public static IType String { get; } = new StringType();
+        #pragma warning restore CA1720
 
         /// <summary>Gets the type representing numbers.</summary>
         public static IType Number { get; } = new NumberType();

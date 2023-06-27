@@ -665,11 +665,11 @@ namespace Yarn.Markup
 
             // This ID is expected to be 'true', 'false', or something
             // else. if it's 'true' or 'false', interpret it as a bool.
-            if (word.Equals("true", StringComparison.InvariantCultureIgnoreCase))
+            if (word.Equals("true", StringComparison.OrdinalIgnoreCase))
             {
                 return new MarkupValue { BoolValue = true, Type = MarkupValueType.Bool };
             }
-            else if (word.Equals("false", StringComparison.InvariantCultureIgnoreCase))
+            else if (word.Equals("false", StringComparison.OrdinalIgnoreCase))
             {
                 return new MarkupValue { BoolValue = false, Type = MarkupValueType.Bool };
             }

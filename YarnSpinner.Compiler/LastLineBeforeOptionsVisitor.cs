@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Compiler
 {
     using Antlr4.Runtime;
@@ -36,7 +39,7 @@ namespace Yarn.Compiler
             var elseifs = context.else_if_clause();
             if (elseifs?.Length > 0)
             {
-                foreach(var elif in elseifs)
+                foreach (var elif in elseifs)
                 {
                     RunThroughStatements(elif.statement());
                 }
@@ -55,7 +58,7 @@ namespace Yarn.Compiler
         // basically just run through the statement (if any exist)
         public override byte VisitShortcut_option_statement([NotNull] YarnSpinnerParser.Shortcut_option_statementContext context)
         {
-            foreach(var shortcut in context.shortcut_option())
+            foreach (var shortcut in context.shortcut_option())
             {
                 var statements = shortcut.statement();
                 if (statements?.Length > 0)

@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Compiler
 {
     using Antlr4.Runtime;
@@ -6,7 +9,7 @@ namespace Yarn.Compiler
     internal static class ParserRuleContextExtension
     {
         /// <summary>
-        /// Returns the original text of this <see cref="ExpressionContext"/>, including all
+        /// Returns the original text of this <see cref="YarnSpinnerParser.ExpressionContext"/>, including all
         /// whitespace, comments, and other information that the parser
         /// would otherwise not include.
         /// </summary>

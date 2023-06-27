@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 // Uncomment to ensure that all expressions have a known type at compile time
 // #define VALIDATE_ALL_EXPRESSIONS
 
@@ -87,6 +90,7 @@ namespace Yarn.Compiler
         /// Registers a new string in the string table.
         /// </summary>
         /// <param name="text">The text of the string to register.</param>
+        /// <param name="fileName">The name of the yarn file that this line is contained within</param>
         /// <param name="nodeName">The name of the node that this string
         /// was found in.</param>
         /// <param name="lineID">The line ID to use for this entry in the

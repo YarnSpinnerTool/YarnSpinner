@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 // Uncomment to ensure that all expressions have a known type at compile time
 // #define VALIDATE_ALL_EXPRESSIONS
 
@@ -276,10 +279,12 @@ namespace Yarn.Compiler
                         break;
                     }
                 }
+
                 if (resolved)
                 {
                     continue;
                 }
+
                 diagnostics.Add(hmm.diagnostic);
             }
 
@@ -296,7 +301,6 @@ namespace Yarn.Compiler
                     Diagnostics = diagnostics,
                 };
             }
-
 
             if (diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {
@@ -790,9 +794,12 @@ namespace Yarn.Compiler
             ParseTreeWalker walker = new ParseTreeWalker();
             walker.Walk(this, this.fileParseResult.Tree);
         }
-
-        // we have found a new node set up the currentNode var ready to
-        // hold it and otherwise continue
+        
+        /// <summary>
+        /// we have found a new node set up the currentNode var ready to
+        /// hold it and otherwise continue
+        /// </summary>
+        /// <inheritdoc/>
         public override void EnterNode(YarnSpinnerParser.NodeContext context)
         {
             this.CurrentNode = new Node();
@@ -800,8 +807,11 @@ namespace Yarn.Compiler
             this.RawTextNode = false;
         }
 
-        // have left the current node store it into the program wipe the
-        // var and make it ready to go again
+        /// <summary>
+        /// have left the current node store it into the program wipe the
+        /// var and make it ready to go again
+        /// </summary>
+        /// <inheritdoc />
         public override void ExitNode(YarnSpinnerParser.NodeContext context)
         {
             if (string.IsNullOrEmpty(this.CurrentNode.Name))
@@ -835,9 +845,12 @@ namespace Yarn.Compiler
             this.RawTextNode = false;
         }
 
-        // have finished with the header so about to enter the node body
-        // and all its statements do the initial setup required before
-        // compiling that body statements eg emit a new startlabel
+        /// <summary> 
+        /// have finished with the header so about to enter the node body
+        /// and all its statements do the initial setup required before
+        /// compiling that body statements eg emit a new startlabel
+        /// </summary>
+        /// <inheritdoc />
         public override void ExitHeader(YarnSpinnerParser.HeaderContext context)
         {
             var headerKey = context.header_key.Text;
@@ -847,7 +860,7 @@ namespace Yarn.Compiler
             // be stored as 'foo', '', consistent with how it was typed.
             // That is, it's not null, because a header was provided, but
             // it was written as an empty line.
-            var headerValue = context.header_value?.Text ?? "";
+            var headerValue = context.header_value?.Text ?? String.Empty;
 
             if (headerKey.Equals("title", StringComparison.InvariantCulture))
             {
@@ -876,10 +889,13 @@ namespace Yarn.Compiler
             this.CurrentNode.Headers.Add(header);
         }
 
-        // have entered the body the header should have finished being
-        // parsed and currentNode ready all we do is set up a body visitor
-        // and tell it to run through all the statements it handles
-        // everything from that point onwards
+        /// <summary>
+        /// have entered the body the header should have finished being
+        /// parsed and currentNode ready all we do is set up a body visitor
+        /// and tell it to run through all the statements it handles
+        /// everything from that point onwards
+        /// </summary>
+        /// <inheritdoc />
         public override void EnterBody(YarnSpinnerParser.BodyContext context)
         {
             // ok so something in here needs to be a bit different
@@ -902,6 +918,7 @@ namespace Yarn.Compiler
                     visitor.Visit(statement);
                 }
             }
+
             // We are a rawText node. Don't compile it; instead, note the
             // string
             else
@@ -910,11 +927,23 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <summary>
+        /// Generates a line id for a raw text node
+        /// </summary>
+        /// <remarks>
+        /// This should only be used when in raw text mode.
+        /// </remarks>
+        /// <param name="name">The name of the node</param>
+        /// <returns>line id for the raw text node</returns>
         public static string GetLineIDForNodeName(string name)
         {
             return "line:" + name;
         }
 
+        /// <summary>
+        /// Cleans up any remaining node tracking values and emits necessary instructions to support visitation and close off the node
+        /// </summary>
+        /// <inheritdoc />
         public override void ExitBody(YarnSpinnerParser.BodyContext context)
         {
             // this gives us the final increment at the end of the node
@@ -929,6 +958,7 @@ namespace Yarn.Compiler
             {
                 CodeGenerationVisitor.GenerateTrackingCode(this, track);
             }
+
             // We have exited the body; emit a 'stop' opcode here.
             this.Emit(this.CurrentNode, this.CurrentDebugInfo, context.Stop.Line - 1, 0, OpCode.Stop);
         }

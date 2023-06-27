@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Compiler
 {
     using System;
@@ -92,7 +95,8 @@ namespace Yarn.Compiler
 
             var body = context.body();
 
-            if (body != null) {
+            if (body != null)
+            {
                 base.Visit(body);
             }
 
@@ -128,7 +132,6 @@ namespace Yarn.Compiler
 
         public override Yarn.IType VisitValueVar(YarnSpinnerParser.ValueVarContext context)
         {
-
             return VisitVariable(context.variable());
         }
 
@@ -136,7 +139,6 @@ namespace Yarn.Compiler
         {
             // The type of the value depends on the declared type of the
             // variable
-
             var name = context.VAR_ID()?.GetText();
 
             if (name == null)
@@ -839,7 +841,6 @@ namespace Yarn.Compiler
             Yarn.IType type = CheckOperation(context, terms, @operator, context.op.Text);
             context.Type = type;
             return type;
-
         }
 
         public override Yarn.IType VisitExpNot(YarnSpinnerParser.ExpNotContext context)

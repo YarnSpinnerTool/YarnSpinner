@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Compiler
 {
     using System;
@@ -210,6 +213,7 @@ namespace Yarn.Compiler
                         // this.InsertToken("<ending option group>", YarnSpinnerLexer.BLANK_LINE_FOLLOWING_OPTION);
                         this.InsertToken(string.Empty, YarnSpinnerLexer.BLANK_LINE_FOLLOWING_OPTION);
                     }
+
                     // disabling the option tracking
                     lastSeenOptionContent = -1;
                 }
@@ -232,7 +236,7 @@ namespace Yarn.Compiler
                     // I dislike this and need to look into if you can set a debug text setting in ANTLR
                     // TODO: see above comment
                     // this.InsertToken($"<indent to {currentIndentationLength}>", YarnSpinnerLexer.INDENT);
-                    this.InsertToken(String.Empty, YarnSpinnerLexer.INDENT);
+                    this.InsertToken(string.Empty, YarnSpinnerLexer.INDENT);
                 }
                 // we've now started tracking the indentation, or ignored it, so can turn this off
                 lineContainsShortcut = false;

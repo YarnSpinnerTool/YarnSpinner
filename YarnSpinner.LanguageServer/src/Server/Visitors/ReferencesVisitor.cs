@@ -37,7 +37,8 @@ namespace YarnLanguageServer
                     visitor.Visit(yarnFileData.ParseTree);
                     return visitor.nodeInfos;
                 }
-                catch (Exception e) {
+                catch (Exception)
+                {
                     // Don't want an exception while parsing to take out the entire language server
                 }
             }
@@ -197,7 +198,9 @@ namespace YarnLanguageServer
                     IsCommand = false,
                     ParametersRange = parametersRange,
                 });
-            } catch (Exception e) {
+            }
+            catch (Exception)
+            {
             }
 
             return base.VisitFunction_call(context);

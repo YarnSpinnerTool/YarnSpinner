@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Compiler
 {
     using System;
@@ -26,6 +29,7 @@ namespace Yarn.Compiler
         /// <param name="sourceFileName">The name of the file that is being
         /// visited by this instance.</param>
         /// <param name="types">The types of values known to this instance.</param>
+        /// <param name="diagnostics">The global list of existing diagnostic</param>
         public ConstantValueVisitor(ParserRuleContext context, string sourceFileName, IEnumerable<IType> types, ref List<Diagnostic> diagnostics)
         {
             this.context = context;

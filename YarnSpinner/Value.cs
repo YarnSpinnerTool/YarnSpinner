@@ -1,10 +1,12 @@
-
-using System;
-using System.Collections.Generic;
-using System.Globalization;
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
 
 namespace Yarn
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+
     /// <summary>
     /// A value from inside Yarn.
     /// </summary>
@@ -49,7 +51,7 @@ namespace Yarn
         /// Compares this <see cref="Value"/> to another object. The other object must either be another instance of <see cref="Value"/>, or <c>null</c>.
         /// </summary>
         /// <param name="obj">The object to compare to.</param>
-        /// <returns>Returns the same results as <see cref="CompareTo(Value)"/>.</returns>
+        /// <returns>Returns the same results as <see cref="IComparable.CompareTo"/>.</returns>
         /// <exception cref="ArgumentException">Thrown when <c>obj</c> is not a <see cref="Value"/>.</exception>
         public int CompareTo(object obj)
         {
