@@ -326,7 +326,7 @@ namespace YarnLanguageServer.Handlers
         private static void GetVariableNameCompletions(Project project, Range indexTokenRange, List<CompletionItem> results)
         {
             System.Text.StringBuilder builder = new ();
-            foreach (var function in project.Functions)
+            foreach (var function in project.Functions.DistinctBy(f => f.YarnName))
             {
                 builder.Append(function.YarnName);
                 builder.Append('(');
@@ -401,7 +401,7 @@ namespace YarnLanguageServer.Handlers
 
             // adding any known commands
             System.Text.StringBuilder builder = new ();
-            foreach (var cmd in project.Commands)
+            foreach (var cmd in project.Commands.DistinctBy(c => c.YarnName))
             {
                 builder.Append(cmd.YarnName);
 
