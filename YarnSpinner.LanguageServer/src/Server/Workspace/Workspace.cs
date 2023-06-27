@@ -189,11 +189,8 @@ namespace YarnLanguageServer
                 // Add warnings for this file
                 diags = diags.Concat(Warnings.GetWarnings(file, this.Configuration));
 
-                // If there are any diagnostics for this file, add it to the
-                // result.
-                if (diags.Any()) {
-                    result[uri] = diags;
-                }
+                // Add the resulting list to the dictionary.
+                result[uri] = diags;
             }
 
             return result;
