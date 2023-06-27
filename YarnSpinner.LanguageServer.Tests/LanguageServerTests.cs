@@ -119,11 +119,11 @@ namespace YarnLanguageServer.Tests
 
             nodeInfo.Nodes.Should().HaveCount(2, "because there are two nodes in the file before we make changes");
 
-            ChangeTextInDocument(client, filePath, new Position(20, 0), "title: Node3\n---\n===\n");
-
-            nodeInfo = await GetNodesChangedNotificationAsync((nodesResult) => 
-                nodesResult.Uri.AbsolutePath.Contains(Path.Combine("Project1", "Test.yarn"))
+            var nodesChanged = GetNodesChangedNotificationAsync((nodesResult) =>
+                nodesResult.Uri.AbsolutePath.Contains(filePath)
             );
+            ChangeTextInDocument(client, filePath, new Position(20, 0), "title: Node3\n---\n===\n");
+            nodeInfo = await nodesChanged;
 
             nodeInfo.Nodes.Should().HaveCount(3, "because we added a new node");
             nodeInfo.Nodes.Should().Contain(n => n.Title == "Node3", "because the new node we added has this title");
@@ -132,22 +132,24 @@ namespace YarnLanguageServer.Tests
         [Fact]
         public async Task Server_OnInvalidChanges_ProducesSyntaxErrors()
         {
-            Task<PublishDiagnosticsParams> getInitialDiagnosticsTask = GetDiagnosticsAsync();
+            Task<PublishDiagnosticsParams> getDiagnosticsTask = GetDiagnosticsAsync();
 
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
 
             {
-                var errors = (await getInitialDiagnosticsTask).Diagnostics.Where(d => d.Severity == DiagnosticSeverity.Error);
+                var errors = (await getDiagnosticsTask).Diagnostics.Where(d => d.Severity == DiagnosticSeverity.Error);
 
                 errors.Should().BeNullOrEmpty("because the original project contains no syntax errors");
             }
 
             // Introduce an error
             var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+            getDiagnosticsTask = GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains(filePath));
+
             ChangeTextInDocument(client, filePath, new Position(9, 0), "<<set");
 
             {
-                var diagnosticsResult = await GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains(filePath));
+                var diagnosticsResult = await getDiagnosticsTask;
 
                 var enumerable = diagnosticsResult.Diagnostics;
                 
@@ -157,10 +159,11 @@ namespace YarnLanguageServer.Tests
             }
 
             // Remove the error
+            getDiagnosticsTask = GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains(filePath));
             ChangeTextInDocument(client, filePath, new Position(9, 0), new Position(9, 5), "");
 
             {
-                PublishDiagnosticsParams diagnosticsResult = await GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains(filePath));
+                PublishDiagnosticsParams diagnosticsResult = await getDiagnosticsTask;
 
                 var errors = diagnosticsResult.Diagnostics.Where(d => d.Severity == DiagnosticSeverity.Error);
 
