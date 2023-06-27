@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -39,7 +39,7 @@ namespace YarnLanguageServer.Handlers
             switch (tokenType)
             {
                 case YarnSymbolType.Command:
-                    functionDefinitionMatches = project.FindActions(token.Text, ActionType.Command, fuzzySearch: true);
+                    functionDefinitionMatches = project.FindActions(token.Text, ActionType.Command, fuzzySearch: false);
 
                     var locations = functionDefinitionMatches
                         .Where(definition => definition.SourceFileUri != null 
@@ -54,7 +54,7 @@ namespace YarnLanguageServer.Handlers
                     return Task.FromResult(new LocationOrLocationLinks(locations));
 
                 case YarnSymbolType.Function:
-                    functionDefinitionMatches = project.FindActions(token.Text, ActionType.Function, fuzzySearch: true);
+                    functionDefinitionMatches = project.FindActions(token.Text, ActionType.Function, fuzzySearch: false);
 
                     locations = functionDefinitionMatches
                         .Where(definition => definition.SourceFileUri != null
