@@ -134,6 +134,24 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// Gets the path to the Definitions file, relative to this project's
+        /// location.
+        /// </summary>
+        [JsonIgnore]
+        public string DefinitionsPath
+        {
+            get
+            {
+                if (this.Definitions == null || this.SearchDirectoryPath == null)
+                {
+                    return null;
+                }
+
+                return System.IO.Path.Combine(this.SearchDirectoryPath, this.Definitions);
+            }
+        }
+
+        /// <summary>
         /// Gets the path of the directory from which to start searching for
         /// .yarn files. This value is null if the directory does not exist on
         /// disk.

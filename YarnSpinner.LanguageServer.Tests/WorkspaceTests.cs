@@ -79,12 +79,13 @@ namespace YarnLanguageServer.Tests
         {
             // Given
             var workspace = new Workspace();
-            workspace.Root = Project2Path;
+            workspace.Root = Path.GetDirectoryName(Project2Path);
             workspace.Initialize(null);
 
-            // When
-
             // Then
+            var project = workspace.Projects.Should().ContainSingle().Subject;
+            project.Commands.Should().Contain(c => c.YarnName == "custom_command");
+            project.Functions.Should().Contain(c => c.YarnName == "custom_function");
         }
     }
 }
