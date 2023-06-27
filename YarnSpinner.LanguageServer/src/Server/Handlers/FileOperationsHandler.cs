@@ -26,8 +26,15 @@ namespace YarnLanguageServer.Handlers
             var yarnChanges = request.Changes.Where(c => c.Uri.Path.EndsWith(".yarn"));
             var csChanges = request.Changes.Where(c => c.Uri.Path.EndsWith(".cs"));
             var jsonChanges = request.Changes.Where(c => c.Uri.Path.EndsWith(".ysls.json"));
+            var yarnProjectChanges = request.Changes.Where(c => c.Uri.Path.EndsWith(".yarnproject"));
 
             bool needsWorkspaceReload = false;
+
+            // Any change to a Yarn project requires that we rebuild the entire
+            // workspace
+            if (yarnProjectChanges.Any()) {
+                needsWorkspaceReload = true;
+            }
 
             // This is probably wordiest way to do this,
             // but these cases will become different as we replace the "redo everything" strategy with something more incremental
@@ -35,7 +42,8 @@ namespace YarnLanguageServer.Handlers
             {
                 switch (change.Type)
                 {
-                    case FileChangeType.Created: // TODO: This might be a good place to start things out with a "default yarn file"
+                    case FileChangeType.Created:
+                        needsWorkspaceReload = true;
                         break;
                     case FileChangeType.Deleted:
                         needsWorkspaceReload = true;
