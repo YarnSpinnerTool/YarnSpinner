@@ -77,7 +77,7 @@ namespace YarnLanguageServer.Tests
         {
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
 
-            var nodeInfo = await GetNodesChangedNotificationAsync();
+            var nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(Path.Combine("Project1", "Test.yarn")));
 
             nodeInfo.Should().NotBeNull("because this notification always carries a parameters object");
             nodeInfo.Nodes.Should().NotBeNullOrEmpty("because this notification always contains a list of node infos, even if it's empty");

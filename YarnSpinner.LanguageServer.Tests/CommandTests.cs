@@ -74,7 +74,7 @@ public class CommandTests : LanguageServerTestsBase
 
         NodesChangedParams? nodeInfo;
 
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
         nodeInfo.Nodes.Should().HaveCount(2, "because the file has two nodes");
 
@@ -95,7 +95,7 @@ public class CommandTests : LanguageServerTestsBase
 
         ChangeTextInDocument(client, result);
 
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
         nodeInfo.Nodes.Should().HaveCount(3, "because we added a node");
         nodeInfo.Nodes.Should()
@@ -115,7 +115,7 @@ public class CommandTests : LanguageServerTestsBase
 
         NodesChangedParams? nodeInfo;
 
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
         nodeInfo.Nodes.Should().HaveCount(2, "because the file has two nodes");
 
@@ -134,7 +134,7 @@ public class CommandTests : LanguageServerTestsBase
 
         ChangeTextInDocument(client, result);
 
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
         nodeInfo.Nodes.Should().HaveCount(1, "because we removed a node");
         nodeInfo.Nodes.Should()
@@ -151,7 +151,7 @@ public class CommandTests : LanguageServerTestsBase
 
         NodesChangedParams? nodeInfo;
 
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
         nodeInfo
             .Nodes.Should()
@@ -178,7 +178,7 @@ public class CommandTests : LanguageServerTestsBase
 
         ChangeTextInDocument(client, result);
 
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
         nodeInfo.Nodes.Should()
             .Contain(n => n.Title == "Start")
@@ -199,7 +199,7 @@ public class CommandTests : LanguageServerTestsBase
 
         NodesChangedParams? nodeInfo;
 
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
         const string headerName = "tags";
         const string headerOldValue = "wow incredible";
@@ -231,7 +231,7 @@ public class CommandTests : LanguageServerTestsBase
 
         ChangeTextInDocument(client, result);
 
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
         nodeInfo.Nodes.Should()
             .Contain(n => n.Title == "Node2")
