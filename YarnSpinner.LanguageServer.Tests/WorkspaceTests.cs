@@ -10,7 +10,7 @@ namespace YarnLanguageServer.Tests
     public class WorkspaceTests
     {
         private static string Project1Path = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Project1.yarnproject");
-        private static string Project2Path = Path.Combine(TestUtility.PathToTestWorkspace, "Project2", "Project1.yarnproject");
+        private static string Project2Path = Path.Combine(TestUtility.PathToTestWorkspace, "Project2", "Project2.yarnproject");
         private static string NoProjectPath = Path.Combine(TestUtility.PathToTestWorkspace, "FilesWithNoProject");
 
         [Fact]
@@ -72,6 +72,8 @@ namespace YarnLanguageServer.Tests
             var project = workspace.Projects.Should().ContainSingle().Subject;
             var file = project.Files.Should().ContainSingle().Subject;
             file.NodeInfos.Should().Contain(n => n.Title == "NotIncludedInProject");
+            project.Diagnostics.Should().NotContain(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error);
+
         }
 
         [Fact]
