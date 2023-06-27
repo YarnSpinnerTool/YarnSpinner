@@ -1,8 +1,11 @@
-using System.Collections.Generic;
-using System.Linq;
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
 
 namespace Yarn.Compiler.Upgrader
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     /// <summary>
     /// Stores information about a relationship between a variable and its
     /// type.
@@ -33,10 +36,11 @@ namespace Yarn.Compiler.Upgrader
         {
             int hashCode = 2098139523;
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.VariableName);
-            if (Type != null) {
+            if (Type != null)
+            {
                 hashCode = (hashCode * -1521134295) + this.Type.GetHashCode();
-
             }
+
             return hashCode;
         }
 

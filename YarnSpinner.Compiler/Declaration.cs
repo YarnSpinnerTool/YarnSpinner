@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Compiler
 {
     using System;
@@ -102,10 +105,33 @@ namespace Yarn.Compiler
         }
     }
 
+    /// <summary>
+    /// Represents a potential type error diagnostic message.
+    /// </summary>
+    /// <remarks>
+    /// Because a variable can be declared in a scope different from the current yarn file, or even externally, when we first hit upon any variables of which we don't know the type of we create a deferred diagnostic.
+    /// The idea being that we are hoping another file or step will give the information needed to resolved the type.
+    /// Later once the compiler has finished parsing every file we can see if any of these weren't resolved.
+    /// If they were not they will be promoted into a full diagnostic and presented to the user.
+    /// </remarks>
     public class DeferredTypeDiagnostic
     {
+        /// <summary>
+        /// The name of the variable who's type error is being deferred
+        /// </summary>
         public string Name { get; internal set; }
+        /// <summary>
+        /// The <see cref="Diagnostic"/> that has been deferred.
+        /// </summary>
         public Diagnostic diagnostic { get; set; }
+        
+        /// <summary>
+        /// Convenience method for constructing new deferred type diagnostics
+        /// </summary>
+        /// <param name="name">The name of the variable</param>
+        /// <param name="diagnostic">The diagnostic that has been deferred</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public static DeferredTypeDiagnostic CreateDeferredTypeDiagnostic(string name, Diagnostic diagnostic)
         {
             if (string.IsNullOrEmpty(name))
@@ -121,6 +147,9 @@ namespace Yarn.Compiler
         }
     }
     
+    /// <summary>
+    /// Represents a variable declaration
+    /// </summary>
     [Serializable]
     public class Declaration
     {
@@ -274,12 +303,10 @@ namespace Yarn.Compiler
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            
             return this.Name.GetHashCode()
                 ^ this.Type.GetHashCode()
                 ^ this.DefaultValue.GetHashCode()
                 ^ (this.Description ?? string.Empty).GetHashCode();
         }
-
     }
 }

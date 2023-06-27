@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 using Antlr4.Runtime;
 using Yarn.Compiler;
 
@@ -140,5 +143,4 @@ internal class ErrorStrategy : DefaultErrorStrategy
             return friendlyName;
         }
     }
-
 }

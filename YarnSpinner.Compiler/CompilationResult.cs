@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 // Uncomment to ensure that all expressions have a known type at compile time
 // #define VALIDATE_ALL_EXPRESSIONS
 
@@ -86,6 +89,7 @@ namespace Yarn.Compiler
         /// of the <see cref="CompilationJob"/>'s <see
         /// cref="CompilationJob.Files"/> collection), and the values are the
         /// file tags associated with that file.
+        /// </remarks>
         public Dictionary<string, IEnumerable<string>> FileTags { get; internal set; }
 
         /// <summary>

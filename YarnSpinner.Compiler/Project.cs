@@ -1,11 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Microsoft.Extensions.FileSystemGlobbing;
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
 
 namespace Yarn.Compiler
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text.Json;
+    using System.Text.Json.Serialization;
+    using Microsoft.Extensions.FileSystemGlobbing;
+
     /// <summary>
     /// Yarn Projects represent instructions on where to find Yarn scripts and
     /// associated assets, and how they should be compiled.

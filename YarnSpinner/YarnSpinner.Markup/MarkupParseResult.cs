@@ -29,6 +29,7 @@ namespace Yarn.Markup
     using System.Collections.Generic;
     using System.Runtime.InteropServices;
 
+#pragma warning disable CA1815
     /// <summary>
     /// The result of parsing a line of marked-up text.
     /// </summary>
@@ -121,7 +122,7 @@ namespace Yarn.Markup
 
             if (this.Text.Length < attribute.Position + attribute.Length)
             {
-                throw new System.IndexOutOfRangeException($"Attribute represents a range not representable by this text. Does this {nameof(MarkupAttribute)} belong to this {nameof(MarkupParseResult)}?");
+                throw new System.ArgumentOutOfRangeException($"Attribute represents a range not representable by this text. Does this {nameof(MarkupAttribute)} belong to this {nameof(MarkupParseResult)}?");
             }
 
             return this.Text.Substring(attribute.Position, attribute.Length);
@@ -292,7 +293,10 @@ namespace Yarn.Markup
             return new MarkupParseResult(editedSubstring, newAttributes);
         }
     }
+#pragma warning restore CA1815
 
+#pragma warning disable CA1711
+#pragma warning disable CA1815
     /// <summary>
     /// Represents a range of text in a marked-up string.
     /// </summary>
@@ -387,11 +391,13 @@ namespace Yarn.Markup
                 sb.Append($", {this.Properties.Count} properties)");
             }
 
-            sb.Append(")");
+            sb.Append(')');
 
             return sb.ToString();
         }
     }
+#pragma warning restore CA1815
+#pragma warning restore CA1711
 
     /// <summary>
     /// A property associated with a <see cref="MarkupAttribute"/>.
@@ -401,6 +407,7 @@ namespace Yarn.Markup
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
     /// <seealso cref="Dialogue.ParseMarkup(string)"/>
+#pragma warning disable CA1815
     public struct MarkupProperty
     {
         /// <summary>
@@ -425,7 +432,9 @@ namespace Yarn.Markup
         /// </summary>
         public MarkupValue Value { get; private set; }
     }
+#pragma warning restore CA1815
 
+#pragma warning disable CA1815
     /// <summary>
     /// A value associated with a <see cref="MarkupProperty"/>.
     /// </summary>
@@ -492,6 +501,7 @@ namespace Yarn.Markup
             }
         }
     }
+#pragma warning restore CA1815
 
     /// <summary>
     /// Represents a marker (e.g. <c>[a]</c>) in line of marked up text.
@@ -566,7 +576,7 @@ namespace Yarn.Markup
         {
             foreach (var prop in this.Properties)
             {
-                if (prop.Name.Equals(name))
+                if (prop.Name.Equals(name, System.StringComparison.OrdinalIgnoreCase))
                 {
                     result = prop.Value;
                     return true;

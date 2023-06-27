@@ -1,13 +1,16 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Compiler
 {
-    using Antlr4.Runtime;
-    using Antlr4.Runtime.Misc;
-    using Antlr4.Runtime.Tree;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Text;
+    using Antlr4.Runtime;
+    using Antlr4.Runtime.Misc;
+    using Antlr4.Runtime.Tree;
 
     /// <summary>
     /// Utility methods for working with line tags.
@@ -90,7 +93,7 @@ namespace Yarn.Compiler
 
                 stringBuilder.Append($"<<declare {decl.Name} = ");
 
-                if (decl.Type == BuiltinTypes.Number) 
+                if (decl.Type == BuiltinTypes.Number)
                 {
                     stringBuilder.Append(decl.DefaultValue);
                 }
@@ -213,7 +216,7 @@ namespace Yarn.Compiler
         /// An <see cref="IYarnSpinnerParserListener"/> that produces line tags.
         /// </summary>
         private class UntaggedLineListener : YarnSpinnerParserBaseListener
-        {   
+        {
             private readonly IList<string> existingStrings;
 
             private readonly CommonTokenStream TokenStream;
@@ -262,7 +265,7 @@ namespace Yarn.Compiler
                 // the left of the newline.
                 var previousTokenIndex = IndexOfPreviousTokenOnChannel(
                     TokenStream,
-                    context.NEWLINE().Symbol.TokenIndex, 
+                    context.NEWLINE().Symbol.TokenIndex,
                     YarnSpinnerLexer.DefaultTokenChannel
                 );
 
@@ -306,7 +309,6 @@ namespace Yarn.Compiler
             /// stream.</returns>
             private static int IndexOfPreviousTokenOnChannel(CommonTokenStream tokenStream, int index, int channel)
             {
-
                 // Are we beyond the list of tokens?
                 if (index >= tokenStream.Size)
                 {
@@ -760,7 +762,7 @@ namespace Yarn.Compiler
         /// </remarks>
         public string Name 
         {
-            get 
+            get
             {
                 if (LabelName != null) 
                 {
@@ -888,20 +890,20 @@ namespace Yarn.Compiler
             get 
             {
                 // Start with a queue of immediate children that link to blocks
-                Queue<BasicBlock> candidates = new Queue<BasicBlock>(this.Destinations.Where(d => d.Block != null).Select(d=> d.Block));
+                Queue<BasicBlock> candidates = new Queue<BasicBlock>(this.Destinations.Where(d => d.Block != null).Select(d => d.Block));
 
                 List<BasicBlock> descendants = new List<BasicBlock>();
 
                 while (candidates.Count > 0)
                 {
                     var next = candidates.Dequeue();
-                    if (descendants.Contains(next)) 
+                    if (descendants.Contains(next))
                     {
                         // We've already seen this one - skip it.
                         continue;
                     }
                     descendants.Add(next);
-                    foreach (var destination in next.Destinations.Where(d => d.Block != null).Select(d=> d.Block))
+                    foreach (var destination in next.Destinations.Where(d => d.Block != null).Select(d => d.Block))
                     {
                         candidates.Enqueue(destination);
                     }
@@ -1070,14 +1072,14 @@ namespace Yarn.Compiler
                         case Instruction.Types.OpCode.RunLine:
                             yield return new LineElement
                             {
-                                LineID = instruction.Operands[0].StringValue
+                                LineID = instruction.Operands[0].StringValue,
                             };
                             break;
 
                         case Instruction.Types.OpCode.RunCommand:
                             yield return new CommandElement
                             {
-                                CommandText = instruction.Operands[0].StringValue
+                                CommandText = instruction.Operands[0].StringValue,
                             };
                             break;
 

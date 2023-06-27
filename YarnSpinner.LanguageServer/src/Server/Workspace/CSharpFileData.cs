@@ -44,8 +44,8 @@ namespace YarnLanguageServer
             LookForUnmatchedCommands(onePass);
         }
 
-        public void LookForUnmatchedCommands(bool isLastTime) {
-
+        public void LookForUnmatchedCommands(bool isLastTime)
+        {
             // TODO: This is definitly some late night code. Shuffle around to avoid the double lookup through UnmatchedCommandNames.
             var methods = root.DescendantNodes()
                 .OfType<MethodDeclarationSyntax>()
@@ -70,7 +70,7 @@ namespace YarnLanguageServer
 
                     Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == matchedUcn.YarnName);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                 }
             }

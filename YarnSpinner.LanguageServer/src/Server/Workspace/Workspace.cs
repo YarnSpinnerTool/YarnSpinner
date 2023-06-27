@@ -82,10 +82,15 @@ namespace YarnLanguageServer
                 YarnFiles[uri] = yarnFileData;
 
                 return yarnFileData;
-            } catch (System.IO.IOException) {
+            }
+            catch (System.IO.IOException)
+            {
                 return null;
-            } finally {
-                if (updateWorkspace) {
+            }
+            finally
+            {
+                if (updateWorkspace)
+                {
                     UpdateWorkspace();
                 }
             }

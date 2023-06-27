@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 // Uncomment to ensure that all expressions have a known type at compile time
 // #define VALIDATE_ALL_EXPRESSIONS
 
