@@ -23,8 +23,8 @@
     <!-- <ProjectReference Include="/Users/desplesda/Work/csharp-language-server-protocol/src/Server/Server.csproj" /> -->
     <!-- <ProjectReference Include="/Users/desplesda/Work/csharp-language-server-protocol/src/Testing/Testing.csproj" /> -->
 
-    <PackageReference Include="OmniSharp.Extensions.LanguageServer" Version="0.19.5" />
-    <PackageReference Include="OmniSharp.Extensions.LanguageProtocol.Testing" Version="0.19.5" />
+    <PackageReference Include="OmniSharp.Extensions.LanguageServer" Version="0.19.7" />
+    <PackageReference Include="OmniSharp.Extensions.LanguageProtocol.Testing" Version="0.19.7" />
     
     <PackageReference Include="FluentAssertions" Version="6.11.0" />
   </ItemGroup>
