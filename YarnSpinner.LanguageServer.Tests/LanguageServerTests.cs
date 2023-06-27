@@ -147,7 +147,7 @@ namespace YarnLanguageServer.Tests
             ChangeTextInDocument(client, filePath, new Position(9, 0), "<<set");
 
             {
-                var diagnosticsResult = await GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains("Test.yarn"));
+                var diagnosticsResult = await GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains(filePath));
 
                 var enumerable = diagnosticsResult.Diagnostics;
                 
@@ -160,7 +160,7 @@ namespace YarnLanguageServer.Tests
             ChangeTextInDocument(client, filePath, new Position(9, 0), new Position(9, 5), "");
 
             {
-                PublishDiagnosticsParams diagnosticsResult = await GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains("Test.yarn"));
+                PublishDiagnosticsParams diagnosticsResult = await GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains(filePath));
 
                 var errors = diagnosticsResult.Diagnostics.Where(d => d.Severity == DiagnosticSeverity.Error);
 
