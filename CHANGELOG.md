@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [2.3.1] 2023-07-04
+
 #### Yarn Projects
 
 - Added support for JSON-based Yarn Project files.
@@ -54,8 +60,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - Note that `OptionsCompleteHandler` remains _not_ optional, and is required to be set.
 - `Dialogue` now calls `DialogueCompleteHandler` when the `Stop()` method is called.
 - VM now nullifies it's state when stopped.
-
-### Removed
 
 ## [2.3.0] 2023-03-06
 
