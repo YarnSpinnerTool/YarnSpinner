@@ -25,7 +25,7 @@ namespace YarnLanguageServer
     {
         public string Root { get; internal set; }
         internal Configuration Configuration { get; set; } = new Configuration();
-        internal IEnumerable<Project> Projects { get; set; }
+        internal IEnumerable<Project> Projects { get; set; } = Array.Empty<Project>();
 
         private ILanguageServer? LanguageServer { get; set; }
 
