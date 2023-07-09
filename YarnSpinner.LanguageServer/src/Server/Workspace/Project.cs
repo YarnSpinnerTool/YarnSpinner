@@ -9,7 +9,7 @@ namespace YarnLanguageServer
     internal class Project
     {
         public IEnumerable<YarnFileData> Files => yarnFiles.Values;
-        public DocumentUri Uri { get; init; }
+        public DocumentUri? Uri { get; init; }
 
         internal IEnumerable<Yarn.Compiler.Declaration> Variables
         {
@@ -64,8 +64,16 @@ namespace YarnLanguageServer
             return yarnProject.IsMatchingPath(uri.GetFileSystemPath());
         }
 
-        public Project(string projectFilePath)
+        public Project(string? projectFilePath)
         {
+            if (projectFilePath == null)
+            {
+                // The project path is null. The workspace may not exist on
+                // disk.
+                yarnProject = new Yarn.Compiler.Project();
+                return;
+            }
+
             if (Directory.Exists(projectFilePath))
             {
                 // This project is a directory.

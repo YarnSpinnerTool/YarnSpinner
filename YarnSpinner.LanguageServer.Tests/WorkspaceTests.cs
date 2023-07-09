@@ -37,7 +37,7 @@ namespace YarnLanguageServer.Tests
         public void Workspaces_CanOpen() {
             var workspace = new Workspace();
             workspace.Root = TestUtility.PathToTestWorkspace;
-            workspace.Initialize(null);
+            workspace.Initialize();
 
             var diagnostics = workspace.GetDiagnostics();
 
@@ -66,7 +66,7 @@ namespace YarnLanguageServer.Tests
             // Given
             var workspace = new Workspace();
             workspace.Root = NoProjectPath;
-            workspace.Initialize(null);
+            workspace.Initialize();
 
             // Then
             var project = workspace.Projects.Should().ContainSingle().Subject;
@@ -82,12 +82,22 @@ namespace YarnLanguageServer.Tests
             // Given
             var workspace = new Workspace();
             workspace.Root = Path.GetDirectoryName(Project2Path);
-            workspace.Initialize(null);
+            workspace.Initialize();
 
             // Then
             var project = workspace.Projects.Should().ContainSingle().Subject;
             project.Commands.Should().Contain(c => c.YarnName == "custom_command");
             project.Functions.Should().Contain(c => c.YarnName == "custom_function");
+        }
+
+        [Fact]
+        public void Workspace_WithNullRoot_OpensSuccessfully()
+        {
+            // Given
+            var workspace = new Workspace();
+            workspace.Root = null;
+
+            workspace.Initialize();
         }
     }
 }

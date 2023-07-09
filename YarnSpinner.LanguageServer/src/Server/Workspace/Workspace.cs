@@ -23,7 +23,7 @@ namespace YarnLanguageServer
 
     public class Workspace : INotificationSender, IActionSource, IConfigurationSource
     {
-        public string Root { get; internal set; }
+        public string? Root { get; internal set; }
         internal Configuration Configuration { get; set; } = new Configuration();
         internal IEnumerable<Project> Projects { get; set; } = Array.Empty<Project>();
 
@@ -57,7 +57,11 @@ namespace YarnLanguageServer
         internal void ReloadWorkspace()
         {
             // Find all actions defined in the workspace
-            this.workspaceActions = new HashSet<Action>(this.FindWorkspaceActions(this.Root));
+            if (this.Root != null) {
+                this.workspaceActions = new HashSet<Action>(this.FindWorkspaceActions(this.Root));
+            } else {
+                this.workspaceActions = new HashSet<Action>();
+            }
 
             // Find all actions built in to this DLL
             try
@@ -91,20 +95,26 @@ namespace YarnLanguageServer
 
             var projects = new List<Project>();
 
-            // Find all .yarnprojects in the root and create Projects out of
-            // them
-            var yarnProjectFiles = Directory.EnumerateFiles(Root, "*.yarnproject", new EnumerationOptions { RecurseSubdirectories = true, MatchCasing = MatchCasing.CaseInsensitive });
-
-            // Create a project for each .yarnproject in the workspace.
-            this.Projects = yarnProjectFiles.Select(path =>
+            if (this.Root != null)
             {
-                try {
-                    return new Project(path);
-                } catch (System.Exception e) {
-                    this.LanguageServer?.LogError($"Failed to create a project for {path}: " + e.ToString());
-                    return null;
-                }
-            }).NonNull().ToList();
+                // Find all .yarnprojects in the root and create Projects out of
+                // them
+                var yarnProjectFiles = Directory.EnumerateFiles(Root, "*.yarnproject", new EnumerationOptions { RecurseSubdirectories = true, MatchCasing = MatchCasing.CaseInsensitive });
+
+                // Create a project for each .yarnproject in the workspace.
+                this.Projects = yarnProjectFiles.Select(path =>
+                {
+                    try
+                    {
+                        return new Project(path);
+                    }
+                    catch (System.Exception e)
+                    {
+                        this.LanguageServer?.LogError($"Failed to create a project for {path}: " + e.ToString());
+                        return null;
+                    }
+                }).NonNull().ToList();
+            }
 
             if (!this.Projects.Any()) {
                 // There are no .yarnprojects in the workspace. Create a new
