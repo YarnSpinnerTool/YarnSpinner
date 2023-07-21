@@ -10,6 +10,7 @@ namespace YarnLanguageServer
     {
         public IEnumerable<YarnFileData> Files => yarnFiles.Values;
         public DocumentUri? Uri { get; init; }
+        public bool IsImplicitProject { get; init; }
 
         internal IEnumerable<Yarn.Compiler.Declaration> Variables
         {
@@ -61,11 +62,17 @@ namespace YarnLanguageServer
                 return true;
             }
 
+            if (this.IsImplicitProject) {
+                return true;
+            }
+
             return yarnProject.IsMatchingPath(uri.GetFileSystemPath());
         }
 
-        public Project(string? projectFilePath)
+        public Project(string? projectFilePath, bool isImplicit = false)
         {
+            this.IsImplicitProject = isImplicit;
+
             if (projectFilePath == null)
             {
                 // The project path is null. The workspace may not exist on

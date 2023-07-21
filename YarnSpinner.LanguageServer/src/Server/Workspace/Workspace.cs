@@ -127,7 +127,7 @@ namespace YarnLanguageServer
                 // considered to be part of the workspace and will not be
                 // compiled. This is consistent with how Yarn Spinner for Unity
                 // works - if a file is not in a project, it is not compiled.)
-                Project implicitProject = new (Root);
+                Project implicitProject = new (Root, isImplicit: true);
                 this.Projects = new[] { implicitProject };
             }
 
