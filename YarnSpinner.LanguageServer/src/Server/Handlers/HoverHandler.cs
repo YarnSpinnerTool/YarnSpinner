@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -44,14 +45,22 @@ namespace YarnLanguageServer.Handlers
                     {
                         var definition = definitions.First();
 
+                        var content = new List<MarkedString>();
+                        content.Add(new MarkedString("text", definition.YarnName));
+
+                        if (definition.Signature != null) {
+
+                            content.Add(new MarkedString(definition.Language, definition.Signature));
+                        }
+                        
+                        if (definition.Documentation != null) {
+                            content.Add(new MarkedString("text", definition.Documentation ?? string.Empty));
+                        }
+
                         var result = new Hover
                         {
                             Contents = new MarkedStringsOrMarkupContent(
-                                new MarkedString[]
-                                {
-                                        new MarkedString("text", definition.YarnName),
-                                        new MarkedString("text", definition.Documentation ?? string.Empty ),
-                                }),
+                                content.ToArray()),
                             Range = PositionHelper.GetRange(yarnFile.LineStarts, token),
                         };
                         return Task.FromResult<Hover?>(result);

@@ -216,6 +216,8 @@ namespace YarnLanguageServer
                 Documentation = GetDocumentation(method),
                 ReturnType = GetYarnType(method.ReturnType),
                 MethodDeclarationSyntax = method,
+                Language = "csharp",
+                Signature = $"{method.Identifier.Text}{method.ParameterList}",
             };
 
             foreach (var parameter in method.ParameterList.Parameters)

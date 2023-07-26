@@ -52,6 +52,19 @@ namespace YarnLanguageServer
         /// </summary>
         public bool IsStatic => MethodDeclarationSyntax?.Modifiers.Any(m => m.ToString() == "static") ?? true;
 
+        /// <summary>
+        /// The language that the action was defined in.
+        /// </summary>
+        /// <remarks>
+        /// For example, if the action is defined in a C# source file, then this property is <c>csharp</c>.
+        /// </remarks>
+        public string? Language { get; internal set; }
+
+        /// <summary>
+        /// The signature of the action, as originally defined in the source file.
+        /// </summary>
+        public string? Signature { get; internal set; }
+
         public struct ParameterInfo
         {
             public string Name;

@@ -20,6 +20,8 @@
     </PackageReference>
     <ProjectReference Include="../YarnSpinner.LanguageServer/YarnLanguageServer.csproj" />
 
+    <Compile Remove="TestData\**" />
+
     <!-- <ProjectReference Include="/Users/desplesda/Work/csharp-language-server-protocol/src/Server/Server.csproj" /> -->
     <!-- <ProjectReference Include="/Users/desplesda/Work/csharp-language-server-protocol/src/Testing/Testing.csproj" /> -->
 

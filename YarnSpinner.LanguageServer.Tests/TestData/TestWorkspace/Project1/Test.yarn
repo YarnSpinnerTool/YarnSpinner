@@ -18,3 +18,11 @@ Here's a line in node 2.
 
 <<declare $myVar = "hello">>
 ===
+title: CommandWorkout
+---
+<<static_command_no_docs>>
+<<instance_command_no_params target>>
+<<instance_command_with_params target One Two>>
+<<static_command_no_params>>
+<<static_command_with_params One Two>>
+===
