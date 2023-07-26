@@ -76,7 +76,7 @@ public class CommandTests : LanguageServerTestsBase
 
         nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
-        nodeInfo.Nodes.Should().HaveCount(2, "because the file has two nodes");
+        nodeInfo.Nodes.Should().HaveCount(3, "because the file has three nodes");
 
         var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
         {
@@ -97,7 +97,7 @@ public class CommandTests : LanguageServerTestsBase
 
         nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
-        nodeInfo.Nodes.Should().HaveCount(3, "because we added a node");
+        nodeInfo.Nodes.Should().HaveCount(4, "because we added a node");
         nodeInfo.Nodes.Should()
             .Contain(n => n.Title == "Node",
                 "because the new node should be called Title")
@@ -118,7 +118,7 @@ public class CommandTests : LanguageServerTestsBase
 
         NodesChangedParams? nodeInfo = await getInitialNodesChanged;
 
-        nodeInfo.Nodes.Should().HaveCount(2, "because the file has two nodes");
+        nodeInfo.Nodes.Should().HaveCount(3, "because the file has three nodes");
 
         var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
         {
@@ -137,7 +137,7 @@ public class CommandTests : LanguageServerTestsBase
 
         nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
-        nodeInfo.Nodes.Should().HaveCount(1, "because we removed a node");
+        nodeInfo.Nodes.Should().HaveCount(2, "because we removed a node");
         nodeInfo.Nodes.Should()
             .Contain(n => n.Title == "Node2",
                 "because the only remaining node is Node2");

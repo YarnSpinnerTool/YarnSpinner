@@ -24,7 +24,7 @@ namespace YarnLanguageServer.Tests
 
             // Then
             project.Files.Should().HaveCount(1);
-            project.Nodes.Should().HaveCount(2);
+            project.Nodes.Should().HaveCount(3);
             project.Files.Should().AllSatisfy(file => file.Project.Should().Be(project));
 
             var testFilePath = DocumentUri.FromFileSystemPath(Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn"));
