@@ -250,7 +250,7 @@ namespace YarnLanguageServer.Handlers
             var vocabulary = yarnFile.Lexer.Vocabulary;
             var tokenName = vocabulary.GetSymbolicName(tokenAtRequestPosition.Type);
 
-            void ExpandRangeToPreviousTokenOfType(int tokenType, int startIndex, ref Range range)
+            void ExpandRangeToEndOfPreviousTokenOfType(int tokenType, int startIndex, ref Range range)
             {
                 var startToken = yarnFile.Tokens[startIndex];
                 var current = startToken;
@@ -272,54 +272,63 @@ namespace YarnLanguageServer.Handlers
                 }
             }
 
-            switch (tokenAtRequestPosition.Type)
+            if (context?.IsChildOfContext<YarnSpinnerParser.Jump_statementContext>() ?? false)
             {
-                case YarnSpinnerLexer.COMMAND_JUMP:
-                    {
-                        GetNodeNameCompletions(project, rangeOfTokenAtRequestPosition, results);
+                // We're in the middle of a jump statement. Expand the
+                // replacement range to the end of the '<<jump ', and offer the
+                // list of nodes.
+                ExpandRangeToEndOfPreviousTokenOfType(YarnSpinnerLexer.COMMAND_JUMP, maybeTokenAtRequestPosition.Value, ref rangeOfTokenAtRequestPosition);
 
-                        break;
-                    }
-
-                case YarnSpinnerLexer.COMMAND_START:
-                    {
-                        // The token we're at is the start of a command
-                        // statement. Collapse our replacement range to the end
-                        // of that token.
-                        rangeOfTokenAtRequestPosition = rangeOfTokenAtRequestPosition.CollapseToEnd();
-                        GetCommandCompletions(request, rangeOfTokenAtRequestPosition, results);
-
-                        break;
-                    }
-
-                case YarnSpinnerLexer.COMMAND_TEXT:
-                    {
-                        // The token we're at is in the middle of a command
-                        // statement. Expand our range to the end of our
-                        // starting command token, so that the results we send
-                        // back can be filtered.
-                        ExpandRangeToPreviousTokenOfType(YarnSpinnerLexer.COMMAND_START, maybeTokenAtRequestPosition.Value, ref rangeOfTokenAtRequestPosition);
-                        GetCommandCompletions(request, rangeOfTokenAtRequestPosition, results);
-
-                        break;
-                    }
-
-                // inline expressions, if, and elseif are the same thing
-                case YarnSpinnerLexer.EXPRESSION_START:
-                case YarnSpinnerLexer.COMMAND_EXPRESSION_START:
-                case YarnSpinnerLexer.COMMAND_IF:
-                case YarnSpinnerLexer.COMMAND_ELSEIF:
-                    {
-                        GetVariableNameCompletions(project, rangeOfTokenAtRequestPosition, results);
-
-                        break;
-                    }
+                GetNodeNameCompletions(
+                    project,
+                    request,
+                    rangeOfTokenAtRequestPosition,
+                    results
+                );
             }
+            else
+            {
+                switch (tokenAtRequestPosition.Type)
+                {
+                    case YarnSpinnerLexer.COMMAND_START:
+                        {
+                            // The token we're at is the start of a command
+                            // statement. Collapse our replacement range to the end
+                            // of that token.
+                            rangeOfTokenAtRequestPosition = rangeOfTokenAtRequestPosition.CollapseToEnd();
+                            GetCommandCompletions(request, rangeOfTokenAtRequestPosition, results);
 
+                            break;
+                        }
+
+                    case YarnSpinnerLexer.COMMAND_TEXT:
+                        {
+                            // The token we're at is in the middle of a command
+                            // statement. Expand our range to the end of our
+                            // starting command token, so that the results we send
+                            // back can be filtered.
+                            ExpandRangeToEndOfPreviousTokenOfType(YarnSpinnerLexer.COMMAND_START, maybeTokenAtRequestPosition.Value, ref rangeOfTokenAtRequestPosition);
+                            GetCommandCompletions(request, rangeOfTokenAtRequestPosition, results);
+
+                            break;
+                        }
+
+                    // inline expressions, if, and elseif are the same thing
+                    case YarnSpinnerLexer.EXPRESSION_START:
+                    case YarnSpinnerLexer.COMMAND_EXPRESSION_START:
+                    case YarnSpinnerLexer.COMMAND_IF:
+                    case YarnSpinnerLexer.COMMAND_ELSEIF:
+                        {
+                            GetVariableNameCompletions(project, rangeOfTokenAtRequestPosition, results);
+
+                            break;
+                        }
+                }
+            }
             return Task.FromResult(new CompletionList(results));
         }
 
-        private static void GetNodeNameCompletions(Project project, Range indexTokenRange, List<CompletionItem> results)
+        private static void GetNodeNameCompletions(Project project, CompletionParams request, Range indexTokenRange, List<CompletionItem> results)
         {
             foreach (var node in project.Nodes)
             {
@@ -328,7 +337,13 @@ namespace YarnLanguageServer.Handlers
                     Label = node.Title,
                     Kind = CompletionItemKind.Method,
                     Detail = System.IO.Path.GetFileName(node.File.Uri.AbsolutePath),
-                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = node.Title, Range = indexTokenRange.CollapseToEnd() }),
+                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit {
+                        NewText = node.Title,
+                        Range = new Range {
+                            Start = indexTokenRange.Start,
+                            End = request.Position,
+                        },
+                    }),
                 });
             }
         }

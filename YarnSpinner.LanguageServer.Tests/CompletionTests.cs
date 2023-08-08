@@ -90,5 +90,73 @@ namespace YarnLanguageServer.Tests
             });        
         }
 
+        [Fact]
+        public async Task Server_OnCompletingJumpCommand_ReturnsNodeNames()
+        {
+            // Given
+            var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+            var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+
+            var endOfJumpKeyword = new Position
+            {
+                Character = 7,
+                Line = 10
+            };
+            
+            var expectedLineText = "<<jump Node2>>";
+            var lines = File.ReadAllLines(filePath).ElementAt(endOfJumpKeyword.Line).Should().Be(expectedLineText);
+
+            // When
+            var completionResults = await client.RequestCompletion(new CompletionParams
+            {
+                TextDocument = new TextDocumentIdentifier { Uri = filePath },
+                Position = endOfJumpKeyword
+            });
+
+            // Then
+            completionResults.Should().AllSatisfy(item =>
+            {
+                item.Kind.Should().Be(CompletionItemKind.Method, "node names are expected when completing a jump command");
+                item.TextEdit!.TextEdit!.Range.Start.Should().BeEquivalentTo(endOfJumpKeyword);
+                item.TextEdit.TextEdit.Range.End.Should().BeEquivalentTo(endOfJumpKeyword);
+            });
+        }
+
+        [Fact]
+        public async Task Server_OnCompletingPartialJumpCommand_ReturnsNodeNames()
+        {
+            // Given
+            var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+            var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+
+            var endOfJumpKeyword = new Position
+            {
+                Character = 7,
+                Line = 10
+            };
+            var middleOfNodeName = endOfJumpKeyword with
+            {
+                Character = 9,
+            };
+            
+            var expectedLineText = "<<jump Node2>>";
+            var lines = File.ReadAllLines(filePath).ElementAt(endOfJumpKeyword.Line).Should().Be(expectedLineText);
+
+            // When
+            var completionResults = await client.RequestCompletion(new CompletionParams
+            {
+                TextDocument = new TextDocumentIdentifier { Uri = filePath },
+                Position = middleOfNodeName
+            });
+
+            // Then
+            completionResults.Should().AllSatisfy(item =>
+            {
+                item.Kind.Should().Be(CompletionItemKind.Method, "node names are expected when completing a jump command");
+                item.TextEdit!.TextEdit!.Range.Start.Should().BeEquivalentTo(endOfJumpKeyword);
+                item.TextEdit.TextEdit.Range.End.Should().BeEquivalentTo(middleOfNodeName);
+            });
+        }
+
     }
 }
