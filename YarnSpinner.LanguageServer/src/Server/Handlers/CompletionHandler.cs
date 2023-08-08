@@ -228,27 +228,29 @@ namespace YarnLanguageServer.Handlers
 
             var context = ParseTreeFromPosition(yarnFile.ParseTree, request.Position.Character, request.Position.Line + 1);
 
-            var index = yarnFile.GetRawToken(request.Position);
-            if (!index.HasValue)
+            var maybeTokenAtRequestPosition = yarnFile.GetRawToken(request.Position);
+            if (!maybeTokenAtRequestPosition.HasValue)
             {
                 // We don't know what completions to offer for here.
                 return Task.FromResult(new CompletionList());
             }
 
-            var indexToken = yarnFile.Tokens[index.Value];
+            var tokenAtRequestPosition = yarnFile.Tokens[maybeTokenAtRequestPosition.Value];
 
-            var indexTokenRange = PositionHelper.GetRange(yarnFile.LineStarts, indexToken);
-            if (indexToken.Type == YarnSpinnerLexer.COMMAND_END || indexToken.Type == YarnSpinnerLexer.RPAREN || indexToken.Type == YarnSpinnerLexer.EXPRESSION_END)
+            var rangeOfTokenAtRequestPosition = PositionHelper.GetRange(yarnFile.LineStarts, tokenAtRequestPosition);
+            if (tokenAtRequestPosition.Type == YarnSpinnerLexer.COMMAND_END
+                || tokenAtRequestPosition.Type == YarnSpinnerLexer.RPAREN
+                || tokenAtRequestPosition.Type == YarnSpinnerLexer.EXPRESSION_END)
             {
-                indexTokenRange = indexTokenRange.CollapseToStart(); // don't replace closing braces
+                rangeOfTokenAtRequestPosition = rangeOfTokenAtRequestPosition.CollapseToStart(); // don't replace closing braces
             }
 
             var results = new List<CompletionItem>();
 
             var vocabulary = yarnFile.Lexer.Vocabulary;
-            var tokenName = vocabulary.GetSymbolicName(indexToken.Type);
+            var tokenName = vocabulary.GetSymbolicName(tokenAtRequestPosition.Type);
 
-            void ExpandRangeToPreviousToken(int tokenType, int startIndex, ref Range range)
+            void ExpandRangeToPreviousTokenOfType(int tokenType, int startIndex, ref Range range)
             {
                 var startToken = yarnFile.Tokens[startIndex];
                 var current = startToken;
@@ -270,26 +272,34 @@ namespace YarnLanguageServer.Handlers
                 }
             }
 
-            switch (indexToken.Type)
+            switch (tokenAtRequestPosition.Type)
             {
                 case YarnSpinnerLexer.COMMAND_JUMP:
                     {
-                        GetNodeNameCompletions(project, indexTokenRange, results);
+                        GetNodeNameCompletions(project, rangeOfTokenAtRequestPosition, results);
 
                         break;
                     }
 
                 case YarnSpinnerLexer.COMMAND_START:
                     {
-                        GetCommandCompletions(request, indexTokenRange, results);
+                        // The token we're at is the start of a command
+                        // statement. Collapse our replacement range to the end
+                        // of that token.
+                        rangeOfTokenAtRequestPosition = rangeOfTokenAtRequestPosition.CollapseToEnd();
+                        GetCommandCompletions(request, rangeOfTokenAtRequestPosition, results);
 
                         break;
                     }
 
                 case YarnSpinnerLexer.COMMAND_TEXT:
                     {
-                        ExpandRangeToPreviousToken(YarnSpinnerLexer.COMMAND_START, index.Value, ref indexTokenRange);
-                        GetCommandCompletions(request, indexTokenRange, results);
+                        // The token we're at is in the middle of a command
+                        // statement. Expand our range to the end of our
+                        // starting command token, so that the results we send
+                        // back can be filtered.
+                        ExpandRangeToPreviousTokenOfType(YarnSpinnerLexer.COMMAND_START, maybeTokenAtRequestPosition.Value, ref rangeOfTokenAtRequestPosition);
+                        GetCommandCompletions(request, rangeOfTokenAtRequestPosition, results);
 
                         break;
                     }
@@ -300,7 +310,7 @@ namespace YarnLanguageServer.Handlers
                 case YarnSpinnerLexer.COMMAND_IF:
                 case YarnSpinnerLexer.COMMAND_ELSEIF:
                     {
-                        GetVariableNameCompletions(project, indexTokenRange, results);
+                        GetVariableNameCompletions(project, rangeOfTokenAtRequestPosition, results);
 
                         break;
                     }
@@ -390,7 +400,7 @@ namespace YarnLanguageServer.Handlers
                         new TextEdit
                         {
                             NewText = keyword?.InsertText ?? string.Empty,
-                            Range = new Range(request.Position, request.Position),
+                            Range = new Range(indexTokenRange.Start, request.Position),
                         }
                     ),
                 });
@@ -431,7 +441,13 @@ namespace YarnLanguageServer.Handlers
                     Kind = CompletionItemKind.Function,
                     Documentation = cmd.Documentation,
                     Detail = detailText,
-                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
+                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit {
+                        NewText = builder.ToString(),
+                        Range = new Range {
+                            Start = indexTokenRange.Start,
+                            End = request.Position,
+                        },
+                    }),
                     InsertTextFormat = InsertTextFormat.Snippet,
                 });
                 builder.Clear();
