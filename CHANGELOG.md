@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fixed a bug in the language server that would cause it to crash when opening a workspace with no root (for example, creating a new window in Visual Studio Code and then creating a Yarn file, without ever saving anything to disk.)
 - Language Server: Fixed an issue where workspaces where no Yarn Projects exist on disk would fail to attach Yarn files to the workspace's implicit Yarn Project.
 - Language Server: Improved the code-completion behaviour to provide better filtering when offering command completions, in both jump commands and custom commands.
+- Language Server: Fixed character names being incorrectly recognised when the colon is not part of the line
 
 ### Removed
 
