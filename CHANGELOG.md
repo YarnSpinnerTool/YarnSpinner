@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Language Server: Improved the code-completion behaviour to provide better filtering when offering command completions, in both jump commands and custom commands.
 - Language Server: Fixed character names being incorrectly recognised when the colon is not part of the line
 - Flagged the `Utility.AddTagsToLines` method as obsolete.
+- Fixed a bug where escaped characters weren't being correctly added back into the file after adding line tags.
 
 ### Removed
 

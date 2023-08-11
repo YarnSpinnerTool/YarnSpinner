@@ -179,5 +179,29 @@ line before call #line:4
             var info = result.StringTable["line:0"];
             info.metadata.Should().NotContain("lastline");
         }
+
+        [Fact]
+        public void TestCommentsArentTagged()
+        {
+            var escapedText = @"title: Start
+---
+\\
+===";
+            // ensuring the base text compiles fine as is
+            var job = CompilationJob.CreateFromString("input", escapedText);
+            job.CompilationType = CompilationJob.Type.StringsOnly;
+            var results = Compiler.Compile(job);
+            results.Diagnostics.Should().BeEmpty();
+
+            // tagging the line
+            var tagged = Utility.TagLines(escapedText);
+            var taggedVersion = tagged.Item1;
+
+            // recompiling, we should have no errors
+            job = CompilationJob.CreateFromString("input", taggedVersion);
+            job.CompilationType = CompilationJob.Type.StringsOnly;
+            results = Compiler.Compile(job);
+            results.Diagnostics.Should().BeEmpty();
+        }
     }
 }

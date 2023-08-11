@@ -97,7 +97,7 @@ EXPRESSION_START: '{' -> pushMode(TextMode), pushMode(ExpressionMode);
 // Any other text means this is a Line. Lex this first character as
 // TEXT, and enter TextMode.
 // We special case when the the line starts with an escape character because otherwise it will be detected as regular text BEFORE it has a chance to be pushed into TextEscapedMode
-ESCAPED_ANY : '\\' -> skip, pushMode(TextMode), pushMode(TextEscapedMode);
+ESCAPED_ANY : '\\' -> channel(HIDDEN), pushMode(TextMode), pushMode(TextEscapedMode);
 ANY: .  -> type(TEXT), pushMode(TextMode);
 
 // Arbitrary text, punctuated by expressions, and ended by 
