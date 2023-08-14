@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -60,7 +60,8 @@ namespace YarnLanguageServer
                 .WithHandler<Handlers.FileOperationsHandler>()
                 .OnInitialize(async (server, request, token) =>
                 {
-                    try {
+                    try
+                    {
                         workspace.Root = request.RootPath;
 
                         server.Log("Server initialize.");
@@ -70,10 +71,12 @@ namespace YarnLanguageServer
                         {
                             workspace.Configuration.Initialize(request.InitializationOptions as Newtonsoft.Json.Linq.JArray);
                         }
-                        
+
                         workspace.Initialize(server);
                         await Task.CompletedTask.ConfigureAwait(false);
-                    } catch (Exception e) {
+                    }
+                    catch (Exception e)
+                    {
                         server.Window.ShowError($"Yarn Spinner language server failed to start: {e}");
                         await Task.FromException(e).ConfigureAwait(false);
                     }
@@ -136,7 +139,7 @@ namespace YarnLanguageServer
 
             // Register 'extract voiceovers' command
             options.OnExecuteCommand<VOStringExport>(
-                (commandParams) => ExtractVoiceoverSpreadsheet(workspace, commandParams), (_,_) => new ExecuteCommandRegistrationOptions
+                (commandParams) => ExtractVoiceoverSpreadsheet(workspace, commandParams), (_, _) => new ExecuteCommandRegistrationOptions
                 {
                     Commands = new[] { Commands.ExtractSpreadsheet },
                 }
@@ -144,7 +147,7 @@ namespace YarnLanguageServer
 
             // register graph dialogue command
             options.OnExecuteCommand<string>(
-                (commandParams) => GenerateDialogueGraph(workspace, commandParams), (_,_) => new ExecuteCommandRegistrationOptions
+                (commandParams) => GenerateDialogueGraph(workspace, commandParams), (_, _) => new ExecuteCommandRegistrationOptions
                 {
                     Commands = new[] { Commands.CreateDialogueGraph },
                 }
@@ -159,15 +162,17 @@ namespace YarnLanguageServer
 
             var headers = new Dictionary<string, string>();
 
-            if (commandParams.Arguments.Count >= 2) {
+            if (commandParams.Arguments.Count >= 2)
+            {
                 var headerObject = commandParams.Arguments[1] as JObject;
 
-                foreach (var property in headerObject) {
+                foreach (var property in headerObject)
+                {
                     headers.Add(property.Key, property.Value.ToString());
                 }
             }
 
-            Uri yarnDocumentUri = new (yarnDocumentUriString);
+            Uri yarnDocumentUri = new(yarnDocumentUriString);
 
             var project = workspace.GetProjectsForUri(yarnDocumentUri).FirstOrDefault();
             var yarnFile = project?.GetFileData(yarnDocumentUri);
@@ -186,7 +191,7 @@ namespace YarnLanguageServer
                     },
                     Edits = new List<TextEdit>(),
                 });
-            
+
             }
 
             // Work out the edit needed to add a node.
@@ -205,9 +210,10 @@ namespace YarnLanguageServer
 
             var newNodeText = new System.Text.StringBuilder()
                 .AppendLine($"title: {candidateName}");
-           
+
             // Add the headers
-            foreach (var h in headers) {
+            foreach (var h in headers)
+            {
                 newNodeText.AppendLine($"{h.Key}: {h.Value}");
             }
 
@@ -269,7 +275,7 @@ namespace YarnLanguageServer
 
             var nodeTitle = commandParams.Arguments[1].ToString();
 
-            Uri yarnDocumentUri = new (yarnDocumentUriString);
+            Uri yarnDocumentUri = new(yarnDocumentUriString);
 
             TextDocumentEdit emptyResult = new TextDocumentEdit
             {
@@ -294,7 +300,8 @@ namespace YarnLanguageServer
             // First: does this file contain a node with this title?
             var nodes = yarnFile.NodeInfos.Where(n => n.Title == nodeTitle);
 
-            if (nodes.Count() != 1) {
+            if (nodes.Count() != 1)
+            {
                 // We need precisely 1 node to remove.
                 var multipleNodesMessage = $"multiple nodes named {nodeTitle} exist in this file";
                 var noNodeMessage = $"no node named {nodeTitle} exists in this file";
@@ -343,7 +350,7 @@ namespace YarnLanguageServer
 
             var headerValue = commandParams.Arguments[3].ToString();
 
-            Uri yarnDocumentUri = new (yarnDocumentUriString);
+            Uri yarnDocumentUri = new(yarnDocumentUriString);
 
             TextDocumentEdit emptyResult = new TextDocumentEdit
             {
@@ -368,7 +375,8 @@ namespace YarnLanguageServer
             // Does this file contain a node with this title?
             var nodes = yarnFile.NodeInfos.Where(n => n.Title == nodeTitle);
 
-            if (nodes.Count() != 1) {
+            if (nodes.Count() != 1)
+            {
                 // We need precisely 1 node to modify.
                 var multipleNodesMessage = $"multiple nodes named {nodeTitle} exist in this file";
                 var noNodeMessage = $"no node named {nodeTitle} exists in this file";
@@ -389,18 +397,21 @@ namespace YarnLanguageServer
             Position startPosition;
             Position endPosition;
 
-            if (existingHeader != null) {
+            if (existingHeader != null)
+            {
                 // Create an edit to replace it
                 var line = existingHeader.KeyToken.Line - 1;
                 startPosition = new Position(line, 0);
                 endPosition = new Position(line, yarnFile.GetLineLength(line));
-            } else {
+            }
+            else
+            {
                 // Create an edit to insert it immediately before the body start
                 // delimiter
                 var line = node.BodyStartLine - 1;
                 startPosition = new Position(line, 0);
                 endPosition = new Position(line, 0);
-                
+
                 // Add a newline so that the delimiter stays on its own line
                 headerText += Environment.NewLine;
             }
@@ -427,11 +438,12 @@ namespace YarnLanguageServer
 
             var yarnDocumentUriString = commandParams.Arguments[0].ToString();
 
-            Uri yarnDocumentUri = new (yarnDocumentUriString);
+            Uri yarnDocumentUri = new(yarnDocumentUriString);
 
-            var project = workspace.GetProjectsForUri(yarnDocumentUri).FirstOrDefault ();
+            var project = workspace.GetProjectsForUri(yarnDocumentUri).FirstOrDefault();
 
-            if (project == null) {
+            if (project == null)
+            {
                 // We don't have a project for this file. Return the empty collection.
                 return Task.FromResult(new Container<NodeInfo>());
             }
@@ -448,7 +460,8 @@ namespace YarnLanguageServer
 
         private static Task<CompilerOutput> CompileCurrentProject(Workspace workspace, ExecuteCommandParams<CompilerOutput> commandParams)
         {
-            if (commandParams.Arguments == null) {
+            if (commandParams.Arguments == null)
+            {
                 throw new ArgumentException(Commands.CompileCurrentProject + " expects arguments");
             }
 
@@ -495,7 +508,8 @@ namespace YarnLanguageServer
 
         private static Task<string> GenerateDialogueGraph(Workspace workspace, ExecuteCommandParams<string> commandParams)
         {
-            if (commandParams.Arguments == null) {
+            if (commandParams.Arguments == null)
+            {
                 throw new ArgumentException(Commands.CreateDialogueGraph + " expects arguments");
             }
 
@@ -527,7 +541,7 @@ namespace YarnLanguageServer
             {
                 graphString = DrawMermaid(graph, clustering);
             }
-            
+
             // then we send that back over
             return Task.FromResult(graphString);
         }
@@ -582,7 +596,7 @@ namespace YarnLanguageServer
                     {
                         continue;
                     }
-                    
+
                     // they need to be named clusterSomething to be clustered
                     sub.AppendLine($"\tsubgraph cluster{i}{{");
                     sub.Append("\t\t");
@@ -612,7 +626,7 @@ namespace YarnLanguageServer
                         links.AppendLine($"\t{connection.node} -> {link};");
                     }
                 }
-            }   
+            }
 
             sb.Append(links);
             sb.Append(sub);
@@ -624,7 +638,8 @@ namespace YarnLanguageServer
 
         private static Task<VOStringExport> ExtractVoiceoverSpreadsheet(Workspace workspace, ExecuteCommandParams<VOStringExport> commandParams)
         {
-            if (commandParams.Arguments == null) {
+            if (commandParams.Arguments == null)
+            {
                 throw new ArgumentException(Commands.ExtractSpreadsheet + " expects arguments");
             }
 
@@ -653,7 +668,7 @@ namespace YarnLanguageServer
 
             var result = Yarn.Compiler.Compiler.Compile(job);
 
-            byte[] fileData = {};
+            byte[] fileData = { };
             var errorMessages = result.Diagnostics
                 .Where(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error)
                 .Select(d => d.Message)
@@ -672,27 +687,39 @@ namespace YarnLanguageServer
                 string defaultName;
                 bool useCharacters;
 
-                if (commandParams.Arguments.Count > 1) {
+                if (commandParams.Arguments.Count > 1)
+                {
                     format = commandParams.Arguments[1].ToString();
-                } else {
+                }
+                else
+                {
                     format = "xlsx";
                 }
 
-                if (commandParams.Arguments.Count > 2) {
+                if (commandParams.Arguments.Count > 2)
+                {
                     columns = commandParams.Arguments[2].ToObject<string[]>();
-                } else {
+                }
+                else
+                {
                     columns = new[] { "id", "text" };
                 }
 
-                if (commandParams.Arguments.Count > 3) {
+                if (commandParams.Arguments.Count > 3)
+                {
                     defaultName = commandParams.Arguments[3].ToString();
-                } else {
+                }
+                else
+                {
                     defaultName = "Player";
                 }
 
-                if (commandParams.Arguments.Count > 4) {
+                if (commandParams.Arguments.Count > 4)
+                {
                     useCharacters = commandParams.Arguments[4].ToObject<bool>();
-                } else {
+                }
+                else
+                {
                     useCharacters = true;
                 }
 
