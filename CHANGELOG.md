@@ -82,7 +82,7 @@ To create a smart variable, declare it using the `declare` statement and provide
 Smart variables can be accessed anywhere a regular variable would be used:
 
 ```
-// Run some lines if the player can afford 
+// Run some lines if the player can afford a pie
 <<if $player_can_afford_pie>>
   Player: One pie, please.
   PieMaker: Certainly!
@@ -96,6 +96,9 @@ Smart variables can be accessed anywhere a regular variable would be used:
 - Language Server: Fixed character names being incorrectly recognised when the colon is not part of the line
 
 ### Removed
+
+- Support for merging `Program` objects has been removed.
+  - This functionality previously existed because in earlier versions of Yarn Spinner, each individual Yarn script was compiled into a separate Program, which was then merged. Yarn Projects now provide the capabilty to compile multiple Yarn scripts at once, and have done for some time.
 
 ## [2.3.1] 2023-07-04
 

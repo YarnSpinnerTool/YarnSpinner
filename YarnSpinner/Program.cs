@@ -81,53 +81,6 @@ namespace Yarn
             }
         }
 
-        // TODO: this behaviour belongs in the VM as a "load additional program" feature, not in the Program data object
-
-		/// <summary>
-		/// Creates a new Program by merging multiple Programs together.
-		/// </summary>
-		/// <remarks>
-		/// The new program will contain every node from every input
-		/// program.
-		/// </remarks>
-		/// <param name="programs">The Programs to combine
-		/// together.</param>
-		/// <returns>The new, combined program.</returns>
-		/// <throws cref="ArgumentException">Thrown when no Programs are
-		/// provided as parameters.</throws>
-		/// <throws cref="InvalidOperationException">Thrown when more than
-		/// one Program contains a node of the same name.</throws>
-        public static Program Combine(params Program[] programs)
-        {
-            if (programs == null)
-            {
-                throw new ArgumentNullException("At least one program must be provided");
-            }
-            if (programs.Length == 0)
-            {
-                throw new ArgumentException(nameof(programs), "At least one program must be provided.");
-            }
-
-            var output = new Program();
-
-            foreach (var otherProgram in programs)
-            {
-                foreach (var otherNodeName in otherProgram.Nodes)
-                {
-
-                    if (output.Nodes.ContainsKey(otherNodeName.Key))
-                    {
-                        throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "This program already contains a node named {0}", otherNodeName.Key));
-                    }
-
-                    output.Nodes[otherNodeName.Key] = otherNodeName.Value.Clone();
-                }
-
-                output.InitialValues.Add(otherProgram.InitialValues);
-            }
-            return output;
-        }
-
         /// <summary>
         /// Attempts to fetch a value for a variable named <paramref
         /// name="variableName"/> from this program's collection of initial

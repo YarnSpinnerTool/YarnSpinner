@@ -715,37 +715,13 @@ namespace Yarn
         /// Loads all nodes from the provided <see cref="Yarn.Program"/>.
         /// </summary>
         /// <remarks>
-        /// This method replaces any existing nodes have been loaded. If you
-        /// want to load nodes from an _additional_ Program, use the <see
-        /// cref="AddProgram(Program)"/> method.
+        /// This method replaces any existing nodes have been loaded.
         /// </remarks>
         /// <param name="program">The <see cref="Yarn.Program"/> to use.</param>
         public void SetProgram(Program program)
         {
             this.Program = program;
             this.VariableStorage.Program = program;
-        }
-
-        /// <summary>
-        /// Loads the nodes from the specified <see cref="Yarn.Program"/>, and
-        /// adds them to the nodes already loaded.
-        /// </summary>
-        /// <param name="program">The additional program to load.</param>
-        /// <remarks>
-        /// If <see cref="Program"/> is <see langword="null"/>, this method has
-        /// the effect as calling <see cref="SetProgram(Program)"/>.
-        /// </remarks>
-        public void AddProgram(Program program)
-        {
-            if (this.Program == null)
-            {
-                this.SetProgram(program);
-                return;
-            }
-            else
-            {
-                this.Program = Program.Combine(this.Program, program);
-            }
         }
 
         /// <summary>
