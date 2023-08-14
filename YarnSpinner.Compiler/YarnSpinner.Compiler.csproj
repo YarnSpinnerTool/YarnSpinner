@@ -6,6 +6,8 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoWarn>3021</NoWarn> <!--  '...' does not need a CLSCompliant attribute because the assembly does not have a CLSCompliant attribute -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
 
     <PackageId>YarnSpinner.Compiler</PackageId>
     <Version>2.0.0</Version>
