@@ -33,7 +33,7 @@ namespace TypeChecker
         /// <param name="sequence">The sequence.</param>
         /// <returns>A sequence containing non-null elements of <paramref
         /// name="sequence"/>.</returns>
-        public static IEnumerable<T> NotNull<T>(this IEnumerable<T> sequence) where T : class {
+        public static IEnumerable<T> NotNull<T>(this IEnumerable<T?> sequence) where T : class {
             foreach (var item in sequence) {
                 if (item != null) {
                     yield return item;

@@ -9,10 +9,25 @@ namespace Yarn.Compiler
     using System;
     using System.Collections.Generic;
 
+    public class ProjectDebugInfo {
+        public List<NodeDebugInfo> Nodes { get; set; } = new List<NodeDebugInfo>();
+
+        internal static ProjectDebugInfo Combine(params ProjectDebugInfo[] debugInfos)
+        {
+            var newDebugInfo = new ProjectDebugInfo();
+            foreach (var otherDebugInfo in debugInfos) {
+                newDebugInfo.Nodes.AddRange(otherDebugInfo.Nodes);
+            }
+
+            return newDebugInfo;
+            
+        }
+    }
+
     /// <summary>
     /// Contains debug information for a node in a Yarn file.
     /// </summary>
-    public class DebugInfo
+    public class NodeDebugInfo
     {
         /// <summary>
         /// Gets or sets the file that this DebugInfo was produced from.

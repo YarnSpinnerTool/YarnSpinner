@@ -83,7 +83,7 @@ namespace Yarn.Compiler
         /// <remarks>
         /// This variable is used to help produce error messages.
         /// </remarks>
-        private string currentNodeName = null;
+        private string? currentNodeName = null;
 
         /// <summary>
         /// Gets the list of diagnostics produced during type checking.
@@ -143,7 +143,7 @@ namespace Yarn.Compiler
         /// <returns>A <see cref="Declaration"/> object for <paramref
         /// name="name"/>, or <see langword="null"/> if none was
         /// found.</returns>
-        private Declaration GetKnownDeclaration(string name) => this.knownDeclarations.FirstOrDefault(d => d.Name == name);
+        private Declaration? GetKnownDeclaration(string? name) => this.knownDeclarations.FirstOrDefault(d => d.Name == name);
 
         private void AddDiagnostic(ParserRuleContext context, string message, Diagnostic.DiagnosticSeverity severity = Diagnostic.DiagnosticSeverity.Error)
         {
@@ -229,7 +229,7 @@ namespace Yarn.Compiler
             this.TypeEquations.Add(item);
         }
 
-        private TypeVariable GenerateTypeVariable(string name, ParserRuleContext context)
+        private TypeVariable GenerateTypeVariable(string? name, ParserRuleContext context)
         {
             string variableName;
             if (name != null)
@@ -268,7 +268,7 @@ namespace Yarn.Compiler
         {
             YarnSpinnerParser.VariableContext variableContext = context.variable();
             var name = variableContext?.VAR_ID()?.GetText();
-            Declaration declaration = this.GetKnownDeclaration(name);
+            Declaration? declaration = this.GetKnownDeclaration(name);
 
             // Do we already have a explicit declaration for a variable with
             // this name? It's an error if we do.
@@ -279,7 +279,7 @@ namespace Yarn.Compiler
             }
 
             // Figure out the type of the declaration; we'll determine its initial value later
-            var constantValueVisitor = new LiteralValueVisitor(context, name, this.diagnostics);
+            var constantValueVisitor = new LiteralValueVisitor(context, sourceFileName, this.diagnostics);
             
             var typeIdentifier = this.GenerateTypeVariable(name + " declaration", context);
 
@@ -321,13 +321,13 @@ namespace Yarn.Compiler
 
             declaration = new Declaration
             {
-                Name = name,
+                Name = name ?? "<unknown>",
                 Type = typeIdentifier,
                 Description = description,
                 DefaultValue = null,
                 SourceFileName = this.sourceFileName,
                 SourceNodeName = this.currentNodeName,
-                Range = GetRange(variableContext),
+                Range = variableContext != null ? GetRange(variableContext) : Range.InvalidRange,
                 IsImplicit = false,
                 IsInlineExpansion = false,
                 InitialValueParserContext = context.expression(),
@@ -546,31 +546,35 @@ namespace Yarn.Compiler
         {
             // An expression containing a value has the same type as the value
             // it contains.
-            context.Type = context.value()?.Type;
+            context.Type = context.value()?.Type ?? Types.Error;
         }
 
         public override void ExitIf_clause([NotNull] YarnSpinnerParser.If_clauseContext context)
         {
             // The condition for an if statement must be a boolean
-            this.AddEqualityConstraint(context.expression().Type, Types.Boolean, context.expression(), s => $"if statement's expression must be a {Types.Boolean}, not a {context.expression().Type.Substitute(s)}");
+            IType ifExpressionType = context.expression().Type;
+
+            this.AddEqualityConstraint(ifExpressionType, Types.Boolean, context.expression(), s => $"if statement's expression must be a {Types.Boolean}, not a {ifExpressionType.Substitute(s)}");
             base.ExitIf_clause(context);
         }
 
         public override void ExitElse_if_clause([NotNull] YarnSpinnerParser.Else_if_clauseContext context)
         {
             // The condition for an elseif statement must be a boolean
-            this.AddEqualityConstraint(context.expression().Type, Types.Boolean, context.expression(), s => $"else if statement's expression must be a {Types.Boolean}, not a {context.expression().Type.Substitute(s)}");
+            var ifExpressionType = context.expression()?.Type ?? Types.Error;
+
+            this.AddEqualityConstraint(ifExpressionType, Types.Boolean, context.expression(), s => $"else if statement's expression must be a {Types.Boolean}, not a {ifExpressionType.Substitute(s)}");
             base.ExitElse_if_clause(context);
         }
 
         public override void ExitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context)
         {
             // The type of the expression must be convertible to the type of the variable
-            IType variableType = context.variable().Type;
-            IType expressionType = context.expression().Type;
-            string variableName = context.variable().GetText();
+            IType variableType = context.variable()?.Type ?? Types.Error;
+            IType expressionType = context.expression()?.Type ?? Types.Error;
+            string variableName = context.variable()?.GetText() ?? "<unknown>";
 
-            this.AddConvertibleConstraint(context.expression().Type, context.variable().Type, context, s => $"{variableName} ({variableType.Substitute(s)}) cannot be assigned a {expressionType.Substitute(s)}");
+            this.AddConvertibleConstraint(expressionType, variableType, context, s => $"{variableName} ({variableType.Substitute(s)}) cannot be assigned a {expressionType.Substitute(s)}");
             base.ExitSet_statement(context);
         }
 
@@ -578,14 +582,14 @@ namespace Yarn.Compiler
         {
             // ValueFunc is just a wrapper around a function call, so it just
             // uses the same type variable
-            context.Type = context.function_call().Type;
+            context.Type = context.function_call()?.Type ?? Types.Error;
             base.ExitValueFunc(context);
         }
 
         public override void ExitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context)
         {
             // If we already have a declaration for this function, then use information from that
-            string functionName = context.FUNC_ID().GetText();
+            string? functionName = context.FUNC_ID()?.GetText();
             var functionDecl = this.GetKnownDeclaration(functionName);
 
             FunctionType functionType;
@@ -599,7 +603,7 @@ namespace Yarn.Compiler
 
                 int count = 1;
                 foreach (var expression in context.expression()) {
-                    var parameterType = this.GenerateTypeVariable($"{context.FUNC_ID()} param {count}", context);
+                    var parameterType = this.GenerateTypeVariable($"{functionName} param {count}", context);
                     functionType.AddParameter(parameterType);
 
                     count++;
@@ -607,7 +611,7 @@ namespace Yarn.Compiler
 
                 functionDecl = new Declaration
                 {
-                    Name = functionName,
+                    Name = functionName ?? "<unknown>",
                     IsImplicit = true,
                     SourceFileName = this.sourceFileName,
                     Range = GetRange(context),
@@ -621,7 +625,7 @@ namespace Yarn.Compiler
 
             context.Type = this.GenerateTypeVariable(null, context);
 
-            int actualParameters = context.expression().Count();
+            int actualParameters = context.expression()?.Count() ?? 0;
             int expectedParameters = functionType.Parameters.Count();
 
             // Check to see if we have the expected number of parameters
@@ -674,7 +678,7 @@ namespace Yarn.Compiler
         {
             if (context.expression() != null) {
                 // The type of the expression must resolve to a string.
-                this.AddEqualityConstraint(context.expression()?.Type,
+                this.AddEqualityConstraint(context.expression()?.Type ?? Types.Error,
                     Types.String,
                     context,
                     s => $"jump statement's expression must be a {Types.String}, not a {context.expression().Type.Substitute(s)}");
@@ -779,7 +783,7 @@ namespace Yarn.Compiler
                     // The type is not one of our allowed ones! That's not
                     // allowed. Generate a diagnostic and return without
                     // registering the type.
-                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"Enum raw values must be {string.Join(" or ", (IEnumerable<TypeBase>)permittedRawTypes)}, not {rawType}"));
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"Enum raw values must be {string.Join(" or ", (IEnumerable<TypeBase?>)permittedRawTypes)}, not {rawType}"));
                     return;
                 }
 
@@ -804,7 +808,7 @@ namespace Yarn.Compiler
                 }
 
                 // Next: all cases must have a unique value.
-                var valueGroups = context.enum_case_statement().GroupBy(c => c.RawValue.InternalValue);
+                var valueGroups = context.enum_case_statement().GroupBy(c => c.RawValue?.InternalValue);
 
                 var anyDuplicateValues = false;
 
@@ -817,7 +821,7 @@ namespace Yarn.Compiler
                         anyDuplicateValues = true;
                         foreach (var duplicateCase in group)
                         {
-                            this.diagnostics.Add(new Diagnostic(this.sourceFileName, duplicateCase, $"Enum case {@duplicateCase.name.Text} must have a unique raw value ({duplicateCase.RawValue.InternalValue} is used by {group.Count() - 1} other case(s).)"));
+                            this.diagnostics.Add(new Diagnostic(this.sourceFileName, duplicateCase, $"Enum case {@duplicateCase.name.Text} must have a unique raw value ({duplicateCase.RawValue?.InternalValue} is used by {group.Count() - 1} other case(s).)"));
                         }
                     }
                 }
@@ -869,7 +873,7 @@ namespace Yarn.Compiler
                     @case.name.Text,
                     new ConstantTypeProperty(
                         newEnumType,
-                        @case.RawValue.InternalValue,
+                        @case.RawValue?.InternalValue,
                         @case.Description));
             }
 
@@ -980,10 +984,17 @@ namespace Yarn.Compiler
             }
         }
 
-        internal static IEnumerable<Declaration> GetDependenciesForVariable(Declaration startDecl, IDictionary<string, Declaration> decls, out Diagnostic loopError)
+        internal static IEnumerable<Declaration> GetDependenciesForVariable(Declaration startDecl, IDictionary<string, Declaration> decls, out Diagnostic? loopError)
         {
             var dependencies = new HashSet<Declaration>();
             var searchStack = new Stack<ParserRuleContext>();
+
+            if (startDecl.InitialValueParserContext == null) {
+                // This declaration has no initial value parse context. It therefore doesn't reference any other variables.
+                loopError = null;
+                return dependencies;
+            }
+
             searchStack.Push(startDecl.InitialValueParserContext);
 
             while (searchStack.Count > 0)
@@ -1001,7 +1012,7 @@ namespace Yarn.Compiler
                         {
                             // We've found a dependency loop!
                             loopError = new Diagnostic(startDecl.SourceFileName, variable, $"Smart variables cannot contain reference loops (referencing {variable.GetTextWithWhitespace()} here creates a loop for the smart variable {startDecl.Name})");
-                            return null;
+                            return Enumerable.Empty<Declaration>();
                         }
 
                         // Add this variable to the set of dependencies of
@@ -1010,6 +1021,10 @@ namespace Yarn.Compiler
 
                         if (dependencyDecl.IsInlineExpansion)
                         {
+                            if (dependencyDecl.InitialValueParserContext == null) {
+                                throw new InvalidOperationException($"Internal error: {dependencyDecl} was marked as being a smart variable, but it has no {nameof(dependencyDecl.InitialValueParserContext)}");
+                            }
+
                             // Add this smart variable's definition to our search.
                             searchStack.Push(dependencyDecl.InitialValueParserContext);
                         }
@@ -1025,7 +1040,7 @@ namespace Yarn.Compiler
                 var childContexts = item.children
                     .Where(tree => tree.Payload is ParserRuleContext)
                     .Select(tree => tree.Payload as ParserRuleContext)
-                    .Where(tree => tree != null);
+                    .NotNull();
 
                 foreach (var child in childContexts)
                 {
@@ -1036,15 +1051,6 @@ namespace Yarn.Compiler
             loopError = null;
             return dependencies;
         }
-
-        /// <summary>
-        /// Performs a depth-first search on an expression, expanding any smart
-        /// variables encountered, and returns true if a loop is found.
-        /// </summary>
-        /// <param name="context">An expression to check for loops.</param>
-        /// <param name="decls">A dictionary containing smart variable
-        /// declarations.</param>
-        /// <returns><see langword="true"/> if a loop was discovered.</returns>
     }
 
     /// <summary>
@@ -1095,7 +1101,7 @@ namespace Yarn.Compiler
                     var childContexts = item.children
                         .Where(tree => tree.Payload is ParserRuleContext)
                         .Select(tree => tree.Payload as ParserRuleContext)
-                        .Where(tree => tree != null);
+                        .NotNull();
 
                     foreach (var child in childContexts)
                     {
@@ -1122,25 +1128,25 @@ namespace Yarn.Compiler
         public partial class ExpressionContext : ITypedContext
         {
             /// <inheritdoc/>
-            public IType Type { get; set; }
+            public IType Type { get; set; } = Types.Error;
         }
 
         public partial class ValueContext : ITypedContext
         {
             /// <inheritdoc/>
-            public IType Type { get; set; }
+            public IType Type { get; set; } = Types.Error;
         }
 
         public partial class VariableContext : ITypedContext
         {
             /// <inheritdoc/>
-            public IType Type { get; set; }
+            public IType Type { get; set; } = Types.Error;
         }
 
         public partial class Function_callContext : ITypedContext
         {
             /// <inheritdoc/>
-            public IType Type { get; set; }
+            public IType Type { get; set; } = Types.Error;
         }
 
         public partial class Enum_case_statementContext : ParserRuleContext {
@@ -1149,12 +1155,12 @@ namespace Yarn.Compiler
             /// Gets or sets the 'raw value' of this enum case, which is
             /// the underlying value that this enum represents.
             /// </summary>
-            internal Yarn.Value RawValue { get; set; }
+            internal Yarn.Value? RawValue { get; set; }
 
             /// <summary>
             /// Gets or sets the descriptive text for this enum case.
             /// </summary>
-            internal string Description { get; set; }
+            internal string? Description { get; set; }
         }
     }
 }

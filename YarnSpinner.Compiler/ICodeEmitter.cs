@@ -6,7 +6,7 @@ namespace Yarn.Compiler
 
     internal interface ICodeEmitter
     {
-        Node CurrentNode { get; }
+        Node? CurrentNode { get; }
         IDictionary<string, Declaration> VariableDeclarations { get; }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Yarn.Compiler
         /// <param name="commentary">Any additional text to append to the
         /// end of the label.</param>
         /// <returns>The new label name.</returns>
-        string RegisterLabel(string commentary = null);
+        string RegisterLabel(string? commentary = null);
 
         void AddLabel(string name, int position);
     }

@@ -12,6 +12,8 @@ namespace Yarn.Compiler
     [System.Serializable]
     public class Range
     {
+        public static readonly Range InvalidRange = new Range(-1, -1, -1, -1);
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Range"/> class, given
         /// start and end information.
@@ -82,6 +84,12 @@ namespace Yarn.Compiler
                 return $"{this.Start}-{this.End}";
             }
         }
+
+        public bool IsValid {
+            get {
+                return this.Start.IsValid && this.End.IsValid && this.End >= this.Start;
+            }
+        }
     }
 
     /// <summary>
@@ -100,6 +108,12 @@ namespace Yarn.Compiler
         /// </summary>
         public int Character { get; set; } = -1;
 
+        /// <summary>
+        /// Gets a value indicating whether this position has a zero or positive
+        /// line and character number.
+        /// </summary>
+        public bool IsValid => this.Line >= 0 && this.Character >= 0;
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -117,54 +131,20 @@ namespace Yarn.Compiler
             return hashCode;
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"{this.Line}:{this.Character}";
         }
-    }
 
-    /// <summary>
-    /// Represents a potential type error diagnostic message.
-    /// </summary>
-    /// <remarks>
-    /// Because a variable can be declared in a scope different from the current yarn file, or even externally, when we first hit upon any variables of which we don't know the type of we create a deferred diagnostic.
-    /// The idea being that we are hoping another file or step will give the information needed to resolved the type.
-    /// Later once the compiler has finished parsing every file we can see if any of these weren't resolved.
-    /// If they were not they will be promoted into a full diagnostic and presented to the user.
-    /// </remarks>
-    public class DeferredTypeDiagnostic
-    {
-        /// <summary>
-        /// The name of the variable who's type error is being deferred
-        /// </summary>
-        public string Name { get; internal set; }
-        /// <summary>
-        /// The <see cref="Diagnostic"/> that has been deferred.
-        /// </summary>
-        public Diagnostic diagnostic { get; set; }
-        
-        /// <summary>
-        /// Convenience method for constructing new deferred type diagnostics
-        /// </summary>
-        /// <param name="name">The name of the variable</param>
-        /// <param name="diagnostic">The diagnostic that has been deferred</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
-        public static DeferredTypeDiagnostic CreateDeferredTypeDiagnostic(string name, Diagnostic diagnostic)
-        {
-            if (string.IsNullOrEmpty(name))
-            {
-                throw new ArgumentException($"'{nameof(name)}' cannot be null or empty.", nameof(name));
-            }
-
-            return new DeferredTypeDiagnostic
-            {
-                Name = name,
-                diagnostic = diagnostic,
-            };
+        public static bool operator >=(Position a, Position b) {
+            return a.Line >= b.Line && a.Character >= b.Character;
+        }
+        public static bool operator <=(Position a, Position b) {
+            return a.Line <= b.Line && a.Character <= b.Character;
         }
     }
-    
+
     /// <summary>
     /// Represents a variable declaration
     /// </summary>
@@ -174,7 +154,7 @@ namespace Yarn.Compiler
         /// <summary>
         /// Gets the name of this Declaration.
         /// </summary>
-        public string Name { get; internal set; }
+        public string Name { get; internal set; } = "<unknown>";
 
         /// <summary>
         /// Creates a new instance of the <see cref="Declaration"/> class,
@@ -189,7 +169,7 @@ namespace Yarn.Compiler
         /// declaration.</param>
         /// <returns>A new instance of the <see cref="Declaration"/>
         /// class.</returns>
-        public static Declaration CreateVariable(string name, IType type, IConvertible defaultValue, string description = null)
+        public static Declaration CreateVariable(string name, IType type, IConvertible defaultValue, string? description = null)
         {
             if (type is null)
             {
@@ -221,13 +201,13 @@ namespace Yarn.Compiler
         /// value has been specified in code or is available from a <see
         /// cref="Dialogue"/>'s <see cref="IVariableStorage"/>.
         /// </summary>
-        public IConvertible DefaultValue { get; internal set; }
+        public IConvertible? DefaultValue { get; internal set; }
 
         /// <summary>
         /// Gets a string describing the purpose of this <see
         /// cref="Declaration"/>.
         /// </summary>
-        public string Description { get; internal set; }
+        public string? Description { get; internal set; }
 
         /// <summary>
         /// Gets the name of the file in which this Declaration was found.
@@ -236,7 +216,7 @@ namespace Yarn.Compiler
         /// If this <see cref="Declaration"/> was not found in a Yarn
         /// source file, this will be <see cref="ExternalDeclaration"/>.
         /// </remarks>
-        public string SourceFileName { get; internal set; }
+        public string SourceFileName { get; internal set; } = ExternalDeclaration;
 
         /// <summary>
         /// Gets the name of the node in which this Declaration was found.
@@ -245,7 +225,7 @@ namespace Yarn.Compiler
         /// If this <see cref="Declaration"/> was not found in a Yarn
         /// source file, this will be <see langword="null"/>.
         /// </remarks>
-        public string SourceNodeName { get; internal set; }
+        public string? SourceNodeName { get; internal set; }
 
         /// <summary>
         /// Gets the line number at which this Declaration was found in the
@@ -277,7 +257,7 @@ namespace Yarn.Compiler
         /// Gets the type of the variable, as represented by an object that
         /// implements <see cref="IType"/>.
         /// </summary>
-        public IType Type { get; internal set; }
+        public IType Type { get; internal set; } = Types.Error;
 
         /// <summary>
         /// The string used for <see cref="SourceFileName"/> if the
@@ -302,10 +282,19 @@ namespace Yarn.Compiler
         /// variable declarations, not functions (because functions don't have a
         /// value.)
         /// </summary>
-        internal YarnSpinnerParser.ExpressionContext InitialValueParserContext { get; set; }
-        
-        public IEnumerable<Declaration> Dependents { get; internal set; }
-        public IEnumerable<Declaration> Dependencies { get; internal set; }
+        internal YarnSpinnerParser.ExpressionContext? InitialValueParserContext { get; set; }
+
+        /// <summary>
+        /// Gets the collection of <see cref="Declaration"/> objects whose value
+        /// depends upon this <see cref="Declaration"/>.
+        /// </summary>
+        public IEnumerable<Declaration> Dependents { get; internal set; } = Array.Empty<Declaration>();
+
+        /// <summary>
+        /// Gets the collection of <see cref="Declaration"/> objects that this
+        /// <see cref="Declaration"/> depends upon the value of.
+        /// </summary>
+        public IEnumerable<Declaration> Dependencies { get; internal set; } = Array.Empty<Declaration>();
 
         /// <summary>
         /// Gets a value indicating whether this Declaration represents a

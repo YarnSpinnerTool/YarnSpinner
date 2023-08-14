@@ -21,12 +21,12 @@ namespace Yarn.Compiler
     {
         private ICodeEmitter compiler;
 
-        internal string trackingEnabled = null;
+        internal string? trackingVariableName = null;
 
-        public CodeGenerationVisitor(ICodeEmitter compiler, string trackingEnabled)
+        public CodeGenerationVisitor(ICodeEmitter compiler, string? trackingVariableName)
         {
             this.compiler = compiler;
-            this.trackingEnabled = trackingEnabled;
+            this.trackingVariableName = trackingVariableName;
         }
 
         private int GenerateCodeForExpressionsInFormattedText(IList<IParseTree> nodes)
@@ -69,6 +69,10 @@ namespace Yarn.Compiler
             //
             // <<if true>> Mae: here's a line <<endif>>
 
+            if (compiler.CurrentNode == null) {
+                throw new InvalidOperationException($"Internal error: {nameof(compiler.CurrentNode)} was null when generating code for a line expression");
+            }
+
             // Get the lineID for this string from the hashtags
             var lineID = Compiler.GetLineID(context);
             Compiler.TryGetOnceHashtag(context.hashtag(), out var onceHashtag);
@@ -89,7 +93,7 @@ namespace Yarn.Compiler
 
             string onceVariableName = Compiler.GetContentViewedVariableName(lineID);
 
-            if (generatesHashtagCheckCode) {
+            if (generatesHashtagCheckCode && onceHashtag != null) {
                 // Get the value of the variable
                 this.compiler.Emit(OpCode.PushVariable, onceHashtag.Start, new Operand(onceVariableName));
 
@@ -108,7 +112,7 @@ namespace Yarn.Compiler
 
             if (generatesHashtagSetCode) {
                 // Generate the code that marks that we've seen this line.
-                this.compiler.Emit(OpCode.PushBool, onceHashtag.Start, new Operand(true));
+                this.compiler.Emit(OpCode.PushBool, onceHashtag!.Start, new Operand(true));
                 this.compiler.Emit(OpCode.StoreVariable, onceHashtag.Start, new Operand(onceVariableName));
                 this.compiler.Emit(OpCode.Pop);
             }
@@ -121,7 +125,7 @@ namespace Yarn.Compiler
 
             // Finally, if we were generating code for checking and skipping the
             // line, create the label to jump to
-            if (generatesHashtagCheckCode) {
+            if (generatesHashtagCheckCode && onceHashtag != null) {
                 this.compiler.AddLabel(endOfConditionLabel, this.compiler.CurrentNode.Instructions.Count);
                 this.compiler.Emit(OpCode.Pop, onceHashtag.Start);
             }
@@ -274,7 +278,7 @@ namespace Yarn.Compiler
             return 0;
         }
 
-        private void GenerateClause(string jumpLabel, ParserRuleContext clauseContext, YarnSpinnerParser.StatementContext[] children, YarnSpinnerParser.ExpressionContext expression)
+        private void GenerateClause(string jumpLabel, ParserRuleContext clauseContext, YarnSpinnerParser.StatementContext[] children, YarnSpinnerParser.ExpressionContext? expression)
         {
             string endOfClauseLabel = this.compiler.RegisterLabel("skipclause");
 
@@ -900,9 +904,9 @@ namespace Yarn.Compiler
         // its name.
         public override int VisitJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context)
         {
-            if (trackingEnabled != null)
+            if (trackingVariableName != null)
             {
-                GenerateTrackingCode(trackingEnabled);
+                GenerateTrackingCode(trackingVariableName);
             }
 
             compiler.Emit(OpCode.PushString, context.destination, new Operand(context.destination.Text));
@@ -915,9 +919,9 @@ namespace Yarn.Compiler
         // expression that resolves to a node's name.
         public override int VisitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
         {
-            if (trackingEnabled != null)
+            if (trackingVariableName != null)
             {
-                GenerateTrackingCode(trackingEnabled);
+                GenerateTrackingCode(trackingVariableName);
             }
 
             // Evaluate the expression, and jump to the result on the stack.

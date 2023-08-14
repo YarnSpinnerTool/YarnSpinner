@@ -6,17 +6,28 @@
 
 namespace Yarn.Compiler
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
+
+    public class FileCompilationResult {
+        public List<Node> Nodes { get; internal set; } = new List<Node>();
+
+        public List<NodeDebugInfo> DebugInfos { get; internal set; } = new List<NodeDebugInfo>();
+
+        public List<Diagnostic> Diagnostics { get; internal set; } = new List<Diagnostic>();
+    }
+
 
     /// <summary>
     /// The result of a compilation.
     /// </summary>
     /// <remarks>
-    /// Instances of this struct are produced as a result of supplying a <see
+    /// Instances of this class are produced as a result of supplying a <see
     /// cref="CompilationJob"/> to <see
     /// cref="Compiler.Compile(CompilationJob)"/>.
     /// </remarks>
-    public struct CompilationResult
+    public class CompilationResult
     {
         /// <summary>
         /// Gets the compiled Yarn program that the <see cref="Compiler"/>
@@ -33,7 +44,7 @@ namespace Yarn.Compiler
         /// cref="CompilationJob.Type.FullCompilation"/>.
         /// </para>
         /// </remarks>
-        public Program Program { get; internal set; }
+        public Program? Program { get; internal set; }
 
         /// <summary>
         /// Gets a dictionary mapping line IDs to StringInfo objects.
@@ -45,7 +56,7 @@ namespace Yarn.Compiler
         /// the <c>#line:</c> tag, or implicitly-generated line IDs that the
         /// compiler added during compilation.
         /// </remarks>
-        public IDictionary<string, StringInfo> StringTable { get; internal set; }
+        public IDictionary<string, StringInfo>? StringTable { get; internal set; }
 
         /// <summary>
         /// Gets the collection of variable declarations that were found during
@@ -58,7 +69,7 @@ namespace Yarn.Compiler
         /// cref="CompilationJob.Type.DeclarationsOnly"/> or <see
         /// cref="CompilationJob.Type.FullCompilation"/>.
         /// </remarks>
-        public IEnumerable<Declaration> Declarations { get; internal set; }
+        public IEnumerable<Declaration> Declarations { get; internal set; } = Array.Empty<Declaration>();
 
         /// <summary>
         /// Gets a value indicating whether the compiler had to create line IDs
@@ -90,7 +101,7 @@ namespace Yarn.Compiler
         /// cref="CompilationJob.Files"/> collection), and the values are the
         /// file tags associated with that file.
         /// </remarks>
-        public Dictionary<string, IEnumerable<string>> FileTags { get; internal set; }
+        public Dictionary<string, IEnumerable<string>> FileTags { get; internal set; } = new Dictionary<string, IEnumerable<string>>();
 
         /// <summary>
         /// Gets the collection of <see cref="Diagnostic"/> objects that
@@ -109,69 +120,13 @@ namespace Yarn.Compiler
         /// Gets the collection of <see cref="DebugInfo"/> objects for each node
         /// in <see cref="Program"/>.
         /// </summary>
-        public IReadOnlyDictionary<string, DebugInfo> DebugInfo { get; internal set; }
+        [Obsolete("Use ProjectDebugInfo.Nodes")]
+        public IReadOnlyDictionary<string, NodeDebugInfo> DebugInfo => ProjectDebugInfo?.Nodes.ToDictionary(n => n.NodeName, n => n) ?? new Dictionary<string, NodeDebugInfo>();
 
         /// <summary>
-        /// Combines multiple <see cref="CompilationResult"/> objects together
-        /// into one object.
+        /// Gets the debugging information for this compiled project.
         /// </summary>
-        /// <param name="results">The compilation result objects to merge
-        /// together.</param>
-        /// <param name="stringTableManager">A string table builder containing
-        /// lines from all of the compilation results in <paramref
-        /// name="results"/>.</param>
-        /// <returns>The combined compilation result.</returns>
-        internal static CompilationResult CombineCompilationResults(IEnumerable<CompilationResult> results, StringTableManager stringTableManager)
-        {
-            var programs = new List<Program>();
-            var declarations = new List<Declaration>();
-            var tags = new Dictionary<string, IEnumerable<string>>();
-            var diagnostics = new List<Diagnostic>();
-            var nodeDebugInfos = new Dictionary<string, DebugInfo>();
-
-            foreach (var result in results)
-            {
-                programs.Add(result.Program);
-
-                if (result.Declarations != null)
-                {
-                    declarations.AddRange(result.Declarations);
-                }
-
-                if (result.FileTags != null)
-                {
-                    foreach (var kvp in result.FileTags)
-                    {
-                        tags.Add(kvp.Key, kvp.Value);
-                    }
-                }
-
-                if (result.Diagnostics != null)
-                {
-                    diagnostics.AddRange(result.Diagnostics);
-                }
-
-                if (result.DebugInfo != null)
-                {
-                    foreach (var kvp in result.DebugInfo)
-                    {
-                        nodeDebugInfos.Add(kvp.Key, kvp.Value);
-                    }
-                }
-            }
-
-            Program combinedProgram = programs.Count > 0 ? Program.Combine(programs.ToArray()) : null;
-
-            return new CompilationResult
-            {
-                Program = combinedProgram,
-                StringTable = stringTableManager.StringTable,
-                Declarations = declarations,
-                DebugInfo = nodeDebugInfos,
-                ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
-                FileTags = tags,
-                Diagnostics = diagnostics,
-            };
-        }
+        public ProjectDebugInfo? ProjectDebugInfo { get; internal set; }
+        
     }
 }

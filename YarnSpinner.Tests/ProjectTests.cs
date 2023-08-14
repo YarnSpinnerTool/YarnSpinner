@@ -306,12 +306,13 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
 
             // We should have a single DebugInfo object, because we compiled a
             // single node
-            compilationResult.DebugInfo.Should().NotBeNull();
-            compilationResult.DebugInfo.Should().ContainSingle();
 
+            compilationResult.ProjectDebugInfo.Should().NotBeNull();
+            compilationResult.ProjectDebugInfo.Nodes.Should().ContainSingle(n => n.NodeName == "DebugTesting");
+            
             // The first instruction of the only node should begin on the third
             // line
-            var firstLineInfo = compilationResult.DebugInfo.First().Value.GetLineInfo(0);
+            var firstLineInfo = compilationResult.ProjectDebugInfo.Nodes.First().GetLineInfo(0);
 
             firstLineInfo.FileName.Should().Be("input");
             firstLineInfo.NodeName.Should().Be("DebugTesting");
