@@ -42,4 +42,9 @@ public class ExampleCommands {
     [YarnCommand("instance_command_with_params")]
     public void InstanceCommandWithParams(string stringParam, int intParam) {
     }
+
+    [YarnFunction("function_with_params")]
+    public static int FunctionWithParams(int one, string two) {
+        return -1;
+    }
 }
