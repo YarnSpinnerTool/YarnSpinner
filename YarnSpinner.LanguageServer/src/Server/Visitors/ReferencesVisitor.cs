@@ -37,7 +37,8 @@ namespace YarnLanguageServer
                     visitor.Visit(yarnFileData.ParseTree);
                     return visitor.nodeInfos;
                 }
-                catch (Exception e) {
+                catch (Exception)
+                {
                     // Don't want an exception while parsing to take out the entire language server
                 }
             }
@@ -187,7 +188,7 @@ namespace YarnLanguageServer
 
 
 
-                currentNodeInfo.FunctionCalls.Add(new YarnFunctionCall
+                currentNodeInfo.FunctionCalls.Add(new YarnActionReference
                 {
                     NameToken = context.FUNC_ID().Symbol,
                     Name = context.FUNC_ID().Symbol.Text,
@@ -197,7 +198,9 @@ namespace YarnLanguageServer
                     IsCommand = false,
                     ParametersRange = parametersRange,
                 });
-            } catch (Exception e) {
+            }
+            catch (Exception)
+            {
             }
 
             return base.VisitFunction_call(context);
@@ -269,7 +272,7 @@ namespace YarnLanguageServer
                 parameterRanges[parameterCount - 1] = new Range(parameterRanges[parameterCount - 1].Start, parameterRangeEnd);
             }
 
-            var result = new YarnFunctionCall
+            var result = new YarnActionReference
             {
                 NameToken = commandName,
                 Name = commandName.Text,

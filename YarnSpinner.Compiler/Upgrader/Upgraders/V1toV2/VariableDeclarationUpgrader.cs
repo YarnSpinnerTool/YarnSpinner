@@ -1,13 +1,16 @@
-using Antlr4.Runtime;
-using Antlr4.Runtime.Misc;
-using Antlr4.Runtime.Tree;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
 
 namespace Yarn.Compiler.Upgrader
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Antlr4.Runtime;
+    using Antlr4.Runtime.Misc;
+    using Antlr4.Runtime.Tree;
+
     internal class VariableDeclarationUpgrader : ILanguageUpgrader
     {
         public const IType UndefinedType = null;
@@ -111,9 +114,12 @@ namespace Yarn.Compiler.Upgrader
                     declarationsNodeStringBuilder.Append(variableName);
                     declarationsNodeStringBuilder.Append(" = ");
 
-                    if (typeIsDefined) {
+                    if (typeIsDefined)
+                    {
                         declarationsNodeStringBuilder.Append(typesToStrings[type]);
-                    } else {
+                    }
+                    else
+                    {
                         declarationsNodeStringBuilder.Append("undefined");
                     }
                     
@@ -139,7 +145,7 @@ namespace Yarn.Compiler.Upgrader
 
         /// <summary>
         /// A Visitor that walks an expression parse tree and returns its type.
-        /// Call the <see cref="Visit"/> method to begin checking. If a single
+        /// Call the <see cref="AbstractParseTreeVisitor{Result}.Visit(Antlr4.Runtime.Tree.IParseTree)"/> method to begin checking. If a single
         /// valid type for the parse tree can't be found, a TypeException is
         /// thrown.
         /// </summary>
@@ -318,7 +324,8 @@ namespace Yarn.Compiler.Upgrader
                 {
                     IType type = potentialExpressionTypes.First();
 
-                    if (permittedTypes.Contains(type) == false) {
+                    if (permittedTypes.Contains(type) == false)
+                    {
                         // We resolved to a specific type, but this
                         // operation doesn't permit that type. This
                         // expression is therefore invalid, and therefore
@@ -328,8 +335,10 @@ namespace Yarn.Compiler.Upgrader
 
                     // Create a type binding for each variable to this
                     // type.
-                    foreach (var variableName in variableNames) {
-                        potentialTypeBindings.Add(new TypeBinding {
+                    foreach (var variableName in variableNames)
+                    {
+                        potentialTypeBindings.Add(new TypeBinding
+                        {
                             Type = type,
                             VariableName = variableName,
                         });
@@ -538,7 +547,6 @@ namespace Yarn.Compiler.Upgrader
 
                 return valueType;
             }
-
         }
     }
 
@@ -567,8 +575,10 @@ namespace Yarn.Compiler.Upgrader
             Add(item);
         }
 
-        public void Add(IEnumerable<T> items) {
-            foreach (var item in items) {
+        public void Add(IEnumerable<T> items)
+        {
+            foreach (var item in items)
+            {
                 Add(item);
             }
         }

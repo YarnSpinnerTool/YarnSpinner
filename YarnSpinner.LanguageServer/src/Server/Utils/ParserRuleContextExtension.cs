@@ -6,10 +6,12 @@ namespace YarnLanguageServer
     internal static class ParserRuleContextExtension
     {
         /// <summary>
-        /// Returns the original text of this <see cref="ExpressionContext"/>, including all
-        /// whitespace, comments, and other information that the parser
-        /// would otherwise not include.
+        /// Returns the original text of this <see cref="ExpressionContext"/>,
+        /// including all whitespace, comments, and other information that the
+        /// parser would otherwise not include.
         /// </summary>
+        /// <param name="context">The parser context to get the original text
+        /// for.</param>
         /// <returns>The original text of this expression.</returns>
         public static string GetTextWithWhitespace(this ParserRuleContext context)
         {

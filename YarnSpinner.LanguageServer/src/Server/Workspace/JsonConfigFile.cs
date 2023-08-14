@@ -5,49 +5,43 @@ using Newtonsoft.Json;
 
 namespace YarnLanguageServer
 {
-    internal class JsonConfigFile : IDefinitionsProvider
+    internal class JsonConfigFile : IActionSource
     {
-        public Dictionary<string, RegisteredDefinition> Definitions { get; set; }
+        private readonly List<Action> actions = new List<Action>();
 
-        public JsonConfigFile(string text, Uri uri, Workspace workspace, bool IsBuiltIn)
+        public JsonConfigFile(string text, bool isBuiltIn)
         {
-            Definitions = new Dictionary<string, RegisteredDefinition>();
             try
             {
                 var parsedConfig = JsonConvert.DeserializeObject<JsonConfigFormat>(text);
-                parsedConfig.Functions?.ForEach(f => RegisterDefinition(f, false,uri, workspace, IsBuiltIn));
-                parsedConfig.Commands?.ForEach(f => RegisterDefinition(f, true, uri, workspace, IsBuiltIn));
+
+                foreach (var definition in parsedConfig.Functions) {
+                    Action action = definition.ToAction();
+                    action.IsBuiltIn = isBuiltIn;
+                    action.Type = ActionType.Function;
+                    actions.Add(action);
+                }
+
+                foreach (var definition in parsedConfig.Commands) {
+                    Action action = definition.ToAction();
+                    action.IsBuiltIn = isBuiltIn;
+                    action.Type = ActionType.Command;
+                    actions.Add(action);
+                }
             }
-            catch (Exception) { }
+            catch (Exception) {
+            }
         }
 
-        private void RegisterDefinition(RegisteredDefinition f, bool isCommand, Uri uri, Workspace workspace, bool IsBuiltIn)
+        public IEnumerable<Action> GetActions()
         {
-            f.DefinitionFile = uri;
-            f.IsCommand = isCommand;
-            f.IsBuiltIn = IsBuiltIn;
-            f.Priority = 0;
-            if (f.Parameters != null && !f.MinParameterCount.HasValue)
-            {
-                f.MinParameterCount = f.Parameters.Count(p => p.DefaultValue == null && !p.IsParamsArray);
-            }
-
-            if (f.Parameters != null && !f.MaxParameterCount.HasValue)
-            {
-                f.MaxParameterCount = f.Parameters.Any(p => p.IsParamsArray) ? null : f.Parameters.Count();
-            }
-
-            if (string.IsNullOrEmpty(f.Language)) { f.Language = "text"; }
-
-            if (!workspace.Configuration.CSharpLookup && f.Language == Utils.CSharpLanguageID) { return; }
-            Definitions[f.YarnName] = f;
-
+            return actions;
         }
 
         internal class JsonConfigFormat
         {
-            public List<RegisteredDefinition> Functions { get; set; }
-            public List<RegisteredDefinition> Commands { get; set; }
+            public List<RegisteredDefinition> Functions { get; set; } = new ();
+            public List<RegisteredDefinition> Commands { get; set; } = new ();
         }
     }
 }

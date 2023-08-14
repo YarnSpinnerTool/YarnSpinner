@@ -1,13 +1,13 @@
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
+using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Workspace;
 using Xunit;
 using Xunit.Abstractions;
-using YarnLanguageServer;
-using System.Linq;
 
 namespace YarnLanguageServer.Tests;
 
@@ -24,7 +24,7 @@ public class CommandTests : LanguageServerTestsBase
     {
         // Set up the server
         var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-        var filePath = Path.Combine(PathToTestData, "Test.yarn");
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
         var result = await client.ExecuteCommand(new ExecuteCommandParams<Container<NodeInfo>>
         {
@@ -70,13 +70,13 @@ public class CommandTests : LanguageServerTestsBase
     {
         // Set up the server
         var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-        var filePath = Path.Combine(PathToTestData, "Test.yarn");
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
         NodesChangedParams? nodeInfo;
 
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
-        nodeInfo.Nodes.Should().HaveCount(2, "because the file has two nodes");
+        nodeInfo.Nodes.Should().HaveCount(3, "because the file has three nodes");
 
         var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
         {
@@ -95,9 +95,9 @@ public class CommandTests : LanguageServerTestsBase
 
         ChangeTextInDocument(client, result);
 
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
-        nodeInfo.Nodes.Should().HaveCount(3, "because we added a node");
+        nodeInfo.Nodes.Should().HaveCount(4, "because we added a node");
         nodeInfo.Nodes.Should()
             .Contain(n => n.Title == "Node",
                 "because the new node should be called Title")
@@ -109,15 +109,16 @@ public class CommandTests : LanguageServerTestsBase
     [Fact]
     public async Task Server_OnRemoveNodeCommand_ReturnsTextEdit()
     {
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+
+        Task<NodesChangedParams> getInitialNodesChanged = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
+
         // Set up the server
         var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-        var filePath = Path.Combine(PathToTestData, "Test.yarn");
 
-        NodesChangedParams? nodeInfo;
+        NodesChangedParams? nodeInfo = await getInitialNodesChanged;
 
-        nodeInfo = await GetNodesChangedNotificationAsync();
-
-        nodeInfo.Nodes.Should().HaveCount(2, "because the file has two nodes");
+        nodeInfo.Nodes.Should().HaveCount(3, "because the file has three nodes");
 
         var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
         {
@@ -134,9 +135,9 @@ public class CommandTests : LanguageServerTestsBase
 
         ChangeTextInDocument(client, result);
 
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
-        nodeInfo.Nodes.Should().HaveCount(1, "because we removed a node");
+        nodeInfo.Nodes.Should().HaveCount(2, "because we removed a node");
         nodeInfo.Nodes.Should()
             .Contain(n => n.Title == "Node2",
                 "because the only remaining node is Node2");
@@ -145,13 +146,13 @@ public class CommandTests : LanguageServerTestsBase
     [Fact]
     public async Task Server_OnUpdateHeaderCommand_ReturnsTextEditCreatingHeader()
     {
+        var getInitialNodesChanged = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+        Task<NodesChangedParams> task = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(getInitialNodesChanged));
+
         // Set up the server
         var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-        var filePath = Path.Combine(PathToTestData, "Test.yarn");
 
-        NodesChangedParams? nodeInfo;
-
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        NodesChangedParams? nodeInfo = await task;
 
         nodeInfo
             .Nodes.Should()
@@ -165,7 +166,7 @@ public class CommandTests : LanguageServerTestsBase
         {
             Command = Commands.UpdateNodeHeader,
             Arguments = new JArray {
-                filePath,
+                getInitialNodesChanged,
                 "Start", // this node doesn't have this header, so we're creating it
                 "position",
                 "100,100"
@@ -174,11 +175,11 @@ public class CommandTests : LanguageServerTestsBase
 
         result.Should().NotBeNull();
         result.Edits.Should().NotBeNullOrEmpty();
-        result.TextDocument.Uri.ToString().Should().Be("file://" + filePath);
+        result.TextDocument.Uri.ToString().Should().Be("file://" + getInitialNodesChanged);
 
         ChangeTextInDocument(client, result);
 
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(getInitialNodesChanged));
 
         nodeInfo.Nodes.Should()
             .Contain(n => n.Title == "Start")
@@ -193,13 +194,13 @@ public class CommandTests : LanguageServerTestsBase
     [Fact]
     public async Task Server_OnUpdateHeaderCommand_ReturnsTextEditModifyingHeader()
     {
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+        Task<NodesChangedParams> getInitialNodesChanged = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
+
         // Set up the server
         var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-        var filePath = Path.Combine(PathToTestData, "Test.yarn");
 
-        NodesChangedParams? nodeInfo;
-
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        NodesChangedParams? nodeInfo = await getInitialNodesChanged;
 
         const string headerName = "tags";
         const string headerOldValue = "wow incredible";
@@ -231,7 +232,7 @@ public class CommandTests : LanguageServerTestsBase
 
         ChangeTextInDocument(client, result);
 
-        nodeInfo = await GetNodesChangedNotificationAsync();
+        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
         nodeInfo.Nodes.Should()
             .Contain(n => n.Title == "Node2")
@@ -242,5 +243,69 @@ public class CommandTests : LanguageServerTestsBase
             .Which.Value.Should()
             .Be(headerNewValue,
                 "because we specified this value");
+    }
+
+    [Fact]
+    public async Task Server_OnGettingVoiceoverSpreadsheet_ReturnsData()
+    {
+        // Given
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+
+        // When
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<VOStringExport>
+        {
+            Command = Commands.ExtractSpreadsheet,
+            Arguments = new JArray(
+                DocumentUri.FromFileSystemPath(filePath).ToString()
+            )
+        });
+
+        // Then
+        result.Errors.Should().BeEmpty();
+        result.File.Should().NotBeEmpty();
+    }
+
+    [Fact]
+    public async Task Server_OnGettingGraph_ReturnsData()
+    {
+        // Given
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+
+        // When
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<string>
+        {
+            Command = Commands.CreateDialogueGraph,
+            Arguments = new JArray(
+                DocumentUri.FromFileSystemPath(filePath).ToString(),
+                "dot",
+                "true"
+            )
+        });
+
+        // Then
+        result.Should().NotBeEmpty();
+    }
+
+    [Fact]
+    public async Task Server_OnCompilingProject_GetsResult()
+    {
+        // Given
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+
+        // When
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<CompilerOutput>
+        {
+            Command = Commands.CompileCurrentProject,
+            Arguments = new JArray(
+                DocumentUri.FromFileSystemPath(filePath).ToString()
+            )
+        });
+
+        // Then
+        result.Errors.Should().BeEmpty();
+        result.Data.Should().NotBeEmpty();
     }
 }

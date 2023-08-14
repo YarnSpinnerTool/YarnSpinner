@@ -4,10 +4,18 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 
+using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
+
 namespace YarnLanguageServer
 {
     public static class TextCoordinateConverter
     {
+        /// <summary>
+        /// Gets the indices at which lines start in <paramref name="text"/>.
+        /// </summary>
+        /// <param name="text">The text to get line starts for.</param>
+        /// <returns>A collection of indices indicating where a new line
+        /// starts.</returns>
         public static ImmutableArray<int> GetLineStarts(string text)
         {
             var lineStarts = new List<int> { 0 };
@@ -98,6 +106,19 @@ namespace YarnLanguageServer
             }
 
             return ~start;
+        }
+
+        /// <summary>
+        /// Gets a <see cref="Range"/> for a given <see
+        /// cref="Microsoft.CodeAnalysis.Text.TextSpan"/>.
+        /// </summary>
+        /// <param name="span">The text span to get a range for.</param>
+        /// <param name="lineStarts">The line start information to use.</param>
+        /// <returns>The <see cref="Range"/>.</returns>
+        public static Range GetRange(Microsoft.CodeAnalysis.Text.TextSpan span, IReadOnlyList<int> lineStarts) {
+            var start = GetPosition(lineStarts, span.Start);
+            var end = GetPosition(lineStarts, span.End);
+            return new Range(start, end);
         }
     }
 }

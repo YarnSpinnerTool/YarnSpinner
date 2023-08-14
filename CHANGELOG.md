@@ -88,6 +88,17 @@ Smart variables can be accessed anywhere a regular variable would be used:
   PieMaker: Certainly!
 <<endif>>
 ```
+### Changed
+
+- Fixed a bug in the language server that would cause it to crash when opening a workspace with no root (for example, creating a new window in Visual Studio Code and then creating a Yarn file, without ever saving anything to disk.)
+- Language Server: Fixed an issue where workspaces where no Yarn Projects exist on disk would fail to attach Yarn files to the workspace's implicit Yarn Project.
+- Language Server: Improved the code-completion behaviour to provide better filtering when offering command completions, in both jump commands and custom commands.
+- Language Server: Fixed character names being incorrectly recognised when the colon is not part of the line
+
+### Removed
+
+## [2.3.1] 2023-07-04
+
 #### Yarn Projects
 
 - Added support for JSON-based Yarn Project files.
@@ -194,10 +205,9 @@ dialogue.ContentSaliencyStrategy = new Yarn.Saliency.BestLeastRecentlyViewedSali
   - `NodeStartHandler`
   - `NodeCompleteHandler`
   - `DialogueCompleteHandler`
-  - Note that `OptionsCompleteHandler` remains _not_ optional, and is required to be set.
+  - Note that `OptionsHandler` remains _not_ optional, and is required to be set.
 - `Dialogue` now calls `DialogueCompleteHandler` when the `Stop()` method is called.
-
-### Removed
+- VM now nullifies it's state when stopped.
 
 ## [2.3.0] 2023-03-06
 

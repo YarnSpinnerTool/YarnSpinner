@@ -10,21 +10,31 @@
         "Commands": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Command"
+            "$ref": "#/definitions/Action"
           },
           "description": "List of commands to make available in Yarn scripts"
         },
         "Functions": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Command"
+            "$ref": "#/definitions/Action"
           },
           "description": "List of functions to make available in Yarn scripts"
         }
       },
       "title": "Ysls"
     },
-    "Command": {
+    "Type": {
+      "description": "A Yarn type.",
+      "type": "string",
+          "anyOf": [
+            {"pattern": "string"},
+            {"pattern": "number"},
+            {"pattern": "boolean"},
+            {"pattern": "any"}
+          ]
+    },
+    "Action": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -60,6 +70,9 @@
             "$ref": "#/definitions/Parameter"
           },
           "description": "Method parameters.\nNote that if you are overriding information for a method found via parsing code, setting this in json will completely override that parameter information."
+        },
+        "ReturnType": {
+          "$ref": "#/definitions/Type"
         }
       },
       "required": [
@@ -76,9 +89,7 @@
           "type": "string"
         },
         "Type": {
-          "type": "string",
-          "description": "This is just for editor purposes. This extension does not validate types (yet).",
-          "examples": [ "Any", "Number", "String", "float" ]
+          "$ref": "#/definitions/Type"
         },
         "Documentation": {
           "type": "string",

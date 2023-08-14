@@ -35,7 +35,7 @@ namespace YarnLanguageServer.Tests
         {
             // Set up the server
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-            var filePath = Path.Combine(PathToTestData, "Test.yarn");
+            var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
             // Start typing a command
             ChangeTextInDocument(client, filePath, new Position(8, 0), "<<");
@@ -75,9 +75,13 @@ namespace YarnLanguageServer.Tests
         [Fact]
         public async Task Server_OnOpeningDocument_SendsNodesChangedNotification()
         {
+            Task<NodesChangedParams> getInitialNodesChanged = GetNodesChangedNotificationAsync(
+                n => n.Uri.ToString().Contains(Path.Combine("Project1", "Test.yarn"))
+            );
+
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
 
-            var nodeInfo = await GetNodesChangedNotificationAsync();
+            var nodeInfo = await getInitialNodesChanged;
 
             nodeInfo.Should().NotBeNull("because this notification always carries a parameters object");
             nodeInfo.Nodes.Should().NotBeNullOrEmpty("because this notification always contains a list of node infos, even if it's empty");
@@ -98,52 +102,71 @@ namespace YarnLanguageServer.Tests
         [Fact]
         public async Task Server_OnChangingDocument_SendsNodesChangedNotification()
         {
+            var getInitialNodesChanged = GetNodesChangedNotificationAsync((nodesResult) => 
+                nodesResult.Uri.AbsolutePath.Contains(Path.Combine("Project1", "Test.yarn"))
+            );
+
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
             
-            var filePath = Path.Combine(PathToTestData, "Test.yarn");
+            var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
             NodesChangedParams? nodeInfo;
-            
-            nodeInfo = await GetNodesChangedNotificationAsync();
+
+            // Await a notification that nodes changed in this file
+            nodeInfo = await getInitialNodesChanged;
 
             nodeInfo.Uri.ToString().Should().Be("file://" + filePath, "because this is the URI of the file we opened");
 
-            nodeInfo.Nodes.Should().HaveCount(2, "because there are two nodes in the file before we make changes");
+            nodeInfo.Nodes.Should().HaveCount(3, "because there are three nodes in the file before we make changes");
 
-            ChangeTextInDocument(client, filePath, new Position(19, 0), "title: Node3\n---\n===\n");
+            var nodesChanged = GetNodesChangedNotificationAsync((nodesResult) =>
+                nodesResult.Uri.AbsolutePath.Contains(filePath)
+            );
+            ChangeTextInDocument(client, filePath, new Position(20, 0), "title: Node3\n---\n===\n");
+            nodeInfo = await nodesChanged;
 
-            nodeInfo = await GetNodesChangedNotificationAsync();
-
-            nodeInfo.Nodes.Should().HaveCount(3, "because we added a new node");
+            nodeInfo.Nodes.Should().HaveCount(4, "because we added a new node");
             nodeInfo.Nodes.Should().Contain(n => n.Title == "Node3", "because the new node we added has this title");
         }
 
         [Fact]
         public async Task Server_OnInvalidChanges_ProducesSyntaxErrors()
         {
+            var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+
+            Task<PublishDiagnosticsParams> getDiagnosticsTask = GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains(filePath));
+
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
 
             {
-                var errors = (await GetDiagnosticsAsync()).Where(d => d.Severity == DiagnosticSeverity.Error);
+                var errors = (await getDiagnosticsTask).Diagnostics.Where(d => d.Severity == DiagnosticSeverity.Error);
 
-                errors.Should().BeNullOrEmpty("because the original document contains no syntax errors");
+                errors.Should().BeNullOrEmpty("because the original project contains no syntax errors");
             }
 
             // Introduce an error
-            var filePath = Path.Combine(PathToTestData, "Test.yarn");
-            ChangeTextInDocument(client, filePath, new Position(8, 0), "<<set");
+            getDiagnosticsTask = GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains(filePath));
+
+            ChangeTextInDocument(client, filePath, new Position(9, 0), "<<set");
 
             {
-                var errors = (await GetDiagnosticsAsync()).Where(d => d.Severity == DiagnosticSeverity.Error);
+                var diagnosticsResult = await getDiagnosticsTask;
+
+                var enumerable = diagnosticsResult.Diagnostics;
+                
+                var errors = enumerable.Where(d => d.Severity == DiagnosticSeverity.Error);
 
                 errors.Should().NotBeNullOrEmpty("because we have introduced a syntax error");
             }
 
             // Remove the error
-            ChangeTextInDocument(client, filePath, new Position(8, 0), new Position(8, 5), "");
+            getDiagnosticsTask = GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains(filePath));
+            ChangeTextInDocument(client, filePath, new Position(9, 0), new Position(9, 5), "");
 
             {
-                var errors = (await GetDiagnosticsAsync()).Where(d => d.Severity == DiagnosticSeverity.Error);
+                PublishDiagnosticsParams diagnosticsResult = await getDiagnosticsTask;
+
+                var errors = diagnosticsResult.Diagnostics.Where(d => d.Severity == DiagnosticSeverity.Error);
 
                 errors.Should().BeNullOrEmpty("because the syntax error was removed");
             }
@@ -154,7 +177,7 @@ namespace YarnLanguageServer.Tests
         {
             // Set up the server
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-            var filePath = Path.Combine(PathToTestData, "Test.yarn");
+            var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
             CompletionList? completions;
 
             // The line in Test.yarn we're inserting the new jump command on.

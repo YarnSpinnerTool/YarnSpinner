@@ -126,11 +126,11 @@ namespace YarnLanguageServer
                         }
                     }
 
-                    var output = addBackInTheQuotes ? $"\"{currentComponent.ToString()}\"" : currentComponent.ToString();
+                    var output = addBackInTheQuotes ? $"\"{currentComponent}\"" : currentComponent.ToString();
 
                     var bork = new CommandTextItem(output, currentComponentOffset);
                     results.Add(bork);
-                    // results.Add(new CommandTextItem(currentComponent.ToString(), currentComponentOffset));
+                    
                     currentComponent.Clear();
                     currentComponentOffset = position + 1;
                 }

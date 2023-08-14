@@ -17,51 +17,68 @@ namespace YarnLanguageServer.Handlers
             this.workspace = workspace;
         }
 
-        public Task<SignatureHelp> Handle(SignatureHelpParams request, CancellationToken cancellationToken)
+        public Task<SignatureHelp?> Handle(SignatureHelpParams request, CancellationToken cancellationToken)
         {
-            if (workspace.YarnFiles.TryGetValue(request.TextDocument.Uri.ToUri(), out var yarnFile))
+            var uri = request.TextDocument.Uri.ToUri();
+            var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
+            var yarnFile = project?.GetFileData(uri);
+
+            if (yarnFile == null || project == null)
             {
-                (var info, var parameterIndex) = yarnFile.GetParameterInfo(request.Position);
-                if (info.HasValue)
+                return Task.FromResult<SignatureHelp?>(null);
+            }
+
+            (var info, var parameterIndex) = yarnFile.GetParameterInfo(request.Position);
+            if (info.HasValue)
+            {
+                var functionInfos = (info.Value.IsCommand ? project.Commands : project.Functions).Where(c => c.YarnName == info.Value.Name);
+                IEnumerable<SignatureInformation> results;
+                if (functionInfos.Any())
                 {
-                    var functionInfos = (info.Value.IsCommand ? workspace.GetCommands() : workspace.GetFunctions()).Where(c => c.YarnName == info.Value.Name);
-                    IEnumerable<SignatureInformation> results;
-                    if (functionInfos.Any())
+                    results = functionInfos.Where(fi => fi.Parameters != null).Select(fi =>
                     {
-                        results = functionInfos.Where(fi => fi.Parameters != null).Select(fi => new SignatureInformation
+                        string functionSeparator = fi.Type == ActionType.Command ? " " : ", ";
+
+                        string signature = string.Join(
+                            functionSeparator, fi.Parameters.Select(p => 
+                                $"{(p.DisplayDefaultValue.Any() ? "[" : string.Empty)}{p.DisplayTypeName}:{p.Name}{(p.DisplayDefaultValue.Any() ? "]" : string.Empty)}"
+                            )
+                        );
+
+                        return new SignatureInformation
                         {
-                            Label = fi.IsCommand ?
-                                $"{fi.YarnName} {string.Join(' ', fi.Parameters.Select(p => $"{(p.DefaultValue.Any()?"[":"")}{p.Type}:{p.Name}{(p.DefaultValue.Any() ? "]" : "")}"))}" :
-                                $"{fi.YarnName}( {string.Join(", ", fi.Parameters.Select(p => $"{(p.DefaultValue.Any() ? "[" : "")}{p.Type}:{p.Name}{(p.DefaultValue.Any() ? "]" : "")}"))})",
+                            Label = $"{fi.YarnName} {signature}",
                             Documentation = fi.Documentation,
                             Parameters =
-                                parameterIndex == null ? null : // only list parameters if position is inside a parameter range
-                                new Container<ParameterInformation>(fi.Parameters.Select(p =>
-                                    new ParameterInformation
-                                    {
-                                        Label = p.Name,
-                                        Documentation = $"{(p.DefaultValue.Any() ? $"Default: {p.DefaultValue}\n" : string.Empty)}{p.Documentation}",
-                                    })),
+                                                    parameterIndex == null ? null : // only list parameters if position is inside a parameter range
+                                                    new Container<ParameterInformation>(fi.Parameters.Select(p =>
+                                                        new ParameterInformation
+                                                        {
+                                                            Label = p.Name,
+                                                            Documentation = $"{(p.DisplayDefaultValue.Any() ? $"Default: {p.DisplayDefaultValue}\n" : string.Empty)}{p.Description}",
+                                                        })),
                             ActiveParameter = parameterIndex < fi.Parameters.Count() || !fi.Parameters.Any() || !fi.Parameters.Last().IsParamsArray ?
-                                parameterIndex : fi.Parameters.Count() - 1, // if  last param is a params array, it should be the info for all trailing params input
-                        });
-                    }
-                    else
-                    {
-                        results = new List<SignatureInformation>
+                                                    parameterIndex : fi.Parameters.Count() - 1, // if  last param is a params array, it should be the info for all trailing params input
+                        };
+                    });
+                }
+                else
+                {
+                    results = new List<SignatureInformation>
                         {
                             new SignatureInformation
                             {
                                 Label = info.Value.Name,
                             },
                         };
-                    }
-
-                    return Task.FromResult(new SignatureHelp { Signatures = new Container<SignatureInformation>(results) });
                 }
+
+                return Task.FromResult<SignatureHelp?>(new SignatureHelp {
+                    Signatures = new Container<SignatureInformation>(results),
+                });
             }
 
-            return Task.FromResult<SignatureHelp>(null);
+            return Task.FromResult<SignatureHelp?>(null);
         }
 
         public SignatureHelpRegistrationOptions GetRegistrationOptions(SignatureHelpCapability capability, ClientCapabilities clientCapabilities)

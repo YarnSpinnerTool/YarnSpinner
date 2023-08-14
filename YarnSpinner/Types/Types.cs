@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #pragma warning disable CA1720 // Identifier name contains type name
 
 namespace Yarn

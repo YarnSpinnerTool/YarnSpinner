@@ -1,12 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("YarnSpinner.Tests")]
 
 namespace Yarn.Compiler.Upgrader
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.Serialization;
 
     public struct UpgradeJob
     {
@@ -188,10 +190,8 @@ namespace Yarn.Compiler.Upgrader
         /// collection of replacements.
         /// </summary>
         /// <param name="upgradeJob">The upgrade job to perform.</param>
-        /// <throws cref="ParseException">Thrown when a syntax error exists
-        /// in originalText.</throws> <throws
-        /// cref="UpgradeException">Thrown when an error occurs during the
-        /// upgrade process.</throws>
+        /// <throws cref="ArgumentException">Thrown if the 
+        /// <see cref="UpgradeJob.UpgradeType"/> is unsupported.</throws>
         /// <returns>An <see cref="UpgradeResult"/> object containing the
         /// results of the upgrade operation.</returns>
         public static UpgradeResult Upgrade(UpgradeJob upgradeJob)

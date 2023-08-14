@@ -1,11 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Microsoft.Extensions.FileSystemGlobbing;
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
 
 namespace Yarn.Compiler
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text.Json;
+    using System.Text.Json.Serialization;
+    using Microsoft.Extensions.FileSystemGlobbing;
+
     /// <summary>
     /// Yarn Projects represent instructions on where to find Yarn scripts and
     /// associated assets, and how they should be compiled.
@@ -63,7 +66,7 @@ namespace Yarn.Compiler
         /// cref="LoadFromFile(string)"/>, or provided when the <see cref="Project"/> is constructed.
         /// </remarks>
         [JsonIgnore]
-        public string Path { get; private set; }
+        public string Path { get; set; }
 
         /// <summary>
         /// Gets or sets the collection of file search patterns used to locate
@@ -146,15 +149,101 @@ namespace Yarn.Compiler
         {
             get
             {
+                Matcher matcher = Matcher;
+                string searchDirectoryPath = SearchDirectoryPath;
+
+                if (searchDirectoryPath == null)
+                {
+                    return Array.Empty<string>();
+                }
+
+                return matcher.GetResultsInFullPath(searchDirectoryPath);
+            }
+        }
+
+        /// <summary>
+        /// Gets the path to the Definitions file, relative to this project's
+        /// location.
+        /// </summary>
+        [JsonIgnore]
+        public string DefinitionsPath
+        {
+            get
+            {
+                if (this.Definitions == null || this.SearchDirectoryPath == null)
+                {
+                    return null;
+                }
+
+                return System.IO.Path.Combine(this.SearchDirectoryPath, this.Definitions);
+            }
+        }
+
+        /// <summary>
+        /// Gets the path of the directory from which to start searching for
+        /// .yarn files. This value is null if the directory does not exist on
+        /// disk.
+        /// </summary>
+        private string SearchDirectoryPath
+        {
+            get
+            {
+                string searchDirectoryPath;
+
+                if (System.IO.Directory.Exists(this.Path))
+                {
+                    // This project refers to a directory on disk.
+                    searchDirectoryPath = this.Path;
+                }
+                else if (System.IO.File.Exists(this.Path))
+                {
+                    // This project refers to a .yarnproject on disk.
+                    searchDirectoryPath = System.IO.Path.GetDirectoryName(this.Path);
+                }
+                else
+                {
+                    // This project does not refer to a file on disk or to a directory.
+                    searchDirectoryPath = null;
+                }
+
+                return searchDirectoryPath;
+            }
+        }
+
+        private Matcher Matcher
+        {
+            get
+            {
                 Matcher matcher = new Matcher(StringComparison.OrdinalIgnoreCase);
 
                 matcher.AddIncludePatterns(this.SourceFilePatterns);
                 matcher.AddExcludePatterns(this.ExcludeFilePatterns);
-
-                var searchDirectory = System.IO.Path.GetDirectoryName(this.Path);
-
-                return matcher.GetResultsInFullPath(searchDirectory);
+                return matcher;
             }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether <paramref name="path"/> is a path
+        /// that is included in this project.
+        /// </summary>
+        /// <param name="path">The path to check.</param>
+        /// <returns><see langword="true"/> if <paramref name="path"/> is a path
+        /// that is included in this project; <see langword="false"/>
+        /// otherwise.</returns>
+        public bool IsMatchingPath(string path) {
+
+            string searchDirectoryPath = this.SearchDirectoryPath;
+            if (searchDirectoryPath == null) {
+                return false;
+            }
+            foreach (var sourceFile in this.SourceFiles) {
+                if (sourceFile.Equals(path)) {
+                    return true;
+                }
+            }
+
+            var result = this.Matcher.Match(searchDirectoryPath, path);
+            return result.HasMatches;
         }
 
         /// <summary>

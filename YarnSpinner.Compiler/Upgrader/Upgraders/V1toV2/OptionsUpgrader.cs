@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Compiler.Upgrader
 {
     using System.Collections.Generic;
@@ -115,7 +118,8 @@ namespace Yarn.Compiler.Upgrader
                     var optionLine = GetContextTextWithWhitespace(optionLink.Context.option_formatted_text());
                     var optionDestination = optionLink.Context.NodeName?.Text ?? "<ERROR: invalid destination>";
 
-                    if (optionDestination.Contains(".")) {
+                    if (optionDestination.Contains("."))
+                    {
                         optionDestination = optionDestination.Replace(".", "_");
                         optionsWereRenamed = true;
                     }
@@ -194,14 +198,16 @@ namespace Yarn.Compiler.Upgrader
                 var destination = context.NodeName.Text;
 
                 var nodesWereRenamed = false;
-                if (destination.Contains(".")) {
+                if (destination.Contains("."))
+                {
                     destination = destination.Replace(".", "_");
                     nodesWereRenamed = true;
                 }
 
                 var comment = JumpSyntaxWasUpgradedDescription + (nodesWereRenamed ? " " + OptionDestinationsWereRenamedDescription : string.Empty);
 
-                var replacement = new TextReplacement {
+                var replacement = new TextReplacement
+                {
                     OriginalText = GetContextTextWithWhitespace(context),
                     ReplacementText = $"<<jump {destination}>>",
                     Start = context.Start.StartIndex,
@@ -304,13 +310,15 @@ namespace Yarn.Compiler.Upgrader
             {
                 // When we encounter a "title:" header, replace any periods in
                 // it with underscores.
-                if (context.header_key.Text != "title") {
+                if (context.header_key.Text != "title")
+                {
                     return base.VisitHeader(context);
                 }
 
                 var nodeName = context.header_value.Text;
 
-                if (nodeName.Contains(".")) {
+                if (nodeName.Contains("."))
+                {
                     var newNodeName = nodeName.Replace(".", "_");
 
                     var replacement = new TextReplacement

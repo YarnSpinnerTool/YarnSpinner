@@ -1,0 +1,28 @@
+title: Start
+---
+This is a line.
+
+-> Option 1
+-> Option 2
+
+// This command is unknown to the LSP and should produce a warning
+<<unknown_command>>
+
+<<jump Node2>>
+
+===
+title: Node2
+tags: wow incredible
+---
+Here's a line in node 2.
+
+<<declare $myVar = "hello">>
+===
+title: CommandWorkout
+---
+<<static_command_no_docs>>
+<<instance_command_no_params target>>
+<<instance_command_with_params target One Two>>
+<<static_command_no_params>>
+<<static_command_with_params One Two>>
+===

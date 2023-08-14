@@ -1,7 +1,10 @@
-using System;
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
 
 namespace Yarn
 {
+    using System;
+
     /// <summary>
     /// Contains utility methods for working with types and their methods.
     /// </summary>

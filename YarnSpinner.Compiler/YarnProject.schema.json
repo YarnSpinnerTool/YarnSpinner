@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/YarnProject",
+    "definitions": {
+        "YarnProject": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "projectFileVersion": {
+                    "type": "integer",
+                },
+                "sourceFiles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "localisation": {
+                    "$ref": "#/definitions/Localisation"
+                },
+                "baseLanguage": {
+                    "type": "string"
+                },
+                "compilerOptions": {
+                    "$ref": "#/definitions/CompilerOptions"
+                }
+            },
+            "required": [
+                "baseLanguage",
+                "projectFileVersion",
+                "sourceFiles"
+            ],
+            "title": "YarnProject"
+        },
+        "CompilerOptions": {
+            "type": "object",
+            "additionalProperties": true,
+            "title": "CompilerOptions"
+        },
+        "Localisation": {
+            "type": "object",
+            "additionalProperties": true,   
+            "title": "Localisation"
+        }
+    }
+}

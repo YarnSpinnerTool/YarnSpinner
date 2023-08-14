@@ -4,307 +4,415 @@ using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using static MoreLinq.Extensions.PartitionExtension;
-using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
+
+#nullable enable
 
 namespace YarnLanguageServer
 {
-    internal class CSharpFileData : IDefinitionsProvider
+    internal static class CSharpFileData
     {
-        public Dictionary<string, RegisteredDefinition> Definitions { get; set; }
-        public IEnumerable<(string yarnName, Range definitionRange, bool isCommand)> UnmatchableBridges { get; protected set; }
-        public ImmutableArray<int> LineStarts { get; protected set; }
-        private Uri Uri { get; set; }
-        private Workspace Workspace { get; set; }
-
-        private CompilationUnitSyntax root;
-        public CSharpFileData(string text, Uri uri, Workspace workspace, bool onePass = false)
+        public static IEnumerable<Action> ParseActionsFromCode(string text, Uri uri)
         {
-            Definitions = new Dictionary<string, RegisteredDefinition>();
-            this.Uri = uri;
-            this.Workspace = workspace;
+            var lineStarts = TextCoordinateConverter.GetLineStarts(text);
 
-            LineStarts = TextCoordinateConverter.GetLineStarts(text);
+            var tree = CSharpSyntaxTree.ParseText(text, null, uri.AbsolutePath);
 
-            Definitions.Clear(); // definitely more incremental ways to update but we probably aren't updating super often
+            var root = tree.GetCompilationUnitRoot();
 
-            var tree = CSharpSyntaxTree.ParseText(text);
+            string[] actionAttributeNames = new string[] { "YarnCommand", "YarnFunction" };
 
-            root = tree.GetCompilationUnitRoot();
-            
-            RegisterCommandAndFunctionBridges(); // Technically this doesn't register them until going through unmatched commands
+            // Build the collection of method declarations that have a Yarn action attribute on them
+            Dictionary<MethodDeclarationSyntax, AttributeSyntax> taggedMethods = new ();
 
-            // TODO: Making these come later to remove any corresponding entries in Workspace.UnmatchedDefinitions is definitly some code smell.
-            // Might be cleaner to build the functionDefinitionCache as we go instead of storing things up in c# file datas.
-            RegisterCommandAttributeMatches();
-            RegisterFunctionAttributeMatches();
-            RegisterCommentTaggedCommandsAndFunctions();
-
-            // Let's check off any functions we can while we have everything open
-            LookForUnmatchedCommands(onePass);
-        }
-
-        public void LookForUnmatchedCommands(bool isLastTime) {
-
-            // TODO: This is definitly some late night code. Shuffle around to avoid the double lookup through UnmatchedCommandNames.
-            var methods = root.DescendantNodes()
-                .OfType<MethodDeclarationSyntax>()
-                .Where(m => Workspace.UnmatchedDefinitions.Select(b => b.DefinitionName)
-                    .Contains(m.Identifier.ToString()));
-
-            var matches = methods.Select(m =>
+            // Get all classes that do not have the GeneratedCode attribute
+            var nonGeneratedClasses = root.DescendantNodes().OfType<ClassDeclarationSyntax>().Where(classDecl =>
             {
-                var matchedUcn = Workspace.UnmatchedDefinitions.Find(ucn => ucn.DefinitionName == m.Identifier.ToString());
-                return (matchedUcn, m);
+                return !classDecl.AttributeLists.Any(attrList => attrList.Attributes.Any(attr => (
+                        attr.Name.ToString().EndsWith("GeneratedCode")
+                        || attr.Name.ToString().EndsWith("GeneratedCodeAttribute")
+                    )));
             });
 
-            foreach ((var matchedUcn, var command) in matches)
+            foreach (var method in nonGeneratedClasses
+                .SelectMany(c => c.DescendantNodes())
+                .OfType<MethodDeclarationSyntax>())
             {
-                try
+                AttributeSyntax? actionAttribute = null;
+                foreach (var list in method.AttributeLists)
                 {
-                    // We don't want to override a function that has already matched in this file
-                    if (!Definitions.ContainsKey(matchedUcn.YarnName))
+                    foreach (var attribute in list.Attributes)
                     {
-                        Definitions[matchedUcn.YarnName] = CreateFunctionObject(Uri, matchedUcn.YarnName, command, matchedUcn.IsCommand, 3, false);
+                        var name = attribute.Name.ToString();
+                        if (name.EndsWith("Attribute"))
+                        {
+                            name = name.Remove(name.LastIndexOf("Attribute"));
+                        }
+
+                        if (actionAttributeNames.Contains(name))
+                        {
+                            actionAttribute = attribute;
+                            break;
+                        }
                     }
 
-                    Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == matchedUcn.YarnName);
+                    if (actionAttribute != null)
+                    {
+                        break;
+                    }
                 }
-                catch (Exception e)
+
+                if (actionAttribute != null)
                 {
+                    taggedMethods.Add(method, actionAttribute);
                 }
             }
 
-            if (isLastTime)
+            foreach (var taggedMethod in taggedMethods)
             {
-                root = null; // we don't need this anymore, so don't want it hogging up memory
-            }
-        }
-
-        private void RegisterCommandAttributeMatches()
-        {
-            var commandAttributeMatches = root.DescendantNodes()
-                .OfType<MethodDeclarationSyntax>()
-                .Where(m => m.AttributeLists.Any(a =>
-                a.Attributes.Any(a2 =>
-                a2.Name.ToString().Contains("YarnCommand"))));
-
-            foreach (var command in commandAttributeMatches)
-            {
-                var yarnCommandAttribute = command.AttributeLists.Where(z => z.Attributes.Any(y => y.Name.ToString().Contains("YarnCommand"))).First().Attributes.First();
-
-                // Attempt to get the command name from the first parameter, if
-                // it has one. Otherwise, use the name of the method itself, and if _that_ fails, fall back to an error string.
-                string yarnCommandAttributeName = yarnCommandAttribute
-                                    .ArgumentList?.Arguments.FirstOrDefault()?.ToString()
-                                    .Trim('\"');
-
-                var yarnName = yarnCommandAttributeName ?? command.Identifier.ToString() ?? "<unknown method>";
-
-                Definitions[yarnName] = CreateFunctionObject(Uri, yarnName, command, true, 2, true);
-                Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == yarnName); // Matched some comands, can mark them off the list!
-            }
-        }
-
-        private void RegisterFunctionAttributeMatches()
-        {
-            var functionAttributeMatches = root.DescendantNodes()
-                .OfType<MethodDeclarationSyntax>()
-                .Where(m => m.AttributeLists.Any(a =>
-                a.Attributes.Any(a2 =>
-                a2.Name.ToString().Contains("YarnFunction"))));
-
-            foreach (var command in functionAttributeMatches)
-            {
-                var yarnFunctionAttribute = command.AttributeLists.Where(z => z.Attributes.Any(y => y.Name.ToString().Contains("YarnFunction"))).First().Attributes.First();
-
-                // // Attempt to get the function name from the first parameter, if
-                // // it has one. Otherwise, use the name of the method itself, and if _that_ fails, fall back to an error string.
-                string yarnFunctionAttributeName = yarnFunctionAttribute.ArgumentList?.Arguments.FirstOrDefault()?.ToString().Trim('\"');
-
-                var yarnName = yarnFunctionAttributeName ?? command.Identifier.ToString() ?? "<unknown method>";
-
-                Definitions[yarnName] = CreateFunctionObject(Uri, yarnName, command, false, 2, true);
-                Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == yarnName); // Matched some functions, can mark them off the list!
-            }
-        }
-
-        private void RegisterCommentTaggedCommandsAndFunctions()
-        {
-            var commentMatches = root.DescendantNodes()
-               .OfType<MethodDeclarationSyntax>()
-               .Where(m => m.HasLeadingTrivia && m.GetLeadingTrivia().Any(t => t.HasStructure));
-            foreach (var match in commentMatches)
-            {
-                var triviaStructure = match.GetLeadingTrivia().LastOrDefault(t => t.HasStructure).GetStructure();
-
-                var functionName = ExtractStructuredTrivia("yarnfunction", triviaStructure);
-                var commandName = ExtractStructuredTrivia("yarncommand", triviaStructure);
-                var yarnName = functionName ?? commandName;
-                var isCommand = string.IsNullOrWhiteSpace(functionName);
-                if (!string.IsNullOrWhiteSpace(yarnName))
+                Action? action = GetActionFromTaggedMethod(taggedMethod.Key, taggedMethod.Value);
+                if (action != null)
                 {
-                    Definitions[yarnName] = CreateFunctionObject(Uri, yarnName, match, isCommand, 1, false);
-                    Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == yarnName);
+                    action.SourceFileUri = uri;
+                    action.SourceRange = TextCoordinateConverter.GetRange(taggedMethod.Key.Span, lineStarts);
+                    yield return action;
                 }
             }
-        }
 
-        private void RegisterCommandAndFunctionBridges()
-        {
-            var commandRegMatches = root.DescendantNodes().OfType<InvocationExpressionSyntax>().Where(e =>
-               e.Expression.ToString().Contains("AddCommandHandler")).Select(m => (m, true));
-            var functionRegMatches = root.DescendantNodes().OfType<InvocationExpressionSyntax>().Where(e =>
-                e.Expression.ToString().Contains("AddFunction")).Select(m => (m, false));
+            var addCommandInvocations = nonGeneratedClasses
+                .SelectMany(c => c.DescendantNodes())
+                .OfType<InvocationExpressionSyntax>()
+                .Where(i => i.Expression.ToString().Contains("AddCommandHandler"))
+                .Where(i => i.ArgumentList.Arguments.Count == 2);
 
-            var regMatches = commandRegMatches.Concat(functionRegMatches);
+            var addFunctionInvocations = nonGeneratedClasses
+                .SelectMany(c => c.DescendantNodes())
+                .OfType<InvocationExpressionSyntax>()
+                .Where(i => i.Expression.ToString().Contains("AddFunction"))
+                .Where(i => i.ArgumentList.Arguments.Count == 2);
 
-            (var commandBridges, var unmatchableBridges) = regMatches
-                .Where(e => e.m.ArgumentList.Arguments.Count >= 2)
-                .Select(e =>
-                    (YarnName: e.m.ArgumentList.Arguments[0].ToString().Trim('\"'), Expression: e.m.ArgumentList.Arguments[1].Expression, IsCommand: e.Item2))
-                .Partition(b =>
-                    b.Expression.Kind() == SyntaxKind.IdentifierName || b.Expression.Kind() == SyntaxKind.SimpleMemberAccessExpression);
-
-            UnmatchableBridges = unmatchableBridges
-                .Select(b => (
-                    b.YarnName, PositionHelper.GetRange(LineStarts, b.Expression.GetLocation().SourceSpan.Start, b.Expression.GetLocation().SourceSpan.End),
-                    b.IsCommand));
-
-            foreach (var cb in commandBridges)
+            foreach (var invocation in addCommandInvocations)
             {
-                // we don't know if these will be defined in this file or not,
-                // so let's mark them as unmatched for now, and then mark off what we can in this first pass
-                Workspace.UnmatchedDefinitions.Add((cb.YarnName, cb.Expression.ToString().Split('.').LastOrDefault().Trim(), cb.IsCommand, null));
+                Action action = GetActionFromRuntimeRegistration(invocation, ActionType.Command);
+                action.SourceFileUri = uri;
+
+                // Set the source range to the range of the method, if we know
+                // it, otherwise the range of the registration
+                action.SourceRange = TextCoordinateConverter.GetRange(action.MethodDeclarationSyntax?.Span ?? invocation.Span, lineStarts);
+
+                yield return action;
+            }
+
+            foreach (var invocation in addFunctionInvocations)
+            {
+                Action action = GetActionFromRuntimeRegistration(invocation, ActionType.Function);
+                action.SourceFileUri = uri;
+
+                // Set the source range to the range of the method, if we know
+                // it, otherwise the range of the registration
+                action.SourceRange = TextCoordinateConverter.GetRange(action.MethodDeclarationSyntax?.Span ?? invocation.Span, lineStarts);
+
+                yield return action;
             }
         }
 
-        private RegisteredDefinition CreateFunctionObject(Uri uri, string yarnName, MethodDeclarationSyntax methodDeclaration, bool isCommand, int priority, bool isAttributeMatch = false)
+        private static Action GetActionFromRuntimeRegistration(InvocationExpressionSyntax invocation, ActionType actionType)
         {
-            string documentation = string.Empty;
-            Dictionary<string, string> paramsDocumentation = new Dictionary<string, string>();
+            var nameArgument = invocation.ArgumentList.Arguments.ElementAt(0);
+            var implementationArgument = invocation.ArgumentList.Arguments.ElementAt(1);
 
+            Action action;
+
+            if (implementationArgument.Expression.Kind() == SyntaxKind.IdentifierName)
+            {
+                // This is an identifier name. Try to find a method in this
+                // syntax tree with the same name.
+                var root = implementationArgument.SyntaxTree.GetCompilationUnitRoot();
+                var methodDeclaration = root
+                    .DescendantNodes()
+                    .OfType<MethodDeclarationSyntax>()
+                    .FirstOrDefault(m =>
+                        m.Identifier.ToString() == implementationArgument.Expression.ToString()
+                    );
+
+                if (methodDeclaration != null)
+                {
+                    action = GetActionFromMethod(methodDeclaration);
+                }
+                else
+                {
+                    // We couldn't find the method. For now, leave this as a
+                    // known action but without any knowledge of its
+                    // implementation.
+                    action = new Action();
+                }
+            }
+            else
+            {
+                // This is a different kind of expression - it's potentially a
+                // lambda function, a variable containing a delegate, or a more
+                // complex reference to a member of another type. Without
+                // actually doing full type checking, we can't be confident that
+                // we'd find the right one. For now, leave this as a known
+                // action but without any knowledge of its implementation.
+                action = new Action();
+            }
+
+            action.Type = actionType;
+
+            action.YarnName = nameArgument.Expression.ToString().Trim('"');
+
+            return action;
+        }
+
+        private static Action? GetActionFromTaggedMethod(MethodDeclarationSyntax method, AttributeSyntax attribute)
+        {
+            Action action = GetActionFromMethod(method);
+
+            // Attempt to get the command name from the first parameter, if it
+            // has one. Otherwise, use the name of the method itself, and if
+            // _that_ fails, fall back to an error string.
+            string? yarnCommandAttributeName = attribute
+                .ArgumentList?.Arguments.FirstOrDefault()?.ToString()
+                .Trim('\"');
+
+            action.YarnName = yarnCommandAttributeName ?? method.Identifier.ToString() ?? "<unknown method>";
+
+            if (attribute.Name.ToString().Contains("YarnCommand"))
+            {
+                action.Type = ActionType.Command;
+
+                if (action.IsStatic == false) {
+                    // Instance command methods take an initial GameObject
+                    // parameter, which indicates which game object should
+                    // receive the command. Add this new parameter to the start
+                    // of the list.
+                    var targetParameter = new Action.ParameterInfo
+                    {
+                        Name = "target",
+                        Description = "The game object that should receive the command",
+                        Type = Yarn.BuiltinTypes.String,
+                        DisplayTypeName = "GameObject",
+                        IsParamsArray = false,
+                    };
+                    action.Parameters.Insert(0, targetParameter);
+                }
+            }
+            else if (attribute.Name.ToString().Contains("YarnFunction"))
+            {
+                action.Type = ActionType.Function;
+            }
+            else
+            {
+                return null;
+            }
+
+            return action;
+        }
+
+        private static Action GetActionFromMethod(MethodDeclarationSyntax method)
+        {
+            var action = new Action
+            {
+                Documentation = GetDocumentation(method),
+                ReturnType = GetYarnType(method.ReturnType),
+                MethodDeclarationSyntax = method,
+                Language = "csharp",
+                Signature = $"{method.Identifier.Text}{method.ParameterList}",
+            };
+
+            foreach (var parameter in method.ParameterList.Parameters)
+            {
+                action.Parameters.Add(new Action.ParameterInfo
+                {
+                    Name = parameter.Identifier.ToString(),
+                    Description = GetParameterDocumentation(method, parameter.Identifier.ToString()),
+                    DisplayDefaultValue = parameter.Default?.Value?.ToString(),
+                    Type = GetYarnType(parameter.Type),
+                    DisplayTypeName = parameter.Type?.ToString() ?? "(unknown)",
+                });
+            }
+
+            return action;
+        }
+
+        /// <summary>
+        /// Returns the Yarn type that corresponds with the given <see
+        /// cref="TypeSyntax"/>.
+        /// </summary>
+        /// <param name="typeSyntax">The type syntax to get a Yarn type for.</param>
+        /// <returns>The Yarn type that corresponds to the given type syntax.</returns>
+        private static Yarn.IType GetYarnType(TypeSyntax? typeSyntax)
+        {
+            // The type syntax is missing; fall back to treating this type as
+            // 'Any'
+            if (typeSyntax == null)
+            {
+                return Yarn.BuiltinTypes.Any;
+            }
+
+            switch (typeSyntax.ToString())
+            {
+                case "string":
+                    return Yarn.BuiltinTypes.String;
+                case "int":
+                case "float":
+                case "double":
+                case "byte":
+                case "uint":
+                case "decimal":
+                    return Yarn.BuiltinTypes.Number;
+                case "bool":
+                    return Yarn.BuiltinTypes.Boolean;
+                default:
+                    // We don't know the type. Mark it as 'any'.
+                    return Yarn.BuiltinTypes.Any;
+            }
+        }
+
+        private static string? GetDocumentation(MethodDeclarationSyntax methodDeclaration)
+        {
+            // The main string to use as the function's documentation.
             if (methodDeclaration.HasLeadingTrivia)
             {
                 var trivias = methodDeclaration.GetLeadingTrivia();
                 var structuredTrivia = trivias.LastOrDefault(t => t.HasStructure);
                 if (structuredTrivia.Kind() != SyntaxKind.None)
                 {
-                    var triviaStructure = structuredTrivia.GetStructure();
-                    var summary = ExtractStructuredTrivia("summary", triviaStructure);
-
-                    documentation = summary ?? triviaStructure.ToString();
-
-                    var paramsXml = triviaStructure.ChildNodes().OfType<XmlElementSyntax>().Where(x => x.StartTag.Name.ToString() == "param");
-                    foreach (var paramXml in paramsXml)
-                    {
-                        if (paramXml != null && paramXml.Kind() != SyntaxKind.None && paramXml.Content.Any())
-                        {
-                            var v = paramXml.Content[0].ChildTokens()
-                                .Where(ct => ct.Kind() != SyntaxKind.XmlTextLiteralNewLineToken)
-                                .Select(ct => ct.ValueText.Trim())
-                                ;
-                            var docstring = string.Join(" ", v).Trim();
-
-                            var paraname = paramXml.StartTag.Attributes.OfType<XmlNameAttributeSyntax>().FirstOrDefault().ToString();
-
-                            if (!string.IsNullOrWhiteSpace(paraname) && !string.IsNullOrWhiteSpace(docstring))
-                            {
-                                paramsDocumentation[paraname] = docstring;
-                            }
-                        }
-                    }
+                    // The method contains structured trivia. Extract the
+                    // documentation for it.
+                    return GetDocumentationFromStructuredTrivia(structuredTrivia);
                 }
                 else
                 {
-                    bool emptyLineFlag = false;
-                    var documentationParts = Enumerable.Empty<string>();
+                    // There isn't any structured trivia, but perhaps there's a
+                    // comment above the method, which we can use as our
+                    // documentation.
+                    return GetDocumentationFromUnstructuredTrivia(trivias);
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
 
-                    // loop in reverse order until hit something that doesn't look like it's related
-                    foreach (var trivia in trivias.Reverse())
-                    {
-                        var doneWithTrivia = false;
-                        switch (trivia.Kind())
-                        {
-                            case SyntaxKind.EndOfLineTrivia:
-                                // if we hit two lines in a row without a comment/attribute inbetween, we're done collecting trivia
-                                if (emptyLineFlag == true) { doneWithTrivia = true; }
-                                emptyLineFlag = true;
-                                break;
-                            case SyntaxKind.WhitespaceTrivia:
-                                break;
-                            case SyntaxKind.Attribute:
-                                emptyLineFlag = false;
-                                break;
-                            case SyntaxKind.SingleLineCommentTrivia:
-                            case SyntaxKind.MultiLineCommentTrivia:
-                                documentationParts = documentationParts.Prepend(trivia.ToString().Trim('/', ' '));
-                                emptyLineFlag = false;
-                                break;
-                            default:
-                                doneWithTrivia = true;
-                                break;
-                        }
+        private static string? GetParameterDocumentation(MethodDeclarationSyntax method, string parameterName)
+        {
+            var trivias = method.GetLeadingTrivia();
+            var structuredTrivia = trivias.LastOrDefault(t => t.HasStructure);
+            if (structuredTrivia.Kind() == SyntaxKind.None)
+            {
+                return null;
+            }
 
-                        if (doneWithTrivia)
-                        {
-                            break;
-                        }
-                    }
+            var paramsXml = structuredTrivia
+                .GetStructure()?
+                .ChildNodes()
+                .OfType<XmlElementSyntax>()
+                .Where(x => x.StartTag.Name.ToString() == "param");
 
-                    documentation = string.Join(' ', documentationParts);
+            var paramDoc = paramsXml?.FirstOrDefault(node =>
+                node.StartTag.Attributes.OfType<XmlNameAttributeSyntax>().FirstOrDefault()?.ToString() == parameterName
+            );
+
+            if (paramDoc == null)
+            {
+                return null;
+            }
+
+            var v = paramDoc.Content[0].ChildTokens()
+                        .Where(ct => ct.Kind() != SyntaxKind.XmlTextLiteralNewLineToken)
+                        .Select(ct => ct.ValueText.Trim())
+                        ;
+            var docstring = string.Join(" ", v).Trim();
+            return docstring;
+        }
+
+        private static string? GetDocumentationFromStructuredTrivia(Microsoft.CodeAnalysis.SyntaxTrivia structuredTrivia)
+        {
+            string documentation;
+            var triviaStructure = structuredTrivia.GetStructure();
+            if (triviaStructure == null)
+            {
+                return null;
+            }
+
+            var summary = ExtractStructuredTrivia("summary", triviaStructure);
+            var remarks = ExtractStructuredTrivia("remarks", triviaStructure);
+
+            documentation = summary ?? triviaStructure.ToString();
+
+            if (remarks != null) {
+                documentation += "\n\n" + remarks;
+            }
+
+            return documentation;
+        }
+
+        private static string GetDocumentationFromUnstructuredTrivia(Microsoft.CodeAnalysis.SyntaxTriviaList trivias)
+        {
+            string documentation;
+            bool emptyLineFlag = false;
+            var documentationParts = Enumerable.Empty<string>();
+
+            // loop in reverse order until hit something that doesn't look like it's related
+            foreach (var trivia in trivias.Reverse())
+            {
+                var doneWithTrivia = false;
+                switch (trivia.Kind())
+                {
+                    case SyntaxKind.EndOfLineTrivia:
+                        // if we hit two lines in a row without a comment/attribute inbetween, we're done collecting trivia
+                        if (emptyLineFlag == true) { doneWithTrivia = true; }
+                        emptyLineFlag = true;
+                        break;
+                    case SyntaxKind.WhitespaceTrivia:
+                        break;
+                    case SyntaxKind.Attribute:
+                        emptyLineFlag = false;
+                        break;
+                    case SyntaxKind.SingleLineCommentTrivia:
+                    case SyntaxKind.MultiLineCommentTrivia:
+                        documentationParts = documentationParts.Prepend(trivia.ToString().Trim('/', ' '));
+                        emptyLineFlag = false;
+                        break;
+                    default:
+                        doneWithTrivia = true;
+                        break;
+                }
+
+                if (doneWithTrivia)
+                {
+                    break;
                 }
             }
 
-            var parameters = methodDeclaration.ParameterList.Parameters.Select(p => new ParameterInfo
-            {
-                Name = p.Identifier.Text,
-                Type = p.Type.ToString(),
-                Documentation = paramsDocumentation.ContainsKey(p.Identifier.Text) ? paramsDocumentation[p.Identifier.Text] : p.ToFullString(),
-                DefaultValue = p.Default?.Value?.ToString(),
-                IsParamsArray = p.Modifiers.Any(m => m.Text.Contains("params")),
-            });
-            if (isAttributeMatch)
-            {
-                parameters = parameters.Prepend(new ParameterInfo
-                {
-                    Name = "GameObjectName",
-                    Type = "string",
-                    Documentation = "Name of the game object to receive this command",
-                    DefaultValue = null,
-                    IsParamsArray = false,
-                });
-            }
-
-            // so it looks like the range stuff is correct, needs deeper investigation
-            // in the meantime get the addcommand stuff working
-            var drange = PositionHelper.GetRange(LineStarts, methodDeclaration.GetLocation().SourceSpan.Start, methodDeclaration.GetLocation().SourceSpan.End);
-            return new RegisteredDefinition
-            {
-                YarnName = yarnName,
-                DefinitionFile = uri,
-                DefinitionName = methodDeclaration.Identifier.Text,
-                IsBuiltIn = false,
-                IsCommand = isCommand,
-                Parameters = parameters,
-                Priority = priority,
-                MinParameterCount = parameters.Count(p => p.DefaultValue == null && !p.IsParamsArray),
-                MaxParameterCount = parameters.Any(p => p.IsParamsArray) ? null : parameters.Count(),
-                DefinitionRange = drange,//PositionHelper.GetRange(LineStarts, methodDeclaration.GetLocation().SourceSpan.Start, methodDeclaration.GetLocation().SourceSpan.End),
-                Documentation = documentation,
-                Language = Utils.CSharpLanguageID,
-                Signature = $"{methodDeclaration.Identifier.Text}{methodDeclaration.ParameterList}",
-            };
+            documentation = string.Join(' ', documentationParts);
+            return documentation;
         }
 
-        private string ExtractStructuredTrivia(string key, Microsoft.CodeAnalysis.SyntaxNode triviaStructure)
+        private static string? ExtractStructuredTrivia(string tagName, Microsoft.CodeAnalysis.SyntaxNode triviaStructure)
         {
-            var triviaMatch = triviaStructure.ChildNodes().OfType<XmlElementSyntax>().FirstOrDefault(x => x.StartTag.Name.ToString() == key);
-            if (triviaMatch != null && triviaMatch.Kind() != SyntaxKind.None && triviaMatch.Content.Any())
+            // Find the tag that matches the requested name.
+            var triviaMatch = triviaStructure
+                .ChildNodes()
+                .OfType<XmlElementSyntax>()
+                .FirstOrDefault(x =>
+                    x.StartTag.Name.ToString() == tagName
+                );
+
+            if (triviaMatch != null
+                && triviaMatch.Kind() != SyntaxKind.None
+                && triviaMatch.Content.Any())
             {
-                var v = triviaMatch.Content[0].ChildTokens().Where(ct => ct.Kind() != SyntaxKind.XmlTextLiteralNewLineToken)
-                    .Select(ct => ct.ValueText.Trim())
-                    ;
+                // Get all content from this element that isn't a newline, and
+                // join it up into a single string.
+                var v = triviaMatch
+                    .Content[0]
+                    .ChildTokens()
+                    .Where(ct => ct.Kind() != SyntaxKind.XmlTextLiteralNewLineToken)
+                    .Select(ct => ct.ValueText.Trim());
+
                 return string.Join(" ", v).Trim();
             }
 

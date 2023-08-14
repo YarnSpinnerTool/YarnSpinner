@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 // Uncomment to ensure that all expressions have a known type at compile time
 // #define VALIDATE_ALL_EXPRESSIONS
 
@@ -16,14 +19,13 @@ namespace Yarn.Compiler
     /// </remarks>
     public struct CompilationJob
     {
-
         /// <summary>
         /// Represents the contents of a file to compile.
         /// </summary>
         public struct File
         {
             /// <summary>
-            /// The name of the file. 
+            /// The name of the file.
             /// </summary>
             /// <remarks>
             /// This may be a full path, or just the filename or anything in
@@ -133,8 +135,9 @@ namespace Yarn.Compiler
             {
                 Files = new List<File>
                 {
-                    new File {
-                        Source = source, FileName = fileName
+                    new File
+                    {
+                        Source = source, FileName = fileName,
                     },
                 },
                 Library = library,

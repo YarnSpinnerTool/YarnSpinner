@@ -1,4 +1,7 @@
-﻿namespace Yarn.Compiler
+﻿// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
+namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -145,7 +148,8 @@
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
-        public Diagnostic(string fileName, Range range, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error) {
+        public Diagnostic(string fileName, Range range, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        {
             this.FileName = fileName;
             this.Range = range ?? new Range();
             this.Message = message;
@@ -231,10 +235,10 @@
 
         public IEnumerable<Diagnostic> Diagnostics => this.diagnostics;
 
-        public LexerErrorListener(string fileName) : base() {
+        public LexerErrorListener(string fileName) : base()
+        {
             this.fileName = fileName;
         }
-
 
         public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
@@ -250,7 +254,8 @@
 
         public IEnumerable<Diagnostic> Diagnostics => this.diagnostics;
 
-        public ParserErrorListener(string fileName) : base() {
+        public ParserErrorListener(string fileName) : base()
+        {
             this.fileName = fileName;
         }
 

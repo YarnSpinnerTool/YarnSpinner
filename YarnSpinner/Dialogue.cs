@@ -54,12 +54,13 @@ namespace Yarn
     /// created by the <see cref="Dialogue"/> during program execution.</para>
     /// </remarks>
     /// <seealso cref="Dialogue.LineHandler"/>
+    #pragma warning disable CA1815
     public struct Line
     {
         internal Line(string stringID) : this()
         {
             this.ID = stringID;
-            this.Substitutions = new string[] { };
+            this.Substitutions = Array.Empty<string>();
         }
 
         /// <summary>
@@ -73,6 +74,7 @@ namespace Yarn
         /// </summary>
         public string[] Substitutions;
     }
+    #pragma warning restore CA1815
 
     /// <summary>
     /// A set of <see cref="OptionSet.Option"/>s, sent from the <see
@@ -83,6 +85,7 @@ namespace Yarn
     /// created by the <see cref="Dialogue"/> during program execution.
     /// </remarks>
     /// <seealso cref="Dialogue.OptionsHandler"/>
+    #pragma warning disable CA1815
     public struct OptionSet
     {
         internal OptionSet(Option[] options)
@@ -90,6 +93,7 @@ namespace Yarn
             Options = options;
         }
 
+        #pragma warning disable CA1716
         /// <summary>
         /// An option to be presented to the user.
         /// </summary>
@@ -155,6 +159,7 @@ namespace Yarn
             /// </remarks>
             public bool IsAvailable { get; private set; }
         }
+        #pragma warning restore CA1716
 
         /// <summary>
         /// Gets the <see cref="Option"/>s that should be presented to the
@@ -163,6 +168,7 @@ namespace Yarn
         /// <seealso cref="Option"/>
         public Option[] Options { get; private set; }
     }
+    #pragma warning restore CA1815
 
     /// <summary>
     /// A command, sent from the <see cref="Dialogue"/> to the game.
@@ -172,6 +178,7 @@ namespace Yarn
     /// created by the <see cref="Dialogue"/> during program execution.
     /// </remarks>
     /// <seealso cref="Dialogue.CommandHandler"/>    
+    #pragma warning disable CA1815
     public struct Command
     {
         internal Command(string text)
@@ -184,6 +191,7 @@ namespace Yarn
         /// </summary>
         public string Text { get; private set; }
     }
+    #pragma warning restore CA1815
 
     /// <summary>
     /// Represents a method that receives diagnostic messages and error
@@ -751,8 +759,7 @@ namespace Yarn
         /// </para>
         /// <para>
         /// This method does not compile Yarn source. To compile Yarn source
-        /// code into a <see cref="Yarn.Program"/>, use the <see
-        /// cref="Yarn.Compiler.Compiler"/> class.
+        /// code into a <see cref="Yarn.Program"/>, Refer to the Yarn compiler.
         /// </para>
         /// </remarks>
         internal void LoadProgram(string fileName)
@@ -1018,8 +1025,17 @@ namespace Yarn
             return this.Program.Nodes.ContainsKey(nodeName);
         }
 
+        /// <summary>
+        /// Begins analysis of the <see cref="Program"/> by the <paramref name="context"/>
+        /// </summary>
+        /// <param name="context">The Context that performs the analysis</param>
         public void Analyse(Analysis.Context context)
         {
+            if (context == null)
+            {
+                // can't perform analysis on nothing
+                return;
+            }
             context.AddProgramToAnalysis(this.Program);
         }
 
@@ -1060,6 +1076,17 @@ namespace Yarn
         /// name="substitutions"/> inserted.</returns>
         public static string ExpandSubstitutions(string text, IList<string> substitutions)
         {
+            if (substitutions == null)
+            {
+                // if we have no substitutions we want to just return the text as is
+                return text;
+            }
+            if (text == null)
+            {
+                // we somehow have substitutions to apply but no text for them to be applied into?
+                throw new ArgumentNullException($"{nameof(text)} is null. Cannot apply substitutions to an empty string");
+            }
+
             for (int i = 0; i < substitutions.Count; i++)
             {
                 string substitution = substitutions[i];
@@ -1166,7 +1193,7 @@ namespace Yarn
                     throw new InvalidOperationException($"Invalid marker name {marker.Name}");
             }
 
-            string pluralCaseName = pluralCase.ToString().ToLowerInvariant();
+            string pluralCaseName = pluralCase.ToString().ToUpperInvariant();
 
             // Now that we know the plural case, we can select the
             // appropriate replacement text for it

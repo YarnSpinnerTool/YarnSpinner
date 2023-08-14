@@ -12,7 +12,7 @@ namespace YarnLanguageServer
             // bail out if we have no line
             if (lineBlocks.Length == 0)
             {
-                return null;
+                return Array.Empty<byte>();
             }
 
             // bail out if we don't have at least an id and text
@@ -20,19 +20,20 @@ namespace YarnLanguageServer
             {
                 if (Array.IndexOf(columns, "text") == -1)
                 {
-                    return null;
+                    return Array.Empty<byte>();
                 }
+
                 if (Array.IndexOf(columns, "id") == -1)
                 {
-                    return null;
+                    return Array.Empty<byte>();
                 }
             }
             else
             {
-                return null;
+                return Array.Empty<byte>();
             }
-            
-            StringWriter writer;
+
+            ISpreadsheetWriter writer;
             if (format.Equals("csv"))
             {
                 writer = new CSVStringWriter(columns);
@@ -60,6 +61,7 @@ namespace YarnLanguageServer
                             character = line.text.Substring(0, index);
                             text = line.text.Substring(index + 1).TrimStart();
                         }
+
                         characters.Add(character);
                     }
 
@@ -90,24 +92,54 @@ namespace YarnLanguageServer
                                 break;
                         }
                     }
+
                     writer.EndRow();
                 }
+
                 writer.EndBlock();
             }
+
             writer.Format(characters);
             return writer.ReturnFile();
         }
     }
 
-    public interface StringWriter
+    /// <summary>
+    /// Contains methods for writing dialogue data into a spreadsheet.
+    /// </summary>
+    public interface ISpreadsheetWriter
     {
+        /// <summary>
+        /// Writes a value into the next column on the current row.
+        /// </summary>
+        /// <param name="value">The value to write.</param>
         public void WriteColumn(string value);
+
+        /// <summary>
+        /// Ends the current row and moves to the next one.
+        /// </summary>
         public void EndRow();
+
+        /// <summary>
+        /// Marks the previous row as the end of a block of rows.
+        /// </summary>
         public void EndBlock();
+
+        /// <summary>
+        /// Performs formatting on the overall spreadsheet, given the collection
+        /// of known character names that are present in the dialogue.
+        /// </summary>
+        /// <param name="characters">The collection of character names.</param>
         public void Format(HashSet<string> characters);
+
+        /// <summary>
+        /// Converts the spreadsheet to an array of bytes.
+        /// </summary>
+        /// <returns>The spreadsheet, as a byte array.</returns>
         public byte[] ReturnFile();
     }
-    public class CSVStringWriter: StringWriter
+
+    public class CSVStringWriter : ISpreadsheetWriter
     {
         private string[] columns;
 
@@ -126,6 +158,7 @@ namespace YarnLanguageServer
             {
                 this.csv.WriteField(column);
             }
+
             this.csv.NextRecord();
         }
 
@@ -145,10 +178,13 @@ namespace YarnLanguageServer
             {
                 this.csv.WriteField(string.Empty);
             }
+
             this.csv.NextRecord();
         }
 
-        public void Format(HashSet<string> characters) { /* does nothing in CSV */ }
+        public void Format(HashSet<string> characters) { 
+            /* does nothing in CSV */
+        }
 
         public byte[] ReturnFile()
         {
@@ -162,7 +198,7 @@ namespace YarnLanguageServer
         }
     }
 
-    public class ExcelStringWriter: StringWriter
+    public class ExcelStringWriter : ISpreadsheetWriter
     {
         private int rowIndex = 1;
         private int columnIndex = 1;
@@ -183,7 +219,7 @@ namespace YarnLanguageServer
                 sheet.Cell(rowIndex, j + 1).Value = columns[j];
             }
 
-            sheet.Row(rowIndex).Style.Font.Bold = true; 
+            sheet.Row(rowIndex).Style.Font.Bold = true;
             sheet.Row(rowIndex).Style.Fill.BackgroundColor = XLColor.DarkGray;
             sheet.Row(rowIndex).Style.Font.FontColor = XLColor.White;
             sheet.SheetView.FreezeRows(1);
@@ -192,7 +228,7 @@ namespace YarnLanguageServer
             sheet.Column("A").Style.Border.SetRightBorder(XLBorderStyleValues.Thick);
             sheet.Column("A").Style.Border.SetRightBorderColor(XLColor.Black);
 
-            // The second column is indent slightly so that it's 
+            // The second column is indent slightly so that it's
             // not hard up against the border
             sheet.Column("B").Style.Alignment.Indent = 5;
 
@@ -288,7 +324,7 @@ namespace YarnLanguageServer
 
         public byte[] ReturnFile()
         {
-            byte[] bytes = {};
+            byte[] bytes = { };
             using (var ms = new MemoryStream())
             {
                 wb.SaveAs(ms);

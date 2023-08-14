@@ -41,7 +41,7 @@ public static class DeclarationHelper
         else if (existingDeclaration.Type == Yarn.Types.Boolean)
         {
             type = "bool";
-            defaultValue = $"{existingDeclaration.DefaultValue.ToString().ToLowerInvariant()}";
+            defaultValue = $"{existingDeclaration.DefaultValue?.ToString()?.ToLowerInvariant() ?? "false"}";
         }
         else
         {
@@ -49,6 +49,7 @@ public static class DeclarationHelper
             defaultValue = "(?)";
             return false;
         }
+
         return true;
     }
 }

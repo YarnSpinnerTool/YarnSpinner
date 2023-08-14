@@ -1,9 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
 
 namespace Yarn
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+
     /// <summary>
     /// A collection of functions that can be called from Yarn programs.
     /// </summary>
@@ -15,7 +18,6 @@ namespace Yarn
     /// <seealso cref="Dialogue"/>
     public class Library
     {
-
         internal Dictionary<string, Delegate> Delegates = new Dictionary<string, Delegate>();
         
         /// <summary>
@@ -50,7 +52,12 @@ namespace Yarn
         /// </remarks>
         public void ImportLibrary(Library otherLibrary)
         {
-            foreach (var entry in otherLibrary.Delegates) {
+            if (otherLibrary == null)
+            {
+                return;
+            }
+            foreach (var entry in otherLibrary.Delegates)
+            {
                 Delegates[entry.Key] = entry.Value;
             }
         }
@@ -158,11 +165,17 @@ namespace Yarn
         /// <summary>
         /// Registers the methods found inside a type.
         /// </summary>
-        /// <param name="type">The type to register methods from.</param>
+        /// <param name="typeLiteral">The type to register methods from.</param>
         internal void RegisterMethods(TypeBase typeLiteral)
         {
+            if (typeLiteral == null)
+            {
+                // we weren't given any type to work with
+                return;
+            }
+            
             var methods = typeLiteral.Methods;
-
+            
             if (methods == null)
             {
                 // this Type declares no methods; nothing to do

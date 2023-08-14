@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Compiler
 {
     using System;
@@ -23,7 +26,7 @@ namespace Yarn.Compiler
         /// <param name="context">The parser context for this value.</param>
         /// <param name="sourceFileName">The name of the file that is being
         /// visited by this instance.</param>
-        /// <param name="types">The types of values known to this instance.</param>
+        /// <param name="diagnostics">The list of diagnostics to add to.</param>
         public LiteralValueVisitor(ParserRuleContext context, string sourceFileName, List<Diagnostic> diagnostics)
         {
             this.context = context;

@@ -151,123 +151,164 @@ namespace YarnLanguageServer.Handlers
 
         public Task<CompletionList> Handle(CompletionParams request, CancellationToken cancellationToken)
         {
-            if (workspace.YarnFiles.TryGetValue(request.TextDocument.Uri.ToUri(), out var yarnFile))
+            var documentUri = request.TextDocument.Uri.ToUri();
+            Project? project = workspace.GetProjectsForUri(documentUri).FirstOrDefault();
+            YarnFileData? yarnFile = project?.GetFileData(documentUri);
+
+            if (project == null || yarnFile == null)
             {
-                var startOfLine = request.Position with
+                // We can't find the file or its project. Return an empty list
+                // of completions.
+                return Task.FromResult(new CompletionList());
+            }
+
+            var startOfLine = request.Position with
+            {
+                Character = 0,
+            };
+
+            if (yarnFile.IsNullOrWhitespace(startOfLine, request.Position))
+            {
+                // There are no tokens on this line. Offer to code-complete full
+                // statements, or character names.
+                var statementCompletions = new List<CompletionItem>();
+
+                var cursorLineIndex = request.Position.Line;
+
+                // Build a list of character names, sorted by distance from the
+                // cursor.
+                //
+                // To do this, get all (character name, line index) pairs from
+                // all nodes in the file, calculate the distance from the line
+                // they appear on from the current position, group them by name,
+                // pick the closest one of each name, and then finally sort the
+                // list by distance.
+                var charactersByDistance = yarnFile.NodeInfos
+                    .SelectMany(ni => ni.CharacterNames)
+                    .Select(c => (c.Name, Distance: System.Math.Abs(cursorLineIndex - c.LineIndex)))
+                    .GroupBy(c => c.Name)
+                    .Select(group => group.MinBy(c => c.Distance))
+                    .OrderBy(c => c.Distance);
+
+                foreach (var (name, distance) in charactersByDistance)
                 {
-                    Character = 0,
-                };
-
-                if (yarnFile.IsNullOrWhitespace(startOfLine, request.Position))
-                {
-                    // There are no tokens on this line. Offer to code-complete
-                    // full statements, or character names.
-                    var statementCompletions = new List<CompletionItem>();
-
-                    var cursorLineIndex = request.Position.Line;
-
-                    // Build a list of character names, sorted by distance from
-                    // the cursor.
-                    //
-                    // To do this, get all (character name, line index) pairs
-                    // from all nodes in the file, calculate the distance from
-                    // the line they appear on from the current position, group
-                    // them by name, pick the closest one of each name, and then
-                    // finally sort the list by distance.
-                    var charactersByDistance = yarnFile.NodeInfos
-                        .SelectMany(ni => ni.CharacterNames)
-                        .Select(c => (Name: c.Name, Distance: System.Math.Abs(cursorLineIndex - c.LineIndex)))
-                        .GroupBy(c => c.Name)
-                        .Select(group => group.MinBy(c => c.Distance))
-                        .OrderBy(c => c.Distance);
-
-                    foreach (var character in charactersByDistance) {
-                        var newText = $"{character.Name}: ";
-                        statementCompletions.Add(new CompletionItem
-                        {
-                            Label = character.Name,
-                            Kind = CompletionItemKind.Text,
-                            InsertText = newText,
-                            Documentation = "Add a character name",
-                            InsertTextFormat = InsertTextFormat.PlainText,
-                            TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit
-                            {
-                                NewText = newText,
-                                Range = new Range(request.Position, request.Position),
-                            }),
-                        });
-                    }
-
-                    // giving every special command the requisite text edit range
-                    foreach (var cmd in this.statementCompletions)
+                    var newText = $"{name}: ";
+                    statementCompletions.Add(new CompletionItem
                     {
-                        statementCompletions.Add(cmd with
+                        Label = name,
+                        Kind = CompletionItemKind.Text,
+                        InsertText = newText,
+                        Documentation = "Add a character name",
+                        InsertTextFormat = InsertTextFormat.PlainText,
+                        TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit
                         {
-                            TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = cmd.InsertText, Range = new Range(request.Position, request.Position) }),
-                        });
-                    }
-
-                    return Task.FromResult(new CompletionList(statementCompletions));
+                            NewText = newText,
+                            Range = new Range(request.Position, request.Position),
+                        }),
+                    });
                 }
 
-                var context = ParseTreeFromPosition(yarnFile.ParseTree, request.Position.Character, request.Position.Line + 1);
-
-                var index = yarnFile.GetRawToken(request.Position);
-                if (!index.HasValue)
+                // giving every special command the requisite text edit range
+                foreach (var cmd in this.statementCompletions)
                 {
-                    return Task.FromResult<CompletionList>(null);
-                }
-
-                var indexToken = yarnFile.Tokens[index.Value];
-
-                var indexTokenRange = PositionHelper.GetRange(yarnFile.LineStarts, indexToken);
-                if (indexToken.Type == YarnSpinnerLexer.COMMAND_END || indexToken.Type == YarnSpinnerLexer.RPAREN || indexToken.Type == YarnSpinnerLexer.EXPRESSION_END)
-                {
-                    indexTokenRange = indexTokenRange.CollapseToStart(); // don't replace closing braces
-                }
-
-                var results = new List<CompletionItem>();
-
-                var vocabulary = yarnFile.Lexer.Vocabulary;
-                var tokenName = vocabulary.GetSymbolicName(indexToken.Type);
-
-                void ExpandRangeToPreviousToken(int tokenType, int startIndex, ref Range range) {
-                    var startToken = yarnFile.Tokens[startIndex];
-                    var current = startToken;
-                    var index = startIndex;
-                    while (index >= 0 && current.Line == startToken.Line) {
-                        if (current.Type == tokenType) {
-                            var newRange = new Range
+                    statementCompletions.Add(cmd with
+                    {
+                        TextEdit = new TextEditOrInsertReplaceEdit(
+                            new TextEdit
                             {
-                                End = range.End,
-                                Start = PositionHelper.GetPosition(yarnFile.LineStarts, current.StopIndex + 1),
-                            };
-                            range = newRange;
-                            return;
-                        }
-                        current = yarnFile.Tokens[--index];
-                    }
+                                NewText = cmd?.InsertText ?? string.Empty,
+                                Range = new Range(request.Position, request.Position),
+                            }
+                        ),
+                    });
                 }
 
-                switch (indexToken.Type)
+                return Task.FromResult(new CompletionList(statementCompletions));
+            }
+
+            var context = ParseTreeFromPosition(yarnFile.ParseTree, request.Position.Character, request.Position.Line + 1);
+
+            var maybeTokenAtRequestPosition = yarnFile.GetRawToken(request.Position);
+            if (!maybeTokenAtRequestPosition.HasValue)
+            {
+                // We don't know what completions to offer for here.
+                return Task.FromResult(new CompletionList());
+            }
+
+            var tokenAtRequestPosition = yarnFile.Tokens[maybeTokenAtRequestPosition.Value];
+
+            var rangeOfTokenAtRequestPosition = PositionHelper.GetRange(yarnFile.LineStarts, tokenAtRequestPosition);
+            if (tokenAtRequestPosition.Type == YarnSpinnerLexer.COMMAND_END
+                || tokenAtRequestPosition.Type == YarnSpinnerLexer.RPAREN
+                || tokenAtRequestPosition.Type == YarnSpinnerLexer.EXPRESSION_END)
+            {
+                rangeOfTokenAtRequestPosition = rangeOfTokenAtRequestPosition.CollapseToStart(); // don't replace closing braces
+            }
+
+            var results = new List<CompletionItem>();
+
+            var vocabulary = yarnFile.Lexer.Vocabulary;
+            var tokenName = vocabulary.GetSymbolicName(tokenAtRequestPosition.Type);
+
+            void ExpandRangeToEndOfPreviousTokenOfType(int tokenType, int startIndex, ref Range range)
+            {
+                var startToken = yarnFile.Tokens[startIndex];
+                var current = startToken;
+                var index = startIndex;
+                while (index >= 0 && current.Line == startToken.Line)
                 {
-                    case YarnSpinnerLexer.COMMAND_JUMP:
+                    if (current.Type == tokenType)
+                    {
+                        var newRange = new Range
                         {
-                            GetNodeNameCompletions(indexTokenRange, results);
+                            End = range.End,
+                            Start = PositionHelper.GetPosition(yarnFile.LineStarts, current.StopIndex + 1),
+                        };
+                        range = newRange;
+                        return;
+                    }
 
-                            break;
-                        }
+                    current = yarnFile.Tokens[--index];
+                }
+            }
 
+            if (context?.IsChildOfContext<YarnSpinnerParser.Jump_statementContext>() ?? false)
+            {
+                // We're in the middle of a jump statement. Expand the
+                // replacement range to the end of the '<<jump ', and offer the
+                // list of nodes.
+                ExpandRangeToEndOfPreviousTokenOfType(YarnSpinnerLexer.COMMAND_JUMP, maybeTokenAtRequestPosition.Value, ref rangeOfTokenAtRequestPosition);
+
+                GetNodeNameCompletions(
+                    project,
+                    request,
+                    rangeOfTokenAtRequestPosition,
+                    results
+                );
+            }
+            else
+            {
+                switch (tokenAtRequestPosition.Type)
+                {
                     case YarnSpinnerLexer.COMMAND_START:
                         {
-                            GetCommandCompletions(request, indexTokenRange, results);
+                            // The token we're at is the start of a command
+                            // statement. Collapse our replacement range to the end
+                            // of that token.
+                            rangeOfTokenAtRequestPosition = rangeOfTokenAtRequestPosition.CollapseToEnd();
+                            GetCommandCompletions(request, rangeOfTokenAtRequestPosition, results);
 
                             break;
                         }
+
                     case YarnSpinnerLexer.COMMAND_TEXT:
                         {
-                            ExpandRangeToPreviousToken(YarnSpinnerLexer.COMMAND_START, index.Value, ref indexTokenRange);
-                            GetCommandCompletions(request, indexTokenRange, results);
+                            // The token we're at is in the middle of a command
+                            // statement. Expand our range to the end of our
+                            // starting command token, so that the results we send
+                            // back can be filtered.
+                            ExpandRangeToEndOfPreviousTokenOfType(YarnSpinnerLexer.COMMAND_START, maybeTokenAtRequestPosition.Value, ref rangeOfTokenAtRequestPosition);
+                            GetCommandCompletions(request, rangeOfTokenAtRequestPosition, results);
 
                             break;
                         }
@@ -278,43 +319,46 @@ namespace YarnLanguageServer.Handlers
                     case YarnSpinnerLexer.COMMAND_IF:
                     case YarnSpinnerLexer.COMMAND_ELSEIF:
                         {
-                            GetVariableNameCompletions(indexTokenRange, results);
+                            GetVariableNameCompletions(project, rangeOfTokenAtRequestPosition, results);
 
                             break;
                         }
                 }
-
-                return Task.FromResult(new CompletionList(results));
             }
-
-            return Task.FromResult<CompletionList>(null);
+            return Task.FromResult(new CompletionList(results));
         }
 
-        private void GetNodeNameCompletions(Range indexTokenRange, List<CompletionItem> results)
+        private static void GetNodeNameCompletions(Project project, CompletionParams request, Range indexTokenRange, List<CompletionItem> results)
         {
-            foreach (var node in workspace.GetNodeTitles())
+            foreach (var node in project.Nodes)
             {
                 results.Add(new CompletionItem
                 {
-                    Label = node.title,
+                    Label = node.Title,
                     Kind = CompletionItemKind.Method,
-                    Detail = System.IO.Path.GetFileName(node.uri.AbsolutePath),
-                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = node.title, Range = indexTokenRange.CollapseToEnd() }),
+                    Detail = System.IO.Path.GetFileName(node.File.Uri.AbsolutePath),
+                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit {
+                        NewText = node.Title,
+                        Range = new Range {
+                            Start = indexTokenRange.Start,
+                            End = request.Position,
+                        },
+                    }),
                 });
             }
         }
 
-        private void GetVariableNameCompletions(Range indexTokenRange, List<CompletionItem> results)
+        private static void GetVariableNameCompletions(Project project, Range indexTokenRange, List<CompletionItem> results)
         {
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
-            foreach (var cmd in workspace.GetFunctions())
+            System.Text.StringBuilder builder = new ();
+            foreach (var function in project.Functions.DistinctBy(f => f.YarnName))
             {
-                builder.Append(cmd.YarnName);
-                builder.Append("(");
+                builder.Append(function.YarnName);
+                builder.Append('(');
 
                 var parameters = new List<string>();
                 int i = 1;
-                foreach (var param in cmd.Parameters)
+                foreach (var param in function.Parameters)
                 {
                     if (param.IsParamsArray)
                     {
@@ -330,23 +374,23 @@ namespace YarnLanguageServer.Handlers
 
                 builder.Append(string.Join(", ", parameters));
 
-                builder.Append(")");
+                builder.Append(')');
 
                 results.Add(new CompletionItem
                 {
-                    Label = cmd.DefinitionName,
+                    Label = function.YarnName,
                     Kind = CompletionItemKind.Function,
-                    Documentation = cmd.Documentation,
+                    Documentation = function.Documentation,
 
                     // would be good in the future to also show the return type but we don't know that at this stage, something for the future
-                    Detail = cmd.DefinitionFile == null || cmd.IsBuiltIn ? null : System.IO.Path.GetFileName(cmd.DefinitionFile.AbsolutePath),
+                    Detail = (function.SourceFileUri?.AbsolutePath == null || function.IsBuiltIn) ? null : System.IO.Path.GetFileName(function.SourceFileUri.AbsolutePath),
                     TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
                     InsertTextFormat = InsertTextFormat.Snippet,
                 });
                 builder.Clear();
             }
 
-            foreach (var variable in workspace.GetVariables())
+            foreach (var variable in project.Variables)
             {
                 results.Add(new CompletionItem
                 {
@@ -367,13 +411,22 @@ namespace YarnLanguageServer.Handlers
             {
                 results.Add(keyword with
                 {
-                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = keyword.InsertText, Range = new Range(request.Position, request.Position) }),
+                    TextEdit = new TextEditOrInsertReplaceEdit(
+                        new TextEdit
+                        {
+                            NewText = keyword?.InsertText ?? string.Empty,
+                            Range = new Range(indexTokenRange.Start, request.Position),
+                        }
+                    ),
                 });
             }
 
+            var uri = request.TextDocument.Uri;
+            var project = workspace.GetProjectsForUri(uri).First();
+
             // adding any known commands
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
-            foreach (var cmd in workspace.GetCommands())
+            System.Text.StringBuilder builder = new ();
+            foreach (var cmd in project.Commands.DistinctBy(c => c.YarnName))
             {
                 builder.Append(cmd.YarnName);
 
@@ -392,9 +445,10 @@ namespace YarnLanguageServer.Handlers
                     i++;
                 }
 
-                string detailText = (cmd.DefinitionFile == null || cmd.IsBuiltIn)
-                    ? null
-                    : $"{cmd.DefinitionName} ({System.IO.Path.GetFileName(cmd.DefinitionFile.AbsolutePath)})";
+                string detailText = cmd.IsBuiltIn ? "(built-in)"
+                    : (cmd.SourceFileUri == null || cmd.IsBuiltIn)
+                        ? $"{cmd.ImplementationName}"
+                        : $"{cmd.ImplementationName} ({System.IO.Path.GetFileName(cmd.SourceFileUri.AbsolutePath)})";
 
                 results.Add(new CompletionItem
                 {
@@ -402,14 +456,20 @@ namespace YarnLanguageServer.Handlers
                     Kind = CompletionItemKind.Function,
                     Documentation = cmd.Documentation,
                     Detail = detailText,
-                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
+                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit {
+                        NewText = builder.ToString(),
+                        Range = new Range {
+                            Start = indexTokenRange.Start,
+                            End = request.Position,
+                        },
+                    }),
                     InsertTextFormat = InsertTextFormat.Snippet,
                 });
                 builder.Clear();
             }
         }
 
-        public static readonly HashSet<int> PreferedRules = new HashSet<int>
+        public static readonly HashSet<int> PreferedRules = new ()
         {
             YarnSpinnerParser.RULE_command_statement,
             YarnSpinnerParser.RULE_variable,
@@ -423,7 +483,7 @@ namespace YarnLanguageServer.Handlers
             // YarnSpinnerLexer.VAR_ID
         };
 
-        public static readonly HashSet<int> IgnoredTokens = new HashSet<int>
+        public static readonly HashSet<int> IgnoredTokens = new ()
         {
             YarnSpinnerLexer.OPERATOR_ASSIGNMENT,
             YarnSpinnerLexer.OPERATOR_MATHS_ADDITION,
@@ -459,16 +519,25 @@ namespace YarnLanguageServer.Handlers
             YarnSpinnerLexer.VAR_ID,
         };
 
-        public static readonly Dictionary<string, string> UserFriendlyTokenText = new Dictionary<string, string>
+        public static readonly Dictionary<string, string> UserFriendlyTokenText = new ()
         {
-            { "COMMAND_IF", "if" }, { "COMMAND_ELSEIF", "elseif" }, { "COMMAND_ELSE", "else" }, { "COMMAND_SET", "set" },
-            { "COMMAND_ENDIF", "endif" }, { "COMMAND_CALL", "call" }, { "COMMAND_DECLARE", "declare" }, { "COMMAND_JUMP", "jump " },
-            { "KEYWORD_FALSE", "false" }, { "KEYWORD_TRUE", "true" }, { "KEYWORD_NULL", "null" },
+            { "COMMAND_IF", "if" },
+            { "COMMAND_ELSEIF", "elseif" },
+            { "COMMAND_ELSE", "else" },
+            { "COMMAND_SET", "set" },
+            { "COMMAND_ENDIF", "endif" },
+            { "COMMAND_CALL", "call" },
+            { "COMMAND_DECLARE", "declare" },
+            { "COMMAND_JUMP", "jump " },
+            { "KEYWORD_FALSE", "false" },
+            { "KEYWORD_TRUE", "true" },
+            { "KEYWORD_NULL", "null" },
         };
 
-        public static readonly Dictionary<string, string> TokenSnippets = new Dictionary<string, string>
+        public static readonly Dictionary<string, string> TokenSnippets = new ()
         {
-            { "COMMAND_SET", "set \\$$1 to ${2:value}" }, { "COMMAND_DECLARE", "declare \\$$1 to ${2:value}" },
+            { "COMMAND_SET", "set \\$$1 to ${2:value}" },
+            { "COMMAND_DECLARE", "declare \\$$1 to ${2:value}" },
         };
 
         public CompletionRegistrationOptions GetRegistrationOptions(CompletionCapability capability, ClientCapabilities clientCapabilities)
@@ -501,13 +570,17 @@ namespace YarnLanguageServer.Handlers
                 {
                     return true;
                 }
+
                 current = current.Parent;
             }
+
             return false;
         }
 
-        public static Antlr4.Runtime.Tree.IParseTree ParseTreeFromPosition(Antlr4.Runtime.Tree.IParseTree root, int column, int row) {
-            if (root is Antlr4.Runtime.Tree.ITerminalNode terminal) {
+        public static Antlr4.Runtime.Tree.IParseTree? ParseTreeFromPosition(Antlr4.Runtime.Tree.IParseTree root, int column, int row)
+        {
+            if (root is Antlr4.Runtime.Tree.ITerminalNode terminal)
+            {
                 var token = terminal.Symbol;
                 if (token.Line != row)
                 {
@@ -519,6 +592,7 @@ namespace YarnLanguageServer.Handlers
                 {
                     return terminal;
                 }
+
                 return null;
             }
             else if (root is Antlr4.Runtime.ParserRuleContext context)
@@ -550,33 +624,42 @@ namespace YarnLanguageServer.Handlers
                         }
                     }
                 }
+
                 return context;
-            } else {
+            }
+            else
+            {
                 return null;
             }
-
         }
     }
 
-    static class ContextExtensions {
+    internal static class ContextExtensions
+    {
         public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree)
             where T : Antlr4.Runtime.ParserRuleContext
         {
             return IsChildOfContext<T>(tree, out _);
         }
-        public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree, out T result)
+
+        public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree, out T? result)
             where T : Antlr4.Runtime.ParserRuleContext
         {
             var type = typeof(T);
-            var current = tree;
-            while (tree != null) {
-                if (type.IsAssignableFrom(tree.Payload.GetType())) {
+
+            while (tree != null)
+            {
+                if (type.IsAssignableFrom(tree.Payload.GetType()))
+                {
                     result = (T)tree;
                     return true;
                 }
+
                 tree = tree.Parent;
             }
+
             result = default;
+
             return false;
         }
     }

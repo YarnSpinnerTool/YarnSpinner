@@ -1,11 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Globalization;
-using static Yarn.Instruction.Types;
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
 
 namespace Yarn
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Runtime.Serialization;
+    using System.Globalization;
+    using static Yarn.Instruction.Types;
     
     /// <summary>
     /// A compiled Yarn program.
@@ -97,6 +99,10 @@ namespace Yarn
 		/// one Program contains a node of the same name.</throws>
         public static Program Combine(params Program[] programs)
         {
+            if (programs == null)
+            {
+                throw new ArgumentNullException("At least one program must be provided");
+            }
             if (programs.Length == 0)
             {
                 throw new ArgumentException(nameof(programs), "At least one program must be provided.");

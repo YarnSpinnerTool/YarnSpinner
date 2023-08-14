@@ -1,4 +1,7 @@
-﻿using System;
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Yarn.Saliency;
@@ -6,24 +9,47 @@ using static Yarn.Instruction.Types;
 
 namespace Yarn
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using static Yarn.Instruction.Types;
+
     /// <summary>
     /// A value used by an Instruction.
     /// </summary>
     public partial class Operand
     {
-        // Define some convenience constructors for the Operand type, so
-        // that we don't need to have two separate steps for creating and
-        // then preparing the Operand
+        /// <summary>
+        /// Convenience constructor for the Operand type.
+        /// </summary>
+        /// <remarks>
+        /// so that we don't need to have two separate steps for creating and then preparing the Operand
+        /// </remarks>
+        /// <param name="value">The boolean value to be made into the operand</param>
         public Operand(bool value) : base()
         {
             this.BoolValue = value;
         }
 
+        /// <summary>
+        /// Convenience constructor for the Operand type.
+        /// </summary>
+        /// <remarks>
+        /// so that we don't need to have two separate steps for creating and then preparing the Operand
+        /// </remarks>
+        /// <param name="value">The string value to be made into the operand</param>
         public Operand(string value) : base()
         {
             this.StringValue = value;
         }
 
+        /// <summary>
+        /// Convenience constructor for the Operand type.
+        /// </summary>
+        /// <remarks>
+        /// so that we don't need to have two separate steps for creating and then preparing the Operand
+        /// </remarks>
+        /// <param name="value">The float value to be made into the operand</param>
         public Operand(float value) : base()
         {
             this.FloatValue = value;
@@ -108,10 +134,8 @@ namespace Yarn
 
     internal class VirtualMachine : ISmartVariableEvaluator
     {
-
         internal class State
         {
-
             /// <summary>The name of the node that we're currently
             /// in.</summary>
             public string currentNodeName;
@@ -273,7 +297,6 @@ namespace Yarn
 
         public bool SetNode(string nodeName)
         {
-
             if (Program == null || Program.Nodes.Count == 0)
             {
                 throw new DialogueException($"Cannot load node {nodeName}: No nodes have been loaded.");
@@ -330,12 +353,12 @@ namespace Yarn
         public void Stop()
         {
             CurrentExecutionState = ExecutionState.Stopped;
+            currentNode = null;
             DialogueCompleteHandler?.Invoke();
         }
 
         public void SetSelectedOption(int selectedOptionID)
         {
-
             if (CurrentExecutionState != ExecutionState.WaitingOnOptionSelection)
             {
 
@@ -432,13 +455,10 @@ namespace Yarn
         /// Looks up the instruction number for a named label in the current node.
         internal int FindInstructionPointForLabel(string labelName)
         {
-
             if (currentNode.Labels.ContainsKey(labelName) == false)
             {
                 // Couldn't find the node..
-                throw new IndexOutOfRangeException(
-                    $"Unknown label {labelName} in node {state.currentNodeName}"
-                );
+                throw new ArgumentOutOfRangeException($"Unknown label {labelName} in node {state.currentNodeName}");
             }
 
             return currentNode.Labels[labelName];
@@ -450,9 +470,8 @@ namespace Yarn
             {
                 case OpCode.JumpTo:
                     {
-                        /// - JumpTo
-                        /** Jumps to a named label
-                         */
+                        // - JumpTo
+                        // Jumps to a named label
                         state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
 
                         break;
@@ -460,10 +479,9 @@ namespace Yarn
 
                 case OpCode.RunLine:
                     {
-                        /// - RunLine
-                        /** Looks up a string from the string table and
-                         *  passes it to the client as a line
-                         */
+                        // - RunLine
+                        // Looks up a string from the string table and
+                        // passes it to the client as a line
                         string stringKey = i.Operands[0].StringValue;
 
                         Line line = new Line(stringKey);
@@ -509,10 +527,8 @@ namespace Yarn
 
                 case OpCode.RunCommand:
                     {
-                        /// - RunCommand
-                        /** Passes a string to the client as a custom command
-                         */
-
+                        // - RunCommand
+                        // Passes a string to the client as a custom command
                         string commandText = i.Operands[0].StringValue;
 
                         // The second operand, if provided (compilers prior
@@ -560,10 +576,9 @@ namespace Yarn
 
                 case OpCode.PushString:
                     {
-                        /// - PushString
-                        /** Pushes a string value onto the stack. The operand is an index into
-                         *  the string table, so that's looked up first.
-                         */
+                        // - PushString
+                        // Pushes a string value onto the stack. The operand is an index into
+                        // the string table, so that's looked up first.
                         state.PushValue(i.Operands[0].StringValue);
 
                         break;
@@ -571,9 +586,8 @@ namespace Yarn
 
                 case OpCode.PushFloat:
                     {
-                        /// - PushFloat
-                        /** Pushes a floating point onto the stack.
-                         */
+                        // - PushFloat
+                        // Pushes a floating point onto the stack.
                         state.PushValue(i.Operands[0].FloatValue);
 
                         break;
@@ -581,9 +595,8 @@ namespace Yarn
 
                 case OpCode.PushBool:
                     {
-                        /// - PushBool
-                        /** Pushes a boolean value onto the stack.
-                         */
+                        // - PushBool
+                        // Pushes a boolean value onto the stack.
                         state.PushValue(i.Operands[0].BoolValue);
 
                         break;
@@ -596,10 +609,9 @@ namespace Yarn
 
                 case OpCode.JumpIfFalse:
                     {
-                        /// - JumpIfFalse
-                        /** Jumps to a named label if the value on the top of the stack
-                         *  evaluates to the boolean value 'false'.
-                         */
+                        // - JumpIfFalse
+                        // Jumps to a named label if the value on the top of the stack
+                        // evaluates to the boolean value 'false'.
                         if (state.PeekValue().ConvertTo<bool>() == false)
                         {
                             state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
@@ -608,9 +620,9 @@ namespace Yarn
                     }
 
                 case OpCode.Jump:
-                    {/// - Jump
-                        /** Jumps to a label whose name is on the stack.
-                         */
+                    {
+                        // - Jump
+                        // Jumps to a label whose name is on the stack.
                         var jumpDestination = state.PeekValue().ConvertTo<string>();
                         state.programCounter = FindInstructionPointForLabel(jumpDestination) - 1;
 
@@ -619,9 +631,8 @@ namespace Yarn
 
                 case OpCode.Pop:
                     {
-                        /// - Pop
-                        /** Pops a value from the stack.
-                         */
+                        // - Pop
+                        // Pops a value from the stack.
                         state.PopValue();
                         break;
                     }
@@ -629,11 +640,10 @@ namespace Yarn
                 case OpCode.CallFunc:
                     {
 
-                        /// - CallFunc
-                        /** Call a function, whose parameters are expected to
-                         *  be on the stack. Pushes the function's return value,
-                         *  if it returns one.
-                         */
+                        // - CallFunc
+                        // Call a function, whose parameters are expected to
+                        // be on the stack. Pushes the function's return value,
+                        // if it returns one.
                         var functionName = i.Operands[0].StringValue;
 
                         // If functionName is a special-cased internal compiler
@@ -674,7 +684,6 @@ namespace Yarn
                             parametersToUse[param] = value.ConvertTo(parameterType);
                         }
 
-
                         // Invoke the function
                         try
                         {
@@ -703,9 +712,8 @@ namespace Yarn
 
                 case OpCode.PushVariable:
                     {
-                        /// - PushVariable
-                        /** Get the contents of a variable, push that onto the stack.
-                         */
+                        // - PushVariable
+                        // Get the contents of a variable, push that onto the stack.
                         var variableName = i.Operands[0].StringValue;
 
                         Value loadedValue;
@@ -764,9 +772,8 @@ namespace Yarn
 
                 case OpCode.StoreVariable:
                     {
-                        /// - StoreVariable
-                        /** Store the top value on the stack in a variable.
-                         */
+                        // - StoreVariable
+                        // Store the top value on the stack in a variable.
                         var topValue = state.PeekValue();
                         var destinationVariableName = i.Operands[0].StringValue;
 
@@ -792,9 +799,8 @@ namespace Yarn
 
                 case OpCode.Stop:
                     {
-                        /// - Stop
-                        /** Immediately stop execution, and report that fact.
-                         */
+                        // - Stop
+                        // Immediately stop execution, and report that fact.
                         NodeCompleteHandler(currentNode.Name);
                         DialogueCompleteHandler?.Invoke();
                         CurrentExecutionState = ExecutionState.Stopped;
@@ -804,9 +810,8 @@ namespace Yarn
 
                 case OpCode.RunNode:
                     {
-                        /// - RunNode
-                        /** Run a node
-                         */
+                        // - RunNode
+                        // Run a node
 
                         // Pop a string from the stack, and jump to a node
                         // with that name.
@@ -826,9 +831,8 @@ namespace Yarn
 
                 case OpCode.AddOption:
                     {
-                        /// - AddOption
-                        /** Add an option to the current state.
-                         */
+                        // - AddOption
+                        // Add an option to the current state.
 
                         var line = new Line(i.Operands[0].StringValue);
 
@@ -891,9 +895,8 @@ namespace Yarn
 
                 case OpCode.ShowOptions:
                     {
-                        /// - ShowOptions
-                        /** If we have no options to show, immediately stop.
-                         */
+                        // - ShowOptions
+                        // If we have no options to show, immediately stop.
                         if (state.currentOptions.Count == 0)
                         {
                             CurrentExecutionState = ExecutionState.Stopped;
@@ -933,10 +936,9 @@ namespace Yarn
 
                 default:
                     {
-                        /// - default
-                        /** Whoa, no idea what OpCode this is. Stop the program
-                         * and throw an exception.
-                        */
+                        // - default
+                        // Whoa, no idea what OpCode this is. Stop the program
+                        // and throw an exception.
                         CurrentExecutionState = ExecutionState.Stopped;
                         throw new ArgumentOutOfRangeException(
                             $"Unknown opcode {i.Opcode}"

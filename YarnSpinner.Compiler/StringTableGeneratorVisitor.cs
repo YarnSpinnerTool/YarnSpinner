@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Compiler
 {
     using System;
@@ -12,19 +15,17 @@ namespace Yarn.Compiler
     /// table entries, which are provided to a <see
     /// cref="StringTableManager"/>. This string table can then be provided
     /// to future compilation passes, or stored for later use. Call the
-    /// <see cref="Visit"/> method to begin generating string table
+    /// <see cref="AbstractParseTreeVisitor{Result}.Visit(Antlr4.Runtime.Tree.IParseTree)"/> method to begin generating string table
     /// entries.
     /// </summary>
     internal class StringTableGeneratorVisitor : YarnSpinnerParserBaseVisitor<int>
     {
-
         private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
 
         private YarnSpinnerParser.NodeContext currentNodeContext;
         private string currentNodeName;
         private string fileName;
         private StringTableManager stringTableManager;
-
 
         /// <summary>
         /// Gets the collection of <see cref="Diagnostic"/> objects
@@ -74,7 +75,8 @@ namespace Yarn.Compiler
                 // this.Visit(context.body());
 
                 var body = context.body();
-                if (body != null) {
+                if (body != null)
+                {
                     this.Visit(body);
                 }
                 // String table generator: don't crash if a node has no body
@@ -96,7 +98,8 @@ namespace Yarn.Compiler
             GenerateFormattedText(context.line_formatted_text().children, out var composedString, out var expressionCount);
 
             // Does this string table already have a string with this ID?
-            if (lineID != null && stringTableManager.ContainsKey(lineID)) {
+            if (lineID != null && stringTableManager.ContainsKey(lineID)) 
+            {
                 // If so, this is an error.
                 ParserRuleContext diagnosticContext;
 

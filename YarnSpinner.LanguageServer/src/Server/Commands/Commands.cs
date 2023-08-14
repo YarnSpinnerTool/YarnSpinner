@@ -3,7 +3,7 @@ namespace YarnLanguageServer;
 public static class Commands
 {
     /// <summary>
-    /// The command to list all nodes in a file. 
+    /// The command to list all nodes in a file.
     /// </summary>
     /// <remarks>
     /// <para>Parameters:</para>
@@ -39,21 +39,21 @@ public static class Commands
     public const string DidChangeNodesNotification = "textDocument/yarnSpinner/didChangeNodes";
 
     /// <summary>
-    /// The command to compile a Yarn project and get back the string 
-    /// table and byte array of the compiled program
+    /// The command to compile the current Yarn project and get back the byte
+    /// array of the compiled program.
     /// </summary>
-    public const string Compile = "yarnspinner.compile";
+    public const string CompileCurrentProject = "yarnspinner.compile";
 
     /// <summary>
-    /// The command to compile a Yarn project and get a spreadsheet
+    /// The command to compile a Yarn project and get a spreadsheet.
     /// </summary>
-    public const string Extract = "yarnspinner.extract-spreadsheet";
+    public const string ExtractSpreadsheet = "yarnspinner.extract-spreadsheet";
 
     /// <summary>
     /// The command to generate a graph of the Yarn Project.
     /// Will be presented as a directed graph of nodes and jumps.
     /// </summary>
-    public const string Graph = "yarnspinner.create-graph";
+    public const string CreateDialogueGraph = "yarnspinner.create-graph";
 
     /// <summary>
     /// The command to show references to a named Yarn node.

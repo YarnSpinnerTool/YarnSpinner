@@ -9,8 +9,7 @@ namespace YarnLanguageServer
     {
         // This whole setup will probably get reworked once I get a days away from staring at Visual Studio configuaration documentation
         private bool csharplookup = false;
-        private bool deepCommandLookup = true;
-
+        
         private bool needReinitialize = false;
 
         public bool CSharpLookup
@@ -26,28 +25,12 @@ namespace YarnLanguageServer
             }
         }
 
-        public bool DeepCommandLookup
-        {
-            get => deepCommandLookup;
-            set
-            {
-                if (deepCommandLookup != value)
-                {
-                    deepCommandLookup = value;
-                    needReinitialize = workspace.UnmatchedDefinitions.Any();
-                }
-            }
+        public static class Defaults {
+            public const float DidYouMeanThreshold = 0.24f;
         }
 
-        public float DidYouMeanThreshold { get; set; } = 0.24f;
+        public float DidYouMeanThreshold { get; set; } = Defaults.DidYouMeanThreshold;
         public bool OnlySuggestDeclaredVariables { get; set; } = true;
-
-        private Workspace workspace;
-
-        public Configuration(Workspace workspace)
-        {
-            this.workspace = workspace;
-        }
 
         public void Initialize(JArray values)
         {
@@ -71,11 +54,6 @@ namespace YarnLanguageServer
                 JsonSerializer.CreateDefault().Populate(value.CreateReader(), this);
             }
             catch (Exception) { }
-            if (needReinitialize)
-            {
-                needReinitialize = false;
-                workspace.LoadExternalInfo();
-            }
         }
     }
 }

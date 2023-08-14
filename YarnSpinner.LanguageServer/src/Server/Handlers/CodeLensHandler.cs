@@ -20,24 +20,32 @@ namespace YarnLanguageServer.Handlers
 
         public Task<CodeLensContainer> Handle(CodeLensParams request, CancellationToken cancellationToken)
         {
-            if (workspace.YarnFiles.TryGetValue(request.TextDocument.Uri.ToUri(), out var yarnFile))
+            var documentUri = request.TextDocument.Uri.ToUri();
+
+            Project? project = workspace.GetProjectsForUri(documentUri).FirstOrDefault();
+            YarnFileData? yarnFile = project?.GetFileData(documentUri);
+
+            if (project == null || yarnFile == null)
             {
-                var results = yarnFile.NodeDefinitions.SelectMany(titleToken =>
+                return Task.FromResult(new CodeLensContainer());
+            }
+
+            var results = yarnFile.NodeDefinitions.SelectMany(titleToken =>
+               {
+                   var referenceLocations = ReferencesHandler.GetReferences(project, titleToken.Text, YarnSymbolType.Node);
+                   var count = referenceLocations.Count() - 1; // This is a count of 'other' references, so don't include the declaration
+
+                   // OmniSharp Locations, Ranges and Positions have
+                   // PascalCase property names, but the LSP wants
+                   // camelCase. Provide our own serialization here to
+                   // ensure this.
+                   var serializer = new Newtonsoft.Json.JsonSerializer
                    {
-                       var referenceLocations = ReferencesHandler.GetReferences(titleToken.Text, YarnSymbolType.Node, workspace);
-                       var count = referenceLocations.Count() - 1; // This is a count of 'other' references, so don't include the declaration
+                       ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                   };
 
-                       // OmniSharp Locations, Ranges and Positions have
-                       // PascalCase property names, but the LSP wants
-                       // camelCase. Provide our own serialization here to
-                       // ensure this.
-                       var serializer = new Newtonsoft.Json.JsonSerializer
-                       {
-                           ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                       };
-
-                       return new CodeLens[]
-                       {
+                   return new CodeLens[]
+                   {
                         new CodeLens {
                            Range = PositionHelper.GetRange(yarnFile.LineStarts, titleToken),
                            Command = new Command
@@ -64,14 +72,11 @@ namespace YarnLanguageServer.Handlers
                                },
                            },
                         },
-                       };
-                   });
+                   };
+               });
 
-                CodeLensContainer result = new CodeLensContainer(results);
-                return Task.FromResult(result);
-            }
-
-            return Task.FromResult<CodeLensContainer>(null);
+            CodeLensContainer result = new CodeLensContainer(results);
+            return Task.FromResult(result);
         }
 
         public CodeLensRegistrationOptions GetRegistrationOptions(CodeLensCapability capability, ClientCapabilities clientCapabilities)

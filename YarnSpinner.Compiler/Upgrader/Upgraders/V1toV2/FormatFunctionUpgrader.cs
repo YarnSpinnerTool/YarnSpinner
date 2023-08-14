@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Compiler.Upgrader
 {
     using System;
@@ -60,7 +63,8 @@ namespace Yarn.Compiler.Upgrader
                 var formatFunctionType = context.function_name?.Text;
                 var variableContext = context.variable();
 
-                if (formatFunctionType == null || variableContext == null) {
+                if (formatFunctionType == null || variableContext == null)
+                {
                     // Not actually a format function, but the parser may
                     // have misinterpreted it? Do nothing here.
                     return;
