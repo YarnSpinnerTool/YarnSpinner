@@ -316,8 +316,8 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
 
             firstLineInfo.FileName.Should().Be("input");
             firstLineInfo.NodeName.Should().Be("DebugTesting");
-            firstLineInfo.LineNumber.Should().Be(2);
-            firstLineInfo.CharacterNumber.Should().Be(0);
+            firstLineInfo.Position.Line.Should().Be(2);
+            firstLineInfo.Position.Character.Should().Be(0);
         }
     }
 }
