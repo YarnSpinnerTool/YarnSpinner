@@ -163,7 +163,7 @@ namespace Yarn.Compiler
         public override void EnterNode(YarnSpinnerParser.NodeContext context)
         {
             this.CurrentNode = new Node();
-            this.CurrentNodeDebugInfo = new NodeDebugInfo();
+            this.CurrentNodeDebugInfo = new NodeDebugInfo(FileParseResult.Name, "<unknown>");
             this.RawTextNode = false;
         }
 
@@ -200,8 +200,7 @@ namespace Yarn.Compiler
                 CompilationResult.DebugInfos.Add(this.CurrentNodeDebugInfo);
                 
 
-                this.CurrentNodeDebugInfo.NodeName = this.CurrentNode.Name;
-                this.CurrentNodeDebugInfo.FileName = this.FileParseResult.Name;
+                
             }
 
             this.CurrentNode = null;
@@ -239,6 +238,7 @@ namespace Yarn.Compiler
             {
                 // Set the name of the node
                 this.CurrentNode.Name = headerValue;
+                this.CurrentNodeDebugInfo.NodeName = this.CurrentNode.Name;
             }
 
             if (headerKey.Equals("tags", StringComparison.InvariantCulture))
@@ -256,9 +256,11 @@ namespace Yarn.Compiler
                 }
             }
 
-            var header = new Header();
-            header.Key = headerKey;
-            header.Value = headerValue;
+            var header = new Header
+            {
+                Key = headerKey,
+                Value = headerValue
+            };
             this.CurrentNode.Headers.Add(header);
         }
 

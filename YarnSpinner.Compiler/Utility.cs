@@ -727,8 +727,17 @@ namespace Yarn.Compiler
                     {
                         var nextBlockStartInstruction = block.FirstInstructionIndex + block.Instructions.Count();
 
-                        var destination = GetBlockWithIndex(nextBlockStartInstruction);
-                        block.AddDestination(destination, BasicBlock.Condition.Fallthrough);
+                        if (nextBlockStartInstruction >= node.Instructions.Count)
+                        {
+                            // We've reached the very end of the node's
+                            // instructions. There are no blocks to jump to.
+                        }
+                        else
+                        {
+
+                            var destination = GetBlockWithIndex(nextBlockStartInstruction);
+                            block.AddDestination(destination, BasicBlock.Condition.Fallthrough);
+                        }
                     }
                 }
             }

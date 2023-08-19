@@ -35,7 +35,7 @@ namespace Yarn.Compiler
         public void Compile(Declaration decl, out Node node, out NodeDebugInfo debugInfo)
         {
             this.CurrentNode = new Node();
-            this.CurrentDebugInfo = new NodeDebugInfo();
+            this.CurrentDebugInfo = new NodeDebugInfo(decl.SourceFileName, decl.Name);
 
             this.CurrentNode.Name = decl.Name;
             this.CurrentNode.Tags.Add(Program.SmartVariableNodeTag);

@@ -733,7 +733,10 @@ namespace Yarn.Compiler
 
             instruction.Operands.Add(operands);
 
-            debugInfo.LineInfos.Add(node.Instructions.Count, (sourceLine, sourceCharacter));
+            debugInfo.LinePositions.Add(node.Instructions.Count, new Position {
+                Line = sourceLine,
+                Character = sourceCharacter,
+            });
 
             node.Instructions.Add(instruction);
         }
@@ -790,7 +793,7 @@ namespace Yarn.Compiler
             return lineID;
         }
 
-        internal static bool TryGetOnceHashtag(IEnumerable<YarnSpinnerParser.HashtagContext> hashtags, out YarnSpinnerParser.HashtagContext result)
+        internal static bool TryGetOnceHashtag(IEnumerable<YarnSpinnerParser.HashtagContext>? hashtags, out YarnSpinnerParser.HashtagContext result)
         {
             if (hashtags != null)
             {

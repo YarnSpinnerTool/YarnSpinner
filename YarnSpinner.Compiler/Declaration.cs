@@ -282,7 +282,7 @@ namespace Yarn.Compiler
         /// variable declarations, not functions (because functions don't have a
         /// value.)
         /// </summary>
-        internal YarnSpinnerParser.ExpressionContext? InitialValueParserContext { get; set; }
+        public YarnSpinnerParser.ExpressionContext? InitialValueParserContext { get; set; }
 
         /// <summary>
         /// Gets the collection of <see cref="Declaration"/> objects whose value
@@ -298,7 +298,7 @@ namespace Yarn.Compiler
 
         /// <summary>
         /// Gets a value indicating whether this Declaration represents a
-        /// variable.
+        /// variable, and not a function.
         /// </summary>
         public bool IsVariable => !(this.Type is FunctionType);
 
