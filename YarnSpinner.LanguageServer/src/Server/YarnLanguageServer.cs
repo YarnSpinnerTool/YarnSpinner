@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -19,8 +19,13 @@ namespace YarnLanguageServer
 {
     public class YarnLanguageServer
     {
+        private static ILanguageServer? server;
 
-        public static ILanguageServer server;
+        public static ILanguageServer Server
+        {
+            get => server ?? throw new InvalidOperationException("Server has not yet been initialized.");
+            set => server = value;
+        }
 
         private static async Task Main(string[] args)
         {
@@ -29,13 +34,13 @@ namespace YarnLanguageServer
                 while (!Debugger.IsAttached) { await Task.Delay(100).ConfigureAwait(false); }
             }
 
-            server = await LanguageServer.From(
+            Server = await LanguageServer.From(
                 options => ConfigureOptions(options)
                     .WithInput(Console.OpenStandardInput())
                     .WithOutput(Console.OpenStandardOutput())
             ).ConfigureAwait(false);
 
-            await server.WaitForExit.ConfigureAwait(false);
+            await Server.WaitForExit.ConfigureAwait(false);
         }
 
         public static LanguageServerOptions ConfigureOptions(LanguageServerOptions options)
@@ -67,9 +72,9 @@ namespace YarnLanguageServer
                         server.Log("Server initialize.");
 
                         // avoid re-initializing if possible by getting config settings in early
-                        if (request.InitializationOptions != null)
+                        if (request.InitializationOptions is JArray optsArray)
                         {
-                            workspace.Configuration.Initialize(request.InitializationOptions as Newtonsoft.Json.Linq.JArray);
+                            workspace.Configuration.Initialize(optsArray);
                         }
 
                         workspace.Initialize(server);
@@ -150,6 +155,15 @@ namespace YarnLanguageServer
                 (commandParams) => GenerateDialogueGraph(workspace, commandParams), (_, _) => new ExecuteCommandRegistrationOptions
                 {
                     Commands = new[] { Commands.CreateDialogueGraph },
+                }
+            );
+
+            // generate debug information for all projects
+            options.OnExecuteCommand<Container<DebugOutput>>(
+                (commandParams) => GenerateDebugOutput(workspace, commandParams),
+                (_, _) => new ExecuteCommandRegistrationOptions
+                {
+                    Commands = new[] { Commands.GenerateDebugOutput },
                 }
             );
 
@@ -436,7 +450,13 @@ namespace YarnLanguageServer
         {
             var result = new List<NodeInfo>();
 
-            var yarnDocumentUriString = commandParams.Arguments[0].ToString();
+            var yarnDocumentUriString = commandParams.Arguments?[0].ToString();
+
+            if (yarnDocumentUriString == null)
+            {
+                // We don't have a project for this file. Return the empty collection.
+                return Task.FromException<Container<NodeInfo>>(new InvalidOperationException("No document URI was provided."));
+            }
 
             Uri yarnDocumentUri = new(yarnDocumentUriString);
 
@@ -732,6 +752,16 @@ namespace YarnLanguageServer
                 Errors = errorMessages,
             };
             return Task.FromResult(output);
+        }
+
+        public static Task<Container<DebugOutput>> GenerateDebugOutput(Workspace workspace, ExecuteCommandParams<Container<DebugOutput>> commandParams) {
+
+            var results = workspace.Projects.Select(project =>
+            {
+                return project.GetDebugOutput();
+            });
+
+            return Task.FromResult(new Container<DebugOutput>(results));
         }
     }
 }

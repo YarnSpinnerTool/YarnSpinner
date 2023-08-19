@@ -190,7 +190,7 @@ namespace YarnLanguageServer
                     {
                         Name = "target",
                         Description = "The game object that should receive the command",
-                        Type = Yarn.BuiltinTypes.String,
+                        Type = Yarn.Types.String,
                         DisplayTypeName = "GameObject",
                         IsParamsArray = false,
                     };
@@ -247,25 +247,25 @@ namespace YarnLanguageServer
             // 'Any'
             if (typeSyntax == null)
             {
-                return Yarn.BuiltinTypes.Any;
+                return Yarn.Types.Any;
             }
 
             switch (typeSyntax.ToString())
             {
                 case "string":
-                    return Yarn.BuiltinTypes.String;
+                    return Yarn.Types.String;
                 case "int":
                 case "float":
                 case "double":
                 case "byte":
                 case "uint":
                 case "decimal":
-                    return Yarn.BuiltinTypes.Number;
+                    return Yarn.Types.Number;
                 case "bool":
-                    return Yarn.BuiltinTypes.Boolean;
+                    return Yarn.Types.Boolean;
                 default:
                     // We don't know the type. Mark it as 'any'.
-                    return Yarn.BuiltinTypes.Any;
+                    return Yarn.Types.Any;
             }
         }
 

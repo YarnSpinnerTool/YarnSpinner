@@ -64,4 +64,6 @@ public static class Commands
     /// The command to show a specific Yarn node in a graph view.
     /// </summary>
     public const string ShowNodeInGraphView = "yarn.showNodeInGraphView";
+
+    public const string GenerateDebugOutput = "yarnspinner.generateDebugOutput";
 }

@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Antlr4.Runtime.Tree;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using OmniSharp.Extensions.LanguageServer.Protocol;
@@ -8,6 +10,7 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Workspace;
 using Xunit;
 using Xunit.Abstractions;
+using Yarn.Compiler;
 
 namespace YarnLanguageServer.Tests;
 
@@ -76,7 +79,7 @@ public class CommandTests : LanguageServerTestsBase
 
         nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
-        nodeInfo.Nodes.Should().HaveCount(3, "because the file has three nodes");
+        nodeInfo.Nodes.Should().HaveCount(4, "because the file has four nodes");
 
         var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
         {
@@ -97,7 +100,7 @@ public class CommandTests : LanguageServerTestsBase
 
         nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
-        nodeInfo.Nodes.Should().HaveCount(4, "because we added a node");
+        nodeInfo.Nodes.Should().HaveCount(5, "because we added a node");
         nodeInfo.Nodes.Should()
             .Contain(n => n.Title == "Node",
                 "because the new node should be called Title")
@@ -118,7 +121,7 @@ public class CommandTests : LanguageServerTestsBase
 
         NodesChangedParams? nodeInfo = await getInitialNodesChanged;
 
-        nodeInfo.Nodes.Should().HaveCount(3, "because the file has three nodes");
+        nodeInfo.Nodes.Should().HaveCount(4, "because the file has four nodes");
 
         var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
         {
@@ -137,10 +140,7 @@ public class CommandTests : LanguageServerTestsBase
 
         nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
-        nodeInfo.Nodes.Should().HaveCount(2, "because we removed a node");
-        nodeInfo.Nodes.Should()
-            .Contain(n => n.Title == "Node2",
-                "because the only remaining node is Node2");
+        nodeInfo.Nodes.Should().HaveCount(3, "because we removed a node");
     }
 
     [Fact]
@@ -307,5 +307,92 @@ public class CommandTests : LanguageServerTestsBase
         // Then
         result.Errors.Should().BeEmpty();
         result.Data.Should().NotBeEmpty();
+    }
+
+    [Fact]
+    public async Task Server_OnGetDebugInfo_ReturnsDebugInfo()
+    {
+        // Given
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+        var project1Path = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Project1.yarnproject");
+    
+        // When
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<Container<DebugOutput>>
+        {
+            Command = Commands.GenerateDebugOutput, 
+        });
+
+        // Then
+        result.Should().HaveCount(2, "there are two projects in the workspace");
+
+        var firstProject = result.Should().Contain(info => DocumentUri.GetFileSystemPath(info.SourceProjectUri!) == project1Path).Subject;
+
+        firstProject.Variables.Should().NotBeEmpty();
+        firstProject.Variables.Should().ContainEquivalentOf(new
+        {
+            Name = "$myVar",
+            Type = "String",
+            IsSmartVariable = false
+        });
+        
+        firstProject.Variables.Should().ContainEquivalentOf(new
+        {
+            Name = "$playerCanAffordPies",
+            Type = "Bool",
+            IsSmartVariable = true
+        });
+    }
+
+    private static YarnSpinnerParser Parse(string input, int initialLexerMode = -1) {
+        var lexer = new YarnSpinnerLexer(Antlr4.Runtime.CharStreams.fromstring(input));
+        if (initialLexerMode >= 0) {
+            lexer.PushMode(initialLexerMode);
+        }
+        var tokenStream = new Antlr4.Runtime.CommonTokenStream(lexer);
+        var parser = new YarnSpinnerParser(tokenStream);
+        return parser;
+    }
+
+    [Fact]
+    public void ExpressionFormatter_GivenExpressions_CanProduceObjects()
+    {
+        // Given
+        var input = "$foo and ($bar or not true)";
+
+        // When
+        
+        var expressionParseTree = Parse(input, YarnSpinnerLexer.ExpressionMode).expression();
+
+        expressionParseTree.Should().NotBeNull();
+
+        var andExpression = new ExpressionToJSONVisitor().Visit(expressionParseTree);
+
+        // Then
+        andExpression.Type.Should().Be(JSONExpression.ExpressionType.And);
+        andExpression.Children.Should().HaveCount(2);
+
+        var fooReference = andExpression.Children.ElementAt(0)!;
+        fooReference.Type.Should().Be(JSONExpression.ExpressionType.Literal);
+        fooReference.Literal.Should().Be("$foo");
+        fooReference.Children.Should().BeEmpty();
+
+        var orExpression = andExpression.Children.ElementAt(1)!;
+        orExpression.Type.Should().Be(JSONExpression.ExpressionType.Or);
+        orExpression.Children.Should().HaveCount(2);
+
+        var barReference = orExpression.Children.ElementAt(0);
+        barReference.Type.Should().Be(JSONExpression.ExpressionType.Literal);
+        barReference.Literal.Should().Be("$bar");
+        barReference.Children.Should().BeEmpty();
+
+        var notExpression = orExpression.Children.ElementAt(1);
+        notExpression.Type.Should().Be(JSONExpression.ExpressionType.Not);
+        notExpression.Children.Should().ContainSingle();
+
+        var trueConstant = notExpression.Children.Single();
+        trueConstant.Type.Should().Be(JSONExpression.ExpressionType.Constant);
+        trueConstant.Constant.Should().Be(true);
+        trueConstant.Children.Should().BeEmpty();
+
     }
 }

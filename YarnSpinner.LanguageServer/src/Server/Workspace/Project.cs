@@ -16,14 +16,12 @@ namespace YarnLanguageServer
         {
             get
             {
-                if (LastCompilationResult.HasValue == false)
+                if (LastCompilationResult == null)
                 {
                     return Enumerable.Empty<Yarn.Compiler.Declaration>();
                 }
 
-                var result = LastCompilationResult.Value;
-
-                return result.Declarations.Where(d => d.IsVariable == true);
+                return LastCompilationResult.Declarations.Where(d => d.IsVariable == true);
             }
         }
 
@@ -31,13 +29,13 @@ namespace YarnLanguageServer
         {
             get
             {
-                if (LastCompilationResult.HasValue == false)
+                if (LastCompilationResult == null)
                 {
                     // If we haven't compiled, then we have no diagnostics
                     return Enumerable.Empty<Yarn.Compiler.Diagnostic>();
                 }
 
-                return LastCompilationResult.Value.Diagnostics;
+                return LastCompilationResult.Diagnostics;
             }
         }
 
@@ -228,6 +226,28 @@ namespace YarnLanguageServer
             return compilationResult;
         }
 
+        internal DebugOutput GetDebugOutput()
+        {
+            var compilationResult = this.CompileProject(false, Yarn.Compiler.CompilationJob.Type.FullCompilation);
+
+            var variables = compilationResult.Declarations
+                .Where(decl => decl.IsVariable)
+                .Select(decl => new DebugOutput.Variable
+            {
+                Name = decl.Name,
+                Type = decl.Type?.ToString() ?? "unknown",
+                IsSmartVariable = decl.IsInlineExpansion,
+                ExpressionJSON = decl.IsInlineExpansion ? new ExpressionToJSONVisitor().Visit(decl.InitialValueParserContext).JSONValue : null,
+            });
+
+            var projectDebugOutput = new DebugOutput {
+                SourceProjectUri = this.Uri,
+                Variables = variables.ToList(),
+            };
+
+            return projectDebugOutput;
+        }
+
         private IEnumerable<Yarn.Compiler.Declaration> FindDeclarations(IEnumerable<Yarn.Compiler.Declaration> declarations, string name, bool fuzzySearch)
         {
             if (fuzzySearch == false)
@@ -237,5 +257,7 @@ namespace YarnLanguageServer
 
             return Workspace.FuzzySearchItem(declarations.Select(d => (d.Name, d)), name, ConfigurationSource?.Configuration.DidYouMeanThreshold ?? Configuration.Defaults.DidYouMeanThreshold);
         }
+
+        
     }
 }
