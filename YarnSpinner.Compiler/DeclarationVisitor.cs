@@ -145,6 +145,11 @@ namespace Yarn.Compiler
 
             // Figure out the value and its type
             var constantValueVisitor = new ConstantValueVisitor(context, sourceFileName, Types, ref this.diagnostics);
+            if (context.value() == null)
+            {
+                // no value was provided, declare as undefined and continue
+                return BuiltinTypes.Undefined;
+            }
             var value = constantValueVisitor.Visit(context.value());
 
             // Did the source code name an explicit type?
