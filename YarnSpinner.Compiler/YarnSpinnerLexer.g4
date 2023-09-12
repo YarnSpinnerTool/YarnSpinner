@@ -292,6 +292,14 @@ COMMAND_LOCAL: 'local' [\p{White_Space}];
 // End of a command.
 COMMAND_END: '>>' -> popMode;
 
+// If we see an expression start immediately after the command start,
+// this represents an expression at the start of an arbitrary command
+// (it's not good, but it's legal!).
+// Switch to CommandTextMode, and also jump into ExpressionMode to 
+// lex the rest of the expression. When we're done, the closing brace } 
+// will return us to CommandTextMode for the remainder of the command.
+COMMAND_EXPRESSION_AT_START: '{' -> type(COMMAND_EXPRESSION_START), mode(CommandTextMode), pushMode(ExpressionMode);
+
 // If we see anything that we don't expect, assume that this 
 // is a command with arbitrary text inside it. Replace this 
 // lexer state with CommandTextMode so that when it finishes 

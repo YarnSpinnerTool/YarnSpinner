@@ -5,7 +5,6 @@ namespace Yarn
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using static Yarn.Instruction.Types;
 
     /// <summary>
@@ -521,17 +520,26 @@ namespace Yarn
                             // ints itself. something to think about.
                             var expressionCount = (int)i.Operands[1].FloatValue;
 
-                            var strings = new string[expressionCount];
-
-                            // Get the values from the stack, and
-                            // substitute them into the command text
+                            // we create a list of replacements, these are: (startIndex, length, newVal) tuples
+                            // where the startIndex and length come directly from the command itself,
+                            // and the new value comes from the stack
+                            var replacements = new List<(int, int, string)>();
                             for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--)
                             {
                                 var substitution = state.PopValue().ConvertTo<string>();
 
-                                commandText = commandText.Replace("{" + expressionIndex + "}", substitution);
+                                var marker = "{" + expressionIndex + "}";
+                                var replacementIndex = commandText.LastIndexOf(marker, StringComparison.Ordinal);
+                                if (replacementIndex != -1)
+                                {
+                                    replacements.Add((replacementIndex, marker.Length, substitution));
+                                }
                             }
-
+                            // now we make those changes on the command string
+                            foreach (var replacement in replacements)
+                            {
+                                commandText = commandText.Remove(replacement.Item1, replacement.Item2).Insert(replacement.Item1, replacement.Item3);
+                            }
                         }
 
                         CurrentExecutionState = ExecutionState.DeliveringContent;
