@@ -19,6 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Flagged the `Utility.AddTagsToLines` method as obsolete.
 - Fixed a bug where escaped characters weren't being correctly added back into the file after adding line tags.
 - declaration statements without a value (`<<declare $var>>`) will no longer crash the compiler.
+- Fixed a bug where unusual interpolated commands (such as `<<{0}{""}>>`) would resolve to unexpected final values (`<<>>`).
 
 ### Removed
 
