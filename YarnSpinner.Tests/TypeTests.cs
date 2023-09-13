@@ -37,8 +37,8 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
 
-            var expectedDeclarations = new List<Declaration>() {
-                new Declaration {
+            var expectedDeclarations = new List<object>() {
+                new {
                     Name = "$int",
                     Type = Types.Number,
                     DefaultValue = 5f,
@@ -57,7 +57,7 @@ namespace YarnSpinner.Tests
                     Dependents = Enumerable.Empty<Declaration>(),
                     Dependencies = Enumerable.Empty<Declaration>(),
                 },
-                new Declaration {
+                new {
                     Name = "$str",
                     Type = Types.String,
                     DefaultValue = "yes",
@@ -76,7 +76,7 @@ namespace YarnSpinner.Tests
                     Dependents = Enumerable.Empty<Declaration>(),
                     Dependencies = Enumerable.Empty<Declaration>(),
                 },
-                new Declaration {
+                new  {
                     Name = "$bool",
                     Type = Types.Boolean,
                     DefaultValue = true,
