@@ -179,6 +179,8 @@ namespace YarnLanguageServer
             }
         }
 
+        internal bool AllowPreviewFeatures => yarnProject.AllowLanguagePreviewFeatures;
+
         internal void ReloadProjectFromDisk(bool notifyOnComplete = true)
         {
             IEnumerable<string> sourceFilePaths = this.yarnProject.SourceFiles;
@@ -212,6 +214,7 @@ namespace YarnLanguageServer
                 CompilationType = compilationType,
                 Files = files,
                 VariableDeclarations = functionDeclarations,
+                AllowPreviewFeatures = this.yarnProject.AllowLanguagePreviewFeatures,
             };
 
             var compilationResult = Yarn.Compiler.Compiler.Compile(compilationJob);

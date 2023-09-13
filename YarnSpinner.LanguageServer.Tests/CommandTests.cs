@@ -323,7 +323,7 @@ public class CommandTests : LanguageServerTestsBase
         });
 
         // Then
-        result.Should().HaveCount(2, "there are two projects in the workspace");
+        result.Should().HaveCount(3, "there are three projects in the workspace");
 
         var firstProject = result.Should().Contain(info => DocumentUri.GetFileSystemPath(info.SourceProjectUri!) == project1Path).Subject;
 

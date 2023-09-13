@@ -6,6 +6,7 @@ namespace Yarn.Compiler
     using System;
     using System.Collections.Generic;
     using System.Text.Json;
+    using System.Text.Json.Nodes;
     using System.Text.Json.Serialization;
     using Microsoft.Extensions.FileSystemGlobbing;
 
@@ -15,6 +16,8 @@ namespace Yarn.Compiler
     /// </summary>
     public class Project
     {
+        internal const string AllowPreviewFeaturesKey = "allowPreviewFeatures";
+
         /// <summary>
         /// The current version of <c>.yarnproject</c> file format.
         /// </summary>
@@ -133,7 +136,20 @@ namespace Yarn.Compiler
         /// Gets or sets a dictionary containing instructions that control how
         /// the Yarn Spinner compiler should compile a project.
         /// </summary>
-        public Dictionary<string, object> CompilerOptions { get; set; } = new Dictionary<string, object>();
+        public Dictionary<string, JsonValue> CompilerOptions { get; set; } = new Dictionary<string, JsonValue>();
+
+        private bool GetCompilerOptionsFlag(string key) {
+            return CompilerOptions.TryGetValue(key, out var value) && value.GetValue<bool>();
+        }
+        private void SetCompilerOptionsFlag(string key, bool value) {
+            CompilerOptions[key] = JsonValue.Create(value);
+        }
+
+        [JsonIgnore]
+        public bool AllowLanguagePreviewFeatures {
+            get => GetCompilerOptionsFlag(AllowPreviewFeaturesKey);
+            set => SetCompilerOptionsFlag(AllowPreviewFeaturesKey, value);
+        }
 
         /// <summary>
         /// Gets the collection of Yarn files that should be used to compile the
@@ -277,6 +293,16 @@ namespace Yarn.Compiler
             {
                 var text = System.IO.File.ReadAllText(path);
 
+                return LoadFromString(text, path);
+            }
+            catch (System.IO.IOException e)
+            {
+                throw new ArgumentException($"Project file at {path} cannot be opened", e);
+            }
+        }
+
+        internal static Project LoadFromString(string text, string path) {
+            try {
                 var project = JsonSerializer.Deserialize<Project>(text, SerializationOptions);
 
                 if (project.FileVersion != CurrentProjectFileVersion)
@@ -287,14 +313,9 @@ namespace Yarn.Compiler
                 project.Path = path;
 
                 return project;
-            }
-            catch (JsonException e)
+            } catch (JsonException e)
             {
                 throw new ArgumentException($"Project file at {path} has invalid JSON", e);
-            }
-            catch (System.IO.IOException e)
-            {
-                throw new ArgumentException($"Project file at {path} cannot be opened", e);
             }
         }
 

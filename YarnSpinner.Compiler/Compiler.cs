@@ -238,6 +238,23 @@ namespace Yarn.Compiler
                 }
             }
 
+            // Now that we know for sure the types of every node in all parse trees, we can correctly determine the initial values for every <<declare>> statement.
+            TypeCheckerListener.ResolveInitialValues(ref declarations, ref diagnostics);
+
+            // Check to see if there are any set statements that attempt to
+            // modify smart variables (which are readonly)
+            AddErrorsForSettingReadonlyVariables(parsedFiles, declarations, diagnostics);
+
+            // Check to see if we're permitted to use preview features. If not,
+            // and preview features are used, then emit errors.
+            foreach (var file in parsedFiles) {
+                var previewFeatureChecker = new PreviewFeatureVisitor(file, !compilationJob.AllowPreviewFeatures, diagnostics);
+                previewFeatureChecker.Visit(file.Tree);
+
+                var fileDecls = declarations.Where(d => d.SourceFileName == file.Name);
+                previewFeatureChecker.AddDiagnosticsForDeclarations(fileDecls);
+            }
+
             // All declarations must now have a concrete type. If they don't,
             // then we couldn't solve for their type, and can't continue.
             if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
@@ -254,18 +271,10 @@ namespace Yarn.Compiler
                 };
             }
 
-            // Now that we know for sure the types of every node in all parse trees, we can correctly determine the initial values for every <<declare>> statement.
-            TypeCheckerListener.ResolveInitialValues(ref declarations, ref diagnostics);
-
-            // Check to see if there are any set statements that attempt to
-            // modify smart variables (which are readonly)
-            AddErrorsForSettingReadonlyVariables(parsedFiles, declarations, diagnostics);
-
             var fileCompilationResults = new List<FileCompilationResult>();
 
             List<Node> compiledNodes = new List<Node>();
             List<NodeDebugInfo> nodeDebugInfos = new List<NodeDebugInfo>();
-            
 
             if (diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {
@@ -405,7 +414,7 @@ namespace Yarn.Compiler
                             // This set statement is attempting to set a value to a
                             // smart variable. That's not allowed, because smart
                             // variables are read-only.
-                            diagnostics.Add(new Diagnostic(file.Name, setStatement.variable(), $"{variableName} cannot be modified (it's a smart variable and is always equal to {smartVariables[variableName].InitialValueParserContext.GetTextWithWhitespace()})"));
+                            diagnostics.Add(new Diagnostic(file.Name, setStatement.variable(), $"{variableName} cannot be modified (it's a smart variable and is always equal to {smartVariables[variableName]?.InitialValueParserContext.GetTextWithWhitespace()})"));
                         }
                     }
                 });

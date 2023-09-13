@@ -684,6 +684,7 @@ namespace YarnLanguageServer
                 // Perform a full compilation so that we can produce a basic
                 // block analysis of the file
                 CompilationType = Yarn.Compiler.CompilationJob.Type.FullCompilation,
+                AllowPreviewFeatures = project.All(p => p.AllowPreviewFeatures),
             };
 
             var result = Yarn.Compiler.Compiler.Compile(job);

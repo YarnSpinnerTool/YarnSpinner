@@ -315,6 +315,8 @@ namespace YarnSpinner.Tests
             // exception to be thrown.
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
             compilationJob.Library = dialogue.Library;
+            
+            compilationJob.AllowPreviewFeatures = true;
 
             dialogue.Library.RegisterFunction("set_objective_complete", (string objective) => true);
             dialogue.Library.RegisterFunction("is_objective_active", (string objective) => true);
@@ -362,6 +364,54 @@ namespace YarnSpinner.Tests
                     }).ExecutionTime().Should().BeLessThanOrEqualTo(1000.Milliseconds());
                 }
             }
+
+        }
+        [Fact]
+        public void TestPreviewFeaturesUnavailable()
+        {
+            // Given
+            var node = CreateTestNode(new[] {
+                "<<enum Woo>>",
+                "<<case One>>",
+                "<<case Two>>",
+                "<<case Three>>",
+                "<<endenum>>",
+                "<<declare $smart_var = 1 + 2>>",
+                "=> Line group item 1",
+                "=> Line group item 2",
+            });
+
+            
+            // When
+            var jobWithNoPreviewFeatures = CompilationJob.CreateFromString("input", node);
+            var jobWithPreviewFeatures = CompilationJob.CreateFromString("input", node);
+
+            jobWithNoPreviewFeatures.AllowPreviewFeatures = false;
+            jobWithPreviewFeatures.AllowPreviewFeatures = true;
+
+            var resultWithNoPreviewFeatures = Compiler.Compile(jobWithNoPreviewFeatures);
+            var resultWithPreviewFeatures = Compiler.Compile(jobWithPreviewFeatures);
+
+            // Then
+            resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new 
+            {
+                Severity = Diagnostic.DiagnosticSeverity.Error,
+                Message = "Language feature \"enums\" is only available when preview features are enabled"
+            }, "enums are a preview feature");
+
+            resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new 
+            {
+                Severity = Diagnostic.DiagnosticSeverity.Error,
+                Message = "Language feature \"smart variables\" is only available when preview features are enabled"
+            }, "smart variables are a preview feature");
+
+            resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new 
+            {
+                Severity = Diagnostic.DiagnosticSeverity.Error,
+                Message = "Language feature \"line groups\" is only available when preview features are enabled"
+            }, "line groups are a preview feature");
+
+            resultWithPreviewFeatures.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error, "preview features are allowed, so no errors are produced");
         }
     }
 }

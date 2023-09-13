@@ -43,7 +43,7 @@ namespace YarnLanguageServer.Tests
 
             workspace.Projects.SelectMany(p => p.Nodes).Should().NotBeEmpty();
 
-            workspace.Projects.Should().HaveCount(2);
+            workspace.Projects.Should().HaveCount(3);
 
             // The node NotIncludedInProject is inside a file that is not
             // included in a .yarnproject; because we have opened a workspace

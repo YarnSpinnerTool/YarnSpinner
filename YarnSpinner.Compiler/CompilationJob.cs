@@ -83,6 +83,11 @@ namespace Yarn.Compiler
         public IEnumerable<Declaration> VariableDeclarations;
 
         /// <summary>
+        /// Whether language preview features are permitted.
+        /// </summary>
+        public bool AllowPreviewFeatures { get; set; }
+
+        /// <summary>
         /// Creates a new <see cref="CompilationJob"/> using the contents of a
         /// collection of files.
         /// </summary>
@@ -129,7 +134,7 @@ namespace Yarn.Compiler
         /// <param name="library">Library of function definitions to use
         /// during compilation.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromString(string fileName, string source, Library library = null)
+        public static CompilationJob CreateFromString(string fileName, string source, Library library = null, bool allowPreviewFeatures = false)
         {
             return new CompilationJob
             {
@@ -141,6 +146,7 @@ namespace Yarn.Compiler
                     },
                 },
                 Library = library,
+                AllowPreviewFeatures = allowPreviewFeatures,
             };
         }
     }

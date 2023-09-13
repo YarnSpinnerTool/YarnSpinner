@@ -17,7 +17,7 @@ namespace YarnSpinner.Tests
             var source = CreateTestNode("<<declare $smart_var = 1 + 1>>");            
 
             // When
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true));
 
             // Then
             result.Diagnostics.Should().BeEmpty();
@@ -38,7 +38,7 @@ namespace YarnSpinner.Tests
             });
         
             // When
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true));
         
             // Then
             result.Diagnostics.Should().BeEmpty();
@@ -67,7 +67,7 @@ namespace YarnSpinner.Tests
                 .GetPlan();
 
             // When
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true));
 
             // Then
             RunTestPlan(result, testPlan);
@@ -86,7 +86,7 @@ namespace YarnSpinner.Tests
             });
             
             // When
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true));
 
             // Then
             result.Diagnostics.Should().BeEmpty();
@@ -120,7 +120,7 @@ namespace YarnSpinner.Tests
             });
 
             // When
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true));
 
             // Then
             RunTestPlan(result, testPlan);
@@ -137,7 +137,7 @@ namespace YarnSpinner.Tests
             });
         
             // When
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true));
 
             // Then
             result.Program.SmartVariableNodes.Should().HaveCount(3);
@@ -153,7 +153,7 @@ namespace YarnSpinner.Tests
         {
             // Given
             var source = CreateTestNode("<<declare $smart_var = 1 + 1>>");
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true));
             this.dialogue.SetProgram(result.Program);
 
             // When
@@ -182,7 +182,7 @@ namespace YarnSpinner.Tests
             });
 
             // When
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true));
 
             // Then
 
@@ -211,7 +211,7 @@ namespace YarnSpinner.Tests
                 .GetPlan();
 
             // When
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true));
         
             // Then
             RunTestPlan(result, testPlan);
@@ -321,7 +321,7 @@ namespace YarnSpinner.Tests
             var source = CreateTestNode(new[] {
                 "<<declare $smart_var = 3 + 2>>",
             });
-            var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source, allowPreviewFeatures: true));
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
 
             var storage = new FakeVariableStorage

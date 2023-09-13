@@ -106,6 +106,11 @@ namespace YarnLanguageServer.Handlers
                                {
                                    Kind = WatchKind.Create | WatchKind.Change | WatchKind.Delete,
                                    GlobPattern = Utils.YslsJsonSelectorPattern,
+                               },
+                               new FileSystemWatcher()
+                               {
+                                   Kind = WatchKind.Create | WatchKind.Change | WatchKind.Delete,
+                                   GlobPattern = Utils.YarnProjectSelectorPattern,
                                }
                            ),
             };
