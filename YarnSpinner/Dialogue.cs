@@ -1202,7 +1202,11 @@ namespace Yarn
         /// <inheritdoc />
         public bool TryGetSmartVariable<T>(string name, out T result)
         {
-            return ((ISmartVariableEvaluator)this.smartVariableVM).TryGetSmartVariable(name, out result);
+            return SmartVariableEvaluationVirtualMachine.TryGetSmartVariable(
+                name,
+                this.VariableStorage, 
+                this.Library, 
+                out result);
         }
 
         // The standard, built-in library of functions and operators.

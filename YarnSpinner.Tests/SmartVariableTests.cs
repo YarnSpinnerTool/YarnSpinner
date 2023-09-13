@@ -1,5 +1,7 @@
+using System;
 using System.Linq;
 using FluentAssertions;
+using Microsoft.VisualBasic;
 using Xunit;
 using Yarn;
 using Yarn.Compiler;
@@ -289,7 +291,7 @@ namespace YarnSpinner.Tests
 
         public class FakeVariableStorage : IVariableStorage
         {
-            public Program Program { get => null; set { } }
+            public Program Program { get; set; }
             
             public ISmartVariableEvaluator SmartVariableEvaluator { get => null; set => _ = 0; }
 
@@ -311,20 +313,27 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestVirtualMachineCanEvaluateSmartVariable()
+        public void TestCanEvaluateSmartVariable()
         {
             var library = new Library();
             library.ImportLibrary(new Dialogue.StandardLibrary());
             
-            var vm = new VirtualMachine(library, new FakeVariableStorage());
             var source = CreateTestNode(new[] {
                 "<<declare $smart_var = 3 + 2>>",
             });
             var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
 
-            vm.Program = result.Program;
-            var canGetSmartVariable = vm.TryGetSmartVariable("$smart_var", out int variableValue);
+            var storage = new FakeVariableStorage
+            {
+                Program = result.Program
+            };
+
+            var canGetSmartVariable = SmartVariableEvaluationVirtualMachine.TryGetSmartVariable<int>(
+                "$smart_var",
+                storage,
+                library,
+                out var variableValue);
 
             canGetSmartVariable.Should().BeTrue();
             variableValue.Should().Be(5);
