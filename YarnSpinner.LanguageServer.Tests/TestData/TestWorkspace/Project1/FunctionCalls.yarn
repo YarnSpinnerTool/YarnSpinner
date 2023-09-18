@@ -1,0 +1,7 @@
+title: FunctionCalls
+---
+<<if dice(6) == 6>>
+    Pass 1
+<<endif>>
+
+===
