@@ -30,7 +30,7 @@
           "anyOf": [
             {"pattern": "string"},
             {"pattern": "number"},
-            {"pattern": "boolean"},
+            {"pattern": "bool"},
             {"pattern": "any"}
           ]
     },
