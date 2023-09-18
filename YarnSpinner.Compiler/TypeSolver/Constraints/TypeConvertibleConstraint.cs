@@ -38,7 +38,7 @@ namespace TypeChecker
         public override IEnumerable<TypeVariable> AllVariables => new[] { this.FromType, this.ToType }.OfType<TypeVariable>();
 
         /// <inheritdoc/>
-        public override string ToString() => $"{this.FromType} c> {this.ToType} ({SourceRange})";
+        public override string ToString() => $"{this.FromType} c> {this.ToType} ({SourceRange}: {SourceExpression})";
 
         /// <inheritdoc/>
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<TypeBase> knownTypes)

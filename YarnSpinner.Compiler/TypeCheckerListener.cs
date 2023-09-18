@@ -168,6 +168,7 @@ namespace Yarn.Compiler
             item.SourceFileName = this.sourceFileName;
             item.SourceRange = GetRange(context);
             item.FailureMessageProvider = failureMessageProvider;
+            item.SourceExpression = context.GetTextWithWhitespace();
 
             this.TypeEquations.Add(item);
             return item;
@@ -191,6 +192,7 @@ namespace Yarn.Compiler
             item.SourceFileName = this.sourceFileName;
             item.SourceRange = GetRange(context);
             item.FailureMessageProvider = failureMessageProvider;
+            item.SourceExpression = context.GetTextWithWhitespace();
 
             this.TypeEquations.Add(item);
             return item;
@@ -208,6 +210,7 @@ namespace Yarn.Compiler
             item.SourceFileName = this.sourceFileName;
             item.SourceRange = GetRange(context);
             item.FailureMessageProvider = failureMessageProvider;
+            item.SourceExpression = context.GetTextWithWhitespace();
 
             this.TypeEquations.Add(item);
         }
@@ -225,6 +228,7 @@ namespace Yarn.Compiler
             item.SourceFileName = this.sourceFileName;
             item.SourceRange = GetRange(context);
             item.FailureMessageProvider = failureMessageProvider;
+            item.SourceExpression = context.GetTextWithWhitespace();
 
             this.TypeEquations.Add(item);
         }

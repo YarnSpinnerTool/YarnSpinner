@@ -39,7 +39,7 @@ namespace TypeChecker
 
         public override string ToString()
         {
-            return $"nameof({Type}) == \"{this.Name}\" ({SourceRange})";
+            return $"nameof({Type}) == \"{this.Name}\" ({SourceRange}: {SourceExpression})";
         }
     }
 }

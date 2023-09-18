@@ -22,7 +22,7 @@ namespace TypeChecker
             Right = right;
         }
 
-        public override string ToString() => $"{Left} == {Right} ({SourceRange})";
+        public override string ToString() => $"{Left} == {Right} ({SourceRange}: {SourceExpression})";
 
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<TypeBase> knownTypes)
         {

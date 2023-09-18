@@ -23,7 +23,7 @@ namespace TypeChecker
 
         public override string ToString()
         {
-            return $"{Type}.[{MemberName}] ({SourceRange})";
+            return $"{Type}.[{MemberName}] ({SourceRange}: {SourceExpression})";
         }
 
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<TypeBase> knownTypes)

@@ -47,6 +47,8 @@ namespace TypeChecker
         /// </summary>
         public string SourceFileName { get; set; }
 
+        public string SourceExpression { get; internal set; }
+
         public string GetFailureMessage(Substitution subst) => FailureMessageProvider?.Invoke(subst) ?? this.ToString();
         
         public FailureMessageProvider FailureMessageProvider;
