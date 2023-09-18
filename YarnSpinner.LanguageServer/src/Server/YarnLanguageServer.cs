@@ -13,7 +13,7 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Window;
 using OmniSharp.Extensions.LanguageServer.Protocol.Workspace;
 using OmniSharp.Extensions.LanguageServer.Server;
 
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("LanguageServer.Tests")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("YarnLanguageServer.Tests")]
 
 namespace YarnLanguageServer
 {
