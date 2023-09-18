@@ -66,27 +66,11 @@ namespace YarnLanguageServer
             // Find all actions built in to this DLL
             try
             {
-                var thisAssembly = typeof(Workspace).Assembly;
-                var resources = thisAssembly.GetManifestResourceNames();
-                var jsonAssemblyFiles = resources.Where(r => r.EndsWith("ysls.json"));
+                IEnumerable<Action> predefinedActions = GetPredefinedActions();
 
-                foreach (var doc in jsonAssemblyFiles)
+                foreach (var action in predefinedActions)
                 {
-                    Stream? stream = thisAssembly.GetManifestResourceStream(doc);
-
-                    if (stream == null)
-                    {
-                        LanguageServer?.LogError($"Error while loading built-in actions from {doc}: manifest resource stream is null");
-                        continue;
-                    }
-
-                    string text = new StreamReader(stream).ReadToEnd();
-                    var docJsonConfig = new JsonConfigFile(text, true);
-
-                    foreach (var action in docJsonConfig.GetActions())
-                    {
-                        this.workspaceActions.Add(action);
-                    }
+                    this.workspaceActions.Add(action);
                 }
             }
             catch (Exception e) {
@@ -153,6 +137,39 @@ namespace YarnLanguageServer
 
             this.PublishDiagnostics();
             this.PublishNodeInfos();
+        }
+
+        /// <summary>
+        /// Returns the collection of Action objects that are pre-defined in the
+        /// Yarn language.
+        /// </summary>
+        /// <returns>The list of pre-defined actions.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when loading the
+        /// list of pre-defined actions fails.</exception>
+        internal static IEnumerable<Action> GetPredefinedActions()
+        {
+            var predefinedActions = new List<Action>();
+
+            var thisAssembly = typeof(Workspace).Assembly;
+            var resources = thisAssembly.GetManifestResourceNames();
+            var jsonAssemblyFiles = resources.Where(r => r.EndsWith("ysls.json"));
+
+            foreach (var doc in jsonAssemblyFiles)
+            {
+                Stream? stream = thisAssembly.GetManifestResourceStream(doc);
+
+                if (stream == null)
+                {
+                    throw new InvalidOperationException($"Failed to read manifest resource stream for {doc}");
+                }
+
+                string text = new StreamReader(stream).ReadToEnd();
+                var docJsonConfig = new JsonConfigFile(text, true);
+
+                predefinedActions.AddRange(docJsonConfig.GetActions());
+            }
+
+            return predefinedActions;
         }
 
         private IEnumerable<Action> FindWorkspaceActions(string root)
