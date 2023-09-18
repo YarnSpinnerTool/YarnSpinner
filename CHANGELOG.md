@@ -95,6 +95,7 @@ Smart variables can be accessed anywhere a regular variable would be used:
 - Language Server: Improved the code-completion behaviour to provide better filtering when offering command completions, in both jump commands and custom commands.
 - Language Server: Fixed character names being incorrectly recognised when the colon is not part of the line
 - Moved Yarn's built-in functions (for example, 'dice' and 'floor') to Yarn Spinner's core library. Previously, they were implemented in the client game code (for example, the Unity runtime.)
+- Fixed an error in the language server that would fail to detect `YarnCommand`- and `YarnFunction`-tagged methods if their attributes were fully-qualified (e.g. `Yarn.Unity.YarnCommand`)
 
 ### Removed
 

@@ -42,7 +42,13 @@ namespace YarnLanguageServer
                 {
                     foreach (var attribute in list.Attributes)
                     {
-                        var name = attribute.Name.ToString();
+                        string name;
+                        if (attribute.Name is QualifiedNameSyntax qualifiedName) {
+                            name = qualifiedName.Right.ToString();
+                        } else {
+                            name = attribute.Name.ToString();
+                        }
+
                         if (name.EndsWith("Attribute"))
                         {
                             name = name.Remove(name.LastIndexOf("Attribute"));
