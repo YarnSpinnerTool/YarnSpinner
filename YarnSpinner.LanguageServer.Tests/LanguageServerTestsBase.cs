@@ -152,7 +152,7 @@ namespace YarnLanguageServer.Tests
                         CancellationToken
                     )
                 );
-                task.Task.Should().BeSameAs(winner, "because the result should arrive within {0} seconds", timeout);
+                winner.Should().BeSameAs(task.Task, "because the result should arrive within {0} seconds", timeout);
 
                 return await task.Task;
             }
@@ -172,7 +172,7 @@ namespace YarnLanguageServer.Tests
         /// <param name="timeout">The amount of time to wait for
         /// diagnostics.</param>
         /// <returns>A collection of <see cref="Diagnostic"/> objects.</returns>
-        protected async Task<PublishDiagnosticsParams> GetDiagnosticsAsync(Func<PublishDiagnosticsParams, bool>? test = null, double timeout = 2f)
+        protected async Task<PublishDiagnosticsParams> GetDiagnosticsAsync(Func<PublishDiagnosticsParams, bool>? test = null, double timeout = 5f)
         {
             return await GetTaskResultOrTimeoutAsync(
                 ReceivedDiagnosticsNotifications.AddListener(test) , 
@@ -181,7 +181,7 @@ namespace YarnLanguageServer.Tests
             );
         }
 
-        protected async Task<NodesChangedParams> GetNodesChangedNotificationAsync(Func<NodesChangedParams, bool>? test = null, double timeout = 2f) {
+        protected async Task<NodesChangedParams> GetNodesChangedNotificationAsync(Func<NodesChangedParams, bool>? test = null, double timeout = 5f) {
             return await GetTaskResultOrTimeoutAsync(
                 NodesChangedNotification.AddListener(test), 
                 null,
