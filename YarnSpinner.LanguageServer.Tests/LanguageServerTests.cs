@@ -224,5 +224,54 @@ namespace YarnLanguageServer.Tests
                     "because while 'Node2' is a node we could jump to, we're currently in a syntax error");
             }
         }
+
+        [Fact]
+        public void Workspace_BuiltInFunctions_MatchesDefaultLibrary()
+        {
+            // Given
+            var builtInActionDecls = Workspace.GetPredefinedActions().Where(a => a.Type == ActionType.Function).Select(f => f.Declaration).ToDictionary(d => d.Name);
+
+            var storage = new Yarn.MemoryVariableStore();
+            var dialogue = new Yarn.Dialogue(storage);
+            var library = dialogue.Library;
+
+            var libraryDecls = Yarn.Compiler.Compiler.GetDeclarationsFromLibrary(library).Item1.ToDictionary(d => d.Name);
+            
+            // Then
+
+            // All entries in the predefined actions must map to an entry in the library
+            using (new AssertionScope()) {
+                foreach (var actionDecl in builtInActionDecls.Values) {
+
+                    actionDecl.Should().NotBeNull();
+
+                    libraryDecls.Should().ContainKey(actionDecl!.Name);
+
+                    var libraryDecl = libraryDecls[actionDecl.Name];
+
+                    actionDecl.Should().BeEquivalentTo(libraryDecl, (config) =>
+                    {
+                        return config.Excluding(info => info.Description);
+                    });
+                }
+            }
+
+            // All entries in the library except operators must map to an entry
+            // in the predefined actions
+            using (new AssertionScope()) {
+                foreach (var libraryDecl in libraryDecls.Values) {
+
+                    builtInActionDecls.Should().ContainKey(libraryDecl.Name);
+
+                    var actionDecl = builtInActionDecls[libraryDecl.Name];
+
+                    libraryDecl.Should().BeEquivalentTo(actionDecl, (config) =>
+                    {
+                        return config.Excluding(info => info.Description);
+                    });
+                }
+            }
+        }
     }
+
 }
