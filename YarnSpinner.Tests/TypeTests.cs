@@ -741,8 +741,6 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
 
-            result.Declarations.Should().HaveCount(5);
-
             var expectedIntBoolFunctionType = new FunctionTypeBuilder().WithParameter(Types.Number).WithReturnType(Types.Boolean).FunctionType;
             var expectedBoolBoolFunctionType = new FunctionTypeBuilder().WithParameter(Types.Boolean).WithReturnType(Types.Boolean).FunctionType;
 

@@ -1212,6 +1212,12 @@ namespace Yarn
         // The standard, built-in library of functions and operators.
         internal class StandardLibrary : Library
         {
+            /// <summary>
+            /// The internal random number generator used by functions like
+            /// 'random' and 'dice'.
+            /// </summary>
+            private static readonly Random Random = new Random();
+
             public StandardLibrary()
             {
                 #region Operators
@@ -1241,7 +1247,81 @@ namespace Yarn
                 // in Enums. See note in TypeUtil.GetCanonicalNameForMethod.
                 this.RegisterMethods(new EnumType("Enum", null, null));
 
+                // Register the built-in utility functions
+
+#pragma warning disable CA5394 // System.Random is cryptographically insecure
+                this.RegisterFunction<float>("random", () =>
+                {
+                    return (float)Random.NextDouble();
+                });
+
+                this.RegisterFunction<float, float, float>("random_range", (float min, float max) =>
+                {
+                    return Random.Next((int)max - (int)min + 1) + min;
+                });
+
+                this.RegisterFunction<int, int>("dice", (int sides) =>
+                {
+                    return Random.Next(sides + 1);
+                });
+#pragma warning restore CA5394 // System.Random is cryptographically insecure
+
+                this.RegisterFunction<float, int>("round", (float num) =>
+                {
+                    return (int)Math.Round(num);
+                });
+
+                this.RegisterFunction<float, int, float>("round_places", (float num, int places) =>
+                {
+                    return (float)Math.Round(num, places);
+                });
+
+                this.RegisterFunction<float, int>("floor", (float num) =>
+                {
+                    return (int)Math.Floor(num);
+                });
+
+                this.RegisterFunction<float, int>("ceil", (float num) =>
+                {
+                    return (int)Math.Ceiling(num);
+                });
+
+                this.RegisterFunction<float, int>("inc", (float value) =>
+                {
+                    if (Decimal(value) == 0)
+                    {
+                        return (int)(value + 1);
+                    }
+                    else
+                    {
+                        return (int)Math.Ceiling(value);
+                    }
+                });
+
+                this.RegisterFunction<float, int>("dec", (float value) =>
+                {
+                    if (Decimal(value) == 0)
+                    {
+                        return (int)value - 1;
+                    }
+                    else
+                    {
+                        return (int)Math.Floor(value);
+                    }
+                });
+
+                this.RegisterFunction<float, float>("decimal", Decimal);
+                this.RegisterFunction<float, int>("int", Integer);
+
                 #endregion Operators
+            }
+
+            private static float Decimal(float value) {
+                return value - Integer(value);
+
+            }
+            private static int Integer(float value) {
+                return (int)Math.Truncate(value);
             }
         }
     }
