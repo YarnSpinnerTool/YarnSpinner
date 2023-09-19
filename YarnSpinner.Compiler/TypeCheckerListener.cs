@@ -1,6 +1,5 @@
 // Uncomment to ensure that all expressions have a known type at compile time
 // #define VALIDATE_ALL_EXPRESSIONS
-#define DISALLOW_NULL_EQUATION_TERMS
 
 namespace Yarn.Compiler
 {
@@ -152,18 +151,6 @@ namespace Yarn.Compiler
 
         private TypeEqualityConstraint AddEqualityConstraint(IType a, IType b, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
         {
-#if DISALLOW_NULL_EQUATION_TERMS
-            if (a == null)
-            {
-                throw new ArgumentNullException($"{nameof(a)}");
-            }
-
-            if (b == null)
-            {
-                throw new ArgumentNullException($"{nameof(b)}");
-            }
-#endif
-
             TypeEqualityConstraint item = new TypeEqualityConstraint(a ?? Types.Error, b ?? Types.Error);
             item.SourceFileName = this.sourceFileName;
             item.SourceRange = GetRange(context);
@@ -176,18 +163,6 @@ namespace Yarn.Compiler
 
         private TypeConvertibleConstraint AddConvertibleConstraint(IType from, IType to, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
         {
-#if DISALLOW_NULL_EQUATION_TERMS
-            if (from == null)
-            {
-                throw new ArgumentNullException($"{nameof(from)}");
-            }
-
-            if (to == null)
-            {
-                throw new ArgumentNullException($"{nameof(to)}");
-            }
-#endif
-
             TypeConvertibleConstraint item = new TypeConvertibleConstraint(from ?? Types.Error, to ?? Types.Error);
             item.SourceFileName = this.sourceFileName;
             item.SourceRange = GetRange(context);
@@ -200,12 +175,6 @@ namespace Yarn.Compiler
 
         private void AddHasEnumMemberConstraint(IType type, string memberName, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
         {
-#if DISALLOW_NULL_EQUATION_TERMS
-            if (type == null)
-            {
-                throw new ArgumentNullException($"{nameof(type)}");
-            }
-#endif
             TypeHasMemberConstraint item = new TypeHasMemberConstraint(type, memberName);
             item.SourceFileName = this.sourceFileName;
             item.SourceRange = GetRange(context);
@@ -217,13 +186,6 @@ namespace Yarn.Compiler
 
         private void AddHasNameConstraint(IType type, string name, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
         {
-#if DISALLOW_NULL_EQUATION_TERMS
-            if (type == null)
-            {
-                throw new ArgumentNullException($"{nameof(type)}");
-            }
-#endif
-
             TypeHasNameConstraint item = new TypeHasNameConstraint(type, name);
             item.SourceFileName = this.sourceFileName;
             item.SourceRange = GetRange(context);
