@@ -48,8 +48,43 @@ namespace Yarn
                 sb.AppendLine();
             }
 
-
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Identifies and returns a list of all line and option IDs inside the node.
+        /// </summary>
+        /// <param name="nodeName">The name of the node whos line IDs you covet.</param>
+        /// <returns>The line IDs of all lines and options inside the node, or null if <paramref name="nodeName"/> doesn't exist in the program.</returns>
+        public List<string> LineIDsForNode(string nodeName)
+        {
+            // if there is no node matching the name bail out
+            var node = this.Nodes[nodeName];
+            if (node == null)
+            {
+                return null;
+            }
+
+            // Create a list; we will never have more lines and options
+            // than total instructions, so that's a decent capacity for
+            // the list (TODO: maybe this list could be reused to save
+            // on allocations?)
+            var stringIDs = new List<string>(node.Instructions.Count);
+
+            // Loop over every instruction and find the ones that run a
+            // line or add an option; these are the two instructions
+            // that will signal a line can appear to the player
+            foreach (var instruction in node.Instructions)
+            {
+                if (instruction.Opcode == OpCode.RunLine || instruction.Opcode == OpCode.AddOption)
+                {
+                    // Both RunLine and AddOption have the string ID
+                    // they want to show as their first operand, so
+                    // store that
+                    stringIDs.Add(instruction.Operands[0].StringValue);
+                }
+            }
+            return stringIDs;
         }
 
         internal IEnumerable<string> GetTagsForNode(string nodeName)
@@ -110,7 +145,6 @@ namespace Yarn
     /// </summary>
     public partial class Instruction
     {
-
         internal string ToString(Program p, Library l)
         {
             // Generate a comment, if the instruction warrants it
