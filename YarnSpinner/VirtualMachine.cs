@@ -231,13 +231,10 @@ namespace Yarn
 
         internal State state = new State();
 
-        public string currentNodeName
-        {
-            get
-            {
-                return state.currentNodeName;
-            }
-        }
+        public string CurrentNodeName => state.currentNodeName;
+
+        [Obsolete("Use CurrentNodeName")]
+        public string currentNodeName => CurrentNodeName;
 
         public enum ExecutionState
         {

@@ -888,7 +888,7 @@ namespace Yarn
                 }
                 else
                 {
-                    return this.vm.currentNodeName;
+                    return this.vm.CurrentNodeName;
                 }
             }
         }
