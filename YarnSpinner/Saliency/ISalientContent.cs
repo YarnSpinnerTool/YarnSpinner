@@ -22,6 +22,6 @@ namespace Yarn.Saliency
         /// This is generally a line ID. A <see langword="null"/> value
         /// indicates that no content should be displayed.
         /// </remarks>
-        string ContentID { get; }
+        string? ContentID { get; }
     }
 }

@@ -129,6 +129,19 @@ namespace Yarn
     /// Contains methods for evaluating the value of smart variables
     /// </summary>
     public interface ISmartVariableEvaluator {
+        /// <summary>
+        /// Evaluate the value of a smart variable named <paramref
+        /// name="name"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the returned value.</typeparam>
+        /// <param name="name">The name of the variable.</param>
+        /// <param name="result">On return, contains the returned value of the
+        /// smart variable, or the <see langword="default"/> value of
+        /// <typeparamref name="T"/> if a smart variable named <paramref
+        /// name="name"/> could not be found or its value could not be returned
+        /// as type <typeparamref name="T"/>.</param>
+        /// <returns><see langword="true"/> if the smart variable was evaluated,
+        /// <see langword="false"/> otherwise.</returns>
         bool TryGetSmartVariable<T>(string name, out T result);
     }
 
@@ -138,7 +151,7 @@ namespace Yarn
         {
             /// <summary>The name of the node that we're currently
             /// in.</summary>
-            public string currentNodeName;
+            public string? currentNodeName;
 
             /// <summary>The instruction number in the current
             /// node.</summary>
@@ -211,30 +224,30 @@ namespace Yarn
             state = new State();
         }
 
-        public LineHandler LineHandler;
-        public OptionsHandler OptionsHandler;
-        public CommandHandler CommandHandler;
-        public NodeStartHandler NodeStartHandler;
-        public NodeCompleteHandler NodeCompleteHandler;
-        public DialogueCompleteHandler DialogueCompleteHandler;
-        public PrepareForLinesHandler PrepareForLinesHandler;
+        public LineHandler? LineHandler;
+        public OptionsHandler? OptionsHandler;
+        public CommandHandler? CommandHandler;
+        public NodeStartHandler? NodeStartHandler;
+        public NodeCompleteHandler? NodeCompleteHandler;
+        public DialogueCompleteHandler? DialogueCompleteHandler;
+        public PrepareForLinesHandler? PrepareForLinesHandler;
 
         public IVariableStorage VariableStorage { get; set; }
         public Library Library { get; set; }
-        public Logger LogDebugMessage { get; set; }
-        public Logger LogErrorMessage { get; set; }
+        public Logger? LogDebugMessage { get; set; }
+        public Logger? LogErrorMessage { get; set; }
 
         /// <summary>
         /// The <see cref="Program"/> that this virtual machine is running.
         /// </summary>
-        internal Program Program { get; set; }
+        internal Program? Program { get; set; }
 
         internal State state = new State();
 
-        public string CurrentNodeName => state.currentNodeName;
+        public string? CurrentNodeName => state.currentNodeName;
 
         [Obsolete("Use CurrentNodeName")]
-        public string currentNodeName => CurrentNodeName;
+        public string? currentNodeName => CurrentNodeName;
 
         public enum ExecutionState
         {
@@ -286,9 +299,9 @@ namespace Yarn
             }
         }
 
-        public IContentSaliencyStrategy ContentSaliencyStrategy { get; internal set; }
+        public IContentSaliencyStrategy? ContentSaliencyStrategy { get; internal set; }
 
-        internal Node currentNode;
+        internal Node? currentNode;
         public const string AddLineGroupCandidateFunctionName = "Yarn.Internal.add_line_group_candidate";
         public const string SelectLineGroupCandidateFunctionName = "Yarn.Internal.select_line_group_candidate";
 
@@ -401,7 +414,7 @@ namespace Yarn
             CurrentExecutionState = ExecutionState.Running;
 
             // Execute instructions until something forces us to stop
-            while (CurrentExecutionState == ExecutionState.Running)
+            while (currentNode != null && CurrentExecutionState == ExecutionState.Running)
             {
                 Instruction currentInstruction = currentNode.Instructions[state.programCounter];
 
@@ -452,6 +465,9 @@ namespace Yarn
         /// Looks up the instruction number for a named label in the current node.
         internal int FindInstructionPointForLabel(string labelName)
         {
+            if (currentNode == null) {
+                throw new InvalidOperationException("Current node is null");
+            }
             if (currentNode.Labels.ContainsKey(labelName) == false)
             {
                 // Couldn't find the node..
@@ -735,6 +751,9 @@ namespace Yarn
                         }
                         else
                         {
+                            if (Program == null) {
+                                throw new InvalidOperationException("Program is null");
+                            }
                             // We don't have a value for this. The initial
                             // value may be found in the program. (If it's
                             // not, then the variable's value is undefined,
@@ -798,7 +817,9 @@ namespace Yarn
                     {
                         // - Stop
                         // Immediately stop execution, and report that fact.
-                        NodeCompleteHandler(currentNode.Name);
+                        if (currentNode != null) {
+                            NodeCompleteHandler?.Invoke(currentNode.Name);
+                        }
                         DialogueCompleteHandler?.Invoke();
                         CurrentExecutionState = ExecutionState.Stopped;
 
@@ -814,7 +835,9 @@ namespace Yarn
                         // with that name.
                         string nodeName = state.PopValue().ConvertTo<string>();
 
-                        NodeCompleteHandler(currentNode.Name);
+                        if (currentNode != null) {
+                            NodeCompleteHandler?.Invoke(currentNode.Name);
+                        }
 
                         SetNode(nodeName);
 
@@ -917,7 +940,7 @@ namespace Yarn
                         // Pass the options set to the client, as well as a
                         // delegate for them to call when the user has made
                         // a selection
-                        OptionsHandler(new OptionSet(optionChoices.ToArray()));
+                        OptionsHandler?.Invoke(new OptionSet(optionChoices.ToArray()));
 
                         if (CurrentExecutionState == ExecutionState.WaitingForContinue)
                         {
@@ -948,10 +971,10 @@ namespace Yarn
             public const string NoneContentID = "Yarn.Internal.None";
             public string label;
             public int conditionValueCount;
-            public string lineID;
+            public string? lineID;
 
             public int ConditionValueCount => conditionValueCount;
-            public string ContentID => lineID;
+            public string? ContentID => lineID;
         }
 
         private List<LineGroupCandidate> lineGroupCandidates = new List<LineGroupCandidate>();
