@@ -41,18 +41,18 @@ namespace Yarn
         public static IReadOnlyDictionary<System.Type, Yarn.IType> TypeMappings { get; } = new Dictionary<System.Type, Yarn.IType>
         {
             { typeof(string), Types.String },
-            { typeof(bool), Types.Boolean },
-            { typeof(int), Types.Number },
-            { typeof(float), Types.Number },
+            { typeof(bool),   Types.Boolean },
+            { typeof(int),    Types.Number },
+            { typeof(float),  Types.Number },
             { typeof(double), Types.Number },
-            { typeof(sbyte), Types.Number },
-            { typeof(byte), Types.Number },
-            { typeof(short), Types.Number },
+            { typeof(sbyte),  Types.Number },
+            { typeof(byte),   Types.Number },
+            { typeof(short),  Types.Number },
             { typeof(ushort), Types.Number },
-            { typeof(uint), Types.Number },
-            { typeof(long), Types.Number },
-            { typeof(ulong), Types.Number },
-            { typeof(decimal), Types.Number },
+            { typeof(uint),   Types.Number },
+            { typeof(long),   Types.Number },
+            { typeof(ulong),  Types.Number },
+            { typeof(decimal),Types.Number },
             { typeof(object), Types.Any },
         };
     }
