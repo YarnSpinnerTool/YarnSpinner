@@ -20,6 +20,13 @@ namespace Yarn.Saliency
         /// </summary>
         private IVariableStorage VariableStorage { get; }
 
+        /// <summary>
+        /// Initalises a new instance of the <see
+        /// cref="BestLeastRecentlyViewedSalienceStrategy"/> class.
+        /// </summary>
+        /// <param name="storage">The variable storage to use when determining
+        /// which content to show.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public BestLeastRecentlyViewedSalienceStrategy(IVariableStorage storage)
         {
             this.VariableStorage = storage ?? throw new ArgumentNullException(nameof(storage));
@@ -38,11 +45,11 @@ namespace Yarn.Saliency
         }
 
         /// <inheritdoc/>
-        public TContent ChooseBestContent<TContent>(IEnumerable<TContent> options) where TContent : IContentSaliencyOption
+        public TContent ChooseBestContent<TContent>(IEnumerable<TContent> content) where TContent : IContentSaliencyOption
         {
             // For each of the options, calculate how many times we've seen it,
             // and what variable name stores this information.
-            var viewCountContent = options.Select(c =>
+            var viewCountContent = content.Select(c =>
             {
                 int count;
                 if (c.ContentID == null)
@@ -66,7 +73,7 @@ namespace Yarn.Saliency
                         countAsFloat = 0;
                     }
                     count = (int)countAsFloat;
-                    return (ViewCount: count, ViewCountKey: viewCountKey, Content: c);
+                    return (ViewCount: count, ViewCountKey: viewCountKey ?? null, Content: c);
                 }
 
             });
