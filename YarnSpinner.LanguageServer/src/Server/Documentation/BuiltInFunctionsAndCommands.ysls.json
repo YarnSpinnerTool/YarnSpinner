@@ -52,6 +52,20 @@
       ]
     },
     {
+      "YarnName": "format_invariant",
+      "DefinitionName": "format invariant",
+      "Documentation": "Converts a number to a string using invariant culture",
+      "Signature": "format_invariant(value)",
+      "Parameters": [
+        {
+          "Name": "value",
+          "Type": "Number",
+          "Documentation": "",
+          "IsParamsArray": false
+        }
+      ]
+    },
+    {
       "YarnName": "bool",
       "DefinitionName": "bool",
       "Documentation": "Converts value to boolean type.",

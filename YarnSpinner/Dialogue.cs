@@ -1121,6 +1121,11 @@ namespace Yarn
                     return Convert.ToSingle(v);
                 });
 
+                this.RegisterFunction("format_invariant", delegate (float v)
+                {
+                    return v.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                });
+
                 this.RegisterFunction("bool", delegate(object v)
                 {
                     return Convert.ToBoolean(v);
