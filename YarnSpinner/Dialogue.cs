@@ -754,10 +754,6 @@ namespace Yarn
         /// <summary>
         /// Immediately stops the <see cref="Dialogue"/>.
         /// </summary>
-        /// <remarks>
-        /// The <see cref="DialogueCompleteHandler"/> will not be called if the
-        /// dialogue is ended by calling <see cref="Stop"/>.
-        /// </remarks>
         public void Stop()
         {
             if (this.vm != null)

@@ -27,7 +27,6 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestExampleScript()
         {
-
             runtimeErrorsCauseFailures = false;
             var path = Path.Combine(TestDataPath, "Example.yarn");
             var testPath = Path.ChangeExtension(path, ".testplan");
