@@ -1929,7 +1929,7 @@ namespace CLDRPlurals
             {
                 return 0;
             }
-            return int.Parse(text2);
+            return int.Parse(text2, System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public static int VisibleFractionalDigits(this double number, bool trailingZeroes)

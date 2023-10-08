@@ -73,7 +73,7 @@ namespace Yarn
                 return this;
             }
 
-            return Convert.ChangeType(this.InternalValue, targetType);
+            return Convert.ChangeType(this.InternalValue, targetType,  System.Globalization.CultureInfo.InvariantCulture);
         }
 
         /// <summary>
