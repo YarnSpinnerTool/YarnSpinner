@@ -23,20 +23,17 @@ public static class DeclarationHelper
     /// declaration's type.</param>
     /// <param name="defaultValue">On return, contains a syntactically-correct
     /// version of the declaration's initial value.</param>
-    /// <returns><see langword="true"/> if <paramref
-    /// name="existingDeclaration"/>'s type was string, number or boolean; <see
-    /// langword="false"/> otherwise.</returns>
-    public static bool GetDeclarationInfo(Yarn.Compiler.Declaration existingDeclaration, out string type, out string defaultValue)
+    public static void GetDeclarationInfo(Yarn.Compiler.Declaration existingDeclaration, out string type, out string defaultValue)
     {
         if (existingDeclaration.Type == Yarn.Types.String)
         {
             type = "string";
-            defaultValue = $"\"{existingDeclaration.DefaultValue}\"";
+            defaultValue = $"\"{existingDeclaration.DefaultValue ?? string.Empty}\"";
         }
         else if (existingDeclaration.Type == Yarn.Types.Number)
         {
             type = "number";
-            defaultValue = $"{existingDeclaration.DefaultValue}";
+            defaultValue = $"{existingDeclaration.DefaultValue ?? 0}";
         }
         else if (existingDeclaration.Type == Yarn.Types.Boolean)
         {
@@ -45,11 +42,8 @@ public static class DeclarationHelper
         }
         else
         {
-            type = "undefined";
-            defaultValue = "(?)";
-            return false;
+            type = existingDeclaration.Type?.Name ?? "undefined";
+            defaultValue = existingDeclaration.DefaultValue?.ToString() ?? "(?)";
         }
-
-        return true;
     }
 }
