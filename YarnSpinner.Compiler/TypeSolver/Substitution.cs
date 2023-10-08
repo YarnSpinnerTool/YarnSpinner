@@ -25,7 +25,7 @@ namespace TypeChecker
             return clone;
         }
 
-        public bool TryResolveTypeVariable(TypeVariable variable, out IType result) {
+        internal bool TryResolveTypeVariable(TypeVariable variable, out IType? result) {
             var checkedSet = new HashSet<TypeVariable>();
 
             var current = variable;

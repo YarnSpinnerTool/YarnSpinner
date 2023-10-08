@@ -33,7 +33,7 @@ namespace Yarn.Compiler
 
             foreach (var decl in declarations) {
                 if (decl.IsInlineExpansion) {
-                    AddLanguageFeatureError(decl.InitialValueParserContext, "smart variables");
+                    AddLanguageFeatureError(decl.InitialValueParserContext!, "smart variables");
                 }
             }
         }
