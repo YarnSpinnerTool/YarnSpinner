@@ -257,7 +257,7 @@ namespace Yarn.Compiler
 
             // All declarations must now have a concrete type. If they don't,
             // then we couldn't solve for their type, and can't continue.
-            if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
+            if (compilationJob.CompilationType == CompilationJob.Type.TypeCheck)
             {
                 // Stop at this point
                 return new CompilationResult

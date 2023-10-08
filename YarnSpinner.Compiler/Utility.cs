@@ -27,7 +27,7 @@ namespace Yarn.Compiler
         /// user manage variable declarations. Such tools can read the existing
         /// variable declarations in from a script (by compiling the script with
         /// the <see cref="CompilationJob.CompilationType"/> value set to  <see
-        /// cref="CompilationJob.Type.DeclarationsOnly"/>), allow the user to
+        /// cref="CompilationJob.Type.TypeCheck"/>), allow the user to
         /// make changes, and then write the changes to disk by calling this
         /// method and saving the results.</remarks>
         /// <param name="declarations">The collection of <see

@@ -196,7 +196,7 @@ namespace YarnLanguageServer
                 this.yarnFiles.Add(uri, fileData);
             }
 
-            CompileProject(notifyOnComplete, Yarn.Compiler.CompilationJob.Type.DeclarationsOnly);
+            CompileProject(notifyOnComplete, Yarn.Compiler.CompilationJob.Type.TypeCheck);
         }
 
         public Yarn.Compiler.CompilationResult CompileProject(bool notifyOnComplete, Yarn.Compiler.CompilationJob.Type compilationType) {

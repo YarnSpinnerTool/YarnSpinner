@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -86,7 +86,7 @@ namespace YarnLanguageServer.Handlers
             yarnDocument.Update(yarnDocument.Text);
             project.CompileProject(
                 notifyOnComplete: true,
-                Yarn.Compiler.CompilationJob.Type.DeclarationsOnly
+                Yarn.Compiler.CompilationJob.Type.TypeCheck
             );
 
             return Unit.Task;

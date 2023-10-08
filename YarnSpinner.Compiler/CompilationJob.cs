@@ -6,6 +6,7 @@
 
 namespace Yarn.Compiler
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -53,7 +54,12 @@ namespace Yarn.Compiler
             /// <summary>The compiler will derive only the variable and
             /// function declarations, and file tags, found in the
             /// script.</summary>
-            DeclarationsOnly,
+            TypeCheck,
+
+            /// <summary>Generate declarations only. This is equivalent to <see
+            /// cref="TypeCheck"/>.</summary>
+            [Obsolete("Use TypeCheck instead")]
+            DeclarationsOnly = TypeCheck,
 
             /// <summary>The compiler will generate a string table
             /// only.</summary>

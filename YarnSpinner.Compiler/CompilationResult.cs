@@ -66,7 +66,7 @@ namespace Yarn.Compiler
         /// This value will be <see langword="null"/> if the <see
         /// cref="CompilationJob"/> object's <see
         /// cref="CompilationJob.CompilationType"/> value was not <see
-        /// cref="CompilationJob.Type.DeclarationsOnly"/> or <see
+        /// cref="CompilationJob.Type.TypeCheck"/> or <see
         /// cref="CompilationJob.Type.FullCompilation"/>.
         /// </remarks>
         public IEnumerable<Declaration> Declarations { get; internal set; } = Array.Empty<Declaration>();
