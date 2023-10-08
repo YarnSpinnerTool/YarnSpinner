@@ -5,10 +5,9 @@ namespace Yarn
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
     using System.Globalization;
     using static Yarn.Instruction.Types;
-    
+
     /// <summary>
     /// A compiled Yarn program.
     /// </summary>

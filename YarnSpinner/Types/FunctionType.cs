@@ -5,7 +5,6 @@ namespace Yarn
 {
     using System.Collections.Generic;
     using System.Linq;
-    using MethodCollection = System.Collections.Generic.IReadOnlyDictionary<string, System.Delegate>;
 
     /// <summary>
     /// A type that represents functions.

@@ -5,7 +5,6 @@ namespace Yarn
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
 
     /// <summary>
     /// A collection of functions that can be called from Yarn programs.

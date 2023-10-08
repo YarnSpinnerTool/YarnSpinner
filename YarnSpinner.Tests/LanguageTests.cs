@@ -1,6 +1,5 @@
 using Xunit;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Yarn;
 using System.IO;
@@ -15,7 +14,7 @@ using FluentAssertions.Extensions;
 
 namespace YarnSpinner.Tests
 {
-	public class LanguageTests : TestBase
+    public class LanguageTests : TestBase
     {
 		public LanguageTests() : base() {
 

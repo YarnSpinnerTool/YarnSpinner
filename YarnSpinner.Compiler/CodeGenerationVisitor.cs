@@ -6,9 +6,7 @@ namespace Yarn.Compiler
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.IO;
     using System.Text;
-    using System.Text.RegularExpressions;
     using Antlr4.Runtime;
     using Antlr4.Runtime.Misc;
     using Antlr4.Runtime.Tree;

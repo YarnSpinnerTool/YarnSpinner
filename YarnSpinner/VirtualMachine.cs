@@ -1,17 +1,12 @@
 // Copyright Yarn Spinner Pty Ltd
 // Licensed under the MIT License. See LICENSE.md in project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
 using Yarn.Saliency;
-using static Yarn.Instruction.Types;
 
 namespace Yarn
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using static Yarn.Instruction.Types;
 
     /// <summary>

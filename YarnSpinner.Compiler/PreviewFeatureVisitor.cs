@@ -1,9 +1,9 @@
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
-using System.Collections;
 using System.Collections.Generic;
 
-namespace Yarn.Compiler {
+namespace Yarn.Compiler
+{
     internal class PreviewFeatureVisitor : YarnSpinnerParserBaseVisitor<int> {
 
         internal PreviewFeatureVisitor(FileParseResult file, bool previewFeaturesAreErrors, IList<Diagnostic> diagnostics) {

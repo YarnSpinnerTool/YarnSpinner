@@ -1,9 +1,6 @@
 using Xunit;
-using System;
 using System.IO;
-using System.Collections;
 using System.Collections.Generic;
-using Yarn;
 using Yarn.Compiler;
 using System.Linq;
 using System.Text.RegularExpressions;

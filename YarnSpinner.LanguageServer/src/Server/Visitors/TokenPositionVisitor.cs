@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Antlr4.Runtime.Tree;
-using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Yarn.Compiler;
 using Position = OmniSharp.Extensions.LanguageServer.Protocol.Models.Position;
 

@@ -7,7 +7,6 @@ namespace Yarn.Compiler.Upgrader
     using System.Linq;
     using Antlr4.Runtime;
     using Antlr4.Runtime.Misc;
-    using Antlr4.Runtime.Tree;
 
     internal class OptionsUpgrader : ILanguageUpgrader
     {

@@ -3,11 +3,8 @@
 
 namespace Yarn.Compiler
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Antlr4.Runtime;
-    using Antlr4.Runtime.Misc;
 
     /// <summary>
     /// A visitor that visits any valid literal (i.e. numbers, bools, strings),

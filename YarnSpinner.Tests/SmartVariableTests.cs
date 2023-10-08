@@ -1,7 +1,5 @@
-using System;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.VisualBasic;
 using Xunit;
 using Yarn;
 using Yarn.Compiler;

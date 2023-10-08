@@ -7,7 +7,6 @@ using Xunit.Abstractions;
 using System.Linq;
 
 using System.IO;
-using FluentAssertions.Execution;
 
 #pragma warning disable CS0162
 

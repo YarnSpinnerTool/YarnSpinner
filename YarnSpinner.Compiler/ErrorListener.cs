@@ -5,11 +5,10 @@ namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.IO;
     using System.Text;
     using Antlr4.Runtime;
-    
+
     /// <summary>
     /// A diagnostic message that describes an error, warning or informational
     /// message that the user can take action on.

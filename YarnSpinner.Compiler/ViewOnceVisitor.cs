@@ -1,7 +1,6 @@
 namespace Yarn.Compiler
 {
     using System.Collections.Generic;
-    using Antlr4.Runtime;
     using Antlr4.Runtime.Misc;
 
     /// <summary>

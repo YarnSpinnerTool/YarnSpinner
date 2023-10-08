@@ -5,11 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.CompilerServices;
-using Yarn;
 using static Yarn.Instruction.Types;
 
-[assembly:InternalsVisibleTo("YarnSpinner.Tests")]
-[assembly:InternalsVisibleTo("YarnSpinner.Compiler")]
+[assembly: InternalsVisibleTo("YarnSpinner.Tests")]
+[assembly: InternalsVisibleTo("YarnSpinner.Compiler")]
 
 namespace Yarn.Analysis
 {

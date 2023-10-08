@@ -9,7 +9,6 @@ namespace Yarn.Compiler
     using Antlr4.Runtime;
     using System;
     using System.Collections.Generic;
-    using System.Security.Cryptography;
     using static Yarn.Instruction.Types;
 
     internal class FileCompiler : YarnSpinnerParserBaseListener, ICodeEmitter {

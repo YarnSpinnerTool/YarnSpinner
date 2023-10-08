@@ -27,7 +27,6 @@ SOFTWARE.
 namespace Yarn.Markup
 {
     using System.Collections.Generic;
-    using System.Runtime.InteropServices;
 
 #pragma warning disable CA1815
     /// <summary>
