@@ -817,7 +817,7 @@ namespace Yarn.Compiler
                     anyDuplicateNames = true;
                     foreach (var duplicateCase in group)
                     {
-                        this.diagnostics.Add(new Diagnostic(this.sourceFileName, duplicateCase, $"Enum case {@duplicateCase.name.Text} must have a unique name.)"));
+                        this.diagnostics.Add(new Diagnostic(this.sourceFileName, duplicateCase, $"Enum case {@duplicateCase.name.Text} must have a unique name."));
                     }
                 }
             }
