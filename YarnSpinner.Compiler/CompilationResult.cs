@@ -114,7 +114,7 @@ namespace Yarn.Compiler
         /// what the error is, users should consult the contents of this
         /// property.
         /// </remarks>
-        public IEnumerable<Diagnostic> Diagnostics { get; internal set; }
+        public IEnumerable<Diagnostic> Diagnostics { get; internal set; } = Array.Empty<Diagnostic>();
 
         /// <summary>
         /// Gets the collection of <see cref="DebugInfo"/> objects for each node

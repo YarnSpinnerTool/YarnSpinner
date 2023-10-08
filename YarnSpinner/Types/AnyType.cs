@@ -31,7 +31,7 @@ namespace Yarn
         public override string Description { get => "Any type."; }
 
         /// <inheritdoc/>
-        public MethodCollection Methods => new Dictionary<string, System.Delegate>();
+        public override MethodCollection Methods => new Dictionary<string, System.Delegate>();
 
         public IReadOnlyDictionary<string, IType> Members =>  new Dictionary<string, Yarn.IType>();
 

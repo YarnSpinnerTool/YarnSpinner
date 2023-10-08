@@ -402,7 +402,13 @@ namespace Yarn.Compiler
 
             foreach (var file in parsedFiles)
             {
-                var dialogueContext = file.Tree.Payload as YarnSpinnerParser.DialogueContext;
+                if (!(file.Tree.Payload is YarnSpinnerParser.DialogueContext dialogueContext))
+                {
+                    // The tree isn't a valid 'dialogue' context, likely due to
+                    // a parse error. Skip it for these purposes - diagnostics
+                    // for the parse error will have been generated error.
+                    continue;
+                }
 
                 // Visit every 'set' statement in the parse tree.
                 ParseTreeWalker.WalkTree<YarnSpinnerParser.Set_statementContext>(dialogueContext, (setStatement) =>
@@ -415,7 +421,7 @@ namespace Yarn.Compiler
                             // This set statement is attempting to set a value to a
                             // smart variable. That's not allowed, because smart
                             // variables are read-only.
-                            diagnostics.Add(new Diagnostic(file.Name, setStatement.variable(), $"{variableName} cannot be modified (it's a smart variable and is always equal to {smartVariables[variableName]?.InitialValueParserContext.GetTextWithWhitespace()})"));
+                            diagnostics.Add(new Diagnostic(file.Name, setStatement.variable(), $"{variableName} cannot be modified (it's a smart variable and is always equal to {smartVariables[variableName]?.InitialValueParserContext?.GetTextWithWhitespace() ?? "(unknown)"})"));
                         }
                     }
                 });
@@ -446,8 +452,8 @@ namespace Yarn.Compiler
         /// to.</param>
         private static void AddErrorsForInvalidNodeNames(List<FileParseResult> parseResults, ref List<Diagnostic> diagnostics)
         {
-            /// A regular expression used to detect illegal characters
-            /// in node titles.
+            // A regular expression used to detect illegal characters
+            // in node titles.
             Regex invalidTitleCharacters = new System.Text.RegularExpressions.Regex(@"[\[<>\]{}\|:\s#\$]");
 
             var allNodes = parseResults.SelectMany(r =>
@@ -477,8 +483,8 @@ namespace Yarn.Compiler
                 else
                 {
                     return (
-                        Name: titleHeader.header_value.Text,
-                        Header: titleHeader,
+                        Name: titleHeader.header_value.Text ?? null,
+                        Header: titleHeader ?? null,
                         Node: n.Node,
                         File: n.File);
                 }
@@ -803,7 +809,7 @@ namespace Yarn.Compiler
             return lineID;
         }
 
-        internal static bool TryGetOnceHashtag(IEnumerable<YarnSpinnerParser.HashtagContext>? hashtags, out YarnSpinnerParser.HashtagContext result)
+        internal static bool TryGetOnceHashtag(IEnumerable<YarnSpinnerParser.HashtagContext>? hashtags, out YarnSpinnerParser.HashtagContext? result)
         {
             if (hashtags != null)
             {
@@ -880,9 +886,9 @@ namespace Yarn.Compiler
         /// <returns>The text of the documentation comments, or <see
         /// langword="null"/> if no documentation comments were
         /// present.</returns>
-        public static string GetDocumentComments(CommonTokenStream tokens, ParserRuleContext context, bool allowCommentsAfter = true)
+        public static string? GetDocumentComments(CommonTokenStream tokens, ParserRuleContext context, bool allowCommentsAfter = true)
         {
-            string description = null;
+            string? description = null;
 
             var precedingComments = tokens.GetHiddenTokensToLeft(context.Start.TokenIndex, YarnSpinnerLexer.COMMENTS);
 
@@ -935,15 +941,23 @@ namespace Yarn.Compiler
 
     }
 
+    /// <summary>
+    /// Adds additional functionality to the <see cref="YarnSpinnerParser"/>
+    /// class.
+    /// </summary>
     public partial class YarnSpinnerParser
     {
+        /// <summary>
+        /// Adds additional functionality to the <see cref="NodeContext"/>
+        /// class.
+        /// </summary>
         public partial class NodeContext
         {
             /// <summary>
             /// Gets the title of this node, as specified in its '<c>title</c>'
             /// header. If it is not present, returns <see langword="null"/>.
             /// </summary>
-            public string NodeTitle
+            public string? NodeTitle
             {
                 get
                 {

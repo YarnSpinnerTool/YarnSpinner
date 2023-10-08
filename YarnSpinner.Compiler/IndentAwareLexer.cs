@@ -54,7 +54,7 @@ namespace Yarn.Compiler
         /// Holds the last observed token from the stream.
         /// Used to see if a line is blank or not.
         /// </summary>
-        private IToken lastToken;
+        private IToken? lastToken;
 
         /// <summary>
         /// Holds the line number of the last seen indent-tracking content. Lets
@@ -92,7 +92,7 @@ namespace Yarn.Compiler
         public IEnumerable<LexerWarning> Warnings { get => this.warnings; }
 
         /// <inheritdoc/>
-        public override IToken NextToken()
+        public override IToken? NextToken()
         {
             if (this.HitEOF && this.pendingTokens.Count > 0)
             {

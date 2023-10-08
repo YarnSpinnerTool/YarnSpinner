@@ -5,42 +5,65 @@ using Yarn;
 
 namespace TypeChecker
 {
-
+    /// <summary>
+    /// A type variable represents a type that is not yet known.
+    /// </summary>
     public class TypeVariable : IType, IEquatable<TypeVariable>
     {
+        /// <summary>
+        /// Gets or sets the name of this type variable.
+        /// </summary>
         public string Name { get; set; }
         
+        /// <summary>
+        /// Gets the parser context associated with this type (that is, the
+        /// expression or other parse context whose type is represented by this
+        /// type variable.)
+        /// </summary>
         public ParserRuleContext Context { get; }
 
-        public IType Parent => null;
 
+        /// <inheritdoc/>
+        public IType? Parent => null;
+
+        /// <inheritdoc/>
         public string Description => $"Type variable representing \"{Name}\"";
-
-        public IReadOnlyDictionary<string, Delegate> Methods => new Dictionary<string, Delegate>();
-
-        public IReadOnlyDictionary<string, IType> Members => new Dictionary<string, IType>();
-
-        // Type variables do not have any members.
+        
+        /// <summary>
+        /// Gets the collection of members belonging to this type.
+        /// </summary>
+        /// <remarks>
+        /// This collection is always empty, because a type variable represents
+        /// an unknown type.
+        /// </remarks>
+        /// 
         public IReadOnlyDictionary<string, ITypeMember> TypeMembers => TypeBase.EmptyTypeMemberDictionary;
 
+        /// <summary>
+        /// Initialises a new <see cref="TypeVariable"/>.
+        /// </summary>
+        /// <param name="name">The name of the type variable.</param>
+        /// <param name="context">The parser context that this type variable
+        /// represents the type of.</param>
         public TypeVariable(string name, Antlr4.Runtime.ParserRuleContext context)
         {
             Name = name;
             Context = context;
         }
-
-        // override object.Equals
+        
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             return obj is IType type && this.Equals(type);
         }
         
-        // override object.GetHashCode
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             return Name.GetHashCode();
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             if (Context != null) {
@@ -49,20 +72,17 @@ namespace TypeChecker
                 return Name;
             }
         }
-
+        
+        /// <inheritdoc/>
         public bool Equals(IType other)
         {
             return other is TypeVariable otherVariable && this.Equals(otherVariable);
         }
-
+        
+        /// <inheritdoc/>
         public bool Equals(TypeVariable other)
         {
             return other.Name == Name;
-        }
-
-        public static implicit operator TypeVariable(string input)
-        {
-            return new TypeVariable(input, null);
         }
     }
 

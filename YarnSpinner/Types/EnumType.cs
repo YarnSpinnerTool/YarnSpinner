@@ -9,9 +9,9 @@ namespace Yarn
     /// </summary>
     internal class EnumType : TypeBase
     {
-        private string name;
-        private string description;
-        private TypeBase rawType;
+        private readonly string name;
+        private readonly string description;
+        private readonly TypeBase rawType;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EnumType"/> class that
@@ -27,8 +27,9 @@ namespace Yarn
         {
             this.name = name;
             this.description = description;
-            this.AddConvertibleTo(rawType);
             this.rawType = rawType;
+            
+            this.AddConvertibleTo(rawType);
         }
 
         /// <inheritdoc/>
@@ -56,7 +57,7 @@ namespace Yarn
                     throw new InvalidOperationException($"Cannot get a default value for enum {Name}, because it has no members (which is not allowed)");
                 } else {
                     var member = System.Linq.Enumerable.First(this.typeMembers).Value;
-                    return (member as ConstantTypeProperty)?.Value;
+                    return (member as ConstantTypeProperty)?.Value ?? 0;
                 }
             }
         }

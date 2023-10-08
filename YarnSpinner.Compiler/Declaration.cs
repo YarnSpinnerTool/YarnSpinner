@@ -12,7 +12,10 @@ namespace Yarn.Compiler
     [System.Serializable]
     public class Range
     {
-        public static readonly Range InvalidRange = new Range(-1, -1, -1, -1);
+        /// <summary>
+        /// Represents the default value for a Range.
+        /// </summary>
+        internal static readonly Range InvalidRange = new Range(-1, -1, -1, -1);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Range"/> class, given
@@ -85,6 +88,13 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this range is valid.
+        /// </summary>
+        /// <remarks>
+        /// A range is valid when its start and end positions are both valid,
+        /// and the start position is not after the end position.
+        /// </remarks>
         public bool IsValid {
             get {
                 return this.Start.IsValid && this.End.IsValid && this.End >= this.Start;
@@ -137,9 +147,25 @@ namespace Yarn.Compiler
             return $"{this.Line}:{this.Character}";
         }
 
+        /// <summary>
+        /// Compares two positions and returns true if <paramref name="a"/> is
+        /// equal to or after <paramref name="b"/>.
+        /// </summary>
+        /// <param name="a">The first position.</param>
+        /// <param name="b">The second position.</param>
+        /// <returns>true if a is after or equal to b; false
+        /// otherwise.</returns>
         public static bool operator >=(Position a, Position b) {
             return a.Line >= b.Line && a.Character >= b.Character;
         }
+        /// <summary>
+        /// Compares two positions and returns true if <paramref name="a"/> is
+        /// equal to or before <paramref name="b"/>.
+        /// </summary>
+        /// <param name="a">The first position.</param>
+        /// <param name="b">The second position.</param>
+        /// <returns>true if a is before or equal to b; false
+        /// otherwise.</returns>
         public static bool operator <=(Position a, Position b) {
             return a.Line <= b.Line && a.Character <= b.Character;
         }

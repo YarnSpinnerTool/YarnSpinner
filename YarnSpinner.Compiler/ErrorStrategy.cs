@@ -9,7 +9,7 @@ internal class ErrorStrategy : DefaultErrorStrategy
     /// <inheritdoc/>
     protected override void ReportNoViableAlternative(Parser recognizer, NoViableAltException e)
     {
-        string msg = null;
+        string? msg = null;
 
         if (this.IsInsideRule<YarnSpinnerParser.If_statementContext>(recognizer)
             && recognizer.RuleContext is YarnSpinnerParser.StatementContext
@@ -50,7 +50,7 @@ internal class ErrorStrategy : DefaultErrorStrategy
     /// <inheritdoc/>
     protected override void ReportInputMismatch(Parser recognizer, InputMismatchException e)
     {
-        string msg = null;
+        string? msg = null;
 
         switch (recognizer.RuleContext)
         {
@@ -108,7 +108,7 @@ internal class ErrorStrategy : DefaultErrorStrategy
         return false;
     }
 
-    private TRuleType GetEnclosingRule<TRuleType>(Parser recognizer)
+    private TRuleType? GetEnclosingRule<TRuleType>(Parser recognizer)
         where TRuleType : RuleContext
     {
         RuleContext currentContext = recognizer.RuleContext;

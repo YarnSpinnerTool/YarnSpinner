@@ -60,7 +60,7 @@ namespace Yarn
         /// <summary>
         /// Gets the collection of methods that are defined on this type.
         /// </summary>
-        public IReadOnlyDictionary<string, Delegate> Methods => methods;
+        public virtual IReadOnlyDictionary<string, Delegate> Methods => methods;
 
         internal Dictionary<string, Delegate> methods = new Dictionary<string, Delegate>();
 

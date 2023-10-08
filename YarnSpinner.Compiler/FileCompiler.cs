@@ -49,8 +49,7 @@ namespace Yarn.Compiler
         /// The collection of variable declarations known to the compiler.
         /// </summary>
         /// <remarks>
-        /// This is supplied as part of a <see cref="CompilationJob"/>, or by
-        /// <see cref="GetDeclarations"/>.
+        /// This is supplied as part of a <see cref="CompilationJob"/>.
         /// </remarks>
         public IDictionary<string, Declaration> VariableDeclarations { get; set; } = new Dictionary<string, Declaration>();
 

@@ -20,7 +20,7 @@ namespace Yarn.Compiler
     /// </summary>
     internal class TypeCheckerListener : YarnSpinnerParserBaseListener
     {
-        
+
         /// <summary>
         /// The special header key used to identify the name of a node.
         /// </summary>
@@ -43,7 +43,8 @@ namespace Yarn.Compiler
         /// The token stream used to produce the current file.
         /// </summary>
         /// <remarks>
-        /// This variable is used to get documentation comments via calls to <see cref="Compiler.GetDocumentComments"/>.
+        /// This variable is used to get documentation comments via calls to
+        /// <see cref="Compiler.GetDocumentComments"/>.
         /// </remarks>
         private readonly CommonTokenStream tokens;
 
@@ -113,8 +114,8 @@ namespace Yarn.Compiler
         /// </summary>
         public ICollection<string> FileTags { get; } = new List<string>();
 
-        /// <summary>Maps the names of types as they appear in the language (string, bool,
-        /// number) to actual type objects.</summary>
+        /// <summary>Maps the names of types as they appear in the language
+        /// (string, bool, number) to actual type objects.</summary>
         // TODO: maybe the 'real' type names should be lowercased too? Rather
         // than relying on this kind of mapping?
         private static readonly Dictionary<string, IType> LanguageTypeNames = new Dictionary<string, IType> {
@@ -136,13 +137,15 @@ namespace Yarn.Compiler
         /// parse tree.</param>
         /// <param name="knownTypes">The list of all known types. This list will
         /// be added to while walking the parse tree.</param>
+        /// <param name="typeSolution">An existing type solution to build
+        /// upon.</param>
         public TypeCheckerListener(string sourceFileName, CommonTokenStream tokens, ref List<Declaration> knownDeclarations, ref List<TypeBase> knownTypes, Substitution typeSolution)
         {
             this.sourceFileName = sourceFileName;
             this.tokens = tokens;
             this.knownDeclarations = knownDeclarations;
             this.knownTypes = knownTypes;
-            this.TypeSolution = typeSolution;
+            this.typeSolution = typeSolution;
         }
 
         /// <summary>
@@ -256,12 +259,14 @@ namespace Yarn.Compiler
                 return;
             }
 
-            // Figure out the type of the declaration; we'll determine its initial value later
+            // Figure out the type of the declaration; we'll determine its
+            // initial value later
             var constantValueVisitor = new LiteralValueVisitor(context, sourceFileName, this.diagnostics);
-            
+
             var typeIdentifier = this.GenerateTypeVariable(name + " declaration", context);
 
-            // The type of this identifier is equal to the type of its default value.
+            // The type of this identifier is equal to the type of its default
+            // value.
             this.AddEqualityConstraint(typeIdentifier, context.expression().Type, context, s => $"The type of {name}'s initial value \"{context.expression().GetText()}\" ({context.expression().Type.Substitute(s)}) doesn't match the type of the variable {typeIdentifier.Substitute(s)}.");
 
             if (context.type != null)
@@ -270,10 +275,13 @@ namespace Yarn.Compiler
                 // constraint that whatever type we have has this name.
                 string typeName = context.type.Text;
 
-                if (LanguageTypeNames.TryGetValue(typeName, out var type)) {
+                if (LanguageTypeNames.TryGetValue(typeName, out var type))
+                {
                     // Constrain the type of this variable to the named type.
                     this.AddEqualityConstraint(typeIdentifier, type, context, s => $"{name}'s type ({typeIdentifier.Substitute(s)}) must be {type.Substitute(s)}");
-                } else {
+                }
+                else
+                {
                     // We don't have a built-in mapping of this name to a type.
                     // Add a constraint such that, whatever the type this
                     // variable is, the type's name is equal to what's specified
@@ -282,7 +290,7 @@ namespace Yarn.Compiler
                 }
             }
 
-            string description = Compiler.GetDocumentComments(this.tokens, context);
+            string? description = Compiler.GetDocumentComments(this.tokens, context);
 
             if (declaration != null && declaration.IsImplicit)
             {
@@ -363,20 +371,24 @@ namespace Yarn.Compiler
 
             // If we don't have a type member reference parse node, or if we
             // don't have a member name, then that's an error.
-            if (context.typeMemberReference() == null || memberName == null) {
+            if (context.typeMemberReference() == null || memberName == null)
+            {
                 context.Type = Types.Error;
                 return;
             }
 
             context.Type = this.GenerateTypeVariable(null, context);
 
-            if (typeName != null) {
+            if (typeName != null)
+            {
                 // Constrain to a type named typeName, containing a member named
                 // memberName
                 this.AddHasNameConstraint(context.Type, typeName, context.typeMemberReference(), s => $"No type called {typeName} could be found");
 
                 this.AddHasEnumMemberConstraint(context.Type, memberName, context.typeMemberReference(), s => $"{typeName} does not have a member named {memberName}");
-            } else {
+            }
+            else
+            {
                 // We don't have a type name, so we can only constrain based on
                 // the member name.
                 this.AddHasEnumMemberConstraint(context.Type, memberName, context.typeMemberReference(), s => $"No type containing a member named {memberName} could be found");
@@ -472,7 +484,7 @@ namespace Yarn.Compiler
             // The result of an equality is boolean; the types of the
             // expressions must be identical.
             context.Type = Types.Boolean;
-            
+
             IType operandAType = context.expression(0)?.Type ?? Types.Error;
             IType operandBType = context.expression(1)?.Type ?? Types.Error;
 
@@ -487,7 +499,8 @@ namespace Yarn.Compiler
             // the expressions must also be boolean.
             var exp0Type = context.expression(0)?.Type;
             var exp1Type = context.expression(1)?.Type;
-            if (exp0Type == null || exp1Type == null) {
+            if (exp0Type == null || exp1Type == null)
+            {
                 context.Type = Types.Error;
                 return;
             }
@@ -505,10 +518,10 @@ namespace Yarn.Compiler
             // The result of a logical not is boolean; the type of the operand
             // must also be boolean.
             context.Type = Types.Boolean;
-            
+
             IType type = context.expression()?.Type ?? Types.Error;
 
-            this.AddEqualityConstraint(type, Types.Boolean, context,  s => $"{context.op.Text} operand must be {Types.Boolean}, not {type.Substitute(s)}");
+            this.AddEqualityConstraint(type, Types.Boolean, context, s => $"{context.op.Text} operand must be {Types.Boolean}, not {type.Substitute(s)}");
         }
 
         public override void ExitExpNegative([NotNull] YarnSpinnerParser.ExpNegativeContext context)
@@ -547,7 +560,8 @@ namespace Yarn.Compiler
 
         public override void ExitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context)
         {
-            // The type of the expression must be convertible to the type of the variable
+            // The type of the expression must be convertible to the type of the
+            // variable
             IType variableType = context.variable()?.Type ?? Types.Error;
             IType expressionType = context.expression()?.Type ?? Types.Error;
             string variableName = context.variable()?.GetText() ?? "<unknown>";
@@ -566,21 +580,25 @@ namespace Yarn.Compiler
 
         public override void ExitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context)
         {
-            // If we already have a declaration for this function, then use information from that
+            // If we already have a declaration for this function, then use
+            // information from that
             string? functionName = context.FUNC_ID()?.GetText();
             var functionDecl = this.GetKnownDeclaration(functionName);
 
             FunctionType functionType;
 
-            if (functionDecl == null) {
-                // We don't know about this function. We'll need to create a new declaration.
+            if (functionDecl == null)
+            {
+                // We don't know about this function. We'll need to create a new
+                // declaration.
 
                 TypeVariable returnType = this.GenerateTypeVariable($"return from {functionName}", context);
 
                 functionType = new FunctionType(returnType);
 
                 int count = 1;
-                foreach (var expression in context.expression()) {
+                foreach (var expression in context.expression())
+                {
                     var parameterType = this.GenerateTypeVariable($"{functionName} param {count}", context);
                     functionType.AddParameter(parameterType);
 
@@ -597,7 +615,9 @@ namespace Yarn.Compiler
                 };
 
                 this.knownDeclarations.Add(functionDecl);
-            } else {
+            }
+            else
+            {
                 functionType = (FunctionType)functionDecl.Type;
             }
 
@@ -607,7 +627,8 @@ namespace Yarn.Compiler
             int expectedParameters = functionType.Parameters.Count();
 
             // Check to see if we have the expected number of parameters
-            if (actualParameters != expectedParameters) {
+            if (actualParameters != expectedParameters)
+            {
                 // We don't! Create a diagnostic message and make this
                 // expression be the Error type.
 
@@ -619,16 +640,19 @@ namespace Yarn.Compiler
                 // If the function declaration is implicit, give a message here
                 // that hedges a bit - we don't know if _this_ call is the
                 // incorrect one.
-                if (functionDecl.IsImplicit) {
+                if (functionDecl.IsImplicit)
+                {
                     message = $"{functionName} was called elsewhere with {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, but is called with {actualParameters} {(actualEnglishPlural ? "parameters" : "parameter")} here";
-                } else {
+                }
+                else
+                {
                     message = $"{functionName} expects {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, not {actualParameters}";
                 }
 
                 this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
             }
 
-            for (int paramID = 0; paramID < Math.Min(expectedParameters, actualParameters); paramID ++)
+            for (int paramID = 0; paramID < Math.Min(expectedParameters, actualParameters); paramID++)
             {
                 var expectedType = functionType.Parameters[paramID];
                 var parameterExpression = context.expression()[paramID];
@@ -643,8 +667,10 @@ namespace Yarn.Compiler
             base.ExitFunction_call(context);
         }
 
-        public override void ExitLine_condition([NotNull] YarnSpinnerParser.Line_conditionContext context) {
-            if (context.expression() != null) {
+        public override void ExitLine_condition([NotNull] YarnSpinnerParser.Line_conditionContext context)
+        {
+            if (context.expression() != null)
+            {
                 this.AddEqualityConstraint(context.expression().Type, Types.Boolean, context, s => $"line condition's expression must be a {Types.Boolean}, not a {context.expression().Type.Substitute(s)}");
             }
             base.ExitLine_condition(context);
@@ -652,7 +678,8 @@ namespace Yarn.Compiler
 
         public override void ExitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
         {
-            if (context.expression() != null) {
+            if (context.expression() != null)
+            {
                 // The type of the expression must resolve to a string.
                 this.AddEqualityConstraint(context.expression()?.Type ?? Types.Error,
                     Types.String,
@@ -665,8 +692,8 @@ namespace Yarn.Compiler
 
         public override void ExitEnum_statement([NotNull] YarnSpinnerParser.Enum_statementContext context)
         {
-            // We've just finished walking an enum statement! We're almost
-            // ready to add its declaration.
+            // We've just finished walking an enum statement! We're almost ready
+            // to add its declaration.
 
             // First: are there any types with the same name as this?
             if (this.knownTypes.Any(t => t.Name == context.name.Text))
@@ -826,8 +853,7 @@ namespace Yarn.Compiler
             {
                 if (group.Count() > 1)
                 {
-                    // Two or more cases have the same name! That's not
-                    // allowed.
+                    // Two or more cases have the same name! That's not allowed.
                     anyDuplicateNames = true;
 
                     // Produce an error for the duplicates, skipping the first
@@ -847,7 +873,7 @@ namespace Yarn.Compiler
             }
 
             // Create the new type.
-            var newEnumType = new EnumType(context.name.Text, description, (TypeBase)rawType);
+            var newEnumType = new EnumType(context.name.Text, description ?? string.Empty, (TypeBase)rawType);
 
             // Register the cases for this enum.
             foreach (var @case in context.enum_case_statement())
@@ -856,8 +882,8 @@ namespace Yarn.Compiler
                     @case.name.Text,
                     new ConstantTypeProperty(
                         newEnumType,
-                        @case.RawValue?.InternalValue,
-                        @case.Description));
+                        @case.RawValue?.InternalValue ?? 0,
+                        @case.Description ?? string.Empty));
             }
 
             // Finally, register the type!
@@ -892,8 +918,8 @@ namespace Yarn.Compiler
                 }
 
                 // Run the solver on type equalities. (Doing this gets us useful
-                // type information that guides other, more complex
-                // constraints like convertability.)
+                // type information that guides other, more complex constraints
+                // like convertability.)
                 var equalities = this.typeEquations.OfType<TypeEqualityConstraint>();
                 Solver.TrySolve(equalities, knownTypes, this.diagnostics, ref typeSolution);
 
@@ -901,10 +927,10 @@ namespace Yarn.Compiler
                 var otherConstraints = this.typeEquations.Except(equalities);
                 Solver.TrySolve(otherConstraints, knownTypes, this.diagnostics, ref typeSolution);
 
-                // Apply the solution to our equations, and eliminate any that are
-                // now tautological. (If our program's type definitions are
-                // self-contained, then this will likely result in eliminating ALL
-                // outstanding equations.)
+                // Apply the solution to our equations, and eliminate any that
+                // are now tautological. (If our program's type definitions are
+                // self-contained, then this will likely result in eliminating
+                // ALL outstanding equations.)
                 this.typeEquations = this.typeEquations.Select(e => e.ApplySubstitution(TypeSolution)).WithoutTautologies().ToList();
             }
             finally
@@ -918,9 +944,11 @@ namespace Yarn.Compiler
         /// types, determines the appropriate value to use as this declaration's
         /// initial value.
         /// </summary>
-        /// <param name="declarations">The list of declarations to update.</param>
+        /// <param name="declarations">The list of declarations to
+        /// update.</param>
         /// <param name="diagnostics">The list of diagnostics to add to.</param>
-        public static void ResolveInitialValues(ref List<Declaration> declarations, ref List<Diagnostic> diagnostics) {
+        public static void ResolveInitialValues(ref List<Declaration> declarations, ref List<Diagnostic> diagnostics)
+        {
             if (declarations == null)
             {
                 throw new ArgumentNullException(nameof(declarations));
@@ -931,7 +959,8 @@ namespace Yarn.Compiler
                 throw new ArgumentNullException(nameof(diagnostics));
             }
 
-            foreach (var decl in declarations) {
+            foreach (var decl in declarations)
+            {
                 if (decl.InitialValueParserContext is YarnSpinnerParser.ExpValueContext valueContext
                     && !(valueContext.value() is YarnSpinnerParser.ValueFuncContext)
                     && !(valueContext.value() is YarnSpinnerParser.ValueVarContext))
@@ -952,8 +981,8 @@ namespace Yarn.Compiler
                     }
                     else if (valueContext.value() is YarnSpinnerParser.ValueTypeMemberReferenceContext memberReference)
                     {
-                        // The initial value was a reference to a member of a type.
-                        // Get that member's value.
+                        // The initial value was a reference to a member of a
+                        // type. Get that member's value.
                         var memberName = memberReference.typeMemberReference().memberName.Text;
                         var type = memberReference.Type;
 
@@ -977,7 +1006,9 @@ namespace Yarn.Compiler
 
                         decl.DefaultValue = property.Value;
                     }
-                } else if (decl.InitialValueParserContext is YarnSpinnerParser.ExpressionContext) {
+                }
+                else if (decl.InitialValueParserContext is YarnSpinnerParser.ExpressionContext)
+                {
                     // The value of the expression is runtime-evaluated. This
                     // declaration is for an inline-expanded expression (a
                     // 'smart variable'). No default value is provided; instead,
@@ -993,22 +1024,27 @@ namespace Yarn.Compiler
             var smartVariableDeclarations = declarations.Where(d => d.IsInlineExpansion);
             var allDeclsDict = declarations.Where(d => d.Name != null).ToDictionary(d => d.Name, d => d);
 
-            // Calculate the dependencies for each smart variable, catching any loops
-            foreach (var smartVariableDecl in smartVariableDeclarations) {
+            // Calculate the dependencies for each smart variable, catching any
+            // loops
+            foreach (var smartVariableDecl in smartVariableDeclarations)
+            {
                 var dependencies = GetDependenciesForVariable(smartVariableDecl, allDeclsDict, out var error);
-                if (error != null) {
+                if (error != null)
+                {
                     diagnostics.Add(error);
                     continue;
                 }
 
                 smartVariableDecl.Dependencies = dependencies;
-                foreach (var dependency in dependencies) {
+                foreach (var dependency in dependencies)
+                {
                     dependency.Dependents = (dependency.Dependents ?? Enumerable.Empty<Declaration>()).Append(smartVariableDecl);
                 }
             }
 
             // Make all dependency lists distinct
-            foreach (var decl in declarations) {
+            foreach (var decl in declarations)
+            {
                 decl.Dependencies = decl.Dependencies?.Distinct() ?? Enumerable.Empty<Declaration>();
                 decl.Dependents = decl.Dependents?.Distinct() ?? Enumerable.Empty<Declaration>();
             }
@@ -1019,8 +1055,10 @@ namespace Yarn.Compiler
             var dependencies = new HashSet<Declaration>();
             var searchStack = new Stack<ParserRuleContext>();
 
-            if (startDecl.InitialValueParserContext == null) {
-                // This declaration has no initial value parse context. It therefore doesn't reference any other variables.
+            if (startDecl.InitialValueParserContext == null)
+            {
+                // This declaration has no initial value parse context. It
+                // therefore doesn't reference any other variables.
                 loopError = null;
                 return dependencies;
             }
@@ -1051,11 +1089,13 @@ namespace Yarn.Compiler
 
                         if (dependencyDecl.IsInlineExpansion)
                         {
-                            if (dependencyDecl.InitialValueParserContext == null) {
+                            if (dependencyDecl.InitialValueParserContext == null)
+                            {
                                 throw new InvalidOperationException($"Internal error: {dependencyDecl} was marked as being a smart variable, but it has no {nameof(dependencyDecl.InitialValueParserContext)}");
                             }
 
-                            // Add this smart variable's definition to our search.
+                            // Add this smart variable's definition to our
+                            // search.
                             searchStack.Push(dependencyDecl.InitialValueParserContext);
                         }
                     }
@@ -1086,7 +1126,8 @@ namespace Yarn.Compiler
     /// <summary>
     /// Provides methods for walking a parse tree.
     /// </summary>
-    internal static class ParseTreeWalker {
+    internal static class ParseTreeWalker
+    {
         /// <summary>
         /// Walks a parse tree, starting at <paramref name="startContext"/>, and
         /// calls <paramref name="handler"/> for each <see
@@ -1146,7 +1187,8 @@ namespace Yarn.Compiler
     /// Contains properties common to all parse nodes that have a type
     /// associated with them.
     /// </summary>
-    public interface ITypedContext {
+    public interface ITypedContext
+    {
         /// <summary>
         /// Gets or sets the type of this parse node.
         /// </summary>
@@ -1155,35 +1197,52 @@ namespace Yarn.Compiler
 
     public partial class YarnSpinnerParser
     {
+        /// <summary>
+        /// Adds type properties to <see cref="ExpressionContext"/>.
+        /// </summary>
         public partial class ExpressionContext : ITypedContext
         {
             /// <inheritdoc/>
             public IType Type { get; set; } = Types.Error;
         }
 
+        /// <summary>
+        /// Adds type properties to <see cref="ValueContext"/>.
+        /// </summary>
         public partial class ValueContext : ITypedContext
         {
             /// <inheritdoc/>
             public IType Type { get; set; } = Types.Error;
         }
 
+        /// <summary>
+        /// Adds type properties to <see cref="VariableContext"/>.
+        /// </summary>
         public partial class VariableContext : ITypedContext
         {
             /// <inheritdoc/>
             public IType Type { get; set; } = Types.Error;
         }
 
+        /// <summary>
+        /// Adds type properties to <see cref="Function_callContext"/>.
+        /// </summary>
         public partial class Function_callContext : ITypedContext
         {
             /// <inheritdoc/>
             public IType Type { get; set; } = Types.Error;
         }
 
-        public partial class Enum_case_statementContext : ParserRuleContext {
+        /// <summary>
+        /// Adds enum case type information to <see
+        /// cref="Enum_case_statementContext"/>.
+        /// </summary>
+        public partial class Enum_case_statementContext : ParserRuleContext
+        {
 
             /// <summary>
-            /// Gets or sets the 'raw value' of this enum case, which is
-            /// the underlying value that this enum represents.
+            /// Gets or sets the 'raw value' of this enum case, which is the
+            /// underlying value that this enum represents.
             /// </summary>
             internal Yarn.Value? RawValue { get; set; }
 

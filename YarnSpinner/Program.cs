@@ -15,7 +15,7 @@ namespace Yarn
     {
         internal const string SmartVariableNodeTag = "Yarn.SmartVariable";
 
-        internal string DumpCode(Library l, System.Func<string,string> stringLookupHelper = null)
+        internal string DumpCode(Library? l, System.Func<string,string>? stringLookupHelper = null)
         {
             var sb = new System.Text.StringBuilder();
 
@@ -89,14 +89,15 @@ namespace Yarn
         /// <param name="variableName">The name of the variable to retrieve a
         /// value for.</param>
         /// <param name="result">On return, contains the value of the variable,
-        /// or the default value of <typeparamref name="T"/> if not
-        /// known.</param>
+        /// or the default value of <typeparamref name="T"/> if not known.
+        /// Depending on what <typeparamref name="T"/> is, this value may be
+        /// <see langword="null"/>.</param>
         /// <returns><see langword="true"/> if an initial value for <paramref
         /// name="variableName"/> was found; <see langword="false"/>
         /// otherwise.</returns>
         /// <exception cref="InvalidOperationException">Thrown the stored
-        /// initial value found for <paramref name="variableName"/> is not known to
-        /// this version of Yarn Spinner.</exception>
+        /// initial value found for <paramref name="variableName"/> is not known
+        /// to this version of Yarn Spinner.</exception>
         /// <exception cref="InvalidCastException">Thrown when the initial value
         /// found for <paramref name="variableName"/> cannot be cast or
         /// converted to <typeparamref name="T"/>.</exception>
@@ -106,7 +107,7 @@ namespace Yarn
             if (this.InitialValues.ContainsKey(variableName) == false)
             {
                 // This variable isn't known to this program.
-                result = default;
+                result = default!;
                 return false;
             }
             var initialValue = this.InitialValues[variableName];
@@ -149,6 +150,13 @@ namespace Yarn
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating the kind of variable <paramref name="name"/>
+        /// represents.
+        /// </summary>
+        /// <param name="name">The name of a variable.</param>
+        /// <returns>The kind of variable that <paramref name="name"/>
+        /// represents.</returns>
         public VariableKind GetVariableKind(string name)
         {
             // If 'name' has an initial value, it is a stored variable
@@ -172,7 +180,7 @@ namespace Yarn
     public partial class Instruction
     {
 
-        internal string ToString(Program p, Library l, System.Func<string,string> stringLookupHelper = null)
+        internal string ToString(Program p, Library? l, System.Func<string,string>? stringLookupHelper = null)
         {
             // Generate a comment, if the instruction warrants it
             string comment = "";

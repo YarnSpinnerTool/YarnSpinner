@@ -41,7 +41,7 @@ namespace Yarn.Compiler
         /// Gets or sets the source text of <see cref="FileName"/> containing
         /// the issue.
         /// </summary>
-        public string Context { get; set; } = null;
+        public string? Context { get; set; } = null;
 
         /// <summary>
         /// Gets or sets the severity of the issue.
@@ -86,7 +86,7 @@ namespace Yarn.Compiler
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
         public Diagnostic(string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
-        : this(null, message, severity)
+        : this("(unknown)", message, severity)
         {
         }
 
@@ -101,7 +101,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
-        public Diagnostic(string fileName, ParserRuleContext context, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        public Diagnostic(string fileName, ParserRuleContext? context, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
 
@@ -115,12 +115,24 @@ namespace Yarn.Compiler
                     context.Start.Column,
                     context.Stop.Line - 1,
                     context.Stop.Column + context.Stop.Text.Length);
+
+                this.Context = context.GetTextWithWhitespace();
             }
             this.Message = message;
-            this.Context = context.GetTextWithWhitespace();
             this.Severity = severity;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Diagnostic"/> class.
+        /// </summary>
+        /// <param name="fileName"><inheritdoc cref="FileName"
+        /// path="/summary/node()"/></param>
+        /// <param name="token">The token at which the error
+        /// occurred.</param>
+        /// <param name="message"><inheritdoc cref="Message"
+        /// path="/summary/node()"/></param>
+        /// <param name="severity"><inheritdoc cref="Severity"
+        /// path="/summary/node()"/></param>
         public Diagnostic(string fileName, IToken token, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
@@ -221,7 +233,10 @@ namespace Yarn.Compiler
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.FileName);
             hashCode = (hashCode * -1521134295) + this.Range.GetHashCode();
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Message);
-            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Context);
+
+            if (this.Context != null) {
+                hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Context);
+            }
             hashCode = (hashCode * -1521134295) + this.Severity.GetHashCode();
             return hashCode;
         }

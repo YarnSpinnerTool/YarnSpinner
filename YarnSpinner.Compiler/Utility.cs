@@ -50,8 +50,8 @@ namespace Yarn.Compiler
         public static string GenerateYarnFileWithDeclarations(
             IEnumerable<Yarn.Compiler.Declaration> declarations,
             string title = "Program",
-            IEnumerable<string> tags = null,
-            IDictionary<string, string> headers = null)
+            IEnumerable<string>? tags = null,
+            IDictionary<string, string>? headers = null)
         {
             var stringBuilder = new StringBuilder();
 
@@ -101,11 +101,11 @@ namespace Yarn.Compiler
                 }
                 else if (decl.Type == Types.String)
                 {
-                    stringBuilder.Append('"' + (string)decl.DefaultValue + '"');
+                    stringBuilder.Append('"' + (string)(decl.DefaultValue ?? string.Empty) + '"');
                 }
                 else if (decl.Type == Types.Boolean)
                 {
-                    stringBuilder.Append((bool)decl.DefaultValue ? "true" : "false");
+                    stringBuilder.Append((bool)(decl.DefaultValue ?? false) ? "true" : "false");
                 }
                 else
                 {
@@ -144,7 +144,7 @@ namespace Yarn.Compiler
         /// collection.</param>
         /// <returns>The modified source code, with line tags
         /// added.</returns>
-        public static string AddTagsToLines(string contents, ICollection<string> existingLineTags = null)
+        public static string AddTagsToLines(string contents, ICollection<string>? existingLineTags = null)
         {
             // First, get the parse tree for this source code.
             var (parseSource, diagnostics) = ParseSource(contents);
@@ -154,7 +154,7 @@ namespace Yarn.Compiler
             {
                 // We encountered a parse error. Bail here; we aren't confident
                 // in our ability to correctly insert a line tag.
-                return null;
+                return contents;
             }
 
             // Make sure we have a list of line tags to work with.
@@ -348,6 +348,13 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <summary>
+        /// Gets the collection of contiguous runs of lines in the provided
+        /// nodes. Each run of lines is guaranteed to run to completion once
+        /// entered.
+        /// </summary>
+        /// <param name="nodes">The nodes to get string blocks for.</param>
+        /// <returns>A collection of runs of lines.</returns>
         public static List<List<string>> ExtractStringBlocks(IEnumerable<Node> nodes)
         {
             List<List<string>> lineBlocks = new List<List<string>>();
@@ -362,7 +369,7 @@ namespace Yarn.Compiler
                 }
             }
 
-            void RunBlock(BasicBlock block, IEnumerable<BasicBlock> blocks, HashSet<string> visited, string openingLineID = null)
+            void RunBlock(BasicBlock block, IEnumerable<BasicBlock> blocks, HashSet<string> visited, string? openingLineID = null)
             {
                 if (block.PlayerVisibleContent.Count() == 0)
                 {
@@ -381,7 +388,7 @@ namespace Yarn.Compiler
 
                 // if we are given an opening line ID we need to add that in at the top
                 // this handles the case where we want options to open the set associated lines
-                if (!string.IsNullOrEmpty(openingLineID))
+                if (openingLineID != null && !string.IsNullOrEmpty(openingLineID))
                 {
                     runOfLines.Add(openingLineID);
                 }
@@ -390,14 +397,12 @@ namespace Yarn.Compiler
                 {
                     // I really really dislike using objects in this manner
                     // it just feels oh so very strange to me
-                    if (content is BasicBlock.LineElement)
+                    if (content is BasicBlock.LineElement line)
                     {
                         // lines just get added to the current collection of content
-                        var line = content as BasicBlock.LineElement;
-
                         runOfLines.Add(line.LineID);
                     }
-                    else if (content is BasicBlock.OptionsElement)
+                    else if (content is BasicBlock.OptionsElement options)
                     {
                         // options are special cased because of how they work
                         // an option will always be put into a block by themselves and any child content they have
@@ -409,7 +414,6 @@ namespace Yarn.Compiler
                             runOfLines = new List<string>();
                         }
 
-                        var options = content as BasicBlock.OptionsElement;
                         var jumpOptions = new Dictionary<string, BasicBlock>();
                         foreach (var option in options.Options)
                         {
@@ -485,16 +489,41 @@ namespace Yarn.Compiler
             return cluster;
         }
 
-        public static string GetCompiledCodeAsString(Program program, Library l = null, System.Func<string,string> stringLookupHelper = null) {
+        /// <summary>
+        /// Gets a string containing a representation of the compiled bytecode
+        /// for a <see cref="Program"/>.
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="l"></param>
+        /// <param name="stringLookupHelper"></param>
+        /// <returns></returns>
+        public static string GetCompiledCodeAsString(Program program, Library? l = null, System.Func<string,string>? stringLookupHelper = null) {
             return program.DumpCode(l, stringLookupHelper);
         }
     }
 
     public struct GraphingNode
     {
+        /// <summary>
+        /// The name of the node.
+        /// </summary>
         public string node;
+
+        /// <summary>
+        /// The list of nodes that this node jumps to.
+        /// </summary>
         public string[] jumps;
+
+        /// <summary>
+        /// <see langword="true"/> if this <see cref="GraphingNode"/>'s <see
+        /// cref="position"/> field contains valid information.
+        /// </summary>
         public bool hasPositionalInformation;
+
+        /// <summary>
+        /// The position of this <see cref="GraphingNode"/>. Only valid when
+        /// <see cref="hasPositionalInformation"/> is <see langword="true"/>.
+        /// </summary>
         public (int x, int y) position;
     }
 

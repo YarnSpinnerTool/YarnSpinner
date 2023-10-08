@@ -67,7 +67,8 @@ namespace Yarn.Compiler
             //
             // <<if true>> Mae: here's a line <<endif>>
 
-            if (compiler.CurrentNode == null) {
+            if (compiler.CurrentNode == null)
+            {
                 throw new InvalidOperationException($"Internal error: {nameof(compiler.CurrentNode)} was null when generating code for a line expression");
             }
 
@@ -91,7 +92,8 @@ namespace Yarn.Compiler
 
             string onceVariableName = Compiler.GetContentViewedVariableName(lineID);
 
-            if (generatesHashtagCheckCode && onceHashtag != null) {
+            if (generatesHashtagCheckCode && onceHashtag != null)
+            {
                 // Get the value of the variable
                 this.compiler.Emit(OpCode.PushVariable, onceHashtag.Start, new Operand(onceVariableName));
 
@@ -108,22 +110,24 @@ namespace Yarn.Compiler
                 this.compiler.Emit(OpCode.Pop);
             }
 
-            if (generatesHashtagSetCode) {
+            if (generatesHashtagSetCode)
+            {
                 // Generate the code that marks that we've seen this line.
                 this.compiler.Emit(OpCode.PushBool, onceHashtag!.Start, new Operand(true));
                 this.compiler.Emit(OpCode.StoreVariable, onceHashtag.Start, new Operand(onceVariableName));
                 this.compiler.Emit(OpCode.Pop);
             }
-            
+
             // Evaluate the inline expressions and push the results onto the
             // stack.
             var expressionCount = this.GenerateCodeForExpressionsInFormattedText(context.line_formatted_text().children);
-            
+
             this.compiler.Emit(OpCode.RunLine, context.Start, new Operand(lineID), new Operand(expressionCount));
 
             // Finally, if we were generating code for checking and skipping the
             // line, create the label to jump to
-            if (generatesHashtagCheckCode && onceHashtag != null) {
+            if (generatesHashtagCheckCode && onceHashtag != null)
+            {
                 this.compiler.AddLabel(endOfConditionLabel, this.compiler.CurrentNode.Instructions.Count);
                 this.compiler.Emit(OpCode.Pop, onceHashtag.Start);
             }
@@ -271,6 +275,11 @@ namespace Yarn.Compiler
                 this.GenerateClause(endOfIfStatementLabel, elseClause, elseClause.statement(), null);
             }
 
+            if (this.compiler.CurrentNode == null)
+            {
+                throw new InvalidOperationException($"Internal error: can't add a new label, because CurrentNode is null");
+            }
+
             this.compiler.AddLabel(endOfIfStatementLabel, this.compiler.CurrentNode.Instructions.Count);
 
             return 0;
@@ -300,6 +309,11 @@ namespace Yarn.Compiler
 
             if (expression != null)
             {
+                if (this.compiler.CurrentNode == null)
+                {
+                    throw new InvalidOperationException($"Internal error: can't add a new label, because CurrentNode is null");
+                }
+
                 this.compiler.AddLabel(endOfClauseLabel, this.compiler.CurrentNode.Instructions.Count);
                 this.compiler.Emit(OpCode.Pop, clauseContext.Stop);
             }
@@ -309,6 +323,11 @@ namespace Yarn.Compiler
         // statements dedent)+
         public override int VisitShortcut_option_statement(YarnSpinnerParser.Shortcut_option_statementContext context)
         {
+            if (this.compiler.CurrentNode == null)
+            {
+                throw new InvalidOperationException($"Internal error: can't codegen an option group because CurrentNode is null");
+            }
+
             string endOfGroupLabel = this.compiler.RegisterLabel("group_end");
 
             var labels = new List<string>();
@@ -324,7 +343,7 @@ namespace Yarn.Compiler
             {
                 // Get the line ID for the shortcut's line
                 var lineID = Compiler.GetLineID(shortcut.line_statement());
-                
+
                 // Generate the name of internal label that we'll jump to if
                 // this option is selected. We'll emit the label itself later.
                 string optionDestinationLabel = this.compiler.RegisterLabel($"shortcutoption_{this.compiler.CurrentNode.Name ?? "node"}_{optionCount + 1}");
@@ -401,7 +420,8 @@ namespace Yarn.Compiler
                 // Emit the label for this option's code
                 this.compiler.CurrentNode.Labels.Add(labels[optionCount], this.compiler.CurrentNode.Instructions.Count);
 
-                if (Compiler.TryGetOnceHashtag(shortcut.line_statement().hashtag(), out var once)) {
+                if (Compiler.TryGetOnceHashtag(shortcut.line_statement().hashtag(), out var once))
+                {
                     // This option had a #once hashtag. It was selected, so mark
                     // that it's been seen.
                     var lineID = Compiler.GetLineID(shortcut.line_statement());
@@ -434,6 +454,11 @@ namespace Yarn.Compiler
 
         public override int VisitLine_group_statement(YarnSpinnerParser.Line_group_statementContext context)
         {
+            if (this.compiler.CurrentNode == null)
+            {
+                throw new InvalidOperationException($"Internal error: can't codegen a line group, because CurrentNode is null");
+            }
+
             var labels = new Dictionary<YarnSpinnerParser.Line_group_itemContext, string>();
 
             int optionCount = 0;
@@ -484,7 +509,7 @@ namespace Yarn.Compiler
                 {
                     var endOfExpressionEvalLabel = compiler.RegisterLabel("linegroup_item_" + optionCount + "condition_end");
 
-                    IToken conditionToken = null;
+                    IToken? conditionToken = null;
                     int conditionCount = 0;
 
                     if (expression != null)
@@ -492,7 +517,8 @@ namespace Yarn.Compiler
                         this.Visit(expression);
                         conditionToken = expression.Start;
 
-                        // Get the number of values that this expression examines
+                        // Get the number of values that this expression
+                        // examines
                         conditionCount += GetValuesInExpression(expression);
                     }
                     if (onceHashTag != null)
@@ -530,8 +556,9 @@ namespace Yarn.Compiler
                         this.compiler.Emit(OpCode.CallFunc, expression.Start, new Operand(functionName));
                     }
 
-                    // If this evaluates to false, skip to the end of the expression
-                    this.compiler.Emit(OpCode.JumpIfFalse, conditionToken, new Operand(endOfExpressionEvalLabel));
+                    // If this evaluates to false, skip to the end of the
+                    // expression
+                    this.compiler.Emit(OpCode.JumpIfFalse, conditionToken!, new Operand(endOfExpressionEvalLabel));
 
                     // Call the 'add candidate' function
                     EmitCodeForRegisteringLineGroupItem(lineGroupItem, conditionCount);
@@ -549,12 +576,14 @@ namespace Yarn.Compiler
                 optionCount += 1;
             }
 
-            void EmitCodeForRegisteringLineGroupItem(YarnSpinnerParser.Line_group_itemContext lineGroupItem, int conditionCount) {
+            void EmitCodeForRegisteringLineGroupItem(YarnSpinnerParser.Line_group_itemContext lineGroupItem, int conditionCount)
+            {
                 var lineStatement = lineGroupItem.line_statement();
                 var lineIDTag = Compiler.GetLineIDTag(lineStatement.hashtag());
                 var lineID = lineIDTag?.text?.Text ?? throw new InvalidOperationException("Internal compiler error: line ID for line group item was not present");
 
-                // Push the parameters (label, condition count (= 0), line id) in reverse order
+                // Push the parameters (label, condition count (= 0), line id)
+                // in reverse order
                 this.compiler.Emit(OpCode.PushString, lineStatement.Start, new Operand(lineID));
                 this.compiler.Emit(OpCode.PushFloat, lineStatement.Start, new Operand(conditionCount));
                 this.compiler.Emit(OpCode.PushString, lineStatement.Start, new Operand(labels[lineGroupItem]));
@@ -562,7 +591,8 @@ namespace Yarn.Compiler
                 this.compiler.Emit(OpCode.CallFunc, lineGroupItem.Start, new Operand(VirtualMachine.AddLineGroupCandidateFunctionName));
             }
 
-            if (anyItemHadEmptyCondition == false) {
+            if (anyItemHadEmptyCondition == false)
+            {
                 // All items had a condition. We need to handle the event where
                 // all conditions fail, so we'll register an item that jumps
                 // straight to the end of the line group.
@@ -587,11 +617,13 @@ namespace Yarn.Compiler
                 // Create the label that we're jumping to
                 this.compiler.AddLabel(labels[lineGroupItem], this.compiler.CurrentNode.Instructions.Count);
 
-                // Evaluate this line. (If it had a once hashtag, this will set its variable.)
+                // Evaluate this line. (If it had a once hashtag, this will set
+                // its variable.)
                 this.Visit(lineGroupItem.line_statement());
 
                 // For each child, evaluate that too
-                foreach (var childStatement in lineGroupItem.statement()) {
+                foreach (var childStatement in lineGroupItem.statement())
+                {
                     this.Visit(childStatement);
                 }
 
@@ -627,13 +659,19 @@ namespace Yarn.Compiler
         /// included in the count.</remarks>
         /// <param name="context">An expression.</param>
         /// <returns>The total number of values in the expression.</returns>
-        private static int GetValuesInExpression(YarnSpinnerParser.ExpressionContext context) {
-            if (context is YarnSpinnerParser.ExpValueContext) {
+        private static int GetValuesInExpression(YarnSpinnerParser.ExpressionContext context)
+        {
+            if (context is YarnSpinnerParser.ExpValueContext)
+            {
                 return 1;
-            } else {
+            }
+            else
+            {
                 var accum = 0;
-                foreach (var child in context.children) {
-                    if (child is YarnSpinnerParser.ExpressionContext exp) {
+                foreach (var child in context.children)
+                {
+                    if (child is YarnSpinnerParser.ExpressionContext exp)
+                    {
                         accum += GetValuesInExpression(exp);
                     }
                 }
@@ -678,13 +716,18 @@ namespace Yarn.Compiler
 
         /// <summary>
         /// Emits code that calls a method appropriate for the operator
-        /// <paramref name="op"/> on the type <paramref name="type"/>, given the operands <paramref name="operands"/>.
+        /// <paramref name="op"/> on the type <paramref name="type"/>, given the
+        /// operands <paramref name="operands"/>.
         /// </summary>
-        /// <param name="op">The operation to perform on <paramref name="operands"/>.</param>
-        /// <param name="operatorToken">The first token in the statement that is responsible for this operation.</param>
+        /// <param name="op">The operation to perform on <paramref
+        /// name="operands"/>.</param>
+        /// <param name="operatorToken">The first token in the statement that is
+        /// responsible for this operation.</param>
         /// <param name="type">The type of the expression.</param>
-        /// <param name="operands">The operands to perform the operation <paramref name="op"/> on.</param>
-        /// <exception cref="InvalidOperationException">Thrown when there is no matching instructions for the <paramref name="op"/></exception>
+        /// <param name="operands">The operands to perform the operation
+        /// <paramref name="op"/> on.</param>
+        /// <exception cref="InvalidOperationException">Thrown when there is no
+        /// matching instructions for the <paramref name="op"/></exception>
         private void GenerateCodeForOperation(Operator op, IToken operatorToken, Yarn.IType type, params ParserRuleContext[] operands)
         {
             // Generate code for each of the operands, so that their value is
@@ -713,7 +756,7 @@ namespace Yarn.Compiler
             // Call that function.
             this.compiler.Emit(OpCode.CallFunc, operatorToken, new Operand(functionName));
         }
-        
+
         private void GenerateTrackingCode(string variableName)
         {
             GenerateTrackingCode(this.compiler, variableName);
@@ -813,16 +856,20 @@ namespace Yarn.Compiler
             string variableName = context.VAR_ID().GetText();
 
             // Get the declaration for this variable
-            if (this.compiler.VariableDeclarations.TryGetValue(variableName, out var declaration) == false) {
+            if (this.compiler.VariableDeclarations.TryGetValue(variableName, out var declaration) == false)
+            {
                 throw new System.InvalidOperationException($"Internal error during code generation: variable {variableName} has no declaration");
             }
 
             // Is this variable a 'smart variable'?
-            if (declaration.IsInlineExpansion) {
+            if (declaration.IsInlineExpansion)
+            {
                 // Then code-generate its parse tree. (We won't hit an infinite
                 // loop, because we already checked that during type-checking.)
                 this.Visit(declaration.InitialValueParserContext);
-            } else {
+            }
+            else
+            {
                 // Otherwise, generate the code that fetches the variable from
                 // storage.
                 this.compiler.Emit(OpCode.PushVariable, context.Start, new Operand(variableName));
@@ -859,23 +906,27 @@ namespace Yarn.Compiler
 
             var memberName = context.typeMemberReference().memberName.Text;
 
-            if (type.TypeMembers.TryGetValue(memberName, out var member) == false) {
+            if (type.TypeMembers.TryGetValue(memberName, out var member) == false)
+            {
                 throw new System.InvalidOperationException($"Internal error during code generation: type {type} has no member {memberName}");
             }
 
-            if (!(member is ConstantTypeProperty property)) {
+            if (!(member is ConstantTypeProperty property))
+            {
                 throw new System.InvalidOperationException($"Internal error during code generation: {type.Name}.{memberName} is not a {nameof(ConstantTypeProperty)}");
             }
 
             var value = property.Value;
 
             var propertyType = property.Type;
-            if (propertyType is EnumType @enum) {
+            if (propertyType is EnumType @enum)
+            {
                 propertyType = @enum.RawType;
             }
 
             // Raw values are permitted to be a string, or a number
-            if (propertyType == Types.String) {
+            if (propertyType == Types.String)
+            {
                 this.compiler.Emit(OpCode.PushString, context.Start, new Operand(value.ToString()));
             }
             else if (propertyType == Types.Number)
@@ -894,7 +945,8 @@ namespace Yarn.Compiler
         public override int VisitDeclare_statement(YarnSpinnerParser.Declare_statementContext context)
         {
             // Declare statements for variables do not participate in code
-            // generation. (Declarations for smart variables are code-generated at a different stage.)
+            // generation. (Declarations for smart variables are code-generated
+            // at a different stage.)
             return 0;
         }
 
