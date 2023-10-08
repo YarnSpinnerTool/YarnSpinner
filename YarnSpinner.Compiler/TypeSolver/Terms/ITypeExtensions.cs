@@ -3,14 +3,18 @@ using System.Linq;
 using Yarn;
 namespace TypeChecker
 {
-    public static class ITypeExtensions
+    /// <summary>
+    /// Contains extension methods for working with types in the context of the
+    /// type solver.
+    /// </summary>
+    internal static class ITypeExtensions
     {
         /// <summary>
         /// Attempts to provide a substituted version of this term, given a
         /// substitution to draw from.
         /// </summary>
         /// <remarks>
-        /// <para>You can use <see cref="Solver.Solve"/> to build a Substitution from
+        /// <para>You can use <see cref="Solver.TrySolve"/> to build a Substitution from
         /// a system of <see cref="TypeConstraint"/> objects. Once you have a
         /// <see cref="Substitution"/>, you can use this method to convert an
         /// <see cref="IType"/> into the solution's result for that type.
@@ -66,10 +70,80 @@ namespace TypeChecker
         /// <param name="collection">A collection of type constraints.</param>
         /// <returns>A new collection of constraints that does not include
         /// tautologies.</returns>
-        internal static IEnumerable<TypeConstraint> WithoutTautologies(this IEnumerable<TypeConstraint> collection) {
-            return collection.Where(c =>
-                !(c is TypeEqualityConstraint equality && equality.Left == equality.Right)
-            );
+        internal static IEnumerable<TypeConstraint> WithoutTautologies(this IEnumerable<TypeConstraint> collection)
+        {
+            return collection.Where(c => c.IsTautological == false);
+        }
+
+        /// <summary>
+        /// Applies a substitution to a type constraint, returning an updated
+        /// version of that constraint.
+        /// </summary>
+        /// <param name="typeConstraint">The type constraint to apply the substitution to.</param>
+        /// <param name="substitution">The substitution to apply.</param>
+        /// <returns>An updated constraint.</returns>
+        internal static TypeConstraint ApplySubstitution(this TypeConstraint typeConstraint, Substitution substitution)
+        {
+            if (typeConstraint is TypeEqualityConstraint equalityConstraint)
+            {
+                return new TypeEqualityConstraint(
+                                    equalityConstraint.Left.Substitute(substitution),
+                                    equalityConstraint.Right.Substitute(substitution)
+                                )
+                {
+                    FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    SourceExpression = typeConstraint.SourceExpression,
+                    SourceFileName = typeConstraint.SourceFileName,
+                    SourceRange = typeConstraint.SourceRange
+                };
+            }
+
+            if (typeConstraint is TypeConvertibleConstraint typeConvertibleConstraint)
+            {
+                return new TypeConvertibleConstraint(
+                    typeConvertibleConstraint.FromType.Substitute(substitution),
+                    typeConvertibleConstraint.ToType.Substitute(substitution)
+                )
+                {
+                    FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    SourceExpression = typeConstraint.SourceExpression,
+                    SourceFileName = typeConstraint.SourceFileName,
+                    SourceRange = typeConstraint.SourceRange
+                };
+            }
+
+            if (typeConstraint is TypeHasNameConstraint hasNameConstraint)
+            {
+                return new TypeHasNameConstraint(hasNameConstraint.Type.Substitute(substitution), hasNameConstraint.Name)
+                {
+                    FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    SourceExpression = typeConstraint.SourceExpression,
+                    SourceFileName = typeConstraint.SourceFileName,
+                    SourceRange = typeConstraint.SourceRange
+                };
+            }
+
+            if (typeConstraint is TypeHasMemberConstraint hasMemberConstraint) {
+                return new TypeHasMemberConstraint(hasMemberConstraint.Type.Substitute(substitution), hasMemberConstraint.MemberName)
+                {
+                    FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    SourceExpression = typeConstraint.SourceExpression,
+                    SourceFileName = typeConstraint.SourceFileName,
+                    SourceRange = typeConstraint.SourceRange
+                };
+            }
+
+            return typeConstraint;
+        }
+
+        internal static bool Equals(this IType a, IType b) {
+            if (a is TypeVariable vA && b is TypeVariable vB) {
+                return vA.Equals(vB);
+            } else if (a is TypeBase bA && b is TypeBase bB) {
+                return bA.Equals(bB);
+            } else {
+                return false;
+            }
         }
     }
 }

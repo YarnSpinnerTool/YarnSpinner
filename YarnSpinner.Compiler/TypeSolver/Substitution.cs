@@ -4,15 +4,13 @@ using Yarn;
 namespace TypeChecker
 {
 
+    /// <summary>
+    /// A substitution is a mapping between type variables and types (or other
+    /// type variables). It is produced during the process of type resolution by
+    /// the <see cref="Solver"/> class.
+    /// </summary>
     public class Substitution : Dictionary<TypeVariable, IType>
     {
-        public List<string> FailureChain { get; private set; } = new List<string>();
-        public bool IsFailed => FailureChain.Count > 0;
-
-        public void Fail(string reason) => FailureChain.Add(reason);
-
-        public string FailureReason => string.Join(", because ", FailureChain);
-
         /// <summary>
         /// Returns a duplicate of this <see cref="Substitution"/>.
         /// </summary>
@@ -24,7 +22,6 @@ namespace TypeChecker
             {
                 clone.Add(entry.Key, entry.Value);
             }
-            clone.FailureChain = new List<string>(FailureChain);
             return clone;
         }
 

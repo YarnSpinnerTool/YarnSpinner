@@ -1,6 +1,7 @@
 #define DISALLOW_NULL_EQUATION_TERMS
 
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Yarn;
@@ -8,7 +9,7 @@ using Yarn;
 namespace TypeChecker
 {
 
-    internal class TypeEqualityConstraint : TypeConstraint
+    internal class TypeEqualityConstraint : TypeConstraint, IEquatable<TypeEqualityConstraint>
     {
         public IType Left { get; set; }
         public IType Right { get; set; }
@@ -31,9 +32,22 @@ namespace TypeChecker
             return this;
         }
 
-        public override IEnumerable<TypeConstraint> DescendantsAndSelf()
+        public bool Equals(TypeEqualityConstraint other)
         {
-            yield return this;
+            return this.Left == other.Left && this.Right == other.Right
+            || this.Left == other.Right && this.Right == other.Left;
         }
+
+        public override IEnumerable<TypeConstraint> DescendantsAndSelf
+        {
+            get
+            {
+                yield return this;
+            }
+        }
+
+        public override IEnumerable<TypeConstraint> Children => Array.Empty<TypeConstraint>();
+
+        public override bool IsTautological => ITypeExtensions.Equals(Left,Right);
     }
 }

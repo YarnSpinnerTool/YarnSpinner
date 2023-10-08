@@ -6,7 +6,10 @@ using System.Linq;
 
 namespace TypeChecker
 {
-
+    /// <summary>
+    /// A disjunction constraint is a logical 'or' that resolves if at least one
+    /// of its child constraints resolves.
+    /// </summary>
     internal class DisjunctionConstraint : TypeConstraint, IEnumerable<TypeConstraint>
     {
         public IEnumerable<TypeConstraint> Constraints { get; private set; }
@@ -14,10 +17,16 @@ namespace TypeChecker
         /// <inheritdoc/>
         public override IEnumerable<TypeVariable> AllVariables => Constraints.SelectMany(c => c.AllVariables).Distinct();
 
-        public DisjunctionConstraint(TypeConstraint left, TypeConstraint right)
-        {
-            Constraints = new[] { left, right };
+        public DisjunctionConstraint(TypeConstraint other) {
+            if (other is DisjunctionConstraint disjunctionConstraint) {
+                this.Constraints = disjunctionConstraint.Constraints;
+            } else {
+                this.Constraints = new[] { other };
+            }
         }
+
+        public DisjunctionConstraint(params TypeConstraint[] constraints) 
+        : this((IEnumerable<TypeConstraint>)constraints) { }
 
         public DisjunctionConstraint(IEnumerable<TypeConstraint> constraints)
         {
@@ -55,13 +64,15 @@ namespace TypeChecker
                 disjunct.FailureMessageProvider = this.FailureMessageProvider;
                 disjunct.SourceFileName = this.SourceFileName;
                 disjunct.SourceRange = this.SourceRange;
+                disjunct.SourceExpression = this.SourceExpression;
                 return disjunct;
             }
         }
 
-        public override IEnumerable<TypeConstraint> DescendantsAndSelf()
-        {
-            return Constraints.SelectMany(c => c.DescendantsAndSelf()).Prepend(this);
-        }
+        public override IEnumerable<TypeConstraint> DescendantsAndSelf => Constraints.SelectMany(c => c.DescendantsAndSelf).Prepend(this);
+
+        public override IEnumerable<TypeConstraint> Children => Constraints;
+
+        public override bool IsTautological => Children.Any() && Children.All(c => c.IsTautological);
     }
 }

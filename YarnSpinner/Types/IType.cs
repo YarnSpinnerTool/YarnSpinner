@@ -19,7 +19,7 @@ namespace Yarn
         /// <remarks>All types have <see cref="Types.Any"/> as their
         /// ultimate parent type (except for <see cref="Types.Any"/>
         /// itself.)</remarks>
-        IType Parent { get; }
+        IType? Parent { get; }
 
         /// <summary>
         /// Gets a more verbose description of this type.

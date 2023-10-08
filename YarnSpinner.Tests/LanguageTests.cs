@@ -23,6 +23,9 @@ namespace YarnSpinner.Tests
             dialogue.Library.RegisterFunction("add_three_operands", delegate (int a, int b, int c) {
                 return a + b + c;
             });
+
+            dialogue.Library.RegisterFunction("set_objective_complete", (string objective) => true);
+            dialogue.Library.RegisterFunction("is_objective_active", (string objective) => true);
 		}
 
         [Fact]
@@ -267,6 +270,9 @@ namespace YarnSpinner.Tests
             var (invariantParseResult, _) = Utility.ParseSource(source);
 
             var invariantCompilationJob = CompilationJob.CreateFromString("input", source);
+            invariantCompilationJob.AllowPreviewFeatures = true;
+            invariantCompilationJob.Library = dialogue.Library;
+            
             var invariantResult = Compiler.Compile(invariantCompilationJob);
 
             var invariantDiagnostics = invariantResult.Diagnostics.Select(d => d.ToString());
@@ -280,6 +286,9 @@ namespace YarnSpinner.Tests
                 var (targetParseResult, _) = Utility.ParseSource(source);
 
                 var targetCompilationJob = CompilationJob.CreateFromString("input", source);
+                targetCompilationJob.AllowPreviewFeatures = true;
+                targetCompilationJob.Library = dialogue.Library;
+
                 var targetResult = Compiler.Compile(targetCompilationJob);
 
                 var targetDiagnostics = targetResult.Diagnostics.Select(d => d.ToString());
@@ -318,9 +327,6 @@ namespace YarnSpinner.Tests
             
             compilationJob.AllowPreviewFeatures = true;
 
-            dialogue.Library.RegisterFunction("set_objective_complete", (string objective) => true);
-            dialogue.Library.RegisterFunction("is_objective_active", (string objective) => true);
-
             var testPlanFilePath = Path.ChangeExtension(scriptFilePath, ".testplan");
 
             bool testPlanExists = File.Exists(testPlanFilePath);
@@ -333,6 +339,7 @@ namespace YarnSpinner.Tests
 
                 var result = Compiler.Compile(compilationJob);
                 result.Diagnostics.Should().NotBeEmpty("{0} is expected to have compile errors", file);
+                result.Diagnostics.Should().AllSatisfy(d => d.Range.IsValid.Should().BeTrue($"{d} should have a valid range"), "all diagnostics should have a valid position");
             }
             else
             {

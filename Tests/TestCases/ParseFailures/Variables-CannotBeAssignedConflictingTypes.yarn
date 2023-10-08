@@ -1,0 +1,7 @@
+title: Start
+---
+<<declare $a = true>>
+
+// Error: $a was declared to be a Bool, we cannot assign it a Number
+<<set $a = 1>>
+===

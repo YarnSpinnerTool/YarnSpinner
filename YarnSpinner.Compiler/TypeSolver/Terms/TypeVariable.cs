@@ -6,7 +6,7 @@ using Yarn;
 namespace TypeChecker
 {
 
-    public class TypeVariable : IType
+    public class TypeVariable : IType, IEquatable<TypeVariable>
     {
         public string Name { get; set; }
         
@@ -52,7 +52,12 @@ namespace TypeChecker
 
         public bool Equals(IType other)
         {
-            return other is TypeVariable otherVariable && otherVariable.Name == Name;
+            return other is TypeVariable otherVariable && this.Equals(otherVariable);
+        }
+
+        public bool Equals(TypeVariable other)
+        {
+            return other.Name == Name;
         }
 
         public static implicit operator TypeVariable(string input)

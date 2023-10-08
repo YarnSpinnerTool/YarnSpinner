@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Yarn;
@@ -18,10 +19,15 @@ namespace TypeChecker
         /// <inheritdoc/>
         public override IEnumerable<TypeVariable> AllVariables => new[] { Type }.OfType<TypeVariable>();
 
-        public override IEnumerable<TypeConstraint> DescendantsAndSelf()
+        public override IEnumerable<TypeConstraint> DescendantsAndSelf
         {
-            yield return this;
+            get
+            {
+                yield return this;
+            }
         }
+
+        public override IEnumerable<TypeConstraint> Children => Array.Empty<TypeConstraint>();
 
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<TypeBase> knownTypes)
         {
@@ -31,6 +37,7 @@ namespace TypeChecker
                             knownTypes.Where(t => t.Name == this.Name)
                             .Select(t => new TypeEqualityConstraint(this.Type, t))).Simplify(subst, knownTypes);
 
+            typeConstraint.SourceExpression = this.SourceExpression;
             typeConstraint.SourceRange = this.SourceRange;
             typeConstraint.SourceFileName = this.SourceFileName;
             typeConstraint.FailureMessageProvider = this.FailureMessageProvider;
@@ -41,5 +48,7 @@ namespace TypeChecker
         {
             return $"nameof({Type}) == \"{this.Name}\" ({SourceRange}: {SourceExpression})";
         }
+
+        public override bool IsTautological => Type is TypeBase concreteType && concreteType.Name == this.Name;
     }
 }

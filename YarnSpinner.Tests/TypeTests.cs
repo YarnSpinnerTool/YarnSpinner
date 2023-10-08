@@ -7,6 +7,7 @@ using System.Linq;
 using Yarn.Compiler;
 
 using FluentAssertions;
+using TypeChecker;
 
 namespace YarnSpinner.Tests
 {
@@ -866,12 +867,14 @@ namespace YarnSpinner.Tests
 
             var diagnostics = new List<Diagnostic>();
 
-            var solution = TypeChecker.Solver.Solve(constraints, Types.AllBuiltinTypes.OfType<TypeBase>(), ref diagnostics);
+            Substitution solution = null;
+
+            bool hasSolution = TypeChecker.Solver.TrySolve(constraints, Types.AllBuiltinTypes.OfType<TypeBase>(), diagnostics, ref solution);
 
             using (new FluentAssertions.Execution.AssertionScope())
             {
                 diagnostics.Should().BeEmpty();
-                solution.IsFailed.Should().BeFalse();
+                hasSolution.Should().BeTrue();
 
                 // T1 should resolve to Bool
                 solution.TryResolveTypeVariable(unknownType1, out var result).Should().BeTrue();
@@ -897,14 +900,67 @@ namespace YarnSpinner.Tests
 
             var diagnostics = new List<Diagnostic>();
 
-            var solution = TypeChecker.Solver.Solve(constraints, Types.AllBuiltinTypes.OfType<TypeBase>(), ref diagnostics);
+            Substitution solution = null;
+
+            var hasSolution = TypeChecker.Solver.TrySolve(constraints, Types.AllBuiltinTypes.OfType<TypeBase>(), diagnostics, ref solution);
 
             using (new FluentAssertions.Execution.AssertionScope())
             {
                 diagnostics.Should().NotBeEmpty();
-                solution.IsFailed.Should().BeTrue();
+                hasSolution.Should().BeFalse();
             }
 
+        }
+
+        /// <summary>
+        /// A type constraint that's used for testing the internal logic of the
+        /// type solver.
+        /// </summary>
+        class AbstractTypeConstraint : TypeConstraint
+        {
+            public string Name { get; }
+            public AbstractTypeConstraint(string name) => this.Name = name;
+            public override string ToString() => this.Name;
+            // Overridden abstract methods
+            public override IEnumerable<TypeVariable> AllVariables => Array.Empty<TypeVariable>();
+            public override IEnumerable<TypeConstraint> DescendantsAndSelf => new[] { this };
+            public override IEnumerable<TypeConstraint> Children => Array.Empty<TypeConstraint>();
+            public override TypeConstraint Simplify(Substitution subst, IEnumerable<TypeBase> knownTypes) => this;
+        }
+
+        [Fact]
+        public void TestConstraintsCanConvertToDisjunctiveNormalForm()
+        {
+            var a = new AbstractTypeConstraint("A");
+            var b = new AbstractTypeConstraint("B");
+            var c = new AbstractTypeConstraint("C");
+            var d = new AbstractTypeConstraint("D");
+            var e = new AbstractTypeConstraint("E");
+            var f = new AbstractTypeConstraint("F");
+
+            // Input: and(or(a,b), or(c,and(d,e)), f)
+            var testConstraint = new ConjunctionConstraint(new TypeConstraint[] {
+                new DisjunctionConstraint(new[] {
+                    a,b
+                }),
+                new DisjunctionConstraint(new TypeConstraint[] {
+                    c, new ConjunctionConstraint(d,e),
+                }),
+                f
+            });
+
+            // Expected result:
+            // or(and(a,c,f), and(b,c,f), and(a,d,e,f), and(b,d,e,f))
+            DisjunctionConstraint resultConstraint = Solver.ToDisjunctiveNormalForm(testConstraint);
+
+            resultConstraint.Children.Should().AllBeOfType<ConjunctionConstraint>();
+            resultConstraint.Children.Should().HaveCount(4);
+            resultConstraint.Children.ElementAt(0).Children.Should().BeEquivalentTo(new[] { a, c, f });
+            resultConstraint.Children.ElementAt(1).Children.Should().BeEquivalentTo(new[] { a, d, e, f });
+            resultConstraint.Children.ElementAt(2).Children.Should().BeEquivalentTo(new[] { b, c, f });
+            resultConstraint.Children.ElementAt(3).Children.Should().BeEquivalentTo(new[] { b, d, e, f });
+
+            
         }
     }
 }

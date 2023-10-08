@@ -52,7 +52,7 @@ namespace Yarn
         public static readonly IReadOnlyDictionary<string, ITypeMember> EmptyTypeMemberDictionary = new Dictionary<string, ITypeMember>();
 
         public abstract string Name { get; }
-        public abstract IType Parent { get; }
+        public abstract IType? Parent { get; }
         public abstract string Description { get; }
 
         public override string ToString() => Name;
@@ -90,7 +90,7 @@ namespace Yarn
                 // Start with zero depth, in case we have no parent
                 int depth = 0;
 
-                IType parent = this.Parent;
+                IType? parent = this.Parent;
                 
                 // Walk up the parent hierarchy, adding 1 to our depth each time
                 while (parent != null)
@@ -139,7 +139,7 @@ namespace Yarn
             return false;
         }
 
-        protected TypeBase(IReadOnlyDictionary<string, Delegate> methods) {
+        protected TypeBase(IReadOnlyDictionary<string, Delegate>? methods) {
             if (methods == null) {
                 return;
             }
@@ -151,7 +151,7 @@ namespace Yarn
 
         public bool IsAncestorOf(TypeBase other)
         {
-            IType current = other;
+            IType? current = other;
             while (current != null)
             {
                 if (current.Equals(this))
@@ -169,12 +169,19 @@ namespace Yarn
                 && this.Name == other.Name;
         }
 
-        public override bool Equals(object other) {
-            if (!(other is TypeBase otherType)) {
-                return false;
+        public override bool Equals(object other)
+        {
+            if (other is TypeBase otherType)
+            {
+                return Equals(otherType);
             }
 
-            return Equals(otherType);
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Name.GetHashCode();
         }
     }
 }

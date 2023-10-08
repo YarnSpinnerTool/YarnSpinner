@@ -17,15 +17,15 @@ namespace Yarn
     /// </remarks>
     internal class AnyType : TypeBase
     {
-        public AnyType(MethodCollection methods) : base(methods)
-        {
-        }
+        public AnyType() : base(null) { }
+
+        public AnyType(MethodCollection methods) : base(methods) { }
 
         /// <inheritdoc/>
         public override string Name => "Any";
 
         /// <inheritdoc/>
-        public override IType Parent { get => null; }
+        public override IType? Parent { get => null; }
 
         /// <inheritdoc/>
         public override string Description { get => "Any type."; }

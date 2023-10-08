@@ -72,7 +72,13 @@ namespace Yarn.Compiler
         /// </summary>
         private readonly List<TypeBase> knownTypes;
 
-        private readonly List<TypeConstraint> typeEquations = new List<TypeConstraint>();
+        /// <summary>
+        /// The current type solution produced by running this listener on a
+        /// parse tree.
+        /// </summary>
+        public Substitution TypeSolution { get => typeSolution; private set => typeSolution = value; }
+
+        private List<TypeConstraint> typeEquations = new List<TypeConstraint>();
 
         private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
 
@@ -83,6 +89,11 @@ namespace Yarn.Compiler
         /// This variable is used to help produce error messages.
         /// </remarks>
         private string? currentNodeName = null;
+
+        /// <summary>
+        /// The current incremental type solution.
+        /// </summary>
+        private Substitution typeSolution;
 
         /// <summary>
         /// Gets the list of diagnostics produced during type checking.
@@ -125,12 +136,13 @@ namespace Yarn.Compiler
         /// parse tree.</param>
         /// <param name="knownTypes">The list of all known types. This list will
         /// be added to while walking the parse tree.</param>
-        public TypeCheckerListener(string sourceFileName, CommonTokenStream tokens, ref List<Declaration> knownDeclarations, ref List<TypeBase> knownTypes)
+        public TypeCheckerListener(string sourceFileName, CommonTokenStream tokens, ref List<Declaration> knownDeclarations, ref List<TypeBase> knownTypes, Substitution typeSolution)
         {
             this.sourceFileName = sourceFileName;
             this.tokens = tokens;
             this.knownDeclarations = knownDeclarations;
             this.knownTypes = knownTypes;
+            this.TypeSolution = typeSolution;
         }
 
         /// <summary>
@@ -614,11 +626,9 @@ namespace Yarn.Compiler
                 }
 
                 this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
-                context.Type = Types.Error;
-                return;
             }
 
-            for (int paramID = 0; paramID < expectedParameters; paramID ++)
+            for (int paramID = 0; paramID < Math.Min(expectedParameters, actualParameters); paramID ++)
             {
                 var expectedType = functionType.Parameters[paramID];
                 var parameterExpression = context.expression()[paramID];
@@ -693,7 +703,11 @@ namespace Yarn.Compiler
             }
 
             // Decide on the raw type of this enum.
-            var allRawTypes = context.enum_case_statement().Select(c => c.RawValue?.Type).NotNull().Distinct();
+            var allRawTypes = context
+                .enum_case_statement()
+                .Select(c => c.RawValue?.Type)
+                .NotNull()
+                .Distinct();
 
             IType rawType;
 
@@ -725,10 +739,10 @@ namespace Yarn.Compiler
                 // We only saw one raw value type.
                 rawType = allRawTypes.Single();
 
-                var permittedRawTypes = new[]
+                var permittedRawTypes = new TypeBase[]
                 {
-                    Types.String as TypeBase,
-                    Types.Number as TypeBase,
+                    (TypeBase)Types.String,
+                    (TypeBase)Types.Number,
                 };
 
                 var typeIsAllowed = false;
@@ -815,7 +829,10 @@ namespace Yarn.Compiler
                     // Two or more cases have the same name! That's not
                     // allowed.
                     anyDuplicateNames = true;
-                    foreach (var duplicateCase in group)
+
+                    // Produce an error for the duplicates, skipping the first
+                    // one
+                    foreach (var duplicateCase in group.Skip(1))
                     {
                         this.diagnostics.Add(new Diagnostic(this.sourceFileName, duplicateCase, $"Enum case {@duplicateCase.name.Text} must have a unique name."));
                     }
@@ -847,6 +864,53 @@ namespace Yarn.Compiler
             this.knownTypes.Add(newEnumType);
 
             base.ExitEnum_statement(context);
+        }
+
+        public override void ExitStatement([NotNull] YarnSpinnerParser.StatementContext context)
+        {
+            try
+            {
+                if (this.typeEquations.Count == 0)
+                {
+                    // We have no type equations to solve, so there's nothing to
+                    // do.
+                    return;
+                }
+
+                // We have type constraints to resolve.
+                var knownTypes = this.knownTypes.Cast<TypeBase>().ToList();
+
+                // Apply our current solution to the equations, and remove any
+                // that are now tautological (e.g. 'T(a) == bool' becoming 'bool
+                // == bool'). This might immediately knock out some equations,
+                // reducing the amount of solving we need to do.
+                this.typeEquations = this.typeEquations.Select(e => e.ApplySubstitution(TypeSolution)).WithoutTautologies().ToList();
+
+                if (this.typeEquations.Count == 0)
+                {
+                    return;
+                }
+
+                // Run the solver on type equalities. (Doing this gets us useful
+                // type information that guides other, more complex
+                // constraints like convertability.)
+                var equalities = this.typeEquations.OfType<TypeEqualityConstraint>();
+                Solver.TrySolve(equalities, knownTypes, this.diagnostics, ref typeSolution);
+
+                // Run the solver on the remainder of the constraints.
+                var otherConstraints = this.typeEquations.Except(equalities);
+                Solver.TrySolve(otherConstraints, knownTypes, this.diagnostics, ref typeSolution);
+
+                // Apply the solution to our equations, and eliminate any that are
+                // now tautological. (If our program's type definitions are
+                // self-contained, then this will likely result in eliminating ALL
+                // outstanding equations.)
+                this.typeEquations = this.typeEquations.Select(e => e.ApplySubstitution(TypeSolution)).WithoutTautologies().ToList();
+            }
+            finally
+            {
+                base.ExitStatement(context);
+            }
         }
 
         /// <summary>

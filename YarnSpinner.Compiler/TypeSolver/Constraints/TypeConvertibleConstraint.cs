@@ -2,6 +2,7 @@
 
 namespace TypeChecker
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Yarn;
@@ -45,9 +46,8 @@ namespace TypeChecker
         {
             if (this.FromType.Equals(this.ToType))
             {
-                // Early out: if the terms are identical, there's no additional
-                // constraints to generate.
-                return null;
+                // Early out: if the terms are identical, we simplify to 'true'.
+                return new TrueConstraint(this);
             }
 
             IEnumerable<TypeBase> AllTypesConvertibleFrom(TypeBase from)
@@ -75,10 +75,13 @@ namespace TypeChecker
 
                     // Return a constraint that we know will work: fromLiteral
                     // == fromLiteral
-                    var equality = new TypeEqualityConstraint(actualFromLiteral, actualFromLiteral);
-                    equality.SourceFileName = this.SourceFileName;
-                    equality.SourceRange = this.SourceRange;
-                    equality.FailureMessageProvider = this.FailureMessageProvider;
+                    var equality = new TypeEqualityConstraint(actualFromLiteral, actualFromLiteral)
+                    {
+                        SourceExpression = this.SourceExpression,
+                        SourceFileName = this.SourceFileName,
+                        SourceRange = this.SourceRange,
+                        FailureMessageProvider = this.FailureMessageProvider
+                    };
                     return equality;
                 }
                 else
@@ -86,10 +89,13 @@ namespace TypeChecker
                     // We know their concrete types and they're not convertible.
                     // Return a constraint that is guaranteed to fail: from
                     // fromLiteral == toLiteral
-                    var equality = new TypeEqualityConstraint(actualFromLiteral, actualToLiteral);
-                    equality.SourceFileName = this.SourceFileName;
-                    equality.SourceRange = this.SourceRange;
-                    equality.FailureMessageProvider = this.FailureMessageProvider;
+                    var equality = new TypeEqualityConstraint(actualFromLiteral, actualToLiteral)
+                    {
+                        SourceExpression = this.SourceExpression,
+                        SourceFileName = this.SourceFileName,
+                        SourceRange = this.SourceRange,
+                        FailureMessageProvider = this.FailureMessageProvider
+                    };
                     return equality;
                 }
             }
@@ -117,15 +123,11 @@ namespace TypeChecker
             }
             else
             {
-                // Neither 'from' nor 'to' are literals, so we have no way to
-                // produce a reduced list of candidates for equalities. The best
-                // we can do is to test all possible combinations (which is a
-                // lot of work!)
-                fromTypes = new[] { this.FromType };
-                toTypes = new[] { this.ToType };
+                // Both the 'from' and 'to' types are variables, so we can't
+                // make any assertions about their relationship to any concrete
+                // types. Assert that they're the same type.
 
-                allPairs = new[] { fromTypes, knownTypes }.CartesianProduct()
-                    .Concat(new[] { toTypes, knownTypes }.CartesianProduct());
+                allPairs = new[] { new[] { ToType, FromType } };
             }
 
             var allPossibleEqualities = allPairs.Select(pair =>
@@ -134,6 +136,7 @@ namespace TypeChecker
                 var toConstraint = new TypeEqualityConstraint(pair.ElementAt(1), this.ToType);
 
                 foreach (var constraint in new[] { fromConstraint, toConstraint }) {
+                    constraint.SourceExpression = this.SourceExpression;
                     constraint.SourceFileName = this.SourceFileName;
                     constraint.SourceRange = this.SourceRange;
                     constraint.FailureMessageProvider = this.FailureMessageProvider;
@@ -143,30 +146,25 @@ namespace TypeChecker
                 {
                         fromConstraint,
                         toConstraint,
-                }.WithoutTautologies();
+                };
 
-                if (constraints.Count() == 0)
+                var conjunction = new ConjunctionConstraint(constraints)
                 {
-                    return new TrueConstraint();
-                } else if (constraints.Count() == 1)
-                {
-                    return constraints.Single();
-                }
-                else
-                {
-                    var conjunction = new ConjunctionConstraint(constraints);
-                    conjunction.SourceFileName = this.SourceFileName;
-                    conjunction.SourceRange = this.SourceRange;
-                    conjunction.FailureMessageProvider = this.FailureMessageProvider;
-                    return conjunction;
-                }
-            });
+                    SourceExpression = this.SourceExpression,
+                    SourceFileName = this.SourceFileName,
+                    SourceRange = this.SourceRange,
+                    FailureMessageProvider = this.FailureMessageProvider
+                };
+                return conjunction;
+            
+            }).NotNull();
 
             if (allPossibleEqualities.Count() == 1)
             {
                 // Precisely one possible equality. Return a single constraint
                 // constraint.
                 var equality = allPossibleEqualities.Single();
+                equality.SourceExpression = this.SourceExpression;
                 equality.SourceFileName = this.SourceFileName;
                 equality.SourceRange = this.SourceRange;
                 equality.FailureMessageProvider = this.FailureMessageProvider;
@@ -176,17 +174,39 @@ namespace TypeChecker
             {
                 // More than one possible equality. Return a disjunction
                 // constraint.
-                var disjunction = new DisjunctionConstraint(allPossibleEqualities);
-                disjunction.SourceFileName = this.SourceFileName;
-                disjunction.SourceRange = this.SourceRange;
-                disjunction.FailureMessageProvider = this.FailureMessageProvider;
+                var disjunction = new DisjunctionConstraint(allPossibleEqualities)
+                {
+                    SourceExpression = this.SourceExpression,
+                    SourceFileName = this.SourceFileName,
+                    SourceRange = this.SourceRange,
+                    FailureMessageProvider = this.FailureMessageProvider
+                };
                 return disjunction;
             }
         }
 
-        public override IEnumerable<TypeConstraint> DescendantsAndSelf()
+        public override IEnumerable<TypeConstraint> DescendantsAndSelf
         {
-            yield return this;
+            get
+            {
+                yield return this;
+            }
+        }
+
+        public override IEnumerable<TypeConstraint> Children => Array.Empty<TypeConstraint>();
+
+        public override bool IsTautological
+        {
+            get
+            {
+                if (ITypeExtensions.Equals(FromType, ToType)) {
+                    return true;
+                } else if (FromType is TypeBase fromLiteral && ToType is TypeBase toLiteral && fromLiteral.IsConvertibleTo(toLiteral)) {
+                    return true;
+                }
+
+                return false;
+            }
         }
     }
 }

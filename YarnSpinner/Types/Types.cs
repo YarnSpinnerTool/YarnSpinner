@@ -22,7 +22,7 @@ namespace Yarn
         public static IType Boolean { get; } = new BooleanType();
 
         /// <summary>Gets the type representing any value.</summary>
-        public static IType Any { get; } = new AnyType(null);
+        public static IType Any { get; } = new AnyType();
 
         /// <summary>Gets the type representing a typing error.</summary>
         internal static IType Error { get; } = new ErrorType();

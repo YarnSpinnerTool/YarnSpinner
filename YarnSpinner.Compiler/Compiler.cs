@@ -13,6 +13,7 @@ namespace Yarn.Compiler
     using System.Text.RegularExpressions;
     using Antlr4.Runtime;
     using Antlr4.Runtime.Tree;
+    using TypeChecker;
     using static Yarn.Instruction.Types;
 
     /// <summary>
@@ -120,16 +121,20 @@ namespace Yarn.Compiler
 
             var fileTags = new Dictionary<string, IEnumerable<string>>();
 
+            var typeSolution = new Substitution();
+
             var walker = new Antlr4.Runtime.Tree.ParseTreeWalker();
             foreach (var parsedFile in parsedFiles)
             {
-                var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, ref declarations, ref knownTypes);
+                var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, ref declarations, ref knownTypes, typeSolution);
 
                 walker.Walk(typeCheckerListener, parsedFile.Tree);
 
                 diagnostics.AddRange(typeCheckerListener.Diagnostics);
                 typeConstraints.AddRange(typeCheckerListener.TypeEquations);
                 fileTags.Add(parsedFile.Name, typeCheckerListener.FileTags);
+
+                typeSolution = typeCheckerListener.TypeSolution;
             }
 
             // determining the nodes we need to track visits on
@@ -157,18 +162,11 @@ namespace Yarn.Compiler
             // if we didn't do this later stages wouldn't be able to interface with them
             declarations.AddRange(trackingDeclarations);
 
-            // We now have declarations for variables in the program, which are
-            // all type variables. We also have a number of type equations that
-            // constrain those variables. 
-
-            // Solve all type equations, producing a Substitution.
-
-            var substitution = TypeChecker.Solver.Solve(typeConstraints, knownTypes.OfType<TypeBase>(), ref diagnostics);
-
+            
             // Apply this substitution to all declarations.
             foreach (var decl in declarations)
             {
-                decl.Type = TypeChecker.ITypeExtensions.Substitute(decl.Type, substitution);
+                decl.Type = TypeChecker.ITypeExtensions.Substitute(decl.Type, typeSolution);
 
                 // If this was an implicit declaration, then we didn't have an
                 // initial value to use. Instead, set its default value to one
@@ -209,7 +207,7 @@ namespace Yarn.Compiler
                     var tree = stack.Pop();
                     if (tree.Payload is ITypedContext typedContext)
                     {
-                        typedContext.Type = TypeChecker.ITypeExtensions.Substitute(typedContext.Type, substitution);
+                        typedContext.Type = TypeChecker.ITypeExtensions.Substitute(typedContext.Type, typeSolution);
 
                         if (typedContext.Type is TypeChecker.TypeVariable variable)
                         {
@@ -254,6 +252,9 @@ namespace Yarn.Compiler
                 var fileDecls = declarations.Where(d => d.SourceFileName == file.Name);
                 previewFeatureChecker.AddDiagnosticsForDeclarations(fileDecls);
             }
+
+            // Filter out any duplicate diagnostics
+            diagnostics = diagnostics.Distinct().ToList();
 
             // All declarations must now have a concrete type. If they don't,
             // then we couldn't solve for their type, and can't continue.

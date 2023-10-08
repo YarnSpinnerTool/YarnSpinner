@@ -1,6 +1,5 @@
 #define DISALLOW_NULL_EQUATION_TERMS
 
-
 using System.Collections.Generic;
 
 namespace TypeChecker
@@ -49,15 +48,28 @@ namespace TypeChecker
 
         public string SourceExpression { get; internal set; }
 
-        public string GetFailureMessage(Substitution subst) => FailureMessageProvider?.Invoke(subst) ?? this.ToString();
-        
-        public FailureMessageProvider FailureMessageProvider;
+        public virtual IEnumerable<string> GetFailureMessages(Substitution subst) => new[] { FailureMessageProvider?.Invoke(subst) ?? this.ToString() };
+
+        public FailureMessageProvider? FailureMessageProvider;
 
         /// <summary>
         /// Gets the collection of all variables involved in this constraint.
         /// </summary>
         public abstract IEnumerable<TypeVariable> AllVariables { get; }
 
-        public abstract IEnumerable<TypeConstraint> DescendantsAndSelf();
+        public abstract IEnumerable<TypeConstraint> Children { get; }
+
+        public abstract IEnumerable<TypeConstraint> DescendantsAndSelf { get; }
+        
+        /// <summary>
+        /// Gets a value indicating whether this constraint is self-evident.
+        /// </summary>
+        /// <remarks>
+        /// A self-evident constraint will always evaluate to 'true' on its own;
+        /// for example, 'String == String' or 'nameof(String) == "String"').
+        /// Tautological constraints are removed from the type problem, because
+        /// they don't provide any additional information to the type solution.
+        /// </remarks>
+        public virtual bool IsTautological => false;
     }
 }
