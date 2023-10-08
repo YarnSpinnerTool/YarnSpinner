@@ -11,9 +11,13 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        void TestNoOptionsLineNotTagged()
+        public void TestNoOptionsLineNotTagged()
         {
-            var source = "title:Start\n---\nline without options #line:1\n===\n";
+            var source = @"title:Start
+---
+line without options #line:1
+===
+";
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
             result.Diagnostics.Should().BeEmpty();
@@ -24,9 +28,15 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        void TestLineBeforeOptionsTaggedLastLine()
+        public void TestLineBeforeOptionsTaggedLastLine()
         {
-            var source = "title:Start\n---\nline before options #line:1\n-> option 1\n-> option 2\n===\n";
+            var source = @"title:Start
+---
+line before options #line:1
+-> option 1
+-> option 2
+===
+";
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
             result.Diagnostics.Should().BeEmpty();
@@ -37,9 +47,16 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        void TestLineNotBeforeOptionsNotTaggedLastLine()
+        public void TestLineNotBeforeOptionsNotTaggedLastLine()
         {
-            var source = "title:Start\n---\nline not before options #line:0\nline before options #line:1\n-> option 1\n-> option 2\n===\n";
+            var source = @"title:Start
+---
+line not before options #line:0
+line before options #line:1
+-> option 1
+-> option 2
+===
+";
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
             result.Diagnostics.Should().BeEmpty();
@@ -50,9 +67,16 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        void TestLineAfterOptionsNotTaggedLastLine()
+        public void TestLineAfterOptionsNotTaggedLastLine()
         {
-            var source = "title:Start\n---\nline before options #line:1\n-> option 1\n-> option 2\nline after options #line:2\n===\n";
+            var source = @"title:Start
+---
+line before options #line:1
+-> option 1
+-> option 2
+line after options #line:2
+===
+";
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
             result.Diagnostics.Should().BeEmpty();
@@ -63,7 +87,7 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        void TestNestedOptionLinesTaggedLastLine()
+        public void TestNestedOptionLinesTaggedLastLine()
         {
             var source = CreateTestNode(@"
 line before options #line:1
@@ -86,7 +110,7 @@ line before options #line:1
         }
 
         [Fact]
-        void TestIfInteriorLinesTaggedLastLine()
+        public void TestIfInteriorLinesTaggedLastLine()
         {
             var source = CreateTestNode(@"
 <<if true>>
@@ -102,7 +126,7 @@ line before options #line:0
             info.metadata.Should().Contain("lastline");
         }
         [Fact]
-        void TestIfInteriorLinesNotTaggedLastLine()
+        public void TestIfInteriorLinesNotTaggedLastLine()
         {
             var source = CreateTestNode(@"
 <<if true>>
@@ -119,7 +143,7 @@ line before options #line:0
         }
 
         [Fact]
-        void TestNestedOptionLinesNotTagged()
+        public void TestNestedOptionLinesNotTagged()
         {
             var source = CreateTestNode(@"
 -> option 1
@@ -170,9 +194,17 @@ line before call #line:4
         }
 
         [Fact]
-        void TestLineIsLastBeforeAnotherNodeNotTagged()
+        public void TestLineIsLastBeforeAnotherNodeNotTagged()
         {
-            var source = "title: Start\n---\nlast line #line:0\n===\ntitle: Second\n---\n-> option 1\n===\n";
+            var source = @"title: Start
+---
+last line #line:0
+===
+title: Second
+---
+-> option 1
+===
+";
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
             result.Diagnostics.Should().BeEmpty();
 
