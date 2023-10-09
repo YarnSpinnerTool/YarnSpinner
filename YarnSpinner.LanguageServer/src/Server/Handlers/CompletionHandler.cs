@@ -325,6 +325,7 @@ namespace YarnLanguageServer.Handlers
                         }
                 }
             }
+
             return Task.FromResult(new CompletionList(results));
         }
 

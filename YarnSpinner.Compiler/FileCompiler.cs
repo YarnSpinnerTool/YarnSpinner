@@ -11,9 +11,14 @@ namespace Yarn.Compiler
     using System.Collections.Generic;
     using static Yarn.Instruction.Types;
 
-    internal class FileCompiler : YarnSpinnerParserBaseListener, ICodeEmitter {
+    /// <summary>
+    /// An <see cref="ICodeEmitter"/> that generates code for a parsed file.
+    /// </summary>
+    internal class FileCompiler : YarnSpinnerParserBaseListener, ICodeEmitter
+    {
 
-        internal struct CompilationContext {
+        internal struct CompilationContext
+        {
             internal Library Library;
             internal FileParseResult FileParseResult;
             internal HashSet<string> TrackingNodes;
@@ -22,7 +27,7 @@ namespace Yarn.Compiler
 
         private FileCompilationResult CompilationResult { get; set; }
 
-         private int labelCount = 0;
+        private int labelCount = 0;
 
         /// <summary>
         /// Gets the current node to which instructions are being added.
@@ -73,14 +78,14 @@ namespace Yarn.Compiler
             this.CompilationResult = new FileCompilationResult();
             this.FileParseResult = compilationContext.FileParseResult;
             this.Library = compilationContext.Library;
-            this.TrackingNodes  = compilationContext.TrackingNodes;
+            this.TrackingNodes = compilationContext.TrackingNodes;
             this.VariableDeclarations = compilationContext.VariableDeclarations;
         }
 
-        void ICodeEmitter.AddLabel(string name, int position) {
+        void ICodeEmitter.AddLabel(string name, int position)
+        {
             this.CurrentNode?.Labels.Add(name, position);
         }
-
 
         /// <summary>
         /// Generates a unique label name to use in the program.
@@ -92,7 +97,6 @@ namespace Yarn.Compiler
         {
             return "L" + this.labelCount++ + commentary;
         }
-
 
         /// <summary>
         /// Creates a new instruction, and appends it to the current node in the
@@ -111,7 +115,7 @@ namespace Yarn.Compiler
         void ICodeEmitter.Emit(OpCode code, IToken startToken, params Operand[] operands)
         {
             Compiler.Emit(this.CurrentNode ?? throw new InvalidOperationException(),
-                          this.CurrentNodeDebugInfo  ?? throw new InvalidOperationException(),
+                          this.CurrentNodeDebugInfo ?? throw new InvalidOperationException(),
                           startToken?.Line - 1 ?? -1,
                           startToken?.Column ?? -1,
                           code,
@@ -152,7 +156,7 @@ namespace Yarn.Compiler
             walker.Walk(this, this.FileParseResult.Tree);
             return this.CompilationResult;
         }
-        
+
         /// <summary>
         /// we have found a new node set up the currentNode var ready to
         /// hold it and otherwise continue
@@ -186,19 +190,18 @@ namespace Yarn.Compiler
             }
             else
             {
-                if (this.CurrentNode == null) {
+                if (this.CurrentNode == null)
+                {
                     throw new InvalidOperationException($"Internal error: {nameof(CurrentNode)} was null when exiting a node");
                 }
-                
-                if (this.CurrentNodeDebugInfo == null) {
+
+                if (this.CurrentNodeDebugInfo == null)
+                {
                     throw new InvalidOperationException($"Internal error: {nameof(CurrentNodeDebugInfo)} was null when exiting a node");
                 }
 
                 CompilationResult.Nodes.Add(this.CurrentNode);
                 CompilationResult.DebugInfos.Add(this.CurrentNodeDebugInfo);
-                
-
-                
             }
 
             this.CurrentNode = null;
@@ -343,6 +346,5 @@ namespace Yarn.Compiler
             // We have exited the body; emit a 'stop' opcode here.
             Compiler.Emit(this.CurrentNode, this.CurrentNodeDebugInfo, context.Stop.Line - 1, 0, OpCode.Stop);
         }
-
     }
 }
