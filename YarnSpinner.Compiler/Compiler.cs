@@ -205,6 +205,8 @@ namespace Yarn.Compiler
                 while (stack.Count > 0)
                 {
                     var tree = stack.Pop();
+
+                    bool nodeHasTypeError = false;
                     if (tree.Payload is ITypedContext typedContext)
                     {
                         typedContext.Type = TypeChecker.ITypeExtensions.Substitute(typedContext.Type, typeSolution);
@@ -225,7 +227,17 @@ namespace Yarn.Compiler
                                 // error.
                                 throw new InvalidOperationException($"Internal error: Expected parse tree node {typedContext} to be a {nameof(ParserRuleContext)}, but it was a {typedContext.GetType().FullName}");
                             }
+                            nodeHasTypeError = true;
                         }
+                    }
+
+                    if (nodeHasTypeError)
+                    {
+                        // This node has a type error. It's likely that its
+                        // children will, too, so don't bother walking further
+                        // into the tree (to do so wouldn't create any helpful
+                        // error messages.)
+                        continue;
                     }
 
                     for (int i = 0; i < tree.ChildCount; i++)
