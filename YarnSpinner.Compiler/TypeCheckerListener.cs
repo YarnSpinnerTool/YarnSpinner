@@ -532,7 +532,7 @@ namespace Yarn.Compiler
             // must also be a number.
             context.Type = Types.Number;
             IType type = context.expression()?.Type ?? Types.Error;
-            this.AddEqualityConstraint(type, Types.Number, context, s => $"{context.op.Text} operand must be {Types.Boolean}, not {type.Substitute(s)}");
+            this.AddEqualityConstraint(type, Types.Number, context, s => $"{context.op.Text} operand must be {Types.Number}, not {type.Substitute(s)}");
         }
 
         public override void ExitExpValue([NotNull] YarnSpinnerParser.ExpValueContext context)
