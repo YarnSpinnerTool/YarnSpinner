@@ -140,6 +140,10 @@ namespace Yarn.Compiler
         /// be added to while walking the parse tree.</param>
         /// <param name="typeSolution">An existing type solution to build
         /// upon.</param>
+        /// <param name="failingTypeConstraints">A collection of <see
+        /// cref="TypeConstraint"/> objects. During type checking, this
+        /// collection will be added to if a type constraint fails to resolve by
+        /// the end of a file.</param>
         public TypeCheckerListener(string sourceFileName, CommonTokenStream tokens, List<Declaration> knownDeclarations, List<TypeBase> knownTypes, Substitution typeSolution, HashSet<TypeConstraint> failingTypeConstraints)
         {
             this.sourceFileName = sourceFileName;
@@ -168,19 +172,58 @@ namespace Yarn.Compiler
 
         private TypeEqualityConstraint AddEqualityConstraint(IType a, IType b, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
         {
-            TypeEqualityConstraint item = new TypeEqualityConstraint(a ?? Types.Error, b ?? Types.Error);
-            item.SourceFileName = this.sourceFileName;
-            item.SourceRange = GetRange(context);
-            item.FailureMessageProvider = failureMessageProvider;
-            item.SourceExpression = context.GetTextWithWhitespace();
+            TypeEqualityConstraint item = new TypeEqualityConstraint(a, b)
+            {
+                SourceFileName = this.sourceFileName,
+                SourceRange = GetRange(context),
+                FailureMessageProvider = failureMessageProvider,
+                SourceExpression = context.GetTextWithWhitespace()
+            };
 
             this.TypeEquations.Add(item);
             return item;
         }
 
+        private TypeConstraint AddEqualityDisjunctionConstraint(IType a, IEnumerable<IType> b, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
+        {
+            if (b.Count() == 0)
+            {
+                // We didn't get any types that 'a' must be equal to, and that's
+                // a problem. Produce a constraint saying that 'a' is an error.
+                return AddEqualityConstraint(a, Types.Error, context, failureMessageProvider);
+            } else if (b.Count() == 1) {
+                // We got a single type to constrain against. Don't bother
+                // creating a disjunction with only a single constraint - just
+                // the constraint will do.
+                return AddEqualityConstraint(a, b.Single(), context, failureMessageProvider);
+            }
+
+            var disjunction = new DisjunctionConstraint(
+                b.Select(other =>
+                {
+                    return new TypeEqualityConstraint(a, other)
+                    {
+                        SourceExpression = context.GetTextWithWhitespace(),
+                        SourceFileName = this.sourceFileName,
+                        SourceRange = GetRange(context),
+                        FailureMessageProvider = failureMessageProvider,
+                    };
+                })
+            )
+            {
+                SourceExpression = context.GetTextWithWhitespace(),
+                SourceFileName = this.sourceFileName,
+                SourceRange = GetRange(context),
+                FailureMessageProvider = failureMessageProvider,
+            };
+
+            this.TypeEquations.Add(disjunction);
+            return disjunction;
+        }
+
         private TypeConvertibleConstraint AddConvertibleConstraint(IType from, IType to, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
         {
-            TypeConvertibleConstraint item = new TypeConvertibleConstraint(from ?? Types.Error, to ?? Types.Error);
+            TypeConvertibleConstraint item = new TypeConvertibleConstraint(from, to);
             item.SourceFileName = this.sourceFileName;
             item.SourceRange = GetRange(context);
             item.FailureMessageProvider = failureMessageProvider;
@@ -447,7 +490,22 @@ namespace Yarn.Compiler
             IType operandAType = context.expression(0)?.Type ?? Types.Error;
             IType operandBType = context.expression(1)?.Type ?? Types.Error;
 
+            IEnumerable<IType> permittedTypes;
+            
             string op = context.op.Text;
+
+            switch (op) {
+                case "+":
+                    permittedTypes = new[] { Types.Number, Types.String };
+                    break;
+                case "-":
+                    permittedTypes = new[] { Types.Number };
+                    break;
+                default:
+                    throw new InvalidOperationException($"Internal error: {typeof(YarnSpinnerParser.ExpAddSubContext)} had invalid op \"{op}\"");
+            }
+
+            this.AddEqualityDisjunctionConstraint(type, permittedTypes, context, s => $"Operation '{op}' can't be used with a value of type {operandAType.Substitute(s)}");
 
             this.AddEqualityConstraint(type, operandAType, context, s => $"Operation '{op}' can't be used with a value of type {operandAType.Substitute(s)}");
             this.AddEqualityConstraint(operandAType, operandBType, context, s => $"Operation '{op}'s values must both be the same type, not {operandAType.Substitute(s)} and {operandBType.Substitute(s)}");
@@ -462,6 +520,8 @@ namespace Yarn.Compiler
             IType operandBType = context.expression(1)?.Type ?? Types.Error;
 
             string op = context.op.Text;
+
+            this.AddEqualityConstraint(type, Types.Number, context, s => $"Operation '{op}' can only be used with {Types.Number}");
 
             this.AddEqualityConstraint(type, operandAType, context, s => $"Operation '{op}' can't be used with a value of type {operandAType.Substitute(s)}");
             this.AddEqualityConstraint(operandAType, operandBType, context, s => $"Operation '{op}'s values must both be the same type, not {operandAType.Substitute(s)} and {operandBType.Substitute(s)}");
@@ -499,18 +559,16 @@ namespace Yarn.Compiler
         {
             // The result of a logical and, or, or xor is boolean; the types of
             // the expressions must also be boolean.
-            var exp0Type = context.expression(0)?.Type;
-            var exp1Type = context.expression(1)?.Type;
-            if (exp0Type == null || exp1Type == null)
+            var type0 = context.expression(0)?.Type;
+            var type1 = context.expression(1)?.Type;
+            if (type0 == null || type1 == null)
             {
                 context.Type = Types.Error;
                 return;
             }
 
             context.Type = Types.Boolean;
-            IType type0 = context.expression(0).Type;
-            IType type1 = context.expression(1).Type;
-
+            
             this.AddEqualityConstraint(type0, Types.Boolean, context, s => $"{context.op.Text} operands must be {Types.Boolean}, not {type0.Substitute(s)}");
             this.AddEqualityConstraint(type0, type1, context, s => $"{context.op.Text} operands must be the same type, not {type0} and {type1}");
         }
