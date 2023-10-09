@@ -1,0 +1,16 @@
+title: Start
+---
+<<enum EnumA>>
+    <<case One>>
+    <<case Two>>
+    <<case Three>>
+<<endenum>>
+
+<<enum EnumB>>
+    <<case One>>
+    <<case Two>>
+    <<case Three>>
+<<endenum>>
+
+<<set $a = .One>> // error: .One is ambiguous (it could be EnumA.One or EnumB.One)
+===
