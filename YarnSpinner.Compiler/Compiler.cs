@@ -299,7 +299,7 @@ namespace Yarn.Compiler
                 // files.
                 foreach (var parsedFile in parsedFiles)
                 {
-                    FileCompilationResult compilationResult = GenerateCode(parsedFile, declarations, compilationJob, stringTableManager, trackingNodes);
+                    FileCompilationResult compilationResult = GenerateCode(parsedFile, declarations, compilationJob, trackingNodes);
 
                     fileCompilationResults.Add(compilationResult);
                 }
@@ -538,7 +538,7 @@ namespace Yarn.Compiler
             diagnostics.AddRange(visitor.Diagnostics);
         }
 
-        private static FileCompilationResult GenerateCode(FileParseResult fileParseResult, IEnumerable<Declaration> variableDeclarations, CompilationJob job, StringTableManager stringTableManager, HashSet<string> trackingNodes)
+        private static FileCompilationResult GenerateCode(FileParseResult fileParseResult, IEnumerable<Declaration> variableDeclarations, CompilationJob job, HashSet<string> trackingNodes)
         {
 
             FileCompiler compiler = new FileCompiler(new FileCompiler.CompilationContext
