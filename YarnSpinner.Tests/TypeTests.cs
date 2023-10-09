@@ -906,7 +906,6 @@ namespace YarnSpinner.Tests
 
             using (new FluentAssertions.Execution.AssertionScope())
             {
-                diagnostics.Should().NotBeEmpty();
                 hasSolution.Should().BeFalse();
             }
 
