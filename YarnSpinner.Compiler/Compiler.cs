@@ -121,12 +121,19 @@ namespace Yarn.Compiler
 
             var fileTags = new Dictionary<string, IEnumerable<string>>();
 
+            // The mapping of type variables to concrete types (or to other type
+            // variables)
             var typeSolution = new Substitution();
+
+            // The collection of type constraints that we weren't able to solve.
+            // (We'll resolve as many of them as we can after finishing type
+            // checking, and turn the rest into error messages.)
+            var failingConstraints = new HashSet<TypeConstraint>();
 
             var walker = new Antlr4.Runtime.Tree.ParseTreeWalker();
             foreach (var parsedFile in parsedFiles)
             {
-                var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, ref declarations, ref knownTypes, typeSolution);
+                var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, declarations, knownTypes, typeSolution, failingConstraints);
 
                 walker.Walk(typeCheckerListener, parsedFile.Tree);
 
@@ -135,6 +142,46 @@ namespace Yarn.Compiler
                 fileTags.Add(parsedFile.Name, typeCheckerListener.FileTags);
 
                 typeSolution = typeCheckerListener.TypeSolution;
+
+                failingConstraints = new HashSet<TypeConstraint>(TypeCheckerListener.ApplySolution(typeSolution, failingConstraints));
+            }
+
+            if (failingConstraints.Count > 0) {
+                // We have a number of constraints that we were unable to
+                // resolve - either they failed to unify during solving, or they
+                // were left unresolved at the end of type-checking all files.
+                //
+                // We'll make a list-ditch effort to resolve these failing
+                // constraints by attempting to solve them one at a time - it's
+                // possible that they're only 'failing' because they were in a
+                // set of type constraints that couldn't be solved all at once,
+                // and some may be resolvable on their own. (We may still have
+                // an unrecoverable type error, but if we can eliminate
+                // constraints from the set of possible failure causes, we'll
+                // reduce the chance of a spurious error message.)
+
+                bool anySucceeded;
+                do {
+                    // Repeatedly attempt to solve each constraint individually.
+                    // After each attempt, attempt to eliminate whatever
+                    // constraints we can. Stop when we either have no more
+                    // constraints to fix, or no constraints ended up resolving.
+                    anySucceeded = false;
+
+                    foreach (var constraint in failingConstraints) {
+                        anySucceeded |= Solver.TrySolve(new[] { constraint }, knownTypes, diagnostics, ref typeSolution);
+                    }
+                    failingConstraints = new HashSet<TypeConstraint>(TypeCheckerListener.ApplySolution(typeSolution, failingConstraints));
+                } while (anySucceeded);
+
+                // If we have any left, then we well and truly failed to resolve
+                // the constraint, and we should produce diagnostics for them.
+                foreach (var constraint in failingConstraints) {
+                    foreach (var failureMessage in constraint.GetFailureMessages(typeSolution))
+                    {
+                        diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceRange, failureMessage));
+                    }
+                }
             }
 
             // determining the nodes we need to track visits on
@@ -161,9 +208,8 @@ namespace Yarn.Compiler
             // this way any future variable storage system will know about them
             // if we didn't do this later stages wouldn't be able to interface with them
             declarations.AddRange(trackingDeclarations);
-
             
-            // Apply this substitution to all declarations.
+            // Apply the type solution to all declarations.
             foreach (var decl in declarations)
             {
                 decl.Type = TypeChecker.ITypeExtensions.Substitute(decl.Type, typeSolution);

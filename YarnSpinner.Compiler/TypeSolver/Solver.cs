@@ -65,10 +65,12 @@ namespace TypeChecker
             // that's our solution for the provided constraints.
             var disjunction = new DisjunctionConstraint(ToDisjunctiveNormalForm(formula).Simplify(substitution, knownTypes));
 
-            // The collection of type errors produced as a result of failing to
-            // resolve constraints. If we fail to produce a solution, then we'll
-            // update the diagnostic list with this.
-            HashSet<Diagnostic> typeDiagnostics = new HashSet<Diagnostic>();
+            // The collection of possible solutions that could have for this
+            // type problem, given typeConstraints. If we have more than one,
+            // pick the most specific one. If we have more than one equally
+            // specific one, then the type solution is ambiguous, and that's a
+            // compile error.
+            List<Substitution> successfulSubstitutions = new List<Substitution>();
 
             foreach (var candidate in disjunction)
             {
@@ -99,16 +101,16 @@ namespace TypeChecker
                             // substitution.
                             if (!TryUnify(equalityConstraint.Left, equalityConstraint.Right, subst))
                             {
-                                // It failed; note the failure. (We'll keep
-                                // going with the rest of the constraints, so
-                                // that we get all of the errors.)
-                                ConstraintFailed(subterm);
+                                // Unification failed, so this solution doesn't work.
+                                isFailed = true;
+                                break;
                             }
                         }
                         else if (subterm is FalseConstraint)
                         {
                             // False constraints represent an immediate failure.
-                            ConstraintFailed(subterm);
+                            isFailed = true;
+                            break;
                         }
                         else
                         {
@@ -116,33 +118,93 @@ namespace TypeChecker
                             // constraint.
                             throw new InvalidOperationException($"Internal error: Didn't expect to see a {candidate.GetType()}: {candidate.ToString()}");
                         }
-
-                        void ConstraintFailed(TypeConstraint constraint)
-                        {
-                            // Get all failure messages for this failing
-                            // constraint, and add them to our collection of
-                            // type-failure diagnostics.
-                            foreach (var failureMessage in constraint.GetFailureMessages(subst))
-                            {
-                                typeDiagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceRange, failureMessage));
-                            }
-                            isFailed = true;
-                        }
                     }
 
                     if (!isFailed)
                     {
-                        // This solution works! Update the substitution.
-                        substitution = subst;
-                        return true;
+                        // This solution works! Add this to the list of solutions.
+                        successfulSubstitutions.Add(subst);
                     }
                 }
             }
+
+            if (successfulSubstitutions.Count == 1) {
+                // We have precisely one successful solution! This must be it.
+                substitution = successfulSubstitutions.Single();
+                return true;
+            } else if (successfulSubstitutions.Count > 1) {
+                // Attempt to merge the solutions into the most specific one.
+
+                if (TryMergeSubsitutions(successfulSubstitutions, out substitution))
+                {
+                    return true;
+                }
+                else
+                {
+                    // We have most than one successful substitution. The
+                    // resolved type is ambiguous!
+                    foreach (var constraint in typeConstraints)
+                    {
+                        diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceRange, "The type of this expression is ambiguous."));
+                    }
+                    return false;
+                }
+            } else {
+                // Nothing we tried worked! 
+                return false;
+            }
             
-            // Nothing we tried worked! Update our diagnostics list, and return
-            // false.
-            diagnostics.AddRange(typeDiagnostics);
-            return false;
+        }
+
+        private static bool TryMergeSubsitutions(IEnumerable<Substitution> substitutions, out Substitution result) {
+            // Merge multiple dicts 
+            var mergedDictionary = new Dictionary<TypeVariable, HashSet<IType>>();
+
+            foreach (var subst in substitutions) {
+                foreach (var kv in subst) {
+                    if (!mergedDictionary.TryGetValue(kv.Key, out HashSet<IType> list))
+                    {
+                        list = new HashSet<IType>();
+                        mergedDictionary[kv.Key] = list;
+                    }
+                    
+                    list.Add(kv.Value);
+                }
+            }
+
+            result = new Substitution();
+
+            foreach (var kv in mergedDictionary) {
+                if (kv.Value.Count == 0) {
+                    throw new InvalidOperationException($"Expected {kv.Key} to have at least substitution");
+                }
+                else if (kv.Value.Count == 1) {
+                    result[kv.Key] = kv.Value.Single();
+                }
+                else {
+                    // Multiple possible solutions for this type variable.
+                    var bestCandidates = kv.Value.GroupBy(candidate =>
+                    {
+                        if (candidate is TypeBase type)
+                        {
+                            return type.TypeDepth;
+                        }
+                        else
+                        {
+                            return int.MaxValue;
+                        }
+                    }).OrderByDescending(group => group.Key).First();
+
+                    if (bestCandidates.Count() == 1) {
+                        result[kv.Key] = bestCandidates.Single();
+                    } else {
+                        // More than one option is the best candidate, so the solution is ambiguous!
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -352,18 +414,6 @@ namespace TypeChecker
             }
 
             return new DisjunctionConstraint(ExpandDisjunctions(input));
-
-            // // Recursively expand any disjunctions in our arguments.
-            // var expandedProducts = Arguments.Select(a => a.ExpandDisjunctions()).CartesianProduct();
-
-            // // If this is itself a disjunction, the terms we're returning are the arguments itself.
-            // if (Name == Compound.ReservedNames.Disjunction) {
-            //     return expandedProducts.SelectMany(a => a).Distinct();
-            // }
-
-            // // Otherwise, for every combination of our arguments, return a new
-            // // compound with that combination of arguments.
-            // return expandedProducts.Select(product => new Compound(Name, product.ToArray()));
         }
     }
 }

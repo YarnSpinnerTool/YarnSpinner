@@ -95,6 +95,7 @@ namespace Yarn.Compiler
         /// The current incremental type solution.
         /// </summary>
         private Substitution typeSolution;
+        private readonly HashSet<TypeConstraint> failingTypeConstraints;
 
         /// <summary>
         /// Gets the list of diagnostics produced during type checking.
@@ -139,13 +140,14 @@ namespace Yarn.Compiler
         /// be added to while walking the parse tree.</param>
         /// <param name="typeSolution">An existing type solution to build
         /// upon.</param>
-        public TypeCheckerListener(string sourceFileName, CommonTokenStream tokens, ref List<Declaration> knownDeclarations, ref List<TypeBase> knownTypes, Substitution typeSolution)
+        public TypeCheckerListener(string sourceFileName, CommonTokenStream tokens, List<Declaration> knownDeclarations, List<TypeBase> knownTypes, Substitution typeSolution, HashSet<TypeConstraint> failingTypeConstraints)
         {
             this.sourceFileName = sourceFileName;
             this.tokens = tokens;
             this.knownDeclarations = knownDeclarations;
             this.knownTypes = knownTypes;
             this.typeSolution = typeSolution;
+            this.failingTypeConstraints = failingTypeConstraints;
         }
 
         /// <summary>
@@ -910,7 +912,7 @@ namespace Yarn.Compiler
                 // that are now tautological (e.g. 'T(a) == bool' becoming 'bool
                 // == bool'). This might immediately knock out some equations,
                 // reducing the amount of solving we need to do.
-                this.typeEquations = this.typeEquations.Select(e => e.ApplySubstitution(TypeSolution)).WithoutTautologies().ToList();
+                this.typeEquations = ApplySolution(typeSolution, this.typeEquations).ToList();
 
                 if (this.typeEquations.Count == 0)
                 {
@@ -921,22 +923,58 @@ namespace Yarn.Compiler
                 // type information that guides other, more complex constraints
                 // like convertability.)
                 var equalities = this.typeEquations.OfType<TypeEqualityConstraint>();
-                Solver.TrySolve(equalities, knownTypes, this.diagnostics, ref typeSolution);
+                if (Solver.TrySolve(equalities, knownTypes, this.diagnostics, ref typeSolution) == false)
+                {
+                    foreach (var constraint in equalities)
+                    {
+                        failingTypeConstraints.Add(constraint);
+                    }
+                }
 
                 // Run the solver on the remainder of the constraints.
                 var otherConstraints = this.typeEquations.Except(equalities);
-                Solver.TrySolve(otherConstraints, knownTypes, this.diagnostics, ref typeSolution);
+                if (Solver.TrySolve(otherConstraints, knownTypes, this.diagnostics, ref typeSolution) == false)
+                {
+                    foreach (var constraint in equalities)
+                    {
+                        failingTypeConstraints.Add(constraint);
+                    }
+                }
 
                 // Apply the solution to our equations, and eliminate any that
                 // are now tautological. (If our program's type definitions are
                 // self-contained, then this will likely result in eliminating
                 // ALL outstanding equations.)
-                this.typeEquations = this.typeEquations.Select(e => e.ApplySubstitution(TypeSolution)).WithoutTautologies().ToList();
+
+                this.typeEquations = ApplySolution(TypeSolution, this.typeEquations).ToList();
             }
             finally
             {
                 base.ExitStatement(context);
             }
+        }
+
+        internal static IEnumerable<TypeConstraint> ApplySolution(Substitution solution, IEnumerable<TypeConstraint> incomingConstraints)
+        {
+            return incomingConstraints
+                .Select(e => e.ApplySubstitution(solution))
+                .WithoutTautologies()
+                .ToList();
+        }
+
+        public override void ExitDialogue([NotNull] YarnSpinnerParser.DialogueContext context)
+        {
+            if (typeEquations.Count > 0) {
+                // We've reached the end of the file, but we still have
+                // unresolved type equations, indicating that we didn't manage
+                // to fully resolve this type system. Add them as a potential
+                // failure.
+                foreach (var constraint in typeEquations)
+                {
+                    failingTypeConstraints.Add(constraint);
+                }
+            }
+            base.ExitDialogue(context);
         }
 
         /// <summary>
