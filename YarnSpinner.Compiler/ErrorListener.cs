@@ -35,7 +35,7 @@ namespace Yarn.Compiler
         /// <summary>
         /// Gets or sets the description of the issue.
         /// </summary>
-        public string Message { get; set; } = "(internal error: no message provided)";
+        public string Message { get; set; }
 
         /// <summary>
         /// Gets or sets the source text of <see cref="FileName"/> containing
