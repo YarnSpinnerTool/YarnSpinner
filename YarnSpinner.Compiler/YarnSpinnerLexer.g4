@@ -93,6 +93,13 @@ BODY_HASHTAG: '#' -> type(HASHTAG), pushMode(TextCommandOrHashtagMode), pushMode
 // ExpressionMode.
 EXPRESSION_START: '{' -> pushMode(TextMode), pushMode(ExpressionMode);
 
+// this is a weird one and this should be considered a temporary fix
+// basically we don't actually want to treat escaped markup as if it was escaped
+// hence why there is the TEXT_ESCAPED_MARKUP_BRACKET token
+// but if a line starts with \[ then the TextEscapedMode will be pushed
+// jumping over the TEXT_ESCAPED_MARKUP_BRACKET rule, so it will never get matched
+// which will attempt to match a valid escape character and fail because the \ has been eaten
+ESCAPED_BRACKET_START: '\\[' -> type(TEXT), pushMode(TextMode) ;
 
 // Any other text means this is a Line. Lex this first character as
 // TEXT, and enter TextMode.

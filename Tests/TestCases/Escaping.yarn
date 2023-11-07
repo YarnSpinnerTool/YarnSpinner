@@ -39,7 +39,10 @@ Here's some escaped markup: \[a\]hello\[/a\]
 -> Here's some markup: [a]hello[/a]
 -> Here's some escaped markup: \[a\]hello\[/a\]
 
-// Commented out because this isn't actually allowed, but we're just
-// maintaining the pattern here:
+// testing the various escaped elements also work at the start of a statement:
+\<\<escaped command\>\>
+\{0\} escaped line with interpolation
+\/\/ escaped comment
+\[a]escaped markup\[/a]
 
 ===
