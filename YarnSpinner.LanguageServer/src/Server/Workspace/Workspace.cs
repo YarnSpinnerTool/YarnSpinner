@@ -80,12 +80,19 @@ namespace YarnLanguageServer
                         continue;
                     }
 
-                    string text = new StreamReader(stream).ReadToEnd();
-                    var docJsonConfig = new JsonConfigFile(text, true);
-
-                    foreach (var action in docJsonConfig.GetActions())
+                    try
                     {
-                        this.workspaceActions.Add(action);
+                        string text = new StreamReader(stream).ReadToEnd();
+                        var docJsonConfig = new JsonConfigFile(text, true);
+
+                        foreach (var action in docJsonConfig.GetActions())
+                        {
+                            this.workspaceActions.Add(action);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        LanguageServer?.LogError($"Failed to load built-in definitions file {doc}: {e}");
                     }
                 }
             }

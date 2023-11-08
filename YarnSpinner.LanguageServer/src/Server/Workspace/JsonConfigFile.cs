@@ -11,25 +11,20 @@ namespace YarnLanguageServer
 
         public JsonConfigFile(string text, bool isBuiltIn)
         {
-            try
-            {
-                var parsedConfig = JsonConvert.DeserializeObject<JsonConfigFormat>(text);
+            var parsedConfig = JsonConvert.DeserializeObject<JsonConfigFormat>(text);
 
-                foreach (var definition in parsedConfig.Functions) {
-                    Action action = definition.ToAction();
-                    action.IsBuiltIn = isBuiltIn;
-                    action.Type = ActionType.Function;
-                    actions.Add(action);
-                }
-
-                foreach (var definition in parsedConfig.Commands) {
-                    Action action = definition.ToAction();
-                    action.IsBuiltIn = isBuiltIn;
-                    action.Type = ActionType.Command;
-                    actions.Add(action);
-                }
+            foreach (var definition in parsedConfig.Functions) {
+                Action action = definition.ToAction();
+                action.IsBuiltIn = isBuiltIn;
+                action.Type = ActionType.Function;
+                actions.Add(action);
             }
-            catch (Exception) {
+
+            foreach (var definition in parsedConfig.Commands) {
+                Action action = definition.ToAction();
+                action.IsBuiltIn = isBuiltIn;
+                action.Type = ActionType.Command;
+                actions.Add(action);
             }
         }
 
