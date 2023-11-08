@@ -22,6 +22,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fixed a bug where escaped characters weren't being correctly added back into the file after adding line tags.
 - declaration statements without a value (`<<declare $var>>`) will no longer crash the compiler.
 - Fixed a bug where unusual interpolated commands (such as `<<{0}{""}>>`) would resolve to unexpected final values (`<<>>`).
+- Language Server: Fixed a bug where a missing 'Parameters' field in a .ysls.json file would cause the definitions file to not parse correctly.
+- Language Server: If a workspace that has no .yarnproject files in it is opened, the language server will now look for a .ysls.json file containing command and function definitions. A warning will be reported if more than one file is found.
 
 ### Removed
 
