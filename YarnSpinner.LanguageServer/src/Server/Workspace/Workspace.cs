@@ -129,6 +129,39 @@ namespace YarnLanguageServer
                 // works - if a file is not in a project, it is not compiled.)
                 Project implicitProject = new (Root, isImplicit: true);
                 this.Projects = new[] { implicitProject };
+
+                // Additionally, if the workspace contains an actions definition
+                // file, use that. (If there's more than one, that's a warning -
+                // only the first one we find will be used.)
+                if (Root != null)
+                {
+                    var definitionFiles = Directory.EnumerateFiles(Root, "*.ysls.json", SearchOption.AllDirectories);
+
+                    if (definitionFiles.Any())
+                    {
+                        string definitionFilePath = definitionFiles.First();
+
+                        if (definitionFiles.Count() > 1)
+                        {
+                            Window?.ShowWarning($"Multiple .ysls.json files were found in the workspace. Only the first one found ({definitionFilePath}) will be used.");
+                        }
+
+                        try
+                        {
+
+                            var definitionFile = new JsonConfigFile(File.ReadAllText(definitionFilePath), false);
+
+                            foreach (var action in definitionFile.GetActions())
+                            {
+                                this.workspaceActions.Add(action);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            LanguageServer?.LogError($"Failed to load actions definition file {definitionFilePath}: {e}");
+                        }
+                    }
+                }
             }
 
             // Configure each project in the workspace

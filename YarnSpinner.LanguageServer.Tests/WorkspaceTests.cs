@@ -76,6 +76,26 @@ namespace YarnLanguageServer.Tests
 
         }
 
+
+        [Fact]
+        public void Workspaces_WithDefsJsonAndNoProject_FindsCommands()
+        {
+            // Given
+            var workspace = new Workspace();
+            workspace.Root = NoProjectPath;
+            
+            // When
+            workspace.Initialize();
+        
+            // Then
+            var project = workspace.Projects.Should().ContainSingle().Subject;
+            project.Commands.Should().Contain(c => c.YarnName == "custom_command");
+            project.Functions.Should().Contain(f => f.YarnName == "custom_function");
+
+            project.Diagnostics.Should().NotContain(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Warning);
+            project.Diagnostics.Should().NotContain(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error);
+        }
+
         [Fact]
         public void ActionsDefFile_ParsesCorrectly()
         {
