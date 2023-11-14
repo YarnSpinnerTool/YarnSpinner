@@ -32,6 +32,12 @@ namespace YarnLanguageServer
         public IWindowLanguageServer? Window => LanguageServer?.Window;
 
         /// <summary>
+        /// Have we shown a warning about the workspace having no root folder?
+        /// (We only want to show it once.)
+        /// </summary>
+        private bool hasShownNullRootWarning = false;
+
+        /// <summary>
         /// Gets the projects that include the file at <paramref name="uri"/>.
         /// </summary>
         /// <param name="uri">The uri to get projects for.</param>
@@ -102,7 +108,20 @@ namespace YarnLanguageServer
 
             var projects = new List<Project>();
 
-            if (this.Root != null)
+            if (this.Root == null)
+            {
+                // We don't have a root folder. The language server won't be
+                // able to find any additional resources, so we should warn the
+                // user about this. (This can happen when the user double-clicks
+                // on a file in Unity, which will open the file directly in VS
+                // Code without a root folder.)
+                if (hasShownNullRootWarning == false)
+                {
+                    LanguageServer?.Window.ShowWarning($"This window does not have a folder to work in. Yarn Spinner features will not work as expected. [Open your project's folder](command:vscode.openFolder) for full feature support.");
+                    hasShownNullRootWarning = true;
+                }
+            }
+            else
             {
                 // Find all .yarnprojects in the root and create Projects out of
                 // them
