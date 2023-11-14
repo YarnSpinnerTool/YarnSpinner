@@ -8,22 +8,47 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- The `Utility.TagLines` method to eventually replace the now deprecated `AddTagsToLines` method.
-- The `LineIDsForNode` method on `Program` allowing you to get all line IDs in advance of needing them.
-- The `format_invariant` function, allowing for numbers to be injected into commands without respecting culture.
+- Added a new method, `Utility.TagLines`, which will eventually replace the now deprecated `AddTagsToLines` method.
+- Added a new method, `Program.LineIDsForNode`, which allows you to get the list of all line IDs in a node.
+- Added a new function, `format_invariant`, which formats a number as a string using the invariant culture (rather than the end-user's current culture.)
+  - Commands expect all numbers to be formatted using the invariant (i.e. US English) style, with `.` as a decimal point.
+  - If a number is inserted into a command, it will by default be formatted for the user's current culture. If that culture formats numbers differently, it can cause problems.
+  - `format_invariant` will always format a value in the invariant culture, making it useful for situations where a number needs to be embedded in a command (which expects all numbers to be ), and not shown to the user.
+  - You can use `format_invariant` like this:
+    ```
+    <<set $gold_per_turn = 4.51>>
+
+    // de-DE: 'give_gold 4,51'
+    // en-US: 'give_gold 4.51'
+    <<give_gold {$gold_per_turn}>>
+
+    // de-DE: 'give_gold 4.51'
+    // en-US: 'give_gold 4.51'
+    <<give_gold {format_invariant($gold_per_turn)}>>
+    ```
 
 ### Changed
 
+#### Language Server
+
 - Fixed a bug in the language server that would cause it to crash when opening a workspace with no root (for example, creating a new window in Visual Studio Code and then creating a Yarn file, without ever saving anything to disk.)
-- Language Server: Fixed an issue where workspaces where no Yarn Projects exist on disk would fail to attach Yarn files to the workspace's implicit Yarn Project.
-- Language Server: Improved the code-completion behaviour to provide better filtering when offering command completions, in both jump commands and custom commands.
-- Language Server: Fixed character names being incorrectly recognised when the colon is not part of the line
+- Fixed an issue where workspaces where no Yarn Projects exist on disk would fail to attach Yarn files to the workspace's implicit Yarn Project.
+- Improved the code-completion behaviour to provide better filtering when offering command completions, in both jump commands and custom commands.
+- Fixed character names being incorrectly recognised when the colon is not part of the line
+- Fixed a bug where a missing 'Parameters' field in a .ysls.json file would cause the definitions file to not parse correctly.
+- If a workspace that has no .yarnproject files in it is opened, the language server will now look for a .ysls.json file containing command and function definitions. A warning will be reported if more than one file is found.
+- The language server now shows a warning if the workspace is opened without a folder.
+
+#### Compiler
+
+- Fixed a crash bug when declaration statements were used without a value (`<<declare $var>>`).
+- Fixed a bug where unusual interpolated commands (such as `<<{0}{""}>>`) would resolve to unexpected final values (`<<>>`).
+
+#### Utilities
+
 - Flagged the `Utility.AddTagsToLines` method as obsolete.
 - Fixed a bug where escaped characters weren't being correctly added back into the file after adding line tags.
-- declaration statements without a value (`<<declare $var>>`) will no longer crash the compiler.
-- Fixed a bug where unusual interpolated commands (such as `<<{0}{""}>>`) would resolve to unexpected final values (`<<>>`).
-- Language Server: Fixed a bug where a missing 'Parameters' field in a .ysls.json file would cause the definitions file to not parse correctly.
-- Language Server: If a workspace that has no .yarnproject files in it is opened, the language server will now look for a .ysls.json file containing command and function definitions. A warning will be reported if more than one file is found.
+
 
 ### Removed
 
