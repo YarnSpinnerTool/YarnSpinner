@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [2.4.0] 2023-11-14
+
+### Added
+
 - Added a new method, `Utility.TagLines`, which will eventually replace the now deprecated `AddTagsToLines` method.
 - Added a new method, `Program.LineIDsForNode`, which allows you to get the list of all line IDs in a node.
 - Added a new function, `format_invariant`, which formats a number as a string using the invariant culture (rather than the end-user's current culture.)
@@ -48,7 +56,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Flagged the `Utility.AddTagsToLines` method as obsolete.
 - Fixed a bug where escaped characters weren't being correctly added back into the file after adding line tags.
-
 
 ### Removed
 
