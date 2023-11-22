@@ -10,6 +10,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Updated the schema for .ysls.json files:
+  - Commands may no longer specify a return type.
+  - Functions must now specify a return type.
+  - Changed the definition of 'types' to be an enum of "string", "number", "bool", or "any".
+    - Enums in JSON schema are type sensitive, so a warning will be issued for types that have capital letters. To fix these warnings, change your type names in your `.ysls.json` file to be lowercase. (These warnings have no impact on your Yarn script editing experience or runtime behaviour.)
+
 ### Removed
 
 ## [2.4.0] 2023-11-14
