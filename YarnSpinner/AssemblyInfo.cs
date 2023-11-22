@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 
 [assembly: AssemblyVersion("0.0.0.0")]
@@ -7,4 +7,5 @@ using System.Runtime.CompilerServices;
 
 [assembly:InternalsVisibleTo("YarnSpinner.Tests")]
 [assembly:InternalsVisibleTo("YarnSpinner.Compiler")]
+[assembly:InternalsVisibleTo("LanguageServer.Tests")]
 
