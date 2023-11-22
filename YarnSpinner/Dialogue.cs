@@ -1102,6 +1102,8 @@ namespace Yarn
         // The standard, built-in library of functions and operators.
         internal class StandardLibrary : Library
         {
+            private static System.Random Random = new Random();
+
             public StandardLibrary()
             {
                 #region Operators
@@ -1131,6 +1133,81 @@ namespace Yarn
                 this.RegisterMethods(BuiltinTypes.Number);
                 this.RegisterMethods(BuiltinTypes.String);
                 this.RegisterMethods(BuiltinTypes.Boolean);
+
+                #pragma warning disable CA5394 // System.Random is not cryptographically secure
+
+                // Register the built-in functions.
+                this.RegisterFunction("random", delegate ()
+                {
+                    return Random.NextDouble();
+                });
+
+                this.RegisterFunction("random_range", delegate (float minInclusive, float maxInclusive)
+                {
+                    var t = Random.NextDouble();
+                    return minInclusive + t * (maxInclusive - minInclusive);
+                });
+
+                this.RegisterFunction("dice", delegate (int sides)
+                {
+                    return Random.Next(1, sides + 1);
+                });
+
+                #pragma warning restore CA5394
+
+                this.RegisterFunction("round", delegate (float num)
+                {
+                    return (float)Math.Round(num, 0);
+                });
+
+                this.RegisterFunction("round_places", delegate (float num, int places)
+                {
+                    return (float)Math.Round(num, places);
+                });
+
+                this.RegisterFunction("floor", delegate (float num)
+                {
+                    return (float)(int)Math.Floor(num);
+                });
+
+                this.RegisterFunction("ceil", delegate (float num)
+                {
+                    return (float)(int)Math.Ceiling(num);
+                });
+
+                this.RegisterFunction("inc", delegate (float num)
+                {
+                    if ((num - Math.Truncate(num)) != 0)
+                    {
+                        return Math.Ceiling(num);
+                    }
+                    else
+                    {
+                        return (int)(num + 1);
+                    }
+                });
+
+                this.RegisterFunction("dec", delegate (float num)
+                {
+                    if ((num - Math.Truncate(num)) != 0)
+                    {
+                        return Math.Floor(num);
+                    }
+                    else
+                    {
+                        return (int)(num - 1);
+                    }
+                });
+
+                this.RegisterFunction("decimal", delegate (float num)
+                {
+                    return num - Math.Truncate(num);
+                });
+
+                this.RegisterFunction("int", delegate (float num)
+                {
+                    return Math.Truncate(num);
+                });
 
                 #endregion Operators
             }
