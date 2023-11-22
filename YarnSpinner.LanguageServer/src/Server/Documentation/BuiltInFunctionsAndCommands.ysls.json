@@ -8,7 +8,7 @@
       "Parameters": [
         {
           "Name": "SecondsToWait",
-          "Type": "Number",
+          "Type": "number",
           "Documentation": "You can use integers (whole numbers), or decimals.",
           "IsParamsArray": false
         }
@@ -31,11 +31,12 @@
       "Parameters": [
         {
           "Name": "value",
-          "Type": "Any",
+          "Type": "any",
           "Documentation": "",
           "IsParamsArray": false
         }
-      ]
+      ],
+      "ReturnType": "string"
     },
     {
       "YarnName": "number",
@@ -45,11 +46,12 @@
       "Parameters": [
         {
           "Name": "value",
-          "Type": "Any",
+          "Type": "any",
           "Documentation": "",
           "IsParamsArray": false
         }
-      ]
+      ],
+      "ReturnType": "number"
     },
     {
       "YarnName": "format_invariant",
@@ -59,11 +61,12 @@
       "Parameters": [
         {
           "Name": "value",
-          "Type": "Number",
+          "Type": "number",
           "Documentation": "",
           "IsParamsArray": false
         }
-      ]
+      ],
+      "ReturnType": "number"
     },
     {
       "YarnName": "bool",
@@ -73,11 +76,12 @@
       "Parameters": [
         {
           "Name": "value",
-          "Type": "Any",
+          "Type": "any",
           "Documentation": "",
           "IsParamsArray": false
         }
-      ]
+      ],
+      "ReturnType": "bool"
     },
     {
       "YarnName": "visited",
@@ -88,7 +92,7 @@
       "Parameters": [
         {
           "Name": "node_name",
-          "Type": "String",
+          "Type": "string",
           "Documentation": "",
           "IsParamsArray": false
         }
@@ -103,7 +107,7 @@
       "Parameters": [
         {
           "Name": "node_name",
-          "Type": "String",
+          "Type": "string",
           "Documentation": "",
           "IsParamsArray": false
         }
@@ -114,7 +118,8 @@
       "DefinitionName": "random",
       "Documentation": "Returns a random number between 0 and 1 each time you call it.",
       "Signature": "random()",
-      "Parameters": []
+      "Parameters": [],
+      "ReturnType": "number"
     },
     {
       "YarnName": "random_range",
@@ -124,17 +129,18 @@
       "Parameters": [
         {
           "Name": "a",
-          "Type": "Number",
+          "Type": "number",
           "Documentation": "Lower bound (inclusive)",
           "IsParamsArray": false
         },
         {
           "Name": "b",
-          "Type": "Number",
+          "Type": "number",
           "Documentation": "Upper bound (inclusive)",
           "IsParamsArray": false
         }
-      ]
+      ],
+      "ReturnType": "number"
     },
     {
       "YarnName": "dice",
@@ -144,11 +150,12 @@
       "Parameters": [
         {
           "Name": "sides",
-          "Type": "Number",
+          "Type": "number",
           "Documentation": "",
           "IsParamsArray": false
         }
-      ]
+      ],
+      "ReturnType": "number"
     },
     {
       "YarnName": "round",
@@ -158,11 +165,12 @@
       "Parameters": [
         {
           "Name": "n",
-          "Type": "Number",
+          "Type": "number",
           "Documentation": "",
           "IsParamsArray": false
         }
-      ]
+      ],
+      "ReturnType": "number"
     },
     {
       "YarnName": "round_places",
@@ -172,17 +180,18 @@
       "Parameters": [
         {
           "Name": "n",
-          "Type": "Number",
+          "Type": "number",
           "Documentation": "",
           "IsParamsArray": false
         },
         {
           "Name": "places",
-          "Type": "Number",
+          "Type": "number",
           "Documentation": "",
           "IsParamsArray": false
         }
-      ]
+      ],
+      "ReturnType": "number"
     },
     {
       "YarnName": "floor",
@@ -192,11 +201,12 @@
       "Parameters": [
         {
           "Name": "n",
-          "Type": "Number",
+          "Type": "number",
           "Documentation": "",
           "IsParamsArray": false
         }
-      ]
+      ],
+      "ReturnType": "number"
     },
     {
       "YarnName": "ceil",
@@ -206,11 +216,12 @@
       "Parameters": [
         {
           "Name": "n",
-          "Type": "Number",
+          "Type": "number",
           "Documentation": "",
           "IsParamsArray": false
         }
-      ]
+      ],
+      "ReturnType": "number"
     },
     {
       "YarnName": "inc",
@@ -220,11 +231,12 @@
       "Parameters": [
         {
           "Name": "n",
-          "Type": "Number",
+          "Type": "number",
           "Documentation": "",
           "IsParamsArray": false
         }
-      ]
+      ],
+      "ReturnType": "number"
     },
     {
       "YarnName": "dec",
@@ -234,11 +246,12 @@
       "Parameters": [
         {
           "Name": "n",
-          "Type": "Number",
+          "Type": "number",
           "Documentation": "",
           "IsParamsArray": false
         }
-      ]
+      ],
+      "ReturnType": "number"
     },
     {
       "YarnName": "decimal",
@@ -248,11 +261,12 @@
       "Parameters": [
         {
           "Name": "n",
-          "Type": "Number",
+          "Type": "number",
           "Documentation": "",
           "IsParamsArray": false
         }
-      ]
+      ],
+      "ReturnType": "number"
     },
     {
       "YarnName": "int",
@@ -262,11 +276,12 @@
       "Parameters": [
         {
           "Name": "n",
-          "Type": "Number",
+          "Type": "number",
           "Documentation": "",
           "IsParamsArray": false
         }
-      ]
+      ],
+      "ReturnType": "number"
     }
   ]
 }
