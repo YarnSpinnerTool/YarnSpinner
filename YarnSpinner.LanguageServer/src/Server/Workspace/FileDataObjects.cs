@@ -43,6 +43,7 @@ namespace YarnLanguageServer
                 }).ToList(),
                 ReturnType = GetYarnType(this.ReturnType),
                 SourceFileUri = this.DefinitionFile,
+                Language = this.Language ?? "csharp",
                 SourceRange = this.DefinitionRange,
             };
             return action;
