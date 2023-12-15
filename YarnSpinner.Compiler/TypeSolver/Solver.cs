@@ -83,7 +83,15 @@ namespace TypeChecker
                 // At least one of the terms in the disjunction must be true in
                 // order to find a solution.
 
-                if (!(candidate is ConjunctionConstraint conjunction))
+                if (candidate is TrueConstraint) {
+                    // The term is true by definition.
+                    successfulSubstitutions.Add(subst);
+                }
+                else if (candidate is FalseConstraint) {
+                    // The term is false by definition.
+                    continue;
+                }
+                else if (!(candidate is ConjunctionConstraint conjunction))
                 {
                     throw new InvalidOperationException($"Internal error: Didn't expect to see a {candidate.GetType()}: {candidate.ToString()}");
                 }
@@ -105,6 +113,10 @@ namespace TypeChecker
                                 isFailed = true;
                                 break;
                             }
+                        }
+                        else if (subterm is TrueConstraint)
+                        {
+                            // True constraints don't affect our solution.
                         }
                         else if (subterm is FalseConstraint)
                         {
