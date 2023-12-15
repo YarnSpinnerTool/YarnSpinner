@@ -291,6 +291,19 @@ namespace YarnLanguageServer
             return IsNullOrWhitespace(new Range(start, end));
         }
 
+        /// <summary>
+        /// Gets a substring of this file's text, indicated by the given range.
+        /// </summary>
+        /// <param name="range">The range of this file to get.</param>
+        /// <returns>A substring of this file's text.</returns>
+        public string GetRange(Range range)
+        {
+            var startOffset = PositionHelper.GetOffset(this.LineStarts, range.Start);
+            var endOffset = PositionHelper.GetOffset(this.LineStarts, range.End);
+
+            return this.Text.Substring(startOffset, endOffset - startOffset);
+        }
+
         private YarnActionReference? GetFunctionInfo(Position position)
         {
             // Strategy is to look for rightmost start function parameter, and if there are none, check command parameters
