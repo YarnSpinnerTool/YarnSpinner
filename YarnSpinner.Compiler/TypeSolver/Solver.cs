@@ -83,11 +83,13 @@ namespace TypeChecker
                 // At least one of the terms in the disjunction must be true in
                 // order to find a solution.
 
-                if (candidate is TrueConstraint) {
+                if (candidate is TrueConstraint)
+                {
                     // The term is true by definition.
                     successfulSubstitutions.Add(subst);
                 }
-                else if (candidate is FalseConstraint) {
+                else if (candidate is FalseConstraint)
+                {
                     // The term is false by definition.
                     continue;
                 }
@@ -109,7 +111,8 @@ namespace TypeChecker
                             // substitution.
                             if (!TryUnify(equalityConstraint.Left, equalityConstraint.Right, subst))
                             {
-                                // Unification failed, so this solution doesn't work.
+                                // Unification failed, so this solution doesn't
+                                // work.
                                 isFailed = true;
                                 break;
                             }
@@ -134,17 +137,21 @@ namespace TypeChecker
 
                     if (!isFailed)
                     {
-                        // This solution works! Add this to the list of solutions.
+                        // This solution works! Add this to the list of
+                        // solutions.
                         successfulSubstitutions.Add(subst);
                     }
                 }
             }
 
-            if (successfulSubstitutions.Count == 1) {
+            if (successfulSubstitutions.Count == 1)
+            {
                 // We have precisely one successful solution! This must be it.
                 substitution = successfulSubstitutions.Single();
                 return true;
-            } else if (successfulSubstitutions.Count > 1) {
+            }
+            else if (successfulSubstitutions.Count > 1)
+            {
                 // Attempt to merge the solutions into the most specific one.
 
                 if (TryMergeSubsitutions(successfulSubstitutions, out substitution))
@@ -161,40 +168,56 @@ namespace TypeChecker
                     }
                     return false;
                 }
-            } else {
+            }
+            else
+            {
                 // Nothing we tried worked! 
                 return false;
             }
-            
+
         }
 
-        private static bool TryMergeSubsitutions(IEnumerable<Substitution> substitutions, out Substitution result) {
+        private static bool TryMergeSubsitutions(IEnumerable<Substitution> substitutions, out Substitution result)
+        {
             // Merge multiple dicts 
             var mergedDictionary = new Dictionary<TypeVariable, HashSet<IType>>();
 
-            foreach (var subst in substitutions) {
-                foreach (var kv in subst) {
+            foreach (var subst in substitutions)
+            {
+                foreach (var kv in subst)
+                {
                     if (!mergedDictionary.TryGetValue(kv.Key, out HashSet<IType> list))
                     {
                         list = new HashSet<IType>();
                         mergedDictionary[kv.Key] = list;
                     }
-                    
+
                     list.Add(kv.Value);
                 }
             }
 
             result = new Substitution();
 
-            foreach (var kv in mergedDictionary) {
-                if (kv.Value.Count == 0) {
-                    throw new InvalidOperationException($"Expected {kv.Key} to have at least substitution");
+            foreach (var kv in mergedDictionary)
+            {
+                if (kv.Value.Count == 0)
+                {
+                    // No substitutions for this type variable?? We don't expect
+                    // this to happen.
+                    throw new InvalidOperationException($"Expected {kv.Key} to have at least one substitution");
                 }
-                else if (kv.Value.Count == 1) {
+                else if (kv.Value.Count == 1)
+                {
+                    // Precisely one substitution for this type variable. Use
+                    // it.
                     result[kv.Key] = kv.Value.Single();
                 }
-                else {
-                    // Multiple possible solutions for this type variable.
+                else
+                {
+                    // Multiple possible solutions for this type variable. Pick
+                    // the most specific one. If there are multiple solutions
+                    // that are equally specific, then the type solution is
+                    // ambiguous and we fail.
                     var bestCandidates = kv.Value.GroupBy(candidate =>
                     {
                         if (candidate is TypeBase type)
@@ -207,10 +230,14 @@ namespace TypeChecker
                         }
                     }).OrderByDescending(group => group.Key).First();
 
-                    if (bestCandidates.Count() == 1) {
+                    if (bestCandidates.Count() == 1)
+                    {
                         result[kv.Key] = bestCandidates.Single();
-                    } else {
-                        // More than one option is the best candidate, so the solution is ambiguous!
+                    }
+                    else
+                    {
+                        // More than one option is the best candidate, so the
+                        // solution is ambiguous!
                         return false;
                     }
                 }
@@ -260,8 +287,8 @@ namespace TypeChecker
             {
                 // If they're both function applications, attempt to unify them.
 
-                // We cannot unify two function applications if they don't have the
-                // same number of parameters.
+                // We cannot unify two function applications if they don't have
+                // the same number of parameters.
                 if (xFunc.Parameters.Count() != yFunc.Parameters.Count())
                 {
                     return false;
@@ -286,8 +313,8 @@ namespace TypeChecker
 
         /// <summary>
         /// Unifies a variable with a term, by creating a substitution from the
-        /// variable to the value represented by the term, taking into account the
-        /// existing subsitution.
+        /// variable to the value represented by the term, taking into account
+        /// the existing subsitution.
         /// </summary>
         /// <param name="var">The variable to unify.</param>
         /// <param name="term">The term to unify.</param>
@@ -301,48 +328,50 @@ namespace TypeChecker
                 return TryUnify(subst[var], term, subst);
             }
 
-            // If term is a variable, and we have a unifier for it, then unify var
-            // with whatever we've already unified term with.
+            // If term is a variable, and we have a unifier for it, then unify
+            // var with whatever we've already unified term with.
             if (term is TypeVariable xVar && subst.ContainsKey(xVar))
             {
                 return TryUnify(var, subst[xVar], subst);
             }
 
-            // If term contains var in it, we cannot unify it, because that would
-            // result in a cycle.
+            // If term contains var in it, we cannot unify it, because that
+            // would result in a cycle.
             if (OccursCheck(var, term, subst))
             {
                 return false;
             }
 
-            // var is not yet in subst, and we can't simplify term. Extend 'subst'.
+            // var is not yet in subst, and we can't simplify term. Extend
+            // 'subst'.
             subst.Add(var, term);
 
             return true;
         }
 
         /// <summary>
-        /// Recursively determines if <paramref name="var"/> exists as a sub-term in
-        /// <paramref name="term"/>, taking into account any existing substitutions
-        /// in <paramref name="subst"/>.
+        /// Recursively determines if <paramref name="var"/> exists as a
+        /// sub-term in <paramref name="term"/>, taking into account any
+        /// existing substitutions in <paramref name="subst"/>.
         /// </summary>
         /// <remarks>
-        /// This function is used to prevent the creation of cyclical substitutions
-        /// (i.e. <c>X: Y, Y: X</c>).
+        /// This function is used to prevent the creation of cyclical
+        /// substitutions (i.e. <c>X: Y, Y: X</c>).
         /// </remarks>
         /// <param name="var">The variable to test for use inside <paramref
         /// name="term"/>.</param>
-        /// <param name="term">The term to test to see if <paramref name="var"/> is
-        /// used inside it.</param>
+        /// <param name="term">The term to test to see if <paramref name="var"/>
+        /// is used inside it.</param>
         /// <param name="subst">The current substitution.</param>
         /// <returns><see langword="true"/> if <paramref name="var"/> exists in
-        /// <paramref name="term"/>, <see langword="false"/> otherwise.</returns>
+        /// <paramref name="term"/>, <see langword="false"/>
+        /// otherwise.</returns>
         private static bool OccursCheck(TypeVariable var, IType term, Substitution subst)
         {
             // Does the variable 'var' occur anywhere inside 'term'?
 
-            // Variables in 'term' are looked up in 'subst' and the check is applied
-            // recursively.
+            // Variables in 'term' are looked up in 'subst' and the check is
+            // applied recursively.
 
             if (var.Equals(term))
             {
@@ -351,15 +380,15 @@ namespace TypeChecker
             }
             else if (term is TypeVariable termVar && subst.ContainsKey(termVar))
             {
-                // If term is itself a variable, and we already have a substitution
-                // for it, then check var against whatever we're substituting term
-                // for.
+                // If term is itself a variable, and we already have a
+                // substitution for it, then check var against whatever we're
+                // substituting term for.
                 return OccursCheck(var, subst[termVar], subst);
             }
             else if (term is FunctionType app)
             {
-                // If term is a function application, then check var against each of
-                // the function's arguments, and its return type.
+                // If term is a function application, then check var against
+                // each of the function's arguments, and its return type.
                 foreach (var arg in app.Parameters)
                 {
                     if (OccursCheck(var, arg, subst))
@@ -394,15 +423,16 @@ namespace TypeChecker
                 // Recursively expand any disjunctions in our children.
                 var expandedProducts = constraint.Children.Select(a => ExpandDisjunctions(a)).CartesianProduct().ToList();
 
-                // If this is itself a disjunction, the terms we're returning are the arguments itself.
+                // If this is itself a disjunction, the terms we're returning
+                // are the arguments itself.
                 if (constraint is DisjunctionConstraint)
                 {
                     return expandedProducts.SelectMany(a => a).Distinct();
                 }
                 else if (constraint is ConjunctionConstraint)
                 {
-                    // Otherwise, for every combination of our arguments, return a new
-                    // compound with that combination of arguments.
+                    // Otherwise, for every combination of our arguments, return
+                    // a new compound with that combination of arguments.
                     return expandedProducts.Select(product => new ConjunctionConstraint(product.SelectMany(p => ExpandConjunctions(p)).ToArray()));
                 }
                 else
