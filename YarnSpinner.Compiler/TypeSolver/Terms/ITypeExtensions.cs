@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Yarn;
@@ -92,13 +93,12 @@ namespace TypeChecker
                                 )
                 {
                     FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    SourceContext = typeConstraint.SourceContext,
                     SourceExpression = typeConstraint.SourceExpression,
                     SourceFileName = typeConstraint.SourceFileName,
                     SourceRange = typeConstraint.SourceRange
                 };
-            }
-
-            if (typeConstraint is TypeConvertibleConstraint typeConvertibleConstraint)
+            } else if (typeConstraint is TypeConvertibleConstraint typeConvertibleConstraint)
             {
                 return new TypeConvertibleConstraint(
                     typeConvertibleConstraint.FromType.Substitute(substitution),
@@ -106,34 +106,55 @@ namespace TypeChecker
                 )
                 {
                     FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    SourceContext = typeConstraint.SourceContext,
                     SourceExpression = typeConstraint.SourceExpression,
                     SourceFileName = typeConstraint.SourceFileName,
                     SourceRange = typeConstraint.SourceRange
                 };
-            }
-
-            if (typeConstraint is TypeHasNameConstraint hasNameConstraint)
+            } else if (typeConstraint is TypeHasNameConstraint hasNameConstraint)
             {
                 return new TypeHasNameConstraint(hasNameConstraint.Type.Substitute(substitution), hasNameConstraint.Name)
                 {
                     FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    SourceContext = typeConstraint.SourceContext,
                     SourceExpression = typeConstraint.SourceExpression,
                     SourceFileName = typeConstraint.SourceFileName,
                     SourceRange = typeConstraint.SourceRange
                 };
-            }
-
-            if (typeConstraint is TypeHasMemberConstraint hasMemberConstraint) {
+            } else if (typeConstraint is TypeHasMemberConstraint hasMemberConstraint) {
                 return new TypeHasMemberConstraint(hasMemberConstraint.Type.Substitute(substitution), hasMemberConstraint.MemberName)
                 {
                     FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    SourceContext = typeConstraint.SourceContext,
                     SourceExpression = typeConstraint.SourceExpression,
                     SourceFileName = typeConstraint.SourceFileName,
                     SourceRange = typeConstraint.SourceRange
                 };
+            } else if (typeConstraint is ConjunctionConstraint conjunctionConstraint) {
+                return new ConjunctionConstraint(
+                    conjunctionConstraint.Select(c => c.ApplySubstitution(substitution))
+                )
+                {
+                    FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    SourceContext = typeConstraint.SourceContext,
+                    SourceExpression = typeConstraint.SourceExpression,
+                    SourceFileName = typeConstraint.SourceFileName,
+                    SourceRange = typeConstraint.SourceRange
+                };
+            } else if (typeConstraint is DisjunctionConstraint disjunctionConstraint) {
+                return new DisjunctionConstraint(
+                    disjunctionConstraint.Select(c => c.ApplySubstitution(substitution))
+                )
+                {
+                    FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    SourceContext = typeConstraint.SourceContext,
+                    SourceExpression = typeConstraint.SourceExpression,
+                    SourceFileName = typeConstraint.SourceFileName,
+                    SourceRange = typeConstraint.SourceRange
+                };
+            } else {
+                throw new ArgumentException($"Failed to apply substitution to constraint {typeConstraint.ToString()}");
             }
-
-            return typeConstraint;
         }
 
         internal static bool Equals(this IType a, IType b) {
