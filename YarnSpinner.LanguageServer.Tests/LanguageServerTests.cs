@@ -21,7 +21,7 @@ namespace YarnLanguageServer.Tests
         {
         }
 
-        [Fact]
+        [Fact(Timeout = 2000)]
         public async Task Server_CanConnect()
         {
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
@@ -30,7 +30,7 @@ namespace YarnLanguageServer.Tests
             client.ClientSettings.Should().NotBeNull();
         }
 
-        [Fact]
+        [Fact(Timeout = 2000)]
         public async Task Server_OnEnteringACommand_ShouldReceiveCompletions()
         {
             // Set up the server
@@ -72,7 +72,7 @@ namespace YarnLanguageServer.Tests
             }
         }
 
-        [Fact]
+        [Fact(Timeout = 2000)]
         public async Task Server_OnOpeningDocument_SendsNodesChangedNotification()
         {
             Task<NodesChangedParams> getInitialNodesChanged = GetNodesChangedNotificationAsync(
@@ -99,7 +99,7 @@ namespace YarnLanguageServer.Tests
                 );
         }
 
-        [Fact]
+        [Fact(Timeout = 2000)]
         public async Task Server_OnChangingDocument_SendsNodesChangedNotification()
         {
             var getInitialNodesChanged = GetNodesChangedNotificationAsync((nodesResult) => 
@@ -129,7 +129,7 @@ namespace YarnLanguageServer.Tests
             nodeInfo.Nodes.Should().Contain(n => n.Title == "Node3", "because the new node we added has this title");
         }
 
-        [Fact]
+        [Fact(Timeout = 2000)]
         public async Task Server_OnInvalidChanges_ProducesSyntaxErrors()
         {
             var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
@@ -172,7 +172,7 @@ namespace YarnLanguageServer.Tests
             }
         }
 
-        [Fact]
+        [Fact(Timeout = 2000)]
         public async Task Server_OnJumpCommand_ShouldReceiveNodeNameCompletions()
         {
             // Set up the server
@@ -225,7 +225,7 @@ namespace YarnLanguageServer.Tests
             }
         }
 
-        [Fact]
+        [Fact(Timeout = 2000)]
         public void Workspace_BuiltInFunctions_MatchesDefaultLibrary()
         {
             // Given
