@@ -283,7 +283,7 @@ namespace YarnSpinner.Tests
         }
 
         [Theory, CombinatorialData]
-        public void TestOperatorsAreTypeChecked([CombinatorialValues(
+        public void TestNumericOperatorsAreTypeChecked([CombinatorialValues(
             "= 1 + 1",
             "= 1 / 1",
             "= 1 - 1",
@@ -295,19 +295,48 @@ namespace YarnSpinner.Tests
             "*= 1"
             )] string operation, bool declared)
         {
-
             string source = CreateTestNode($@"
                 {(declared ? "<<declare $var = 0>>" : "")}
                 <<set $var {operation}>>
             ");
+            TestOperationIsChecked(source, Types.Number);
+        }
 
+        [Theory, CombinatorialData]
+        public void TestLogicOperatorsAreTypeChecked([CombinatorialValues(
+            "= true and false",
+            "= true or false",
+            "= not true",
+            "= true xor false"
+            )] string operation, bool declared)
+        {
+            string source = CreateTestNode($@"
+                {(declared ? "<<declare $var = false>>" : "")}
+                <<set $var {operation}>>
+            ");
+            TestOperationIsChecked(source, Types.Boolean);
+        }
+
+        [Theory, CombinatorialData]
+        public void TestStringOperatorsAreTypeChecked([CombinatorialValues(
+            @"= ""string"" + ""otherstring"""
+            )] string operation, bool declared)
+        {
+            string source = CreateTestNode($@"
+                {(declared ? "<<declare $var = \"\">>" : "")}
+                <<set $var {operation}>>
+            ");
+            TestOperationIsChecked(source, Types.String);
+        }
+
+        private void TestOperationIsChecked(string source, IType expectedType)
+        {
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
             result.Declarations.Should().Contain(d => d.Name == "$var")
-                .Which.Type.Should().Be(Types.Number);
+                .Which.Type.Should().Be(expectedType);
 
             result.Diagnostics.Should().BeEmpty();
-
         }
 
         [Fact]
@@ -456,7 +485,9 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+            result.Diagnostics
+                .Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error)
+                .Which.Message.Should().MatchRegex(@"\$(.+?)'s type \(.+?\) must be .+?");
         }
 
         [Fact]
@@ -468,7 +499,9 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+            result.Diagnostics
+                .Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error)
+                .Which.Message.Should().Contain("jump statement's expression must be a String, not a Number");
         }
 
         [Fact]
@@ -877,8 +910,12 @@ namespace YarnSpinner.Tests
                 hasSolution.Should().BeTrue();
 
                 // T1 should resolve to Bool
-                solution.TryResolveTypeVariable(unknownType1, out var result).Should().BeTrue();
-                result.Should().Be(boolType);
+                solution.TryResolveTypeVariable(unknownType1, out var result1).Should().BeTrue();
+                result1.Should().Be(boolType);
+
+                // T2 should also resolve to Bool
+                solution.TryResolveTypeVariable(unknownType2, out var result2).Should().BeTrue();
+                result2.Should().Be(boolType);
             }
         }
 
