@@ -174,6 +174,7 @@ namespace Yarn.Compiler
         {
             TypeEqualityConstraint item = new TypeEqualityConstraint(a, b)
             {
+                SourceContext = context,
                 SourceFileName = this.sourceFileName,
                 SourceRange = GetRange(context),
                 FailureMessageProvider = failureMessageProvider,
@@ -203,6 +204,7 @@ namespace Yarn.Compiler
                 {
                     return new TypeEqualityConstraint(a, other)
                     {
+                        SourceContext = context,
                         SourceExpression = context.GetTextWithWhitespace(),
                         SourceFileName = this.sourceFileName,
                         SourceRange = GetRange(context),
@@ -211,6 +213,7 @@ namespace Yarn.Compiler
                 })
             )
             {
+                SourceContext = context,
                 SourceExpression = context.GetTextWithWhitespace(),
                 SourceFileName = this.sourceFileName,
                 SourceRange = GetRange(context),
@@ -225,6 +228,7 @@ namespace Yarn.Compiler
         {
             TypeConvertibleConstraint item = new TypeConvertibleConstraint(from, to);
             item.SourceFileName = this.sourceFileName;
+            item.SourceContext = context;
             item.SourceRange = GetRange(context);
             item.FailureMessageProvider = failureMessageProvider;
             item.SourceExpression = context.GetTextWithWhitespace();
@@ -236,6 +240,7 @@ namespace Yarn.Compiler
         private void AddHasEnumMemberConstraint(IType type, string memberName, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
         {
             TypeHasMemberConstraint item = new TypeHasMemberConstraint(type, memberName);
+            item.SourceContext = context;
             item.SourceFileName = this.sourceFileName;
             item.SourceRange = GetRange(context);
             item.FailureMessageProvider = failureMessageProvider;
@@ -247,6 +252,7 @@ namespace Yarn.Compiler
         private void AddHasNameConstraint(IType type, string name, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
         {
             TypeHasNameConstraint item = new TypeHasNameConstraint(type, name);
+            item.SourceContext = context;
             item.SourceFileName = this.sourceFileName;
             item.SourceRange = GetRange(context);
             item.FailureMessageProvider = failureMessageProvider;
