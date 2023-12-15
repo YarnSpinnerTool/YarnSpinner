@@ -73,19 +73,8 @@ public record NodeInfo
     internal Range TitleHeaderRange {
         get {
             var start = TextCoordinateConverter.GetPosition(this.File.LineStarts, TitleToken.StartIndex);
-            var end = TextCoordinateConverter.GetPosition(this.File.LineStarts, TitleToken.StopIndex);
+            var end = TextCoordinateConverter.GetPosition(this.File.LineStarts, TitleToken.StopIndex + 1);
             return new Range(start, end);
         }
     }
-
-    //     position: { x: number, y: number } = { x: 0, y: 0 }
-    //     destinations: string[] = []
-    //     tags: string[] = []
-    //     line: number = 0
-    //     bodyLine: number = 0
-
-    //     start: Position = { line: 0, character: 0 };
-    //     end: Position = { line: 0, character: 0 };
-    // }
-
 }

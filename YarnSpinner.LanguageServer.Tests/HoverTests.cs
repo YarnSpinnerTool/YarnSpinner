@@ -7,6 +7,8 @@ using Xunit.Abstractions;
 using System.Linq;
 
 using System.IO;
+using Microsoft.Extensions.DependencyInjection;
+using OmniSharp.Extensions.LanguageServer.Protocol;
 
 #pragma warning disable CS0162
 
@@ -87,6 +89,36 @@ namespace YarnLanguageServer.Tests
 
             hoverResult?.Contents.MarkedStrings?.ElementAt(2).Language.Should().Be("text");
             hoverResult?.Contents.MarkedStrings?.ElementAt(2).Value.Should().Contain("This is an example of an instance command with no parameters.");
+        }
+
+        [Fact]
+        public async Task Server_OnJumpToDefinition_GivesExpectedRange()
+        {
+            var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+            var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+
+            var definitionsResult = await client.RequestDefinition(new DefinitionParams
+            {
+                TextDocument = new TextDocumentIdentifier { Uri = filePath },
+                Position = new Position { Line = 10, Character = 9 },
+            });
+
+            var workspace = server.Services.GetService<Workspace>()!;
+            var project = workspace.GetProjectsForUri(filePath).Single();
+            var node = project.Nodes.Should()
+                .ContainSingle(n => n.Title == "Node2", "the project should contain a single node called Node2")
+                .Subject;
+
+            var definition = definitionsResult.Should().ContainSingle().Subject;
+            definition.IsLocation.Should().BeTrue("the definition request should match exactly one node");
+
+            DocumentUri expectedUri = DocumentUri.FromFileSystemPath(filePath);
+            var location = definition.Location!;
+            location.Uri.Should().Be(expectedUri, "the location should be aiming at the file that the node is contained in");
+
+            var file = project.Files.First(f => DocumentUri.From(f.Uri).Equals(expectedUri));
+            var text = file.GetRange(location.Range);
+            text.Should().Be("Node2", "the range of the location should match the node's title exactly");
         }
     }
 }
