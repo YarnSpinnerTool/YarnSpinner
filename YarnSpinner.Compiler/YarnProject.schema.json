@@ -7,7 +7,7 @@
             "additionalProperties": false,
             "properties": {
                 "projectFileVersion": {
-                    "type": "integer",
+                    "type": "integer"
                 },
                 "sourceFiles": {
                     "type": "array",
