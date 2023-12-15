@@ -45,6 +45,7 @@ namespace YarnLanguageServer.Tests
 
             completionResults.Should().NotContain(i => i.Kind == CompletionItemKind.Snippet, "we are in the middle of a command and inserting a snippet is not appropriate");
 
+            completionResults.Should().NotBeEmpty();
             completionResults.Should().AllSatisfy(item =>
             {
                 item.TextEdit!.TextEdit!.Range.Start.Should().BeEquivalentTo(startOfCommand, "the completion item's range should be the end of the << character");
@@ -82,6 +83,7 @@ namespace YarnLanguageServer.Tests
             // Then
             completionResults.Should().Contain(item => item.Kind == CompletionItemKind.Function, "the completion list should contain functions");
 
+            completionResults.Should().NotBeEmpty();
             completionResults.Should().AllSatisfy(result =>
             {
                 result.TextEdit!.TextEdit!.Range.Start.Should().BeEquivalentTo(startOfCommand, "the completion item's edit should start at the end of the << token");
@@ -113,6 +115,7 @@ namespace YarnLanguageServer.Tests
             });
 
             // Then
+            completionResults.Should().NotBeEmpty();
             completionResults.Should().AllSatisfy(item =>
             {
                 item.Kind.Should().Be(CompletionItemKind.Method, "node names are expected when completing a jump command");
@@ -149,6 +152,7 @@ namespace YarnLanguageServer.Tests
             });
 
             // Then
+            completionResults.Should().NotBeEmpty();
             completionResults.Should().AllSatisfy(item =>
             {
                 item.Kind.Should().Be(CompletionItemKind.Method, "node names are expected when completing a jump command");

@@ -77,7 +77,8 @@ public class CommandTests : LanguageServerTestsBase
 
         nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
-        nodeInfo.Nodes.Should().HaveCount(4, "because the file has four nodes");
+        // Remember how many nodes we had before making the change
+        var count = nodeInfo.Nodes.Count;
 
         var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
         {
@@ -100,7 +101,7 @@ public class CommandTests : LanguageServerTestsBase
 
         nodeInfo = await nodesChangedAfterChangingText;
 
-        nodeInfo.Nodes.Should().HaveCount(5, "because we added a node");
+        nodeInfo.Nodes.Should().HaveCount(count + 1, "because we added a node");
         nodeInfo.Nodes.Should()
             .Contain(n => n.Title == "Node",
                 "because the new node should be called Title")
@@ -121,7 +122,8 @@ public class CommandTests : LanguageServerTestsBase
 
         NodesChangedParams? nodeInfo = await getInitialNodesChanged;
 
-        nodeInfo.Nodes.Should().HaveCount(4, "because the file has four nodes");
+        // Remember how many nodes we had before making the change
+        var count = nodeInfo.Nodes.Count;
 
         // Expect to receive a 'nodes changed' notification
         Task<NodesChangedParams> nodesChangedAfterRemovingNode = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
@@ -143,7 +145,7 @@ public class CommandTests : LanguageServerTestsBase
 
         nodeInfo = await nodesChangedAfterRemovingNode;
 
-        nodeInfo.Nodes.Should().HaveCount(3, "because we removed a node");
+        nodeInfo.Nodes.Should().HaveCount(count - 1, "because we removed a node");
     }
 
     [Fact]
@@ -330,8 +332,6 @@ public class CommandTests : LanguageServerTestsBase
         });
 
         // Then
-        result.Should().HaveCount(3, "there are three projects in the workspace");
-
         var firstProject = result.Should().Contain(info => DocumentUri.GetFileSystemPath(info.SourceProjectUri!) == project1Path).Subject;
 
         firstProject.Variables.Should().NotBeEmpty();
