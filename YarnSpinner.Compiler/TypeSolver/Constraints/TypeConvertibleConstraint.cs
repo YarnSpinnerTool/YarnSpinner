@@ -199,6 +199,10 @@ namespace TypeChecker
         {
             get
             {
+                // A TypeConvertibleConstraint is a tautology when:
+                // - From == To
+                // - From and To are both concrete types, and From is known to
+                //   be convertible to To.
                 if (ITypeExtensions.Equals(FromType, ToType)) {
                     return true;
                 } else if (FromType is TypeBase fromLiteral && ToType is TypeBase toLiteral && fromLiteral.IsConvertibleTo(toLiteral)) {

@@ -47,11 +47,15 @@ namespace TypeChecker
 
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<Yarn.TypeBase> knownTypes)
         {
-            // There are two ways to simplify a disjunction:
+            // There are three ways to simplify a disjunction:
             //
-            // 1. If we have only a single term, simplify to that term.
-            // 2. Otherwise, discard any redundant terms.
-            if (this.Constraints.Count() == 1)
+            // 1. If we represent a tautology, simplify to 'true'.
+            // 2. If we have only a single term, simplify to that term.
+            // 3. Otherwise, discard any redundant terms.
+            if (this.IsTautological) {
+                return new TrueConstraint(this);
+            }
+            else if (this.Constraints.Count() == 1)
             {
                 return this.Constraints.Single().Simplify(subst, knownTypes);
             }
@@ -62,6 +66,7 @@ namespace TypeChecker
                                     .Select(c => c.Simplify(subst, knownTypes))
                                     .Where(t => t.GetType() != typeof(TrueConstraint)));
                 disjunct.FailureMessageProvider = this.FailureMessageProvider;
+                disjunct.SourceContext = this.SourceContext;
                 disjunct.SourceFileName = this.SourceFileName;
                 disjunct.SourceRange = this.SourceRange;
                 disjunct.SourceExpression = this.SourceExpression;
@@ -73,6 +78,8 @@ namespace TypeChecker
 
         public override IEnumerable<TypeConstraint> Children => Constraints;
 
-        public override bool IsTautological => Children.Any() && Children.All(c => c.IsTautological);
+        // A disjunction is tautological if any of its children are tautological
+        // (that is, OR(true, X) == true)
+        public override bool IsTautological => Children.Any(c => c.IsTautological);
     }
 }

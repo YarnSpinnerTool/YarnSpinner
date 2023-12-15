@@ -50,6 +50,16 @@ namespace TypeChecker
 
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<Yarn.TypeBase> knownTypes)
         {
+            if (this.IsTautological) {
+                // If we are a tautology, simplify to true
+                return new TrueConstraint(this);
+            } else {
+                if (this.Children.Any(c => c is FalseConstraint)) {
+                    // If any of our children are known to be false, then this
+                    // constraint simplifies to false
+                    return new FalseConstraint(this);
+                }
+            }
             var conjunctionConstraint = new ConjunctionConstraint(
                 Constraints.Distinct()
                            .Select(c => c.Simplify(subst, knownTypes))
@@ -57,6 +67,7 @@ namespace TypeChecker
                            );
 
             conjunctionConstraint.SourceExpression = this.SourceExpression;
+            conjunctionConstraint.SourceContext = this.SourceContext;
             conjunctionConstraint.SourceFileName = this.SourceFileName;
             conjunctionConstraint.SourceRange = this.SourceRange;
             return conjunctionConstraint;
@@ -66,6 +77,8 @@ namespace TypeChecker
 
         public override IEnumerable<TypeConstraint> Children => Constraints;
 
+        // A conjunction is tautological if it it has children and they are all
+        // tautological
         public override bool IsTautological => Children.Any() && Children.All(c => c.IsTautological);
     }
 }
