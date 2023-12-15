@@ -1,5 +1,6 @@
 #define DISALLOW_NULL_EQUATION_TERMS
 
+using Antlr4.Runtime;
 using System.Collections.Generic;
 
 namespace TypeChecker
@@ -47,6 +48,8 @@ namespace TypeChecker
         public string SourceFileName { get; set; }
 
         public string SourceExpression { get; internal set; }
+
+        public ParserRuleContext SourceContext { get; internal set; }
 
         public virtual IEnumerable<string> GetFailureMessages(Substitution subst) => new[] { FailureMessageProvider?.Invoke(subst) ?? this.ToString() };
 
