@@ -21,7 +21,11 @@ namespace Yarn.Compiler
     /// </summary>
     public static class Compiler
     {
-       
+        /// <summary>
+        /// The maximum amount of time the type solver will spend attempting to
+        /// complete the type solution, in seconds.
+        /// </summary>
+        const int TypeSolverTimeLimit = 10;
 
         /// <summary>
         /// Compiles Yarn code, as specified by a compilation job.
@@ -160,8 +164,19 @@ namespace Yarn.Compiler
                 // constraints from the set of possible failure causes, we'll
                 // reduce the chance of a spurious error message.)
 
+                var watchdog = System.Diagnostics.Stopwatch.StartNew();
+
                 bool anySucceeded;
                 do {
+                    if (watchdog.ElapsedMilliseconds > TypeSolverTimeLimit * 1000) {
+                        // We've taken too long to solve. Create error
+                        // diagnostics for the affected expressions.
+                        foreach (var constraint in failingConstraints) {
+                            diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceContext, $"Expression failed to resolve in a reasonable time ({TypeSolverTimeLimit}). Try simplifying this expression."));
+                        }
+                        break;
+                    }
+
                     // Repeatedly attempt to solve each constraint individually.
                     // After each attempt, attempt to eliminate whatever
                     // constraints we can. Stop when we either have no more
@@ -182,7 +197,8 @@ namespace Yarn.Compiler
                         diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceRange, failureMessage));
                     }
                 }
-            }
+                watchdog.Stop();
+            }            
 
             // determining the nodes we need to track visits on
             // this needs to be done before we finish up with declarations
