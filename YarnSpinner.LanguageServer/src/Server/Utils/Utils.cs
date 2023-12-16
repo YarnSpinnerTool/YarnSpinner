@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+﻿using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
 namespace YarnLanguageServer
 {
@@ -31,16 +30,12 @@ namespace YarnLanguageServer
             Title = "editor.action.triggerParameterHints",
         };
 
-        [return: NotNullIfNotNull(nameof(@default))]
-        [return: NotNullIfNotNull(nameof(str))]
-        public static string? OrDefault(this string? str,  string? @default = default)
+        public static string OrDefault(this string str, string @default = default)
         {
             return string.IsNullOrEmpty(str) ? @default : str;
         }
 
-        [return: NotNullIfNotNull(nameof(@default))]
-        [return: NotNullIfNotNull(nameof(str))]
-        public static object? OrDefault(this string? str, object? @default)
+        public static object OrDefault(this string str, object @default)
         {
             return string.IsNullOrEmpty(str) ? @default : str;
         }
