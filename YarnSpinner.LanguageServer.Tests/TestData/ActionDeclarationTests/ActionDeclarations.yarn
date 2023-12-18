@@ -1,0 +1,21 @@
+title: ActionDeclarations
+---
+{string(42)}
+{number("123")}
+{bool(1)}
+{format_invariant(123.45)}
+{visited("ActionDeclarations")}
+{visited_count("ActionDeclarations")}
+{random()}
+{random_range(1,5)}
+{dice(6)}
+{round(4.5)}
+{round_places(5.2, 1)}
+{floor(2.3)}
+{ceil(2.3)}
+{inc(1.1)}
+{dec(1.2)}
+{decimal(2.3)}
+{int(2.3)}
+
+===

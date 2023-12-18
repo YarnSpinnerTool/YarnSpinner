@@ -10,14 +10,14 @@
         "Commands": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Action"
+            "$ref": "#/definitions/Command"
           },
           "description": "List of commands to make available in Yarn scripts"
         },
         "Functions": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Action"
+            "$ref": "#/definitions/Function"
           },
           "description": "List of functions to make available in Yarn scripts"
         }
@@ -27,14 +27,58 @@
     "Type": {
       "description": "A Yarn type.",
       "type": "string",
-          "anyOf": [
-            {"pattern": "string"},
-            {"pattern": "number"},
-            {"pattern": "bool"},
-            {"pattern": "any"}
-          ]
+      "enum": [
+        "number",
+        "string",
+        "bool",
+        "any"
+      ]
     },
-    "Action": {
+    "Command": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "YarnName": {
+          "type": "string",
+          "description": "Name of this method in Yarn Spinner scripts"
+        },
+        "DefinitionName": {
+          "type": "string",
+          "description": "Name of this method in code"
+        },
+        "FileName": {
+          "type": "string",
+          "description": "Name of the file this method is defined in.\nPrimarily used when 'Deep Command Lookup' is disabled to make sure the source file is still found (doesn't need to be the full path, even 'foo.cs' is helpful)."
+        },
+        "Language": {
+          "type": "string",
+          "description": "Language id of the method definition.\nMust be 'csharp' to override/merge with methods found in C# files.",
+          "default": "text",
+          "examples": [ "csharp", "gml", "wren" ]
+        },
+        "Documentation": {
+          "type": "string",
+          "description": "Description that shows up in suggestions and hover tooltips."
+        },
+        "Signature": {
+          "type": "string",
+          "description": "Method signature of the method definition. Good way to show parameters, especially if they have default values or are params[]."
+        },
+        "Parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Parameter"
+          },
+          "description": "Method parameters.\nNote that if you are overriding information for a method found via parsing code, setting this in json will completely override that parameter information."
+        }
+      },
+      "required": [
+        "YarnName",
+        "Parameters"
+      ],
+      "title": "Command"
+    },
+    "Function": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -76,8 +120,9 @@
         }
       },
       "required": [
-        "Language",
-        "YarnName"
+        "YarnName",
+        "ReturnType",
+        "Parameters"
       ],
       "title": "Command"
     },

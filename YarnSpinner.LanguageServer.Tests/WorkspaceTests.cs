@@ -79,6 +79,39 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
+        public void ActionsDefFile_ParsesCorrectly()
+        {
+            // Given
+            var path = Path.Combine(NoProjectPath, "Commands.ysls.json");
+
+            // When
+            var json = new JsonConfigFile(File.ReadAllText(path), false);
+
+            // Then
+            json.GetActions().Should().Contain(n => n.YarnName == "custom_command" && n.Type == ActionType.Command);
+            json.GetActions().Should().Contain(n => n.YarnName == "custom_function" && n.Type == ActionType.Function);
+        }
+
+        [Fact]
+        public void Workspaces_WithDefsJsonAndNoProject_FindsCommands()
+        {
+            // Given
+            var workspace = new Workspace();
+            workspace.Root = NoProjectPath;
+            
+            // When
+            workspace.Initialize();
+        
+            // Then
+            var project = workspace.Projects.Should().ContainSingle().Subject;
+            project.Commands.Should().Contain(c => c.YarnName == "custom_command");
+            project.Functions.Should().Contain(f => f.YarnName == "custom_function");
+
+            project.Diagnostics.Should().NotContain(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Warning);
+            project.Diagnostics.Should().NotContain(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error);
+        }
+
+        [Fact]
         public void Workspaces_WithDefinitionsFile_UseDefinitions()
         {
             // Given

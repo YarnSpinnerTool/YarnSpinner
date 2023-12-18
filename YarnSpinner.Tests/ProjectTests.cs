@@ -75,6 +75,71 @@ custom: yes
         }
 
         [Fact]
+        public void TestLineCollisionTagging()
+        {
+            var paths = new List<string>()
+            {
+                Path.Combine(TestDataPath, "TestCases", "Duplicates", "lipsum1.yarn"),
+                Path.Combine(TestDataPath, "TestCases", "Duplicates", "lipsum2.yarn"),
+                Path.Combine(TestDataPath, "TestCases", "Duplicates", "lipsum3.yarn"),
+            };
+
+            // compiling the untagged but heavily duped files
+            // there should be no errors and no tags
+            var compilationJob = CompilationJob.CreateFromFiles(paths);
+            compilationJob.CompilationType = CompilationJob.Type.StringsOnly;
+            var result = Compiler.Compile(compilationJob);
+
+            result.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error).Should().Be(false);
+
+            var totalUntaggedLines = result.StringTable.Where(i => i.Value.isImplicitTag).Count();
+            var totalLines = result.StringTable.Count();
+            // at this stage these should be the same
+            totalUntaggedLines.Should().Be(totalLines);
+
+            var existingTags = result.StringTable.Where(i => i.Value.isImplicitTag == false).Select(i => i.Key).ToList();
+            existingTags.Should().BeEmpty();
+
+            // now we tag every line
+            // combine that into a new compilation job
+            // and see if there are any dupes
+            var taggedLineContent = new List<string>();
+            foreach (var path in paths)
+            {
+                var content = File.ReadAllText(path);
+                
+                // this is the older failing version
+                // var taggedVersion = Utility.AddTagsToLines(content, existingTags);
+                
+                var tagged = Utility.TagLines(content, existingTags);
+                var taggedVersion = tagged.Item1;
+
+                // if it is null it means we have an error
+                taggedVersion.Should().NotBeNull();
+                taggedLineContent.Add(taggedVersion);
+
+                // this is the fix
+                existingTags = tagged.Item2 as List<string>;
+            }
+            // this is a bit inelegant but I don't want to write to disk
+            var taggedContent = string.Join("\n",taggedLineContent);
+
+            compilationJob = CompilationJob.CreateFromString("tagged", taggedContent);
+            result = Compiler.Compile(compilationJob);
+            
+            // we should have no errors
+            result.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error).Should().Be(false);
+
+            // we should have as many lines as we did originally
+            var taggedLinesCount = result.StringTable.Count();
+            taggedLinesCount.Should().Be(totalLines);
+
+            // we should have no untagged lines
+            result.StringTable.Where(l => l.Value.isImplicitTag).Should().BeEmpty();
+        }
+
+
+        [Fact]
         public void TestLineTagsAreAdded() {
             // Arrange
             var originalText = @"title: Program

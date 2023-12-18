@@ -10,10 +10,10 @@ namespace YarnLanguageServer
     public struct RegisteredDefinition
     {
         public string YarnName;
-        public Uri DefinitionFile;
-        public Range DefinitionRange;
-        public string DefinitionName; // Does this need to be qualified? Do we even need this?
-        public IEnumerable<ParameterInfo> Parameters;
+        public Uri? DefinitionFile;
+        public Range? DefinitionRange;
+        public string? DefinitionName; // Does this need to be qualified? Do we even need this?
+        public IEnumerable<ParameterInfo>? Parameters;
         public int? MinParameterCount;
         public int? MaxParameterCount;
         public bool IsCommand;
@@ -29,7 +29,7 @@ namespace YarnLanguageServer
             {
                 YarnName = this.YarnName,
                 Documentation = this.Documentation,
-                Parameters = this.Parameters.Select(p =>
+                Parameters = (this.Parameters ?? Array.Empty<ParameterInfo>()).Select(p =>
                 {
                     return new Action.ParameterInfo
                     {
@@ -43,6 +43,7 @@ namespace YarnLanguageServer
                 }).ToList(),
                 ReturnType = GetYarnType(this.ReturnType),
                 SourceFileUri = this.DefinitionFile,
+                Language = this.Language ?? "csharp",
                 SourceRange = this.DefinitionRange,
             };
             return action;

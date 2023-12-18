@@ -144,7 +144,8 @@ namespace Yarn.Compiler
         /// collection.</param>
         /// <returns>The modified source code, with line tags
         /// added.</returns>
-        public static string AddTagsToLines(string contents, ICollection<string>? existingLineTags = null)
+        [Obsolete("This method doesn't return the new tags, just the modified text which can cause issues with multiple files. Please use TagLines instead")]
+        public static string AddTagsToLines(string contents, ICollection<string> existingLineTags = null)
         {
             // First, get the parse tree for this source code.
             var (parseSource, diagnostics) = ParseSource(contents);
@@ -155,6 +156,62 @@ namespace Yarn.Compiler
                 // We encountered a parse error. Bail here; we aren't confident
                 // in our ability to correctly insert a line tag.
                 return contents;
+            }
+
+            // Make sure we have a list of line tags to work with.
+            if (existingLineTags == null)
+            {
+                existingLineTags = new List<string>();
+            }
+
+            // Create the line listener, which will produce TextReplacements for
+            // each new line tag.
+            var untaggedLineListener = new UntaggedLineListener(new List<string>(existingLineTags), parseSource.Tokens);
+
+            // Walk the tree with this listener, and generate text replacements
+            // containing line tags.
+            var walker = new Antlr4.Runtime.Tree.ParseTreeWalker();
+            walker.Walk(untaggedLineListener, parseSource.Tree);
+
+            // Apply these text replacements to the original source and return
+            // it.
+            return untaggedLineListener.RewrittenNodes().Item1;
+        }
+
+        /// <summary>
+        /// Given Yarn source code, adds line tags to the ends of all lines
+        /// that need one and do not already have one.
+        /// </summary>
+        /// <remarks><para>
+        /// This method ensures that it does not generate line
+        /// tags that are already present in the file, or present in the
+        /// <paramref name="existingLineTags"/> collection.
+        /// </para>
+        /// <para>
+        /// Line tags are added to any line of source code that contains
+        /// user-visible text: lines, options, and shortcut options.
+        /// </para>
+        /// </remarks>
+        /// <param name="contents">The source code to add line tags
+        /// to.</param>
+        /// <param name="existingLineTags">The collection of line tags
+        /// already exist elsewhere in the source code; the newly added
+        /// line tags will not be duplicates of any in this
+        /// collection.</param>
+        /// <returns>Tuple of the modified source code, with line tags
+        /// added and the list of new line tags generated.
+        /// </returns>
+        public static (string, IList<string>) TagLines(string contents, ICollection<string> existingLineTags = null)
+        {
+            // First, get the parse tree for this source code.
+            var (parseSource, diagnostics) = ParseSource(contents);
+
+            // Were there any error-level diagnostics?
+            if (diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
+            {
+                // We encountered a parse error. Bail here; we aren't confident
+                // in our ability to correctly insert a line tag.
+                return (null, null);
             }
 
             // Make sure we have a list of line tags to work with.
@@ -342,9 +399,9 @@ namespace Yarn.Compiler
                 return -1;
             }
 
-            public string RewrittenNodes()
+            public (string, IList<string>) RewrittenNodes()
             {
-                return this.rewriter.GetText();
+                return (this.rewriter.GetText(), existingStrings);
             }
         }
 

@@ -850,10 +850,6 @@ namespace Yarn
         /// <summary>
         /// Immediately stops the <see cref="Dialogue"/>.
         /// </summary>
-        /// <remarks>
-        /// The <see cref="DialogueCompleteHandler"/> will not be called if the
-        /// dialogue is ended by calling <see cref="Stop"/>.
-        /// </remarks>
         public void Stop()
         {
             if (this.vm != null)
@@ -1216,7 +1212,7 @@ namespace Yarn
             /// The internal random number generator used by functions like
             /// 'random' and 'dice'.
             /// </summary>
-            private static readonly Random Random = new Random();
+            private static readonly System.Random Random = new Random();
 
             public StandardLibrary()
             {
@@ -1231,6 +1227,11 @@ namespace Yarn
                 this.RegisterFunction("number", delegate(object v)
                 {
                     return Convert.ToSingle(v);
+                });
+
+                this.RegisterFunction("format_invariant", delegate (float v)
+                {
+                    return v.ToString(System.Globalization.CultureInfo.InvariantCulture);
                 });
 
                 this.RegisterFunction("bool", delegate(object v)
@@ -1312,6 +1313,81 @@ namespace Yarn
 
                 this.RegisterFunction<float, float>("decimal", Decimal);
                 this.RegisterFunction<float, int>("int", Integer);
+
+                #pragma warning disable CA5394 // System.Random is not cryptographically secure
+
+                // Register the built-in functions.
+                this.RegisterFunction("random", delegate ()
+                {
+                    return Random.NextDouble();
+                });
+
+                this.RegisterFunction("random_range", delegate (float minInclusive, float maxInclusive)
+                {
+                    var t = Random.NextDouble();
+                    return minInclusive + t * (maxInclusive - minInclusive);
+                });
+
+                this.RegisterFunction("dice", delegate (int sides)
+                {
+                    return Random.Next(1, sides + 1);
+                });
+
+                #pragma warning restore CA5394
+
+                this.RegisterFunction("round", delegate (float num)
+                {
+                    return (float)Math.Round(num, 0);
+                });
+
+                this.RegisterFunction("round_places", delegate (float num, int places)
+                {
+                    return (float)Math.Round(num, places);
+                });
+
+                this.RegisterFunction("floor", delegate (float num)
+                {
+                    return (float)(int)Math.Floor(num);
+                });
+
+                this.RegisterFunction("ceil", delegate (float num)
+                {
+                    return (float)(int)Math.Ceiling(num);
+                });
+
+                this.RegisterFunction("inc", delegate (float num)
+                {
+                    if ((num - Math.Truncate(num)) != 0)
+                    {
+                        return Math.Ceiling(num);
+                    }
+                    else
+                    {
+                        return (int)(num + 1);
+                    }
+                });
+
+                this.RegisterFunction("dec", delegate (float num)
+                {
+                    if ((num - Math.Truncate(num)) != 0)
+                    {
+                        return Math.Floor(num);
+                    }
+                    else
+                    {
+                        return (int)(num - 1);
+                    }
+                });
+
+                this.RegisterFunction("decimal", delegate (float num)
+                {
+                    return num - Math.Truncate(num);
+                });
+
+                this.RegisterFunction("int", delegate (float num)
+                {
+                    return Math.Truncate(num);
+                });
 
                 #endregion Operators
             }

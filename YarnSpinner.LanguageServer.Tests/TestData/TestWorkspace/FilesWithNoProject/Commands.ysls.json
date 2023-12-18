@@ -1,0 +1,21 @@
+{
+    "Commands": [
+        {
+            "YarnName": "custom_command",
+            "Language": "csharp",
+            "Parameters": [
+                {
+                    "Name": "param1",
+                    "Type": "string"
+                }
+            ]
+        }
+    ],
+    "Functions": [
+        {
+            "YarnName": "custom_function",
+            "ReturnType": "string",
+            "Language": "csharp"
+        }
+    ]
+}

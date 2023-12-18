@@ -29,4 +29,27 @@ title: Start
 
 // Commands with colons
 <<hide Collision:GermOnPorch>>
+
+// command with replacements
+<<show {1}>>
+
+// command with variable replacement
+<<declare $replacement = "1">>
+<<show {$replacement}>>
+
+// command with format trickery
+// this is to test #362 doesn't come back
+// this USED to boil down to an empty string
+<<{0}{""}>>
+
+// command with variable replacement and format trickery
+// essentially combining the previous two
+// this previously would have become <<2 2>>. now is <<2 {0}>> which is weird but allowed
+<<set $replacement = "{0}">>
+<<{2} {$replacement}>>
+
+// command with variable replacement in the middle of another element
+// another weird but allowed situation
+<<set $replacement = "ular old co">>
+<<reg{$replacement}mmand>>
 ===

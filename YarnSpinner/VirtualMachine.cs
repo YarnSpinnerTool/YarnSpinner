@@ -327,26 +327,7 @@ namespace Yarn
             {
                 // If we have a prepare-for-lines handler, figure out what
                 // lines we anticipate running
-
-                // Create a list; we will never have more lines and options
-                // than total instructions, so that's a decent capacity for
-                // the list (TODO: maybe this list could be reused to save
-                // on allocations?)
-                var stringIDs = new List<string>(this.currentNode.Instructions.Count);
-
-                // Loop over every instruction and find the ones that run a
-                // line or add an option; these are the two instructions
-                // that will signal a line can appear to the player
-                foreach (var instruction in this.currentNode.Instructions)
-                {
-                    if (instruction.Opcode == OpCode.RunLine || instruction.Opcode == OpCode.AddOption)
-                    {
-                        // Both RunLine and AddOption have the string ID
-                        // they want to show as their first operand, so
-                        // store that
-                        stringIDs.Add(instruction.Operands[0].StringValue);
-                    }
-                }
+                var stringIDs = Program.LineIDsForNode(nodeName);
 
                 // Deliver the string IDs
                 this.PrepareForLinesHandler(stringIDs);
@@ -553,17 +534,26 @@ namespace Yarn
                             // ints itself. something to think about.
                             var expressionCount = (int)i.Operands[1].FloatValue;
 
-                            var strings = new string[expressionCount];
-
-                            // Get the values from the stack, and
-                            // substitute them into the command text
+                            // we create a list of replacements, these are: (startIndex, length, newVal) tuples
+                            // where the startIndex and length come directly from the command itself,
+                            // and the new value comes from the stack
+                            var replacements = new List<(int, int, string)>();
                             for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--)
                             {
                                 var substitution = state.PopValue().ConvertTo<string>();
 
-                                commandText = commandText.Replace("{" + expressionIndex + "}", substitution);
+                                var marker = "{" + expressionIndex + "}";
+                                var replacementIndex = commandText.LastIndexOf(marker, StringComparison.Ordinal);
+                                if (replacementIndex != -1)
+                                {
+                                    replacements.Add((replacementIndex, marker.Length, substitution));
+                                }
                             }
-
+                            // now we make those changes on the command string
+                            foreach (var replacement in replacements)
+                            {
+                                commandText = commandText.Remove(replacement.Item1, replacement.Item2).Insert(replacement.Item1, replacement.Item3);
+                            }
                         }
 
                         CurrentExecutionState = ExecutionState.DeliveringContent;

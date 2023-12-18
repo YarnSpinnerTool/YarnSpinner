@@ -88,16 +88,67 @@ Smart variables can be accessed anywhere a regular variable would be used:
   PieMaker: Certainly!
 <<endif>>
 ```
+
 ### Changed
 
-- Fixed a bug in the language server that would cause it to crash when opening a workspace with no root (for example, creating a new window in Visual Studio Code and then creating a Yarn file, without ever saving anything to disk.)
-- Language Server: Fixed an issue where workspaces where no Yarn Projects exist on disk would fail to attach Yarn files to the workspace's implicit Yarn Project.
-- Language Server: Improved the code-completion behaviour to provide better filtering when offering command completions, in both jump commands and custom commands.
-- Language Server: Fixed character names being incorrectly recognised when the colon is not part of the line
+- Updated the schema for .ysls.json files:
+  - Commands may no longer specify a return type.
+  - Functions must now specify a return type.
+  - Changed the definition of 'types' to be an enum of "string", "number", "bool", or "any".
+    - Enums in JSON schema are type sensitive, so a warning will be issued for types that have capital letters. To fix these warnings, change your type names in your `.ysls.json` file to be lowercase. (These warnings have no impact on your Yarn script editing experience or runtime behaviour.)
+
+### Removed
+
+## [2.4.0] 2023-11-14
+
+### Added
+
+- Added a new method, `Utility.TagLines`, which will eventually replace the now deprecated `AddTagsToLines` method.
+- Added a new method, `Program.LineIDsForNode`, which allows you to get the list of all line IDs in a node.
+- Added a new function, `format_invariant`, which formats a number as a string using the invariant culture (rather than the end-user's current culture.)
+  - Commands expect all numbers to be formatted using the invariant (i.e. US English) style, with `.` as a decimal point.
+  - If a number is inserted into a command, it will by default be formatted for the user's current culture. If that culture formats numbers differently, it can cause problems.
+  - `format_invariant` will always format a value in the invariant culture, making it useful for situations where a number needs to be embedded in a command (which expects all numbers to be ), and not shown to the user.
+  - You can use `format_invariant` like this:
+    ```
+    <<set $gold_per_turn = 4.51>>
+
+    // de-DE: 'give_gold 4,51'
+    // en-US: 'give_gold 4.51'
+    <<give_gold {$gold_per_turn}>>
+
+    // de-DE: 'give_gold 4.51'
+    // en-US: 'give_gold 4.51'
+    <<give_gold {format_invariant($gold_per_turn)}>>
+    ```
+
+### Changed
+
 - Moved Yarn's built-in functions (for example, 'dice' and 'floor') to Yarn Spinner's core library. Previously, they were implemented in the client game code (for example, the Unity runtime.)
+
+#### Language Server
+
+- Fixed a bug in the language server that would cause it to crash when opening a workspace with no root (for example, creating a new window in Visual Studio Code and then creating a Yarn file, without ever saving anything to disk.)
 - Fixed an error in the language server that would fail to detect `YarnCommand`- and `YarnFunction`-tagged methods if their attributes were fully-qualified (e.g. `Yarn.Unity.YarnCommand`)
 - Renamed VirtualMachine.currentNodeName to VirtualMachine.CurrentNodeName.
+- Fixed an issue where workspaces where no Yarn Projects exist on disk would fail to attach Yarn files to the workspace's implicit Yarn Project.
+- Improved the code-completion behaviour to provide better filtering when offering command completions, in both jump commands and custom commands.
+- Fixed character names being incorrectly recognised when the colon is not part of the line
+- Fixed a bug where a missing 'Parameters' field in a .ysls.json file would cause the definitions file to not parse correctly.
+- If a workspace that has no .yarnproject files in it is opened, the language server will now look for a .ysls.json file containing command and function definitions. A warning will be reported if more than one file is found.
+- The language server now shows a warning if the workspace is opened without a folder.
+
+
+#### Compiler
+
+- Fixed a crash bug when declaration statements were used without a value (`<<declare $var>>`).
+- Fixed a bug where unusual interpolated commands (such as `<<{0}{""}>>`) would resolve to unexpected final values (`<<>>`).
 - Fixed an issue that caused the compiler to hang under some circumstances.
+
+#### Utilities
+
+- Flagged the `Utility.AddTagsToLines` method as obsolete.
+- Fixed a bug where escaped characters weren't being correctly added back into the file after adding line tags.
 
 ### Removed
 

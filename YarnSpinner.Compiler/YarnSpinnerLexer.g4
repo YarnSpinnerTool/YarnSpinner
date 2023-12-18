@@ -96,11 +96,18 @@ BODY_HASHTAG: '#' -> type(HASHTAG), pushMode(TextCommandOrHashtagMode), pushMode
 // ExpressionMode.
 EXPRESSION_START: '{' -> pushMode(TextMode), pushMode(ExpressionMode);
 
+// this is a weird one and this should be considered a temporary fix
+// basically we don't actually want to treat escaped markup as if it was escaped
+// hence why there is the TEXT_ESCAPED_MARKUP_BRACKET token
+// but if a line starts with \[ then the TextEscapedMode will be pushed
+// jumping over the TEXT_ESCAPED_MARKUP_BRACKET rule, so it will never get matched
+// which will attempt to match a valid escape character and fail because the \ has been eaten
+ESCAPED_BRACKET_START: '\\[' -> type(TEXT), pushMode(TextMode) ;
 
 // Any other text means this is a Line. Lex this first character as
 // TEXT, and enter TextMode.
 // We special case when the the line starts with an escape character because otherwise it will be detected as regular text BEFORE it has a chance to be pushed into TextEscapedMode
-ESCAPED_ANY : '\\' -> skip, pushMode(TextMode), pushMode(TextEscapedMode);
+ESCAPED_ANY : '\\' -> channel(HIDDEN), pushMode(TextMode), pushMode(TextEscapedMode);
 ANY: .  -> type(TEXT), pushMode(TextMode);
 
 // Arbitrary text, punctuated by expressions, and ended by 
@@ -294,6 +301,14 @@ COMMAND_LOCAL: 'local' [\p{White_Space}];
 
 // End of a command.
 COMMAND_END: '>>' -> popMode;
+
+// If we see an expression start immediately after the command start,
+// this represents an expression at the start of an arbitrary command
+// (it's not good, but it's legal!).
+// Switch to CommandTextMode, and also jump into ExpressionMode to 
+// lex the rest of the expression. When we're done, the closing brace } 
+// will return us to CommandTextMode for the remainder of the command.
+COMMAND_EXPRESSION_AT_START: '{' -> type(COMMAND_EXPRESSION_START), mode(CommandTextMode), pushMode(ExpressionMode);
 
 // If we see anything that we don't expect, assume that this 
 // is a command with arbitrary text inside it. Replace this 
