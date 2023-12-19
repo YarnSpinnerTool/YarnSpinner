@@ -13,11 +13,11 @@ namespace YarnSpinner.Tests
     {
 
         // Test every file in Tests/TestCases
-        [Theory]
+        [Theory(Skip="Language upgrader has been removed.")]
         [MemberData(nameof(DirectorySources), "Upgrader/V1toV2")]
-        public void TestUpgradingV1toV2(string directory)
+        public void TestUpgradingFiles(string directory)
         {
-
+            
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"INFO: Loading file {directory}");
 
@@ -25,6 +25,12 @@ namespace YarnSpinner.Tests
 
             directory = Path.Combine(TestBase.TestDataPath, directory);
 
+            if (Directory.Exists(directory) == false) {
+                // The directory doesn't exist. Don't try to enumerate it.
+                // TODO: skip this test instead of passing
+                return;
+            }
+            
             var allInputYarnFiles = Directory.EnumerateFiles(directory)
                 .Where(path => path.EndsWith(".yarn"))
                 .Where(path => path.Contains(".upgraded.") == false);

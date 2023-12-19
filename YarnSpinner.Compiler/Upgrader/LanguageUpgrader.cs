@@ -197,8 +197,6 @@ namespace Yarn.Compiler.Upgrader
         {
             switch (upgradeJob.UpgradeType)
             {
-                case UpgradeType.Version1to2:
-                    return new LanguageUpgraderV1().Upgrade(upgradeJob);
                 default:
                     throw new ArgumentException($"Upgrade type {upgradeJob.UpgradeType} is not supported.");
             }

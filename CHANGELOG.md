@@ -99,6 +99,8 @@ Smart variables can be accessed anywhere a regular variable would be used:
 
 ### Removed
 
+- Removed the Yarn Spinner v1 to v2 upgrader.
+
 ## [2.4.0] 2023-11-14
 
 ### Added
