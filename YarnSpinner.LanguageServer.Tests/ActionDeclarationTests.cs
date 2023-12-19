@@ -75,6 +75,7 @@ namespace YarnLanguageServer.Tests
                 new Regex(@"^Number\."),
                 new Regex(@"^String\."),
                 new Regex(@"^Bool\."),
+                new Regex(@"^Enum\."),
             };
 
             foreach (var registeredFunction in standardLibrary.Delegates)
