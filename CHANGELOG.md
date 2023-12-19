@@ -96,6 +96,7 @@ Smart variables can be accessed anywhere a regular variable would be used:
   - Functions must now specify a return type.
   - Changed the definition of 'types' to be an enum of "string", "number", "bool", or "any".
     - Enums in JSON schema are type sensitive, so a warning will be issued for types that have capital letters. To fix these warnings, change your type names in your `.ysls.json` file to be lowercase. (These warnings have no impact on your Yarn script editing experience or runtime behaviour.)
+- The Antlr4.Runtime dependency has been upgraded from 4.7.2 to 4.13.1.
 
 ### Removed
 

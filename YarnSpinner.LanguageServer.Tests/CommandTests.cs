@@ -351,7 +351,7 @@ public class CommandTests : LanguageServerTestsBase
     }
 
     private static YarnSpinnerParser Parse(string input, int initialLexerMode = -1) {
-        var lexer = new YarnSpinnerLexer(Antlr4.Runtime.CharStreams.fromstring(input));
+        var lexer = new YarnSpinnerLexer(Antlr4.Runtime.CharStreams.fromString(input));
         if (initialLexerMode >= 0) {
             lexer.PushMode(initialLexerMode);
         }

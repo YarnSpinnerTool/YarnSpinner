@@ -720,7 +720,7 @@ namespace Yarn.Compiler
 
         internal static FileParseResult ParseSyntaxTree(string fileName, string source, ref List<Diagnostic> diagnostics)
         {
-            ICharStream input = CharStreams.fromstring(source);
+            ICharStream input = CharStreams.fromString(source);
 
             YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -773,7 +773,7 @@ namespace Yarn.Compiler
         /// code.</returns>
         internal static List<string> GetTokensFromString(string text)
         {
-            ICharStream input = CharStreams.fromstring(text);
+            ICharStream input = CharStreams.fromString(text);
 
             YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
 

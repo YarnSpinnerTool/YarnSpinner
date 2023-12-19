@@ -98,7 +98,7 @@ namespace YarnLanguageServer.Tests
             var methodReturnType = impl.Method.ReturnType;
             var declReturnType = decl.ReturnType;
 
-            BuiltinTypes.TypeMappings[methodReturnType].Should().Be(declReturnType, $"{decl.YarnName}'s return type is declared as {declReturnType}");
+            Types.TypeMappings[methodReturnType].Should().Be(declReturnType, $"{decl.YarnName}'s return type is declared as {declReturnType}");
 
             decl.Parameters.Should().HaveCount(impl.Method.GetParameters().Length);
             var declParameters = decl.Parameters;
@@ -108,7 +108,7 @@ namespace YarnLanguageServer.Tests
             {
                 var declParameter = declParameters.ElementAt(i);
                 var implParameter = implParameters.ElementAt(i);
-                BuiltinTypes.TypeMappings[implParameter.ParameterType].Should().Be(declParameter.Type);
+                Types.TypeMappings[implParameter.ParameterType].Should().Be(declParameter.Type);
             }
         }
     }

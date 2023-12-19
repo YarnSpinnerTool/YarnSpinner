@@ -50,7 +50,7 @@ namespace YarnLanguageServer
             LineStarts = TextCoordinateConverter.GetLineStarts(text);
 
             // Lex tokens and comments
-            var commentLexer = new YarnSpinnerLexer(CharStreams.fromstring(text));
+            var commentLexer = new YarnSpinnerLexer(CharStreams.fromString(text));
             var commentTokenStream = new CommonTokenStream(commentLexer);
             CommentTokens = new List<IToken>();
             commentTokenStream.Fill();
@@ -65,7 +65,7 @@ namespace YarnLanguageServer
                 .ToList();
 
             // Now onto the real parsing
-            Lexer = new YarnSpinnerLexer(CharStreams.fromstring(text));
+            Lexer = new YarnSpinnerLexer(CharStreams.fromString(text));
             var tokenStream = new CommonTokenStream(Lexer);
             Parser = new YarnSpinnerParser(tokenStream);
 

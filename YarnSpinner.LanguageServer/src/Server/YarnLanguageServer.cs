@@ -92,9 +92,7 @@ namespace YarnLanguageServer
                 .OnStarted(async (server, token) =>
                 {
                     await Task.CompletedTask.ConfigureAwait(false);
-                })
-
-                ;
+                });
 
             // Register 'List Nodes' command
             options.OnExecuteCommand<Container<NodeInfo>>(
