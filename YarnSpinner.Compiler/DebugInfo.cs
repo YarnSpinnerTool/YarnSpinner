@@ -52,6 +52,27 @@ namespace Yarn.Compiler
         /// </summary>
         internal Dictionary<int, Position> LinePositions { get; set; } = new Dictionary<int, Position>();
 
+        internal IReadOnlyDictionary<int, string> Labels => this.instructionLabels;
+
+        private Dictionary<int, string> instructionLabels = new Dictionary<int, string>();
+
+        private HashSet<int> instructionsThatAreDestinations = new HashSet<int>();
+
+        internal void AddLabel(string label, int instructionIndex) {
+            // Ensure that this label is unique
+            label = $"L{this.instructionLabels.Count}_" + label;
+            
+            this.instructionLabels[instructionIndex] = label;
+        }
+        
+        internal string? GetLabel(int instructionIndex) {
+            if (this.instructionLabels.TryGetValue(instructionIndex, out string label)) {
+                return label;
+            } else {
+                return null;
+            }
+        }
+
         /// <summary>
         /// Gets a <see cref="LineInfo"/> object that describes the specified
         /// instruction at the index <paramref name="instructionNumber"/>.

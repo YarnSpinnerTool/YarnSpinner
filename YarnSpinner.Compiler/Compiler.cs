@@ -14,7 +14,6 @@ namespace Yarn.Compiler
     using Antlr4.Runtime;
     using Antlr4.Runtime.Tree;
     using TypeChecker;
-    using static Yarn.Instruction.Types;
 
     /// <summary>
     /// Compiles Yarn code.
@@ -811,18 +810,9 @@ namespace Yarn.Compiler
         /// corresponding to this instruction.</param>
         /// <param name="sourceCharacter">The zero-indexed character in the
         /// source input corresponding to this instruction.</param>
-        /// <param name="code">The opcode of the instruction.</param>
-        /// <param name="operands">The operands to associate with the
-        /// instruction.</param>
-        internal static void Emit(Node node, NodeDebugInfo debugInfo, int sourceLine, int sourceCharacter, OpCode code, params Operand[] operands)
+        /// <param name="instruction">The instruction to add.</param>
+        internal static void Emit(Node node, NodeDebugInfo debugInfo, int sourceLine, int sourceCharacter, Instruction instruction)
         {
-            var instruction = new Instruction
-            {
-                Opcode = code,
-            };
-
-            instruction.Operands.Add(operands);
-
             debugInfo.LinePositions.Add(node.Instructions.Count, new Position {
                 Line = sourceLine,
                 Character = sourceCharacter,
@@ -882,26 +872,6 @@ namespace Yarn.Compiler
             var lineID = lineIDHashTag.text.Text;
             return lineID;
         }
-
-        internal static bool TryGetOnceHashtag(IEnumerable<YarnSpinnerParser.HashtagContext>? hashtags, out YarnSpinnerParser.HashtagContext? result)
-        {
-            if (hashtags != null)
-            {
-                foreach (var hashtagContext in hashtags)
-                {
-                    string tagText = hashtagContext.text.Text;
-                    if (tagText.Equals("once", StringComparison.InvariantCulture))
-                    {
-                        result = hashtagContext;
-                        return true;
-                    }
-                }
-            }
-            result = null;
-            return false;
-        }
-
-        
 
         /// <summary>
         /// Generates a line id for a raw text node

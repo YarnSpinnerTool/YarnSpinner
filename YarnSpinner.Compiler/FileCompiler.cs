@@ -41,13 +41,6 @@ namespace Yarn.Compiler
         /// </summary>
         private NodeDebugInfo? CurrentNodeDebugInfo { get; set; }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether we are currently parsing the
-        /// current node as a 'raw text' node, or as a fully syntactic node.
-        /// </summary>
-        /// <value>Whether this is a raw text node or not.</value>
-        internal bool RawTextNode { get; set; } = false;
-
         internal FileParseResult FileParseResult { get; private set; }
 
         /// <summary>
@@ -67,6 +60,8 @@ namespace Yarn.Compiler
         /// </remarks>
         internal Library Library { get; set; }
 
+        NodeDebugInfo? ICodeEmitter.CurrentNodeDebugInfo => this.CurrentNodeDebugInfo;
+
         // the list of nodes we have to ensure we track visitation
         internal HashSet<string> TrackingNodes;
 
@@ -82,67 +77,39 @@ namespace Yarn.Compiler
             this.VariableDeclarations = compilationContext.VariableDeclarations;
         }
 
-        void ICodeEmitter.AddLabel(string name, int position)
-        {
-            this.CurrentNode?.Labels.Add(name, position);
-        }
 
         /// <summary>
-        /// Generates a unique label name to use in the program.
-        /// </summary>
-        /// <param name="commentary">Any additional text to append to the
-        /// end of the label.</param>
-        /// <returns>The new label name.</returns>
-        public string RegisterLabel(string? commentary = null)
-        {
-            return "L" + this.labelCount++ + commentary;
-        }
-
-        /// <summary>
-        /// Creates a new instruction, and appends it to the current node in the
-        /// <see cref="Program"/>.
+        /// Adds the specified instruction it to the current node in the <see
+        /// cref="Program"/>, and associates it with the position of <paramref
+        /// name="startToken"/>.
         /// </summary>
         /// <remarks>
-        /// Called by instances of <see
-        /// cref="CodeGenerationVisitor"/> while walking the parse tree.
+        /// Called by instances of <see cref="CodeGenerationVisitor"/> while
+        /// walking the parse tree.
         /// </remarks>
-        /// <param name="code">The opcode of the instruction.</param>
         /// <param name="startToken">The first token in the expression or
         /// statement that was responsible for emitting this
         /// instruction.</param>
-        /// <param name="operands">The operands to associate with the
-        /// instruction.</param>
-        void ICodeEmitter.Emit(OpCode code, IToken startToken, params Operand[] operands)
+        /// <param name="instruction">The instruction to emit.</param>
+        public void Emit(IToken? startToken, Instruction instruction)
         {
             Compiler.Emit(this.CurrentNode ?? throw new InvalidOperationException(),
                           this.CurrentNodeDebugInfo ?? throw new InvalidOperationException(),
                           startToken?.Line - 1 ?? -1,
                           startToken?.Column ?? -1,
-                          code,
-                          operands);
+                          instruction);
         }
 
-        /// <summary>
-        /// Creates a new instruction, and appends it to the current node in the
-        /// <see cref="Program"/>.
-        /// Differs from the other Emit call by not requiring a start token.
-        /// This enables its use in pure synthesised elements of the Yarn.
-        /// </summary>
-        /// <remarks>
-        /// Called by instances of <see
-        /// cref="CodeGenerationVisitor"/> while walking the parse tree.
-        /// </remarks>
-        /// <param name="code">The opcode of the instruction.</param>
-        /// <param name="operands">The operands to associate with the
-        /// instruction.</param>
-        void ICodeEmitter.Emit(OpCode code, params Operand[] operands)
+        public void Emit(IToken startToken, params Instruction[] instructions)
         {
-            Compiler.Emit(this.CurrentNode ?? throw new InvalidOperationException(),
-                          this.CurrentNodeDebugInfo ?? throw new InvalidOperationException(),
-                          sourceLine: -1,
-                          sourceCharacter: -1,
-                          code,
-                          operands);
+            foreach (var i in instructions) {
+                this.Emit(startToken, i);
+            }
+        }
+
+        public void Emit(Instruction instruction)
+        {
+            this.Emit(null, instruction);
         }
 
         // this replaces the CompileNode from the old compiler will start
@@ -166,7 +133,6 @@ namespace Yarn.Compiler
         {
             this.CurrentNode = new Node();
             this.CurrentNodeDebugInfo = new NodeDebugInfo(FileParseResult.Name, "<unknown>");
-            this.RawTextNode = false;
         }
 
         /// <summary>
@@ -205,7 +171,6 @@ namespace Yarn.Compiler
             }
 
             this.CurrentNode = null;
-            this.RawTextNode = false;
         }
 
         /// <summary> 
@@ -242,21 +207,6 @@ namespace Yarn.Compiler
                 this.CurrentNodeDebugInfo.NodeName = this.CurrentNode.Name;
             }
 
-            if (headerKey.Equals("tags", StringComparison.InvariantCulture))
-            {
-                // Split the list of tags by spaces, and use that
-                var tags = headerValue.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-                this.CurrentNode.Tags.Add(tags);
-
-                if (this.CurrentNode.Tags.Contains("rawText"))
-                {
-                    // This is a raw text node. Flag it as such for future
-                    // compilation.
-                    this.RawTextNode = true;
-                }
-            }
-
             var header = new Header
             {
                 Key = headerKey,
@@ -288,28 +238,13 @@ namespace Yarn.Compiler
                 throw new InvalidOperationException($"Internal error: {nameof(CurrentNodeDebugInfo)} was null when entering a body");
             }
 
-            // if it is a regular node
-            if (!this.RawTextNode)
+            string? track = TrackingNodes.Contains(CurrentNode.Name) ? Yarn.Library.GenerateUniqueVisitedVariableForNode(CurrentNode.Name) : null;
+
+            CodeGenerationVisitor visitor = new CodeGenerationVisitor(this, track);
+
+            foreach (var statement in context.statement())
             {
-                // This is the start of a node that we can jump to. Add a
-                // label at this point.
-                this.CurrentNode.Labels.Add(this.RegisterLabel(), this.CurrentNode.Instructions.Count);
-
-                string? track = TrackingNodes.Contains(CurrentNode.Name) ? Yarn.Library.GenerateUniqueVisitedVariableForNode(CurrentNode.Name) : null;
-
-                CodeGenerationVisitor visitor = new CodeGenerationVisitor(this, track);
-
-                foreach (var statement in context.statement())
-                {
-                    visitor.Visit(statement);
-                }
-            }
-
-            // We are a rawText node. Don't compile it; instead, note the
-            // string
-            else
-            {
-                this.CurrentNode.SourceTextStringID = Compiler.GetLineIDForNodeName(this.CurrentNode.Name);
+                visitor.Visit(statement);
             }
         }
 
@@ -340,11 +275,16 @@ namespace Yarn.Compiler
             string? track = TrackingNodes.Contains(CurrentNode.Name) ? Yarn.Library.GenerateUniqueVisitedVariableForNode(CurrentNode.Name) : null;
             if (track != null)
             {
-                CodeGenerationVisitor.GenerateTrackingCode(this, track);
+                CodeGenerationVisitor.GenerateTrackingCode(this, track, context.Stop);
             }
 
-            // We have exited the body; emit a 'stop' opcode here.
-            Compiler.Emit(this.CurrentNode, this.CurrentNodeDebugInfo, context.Stop.Line - 1, 0, OpCode.Stop);
+            // We have exited the body; emit a 'stop' instruction here.
+            Compiler.Emit(
+                this.CurrentNode, 
+                this.CurrentNodeDebugInfo, 
+                context.Stop.Line - 1, 0, 
+                new Instruction { Stop = new StopInstruction { } }
+            );
         }
     }
 }

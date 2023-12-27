@@ -99,11 +99,11 @@ namespace Yarn
         /// </summary>
         public struct Option
         {
-            internal Option(Line line, int id, string destinationNode, bool isAvailable)
+            internal Option(Line line, int id, int destinationInstruction, bool isAvailable)
             {
                 Line = line;
                 ID = id;
-                DestinationNode = destinationNode;
+                DestinationInstruction = destinationInstruction;
                 IsAvailable = isAvailable;
             }
 
@@ -136,7 +136,7 @@ namespace Yarn
             /// The value of this property not be valid if this is a
             /// shortcut option.
             /// </remarks>
-            public string DestinationNode { get; private set; }
+            internal int DestinationInstruction { get; set; }
 
             /// <summary>
             /// Gets a value indicating whether the player should be
@@ -959,17 +959,6 @@ namespace Yarn
         public void UnloadAll()
         {
             Program = null;
-        }
-
-        /// <summary>
-        /// Returns a textual version of the current program's bytecode.
-        /// </summary>
-        /// <remarks>This can be useful for diagnostic purposes.</remarks>
-        /// <returns>The bytecode of <see cref="Program"/>, as a
-        /// string.</returns>
-        internal string GetByteCode()
-        {
-            return Program.DumpCode(Library);
         }
 
         /// <summary>

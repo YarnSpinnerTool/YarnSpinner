@@ -9,6 +9,7 @@ namespace Yarn.Compiler
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using TypeChecker;
 
     public class FileCompilationResult {
         public List<Node> Nodes { get; internal set; } = new List<Node>();
@@ -27,7 +28,7 @@ namespace Yarn.Compiler
     /// cref="CompilationJob"/> to <see
     /// cref="Compiler.Compile(CompilationJob)"/>.
     /// </remarks>
-    public class CompilationResult
+    public class CompilationResult : ICodeDumpHelper
     {
         /// <summary>
         /// Gets the compiled Yarn program that the <see cref="Compiler"/>
@@ -127,6 +128,35 @@ namespace Yarn.Compiler
         /// Gets the debugging information for this compiled project.
         /// </summary>
         public ProjectDebugInfo? ProjectDebugInfo { get; internal set; }
+
+        public IReadOnlyDictionary<int, string> GetLabelsForNode(string node)
+        {
+            if (this.ProjectDebugInfo == null)
+            {
+                throw new InvalidOperationException("No project debug info available");
+            }
+            try
+            {
+                var debugInfo = this.ProjectDebugInfo.Nodes.Single(n => n.NodeName == node);
+                return debugInfo.Labels;
+            }
+            catch (InvalidOperationException)
+            {
+                throw new InvalidOperationException($"No debug info available for node named {node}");
+            }
+        }
+
+        public string GetStringForKey(string key)
+        {
+            if (this.StringTable == null) {
+                throw new InvalidOperationException("No string table available");
+            }
+            return this.StringTable[key].text;
+        }
+
+        internal string DumpProgram() {
+            return this.Program?.DumpCode(null, this) ?? "<no program>";
+        }
         
     }
 }

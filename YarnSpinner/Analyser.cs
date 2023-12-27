@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.CompilerServices;
-using static Yarn.Instruction.Types;
 
 [assembly: InternalsVisibleTo("YarnSpinner.Tests")]
 [assembly: InternalsVisibleTo("YarnSpinner.Compiler")]
@@ -187,11 +186,13 @@ namespace Yarn.Analysis
                 foreach (var instruction in theNode.Instructions)
                 {
 
-                    switch (instruction.Opcode)
+                    switch (instruction.InstructionTypeCase)
                     {
-                        case OpCode.PushVariable:
-                        case OpCode.StoreVariable:
-                            variables.Add(instruction.Operands[0].StringValue);
+                        case Instruction.InstructionTypeOneofCase.PushVariable:
+                            variables.Add(instruction.PushVariable.VariableName);
+                            break;
+                        case Instruction.InstructionTypeOneofCase.StoreVariable:
+                            variables.Add(instruction.StoreVariable.VariableName);
                             break;
                     }
                 }
@@ -229,14 +230,14 @@ namespace Yarn.Analysis
                 foreach (var instruction in theNode.Instructions)
                 {
 
-                    switch (instruction.Opcode)
+                    switch (instruction.InstructionTypeCase)
                     {
-                    case OpCode.PushVariable:
-                        readVariables.Add(instruction.Operands[0].StringValue);
-                        break;
-                    case OpCode.StoreVariable:
-                        writtenVariables.Add(instruction.Operands[0].StringValue);
-                        break;
+                        case Instruction.InstructionTypeOneofCase.PushVariable:
+                            readVariables.Add(instruction.PushVariable.VariableName);
+                            break;
+                        case Instruction.InstructionTypeOneofCase.StoreVariable:
+                            writtenVariables.Add(instruction.StoreVariable.VariableName);
+                            break;
                     }
                 }
             }

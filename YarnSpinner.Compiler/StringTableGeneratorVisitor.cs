@@ -43,8 +43,6 @@ namespace Yarn.Compiler
         {
             currentNodeContext = context;
 
-            List<string> tags = new List<string>();
-
             foreach (var header in context.header())
             {
                 string headerKey = header.header_key.Text;
@@ -54,33 +52,18 @@ namespace Yarn.Compiler
                 {
                     currentNodeName = header.header_value.Text;
                 }
-
-                if (headerKey.Equals("tags", StringComparison.InvariantCulture))
-                {
-                    // Split the list of tags by spaces, and use that
-                    tags = new List<string>(headerValue.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-                }
             }
 
-            if (string.IsNullOrEmpty(currentNodeName) == false && tags.Contains("rawText"))
+            // This is a regular node
+            // this.Visit(context.body());
+
+            var body = context.body();
+            if (body != null)
             {
-                // This is a raw text node. Use its entire contents as a
-                // string and don't use its contents.
-                var lineID = Compiler.GetLineIDForNodeName(currentNodeName);
-                stringTableManager.RegisterString(context.body().GetText(), fileName, currentNodeName, lineID, context.body().Start.Line, null);
+                this.Visit(body);
             }
-            else
-            {
-                // This is a regular node
-                // this.Visit(context.body());
+            // String table generator: don't crash if a node has no body
 
-                var body = context.body();
-                if (body != null)
-                {
-                    this.Visit(body);
-                }
-                // String table generator: don't crash if a node has no body
-            }
 
             return 0;
         }

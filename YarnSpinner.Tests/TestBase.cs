@@ -229,7 +229,7 @@ namespace YarnSpinner.Tests
                     testPlan.Run();
 
                     if (testPlan.nextExpectedType != TestPlan.Step.Type.Stop) {
-                        throw new Xunit.Sdk.XunitException($"Stopped dialogue, but wasn't expecting to select it (was expecting {testPlan.nextExpectedType.ToString()})");
+                        throw new Xunit.Sdk.XunitException($"Stopped dialogue, but wasn't expecting to (was expecting {testPlan.nextExpectedType.ToString()})");
                     }
                 }
             };

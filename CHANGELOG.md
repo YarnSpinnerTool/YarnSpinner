@@ -97,10 +97,14 @@ Smart variables can be accessed anywhere a regular variable would be used:
   - Changed the definition of 'types' to be an enum of "string", "number", "bool", or "any".
     - Enums in JSON schema are type sensitive, so a warning will be issued for types that have capital letters. To fix these warnings, change your type names in your `.ysls.json` file to be lowercase. (These warnings have no impact on your Yarn script editing experience or runtime behaviour.)
 - The Antlr4.Runtime dependency has been upgraded from 4.7.2 to 4.13.1.
+- The internal format for storing compiled programs has been updated. Existing Yarn scripts will need to be recompiled in order to work in Yarn Spinner 3.0.
+  - Internal jumps inside a node now jump to specific instruction indices, rather than named locations that had to be stored in the file. This change makes compiled Yarn programs smaller.
 
 ### Removed
 
 - Removed the Yarn Spinner v1 to v2 upgrader.
+- Removed support for 'raw text' nodes.
+  - A 'raw text' node was a node that had 'rawText' in its `tags` header. This indicated to the compiler that the original text of the node should be included in the string table.
 
 ## [2.4.0] 2023-11-14
 

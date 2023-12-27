@@ -412,13 +412,14 @@ namespace Yarn.Compiler
         /// </summary>
         /// <param name="nodes">The nodes to get string blocks for.</param>
         /// <returns>A collection of runs of lines.</returns>
-        public static List<List<string>> ExtractStringBlocks(IEnumerable<Node> nodes)
+        public static List<List<string>> ExtractStringBlocks(IEnumerable<Node> nodes, ProjectDebugInfo projectDebugInfo)
         {
             List<List<string>> lineBlocks = new List<List<string>>();
 
             foreach (var node in nodes)
             {
-                var blocks = InstructionCollectionExtensions.GetBasicBlocks(node);
+                var nodeDebugInfo = projectDebugInfo.Nodes.Single(n => n.NodeName == node.Name);
+                var blocks = InstructionCollectionExtensions.GetBasicBlocks(node, nodeDebugInfo);
                 var visited = new HashSet<string>();
                 foreach (var block in blocks)
                 {
@@ -474,7 +475,7 @@ namespace Yarn.Compiler
                         var jumpOptions = new Dictionary<string, BasicBlock>();
                         foreach (var option in options.Options)
                         {
-                            var destination = blocks.First(b => b.LabelName == option.Destination);
+                            var destination = blocks.First(b => b.FirstInstructionIndex == option.Destination);
                             if (destination != null && destination.PlayerVisibleContent.Count() > 0)
                             {
                                 // there is a valid jump we need to deal with
@@ -552,10 +553,10 @@ namespace Yarn.Compiler
         /// </summary>
         /// <param name="program"></param>
         /// <param name="l"></param>
-        /// <param name="stringLookupHelper"></param>
+        /// <param name="result"></param>
         /// <returns></returns>
-        public static string GetCompiledCodeAsString(Program program, Library? l = null, System.Func<string,string>? stringLookupHelper = null) {
-            return program.DumpCode(l, stringLookupHelper);
+        public static string GetCompiledCodeAsString(Program program, Library? l = null, CompilationResult? result = null) {
+            return program.DumpCode(l, result);
         }
     }
 
@@ -596,7 +597,7 @@ namespace Yarn.Compiler
         /// <param name="node"></param>
         /// <returns></returns>
         /// <exception cref="System.InvalidOperationException"></exception>
-        public static IEnumerable<BasicBlock> GetBasicBlocks(this Node node)
+        public static IEnumerable<BasicBlock> GetBasicBlocks(this Node node, NodeDebugInfo info)
         {
             // If we don't have any instructions, return an empty collection
             if (node == null || node.Instructions == null || node.Instructions.Count == 0)
@@ -612,29 +613,28 @@ namespace Yarn.Compiler
                 0,
             };
 
-            foreach (var label in node.Labels)
-            {
-                // If the instruction is labelled (i.e. it is the target of a
-                // jump), it is a leader.
-                leaderIndices.Add(label.Value);
-            }
-
             for (int i = 0; i < node.Instructions.Count; i++)
             {
-                // Every instruction after a jump (conditional or
-                // nonconditional) is a leader.
-                switch (node.Instructions[i].Opcode)
+                switch (node.Instructions[i].InstructionTypeCase)
                 {
-                    case Instruction.Types.OpCode.JumpTo:
-                    case Instruction.Types.OpCode.Jump:
-                    case Instruction.Types.OpCode.JumpIfFalse:
-                    case Instruction.Types.OpCode.Stop:
-                    case Instruction.Types.OpCode.RunNode:
+                    case Instruction.InstructionTypeOneofCase.JumpTo:
+                    case Instruction.InstructionTypeOneofCase.PeekAndJump:
+                    case Instruction.InstructionTypeOneofCase.JumpIfFalse:
+                    case Instruction.InstructionTypeOneofCase.Stop:
+                    case Instruction.InstructionTypeOneofCase.RunNode:
+                        // Every instruction after a jump (conditional or
+                        // nonconditional) is a leader.
                         leaderIndices.Add(i + 1);
                         break;
                     default:
                         // nothing to do
                         break;
+                }
+
+                // If the instruction is labelled (i.e. it is the target of a
+                // jump), it is a leader.
+                if (info.GetLabel(i) != null) {
+                    leaderIndices.Add(i);
                 }
             }
 
@@ -659,7 +659,7 @@ namespace Yarn.Compiler
                             NodeName = node.Name,
                             Instructions = new List<Instruction>(currentBlockInstructions),
                             FirstInstructionIndex = lastLeader,
-                            LabelName = GetLabelNameForInstructionIndex(lastLeader),
+                            LabelName = info.GetLabel(lastLeader) ?? "<unknown>",
                         };
                         result.Add(block);
                     }
@@ -681,83 +681,62 @@ namespace Yarn.Compiler
                     NodeName = node.Name,
                     Instructions = new List<Instruction>(currentBlockInstructions),
                     FirstInstructionIndex = lastLeader,
-                    LabelName = GetLabelNameForInstructionIndex(lastLeader),
+                    LabelName = info.GetLabel(lastLeader) ?? "<unknown>",
                 };
                 result.Add(block);
             }
 
-            BasicBlock GetBlock(string label)
+            BasicBlock GetBlock(int startInstructionIndex)
             {
-                var index = node.Labels[label];
 
                 try
                 {
-                    return result.First(block => block.FirstInstructionIndex == index);
+                    return result.First(block => block.FirstInstructionIndex == startInstructionIndex);
                 }
                 catch (System.InvalidOperationException)
                 {
                     // nothing found
-                    throw new System.InvalidOperationException($"No block in {node.Name} starts at index {index}");
+                    throw new System.InvalidOperationException($"No block in {node.Name} starts at index {startInstructionIndex}");
                 }
-            }
-            BasicBlock GetBlockWithIndex(int index)
-            {
-                try
-                {
-                    return result.First(block => block.FirstInstructionIndex == index);
-                }
-                catch (System.InvalidOperationException)
-                {
-                    // nothing found
-                    throw new System.InvalidOperationException($"No block in {node.Name} starts at index {index}");
-                }
-            }
-
-            // Given an instruction index, returns the name of the label for
-            // this index, or null if the instruction doesn't have a label.
-            string GetLabelNameForInstructionIndex(int index)
-            {
-                return node.Labels.FirstOrDefault(pair => pair.Value == index).Key;
             }
 
             // Final pass: now that we have all the blocks, go through each of
             // them and build the links between them
             foreach (var block in result)
             {
-                var optionDestinations = new List<string>();
-                string currentStringAtTopOfStack = null;
+                var optionDestinations = new List<int>();
+                string? currentStringAtTopOfStack = null;
                 int count = 0;
                 foreach (var instruction in block.Instructions)
                 {
-                    switch (instruction.Opcode)
+                    switch (instruction.InstructionTypeCase)
                     {
-                        case Instruction.Types.OpCode.AddOption:
+                        case Instruction.InstructionTypeOneofCase.AddOption:
                             {
                                 // Track the destination that this instruction says
-                                // it'll jump to. It'll either be to a named label, or
-                                // to a node.
-                                var destinationNodeName = instruction.Operands.ElementAt(1);
-                                optionDestinations.Add(destinationNodeName.StringValue);
+                                // it'll jump to. 
+                                var destinationIndex = instruction.AddOption.Destination;
+                                optionDestinations.Add(destinationIndex);
                                 break;
                             }
-                        case Instruction.Types.OpCode.Jump:
+                        case Instruction.InstructionTypeOneofCase.PeekAndJump:
                             {
                                 // We're jumping to a labeled section of the same node.
-                                foreach (var destinationLabel in optionDestinations)
+                                foreach (var destinationIndex in optionDestinations)
                                 {
-                                    var destinationBlock = GetBlock(destinationLabel);
+                                    var destinationBlock = GetBlock(destinationIndex);
 
                                     block.AddDestination(destinationBlock, BasicBlock.Condition.Option);
                                 }
                                 break;
                             }
-                        case Instruction.Types.OpCode.JumpTo:
+                        case Instruction.InstructionTypeOneofCase.JumpTo:
                             {
-                                var destinationBlock = GetBlock(instruction.Operands.ElementAt(0).StringValue);
-                                block.AddDestination(destinationBlock, BasicBlock.Condition.DirectJump);
+                                var destinationIndex = GetBlock(instruction.JumpTo.Destination);
+                                block.AddDestination(destinationIndex, BasicBlock.Condition.DirectJump);
                                 break;
                             }
-                        case Instruction.Types.OpCode.PushString:
+                        case Instruction.InstructionTypeOneofCase.PushString:
                             {
                                 // The top of the stack is now a string. (This
                                 // isn't perfect, because it doesn't handle
@@ -766,12 +745,12 @@ namespace Yarn.Compiler
                                 // NodeName>>, which is a combination of 'push
                                 // string' followed by 'run node at top of
                                 // stack')
-                                currentStringAtTopOfStack = instruction.Operands.ElementAt(0).StringValue;
+                                currentStringAtTopOfStack = instruction.PushString.Value;
                                 break;
                             }
-                        case Instruction.Types.OpCode.PushBool:
-                        case Instruction.Types.OpCode.PushFloat:
-                        case Instruction.Types.OpCode.PushVariable:
+                        case Instruction.InstructionTypeOneofCase.PushBool:
+                        case Instruction.InstructionTypeOneofCase.PushFloat:
+                        case Instruction.InstructionTypeOneofCase.PushVariable:
                             {
                                 // The top of the stack is now no longer a
                                 // string. Again, not a fully accurate
@@ -781,7 +760,7 @@ namespace Yarn.Compiler
                                 currentStringAtTopOfStack = null;
                                 break;
                             }
-                        case Instruction.Types.OpCode.RunNode:
+                        case Instruction.InstructionTypeOneofCase.RunNode:
                             {
                                 if (currentStringAtTopOfStack != null)
                                 {
@@ -789,12 +768,19 @@ namespace Yarn.Compiler
                                 }
                                 break;
                             }
-                        case Instruction.Types.OpCode.JumpIfFalse:
+                        case Instruction.InstructionTypeOneofCase.JumpIfFalse:
                             {
-                                var destinationLabel = instruction.Operands.ElementAt(0).StringValue;
+                                var destinationIndex = instruction.JumpIfFalse.Destination;
 
-                                var destinationFalseBlock = GetBlock(destinationLabel);
-                                var destinationTrueBlock = GetBlockWithIndex(block.FirstInstructionIndex + count + 1);
+                                // Jump-if-false falls through to the next
+                                // instruction if the top of the stack is true,
+                                // so the true block is whatever block is
+                                // started by the next instruction.
+                                var destinationTrueBlock = GetBlock(block.FirstInstructionIndex + count + 1);
+
+                                // The false block is whichever block is started
+                                // by the instruction's destination.
+                                var destinationFalseBlock = GetBlock(destinationIndex);
 
                                 block.AddDestination(destinationFalseBlock, BasicBlock.Condition.ExpressionIsFalse);
                                 block.AddDestination(destinationTrueBlock, BasicBlock.Condition.ExpressionIsTrue);
@@ -809,7 +795,7 @@ namespace Yarn.Compiler
                     // We've reached the end of this block, and don't have any
                     // destinations. If our last destination isn't 'stop', then
                     // we'll fall through to the next node.
-                    if (block.Instructions.Last().Opcode != Instruction.Types.OpCode.Stop)
+                    if (block.Instructions.Last().InstructionTypeCase != Instruction.InstructionTypeOneofCase.Stop)
                     {
                         var nextBlockStartInstruction = block.FirstInstructionIndex + block.Instructions.Count();
 
@@ -821,7 +807,7 @@ namespace Yarn.Compiler
                         else
                         {
 
-                            var destination = GetBlockWithIndex(nextBlockStartInstruction);
+                            var destination = GetBlock(nextBlockStartInstruction);
                             block.AddDestination(destination, BasicBlock.Condition.Fallthrough);
                         }
                     }
@@ -1113,10 +1099,7 @@ namespace Yarn.Compiler
                 /// The destination that will be run if this option is selected
                 /// by the player.
                 /// </summary>
-                /// <remarks>
-                /// This will be the name of a label, or the name of a node.
-                /// </remarks>
-                public string Destination;
+                public int Destination;
             }
 
             /// <summary>
@@ -1165,30 +1148,35 @@ namespace Yarn.Compiler
         {
             get
             {
-                var accumulatedOptions = new List<(string LineID, string Destination)>();
+                var accumulatedOptions = new List<(string LineID, int Destination)>();
                 foreach (var instruction in Instructions)
                 {
-                    switch (instruction.Opcode)
+                    switch (instruction.InstructionTypeCase)
                     {
-                        case Instruction.Types.OpCode.RunLine:
+                        case Instruction.InstructionTypeOneofCase.RunLine:
                             yield return new LineElement
                             {
-                                LineID = instruction.Operands[0].StringValue,
+                                LineID = instruction.RunLine.LineID,
                             };
                             break;
 
-                        case Instruction.Types.OpCode.RunCommand:
+                        case Instruction.InstructionTypeOneofCase.RunCommand:
                             yield return new CommandElement
                             {
-                                CommandText = instruction.Operands[0].StringValue,
+                                CommandText = instruction.RunCommand.CommandText,
                             };
                             break;
 
-                        case Instruction.Types.OpCode.AddOption:
-                            accumulatedOptions.Add((instruction.Operands[0].StringValue, instruction.Operands[1].StringValue));
+                        case Instruction.InstructionTypeOneofCase.AddOption:
+                            accumulatedOptions.Add(
+                                (
+                                    instruction.AddOption.LineID,
+                                    instruction.AddOption.Destination
+                                )
+                            );
                             break;
 
-                        case Instruction.Types.OpCode.ShowOptions:
+                        case Instruction.InstructionTypeOneofCase.ShowOptions:
                             yield return new OptionsElement
                             {
                                 Options = accumulatedOptions.Select(o => new OptionsElement.Option

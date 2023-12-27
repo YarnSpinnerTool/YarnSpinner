@@ -692,57 +692,65 @@ namespace YarnLanguageServer
                 .Select(d => d.Message)
                 .ToArray();
 
-            if (errorMessages.Length == 0)
+            if (errorMessages.Length != 0 || result.Program == null || result.ProjectDebugInfo == null)
             {
-                // We have no errors, so we can run through the nodes and build
-                // up our blocks of lines.
-                var lineBlocks = Yarn.Compiler.Utility.ExtractStringBlocks(result.Program.Nodes.Values).Select(bs => bs.ToArray()).ToArray();
-
-                // Get the parameters from the command, substituting defaults as
-                // needed
-                string format;
-                string[] columns;
-                string defaultName;
-                bool useCharacters;
-
-                if (commandParams.Arguments.Count > 1)
+                return Task.FromResult(new VOStringExport
                 {
-                    format = commandParams.Arguments[1].ToString();
-                }
-                else
-                {
-                    format = "xlsx";
-                }
-
-                if (commandParams.Arguments.Count > 2)
-                {
-                    columns = commandParams.Arguments[2].ToObject<string[]>();
-                }
-                else
-                {
-                    columns = new[] { "id", "text" };
-                }
-
-                if (commandParams.Arguments.Count > 3)
-                {
-                    defaultName = commandParams.Arguments[3].ToString();
-                }
-                else
-                {
-                    defaultName = "Player";
-                }
-
-                if (commandParams.Arguments.Count > 4)
-                {
-                    useCharacters = commandParams.Arguments[4].ToObject<bool>();
-                }
-                else
-                {
-                    useCharacters = true;
-                }
-
-                fileData = StringExtractor.ExportStrings(lineBlocks, result.StringTable, columns, format, defaultName, useCharacters);
+                    File = fileData,
+                    Errors = errorMessages,
+                });
             }
+            
+            // We have no errors, and we have debug info for this project,
+            // so we can run through the nodes and build up our blocks of
+            // lines.
+            var lineBlocks = Yarn.Compiler.Utility.ExtractStringBlocks(result.Program.Nodes.Values, result.ProjectDebugInfo).Select(bs => bs.ToArray()).ToArray();
+
+            // Get the parameters from the command, substituting defaults as
+            // needed
+            string format;
+            string[] columns;
+            string defaultName;
+            bool useCharacters;
+
+            if (commandParams.Arguments.Count > 1)
+            {
+                format = commandParams.Arguments[1].ToString();
+            }
+            else
+            {
+                format = "xlsx";
+            }
+
+            if (commandParams.Arguments.Count > 2)
+            {
+                columns = commandParams.Arguments[2].ToObject<string[]>();
+            }
+            else
+            {
+                columns = new[] { "id", "text" };
+            }
+
+            if (commandParams.Arguments.Count > 3)
+            {
+                defaultName = commandParams.Arguments[3].ToString();
+            }
+            else
+            {
+                defaultName = "Player";
+            }
+
+            if (commandParams.Arguments.Count > 4)
+            {
+                useCharacters = commandParams.Arguments[4].ToObject<bool>();
+            }
+            else
+            {
+                useCharacters = true;
+            }
+
+            fileData = StringExtractor.ExportStrings(lineBlocks, result.StringTable, columns, format, defaultName, useCharacters);
+        
 
             var output = new VOStringExport
             {

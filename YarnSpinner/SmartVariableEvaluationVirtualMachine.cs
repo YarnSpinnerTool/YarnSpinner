@@ -129,32 +129,32 @@ namespace Yarn
             Library library,
             Stack<IConvertible> stack)
         {
-            switch (instruction.Opcode)
+            switch (instruction.InstructionTypeCase)
             {
-                case Instruction.Types.OpCode.PushString:
-                    stack.Push(instruction.Operands[0].StringValue);
+                case Instruction.InstructionTypeOneofCase.PushString:
+                    stack.Push(instruction.PushString.Value);
                     break;
-                case Instruction.Types.OpCode.PushFloat:
-                    stack.Push(instruction.Operands[0].FloatValue);
+                case Instruction.InstructionTypeOneofCase.PushFloat:
+                    stack.Push(instruction.PushFloat.Value);
                     break;
-                case Instruction.Types.OpCode.PushBool:
-                    stack.Push(instruction.Operands[0].BoolValue);
+                case Instruction.InstructionTypeOneofCase.PushBool:
+                    stack.Push(instruction.PushBool.Value);
                     break;
-                case Instruction.Types.OpCode.Pop:
+                case Instruction.InstructionTypeOneofCase.Pop:
                     stack.Pop();
                     break;
-                case Instruction.Types.OpCode.CallFunc:
+                case Instruction.InstructionTypeOneofCase.CallFunc:
                     CallFunction(instruction, library, stack);
                     break;
-                case Instruction.Types.OpCode.PushVariable:
-                    string variableName = instruction.Operands[0].StringValue;
+                case Instruction.InstructionTypeOneofCase.PushVariable:
+                    string variableName = instruction.PushVariable.VariableName;
                     variableAccess.TryGetValue<IConvertible>(variableName, out var variableContents);
                     stack.Push(variableContents);
                     break;
-                case Instruction.Types.OpCode.Stop:
+                case Instruction.InstructionTypeOneofCase.Stop:
                     return false;
                 default:
-                    throw new InvalidOperationException($"Invalid opcode {instruction.Opcode}");
+                    throw new InvalidOperationException($"Invalid opcode {instruction.InstructionTypeCase}");
             }
 
             // Return true to indicate that we should continue
@@ -164,7 +164,7 @@ namespace Yarn
         private static void CallFunction(Instruction i, Library Library, Stack<IConvertible> stack)
         {
             // Get the function to call
-            var functionName = i.Operands[0].StringValue;
+            var functionName = i.CallFunc.FunctionName;
 
             var function = Library.GetFunction(functionName);
 

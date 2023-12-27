@@ -6,7 +6,13 @@ namespace Yarn
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using static Yarn.Instruction.Types;
+
+    using NodeLabelsCollection = System.Collections.Generic.IReadOnlyDictionary<int, string>;
+
+    internal interface ICodeDumpHelper {
+        public string GetStringForKey(string key);
+        public NodeLabelsCollection GetLabelsForNode(string node);
+    }
 
     /// <summary>
     /// A compiled Yarn program.
@@ -15,7 +21,7 @@ namespace Yarn
     {
         internal const string SmartVariableNodeTag = "Yarn.SmartVariable";
 
-        internal string DumpCode(Library? l, System.Func<string,string>? stringLookupHelper = null)
+        internal string DumpCode(Library? library, ICodeDumpHelper? helper)
         {
             var sb = new System.Text.StringBuilder();
 
@@ -23,20 +29,17 @@ namespace Yarn
             {
                 sb.AppendLine("Node " + entry.Key + ":");
 
-                Dictionary<int, string> labels = new Dictionary<int, string>();
-                foreach (var label in entry.Value.Labels) {
-                    labels[label.Value] = label.Key;
-                }
+                var nodeLabels = helper?.GetLabelsForNode(entry.Key);
 
                 int instructionCount = 0;
                 foreach (var instruction in entry.Value.Instructions)
                 {
-                    if (labels.TryGetValue(instructionCount, out var labelName)) {
+                    if (nodeLabels?.TryGetValue(instructionCount, out var labelName) ?? false) {
                         sb.AppendLine(labelName + ":");
                     }
                     string instructionText;
 
-                    instructionText = "    " + instruction.ToString(this, l, stringLookupHelper);
+                    instructionText = "    " + instruction.ToString(this, entry.Value, library, helper);
 
                     string preface;
 
@@ -65,7 +68,7 @@ namespace Yarn
         /// </summary>
         /// <param name="nodeName">The name of the node whos line IDs you covet.</param>
         /// <returns>The line IDs of all lines and options inside the node, or null if <paramref name="nodeName"/> doesn't exist in the program.</returns>
-        public List<string> LineIDsForNode(string nodeName)
+        public List<string>? LineIDsForNode(string nodeName)
         {
             // if there is no node matching the name bail out
             var node = this.Nodes[nodeName];
@@ -85,12 +88,19 @@ namespace Yarn
             // that will signal a line can appear to the player
             foreach (var instruction in node.Instructions)
             {
-                if (instruction.Opcode == OpCode.RunLine || instruction.Opcode == OpCode.AddOption)
+                // Both RunLine and AddOption have the string ID they want to
+                // show, so store that
+                if (
+                    instruction.InstructionTypeCase == Instruction.InstructionTypeOneofCase.RunLine
+)
                 {
-                    // Both RunLine and AddOption have the string ID
-                    // they want to show as their first operand, so
-                    // store that
-                    stringIDs.Add(instruction.Operands[0].StringValue);
+                    stringIDs.Add(instruction.RunLine.LineID);
+                }
+                else if (
+instruction.InstructionTypeCase == Instruction.InstructionTypeOneofCase.AddOption)
+                {
+                    
+                    stringIDs.Add(instruction.AddOption.LineID);
                 }
             }
             return stringIDs;
@@ -105,11 +115,18 @@ namespace Yarn
         /// Gets the collection of nodes that contain the code for evaluating a
         /// smart variable.
         /// </summary>
-        internal IEnumerable<Node> SmartVariableNodes {
-            get {
-                foreach (var node in this.Nodes.Values) {
-                    if (node.Tags.Contains(SmartVariableNodeTag)) {
-                        yield return node;
+        internal IEnumerable<Node> SmartVariableNodes
+        {
+            get
+            {
+                foreach (var node in this.Nodes.Values)
+                {
+                    foreach (var tag in node.Tags)
+                    {
+                        if (tag.Equals(SmartVariableNodeTag, StringComparison.Ordinal))
+                        {
+                            yield return node;
+                        }
                     }
                 }
             }
@@ -214,36 +231,39 @@ namespace Yarn
     /// </summary>
     public partial class Instruction
     {
-        internal string ToString(Program p, Library? l, System.Func<string,string>? stringLookupHelper = null)
+        partial void OnConstruction() {
+            
+        }
+        internal string ToString(Program p, Node? containingNode, Library? library, ICodeDumpHelper? helper)
         {
             // Generate a comment, if the instruction warrants it
-            string comment = "";
+            List<string> comments = new List<string>();
 
             // Stack manipulation comments
             var pops = 0;
             var pushes = 0;
 
-            switch (Opcode)
+            switch (InstructionTypeCase)
             {
 
                 // These operations all push a single value to the stack
-                case OpCode.PushBool:
-                case OpCode.PushNull:
-                case OpCode.PushFloat:
-                case OpCode.PushString:
-                case OpCode.PushVariable:
-                case OpCode.ShowOptions:
+                case InstructionTypeOneofCase.PushBool:
+                case InstructionTypeOneofCase.PushFloat:
+                case InstructionTypeOneofCase.PushString:
+                case InstructionTypeOneofCase.PushVariable:
+                case InstructionTypeOneofCase.ShowOptions:
                     pushes = 1;
                     break;
 
                 // Functions pop 0 or more values, and pop 0 or 1
-                case OpCode.CallFunc:
-                    if (l == null) {
+                case InstructionTypeOneofCase.CallFunc:
+                    if (library == null) {
                         pops = -1;
                         pushes = -1;
                         break;
                     }
-                    var function = l.GetFunction(Operands[0].StringValue);
+                    
+                    var function = library.GetFunction(this.CallFunc.FunctionName);
 
                     pops = function.Method.GetParameters().Length;
 
@@ -257,71 +277,188 @@ namespace Yarn
                     break;
 
                 // Pop always pops a single value
-                case OpCode.Pop:
+                case InstructionTypeOneofCase.Pop:
                     pops = 1;
                     break;
 
                 // Switching to a different node will always clear the stack
-                case OpCode.RunNode:
-                    comment += "Clears stack";
+                case InstructionTypeOneofCase.RunNode:
+                    comments.Add("Clears stack");
                     break;
             }
 
             // If we had any pushes or pops, report them
             if (pops > 0 && pushes > 0)
             {
-                comment += string.Format(CultureInfo.InvariantCulture, "Pops {0}, Pushes {1}", pops, pushes);
+                comments.Add(string.Format(CultureInfo.InvariantCulture, "Pops {0}, Pushes {1}", pops, pushes));
             }
             else if (pops > 0)
             {
-                comment += string.Format(CultureInfo.InvariantCulture, "Pops {0}", pops);
+                comments.Add(string.Format(CultureInfo.InvariantCulture, "Pops {0}", pops));
             }
             else if (pushes > 0)
             {
-                comment += string.Format(CultureInfo.InvariantCulture, "Pushes {0}", pushes);
+                comments.Add(string.Format(CultureInfo.InvariantCulture, "Pushes {0}", pushes));
             }
 
             // String lookup comments
-            switch (Opcode)
+            switch (InstructionTypeCase)
             {
-                case OpCode.PushString:
-                case OpCode.RunLine:
-                case OpCode.AddOption:
+                case InstructionTypeOneofCase.PushString:
+                    comments.Add($@"""{PushString.Value}""");
+                    break;
+                case InstructionTypeOneofCase.RunLine:
+                case InstructionTypeOneofCase.AddOption:
 
-                    string actualString = Operands[0].StringValue;
+                    string actualString;
 
-                    if (stringLookupHelper != null) {
-                        actualString = stringLookupHelper(actualString);
+                    if (InstructionTypeCase == InstructionTypeOneofCase.RunLine) {
+                        actualString = RunLine.LineID;
+                    } else if (InstructionTypeCase == InstructionTypeOneofCase.AddOption) {
+                        actualString = AddOption.LineID;
+                    } else {
+                        throw new InvalidOperationException();
+                    }
+
+                    if (helper != null) {
+                        actualString = helper.GetStringForKey(actualString);
                     }
 
                     // Add the string for this option, if it has one
                     if (actualString != null)
                     {
-                        comment += string.Format(CultureInfo.InvariantCulture, "\"{0}\"", actualString);
+                        comments.Add(string.Format(CultureInfo.InvariantCulture, "\"{0}\"", actualString));
                     }
 
                     break;
 
             }
 
-            if (comment != "")
-            {
-                comment = "; " + comment;
-            }
-
-
-            var operandsAsStrings = new List<string>();
-            foreach (var op in Operands) {
-                operandsAsStrings.Add(op.AsString);
-            }
             
+            var operands = new List<object>();
+
+            string GetLabel(int instruction)
+            {
+                if (containingNode == null) { 
+                    return instruction.ToString(CultureInfo.InvariantCulture);
+                }
+
+                return helper?.GetLabelsForNode(containingNode.Name)[instruction] ?? instruction.ToString(CultureInfo.InvariantCulture);
+            }
+
+            switch (this.InstructionTypeCase)
+            {
+                case InstructionTypeOneofCase.JumpTo:
+                    operands.Add(GetLabel(this.JumpTo.Destination));
+                    break;
+                case InstructionTypeOneofCase.PeekAndJump:
+                    break;
+                case InstructionTypeOneofCase.RunLine:
+                    operands.Add(this.RunLine.LineID);
+                    break;
+                case InstructionTypeOneofCase.RunCommand:
+                    operands.Add(this.RunCommand.CommandText);
+                    break;
+                case InstructionTypeOneofCase.AddOption:
+                    operands.Add(this.AddOption.LineID);
+                    break;
+                case InstructionTypeOneofCase.ShowOptions:
+                    break;
+                case InstructionTypeOneofCase.PushString:
+                    operands.Add(this.PushString.Value);
+                    break;
+                case InstructionTypeOneofCase.PushFloat:
+                    operands.Add(this.PushFloat.Value);
+                    break;
+                case InstructionTypeOneofCase.PushBool:
+                    operands.Add(this.PushBool.Value);
+                    break;
+                case InstructionTypeOneofCase.JumpIfFalse:
+                    operands.Add(GetLabel(this.JumpIfFalse.Destination));
+                    break;
+                case InstructionTypeOneofCase.Pop:
+                    break;
+                case InstructionTypeOneofCase.CallFunc:
+                    operands.Add(this.CallFunc.FunctionName);
+                    break;
+                case InstructionTypeOneofCase.PushVariable:
+                    operands.Add(this.PushVariable.VariableName);
+                    break;
+                case InstructionTypeOneofCase.StoreVariable:
+                    operands.Add(this.StoreVariable.VariableName);
+                    break;
+                case InstructionTypeOneofCase.Stop:
+                    break;
+                case InstructionTypeOneofCase.RunNode:
+                    operands.Add(this.RunNode.NodeName);
+                    break;
+                case InstructionTypeOneofCase.PeekAndRunNode:
+                    break;
+            }
+
+            string operandText = string.Join(", ", operands);
+            string commentText = string.Join(", ", comments);
+            if (comments.Count > 0) {
+                commentText = "; " + commentText;
+            }
 
             return string.Format(
                 CultureInfo.InvariantCulture,
                 "{0,-15} {1,-40} {2, -10}",
-                Opcode.ToString(),
-                string.Join(" ", operandsAsStrings),
-                comment);
+                InstructionTypeCase.ToString(),
+                operandText,
+                commentText);
+        }
+
+        internal bool HasDestination {
+            get {
+                switch (this.InstructionTypeCase) {
+                    case InstructionTypeOneofCase.AddOption:
+                    case InstructionTypeOneofCase.JumpTo:
+                    case InstructionTypeOneofCase.JumpIfFalse:
+                    case InstructionTypeOneofCase.PushFloat:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        }
+
+        internal int Destination {
+            get {
+                switch (this.InstructionTypeCase) {
+                    case InstructionTypeOneofCase.AddOption:
+                        return this.AddOption.Destination;
+                    case InstructionTypeOneofCase.JumpTo:
+                        return this.JumpTo.Destination;
+                    case InstructionTypeOneofCase.JumpIfFalse:
+                        return this.JumpIfFalse.Destination;
+                    case InstructionTypeOneofCase.PushFloat:
+                        return (int)this.PushFloat.Value;
+                    default:
+                        throw new ArgumentOutOfRangeException($"Instruction {this} does not have a Destination");
+                }
+            }
+            
+            set {
+                switch (this.InstructionTypeCase) {
+                    case InstructionTypeOneofCase.AddOption:
+                        this.AddOption.Destination = value;
+                        break;
+                    case InstructionTypeOneofCase.JumpTo:
+                        this.JumpTo.Destination = value;
+                        break;
+                    case InstructionTypeOneofCase.JumpIfFalse:
+                        this.JumpIfFalse.Destination = value;
+                        break;
+                    case InstructionTypeOneofCase.PushFloat:
+                        this.PushFloat.Value = value;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException($"Instruction {this} does not have a Destination");
+                }
+
+            }
         }
     }
 
@@ -332,27 +469,24 @@ namespace Yarn
     /// </summary>
     public partial class Node
     {
-
-    }
-
-    public partial class Operand {
-        internal string AsString
-        {
+        /// <summary>
+        /// Gets the collection of tags defined for this node, if any. If no
+        /// tags are defined, returns an empty collection.
+        /// </summary>
+        public IEnumerable<string> Tags {
             get
             {
-                switch (this.ValueCase)
+                foreach (var header in this.Headers)
                 {
-                    case ValueOneofCase.StringValue:
-                        return this.StringValue;
-                    case ValueOneofCase.BoolValue:
-                        return this.BoolValue.ToString();
-                    case ValueOneofCase.FloatValue:
-                        return this.FloatValue.ToString(CultureInfo.InvariantCulture);
-                    default:
-                        return "<unknown>";
+                    if (header.Key == "tags")
+                    {
+                        return header.Value.Split(' ');
+                    }
                 }
+                return Array.Empty<string>();
             }
-
         }
     }
+
+
 }

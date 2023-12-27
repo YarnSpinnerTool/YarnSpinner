@@ -98,9 +98,7 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
 
-            dialogue.SetProgram (result.Program);
-
-            var byteCode = dialogue.GetByteCode ();
+            var byteCode = result.DumpProgram();
             byteCode.Should().NotBeNull();
 
         }
@@ -147,26 +145,6 @@ namespace YarnSpinner.Tests
             dialogue.CurrentNode.Should().BeNull();
         }
 
-        [Fact]
-        public void TestGettingRawSource() {
-
-            var path = Path.Combine(TestDataPath, "Example.yarn");
-
-            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
-
-            result.Diagnostics.Should().BeEmpty();
-
-            dialogue.SetProgram (result.Program);
-
-            stringTable = result.StringTable;
-
-            var sourceID = dialogue.GetStringIDForNode ("LearnMore");
-            var source = stringTable[sourceID].text;
-
-            source.Should().NotBeNull();
-
-            source.Should().Be("A: HAHAHA\n");
-        }
 		[Fact]
 		public void TestGettingTags() {
 

@@ -9,13 +9,10 @@ namespace Yarn.Compiler
     using System;
     using System.Collections.Generic;
     using Antlr4.Runtime;
-    using static Yarn.Instruction.Types;
 
     internal class SmartVariableCompiler : ICodeEmitter {
-        private int labelCount;
-
         public Node? CurrentNode { get; private set; }
-        public NodeDebugInfo? CurrentDebugInfo { get; private set; }
+        public NodeDebugInfo? CurrentNodeDebugInfo { get; private set; }
         public IDictionary<string, Declaration> VariableDeclarations { get; private set; }
 
         public SmartVariableCompiler(IDictionary<string, Declaration> variableDeclarations)
@@ -35,60 +32,47 @@ namespace Yarn.Compiler
         public void Compile(Declaration decl, out Node node, out NodeDebugInfo debugInfo)
         {
             this.CurrentNode = new Node();
-            this.CurrentDebugInfo = new NodeDebugInfo(decl.SourceFileName, decl.Name);
+            this.CurrentNodeDebugInfo = new NodeDebugInfo(decl.SourceFileName, decl.Name);
 
             this.CurrentNode.Name = decl.Name;
-            this.CurrentNode.Tags.Add(Program.SmartVariableNodeTag);
+            this.CurrentNode.Headers.Add(new Header { Key = "tags", Value = Program.SmartVariableNodeTag });
 
             var codeGenerator = new CodeGenerationVisitor(this, trackingVariableName: null);
             codeGenerator.Visit(decl.InitialValueParserContext);
 
             node = this.CurrentNode;
-            debugInfo = this.CurrentDebugInfo;
+            debugInfo = this.CurrentNodeDebugInfo;
         }
 
-        /// <inheritdoc />
-        public void AddLabel(string name, int position)
+        public void Emit(IToken? startToken, Instruction instruction)
         {
-            this.CurrentNode?.Labels.Add(name, position);
-        }
-
-        /// <inheritdoc />
-        public string RegisterLabel(string? commentary = null)
-        {
-            return $"L{this.labelCount++}{commentary ?? string.Empty}";
-        }
-
-        /// <inheritdoc />
-        void ICodeEmitter.Emit(OpCode code, IToken startToken, params Operand[] operands)
-        {
-            if (this.CurrentNode == null)
-            {
-                throw new InvalidOperationException($"Internal error: {nameof(CurrentNode)} was emitting code for a smart variable");
-            }
-
-            if (this.CurrentDebugInfo == null)
-            {
-                throw new InvalidOperationException($"Internal error: {nameof(CurrentDebugInfo)} was null was emitting code for a smart variable");
+            if (this.CurrentNode == null) {
+                throw new InvalidOperationException($"{nameof(CurrentNode)} was null when generating a smart variable");
             }
             
-            Compiler.Emit(this.CurrentNode, this.CurrentDebugInfo, startToken?.Line - 1 ?? -1, startToken?.Column ?? -1, code, operands);
+            if (this.CurrentNodeDebugInfo == null) {
+                throw new InvalidOperationException($"{nameof(CurrentNodeDebugInfo)} was null when generating a smart variable");
+            }
+
+            Compiler.Emit(
+                this.CurrentNode, 
+                this.CurrentNodeDebugInfo, 
+                startToken?.Line - 1 ?? -1, 
+                startToken?.Column ?? -1, 
+                instruction
+            );
         }
 
-        /// <inheritdoc />
-        void ICodeEmitter.Emit(OpCode code, params Operand[] operands)
+        public void Emit(IToken startToken, params Instruction[] instructions)
         {
-            if (this.CurrentNode == null)
-            {
-                throw new InvalidOperationException($"Internal error: {nameof(CurrentNode)} was emitting code for a smart variable");
+            foreach (var i in instructions) {
+                this.Emit(startToken, i);
             }
+        }
 
-            if (this.CurrentDebugInfo == null)
-            {
-                throw new InvalidOperationException($"Internal error: {nameof(CurrentDebugInfo)} was null was emitting code for a smart variable");
-            }
-            
-            Compiler.Emit(this.CurrentNode, this.CurrentDebugInfo, -1, -1, code, operands);
+        public void Emit(Instruction instruction)
+        {
+            this.Emit(null, instruction);
         }
     }
 }

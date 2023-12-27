@@ -27,6 +27,15 @@ namespace Yarn.Compiler
             this.trackingVariableName = trackingVariableName;
         }
 
+        private int CurrentInstructionNumber
+        {
+            get
+            {
+                Node currentNode = this.compiler.CurrentNode ?? throw new InvalidOperationException($"Can't get current instruction number: {nameof(this.compiler.CurrentNode)} is null");
+                return currentNode.Instructions.Count;
+            }
+        }
+
         private int GenerateCodeForExpressionsInFormattedText(IList<IParseTree> nodes)
         {
             int expressionCount = 0;
@@ -74,63 +83,19 @@ namespace Yarn.Compiler
 
             // Get the lineID for this string from the hashtags
             var lineID = Compiler.GetLineID(context);
-            Compiler.TryGetOnceHashtag(context.hashtag(), out var onceHashtag);
-
-            string endOfConditionLabel = this.compiler.RegisterLabel("line_once_condition");
-
-            // We generate check-and-skip code for a line that has a 'once'
-            // hashtag if it 1. has one and 2. isn't part of a line group. (If
-            // it's in a line group, the 'once' hashtag that belongs to this
-            // line will have already been evaluated (see
-            // VisitLine_group_statement), so if we're appearing, then we've
-            // already passed the check.)
-            bool generatesHashtagCheckCode = onceHashtag != null && !(context.Parent is YarnSpinnerParser.Line_group_itemContext);
-
-            // We always generate code that sets the 'once' variable if we have
-            // a 'once' hashtag.
-            bool generatesHashtagSetCode = onceHashtag != null;
-
-            string onceVariableName = Compiler.GetContentViewedVariableName(lineID);
-
-            if (generatesHashtagCheckCode && onceHashtag != null)
-            {
-                // Get the value of the variable
-                this.compiler.Emit(OpCode.PushVariable, onceHashtag.Start, new Operand(onceVariableName));
-
-                // 'not' it - we want to jump if the value is true
-                var notFunction = GetFunctionName(Types.Boolean, Operator.Not);
-                this.compiler.Emit(OpCode.PushFloat, onceHashtag.Start, new Operand(1));
-                this.compiler.Emit(OpCode.CallFunc, onceHashtag.Start, new Operand(notFunction));
-
-                // If the check returned false (i.e. the variable returned
-                // true), then skip this line.
-                this.compiler.Emit(OpCode.JumpIfFalse, onceHashtag.Start, new Operand(endOfConditionLabel));
-                this.compiler.Emit(OpCode.PushBool, onceHashtag.Start, new Operand(true));
-                this.compiler.Emit(OpCode.StoreVariable, onceHashtag.Start, new Operand(onceVariableName));
-                this.compiler.Emit(OpCode.Pop);
-            }
-
-            if (generatesHashtagSetCode)
-            {
-                // Generate the code that marks that we've seen this line.
-                this.compiler.Emit(OpCode.PushBool, onceHashtag!.Start, new Operand(true));
-                this.compiler.Emit(OpCode.StoreVariable, onceHashtag.Start, new Operand(onceVariableName));
-                this.compiler.Emit(OpCode.Pop);
-            }
 
             // Evaluate the inline expressions and push the results onto the
             // stack.
             var expressionCount = this.GenerateCodeForExpressionsInFormattedText(context.line_formatted_text().children);
 
-            this.compiler.Emit(OpCode.RunLine, context.Start, new Operand(lineID), new Operand(expressionCount));
-
-            // Finally, if we were generating code for checking and skipping the
-            // line, create the label to jump to
-            if (generatesHashtagCheckCode && onceHashtag != null)
-            {
-                this.compiler.AddLabel(endOfConditionLabel, this.compiler.CurrentNode.Instructions.Count);
-                this.compiler.Emit(OpCode.Pop, onceHashtag.Start);
-            }
+            // Run the line.
+            this.compiler.Emit(
+                context.Start,
+                new Instruction
+                {
+                    RunLine = new RunLineInstruction { LineID = lineID, SubstitutionCount = expressionCount }
+                }
+            );
 
             return 0;
         }
@@ -166,8 +131,12 @@ namespace Yarn.Compiler
 
             // now store the variable and clean up the stack
             string variableName = context.variable().GetText();
-            this.compiler.Emit(OpCode.StoreVariable, context.Start, new Operand(variableName));
-            this.compiler.Emit(OpCode.Pop, context.Start);
+
+            this.compiler.Emit(
+                context.Start,
+                new Instruction { StoreVariable = new StoreVariableInstruction { VariableName = variableName } },
+                new Instruction { Pop = new PopInstruction { } }
+            );
             return 0;
         }
 
@@ -214,10 +183,24 @@ namespace Yarn.Compiler
                 case "stop":
                     // "stop" is a special command that immediately stops
                     // execution
-                    this.compiler.Emit(OpCode.Stop, context.command_formatted_text().Start);
+                    this.compiler.Emit(
+                        context.command_formatted_text().Start,
+                        new Instruction { Stop = new StopInstruction { } }
+                    );
+                    
                     break;
                 default:
-                    this.compiler.Emit(OpCode.RunCommand, context.command_formatted_text().Start, new Operand(composedString), new Operand(expressionCount));
+                    this.compiler.Emit(
+                        context.command_formatted_text().Start,
+                        new Instruction
+                        {
+                            RunCommand = new RunCommandInstruction {
+                                CommandText = composedString,
+                                SubstitutionCount = expressionCount,
+                            }
+                        }
+                    );
+
                     break;
             }
 
@@ -233,11 +216,13 @@ namespace Yarn.Compiler
                 this.Visit(parameter);
             }
 
-            // push the number of parameters onto the stack
-            this.compiler.Emit(OpCode.PushFloat, functionContext.Start, new Operand(parameters.Length));
-
-            // then call the function itself
-            this.compiler.Emit(OpCode.CallFunc, functionContext.Start, new Operand(functionName));
+            this.compiler.Emit(
+                functionContext.Start,
+                // push the number of parameters onto the stack
+                new Instruction { PushFloat = new PushFloatInstruction { Value = parameters.Length } },
+                // then call the function itself
+                new Instruction { CallFunc = new CallFunctionInstruction { FunctionName = functionName } }
+            );
         }
 
         // handles emiting the correct instructions for the function
@@ -256,23 +241,28 @@ namespace Yarn.Compiler
             context.AddErrorNode(null);
 
             // label to give us a jump point for when the if finishes
-            string endOfIfStatementLabel = this.compiler.RegisterLabel("endif");
-
+            var jumpsToEndOfIfStatement = new List<Instruction>();
+            
             // handle the if
             var ifClause = context.if_clause();
-            this.GenerateClause(endOfIfStatementLabel, ifClause, ifClause.statement(), ifClause.expression());
+            {
+                this.GenerateClause(out var jumpFromEndOfPrimaryClause, ifClause, ifClause.statement(), ifClause.expression());
+                jumpsToEndOfIfStatement.Add(jumpFromEndOfPrimaryClause);
+            }
 
             // all elseifs
             foreach (var elseIfClause in context.else_if_clause())
             {
-                this.GenerateClause(endOfIfStatementLabel, elseIfClause, elseIfClause.statement(), elseIfClause.expression());
+                this.GenerateClause(out var jumpFromEndOfClause, elseIfClause, elseIfClause.statement(), elseIfClause.expression());
+                jumpsToEndOfIfStatement.Add(jumpFromEndOfClause);
             }
 
             // the else, if there is one
             var elseClause = context.else_clause();
             if (elseClause != null)
             {
-                this.GenerateClause(endOfIfStatementLabel, elseClause, elseClause.statement(), null);
+                this.GenerateClause(out var jumpFromEndOfClause, elseClause, elseClause.statement(), null);
+                jumpsToEndOfIfStatement.Add(jumpFromEndOfClause);
             }
 
             if (this.compiler.CurrentNode == null)
@@ -280,15 +270,17 @@ namespace Yarn.Compiler
                 throw new InvalidOperationException($"Internal error: can't add a new label, because CurrentNode is null");
             }
 
-            this.compiler.AddLabel(endOfIfStatementLabel, this.compiler.CurrentNode.Instructions.Count);
+            this.compiler.CurrentNodeDebugInfo?.AddLabel("endif", CurrentInstructionNumber);
+            foreach (var jump in jumpsToEndOfIfStatement) {
+                jump.Destination = CurrentInstructionNumber;
+            }
 
             return 0;
         }
 
-        private void GenerateClause(string jumpLabel, ParserRuleContext clauseContext, YarnSpinnerParser.StatementContext[] children, YarnSpinnerParser.ExpressionContext? expression)
+        private void GenerateClause(out Instruction jumpToEndOfIfStatement, ParserRuleContext clauseContext, YarnSpinnerParser.StatementContext[] children, YarnSpinnerParser.ExpressionContext? expression)
         {
-            string endOfClauseLabel = this.compiler.RegisterLabel("skipclause");
-
+            Instruction? jumpToEndOfClause = null;
             // handling the expression (if it has one) will only be called on
             // ifs and elseifs
             if (expression != null)
@@ -296,7 +288,10 @@ namespace Yarn.Compiler
                 // Code-generate the expression
                 this.Visit(expression);
 
-                this.compiler.Emit(OpCode.JumpIfFalse, expression.Start, new Operand(endOfClauseLabel));
+                this.compiler.Emit(
+                    expression.Start,
+                    jumpToEndOfClause = new Instruction { JumpIfFalse =  new JumpIfFalseInstruction { Destination = -1 } }
+                );
             }
 
             // running through all of the children statements
@@ -305,7 +300,10 @@ namespace Yarn.Compiler
                 this.Visit(child);
             }
 
-            this.compiler.Emit(OpCode.JumpTo, clauseContext.Stop, new Operand(jumpLabel));
+            this.compiler.Emit(
+                clauseContext.Stop,
+                jumpToEndOfIfStatement = new Instruction { JumpTo = new JumpToInstruction { Destination = -1 } }
+            );
 
             if (expression != null)
             {
@@ -314,8 +312,16 @@ namespace Yarn.Compiler
                     throw new InvalidOperationException($"Internal error: can't add a new label, because CurrentNode is null");
                 }
 
-                this.compiler.AddLabel(endOfClauseLabel, this.compiler.CurrentNode.Instructions.Count);
-                this.compiler.Emit(OpCode.Pop, clauseContext.Stop);
+                if (jumpToEndOfClause != null)
+                {
+                    jumpToEndOfClause.Destination = CurrentInstructionNumber;
+                    this.compiler.CurrentNodeDebugInfo?.AddLabel("end_clause", CurrentInstructionNumber);
+                }
+
+                this.compiler.Emit(
+                    clauseContext.Stop,
+                    new Instruction { Pop = new PopInstruction { } }
+                );
             }
         }
 
@@ -328,9 +334,8 @@ namespace Yarn.Compiler
                 throw new InvalidOperationException($"Internal error: can't codegen an option group because CurrentNode is null");
             }
 
-            string endOfGroupLabel = this.compiler.RegisterLabel("group_end");
-
-            var labels = new List<string>();
+            var addOptionInstructions = new List<Instruction>();
+            var jumpToEndOfGroupInstructions = new List<Instruction>();
 
             int optionCount = 0;
 
@@ -344,17 +349,12 @@ namespace Yarn.Compiler
                 // Get the line ID for the shortcut's line
                 var lineID = Compiler.GetLineID(shortcut.line_statement());
 
-                // Generate the name of internal label that we'll jump to if
-                // this option is selected. We'll emit the label itself later.
-                string optionDestinationLabel = this.compiler.RegisterLabel($"shortcutoption_{this.compiler.CurrentNode.Name ?? "node"}_{optionCount + 1}");
-                labels.Add(optionDestinationLabel);
-
                 // This line statement may have a condition on it. If it does,
                 // emit code that evaluates the condition, and add a flag on the
                 // 'Add Option' instruction that indicates that a condition
                 // exists.
                 bool hasLineCondition = false;
-                bool hasOnceHashtag = false;
+
                 if (shortcut.line_statement()?.line_condition()?.expression() != null)
                 {
                     // Evaluate the condition, and leave it on the stack
@@ -363,91 +363,84 @@ namespace Yarn.Compiler
                     hasLineCondition = true;
                 }
 
-                if (Compiler.TryGetOnceHashtag(shortcut.line_statement()?.hashtag(), out var once))
-                {
-                    // Generate code that evaluates the 'viewed once' tag
-                    var variableName = Compiler.GetContentViewedVariableName(lineID);
-                    this.compiler.Emit(OpCode.PushVariable, once.Start, new Operand(variableName));
-
-                    // The stack now contains whether or not we've seen this
-                    // content before. We want to show the option when we have
-                    // NOT seen this before, so 'not' it.
-                    var notFunction = GetFunctionName(Types.Boolean, Operator.Not);
-                    this.compiler.Emit(OpCode.PushFloat, once.Start, new Operand(1));
-                    this.compiler.Emit(OpCode.CallFunc, once.Start, new Operand(notFunction));
-                    hasOnceHashtag = true;
-                }
-
-                if (hasLineCondition && hasOnceHashtag)
-                {
-                    // We have both a line condition's result and a #once
-                    // condition's result on the stack, so 'And' the two values
-                    // together.
-                    var andFunction = GetFunctionName(Types.Boolean, Operator.And);
-                    this.compiler.Emit(OpCode.PushFloat, once.Start, new Operand(2));
-                    this.compiler.Emit(OpCode.CallFunc, once.Start, new Operand(andFunction));
-                }
-
                 // We can now prepare and add the option.
 
                 // Start by figuring out the text that we want to add. This will
                 // involve evaluating any inline expressions.
                 var expressionCount = this.GenerateCodeForExpressionsInFormattedText(shortcut.line_statement().line_formatted_text().children);
 
+                Instruction addOptionInstruction;
+
+
                 // And add this option to the list.
                 this.compiler.Emit(
-                    OpCode.AddOption,
                     shortcut.line_statement().Start,
-                    new Operand(lineID),
-                    new Operand(optionDestinationLabel),
-                    new Operand(expressionCount),
-                    new Operand(hasLineCondition || hasOnceHashtag));
+                    addOptionInstruction = new Instruction {
+                        AddOption = new AddOptionInstruction {
+                            LineID = lineID,
+                            Destination = -1,
+                            SubstitutionCount = expressionCount,
+                            HasCondition = hasLineCondition,
+                        }
+                    });
+
+                addOptionInstructions.Add(addOptionInstruction);
 
                 optionCount++;
             }
 
-            // All of the options that we intend to show are now ready to go.
-            this.compiler.Emit(OpCode.ShowOptions, context.Stop);
-
-            // The top of the stack now contains the name of the label we want
-            // to jump to. Jump to it now.
-            this.compiler.Emit(OpCode.Jump, context.Stop);
+            this.compiler.Emit(
+                context.Stop,
+                // All of the options that we intend to show are now ready to
+                // go. Show them.
+                new Instruction { ShowOptions = new ShowOptionsInstruction { } },
+                // The top of the stack now contains the name of the label we
+                // want to jump to. Jump to it now.
+                new Instruction { PeekAndJump = new PeekAndJumpInstruction { } }
+            );
 
             // We'll now emit the labels and code associated with each option.
             optionCount = 0;
             foreach (var shortcut in context.shortcut_option())
             {
-                // Emit the label for this option's code
-                this.compiler.CurrentNode.Labels.Add(labels[optionCount], this.compiler.CurrentNode.Instructions.Count);
+                // Create the label for this option's code
+                this.compiler.CurrentNodeDebugInfo?.AddLabel($"option_{optionCount}", CurrentInstructionNumber);
 
-                if (Compiler.TryGetOnceHashtag(shortcut.line_statement().hashtag(), out var once))
-                {
-                    // This option had a #once hashtag. It was selected, so mark
-                    // that it's been seen.
-                    var lineID = Compiler.GetLineID(shortcut.line_statement());
-                    var onceVariableName = Compiler.GetContentViewedVariableName(lineID);
-                    this.compiler.Emit(OpCode.PushBool, once.Start, new Operand(true));
-                    this.compiler.Emit(OpCode.StoreVariable, once.Start, new Operand(onceVariableName));
-                    this.compiler.Emit(OpCode.Pop, once.Start);
-                }
+                // Make this option's AddOption instruction point at where we
+                // are now.
+                addOptionInstructions[optionCount].Destination = CurrentInstructionNumber;
 
-                // Run through all the children statements of the shortcut
-                // option.
+                // Run through all the children statements of the  option.
                 foreach (var child in shortcut.statement())
                 {
                     this.Visit(child);
                 }
 
+                Instruction jumpToEnd;
+
                 // Jump to the end of this shortcut option group.
-                this.compiler.Emit(OpCode.JumpTo, shortcut.Stop, new Operand(endOfGroupLabel));
+                this.compiler.Emit(
+                    shortcut.Stop,
+                    jumpToEnd = new Instruction { JumpTo = new JumpToInstruction { Destination = -1 } }
+                );
+
+                jumpToEndOfGroupInstructions.Add(jumpToEnd);
 
                 optionCount++;
             }
 
-            // We made it to the end! Mark the end of the group, so we can jump
-            // to it.
-            this.compiler.CurrentNode.Labels.Add(endOfGroupLabel, this.compiler.CurrentNode.Instructions.Count);
-            this.compiler.Emit(OpCode.Pop, context.Stop);
+            // We made it to the end! Update all jump-to-end instructions to
+            // point to where we are now.
+            this.compiler.CurrentNodeDebugInfo?.AddLabel("group_end", CurrentInstructionNumber);
+
+            foreach (var jump in jumpToEndOfGroupInstructions) {
+                jump.Destination = CurrentInstructionNumber;
+            }
+
+            this.compiler.Emit(
+                context.Stop,
+                new Instruction { Pop = new PopInstruction { } }
+            );
 
             return 0;
         }
@@ -462,11 +455,6 @@ namespace Yarn.Compiler
             var labels = new Dictionary<YarnSpinnerParser.Line_group_itemContext, string>();
 
             int optionCount = 0;
-
-            // Register a label that all line group items should jump to when
-            // done.
-            var lineGroupCompleteLabel = this.compiler.RegisterLabel("linegroup_done");
-
 
             // Each line group item works like this:
             // - If present, the condition is evaluated.
@@ -491,85 +479,57 @@ namespace Yarn.Compiler
 
             bool anyItemHadEmptyCondition = false;
 
+            List<Instruction> jumpsToEndOfLineGroup = new List<Instruction>();
+
+            var jumpsToLineGroupItems = new Dictionary<YarnSpinnerParser.Line_group_itemContext, Instruction>();
+
             foreach (var lineGroupItem in context.line_group_item())
             {
-                // Generate and remember the label for this item
-                var lineLabel = this.compiler.RegisterLabel("linegroup_item_" + optionCount);
-                labels[lineGroupItem] = lineLabel;
-
-                // Evaluate the expression for the item, if present
                 var lineStatement = lineGroupItem.line_statement();
                 var expression = lineStatement.line_condition()?.expression();
 
-                Compiler.TryGetOnceHashtag(lineStatement.hashtag(), out var onceHashTag);
-
                 var lineID = Compiler.GetLineID(lineGroupItem.line_statement());
 
-                if (onceHashTag != null || expression != null)
+                // This line group item has an expression. Evaluate it.
+                if (expression != null)
                 {
-                    var endOfExpressionEvalLabel = compiler.RegisterLabel("linegroup_item_" + optionCount + "condition_end");
-
+                    Instruction skipThisItemInstruction;
                     IToken? conditionToken = null;
                     int conditionCount = 0;
 
-                    if (expression != null)
-                    {
-                        this.Visit(expression);
-                        conditionToken = expression.Start;
+                    this.Visit(expression);
+                    conditionToken = expression.Start;
 
-                        // Get the number of values that this expression
-                        // examines
-                        conditionCount += GetValuesInExpression(expression);
-                    }
-                    if (onceHashTag != null)
-                    {
-                        // Evaluate the 'once' variable
-                        var variableName = Compiler.GetContentViewedVariableName(lineID);
-                        this.compiler.Emit(OpCode.PushVariable, onceHashTag.Start, new Operand(variableName));
-                        // We want to add this item if we have NOT seen this
-                        // before, so 'not' the result
-                        var notFunction = GetFunctionName(Types.Boolean, Operator.Not);
-                        this.compiler.Emit(OpCode.PushFloat, onceHashTag.Start, new Operand(1));
-                        this.compiler.Emit(OpCode.CallFunc, onceHashTag.Start, new Operand(notFunction));
-
-                        conditionToken = onceHashTag.Start;
-
-                        // The presence of a #once hashtag counts as an
-                        // expression value
-                        conditionCount += 1;
-                    }
-
-                    if (expression != null && onceHashTag != null)
-                    {
-                        // We now have two bools on the stack, so 'and' them
-                        // together.
-
-                        // Find the name of the method to invoke for doing a
-                        // boolean And.
-                        Yarn.IType type = Yarn.Types.Boolean;
-                        Operator op = Operator.And;
-                        string functionName = GetFunctionName(type, op);
-
-                        // Peform the boolean 'and' with the two bools that are
-                        // currently on the stack
-                        this.compiler.Emit(OpCode.PushFloat, expression.Start, new Operand(2));
-                        this.compiler.Emit(OpCode.CallFunc, expression.Start, new Operand(functionName));
-                    }
+                    // Get the number of values that this expression
+                    // examines
+                    conditionCount += GetValuesInExpression(expression);
 
                     // If this evaluates to false, skip to the end of the
-                    // expression
-                    this.compiler.Emit(OpCode.JumpIfFalse, conditionToken!, new Operand(endOfExpressionEvalLabel));
+                    // expression and do not register this line group item
+                    this.compiler.Emit(
+                        conditionToken,
+                        skipThisItemInstruction = new Instruction { 
+                            JumpIfFalse = new JumpIfFalseInstruction { Destination = -1 } 
+                        }
+                    );
 
                     // Call the 'add candidate' function
                     EmitCodeForRegisteringLineGroupItem(lineGroupItem, conditionCount);
 
-                    this.compiler.AddLabel(endOfExpressionEvalLabel, this.compiler.CurrentNode.Instructions.Count);
+                    // Update our jump to point at where we are now
+                    this.compiler.CurrentNodeDebugInfo?.AddLabel("line_group_eval_end", CurrentInstructionNumber);
+                    skipThisItemInstruction.Destination = CurrentInstructionNumber;
                 }
                 else
                 {
                     // There is no expression; call the add candidate function
+                    // unconditionally
                     EmitCodeForRegisteringLineGroupItem(lineGroupItem, 0);
 
+                    // Remember that at least one line group item had no
+                    // condition (and therefore there will always be an option
+                    // that can be selected, which means we don't need to handle
+                    // the case of "nothing is selectable")
                     anyItemHadEmptyCondition = true;
                 }
 
@@ -582,13 +542,24 @@ namespace Yarn.Compiler
                 var lineIDTag = Compiler.GetLineIDTag(lineStatement.hashtag());
                 var lineID = lineIDTag?.text?.Text ?? throw new InvalidOperationException("Internal compiler error: line ID for line group item was not present");
 
-                // Push the parameters (label, condition count (= 0), line id)
+                Instruction runThisLineInstruction;
+
+                // Push the parameters (destination, condition count (= 0), line id)
                 // in reverse order
-                this.compiler.Emit(OpCode.PushString, lineStatement.Start, new Operand(lineID));
-                this.compiler.Emit(OpCode.PushFloat, lineStatement.Start, new Operand(conditionCount));
-                this.compiler.Emit(OpCode.PushString, lineStatement.Start, new Operand(labels[lineGroupItem]));
-                this.compiler.Emit(OpCode.PushFloat, lineGroupItem.Start, new Operand(3));
-                this.compiler.Emit(OpCode.CallFunc, lineGroupItem.Start, new Operand(VirtualMachine.AddLineGroupCandidateFunctionName));
+                this.compiler.Emit(
+                    lineStatement.Start,
+                    // line ID for this option (arg 3)
+                    new Instruction { PushString = new PushStringInstruction { Value = lineID } },
+                    // condition count (arg 2)
+                    new Instruction { PushFloat = new PushFloatInstruction { Value = conditionCount } },
+                    // destination if selected (arg 1)
+                    runThisLineInstruction = new Instruction { PushFloat = new PushFloatInstruction { Value = -1 } },
+                    // instruction count
+                    new Instruction { PushFloat = new PushFloatInstruction { Value = 3 } },
+                    new Instruction { CallFunc = new CallFunctionInstruction { FunctionName = VirtualMachine.AddLineGroupCandidateFunctionName } }
+                );
+
+                jumpsToLineGroupItems[lineGroupItem] = runThisLineInstruction;
             }
 
             if (anyItemHadEmptyCondition == false)
@@ -596,26 +567,39 @@ namespace Yarn.Compiler
                 // All items had a condition. We need to handle the event where
                 // all conditions fail, so we'll register an item that jumps
                 // straight to the end of the line group.
-                this.compiler.Emit(OpCode.PushString, context.Stop, new Operand(VirtualMachine.LineGroupCandidate.NoneContentID));
-                this.compiler.Emit(OpCode.PushFloat, context.Stop, new Operand(0));
-                this.compiler.Emit(OpCode.PushString, context.Stop, new Operand(lineGroupCompleteLabel));
-                this.compiler.Emit(OpCode.PushFloat, context.Stop, new Operand(3));
-                this.compiler.Emit(OpCode.CallFunc, context.Stop, new Operand(VirtualMachine.AddLineGroupCandidateFunctionName));
+
+                Instruction jumpToEnd;
+
+                this.compiler.Emit(
+                    context.Stop,
+                    new Instruction { PushString = new PushStringInstruction { Value = VirtualMachine.LineGroupCandidate.NoneContentID } },
+                    new Instruction { PushFloat = new PushFloatInstruction { Value = 0 } },
+                    jumpToEnd = new Instruction { PushFloat = new PushFloatInstruction { Value = -1 } },
+                    new Instruction { PushFloat = new PushFloatInstruction { Value = 3 } },
+                    new Instruction { CallFunc = new CallFunctionInstruction { FunctionName = VirtualMachine.AddLineGroupCandidateFunctionName } }
+                );
+
+                jumpsToEndOfLineGroup.Add(jumpToEnd);
             }
 
             // We've added all of our candidates; now query which one to jump to
-            this.compiler.Emit(OpCode.PushFloat, context.Start, new Operand(0));
-            this.compiler.Emit(OpCode.CallFunc, context.Start, new Operand(VirtualMachine.SelectLineGroupCandidateFunctionName));
-
-            // After this call, the appropriate label to jump to will be on the
-            // stack.
-            this.compiler.Emit(OpCode.Jump, context.Start);
+            this.compiler.Emit(context.Start,
+                new Instruction { PushFloat = new PushFloatInstruction { Value = 0 } },
+                new Instruction { CallFunc = new CallFunctionInstruction { FunctionName = VirtualMachine.SelectLineGroupCandidateFunctionName } },
+                // After this call, the appropriate label to jump to will be on the
+                // stack.
+                new Instruction { PeekAndJump = new PeekAndJumpInstruction { } }
+            );
 
             // Now generate the code for each of the lines in the group.
             foreach (var lineGroupItem in context.line_group_item())
             {
-                // Create the label that we're jumping to
-                this.compiler.AddLabel(labels[lineGroupItem], this.compiler.CurrentNode.Instructions.Count);
+                // Mark that the instruction to jump to a specific 
+                jumpsToLineGroupItems[lineGroupItem].Destination = CurrentInstructionNumber;
+
+                // Mark that this instruction, which we jump to, should have a
+                // label
+                this.compiler.CurrentNodeDebugInfo?.AddLabel("run_line_group_item", CurrentInstructionNumber);
 
                 // Evaluate this line. (If it had a once hashtag, this will set
                 // its variable.)
@@ -626,15 +610,25 @@ namespace Yarn.Compiler
                 {
                     this.Visit(childStatement);
                 }
+                Instruction jumpToEnd;
 
-                this.compiler.Emit(OpCode.JumpTo, lineGroupItem.Stop, new Operand(lineGroupCompleteLabel));
+                this.compiler.Emit(
+                    lineGroupItem.Stop,
+                    jumpToEnd = new Instruction { JumpTo = new JumpToInstruction { Destination = -1 } }
+                );
+                jumpsToEndOfLineGroup.Add(jumpToEnd);
             }
 
-            // Create the label that all line group items jump to
-            this.compiler.AddLabel(lineGroupCompleteLabel, this.compiler.CurrentNode.Instructions.Count);
+            // Mark all jumps to the end of the group as being here
+            this.compiler.CurrentNodeDebugInfo?.AddLabel("line_group_end", CurrentInstructionNumber);
+            foreach (var i in jumpsToEndOfLineGroup)
+            {
+                i.Destination = CurrentInstructionNumber;
+            }
 
-            // Pop the label that represents the selected item
-            this.compiler.Emit(OpCode.Pop, context.Stop);
+            // Pop the instruction number that represents the selected item
+            // destination
+            this.compiler.Emit(context.Stop, new Instruction { Pop = new PopInstruction { } });
 
             return 0;
         }
@@ -737,9 +731,6 @@ namespace Yarn.Compiler
                 this.Visit(operand);
             }
 
-            // Indicate that we are pushing this many items for comparison
-            this.compiler.Emit(OpCode.PushFloat, operatorToken, new Operand(operands.Length));
-
             // Figure out the canonical name for the method that the VM should
             // invoke in order to perform this work
             TypeBase implementingType = TypeUtil.FindImplementingTypeForMethod(type, op.ToString());
@@ -753,31 +744,35 @@ namespace Yarn.Compiler
 
             string functionName = TypeUtil.GetCanonicalNameForMethod(implementingType, op.ToString());
 
-            // Call that function.
-            this.compiler.Emit(OpCode.CallFunc, operatorToken, new Operand(functionName));
+            this.compiler.Emit(
+                operatorToken,
+                // Indicate that we are pushing this many items for comparison
+                new Instruction { PushFloat = new PushFloatInstruction { Value = operands.Length } },
+                // Call that function.
+                new Instruction { CallFunc = new CallFunctionInstruction { FunctionName = functionName } }
+            );
         }
 
-        private void GenerateTrackingCode(string variableName)
+        private void GenerateTrackingCode(string variableName, IToken sourceToken)
         {
-            GenerateTrackingCode(this.compiler, variableName);
+            GenerateTrackingCode(this.compiler, variableName, sourceToken);
         }
 
-        // really ought to make this emit like a list of opcodes actually
-        public static void GenerateTrackingCode(ICodeEmitter compiler, string variableName)
+        public static void GenerateTrackingCode(ICodeEmitter compiler, string variableName, IToken sourceToken)
         {
-            // pushing the var and the increment onto the stack
-            compiler.Emit(OpCode.PushVariable, new Operand(variableName));
-            compiler.Emit(OpCode.PushFloat, new Operand(1));
-
-            // Indicate that we are pushing this many items for comparison
-            compiler.Emit(OpCode.PushFloat, new Operand(2));
-
-            // calling the function
-            compiler.Emit(OpCode.CallFunc, new Operand("Number.Add"));
-
-            // now store the variable and clean up the stack
-            compiler.Emit(OpCode.StoreVariable, new Operand(variableName));
-            compiler.Emit(OpCode.Pop);
+            compiler.Emit(
+                sourceToken,
+                // pushing the var and the increment onto the stack
+                new Instruction { PushVariable = new PushVariableInstruction { VariableName = variableName } },
+                new Instruction { PushFloat = new PushFloatInstruction { Value = 1 } },
+                // Indicate that we are pushing this many items for comparison
+                new Instruction { PushFloat = new PushFloatInstruction { Value = 2 } },
+                // calling the function to add them together
+                new Instruction { CallFunc = new CallFunctionInstruction { FunctionName = GetFunctionName(Types.Number, Operator.Add) } },
+                // now store the variable and clean up the stack
+                new Instruction { StoreVariable = new StoreVariableInstruction { VariableName = variableName } },
+                new Instruction { Pop = new PopInstruction { } }
+            );
         }
 
         // * / %
@@ -833,21 +828,31 @@ namespace Yarn.Compiler
         public override int VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
         {
             float number = float.Parse(context.NUMBER().GetText(), CultureInfo.InvariantCulture);
-            this.compiler.Emit(OpCode.PushFloat, context.Start, new Operand(number));
+
+            this.compiler.Emit(
+                context.Start, 
+                new Instruction { PushFloat = new PushFloatInstruction { Value = number } }
+            );
 
             return 0;
         }
 
         public override int VisitValueTrue(YarnSpinnerParser.ValueTrueContext context)
         {
-            this.compiler.Emit(OpCode.PushBool, context.Start, new Operand(true));
+            this.compiler.Emit(
+                context.Start, 
+                new Instruction { PushBool = new PushBoolInstruction { Value = true } }
+            );
 
             return 0;
         }
 
         public override int VisitValueFalse(YarnSpinnerParser.ValueFalseContext context)
         {
-            this.compiler.Emit(OpCode.PushBool, context.Start, new Operand(false));
+            this.compiler.Emit(
+                context.Start, 
+                new Instruction { PushBool = new PushBoolInstruction { Value = false } }
+            );
             return 0;
         }
 
@@ -872,7 +877,10 @@ namespace Yarn.Compiler
             {
                 // Otherwise, generate the code that fetches the variable from
                 // storage.
-                this.compiler.Emit(OpCode.PushVariable, context.Start, new Operand(variableName));
+                this.compiler.Emit(
+                    context.Start, 
+                    new Instruction { PushVariable = new PushVariableInstruction { VariableName = variableName} }
+                );
             }
 
             return 0;
@@ -883,8 +891,10 @@ namespace Yarn.Compiler
             // stripping the " off the front and back actually is this what we
             // want?
             string stringVal = context.STRING().GetText().Trim('"');
-
-            this.compiler.Emit(OpCode.PushString, context.Start, new Operand(stringVal));
+            this.compiler.Emit(
+                context.Start, 
+                new Instruction { PushString = new PushStringInstruction { Value =  stringVal } }
+            );
 
             return 0;
         }
@@ -927,11 +937,17 @@ namespace Yarn.Compiler
             // Raw values are permitted to be a string, or a number
             if (propertyType == Types.String)
             {
-                this.compiler.Emit(OpCode.PushString, context.Start, new Operand(value.ToString()));
+                this.compiler.Emit(
+                    context.Start, 
+                    new Instruction { PushString = new PushStringInstruction { Value = value.ToString() } }
+                );
             }
             else if (propertyType == Types.Number)
             {
-                this.compiler.Emit(OpCode.PushFloat, context.Start, new Operand(value.ToSingle(CultureInfo.InvariantCulture)));
+                this.compiler.Emit(
+                    context.Start, 
+                    new Instruction { PushFloat = new PushFloatInstruction { Value = value.ToSingle(CultureInfo.InvariantCulture) } }
+                );
             }
             else
             {
@@ -956,11 +972,12 @@ namespace Yarn.Compiler
         {
             if (trackingVariableName != null)
             {
-                GenerateTrackingCode(trackingVariableName);
+                GenerateTrackingCode(trackingVariableName, context.Start);
             }
 
-            compiler.Emit(OpCode.PushString, context.destination, new Operand(context.destination.Text));
-            compiler.Emit(OpCode.RunNode, context.Start);
+            this.compiler.Emit(context.Start, 
+                new Instruction { RunNode = new RunNodeInstruction { NodeName = context.destination.Text }}
+            );
 
             return 0;
         }
@@ -971,12 +988,12 @@ namespace Yarn.Compiler
         {
             if (trackingVariableName != null)
             {
-                GenerateTrackingCode(trackingVariableName);
+                GenerateTrackingCode(trackingVariableName, context.Start);
             }
 
             // Evaluate the expression, and jump to the result on the stack.
             this.Visit(context.expression());
-            this.compiler.Emit(OpCode.RunNode, context.Start);
+            this.compiler.Emit(context.Start, new Instruction { PeekAndRunNode = new PeekAndRunNodeInstruction { } });
 
             return 0;
         }

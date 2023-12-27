@@ -33,7 +33,11 @@ namespace YarnLanguageServer.Tests
             var functions = workspace.Projects.Single().Functions;
             
             foreach (var func in functions) {
-                declsNode.Instructions.Should().Contain(i => i.Opcode == Yarn.Instruction.Types.OpCode.CallFunc && i.Operands[0].StringValue == func.YarnName, $"the node should call '{func.YarnName}()'");
+                declsNode.Instructions.Should().Contain(i => 
+                    i.InstructionTypeCase == Instruction.InstructionTypeOneofCase.CallFunc
+                    && i.CallFunc.FunctionName == func.YarnName, 
+                    $"the node should call '{func.YarnName}()'"
+                );
             }
         }
 
