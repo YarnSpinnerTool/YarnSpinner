@@ -68,7 +68,7 @@ namespace Yarn.Saliency
                     // assume zero. Additionally, we'll keep the view count key
                     // for later, since we'll increment it when we're done.
                     string viewCountKey = GetViewCountKeyForContent(c);
-                    if (this.VariableStorage.TryGetValue<float>(viewCountKey, out var countAsFloat))
+                    if (this.VariableStorage.TryGetValue<float>(viewCountKey, out var countAsFloat) == false)
                     {
                         countAsFloat = 0;
                     }
