@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Yarn;
-using Yarn.Compiler;
 
 namespace TypeChecker
 {

@@ -10,7 +10,6 @@ using CLDRPlurals;
 using System.Globalization;
 
 using FluentAssertions;
-using FluentAssertions.Extensions;
 
 namespace YarnSpinner.Tests
 {

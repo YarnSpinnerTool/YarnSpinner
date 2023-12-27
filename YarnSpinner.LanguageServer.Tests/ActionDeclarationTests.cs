@@ -2,8 +2,6 @@ using Xunit;
 using System.Linq;
 using FluentAssertions;
 using System.IO;
-using YarnLanguageServer.Diagnostics;
-using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Yarn;
 using System.Text.RegularExpressions;

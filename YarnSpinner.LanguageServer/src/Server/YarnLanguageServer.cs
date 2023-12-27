@@ -667,7 +667,8 @@ namespace YarnLanguageServer
                 .SelectMany(p => p.Files)
                 .DistinctBy(p => p.Uri);
 
-            // compiling the whole workspace so we can get access to the program to make sure it works
+            // Compiling the whole workspace so we can get access to the program
+            // to make sure it works
             var job = new Yarn.Compiler.CompilationJob
             {
                 Files = allFilesInProject.Select(file =>
@@ -678,6 +679,7 @@ namespace YarnLanguageServer
                         Source = file.Text,
                     };
                 }),
+
                 // Perform a full compilation so that we can produce a basic
                 // block analysis of the file
                 CompilationType = Yarn.Compiler.CompilationJob.Type.FullCompilation,
@@ -694,13 +696,14 @@ namespace YarnLanguageServer
 
             if (errorMessages.Length != 0 || result.Program == null || result.ProjectDebugInfo == null)
             {
+                // We have errors (or we don't have any material to work with.)
                 return Task.FromResult(new VOStringExport
                 {
                     File = fileData,
                     Errors = errorMessages,
                 });
             }
-            
+
             // We have no errors, and we have debug info for this project,
             // so we can run through the nodes and build up our blocks of
             // lines.
