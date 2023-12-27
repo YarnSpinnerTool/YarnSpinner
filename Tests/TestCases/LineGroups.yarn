@@ -23,8 +23,6 @@ title: Start
 => Baker: What d'ya say?
 => Baker: How about it?
 => Baker: Want one?
-// This line can always appear, but only ever one time.
-=> Baker: Made from my mother's recipe! #once
 
 -> Buy Pie
     => Baker: Thank you kindly!
@@ -41,9 +39,7 @@ title: BakerSeesPlayer
 ---
 => Baker: Hey there!
 => Baker: Fresh pies!
-=> Baker: Fresh and hot!
+=> Baker: Fresh and hot pies!
 => Baker: Popular pies! <<if $pies_bought > 2>>
-// This bark is long and complex, so we don't want to hear it too often.
-=> Baker: They're selling like hotcakes! Literally! <<if $pies_bought > 2>> #once
 ===
 

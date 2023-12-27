@@ -601,8 +601,7 @@ namespace Yarn.Compiler
                 // label
                 this.compiler.CurrentNodeDebugInfo?.AddLabel("run_line_group_item", CurrentInstructionNumber);
 
-                // Evaluate this line. (If it had a once hashtag, this will set
-                // its variable.)
+                // Evaluate this line. 
                 this.Visit(lineGroupItem.line_statement());
 
                 // For each child, evaluate that too
