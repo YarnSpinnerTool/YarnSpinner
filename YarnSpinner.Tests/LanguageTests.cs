@@ -304,7 +304,7 @@ namespace YarnSpinner.Tests
         }
 
         // Test every file in Tests/TestCases
-        [Theory]
+        [Theory(Timeout = 1000)]
         [MemberData(nameof(FileSources), "TestCases")]
         [MemberData(nameof(FileSources), "TestCases/ParseFailures")]
         [MemberData(nameof(FileSources), "Issues")]
@@ -362,10 +362,7 @@ namespace YarnSpinner.Tests
                 // we did in the last line)
                 if (dialogue.NodeExists("Start"))
                 {
-                    new Action(() =>
-                    {
-                        RunStandardTestcase();
-                    }).ExecutionTime().Should().BeLessThanOrEqualTo(1000.Milliseconds());
+                    RunStandardTestcase();
                 }
             }
 
