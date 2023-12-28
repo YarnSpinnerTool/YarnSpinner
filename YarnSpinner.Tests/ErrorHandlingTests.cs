@@ -2,6 +2,7 @@ using Xunit;
 using FluentAssertions;
 
 using Yarn.Compiler;
+using Xunit.Abstractions;
 
 namespace YarnSpinner.Tests
 {
@@ -9,6 +10,10 @@ namespace YarnSpinner.Tests
 
     public class ErrorHandlingTests : TestBase
     {
+        public ErrorHandlingTests(ITestOutputHelper outputHelper) : base(outputHelper)
+        {
+        }
+
         [Fact]
         public void TestMalformedIfStatement() {
             var source = CreateTestNode(@"<<if true>> // error: no endif");

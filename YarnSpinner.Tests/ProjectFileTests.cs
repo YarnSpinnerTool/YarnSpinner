@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using FluentAssertions;
 using Xunit;
+using Xunit.Abstractions;
 using Yarn.Compiler;
 
 
@@ -11,6 +12,10 @@ namespace YarnSpinner.Tests
 
     public class ProjectFileTests : TestBase
     {
+        public ProjectFileTests(ITestOutputHelper outputHelper) : base(outputHelper)
+        {
+        }
+
         private static string ProjectFilePath => Path.Combine(SpaceDemoScriptsPath, "Space.yarnproject");
         private static string ProjectFolderPath => Path.GetDirectoryName(ProjectFilePath);
 

@@ -8,12 +8,13 @@ using Yarn.Compiler;
 
 using FluentAssertions;
 using TypeChecker;
+using Xunit.Abstractions;
 
 namespace YarnSpinner.Tests
 {
     public class TypeTests : TestBase
     {
-        public TypeTests() : base()
+        public TypeTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
         }
 

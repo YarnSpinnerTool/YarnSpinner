@@ -2,6 +2,7 @@ using Xunit;
 using System;
 using Yarn.Markup;
 using FluentAssertions;
+using Xunit.Abstractions;
 
 namespace YarnSpinner.Tests
 {
@@ -9,6 +10,8 @@ namespace YarnSpinner.Tests
     public class MarkupTests : TestBase
     {
 
+        public MarkupTests(ITestOutputHelper outputHelper) : base(outputHelper) { }
+        
         [Fact]
         public void TestMarkupParsing() {
             var line = "A [b]B[/b]";

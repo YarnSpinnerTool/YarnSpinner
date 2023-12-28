@@ -5,12 +5,16 @@ using Yarn.Compiler.Upgrader;
 using Yarn.Compiler;
 using System.Linq;
 using FluentAssertions;
+using Xunit.Abstractions;
 
 namespace YarnSpinner.Tests
 {
 
     public class UpgraderTests : TestBase
     {
+        public UpgraderTests(ITestOutputHelper outputHelper) : base(outputHelper)
+        {
+        }
 
         // Test every file in Tests/TestCases
         [Theory(Skip="Language upgrader has been removed.")]

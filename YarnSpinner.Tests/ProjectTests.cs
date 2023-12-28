@@ -5,6 +5,7 @@ using Yarn.Compiler;
 using System.Linq;
 using System.Text.RegularExpressions;
 using FluentAssertions;
+using Xunit.Abstractions;
 
 namespace YarnSpinner.Tests
 {
@@ -12,7 +13,8 @@ namespace YarnSpinner.Tests
 
     public class ProjectTests : TestBase
     {
-		
+        public ProjectTests(ITestOutputHelper outputHelper) : base(outputHelper) { }
+        
         [Fact]
         public void TestLoadingNodes()
         {

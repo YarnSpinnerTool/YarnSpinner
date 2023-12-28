@@ -1,6 +1,7 @@
 using System.Linq;
 using FluentAssertions;
 using Xunit;
+using Xunit.Abstractions;
 using Yarn;
 using Yarn.Compiler;
 
@@ -8,6 +9,10 @@ namespace YarnSpinner.Tests
 {
     public class SmartVariableTests : TestBase
     {
+        public SmartVariableTests(ITestOutputHelper outputHelper) : base(outputHelper)
+        {
+        }
+
         [Fact]
         public void TestSmartVariablesCanBeDeclared()
         {

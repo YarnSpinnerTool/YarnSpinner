@@ -7,6 +7,8 @@ using System.Linq;
 using System.Globalization;
 using Yarn.Compiler;
 using FluentAssertions;
+using Xunit;
+using Xunit.Abstractions;
 
 namespace YarnSpinner.Tests
 {
@@ -43,6 +45,7 @@ namespace YarnSpinner.Tests
 
     public class TestBase
     {
+        protected readonly ITestOutputHelper output;
         protected IVariableStorage storage = new DebugMemoryVariableStore();
         protected Dialogue dialogue;
         protected IDictionary<string, Yarn.Compiler.StringInfo> stringTable;
@@ -99,9 +102,10 @@ namespace YarnSpinner.Tests
             return dialogue.ParseMarkup(substitutedText).Text;
         }
         
-        public TestBase()
+        public TestBase(ITestOutputHelper outputHelper)
         {
-
+            this.output = outputHelper;
+            
             dialogue = new Dialogue (storage);
 
             dialogue.LanguageCode = "en";
@@ -109,12 +113,15 @@ namespace YarnSpinner.Tests
             dialogue.ContentSaliencyStrategy = new Yarn.Saliency.BestLeastRecentlyViewedSalienceStrategy(storage);
 
             dialogue.LogDebugMessage = delegate(string message) {
+                output.WriteLine(message);
+
                 Console.ResetColor();
                 Console.WriteLine (message);
-
             };
 
             dialogue.LogErrorMessage = delegate(string message) {
+                output.WriteLine("ERROR: " + message);
+
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine ("ERROR: " + message);
                 Console.ResetColor ();

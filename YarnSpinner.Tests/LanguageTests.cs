@@ -10,12 +10,13 @@ using CLDRPlurals;
 using System.Globalization;
 
 using FluentAssertions;
+using Xunit.Abstractions;
 
 namespace YarnSpinner.Tests
 {
     public class LanguageTests : TestBase
     {
-		public LanguageTests() : base() {
+		public LanguageTests(ITestOutputHelper outputHelper) : base(outputHelper) {
 
             // Register some additional functions
             dialogue.Library.RegisterFunction("add_three_operands", delegate (int a, int b, int c) {

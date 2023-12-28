@@ -8,6 +8,7 @@ using System.Linq;
 using Yarn.Compiler;
 
 using FluentAssertions;
+using Xunit.Abstractions;
 
 namespace YarnSpinner.Tests
 {
@@ -15,6 +16,8 @@ namespace YarnSpinner.Tests
 
     public class DialogueTests : TestBase
     {
+        public DialogueTests(ITestOutputHelper outputHelper) : base(outputHelper) { }
+
         [Fact]
         public void TestNodeExists ()
         {

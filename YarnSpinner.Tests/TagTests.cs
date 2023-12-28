@@ -1,12 +1,13 @@
 using Xunit;
 using Yarn.Compiler;
 using FluentAssertions;
+using Xunit.Abstractions;
 
 namespace YarnSpinner.Tests
 {
     public class TagTests : TestBase
     {
-        public TagTests() : base()
+        public TagTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
         }
 
