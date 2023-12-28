@@ -513,5 +513,37 @@ public partial class YarnSpinnerParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>detourToNodeName</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitDetourToNodeName([NotNull] YarnSpinnerParser.DetourToNodeNameContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>detourToExpression</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitDetourToExpression([NotNull] YarnSpinnerParser.DetourToExpressionContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.return_statement"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitReturn_statement([NotNull] YarnSpinnerParser.Return_statementContext context) { return VisitChildren(context); }
 }
 } // namespace Yarn.Compiler

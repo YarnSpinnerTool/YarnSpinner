@@ -290,6 +290,10 @@ COMMAND_DECLARE: 'declare' [\p{White_Space}] -> pushMode(ExpressionMode);
 
 COMMAND_JUMP: 'jump' [\p{White_Space}] -> pushMode(CommandIDOrExpressionMode);
 
+COMMAND_DETOUR: 'detour'  [\p{White_Space}] -> pushMode(CommandIDOrExpressionMode);
+
+COMMAND_RETURN: 'return' [\p{White_Space}]?; // next expected token after 'return' is '>>' so no whitespace is strictly needed 
+
 COMMAND_ENUM: 'enum' [\p{White_Space}] -> pushMode(CommandIDMode);
 
 COMMAND_CASE: 'case' [\p{White_Space}] -> pushMode(ExpressionMode);

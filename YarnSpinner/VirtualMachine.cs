@@ -7,6 +7,7 @@ namespace Yarn
 {
     using System;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
     /// <summary>
     /// A value used by an Instruction.
@@ -159,6 +160,13 @@ namespace Yarn
             /// <summary>The value stack.</summary>
             private Stack<Value> stack = new Stack<Value>();
 
+            internal struct CallSite {
+                public string? nodeName;
+                public int instruction;
+            }
+            
+            private Stack<CallSite> callStack = new Stack<CallSite>();
+
             /// <summary>Pushes a <see cref="Value"/> object onto the
             /// stack.</summary>
             /// <param name="v">The value to push onto the stack.</param>
@@ -202,6 +210,21 @@ namespace Yarn
             public void ClearStack()
             {
                 stack.Clear();
+            }
+
+            internal void PushCallStack()
+            {
+                callStack.Push(new CallSite
+                {
+                    nodeName = currentNodeName,
+                    instruction = programCounter
+                });
+            }
+
+            internal bool CanReturn => this.callStack.Count > 0;
+
+            internal CallSite PopCallStack() {
+                return callStack.Pop();
             }
         }
 
@@ -301,6 +324,10 @@ namespace Yarn
 
         public bool SetNode(string nodeName)
         {
+            return SetNode(nodeName, clearState: true);
+        }
+
+        internal bool SetNode(string nodeName, bool clearState) {
             if (Program == null || Program.Nodes.Count == 0)
             {
                 throw new DialogueException($"Cannot load node {nodeName}: No nodes have been loaded.");
@@ -315,8 +342,13 @@ namespace Yarn
             LogDebugMessage?.Invoke("Running node " + nodeName);
 
             currentNode = Program.Nodes[nodeName];
-            ResetState();
+            
+            if (clearState) {
+                ResetState();
+            }
+
             state.currentNodeName = nodeName;
+            state.programCounter = 0;
 
             NodeStartHandler?.Invoke(nodeName);
 
@@ -397,7 +429,7 @@ namespace Yarn
 
                 state.programCounter++;
 
-                if (state.programCounter >= currentNode.Instructions.Count)
+                if (currentNode != null && state.programCounter >= currentNode.Instructions.Count)
                 {
                     NodeCompleteHandler?.Invoke(currentNode.Name);
                     CurrentExecutionState = ExecutionState.Stopped;
@@ -813,47 +845,40 @@ namespace Yarn
                         break;
                     }
                 case Instruction.InstructionTypeOneofCase.RunNode:
-                    {
-                        // - RunNode
-                        // Run a node
-
-                        if (currentNode != null)
-                        {
-                            // We're currently running a node, so indicate that
-                            // this node is complete.
-                            NodeCompleteHandler?.Invoke(currentNode.Name);
-                        }
-
-                        SetNode(i.RunNode.NodeName);
-
-                        // Decrement program counter here, because it will
-                        // be incremented when this function returns, and
-                        // would mean skipping the first instruction
-                        state.programCounter -= 1;
-
-                        break;
-                    }
+                    ExecuteJumpToNode(i.RunNode.NodeName, false);
+                    break;
                 case Instruction.InstructionTypeOneofCase.PeekAndRunNode:
+                    ExecuteJumpToNode(null, false);
+                    break;
+                case Instruction.InstructionTypeOneofCase.DetourToNode:
+                    ExecuteJumpToNode(i.DetourToNode.NodeName, true);
+                    break;
+                case Instruction.InstructionTypeOneofCase.PeekAndDetourToNode:
+                    ExecuteJumpToNode(null, true);
+                    break;
+                case Instruction.InstructionTypeOneofCase.Return:
                     {
-                        
                         if (currentNode != null)
                         {
-                            // We're currently running a node, so indicate that
-                            // this node is complete.
+                            // Indicate that we are no longer running this node.
                             NodeCompleteHandler?.Invoke(currentNode.Name);
+                            currentNode = null;
                         }
-
-                        var newNode = state.PeekValue().ConvertTo<string>();
-                        SetNode(newNode);
-
-                        // Decrement program counter here, because it will
-                        // be incremented when this function returns, and
-                        // would mean skipping the first instruction
-                        state.programCounter -= 1;
+                        State.CallSite returnSite = default;
+                        if (state.CanReturn) {
+                            returnSite = state.PopCallStack();
+                        }
+                        if (returnSite.nodeName == null) {
+                            // We've reached the top of the call stack, so
+                            // there's nowhere to return to. Stop the program.
+                            DialogueCompleteHandler?.Invoke();
+                            CurrentExecutionState = ExecutionState.Stopped;
+                            break;
+                        }
+                        SetNode(returnSite.nodeName, clearState: false);
+                        state.programCounter = returnSite.instruction;
                     }
                     break;
-                
-
                 default:
                     // Whoa, no idea what OpCode this is. Stop the program
                     // and throw an exception.
@@ -861,6 +886,34 @@ namespace Yarn
 
                     throw new ArgumentOutOfRangeException($"{i.InstructionTypeCase} is not a supported instruction.");
             }
+        }
+
+        private void ExecuteJumpToNode(string? nodeName, bool isDetour)
+        {
+            if (isDetour)
+            {
+                // Preserve our current state.
+                state.PushCallStack();
+            }
+
+            if (currentNode != null)
+            {
+                // We're currently running a node, so indicate that
+                // this node is complete.
+                NodeCompleteHandler?.Invoke(currentNode.Name);
+            }
+
+            if (nodeName == null)
+            {
+                nodeName = state.PeekValue().ConvertTo<string>();
+            }
+
+            SetNode(nodeName, clearState: !isDetour);
+
+            // Decrement program counter here, because it will
+            // be incremented when this function returns, and
+            // would mean skipping the first instruction
+            state.programCounter -= 1;
         }
 
         internal struct LineGroupCandidate : IContentSaliencyOption {

@@ -527,5 +527,39 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>detourToNodeName</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDetourToNodeName([NotNull] YarnSpinnerParser.DetourToNodeNameContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>detourToNodeName</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDetourToNodeName([NotNull] YarnSpinnerParser.DetourToNodeNameContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>detourToExpression</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDetourToExpression([NotNull] YarnSpinnerParser.DetourToExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>detourToExpression</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDetourToExpression([NotNull] YarnSpinnerParser.DetourToExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.return_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterReturn_statement([NotNull] YarnSpinnerParser.Return_statementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.return_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitReturn_statement([NotNull] YarnSpinnerParser.Return_statementContext context);
 }
 } // namespace Yarn.Compiler

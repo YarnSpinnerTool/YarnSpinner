@@ -33,7 +33,7 @@ namespace Yarn {
             "cmFuZDoCOAEidAoETm9kZRIMCgRuYW1lGAEgASgJEicKDGluc3RydWN0aW9u",
             "cxgHIAMoCzIRLllhcm4uSW5zdHJ1Y3Rpb24SHQoHaGVhZGVycxgGIAMoCzIM",
             "Lllhcm4uSGVhZGVySgQIAhADSgQIAxAESgQIBBAFSgQIBRAGIiQKBkhlYWRl",
-            "chILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAkiqQ4KC0luc3RydWN0aW9u",
+            "chILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAkiwhAKC0luc3RydWN0aW9u",
             "EjUKBmp1bXBUbxgBIAEoCzIjLllhcm4uSW5zdHJ1Y3Rpb24uSnVtcFRvSW5z",
             "dHJ1Y3Rpb25IABI/CgtwZWVrQW5kSnVtcBgCIAEoCzIoLllhcm4uSW5zdHJ1",
             "Y3Rpb24uUGVla0FuZEp1bXBJbnN0cnVjdGlvbkgAEjcKB3J1bkxpbmUYAyAB",
@@ -57,41 +57,47 @@ namespace Yarn {
             "SW5zdHJ1Y3Rpb25IABI3CgdydW5Ob2RlGBAgASgLMiQuWWFybi5JbnN0cnVj",
             "dGlvbi5SdW5Ob2RlSW5zdHJ1Y3Rpb25IABJFCg5wZWVrQW5kUnVuTm9kZRgR",
             "IAEoCzIrLllhcm4uSW5zdHJ1Y3Rpb24uUGVla0FuZFJ1bk5vZGVJbnN0cnVj",
-            "dGlvbkgAGhgKFlBlZWtBbmRKdW1wSW5zdHJ1Y3Rpb24aGwoZUGVla0FuZFJ1",
-            "bk5vZGVJbnN0cnVjdGlvbhoYChZTaG93T3B0aW9uc0luc3RydWN0aW9uGiYK",
-            "FVB1c2hTdHJpbmdJbnN0cnVjdGlvbhINCgV2YWx1ZRgBIAEoCRolChRQdXNo",
-            "RmxvYXRJbnN0cnVjdGlvbhINCgV2YWx1ZRgBIAEoAhokChNQdXNoQm9vbElu",
-            "c3RydWN0aW9uEg0KBXZhbHVlGAEgASgIGigKEUp1bXBUb0luc3RydWN0aW9u",
-            "EhMKC2Rlc3RpbmF0aW9uGAEgASgFGj8KElJ1bkxpbmVJbnN0cnVjdGlvbhIO",
-            "CgZsaW5lSUQYASABKAkSGQoRc3Vic3RpdHV0aW9uQ291bnQYAiABKAUaRwoV",
-            "UnVuQ29tbWFuZEluc3RydWN0aW9uEhMKC2NvbW1hbmRUZXh0GAEgASgJEhkK",
-            "EXN1YnN0aXR1dGlvbkNvdW50GAIgASgFGmwKFEFkZE9wdGlvbkluc3RydWN0",
-            "aW9uEg4KBmxpbmVJRBgBIAEoCRITCgtkZXN0aW5hdGlvbhgCIAEoBRIZChFz",
-            "dWJzdGl0dXRpb25Db3VudBgDIAEoBRIUCgxoYXNDb25kaXRpb24YBCABKAga",
-            "LQoWSnVtcElmRmFsc2VJbnN0cnVjdGlvbhITCgtkZXN0aW5hdGlvbhgBIAEo",
-            "BRoQCg5Qb3BJbnN0cnVjdGlvbhovChdDYWxsRnVuY3Rpb25JbnN0cnVjdGlv",
-            "bhIUCgxmdW5jdGlvbk5hbWUYASABKAkaLwoXUHVzaFZhcmlhYmxlSW5zdHJ1",
-            "Y3Rpb24SFAoMdmFyaWFibGVOYW1lGAEgASgJGjAKGFN0b3JlVmFyaWFibGVJ",
-            "bnN0cnVjdGlvbhIUCgx2YXJpYWJsZU5hbWUYASABKAkaEQoPU3RvcEluc3Ry",
-            "dWN0aW9uGiYKElJ1bk5vZGVJbnN0cnVjdGlvbhIQCghub2RlTmFtZRgBIAEo",
-            "CUIRCg9JbnN0cnVjdGlvblR5cGUi6AIKDUluc3RydWN0aW9uVjESKgoGb3Bj",
-            "b2RlGAEgASgOMhouWWFybi5JbnN0cnVjdGlvblYxLk9wQ29kZRIfCghvcGVy",
-            "YW5kcxgCIAMoCzINLllhcm4uT3BlcmFuZCKJAgoGT3BDb2RlEgsKB0pVTVBf",
-            "VE8QABIICgRKVU1QEAESDAoIUlVOX0xJTkUQAhIPCgtSVU5fQ09NTUFORBAD",
-            "Eg4KCkFERF9PUFRJT04QBBIQCgxTSE9XX09QVElPTlMQBRIPCgtQVVNIX1NU",
-            "UklORxAGEg4KClBVU0hfRkxPQVQQBxINCglQVVNIX0JPT0wQCBINCglQVVNI",
-            "X05VTEwQCRIRCg1KVU1QX0lGX0ZBTFNFEAoSBwoDUE9QEAsSDQoJQ0FMTF9G",
-            "VU5DEAwSEQoNUFVTSF9WQVJJQUJMRRANEhIKDlNUT1JFX1ZBUklBQkxFEA4S",
-            "CAoEU1RPUBAPEgwKCFJVTl9OT0RFEBAiVwoHT3BlcmFuZBIWCgxzdHJpbmdf",
-            "dmFsdWUYASABKAlIABIUCgpib29sX3ZhbHVlGAIgASgISAASFQoLZmxvYXRf",
-            "dmFsdWUYAyABKAJIAEIHCgV2YWx1ZWIGcHJvdG8z"));
+            "dGlvbkgAEkEKDGRldG91clRvTm9kZRgSIAEoCzIpLllhcm4uSW5zdHJ1Y3Rp",
+            "b24uRGV0b3VyVG9Ob2RlSW5zdHJ1Y3Rpb25IABJEChNwZWVrQW5kRGV0b3Vy",
+            "VG9Ob2RlGBMgASgLMiUuWWFybi5JbnN0cnVjdGlvbi5QZWVrQW5kRGV0b3Vy",
+            "VG9Ob2RlSAASNQoGcmV0dXJuGBQgASgLMiMuWWFybi5JbnN0cnVjdGlvbi5S",
+            "ZXR1cm5JbnN0cnVjdGlvbkgAGhgKFlBlZWtBbmRKdW1wSW5zdHJ1Y3Rpb24a",
+            "GwoZUGVla0FuZFJ1bk5vZGVJbnN0cnVjdGlvbhoYChZTaG93T3B0aW9uc0lu",
+            "c3RydWN0aW9uGiYKFVB1c2hTdHJpbmdJbnN0cnVjdGlvbhINCgV2YWx1ZRgB",
+            "IAEoCRolChRQdXNoRmxvYXRJbnN0cnVjdGlvbhINCgV2YWx1ZRgBIAEoAhok",
+            "ChNQdXNoQm9vbEluc3RydWN0aW9uEg0KBXZhbHVlGAEgASgIGigKEUp1bXBU",
+            "b0luc3RydWN0aW9uEhMKC2Rlc3RpbmF0aW9uGAEgASgFGj8KElJ1bkxpbmVJ",
+            "bnN0cnVjdGlvbhIOCgZsaW5lSUQYASABKAkSGQoRc3Vic3RpdHV0aW9uQ291",
+            "bnQYAiABKAUaRwoVUnVuQ29tbWFuZEluc3RydWN0aW9uEhMKC2NvbW1hbmRU",
+            "ZXh0GAEgASgJEhkKEXN1YnN0aXR1dGlvbkNvdW50GAIgASgFGmwKFEFkZE9w",
+            "dGlvbkluc3RydWN0aW9uEg4KBmxpbmVJRBgBIAEoCRITCgtkZXN0aW5hdGlv",
+            "bhgCIAEoBRIZChFzdWJzdGl0dXRpb25Db3VudBgDIAEoBRIUCgxoYXNDb25k",
+            "aXRpb24YBCABKAgaLQoWSnVtcElmRmFsc2VJbnN0cnVjdGlvbhITCgtkZXN0",
+            "aW5hdGlvbhgBIAEoBRoQCg5Qb3BJbnN0cnVjdGlvbhovChdDYWxsRnVuY3Rp",
+            "b25JbnN0cnVjdGlvbhIUCgxmdW5jdGlvbk5hbWUYASABKAkaLwoXUHVzaFZh",
+            "cmlhYmxlSW5zdHJ1Y3Rpb24SFAoMdmFyaWFibGVOYW1lGAEgASgJGjAKGFN0",
+            "b3JlVmFyaWFibGVJbnN0cnVjdGlvbhIUCgx2YXJpYWJsZU5hbWUYASABKAka",
+            "EQoPU3RvcEluc3RydWN0aW9uGiYKElJ1bk5vZGVJbnN0cnVjdGlvbhIQCghu",
+            "b2RlTmFtZRgBIAEoCRorChdEZXRvdXJUb05vZGVJbnN0cnVjdGlvbhIQCghu",
+            "b2RlTmFtZRgBIAEoCRoVChNQZWVrQW5kRGV0b3VyVG9Ob2RlGhMKEVJldHVy",
+            "bkluc3RydWN0aW9uQhEKD0luc3RydWN0aW9uVHlwZSLoAgoNSW5zdHJ1Y3Rp",
+            "b25WMRIqCgZvcGNvZGUYASABKA4yGi5ZYXJuLkluc3RydWN0aW9uVjEuT3BD",
+            "b2RlEh8KCG9wZXJhbmRzGAIgAygLMg0uWWFybi5PcGVyYW5kIokCCgZPcENv",
+            "ZGUSCwoHSlVNUF9UTxAAEggKBEpVTVAQARIMCghSVU5fTElORRACEg8KC1JV",
+            "Tl9DT01NQU5EEAMSDgoKQUREX09QVElPThAEEhAKDFNIT1dfT1BUSU9OUxAF",
+            "Eg8KC1BVU0hfU1RSSU5HEAYSDgoKUFVTSF9GTE9BVBAHEg0KCVBVU0hfQk9P",
+            "TBAIEg0KCVBVU0hfTlVMTBAJEhEKDUpVTVBfSUZfRkFMU0UQChIHCgNQT1AQ",
+            "CxINCglDQUxMX0ZVTkMQDBIRCg1QVVNIX1ZBUklBQkxFEA0SEgoOU1RPUkVf",
+            "VkFSSUFCTEUQDhIICgRTVE9QEA8SDAoIUlVOX05PREUQECJXCgdPcGVyYW5k",
+            "EhYKDHN0cmluZ192YWx1ZRgBIAEoCUgAEhQKCmJvb2xfdmFsdWUYAiABKAhI",
+            "ABIVCgtmbG9hdF92YWx1ZRgDIAEoAkgAQgcKBXZhbHVlYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Program), global::Yarn.Program.Parser, new[]{ "Name", "Nodes", "InitialValues" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Node), global::Yarn.Node.Parser, new[]{ "Name", "Instructions", "Headers" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Header), global::Yarn.Header.Parser, new[]{ "Key", "Value" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction), global::Yarn.Instruction.Parser, new[]{ "JumpTo", "PeekAndJump", "RunLine", "RunCommand", "AddOption", "ShowOptions", "PushString", "PushFloat", "PushBool", "JumpIfFalse", "Pop", "CallFunc", "PushVariable", "StoreVariable", "Stop", "RunNode", "PeekAndRunNode" }, new[]{ "InstructionType" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.PeekAndJumpInstruction), global::Yarn.Instruction.Types.PeekAndJumpInstruction.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction), global::Yarn.Instruction.Parser, new[]{ "JumpTo", "PeekAndJump", "RunLine", "RunCommand", "AddOption", "ShowOptions", "PushString", "PushFloat", "PushBool", "JumpIfFalse", "Pop", "CallFunc", "PushVariable", "StoreVariable", "Stop", "RunNode", "PeekAndRunNode", "DetourToNode", "PeekAndDetourToNode", "Return" }, new[]{ "InstructionType" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.PeekAndJumpInstruction), global::Yarn.Instruction.Types.PeekAndJumpInstruction.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.PeekAndRunNodeInstruction), global::Yarn.Instruction.Types.PeekAndRunNodeInstruction.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.ShowOptionsInstruction), global::Yarn.Instruction.Types.ShowOptionsInstruction.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.PushStringInstruction), global::Yarn.Instruction.Types.PushStringInstruction.Parser, new[]{ "Value" }, null, null, null, null),
@@ -107,7 +113,10 @@ namespace Yarn {
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.PushVariableInstruction), global::Yarn.Instruction.Types.PushVariableInstruction.Parser, new[]{ "VariableName" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.StoreVariableInstruction), global::Yarn.Instruction.Types.StoreVariableInstruction.Parser, new[]{ "VariableName" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.StopInstruction), global::Yarn.Instruction.Types.StopInstruction.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.RunNodeInstruction), global::Yarn.Instruction.Types.RunNodeInstruction.Parser, new[]{ "NodeName" }, null, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.RunNodeInstruction), global::Yarn.Instruction.Types.RunNodeInstruction.Parser, new[]{ "NodeName" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.DetourToNodeInstruction), global::Yarn.Instruction.Types.DetourToNodeInstruction.Parser, new[]{ "NodeName" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.PeekAndDetourToNode), global::Yarn.Instruction.Types.PeekAndDetourToNode.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.ReturnInstruction), global::Yarn.Instruction.Types.ReturnInstruction.Parser, null, null, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.InstructionV1), global::Yarn.InstructionV1.Parser, new[]{ "Opcode", "Operands" }, null, new[]{ typeof(global::Yarn.InstructionV1.Types.OpCode) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Operand), global::Yarn.Operand.Parser, new[]{ "StringValue", "BoolValue", "FloatValue" }, new[]{ "Value" }, null, null, null)
           }));
@@ -942,6 +951,15 @@ namespace Yarn {
         case InstructionTypeOneofCase.PeekAndRunNode:
           PeekAndRunNode = other.PeekAndRunNode.Clone();
           break;
+        case InstructionTypeOneofCase.DetourToNode:
+          DetourToNode = other.DetourToNode.Clone();
+          break;
+        case InstructionTypeOneofCase.PeekAndDetourToNode:
+          PeekAndDetourToNode = other.PeekAndDetourToNode.Clone();
+          break;
+        case InstructionTypeOneofCase.Return:
+          Return = other.Return.Clone();
+          break;
       }
 
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -1211,6 +1229,42 @@ namespace Yarn {
       }
     }
 
+    /// <summary>Field number for the "detourToNode" field.</summary>
+    public const int DetourToNodeFieldNumber = 18;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Yarn.Instruction.Types.DetourToNodeInstruction DetourToNode {
+      get { return instructionTypeCase_ == InstructionTypeOneofCase.DetourToNode ? (global::Yarn.Instruction.Types.DetourToNodeInstruction) instructionType_ : null; }
+      set {
+        instructionType_ = value;
+        instructionTypeCase_ = value == null ? InstructionTypeOneofCase.None : InstructionTypeOneofCase.DetourToNode;
+      }
+    }
+
+    /// <summary>Field number for the "peekAndDetourToNode" field.</summary>
+    public const int PeekAndDetourToNodeFieldNumber = 19;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Yarn.Instruction.Types.PeekAndDetourToNode PeekAndDetourToNode {
+      get { return instructionTypeCase_ == InstructionTypeOneofCase.PeekAndDetourToNode ? (global::Yarn.Instruction.Types.PeekAndDetourToNode) instructionType_ : null; }
+      set {
+        instructionType_ = value;
+        instructionTypeCase_ = value == null ? InstructionTypeOneofCase.None : InstructionTypeOneofCase.PeekAndDetourToNode;
+      }
+    }
+
+    /// <summary>Field number for the "return" field.</summary>
+    public const int ReturnFieldNumber = 20;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Yarn.Instruction.Types.ReturnInstruction Return {
+      get { return instructionTypeCase_ == InstructionTypeOneofCase.Return ? (global::Yarn.Instruction.Types.ReturnInstruction) instructionType_ : null; }
+      set {
+        instructionType_ = value;
+        instructionTypeCase_ = value == null ? InstructionTypeOneofCase.None : InstructionTypeOneofCase.Return;
+      }
+    }
+
     private object instructionType_;
     /// <summary>Enum of possible cases for the "InstructionType" oneof.</summary>
     public enum InstructionTypeOneofCase {
@@ -1232,6 +1286,9 @@ namespace Yarn {
       Stop = 15,
       RunNode = 16,
       PeekAndRunNode = 17,
+      DetourToNode = 18,
+      PeekAndDetourToNode = 19,
+      Return = 20,
     }
     private InstructionTypeOneofCase instructionTypeCase_ = InstructionTypeOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1279,6 +1336,9 @@ namespace Yarn {
       if (!object.Equals(Stop, other.Stop)) return false;
       if (!object.Equals(RunNode, other.RunNode)) return false;
       if (!object.Equals(PeekAndRunNode, other.PeekAndRunNode)) return false;
+      if (!object.Equals(DetourToNode, other.DetourToNode)) return false;
+      if (!object.Equals(PeekAndDetourToNode, other.PeekAndDetourToNode)) return false;
+      if (!object.Equals(Return, other.Return)) return false;
       if (InstructionTypeCase != other.InstructionTypeCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1304,6 +1364,9 @@ namespace Yarn {
       if (instructionTypeCase_ == InstructionTypeOneofCase.Stop) hash ^= Stop.GetHashCode();
       if (instructionTypeCase_ == InstructionTypeOneofCase.RunNode) hash ^= RunNode.GetHashCode();
       if (instructionTypeCase_ == InstructionTypeOneofCase.PeekAndRunNode) hash ^= PeekAndRunNode.GetHashCode();
+      if (instructionTypeCase_ == InstructionTypeOneofCase.DetourToNode) hash ^= DetourToNode.GetHashCode();
+      if (instructionTypeCase_ == InstructionTypeOneofCase.PeekAndDetourToNode) hash ^= PeekAndDetourToNode.GetHashCode();
+      if (instructionTypeCase_ == InstructionTypeOneofCase.Return) hash ^= Return.GetHashCode();
       hash ^= (int) instructionTypeCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1391,6 +1454,18 @@ namespace Yarn {
         output.WriteRawTag(138, 1);
         output.WriteMessage(PeekAndRunNode);
       }
+      if (instructionTypeCase_ == InstructionTypeOneofCase.DetourToNode) {
+        output.WriteRawTag(146, 1);
+        output.WriteMessage(DetourToNode);
+      }
+      if (instructionTypeCase_ == InstructionTypeOneofCase.PeekAndDetourToNode) {
+        output.WriteRawTag(154, 1);
+        output.WriteMessage(PeekAndDetourToNode);
+      }
+      if (instructionTypeCase_ == InstructionTypeOneofCase.Return) {
+        output.WriteRawTag(162, 1);
+        output.WriteMessage(Return);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1469,6 +1544,18 @@ namespace Yarn {
         output.WriteRawTag(138, 1);
         output.WriteMessage(PeekAndRunNode);
       }
+      if (instructionTypeCase_ == InstructionTypeOneofCase.DetourToNode) {
+        output.WriteRawTag(146, 1);
+        output.WriteMessage(DetourToNode);
+      }
+      if (instructionTypeCase_ == InstructionTypeOneofCase.PeekAndDetourToNode) {
+        output.WriteRawTag(154, 1);
+        output.WriteMessage(PeekAndDetourToNode);
+      }
+      if (instructionTypeCase_ == InstructionTypeOneofCase.Return) {
+        output.WriteRawTag(162, 1);
+        output.WriteMessage(Return);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1529,6 +1616,15 @@ namespace Yarn {
       }
       if (instructionTypeCase_ == InstructionTypeOneofCase.PeekAndRunNode) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(PeekAndRunNode);
+      }
+      if (instructionTypeCase_ == InstructionTypeOneofCase.DetourToNode) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(DetourToNode);
+      }
+      if (instructionTypeCase_ == InstructionTypeOneofCase.PeekAndDetourToNode) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(PeekAndDetourToNode);
+      }
+      if (instructionTypeCase_ == InstructionTypeOneofCase.Return) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Return);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1644,6 +1740,24 @@ namespace Yarn {
             PeekAndRunNode = new global::Yarn.Instruction.Types.PeekAndRunNodeInstruction();
           }
           PeekAndRunNode.MergeFrom(other.PeekAndRunNode);
+          break;
+        case InstructionTypeOneofCase.DetourToNode:
+          if (DetourToNode == null) {
+            DetourToNode = new global::Yarn.Instruction.Types.DetourToNodeInstruction();
+          }
+          DetourToNode.MergeFrom(other.DetourToNode);
+          break;
+        case InstructionTypeOneofCase.PeekAndDetourToNode:
+          if (PeekAndDetourToNode == null) {
+            PeekAndDetourToNode = new global::Yarn.Instruction.Types.PeekAndDetourToNode();
+          }
+          PeekAndDetourToNode.MergeFrom(other.PeekAndDetourToNode);
+          break;
+        case InstructionTypeOneofCase.Return:
+          if (Return == null) {
+            Return = new global::Yarn.Instruction.Types.ReturnInstruction();
+          }
+          Return.MergeFrom(other.Return);
           break;
       }
 
@@ -1815,6 +1929,33 @@ namespace Yarn {
             PeekAndRunNode = subBuilder;
             break;
           }
+          case 146: {
+            global::Yarn.Instruction.Types.DetourToNodeInstruction subBuilder = new global::Yarn.Instruction.Types.DetourToNodeInstruction();
+            if (instructionTypeCase_ == InstructionTypeOneofCase.DetourToNode) {
+              subBuilder.MergeFrom(DetourToNode);
+            }
+            input.ReadMessage(subBuilder);
+            DetourToNode = subBuilder;
+            break;
+          }
+          case 154: {
+            global::Yarn.Instruction.Types.PeekAndDetourToNode subBuilder = new global::Yarn.Instruction.Types.PeekAndDetourToNode();
+            if (instructionTypeCase_ == InstructionTypeOneofCase.PeekAndDetourToNode) {
+              subBuilder.MergeFrom(PeekAndDetourToNode);
+            }
+            input.ReadMessage(subBuilder);
+            PeekAndDetourToNode = subBuilder;
+            break;
+          }
+          case 162: {
+            global::Yarn.Instruction.Types.ReturnInstruction subBuilder = new global::Yarn.Instruction.Types.ReturnInstruction();
+            if (instructionTypeCase_ == InstructionTypeOneofCase.Return) {
+              subBuilder.MergeFrom(Return);
+            }
+            input.ReadMessage(subBuilder);
+            Return = subBuilder;
+            break;
+          }
         }
       }
     #endif
@@ -1981,6 +2122,33 @@ namespace Yarn {
             }
             input.ReadMessage(subBuilder);
             PeekAndRunNode = subBuilder;
+            break;
+          }
+          case 146: {
+            global::Yarn.Instruction.Types.DetourToNodeInstruction subBuilder = new global::Yarn.Instruction.Types.DetourToNodeInstruction();
+            if (instructionTypeCase_ == InstructionTypeOneofCase.DetourToNode) {
+              subBuilder.MergeFrom(DetourToNode);
+            }
+            input.ReadMessage(subBuilder);
+            DetourToNode = subBuilder;
+            break;
+          }
+          case 154: {
+            global::Yarn.Instruction.Types.PeekAndDetourToNode subBuilder = new global::Yarn.Instruction.Types.PeekAndDetourToNode();
+            if (instructionTypeCase_ == InstructionTypeOneofCase.PeekAndDetourToNode) {
+              subBuilder.MergeFrom(PeekAndDetourToNode);
+            }
+            input.ReadMessage(subBuilder);
+            PeekAndDetourToNode = subBuilder;
+            break;
+          }
+          case 162: {
+            global::Yarn.Instruction.Types.ReturnInstruction subBuilder = new global::Yarn.Instruction.Types.ReturnInstruction();
+            if (instructionTypeCase_ == InstructionTypeOneofCase.Return) {
+              subBuilder.MergeFrom(Return);
+            }
+            input.ReadMessage(subBuilder);
+            Return = subBuilder;
             break;
           }
         }
@@ -5256,6 +5424,499 @@ namespace Yarn {
                 NodeName = input.ReadString();
                 break;
               }
+            }
+          }
+        }
+        #endif
+
+      }
+
+      public sealed partial class DetourToNodeInstruction : pb::IMessage<DetourToNodeInstruction>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<DetourToNodeInstruction> _parser = new pb::MessageParser<DetourToNodeInstruction>(() => new DetourToNodeInstruction());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<DetourToNodeInstruction> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::Yarn.Instruction.Descriptor.NestedTypes[17]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public DetourToNodeInstruction() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public DetourToNodeInstruction(DetourToNodeInstruction other) : this() {
+          nodeName_ = other.nodeName_;
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public DetourToNodeInstruction Clone() {
+          return new DetourToNodeInstruction(this);
+        }
+
+        /// <summary>Field number for the "nodeName" field.</summary>
+        public const int NodeNameFieldNumber = 1;
+        private string nodeName_ = "";
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public string NodeName {
+          get { return nodeName_; }
+          set {
+            nodeName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+          }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as DetourToNodeInstruction);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(DetourToNodeInstruction other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if (NodeName != other.NodeName) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (NodeName.Length != 0) hash ^= NodeName.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          if (NodeName.Length != 0) {
+            output.WriteRawTag(10);
+            output.WriteString(NodeName);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          if (NodeName.Length != 0) {
+            output.WriteRawTag(10);
+            output.WriteString(NodeName);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          if (NodeName.Length != 0) {
+            size += 1 + pb::CodedOutputStream.ComputeStringSize(NodeName);
+          }
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(DetourToNodeInstruction other) {
+          if (other == null) {
+            return;
+          }
+          if (other.NodeName.Length != 0) {
+            NodeName = other.NodeName;
+          }
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 10: {
+                NodeName = input.ReadString();
+                break;
+              }
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+              case 10: {
+                NodeName = input.ReadString();
+                break;
+              }
+            }
+          }
+        }
+        #endif
+
+      }
+
+      public sealed partial class PeekAndDetourToNode : pb::IMessage<PeekAndDetourToNode>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<PeekAndDetourToNode> _parser = new pb::MessageParser<PeekAndDetourToNode>(() => new PeekAndDetourToNode());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<PeekAndDetourToNode> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::Yarn.Instruction.Descriptor.NestedTypes[18]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public PeekAndDetourToNode() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public PeekAndDetourToNode(PeekAndDetourToNode other) : this() {
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public PeekAndDetourToNode Clone() {
+          return new PeekAndDetourToNode(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as PeekAndDetourToNode);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(PeekAndDetourToNode other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(PeekAndDetourToNode other) {
+          if (other == null) {
+            return;
+          }
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+            }
+          }
+        }
+        #endif
+
+      }
+
+      public sealed partial class ReturnInstruction : pb::IMessage<ReturnInstruction>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<ReturnInstruction> _parser = new pb::MessageParser<ReturnInstruction>(() => new ReturnInstruction());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<ReturnInstruction> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::Yarn.Instruction.Descriptor.NestedTypes[19]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public ReturnInstruction() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public ReturnInstruction(ReturnInstruction other) : this() {
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public ReturnInstruction Clone() {
+          return new ReturnInstruction(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as ReturnInstruction);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(ReturnInstruction other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(ReturnInstruction other) {
+          if (other == null) {
+            return;
+          }
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
             }
           }
         }

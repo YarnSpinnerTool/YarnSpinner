@@ -326,5 +326,25 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>detourToNodeName</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDetourToNodeName([NotNull] YarnSpinnerParser.DetourToNodeNameContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>detourToExpression</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDetourToExpression([NotNull] YarnSpinnerParser.DetourToExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.return_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitReturn_statement([NotNull] YarnSpinnerParser.Return_statementContext context);
 }
 } // namespace Yarn.Compiler

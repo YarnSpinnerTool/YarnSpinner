@@ -768,7 +768,7 @@ namespace Yarn
         /// <c>startNode</c> has been loaded.</throws>
         public void SetNode(string startNode = DefaultStartNodeName)
         {
-            this.vm.SetNode(startNode);
+            this.vm.SetNode(startNode, clearState: true);
         }
 
         /// <summary>

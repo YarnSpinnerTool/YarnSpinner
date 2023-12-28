@@ -278,12 +278,12 @@ namespace Yarn.Compiler
                 CodeGenerationVisitor.GenerateTrackingCode(this, track, context.Stop);
             }
 
-            // We have exited the body; emit a 'stop' instruction here.
+            // We have exited the body; emit a 'return' instruction here.
             Compiler.Emit(
                 this.CurrentNode, 
                 this.CurrentNodeDebugInfo, 
                 context.Stop.Line - 1, 0, 
-                new Instruction { Stop = new StopInstruction { } }
+                new Instruction { Return = new ReturnInstruction { } }
             );
         }
     }

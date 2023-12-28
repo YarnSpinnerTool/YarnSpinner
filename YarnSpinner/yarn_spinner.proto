@@ -94,6 +94,12 @@ message Instruction {
 
         // Peeks a string on the stack, and jumps to the start of that node.
         PeekAndRunNodeInstruction peekAndRunNode = 17;
+
+        DetourToNodeInstruction detourToNode = 18;
+
+        PeekAndDetourToNode peekAndDetourToNode = 19;
+
+        ReturnInstruction return = 20;
     }
     message PeekAndJumpInstruction { }
     message PeekAndRunNodeInstruction { }
@@ -169,6 +175,13 @@ message Instruction {
         // The name of the node to begin running.
         string nodeName = 1;
     }
+
+    message DetourToNodeInstruction {
+        string nodeName = 1;
+    }
+    message PeekAndDetourToNode { }
+    
+    message ReturnInstruction { }
 
 }
 

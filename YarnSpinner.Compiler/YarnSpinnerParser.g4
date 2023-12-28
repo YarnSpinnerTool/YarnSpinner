@@ -33,6 +33,7 @@ statement
     | declare_statement
     | enum_statement
     | jump_statement
+    | return_statement
     | line_group_statement
     | INDENT statement* DEDENT
     ;
@@ -158,4 +159,10 @@ enum_case_statement
 jump_statement
     : COMMAND_START COMMAND_JUMP destination=ID COMMAND_END #jumpToNodeName
     | COMMAND_START COMMAND_JUMP EXPRESSION_START expression EXPRESSION_END COMMAND_END #jumpToExpression
+    | COMMAND_START COMMAND_DETOUR destination=ID COMMAND_END #detourToNodeName
+    | COMMAND_START COMMAND_DETOUR EXPRESSION_START expression EXPRESSION_END COMMAND_END #detourToExpression
+    ;
+
+return_statement
+    : COMMAND_START COMMAND_RETURN COMMAND_END
     ;

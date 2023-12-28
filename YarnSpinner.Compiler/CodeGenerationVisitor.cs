@@ -969,21 +969,44 @@ namespace Yarn.Compiler
         // its name.
         public override int VisitJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context)
         {
+            EmitJumpToNamedNode(context, context.destination.Text, detour: false);
+
+            return 0;
+        }
+
+
+        // A <<jump>> command, which immediately jumps to another node, given an
+        // expression that resolves to a node's name.
+        public override int VisitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
+        {
+            EmitJumpToExpression(context, context.expression(), detour: false);
+            return 0;
+        }
+
+
+        private void EmitJumpToNamedNode(ParserRuleContext context, string nodeName, bool detour)
+        {
             if (trackingVariableName != null)
             {
                 GenerateTrackingCode(trackingVariableName, context.Start);
             }
 
-            this.compiler.Emit(context.Start, 
-                new Instruction { RunNode = new RunNodeInstruction { NodeName = context.destination.Text }}
-            );
+            switch (detour) {
+                case true:
+                    this.compiler.Emit(context.Start,
+                        new Instruction { DetourToNode = new DetourToNodeInstruction { NodeName = nodeName } }
+                    );
+                    break;
+                case false:
+                    this.compiler.Emit(context.Start,
+                        new Instruction { RunNode = new RunNodeInstruction { NodeName = nodeName } }
+                    );
+                    break;
+            }
 
-            return 0;
         }
 
-        // A <<jump>> command, which immediately jumps to another node, given an
-        // expression that resolves to a node's name.
-        public override int VisitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
+        private void EmitJumpToExpression(ParserRuleContext context, YarnSpinnerParser.ExpressionContext jumpExpression, bool detour)
         {
             if (trackingVariableName != null)
             {
@@ -991,9 +1014,36 @@ namespace Yarn.Compiler
             }
 
             // Evaluate the expression, and jump to the result on the stack.
-            this.Visit(context.expression());
-            this.compiler.Emit(context.Start, new Instruction { PeekAndRunNode = new PeekAndRunNodeInstruction { } });
+            this.Visit(jumpExpression);
 
+            switch (detour)
+            {
+                case true:
+                    this.compiler.Emit(context.Start,
+                        new Instruction { PeekAndDetourToNode = new PeekAndDetourToNode {  } }
+                    );
+                    break;
+                case false:
+                    this.compiler.Emit(context.Start, new Instruction { PeekAndRunNode = new PeekAndRunNodeInstruction { } });
+                    break;
+            }
+        }
+
+        public override int VisitDetourToExpression([NotNull] YarnSpinnerParser.DetourToExpressionContext context)
+        {
+            EmitJumpToExpression(context, context.expression(), detour: true);
+            return 0;
+        }
+
+        public override int VisitDetourToNodeName([NotNull] YarnSpinnerParser.DetourToNodeNameContext context)
+        {
+            EmitJumpToNamedNode(context, context.destination.Text, detour: true);
+            return 0;
+        }
+
+        public override int VisitReturn_statement([NotNull] YarnSpinnerParser.Return_statementContext context)
+        {
+            this.compiler.Emit(context.Start, new Instruction { Return = new ReturnInstruction { } });
             return 0;
         }
 

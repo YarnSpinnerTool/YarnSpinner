@@ -96,8 +96,7 @@ namespace Yarn
                 {
                     stringIDs.Add(instruction.RunLine.LineID);
                 }
-                else if (
-instruction.InstructionTypeCase == Instruction.InstructionTypeOneofCase.AddOption)
+                else if (instruction.InstructionTypeCase == Instruction.InstructionTypeOneofCase.AddOption)
                 {
                     
                     stringIDs.Add(instruction.AddOption.LineID);
@@ -393,6 +392,9 @@ instruction.InstructionTypeCase == Instruction.InstructionTypeOneofCase.AddOptio
                     operands.Add(this.RunNode.NodeName);
                     break;
                 case InstructionTypeOneofCase.PeekAndRunNode:
+                    break;
+                case InstructionTypeOneofCase.DetourToNode:
+                    operands.Add(this.DetourToNode.NodeName);
                     break;
             }
 

@@ -1,0 +1,22 @@
+title: Start
+---
+Line 1
+<<detour Node2>>
+Line 5
+===
+title: Node2
+---
+Line 2
+<<detour {"Node3"}>>
+Line 4
+===
+title: Node3
+---
+Line 3
+
+// Early return
+<<return>>
+
+Error: should not be seen
+===
+
