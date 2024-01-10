@@ -1,6 +1,6 @@
-line: entered start
-line: we have not visited Start
-stop: 
+line: `entered start`
+line: `we have not visited Start`
+stop 
 run: Start
-line: entered start
-line: we have visited Start before
+line: `entered start`
+line: `we have visited Start before`

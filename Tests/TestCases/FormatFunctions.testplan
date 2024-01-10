@@ -1,23 +1,23 @@
-line: Select: male
-line: Select: female
-line: Select: other
+line: `Select: male`
+line: `Select: female`
+line: `Select: other`
 
-line: Plural: one
-line: Plural: other
-line: Plural: other
-line: Plural: other
+line: `Plural: one`
+line: `Plural: other`
+line: `Plural: other`
+line: `Plural: other`
 
-line: Ordinal: one
-line: Ordinal: two
-line: Ordinal: few
-line: Ordinal: other
+line: `Ordinal: one`
+line: `Ordinal: two`
+line: `Ordinal: few`
+line: `Ordinal: other`
 
-line: other: other
+line: `other: other`
 
-line: Mae: Wow, I came 3rd!
+line: `Mae: Wow, I came 3rd!`
 
-option: other
-option: one
-option: one
+option: `other`
+option: `one`
+option: `one`
 select: 1
 
