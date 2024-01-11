@@ -415,6 +415,38 @@ namespace YarnSpinner.Tests
 
             resultWithPreviewFeatures.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error, "preview features are allowed, so no errors are produced");
         }
+
+        [Fact]
+        public void TestTestPlanThrowsErrorOnFailure()
+        {
+            var source = CreateTestNode(@"
+title: Start
+---
+Line 1
+Line 2
+-> Opt 1
+    you chose opt 1
+-> Opt 2
+-> Opt 3
+<<command>>
+            ");
+
+
+            void RunTest(string source, TestPlan plan) {
+                var job = CompilationJob.CreateFromString("input", source, this.dialogue.Library);
+                var result = Compiler.Compile(job);
+                RunTestPlan(result, plan);
+            }
+
+            // When
+            // Create a plan that expects the first line to be "Line 2" (which
+            // it won't get)
+            var failingPlan = TestPlan.FromString(@"line: `Line 2`");
+        
+            // Then
+            Action act =() => RunTest(source, failingPlan);
+            act.Should().Throw<Exception>();
+        }
     }
 }
 

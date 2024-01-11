@@ -9,6 +9,8 @@ using Yarn.Compiler;
 using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
+using Xunit.Sdk;
+using System.Xml.Serialization;
 
 namespace YarnSpinner.Tests
 {
@@ -97,6 +99,8 @@ namespace YarnSpinner.Tests
 
         public string GetComposedTextForLine(Line line) {
 
+            stringTable.Should().ContainKey(line.ID);
+
             var substitutedText = Dialogue.ExpandSubstitutions(stringTable[line.ID].text, line.Substitutions);
 
             return dialogue.ParseMarkup(substitutedText).Text;
@@ -132,86 +136,6 @@ namespace YarnSpinner.Tests
                     
             };
 
-            dialogue.LineHandler = delegate (Line line) {
-                var id = line.ID;
-
-                stringTable.Keys.Should().Contain(id);
-
-                var lineNumber = stringTable[id].lineNumber;
-
-                var text = GetComposedTextForLine(line);
-
-                Console.WriteLine("Line: " + text);
-
-                if (testPlan != null) {
-                    testPlan.Run();
-
-                    if (testPlan.nextExpectedType == TestPlan.Step.Type.Line) {
-                        $"Line {lineNumber}: {text}".Should().Be($"Line {lineNumber}: {testPlan.nextExpectedValue}");
-                    } else {
-                        throw new Xunit.Sdk.XunitException($"Received line {text}, but was expecting a {testPlan.nextExpectedType.ToString()}");
-                    }
-                }
-            };
-
-            dialogue.OptionsHandler = delegate (OptionSet optionSet) {
-                var optionCount = optionSet.Options.Length;
-
-                Console.WriteLine("Options:");
-                foreach (var option in optionSet.Options) {
-                    var optionText = GetComposedTextForLine(option.Line);
-                    Console.WriteLine(" - " + optionText);
-                }
-
-                if (testPlan != null) {
-                    testPlan.Run();
-
-                    if (testPlan.nextExpectedType != TestPlan.Step.Type.Select) {
-                        throw new Xunit.Sdk.XunitException($"Received {optionCount} options, but wasn't expecting them (was expecting {testPlan.nextExpectedType.ToString()})");
-                    }
-
-                    // Assert that the list of options we were given is
-                    // identical to the list of options we expect
-                    var actualOptionList = optionSet.Options
-                        .Select(o => (GetComposedTextForLine(o.Line), o.IsAvailable))
-                        .ToList();
-                    actualOptionList.Should().Contain(testPlan.nextExpectedOptions);
-
-                    var expectedOptionCount = testPlan.nextExpectedOptions.Count();
-
-                    optionCount.Should().Be(expectedOptionCount);
-
-                    var selection = testPlan.nextOptionToSelect != -1 ? testPlan.nextOptionToSelect - 1 : 0;
-
-                    Console.WriteLine($"Choosing option {selection} (\"{actualOptionList[selection]}\")");
-
-                    dialogue.SetSelectedOption(selection);
-                }
-
-                
-            };
-
-            dialogue.CommandHandler = delegate (Command command) {
-                Console.WriteLine("Command: " + command.Text);
-                
-                if (testPlan != null) {
-                    testPlan.Run();
-                    if (testPlan.nextExpectedType != TestPlan.Step.Type.Command)
-                    {
-                        throw new Xunit.Sdk.XunitException($"Received command {command.Text}, but wasn't expecting to select one (was expecting {testPlan.nextExpectedType.ToString()})");
-                    }
-                    else
-                    {
-                        // We don't need to get the composed string for a
-                        // command because it's been done for us in the
-                        // virtual machine. The VM can do this because
-                        // commands are not localised, so we don't need to
-                        // refer to the string table to get the text.
-                        command.Text.Should().Be(testPlan.nextExpectedValue);
-                    }
-                }
-            };
-
             dialogue.Library.RegisterFunction ("assert", delegate(bool value) {
                 value.Should().BeTrue("assertion should pass");
                 return true;
@@ -229,17 +153,6 @@ namespace YarnSpinner.Tests
 
             // When a node is complete, do nothing
             dialogue.NodeCompleteHandler = (string nodeName) => {};
-
-            // When dialogue is complete, check that we expected a stop
-            dialogue.DialogueCompleteHandler = () => {
-                if (testPlan != null) {
-                    testPlan.Run();
-
-                    if (testPlan.nextExpectedType != TestPlan.Step.Type.Stop) {
-                        throw new Xunit.Sdk.XunitException($"Stopped dialogue, but wasn't expecting to (was expecting {testPlan.nextExpectedType.ToString()})");
-                    }
-                }
-            };
         }
 
         /// <summary>
@@ -256,7 +169,7 @@ namespace YarnSpinner.Tests
         /// cref="Dialogue"/> object that runs the script.</param>
         /// <exception cref="ArgumentNullException">Thrown if <paramref
         /// name="plan"/> is <see langword="null"/>.</exception>
-        protected void RunTestPlan(CompilationResult compilationResult, TestPlan plan, string nodeName = "Start", Action<Dialogue> config = null) {
+        protected void RunTestPlan(CompilationResult compilationResult, TestPlan plan, Action<Dialogue> config = null) {
             compilationResult.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
 
             dialogue.SetProgram(compilationResult.Program);
@@ -265,7 +178,7 @@ namespace YarnSpinner.Tests
 
             config?.Invoke(dialogue);
 
-            RunStandardTestcase(nodeName);
+            RunStandardTestcase();
         }
 
         /// <summary>
@@ -274,73 +187,142 @@ namespace YarnSpinner.Tests
         /// </summary>
         /// <param name="nodeName">The name of the node to start the test
         /// from. Defaults to "Start".</param>
-        protected void RunStandardTestcase(string nodeName = "Start") {
+        protected void RunStandardTestcase() {
 
             if (testPlan == null) {
                 throw new Xunit.Sdk.XunitException("Cannot run test: no test plan provided.");
             }
 
-            dialogue.SetNode(nodeName);
+            if (dialogue.Program == null) {
+                throw new Xunit.Sdk.XunitException("Cannot run test: dialogue does not have a program.");
+            }
 
-            // Called when the test plan encounters a 'set' instruction. Receive
-            // the name of the variable and a string containing the expected
-            // value, and update variable storage appropriately.
-            testPlan.onSetVariable = (name, value) => {
-                if (dialogue.Program.InitialValues.TryGetValue(name, out var operand) == false) {
-                    throw new ArgumentException($"Variable {name} is not valid in program");
-                }
+            List<TestPlan.ExpectOptionStep> expectedOptions = new();
 
-                Console.WriteLine($"Setting {name} to {value}");
+            OptionsHandler GetNoOptionsExpectedHandler(TestPlan.Step step) => new OptionsHandler((opts) => throw new XunitException("Expected " + step.ToString() + ", not options"));
 
-                // The way we parse 'value' depends on the declared type of the
-                // variable, chich we can determine from the Program's initial
-                // values.
+            LineHandler GetNoLineExpectedHandler(TestPlan.Step step) => new LineHandler((line) => throw new XunitException("Expected " + step.ToString() + ", not options"));
 
-                switch (operand.ValueCase)
-                {
-                    case Operand.ValueOneofCase.StringValue:
-                        // The variable is a string - use 'value' directly.
-                        dialogue.VariableStorage.SetValue(name, value);
-                        break;
-                    case Operand.ValueOneofCase.BoolValue:
-                        // The variable is boolean - parse it as a bool.
-                        dialogue.VariableStorage.SetValue(name, Convert.ToBoolean(value, CultureInfo.InvariantCulture));
-                        break;
-                    case Operand.ValueOneofCase.FloatValue:
-                        // The variable is number - parse it as a float.
-                        dialogue.VariableStorage.SetValue(name, Convert.ToSingle(value, CultureInfo.InvariantCulture));
-                        break;
-                    default:
-                        // We don't know what this is.
-                        throw new InvalidOperationException($"Invalid variable type {operand.ValueCase}");
-                }
-            };
+            CommandHandler GetNoCommandExpectedHandler(TestPlan.Step step) => new CommandHandler((opts) => throw new XunitException("Expected " + step.ToString() + ", not options"));
 
-            testPlan.onRunNode = (name) => dialogue.SetNode(name);
+            DialogueCompleteHandler GetNoStopExpectedHandler(TestPlan.Step step) => new DialogueCompleteHandler(() => throw new XunitException("Expected " + step.ToString() + ", not options"));
 
-            do
+            void ExpectLine(TestPlan.ExpectLineStep expectation)
             {
-
-                // Step through any steps at the start of the plan that are not
-                // blocking, so that we execute any 'sets' or 'runs' or similar. (If
-                // we don't do this, then Next() will not be called until the first
-                // piece of content, and that means that the initial state won't be
-                // what the test plan specifies.)
-                while (testPlan.CurrentStep != null && testPlan.CurrentStep.IsBlocking == false)
+                dialogue.OptionsHandler = GetNoOptionsExpectedHandler(expectation);
+                dialogue.CommandHandler = GetNoCommandExpectedHandler(expectation);
+                dialogue.DialogueCompleteHandler = GetNoStopExpectedHandler(expectation);
+                dialogue.LineHandler = (line) =>
                 {
-                    testPlan.EvaluateStep(testPlan.CurrentStep);
-                    testPlan.GoToNextStep();
+                    var id = line.ID;
+
+                    stringTable.Keys.Should().Contain(id);
+
+                    var lineNumber = stringTable[id].lineNumber;
+
+                    var text = GetComposedTextForLine(line);
+
+                    if (expectation.ExpectedText != null) {
+                        text.Should().Be(expectation.ExpectedText);
+                    }
+
+                    if (expectation.ExpectedHashtags.Any()) {
+                        stringTable[id].metadata.Should().Contain(expectation.ExpectedHashtags);
+                    }
+
+                    Console.WriteLine("Line: " + text);
+                };
+            }
+            void ExpectOptionsSelection(TestPlan.ActionSelectStep expectation) {
+                dialogue.CommandHandler = GetNoCommandExpectedHandler(expectation);
+                dialogue.DialogueCompleteHandler = GetNoStopExpectedHandler(expectation);
+                dialogue.LineHandler = GetNoLineExpectedHandler(expectation);
+                dialogue.OptionsHandler = (opts) =>
+                {
+                    opts.Options.Should().HaveSameCount(expectedOptions);
+
+                    foreach (var (Option, Expectation) in opts.Options.Zip(expectedOptions)) {
+                        stringTable.Should().ContainKey(Option.Line.ID);
+
+                        if (Expectation.ExpectedText != null) {
+                            var text = GetComposedTextForLine(Option.Line);
+
+                            text.Should().Be(Expectation.ExpectedText);
+                        }
+                        if (Expectation.ExpectedHashtags.Any()) {
+                            stringTable[Option.Line.ID].metadata.Should().Contain(Expectation.ExpectedHashtags);
+                        }
+                        Option.IsAvailable.Should().Be(Expectation.ExpectedAvailability);
+                    }
+                    opts.Options.Should().ContainSingle(o => o.ID == expectation.SelectedIndex, "one option should have the ID that we want to select");
+                };
+            }
+            void ExpectCommand(TestPlan.ExpectCommandStep expectation) {
+                dialogue.DialogueCompleteHandler = GetNoStopExpectedHandler(expectation);
+                dialogue.LineHandler = GetNoLineExpectedHandler(expectation);
+                dialogue.OptionsHandler = GetNoOptionsExpectedHandler(expectation);
+                dialogue.CommandHandler = (command) =>
+                {
+                    command.Text.Should().Be(expectation.ExpectedText);
+                };
+            }
+            void ExpectStop(TestPlan.ExpectStop expectation) {
+                dialogue.LineHandler = GetNoLineExpectedHandler(expectation);
+                dialogue.OptionsHandler = GetNoOptionsExpectedHandler(expectation);
+                dialogue.CommandHandler = GetNoCommandExpectedHandler(expectation);
+                dialogue.DialogueCompleteHandler = () =>
+                {
+
+                };
+            }
+
+            
+            foreach (var run in testPlan) {
+                dialogue.SetNode(run.StartNode);
+
+                foreach (var step in run) {
+                    if (step is TestPlan.ExpectLineStep line) {
+                        ExpectLine(line);
+                        dialogue.Continue();
+                    }
+                    if (step is TestPlan.ExpectOptionStep option) {
+                        // Add this option to the list of options that we expect
+                        expectedOptions.Add(option);
+                    }
+                    if (step is TestPlan.ActionSelectStep select) {
+                        ExpectOptionsSelection(select);
+                        dialogue.Continue();
+                        dialogue.SetSelectedOption(select.SelectedIndex);
+                        expectedOptions.Clear();
+                    }
+                    if (step is TestPlan.ExpectCommandStep command) {
+                        ExpectCommand(command);
+                        dialogue.Continue();
+                    }
+                    if (step is TestPlan.ExpectStop stop) {
+                        ExpectStop(stop);
+                        dialogue.Continue();
+                        break;
+                    }
+                    if (step is TestPlan.ActionJumpToNodeStep jump) {
+                        dialogue.SetNode(jump.NodeName);
+                    }
+                    if (step is TestPlan.ActionSetVariableStep set) {
+                        if (dialogue.Program.InitialValues.TryGetValue(set.VariableName, out var operand) == false)
+                        {
+                            throw new ArgumentException($"Variable {set.VariableName} is not valid in program");
+                        }
+                        switch (set.Value) {
+                            case bool BoolValue:
+                                dialogue.VariableStorage.SetValue(set.VariableName, BoolValue);
+                                break;
+                            case int IntValue:
+                                dialogue.VariableStorage.SetValue(set.VariableName, IntValue);
+                                break;
+                        }
+                    }
                 }
-
-                // Finally, run the program.
-                do
-                {
-                    dialogue.Continue();
-                } while (dialogue.IsActive);
-            } while (testPlan.CurrentStep?.type == TestPlan.Step.Type.Run);
-
-
-
+            }
         }
 
         protected string CreateTestNode(string source, string name="Start") {
@@ -357,7 +339,7 @@ namespace YarnSpinner.Tests
         /// <param name="path">The path of the file containing the test
         /// plan.</param>
         public void LoadTestPlan(string path) {
-            this.testPlan = new TestPlan(path);
+            this.testPlan = TestPlan.FromFile(path);
         }
 
         // Returns the list of .node and.yarn files in the

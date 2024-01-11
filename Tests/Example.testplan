@@ -1,6 +1,6 @@
 line: `A: Hey, I'm a character in a script!`
 line: `B: And I am too! You are talking to me!`
-option: `What's going on    `
+option: `What's going on`
 option: `Um ok`
 select: 1
 line: `A: Why this is a demo of the script system!`

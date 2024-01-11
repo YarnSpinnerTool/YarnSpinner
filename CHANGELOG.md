@@ -99,6 +99,13 @@ Smart variables can be accessed anywhere a regular variable would be used:
 - The Antlr4.Runtime dependency has been upgraded from 4.7.2 to 4.13.1.
 - The internal format for storing compiled programs has been updated. Existing Yarn scripts will need to be recompiled in order to work in Yarn Spinner 3.0.
   - Internal jumps inside a node now jump to specific instruction indices, rather than named locations that had to be stored in the file. This change makes compiled Yarn programs smaller.
+- The TestPlan system has been improved. (TestPlan is an internal development tool used for unit-testing Yarn Spinner, and is not designed for end-user use.)
+    - The TestPlan parser is replaced with an Antlr4-generated parser
+    - The TestPlan grammar has been made slightly more consistent:
+        - Line, option and command text must now be wrapped in backticks (`)
+        - The 'set' and 'stop' commands now no longer take a colon (:)
+    - Multiple runs are now supported
+    - TestPlan continuation is now no longer driven by the line/option callback system, which makes it easier to reason about.
 
 ### Removed
 

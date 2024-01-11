@@ -230,6 +230,10 @@ namespace YarnSpinner.Tests
             dialogue.SetProgram(result.Program);
             dialogue.SetNode("Start");
 
+            dialogue.LineHandler = (line) => { };
+            dialogue.OptionsHandler = (opts) => { dialogue.SetSelectedOption(opts.Options.First().ID); };
+            dialogue.CommandHandler = (command) => { };
+
             do {
                 dialogue.Continue();
             } while (dialogue.IsActive);
@@ -247,78 +251,6 @@ namespace YarnSpinner.Tests
 
             this.storage.TryGetValue<bool>("$bool", out var boolValue);
             boolValue.Should().BeFalse();
-        }
-
-        [Fact]
-        public void TestSelectingOptionFromInsideOptionCallback() {
-            var testCase = new TestPlanBuilder()
-                .AddOption("option 1")
-                .AddOption("option 2")
-                .AddSelect(0)
-                .AddLine("final line")
-                .GetPlan();
-            
-            dialogue.LineHandler = (line) => {
-                var lineText = stringTable[line.ID];
-                var parsedText = dialogue.ParseMarkup(lineText.text).Text;
-                testCase.Run();
-
-                testCase.nextExpectedType.Should().Be(TestPlan.Step.Type.Line);
-                parsedText.Should().Be(testCase.nextExpectedValue);
-
-                dialogue.Continue();
-            };
-
-            dialogue.OptionsHandler = (optionSet) => {
-                testCase.Run();
-
-                int optionCount = optionSet.Options.Count();
-
-                testCase.nextExpectedType.Should().Be(TestPlan.Step.Type.Select);
-                
-                // Assert that the list of options we were given is
-                // identical to the list of options we expect
-                var actualOptionList = optionSet.Options
-                    .Select(o => (GetComposedTextForLine(o.Line), o.IsAvailable))
-                    .ToList();
-
-                actualOptionList.Should().Contain(testCase.nextExpectedOptions);
-
-                var expectedOptionCount = testCase.nextExpectedOptions.Count();
-
-                optionCount.Should().Be(expectedOptionCount);
-
-                dialogue.SetSelectedOption(0);
-            };
-
-            dialogue.CommandHandler = (command) => {
-                testCase.Run();
-                testCase.nextExpectedType.Should().Be(TestPlan.Step.Type.Command);
-                dialogue.Continue();
-            };
-
-            dialogue.DialogueCompleteHandler = () => {
-                testCase.Run();
-                testCase.nextExpectedType.Should().Be(TestPlan.Step.Type.Stop);
-                dialogue.Continue();
-            };
-
-            var code = CreateTestNode("-> option 1\n->option 2\nfinal line\n");
-
-            var job = CompilationJob.CreateFromString("input", code);
-
-            var result = Compiler.Compile(job);
-
-            result.Diagnostics.Should().BeEmpty();
-
-            this.stringTable = result.StringTable;
-
-            dialogue.SetProgram(result.Program);
-            dialogue.SetNode("Start");
-
-            dialogue.Continue();
-            
-
         }
 
         [Fact]

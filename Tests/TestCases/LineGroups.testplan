@@ -1,5 +1,5 @@
-set: $knows_player false
-set: $pies_bought 0
+set $knows_player = false
+set $pies_bought = 0
 
 # First time seeing this so we get the intro line
 line: `Baker: Hey there! Fresh pies, right out of the oven!`
