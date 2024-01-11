@@ -9,21 +9,20 @@ namespace Yarn.Compiler
     internal static class ParserRuleContextExtension
     {
         /// <summary>
-        /// Returns the original text of this <see cref="YarnSpinnerParser.ExpressionContext"/>, including all
-        /// whitespace, comments, and other information that the parser
-        /// would otherwise not include.
+        /// Returns the original text of this <see cref="ParserRuleContext"/>,
+        /// including all whitespace, comments, and other information that the
+        /// parser would otherwise not include.
         /// </summary>
         /// <returns>The original text of this expression.</returns>
         public static string GetTextWithWhitespace(this ParserRuleContext context)
         {
-            // We can't use "expressionContext.GetText()" here, because
-            // that just concatenates the text of all captured tokens,
-            // and doesn't include text on hidden channels (e.g.
-            // whitespace and comments).
+            // We can't use "expressionContext.GetText()" here, because that
+            // just concatenates the text of all captured tokens, and doesn't
+            // include text on hidden channels (e.g. whitespace and comments).
 
-            // some times it seems that vscode can request a negative interval
-            // almost certainly something wrong we are doing
-            // but as a non-crashing fallback we prevent this
+            // Sometimes, it seems that VS Code can request a negative interval.
+            // This is almost certainly something wrong that we're doing, but as
+            // a non-crashing fallback, we prevent this.
             if (context.Start.StartIndex > context.Stop.StopIndex)
             {
                 return context.GetText();
