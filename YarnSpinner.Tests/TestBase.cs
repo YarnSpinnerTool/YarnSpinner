@@ -7,10 +7,9 @@ using System.Linq;
 using System.Globalization;
 using Yarn.Compiler;
 using FluentAssertions;
-using Xunit;
 using Xunit.Abstractions;
 using Xunit.Sdk;
-using System.Xml.Serialization;
+using Yarn.Saliency;
 
 namespace YarnSpinner.Tests
 {
@@ -199,6 +198,12 @@ namespace YarnSpinner.Tests
 
             List<TestPlan.ExpectOptionStep> expectedOptions = new();
 
+            var saliencyStrategies = new Dictionary<string, IContentSaliencyStrategy> {
+                { "first", new FirstSaliencyStrategy() },
+                { "best", new BestSaliencyStrategy() },
+                { "best_least_recently_seen", new BestLeastRecentlyViewedSalienceStrategy(dialogue.VariableStorage)}
+            };
+
             OptionsHandler GetNoOptionsExpectedHandler(TestPlan.Step step) => new OptionsHandler((opts) => throw new XunitException("Expected " + step.ToString() + ", not options"));
 
             LineHandler GetNoLineExpectedHandler(TestPlan.Step step) => new LineHandler((line) => throw new XunitException("Expected " + step.ToString() + ", not options"));
@@ -285,29 +290,29 @@ namespace YarnSpinner.Tests
                         ExpectLine(line);
                         dialogue.Continue();
                     }
-                    if (step is TestPlan.ExpectOptionStep option) {
+                    else if (step is TestPlan.ExpectOptionStep option) {
                         // Add this option to the list of options that we expect
                         expectedOptions.Add(option);
                     }
-                    if (step is TestPlan.ActionSelectStep select) {
+                    else if (step is TestPlan.ActionSelectStep select) {
                         ExpectOptionsSelection(select);
                         dialogue.Continue();
                         dialogue.SetSelectedOption(select.SelectedIndex);
                         expectedOptions.Clear();
                     }
-                    if (step is TestPlan.ExpectCommandStep command) {
+                    else if (step is TestPlan.ExpectCommandStep command) {
                         ExpectCommand(command);
                         dialogue.Continue();
                     }
-                    if (step is TestPlan.ExpectStop stop) {
+                    else if (step is TestPlan.ExpectStop stop) {
                         ExpectStop(stop);
                         dialogue.Continue();
                         break;
                     }
-                    if (step is TestPlan.ActionJumpToNodeStep jump) {
+                    else if (step is TestPlan.ActionJumpToNodeStep jump) {
                         dialogue.SetNode(jump.NodeName);
                     }
-                    if (step is TestPlan.ActionSetVariableStep set) {
+                    else if (step is TestPlan.ActionSetVariableStep set) {
                         if (dialogue.Program.InitialValues.TryGetValue(set.VariableName, out var operand) == false)
                         {
                             throw new ArgumentException($"Variable {set.VariableName} is not valid in program");
@@ -320,6 +325,16 @@ namespace YarnSpinner.Tests
                                 dialogue.VariableStorage.SetValue(set.VariableName, IntValue);
                                 break;
                         }
+                    }
+                    else if (step is TestPlan.ActionSetSaliencyStep setSaliency) {
+                        if (saliencyStrategies.TryGetValue(setSaliency.SaliencyMode, out var saliencyStrategy)) {
+                            dialogue.ContentSaliencyStrategy = saliencyStrategy;
+                        } else {
+                            throw new InvalidOperationException($"Unknown saliency strategy '{setSaliency.SaliencyMode}'");
+                        }
+                    }
+                    else {
+                        throw new InvalidOperationException("Unhandled step type " + step.GetType());
                     }
                 }
             }

@@ -83,6 +83,16 @@ namespace YarnSpinner.Tests
             }
         }
 
+        public class ActionSetSaliencyStep : Step 
+        {
+            public string SaliencyMode { get; init; }
+
+            public ActionSetSaliencyStep(string saliencyMode)
+            {
+                this.SaliencyMode = saliencyMode;
+            }
+        }
+
         public class ActionSetVariableStep : Step
         {
             public string VariableName { get; init; }
@@ -137,104 +147,110 @@ namespace YarnSpinner.Tests
                 throw new XunitException("Syntax errors in test plan: " + string.Join("\n", allDiagnostics));
             }
 
-            ParseTreeWalker.WalkTree<YarnSpinnerTestPlanParser.RunContext>(
-                testPlanTree,
-                (runContext) =>
+            foreach (var runContext in testPlanTree.run())
+            {
+                var run = new Run();
+                Step step;
+                foreach (var stepContext in runContext.step())
                 {
-                    var run = new Run();
-                    Step step;
-                    foreach (var stepContext in runContext.step())
+                    if (stepContext.actionJumpToNode() != null)
                     {
-                        if (stepContext.actionJumpToNode() != null)
+                        step = new ActionJumpToNodeStep(
+                           stepContext.actionJumpToNode().nodeName.Text
+                       );
+                    }
+                    else if (stepContext.actionSelect() != null)
+                    {
+                        step = new ActionSelectStep(
+                            int.Parse(
+                                stepContext.actionSelect().NUMBER().GetText(),
+                                NumberStyles.Integer,
+                                CultureInfo.InvariantCulture
+                            ) - 1
+                        );
+                    }
+                    else if (stepContext.actionSet() != null)
+                    {
+                        if (stepContext.actionSet() is YarnSpinnerTestPlanParser.ActionSetBoolContext setBoolContext)
                         {
-                            step = new ActionJumpToNodeStep(
-                               stepContext.actionJumpToNode().nodeName.Text
-                           );
-                        }
-                        else if (stepContext.actionSelect() != null)
-                        {
-                            step = new ActionSelectStep(
-                                int.Parse(
-                                    stepContext.actionSelect().NUMBER().GetText(),
-                                    NumberStyles.Integer,
-                                    CultureInfo.InvariantCulture
-                                ) - 1
+                            step = new ActionSetVariableStep(
+                                setBoolContext.variable.Text,
+                                bool.Parse(setBoolContext.value.Text)
                             );
                         }
-                        else if (stepContext.actionSet() != null)
+                        else if (stepContext.actionSet() is YarnSpinnerTestPlanParser.ActionSetNumberContext setNumberContext)
                         {
-                            if (stepContext.actionSet() is YarnSpinnerTestPlanParser.ActionSetBoolContext setBoolContext)
-                            {
-                                step = new ActionSetVariableStep(
-                                    setBoolContext.variable.Text,
-                                    bool.Parse(setBoolContext.value.Text)
-                                );
-                            }
-                            else if (stepContext.actionSet() is YarnSpinnerTestPlanParser.ActionSetNumberContext setNumberContext)
-                            {
-                                step = new ActionSetVariableStep(
-                                    setNumberContext.variable.Text,
-                                    int.Parse(setNumberContext.value.Text, NumberStyles.Integer, CultureInfo.InvariantCulture)
-                                );
-                            }
-                            else
-                            {
-                                throw new InvalidOperationException("Unhandled 'set' type: " + stepContext.GetTextWithWhitespace());
-                            }
-                        }
-                        else if (stepContext.actionJumpToNode() != null)
-                        {
-                            step = new ActionJumpToNodeStep(
-                                stepContext.actionJumpToNode().nodeName.Text
+                            step = new ActionSetVariableStep(
+                                setNumberContext.variable.Text,
+                                int.Parse(setNumberContext.value.Text, NumberStyles.Integer, CultureInfo.InvariantCulture)
                             );
-                        }
-                        else if (stepContext.lineExpected() != null)
-                        {
-                            if (stepContext.lineExpected() is YarnSpinnerTestPlanParser.LineWithAnyTextExpectedContext any)
-                            {
-                                step = new ExpectLineStep(
-                                    null,
-                                    any.hashtag().Select(h => h.GetText())
-                                );
-                            }
-                            else if (stepContext.lineExpected() is YarnSpinnerTestPlanParser.LineWithSpecificTextExpectedContext specific)
-                            {
-                                step = new ExpectLineStep(
-                                    specific.TEXT().GetText().Trim('`'),
-                                    specific.hashtag().Select(h => h.GetText())
-                                );
-                            } else {
-                                throw new InvalidOperationException();
-                            }
-                        }
-                        else if (stepContext.optionExpected() != null)
-                        {
-                            step = new ExpectOptionStep(
-                                stepContext.optionExpected().TEXT().GetText().Trim('`'),
-                                stepContext.optionExpected().hashtag().Select(h => h.GetText()),
-                                stepContext.optionExpected().isDisabled == null
-                            );
-                        }
-                        else if (stepContext.commandExpected() != null)
-                        {
-                            step = new ExpectCommandStep(
-                                stepContext.commandExpected().TEXT().GetText().Trim('`')
-                            );
-                        }
-                        else if (stepContext.stopExpected() != null)
-                        {
-                            step = new ExpectStop();
                         }
                         else
                         {
-                            throw new InvalidOperationException("Unhandled step type: " + stepContext.GetTextWithWhitespace());
+                            throw new InvalidOperationException("Unhandled 'set' type: " + stepContext.GetTextWithWhitespace());
                         }
-                        run.Steps.Add(step);
                     }
-                    plan.Runs.Add(run);
-
+                    else if (stepContext.actionJumpToNode() != null)
+                    {
+                        step = new ActionJumpToNodeStep(
+                            stepContext.actionJumpToNode().nodeName.Text
+                        );
+                    }
+                    else if (stepContext.lineExpected() != null)
+                    {
+                        if (stepContext.lineExpected() is YarnSpinnerTestPlanParser.LineWithAnyTextExpectedContext any)
+                        {
+                            step = new ExpectLineStep(
+                                null,
+                                any.hashtag().Select(h => h.GetText())
+                            );
+                        }
+                        else if (stepContext.lineExpected() is YarnSpinnerTestPlanParser.LineWithSpecificTextExpectedContext specific)
+                        {
+                            step = new ExpectLineStep(
+                                specific.TEXT().GetText().Trim('`'),
+                                specific.hashtag().Select(h => h.GetText())
+                            );
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException();
+                        }
+                    }
+                    else if (stepContext.optionExpected() != null)
+                    {
+                        step = new ExpectOptionStep(
+                            stepContext.optionExpected().TEXT().GetText().Trim('`'),
+                            stepContext.optionExpected().hashtag().Select(h => h.GetText()),
+                            stepContext.optionExpected().isDisabled == null
+                        );
+                    }
+                    else if (stepContext.commandExpected() != null)
+                    {
+                        step = new ExpectCommandStep(
+                            stepContext.commandExpected().TEXT().GetText().Trim('`')
+                        );
+                    }
+                    else if (stepContext.stopExpected() != null)
+                    {
+                        step = new ExpectStop();
+                    }
+                    else if (stepContext.actionSetSaliencyMode() != null)
+                    {
+                        step = new ActionSetSaliencyStep(
+                            stepContext.actionSetSaliencyMode().saliencyMode.Text
+                        );
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Unhandled step type: " + stepContext.GetTextWithWhitespace());
+                    }
+                    run.Steps.Add(step);
                 }
-            );
+                plan.Runs.Add(run);
+
+            }
+
             return plan;
         }
 
