@@ -45,8 +45,8 @@ actionSelect
     ;
 
 actionSet
-    : 'set' variable=VARIABLE '=' value=BOOL #actionSetBool
-    | 'set' variable=VARIABLE '=' value=NUMBER #actionSetNumber
+    : 'set:' variable=VARIABLE '=' value=BOOL #actionSetBool
+    | 'set:' variable=VARIABLE '=' value=NUMBER #actionSetNumber
     ;
 
 actionSetSaliencyMode

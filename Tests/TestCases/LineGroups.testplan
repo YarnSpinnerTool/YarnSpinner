@@ -42,6 +42,6 @@ line: `Baker: Want another?`
 
 # Now, let's set the 'knows player' variable, and we'll get a more specific one
 
-set $knows_player = true
+set: $knows_player = true
 
 line: `Baker: Another pie for my best customer?`

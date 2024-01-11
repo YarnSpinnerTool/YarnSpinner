@@ -53,7 +53,7 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 
 	private static readonly string[] _LiteralNames = {
 		null, "'---'", "'#'", "'line:'", "'*'", "'option:'", "'[disabled]'", "'command:'", 
-		"'stop'", "'select:'", "'set'", "'='", "'saliency:'", "'node:'"
+		"'stop'", "'select:'", "'set:'", "'='", "'saliency:'", "'node:'"
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
