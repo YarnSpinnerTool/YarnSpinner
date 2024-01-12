@@ -106,6 +106,7 @@ Smart variables can be accessed anywhere a regular variable would be used:
         - The 'set' and 'stop' commands now no longer take a colon (:)
     - Multiple runs are now supported
     - TestPlan continuation is now no longer driven by the line/option callback system, which makes it easier to reason about.
+- Fixed a crash in the compiler that could occur if a node's `title:` header did not have a value.
 
 ### Removed
 

@@ -50,7 +50,7 @@ namespace Yarn.Compiler
 
                 if (headerKey.Equals("title", StringComparison.InvariantCulture))
                 {
-                    currentNodeName = header.header_value.Text;
+                    currentNodeName = headerValue;
                 }
             }
 
