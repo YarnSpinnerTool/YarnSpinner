@@ -164,6 +164,19 @@ namespace Yarn.Compiler
                     throw new InvalidOperationException($"Internal error: {nameof(CurrentNodeDebugInfo)} was null when exiting a node");
                 }
 
+                if (TrackingNodes.Contains(this.CurrentNode.Name)) {
+                    // This node needs to be tracked. Add a header that
+                    // describes which variable the virtual machine should use
+                    // for tracking.
+                    this.CurrentNode.Headers.Add(
+                        new Header
+                        {
+                            Key = Node.TrackingVariableNameHeader,
+                            Value = Library.GenerateUniqueVisitedVariableForNode(CurrentNode.Name)
+                        }
+                    );
+                }
+
                 CompilationResult.Nodes.Add(this.CurrentNode);
                 CompilationResult.DebugInfos.Add(this.CurrentNodeDebugInfo);
             }
@@ -222,11 +235,6 @@ namespace Yarn.Compiler
         /// <inheritdoc />
         public override void EnterBody(YarnSpinnerParser.BodyContext context)
         {
-            // Ok, so something in here needs to be a bit different. We also
-            // need to emit tracking code here for when we fall out of a node
-            // that needs tracking? Or should do I do in inside the
-            // codegenvisitor?
-
             if (this.CurrentNode == null)
             {
                 throw new InvalidOperationException($"Internal error: {nameof(CurrentNode)} was null when entering a body");
@@ -237,9 +245,7 @@ namespace Yarn.Compiler
                 throw new InvalidOperationException($"Internal error: {nameof(CurrentNodeDebugInfo)} was null when entering a body");
             }
 
-            string? track = TrackingNodes.Contains(CurrentNode.Name) ? Yarn.Library.GenerateUniqueVisitedVariableForNode(CurrentNode.Name) : null;
-
-            CodeGenerationVisitor visitor = new CodeGenerationVisitor(this, track);
+            CodeGenerationVisitor visitor = new CodeGenerationVisitor(this);
 
             foreach (var statement in context.statement())
             {
@@ -249,8 +255,7 @@ namespace Yarn.Compiler
 
 
         /// <summary>
-        /// Cleans up any remaining node tracking values and emits necessary
-        /// instructions to support visitation and close off the node.
+        /// Closes off the node.
         /// </summary>
         /// <inheritdoc />
         public override void ExitBody(YarnSpinnerParser.BodyContext context)
@@ -263,19 +268,6 @@ namespace Yarn.Compiler
             if (this.CurrentNodeDebugInfo == null)
             {
                 throw new InvalidOperationException($"Internal error: {nameof(CurrentNodeDebugInfo)} was null when entering a body");
-            }
-
-            // This gives us the final increment at the end of the node. This is
-            // for when we visit and complete a node without a jump.
-            // Theoretically, this does mean that there might be redundant
-            // increments, but I don't think it will matter because a jump
-            // always prevents the extra increment being reached. A bit
-            // inelegant to do it this way but the codegen visitor doesn't exit
-            // a node. Will do for now, shouldn't be hard to refactor this later
-            string? track = TrackingNodes.Contains(CurrentNode.Name) ? Yarn.Library.GenerateUniqueVisitedVariableForNode(CurrentNode.Name) : null;
-            if (track != null)
-            {
-                CodeGenerationVisitor.GenerateTrackingCode(this, track, context.Stop);
             }
 
             // We have exited the body; emit a 'return' instruction here.

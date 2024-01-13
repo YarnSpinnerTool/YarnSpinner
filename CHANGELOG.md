@@ -185,6 +185,7 @@ Finally, you can use the `once` keyword at the end of a line group item to make 
     - Multiple runs are now supported
     - TestPlan continuation is now no longer driven by the line/option callback system, which makes it easier to reason about.
 - Fixed a crash in the compiler that could occur if a node's `title:` header did not have a value.
+- Node `visited` and `visited_count` tracking is now handled in the virtual machine when a node is returned from, rather than as a result of compiler-generated code.
 
 ### Removed
 

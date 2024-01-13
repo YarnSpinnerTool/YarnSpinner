@@ -6,7 +6,7 @@ namespace Yarn.Compiler
     using System.Collections.Generic;
     using Antlr4.Runtime.Misc;
 
-    class NodeTrackingVisitor : YarnSpinnerParserBaseVisitor<string>
+    class NodeTrackingVisitor : YarnSpinnerParserBaseVisitor<string?>
     {
         HashSet<string> TrackingNode;
         HashSet<string> NeverVisitNodes;
@@ -17,7 +17,7 @@ namespace Yarn.Compiler
             this.NeverVisitNodes = ExistingBlockedNodes;
         }
 
-        public override string VisitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context)
+        public override string? VisitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context)
         {
             var functionName = context.FUNC_ID().GetText();
 
@@ -37,15 +37,15 @@ namespace Yarn.Compiler
             return null;
         }
 
-        public override string VisitValueString([NotNull] YarnSpinnerParser.ValueStringContext context)
+        public override string? VisitValueString([NotNull] YarnSpinnerParser.ValueStringContext context)
         {
-            return context.STRING().GetText().Trim('"');
+            return context.STRING()?.GetText().Trim('"');
         }
 
-        public override string VisitNode([NotNull] YarnSpinnerParser.NodeContext context)
+        public override string? VisitNode([NotNull] YarnSpinnerParser.NodeContext context)
         {
-            string title = null;
-            string tracking = null;
+            string? title = null;
+            string? tracking = null;
             foreach (var header in context.header())
             {
                 var headerKey = header.header_key.Text;

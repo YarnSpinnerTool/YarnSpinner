@@ -37,7 +37,7 @@ namespace Yarn.Compiler
             this.CurrentNode.Name = decl.Name;
             this.CurrentNode.Headers.Add(new Header { Key = "tags", Value = Program.SmartVariableNodeTag });
 
-            var codeGenerator = new CodeGenerationVisitor(this, trackingVariableName: null);
+            var codeGenerator = new CodeGenerationVisitor(this);
             codeGenerator.Visit(decl.InitialValueParserContext);
 
             node = this.CurrentNode;

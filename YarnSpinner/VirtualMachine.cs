@@ -160,7 +160,7 @@ namespace Yarn
             private Stack<Value> stack = new Stack<Value>();
 
             internal struct CallSite {
-                public string? nodeName;
+                public string nodeName;
                 public int instruction;
             }
             
@@ -430,12 +430,31 @@ namespace Yarn
 
                 if (currentNode != null && state.programCounter >= currentNode.Instructions.Count)
                 {
-                    NodeCompleteHandler?.Invoke(currentNode.Name);
+                    ReturnFromNode(currentNode);
                     CurrentExecutionState = ExecutionState.Stopped;
                     DialogueCompleteHandler?.Invoke();
                     LogDebugMessage?.Invoke("Run complete.");
                 }
             }
+        }
+
+        private void ReturnFromNode(Node? node) {
+            if (node == null) {
+                // Nothing to do.
+                return;
+            }
+            NodeCompleteHandler?.Invoke(node.Name);
+
+            string? nodeTrackingVariable = node.TrackingVariableName;
+            if (nodeTrackingVariable != null) {
+                if (this.VariableStorage.TryGetValue(nodeTrackingVariable, out float result)) {
+                    result += 1;
+                    this.VariableStorage.SetValue(nodeTrackingVariable, result);
+                } else {
+                    this.LogErrorMessage?.Invoke($"Failed to get the tracking variable for node {node.Name}");
+                }
+            }
+
         }
 
         /// <summary>
@@ -834,10 +853,14 @@ namespace Yarn
                 case Instruction.InstructionTypeOneofCase.Stop:
                     {
                         // Immediately stop execution, and report that fact.
-                        if (currentNode != null)
-                        {
-                            NodeCompleteHandler?.Invoke(currentNode.Name);
+                        ReturnFromNode(currentNode);
+
+                        // Unwind the call stack.
+                        while (state.CanReturn) {
+                            var node = Program?.Nodes[state.PopCallStack().nodeName];
+                            ReturnFromNode(node);
                         }
+                        
                         DialogueCompleteHandler?.Invoke();
                         CurrentExecutionState = ExecutionState.Stopped;
 
@@ -857,12 +880,8 @@ namespace Yarn
                     break;
                 case Instruction.InstructionTypeOneofCase.Return:
                     {
-                        if (currentNode != null)
-                        {
-                            // Indicate that we are no longer running this node.
-                            NodeCompleteHandler?.Invoke(currentNode.Name);
-                            currentNode = null;
-                        }
+                        ReturnFromNode(currentNode);
+                        
                         State.CallSite returnSite = default;
                         if (state.CanReturn) {
                             returnSite = state.PopCallStack();
@@ -893,17 +912,23 @@ namespace Yarn
             {
                 // Preserve our current state.
                 state.PushCallStack();
-            }
+            } else {
+                // We are jumping straight to another node. Unwind the current
+                // call stack and issue a 'node complete' event for every node.
+                ReturnFromNode(this.Program?.Nodes[CurrentNodeName]);
 
-            if (currentNode != null)
-            {
-                // We're currently running a node, so indicate that
-                // this node is complete.
-                NodeCompleteHandler?.Invoke(currentNode.Name);
+                while (state.CanReturn) {
+                    var poppedNodeName = state.PopCallStack().nodeName;
+                    if (poppedNodeName != null) {
+                        ReturnFromNode(this.Program?.Nodes[poppedNodeName]);
+                    }
+                }
+
             }
 
             if (nodeName == null)
             {
+                // The node name wasn't supplied - get it from the top of the stack.
                 nodeName = state.PeekValue().ConvertTo<string>();
             }
 

@@ -3,3 +3,8 @@ line: `Line 2`
 line: `Line 3`
 line: `Line 4`
 line: `Line 5`
+line: `VisitCountTest: 0`
+line: `VisitCountTest: 0`
+line: `VisitCountTest: 1`
+line: `VisitCountTest2: 1`
+stop

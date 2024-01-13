@@ -500,6 +500,24 @@ namespace Yarn
                 return Array.Empty<string>();
             }
         }
+
+        internal const string TrackingVariableNameHeader = "$Yarn.Internal.TrackingVariable";
+
+        /// <summary>
+        /// Gets the name of the variable used for tracking the number of times
+        /// this node has completed, or <see langword="null"/> if this node is
+        /// not tracked.
+        /// </summary>
+        public string? TrackingVariableName {
+            get {
+                foreach (var header in this.Headers) {
+                    if (header.Key == TrackingVariableNameHeader) {
+                        return header.Value;
+                    }
+                }
+                return null;
+            }
+        }
     }
 
 

@@ -19,12 +19,9 @@ namespace Yarn.Compiler
     {
         private ICodeEmitter compiler;
 
-        internal string? trackingVariableName = null;
-
-        public CodeGenerationVisitor(ICodeEmitter compiler, string? trackingVariableName)
+        public CodeGenerationVisitor(ICodeEmitter compiler)
         {
             this.compiler = compiler;
-            this.trackingVariableName = trackingVariableName;
         }
 
         private int CurrentInstructionNumber
@@ -932,28 +929,6 @@ namespace Yarn.Compiler
             );
         }
 
-        private void GenerateTrackingCode(string variableName, IToken sourceToken)
-        {
-            GenerateTrackingCode(this.compiler, variableName, sourceToken);
-        }
-
-        public static void GenerateTrackingCode(ICodeEmitter compiler, string variableName, IToken sourceToken)
-        {
-            compiler.Emit(
-                sourceToken,
-                // pushing the var and the increment onto the stack
-                new Instruction { PushVariable = new PushVariableInstruction { VariableName = variableName } },
-                new Instruction { PushFloat = new PushFloatInstruction { Value = 1 } },
-                // Indicate that we are pushing this many items for comparison
-                new Instruction { PushFloat = new PushFloatInstruction { Value = 2 } },
-                // calling the function to add them together
-                new Instruction { CallFunc = new CallFunctionInstruction { FunctionName = GetFunctionName(Types.Number, Operator.Add) } },
-                // now store the variable and clean up the stack
-                new Instruction { StoreVariable = new StoreVariableInstruction { VariableName = variableName } },
-                new Instruction { Pop = new PopInstruction { } }
-            );
-        }
-
         // * / %
         public override int VisitExpMultDivMod(YarnSpinnerParser.ExpMultDivModContext context)
         {
@@ -1166,11 +1141,6 @@ namespace Yarn.Compiler
 
         private void EmitJumpToNamedNode(ParserRuleContext context, string nodeName, bool detour)
         {
-            if (trackingVariableName != null)
-            {
-                GenerateTrackingCode(trackingVariableName, context.Start);
-            }
-
             switch (detour) {
                 case true:
                     this.compiler.Emit(context.Start,
@@ -1188,11 +1158,6 @@ namespace Yarn.Compiler
 
         private void EmitJumpToExpression(ParserRuleContext context, YarnSpinnerParser.ExpressionContext jumpExpression, bool detour)
         {
-            if (trackingVariableName != null)
-            {
-                GenerateTrackingCode(trackingVariableName, context.Start);
-            }
-
             // Evaluate the expression, and jump to the result on the stack.
             this.Visit(jumpExpression);
 
