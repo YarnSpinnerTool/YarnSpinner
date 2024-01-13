@@ -110,16 +110,7 @@ namespace Yarn.Compiler
                 };
             }
 
-            // Go through all files and generate any necessary variables for
-            // their #once hashtags, and rewrite any once() functions to include
-            // the unique parameter.
-            foreach (var parsedFile in parsedFiles) {
-                var onceTagger = new ViewOnceVisitor(parsedFile.Name, declarations, diagnostics);
-                onceTagger.Visit(parsedFile.Tree);
-            }
-
             // Run the type checker on the files, and produce type variables and constraints.
-
             List<TypeChecker.TypeConstraint> typeConstraints = new List<TypeChecker.TypeConstraint>();
 
             var fileTags = new Dictionary<string, IEnumerable<string>>();
