@@ -101,6 +101,8 @@ namespace Yarn.Compiler
                 lineNumber,
                 hashtagText);
 
+            context.LineID = stringID;
+
             if (lineID == null)
             {
                 var hashtag = new YarnSpinnerParser.HashtagContext(context, 0);
@@ -152,6 +154,16 @@ namespace Yarn.Compiler
             }
 
             outputString = composedString.ToString().Trim();
+        }
+    }
+
+    public partial class YarnSpinnerParser {
+        public partial class Line_statementContext {
+            /// <summary>
+            /// Gets or sets the localised line ID associated with this line
+            /// statement.
+            /// </summary>
+            public string? LineID { get; set; }
         }
     }
 }
