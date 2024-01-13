@@ -10,8 +10,6 @@
 #pragma warning disable CS1591 // Missing documentation
 #pragma warning disable CS0162 // Unreachable code
 
-using System;
-
 namespace CLDRPlurals
 {
     public enum PluralCase { Zero, One, Two, Few, Many, Other };

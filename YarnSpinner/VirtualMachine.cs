@@ -7,7 +7,6 @@ namespace Yarn
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
 
     /// <summary>
     /// A value used by an Instruction.
