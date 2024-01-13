@@ -249,15 +249,15 @@ namespace YarnSpinner.Tests
                     foreach (var (Option, Expectation) in opts.Options.Zip(expectedOptions)) {
                         stringTable.Should().ContainKey(Option.Line.ID);
 
+                        var text = GetComposedTextForLine(Option.Line);
                         if (Expectation.ExpectedText != null) {
-                            var text = GetComposedTextForLine(Option.Line);
 
                             text.Should().Be(Expectation.ExpectedText);
                         }
                         if (Expectation.ExpectedHashtags.Any()) {
                             stringTable[Option.Line.ID].metadata.Should().Contain(Expectation.ExpectedHashtags);
                         }
-                        Option.IsAvailable.Should().Be(Expectation.ExpectedAvailability);
+                        Option.IsAvailable.Should().Be(Expectation.ExpectedAvailability, $"option \"{text}\"'s availability was expected to be {Expectation.ExpectedAvailability}");
                     }
                     opts.Options.Should().ContainSingle(o => o.ID == expectation.SelectedIndex, "one option should have the ID that we want to select");
                 };

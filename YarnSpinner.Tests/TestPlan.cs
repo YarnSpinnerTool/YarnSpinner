@@ -48,6 +48,18 @@ namespace YarnSpinner.Tests
                 this.ExpectedText = text;
                 this.ExpectedHashtags.AddRange(hashtags);
             }
+
+            public override string ToString()
+            {
+                if (this.ExpectedHashtags.Count > 0)
+                {
+                    return $"Line \"{this.ExpectedText}\" with hashtags {string.Join(", ", this.ExpectedHashtags)}";
+                }
+                else
+                {
+                    return $"Line \"{this.ExpectedText}\"";
+                }
+            }
         }
 
         public class ExpectOptionStep : ExpectContentStep
