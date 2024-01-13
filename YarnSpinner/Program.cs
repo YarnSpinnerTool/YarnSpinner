@@ -346,11 +346,11 @@ namespace Yarn
 
             string GetLabel(int instruction)
             {
-                if (containingNode == null) { 
-                    return instruction.ToString(CultureInfo.InvariantCulture);
+                if (containingNode != null && (helper?.GetLabelsForNode(containingNode.Name).TryGetValue(instruction, out var label) ?? false))
+                {
+                    return label;
                 }
-
-                return helper?.GetLabelsForNode(containingNode.Name)[instruction] ?? instruction.ToString(CultureInfo.InvariantCulture);
+                return instruction.ToString(CultureInfo.InvariantCulture);
             }
 
             switch (this.InstructionTypeCase)
