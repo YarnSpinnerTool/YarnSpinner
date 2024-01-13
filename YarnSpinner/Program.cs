@@ -11,6 +11,7 @@ namespace Yarn
 
     internal interface ICodeDumpHelper {
         public string GetStringForKey(string key);
+        public string GetDescriptionForVariable(string variableName);
         public NodeLabelsCollection GetLabelsForNode(string node);
     }
 
@@ -329,6 +330,13 @@ namespace Yarn
                         comments.Add(string.Format(CultureInfo.InvariantCulture, "\"{0}\"", actualString));
                     }
 
+                    break;
+                
+                case InstructionTypeOneofCase.PushVariable:
+                    comments.Add(helper?.GetDescriptionForVariable(PushVariable.VariableName) ?? "<no variable info available>");
+                    break;
+                case InstructionTypeOneofCase.StoreVariable:
+                    comments.Add(helper?.GetDescriptionForVariable(StoreVariable.VariableName) ?? "<no variable info available>");
                     break;
 
             }

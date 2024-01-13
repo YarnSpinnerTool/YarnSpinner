@@ -9,7 +9,6 @@ namespace Yarn.Compiler
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using TypeChecker;
 
     public class FileCompilationResult {
         public List<Node> Nodes { get; internal set; } = new List<Node>();
@@ -18,7 +17,6 @@ namespace Yarn.Compiler
 
         public List<Diagnostic> Diagnostics { get; internal set; } = new List<Diagnostic>();
     }
-
 
     /// <summary>
     /// The result of a compilation.
@@ -128,6 +126,11 @@ namespace Yarn.Compiler
         /// Gets the debugging information for this compiled project.
         /// </summary>
         public ProjectDebugInfo? ProjectDebugInfo { get; internal set; }
+
+        public string GetDescriptionForVariable(string variableName)
+        {
+            return this.Declarations.FirstOrDefault(d => d.Name == variableName)?.Description ?? "<unknown variable>";
+        }
 
         public IReadOnlyDictionary<int, string> GetLabelsForNode(string node)
         {
