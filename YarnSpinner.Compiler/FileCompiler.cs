@@ -1,9 +1,6 @@
 // Copyright Yarn Spinner Pty Ltd
 // Licensed under the MIT License. See LICENSE.md in project root for license information.
 
-// Uncomment to ensure that all expressions have a known type at compile time
-// #define VALIDATE_ALL_EXPRESSIONS
-
 namespace Yarn.Compiler
 {
     using Antlr4.Runtime;
@@ -102,7 +99,8 @@ namespace Yarn.Compiler
 
         public void Emit(IToken startToken, params Instruction[] instructions)
         {
-            foreach (var i in instructions) {
+            foreach (var i in instructions)
+            {
                 this.Emit(startToken, i);
             }
         }
@@ -112,10 +110,10 @@ namespace Yarn.Compiler
             this.Emit(null, instruction);
         }
 
-        // this replaces the CompileNode from the old compiler will start
-        // walking the parse tree emitting byte code as it goes along this
-        // will all get stored into our program var needs a tree to walk,
-        // this comes from the ANTLR Parser/Lexer steps
+        // This replaces the CompileNode from the old compiler. We will start
+        // walking the parse tree, emitting byte code as it goes along. This
+        // will all get stored into our program. Var needs a tree to walk, this
+        // comes from the ANTLR Parser/Lexer steps
         internal FileCompilationResult Compile()
         {
             this.CompilationResult = new FileCompilationResult();
@@ -125,8 +123,8 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
-        /// we have found a new node set up the currentNode var ready to
-        /// hold it and otherwise continue
+        /// We have found a new node. Set up the currentNode var ready to hold
+        /// it, and otherwise continue.
         /// </summary>
         /// <inheritdoc/>
         public override void EnterNode(YarnSpinnerParser.NodeContext context)
@@ -136,8 +134,8 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
-        /// have left the current node store it into the program wipe the
-        /// var and make it ready to go again
+        /// We have left the current node. Store it into the program, wipe the
+        /// var, and make it ready to go again.
         /// </summary>
         /// <inheritdoc />
         public override void ExitNode(YarnSpinnerParser.NodeContext context)
@@ -174,9 +172,9 @@ namespace Yarn.Compiler
         }
 
         /// <summary> 
-        /// have finished with the header so about to enter the node body
-        /// and all its statements do the initial setup required before
-        /// compiling that body statements eg emit a new startlabel
+        /// We have finished with the header, so we're about to enter the node
+        /// body, and all its statements. Do the initial setup required before
+        /// compiling.
         /// </summary>
         /// <inheritdoc />
         public override void ExitHeader(YarnSpinnerParser.HeaderContext context)
@@ -193,11 +191,11 @@ namespace Yarn.Compiler
 
             var headerKey = context.header_key.Text;
 
-            // Use the header value if provided, else fall back to the
-            // empty string. This means that a header like "foo: \n" will
-            // be stored as 'foo', '', consistent with how it was typed.
-            // That is, it's not null, because a header was provided, but
-            // it was written as an empty line.
+            // Use the header value if provided, else fall back to the empty
+            // string. This means that a header like "foo: \n" will be stored as
+            // 'foo', '', consistent with how it was typed. That is, it's not
+            // null, because a header was provided, but it was written as an
+            // empty line.
             var headerValue = context.header_value?.Text ?? String.Empty;
 
             if (headerKey.Equals("title", StringComparison.InvariantCulture))
@@ -216,17 +214,18 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
-        /// have entered the body the header should have finished being
-        /// parsed and currentNode ready all we do is set up a body visitor
-        /// and tell it to run through all the statements it handles
-        /// everything from that point onwards
+        /// Have entered the body. The header should have finished being parsed,
+        /// and the currentNode is ready. All we do is set up a body visitor and
+        /// tell it to run through all the statements. It handles everything
+        /// from that point onwards.
         /// </summary>
         /// <inheritdoc />
         public override void EnterBody(YarnSpinnerParser.BodyContext context)
         {
-            // ok so something in here needs to be a bit different
-            // also need to emit tracking code here for when we fall out of a node that needs tracking?
-            // or should do I do in inside the codegenvisitor?
+            // Ok, so something in here needs to be a bit different. We also
+            // need to emit tracking code here for when we fall out of a node
+            // that needs tracking? Or should do I do in inside the
+            // codegenvisitor?
 
             if (this.CurrentNode == null)
             {
@@ -250,7 +249,8 @@ namespace Yarn.Compiler
 
 
         /// <summary>
-        /// Cleans up any remaining node tracking values and emits necessary instructions to support visitation and close off the node
+        /// Cleans up any remaining node tracking values and emits necessary
+        /// instructions to support visitation and close off the node.
         /// </summary>
         /// <inheritdoc />
         public override void ExitBody(YarnSpinnerParser.BodyContext context)
@@ -265,13 +265,13 @@ namespace Yarn.Compiler
                 throw new InvalidOperationException($"Internal error: {nameof(CurrentNodeDebugInfo)} was null when entering a body");
             }
 
-            // this gives us the final increment at the end of the node
-            // this is for when we visit and complete a node without a jump
-            // theoretically this does mean that there might be redundant increments
-            // but I don't think it will matter because a jump always prevents
-            // the extra increment being reached
-            // a bit inelegant to do it this way but the codegen visitor doesn't exit a node
-            // will do for now, shouldn't be hard to refactor this later
+            // This gives us the final increment at the end of the node. This is
+            // for when we visit and complete a node without a jump.
+            // Theoretically, this does mean that there might be redundant
+            // increments, but I don't think it will matter because a jump
+            // always prevents the extra increment being reached. A bit
+            // inelegant to do it this way but the codegen visitor doesn't exit
+            // a node. Will do for now, shouldn't be hard to refactor this later
             string? track = TrackingNodes.Contains(CurrentNode.Name) ? Yarn.Library.GenerateUniqueVisitedVariableForNode(CurrentNode.Name) : null;
             if (track != null)
             {
@@ -280,9 +280,9 @@ namespace Yarn.Compiler
 
             // We have exited the body; emit a 'return' instruction here.
             Compiler.Emit(
-                this.CurrentNode, 
-                this.CurrentNodeDebugInfo, 
-                context.Stop.Line - 1, 0, 
+                this.CurrentNode,
+                this.CurrentNodeDebugInfo,
+                context.Stop.Line - 1, 0,
                 new Instruction { Return = new ReturnInstruction { } }
             );
         }
