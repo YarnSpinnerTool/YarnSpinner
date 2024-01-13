@@ -87,11 +87,19 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitHashtag([NotNull] YarnSpinnerParser.HashtagContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.line_condition"/>.
+	/// Visit a parse tree produced by the <c>lineCondition</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.line_condition"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitLine_condition([NotNull] YarnSpinnerParser.Line_conditionContext context);
+	Result VisitLineCondition([NotNull] YarnSpinnerParser.LineConditionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>lineOnceCondition</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.line_condition"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLineOnceCondition([NotNull] YarnSpinnerParser.LineOnceConditionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>expParens</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
@@ -346,5 +354,23 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitReturn_statement([NotNull] YarnSpinnerParser.Return_statementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.once_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitOnce_statement([NotNull] YarnSpinnerParser.Once_statementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.once_primary_clause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitOnce_primary_clause([NotNull] YarnSpinnerParser.Once_primary_clauseContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.once_alternate_clause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitOnce_alternate_clause([NotNull] YarnSpinnerParser.Once_alternate_clauseContext context);
 }
 } // namespace Yarn.Compiler

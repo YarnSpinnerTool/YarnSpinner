@@ -35,6 +35,7 @@ statement
     | jump_statement
     | return_statement
     | line_group_statement
+    | once_statement
     | INDENT statement* DEDENT
     ;
 
@@ -57,7 +58,8 @@ hashtag
     ;
 
 line_condition
-    : COMMAND_START COMMAND_IF expression COMMAND_END
+    : COMMAND_START COMMAND_IF expression COMMAND_END #lineCondition
+    | COMMAND_START COMMAND_ONCE (COMMAND_IF expression)? COMMAND_END #lineOnceCondition
     ;
 
 expression
@@ -166,3 +168,18 @@ jump_statement
 return_statement
     : COMMAND_START COMMAND_RETURN COMMAND_END
     ;
+
+once_statement
+    : once_primary_clause 
+      once_alternate_clause? 
+      COMMAND_START COMMAND_ENDONCE COMMAND_END
+    ;
+    
+once_primary_clause
+    : COMMAND_START COMMAND_ONCE (COMMAND_IF expression)? COMMAND_END statement*
+    ;
+
+once_alternate_clause
+    : COMMAND_START COMMAND_ELSE COMMAND_END statement*
+    ;
+

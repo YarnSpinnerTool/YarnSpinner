@@ -56,6 +56,23 @@ namespace Yarn.Compiler
             return base.VisitLine_group_statement(context);
         }
 
+        public override int VisitLineOnceCondition([NotNull] YarnSpinnerParser.LineOnceConditionContext context)
+        {
+            if (PreviewFeaturesAreErrors) {
+                AddLanguageFeatureError(context, "'once' conditions");
+            }
+
+            return base.VisitLineOnceCondition(context);
+        }
+
+        public override int VisitOnce_statement([NotNull] YarnSpinnerParser.Once_statementContext context)
+        {
+            if (PreviewFeaturesAreErrors) {
+                AddLanguageFeatureError(context, "'once' statements");
+            }
+
+            return base.VisitOnce_statement(context);
+        }
 
     }
 }

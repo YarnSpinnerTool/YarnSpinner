@@ -68,14 +68,6 @@ namespace Yarn.Compiler
         // a regular ol' line of text
         public override int VisitLine_statement(YarnSpinnerParser.Line_statementContext context)
         {
-            // TODO: add support for line conditions:
-            //
-            // Mae: here's a line <<if true>>
-            //
-            // is identical to
-            //
-            // <<if true>> Mae: here's a line <<endif>>
-
             if (compiler.CurrentNode == null)
             {
                 throw new InvalidOperationException($"Internal error: {nameof(compiler.CurrentNode)} was null when generating code for a line expression");
@@ -83,6 +75,35 @@ namespace Yarn.Compiler
 
             // Get the lineID for this string from the hashtags
             var lineID = Compiler.GetLineID(context);
+
+            // Evaluate any condition on the line statement.
+            EvaluateLineCondition(context, out _);
+
+            Instruction? jumpIfConditionFalseInstruction = null;
+
+            bool hasAnyCondition = context.GetConditionType() != ParserContextExtensions.ContentConditionType.NoCondition;
+
+            if (hasAnyCondition) {
+                // Jump over this line if the line's condition is false.
+                this.compiler.Emit(
+                    context.line_condition().Start,
+                    jumpIfConditionFalseInstruction= new Instruction {
+                        JumpIfFalse = new JumpIfFalseInstruction { Destination = -1 }
+                    }
+                );
+            }
+
+            if (context.line_condition() is YarnSpinnerParser.LineOnceConditionContext once) {
+                // The line has a 'once' condition that has evaluated to true.
+                // Set the corresponding variable for it so that it doesn't
+                // appear again.
+                this.compiler.Emit(
+                    once.COMMAND_ONCE().Symbol,
+                    new Instruction { PushBool = new PushBoolInstruction { Value = true } },
+                    new Instruction { StoreVariable = new StoreVariableInstruction { VariableName = Compiler.GetContentViewedVariableName(lineID) } },
+                    new Instruction { Pop = new PopInstruction { } }
+                );
+            }
 
             // Evaluate the inline expressions and push the results onto the
             // stack.
@@ -96,6 +117,21 @@ namespace Yarn.Compiler
                     RunLine = new RunLineInstruction { LineID = lineID, SubstitutionCount = expressionCount }
                 }
             );
+
+            if (jumpIfConditionFalseInstruction != null) {
+                // We generated a jump instruction to jump over the line. Update
+                // its destination to immediately after the line.
+                jumpIfConditionFalseInstruction.Destination = this.CurrentInstructionNumber;
+            }
+
+            if (hasAnyCondition) {
+                // We evaluated a condition, and the value is still on the
+                // stack. Pop the bool off the stack.
+                this.compiler.Emit(
+                    context.line_condition().Start,
+                    new Instruction { Pop = new PopInstruction { } }
+                );
+            }
 
             return 0;
         }
@@ -339,6 +375,8 @@ namespace Yarn.Compiler
 
             int optionCount = 0;
 
+            var onceVariables = new Dictionary<YarnSpinnerParser.Shortcut_optionContext, string?>();
+
             // For each option, create an internal destination label that, if
             // the user selects the option, control flow jumps to. Then,
             // evaluate its associated line_statement, and use that as the
@@ -353,15 +391,10 @@ namespace Yarn.Compiler
                 // emit code that evaluates the condition, and add a flag on the
                 // 'Add Option' instruction that indicates that a condition
                 // exists.
-                bool hasLineCondition = false;
+                EvaluateLineCondition(shortcut.line_statement(), out var onceVariable);
+                onceVariables[shortcut] = onceVariable;
 
-                if (shortcut.line_statement()?.line_condition()?.expression() != null)
-                {
-                    // Evaluate the condition, and leave it on the stack
-                    this.Visit(shortcut.line_statement().line_condition().expression());
-
-                    hasLineCondition = true;
-                }
+                bool hasAnyCondition = shortcut.line_statement().GetConditionType() != ParserContextExtensions.ContentConditionType.NoCondition;
 
                 // We can now prepare and add the option.
 
@@ -371,16 +404,17 @@ namespace Yarn.Compiler
 
                 Instruction addOptionInstruction;
 
-
                 // And add this option to the list.
                 this.compiler.Emit(
                     shortcut.line_statement().Start,
-                    addOptionInstruction = new Instruction {
-                        AddOption = new AddOptionInstruction {
+                    addOptionInstruction = new Instruction
+                    {
+                        AddOption = new AddOptionInstruction
+                        {
                             LineID = lineID,
                             Destination = -1,
                             SubstitutionCount = expressionCount,
-                            HasCondition = hasLineCondition,
+                            HasCondition = hasAnyCondition,
                         }
                     });
 
@@ -409,6 +443,24 @@ namespace Yarn.Compiler
                 // Make this option's AddOption instruction point at where we
                 // are now.
                 addOptionInstructions[optionCount].Destination = CurrentInstructionNumber;
+
+                if (shortcut.line_statement().line_condition() is YarnSpinnerParser.LineOnceConditionContext once) {
+                    // This option has a 'once' condition on it. Generate code
+                    // that sets the corresponding 'once' variable for this
+                    // option to true, so that we don't see it again.
+                    this.compiler.Emit(
+                        once.COMMAND_ONCE().Symbol,
+                        new Instruction
+                        {
+                            PushBool = new PushBoolInstruction { Value = true }
+                        },
+                        new Instruction
+                        {
+                            StoreVariable = new StoreVariableInstruction { VariableName = onceVariables[shortcut] }
+                        },
+                        new Instruction { Pop = new PopInstruction { } }
+                    );
+                }
 
                 // Run through all the children statements of the  option.
                 foreach (var child in shortcut.statement())
@@ -445,14 +497,92 @@ namespace Yarn.Compiler
             return 0;
         }
 
+        /// <summary>
+        /// Generates code that evaluates any conditions present on the line and
+        /// places the result on the stack.
+        /// </summary>
+        /// <param name="lineStatement"></param>
+        /// <param name="onceVariable"></param>
+        private void EvaluateLineCondition(YarnSpinnerParser.Line_statementContext lineStatement, out string? onceVariable)
+        {
+            onceVariable = null;
+
+            switch (lineStatement?.GetConditionType())
+            {
+                case ParserContextExtensions.ContentConditionType.OnceCondition:
+                    var condition = (lineStatement.line_condition() as YarnSpinnerParser.LineOnceConditionContext)!;
+
+                    var lineID = Compiler.GetLineID(lineStatement);
+                    onceVariable = Compiler.GetContentViewedVariableName(lineID);
+
+                    // Test to see if the 'once' variable for this content is
+                    // false
+                    
+                    this.compiler.Emit(
+                        condition.COMMAND_ONCE().Symbol,
+                        new Instruction
+                        {
+                            PushVariable = new PushVariableInstruction
+                            {
+                                VariableName = onceVariable
+                            }
+                        },
+                        new Instruction
+                        {
+                            // one argument for 'not'
+                            PushFloat = new PushFloatInstruction { Value = 1 } 
+                        },
+                        new Instruction 
+                        {
+                            // 'not' the variable
+                            CallFunc = new CallFunctionInstruction {
+                                FunctionName = GetFunctionName(Types.Boolean, Operator.Not)
+                            }
+                        }
+                    );
+
+                    // If the condition has an expression, evaluate that too
+                    // and, 'and' it
+                    if (condition.expression() is YarnSpinnerParser.ExpressionContext expr)
+                    {
+                        Visit(condition.expression());
+
+                        this.compiler.Emit(
+                            expr.Start,
+                            new Instruction
+                            {
+                                PushFloat = new PushFloatInstruction
+                                {
+                                    Value = 2
+                                }
+                            },
+                            new Instruction
+                            {
+                                CallFunc = new CallFunctionInstruction
+                                {
+                                    FunctionName = GetFunctionName(Types.Boolean, Operator.And)
+                                }
+                            }
+                        );
+                    }
+
+                    break;
+                case ParserContextExtensions.ContentConditionType.RegularCondition:
+                    // Evaluate the condition and put it on the stack
+                    Visit((lineStatement.line_condition() as YarnSpinnerParser.LineConditionContext)!.expression());
+                    break;
+                case null:
+                    // No condition; nothing to do.
+                    break;
+            }
+        }
+
         public override int VisitLine_group_statement(YarnSpinnerParser.Line_group_statementContext context)
         {
             if (this.compiler.CurrentNode == null)
             {
                 throw new InvalidOperationException($"Internal error: can't codegen a line group, because CurrentNode is null");
             }
-
-            var labels = new Dictionary<YarnSpinnerParser.Line_group_itemContext, string>();
 
             int optionCount = 0;
 
@@ -483,35 +613,51 @@ namespace Yarn.Compiler
 
             var jumpsToLineGroupItems = new Dictionary<YarnSpinnerParser.Line_group_itemContext, Instruction>();
 
+            var onceVariables = new Dictionary<YarnSpinnerParser.Line_group_itemContext, string?>();
+
             foreach (var lineGroupItem in context.line_group_item())
             {
                 var lineStatement = lineGroupItem.line_statement();
-                var expression = lineStatement.line_condition()?.expression();
+
 
                 var lineID = Compiler.GetLineID(lineGroupItem.line_statement());
 
-                // This line group item has an expression. Evaluate it.
-                if (expression != null)
-                {
+                if (lineStatement.line_condition() != null) {
+                    // This line group item has an expression. Evaluate it.
+
+                    EvaluateLineCondition(lineStatement, out var onceVariable);
+
+                    onceVariables[lineGroupItem] = onceVariable;
+
                     Instruction skipThisItemInstruction;
-                    IToken? conditionToken = null;
-                    int conditionCount = 0;
-
-                    this.Visit(expression);
-                    conditionToken = expression.Start;
-
-                    // Get the number of values that this expression
-                    // examines
-                    conditionCount += GetValuesInExpression(expression);
 
                     // If this evaluates to false, skip to the end of the
                     // expression and do not register this line group item
                     this.compiler.Emit(
-                        conditionToken,
+                        lineStatement.line_condition().Start,
                         skipThisItemInstruction = new Instruction { 
                             JumpIfFalse = new JumpIfFalseInstruction { Destination = -1 } 
                         }
                     );
+
+                    // Count the number of conditions in the expression:
+
+                    int conditionCount;
+
+                    if (lineStatement.line_condition() is YarnSpinnerParser.LineConditionContext regularCondition) {
+                        conditionCount = GetValuesInExpression(regularCondition.expression());
+                    } else if (lineStatement.line_condition() is YarnSpinnerParser.LineOnceConditionContext onceCondition) {
+
+                        conditionCount = 1;
+
+                        if (onceCondition.expression() != null) {
+                            // The once condition has an expression - add
+                            // however many values are present in it
+                            conditionCount += GetValuesInExpression(onceCondition.expression());
+                        }
+                    } else {
+                        throw new InvalidOperationException($"Internal error: unhandled condition type {lineStatement.line_condition().GetType()}");
+                    }
 
                     // Call the 'add candidate' function
                     EmitCodeForRegisteringLineGroupItem(lineGroupItem, conditionCount);
@@ -601,10 +747,44 @@ namespace Yarn.Compiler
                 // label
                 this.compiler.CurrentNodeDebugInfo?.AddLabel("run_line_group_item", CurrentInstructionNumber);
 
-                // Evaluate this line. 
-                this.Visit(lineGroupItem.line_statement());
+                if (onceVariables.TryGetValue(lineGroupItem, out var onceVariable) && onceVariable != null) {
+                    // We have a 'once' variable for this line group item. Emit
+                    // code that sets it to 'true', so that we don't see this
+                    // item again.
+                    this.compiler.Emit(
+                        (lineGroupItem.line_statement()?.line_condition() as YarnSpinnerParser.LineOnceConditionContext)?.COMMAND_ONCE().Symbol ?? lineGroupItem.Start,
+                        
+                        new Instruction {
+                            PushBool = new PushBoolInstruction { Value = true },
+                        },
+                        new Instruction {
+                            StoreVariable = new StoreVariableInstruction { VariableName = onceVariable },
+                        },
+                        new Instruction { Pop = new PopInstruction { } }
+                    );
+                }
 
-                // For each child, evaluate that too
+                // Run this line. (We don't call Visit(line_statement), because
+                // that would re-evaluate the line condition, which we don't
+                // need or want.)
+
+                var lineFormattedText = lineGroupItem.line_statement().line_formatted_text();
+                // Evaluate the inline expressions and push the results onto the
+                // stack.
+                var expressionCount = this.GenerateCodeForExpressionsInFormattedText(lineFormattedText.children);
+                var lineID = lineGroupItem.line_statement().LineID;
+
+                // Run the line.
+                this.compiler.Emit(
+                    context.Start,
+                    new Instruction
+                    {
+                        RunLine = new RunLineInstruction { LineID = lineID, SubstitutionCount = expressionCount }
+                    }
+                );
+
+                // For each child statement in this line group item, evaluate
+                // that too
                 foreach (var childStatement in lineGroupItem.statement())
                 {
                     this.Visit(childStatement);
@@ -1047,6 +1227,146 @@ namespace Yarn.Compiler
             return 0;
         }
 
+        public override int VisitOnce_statement([NotNull] YarnSpinnerParser.Once_statementContext context)
+        {
+            // Generate a mostly-unique, mostly-stable 'once' tracking variable
+            // for this 'once' statement based on where we are in the
+            // compilation - this should be mostly stable across line text
+            // edits, but should change if the program changes its structure
+            // (i.e. this 'once' statement appears at a different instruction
+            // number)
+            string onceVariable = context.once_primary_clause().OnceVariableName ?? throw new InvalidOperationException("Internal error: once statement primary clause is missing a once variable");
+            
+            // Get the token that represents the 'once' keyword in this
+            // statement, so that we can associate the generated instructions
+            // with it
+            IToken onceToken = context.once_primary_clause().COMMAND_ONCE().Symbol;
+
+            // Evaluate the once variable
+            this.compiler.Emit(
+                onceToken,
+                new Instruction
+                {
+                    PushVariable = new PushVariableInstruction { VariableName = onceVariable },
+                },
+                new Instruction
+                {
+                    PushFloat = new PushFloatInstruction { Value = 1 },
+                },
+                new Instruction
+                {
+                    CallFunc = new CallFunctionInstruction
+                    {
+                        FunctionName = GetFunctionName(Types.Boolean, Operator.Not)
+                    }
+                }
+            );
+
+            if (context.once_primary_clause().expression() != null)
+            {
+                // The statement has an expression. Evaluate it and 'and' it
+                // with the once variable's evaluation.
+                Visit(context.once_primary_clause().expression());
+
+                this.compiler.Emit(
+                    onceToken,
+                    new Instruction
+                    {
+                        PushFloat = new PushFloatInstruction { Value = 2 },
+                    },
+                    new Instruction
+                    {
+                        CallFunc = new CallFunctionInstruction
+                        {
+                            FunctionName = GetFunctionName(Types.Boolean, Operator.And)
+                        }
+                    }
+            );
+            }
+
+            // If the resulting value is false, jump over this content (either
+            // to the alternate clause, if present, or otherwise to the end of
+            // the statement).
+            Instruction jumpOverPrimaryClause;
+            
+            this.compiler.Emit(
+                onceToken,
+                jumpOverPrimaryClause = new Instruction
+                {
+                    JumpIfFalse = new JumpIfFalseInstruction { Destination = -1 }
+                }
+            );
+
+            // If we haven't jumped, we're in the 'once' content. Set the 'once'
+            // variable to true so that we don't see it again.
+            this.compiler.Emit(
+                onceToken,
+                new Instruction
+                {
+                    PushBool = new PushBoolInstruction { Value = true }
+                },
+                new Instruction
+                {
+                    StoreVariable = new StoreVariableInstruction { VariableName = onceVariable }
+                },
+                new Instruction { Pop = new PopInstruction { } }
+            );
+
+            // Evaluate the primary clause
+            foreach (var statement in context.once_primary_clause().statement()) {
+                Visit(statement);
+            }
+
+            if (context.once_alternate_clause() != null)
+            {
+                // We have an alternate clause, which we should run if the
+                // primary clause did not.
+                Instruction jumpOverAlternateClause;
+
+                // Start by jumping over this clause if we DID run the primary
+                // clause.
+                this.compiler.Emit(
+                    context.once_primary_clause().Stop,
+                    jumpOverAlternateClause = new Instruction
+                    {
+                        JumpTo = new JumpToInstruction { Destination = -1 }
+                    }
+                );
+
+                // Make the 'jump over primary clause' jump to where we are now,
+                // which is the the start of the alternate clause.
+                jumpOverPrimaryClause.Destination = this.CurrentInstructionNumber;
+                this.compiler.CurrentNodeDebugInfo?.AddLabel("skip_once_primary", this.CurrentInstructionNumber);
+
+                // Evaluate the alternate clause.
+                foreach (var statement in context.once_alternate_clause().statement())
+                {
+                    Visit(statement);
+                }
+
+                // Make the 'jump over alternate clause' instruction point to where we are now, which is the end of the alternate clause (and therefore the end of the entire statement.)
+                jumpOverAlternateClause.Destination = this.CurrentInstructionNumber;
+                this.compiler.CurrentNodeDebugInfo?.AddLabel("skip_once_alternate", this.CurrentInstructionNumber);
+
+            }
+            else
+            {
+                // Update the 'jump over primary clause' instruction to point to
+                // where we are now, which is the end of the statement.
+                jumpOverPrimaryClause.Destination = this.CurrentInstructionNumber;
+                this.compiler.CurrentNodeDebugInfo?.AddLabel("skip_once_statement", this.CurrentInstructionNumber);
+            }
+
+            // Pop the result of evaluating the condition, which was left on the stack.
+            this.compiler.Emit(
+                context.Stop,
+                new Instruction { Pop = new PopInstruction { } }
+            );
+
+            return 0;
+        }
+
+        
         // TODO: figure out a better way to do operators
         internal static readonly Dictionary<int, Operator> TokensToOperators = new Dictionary<int, Operator>
         {
@@ -1067,5 +1387,50 @@ namespace Yarn.Compiler
             { YarnSpinnerLexer.OPERATOR_MATHS_DIVISION, Operator.Divide },
             { YarnSpinnerLexer.OPERATOR_MATHS_MODULUS, Operator.Modulo },
         };
+    }
+
+    internal static class ParserContextExtensions {
+
+        internal enum ContentConditionType
+        {
+            /// <summary>
+            /// The content does not have a condition.
+            /// </summary>
+            NoCondition,
+
+            /// <summary>
+            /// The content has a 'once' condition (possibly with an additional expression).
+            /// </summary>
+            OnceCondition,
+
+            /// <summary>
+            /// The content has a regular condition with an expression.
+            /// </summary>
+            RegularCondition,
+        }
+
+        public static ContentConditionType GetConditionType(this YarnSpinnerParser.Line_statementContext line) {
+            return GetConditionType(line.line_condition());
+        }
+        
+        private static ContentConditionType GetConditionType(YarnSpinnerParser.Line_conditionContext? condition)
+        {
+            if (condition == null)
+            {
+                return ContentConditionType.NoCondition;
+            }
+
+            if (condition is YarnSpinnerParser.LineConditionContext)
+            {
+                return ContentConditionType.RegularCondition;
+            }
+
+            if (condition is YarnSpinnerParser.LineOnceConditionContext)
+            {
+                return ContentConditionType.OnceCondition;
+            }
+
+            throw new InvalidOperationException("Unknown content condition type " + condition.GetType());
+        }
     }
 }

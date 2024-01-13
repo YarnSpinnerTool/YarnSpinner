@@ -733,13 +733,117 @@ namespace Yarn.Compiler
             base.ExitFunction_call(context);
         }
 
-        public override void ExitLine_condition([NotNull] YarnSpinnerParser.Line_conditionContext context)
+        public override void ExitLineCondition ([NotNull] YarnSpinnerParser.LineConditionContext context)
         {
             if (context.expression() != null)
             {
                 this.AddEqualityConstraint(context.expression().Type, Types.Boolean, context, s => $"line condition's expression must be a {Types.Boolean}, not a {context.expression().Type.Substitute(s)}");
             }
-            base.ExitLine_condition(context);
+            base.ExitLineCondition(context);
+        }
+
+        public override void ExitLineOnceCondition ([NotNull] YarnSpinnerParser.LineOnceConditionContext context)
+        {
+            if (context.expression() != null)
+            {
+                this.AddEqualityConstraint(context.expression().Type, Types.Boolean, context, s => $"line condition's expression must be a {Types.Boolean}, not a {context.expression().Type.Substitute(s)}");
+            }
+
+            // Register a declaration for tracking if this content has been seen
+            // or not
+
+            // First, find the line statement that this condition is a part of
+
+            T? FindParent<T>(RuleContext start) where T : ParserRuleContext {
+                var current = start;
+                while (current != null) {
+                    if (typeof(T).IsAssignableFrom(current.GetType())) {
+                        return (T)current;
+                    }
+                    current = current.Parent;
+                }
+                return null;
+            }
+
+            var lineStatement = FindParent<YarnSpinnerParser.Line_statementContext>(context);
+
+            if (lineStatement != null) {
+                var onceVariableName = Compiler.GetContentViewedVariableName(
+                    lineStatement.LineID ?? throw new InvalidOperationException("Internal error: can't generate a 'once' variable for line, because it has no line ID")
+                );
+
+                var decl = GetKnownDeclaration(onceVariableName);
+                if (decl == null)
+                {
+
+                    var description = $"'once' line condition for line ID {lineStatement.LineID}, in file {sourceFileName}, node {currentNodeName}, line {context.Start.Line.ToString(System.Globalization.CultureInfo.InvariantCulture)}";
+
+                    decl = new Declaration
+                    {
+                        Name = onceVariableName,
+                        Type = Types.Boolean,
+                        Description = description,
+                        DefaultValue = false,
+                        IsImplicit = true,
+                    };
+
+                    this.knownDeclarations.Add(decl);
+                }
+                else
+                {
+                    // If we're here, we've somehow generated the same 'once'
+                    // variable for more than one piece of content.
+                    this.AddDiagnostic(context, $"Internal error: redeclaration of existing 'once' variable {onceVariableName}");
+                }
+            }
+
+            base.ExitLineOnceCondition(context);
+        }
+
+        public override void ExitOnce_primary_clause([NotNull] YarnSpinnerParser.Once_primary_clauseContext context)
+        {
+            // If the once statement has an expression, it must be a boolean
+            // expression
+            if (context.expression() != null)
+            {
+                this.AddEqualityConstraint(context.expression().Type, Types.Boolean, context, s => $"line condition's expression must be a {Types.Boolean}, not a {context.expression().Type.Substitute(s)}");
+            }
+            
+            // Generate a variable for tracking whether we have seen this
+            // content before
+
+            // Generate a relatively stable unique ID for this tag, based on
+            // where it is in the overall compilation
+
+            var description = $"'once' statement in file {sourceFileName}, node {currentNodeName}, line {context.Start.Line.ToString(System.Globalization.CultureInfo.InvariantCulture)}";
+
+            var onceTag = CRC32.GetChecksumString(description);
+            var onceVariableName = Compiler.GetContentViewedVariableName(onceTag);
+
+            var decl = GetKnownDeclaration(onceVariableName);
+            if (decl == null)
+            {
+                decl = new Declaration
+                {
+                    Name = onceVariableName,
+                    Type = Types.Boolean,
+                    Description = description,
+                    DefaultValue = false,
+                    IsImplicit = true,
+                };
+
+                this.knownDeclarations.Add(decl);
+            }
+            else
+            {
+                // If we're here, we've somehow generated the same 'once'
+                // variable for more than one piece of content.
+                this.AddDiagnostic(context, $"Internal error: redeclaration of existing 'once' variable {onceVariableName}");
+            }
+
+            context.OnceVariableName = onceVariableName;
+
+            base.ExitOnce_primary_clause(context);
         }
 
         public override void ExitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
@@ -956,6 +1060,20 @@ namespace Yarn.Compiler
             this.knownTypes.Add(newEnumType);
 
             base.ExitEnum_statement(context);
+        }
+
+        public override void ExitOnce_statement([NotNull] YarnSpinnerParser.Once_statementContext context)
+        {
+            YarnSpinnerParser.ExpressionContext? expressionContext = context.once_primary_clause()?.expression();
+
+            if (expressionContext != null)
+            {
+                // If this 'once' statement has an expression, that expression's
+                // type must be boolean
+                this.AddEqualityConstraint(expressionContext.Type, Types.Boolean, context, s => $"once statement's expression must be a {Types.Boolean}, not a {expressionContext.Type.Substitute(s)}");
+            }
+
+            base.ExitOnce_statement(context);
         }
 
         public override void ExitStatement([NotNull] YarnSpinnerParser.StatementContext context)
@@ -1352,6 +1470,18 @@ namespace Yarn.Compiler
             /// Gets or sets the descriptive text for this enum case.
             /// </summary>
             internal string? Description { get; set; }
+        }
+
+        /// <summary>
+        /// Adds 'once' variable information to <see
+        /// cref="Once_primary_clauseContext"/>.
+        /// </summary>
+        public partial class Once_primary_clauseContext : ParserRuleContext {
+            /// <summary>
+            /// The name of the variable that tracks whether once statement
+            /// primary clause has been seen before or not.
+            /// </summary>
+            internal string? OnceVariableName { get; set; }
         }
     }
 }

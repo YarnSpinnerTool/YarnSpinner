@@ -89,6 +89,84 @@ Smart variables can be accessed anywhere a regular variable would be used:
 <<endif>>
 ```
 
+#### 'Once' statements
+
+'Once' statements have been added to the language.
+
+A 'once' statement ensures that some content in your dialogue is seen by the player one time only. Uses for this ensuring that lines where a character introduces themselves don't run multiple times, or barks that should never be run more than a single time (the '[arrow in the knee](https://en.wikipedia.org/wiki/Arrow_in_the_knee)' problem.)
+
+The `once` keyword can be used in two different ways:
+
+##### `once`..`endonce` Statements
+
+A `once`..`endonce` statement allows you to wrap one or more lines (or other kinds of Yarn content) into a block that will only ever run once.
+
+```
+<<once>>
+  // The guard will introduce herself to the player only once. 
+  Guard: Hail, traveller! Well met.
+  Guard: I am Alys, the guard!
+<<endonce>>
+```
+
+`once`..`endonce` statements can be combined with an `if` expression. If the expression evaluates to `false`, the contents of the `once`..`endonce` block will not be run. (The block may run in the future if it's reached again and the expression evaluates to `true`.)
+
+```
+<<once if $player_is_adventurer>>
+  # The guard knows the player is an adventurer, so say this line, 
+  # but only ever once!
+  Guard: I used to be an adventurer like you, but then I took an arrow in the knee.
+<<endonce>>
+```
+
+The `once`..`endonce` statement can also take an `else` block. This block runs if the first part of the `once` statement didn't run.
+
+```
+<<once>>
+  Guard: Hail, traveller! Well met.
+<<else>>
+  Guard: Welcome back.
+<<endonce>>
+```
+
+##### `once` in line conditions
+
+In Yarn Spinner, you can add conditions to the ends of lines, options and line group items to control when they can be presented to the player.
+
+You can use the `once` keyword at the end of a line to make that line only run once. You can also combine this with an `if` expression to make it only run once, and only when the condition passes. If a line with a `once` or `once if` condition has been run before, Yarn Spinner will skip over that line.
+
+```
+Guard: Greetings, traveller. <<once>>
+Guard: Met some bandits on the road, I see. <<once if $defeated_bandits>>
+Guard: Be safe out there.
+```
+
+You can use the `once` keyword at the end of an option to make it so that line is only available for selection one time. As with lines, you can also combine this with an `if` expression. An option that has a `once` condition may be shown to the user multiple times as part of a collection of options, but after they select that option, it can't be selected again.
+
+```
+-> Where is the castle? <<once>>
+-> I must see the king. Where is he? <<once if $needs_to_see_king>>
+-> Farewell, friend. <<if $friends_with_guard>>
+-> I should go. 
+```
+
+> [!NOTE]
+> Conditions on options control whether the option is _available to be selected_. Depending on how you've configured your game, this may mean that the option is not shown at all to the player, or that the option is visible but not selectable, or something else user-defined.
+
+Finally, you can use the `once` keyword at the end of a line group item to make it so that it will only ever be run once. As with lines and options, you can combine it with an `if` expression to further control when it may appear.
+
+```
+# Scenario: The guard is pursuing the player.
+# We'll create some simple, short lines that can run many times without 
+# standing out, and some specific lines that we should only ever hear once, 
+# because hearing them multiple times would make them stand out.
+
+=> Guard: Halt!
+=> Guard: Stop them!
+=> Guard: You there! Halt, in the name of the king! <<once>>
+=> Guard: Halt, thief! Someone stop them! <<once if $player_stole_treasure>>
+```
+
 ### Changed
 
 - Updated the schema for .ysls.json files:

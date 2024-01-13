@@ -57,7 +57,7 @@ namespace YarnLanguageServer
             AddTokenType(start, start, tokenType, tokenModifier);
         }
 
-        private void AddTokenType(IToken start, IToken stop, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        private void AddTokenType(IToken? start, IToken? stop, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
         {
             if (start is not null && stop is not null)
             {
@@ -111,14 +111,23 @@ namespace YarnLanguageServer
             return base.VisitFunction_call(context);
         }
 
-        public override bool VisitLine_condition([NotNull] YarnSpinnerParser.Line_conditionContext context)
+        public override bool VisitLineCondition([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.LineConditionContext context)
         {
-            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
+            AddTokenType(context.COMMAND_START(), SemanticTokenType.Keyword); // <<
             AddTokenType(context.COMMAND_IF(), SemanticTokenType.Keyword); // if
             AddTokenType(context.COMMAND_END(), SemanticTokenType.Keyword); // >>
-            return base.VisitLine_condition(context);
+            return base.VisitLineCondition(context);
         }
 
+        public override bool VisitLineOnceCondition([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.LineOnceConditionContext context)
+        {
+            AddTokenType(context.COMMAND_START(), SemanticTokenType.Keyword); // <<
+            AddTokenType(context.COMMAND_ONCE(), SemanticTokenType.Keyword); // once
+            AddTokenType(context.COMMAND_IF(), SemanticTokenType.Keyword); // if
+            AddTokenType(context.COMMAND_END(), SemanticTokenType.Keyword); // >>
+            return base.VisitLineOnceCondition(context);
+        }
+        
         public override bool VisitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context)
         {
             AddTokenType(context.Start, SemanticTokenType.Keyword);

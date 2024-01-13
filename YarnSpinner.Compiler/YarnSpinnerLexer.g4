@@ -300,6 +300,9 @@ COMMAND_CASE: 'case' [\p{White_Space}] -> pushMode(ExpressionMode);
 
 COMMAND_ENDENUM: 'endenum' [\p{White_Space}]?;
 
+COMMAND_ONCE: 'once';
+COMMAND_ENDONCE: 'endonce';
+
 // Keywords reserved for future language versions
 COMMAND_LOCAL: 'local' [\p{White_Space}]; 
 
