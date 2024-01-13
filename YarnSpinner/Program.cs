@@ -368,6 +368,10 @@ namespace Yarn
                     break;
                 case InstructionTypeOneofCase.AddOption:
                     operands.Add(this.AddOption.LineID);
+                    operands.Add(GetLabel(this.AddOption.Destination));
+                    if (this.AddOption.HasCondition) {
+                        operands.Add("has_condition");
+                    }
                     break;
                 case InstructionTypeOneofCase.ShowOptions:
                     break;
