@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from /Users/desplesda/Work/YarnSpinner/YarnSpinner.Compiler/YarnSpinnerLexer.g4 by ANTLR 4.13.1
+// Generated from /Users/desplesda/Work/YarnSpinner/YarnSpinner.Compiler/Grammars/YarnSpinnerLexer.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
