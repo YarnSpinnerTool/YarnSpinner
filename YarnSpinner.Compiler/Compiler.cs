@@ -15,6 +15,11 @@ namespace Yarn.Compiler
     using Antlr4.Runtime.Tree;
     using TypeChecker;
 
+    internal static class SpecialHeaderNames {
+        public const string TitleHeader = "title";
+        public const string TrackingVariableNameHeader = Node.TrackingVariableNameHeader;
+    }
+
     /// <summary>
     /// Compiles Yarn code.
     /// </summary>
@@ -535,7 +540,7 @@ namespace Yarn.Compiler
             // have a name
             var nodesWithNames = allNodes.Select(n =>
             {
-                var titleHeader = GetHeadersWithKey(n.Node, "title").FirstOrDefault();
+                var titleHeader = GetHeadersWithKey(n.Node, SpecialHeaderNames.TitleHeader).FirstOrDefault();
                 if (titleHeader == null)
                 {
                     return (

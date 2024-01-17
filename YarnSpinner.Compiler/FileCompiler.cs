@@ -211,7 +211,7 @@ namespace Yarn.Compiler
             // empty line.
             var headerValue = context.header_value?.Text ?? String.Empty;
 
-            if (headerKey.Equals("title", StringComparison.InvariantCulture))
+            if (headerKey.Equals(SpecialHeaderNames.TitleHeader, StringComparison.InvariantCulture))
             {
                 // Set the name of the node
                 this.CurrentNode.Name = headerValue;

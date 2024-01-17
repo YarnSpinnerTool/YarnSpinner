@@ -48,7 +48,7 @@ namespace Yarn.Compiler
                 string headerKey = header.header_key.Text;
                 string headerValue = header.header_value?.Text ?? string.Empty;
 
-                if (headerKey.Equals("title", StringComparison.InvariantCulture))
+                if (headerKey.Equals(SpecialHeaderNames.TitleHeader, StringComparison.InvariantCulture))
                 {
                     currentNodeName = headerValue;
                 }

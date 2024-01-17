@@ -44,7 +44,7 @@ namespace Yarn.Compiler
 
         public override void ExitHeader([NotNull] YarnSpinnerParser.HeaderContext context) 
         {
-            if (context.header_key.Text.Equals("title"))
+            if (context.header_key.Text.Equals(SpecialHeaderNames.TitleHeader))
             {
                 currentNode = context.header_value.Text;
             }

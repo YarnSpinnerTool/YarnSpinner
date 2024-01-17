@@ -49,7 +49,7 @@ namespace Yarn.Compiler
             foreach (var header in context.header())
             {
                 var headerKey = header.header_key.Text;
-                if (headerKey.Equals("title"))
+                if (headerKey.Equals(SpecialHeaderNames.TitleHeader))
                 {
                     title = header.header_value?.Text;
                 }

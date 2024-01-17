@@ -85,7 +85,7 @@ namespace YarnLanguageServer
 
             if (context.header_value?.Text != null)
             {
-                if (context.header_key?.Text == "title")
+                if (context.header_key?.Text == SpecialHeaderNames.TitleHeader)
                 {
                     AddTokenType(context.header_value, context.header_value, SemanticTokenType.Class);
                 }

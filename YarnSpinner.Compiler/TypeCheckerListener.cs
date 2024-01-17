@@ -28,7 +28,7 @@ namespace Yarn.Compiler
         /// This value is used to help determine when <see
         /// cref="currentNodeName"/> needs to change.
         /// </remarks>
-        private const string NodeHeaderTitle = "title";
+        private const string NodeHeaderTitle = SpecialHeaderNames.TitleHeader;
 
         /// <summary>
         /// Stores the total number of type variables that have been produced.
