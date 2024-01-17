@@ -206,7 +206,7 @@ namespace Yarn
 
     /// <summary>
     /// Represents different kinds of variables that can be fetched from a <see
-    /// cref="Dialogue"/> using <see cref="Dialogue.TryGetValue"/>.
+    /// cref="Dialogue"/> using <see cref="IVariableAccess.TryGetValue{T}(string, out T)"/>.
     /// </summary>
     public enum VariableKind {
         /// <summary>
@@ -235,7 +235,7 @@ namespace Yarn
         /// or by evaluating a smart variable found in <see cref="Program"/>.
         /// </summary>
         /// <typeparam name="T">The type of the value to return. The fetched
-        /// value will be converted to this type.</typeparam>
+        /// value will be converted to this type, if possible.</typeparam>
         /// <param name="variableName">The name of the variable.</param>
         /// <param name="result">If this method returns <see langword="true"/>,
         /// this parameter will contain the fetched value.</param>
