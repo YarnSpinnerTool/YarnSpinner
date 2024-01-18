@@ -1283,6 +1283,10 @@ namespace Yarn.Compiler
                 return dependencies;
             }
 
+            var seenDecls = new HashSet<Declaration>() {
+                startDecl
+            };
+
             searchStack.Push(startDecl.InitialValueParserContext);
 
             while (searchStack.Count > 0)
@@ -1295,13 +1299,15 @@ namespace Yarn.Compiler
                     string variableName = variable.VAR_ID().GetText();
                     if (decls.TryGetValue(variableName, out var dependencyDecl))
                     {
-                        // Have we looped back to the start declaration? 
-                        if (dependencyDecl == startDecl)
+                        // Have we seen this declaration before?
+                        if (seenDecls.Contains(dependencyDecl))
                         {
                             // We've found a dependency loop!
                             loopError = new Diagnostic(startDecl.SourceFileName, variable, $"Smart variables cannot contain reference loops (referencing {variable.GetTextWithWhitespace()} here creates a loop for the smart variable {startDecl.Name})");
                             return Enumerable.Empty<Declaration>();
                         }
+
+                        seenDecls.Add(dependencyDecl);
 
                         // Add this variable to the set of dependencies of
                         // startDecl.
