@@ -64,7 +64,7 @@ namespace TypeChecker
                 var disjunct = new DisjunctionConstraint(
                     this.Constraints.Distinct()
                                     .Select(c => c.Simplify(subst, knownTypes))
-                                    .Where(t => t.GetType() != typeof(TrueConstraint)));
+                                    .Where(t => t.GetType() != typeof(FalseConstraint)));
                 disjunct.FailureMessageProvider = this.FailureMessageProvider;
                 disjunct.SourceContext = this.SourceContext;
                 disjunct.SourceFileName = this.SourceFileName;
