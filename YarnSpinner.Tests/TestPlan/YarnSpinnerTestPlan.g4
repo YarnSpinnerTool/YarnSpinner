@@ -54,7 +54,7 @@ actionSetSaliencyMode
     ;
 
 actionJumpToNode
-    : 'node:' nodeName=.+?;
+    : 'node:' nodeName=IDENTIFIER;
 
 COMMENT: '#' ~[\r\n]* -> skip;
 WS: [ \t\r\n]+ -> skip;

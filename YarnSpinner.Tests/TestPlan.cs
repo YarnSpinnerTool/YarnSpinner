@@ -202,12 +202,6 @@ namespace YarnSpinner.Tests
                             throw new InvalidOperationException("Unhandled 'set' type: " + stepContext.GetTextWithWhitespace());
                         }
                     }
-                    else if (stepContext.actionJumpToNode() != null)
-                    {
-                        step = new ActionJumpToNodeStep(
-                            stepContext.actionJumpToNode().nodeName.Text
-                        );
-                    }
                     else if (stepContext.lineExpected() != null)
                     {
                         if (stepContext.lineExpected() is YarnSpinnerTestPlanParser.LineWithAnyTextExpectedContext any)
