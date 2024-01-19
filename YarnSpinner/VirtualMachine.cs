@@ -940,14 +940,13 @@ namespace Yarn
             state.programCounter -= 1;
         }
 
-        internal struct LineGroupCandidate : IContentSaliencyOption {
-            public const string NoneContentID = "Yarn.Internal.None";
-            public string label;
+        private struct LineGroupCandidate : IContentSaliencyOption {
+            public int destinationIfSelected;
             public int conditionValueCount;
-            public string? lineID;
+            public string? contentID;
 
             public int ConditionValueCount => conditionValueCount;
-            public string? ContentID => lineID;
+            public string? ContentID => contentID;
         }
 
         private List<LineGroupCandidate> lineGroupCandidates = new List<LineGroupCandidate>();
@@ -955,17 +954,21 @@ namespace Yarn
         private void HandleSelectLineGroupCandidate()
         {
         
-            // Pop the parameter count, which is 0
+            // Pop the parameter count, which is 1
             var actualParamCount = state.PopValue().ConvertTo<int>();
-            const int expectedParamCount = 0;
+            const int expectedParamCount = 1;
             if (actualParamCount != expectedParamCount) {
                 throw new InvalidOperationException($"Function {SelectLineGroupCandidateFunctionName} expected {expectedParamCount} parameters, but received {actualParamCount}");
             }
 
-            // There is always at least one candidate (even if it's only the
-            // 'none' option that the compiler generates)
+            // Get the destination we should go to if there are no candidates
+            int noContentAvailableDestination = state.PopValue().ConvertTo<int>();
+
+            // If there are no candidates, then the result is the 'no content
+            // available' destination
             if (lineGroupCandidates.Count == 0) {
-                throw new InvalidOperationException($"Internal Yarn Spinner error: line group had zero candidates");
+                state.PushValue(noContentAvailableDestination);
+                return;
             }
 
             if (ContentSaliencyStrategy == null) {
@@ -979,8 +982,8 @@ namespace Yarn
 
             lineGroupCandidates.Clear();
 
-            // Push the label onto the stack
-            state.PushValue(selectedContent.label);
+            // Push the destination onto the stack
+            state.PushValue(selectedContent.destinationIfSelected);
         }
 
         private void HandleAddLineGroupCandidate()
@@ -989,7 +992,7 @@ namespace Yarn
             // -label (str)
             // - condition count (num)
             // - line id (str)
-            var actualParamCount = (int)state.PopValue().ConvertTo<int>();
+            var actualParamCount = state.PopValue().ConvertTo<int>();
             const int expectedParamCount = 3;
 
             if (expectedParamCount != actualParamCount)
@@ -997,25 +1000,12 @@ namespace Yarn
                 throw new InvalidOperationException($"Function {AddLineGroupCandidateFunctionName} expected {expectedParamCount} parameters, but received {actualParamCount}");
             }
 
-            var candidate = new LineGroupCandidate();
-
-            candidate.label = state.PopValue().ConvertTo<string>();
-            candidate.conditionValueCount = state.PopValue().ConvertTo<int>();
-
-            string lineID = state.PopValue().ConvertTo<string>();
-
-            if (string.Equals(lineID, LineGroupCandidate.NoneContentID, StringComparison.Ordinal))
+            lineGroupCandidates.Add(new LineGroupCandidate
             {
-                // This content represents the 'none' option. Do not store a
-                // line ID for it.
-                candidate.lineID = null;
-            }
-            else
-            {
-                candidate.lineID = lineID;
-            }
-
-            lineGroupCandidates.Add(candidate);
+                destinationIfSelected = state.PopValue().ConvertTo<int>(),
+                conditionValueCount = state.PopValue().ConvertTo<int>(),
+                contentID = state.PopValue().ConvertTo<string>()
+            });
         }
 
         private static void DummyCommandHandler(Command command)

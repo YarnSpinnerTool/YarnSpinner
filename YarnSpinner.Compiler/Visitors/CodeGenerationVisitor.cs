@@ -602,9 +602,9 @@ namespace Yarn.Compiler
             //   way, a call to 'Yarn.Internal.select_line_candidate' is made.
             //   This causes the VM to query its saliency strategy to find the
             //   specific item to run, and returns the appropriate label to jump
-            //   to.
-
-            bool anyItemHadEmptyCondition = false;
+            //   to. This method takes one parameter: the point in the program
+            //   to jump to if there were no line group candidate items added
+            //   (that is, they all failed their condition.)
 
             List<Instruction> jumpsToEndOfLineGroup = new List<Instruction>();
 
@@ -615,7 +615,6 @@ namespace Yarn.Compiler
             foreach (var lineGroupItem in context.line_group_item())
             {
                 var lineStatement = lineGroupItem.line_statement();
-
 
                 var lineID = Compiler.GetLineID(lineGroupItem.line_statement());
 
@@ -642,7 +641,7 @@ namespace Yarn.Compiler
                     int conditionCount;
 
                     if (lineStatement.line_condition() is YarnSpinnerParser.LineConditionContext regularCondition) {
-                        conditionCount = GetValuesInExpression(regularCondition.expression());
+                        conditionCount = GetValueCountInExpression(regularCondition.expression());
                     } else if (lineStatement.line_condition() is YarnSpinnerParser.LineOnceConditionContext onceCondition) {
 
                         conditionCount = 1;
@@ -650,7 +649,7 @@ namespace Yarn.Compiler
                         if (onceCondition.expression() != null) {
                             // The once condition has an expression - add
                             // however many values are present in it
-                            conditionCount += GetValuesInExpression(onceCondition.expression());
+                            conditionCount += GetValueCountInExpression(onceCondition.expression());
                         }
                     } else {
                         throw new InvalidOperationException($"Internal error: unhandled condition type {lineStatement.line_condition().GetType()}");
@@ -668,12 +667,6 @@ namespace Yarn.Compiler
                     // There is no expression; call the add candidate function
                     // unconditionally
                     EmitCodeForRegisteringLineGroupItem(lineGroupItem, 0);
-
-                    // Remember that at least one line group item had no
-                    // condition (and therefore there will always be an option
-                    // that can be selected, which means we don't need to handle
-                    // the case of "nothing is selectable")
-                    anyItemHadEmptyCondition = true;
                 }
 
                 optionCount += 1;
@@ -705,34 +698,22 @@ namespace Yarn.Compiler
                 jumpsToLineGroupItems[lineGroupItem] = runThisLineInstruction;
             }
 
-            if (anyItemHadEmptyCondition == false)
-            {
-                // All items had a condition. We need to handle the event where
-                // all conditions fail, so we'll register an item that jumps
-                // straight to the end of the line group.
-
-                Instruction jumpToEnd;
-
-                this.compiler.Emit(
-                    context.Stop,
-                    new Instruction { PushString = new PushStringInstruction { Value = VirtualMachine.LineGroupCandidate.NoneContentID } },
-                    new Instruction { PushFloat = new PushFloatInstruction { Value = 0 } },
-                    jumpToEnd = new Instruction { PushFloat = new PushFloatInstruction { Value = -1 } },
-                    new Instruction { PushFloat = new PushFloatInstruction { Value = 3 } },
-                    new Instruction { CallFunc = new CallFunctionInstruction { FunctionName = VirtualMachine.AddLineGroupCandidateFunctionName } }
-                );
-
-                jumpsToEndOfLineGroup.Add(jumpToEnd);
-            }
-
+            Instruction noContentAvailableJump;
+            
             // We've added all of our candidates; now query which one to jump to
             this.compiler.Emit(context.Start,
-                new Instruction { PushFloat = new PushFloatInstruction { Value = 0 } },
+                // Where to jump to if there are no candidates
+                noContentAvailableJump = new Instruction { PushFloat = new PushFloatInstruction { Value = -1 }  },
+                // The number of parameters (1)
+                new Instruction { PushFloat = new PushFloatInstruction { Value = 1 } },
+                // Call the function
                 new Instruction { CallFunc = new CallFunctionInstruction { FunctionName = VirtualMachine.SelectLineGroupCandidateFunctionName } },
                 // After this call, the appropriate label to jump to will be on the
                 // stack.
                 new Instruction { PeekAndJump = new PeekAndJumpInstruction { } }
             );
+
+            jumpsToEndOfLineGroup.Add(noContentAvailableJump);
 
             // Now generate the code for each of the lines in the group.
             foreach (var lineGroupItem in context.line_group_item())
