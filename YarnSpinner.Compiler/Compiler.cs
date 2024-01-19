@@ -15,8 +15,10 @@ namespace Yarn.Compiler
     using Antlr4.Runtime.Tree;
     using TypeChecker;
 
-    internal static class SpecialHeaderNames {
+    public static class SpecialHeaderNames {
         public const string TitleHeader = "title";
+        public const string WhenHeader = "when";
+        public const string NodeGroupHeader = "$Yarn.Internal.NodeGroup";
         public const string TrackingVariableNameHeader = Node.TrackingVariableNameHeader;
     }
 
@@ -101,6 +103,14 @@ namespace Yarn.Compiler
             // name uniqueness is important for several processes, so we do this
             // check here.
             AddErrorsForInvalidNodeNames(parsedFiles, ref diagnostics);
+
+            // For nodes that have a 'when' clause (that is, they're in a node
+            // group), make their node names unique and store which group
+            // they're in.
+            foreach (var file in parsedFiles) {
+                var nodeGroupVisitor = new NodeGroupVisitor(file.Name);
+                nodeGroupVisitor.Visit(file.Tree);
+            }
 
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
             {
@@ -378,6 +388,29 @@ namespace Yarn.Compiler
                 }
             }
 
+            // Now that we've code-generated every node, we'll find every node
+            // that's in a node group, and create the 'hub' node for that group.
+            // The 'hub' node evaluates each node's 'when' clauses, consults the
+            // saliency strategy, and jumps to the appropriate node.
+            var nodeGroups = parsedFiles
+                // Get all nodes
+                .SelectMany(n => (n.Tree as YarnSpinnerParser.DialogueContext)?.node())
+                // Filter nodes that are in groups
+                .Where(n => n.NodeGroup != null)
+                // Group them by group name
+                .GroupBy(n => n.NodeGroup!);
+
+            foreach (var group in nodeGroups) {
+
+                var codegen = new NodeGroupCompiler(
+                    group.Key,
+                    declarations.ToDictionary(d => d.Name, d => d),
+                    group);
+
+                var (node,debugInfo) = codegen.GetResult();
+                compiledNodes.Add(node);
+                nodeDebugInfos.Add(debugInfo);
+            }
             
             var initialValues = new Dictionary<string, Operand>();
 
@@ -545,7 +578,7 @@ namespace Yarn.Compiler
                 {
                     return (
                         Name: null,
-                        Header: null,
+                        TitleHeader: null,
                         Node: n.Node,
                         File: n.File);
                 }
@@ -553,7 +586,7 @@ namespace Yarn.Compiler
                 {
                     return (
                         Name: titleHeader.header_value.Text ?? null,
-                        Header: titleHeader ?? null,
+                        TitleHeader: titleHeader ?? null,
                         Node: n.Node,
                         File: n.File);
                 }
@@ -565,7 +598,7 @@ namespace Yarn.Compiler
 
             foreach (var node in nodesWithIllegalTitleCharacters)
             {
-                diagnostics.Add(new Diagnostic(node.File.Name, node.Header, $"The node '{node.Name}' contains illegal characters."));
+                diagnostics.Add(new Diagnostic(node.File.Name, node.TitleHeader, $"The node '{node.Name}' contains illegal characters."));
             }
 
             var nodesByName = nodesWithNames.GroupBy(n => n.Name);
@@ -579,10 +612,29 @@ namespace Yarn.Compiler
                     continue;
                 }
 
+                // If any of these nodes have 'when' clauses, then all nodes
+                // must have them for the group to be valid. In this situation,
+                // it's not an error for the nodes to share the same name,
+                // because after this check is done, they will be renamed.
+                if (group.All(n => n.Node.GetHeader(SpecialHeaderNames.WhenHeader) != null)) {
+                    // No error - all nodes that have this name have at least
+                    // one 'when' header
+                    continue;
+                } else if (group.Any(n => n.Node.NodeGroup != null)) {
+                    // Error - some nodes have a 'when' header, but others
+                    // don't. Create errors for these others.
+                    foreach (var entry in group.Where(n => n.Node.GetHeader(SpecialHeaderNames.WhenHeader) == null))
+                    {
+                        var d = new Diagnostic(entry.File.Name, entry.TitleHeader, $"All nodes in the group '{entry.Node.NodeTitle}' must have a 'when' clause (use 'when: always' if you want this node to not have any conditions)");
+                        diagnostics.Add(d);
+                    }
+                    continue;
+                }
+
                 // More than one node has this name! Report an error on both.
                 foreach (var entry in group)
                 {
-                    var d = new Diagnostic(entry.File.Name, entry.Header, $"More than one node is named {entry.Name}");
+                    var d = new Diagnostic(entry.File.Name, entry.TitleHeader, $"More than one node is named {entry.Name}");
                     diagnostics.Add(d);
                 }
             }
@@ -997,36 +1049,32 @@ namespace Yarn.Compiler
             /// Gets the title of this node, as specified in its '<c>title</c>'
             /// header. If it is not present, returns <see langword="null"/>.
             /// </summary>
-            public string? NodeTitle
-            {
-                get
-                {
-                    var headers = this.header();
+            public string? NodeTitle => GetHeader(SpecialHeaderNames.TitleHeader)?.header_value?.Text;
 
-                    if (headers == null)
-                    {
-                        return null;
-                    }
+            public string? NodeGroup => GetHeader(SpecialHeaderNames.NodeGroupHeader)?.header_value?.Text;
 
-                    foreach (var header in headers)
-                    {
-                        var headerType = header.header_key;
-                        var headerValue = header.header_value;
-                        if (headerType == null || headerValue == null)
-                        {
-                            continue;
-                        }
+            public HeaderContext? GetHeader(string key) {
+                return this.header()?
+                    .FirstOrDefault(h => 
+                        h.header_key?.Text.Equals(key, StringComparison.InvariantCultureIgnoreCase) ?? false 
+                        && h.header_value != null
+                );
+            }
 
-                        if (headerType.Text.Equals("title", StringComparison.CurrentCulture) == false)
-                        {
-                            continue;
-                        }
-
-                        return headerValue.Text;
-                    }
-
-                    return null;
+            public IEnumerable<HeaderContext> GetHeaders(string? key = null) {
+                if (this.header() == null) {
+                    return Enumerable.Empty<HeaderContext>();
                 }
+
+                if (key == null) {
+                    return this.header();
+                }
+
+                return this.header()
+                    .Where(h => 
+                        h.header_key?.Text.Equals(key, StringComparison.InvariantCultureIgnoreCase) ?? false 
+                        && h.header_value != null
+                );
             }
         }
     }

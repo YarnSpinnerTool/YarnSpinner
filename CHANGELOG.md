@@ -167,6 +167,46 @@ Finally, you can use the `once` keyword at the end of a line group item to make 
 => Guard: Halt, thief! Someone stop them! <<once if $player_stole_treasure>>
 ```
 
+#### Node groups and 'when' headers
+
+Much like how line groups let you create groups of lines that the system chooses from based on the current game state, node groups let you create groups of _nodes_ that the system chooses from.
+
+You create a node group by creating one or more nodes that all have the same name, _and_ have a `when:` header.
+
+The `when:` header tells Yarn Spinner under what circumstances a particular node can run. For example:
+
+```
+title: SpeakToGuard
+when: $guard_friendly == true
+---
+// The guard likes us
+Guard: Halt, traveller!
+Player: Why, hello there!
+Guard: Ah, my friend! You may pass.
+===
+
+title: SpeakToGuard
+when: $guard_friendly == false
+---
+// The guard doesn't like us
+Guard: Halt, scum!
+Guard: None shall pass this point!
+===
+```
+
+To run this node group, you run the `SpeakToGuard` node. You can do this from within your Yarn scripts, by calling `<<jump SpeakToGuard>>`, or you can do it from within your game (telling your Dialogue Runner to run the node `SpeakToGuard`). Yarn Spinner will then select the most appropriate node to run, using the saliency strategy that you have configured for your game.
+
+You can have as many `when:` headers in a node as you like. If you have more than one, _all_ of their conditions must pass in order for the node to potentially run.
+
+All nodes in a node group must have a `when:` header. It's a compiler error if any of them don't have one.
+
+You can use any of the following kinds of expressions in a `when:` header:
+
+- `when: <boolean expression>` - any expression that evaluates to the values `true` or `false`.
+- `when: once` - The node will run precisely one time.
+- `when: once if <boolean expression>` - The node will run precisely one time, and only when the expression evaluates to `true`.
+- `when: always` - The node may always run.
+
 ### Changed
 
 - Updated the schema for .ysls.json files:

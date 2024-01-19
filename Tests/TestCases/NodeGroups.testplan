@@ -1,0 +1,53 @@
+saliency: best_least_recently_seen
+
+line: `Node group option 3 (not A)`
+
+stop
+---
+
+line: `Node group option 5 (once)`
+
+stop
+---
+
+line: `Node group option 2 (always)`
+
+stop
+---
+
+set: $conditionB = true
+
+line: `Node group option 6 (once if B)`
+
+stop
+---
+
+set: $conditionB = true
+
+line: `Node group option 4 (B)`
+
+stop
+
+---
+set: $conditionA = true
+
+line: `Node group option 1 (A)`
+
+stop
+
+---
+
+node: TestCaseUnrunnable
+
+stop
+---
+
+node: TestCaseDetours
+
+line: `Start of test`
+line: `Detour test 1`
+line: `Returned from detoured node group 1`
+line: `Detour test 2`
+line: `Returned from detoured node group 2`
+d
+stop

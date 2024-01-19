@@ -749,55 +749,57 @@ namespace Yarn.Compiler
                 this.AddEqualityConstraint(context.expression().Type, Types.Boolean, context, s => $"line condition's expression must be a {Types.Boolean}, not a {context.expression().Type.Substitute(s)}");
             }
 
-            // Register a declaration for tracking if this content has been seen
-            // or not
-
-            // First, find the line statement that this condition is a part of
-
-            T? FindParent<T>(RuleContext start) where T : ParserRuleContext {
-                var current = start;
-                while (current != null) {
-                    if (typeof(T).IsAssignableFrom(current.GetType())) {
-                        return (T)current;
-                    }
-                    current = current.Parent;
-                }
-                return null;
-            }
-
             var lineStatement = FindParent<YarnSpinnerParser.Line_statementContext>(context);
 
-            if (lineStatement != null) {
+            if (lineStatement != null)
+            {
                 var onceVariableName = Compiler.GetContentViewedVariableName(
                     lineStatement.LineID ?? throw new InvalidOperationException("Internal error: can't generate a 'once' variable for line, because it has no line ID")
                 );
 
-                var decl = GetKnownDeclaration(onceVariableName);
-                if (decl == null)
-                {
 
-                    var description = $"'once' line condition for line ID {lineStatement.LineID}, in file {sourceFileName}, node {currentNodeName}, line {context.Start.Line.ToString(System.Globalization.CultureInfo.InvariantCulture)}";
-
-                    decl = new Declaration
-                    {
-                        Name = onceVariableName,
-                        Type = Types.Boolean,
-                        Description = description,
-                        DefaultValue = false,
-                        IsImplicit = true,
-                    };
-
-                    this.knownDeclarations.Add(decl);
-                }
-                else
-                {
-                    // If we're here, we've somehow generated the same 'once'
-                    // variable for more than one piece of content.
-                    this.AddDiagnostic(context, $"Internal error: redeclaration of existing 'once' variable {onceVariableName}");
-                }
+                RegisterOnceVariable(context, onceVariableName, $"'once' line condition for line ID {lineStatement.LineID}, in file {sourceFileName}, node {currentNodeName}, line {context.Start.Line.ToString(System.Globalization.CultureInfo.InvariantCulture)}");
             }
 
             base.ExitLineOnceCondition(context);
+        }
+
+        private static T? FindParent<T>(RuleContext start) where T : ParserRuleContext
+        {
+            var current = start;
+            while (current != null)
+            {
+                if (typeof(T).IsAssignableFrom(current.GetType()))
+                {
+                    return (T)current;
+                }
+                current = current.Parent;
+            }
+            return null;
+        }
+
+        private void RegisterOnceVariable(ParserRuleContext context, string onceVariableName, string description)
+        {
+            var decl = GetKnownDeclaration(onceVariableName);
+            if (decl == null)
+            {
+                decl = new Declaration
+                {
+                    Name = onceVariableName,
+                    Type = Types.Boolean,
+                    Description = description,
+                    DefaultValue = false,
+                    IsImplicit = true,
+                };
+
+                this.knownDeclarations.Add(decl);
+            }
+            else
+            {
+                // If we're here, we've somehow generated the same 'once'
+                // variable for more than one piece of content.
+                this.AddDiagnostic(context, $"Internal error: redeclaration of existing 'once' variable {onceVariableName}");
+            }
         }
 
         public override void ExitOnce_primary_clause([NotNull] YarnSpinnerParser.Once_primary_clauseContext context)
@@ -820,26 +822,7 @@ namespace Yarn.Compiler
             var onceTag = CRC32.GetChecksumString(description);
             var onceVariableName = Compiler.GetContentViewedVariableName(onceTag);
 
-            var decl = GetKnownDeclaration(onceVariableName);
-            if (decl == null)
-            {
-                decl = new Declaration
-                {
-                    Name = onceVariableName,
-                    Type = Types.Boolean,
-                    Description = description,
-                    DefaultValue = false,
-                    IsImplicit = true,
-                };
-
-                this.knownDeclarations.Add(decl);
-            }
-            else
-            {
-                // If we're here, we've somehow generated the same 'once'
-                // variable for more than one piece of content.
-                this.AddDiagnostic(context, $"Internal error: redeclaration of existing 'once' variable {onceVariableName}");
-            }
+            RegisterOnceVariable(context, onceVariableName, description);
 
             context.OnceVariableName = onceVariableName;
 
@@ -1074,6 +1057,33 @@ namespace Yarn.Compiler
             }
 
             base.ExitOnce_statement(context);
+        }
+
+        public override void ExitHeader_when_expression([NotNull] YarnSpinnerParser.Header_when_expressionContext context)
+        {
+            // A 'when' header contains either the keyword 'always' (indicating
+            // that the content can always be selected), or a boolean value.
+            var expression = context.expression();
+            
+            if (expression != null) {
+                // If the header contains an expression, that expression's type
+                // must be boolean
+                this.AddEqualityConstraint(expression.Type, Types.Boolean, context, s => $"'when' header expressions must be a {Types.Boolean} or 'always', not a {expression.Type.Substitute(s)}");
+            }
+
+            if (context.once != null) {
+                // The header contains a 'once' condition. Declare the variable
+                // for tracking it.
+                var parentNode = FindParent<YarnSpinnerParser.NodeContext>(context);
+
+                if (parentNode != null && parentNode.NodeTitle != null) {
+                    var title = parentNode.NodeTitle;
+                    var onceVariable = Compiler.GetContentViewedVariableName(title);
+
+                    RegisterOnceVariable(context, onceVariable, $"'once' node condition for {parentNode.NodeTitle}");
+                }
+
+            }
         }
 
         public override void ExitStatement([NotNull] YarnSpinnerParser.StatementContext context)

@@ -1,0 +1,9 @@
+title: NodeGroup
+when: always
+---
+This is the first node named 'NodeGroup'. It has a 'when' clause.
+===
+title: NodeGroup
+---
+This is the second node named 'NodeGroup'. It doesn't have a 'when' clause, which makes this an error.
+===

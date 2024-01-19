@@ -17,7 +17,41 @@ namespace Yarn.Compiler
         // TODO: come up with a better system
         // pretty sure some of these can vars be rolled up into one another
 
-         /// <summary>
+        // public virtual bool IsInWhenClause {get;set;}
+        // public virtual void EnterWhenClause() { IsInWhenClause = true; }
+        // public virtual void ExitWhenClause() { IsInWhenClause = false; }
+        // public virtual bool CheckMostRecentHeaderKeyType(string text) { 
+
+        // } 
+
+        private bool InWhenClause = false;
+        
+        public bool IsInWhenClause() => this.InWhenClause;
+
+        public virtual bool SetInWhenClause(bool val) => this.InWhenClause = val;
+
+        public virtual bool LastTokenWas(int type, string text)
+        {
+            if (tokens.Count == 0)
+            {
+                // We have no previous tokens.
+                return false;
+            }
+
+            var token = this.tokens[tokens.Count - 1];
+            if (token.Type == type && token.Text.Equals(text, StringComparison.InvariantCultureIgnoreCase))
+            {
+                // The last token was the one we're looking for, and it matched
+                // the text we expected.
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// The collection of tokens that we have seen, but have not yet
         /// returned. This is needed when NextToken encounters a newline,
         /// which means we need to buffer indents or dedents. NextToken
@@ -91,14 +125,23 @@ namespace Yarn.Compiler
         /// </summary>
         public IEnumerable<LexerWarning> Warnings { get => this.warnings; }
 
+        private List<IToken> tokens = new List<IToken>();
+        private void PushToken(IToken token) {
+            tokens.Add(token);
+            if (tokens.Count > 5) {
+                tokens.RemoveAt(0);
+            }
+        }
+
         /// <inheritdoc/>
         public override IToken? NextToken()
         {
+            IToken? tokenToReturn;
             if (this.HitEOF && this.pendingTokens.Count > 0)
             {
                 // We have hit the EOF, but we have tokens still pending.
                 // Start returning those tokens.
-                return this.pendingTokens.Dequeue();
+                tokenToReturn = this.pendingTokens.Dequeue();
             }
             else if (this.InputStream.Size == 0)
             {
@@ -107,7 +150,7 @@ namespace Yarn.Compiler
                 this.HitEOF = true;
 
                 // Return the EOF token.
-                return new CommonToken(Eof, "<EOF>");
+                tokenToReturn = new CommonToken(Eof, "<EOF>");
             }
             else
             {
@@ -118,14 +161,19 @@ namespace Yarn.Compiler
                 if (this.pendingTokens.Count > 0)
                 {
                     // Then, return a single token from the queue.
-                    return this.pendingTokens.Dequeue();
+                    tokenToReturn = this.pendingTokens.Dequeue();
                 }
                 else
                 {
                     // Nothing left in the queue. Return null.
-                    return null;
+                    tokenToReturn = null;
                 }
             }
+            if (tokenToReturn != null) {
+                this.PushToken(tokenToReturn);
+            }
+
+            return tokenToReturn;
         }
 
         private void CheckNextToken()
@@ -170,7 +218,6 @@ namespace Yarn.Compiler
                     this.pendingTokens.Enqueue(currentToken);
                     break;
             }
-
             this.lastToken = currentToken;
         }
 

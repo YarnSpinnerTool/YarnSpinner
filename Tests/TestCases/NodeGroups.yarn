@@ -1,0 +1,79 @@
+title: Start
+---
+<<declare $conditionA = false>>
+<<declare $conditionB = false>>
+
+// Jump to one of the 'NodeGroup' nodes.
+<<jump NodeGroup>>
+===
+title: TestCaseUnrunnable
+---
+// None of the nodes in UnRunnableNodeGroup can
+// ever actually run (their 'when' clauses always
+// evaluate to false), so we should see no lines run.
+<<jump UnRunnableNodegroup>>
+===
+title: TestCaseDetours
+---
+
+Start of test
+<<detour DetourNode>>
+Returned from detoured node group 1
+<<detour DetourNode>>
+Returned from detoured node group 2
+
+===
+title: NodeGroup
+when: $conditionA
+---
+Node group option 1 (A)
+===
+title: NodeGroup
+when: always
+---
+Node group option 2 (always)
+===
+title: NodeGroup
+when: not $conditionA
+---
+Node group option 3 (not A)
+===
+title: NodeGroup
+when: $conditionB
+---
+Node group option 4 (B)
+===
+title: NodeGroup
+when: once
+---
+Node group option 5 (once)
+===
+title: NodeGroup
+when: once if $conditionB
+---
+Node group option 6 (once if B)
+===
+
+title: UnRunnableNodegroup
+when: false
+---
+Error: Node should not run
+===
+
+title: UnRunnableNodegroup
+when: 1 + 1 == 3
+---
+Error: Node should not run
+===
+
+title: DetourNode
+when: always
+---
+Detour test 1
+===
+
+title: DetourNode
+when: always
+---
+Detour test 2
+===

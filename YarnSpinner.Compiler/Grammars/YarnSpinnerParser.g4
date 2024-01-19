@@ -16,7 +16,13 @@ node
     ;
 
 header 
-    : header_key=ID HEADER_DELIMITER  header_value=REST_OF_LINE?
+    : header_key=ID HEADER_DELIMITER (header_value=REST_OF_LINE|header_expression=header_when_expression NEWLINE)?
+    ;
+
+header_when_expression
+    : expression 
+    | (always=EXPRESSION_WHEN_ALWAYS) 
+    | once=COMMAND_ONCE (COMMAND_IF expression)? 
     ;
 
 body

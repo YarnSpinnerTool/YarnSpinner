@@ -74,5 +74,14 @@ namespace Yarn.Compiler
             return base.VisitOnce_statement(context);
         }
 
+        public override int VisitHeader([NotNull] YarnSpinnerParser.HeaderContext context)
+        {
+            if (context.header_key.Text == SpecialHeaderNames.WhenHeader && PreviewFeaturesAreErrors) {
+                AddLanguageFeatureError(context, "'when' headers");
+            }
+            
+            return base.VisitHeader(context);
+        }
+
     }
 }

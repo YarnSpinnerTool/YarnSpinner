@@ -202,6 +202,12 @@ namespace Yarn.Compiler
                 throw new InvalidOperationException($"Internal error: {nameof(CurrentNodeDebugInfo)} was null when exiting a header");
             }
 
+            if (context.header_expression != null) {
+                // This header has an expression, not text. Don't include it in
+                // the program.
+                return;
+            }
+
             var headerKey = context.header_key.Text;
 
             // Use the header value if provided, else fall back to the empty

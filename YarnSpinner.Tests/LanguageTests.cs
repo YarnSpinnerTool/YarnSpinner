@@ -447,6 +447,60 @@ Line 2
             Action act =() => RunTest(source, failingPlan);
             act.Should().Throw<Exception>();
         }
+
+        [Fact]
+        public void TestWhenClauseValuesParseAsExpressions()
+        {
+            // Given
+            var source = @"title: Start
+when: $a
+some_other_header1: $a
+when: $b + func_call(42, ""wow"")
+some_other_header2: $b + func_call(42, ""wow"")
+---
+===";
+
+            var diagnostics = new List<Diagnostic>();
+
+            // When
+            var parseResult = Compiler.ParseSyntaxTree("input", source, ref diagnostics);
+
+            // Then
+            diagnostics.Should().NotContain(e => e.Severity == Diagnostic.DiagnosticSeverity.Error, "the parse should contain no errors");
+
+            var dialogue = parseResult.Tree.Should().BeOfType<YarnSpinnerParser.DialogueContext>().Subject;
+
+            YarnSpinnerParser.NodeContext node = dialogue.GetChild<YarnSpinnerParser.NodeContext>(0);
+            node.Should().NotBeNull("a node is declared");
+
+            node.GetHeaders().Should().HaveCount(5, "five total headers are declared in the node");
+
+            var textHeader1 = node.GetHeader("some_other_header1");
+            textHeader1.Should().NotBeNull();
+            textHeader1.header_expression.Should().BeNull();
+            textHeader1.header_value.Should().NotBeNull();
+            textHeader1.header_value.Text.Should().Be("$a");
+            
+            var textHeader2 = node.GetHeader("some_other_header2");
+            textHeader2.Should().NotBeNull();
+            textHeader2.header_expression.Should().BeNull();
+            textHeader2.header_value.Should().NotBeNull();
+            textHeader2.header_value.Text.Should().Be("$b + func_call(42, \"wow\")");
+
+            var whenHeaders = node.GetHeaders("when");
+            whenHeaders.Should().HaveCount(2);
+
+            whenHeaders.Should().AllSatisfy(x =>
+            {
+                x.header_value.Should().BeNull();
+                x.header_expression.Should().NotBeNull();
+                x.header_expression.expression().Should().NotBeNull();
+            }, "all 'when' headers should have an expression and no text");
+
+            whenHeaders.ElementAt(0).header_when_expression().expression().ToStringTree(YarnSpinnerParser.ruleNames).Should().Be("(expression (value (variable $a)))", "the first expression is a simple variable declaration");
+            whenHeaders.ElementAt(1).header_when_expression().expression().ToStringTree(YarnSpinnerParser.ruleNames).Should().Be("(expression (expression (value (variable $b))) + (expression (value (function_call func_call ( (expression (value 42)) , (expression (value \"wow\")) )))))", "the second expression is a compound expression");
+
+        }
     }
 }
 

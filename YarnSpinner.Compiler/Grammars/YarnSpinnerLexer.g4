@@ -52,8 +52,9 @@ fragment IDENTIFIER_CHARACTERS : IDENTIFIER_CHARACTER+ ;
 // The 'end of node headers, start of node body' marker
 BODY_START : '---' -> pushMode(BodyMode) ;
 
-// The ':' in 'foo: bar (plus any whitespace after it)
-HEADER_DELIMITER : ':' [ ]* -> pushMode(HeaderMode);
+// The ':' in 'foo: bar (plus any whitespace after it).
+// If we match this, we are in a header. If this header is a 'when' clause, then enter expression mode (and lex expression tokens until the newline). 
+HEADER_DELIMITER : ':' [ ]* { if(LastTokenWas(ID, "when")) { SetInWhenClause(true); PushMode(ExpressionMode); } else { PushMode(HeaderMode); } };
 
 // A hashtag. These can appear at the start of a file, or after 
 // certain lines (see BODY_HASHTAG rule)
@@ -196,6 +197,11 @@ HASHTAG_TEXT: ~[ \t\r\n#$<]+ -> popMode;
 mode ExpressionMode;
 EXPR_WS : WS -> channel(HIDDEN);
 
+// special keywords that are only permitted inside 'when' clauses.
+EXPRESSION_WHEN_ALWAYS: 'always' {IsInWhenClause();}? ;
+EXPRESSION_WHEN_ONCE: 'once' {IsInWhenClause();}? -> type(COMMAND_ONCE) ;
+EXPRESSION_WHEN_IF: 'if' {IsInWhenClause();}? -> type(COMMAND_IF) ;
+
 // Simple values
 KEYWORD_TRUE  : 'true' ;
 KEYWORD_FALSE : 'false' ;
@@ -256,6 +262,14 @@ NUMBER
     : INT
     | INT '.' INT
     ;
+
+// Newlines (only syntactically relevant when inside a 'when' clause). 
+// We use a newline to indicate that the expression is over, but only
+// when we're in a 'when' clause - in all other expressions, newlines are 
+// ignored. 
+//
+// Mark that we are no longer in a 'when' clause, and pop the mode.
+EXPRESSION_NEWLINE: [\r\n]+ {IsInWhenClause();}? {SetInWhenClause(false);} -> type(NEWLINE), popMode;
 
 fragment INT: DIGIT+ ;
 fragment DIGIT: [0-9];
