@@ -790,7 +790,7 @@ namespace Yarn.Compiler
             return 0;
         }
 
-        private static string GetFunctionName(IType type, Operator op)
+        internal static string GetFunctionName(IType type, Operator op)
         {
             TypeBase implementingType = TypeUtil.FindImplementingTypeForMethod(type, op.ToString());
             if (implementingType == null)
@@ -810,7 +810,7 @@ namespace Yarn.Compiler
         /// included in the count.</remarks>
         /// <param name="context">An expression.</param>
         /// <returns>The total number of values in the expression.</returns>
-        private static int GetValuesInExpression(YarnSpinnerParser.ExpressionContext context)
+        internal static int GetValueCountInExpression(YarnSpinnerParser.ExpressionContext context)
         {
             if (context is YarnSpinnerParser.ExpValueContext)
             {
@@ -823,7 +823,7 @@ namespace Yarn.Compiler
                 {
                     if (child is YarnSpinnerParser.ExpressionContext exp)
                     {
-                        accum += GetValuesInExpression(exp);
+                        accum += GetValueCountInExpression(exp);
                     }
                 }
                 return accum;
