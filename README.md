@@ -10,11 +10,11 @@ When a conversation is running, Yarn Spinner sends your game **lines** of dialog
 
 Yarn Spinner has been used in a number of critically acclaimed games, including [Night in the Woods](http://nightinthewoods.com), [A Short Hike](https://ashorthike.com), [Lost in Random](https://www.ea.com/en-au/games/lost-in-random), and many more.
 
-It's free to download and use for free and commercial games, and is open source under the terms of the MIT License.
+To get Yarn Spinner, and support the team behind it, buy a copy from [the Yarn Spinner Itch.io Store](https://yarnspinner.itch.io) or check out the [Yarn Spinner Documentation](https://docs.yarnspinner.dev).
 
 ## Getting Started
 
-This repo contains the core source code for the Yarn Spinner compiler. If you want to use it in a game, you should get the appropriate package for your game engine.
+This repo contains the core source code for the Yarn Spinner compiler. If you want to use it in a game, you should get the appropriate package for your game engine. The best place to learn the next steps is in the [Yarn Spinner Documentation](https://docs.yarnspinner.dev).
 
 ### Official Packages
 
@@ -44,7 +44,7 @@ This project has also been assisted by the Australian Government through the [Au
 
 Yarn Spinner needs your help to be as awesome as it can be! You don't have to be a coder to help out - we'd love to have your help in improving our [documentation](https://docs.yarnspinner.dev), in spreading the word, and in finding bugs.
 
-* Yarn Spinner's development is powered by our wonderful Patreon supporters. [Become a patron](https://patreon.com/secretlab), and help us make Yarn Spinner be amazing.
+* Yarn Spinner's development is powered by our wonderful Patreon supporters and Itch.io. [Become a patron](https://patreon.com/secretlab), or [buy Yarn Spinner on Itch.io](https://yarnspinner.itch.io), and help us make Yarn Spinner be amazing.
 * Our [issues page](https://github.com/YarnSpinnerTool/YarnSpinner/issues) contains a list of things we'd love your help in improving.
 * Follow [Yarn Spinner on Twitter](http://twitter.com/YarnSpinnerTool).
 
