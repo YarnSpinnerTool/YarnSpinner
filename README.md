@@ -1,4 +1,4 @@
-# Yarn Spinner 2.0
+# Yarn Spinner
 
 <img src="https://yarnspinner.dev/img/YarnSpinnerLogo.png" alt="Yarn Spinner logo" width="100px;" align="right">
 
