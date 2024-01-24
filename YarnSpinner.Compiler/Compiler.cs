@@ -10,7 +10,6 @@ namespace Yarn.Compiler
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Text.RegularExpressions;
     using Antlr4.Runtime;
     using Antlr4.Runtime.Tree;
     using static Yarn.Instruction.Types;
@@ -290,6 +289,20 @@ namespace Yarn.Compiler
 
                 diagnostics.Add(hmm.diagnostic);
             }
+
+            // TODO: I am pretty sure this is made redundant by the v3 type system, will need to check if it's still needed.
+            // determining if there are any duplicate infered variables
+            // at this point this shouldn't happen, but if it has we need to error out now
+            var duplicateInferredVars = knownVariableDeclarations.GroupBy(d => d.Name).Where(g => g.Count() > 1);
+            foreach (var group in duplicateInferredVars)
+            {
+                var groupMessage = group.Select(d => $"\"{d.SourceFileName}\" on line {d.SourceFileLine}");
+                var message = $"\"{group.Key}\" has had its default value inferred in multiple places: " + String.Join(", ", groupMessage);
+                diagnostics.Add(new Diagnostic(message, Diagnostic.DiagnosticSeverity.Error));
+            }
+            // removing all the duplicate keys
+            var duplicateKeys = duplicateInferredVars.Select(g => g.Key);
+            knownVariableDeclarations.Where(d => duplicateKeys.Contains(d.Name));
 
             // adding in the warnings about empty nodes
             var empties = AddErrorsForEmptyNodes(parsedFiles, ref diagnostics);
