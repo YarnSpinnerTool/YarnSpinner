@@ -83,6 +83,9 @@ namespace Yarn.Compiler
         // the list of nodes we have to ensure we track visitation
         private HashSet<string> TrackingNodes;
 
+        // the list of the names of nodes we have said to skip
+        private HashSet<string> SkipNodes;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Compiler"/> class.
         /// </summary>
@@ -288,6 +291,9 @@ namespace Yarn.Compiler
                 diagnostics.Add(hmm.diagnostic);
             }
 
+            // adding in the warnings about empty nodes
+            var empties = AddErrorsForEmptyNodes(parsedFiles, ref diagnostics);
+
             if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
             {
                 // Stop at this point
@@ -312,7 +318,7 @@ namespace Yarn.Compiler
                 // files.
                 foreach (var parsedFile in parsedFiles)
                 {
-                    CompilationResult compilationResult = GenerateCode(parsedFile, knownVariableDeclarations, compilationJob, stringTableManager, trackingNodes);
+                    CompilationResult compilationResult = GenerateCode(parsedFile, knownVariableDeclarations, compilationJob, stringTableManager, trackingNodes, empties);
 
                     results.Add(compilationResult);
                 }
@@ -444,6 +450,30 @@ namespace Yarn.Compiler
             }
         }
 
+        private static HashSet<string> AddErrorsForEmptyNodes(List<FileParseResult> parseResults, ref List<Diagnostic> diagnostics)
+        {
+            HashSet<string> emptyNodes = new HashSet<string>();
+            var empties = parseResults.SelectMany(r =>
+            {
+                var dialogue = r.Tree.Payload as YarnSpinnerParser.DialogueContext;
+                if (dialogue == null)
+                {
+                    return Enumerable.Empty<(YarnSpinnerParser.NodeContext Node, FileParseResult File)>();
+                }
+
+                return dialogue.node().Select(n => (Node: n, File: r));
+            }).Where(n => n.Node.body() != null && n.Node.body().statement().Length == 0);
+
+            foreach (var entry in empties)
+            {
+                var title = GetHeadersWithKey(entry.Node, "title").FirstOrDefault().header_value.Text;
+                var d = new Diagnostic(entry.File.Name, entry.Node, $"Node \"{title}\" is empty and will not be included in the compiled output.", Diagnostic.DiagnosticSeverity.Warning);
+                diagnostics.Add(d);
+                emptyNodes.Add(title);
+            }
+            return emptyNodes;
+        }
+
         private static void RegisterStrings(string fileName, StringTableManager stringTableManager, IParseTree tree, ref List<Diagnostic> diagnostics)
         {
             var visitor = new StringTableGeneratorVisitor(fileName, stringTableManager);
@@ -470,13 +500,23 @@ namespace Yarn.Compiler
             diagnostics = newDiagnosticList;
         }
 
-        private static CompilationResult GenerateCode(FileParseResult fileParseResult, IEnumerable<Declaration> variableDeclarations, CompilationJob job, StringTableManager stringTableManager, HashSet<string> trackingNodes)
+        private static CompilationResult GenerateCode(FileParseResult fileParseResult, IEnumerable<Declaration> variableDeclarations, CompilationJob job, StringTableManager stringTableManager, HashSet<string> trackingNodes, HashSet<string> NodesToSkip = null)
         {
             Compiler compiler = new Compiler(fileParseResult);
 
             compiler.TrackingNodes = trackingNodes;
             compiler.Library = job.Library;
             compiler.VariableDeclarations = variableDeclarations;
+
+            if (NodesToSkip == null)
+            {
+                compiler.SkipNodes = new HashSet<string>();    
+            }
+            else
+            {
+                compiler.SkipNodes = NodesToSkip;
+            }
+
             compiler.Compile();
 
             var debugInfoDictionary = new Dictionary<string, DebugInfo>();
@@ -825,20 +865,22 @@ namespace Yarn.Compiler
             }
             else
             {
-                if (!this.Program.Nodes.ContainsKey(this.CurrentNode.Name))
+                // we haven't been asked to skip over this node for some reason
+                // so we will write the code to the program
+                if (!this.SkipNodes.Contains(this.CurrentNode.Name))
                 {
-                    this.Program.Nodes[this.CurrentNode.Name] = this.CurrentNode;
-                }
-                else
-                {
+                    if (!this.Program.Nodes.ContainsKey(this.CurrentNode.Name))
+                    {
+                        this.Program.Nodes[this.CurrentNode.Name] = this.CurrentNode;
+                    }
                     // Duplicate node name! We'll have caught this during the
                     // declarations pass, so no need to issue an error here.
+
+                    this.CurrentDebugInfo.NodeName = this.CurrentNode.Name;
+                    this.CurrentDebugInfo.FileName = this.fileParseResult.Name;
+
+                    this.DebugInfos.Add(this.CurrentDebugInfo);
                 }
-
-                this.CurrentDebugInfo.NodeName = this.CurrentNode.Name;
-                this.CurrentDebugInfo.FileName = this.fileParseResult.Name;
-
-                this.DebugInfos.Add(this.CurrentDebugInfo);
             }
 
             this.CurrentNode = null;
