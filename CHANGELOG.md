@@ -17,6 +17,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - Functions must now specify a return type.
   - Changed the definition of 'types' to be an enum of "string", "number", "bool", or "any".
     - Enums in JSON schema are type sensitive, so a warning will be issued for types that have capital letters. To fix these warnings, change your type names in your `.ysls.json` file to be lowercase. (These warnings have no impact on your Yarn script editing experience or runtime behaviour.)
+- Empty nodes will no longer be included in the compiled output
+  - a warning diagnostic will be generated for each empty node
 
 ### Removed
 
