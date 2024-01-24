@@ -845,5 +845,22 @@ namespace YarnSpinner.Tests
             expectedFunctionType.Parameters[1].Should().Be(functionType.Parameters[1]);
             expectedFunctionType.ReturnType.Should().Be(functionType.ReturnType);
         }
+
+        [Fact]
+        public void TestSelfReferencingSetErrors()
+        {
+            // this test should fail on the v3 type system which is good, but for now I want to make sure its tested as is
+            // plus when this fails on v3 it's a good reminder to remove the hack
+            var source = CreateTestNode("<<set $badInference = $badInference + 1>>");
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+
+            // we should have one diagnostic
+            result.Diagnostics.Count().Should().Be(1);
+            // it's an error
+            result.Diagnostics.FirstOrDefault().Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+            // and it's the "I found this twice so don't know what to do" error
+            result.Diagnostics.Should().Contain(d => d.Message.Contains("\"$badInference\" has had its default value inferred in multiple places:"));
+        }
     }
 }

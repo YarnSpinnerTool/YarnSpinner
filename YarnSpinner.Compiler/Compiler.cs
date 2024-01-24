@@ -293,7 +293,7 @@ namespace Yarn.Compiler
             // TODO: I am pretty sure this is made redundant by the v3 type system, will need to check if it's still needed.
             // determining if there are any duplicate infered variables
             // at this point this shouldn't happen, but if it has we need to error out now
-            var duplicateInferredVars = knownVariableDeclarations.GroupBy(d => d.Name).Where(g => g.Count() > 1);
+            var duplicateInferredVars = knownVariableDeclarations.Where(d => !(d.Type is FunctionType)).GroupBy(d => d.Name).Where(g => g.Count() > 1);
             foreach (var group in duplicateInferredVars)
             {
                 var groupMessage = group.Select(d => $"\"{d.SourceFileName}\" on line {d.SourceFileLine}");
