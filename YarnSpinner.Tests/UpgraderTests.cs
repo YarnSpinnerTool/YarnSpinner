@@ -17,7 +17,6 @@ namespace YarnSpinner.Tests
         [MemberData(nameof(DirectorySources), "Upgrader/V1toV2")]
         public void TestUpgradingV1toV2(string directory)
         {
-
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"INFO: Loading file {directory}");
 
