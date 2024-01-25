@@ -1209,6 +1209,11 @@ namespace Yarn
                     return Math.Truncate(num);
                 });
 
+                this.RegisterFunction("format", delegate (string formatString, object argument)
+                {
+                    return string.Format(System.Globalization.CultureInfo.CurrentCulture, formatString, argument);
+                });
+
                 #endregion Operators
             }
         }
