@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Standard library functions (e.g. `random`, `round_places`, `dice`) have been moved to the core Yarn Spinner library.
+- Added a `format` function to the standard library, this works identical to the C# `string.Format`.
 
 ### Changed
 
