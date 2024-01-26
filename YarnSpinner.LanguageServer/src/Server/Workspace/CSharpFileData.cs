@@ -407,13 +407,18 @@ namespace YarnLanguageServer
             {
                 // Get all content from this element that isn't a newline, and
                 // join it up into a single string.
-                var v = triviaMatch
-                    .Content[0]
-                    .ChildTokens()
-                    .Where(ct => ct.Kind() != SyntaxKind.XmlTextLiteralNewLineToken)
-                    .Select(ct => ct.ValueText.Trim());
+                var nodes = triviaMatch
+                    .Content.SelectMany((c) =>
+                    {
+                        return c
+                        .DescendantNodesAndTokens()
+                        .Where(ct => ct.Kind() != SyntaxKind.XmlTextLiteralNewLineToken)
+                        .Select(ct => ct.AsToken().ValueText);
+                    });
 
-                return string.Join(" ", v).Trim();
+                var text = string.Join(string.Empty, nodes.Select(n => n.ToString()));
+
+                return text.Trim();
             }
 
             return null;

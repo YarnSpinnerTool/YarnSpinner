@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Empty nodes will no longer be included in the compiled output
   - a warning diagnostic will be generated for each empty node
 - Fixed a bug where set-referencing inferred value set statements would crash the compiler
+- The language server no longer truncates XML documentation comments when it reaches a nested XML node. 
 
 ### Removed
 

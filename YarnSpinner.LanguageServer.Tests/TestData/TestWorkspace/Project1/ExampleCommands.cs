@@ -47,4 +47,12 @@ public class ExampleCommands {
     public static int FunctionWithParams(int one, string two) {
         return -1;
     }
+
+    /// <summary>
+    /// This command has <c>nested XML</c> nodes.
+    /// </summary>
+    [YarnCommand("command_with_complex_documentation")]
+    public static void CommandWithComplexDocs() {
+
+    }
 }
