@@ -20,6 +20,8 @@ namespace Yarn.Compiler
             internal FileParseResult FileParseResult;
             internal HashSet<string> TrackingNodes;
             internal Dictionary<string, Declaration> VariableDeclarations;
+
+            internal HashSet<string> NodesToSkip;
         }
 
         private FileCompilationResult CompilationResult { get; set; }
@@ -47,6 +49,8 @@ namespace Yarn.Compiler
         /// This is supplied as part of a <see cref="CompilationJob"/>.
         /// </remarks>
         public IDictionary<string, Declaration> VariableDeclarations { get; set; } = new Dictionary<string, Declaration>();
+        
+        public HashSet<string> NodesToSkip { get; }
 
         /// <summary>
         /// The Library, which contains the function declarations known to the
@@ -72,6 +76,7 @@ namespace Yarn.Compiler
             this.Library = compilationContext.Library;
             this.TrackingNodes = compilationContext.TrackingNodes;
             this.VariableDeclarations = compilationContext.VariableDeclarations;
+            this.NodesToSkip = compilationContext.NodesToSkip;
         }
 
 
@@ -177,8 +182,17 @@ namespace Yarn.Compiler
                     );
                 }
 
-                CompilationResult.Nodes.Add(this.CurrentNode);
-                CompilationResult.DebugInfos.Add(this.CurrentNodeDebugInfo);
+                if (this.NodesToSkip.Contains(this.CurrentNode.Name))
+                {
+                    // We've been told to not include this node.
+                }
+                else
+                {
+                    // Add the node to our result.
+                    CompilationResult.Nodes.Add(this.CurrentNode);
+                    CompilationResult.DebugInfos.Add(this.CurrentNodeDebugInfo);
+                }
+
             }
 
             this.CurrentNode = null;
