@@ -403,7 +403,7 @@ namespace Yarn.Compiler
             declarations.Where(d => duplicateKeys.Contains(d.Name));
 
             // adding in the warnings about empty nodes
-            var empties = AddErrorsForEmptyNodes(parsedFiles, ref diagnostics);
+            var empties = AddDiagnosticsForEmptyNodes(parsedFiles, ref diagnostics);
 
             // All declarations must now have a concrete type. If they don't,
             // then we couldn't solve for their type, and can't continue.
@@ -710,7 +710,7 @@ namespace Yarn.Compiler
             }
         }
 
-        private static HashSet<string> AddErrorsForEmptyNodes(List<FileParseResult> parseResults, ref List<Diagnostic> diagnostics)
+        private static HashSet<string> AddDiagnosticsForEmptyNodes(List<FileParseResult> parseResults, ref List<Diagnostic> diagnostics)
         {
             HashSet<string> emptyNodes = new HashSet<string>();
             var empties = parseResults.SelectMany(r =>
