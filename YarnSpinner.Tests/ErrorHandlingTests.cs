@@ -88,11 +88,10 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("<inputs>", source));
 
-            var warnings = result.Diagnostics.Where(d => d.Severity == Diagnostic.DiagnosticSeverity.Warning);
-            // there should be only one warning
-            warnings.Count().Should().Be(1);
-            // and it should be the warning about empty nodes
-            warnings.FirstOrDefault().Message.Should().Be("Node \"Start\" is empty and will not be included in the compiled output.");
+            var warning = result.Diagnostics.Should().ContainSingle().Subject;
+            // there should be only one diagnostic: a warning about empty nodes
+            warning.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Warning);
+            warning.Message.Should().Be("Node \"Start\" is empty and will not be included in the compiled output.");
         }
     }
 }
