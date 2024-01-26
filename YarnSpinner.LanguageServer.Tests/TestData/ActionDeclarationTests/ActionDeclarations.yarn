@@ -17,5 +17,5 @@ title: ActionDeclarations
 {dec(1.2)}
 {decimal(2.3)}
 {int(2.3)}
-
+{format("{0:F2}", 1)}
 ===

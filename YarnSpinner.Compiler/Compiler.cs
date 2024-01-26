@@ -10,7 +10,6 @@ namespace Yarn.Compiler
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Text.RegularExpressions;
     using Antlr4.Runtime;
     using Antlr4.Runtime.Tree;
     using TypeChecker;
@@ -389,6 +388,23 @@ namespace Yarn.Compiler
             // Filter out any duplicate diagnostics
             diagnostics = diagnostics.Distinct().ToList();
 
+            // TODO: I am pretty sure this is made redundant by the v3 type system, will need to check if it's still needed.
+            // determining if there are any duplicate infered variables
+            // at this point this shouldn't happen, but if it has we need to error out now
+            var duplicateInferredVars = declarations.Where(d => !(d.Type is FunctionType)).GroupBy(d => d.Name).Where(g => g.Count() > 1);
+            foreach (var group in duplicateInferredVars)
+            {
+                var groupMessage = group.Select(d => $"\"{d.SourceFileName}\" on line {d.SourceFileLine}");
+                var message = $"\"{group.Key}\" has had its default value inferred in multiple places: " + String.Join(", ", groupMessage);
+                diagnostics.Add(new Diagnostic(message, Diagnostic.DiagnosticSeverity.Error));
+            }
+            // removing all the duplicate keys
+            var duplicateKeys = duplicateInferredVars.Select(g => g.Key);
+            declarations.Where(d => duplicateKeys.Contains(d.Name));
+
+            // adding in the warnings about empty nodes
+            var empties = AddErrorsForEmptyNodes(parsedFiles, ref diagnostics);
+
             // All declarations must now have a concrete type. If they don't,
             // then we couldn't solve for their type, and can't continue.
             if (compilationJob.CompilationType == CompilationJob.Type.TypeCheck)
@@ -420,7 +436,7 @@ namespace Yarn.Compiler
                 // files.
                 foreach (var parsedFile in parsedFiles)
                 {
-                    FileCompilationResult compilationResult = GenerateCode(parsedFile, declarations, compilationJob, trackingNodes);
+                    FileCompilationResult compilationResult = GenerateCode(parsedFile, declarations, compilationJob, trackingNodes, empties);
 
                     fileCompilationResults.Add(compilationResult);
                 }
@@ -610,7 +626,7 @@ namespace Yarn.Compiler
         {
             // A regular expression used to detect illegal characters
             // in node titles.
-            Regex invalidTitleCharacters = new System.Text.RegularExpressions.Regex(@"[\[<>\]{}\|:\s#\$]");
+            System.Text.RegularExpressions.Regex invalidTitleCharacters = new System.Text.RegularExpressions.Regex(@"[\[<>\]{}\|:\s#\$]");
 
             var allNodes = parseResults.SelectMany(r =>
             {
@@ -694,6 +710,30 @@ namespace Yarn.Compiler
             }
         }
 
+        private static HashSet<string> AddErrorsForEmptyNodes(List<FileParseResult> parseResults, ref List<Diagnostic> diagnostics)
+        {
+            HashSet<string> emptyNodes = new HashSet<string>();
+            var empties = parseResults.SelectMany(r =>
+            {
+                var dialogue = r.Tree.Payload as YarnSpinnerParser.DialogueContext;
+                if (dialogue == null)
+                {
+                    return Enumerable.Empty<(YarnSpinnerParser.NodeContext Node, FileParseResult File)>();
+                }
+
+                return dialogue.node().Select(n => (Node: n, File: r));
+            }).Where(n => n.Node.body() != null && n.Node.body().statement().Length == 0);
+
+            foreach (var entry in empties)
+            {
+                var title = GetHeadersWithKey(entry.Node, "title").FirstOrDefault().header_value.Text;
+                var d = new Diagnostic(entry.File.Name, entry.Node, $"Node \"{title}\" is empty and will not be included in the compiled output.", Diagnostic.DiagnosticSeverity.Warning);
+                diagnostics.Add(d);
+                emptyNodes.Add(title);
+            }
+            return emptyNodes;
+        }
+
         private static void RegisterStrings(string fileName, StringTableManager stringTableManager, IParseTree tree, ref List<Diagnostic> diagnostics)
         {
             var visitor = new StringTableGeneratorVisitor(fileName, stringTableManager);
@@ -701,7 +741,7 @@ namespace Yarn.Compiler
             diagnostics.AddRange(visitor.Diagnostics);
         }
 
-        private static FileCompilationResult GenerateCode(FileParseResult fileParseResult, IEnumerable<Declaration> variableDeclarations, CompilationJob job, HashSet<string> trackingNodes)
+        private static FileCompilationResult GenerateCode(FileParseResult fileParseResult, IEnumerable<Declaration> variableDeclarations, CompilationJob job, HashSet<string> trackingNodes, HashSet<string> nodesToSkip)
         {
 
             FileCompiler compiler = new FileCompiler(new FileCompiler.CompilationContext
@@ -709,6 +749,7 @@ namespace Yarn.Compiler
                 FileParseResult = fileParseResult,
                 TrackingNodes = trackingNodes,
                 Library = job.Library,
+                NodesToSkip = nodesToSkip,
                 VariableDeclarations = variableDeclarations
                 .Where(d => d.Type is FunctionType == false)
                 .ToDictionary(d => d.Name, d => d),

@@ -282,6 +282,27 @@
         }
       ],
       "ReturnType": "number"
+    },
+    {
+      "YarnName": "format",
+      "DefinitionName": "format",
+      "Documentation": "Formats the argument parameter into the format_string. Intended for user facing text. Is a wrapper around String.Format and uses the format string rules from that.",
+      "Signature": "format(format_string, argument)",
+      "Parameters": [
+        {
+          "Name": "format_string",
+          "Type": "string",
+          "Documentation": "The format string that argument is to be injected into. Must follow C# string format rules.",
+          "IsParamsArray": false
+        },
+        {
+          "Name": "argument",
+          "Type": "any",
+          "Documentation": "The value to be injected into the format_string",
+          "IsParamsArray": false
+        }
+      ],
+      "ReturnType": "string"
     }
   ]
 }

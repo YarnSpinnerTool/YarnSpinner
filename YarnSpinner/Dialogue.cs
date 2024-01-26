@@ -1303,6 +1303,11 @@ namespace Yarn
                 this.RegisterFunction<float, float>("decimal", Decimal);
                 this.RegisterFunction<float, int>("int", Integer);
 
+                this.RegisterFunction("format", delegate (string formatString, object argument)
+                {
+                    return string.Format(System.Globalization.CultureInfo.CurrentCulture, formatString, argument);
+                });
+
                 #endregion Operators
             }
 

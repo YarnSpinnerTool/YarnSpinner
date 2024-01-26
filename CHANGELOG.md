@@ -207,6 +207,11 @@ You can use any of the following kinds of expressions in a `when:` header:
 - `when: once if <boolean expression>` - The node will run precisely one time, and only when the expression evaluates to `true`.
 - `when: always` - The node may always run.
 
+#### Other Changes
+
+- Standard library functions (e.g. `random`, `round_places`, `dice`) have been moved to the core Yarn Spinner library.
+- Added a `format` function to the standard library, this works identical to the C# `string.Format`.
+
 ### Changed
 
 - Updated the schema for .ysls.json files:
@@ -226,6 +231,10 @@ You can use any of the following kinds of expressions in a `when:` header:
     - TestPlan continuation is now no longer driven by the line/option callback system, which makes it easier to reason about.
 - Fixed a crash in the compiler that could occur if a node's `title:` header did not have a value.
 - Node `visited` and `visited_count` tracking is now handled in the virtual machine when a node is returned from, rather than as a result of compiler-generated code.
+- Empty nodes will no longer be included in the compiled output
+  - a warning diagnostic will be generated for each empty node
+- Fixed a bug where set-referencing inferred value set statements would crash the compiler
+- The language server no longer truncates XML documentation comments when it reaches a nested XML node. 
 
 ### Removed
 

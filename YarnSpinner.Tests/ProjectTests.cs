@@ -35,7 +35,6 @@ namespace YarnSpinner.Tests
             dialogue.NodeExists("TestNode").Should().BeTrue();
             dialogue.NodeExists("AnotherTestNode").Should().BeTrue();
             dialogue.NodeExists("ThirdNode").Should().BeTrue();
-            
         }
 
         [Fact]

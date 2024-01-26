@@ -36,4 +36,5 @@ title: Destination
 ---
 // no-op; required because the test plan will select 
 // an option at the end of 'Start' and they all end up here
+<<stop>>
 ===

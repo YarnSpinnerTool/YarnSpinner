@@ -12,6 +12,23 @@ namespace YarnLanguageServer.Tests
     {
         private static string WorkspacePath = Path.Combine(TestUtility.PathToTestData, "ActionDeclarationTests");
         private static string ProjectPath = Path.Combine(WorkspacePath, "Test.yarnproject");
+
+        [Fact]
+        public void CSharpData_DocumentationCommentsAreExtracted() {
+            var path = Path.Combine(TestUtility.PathToTestData, "TestWorkspace", "Project1", "ExampleCommands.cs");
+
+            File.Exists(path).Should().BeTrue($"{path} should exist on disk");
+
+            var uri = DocumentUri.FromFileSystemPath(path).ToUri();
+
+            var source = File.ReadAllText(path);
+
+            var data = CSharpFileData.ParseActionsFromCode(source, uri);
+
+            var action = data.Should().ContainSingle(a => a.YarnName == "command_with_complex_documentation").Subject;
+
+            action.Documentation.Should().Be("This command has <c>nested XML</c> nodes.");
+        }
         
         [Fact]
         public void ActionDeclaration_AllYarnFunctions_AreCalled() {
