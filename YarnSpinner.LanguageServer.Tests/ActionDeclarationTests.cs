@@ -5,6 +5,7 @@ using System.IO;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Yarn;
 using System.Text.RegularExpressions;
+using OmniSharp.Extensions.LanguageServer.Protocol;
 
 namespace YarnLanguageServer.Tests
 {
