@@ -58,8 +58,13 @@ namespace Yarn.Compiler
         public string[] metadata;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StringInfo"/>
-        /// struct.
+        /// The ID of the line that this line is shadowing, or null if this line
+        /// is not shadowing another line.
+        /// </summary>
+        public string? shadowLineID;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StringInfo"/> struct.
         /// </summary>
         /// <param name="text">The text of the string.</param>
         /// <param name="fileName">The file name.</param>
@@ -68,13 +73,16 @@ namespace Yarn.Compiler
         /// <param name="isImplicitTag">If <c>true</c>, this string info is
         /// stored with an implicit line ID.</param>
         /// <param name="metadata">The string's metadata.</param>
-        internal StringInfo(string text, string fileName, string nodeName, int lineNumber, bool isImplicitTag, string[] metadata)
+        /// <param name="shadowID">The ID of the line that this entry is
+        /// shadowing, or null.</param>
+        internal StringInfo(string text, string fileName, string nodeName, int lineNumber, bool isImplicitTag, string[] metadata, string? shadowID)
         {
             this.text = text;
             this.nodeName = nodeName;
             this.lineNumber = lineNumber;
             this.fileName = fileName;
             this.isImplicitTag = isImplicitTag;
+            this.shadowLineID = shadowID;
 
             if (metadata != null)
             {

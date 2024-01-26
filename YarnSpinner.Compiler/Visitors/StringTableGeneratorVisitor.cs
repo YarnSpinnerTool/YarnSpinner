@@ -73,7 +73,7 @@ namespace Yarn.Compiler
             int lineNumber = context.Start.Line;
 
             YarnSpinnerParser.HashtagContext[] hashtags = context.hashtag();
-            var lineIDTag = Compiler.GetLineIDTag(hashtags);
+            var lineIDTag = Compiler.GetContentIDTag(ContentIdentifierType.Line, hashtags);
             var lineID = lineIDTag?.text.Text ?? null;
 
             var hashtagText = GetHashtagTexts(hashtags);
@@ -93,22 +93,46 @@ namespace Yarn.Compiler
                 return 0;
             }
 
-            string stringID = stringTableManager.RegisterString(
+
+            // If the line has a '#shadow:' ID, record that fact.
+            var shadowTag = Compiler.GetContentIDTag(ContentIdentifierType.Shadow, hashtags);
+            if (shadowTag != null) {
+                context.ShadowLineID = "line:" + shadowTag.text.Text.Substring("shadow:".Length);
+            }
+
+            // It's illegal for a shadow line to have an explicit line ID.
+            if (shadowTag != null && lineIDTag != null)
+            {
+                var message = "Lines cannot have both a '#line' tag and a '#shadow' tag.";
+
+                this.diagnostics.Add(new Diagnostic(
+                    fileName, shadowTag, message));
+
+                this.diagnostics.Add(new Diagnostic(
+                    fileName, lineIDTag, message));
+            }
+
+            lineID = stringTableManager.RegisterString(
+                context,
                 composedString.ToString(),
                 fileName,
                 currentNodeName,
                 lineID,
                 lineNumber,
-                hashtagText);
+                hashtagText,
+                context.ShadowLineID
+                );
 
-            context.LineID = stringID;
+            context.LineID = lineID;
 
-            if (lineID == null)
+            if (lineIDTag == null)
             {
+                // Create a new line: hashtag and add it to the parse tree
                 var hashtag = new YarnSpinnerParser.HashtagContext(context, 0);
-                hashtag.text = new CommonToken(YarnSpinnerLexer.HASHTAG_TEXT, stringID);
+                hashtag.text = new CommonToken(YarnSpinnerLexer.HASHTAG_TEXT, lineID);
                 context.AddChild(hashtag);
             }
+
 
             return 0;
         }
@@ -164,6 +188,12 @@ namespace Yarn.Compiler
             /// statement.
             /// </summary>
             public string? LineID { get; set; }
+
+            /// <summary>
+            /// Gets or sets the shadow line ID associated with this line
+            /// statement.
+            /// </summary>
+            public string? ShadowLineID { get; set; }
         }
     }
 }

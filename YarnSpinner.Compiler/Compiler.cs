@@ -22,6 +22,17 @@ namespace Yarn.Compiler
         public const string TrackingVariableNameHeader = Node.TrackingVariableNameHeader;
     }
 
+    internal enum ContentIdentifierType {
+        /// <summary>
+        /// The content identifier is a <c>#line:</c> tag.
+        /// </summary>
+        Line,
+        /// <summary>
+        /// The content identifier is a <c>#shadow:</c> tag.
+        /// </summary>
+        Shadow,
+    }
+
     /// <summary>
     /// Compiles Yarn code.
     /// </summary>
@@ -97,6 +108,49 @@ namespace Yarn.Compiler
                 lastLineTagger.Visit(parseResult.Tree);
 
                 RegisterStrings(file.FileName, stringTableManager, parseResult.Tree, ref diagnostics);
+            }
+
+            // Check to see if any lines that shadow another have a valid source
+            // line, the same text as their source line
+            foreach (var shadowLineContext in stringTableManager.LineContexts.Values.Where(v => v.ShadowLineID != null)) {
+                var shadowLineID = shadowLineContext.ShadowLineID!;
+                
+                if (shadowLineContext.LineID == null) {
+                    // All lines have a unique line ID, including shadow lines -
+                    // it's an error if we have a shadow ID but no line ID
+                    throw new InvalidOperationException($"Internal error: line with shadow id {shadowLineID} did not have a line ID of its own");
+                }
+
+                var sourceFile = stringTableManager.StringTable[shadowLineContext.LineID].fileName;
+
+                if (stringTableManager.LineContexts.TryGetValue(shadowLineID, out var sourceLineContext) == false) {
+                    // No source line found
+                    diagnostics.Add(new Diagnostic(
+                        sourceFile, shadowLineContext, $"\"{shadowLineID}\" is not a known line ID."
+                    ));
+                    continue;
+                }
+
+                var sourceText = stringTableManager.StringTable[shadowLineID].text;
+                var shadowText = stringTableManager.StringTable[shadowLineContext.LineID].text;
+
+                if (sourceText.Equals(shadowText, StringComparison.CurrentCulture) == false) {
+                    // Lines must be identical
+                    diagnostics.Add(new Diagnostic(
+                        sourceFile, shadowLineContext, $"Shadow lines must have the same text as their source lines"
+                    ));
+                }
+
+                var sourceContext = stringTableManager.LineContexts[shadowLineID];
+
+                if (sourceContext.line_formatted_text().expression().Length > 0) {
+                    // Lines must not have inline expressions
+                    diagnostics.Add(new Diagnostic(
+                        sourceFile, shadowLineContext, $"Shadow lines must not have expressions"
+                    ));
+                }
+
+                                
             }
 
             // Ensure that all nodes names in this compilation are unique. Node
@@ -873,11 +927,12 @@ namespace Yarn.Compiler
         /// Extracts a line ID from a collection of <see
         /// cref="YarnSpinnerParser.HashtagContext"/>s, if one exists.
         /// </summary>
-        /// <param name="hashtagContexts">The hashtag parsing
-        /// contexts.</param>
+        /// <param name="type">The type of content identifier tag to
+        /// retrieve.</param>
+        /// <param name="hashtagContexts">The hashtag parsing contexts.</param>
         /// <returns>The line ID if one is present in the hashtag contexts,
         /// otherwise <c>null</c>.</returns>
-        internal static YarnSpinnerParser.HashtagContext? GetLineIDTag(YarnSpinnerParser.HashtagContext[] hashtagContexts)
+        internal static YarnSpinnerParser.HashtagContext? GetContentIDTag(ContentIdentifierType type, YarnSpinnerParser.HashtagContext[] hashtagContexts)
         {
             // if there are any hashtags
             if (hashtagContexts != null)
@@ -885,7 +940,11 @@ namespace Yarn.Compiler
                 foreach (var hashtagContext in hashtagContexts)
                 {
                     string tagText = hashtagContext.text.Text;
-                    if (tagText.StartsWith("line:", StringComparison.InvariantCulture))
+                    if (type == ContentIdentifierType.Line && tagText.StartsWith("line:", StringComparison.InvariantCulture))
+                    {
+                        return hashtagContext;
+                    }
+                    if (type == ContentIdentifierType.Shadow && tagText.StartsWith("shadow:", StringComparison.InvariantCulture))
                     {
                         return hashtagContext;
                     }
@@ -903,18 +962,19 @@ namespace Yarn.Compiler
         /// The line ID is extracted from the <c>#line:</c> hashtag found on the
         /// line. If it isn't present, then this method throws an exception.
         /// </remarks>
+        /// <param name="type">The type of content identifier to retrieve.</param>
         /// <param name="line">The line statement to extract the line ID
         /// from.</param>
         /// <returns>The line ID found in this line.</returns>
         /// <exception cref="ArgumentException">Thrown when the line does not
         /// have a line ID.</exception>
-        internal static string GetLineID(YarnSpinnerParser.Line_statementContext line)
+        internal static string GetContentID(ContentIdentifierType type, YarnSpinnerParser.Line_statementContext line)
         {
-            var lineIDHashTag = GetLineIDTag(line.hashtag());
+            var lineIDHashTag = GetContentIDTag(type, line.hashtag());
 
             if (lineIDHashTag == null)
             {
-                throw new ArgumentException("Internal error: line does not have a line ID");
+                throw new ArgumentException($"Internal error: line does not have a {type} ID");
             }
 
             var lineID = lineIDHashTag.text.Text;

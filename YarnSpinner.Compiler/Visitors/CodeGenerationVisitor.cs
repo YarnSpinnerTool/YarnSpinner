@@ -71,7 +71,7 @@ namespace Yarn.Compiler
             }
 
             // Get the lineID for this string from the hashtags
-            var lineID = Compiler.GetLineID(context);
+            var lineID = Compiler.GetContentID(ContentIdentifierType.Line, context);
 
             // Evaluate any condition on the line statement.
             EvaluateLineCondition(context, out _);
@@ -382,7 +382,7 @@ namespace Yarn.Compiler
             foreach (var shortcut in context.shortcut_option())
             {
                 // Get the line ID for the shortcut's line
-                var lineID = Compiler.GetLineID(shortcut.line_statement());
+                var lineID = Compiler.GetContentID(ContentIdentifierType.Line, shortcut.line_statement());
 
                 // This line statement may have a condition on it. If it does,
                 // emit code that evaluates the condition, and add a flag on the
@@ -509,7 +509,7 @@ namespace Yarn.Compiler
                 case ParserContextExtensions.ContentConditionType.OnceCondition:
                     var condition = (lineStatement.line_condition() as YarnSpinnerParser.LineOnceConditionContext)!;
 
-                    var lineID = Compiler.GetLineID(lineStatement);
+                    var lineID = Compiler.GetContentID(ContentIdentifierType.Line, lineStatement);
                     onceVariable = Compiler.GetContentViewedVariableName(lineID);
 
                     // Test to see if the 'once' variable for this content is
@@ -616,7 +616,7 @@ namespace Yarn.Compiler
             {
                 var lineStatement = lineGroupItem.line_statement();
 
-                var lineID = Compiler.GetLineID(lineGroupItem.line_statement());
+                var lineID = Compiler.GetContentID(ContentIdentifierType.Line, lineGroupItem.line_statement());
 
                 if (lineStatement.line_condition() != null) {
                     // This line group item has an expression. Evaluate it.
@@ -675,7 +675,7 @@ namespace Yarn.Compiler
             void EmitCodeForRegisteringLineGroupItem(YarnSpinnerParser.Line_group_itemContext lineGroupItem, int conditionCount)
             {
                 var lineStatement = lineGroupItem.line_statement();
-                var lineIDTag = Compiler.GetLineIDTag(lineStatement.hashtag());
+                var lineIDTag = Compiler.GetContentIDTag(ContentIdentifierType.Line, lineStatement.hashtag());
                 var lineID = lineIDTag?.text?.Text ?? throw new InvalidOperationException("Internal compiler error: line ID for line group item was not present");
 
                 Instruction runThisLineInstruction;
