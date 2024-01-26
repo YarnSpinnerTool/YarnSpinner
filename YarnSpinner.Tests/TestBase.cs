@@ -100,7 +100,22 @@ namespace YarnSpinner.Tests
 
             stringTable.Should().ContainKey(line.ID);
 
-            var substitutedText = Dialogue.ExpandSubstitutions(stringTable[line.ID].text, line.Substitutions);
+            var stringInfo = stringTable[line.ID];
+
+            if (stringInfo.text == null)
+            {
+                stringInfo.shadowLineID.Should().NotBeNull("a line that has null text is expected to be a shadow line (i.e. has a shadow line ID)");
+                
+                stringTable.Should().ContainKey(stringInfo.shadowLineID);
+
+                var shadowLineText = stringTable[stringInfo.shadowLineID].text;
+
+                shadowLineText.Should().NotBeNull("shadow line's source text should not be null");
+
+                stringInfo.text = shadowLineText;
+            }
+
+            var substitutedText = Dialogue.ExpandSubstitutions(stringInfo.text, line.Substitutions);
 
             return dialogue.ParseMarkup(substitutedText).Text;
         }

@@ -78,7 +78,12 @@ namespace Yarn.Compiler
 
             var hashtagText = GetHashtagTexts(hashtags);
 
-            GenerateFormattedText(context.line_formatted_text().children, out var composedString, out var expressionCount);
+            string? composedString;
+
+            GenerateFormattedText(
+                context.line_formatted_text().children, 
+                out composedString, 
+                out var _);
 
             // Does this string table already have a string with this ID?
             if (lineID != null && stringTableManager.ContainsKey(lineID)) 
@@ -114,7 +119,7 @@ namespace Yarn.Compiler
 
             lineID = stringTableManager.RegisterString(
                 context,
-                composedString.ToString(),
+                composedString?.ToString(),
                 fileName,
                 currentNodeName,
                 lineID,

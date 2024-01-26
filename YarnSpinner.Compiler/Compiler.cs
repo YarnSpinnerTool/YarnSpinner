@@ -133,11 +133,8 @@ namespace Yarn.Compiler
                 var sourceText = stringTableManager.StringTable[shadowLineID].text;
                 var shadowText = stringTableManager.StringTable[shadowLineContext.LineID].text;
 
-                if (sourceText.Equals(shadowText, StringComparison.CurrentCulture) == false) {
-                    // Lines must be identical
-                    diagnostics.Add(new Diagnostic(
-                        sourceFile, shadowLineContext, $"Shadow lines must have the same text as their source lines"
-                    ));
+                if (sourceText == null) {
+                    throw new InvalidOperationException($"Internal error: line with shadow id {shadowLineID} was referencing line {shadowLineID}, but that line's text is null");
                 }
 
                 var sourceContext = stringTableManager.LineContexts[shadowLineID];
@@ -148,6 +145,20 @@ namespace Yarn.Compiler
                         sourceFile, shadowLineContext, $"Shadow lines must not have expressions"
                     ));
                 }
+
+                if (sourceText.Equals(shadowText, StringComparison.CurrentCulture) == false) {
+                    // Lines must be identical
+                    diagnostics.Add(new Diagnostic(
+                        sourceFile, shadowLineContext, $"Shadow lines must have the same text as their source lines"
+                    ));
+                }
+
+                // The shadow line is valid. Strip the text from its StringInfo,
+                // to reinforce to clients that the content should come from the
+                // source line.
+                StringInfo shadowLineTableEntry = stringTableManager.StringTable[shadowLineContext.LineID];
+                shadowLineTableEntry.text = null;
+                stringTableManager.StringTable[shadowLineContext.LineID] = shadowLineTableEntry;
 
                                 
             }

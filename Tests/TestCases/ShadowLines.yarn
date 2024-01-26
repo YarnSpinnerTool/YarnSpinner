@@ -1,0 +1,9 @@
+title: Start
+---
+This is a line. #line:source
+
+// The following line is a 'shadow' of '#line:source'. Its content
+// will not appear in the resulting string table, and any client
+// should consult its shadow ID to find the 'actual' content to run.
+This is a line. #shadow:source
+===

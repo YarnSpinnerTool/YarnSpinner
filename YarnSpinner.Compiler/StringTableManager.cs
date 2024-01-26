@@ -50,7 +50,7 @@ namespace Yarn.Compiler
         /// langword="null"/>, a line ID will be generated from <paramref
         /// name="fileName"/>, <paramref name="nodeName"/>, and the number
         /// of elements in <see cref="StringTable"/>.</remarks>
-        internal string RegisterString(YarnSpinnerParser.Line_statementContext context, string text, string fileName, string nodeName, string? existingLineID, int lineNumber, string[] tags, string? shadowID)
+        internal string RegisterString(YarnSpinnerParser.Line_statementContext context, string? text, string fileName, string nodeName, string? existingLineID, int lineNumber, string[] tags, string? shadowID)
         {
             string lineIDUsed;
 

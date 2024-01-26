@@ -19,7 +19,11 @@ namespace Yarn.Compiler
         /// <summary>
         /// The original text of the string.
         /// </summary>
-        public string text;
+        /// <remarks>
+        /// This field is <see langword="null"/> if <see cref="shadowLineID"/>
+        /// is not null.
+        /// </remarks>
+        public string? text;
 
         /// <summary>
         /// The name of the node that this string was found in.
@@ -75,7 +79,7 @@ namespace Yarn.Compiler
         /// <param name="metadata">The string's metadata.</param>
         /// <param name="shadowID">The ID of the line that this entry is
         /// shadowing, or null.</param>
-        internal StringInfo(string text, string fileName, string nodeName, int lineNumber, bool isImplicitTag, string[] metadata, string? shadowID)
+        internal StringInfo(string? text, string fileName, string nodeName, int lineNumber, bool isImplicitTag, string[] metadata, string? shadowID)
         {
             this.text = text;
             this.nodeName = nodeName;

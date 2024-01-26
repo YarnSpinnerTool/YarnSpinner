@@ -236,5 +236,32 @@ title: Second
             results = Compiler.Compile(job);
             results.Diagnostics.Should().BeEmpty();
         }
+
+        [Fact]
+        public void TestShadowLinesReflectSourceLines() {
+            var source =
+@"title: Start
+---
+This is a line. #line:source #apple
+This is a line. #shadow:source #banana
+===
+";
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+
+            result.StringTable.Should().HaveCount(2, "there are two lines in the string table");
+
+            var sourceLine = result.StringTable.Should().ContainSingle(kv => kv.Key == "line:source").Subject.Value;
+            var shadowLine = result.StringTable.Should().ContainSingle(kv => kv.Key != "line:source").Subject.Value;
+
+            sourceLine.text.Should().Be("This is a line.");
+            sourceLine.shadowLineID.Should().BeNull("source lines do not have a shadow line ID");
+            sourceLine.metadata.Should().Contain("apple");
+            sourceLine.metadata.Should().NotContain("banana");
+
+            shadowLine.text.Should().BeNull("shadow lines do not contain any source text");
+            shadowLine.shadowLineID.Should().Be("line:source");
+            shadowLine.metadata.Should().NotContain("apple", "shadow lines have their own metadata");
+            shadowLine.metadata.Should().Contain("banana", "shadow lines have their own metadata");
+        }
     }
 }
