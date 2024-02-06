@@ -10,7 +10,7 @@ When a conversation is running, Yarn Spinner sends your game **lines** of dialog
 
 Yarn Spinner has been used in a number of critically acclaimed games, including [Night in the Woods](http://nightinthewoods.com), [A Short Hike](https://ashorthike.com), [Lost in Random](https://www.ea.com/en-au/games/lost-in-random), and many more.
 
-To get Yarn Spinner, and support the team behind it, buy a copy from [the Yarn Spinner Itch.io Store](https://yarnspinner.itch.io) or check out the [Yarn Spinner Documentation](https://docs.yarnspinner.dev).
+To get Yarn Spinner, and support the team behind it, buy a copy from [the Yarn Spinner Itch.io Store](https://yarnspinner.itch.io) or from [the Unity Asset Store](https://assetstore.unity.com/packages/tools/behavior-ai/yarn-spinner-for-unity-267061), or check out the [Yarn Spinner Documentation](https://docs.yarnspinner.dev).
 
 ## Getting Started
 
