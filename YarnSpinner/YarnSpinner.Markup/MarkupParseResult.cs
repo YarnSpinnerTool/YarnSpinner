@@ -26,6 +26,7 @@ SOFTWARE.
 
 namespace Yarn.Markup
 {
+    using System;
     using System.Collections.Generic;
 
 #pragma warning disable CA1815
@@ -36,7 +37,7 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
+    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
     public struct MarkupParseResult
     {
         /// <summary>
@@ -318,7 +319,7 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
+    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
     public struct MarkupAttribute
     {
         /// <summary>
@@ -420,7 +421,7 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
+    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
 #pragma warning disable CA1815
     public struct MarkupProperty
     {
@@ -456,7 +457,7 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
+    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
     public struct MarkupValue
     {
         /// <summary>Gets the integer value of this property.</summary>
@@ -498,20 +499,26 @@ namespace Yarn.Markup
         public MarkupValueType Type { get; internal set; }
 
         /// <inheritdoc/>
-        public override string ToString()
+        public readonly override string ToString()
+        {
+            return this.ToString(System.Globalization.CultureInfo.CurrentCulture);
+        }
+
+        /// <inheritdoc/>
+        public readonly string ToString(IFormatProvider formatProvider)
         {
             switch (this.Type)
             {
                 case MarkupValueType.Integer:
-                    return this.IntegerValue.ToString();
+                    return this.IntegerValue.ToString(formatProvider);
                 case MarkupValueType.Float:
-                    return this.FloatValue.ToString();
+                    return this.FloatValue.ToString(formatProvider);
                 case MarkupValueType.String:
                     return this.StringValue;
                 case MarkupValueType.Bool:
                     return this.BoolValue.ToString();
                 default:
-                    throw new System.InvalidOperationException($"Invalid markup value type {this.Type}");
+                    return $"[Invalid markup value type {this.Type}]";
             }
         }
     }
@@ -524,7 +531,7 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
+    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
     internal struct MarkupAttributeMarker
     {
         /// <summary>
