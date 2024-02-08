@@ -116,6 +116,16 @@ namespace Yarn.Compiler
         public IEnumerable<Diagnostic> Diagnostics { get; internal set; } = Array.Empty<Diagnostic>();
 
         /// <summary>
+        /// Gets a value indicating whether this compilation result contains any
+        /// error diagnostics. 
+        /// </summary>
+        /// <remarks>
+        /// If this value is true, then the value contained in <see
+        /// cref="Program"/> will not contain a valid output.
+        /// </remarks>
+        public bool ContainsErrors => this.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+
+        /// <summary>
         /// Gets the collection of <see cref="DebugInfo"/> objects for each node
         /// in <see cref="Program"/>.
         /// </summary>
