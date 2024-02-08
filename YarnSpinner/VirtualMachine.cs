@@ -505,7 +505,6 @@ namespace Yarn
                         // passes it to the client as a line
                         string stringKey = i.RunLine.LineID;
 
-                        Line line = new Line(stringKey);
 
                         var expressionCount = i.RunLine.SubstitutionCount;
 
@@ -516,8 +515,8 @@ namespace Yarn
                             strings[expressionIndex] = state.PopValue().ConvertTo<string>();
                         }
 
-                        line.Substitutions = strings;
-
+                        Line line = new Line(stringKey, strings);
+                        
                         // Suspend execution, because we're about to deliver content
                         CurrentExecutionState = ExecutionState.DeliveringContent;
 
@@ -581,8 +580,6 @@ namespace Yarn
 
                         var lineID = i.AddOption.LineID;
 
-                        var line = new Line(lineID);
-
                         // get the number of expressions that we're
                         // working with
                         var expressionCount = i.AddOption.SubstitutionCount;
@@ -597,8 +594,7 @@ namespace Yarn
                             strings[expressionIndex] = substitution;
                         }
 
-                        line.Substitutions = strings;
-
+                        var line = new Line(lineID, strings);
 
                         // Indicates whether the VM believes that the
                         // option should be shown to the user, based on any

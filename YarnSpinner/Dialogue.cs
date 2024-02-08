@@ -50,29 +50,37 @@ namespace Yarn
     /// line.</item>
     /// </list>
     ///
-    /// <para>You do not create instances of this struct yourself. They are
-    /// created by the <see cref="Dialogue"/> during program execution.</para>
+    /// <para>You typically do not create instances of this struct yourself.
+    /// They are created by the <see cref="Dialogue"/> during program
+    /// execution.</para>
     /// </remarks>
     /// <seealso cref="Dialogue.LineHandler"/>
     #pragma warning disable CA1815
     public struct Line
     {
-        internal Line(string stringID) : this()
+        /// <summary>
+        /// Initialises a new instance of the <see cref="Line"/> struct.
+        /// </summary>
+        /// <param name="stringID">The unique line ID for this content.</param>
+        /// <param name="substitutions">The list of values that should be
+        /// substituted into the final line.
+        /// </param>
+        public Line(string stringID, string[] substitutions) : this()
         {
             this.ID = stringID;
-            this.Substitutions = Array.Empty<string>();
+            this.Substitutions = substitutions;
         }
 
         /// <summary>
         /// The string ID for this line.
         /// </summary>
-        public string ID;
+        public readonly string ID;
 
         /// <summary>
-        /// The values that should be inserted into the user-facing text
-        /// before delivery.
+        /// The values that should be inserted into the user-facing text before
+        /// delivery.
         /// </summary>
-        public string[] Substitutions;
+        public readonly string[] Substitutions;
     }
     #pragma warning restore CA1815
 
@@ -81,7 +89,7 @@ namespace Yarn
     /// cref="Dialogue"/> to the game.
     /// </summary>
     /// <remarks>
-    /// You do not create instances of this struct yourself. They are
+    /// You typically do not create instances of this struct yourself. They are
     /// created by the <see cref="Dialogue"/> during program execution.
     /// </remarks>
     /// <seealso cref="Dialogue.OptionsHandler"/>
@@ -203,6 +211,20 @@ namespace Yarn
     /// </remarks>
     /// <param name="message">The text that should be logged.</param>
     public delegate void Logger(string message);
+
+    /// <summary>
+    /// Contains methods for parsing raw text into a <see
+    /// cref="MarkupParseResult"/>.
+    /// </summary>
+    public interface IMarkupParser {
+        /// <summary>
+        /// Parses a string into markup, given a locale.
+        /// </summary>
+        /// <param name="rawText">The text to parse.</param>
+        /// <param name="localeCode">The locale to use when parsing the text.</param>
+        /// <returns></returns>
+        public MarkupParseResult ParseMarkup(string rawText, string localeCode);
+    }
 
     /// <summary>
     /// Represents different kinds of variables that can be fetched from a <see
@@ -498,7 +520,7 @@ namespace Yarn
     /// <summary>
     /// Co-ordinates the execution of Yarn programs.
     /// </summary>
-    public class Dialogue : IAttributeMarkerProcessor, ISmartVariableEvaluator
+    public class Dialogue : IAttributeMarkerProcessor, ISmartVariableEvaluator, IMarkupParser
     {
 
         /// <summary>
@@ -554,22 +576,6 @@ namespace Yarn
             get => vm.LineHandler;
             set => vm.LineHandler = value;
         }
-
-        /// <summary>
-        /// Gets or sets the <see cref="Dialogue"/>'s locale, as an IETF BCP 47
-        /// code.
-        /// </summary>
-        /// <remarks>
-        /// <para>
-        /// This code is used to determine how the <c>plural</c> and <c>ordinal</c>
-        /// markers determine the plural class of numbers.
-        /// </para>
-        /// <para>
-        /// For example, the code "en-US" represents the English language as
-        /// used in the United States.
-        /// </para>
-        /// </remarks>
-        public string LanguageCode { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="Yarn.OptionsHandler"/> that is called
@@ -1015,9 +1021,9 @@ namespace Yarn
         /// </remarks>
         /// <param name="line">The line of text to parse.</param>
         /// <returns>The results of parsing the markup.</returns>
-        public MarkupParseResult ParseMarkup(string line)
+        public MarkupParseResult ParseMarkup(string line, string localeCode)
         {
-            return this.lineParser.ParseMarkup(line);
+            return this.lineParser.ParseMarkup(line, localeCode);
         }
 
         /// <summary>
@@ -1073,7 +1079,7 @@ namespace Yarn
         /// cref="ArgumentException">Thrown when the string contains a
         /// <c>plural</c> or <c>ordinal</c> marker, but the specified value cannot be
         /// parsed as a number.</throws>
-        string IAttributeMarkerProcessor.ReplacementTextForMarker(MarkupAttributeMarker marker)
+        string IAttributeMarkerProcessor.ReplacementTextForMarker(MarkupAttributeMarker marker, string localeCode)
         {
 
             if (marker.TryGetProperty("value", out var valueProp) == false)
@@ -1099,9 +1105,9 @@ namespace Yarn
             // If it's not "select", then it's "plural" or "ordinal"
 
             // First, ensure that we have a locale code set
-            if (this.LanguageCode == null)
+            if (localeCode == null)
             {
-                throw new InvalidOperationException("Dialogue locale code is not set. 'plural' and 'ordinal' markers cannot be called unless one is set.");
+                throw new InvalidOperationException("Locale code was not provided. 'plural' and 'ordinal' markers cannot be called unless one is set.");
             }
 
             // Attempt to parse the value as a double, so we can determine
@@ -1118,7 +1124,7 @@ namespace Yarn
             string languageCode;
             try
             {
-                var culture = new System.Globalization.CultureInfo(this.LanguageCode);
+                var culture = new System.Globalization.CultureInfo(localeCode);
                 if (culture.IsNeutralCulture)
                 {
                     languageCode = culture.Name;
@@ -1129,7 +1135,7 @@ namespace Yarn
                     if (culture != null) {
                         languageCode = culture.Name;
                     } else {
-                        languageCode = this.LanguageCode;
+                        languageCode = localeCode;
                     }
                 }
             }
@@ -1137,7 +1143,7 @@ namespace Yarn
             {
                 // this.LanguageCode doesn't represent a known culture. Fall
                 // back to using what the user provided.
-                languageCode = this.LanguageCode;
+                languageCode = localeCode;
             }
 
             CLDRPlurals.PluralCase pluralCase;
