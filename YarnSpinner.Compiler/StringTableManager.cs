@@ -20,8 +20,10 @@ namespace Yarn.Compiler
             {
                 foreach (var item in this.StringTable)
                 {
-                    if (item.Value.isImplicitTag)
+                    if (item.Value.isImplicitTag && item.Value.shadowLineID == null)
                     {
+                        // This is an implicitly created line ID, and is not
+                        // shadowing another line.
                         return true;
                     }
                 }
@@ -68,7 +70,17 @@ namespace Yarn.Compiler
                     }
 
                     string suffix = count != 0 ? count.ToString() : string.Empty;
-                    lineIDUsed = "line:" + CRC32.GetChecksumString(candidateSeed + suffix);
+
+                    string prefix = "";
+                    if (shadowID != null)
+                    {
+                        // Line IDs that we generate for shadow lines are prefixed
+                        // with a tag to help identify them. (Don't rely on this
+                        // prefix to detect that a line ID is a shadow line - it's
+                        // purely for internal convenience.)
+                        prefix = "sh_";
+                    }
+                    lineIDUsed = "line:" + prefix + CRC32.GetChecksumString(candidateSeed + suffix);
                     count += 1;
                 }
                 while (this.StringTable.ContainsKey(lineIDUsed) == true);

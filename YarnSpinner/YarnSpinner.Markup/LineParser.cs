@@ -34,7 +34,7 @@ namespace Yarn.Markup
     /// <summary>
     /// Parses text and produces markup information.
     /// </summary>
-    internal class LineParser
+    internal class LineParser : IMarkupParser
     {
         /// <summary>
         /// The name of the property in replacement attributes that
@@ -144,7 +144,7 @@ namespace Yarn.Markup
         /// text.</summary>
         /// <param name="input">The text to parse.</param>
         /// <returns>The resulting markup information.</returns>
-        internal MarkupParseResult ParseMarkup(string input)
+        public MarkupParseResult ParseMarkup(string input, string localeCode)
         {
             if (string.IsNullOrEmpty(input))
             {
@@ -216,7 +216,7 @@ namespace Yarn.Markup
                         wasReplacementMarker = true;
 
                         // Process it and get the replacement text!
-                        var replacementText = this.ProcessReplacementMarker(marker);
+                        var replacementText = this.ProcessReplacementMarker(marker, localeCode);
 
                         // Insert it into our final string and update our
                         // position accordingly
@@ -323,8 +323,9 @@ namespace Yarn.Markup
         /// the plain text.
         /// </summary>
         /// <param name="marker">The marker to parse.</param>
+        /// <param name="localeCode">The locale code to use when processing the marker.</param>
         /// <returns>The replacement text to insert.</returns>
-        private string ProcessReplacementMarker(MarkupAttributeMarker marker)
+        private string ProcessReplacementMarker(MarkupAttributeMarker marker, string localeCode)
         {
             // If it's not an open or self-closing marker, we have no text
             // to insert, so return the empty string
@@ -357,7 +358,7 @@ namespace Yarn.Markup
 
             // Fetch the text that should be inserted into the string at
             // this point
-            var replacementText = this.markerProcessors[marker.Name].ReplacementTextForMarker(marker);
+            var replacementText = this.markerProcessors[marker.Name].ReplacementTextForMarker(marker, localeCode);
 
             return replacementText;
         }

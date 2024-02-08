@@ -42,7 +42,8 @@ namespace Yarn.Markup
         /// </remarks>
         /// <param name="marker">The marker that should have text
         /// inserted.</param>
+        /// <param name="localeCode">The locale to use when preparing replacement text.</param>
         /// <returns>The replacement text to insert.</returns>
-        string ReplacementTextForMarker(MarkupAttributeMarker marker);
+        string ReplacementTextForMarker(MarkupAttributeMarker marker, string localeCode);
     }
 }

@@ -15,7 +15,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestMarkupParsing() {
             var line = "A [b]B[/b]";
-            var markup = dialogue.ParseMarkup(line);
+            var markup = dialogue.ParseMarkup(line, "en");
             
             markup.Text.Should().Be("A B");
             markup.Attributes.Should().ContainSingle();
@@ -28,7 +28,7 @@ namespace YarnSpinner.Tests
         public void TestOverlappingAttributes() {
             var line = "[a][b][c]X[/b][/a]X[/c]";
 
-            var markup = dialogue.ParseMarkup(line);
+            var markup = dialogue.ParseMarkup(line, "en");
 
             markup.Attributes.Count.Should().Be(3);
             markup.Attributes[0].Name.Should().Be("a");
@@ -41,7 +41,7 @@ namespace YarnSpinner.Tests
         public void TestTextExtraction() {
             var line = "A [b]B [c]C[/c][/b]";
 
-            var markup = dialogue.ParseMarkup(line);
+            var markup = dialogue.ParseMarkup(line, "en");
 
             markup.TextForAttribute(markup.Attributes[0]).Should().Be("B C");
             markup.TextForAttribute(markup.Attributes[1]).Should().Be("C");
@@ -56,7 +56,7 @@ namespace YarnSpinner.Tests
             // d: Starts inside X, ends outside
             // e: Starts and ends outside X
             var line = "[a][b]A [c][X]x[/b] [d]x[/X][/c] B[/d] [e]C[/e][/a]";
-            var originalMarkup = dialogue.ParseMarkup(line);
+            var originalMarkup = dialogue.ParseMarkup(line, "en");
 
             // Remove the "X" attribute
             originalMarkup.Attributes[3].Name.Should().Be("X");
@@ -94,7 +94,7 @@ namespace YarnSpinner.Tests
         public void TestFindingAttributes()
         {
             var line = "A [b]B[/b] [b]C[/b]";
-            var markup = dialogue.ParseMarkup(line);
+            var markup = dialogue.ParseMarkup(line, "en");
 
             MarkupAttribute attribute;
             bool found;
@@ -118,7 +118,7 @@ namespace YarnSpinner.Tests
         [InlineData("S [a]á[/a]")]
         [InlineData("S [a]S[/a]")]
         public void TestMultibyteCharacterParsing(string input) {
-            var markup = dialogue.ParseMarkup(input);
+            var markup = dialogue.ParseMarkup(input, "en");
 
             // All versions of this string should have the same position
             // and length of the attribute, despite the presence of
@@ -135,7 +135,7 @@ namespace YarnSpinner.Tests
         public void TestUnexpectedCloseMarkerThrows(string input) {
             var parsingInvalidMarkup = new Action(() => 
             {
-                var markup = dialogue.ParseMarkup(input);
+                var markup = dialogue.ParseMarkup(input, "en");
             });
 
             parsingInvalidMarkup.Should().Throw<MarkupParseException>();
@@ -144,7 +144,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestMarkupShortcutPropertyParsing() {
             var line = "[a=1]s[/a]";
-            var markup = dialogue.ParseMarkup(line);
+            var markup = dialogue.ParseMarkup(line, "en");
 
             // Should have a single attribute, "a", at position 0 and
             // length 1
@@ -164,7 +164,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestMarkupMultiplePropertyParsing() {
             var line = "[a p1=1 p2=2]s[/a]";
-            var markup = dialogue.ParseMarkup(line);
+            var markup = dialogue.ParseMarkup(line, "en");
 
             markup.Attributes[0].Name.Should().Be("a");
             
@@ -189,7 +189,7 @@ namespace YarnSpinner.Tests
         [InlineData("[a p=true]s[/a]", MarkupValueType.Bool, "True")]
         [InlineData("[a p=false]s[/a]", MarkupValueType.Bool, "False")]
         public void TestMarkupPropertyParsing(string input, MarkupValueType expectedType, string expectedValueAsString) {
-            var markup = dialogue.ParseMarkup(input);
+            var markup = dialogue.ParseMarkup(input, "en");
 
             var attribute = markup.Attributes[0];
             var propertyValue= attribute.Properties["p"];
@@ -203,7 +203,7 @@ namespace YarnSpinner.Tests
         [InlineData("A [b]B [c]C[/b][/c] D")] // attributes can be closed out of order
         [InlineData("A [b]B [c]C[/] D")] // "[/]" closes all open attributes
         public void TestMultipleAttributes(string input) {
-            var markup = dialogue.ParseMarkup(input);
+            var markup = dialogue.ParseMarkup(input, "en");
 
             markup.Text.Should().Be("A B C D");
 
@@ -223,7 +223,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestSelfClosingAttributes() {
             var line = "A [a/] B";
-            var markup = dialogue.ParseMarkup(line);
+            var markup = dialogue.ParseMarkup(line, "en");
 
             markup.Text.Should().Be("A B");
 
@@ -243,7 +243,7 @@ namespace YarnSpinner.Tests
         [InlineData("A [nomarkup trimwhitespace=false/] B", "A  B")]
         [InlineData("A [nomarkup trimwhitespace=true/] B", "A B")]
         public void TestAttributesMayTrimTrailingWhitespace(string input, string expectedText) {
-            var markup = dialogue.ParseMarkup(input);
+            var markup = dialogue.ParseMarkup(input, "en");
 
             markup.Text.Should().Be(expectedText);
         }
@@ -254,7 +254,7 @@ namespace YarnSpinner.Tests
         // character attribute can also be explicit
         [InlineData("[character name=\"Mae\"]Mae: [/character]Wow!")] 
         public void TestImplicitCharacterAttributeParsing(string input) {
-            var markup = dialogue.ParseMarkup(input);
+            var markup = dialogue.ParseMarkup(input, "en");
 
             markup.Text.Should().Be("Mae: Wow!");
             markup.Attributes.Should().ContainSingle();
@@ -270,7 +270,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestNoMarkupModeParsing() {
             var line = "S [a]S[/a] [nomarkup][a]S;][/a][/nomarkup]";
-            var markup = dialogue.ParseMarkup(line);
+            var markup = dialogue.ParseMarkup(line, "en");
 
             markup.Text.Should().Be("S S [a]S;][/a]");
 
@@ -288,7 +288,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestMarkupEscaping() {
             var line = @"[a]hello \[b\]hello\[/b\][/a]";
-            var markup = dialogue.ParseMarkup(line);
+            var markup = dialogue.ParseMarkup(line, "en");
 
             markup.Text.Should().Be("hello [b]hello[/b]");
             markup.Attributes.Should().ContainSingle();
@@ -300,7 +300,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestNumericProperties() {
             var line = @"[select value=1 1=one 2=two 3=three /]";
-            var markup = dialogue.ParseMarkup(line);
+            var markup = dialogue.ParseMarkup(line, "en");
 
             markup.Attributes.Should().ContainSingle();
             markup.Attributes[0].Name.Should().Be("select");
@@ -332,8 +332,7 @@ namespace YarnSpinner.Tests
                 {
                     var line = "[plural value=" + testCase.Value + " one=\"a single cat\" other=\"% cats\"/]";
 
-                    dialogue.LanguageCode = testCase.Locale;
-                    var markup = dialogue.ParseMarkup(line);
+                    var markup = dialogue.ParseMarkup(line, testCase.Locale);
                     markup.Text.Should().Be(testCase.Expected, $"{testCase.Value} in locale {testCase.Locale} should have the correct plural case");
                 }
             }

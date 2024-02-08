@@ -31,7 +31,7 @@ namespace Yarn.Markup
     internal class NoMarkupTextProcessor : IAttributeMarkerProcessor
     {
         /// <inheritdoc/>
-        public string ReplacementTextForMarker(MarkupAttributeMarker marker)
+        public string ReplacementTextForMarker(MarkupAttributeMarker marker, string localeCode)
         {
             if (marker.TryGetProperty(LineParser.ReplacementMarkerContents, out var prop))
             {

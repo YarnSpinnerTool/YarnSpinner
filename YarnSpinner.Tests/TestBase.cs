@@ -117,7 +117,7 @@ namespace YarnSpinner.Tests
 
             var substitutedText = Dialogue.ExpandSubstitutions(stringInfo.text, line.Substitutions);
 
-            return dialogue.ParseMarkup(substitutedText).Text;
+            return dialogue.ParseMarkup(substitutedText, "en").Text;
         }
         
         public TestBase(ITestOutputHelper outputHelper)
@@ -125,8 +125,6 @@ namespace YarnSpinner.Tests
             this.output = outputHelper;
             
             dialogue = new Dialogue (storage);
-
-            dialogue.LanguageCode = "en";
 
             dialogue.ContentSaliencyStrategy = new Yarn.Saliency.BestLeastRecentlyViewedSalienceStrategy(storage);
 
