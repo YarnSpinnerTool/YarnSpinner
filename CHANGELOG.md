@@ -22,6 +22,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - a warning diagnostic will be generated for each empty node
 - Fixed a bug where set-referencing inferred value set statements would crash the compiler
 - The language server no longer truncates XML documentation comments when it reaches a nested XML node. 
+- Updated dependency versions:
+  - Google.Protobuf: Moved from `3.15.0` to `3.25.2`.
+  - System.Text.Json: Moved from `7.0.2` to `8.0.1`.
+  - Microsoft.Extensions.FileSystemGlobbing: Moved from `7.0.0` to `8.0.0`
 
 ### Removed
 
