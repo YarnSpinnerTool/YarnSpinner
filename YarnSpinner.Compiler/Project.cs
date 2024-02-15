@@ -196,6 +196,13 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// Contains any data parsed from the source file that was not matched
+        /// to a property on this type.
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement>? ExtensionData { get; set; }
+
+        /// <summary>
         /// Gets the path of the directory from which to start searching for
         /// .yarn files. This value is null if the directory does not exist on
         /// disk.
