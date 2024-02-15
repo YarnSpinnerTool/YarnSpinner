@@ -182,7 +182,7 @@ namespace Yarn.Compiler
         /// location.
         /// </summary>
         [JsonIgnore]
-        public string DefinitionsPath
+        public string? DefinitionsPath
         {
             get
             {
