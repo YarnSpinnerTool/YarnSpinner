@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [2.4.2] 2024-02-24
+
+### Added
+
 - Standard library functions (e.g. `random`, `round_places`, `dice`) have been moved from Yarn Spinner for Unity to the core Yarn Spinner library.
 - Added a `format` function to the standard library.
   - This method works identically to the C# `string.Format`, but currently only accepts one parameter.
@@ -31,7 +39,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - System.Text.Json: Moved from `7.0.2` to `8.0.1`.
   - Microsoft.Extensions.FileSystemGlobbing: Moved from `7.0.0` to `8.0.0`
 
-### Removed
+## [2.4.1] 2024-01-30
+
+- Version 2.4.1 is the first release of the paid version of Yarn Spinner on the [Unity Asset Store](https://assetstore.unity.com/packages/tools/behavior-ai/yarn-spinner-for-unity-267061) and on [itch.io](https://yarnspinner.itch.io). It's identical to v2.4.0.
+- Yarn Spinner is and will remain free and open source - we also make it available for purchase as an excellent way to support the team.
+- While you're reading, why not consider our [paid add-ons](https://yarnspinner.itch.io), which add some fantastic and easy-to-customise dialogue views?
 
 ## [2.4.0] 2023-11-14
 
