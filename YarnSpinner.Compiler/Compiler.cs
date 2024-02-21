@@ -548,8 +548,11 @@ namespace Yarn.Compiler
             var projectDebugInfo = new ProjectDebugInfo
             {
                 Nodes = nodeDebugInfos,
-                
             };
+
+            // The user-defined types are all types that we know about, minus
+            // all types that were pre-defined.
+            var userDefinedTypes = knownTypes.Except(Types.AllBuiltinTypes).ToList();
 
             var finalResult = new CompilationResult
             {
@@ -560,6 +563,7 @@ namespace Yarn.Compiler
                 FileTags = fileTags,
                 ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
                 ProjectDebugInfo = projectDebugInfo,
+                UserDefinedTypes = userDefinedTypes,
             };
             
             return finalResult;

@@ -236,6 +236,7 @@ You can use any of the following kinds of expressions in a `when:` header:
 - Fixed a bug where set-referencing inferred value set statements would crash the compiler
 - The language server no longer truncates XML documentation comments when it reaches a nested XML node. 
 - The constructor for `Yarn.Line` is now public. Previously, it was internal.
+- `CompilationResult` now includes a property `UserDefinedTypes`, which contains the types that the user has defined in their script (for example, enums).
 
 ### Removed
 

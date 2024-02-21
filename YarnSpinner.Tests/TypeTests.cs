@@ -9,6 +9,7 @@ using Yarn.Compiler;
 using FluentAssertions;
 using TypeChecker;
 using Xunit.Abstractions;
+using System.Net.WebSockets;
 
 namespace YarnSpinner.Tests
 {
@@ -996,6 +997,31 @@ namespace YarnSpinner.Tests
             resultConstraint.Children.ElementAt(1).Children.Should().BeEquivalentTo(new[] { a, d, e, f });
             resultConstraint.Children.ElementAt(2).Children.Should().BeEquivalentTo(new[] { b, c, f });
             resultConstraint.Children.ElementAt(3).Children.Should().BeEquivalentTo(new[] { b, d, e, f });
+        }
+
+        [Fact]
+        public void TestUserDefinedTypesAreProvided()
+        {
+            var source = CreateTestNode(@"
+<<enum MyEnum>>
+<<case One>>
+<<case Two>>
+<<case Three>>
+<<endenum>>
+");
+
+            var compilationJob = CompilationJob.CreateFromString("input", source);
+            compilationJob.AllowPreviewFeatures = true;
+            var result = Compiler.Compile(compilationJob);
+
+            result.ContainsErrors.Should().BeFalse();
+            result.UserDefinedTypes.Should().NotBeEmpty();
+
+            var userEnum = result.UserDefinedTypes
+                .Should().Contain(i => i.Name == "MyEnum")
+                .Which.Should().BeOfType<EnumType>();
+
+            result.UserDefinedTypes.Should().NotContain(Types.String, "String is built-in, and not user-defined");
         }
     }
 }

@@ -137,6 +137,12 @@ namespace Yarn.Compiler
         /// </summary>
         public ProjectDebugInfo? ProjectDebugInfo { get; internal set; }
 
+        /// <summary>
+        /// Gets a collection of any types that were defined by the user in the
+        /// input (for example, user-defined enum types.)
+        /// </summary>
+        public IReadOnlyCollection<IType> UserDefinedTypes { get; internal set; } = Array.Empty<IType>();
+
         public string GetDescriptionForVariable(string variableName)
         {
             return this.Declarations.FirstOrDefault(d => d.Name == variableName)?.Description ?? "<unknown variable>";
