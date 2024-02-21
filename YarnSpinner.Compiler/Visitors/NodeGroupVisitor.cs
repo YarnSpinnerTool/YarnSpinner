@@ -1,6 +1,7 @@
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using System.Linq;
+using Yarn.Utility;
 
 namespace Yarn.Compiler
 {

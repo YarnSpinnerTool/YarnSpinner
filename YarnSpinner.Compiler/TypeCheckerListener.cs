@@ -9,6 +9,7 @@ namespace Yarn.Compiler
     using Antlr4.Runtime;
     using Antlr4.Runtime.Misc;
     using TypeChecker;
+    using Yarn.Utility;
 
     /// <summary>
     /// <see cref="TypeCheckerListener"/> creates type constraints (subclasses
@@ -992,6 +993,19 @@ namespace Yarn.Compiler
                     // diagnostics.
                     return;
                 }
+
+                // If the raw type is number, we require that all values be integers.
+                if (rawType == Types.Number) {
+                    foreach (var @case in context.enum_case_statement()) {
+                        float number = Convert.ToSingle(@case.RawValue!.InternalValue);
+                        if ((int)(number) != number) {
+                            // Not an integer!
+                            this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"Number raw values on enum cases must be integers"));
+                        }
+                    }
+                }
+
+                
             }
             else
             {

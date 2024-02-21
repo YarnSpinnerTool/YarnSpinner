@@ -7,6 +7,7 @@
 namespace Yarn.Compiler
 {
     using System.Collections.Generic;
+    using Yarn.Utility;
 
     internal class StringTableManager
     {

@@ -1,12 +1,12 @@
 // Copyright Yarn Spinner Pty Ltd
 // Licensed under the MIT License. See LICENSE.md in project root for license information.
 
-namespace Yarn.Compiler
+namespace Yarn.Utility
 {
     /// <summary>
     /// Provides a method for generating CRC32 hashes of strings.
     /// </summary>
-    internal static class CRC32
+    public static class CRC32
     {
         private static readonly uint[] LookupTable;
 
