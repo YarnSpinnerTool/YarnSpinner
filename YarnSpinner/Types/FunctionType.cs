@@ -7,7 +7,7 @@ namespace Yarn
     using System.Linq;
 
     /// <summary>
-    /// A type that represents functions.
+    /// A type that represents a function.
     /// </summary>
     /// <remarks>
     /// Functions have parameters and a return type, and can be called from
