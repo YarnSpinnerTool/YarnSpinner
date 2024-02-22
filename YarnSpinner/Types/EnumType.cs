@@ -7,7 +7,7 @@ namespace Yarn
     /// <summary>
     /// A type that represents enumerations.
     /// </summary>
-    internal class EnumType : TypeBase
+    public class EnumType : TypeBase
     {
         private readonly string name;
         private readonly string description;
@@ -40,8 +40,24 @@ namespace Yarn
 
         /// <inheritdoc/>
         public override string Description => description;
+        
+        /// <summary>
+        /// Gets the type of this enum's members.
+        /// </summary>
+        public TypeBase RawType => rawType;
 
-        internal TypeBase RawType => rawType;
+        /// <summary>
+        /// Gets the collection of enum cases in this enum.
+        /// </summary>
+        public IEnumerable<KeyValuePair<string, ConstantTypeProperty>> EnumCases {
+            get {
+                foreach (var member in TypeMembers) {
+                    if (member.Value is ConstantTypeProperty constant) {
+                        yield return new KeyValuePair<string,ConstantTypeProperty>(member.Key, constant);
+                    }
+                }
+            }
+        }
 
         private static MethodCollection DefaultMethods => new Dictionary<string, System.Delegate>
         {
@@ -53,10 +69,10 @@ namespace Yarn
             get {
                 // The default value for an enum type is the first case found
                 // in it. 
-                if (this.typeMembers.Count == 0) {
+                if (this._typeMembers.Count == 0) {
                     throw new InvalidOperationException($"Cannot get a default value for enum {Name}, because it has no members (which is not allowed)");
                 } else {
-                    var member = System.Linq.Enumerable.First(this.typeMembers).Value;
+                    var member = System.Linq.Enumerable.First(this._typeMembers).Value;
                     return (member as ConstantTypeProperty)?.Value ?? 0;
                 }
             }
@@ -69,7 +85,7 @@ namespace Yarn
         /// <param name="member">The member to add for the given name.</param>
         internal void AddMember(string name, ConstantTypeProperty member)
         {
-            this.typeMembers.Add(name, member);
+            this._typeMembers.Add(name, member);
         }
 
         private static bool MethodEqualTo(Value a, Value b)
