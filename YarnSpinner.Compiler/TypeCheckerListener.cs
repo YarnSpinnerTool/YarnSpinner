@@ -186,7 +186,7 @@ namespace Yarn.Compiler
             return item;
         }
 
-        private TypeConstraint AddEqualityDisjunctionConstraint(IType a, IEnumerable<IType> b, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
+        private TypeConstraint AddDisjunctionOfEqualitiesConstraint(IType a, IEnumerable<IType> b, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
         {
             if (b.Count() == 0)
             {
@@ -521,7 +521,7 @@ namespace Yarn.Compiler
                     throw new InvalidOperationException($"Internal error: {typeof(YarnSpinnerParser.ExpAddSubContext)} had invalid op \"{op}\"");
             }
 
-            this.AddEqualityDisjunctionConstraint(type, permittedTypes, context, s => $"Operation '{op}' can't be used with a value of type {operandAType.Substitute(s)}");
+            this.AddDisjunctionOfEqualitiesConstraint(type, permittedTypes, context, s => $"Operation '{op}' can't be used with a value of type {operandAType.Substitute(s)}");
 
             this.AddEqualityConstraint(type, operandAType, context, s => $"Operation '{op}' can't be used with a value of type {operandAType.Substitute(s)}");
             this.AddEqualityConstraint(operandAType, operandBType, context, s => $"Operation '{op}'s values must both be the same type, not {operandAType.Substitute(s)} and {operandBType.Substitute(s)}");
