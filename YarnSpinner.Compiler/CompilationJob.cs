@@ -94,6 +94,12 @@ namespace Yarn.Compiler
         public bool AllowPreviewFeatures { get; set; }
 
         /// <summary>
+        /// The collection of type declarations that should be imported and made
+        /// available to the compiler, prior to compilation.
+        /// </summary>
+        public IEnumerable<IType>? TypeDeclarations { get; set; }
+
+        /// <summary>
         /// Creates a new <see cref="CompilationJob"/> using the contents of a
         /// collection of files.
         /// </summary>

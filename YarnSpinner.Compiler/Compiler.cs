@@ -58,6 +58,12 @@ namespace Yarn.Compiler
             // All type definitions that we've encountered while parsing. We'll add to this list when we encounter user-defined types.
             var knownTypes = Types.AllBuiltinTypes.Cast<TypeBase>().ToList();
 
+            // Add any imported types:
+            if (compilationJob.TypeDeclarations != null)
+            {
+                knownTypes.AddRange(compilationJob.TypeDeclarations.OfType<TypeBase>());
+            }
+
             if (compilationJob.VariableDeclarations != null)
             {
                 declarations.AddRange(compilationJob.VariableDeclarations);
