@@ -538,7 +538,13 @@ namespace Yarn.Compiler
                 }
                 else if (declaration.Type is EnumType enumType)
                 {
-                    value = new Operand(Convert.ToSingle(declaration.DefaultValue));
+                    if (enumType.RawType == Types.Number) {
+                        value = new Operand(Convert.ToSingle(declaration.DefaultValue));
+                    } else if (enumType.RawType == Types.String) {
+                        value = new Operand(Convert.ToString(declaration.DefaultValue));
+                    } else {
+                        throw new ArgumentOutOfRangeException($"Cannot create an initial value for enum type {declaration.Type.Name}: invalid raw type {enumType.RawType.Name}");
+                    }
                 }
                 else
                 {
