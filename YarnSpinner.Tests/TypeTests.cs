@@ -1023,5 +1023,28 @@ namespace YarnSpinner.Tests
 
             result.UserDefinedTypes.Should().NotContain(Types.String, "String is built-in, and not user-defined");
         }
+
+        enum TestEnum {
+            One,
+            Two,
+            Three = 128
+        }
+
+        [Fact]
+        public void TestExternalEnumsAreImported()
+        {
+            var source = CreateTestNode(@"<<set $var1 = TestEnum.One>>
+            <<set $var2 = .Two>>
+            ");
+
+            var compilationJob = CompilationJob.CreateFromString("input", source);
+            compilationJob.AllowPreviewFeatures = true;
+
+            compilationJob.TypeDeclarations = new List<IType> { EnumTypeBuilder.FromEnum<TestEnum>() };
+
+            var result = Compiler.Compile(compilationJob);
+
+            result.ContainsErrors.Should().BeFalse();
+        }
     }
 }
