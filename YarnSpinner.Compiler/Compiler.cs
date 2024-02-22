@@ -243,6 +243,7 @@ namespace Yarn.Compiler
 
                 bool anySucceeded;
                 do {
+#if !DEBUG
                     if (watchdog.ElapsedMilliseconds > TypeSolverTimeLimit * 1000) {
                         // We've taken too long to solve. Create error
                         // diagnostics for the affected expressions.
@@ -251,6 +252,7 @@ namespace Yarn.Compiler
                         }
                         break;
                     }
+#endif
 
                     // Repeatedly attempt to solve each constraint individually.
                     // After each attempt, attempt to eliminate whatever
