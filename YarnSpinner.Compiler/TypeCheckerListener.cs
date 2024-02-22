@@ -443,7 +443,16 @@ namespace Yarn.Compiler
             {
                 // We don't have a type name, so we can only constrain based on
                 // the member name.
-                this.AddHasEnumMemberConstraint(context.Type, memberName, context.typeMemberReference(), s => $"No type containing a member named {memberName} could be found");
+                this.AddHasEnumMemberConstraint(context.Type, memberName, context.typeMemberReference(), s =>
+                {
+                    if (context.Type.Substitute(s) is TypeBase resolvedType) {
+                        // The type of the context was resolved, and it doesn't have this member.
+                        return $"Type {resolvedType} does not have a member named {memberName}";
+                    } else {
+                        // The type of the context couldn't be resolved.
+                        return $"No type containing a member named {memberName} could be found";
+                    }
+                });
             }
         }
 
