@@ -27,6 +27,8 @@ namespace Yarn
         /// <summary>Gets the type representing a typing error.</summary>
         internal static IType Error { get; } = new ErrorType();
 
+        internal static IType Enum { get; } = new EnumBase();
+
         /// <summary>
         /// Gets the collection of all built-in types.
         /// </summary>

@@ -4,6 +4,21 @@ namespace Yarn
     using System.Collections.Generic;
     using MethodCollection = System.Collections.Generic.IReadOnlyDictionary<string, System.Delegate>;
 
+    public class EnumBase : TypeBase
+    {
+        public EnumBase() : base(null)
+        {
+        }
+
+        public override string Name => "Enum";
+
+        public override IType? Parent => Types.Any;
+
+        public override string Description => "Enum";
+
+        internal override IConvertible DefaultValue => throw new InvalidOperationException();
+    }
+
     /// <summary>
     /// A type that represents enumerations.
     /// </summary>
@@ -36,7 +51,7 @@ namespace Yarn
         public override string Name => name;
 
         /// <inheritdoc/>
-        public override IType Parent => Types.Any;
+        public override IType Parent => Types.Enum;
 
         /// <inheritdoc/>
         public override string Description => description;
