@@ -429,6 +429,28 @@ namespace Yarn.Compiler
                 return;
             }
 
+            // Attempt to find a type that we already know about, by matching
+            // the type name (if provided) and matching the member name. We can
+            // only use the result if precisely one type matches; otherwise,
+            // we'll need to resolve the type via constraints.
+            var matchingTypes = this.knownTypes.Where(t =>
+                // A name was provided, and the type matches the name
+                (typeName == null || t.Name == typeName) 
+                // The type's members include the provided member name
+                && t.TypeMembers.Keys.Contains(memberName)
+            );
+
+            if (matchingTypes.Count() == 1)
+            {
+                // Precisely 1 type matches what was specified. The type of this
+                // expression must be this.
+                context.Type = matchingTypes.Single();
+                return;
+            }
+
+            // Otherwise, the type of this expression needs to be resolved via
+            // constraints.
+
             context.Type = this.GenerateTypeVariable(null, context);
 
             if (typeName != null)
