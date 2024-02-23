@@ -14,10 +14,31 @@ namespace Yarn.Compiler
     using Antlr4.Runtime.Tree;
     using TypeChecker;
 
+    /// <summary>
+    /// Contains header names and strings used by the compiler.
+    /// </summary>
     public static class SpecialHeaderNames {
+        /// <summary>
+        /// The name of the header that indicates a node's title.
+        /// </summary>
         public const string TitleHeader = "title";
+
+        /// <summary>
+        /// The name of a header that indicates a node's condition when part of
+        /// a node group.
+        /// </summary>
         public const string WhenHeader = "when";
+
+        /// <summary>
+        /// The name of the header that indicates which node group a node
+        /// belongs to.
+        /// </summary>
         public const string NodeGroupHeader = "$Yarn.Internal.NodeGroup";
+
+        /// <summary>
+        /// The name of the header that indicates the name of the tracking
+        /// variable for this node.
+        /// </summary>
         public const string TrackingVariableNameHeader = Node.TrackingVariableNameHeader;
     }
 
@@ -1167,8 +1188,23 @@ namespace Yarn.Compiler
             /// </summary>
             public string? NodeTitle => GetHeader(SpecialHeaderNames.TitleHeader)?.header_value?.Text;
 
+            /// <summary>
+            /// Gets the name of the node group that this node is part of, if
+            /// any.
+            /// </summary>
             public string? NodeGroup => GetHeader(SpecialHeaderNames.NodeGroupHeader)?.header_value?.Text;
 
+            /// <summary>
+            /// Gets the first header in this node named <paramref name="key"/>.
+            /// </summary>
+            /// <param name="key">The key of the header to find.</param>
+            /// <returns>A header whose <see cref="HeaderContext.header_key"/>
+            /// is <paramref name="key"/>. </returns>
+            /// <remarks>
+            /// This method returns only the first header with the specified
+            /// key. To fetch all headers with this key, use <see
+            /// cref="GetHeaders"/>.
+            /// </remarks>
             public HeaderContext? GetHeader(string key) {
                 return this.header()?
                     .FirstOrDefault(h => 
@@ -1177,7 +1213,13 @@ namespace Yarn.Compiler
                 );
             }
 
-            public IEnumerable<HeaderContext> GetHeaders(string? key = null) {
+            /// <summary>
+            /// Gets all headers in this node named <paramref name="key"/>.
+            /// </summary>
+            /// <param name="key">The key of the header to find.</param>
+            /// <returns>A collection of headers whose <see cref="HeaderContext.header_key"/>
+            /// is <paramref name="key"/>. </returns>
+            internal IEnumerable<HeaderContext> GetHeaders(string? key = null) {
                 if (this.header() == null) {
                     return Enumerable.Empty<HeaderContext>();
                 }
