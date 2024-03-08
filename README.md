@@ -1,6 +1,6 @@
 # Yarn Spinner
 
-<img src="https://yarnspinner.dev/img/YarnSpinnerLogo.png" alt="Yarn Spinner logo" width="100px;" align="right">
+<img src="https://downloads.yarnspinner.dev/get/YarnSpinnerLogo.png" alt="Yarn Spinner logo" width="100px;" align="right">
 
 [Yarn Spinner](https://yarnspinner.dev) is the friendly tool for writing dialogue in games. It's easy for writers to use, and has powerful features for programmers.
 
