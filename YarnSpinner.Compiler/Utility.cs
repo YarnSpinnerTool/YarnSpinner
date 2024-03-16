@@ -862,6 +862,9 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <inheritdoc/>
+        public override string ToString() => this.Name;
+
         /// <summary>
         /// Get the ancestors of this block - that is, blocks that may run immediately before this block.
         /// </summary>

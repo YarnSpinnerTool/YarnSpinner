@@ -214,11 +214,6 @@ You can use any of the following kinds of expressions in a `when:` header:
 
 ### Changed
 
-- Updated the schema for .ysls.json files:
-  - Commands may no longer specify a return type.
-  - Functions must now specify a return type.
-  - Changed the definition of 'types' to be an enum of "string", "number", "bool", or "any".
-    - Enums in JSON schema are type sensitive, so a warning will be issued for types that have capital letters. To fix these warnings, change your type names in your `.ysls.json` file to be lowercase. (These warnings have no impact on your Yarn script editing experience or runtime behaviour.)
 - The Antlr4.Runtime dependency has been upgraded from 4.7.2 to 4.13.1.
 - The internal format for storing compiled programs has been updated. Existing Yarn scripts will need to be recompiled in order to work in Yarn Spinner 3.0.
   - Internal jumps inside a node now jump to specific instruction indices, rather than named locations that had to be stored in the file. This change makes compiled Yarn programs smaller.
@@ -239,6 +234,39 @@ You can use any of the following kinds of expressions in a `when:` header:
 - `CompilationResult` now includes a property `UserDefinedTypes`, which contains the types that the user has defined in their script (for example, enums).
 
 ### Removed
+
+## [2.4.2] 2024-02-24
+
+### Added
+
+- Standard library functions (e.g. `random`, `round_places`, `dice`) have been moved from Yarn Spinner for Unity to the core Yarn Spinner library.
+- Added a `format` function to the standard library.
+  - This method works identically to the C# `string.Format`, but currently only accepts one parameter.
+  - `format("{0}", 123)` will return the string "123".
+  - `format("${0:F2}", 0.451)` will return the string "$0.45".
+  - For more information on string formatting, see the [.NET documentation on numeric formatting strings](https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings#standard-format-specifiers).
+
+### Changed
+
+- Updated the schema for .ysls.json files:
+  - Commands may no longer specify a return type.
+  - Functions _must_ now specify a return type.
+  - Changed the definition of 'types' to be an enum of "string", "number", "bool", or "any".
+    - Enums in JSON schema are type sensitive, so a warning will be issued for types that have capital letters. To fix these warnings, change your type names in your `.ysls.json` file to be lowercase. (These warnings have no impact on your Yarn script editing experience or runtime behaviour.)
+- Empty nodes will no longer be included in the compiled output.
+  - A warning diagnostic will be generated for each empty node.
+- Fixed a bug where self-referencing inferred value set statements (e.g. `<<set $a = $a + 1>>`, where `$a` is not explicitly declared) would crash the compiler.
+- The language server no longer truncates XML documentation comments when it reaches a nested XML node. 
+- Updated dependency versions:
+  - Google.Protobuf: Moved from `3.15.0` to `3.25.2`.
+  - System.Text.Json: Moved from `7.0.2` to `8.0.1`.
+  - Microsoft.Extensions.FileSystemGlobbing: Moved from `7.0.0` to `8.0.0`
+
+## [2.4.1] 2024-01-30
+
+- Version 2.4.1 is the first release of the paid version of Yarn Spinner on the [Unity Asset Store](https://assetstore.unity.com/packages/tools/behavior-ai/yarn-spinner-for-unity-267061) and on [itch.io](https://yarnspinner.itch.io). It's identical to v2.4.0.
+- Yarn Spinner is and will remain free and open source - we also make it available for purchase as an excellent way to support the team.
+- While you're reading, why not consider our [paid add-ons](https://yarnspinner.itch.io), which add some fantastic and easy-to-customise dialogue views?
 
 - Removed the Yarn Spinner v1 to v2 upgrader.
 - Removed support for 'raw text' nodes.
