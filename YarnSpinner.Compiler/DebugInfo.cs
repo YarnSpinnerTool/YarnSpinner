@@ -12,6 +12,15 @@ namespace Yarn.Compiler
     public class ProjectDebugInfo {
         public List<NodeDebugInfo> Nodes { get; set; } = new List<NodeDebugInfo>();
 
+        public NodeDebugInfo? GetNodeDebugInfo(string nodeName) {
+            foreach (var debugInfo in Nodes) {
+                if (debugInfo.NodeName == nodeName) {
+                    return debugInfo;
+                }
+            }
+            return null;
+        }
+
         internal static ProjectDebugInfo Combine(params ProjectDebugInfo[] debugInfos)
         {
             var newDebugInfo = new ProjectDebugInfo();
