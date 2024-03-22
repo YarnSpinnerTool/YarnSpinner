@@ -659,7 +659,7 @@ namespace Yarn.Compiler
                             NodeName = node.Name,
                             Instructions = new List<Instruction>(currentBlockInstructions),
                             FirstInstructionIndex = lastLeader,
-                            LabelName = info.GetLabel(lastLeader) ?? "<unknown>",
+                            LabelName = info.GetLabel(lastLeader) ?? null,
                         };
                         result.Add(block);
                     }
@@ -829,7 +829,7 @@ namespace Yarn.Compiler
         /// <summary>
         /// Gets the name of the label that this block begins at, or null if this basic block does not begin at a labelled instruction.
         /// </summary>
-        public string LabelName { get; set; }
+        public string? LabelName { get; set; }
 
         /// <summary>
         /// Gets the name of the node that this block is in.
