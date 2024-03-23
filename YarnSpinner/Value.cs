@@ -7,9 +7,23 @@ namespace Yarn
     using System.Globalization;
 
     /// <summary>
+    /// Represents a read-only value in the Yarn Spinner virtual machine.
+    /// </summary>
+    public interface IYarnValue
+    {
+        /// <summary>
+        /// Converts this <see cref="IYarnValue"/> to type <typeparamref
+        /// name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">The type to convert to.</typeparam>
+        /// <returns>A value of type T.</returns>
+        public T ConvertTo<T>() where T : IConvertible;
+    }
+
+    /// <summary>
     /// A value from inside Yarn.
     /// </summary>
-    internal partial class Value
+    internal partial class Value : IYarnValue
     {
         public Yarn.IType Type { get; internal set; }
 

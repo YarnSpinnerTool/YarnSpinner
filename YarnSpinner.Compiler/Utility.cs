@@ -558,6 +558,26 @@ namespace Yarn.Compiler
         public static string GetCompiledCodeAsString(Program program, Library? l = null, CompilationResult? result = null) {
             return program.DumpCode(l, result);
         }
+
+        /// <summary>
+        /// Returns an <see cref="IYarnValue"/> representation of the provided
+        /// value.
+        /// </summary>
+        /// <param name="clrValue">The value to get a Yarn representation
+        /// of.</param>
+        /// <returns>An <see cref="IYarnValue"/> representation of <paramref
+        /// name="clrValue"/>.</returns>
+        public static IYarnValue? GetYarnValue(IConvertible clrValue)
+        {
+            if (Types.TypeMappings.TryGetValue(clrValue.GetType(), out var yarnType))
+            {
+                Value yarnValue = new Value(yarnType, clrValue);
+
+                return yarnValue;
+            } else {
+                return null;
+            }
+        }
     }
 
     public struct GraphingNode
