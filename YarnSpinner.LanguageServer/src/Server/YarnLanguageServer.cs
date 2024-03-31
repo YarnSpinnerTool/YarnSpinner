@@ -173,6 +173,14 @@ namespace YarnLanguageServer
                 }
             );
 
+            // Register List Projects command
+            options.OnExecuteCommand<Container<ProjectInfo>>(
+                (commandParams) => ListProjects(workspace, commandParams), (_,_) => new ExecuteCommandRegistrationOptions
+                {
+                    Commands = new[] { Commands.ListProjects },
+                }
+            );
+
             return options;
         }
 
@@ -772,8 +780,8 @@ namespace YarnLanguageServer
             return Task.FromResult(output);
         }
 
-        public static Task<Container<DebugOutput>> GenerateDebugOutput(Workspace workspace, ExecuteCommandParams<Container<DebugOutput>> commandParams) {
-
+        public static Task<Container<DebugOutput>> GenerateDebugOutput(Workspace workspace, ExecuteCommandParams<Container<DebugOutput>> commandParams)
+        {
             var results = workspace.Projects.Select(project =>
             {
                 return project.GetDebugOutput();
@@ -781,13 +789,23 @@ namespace YarnLanguageServer
 
             return Task.FromResult(new Container<DebugOutput>(results));
         }
-    
 
-        public static Task<string> GetEmptyYarnProjectJSON(Workspace workspace, ExecuteCommandParams<string> commandParams) {
-
+        public static Task<string> GetEmptyYarnProjectJSON(Workspace workspace, ExecuteCommandParams<string> commandParams)
+        {
             var project = new Yarn.Compiler.Project();
 
             return Task.FromResult(project.GetJson());
+        }
+
+        private static Task<Container<ProjectInfo>> ListProjects(Workspace workspace, ExecuteCommandParams<Container<ProjectInfo>> commandParams)
+        {
+            var info = workspace.Projects.Select(p => new ProjectInfo
+            {
+                Uri = p.Uri,
+                Files = p.Files.Select(f => OmniSharp.Extensions.LanguageServer.Protocol.DocumentUri.From(f.Uri)),
+                IsImplicitProject = p.IsImplicitProject,
+            });
+            return Task.FromResult(Container.From(info));
         }
     }
 }

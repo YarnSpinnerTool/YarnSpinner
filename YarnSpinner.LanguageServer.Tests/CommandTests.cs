@@ -427,4 +427,21 @@ public class CommandTests : LanguageServerTestsBase
 
 
     }
+    
+    public async Task Server_CanListProjects()
+    {
+        // Set up the server
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<Container<ProjectInfo>>
+        {
+            Command = Commands.ListProjects,
+            Arguments = new JArray { }
+        });
+        result.Should().NotBeNullOrEmpty("because the workspace contains projects");
+
+        result.Should().ContainSingle(p => p.Uri!.Path.EndsWith("Project1.yarnproject"));
+        result.Should().ContainSingle(p => p.Uri!.Path.EndsWith("Project2.yarnproject"));
+    }
+
 }

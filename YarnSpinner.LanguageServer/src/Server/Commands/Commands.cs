@@ -68,4 +68,9 @@ public static class Commands
     public const string GenerateDebugOutput = "yarnspinner.generateDebugOutput";
 
     public const string GetEmptyYarnProjectJSON = "yarnspinner.getEmptyYarnProjectJSON";
+
+    /// <summary>
+    /// The command to get all projects in the current workspace.
+    /// </summary>
+    public const string ListProjects = "yarnspinner.listProjects";
 }
