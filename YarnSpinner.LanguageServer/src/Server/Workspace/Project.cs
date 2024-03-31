@@ -6,6 +6,13 @@ using OmniSharp.Extensions.LanguageServer.Protocol;
 
 namespace YarnLanguageServer
 {
+    public record ProjectInfo
+    {
+        public DocumentUri? Uri { get; set; }
+        public IEnumerable<DocumentUri> Files { get; set; } = Array.Empty<DocumentUri>();
+        public bool IsImplicitProject { get; set; }
+    }
+
     internal class Project
     {
         public IEnumerable<YarnFileData> Files => yarnFiles.Values;

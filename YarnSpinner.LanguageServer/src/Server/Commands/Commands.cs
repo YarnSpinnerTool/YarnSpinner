@@ -64,4 +64,9 @@ public static class Commands
     /// The command to show a specific Yarn node in a graph view.
     /// </summary>
     public const string ShowNodeInGraphView = "yarn.showNodeInGraphView";
+
+    /// <summary>
+    /// The command to get all projects in the current workspace.
+    /// </summary>
+    public const string ListProjects = "yarnspinner.listProjects";
 }

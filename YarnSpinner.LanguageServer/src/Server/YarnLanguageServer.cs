@@ -150,6 +150,14 @@ namespace YarnLanguageServer
                 }
             );
 
+            // Register List Projects command
+            options.OnExecuteCommand<Container<ProjectInfo>>(
+                (commandParams) => ListProjects(workspace, commandParams), (_,_) => new ExecuteCommandRegistrationOptions
+                {
+                    Commands = new[] { Commands.ListProjects },
+                }
+            );
+
             return options;
         }
 
@@ -705,6 +713,17 @@ namespace YarnLanguageServer
                 Errors = errorMessages,
             };
             return Task.FromResult(output);
+        }
+
+        private static Task<Container<ProjectInfo>> ListProjects(Workspace workspace, ExecuteCommandParams<Container<ProjectInfo>> commandParams)
+        {
+            var info = workspace.Projects.Select(p => new ProjectInfo
+            {
+                Uri = p.Uri,
+                Files = p.Files.Select(f => OmniSharp.Extensions.LanguageServer.Protocol.DocumentUri.From(f.Uri)),
+                IsImplicitProject = p.IsImplicitProject,
+            });
+            return Task.FromResult(Container.From(info));
         }
     }
 }
