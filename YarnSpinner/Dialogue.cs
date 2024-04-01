@@ -1258,7 +1258,7 @@ namespace Yarn
 
                 this.RegisterFunction<int, int>("dice", (int sides) =>
                 {
-                    return Random.Next(sides + 1);
+                    return Random.Next(sides) + 1;
                 });
 #pragma warning restore CA5394 // System.Random is cryptographically insecure
 

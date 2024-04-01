@@ -232,6 +232,7 @@ You can use any of the following kinds of expressions in a `when:` header:
 - The language server no longer truncates XML documentation comments when it reaches a nested XML node. 
 - The constructor for `Yarn.Line` is now public. Previously, it was internal.
 - `CompilationResult` now includes a property `UserDefinedTypes`, which contains the types that the user has defined in their script (for example, enums).
+- Fixed an issue where the `dice(n)` function would return a value between 0 and n-1, rather than 1 and n.
 
 ### Removed
 
