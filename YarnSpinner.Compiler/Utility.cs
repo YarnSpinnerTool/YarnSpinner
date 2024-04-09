@@ -781,6 +781,9 @@ namespace Yarn.Compiler
                                 break;
                             }
                         case Instruction.InstructionTypeOneofCase.RunNode:
+                            block.AddDestination(instruction.RunNode.NodeName, BasicBlock.Condition.DirectJump);
+                            break;
+                        case Instruction.InstructionTypeOneofCase.PeekAndRunNode:
                             {
                                 if (currentStringAtTopOfStack != null)
                                 {
