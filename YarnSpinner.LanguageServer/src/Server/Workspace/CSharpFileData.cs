@@ -88,13 +88,15 @@ namespace YarnLanguageServer
                 .SelectMany(c => c.DescendantNodes())
                 .OfType<InvocationExpressionSyntax>()
                 .Where(i => i.Expression.ToString().Contains("AddCommandHandler"))
-                .Where(i => i.ArgumentList.Arguments.Count == 2);
+                .Where(i => i.ArgumentList.Arguments.Count == 2)
+                .Where(i => i.ArgumentList.Arguments[0].Expression.Kind() == SyntaxKind.StringLiteralExpression);
 
             var addFunctionInvocations = nonGeneratedClasses
                 .SelectMany(c => c.DescendantNodes())
                 .OfType<InvocationExpressionSyntax>()
                 .Where(i => i.Expression.ToString().Contains("AddFunction"))
-                .Where(i => i.ArgumentList.Arguments.Count == 2);
+                .Where(i => i.ArgumentList.Arguments.Count == 2)
+                .Where(i => i.ArgumentList.Arguments[0].Expression.Kind() == SyntaxKind.StringLiteralExpression);
 
             foreach (var invocation in addCommandInvocations)
             {
@@ -111,6 +113,7 @@ namespace YarnLanguageServer
             foreach (var invocation in addFunctionInvocations)
             {
                 Action action = GetActionFromRuntimeRegistration(invocation, ActionType.Function);
+
                 action.SourceFileUri = uri;
 
                 // Set the source range to the range of the method, if we know
