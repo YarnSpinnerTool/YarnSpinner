@@ -25,5 +25,8 @@ Write your conversations in Yarn, a simple programming language that's designed 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.25.2"/>
   </ItemGroup>
-  
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
 </Project>

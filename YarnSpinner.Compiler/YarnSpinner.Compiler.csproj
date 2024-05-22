@@ -33,4 +33,8 @@ This package provides support for compiling Yarn source code, so that you can ex
     <ProjectReference Include="..\YarnSpinner\YarnSpinner.csproj" />
   </ItemGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
 </Project>
