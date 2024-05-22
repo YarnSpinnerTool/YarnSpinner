@@ -74,16 +74,18 @@ namespace Yarn.Compiler
 
                     var once = condition.once != null;
 
-                    if (expression != null) {
+                    if (expression != null)
+                    {
                         conditionCount += CodeGenerationVisitor.GetValueCountInExpression(expression);
 
                         // Evaluate the expression
                         codeGenerator.Visit(expression);
                     }
 
-                    if (once) {
+                    if (once)
+                    {
                         conditionCount += 1;
-                        
+
                         // Emit code that checks that the 'once' variable has
                         // not yet been set.
                         var onceVariable = Compiler.GetContentViewedVariableName(node.NodeTitle);
@@ -92,15 +94,19 @@ namespace Yarn.Compiler
                             condition.once,
                             new Instruction
                             {
-                                PushVariable = new PushVariableInstruction {
+                                PushVariable = new PushVariableInstruction
+                                {
                                     VariableName = onceVariable
                                 },
                             },
-                            new Instruction {
+                            new Instruction
+                            {
                                 PushFloat = new PushFloatInstruction { Value = 1 }
                             },
-                            new Instruction {
-                                CallFunc = new CallFunctionInstruction {
+                            new Instruction
+                            {
+                                CallFunc = new CallFunctionInstruction
+                                {
                                     FunctionName = CodeGenerationVisitor.GetFunctionName(
                                         Types.Boolean,
                                          Operator.Not
@@ -128,25 +134,23 @@ namespace Yarn.Compiler
                             });
                     }
 
-                    if (i == 0)
+                    if (i != 0)
                     {
-                        continue;
-                    }
-
-                    // If we're not at condition 0, 'and' it with the previous result
-                    this.Emit(
-                        condition.Start,
-                        new Instruction
-                        {
-                            PushFloat = new PushFloatInstruction { Value = 2 },
-                        },
-                        new Instruction
-                        {
-                            CallFunc = new CallFunctionInstruction
+                        // This isn't 'and' it with the previous result
+                        this.Emit(
+                            condition.Start,
+                            new Instruction
                             {
-                                FunctionName = CodeGenerationVisitor.GetFunctionName(Types.Boolean, Operator.And)
-                            }
-                        });
+                                PushFloat = new PushFloatInstruction { Value = 2 },
+                            },
+                            new Instruction
+                            {
+                                CallFunc = new CallFunctionInstruction
+                                {
+                                    FunctionName = CodeGenerationVisitor.GetFunctionName(Types.Boolean, Operator.And)
+                                }
+                            });
+                    }
                 }
 
                 if (whenConditions.Count() == 0) {
