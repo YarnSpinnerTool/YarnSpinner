@@ -207,6 +207,14 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
 <<if $a == 5>>
 <<generic command goes here>>
 <<endif>>
+
+// Lines with an escaped hashtag
+This is a line with an embedded \#hashtag in it.
+This is a line with an embedded \#hashtag in it. #line:expected_326d
+
+This is a line with embedded escapable symbols in it: \[ \] \\ \< \> \{ \} \# \/
+This is a line with embedded escapable symbols in it: \[ \] \\ \< \> \{ \} \# \/ #line:expected_bc59
+
 ===";
 
             {
@@ -300,6 +308,15 @@ before 🧑🏾‍❤️‍💋‍🧑🏻after #line:abc130 // with a comment
                 (null, "🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻"),
                 ("line:abc131", "🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻"),
                 ("line:abc132", "🧑🏾‍❤️‍💋‍🧑🏻🧑🏾‍❤️‍💋‍🧑🏻"),
+
+                // Lines with an escaped hashtag
+                (null, "This is a line with an embedded #hashtag in it."),
+                ("line:expected_326d", "This is a line with an embedded #hashtag in it."),
+
+                // Lines with other escaped characters
+                (null, @"This is a line with embedded escapable symbols in it: \"),
+                ("line:expected_bc59", @"This is a line with embedded escapable symbols in it: [ ] \ < > { } # /"),
+
             };
             expectedResults.Sort((a,b) => {
                 if (a.tag == null)
