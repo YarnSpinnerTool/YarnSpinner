@@ -718,15 +718,19 @@ namespace Yarn.Compiler
                     continue;
                 }
 
+                bool HasWhenHeader(YarnSpinnerParser.NodeContext nodeContext) {
+                    return nodeContext.GetHeader(SpecialHeaderNames.WhenHeader) != null;
+                }
+
                 // If any of these nodes have 'when' clauses, then all nodes
                 // must have them for the group to be valid. In this situation,
                 // it's not an error for the nodes to share the same name,
                 // because after this check is done, they will be renamed.
-                if (group.All(n => n.Node.GetHeader(SpecialHeaderNames.WhenHeader) != null)) {
+                if (group.All(n => HasWhenHeader(n.Node))) {
                     // No error - all nodes that have this name have at least
                     // one 'when' header
                     continue;
-                } else if (group.Any(n => n.Node.NodeGroup != null)) {
+                } else if (group.Any(n => HasWhenHeader(n.Node))) {
                     // Error - some nodes have a 'when' header, but others
                     // don't. Create errors for these others.
                     foreach (var entry in group.Where(n => n.Node.GetHeader(SpecialHeaderNames.WhenHeader) == null))
