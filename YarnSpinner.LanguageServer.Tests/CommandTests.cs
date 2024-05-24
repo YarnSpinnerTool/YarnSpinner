@@ -325,5 +325,4 @@ public class CommandTests : LanguageServerTestsBase
         result.Should().ContainSingle(p => p.Uri!.Path.EndsWith("Project1.yarnproject"));
         result.Should().ContainSingle(p => p.Uri!.Path.EndsWith("Project2.yarnproject"));
     }
-
 }
