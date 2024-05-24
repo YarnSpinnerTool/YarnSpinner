@@ -402,4 +402,29 @@ public class CommandTests : LanguageServerTestsBase
         trueConstant.Children.Should().BeEmpty();
 
     }
+
+     [Fact]
+    public async Task Server_OnCreatingNewProject_ReturnsJSON()
+    {
+        // Given
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+        
+        // When
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<string>
+        {
+            Command = Commands.GetEmptyYarnProjectJSON,
+            Arguments = new JArray(
+                
+            )
+        });
+
+        result.Should().NotBeNullOrEmpty();
+
+        // The resulting JSON should parse to a valid Project
+        var parsedProject = Yarn.Compiler.Project.LoadFromString(result, "(none)");
+
+        parsedProject.Should().BeEquivalentTo(new Yarn.Compiler.Project("(none)"));
+
+
+    }
 }

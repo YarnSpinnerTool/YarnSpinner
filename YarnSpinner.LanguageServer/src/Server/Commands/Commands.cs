@@ -66,4 +66,6 @@ public static class Commands
     public const string ShowNodeInGraphView = "yarn.showNodeInGraphView";
 
     public const string GenerateDebugOutput = "yarnspinner.generateDebugOutput";
+
+    public const string GetEmptyYarnProjectJSON = "yarnspinner.getEmptyYarnProjectJSON";
 }

@@ -164,6 +164,15 @@ namespace YarnLanguageServer
                 }
             );
 
+            // register 'return json for new project' command
+            options.OnExecuteCommand<string>(
+                (commandParams) => GetEmptyYarnProjectJSON(workspace, commandParams),
+                (_, _) => new ExecuteCommandRegistrationOptions
+                {
+                    Commands = new[] { Commands.GetEmptyYarnProjectJSON },
+                }
+            );
+
             return options;
         }
 
@@ -771,6 +780,14 @@ namespace YarnLanguageServer
             });
 
             return Task.FromResult(new Container<DebugOutput>(results));
+        }
+    
+
+        public static Task<string> GetEmptyYarnProjectJSON(Workspace workspace, ExecuteCommandParams<string> commandParams) {
+
+            var project = new Yarn.Compiler.Project();
+
+            return Task.FromResult(project.GetJson());
         }
     }
 }
