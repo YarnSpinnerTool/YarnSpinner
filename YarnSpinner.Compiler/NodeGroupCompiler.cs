@@ -63,8 +63,7 @@ namespace Yarn.Compiler
 
                 var whenConditions = whenHeaders
                     .Select(h => h.header_when_expression())
-                    .Where(e => e.expression() != null || e.once != null);
-                    
+                    .Where(e => e != null && (e.expression() != null || e.once != null));
 
                 for (int i = 0; i < whenConditions.Count(); i++)
                 {
