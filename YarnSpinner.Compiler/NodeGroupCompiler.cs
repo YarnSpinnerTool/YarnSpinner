@@ -59,7 +59,7 @@ namespace Yarn.Compiler
                     continue;
                 }
 
-                var whenHeaders = node.GetHeaders(SpecialHeaderNames.WhenHeader);
+                var whenHeaders = node.GetWhenHeaders();
 
                 var whenConditions = whenHeaders
                     .Select(h => h.header_when_expression())
@@ -225,9 +225,10 @@ namespace Yarn.Compiler
 
                 // If any of the 'when' conditions had a 'once' in them, set the
                 // variable for it now.
-                var whenHeaders = node.GetHeaders(SpecialHeaderNames.WhenHeader);
+                var whenHeaders = node.GetWhenHeaders();
                 var onceHeader = whenHeaders.FirstOrDefault(h => h.header_when_expression().once != null);
-                if (onceHeader != null && node.NodeTitle != null) {
+                if (onceHeader != null && node.NodeTitle != null)
+                {
                     var onceVariable = Compiler.GetContentViewedVariableName(node.NodeTitle);
 
                     this.Emit(

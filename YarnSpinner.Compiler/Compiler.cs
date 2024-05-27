@@ -24,12 +24,6 @@ namespace Yarn.Compiler
         public const string TitleHeader = "title";
 
         /// <summary>
-        /// The name of a header that indicates a node's condition when part of
-        /// a node group.
-        /// </summary>
-        public const string WhenHeader = "when";
-
-        /// <summary>
         /// The name of the header that indicates which node group a node
         /// belongs to.
         /// </summary>
@@ -719,7 +713,7 @@ namespace Yarn.Compiler
                 }
 
                 bool HasWhenHeader(YarnSpinnerParser.NodeContext nodeContext) {
-                    return nodeContext.GetHeader(SpecialHeaderNames.WhenHeader) != null;
+                    return nodeContext.GetWhenHeaders().Any();
                 }
 
                 // If any of these nodes have 'when' clauses, then all nodes
@@ -733,7 +727,7 @@ namespace Yarn.Compiler
                 } else if (group.Any(n => HasWhenHeader(n.Node))) {
                     // Error - some nodes have a 'when' header, but others
                     // don't. Create errors for these others.
-                    foreach (var entry in group.Where(n => n.Node.GetHeader(SpecialHeaderNames.WhenHeader) == null))
+                    foreach (var entry in group.Where(n => n.Node.GetWhenHeaders().Any() == false))
                     {
                         var d = new Diagnostic(entry.File.Name, entry.TitleHeader, $"All nodes in the group '{entry.Node.NodeTitle}' must have a 'when' clause (use 'when: always' if you want this node to not have any conditions)");
                         diagnostics.Add(d);
@@ -1215,6 +1209,10 @@ namespace Yarn.Compiler
                         h.header_key?.Text.Equals(key, StringComparison.InvariantCultureIgnoreCase) ?? false 
                         && h.header_value != null
                 );
+            }
+
+            internal IEnumerable<When_headerContext> GetWhenHeaders() {
+                return this.when_header();
             }
 
             /// <summary>

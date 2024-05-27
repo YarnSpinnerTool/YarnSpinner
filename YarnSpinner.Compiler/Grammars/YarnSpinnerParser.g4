@@ -12,11 +12,16 @@ file_hashtag
     ;
 
 node
-    : header+  BODY_START  body BODY_END
+    : (header|when_header)+  BODY_START  body BODY_END
+    ;
+
+when_header:
+    HEADER_WHEN HEADER_DELIMITER header_expression=header_when_expression NEWLINE
     ;
 
 header 
-    : header_key=ID HEADER_DELIMITER (header_value=REST_OF_LINE|header_expression=header_when_expression NEWLINE)?
+    // : header_key=ID HEADER_DELIMITER (header_value=REST_OF_LINE|header_expression=header_when_expression NEWLINE)?
+    : header_key=ID HEADER_DELIMITER (header_value=REST_OF_LINE)?
     ;
 
 header_when_expression

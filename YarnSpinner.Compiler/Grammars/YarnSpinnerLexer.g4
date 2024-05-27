@@ -22,6 +22,9 @@ COMMENT: '//' ~('\r'|'\n')* -> channel(COMMENTS);
 // checker has access to them
 NEWLINE: ( '\r'? '\n' | '\r' ) [ \t]* -> channel(WHITESPACE);
 
+// The 'when' header, in the context of a node's preamble. Move to HeaderWhenMode, 
+HEADER_WHEN: 'when' -> pushMode(HeaderWhenMode);
+
 ID : IDENTIFIER_HEAD IDENTIFIER_CHARACTERS?;
 
 fragment IDENTIFIER_HEAD : 
@@ -53,12 +56,20 @@ fragment IDENTIFIER_CHARACTERS : IDENTIFIER_CHARACTER+ ;
 BODY_START : '---' -> pushMode(BodyMode) ;
 
 // The ':' in 'foo: bar (plus any whitespace after it).
-// If we match this, we are in a header. If this header is a 'when' clause, then enter expression mode (and lex expression tokens until the newline). 
-HEADER_DELIMITER : ':' [ ]* { if(LastTokenWas(ID, "when")) { SetInWhenClause(true); PushMode(ExpressionMode); } else { PushMode(HeaderMode); } };
+// If we match this, we are in a header. 
+HEADER_DELIMITER : WS? ':' WS? -> pushMode(HeaderMode);
 
 // A hashtag. These can appear at the start of a file, or after 
 // certain lines (see BODY_HASHTAG rule)
 HASHTAG : '#' -> pushMode(HashtagMode);
+
+mode HeaderWhenMode;
+// When we see the header delimiter inside a 'when' header, flag that we're in a
+// when clause (ExpressionMode will use that to decide what to do when reaching
+// a newline), and change our mode to ExpressionMode.
+HEADER_WHEN_DELIMITER: WS? ':' WS? {SetInWhenClause(true);} -> type(HEADER_DELIMITER), mode(ExpressionMode);
+// Any other text is not allowed.
+HEADER_WHEN_UNKNOWN: . -> popMode;
 
 // Headers before a node.
 mode HeaderMode;

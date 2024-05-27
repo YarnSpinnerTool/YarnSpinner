@@ -23,7 +23,7 @@ namespace Yarn.Compiler
                 return base.VisitNode(context); 
             }
 
-            if (context.GetHeaders(SpecialHeaderNames.WhenHeader).Any())
+            if (context.GetWhenHeaders().Any())
             {
                 // This node contains at least one 'when' header. 
                 var title = titleHeader.header_value.Text;

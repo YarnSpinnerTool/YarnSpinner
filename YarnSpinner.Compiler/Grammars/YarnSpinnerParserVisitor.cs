@@ -51,6 +51,12 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitNode([NotNull] YarnSpinnerParser.NodeContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.when_header"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitWhen_header([NotNull] YarnSpinnerParser.When_headerContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.header"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

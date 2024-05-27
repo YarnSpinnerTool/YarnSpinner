@@ -73,6 +73,18 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNode([NotNull] YarnSpinnerParser.NodeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.when_header"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterWhen_header([NotNull] YarnSpinnerParser.When_headerContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.when_header"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitWhen_header([NotNull] YarnSpinnerParser.When_headerContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.header"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

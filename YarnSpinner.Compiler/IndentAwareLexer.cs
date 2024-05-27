@@ -30,27 +30,6 @@ namespace Yarn.Compiler
 
         public virtual bool SetInWhenClause(bool val) => this.InWhenClause = val;
 
-        public virtual bool LastTokenWas(int type, string text)
-        {
-            if (tokens.Count == 0)
-            {
-                // We have no previous tokens.
-                return false;
-            }
-
-            var token = this.tokens[tokens.Count - 1];
-            if (token.Type == type && token.Text.Equals(text, StringComparison.InvariantCultureIgnoreCase))
-            {
-                // The last token was the one we're looking for, and it matched
-                // the text we expected.
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         /// <summary>
         /// The collection of tokens that we have seen, but have not yet
         /// returned. This is needed when NextToken encounters a newline,
