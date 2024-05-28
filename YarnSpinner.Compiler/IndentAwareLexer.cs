@@ -26,9 +26,24 @@ namespace Yarn.Compiler
 
         private bool InWhenClause = false;
         
+        /// <summary>
+        /// Returns a value indicating whether the lexer is currently lexing an
+        /// expression that's part of a 'when' clause.
+        /// </summary>
+        /// <remarks>
+        /// This value is set by <see cref="SetInWhenClause"/>.
+        /// </remarks>
         public bool IsInWhenClause() => this.InWhenClause;
 
-        public virtual bool SetInWhenClause(bool val) => this.InWhenClause = val;
+        /// <summary>
+        /// Sets a value indicating whether the lexer is currently lexing an
+        /// expression that's part of a 'when' clause.
+        /// </summary>
+        /// <param name="val">The value to set.</param>
+        /// <remarks>
+        /// This value can be accessed by calling <see cref="IsInWhenClause"/>.
+        /// </remarks>
+        public virtual void SetInWhenClause(bool val) => this.InWhenClause = val;
 
         /// <summary>
         /// The collection of tokens that we have seen, but have not yet
