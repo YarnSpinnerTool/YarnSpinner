@@ -75,6 +75,12 @@ namespace Yarn.Compiler
                         codeGenerator.Visit(expression);
                     }
 
+                    if (header.IsAlways)
+                    {
+                        // Emit a 'true' for this 'when: always' header
+                        this.Emit(header.header_expression.once, new Instruction { PushBool = new PushBoolInstruction { Value = true } });
+                    }
+
                     if (header.IsOnce)
                     {
                         // Emit code that checks that the 'once' variable has
