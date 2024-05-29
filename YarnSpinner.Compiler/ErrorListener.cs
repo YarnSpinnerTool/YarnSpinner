@@ -173,13 +173,13 @@ namespace Yarn.Compiler
         public enum DiagnosticSeverity
         {
             /// <summary>
-            /// An error.
+            /// An informational diagnostic.
             /// </summary>
             /// <remarks>
-            /// If a Yarn source file contains errors, it cannot be compiled,
-            /// and the compilation process will fail.
+            /// Infos represent possible issues or steps that the user may wish
+            /// to fix, but are unlikely to cause problems.
             /// </remarks>
-            Error,
+            Info = 1,
 
             /// <summary>
             /// An warning.
@@ -188,16 +188,17 @@ namespace Yarn.Compiler
             /// Warnings represent possible problems that the user should fix,
             /// but do not cause the compilation process to fail.
             /// </remarks>
-            Warning,
+            Warning = 2,
 
             /// <summary>
-            /// An informational diagnostic.
+            /// An error.
             /// </summary>
             /// <remarks>
-            /// Infos represent possible issues or steps that the user may wish
-            /// to fix, but are unlikely to cause problems.
+            /// If a Yarn source file contains errors, it cannot be compiled,
+            /// and the compilation process will fail.
             /// </remarks>
-            Info,
+            Error = 3,
+
         }
 
         /// <inheritdoc/>
