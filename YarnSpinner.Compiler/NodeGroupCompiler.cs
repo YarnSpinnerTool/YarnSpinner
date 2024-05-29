@@ -53,7 +53,7 @@ namespace Yarn.Compiler
 
             foreach (var node in this.Nodes)
             {
-                var conditionCount = 0;
+                var nodeTotalConditionCount = 0;
                 if (node.NodeTitle == null) {
                     // The node doesn't have a title. We can't use it.
                     continue;
@@ -61,36 +61,28 @@ namespace Yarn.Compiler
 
                 var whenHeaders = node.GetWhenHeaders();
 
-                var whenConditions = whenHeaders
-                    .Select(h => h.header_when_expression())
-                    .Where(e => e != null && (e.expression() != null || e.once != null));
-
-                for (int i = 0; i < whenConditions.Count(); i++)
+                for (int i = 0; i < whenHeaders.Count(); i++)
                 {
-                    var condition = whenConditions.ElementAt(i);
+                    var header = whenHeaders.ElementAt(i);
 
-                    var expression = condition.expression();
+                    nodeTotalConditionCount += header.ConditionCount;
 
-                    var once = condition.once != null;
+                    YarnSpinnerParser.ExpressionContext? expression = header.header_expression.expression();
 
                     if (expression != null)
                     {
-                        conditionCount += CodeGenerationVisitor.GetValueCountInExpression(expression);
-
                         // Evaluate the expression
                         codeGenerator.Visit(expression);
                     }
 
-                    if (once)
+                    if (header.IsOnce)
                     {
-                        conditionCount += 1;
-
                         // Emit code that checks that the 'once' variable has
                         // not yet been set.
                         var onceVariable = Compiler.GetContentViewedVariableName(node.NodeTitle);
 
                         this.Emit(
-                            condition.once,
+                            header.header_when_expression().once,
                             new Instruction
                             {
                                 PushVariable = new PushVariableInstruction
@@ -115,11 +107,11 @@ namespace Yarn.Compiler
                         );
                     }
 
-                    if (expression != null && once)
+                    if (expression != null && header.IsOnce)
                     {
                         // 'and' the two together
                         this.Emit(
-                            condition.once,
+                            header.header_expression.once,
                             new Instruction
                             {
                                 PushFloat = new PushFloatInstruction { Value = 2 },
@@ -137,7 +129,7 @@ namespace Yarn.Compiler
                     {
                         // This isn't 'and' it with the previous result
                         this.Emit(
-                            condition.Start,
+                            header.header_expression.Start,
                             new Instruction
                             {
                                 PushFloat = new PushFloatInstruction { Value = 2 },
@@ -152,7 +144,7 @@ namespace Yarn.Compiler
                     }
                 }
 
-                if (whenConditions.Count() == 0) {
+                if (whenHeaders.Count() == 0) {
                     // This node is part of a node group, but it didn't have any
                     // condition expressions. Push 'true' to ensure that it
                     // runs.
@@ -187,10 +179,10 @@ namespace Yarn.Compiler
                     // line ID for this option (arg 3)
                     new Instruction { PushString = new PushStringInstruction { Value = node.NodeTitle } },
                     // condition count (arg 2)
-                    new Instruction { PushFloat = new PushFloatInstruction { Value = conditionCount } },
+                    new Instruction { PushFloat = new PushFloatInstruction { Value = nodeTotalConditionCount } },
                     // destination if selected (arg 1)
                     runThisNodeInstruction = new Instruction { PushFloat = new PushFloatInstruction { Value = -1 } },
-                    // instruction count
+                    // parameter count
                     new Instruction { PushFloat = new PushFloatInstruction { Value = 3 } },
                     new Instruction { CallFunc = new CallFunctionInstruction { FunctionName = VirtualMachine.AddLineGroupCandidateFunctionName } }
                 );

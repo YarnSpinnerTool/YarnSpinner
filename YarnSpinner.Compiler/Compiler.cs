@@ -1237,5 +1237,100 @@ namespace Yarn.Compiler
                 );
             }
         }
+
+        /// <summary>
+        /// Gets the total number of boolean operations - ands, ors, nots, and
+        /// xors - present in an expression and its sub-expressions.
+        /// </summary>
+        /// <param name="context">An expression.</param>
+        /// <returns>The total number of boolean operations in the
+        /// expression.</returns>
+        private static int GetValueCountInExpression(ParserRuleContext context)
+        {
+            var subtreeCount = 0;
+
+            if (context is ExpAndOrXorContext || context is ExpNotContext)
+            {
+                // This expression is a boolean expression.
+                subtreeCount += 1;
+            }
+
+            foreach (var child in context.children)
+            {
+                if (child is ParserRuleContext childContext) {
+                    subtreeCount += GetValueCountInExpression(childContext);
+                }
+            }
+
+            return subtreeCount;
+        }
+
+        public partial class Line_conditionContext
+        {
+            /// <summary>
+            /// Gets the complexity of this line's condition.
+            /// </summary>
+            internal int ConditionCount
+            {
+                get
+                {
+                    var count = 0;
+                    ExpressionContext? expression;
+                    if (this is LineOnceConditionContext once)
+                    {
+                        count += 1;
+                        expression = once.expression();
+                    }
+                    else if (this is LineConditionContext condition)
+                    {
+                        expression = condition.expression();
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Internal error: line condition class was of an invalid type");
+                    }
+                    if (expression != null)
+                    {
+                        count += GetValueCountInExpression(expression) + 1;
+                    }
+                    return count;
+                }
+            }
+        }
+
+        public partial class When_headerContext
+        {
+            internal bool IsOnce => this.header_expression.once != null;
+            internal bool IsAlways => this.header_expression.always != null;
+            
+            internal int ConditionCount
+            {
+                /// <summary>
+                /// Gets the complexity of this line's condition.
+                /// </summary>
+                get
+                {
+                    if (IsAlways)
+                    {
+                        // This header is a 'when: always' header - it has a complexity of 0
+                        return 0;
+                    }
+
+                    var count = 0;
+
+                    if (IsOnce)
+                    {
+                        count += 1;
+                    }
+
+                    if (this.header_expression.expression() != null)
+                    {
+                        count += GetValueCountInExpression(this.header_expression.expression()) + 1;
+                    }
+
+                    return count;
+                }
+            }
+        }
     }
 }

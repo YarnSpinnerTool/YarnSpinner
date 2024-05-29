@@ -638,22 +638,7 @@ namespace Yarn.Compiler
 
                     // Count the number of conditions in the expression:
 
-                    int conditionCount;
-
-                    if (lineStatement.line_condition() is YarnSpinnerParser.LineConditionContext regularCondition) {
-                        conditionCount = GetValueCountInExpression(regularCondition.expression());
-                    } else if (lineStatement.line_condition() is YarnSpinnerParser.LineOnceConditionContext onceCondition) {
-
-                        conditionCount = 1;
-
-                        if (onceCondition.expression() != null) {
-                            // The once condition has an expression - add
-                            // however many values are present in it
-                            conditionCount += GetValueCountInExpression(onceCondition.expression());
-                        }
-                    } else {
-                        throw new InvalidOperationException($"Internal error: unhandled condition type {lineStatement.line_condition().GetType()}");
-                    }
+                    int conditionCount = lineStatement.line_condition().ConditionCount;
 
                     // Call the 'add candidate' function
                     EmitCodeForRegisteringLineGroupItem(lineGroupItem, conditionCount);
@@ -800,34 +785,6 @@ namespace Yarn.Compiler
 
             string functionName = TypeUtil.GetCanonicalNameForMethod(implementingType, op.ToString());
             return functionName;
-        }
-
-        /// <summary>
-        /// Gets the total number of values - functions calls, variables, and
-        /// constant values - present in an expression and its sub-expressions.
-        /// </summary>
-        /// <remarks>Function call arguments and their sub-expressions are not
-        /// included in the count.</remarks>
-        /// <param name="context">An expression.</param>
-        /// <returns>The total number of values in the expression.</returns>
-        internal static int GetValueCountInExpression(YarnSpinnerParser.ExpressionContext context)
-        {
-            if (context is YarnSpinnerParser.ExpValueContext)
-            {
-                return 1;
-            }
-            else
-            {
-                var accum = 0;
-                foreach (var child in context.children)
-                {
-                    if (child is YarnSpinnerParser.ExpressionContext exp)
-                    {
-                        accum += GetValueCountInExpression(exp);
-                    }
-                }
-                return accum;
-            }
         }
 
         // the calls for the various operations and expressions first the

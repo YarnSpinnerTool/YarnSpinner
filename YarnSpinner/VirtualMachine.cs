@@ -936,16 +936,16 @@ namespace Yarn
             state.programCounter -= 1;
         }
 
-        private struct LineGroupCandidate : IContentSaliencyOption {
-            public int destinationIfSelected;
-            public int conditionValueCount;
-            public string? contentID;
+        private class LineGroupCandidate : IContentSaliencyOption
+        {
+            public int ConditionValueCount { get; set; }
+            public string? ContentID { get; set; }
+            public int DestinationIfSelected { get; set; }
 
-            public int ConditionValueCount => conditionValueCount;
-            public string? ContentID => contentID;
+            public override string ToString() => ContentID ?? "(null)";
         }
 
-        private List<LineGroupCandidate> lineGroupCandidates = new List<LineGroupCandidate>();
+        private readonly List<LineGroupCandidate> lineGroupCandidates = new List<LineGroupCandidate>();
 
         private void HandleSelectLineGroupCandidate()
         {
@@ -967,19 +967,24 @@ namespace Yarn
                 return;
             }
 
-            if (ContentSaliencyStrategy == null) {
-                // We don't have a saliency strategy, so create and store a
-                // basic one.
-                ContentSaliencyStrategy = new Saliency.FirstSaliencyStrategy();
-            }
+            // If we don't have a saliency strategy, create and store a basic
+            // one.
+            ContentSaliencyStrategy ??= new FirstSaliencyStrategy();
 
             // Choose the content to present.
             var selectedContent = ContentSaliencyStrategy.ChooseBestContent(lineGroupCandidates);
 
+            // The content that was selected must be one of the candidates.
+            bool selectedContentWasValid = lineGroupCandidates.Contains(selectedContent);
+            
+            if (selectedContentWasValid == false) {
+                throw new DialogueException($"Content saliency strategy {ContentSaliencyStrategy} did not return a valid selection (available content IDs to choose from were {string.Join(", ", lineGroupCandidates)}, but strategy returned {selectedContent}");
+            }
+
             lineGroupCandidates.Clear();
 
             // Push the destination onto the stack
-            state.PushValue(selectedContent.destinationIfSelected);
+            state.PushValue(selectedContent.DestinationIfSelected);
         }
 
         private void HandleAddLineGroupCandidate()
@@ -998,9 +1003,9 @@ namespace Yarn
 
             lineGroupCandidates.Add(new LineGroupCandidate
             {
-                destinationIfSelected = state.PopValue().ConvertTo<int>(),
-                conditionValueCount = state.PopValue().ConvertTo<int>(),
-                contentID = state.PopValue().ConvertTo<string>()
+                DestinationIfSelected = state.PopValue().ConvertTo<int>(),
+                ConditionValueCount = state.PopValue().ConvertTo<int>(),
+                ContentID = state.PopValue().ConvertTo<string>()
             });
         }
 
