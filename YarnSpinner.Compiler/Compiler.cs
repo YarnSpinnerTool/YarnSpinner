@@ -1265,6 +1265,7 @@ namespace Yarn.Compiler
             return subtreeCount;
         }
 
+        /// <inheritdoc/>
         public partial class Line_conditionContext
         {
             /// <summary>
@@ -1298,16 +1299,17 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <inheritdoc/>
         public partial class When_headerContext
         {
             internal bool IsOnce => this.header_expression.once != null;
             internal bool IsAlways => this.header_expression.always != null;
             
+            /// <summary>
+            /// Gets the complexity of this line's condition.
+            /// </summary>
             internal int ConditionCount
             {
-                /// <summary>
-                /// Gets the complexity of this line's condition.
-                /// </summary>
                 get
                 {
                     if (IsAlways)
