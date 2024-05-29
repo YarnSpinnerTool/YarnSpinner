@@ -936,7 +936,7 @@ namespace Yarn
             state.programCounter -= 1;
         }
 
-        private class LineGroupCandidate : IContentSaliencyOption
+        internal class LineGroupCandidate : IContentSaliencyOption
         {
             public int ConditionValueCount { get; set; }
             public string? ContentID { get; set; }

@@ -16,7 +16,9 @@ namespace Yarn
     /// </remarks>
     internal static class SmartVariableEvaluationVirtualMachine
     {
+        private static int programCounter = 0;
         private static readonly Stack<IConvertible> _stack = new Stack<IConvertible>(32);
+        private static readonly List<VirtualMachine.LineGroupCandidate> _lineGroupCandidates = new List<VirtualMachine.LineGroupCandidate>();
 
         /// <summary>
         /// Evaluates a smart variable.
@@ -70,15 +72,18 @@ namespace Yarn
                 return false;
             }
 
+            programCounter = 0;
+
             try
             {
-                foreach (var instruction in smartVariableNode.Instructions)
-                {
-                    if (EvaluateInstruction(instruction, variableAccess, library, _stack) == false)
+                while (programCounter < smartVariableNode.Instructions.Count) {
+                    var instruction = smartVariableNode.Instructions[programCounter];
+                    if (EvaluateInstruction(instruction, variableAccess, library, _stack, ref programCounter) == false)
                     {
                         break;
                     }
                 }
+                
             }
             catch (InvalidOperationException e)
             {
@@ -100,6 +105,52 @@ namespace Yarn
             }
 
             return TryConvertToType(calculatedResult, out result);
+        }
+
+        public static IEnumerable<Yarn.Saliency.IContentSaliencyOption> GetAvailableContentForNodeGroup(
+            string nodeGroupName,
+            IVariableAccess variableAccess,
+            Library library
+            )
+        {
+
+            var name = nodeGroupName;
+
+            var program = variableAccess.Program;
+
+            if (program.Nodes.TryGetValue(name, out Node nodeGroupEntryPointNode) == false)
+            {
+                throw new ArgumentException($"Error getting available content for node group {nodeGroupName}: not a valid node group name");
+            }
+
+            _lineGroupCandidates.Clear();
+
+            programCounter = 0;
+
+            try
+            {
+                while (true) {
+                    var instruction = nodeGroupEntryPointNode.Instructions[programCounter];
+
+                    if (EvaluateInstruction(instruction, variableAccess, library, _stack, ref programCounter) == false)
+                    {
+                        break;
+                    }
+                }
+                
+            }
+            catch (InvalidOperationException e)
+            {
+                throw new InvalidOperationException($"Error when evaluating smart variable {name}: {e.Message}");
+            }
+
+            _stack.Clear();
+            programCounter = default;
+            var result = new List<Yarn.Saliency.IContentSaliencyOption>(_lineGroupCandidates);
+
+            _lineGroupCandidates.Clear();
+            
+            return result;
         }
 
         private static bool TryConvertToType<T>(IConvertible value, out T result)
@@ -127,7 +178,8 @@ namespace Yarn
             Instruction instruction,
             IVariableAccess variableAccess,
             Library library,
-            Stack<IConvertible> stack)
+            Stack<IConvertible> stack,
+            ref int programCounter)
         {
             switch (instruction.InstructionTypeCase)
             {
@@ -144,27 +196,53 @@ namespace Yarn
                     stack.Pop();
                     break;
                 case Instruction.InstructionTypeOneofCase.CallFunc:
-                    CallFunction(instruction, library, stack);
-                    break;
+                    programCounter += 1;
+                    return CallFunction(instruction, library, stack);
                 case Instruction.InstructionTypeOneofCase.PushVariable:
                     string variableName = instruction.PushVariable.VariableName;
                     variableAccess.TryGetValue<IConvertible>(variableName, out var variableContents);
                     stack.Push(variableContents);
                     break;
+                case Instruction.InstructionTypeOneofCase.JumpIfFalse:
+                    if (_stack.Peek().ToBoolean(CultureInfo.InvariantCulture) == false)
+                    {
+                        programCounter = instruction.JumpIfFalse.Destination;
+                    }
+                    else
+                    {
+                        programCounter += 1;
+                    }
+                    return true;
+
                 case Instruction.InstructionTypeOneofCase.Stop:
                     return false;
                 default:
                     throw new InvalidOperationException($"Invalid opcode {instruction.InstructionTypeCase}");
             }
 
+            programCounter += 1;
+
             // Return true to indicate that we should continue
             return true;
         }
 
-        private static void CallFunction(Instruction i, Library Library, Stack<IConvertible> stack)
+        private static bool CallFunction(Instruction i, Library Library, Stack<IConvertible> stack)
         {
             // Get the function to call
             var functionName = i.CallFunc.FunctionName;
+
+            // If functionName is a special-cased internal compiler
+            // function, handle that
+            if (functionName.Equals(VirtualMachine.AddLineGroupCandidateFunctionName, StringComparison.Ordinal))
+            {
+                HandleAddLineGroupCandidate();
+                return true;
+            }
+
+            if (functionName.Equals(VirtualMachine.SelectLineGroupCandidateFunctionName, StringComparison.Ordinal))
+            {
+                return false;
+            }
 
             var function = Library.GetFunction(functionName);
 
@@ -219,6 +297,30 @@ namespace Yarn
                 // threw.
                 throw ex.InnerException;
             }
+
+            return true;
+        }
+
+        private static void HandleAddLineGroupCandidate()
+        {
+            // 'Add Line Group Candidate' expects 3 parameters pushed in reverse order:
+            // -label (str)
+            // - condition count (num)
+            // - line id (str)
+            var actualParamCount = _stack.Pop().ToInt32(CultureInfo.InvariantCulture);
+            const int expectedParamCount = 3;
+
+            if (expectedParamCount != actualParamCount)
+            {
+                throw new InvalidOperationException($"Function {VirtualMachine.AddLineGroupCandidateFunctionName} expected {expectedParamCount} parameters, but received {actualParamCount}");
+            }
+
+            _lineGroupCandidates.Add(new VirtualMachine.LineGroupCandidate
+            {
+                DestinationIfSelected = _stack.Pop().ToInt32(CultureInfo.InvariantCulture),
+                ConditionValueCount = _stack.Pop().ToInt32(CultureInfo.InvariantCulture),
+                ContentID = _stack.Pop().ToString(CultureInfo.InvariantCulture)
+            });
         }
     }
 }

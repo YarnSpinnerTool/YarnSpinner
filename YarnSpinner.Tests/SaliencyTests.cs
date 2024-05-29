@@ -199,6 +199,45 @@ expected: 2
                     .Should().Be(expectedComplexities[c.ContentID], 
                         $"{c.ContentID} should have complexity {expectedComplexities[c.ContentID]}"));
         }
+
+        [Fact]
+        public void TestQueryingCandidates()
+        {
+            // Given
+            var source = @"
+title: NodeGroup
+when: $condition1
+---
+<<stop>>
+===
+title: NodeGroup
+when: $condition2
+---
+<<stop>>
+===
+title: NodeGroup
+when: always
+---
+<<stop>>
+===
+";
+
+            // When
+            var result = CompileAndPrepareDialogue(source, "NodeGroup");
+            dialogue.VariableStorage.SetValue("$condition1", true);
+
+            IEnumerable<IContentSaliencyOption> availableContent = dialogue.GetAvailableContentForNodeGroup("NodeGroup");
+
+            // Then
+            availableContent.Should().HaveCount(2);
+
+            availableContent.Should().AllSatisfy(
+                c => result.Program.Nodes.Should().Contain(
+                    n => n.Key == c.ContentID, $"{c.ContentID} should be one of the nodes in the program"
+                )
+            );
+        }
     }
+
 
 }

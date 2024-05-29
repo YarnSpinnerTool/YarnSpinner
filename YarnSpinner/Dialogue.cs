@@ -1200,6 +1200,11 @@ namespace Yarn
                 out result);
         }
 
+        public IEnumerable<Saliency.IContentSaliencyOption> GetAvailableContentForNodeGroup(string nodeGroup)
+        {
+            return SmartVariableEvaluationVirtualMachine.GetAvailableContentForNodeGroup(nodeGroup, this.VariableStorage, this.Library);
+        }
+
         // The standard, built-in library of functions and operators.
         internal class StandardLibrary : Library
         {
