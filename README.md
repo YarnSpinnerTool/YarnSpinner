@@ -8,7 +8,7 @@ Yarn Spinner is a dialogue system that lets you write interactive conversations 
 
 When a conversation is running, Yarn Spinner sends your game **lines** of dialogue to show, **options** to let the player choose from, and **commands** to make things happen in your scene.
 
-Yarn Spinner has been used in a number of critically acclaimed games, including [Night in the Woods](http://nightinthewoods.com), [A Short Hike](https://ashorthike.com), [Lost in Random](https://www.ea.com/en-au/games/lost-in-random), and many more.
+Yarn Spinner has been used in a number of critically acclaimed games, including [Night in the Woods](http://nightinthewoods.com), [A Short Hike](https://ashorthike.com), [DREDGE](https://dredge.game), [Venba](https://venbagame.com), [Lost in Random](https://www.ea.com/en-au/games/lost-in-random), and many more.
 
 To get Yarn Spinner, and support the team behind it, buy a copy from [the Yarn Spinner Itch.io Store](https://yarnspinner.itch.io) or from [the Unity Asset Store](https://assetstore.unity.com/packages/tools/behavior-ai/yarn-spinner-for-unity-267061), or check out the [Yarn Spinner Documentation](https://docs.yarnspinner.dev).
 
@@ -20,7 +20,7 @@ This repo contains the core source code for the Yarn Spinner compiler. If you wa
 
 These packages are written by the Yarn Spinner team, and are officially supported.
 
-* **[Yarn Spinner for Unity](https://github.com/YarnSpinnerTool/YarnSpinner-Unity/releases/latest)** (2019.4 LTS or later)
+* **[Yarn Spinner for Unity](https://github.com/YarnSpinnerTool/YarnSpinner-Unity/releases/latest)** (2021.3 or later)
 
 ## Learning More
 
