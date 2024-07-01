@@ -1,6 +1,5 @@
 {
     "protoc": {
-        "path": "/usr/local/bin/protoc",
         "options": [
             "-I=${workspaceRoot}/YarnSpinner", 
             "--csharp_out=${workspaceRoot}/YarnSpinner", 
