@@ -244,8 +244,8 @@ This is a line with embedded escapable symbols in it: \[ \] \\ \< \> \{ \} \# \/
             var lineTagAfterComment = new Regex(@"\/\/.*#line:\w+");
 
             // Ensure that the right number of tags in total is present
-            var expectedExistingTags = 17;
-            var expectedNewTags = 17;
+            var expectedExistingTags = 19;
+            var expectedNewTags = 19;
             var expectedTotalTags = expectedExistingTags + expectedNewTags;
 
             var lineTagRegexMatches = lineTagRegex.Matches(output).Count;
@@ -314,8 +314,10 @@ This is a line with embedded escapable symbols in it: \[ \] \\ \< \> \{ \} \# \/
                 ("line:expected_326d", "This is a line with an embedded #hashtag in it."),
 
                 // Lines with other escaped characters
-                (null, @"This is a line with embedded escapable symbols in it: \"),
-                ("line:expected_bc59", @"This is a line with embedded escapable symbols in it: [ ] \ < > { } # /"),
+                // - Square bracket characters are left escaped in the output
+                //   because this is necessary for the markup system.
+                (null, @"This is a line with embedded escapable symbols in it: \[ \] \ < > { } # /"),
+                ("line:expected_bc59", @"This is a line with embedded escapable symbols in it: \[ \] \ < > { } # /"),
 
             };
             expectedResults.Sort((a,b) => {

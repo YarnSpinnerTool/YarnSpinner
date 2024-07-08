@@ -384,5 +384,17 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitOnce_alternate_clause([NotNull] YarnSpinnerParser.Once_alternate_clauseContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.structured_command"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitStructured_command([NotNull] YarnSpinnerParser.Structured_commandContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.structured_command_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitStructured_command_value([NotNull] YarnSpinnerParser.Structured_command_valueContext context);
 }
 } // namespace Yarn.Compiler

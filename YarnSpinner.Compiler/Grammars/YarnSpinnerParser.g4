@@ -194,3 +194,11 @@ once_alternate_clause
     : COMMAND_START COMMAND_ELSE COMMAND_END statement*
     ;
 
+structured_command
+    : command_id=FUNC_ID values=structured_command_value*
+    ;
+
+structured_command_value
+    : FUNC_ID
+    | expression
+    ;

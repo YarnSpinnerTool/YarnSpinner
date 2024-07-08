@@ -625,5 +625,25 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitOnce_alternate_clause([NotNull] YarnSpinnerParser.Once_alternate_clauseContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.structured_command"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterStructured_command([NotNull] YarnSpinnerParser.Structured_commandContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.structured_command"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitStructured_command([NotNull] YarnSpinnerParser.Structured_commandContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.structured_command_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterStructured_command_value([NotNull] YarnSpinnerParser.Structured_command_valueContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.structured_command_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitStructured_command_value([NotNull] YarnSpinnerParser.Structured_command_valueContext context);
 }
 } // namespace Yarn.Compiler

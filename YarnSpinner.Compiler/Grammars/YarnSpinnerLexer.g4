@@ -118,7 +118,10 @@ ESCAPED_BRACKET_START: '\\[' -> type(TEXT), pushMode(TextMode) ;
 
 // Any other text means this is a Line. Lex this first character as
 // TEXT, and enter TextMode.
-// We special case when the the line starts with an escape character because otherwise it will be detected as regular text BEFORE it has a chance to be pushed into TextEscapedMode
+//
+// We special case when the the line starts with an escape character because
+// otherwise it will be detected as regular text BEFORE it has a chance to be
+// pushed into TextEscapedMode.
 ESCAPED_ANY : '\\' -> channel(HIDDEN), pushMode(TextMode), pushMode(TextEscapedMode);
 ANY: .  -> type(TEXT), pushMode(TextMode);
 
@@ -136,10 +139,10 @@ TEXT_NEWLINE: NEWLINE -> type(NEWLINE), popMode;
 // matching the more general 'escaped character' rule.
 TEXT_ESCAPED_MARKUP_BRACKET: ('\\[' | '\\]') -> type(TEXT);
 
-// An escape marker. Skip this token and enter escaped text mode, which 
+// An escape marker. Hide this token and enter escaped text mode, which 
 // allows escaping characters that would otherwise be syntactically 
 // meaningful.
-TEXT_ESCAPE: '\\' -> skip, pushMode(TextEscapedMode) ;
+TEXT_ESCAPE: '\\' -> channel(HIDDEN), pushMode(TextEscapedMode) ;
 
 // The start of a hashtag. The remainder of this line will consist of
 // commands or hashtags, so swap to this mode and then enter hashtag mode.
