@@ -3902,7 +3902,6 @@ public partial class YarnSpinnerParser : Parser {
 
 	public partial class Structured_commandContext : ParserRuleContext {
 		public IToken command_id;
-		public Structured_command_valueContext @values;
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FUNC_ID() { return GetToken(YarnSpinnerParser.FUNC_ID, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Structured_command_valueContext[] structured_command_value() {
 			return GetRuleContexts<Structured_command_valueContext>();
@@ -3950,7 +3949,7 @@ public partial class YarnSpinnerParser : Parser {
 				{
 				{
 				State = 469;
-				_localctx.@values = structured_command_value();
+				structured_command_value();
 				}
 				}
 				State = 474;
@@ -3971,10 +3970,10 @@ public partial class YarnSpinnerParser : Parser {
 	}
 
 	public partial class Structured_command_valueContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FUNC_ID() { return GetToken(YarnSpinnerParser.FUNC_ID, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
 			return GetRuleContext<ExpressionContext>(0);
 		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FUNC_ID() { return GetToken(YarnSpinnerParser.FUNC_ID, 0); }
 		public Structured_command_valueContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -4010,14 +4009,14 @@ public partial class YarnSpinnerParser : Parser {
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 475;
-				Match(FUNC_ID);
+				expression(0);
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 476;
-				expression(0);
+				Match(FUNC_ID);
 				}
 				break;
 			}
@@ -4207,11 +4206,11 @@ public partial class YarnSpinnerParser : Parser {
 		70,0,0,461,465,5,84,0,0,462,464,3,14,7,0,463,462,1,0,0,0,464,467,1,0,0,
 		0,465,463,1,0,0,0,465,466,1,0,0,0,466,73,1,0,0,0,467,465,1,0,0,0,468,472,
 		5,61,0,0,469,471,3,76,38,0,470,469,1,0,0,0,471,474,1,0,0,0,472,470,1,0,
-		0,0,472,473,1,0,0,0,473,75,1,0,0,0,474,472,1,0,0,0,475,478,5,61,0,0,476,
-		478,3,24,12,0,477,475,1,0,0,0,477,476,1,0,0,0,478,77,1,0,0,0,52,81,87,
-		94,96,110,117,119,124,143,147,151,156,164,170,172,186,189,201,218,220,
-		230,237,243,249,258,262,275,285,294,315,323,325,331,336,344,348,353,358,
-		366,370,379,390,397,404,408,432,440,450,456,465,472,477
+		0,0,472,473,1,0,0,0,473,75,1,0,0,0,474,472,1,0,0,0,475,478,3,24,12,0,476,
+		478,5,61,0,0,477,475,1,0,0,0,477,476,1,0,0,0,478,77,1,0,0,0,52,81,87,94,
+		96,110,117,119,124,143,147,151,156,164,170,172,186,189,201,218,220,230,
+		237,243,249,258,262,275,285,294,315,323,325,331,336,344,348,353,358,366,
+		370,379,390,397,404,408,432,440,450,456,465,472,477
 	};
 
 	public static readonly ATN _ATN =

@@ -195,10 +195,10 @@ once_alternate_clause
     ;
 
 structured_command
-    : command_id=FUNC_ID values=structured_command_value*
+    : command_id=FUNC_ID structured_command_value*
     ;
 
 structured_command_value
-    : FUNC_ID
-    | expression
+    : expression
+    | FUNC_ID
     ;

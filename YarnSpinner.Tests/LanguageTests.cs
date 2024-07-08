@@ -496,7 +496,34 @@ some_other_header2: $b + func_call(42, ""wow"")
 
             whenHeaders.ElementAt(0).header_when_expression().expression().ToStringTree(YarnSpinnerParser.ruleNames).Should().Be("(expression (value (variable $a)))", "the first expression is a simple variable declaration");
             whenHeaders.ElementAt(1).header_when_expression().expression().ToStringTree(YarnSpinnerParser.ruleNames).Should().Be("(expression (expression (value (variable $b))) + (expression (value (function_call func_call ( (expression (value 42)) , (expression (value \"wow\")) )))))", "the second expression is a compound expression");
+        }
 
+        [Fact]
+        public void TestParsingStucturedCommands()
+        {
+            // Given
+            var validCommandText = "walk mae $var 2.3 \"string\" false true SomeArbitraryID function_call(2,\"three\") EnumA.Member .Member";
+            var invalidCommandText = "walk mae {$myVar}"; // an old-style 'plain text' command
+
+            // When
+            var parsedValidCommand = StructuredCommandParser.ParseStructuredCommand(validCommandText);
+            var parsedInvalidCommand = StructuredCommandParser.ParseStructuredCommand(invalidCommandText);
+
+            // Then
+            parsedValidCommand.context.command_id.Should().NotBeNull();
+            parsedValidCommand.context.command_id.Text.Should().Be("walk");
+            parsedValidCommand.context.structured_command_value().Should().HaveCount(10, "the command has this many parameters");
+            parsedValidCommand.diagnostics.Should().BeEmpty("a valid structured command has no errors");
+
+            parsedInvalidCommand.diagnostics.Should().NotBeEmpty("an invalid structured command has errors");
+
+            // Even if a structured command fails to parse, we may be able to
+            // extract some data from it. This helps us decide whether the parse
+            // error is something we should report (i.e. this is meant to be a
+            // structured command, so errors should be surfaced), or not (i.e.
+            // this is not meant to be a structured command, so errors should be
+            // ignored).
+            parsedInvalidCommand.context.command_id.Text.Should().Be("walk");
         }
     }
 }
