@@ -276,6 +276,10 @@ namespace Yarn
 
                     break;
 
+                case InstructionTypeOneofCase.AddSaliencyCandidate:
+                    pops = 1;
+                    break;
+
                 // Pop always pops a single value
                 case InstructionTypeOneofCase.Pop:
                     pops = 1;
@@ -408,6 +412,15 @@ namespace Yarn
                 case InstructionTypeOneofCase.DetourToNode:
                     operands.Add(this.DetourToNode.NodeName);
                     break;
+                case InstructionTypeOneofCase.AddSaliencyCandidate:
+                    operands.Add(this.AddSaliencyCandidate.ContentID);
+                    operands.Add(this.AddSaliencyCandidate.ComplexityScore);
+                    operands.Add(GetLabel(this.AddSaliencyCandidate.Destination));
+                    break;
+                case InstructionTypeOneofCase.AddSaliencyCandidateFromNode:
+                    operands.Add(this.AddSaliencyCandidateFromNode.NodeName);
+                    operands.Add(GetLabel(this.AddSaliencyCandidateFromNode.Destination));
+                    break;
             }
 
             string operandText = string.Join(", ", operands);
@@ -431,6 +444,8 @@ namespace Yarn
                     case InstructionTypeOneofCase.JumpTo:
                     case InstructionTypeOneofCase.JumpIfFalse:
                     case InstructionTypeOneofCase.PushFloat:
+                    case InstructionTypeOneofCase.AddSaliencyCandidate:
+                    case InstructionTypeOneofCase.AddSaliencyCandidateFromNode:
                         return true;
                     default:
                         return false;
@@ -449,6 +464,10 @@ namespace Yarn
                         return this.JumpIfFalse.Destination;
                     case InstructionTypeOneofCase.PushFloat:
                         return (int)this.PushFloat.Value;
+                    case InstructionTypeOneofCase.AddSaliencyCandidate:
+                        return this.AddSaliencyCandidate.Destination;
+                    case InstructionTypeOneofCase.AddSaliencyCandidateFromNode:
+                        return this.AddSaliencyCandidate.Destination;
                     default:
                         throw new ArgumentOutOfRangeException($"Instruction {this} does not have a Destination");
                 }
@@ -467,6 +486,12 @@ namespace Yarn
                         break;
                     case InstructionTypeOneofCase.PushFloat:
                         this.PushFloat.Value = value;
+                        break;
+                    case InstructionTypeOneofCase.AddSaliencyCandidate:
+                        this.AddSaliencyCandidate.Destination = value;
+                        break;
+                    case InstructionTypeOneofCase.AddSaliencyCandidateFromNode:
+                        this.AddSaliencyCandidateFromNode.Destination = value;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException($"Instruction {this} does not have a Destination");
@@ -501,24 +526,107 @@ namespace Yarn
             }
         }
 
+        // Constants representing specific header names used to store data about
+        // a node.
         internal const string TrackingVariableNameHeader = "$Yarn.Internal.TrackingVariable";
+        internal const string ContentSaliencyConditionVariablesHeader = "$Yarn.Internal.ContentSaliencyVariables";
+        internal const string ContentSaliencyConditionComplexityScoreHeader = "$Yarn.Internal.ContentSaliencyComplexity";
+
+        /// <summary>
+        /// The name of the header that indicates a node's title.
+        /// </summary>
+        public const string TitleHeader = "title";
+
+        /// <summary>
+        /// The name of the header that indicates which node group a node
+        /// belongs to.
+        /// </summary>
+        public const string NodeGroupHeader = "$Yarn.Internal.NodeGroup";
+
+        // A char array used to split the content saliency condition variable
+        // names stored in headers.
+        private static readonly char[] ContentSaliencyVariableSeparatorArray = new[] { ContentSaliencyVariableSeparator };
+        internal const char ContentSaliencyVariableSeparator = ';';
+
+        private string? GetHeaderValue(string headerName)
+        {
+            foreach (var header in this.Headers)
+            {
+                if (header.Key == headerName)
+                {
+                    return header.Value;
+                }
+            }
+            return null;
+        }
 
         /// <summary>
         /// Gets the name of the variable used for tracking the number of times
         /// this node has completed, or <see langword="null"/> if this node is
         /// not tracked.
         /// </summary>
-        public string? TrackingVariableName {
-            get {
-                foreach (var header in this.Headers) {
-                    if (header.Key == TrackingVariableNameHeader) {
-                        return header.Value;
-                    }
+        public string? TrackingVariableName
+        {
+            get
+            {
+                return GetHeaderValue(TrackingVariableNameHeader);
+            }
+        }
+
+        /// <summary>
+        /// Gets an enumerable containing the names of variables that must be
+        /// evaluated in order to determine whether this node can be selected as
+        /// a piece of salient content.
+        /// </summary>
+        /// <remarks>
+        /// The list of variables is stored in the header as a
+        /// semicolon-delimited string.
+        /// </remarks>
+        public IEnumerable<string> ContentSaliencyConditionVariables
+        {
+            get
+            {
+                var variablesHeader = GetHeaderValue(ContentSaliencyConditionVariablesHeader);
+                return variablesHeader != null
+                    ? variablesHeader.Split(ContentSaliencyVariableSeparatorArray, StringSplitOptions.RemoveEmptyEntries)
+                    : Array.Empty<string>();
+            }
+        }
+
+        /// <summary>
+        /// Gets the content saliency condition complexity score for this node.
+        /// </summary>
+        /// <returns>
+        /// An integer representing the content saliency condition complexity
+        /// score if a valid header is found; otherwise, returns -1 if the
+        /// header is not present or does not contain a valid value.
+        /// </returns>
+        public int ContentSaliencyConditionComplexityScore
+        {
+            get
+            {
+                var scoreValue = GetHeaderValue(ContentSaliencyConditionComplexityScoreHeader);
+                if (scoreValue != null && int.TryParse(scoreValue, out int score))
+                {
+                    return score;
                 }
-                return null;
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the name of the node group that this node is a part of, or <see
+        /// langword="null"/> if it is not part of a node group.
+        /// </summary>
+        public string? NodeGroup
+        {
+            get
+            {
+                return GetHeaderValue(NodeGroupHeader);
             }
         }
     }
-
-
 }

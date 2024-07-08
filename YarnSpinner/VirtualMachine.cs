@@ -318,8 +318,6 @@ namespace Yarn
         public IContentSaliencyStrategy? ContentSaliencyStrategy { get; internal set; }
 
         internal Node? currentNode;
-        public const string AddLineGroupCandidateFunctionName = "Yarn.Internal.add_line_group_candidate";
-        public const string SelectLineGroupCandidateFunctionName = "Yarn.Internal.select_line_group_candidate";
 
         public bool SetNode(string nodeName)
         {
@@ -389,8 +387,8 @@ namespace Yarn
 
             // We now know what number option was selected; push the
             // corresponding node name to the stack
-            var destinationNode = state.currentOptions[selectedOptionID].destination;
-            state.PushValue(destinationNode);
+            var destinationInstruction = state.currentOptions[selectedOptionID].destination;
+            state.PushValue(destinationInstruction);
 
             // We no longer need the accumulated list of options; clear it
             // so that it's ready for the next one
@@ -692,19 +690,6 @@ namespace Yarn
                         // if it returns one.
                         var functionName = i.CallFunc.FunctionName;
 
-                        // If functionName is a special-cased internal compiler
-                        // function, handle that
-                        if (functionName.Equals(AddLineGroupCandidateFunctionName, StringComparison.Ordinal))
-                        {
-                            this.HandleAddLineGroupCandidate();
-                            break;
-                        }
-                        if (functionName.Equals(SelectLineGroupCandidateFunctionName, StringComparison.Ordinal))
-                        {
-                            this.HandleSelectLineGroupCandidate();
-                            break;
-                        }
-
                         var function = Library.GetFunction(functionName);
 
                         var parameterInfos = function.Method.GetParameters();
@@ -893,6 +878,98 @@ namespace Yarn
                         state.programCounter = returnSite.instruction;
                     }
                     break;
+                case Instruction.InstructionTypeOneofCase.AddSaliencyCandidate:
+                    {
+                        var condition = this.state.PopValue().ConvertTo<bool>();
+
+                        var candidate = new ContentSaliencyOption(i.AddSaliencyCandidate.ContentID)
+                        {
+                            ComplexityScore = i.AddSaliencyCandidate.ComplexityScore,
+                            FailingConditionValueCount = condition ? 0 : 1,
+                            PassingConditionValueCount = condition ? 1 : 0,
+                            Destination = i.AddSaliencyCandidate.Destination,
+                            ContentType = ContentSaliencyContentType.Line,
+                        };
+
+                        saliencyCandidateList.Add(candidate);
+                    }
+                    break;
+                case Instruction.InstructionTypeOneofCase.AddSaliencyCandidateFromNode:
+                    {
+                        var nodeName = i.AddSaliencyCandidateFromNode.NodeName;
+                        var node = this.Program.Nodes[nodeName];
+
+                        int passed = 0;
+                        int failed = 0;
+
+                        foreach (var variableName in node.ContentSaliencyConditionVariables)
+                        {
+                            // For each condition variable in this node,
+                            // evaluate it, and record whether it evaluated to
+                            // true or false.
+                            this.VariableStorage.SmartVariableEvaluator.TryGetSmartVariable(variableName, out bool result);
+
+                            if (result) { passed += 1; }
+                            else { failed += 1; }
+                        }
+
+                        int conditionComplexityScore = node.ContentSaliencyConditionComplexityScore;
+
+                        var candidate = new ContentSaliencyOption(nodeName)
+                        {
+                            ComplexityScore = conditionComplexityScore,
+                            FailingConditionValueCount = failed,
+                            PassingConditionValueCount = passed,
+                            Destination = i.AddSaliencyCandidateFromNode.Destination,
+                            ContentType = ContentSaliencyContentType.Node,
+                        };
+
+                        this.saliencyCandidateList.Add(candidate);
+
+                    }
+                    break;
+                case Instruction.InstructionTypeOneofCase.SelectSaliencyCandidate:
+                    {
+                        // Ensure that we have a valid saliency strategy. If we
+                        // don't have one, create a simple one now.
+                        this.ContentSaliencyStrategy ??= new FirstSaliencyStrategy();
+
+                        // Pass the collection of salient content candidates to
+                        // the strategy and get back either a single thing to
+                        // run, or null
+                        ContentSaliencyOption? result = this.ContentSaliencyStrategy.QueryBestContent(this.saliencyCandidateList);
+
+                        if (result != null) {
+                            // The content that was selected must be one of the candidates.
+                            bool selectedContentWasValid = saliencyCandidateList.Contains(result);
+
+                            if (selectedContentWasValid == false)
+                            {
+                                throw new DialogueException($"Content saliency strategy {ContentSaliencyStrategy} did not " + 
+                                    $"return a valid selection (available content IDs to choose from were " + 
+                                    $"{string.Join(", ", saliencyCandidateList)}, but strategy returned {result}");
+                            }
+
+                            // Indicate to the strategy that we are committing
+                            // to this item.
+                            this.ContentSaliencyStrategy.ContentWasSelected(result);
+
+                            // Push the destination that we're jumping to.
+                            this.state.PushValue(result.Destination);
+
+                            // Push a flag indicating that content was selected.
+                            this.state.PushValue(true);
+                        } else {
+                            // No content was selected.
+
+                            // Push a flag indicating that content was not selected.
+                            this.state.PushValue(false);
+                        }
+
+                        // Clear the saliency candidate list
+                        saliencyCandidateList.Clear();
+                    }
+                    break;
                 default:
                     // Whoa, no idea what OpCode this is. Stop the program
                     // and throw an exception.
@@ -901,6 +978,8 @@ namespace Yarn
                     throw new ArgumentOutOfRangeException($"{i.InstructionTypeCase} is not a supported instruction.");
             }
         }
+
+        private List<ContentSaliencyOption> saliencyCandidateList = new List<ContentSaliencyOption>();
 
         private void ExecuteJumpToNode(string? nodeName, bool isDetour)
         {
@@ -934,79 +1013,6 @@ namespace Yarn
             // be incremented when this function returns, and
             // would mean skipping the first instruction
             state.programCounter -= 1;
-        }
-
-        internal class LineGroupCandidate : IContentSaliencyOption
-        {
-            public int ConditionValueCount { get; set; }
-            public string? ContentID { get; set; }
-            public int DestinationIfSelected { get; set; }
-
-            public override string ToString() => ContentID ?? "(null)";
-        }
-
-        private readonly List<LineGroupCandidate> lineGroupCandidates = new List<LineGroupCandidate>();
-
-        private void HandleSelectLineGroupCandidate()
-        {
-        
-            // Pop the parameter count, which is 1
-            var actualParamCount = state.PopValue().ConvertTo<int>();
-            const int expectedParamCount = 1;
-            if (actualParamCount != expectedParamCount) {
-                throw new InvalidOperationException($"Function {SelectLineGroupCandidateFunctionName} expected {expectedParamCount} parameters, but received {actualParamCount}");
-            }
-
-            // Get the destination we should go to if there are no candidates
-            int noContentAvailableDestination = state.PopValue().ConvertTo<int>();
-
-            // If there are no candidates, then the result is the 'no content
-            // available' destination
-            if (lineGroupCandidates.Count == 0) {
-                state.PushValue(noContentAvailableDestination);
-                return;
-            }
-
-            // If we don't have a saliency strategy, create and store a basic
-            // one.
-            ContentSaliencyStrategy ??= new FirstSaliencyStrategy();
-
-            // Choose the content to present.
-            var selectedContent = ContentSaliencyStrategy.ChooseBestContent(lineGroupCandidates);
-
-            // The content that was selected must be one of the candidates.
-            bool selectedContentWasValid = lineGroupCandidates.Contains(selectedContent);
-            
-            if (selectedContentWasValid == false) {
-                throw new DialogueException($"Content saliency strategy {ContentSaliencyStrategy} did not return a valid selection (available content IDs to choose from were {string.Join(", ", lineGroupCandidates)}, but strategy returned {selectedContent}");
-            }
-
-            lineGroupCandidates.Clear();
-
-            // Push the destination onto the stack
-            state.PushValue(selectedContent.DestinationIfSelected);
-        }
-
-        private void HandleAddLineGroupCandidate()
-        {
-            // 'Add Line Group Candidate' expects 3 parameters pushed in reverse order:
-            // -label (str)
-            // - condition count (num)
-            // - line id (str)
-            var actualParamCount = state.PopValue().ConvertTo<int>();
-            const int expectedParamCount = 3;
-
-            if (expectedParamCount != actualParamCount)
-            {
-                throw new InvalidOperationException($"Function {AddLineGroupCandidateFunctionName} expected {expectedParamCount} parameters, but received {actualParamCount}");
-            }
-
-            lineGroupCandidates.Add(new LineGroupCandidate
-            {
-                DestinationIfSelected = state.PopValue().ConvertTo<int>(),
-                ConditionValueCount = state.PopValue().ConvertTo<int>(),
-                ContentID = state.PopValue().ConvertTo<string>()
-            });
         }
 
         private static void DummyCommandHandler(Command command)

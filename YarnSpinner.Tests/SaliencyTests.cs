@@ -50,19 +50,19 @@ namespace YarnSpinner.Tests
             // FirstContentStrategy (i.e. it returns the first item in the list,
             // every time)
             mockSaliencyStrategy.Setup(
-                s => s.ChooseBestContent(It.IsAny<IEnumerable<IContentSaliencyOption>>())).Returns((IEnumerable<IContentSaliencyOption> a) => a.First()
+                s => s.QueryBestContent(It.IsAny<IEnumerable<ContentSaliencyOption>>())).Returns((IEnumerable<ContentSaliencyOption> a) => a.First()
             );
 
-            var item = new Mock<IContentSaliencyOption>();
+            var item = new ContentSaliencyOption("mock");
 
             // When
-            var result = mockSaliencyStrategy.Object.ChooseBestContent(new[] { item.Object });
+            var result = mockSaliencyStrategy.Object.QueryBestContent(new[] { item });
 
             // Then
-            result.Should().Be(item.Object);
+            result.Should().Be(item);
             mockSaliencyStrategy.Verify(
-                s => s.ChooseBestContent(
-                    It.Is<IEnumerable<IContentSaliencyOption>>(e => e.Count() == 1)
+                s => s.QueryBestContent(
+                    It.Is<IEnumerable<ContentSaliencyOption>>(e => e.Count() == 1)
                 )
             );
             mockSaliencyStrategy.VerifyNoOtherCalls();
@@ -137,19 +137,20 @@ expected: 2
 
             var mockSaliencyStrategy = new Mock<IContentSaliencyStrategy>(MockBehavior.Strict);
 
-            var content = new List<IContentSaliencyOption>();
+            var content = new List<ContentSaliencyOption>();
 
             // Create a mock saliency strategy that mimics the
-            // FirstContentStrategy (i.e. it returns the first item in the list,
-            // every time)
+            // FirstContentStrategy (i.e. it returns the first item in the list
+            // that has no failing conditions, every time)
+            mockSaliencyStrategy.Setup((s) => s.QueryBestContent(It.IsAny<IEnumerable<ContentSaliencyOption>>()))
+                .Callback<IEnumerable<ContentSaliencyOption>>(options =>
+                {
+                    content.AddRange(options.Where(option => option.FailingConditionValueCount == 0));
+                })
+                .Returns((IEnumerable<ContentSaliencyOption> a) => a.Where(a => a.FailingConditionValueCount == 0).FirstOrDefault());
+
             mockSaliencyStrategy.Setup(
-                s => s.ChooseBestContent(It.IsAny<IEnumerable<IContentSaliencyOption>>()))
-                    .Callback<IEnumerable<IContentSaliencyOption>>(p =>
-                    {
-                        content.AddRange(p);
-                    })
-                    .Returns((IEnumerable<IContentSaliencyOption> a) => a.First()
-            );
+                (s) => s.ContentWasSelected(It.IsAny<ContentSaliencyOption>()));
 
             dialogue.Library.RegisterFunction("demo_function", (bool a) => {return true;});
 
@@ -161,7 +162,7 @@ expected: 2
             string nodeGroupName = "NodeGroup";
 
             foreach (var node in result.Program.Nodes) {
-                var nodeGroupHeader = node.Value.Headers.SingleOrDefault(h => h.Key == SpecialHeaderNames.NodeGroupHeader);
+                var nodeGroupHeader = node.Value.Headers.SingleOrDefault(h => h.Key == Yarn.Node.NodeGroupHeader);
 
                 if (nodeGroupHeader == null) {
                     continue;
@@ -185,19 +186,26 @@ expected: 2
             // Then
             // The saliency strategy was invoked one time
             mockSaliencyStrategy.Verify(
-                s => s.ChooseBestContent(
-                    It.IsAny<IEnumerable<IContentSaliencyOption>>()
+                s => s.QueryBestContent(
+                    It.IsAny<IEnumerable<ContentSaliencyOption>>()
                 ), Times.Once
             );
 
             // The saliency strategy was given two options to choose from
-            content.Should().HaveCount(nodesInNodeGroup, $"there are {nodesInNodeGroup} nodes in the node group");
+            content.Should().HaveCount(nodesInNodeGroup, $"there are {nodesInNodeGroup} nodes in the node group, and every node is a valid option");
 
             // All options had a complexity of 1
             content.Should()
-                   .AllSatisfy(c => c.ConditionValueCount
-                    .Should().Be(expectedComplexities[c.ContentID], 
-                        $"{c.ContentID} should have complexity {expectedComplexities[c.ContentID]}"));
+                   .AllSatisfy(c =>
+                   {
+                       c.ComplexityScore
+                           .Should().Be(
+                               expectedComplexities[c.ContentID],
+                               $"{c.ContentID} should have passing complexity {expectedComplexities[c.ContentID]}"
+                       );
+                       c.PassingConditionValueCount.Should().BeGreaterThan(0, $"{c.ContentID} should have at least one passing condition");
+                       c.FailingConditionValueCount.Should().Be(0, $"{c.ContentID} should have no failing conditions");
+                   });
         }
 
         [Fact]
@@ -226,16 +234,19 @@ when: always
             var result = CompileAndPrepareDialogue(source, "NodeGroup");
             dialogue.VariableStorage.SetValue("$condition1", true);
 
-            IEnumerable<IContentSaliencyOption> availableContent = dialogue.GetAvailableContentForNodeGroup("NodeGroup");
+            IEnumerable<ContentSaliencyOption> availableContent = dialogue.GetSaliencyOptionsForNodeGroup("NodeGroup");
 
             // Then
-            availableContent.Should().HaveCount(2);
+            availableContent.Should().HaveCount(3, "All nodes are part of the same group");
 
             availableContent.Should().AllSatisfy(
                 c => result.Program.Nodes.Should().Contain(
                     n => n.Key == c.ContentID, $"{c.ContentID} should be one of the nodes in the program"
                 )
             );
+
+            availableContent.Where(c => c.FailingConditionValueCount == 0).Should().HaveCount(2, "2 nodes are passing");
+            availableContent.Where(c => c.FailingConditionValueCount > 0).Should().HaveCount(1, "1 node is failing");
         }
     }
 

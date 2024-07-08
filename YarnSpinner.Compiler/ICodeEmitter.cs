@@ -3,6 +3,12 @@ namespace Yarn.Compiler
     using System.Collections.Generic;
     using Antlr4.Runtime;
 
+    internal struct NodeCompilationResult {
+        public Node Node;
+        public NodeDebugInfo NodeDebugInfo;
+        public readonly string Name => Node.Name;
+    }
+
     internal interface ICodeEmitter
     {
         Node? CurrentNode { get; }

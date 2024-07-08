@@ -16,7 +16,7 @@ namespace Yarn.Compiler
 
         public override int VisitNode([NotNull] YarnSpinnerParser.NodeContext context)
         {
-            var titleHeader = context.GetHeader(SpecialHeaderNames.TitleHeader);
+            var titleHeader = context.GetHeader(Node.TitleHeader);
 
             if (titleHeader == null || titleHeader.header_value?.Text == null) {
                 // The node doesn't have a title. It can't be part of a node group.
@@ -31,7 +31,7 @@ namespace Yarn.Compiler
                 // Add a new header to mark which group it's from.
                 var groupHeader = new YarnSpinnerParser.HeaderContext(context, 0)
                 {
-                    header_key = new CommonToken(YarnSpinnerParser.ID, SpecialHeaderNames.NodeGroupHeader),
+                    header_key = new CommonToken(YarnSpinnerParser.ID, Node.NodeGroupHeader),
                     header_value = new CommonToken(YarnSpinnerParser.REST_OF_LINE, title)
                 };
 

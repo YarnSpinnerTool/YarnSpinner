@@ -1200,9 +1200,47 @@ namespace Yarn
                 out result);
         }
 
-        public IEnumerable<Saliency.IContentSaliencyOption> GetAvailableContentForNodeGroup(string nodeGroup)
+        /// <summary>
+        /// Queries the <see cref="Dialogue"/> for what content could possibly
+        /// run if the node group nodeGroup was run.
+        /// </summary>
+        /// <remarks>
+        /// <para>This method evaluates all nodes in the given node group, and
+        /// returns a <see cref="Saliency.ContentSaliencyOption"/> object for
+        /// each node. This object contains the current number of passing and
+        /// failing 'when' clauses on the node, as well as the complexity score
+        /// for that node. This is the same information that's passed to a <see
+        /// cref="Saliency.IContentSaliencyStrategy"/> object's <see
+        /// cref="Saliency.IContentSaliencyStrategy.QueryBestContent(IEnumerable{Saliency.ContentSaliencyOption})"/>
+        /// method. This method is read-only, and calling it will not modify any
+        /// variable state.
+        /// </para>
+        /// <para>Note that this method does not filter its output, and may
+        /// include content options whose <see
+        /// cref="Saliency.ContentSaliencyOption.FailingConditionValueCount"/>
+        /// is greater than zero. It's up to the caller of this function to
+        /// filter out these options if they're not wanted.</para> 
+        /// <para>
+        /// This method can be used to see if <em>any</em> content will appear
+        /// when a given node group is run. If the collection returned by this
+        /// method is empty, then running this node group will not result in any
+        /// content. This can be used, for example, to decide whether to show a
+        /// 'character can be spoken to' indicator. You can also examine the
+        /// individal <see cref="Saliency.ContentSaliencyOption"/> objects to
+        /// see if any content is available that passes a filter, such as
+        /// whether content might appear that has a user-defined 'plot critical'
+        /// tag.
+        /// </para> 
+        /// </remarks>
+        /// <param name="nodeGroup">The name of the node group to get available
+        /// content for.</param>
+        /// <returns>A collection of <see
+        /// cref="Saliency.ContentSaliencyOption"/> objects that may appear if
+        /// and when the node group <paramref name="nodeGroup"/> is run.
+        /// </returns>
+        public IEnumerable<Saliency.ContentSaliencyOption?> GetSaliencyOptionsForNodeGroup(string nodeGroup)
         {
-            return SmartVariableEvaluationVirtualMachine.GetAvailableContentForNodeGroup(nodeGroup, this.VariableStorage, this.Library);
+            return SmartVariableEvaluationVirtualMachine.GetSaliencyOptionsForNodeGroup(nodeGroup, this.VariableStorage, this.Library);
         }
 
         // The standard, built-in library of functions and operators.

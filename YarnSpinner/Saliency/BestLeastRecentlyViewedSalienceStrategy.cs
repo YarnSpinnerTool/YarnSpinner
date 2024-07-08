@@ -15,84 +15,81 @@ namespace Yarn.Saliency
     public class BestLeastRecentlyViewedSalienceStrategy : IContentSaliencyStrategy
     {
         /// <summary>
-        /// Gets the variable storage to use for storing information about how
-        /// often we've seen content.
-        /// </summary>
-        private IVariableStorage VariableStorage { get; }
-
-        /// <summary>
         /// Initalises a new instance of the <see
         /// cref="BestLeastRecentlyViewedSalienceStrategy"/> class.
         /// </summary>
         /// <param name="storage">The variable storage to use when determining
         /// which content to show.</param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentNullException">Thrown when the provided
+        /// <paramref name="storage"/> argument is null.</exception>
         public BestLeastRecentlyViewedSalienceStrategy(IVariableStorage storage)
         {
             this.VariableStorage = storage ?? throw new ArgumentNullException(nameof(storage));
         }
 
         /// <summary>
-        /// Gets a unique variable name that can be used for tracking the view
-        /// count of a specific piece of content.
+        /// Gets the variable storage to use for storing information about how
+        /// often we've seen content.
         /// </summary>
-        /// <param name="content">The content to generate a variable name
-        /// for.</param>
-        /// <returns>The generated variable name.</returns>
-        private string GetViewCountKeyForContent(IContentSaliencyOption content)
+        private IVariableStorage VariableStorage { get; }
+
+        /// <inheritdoc/>
+        /// <remarks>This method increments the view count for <paramref
+        /// name="content"/>, so that the next time QueryBestContent is run, it
+        /// has an updated count of the number of times the content has been
+        /// viewed.</remarks>
+        public void ContentWasSelected(ContentSaliencyOption content)
         {
-            return $"$Yarn.Internal.Content.ViewCount.{content.ContentID}";
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content), "Content cannot be null");
+            }
+
+            if (VariableStorage.TryGetValue<float>(content.ViewCountKey, out var ViewCount) == false)
+            {
+                ViewCount = 0;
+            }
+
+            ViewCount += 1;
+            VariableStorage.SetValue(content.ViewCountKey, (int)ViewCount);
         }
 
         /// <inheritdoc/>
-        public TContent ChooseBestContent<TContent>(IEnumerable<TContent> content) where TContent : IContentSaliencyOption
+        public ContentSaliencyOption? QueryBestContent(IEnumerable<ContentSaliencyOption> content)
         {
-            // For each of the options, calculate how many times we've seen it,
-            // and what variable name stores this information.
+            // First, filter out all content that has failed any conditions.
+            content = content.Where(c => c.FailingConditionValueCount == 0).ToList();
+
+            if (!content.Any())
+            {
+                // There's no content available.
+                return null;
+            }
+
+            // For each of the options, calculate how many times we've seen it.
             var viewCountContent = content.Select(c =>
             {
-                int count;
-                if (c.ContentID == null)
+                // Query the variable storage for how many times we've seen
+                // content with this ID. If we don't have an answer, then assume
+                // zero.
+                if (this.VariableStorage.TryGetValue<float>(c.ViewCountKey, out var countAsFloat) == false)
                 {
-                    // This content represents the null choice. We won't have a
-                    // view count key for this, so create a synthetic value
-                    // where the view count is the highest possible (to push it
-                    // to the bottom of the sorted list, since we want to avoid
-                    // this option as much as we can).
-                    return (ViewCount: int.MaxValue, ViewCountKey: null, Content: c);
-                }
-                else
-                {
-                    // Query the variable storage for how many times we've seen
-                    // content with this ID. If we don't have an answer, then
-                    // assume zero. Additionally, we'll keep the view count key
-                    // for later, since we'll increment it when we're done.
-                    string viewCountKey = GetViewCountKeyForContent(c);
-                    if (this.VariableStorage.TryGetValue<float>(viewCountKey, out var countAsFloat) == false)
-                    {
-                        countAsFloat = 0;
-                    }
-                    count = (int)countAsFloat;
-                    return (ViewCount: count, ViewCountKey: viewCountKey ?? null, Content: c);
+                    countAsFloat = 0;
                 }
 
+                int count = (int)countAsFloat;
+                return (ViewCount: count, Content: c);
             });
 
-            // Sort by view count, then by descending condition value count, to
+            // Sort by view count, then by descending complexity score, to
             // get the best of the least-recently-seen items. OrderBy and
             // ThenByDescending perform a stable sort, which is helpful for
             // writers who might want a specific order of delivery when this
             // collection of options is run multiple times.
-            var (ViewCount, ViewCountKey, Content) = viewCountContent
+            var (ViewCount, Content) = viewCountContent
                 .OrderBy(c => c.ViewCount)
-                .ThenByDescending(c => c.Content.ConditionValueCount)
+                .ThenByDescending(c => c.Content.ComplexityScore)
                 .First();
-
-            if (ViewCountKey != null)
-            {
-                int bestViewCount = ViewCount + 1;
-                VariableStorage.SetValue(ViewCountKey, bestViewCount);
-            }
 
             return Content;
         }

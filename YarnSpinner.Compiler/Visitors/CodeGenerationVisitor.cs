@@ -119,6 +119,7 @@ namespace Yarn.Compiler
                 // We generated a jump instruction to jump over the line. Update
                 // its destination to immediately after the line.
                 jumpIfConditionFalseInstruction.Destination = this.CurrentInstructionNumber;
+                this.compiler.CurrentNodeDebugInfo?.AddLabel("skip_line", this.CurrentInstructionNumber);
             }
 
             if (hasAnyCondition) {
@@ -498,8 +499,11 @@ namespace Yarn.Compiler
         /// Generates code that evaluates any conditions present on the line and
         /// places the result on the stack.
         /// </summary>
-        /// <param name="lineStatement"></param>
-        /// <param name="onceVariable"></param>
+        /// <param name="lineStatement">The line statement containing
+        /// potential condition information.</param>
+        /// <param name="onceVariable">An output parameter to store the name of
+        /// the relevant 'once' variable for this statement if present, or <see
+        /// langword="null"/> if not.</param>
         private void EvaluateLineCondition(YarnSpinnerParser.Line_statementContext lineStatement, out string? onceVariable)
         {
             onceVariable = null;
@@ -539,7 +543,7 @@ namespace Yarn.Compiler
                     );
 
                     // If the condition has an expression, evaluate that too
-                    // and, 'and' it
+                    // and 'and' it with the 'once' test we just evaluated
                     if (condition.expression() is YarnSpinnerParser.ExpressionContext expr)
                     {
                         Visit(condition.expression());
@@ -584,33 +588,27 @@ namespace Yarn.Compiler
             int optionCount = 0;
 
             // Each line group item works like this:
-            // - If present, the condition is evaluated.
-            //   - If the condition is false, this item is skipped.
-            // - If the condition is true or not present, a function call is
-            //   made:
-            //   - 'Yarn.Internal.add_line_group_candidate(label,
-            //     condition_count, line_id)'
-            //     - label: The point in the program to jump to if this
-            //       candidate is selected
-            //     - condition_count: The number of values present in the line's
-            //       condition (0 if not present)
-            //     - line_id: The line ID of the line (which also serves as a
-            //       unique ID for the line condition.)
-            // - Each call to add_line_candidate adds an entry to an internal
-            //   list in the VM.
-            // - Finally, after all line group items have been checked in this
-            //   way, a call to 'Yarn.Internal.select_line_candidate' is made.
-            //   This causes the VM to query its saliency strategy to find the
-            //   specific item to run, and returns the appropriate label to jump
-            //   to. This method takes one parameter: the point in the program
-            //   to jump to if there were no line group candidate items added
-            //   (that is, they all failed their condition.)
+            // - For each item in the line group, evaluate its condition if it
+            //   has one, or else push true onto the stack. Then, tell the VM to
+            //   add a candidate for that item.
+            // - Next, tell the VM to select the best item. If one was selected,
+            //   then the stack will contain (true, destination); otherwise, it
+            //   will contain (false).
+            // - If we had content, jump to the appropriate destination, which
+            //   contains code for displaying the line, and then jumps to the
+            //   end of the line group's instructions. (If the line group's
+            //   condition was a 'once' or 'once if' condition, we update the
+            //   'once' flag for the item here.)
+            // - If we didn't, jump straight to the end immediately.
 
             List<Instruction> jumpsToEndOfLineGroup = new List<Instruction>();
 
-            var jumpsToLineGroupItems = new Dictionary<YarnSpinnerParser.Line_group_itemContext, Instruction>();
-
             var onceVariables = new Dictionary<YarnSpinnerParser.Line_group_itemContext, string?>();
+
+            var addCandidateInstructions = new Dictionary<YarnSpinnerParser.Line_group_itemContext, Instruction>();
+
+            this.compiler.CurrentNodeDebugInfo?.AddLabel("line_group_start", CurrentInstructionNumber);
+
 
             foreach (var lineGroupItem in context.line_group_item())
             {
@@ -618,97 +616,94 @@ namespace Yarn.Compiler
 
                 var lineID = Compiler.GetContentID(ContentIdentifierType.Line, lineGroupItem.line_statement());
 
-                if (lineStatement.line_condition() != null) {
-                    // This line group item has an expression. Evaluate it.
+                Instruction addCandidateInstruction;
 
-                    EvaluateLineCondition(lineStatement, out var onceVariable);
+                int conditionCount;
 
-                    onceVariables[lineGroupItem] = onceVariable;
+                if (lineStatement.line_condition() != null)
+                {
+                    // This line group item has an expression. Evaluate it -
+                    // this will result in the expression's value being left on
+                    // the stack, and possibly give us the name of any 'once'
+                    // variable that may be present.
 
-                    Instruction skipThisItemInstruction;
+                    EvaluateLineCondition(lineStatement, out string? onceVariableName);
 
-                    // If this evaluates to false, skip to the end of the
-                    // expression and do not register this line group item
-                    this.compiler.Emit(
-                        lineStatement.line_condition().Start,
-                        skipThisItemInstruction = new Instruction { 
-                            JumpIfFalse = new JumpIfFalseInstruction { Destination = -1 } 
-                        }
-                    );
+                    if (onceVariableName != null)
+                    {
+                        onceVariables[lineGroupItem] = onceVariableName;
+                    }
 
                     // Count the number of conditions in the expression:
-
-                    int conditionCount = lineStatement.line_condition().ConditionCount;
-
-                    // Call the 'add candidate' function
-                    EmitCodeForRegisteringLineGroupItem(lineGroupItem, conditionCount);
-
-                    // Update our jump to point at where we are now
-                    this.compiler.CurrentNodeDebugInfo?.AddLabel("line_group_eval_end", CurrentInstructionNumber);
-                    skipThisItemInstruction.Destination = CurrentInstructionNumber;
+                    conditionCount = lineStatement.line_condition().ConditionCount;
                 }
                 else
                 {
-                    // There is no expression; call the add candidate function
-                    // unconditionally
-                    EmitCodeForRegisteringLineGroupItem(lineGroupItem, 0);
+                    // There is no expression; push 'true' onto the stack and
+                    // note that it had a complexity of zero
+                    this.compiler.Emit(lineStatement.Start, new Instruction { PushBool = new PushBoolInstruction { Value = true } });
+                    conditionCount = 0;
                 }
 
-                optionCount += 1;
-            }
-
-            void EmitCodeForRegisteringLineGroupItem(YarnSpinnerParser.Line_group_itemContext lineGroupItem, int conditionCount)
-            {
-                var lineStatement = lineGroupItem.line_statement();
-                var lineIDTag = Compiler.GetContentIDTag(ContentIdentifierType.Line, lineStatement.hashtag());
-                var lineID = lineIDTag?.text?.Text ?? throw new InvalidOperationException("Internal compiler error: line ID for line group item was not present");
-
-                Instruction runThisLineInstruction;
-
-                // Push the parameters (destination, condition count (= 0), line id)
-                // in reverse order
+                // Add this line group item
                 this.compiler.Emit(
                     lineStatement.Start,
-                    // line ID for this option (arg 3)
-                    new Instruction { PushString = new PushStringInstruction { Value = lineID } },
-                    // condition count (arg 2)
-                    new Instruction { PushFloat = new PushFloatInstruction { Value = conditionCount } },
-                    // destination if selected (arg 1)
-                    runThisLineInstruction = new Instruction { PushFloat = new PushFloatInstruction { Value = -1 } },
-                    // instruction count
-                    new Instruction { PushFloat = new PushFloatInstruction { Value = 3 } },
-                    new Instruction { CallFunc = new CallFunctionInstruction { FunctionName = VirtualMachine.AddLineGroupCandidateFunctionName } }
+                    addCandidateInstruction = new Instruction
+                    {
+                        AddSaliencyCandidate = new AddSaliencyCandidateInstruction
+                        {
+                            ComplexityScore = conditionCount,
+                            ContentID = lineID,
+                        }
+                    }
                 );
 
-                jumpsToLineGroupItems[lineGroupItem] = runThisLineInstruction;
+                // Remember this add candidate instruction - we'll need to
+                // update where it jumps to later
+                addCandidateInstructions[lineGroupItem] = addCandidateInstruction;
+
+                optionCount += 1;
             }
 
             Instruction noContentAvailableJump;
             
             // We've added all of our candidates; now query which one to jump to
             this.compiler.Emit(context.Start,
-                // Where to jump to if there are no candidates
-                noContentAvailableJump = new Instruction { PushFloat = new PushFloatInstruction { Value = -1 }  },
-                // The number of parameters (1)
-                new Instruction { PushFloat = new PushFloatInstruction { Value = 1 } },
-                // Call the function
-                new Instruction { CallFunc = new CallFunctionInstruction { FunctionName = VirtualMachine.SelectLineGroupCandidateFunctionName } },
-                // After this call, the appropriate label to jump to will be on the
-                // stack.
+                new Instruction { SelectSaliencyCandidate = new SelectSaliencyCandidateInstruction {}}
+            );
+
+            // The top of the stack now contains 'true' if a piece of content
+            // was selected, and 'false' if not. 
+            this.compiler.Emit(context.Start,
+                // If the top of the stack is false, immediately jump to the end
+                // of this entire line group.
+                noContentAvailableJump = new Instruction { JumpIfFalse = new JumpIfFalseInstruction { Destination = -1 } },
+                // Pop the 'has condition' value off the top of the stack.
+                new Instruction { Pop = new PopInstruction { } },
+                // Jump to the instruction indicated by the top of the stack.
                 new Instruction { PeekAndJump = new PeekAndJumpInstruction { } }
             );
 
+            // We'll update the destination of the 'jump to the end of the line
+            // group if no content was selected' instruction once we know what
+            // instruction number to jump to, so add it to the list of jumps to
+            // the end.
             jumpsToEndOfLineGroup.Add(noContentAvailableJump);
 
             // Now generate the code for each of the lines in the group.
             foreach (var lineGroupItem in context.line_group_item())
             {
-                // Mark that the instruction to jump to a specific 
-                jumpsToLineGroupItems[lineGroupItem].Destination = CurrentInstructionNumber;
-
+                // Ensure that the 'add candidate' instruction that points us to
+                // here has the correct destination
+                addCandidateInstructions[lineGroupItem].Destination = CurrentInstructionNumber;
+                
                 // Mark that this instruction, which we jump to, should have a
                 // label
                 this.compiler.CurrentNodeDebugInfo?.AddLabel("run_line_group_item", CurrentInstructionNumber);
+
+                // We got here via a peek-and-jump; we can discard the top of
+                // the stack now.
+                this.compiler.Emit(lineGroupItem.line_statement().Start, new Instruction { Pop = new PopInstruction { } });
 
                 if (onceVariables.TryGetValue(lineGroupItem, out var onceVariable) && onceVariable != null) {
                     // We have a 'once' variable for this line group item. Emit
@@ -732,6 +727,7 @@ namespace Yarn.Compiler
                 // need or want.)
 
                 var lineFormattedText = lineGroupItem.line_statement().line_formatted_text();
+
                 // Evaluate the inline expressions and push the results onto the
                 // stack.
                 var expressionCount = this.GenerateCodeForExpressionsInFormattedText(lineFormattedText.children);
@@ -747,11 +743,13 @@ namespace Yarn.Compiler
                 );
 
                 // For each child statement in this line group item, evaluate
-                // that too
+                // that too.
                 foreach (var childStatement in lineGroupItem.statement())
                 {
                     this.Visit(childStatement);
                 }
+
+                // Finally, jump to the end of the group
                 Instruction jumpToEnd;
 
                 this.compiler.Emit(
@@ -767,10 +765,6 @@ namespace Yarn.Compiler
             {
                 i.Destination = CurrentInstructionNumber;
             }
-
-            // Pop the instruction number that represents the selected item
-            // destination
-            this.compiler.Emit(context.Stop, new Instruction { Pop = new PopInstruction { } });
 
             return 0;
         }
@@ -1145,6 +1139,8 @@ namespace Yarn.Compiler
             // with it
             IToken onceToken = context.once_primary_clause().COMMAND_ONCE().Symbol;
 
+            this.compiler.CurrentNodeDebugInfo?.AddLabel("once_start", CurrentInstructionNumber);
+
             // Evaluate the once variable
             this.compiler.Emit(
                 onceToken,
@@ -1239,7 +1235,7 @@ namespace Yarn.Compiler
                 // Make the 'jump over primary clause' jump to where we are now,
                 // which is the the start of the alternate clause.
                 jumpOverPrimaryClause.Destination = this.CurrentInstructionNumber;
-                this.compiler.CurrentNodeDebugInfo?.AddLabel("skip_once_primary", this.CurrentInstructionNumber);
+                this.compiler.CurrentNodeDebugInfo?.AddLabel("once_skip_primary", this.CurrentInstructionNumber);
 
                 // Evaluate the alternate clause.
                 foreach (var statement in context.once_alternate_clause().statement())
@@ -1249,7 +1245,7 @@ namespace Yarn.Compiler
 
                 // Make the 'jump over alternate clause' instruction point to where we are now, which is the end of the alternate clause (and therefore the end of the entire statement.)
                 jumpOverAlternateClause.Destination = this.CurrentInstructionNumber;
-                this.compiler.CurrentNodeDebugInfo?.AddLabel("skip_once_alternate", this.CurrentInstructionNumber);
+                this.compiler.CurrentNodeDebugInfo?.AddLabel("once_skip_alternate", this.CurrentInstructionNumber);
 
             }
             else
@@ -1257,7 +1253,7 @@ namespace Yarn.Compiler
                 // Update the 'jump over primary clause' instruction to point to
                 // where we are now, which is the end of the statement.
                 jumpOverPrimaryClause.Destination = this.CurrentInstructionNumber;
-                this.compiler.CurrentNodeDebugInfo?.AddLabel("skip_once_statement", this.CurrentInstructionNumber);
+                this.compiler.CurrentNodeDebugInfo?.AddLabel("once_skip_primary", this.CurrentInstructionNumber);
             }
 
             // Pop the result of evaluating the condition, which was left on the stack.

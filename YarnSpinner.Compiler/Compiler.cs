@@ -14,28 +14,6 @@ namespace Yarn.Compiler
     using Antlr4.Runtime.Tree;
     using TypeChecker;
 
-    /// <summary>
-    /// Contains header names and strings used by the compiler.
-    /// </summary>
-    public static class SpecialHeaderNames {
-        /// <summary>
-        /// The name of the header that indicates a node's title.
-        /// </summary>
-        public const string TitleHeader = "title";
-
-        /// <summary>
-        /// The name of the header that indicates which node group a node
-        /// belongs to.
-        /// </summary>
-        public const string NodeGroupHeader = "$Yarn.Internal.NodeGroup";
-
-        /// <summary>
-        /// The name of the header that indicates the name of the tracking
-        /// variable for this node.
-        /// </summary>
-        public const string TrackingVariableNameHeader = Node.TrackingVariableNameHeader;
-    }
-
     internal enum ContentIdentifierType {
         /// <summary>
         /// The content identifier is a <c>#line:</c> tag.
@@ -471,42 +449,52 @@ namespace Yarn.Compiler
 
                 foreach (var decl in declarations.Where(d => d.IsInlineExpansion))
                 {
-                    smartVarCompiler.Compile(decl, out var node, out var debugInfo);
+                    // Compile the smart variable declaration and get back a
+                    // node alongside its debugger info
+                    var nodeCompilationResult = smartVarCompiler.Compile(decl);
 
-                    compiledNodes.Add(node);
-                    nodeDebugInfos.Add(debugInfo);
+                    compiledNodes.Add(nodeCompilationResult.Node);
+                    nodeDebugInfos.Add(nodeCompilationResult.NodeDebugInfo);
+                }
+
+                // Now that we've code-generated every node, we'll find every
+                // node that's in a node group, and create the 'hub' node for
+                // that group. The 'hub' node adds a saliency candidate for each
+                // node in the group, asks the VM to select the best one via the
+                // saliency strategy, and jumps to the appropriate node.
+                var nodeGroups = parsedFiles
+                    // Get all nodes
+                    .SelectMany(n => (n.Tree as YarnSpinnerParser.DialogueContext)?.node())
+                    // Filter nodes that are in groups
+                    .Where(n => n.NodeGroup != null)
+                    // Group them by group name
+                    .GroupBy(n => n.NodeGroup!);
+
+                foreach (var group in nodeGroups)
+                {
+
+                    var codegen = new NodeGroupCompiler(
+                        nodeGroupName: group.Key,
+                        variableDeclarations: declarations.ToDictionary(d => d.Name, d => d),
+                        nodeContexts: group,
+                        compiledNodes: compiledNodes
+                        );
+
+                    var generatedNodes = codegen.CompileNodeGroup();
+
+                    foreach (var generatedNode in generatedNodes)
+                    {
+                        compiledNodes.Add(generatedNode.Node);
+                        nodeDebugInfos.Add(generatedNode.NodeDebugInfo);
+                    }
                 }
             }
 
-            // Now that we've code-generated every node, we'll find every node
-            // that's in a node group, and create the 'hub' node for that group.
-            // The 'hub' node evaluates each node's 'when' clauses, consults the
-            // saliency strategy, and jumps to the appropriate node.
-            var nodeGroups = parsedFiles
-                // Get all nodes
-                .SelectMany(n => (n.Tree as YarnSpinnerParser.DialogueContext)?.node())
-                // Filter nodes that are in groups
-                .Where(n => n.NodeGroup != null)
-                // Group them by group name
-                .GroupBy(n => n.NodeGroup!);
 
-            foreach (var group in nodeGroups) {
-
-                var codegen = new NodeGroupCompiler(
-                    group.Key,
-                    declarations.ToDictionary(d => d.Name, d => d),
-                    group);
-
-                var (node,debugInfo) = codegen.GetResult();
-                compiledNodes.Add(node);
-                nodeDebugInfos.Add(debugInfo);
-            }
-            
             var initialValues = new Dictionary<string, Operand>();
 
-            // Last step: take every variable declaration we found in all
-            // of the inputs, and create an initial value registration for
-            // it.
+            // Last step: take every variable declaration we found in all of the
+            // inputs, and create an initial value registration for it.
             foreach (var declaration in declarations)
             {
                 // We only care about variable declarations here
@@ -553,11 +541,16 @@ namespace Yarn.Compiler
                 }
                 else if (declaration.Type is EnumType enumType)
                 {
-                    if (enumType.RawType == Types.Number) {
+                    if (enumType.RawType == Types.Number)
+                    {
                         value = new Operand(Convert.ToSingle(declaration.DefaultValue));
-                    } else if (enumType.RawType == Types.String) {
+                    }
+                    else if (enumType.RawType == Types.String)
+                    {
                         value = new Operand(Convert.ToString(declaration.DefaultValue));
-                    } else {
+                    }
+                    else
+                    {
                         throw new ArgumentOutOfRangeException($"Cannot create an initial value for enum type {declaration.Type.Name}: invalid raw type {enumType.RawType.Name}");
                     }
                 }
@@ -567,7 +560,7 @@ namespace Yarn.Compiler
                 }
 
                 initialValues.Add(declaration.Name, value);
-                
+
             }
 
             var program = new Program();
@@ -594,7 +587,7 @@ namespace Yarn.Compiler
                 ProjectDebugInfo = projectDebugInfo,
                 UserDefinedTypes = userDefinedTypes,
             };
-            
+
             return finalResult;
         }
 
@@ -620,10 +613,14 @@ namespace Yarn.Compiler
                         var variableName = setStatement.variable().VAR_ID().GetText();
                         if (smartVariables.ContainsKey(variableName))
                         {
-                            // This set statement is attempting to set a value to a
-                            // smart variable. That's not allowed, because smart
-                            // variables are read-only.
-                            diagnostics.Add(new Diagnostic(file.Name, setStatement.variable(), $"{variableName} cannot be modified (it's a smart variable and is always equal to {smartVariables[variableName]?.InitialValueParserContext?.GetTextWithWhitespace() ?? "(unknown)"})"));
+                            // This set statement is attempting to set a value
+                            // to a smart variable. That's not allowed, because
+                            // smart variables are read-only.
+                            diagnostics.Add(new Diagnostic(
+                                file.Name, 
+                                setStatement.variable(),
+                                $"{variableName} cannot be modified (it's a smart variable and is always equal to " +
+                                $"{smartVariables[variableName]?.InitialValueParserContext?.GetTextWithWhitespace() ?? "(unknown)"})"));
                         }
                     }
                 });
@@ -673,7 +670,7 @@ namespace Yarn.Compiler
             // have a name
             var nodesWithNames = allNodes.Select(n =>
             {
-                var titleHeader = GetHeadersWithKey(n.Node, SpecialHeaderNames.TitleHeader).FirstOrDefault();
+                var titleHeader = GetHeadersWithKey(n.Node, Node.TitleHeader).FirstOrDefault();
                 if (titleHeader == null)
                 {
                     return (
@@ -915,13 +912,20 @@ namespace Yarn.Compiler
             lexer.RemoveErrorListeners();
             lexer.AddErrorListener(lexerErrorListener);
 
-            IParseTree tree;
+            YarnSpinnerParser.DialogueContext tree;
 
             tree = parser.dialogue();
 
             var newDiagnostics = lexerErrorListener.Diagnostics.Concat(parserErrorListener.Diagnostics);
 
             diagnostics.AddRange(newDiagnostics);
+
+            // Now that we've parsed the file, we'll go through all of the nodes
+            // and record which file they came from.
+            foreach (var node in tree.node())
+            {
+                node.SourceFileName = fileName;
+            }
 
             return new FileParseResult(fileName, tree, tokens);
         }
@@ -1181,16 +1185,21 @@ namespace Yarn.Compiler
         public partial class NodeContext
         {
             /// <summary>
+            /// Gets the path to the file that this node was parsed from, if any.
+            /// </summary>
+            public string? SourceFileName { get; set; }
+
+            /// <summary>
             /// Gets the title of this node, as specified in its '<c>title</c>'
             /// header. If it is not present, returns <see langword="null"/>.
             /// </summary>
-            public string? NodeTitle => GetHeader(SpecialHeaderNames.TitleHeader)?.header_value?.Text;
+            public string? NodeTitle => GetHeader(Node.TitleHeader)?.header_value?.Text;
 
             /// <summary>
             /// Gets the name of the node group that this node is part of, if
             /// any.
             /// </summary>
-            public string? NodeGroup => GetHeader(SpecialHeaderNames.NodeGroupHeader)?.header_value?.Text;
+            public string? NodeGroup => GetHeader(Node.NodeGroupHeader)?.header_value?.Text;
 
             /// <summary>
             /// Gets the first header in this node named <paramref name="key"/>.
@@ -1245,7 +1254,7 @@ namespace Yarn.Compiler
         /// <param name="context">An expression.</param>
         /// <returns>The total number of boolean operations in the
         /// expression.</returns>
-        private static int GetValueCountInExpression(ParserRuleContext context)
+        private static int GetBooleanOperatorCountInExpression(ParserRuleContext context)
         {
             var subtreeCount = 0;
 
@@ -1258,7 +1267,7 @@ namespace Yarn.Compiler
             foreach (var child in context.children)
             {
                 if (child is ParserRuleContext childContext) {
-                    subtreeCount += GetValueCountInExpression(childContext);
+                    subtreeCount += GetBooleanOperatorCountInExpression(childContext);
                 }
             }
 
@@ -1292,7 +1301,7 @@ namespace Yarn.Compiler
                     }
                     if (expression != null)
                     {
-                        count += GetValueCountInExpression(expression) + 1;
+                        count += GetBooleanOperatorCountInExpression(expression) + 1;
                     }
                     return count;
                 }
@@ -1308,7 +1317,7 @@ namespace Yarn.Compiler
             /// <summary>
             /// Gets the complexity of this line's condition.
             /// </summary>
-            internal int ConditionCount
+            internal int ComplexityScore
             {
                 get
                 {
@@ -1327,7 +1336,7 @@ namespace Yarn.Compiler
 
                     if (this.header_expression.expression() != null)
                     {
-                        count += GetValueCountInExpression(this.header_expression.expression()) + 1;
+                        count += GetBooleanOperatorCountInExpression(this.header_expression.expression()) + 1;
                     }
 
                     return count;

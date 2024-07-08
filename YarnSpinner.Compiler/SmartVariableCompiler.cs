@@ -26,22 +26,41 @@ namespace Yarn.Compiler
         /// </summary>
         /// <param name="decl">The Declaration to generate an implementation
         /// node for.</param>
-        /// <param name="node">The resulting implementation node.</param>
-        /// <param name="debugInfo">The debug info for <paramref
-        /// name="node"/>.</param>
-        public void Compile(Declaration decl, out Node node, out NodeDebugInfo debugInfo)
+        /// <returns>A <see cref="NodeCompilationResult"/> that contains the
+        /// generated node for this smart variable and its debugger
+        /// information.</returns>
+        public NodeCompilationResult Compile(Declaration decl)
+        {
+            if (decl.InitialValueParserContext == null)
+            {
+                throw new InvalidOperationException("Internal error: decl had no expression tree");
+            }
+
+            return Compile(decl.SourceFileName, decl.Name, decl.InitialValueParserContext);
+        }
+
+        public NodeCompilationResult Compile(string sourceFileName, string nodeName, YarnSpinnerParser.ExpressionContext? expression)
         {
             this.CurrentNode = new Node();
-            this.CurrentNodeDebugInfo = new NodeDebugInfo(decl.SourceFileName, decl.Name);
+            this.CurrentNodeDebugInfo = new NodeDebugInfo(sourceFileName, nodeName);
 
-            this.CurrentNode.Name = decl.Name;
+            this.CurrentNode.Name = nodeName;
             this.CurrentNode.Headers.Add(new Header { Key = "tags", Value = Program.SmartVariableNodeTag });
 
-            var codeGenerator = new CodeGenerationVisitor(this);
-            codeGenerator.Visit(decl.InitialValueParserContext);
+            if (expression != null)
+            {
+                // If we have an expression to generate code from, then create a
+                // code generator and use it now. Otherwise, just produce an
+                // empty node with the appropriate tags.
+                var codeGenerator = new CodeGenerationVisitor(this);
+                codeGenerator.Visit(expression);
+            }
 
-            node = this.CurrentNode;
-            debugInfo = this.CurrentNodeDebugInfo;
+            return new NodeCompilationResult
+            {
+                Node = this.CurrentNode,
+                NodeDebugInfo = this.CurrentNodeDebugInfo,
+            };
         }
 
         public void Emit(IToken? startToken, Instruction instruction)

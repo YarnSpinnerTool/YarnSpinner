@@ -4,8 +4,8 @@ using System.Linq;
 namespace Yarn.Saliency
 {
     /// <summary>
-    /// A content saliency strategy that always returns the first item in the
-    /// list of available options.
+    /// A content saliency strategy that always returns the first non-failing
+    /// item in the list of available options.
     /// </summary>
     /// <remarks>
     /// This saliency strategy is used when a <see cref="Dialogue"/> has no
@@ -14,10 +14,18 @@ namespace Yarn.Saliency
     public class FirstSaliencyStrategy : IContentSaliencyStrategy
     {
         /// <inheritdoc/>
-        public TContent ChooseBestContent<TContent>(IEnumerable<TContent> options) where TContent : IContentSaliencyOption
+        public void ContentWasSelected(ContentSaliencyOption content)
         {
-            // Returns the first item in the list.
-            return options.First();
+            // This strategy does not need need to track any state, so this
+            // method takes no action.
+        }
+
+        /// <inheritdoc/>
+        public ContentSaliencyOption? QueryBestContent(IEnumerable<ContentSaliencyOption> content)
+        {
+            return content
+                .Where(c => c.FailingConditionValueCount == 0)
+                .FirstOrDefault();
         }
     }
 }

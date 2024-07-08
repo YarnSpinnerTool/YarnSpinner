@@ -33,7 +33,7 @@ namespace Yarn {
             "cmFuZDoCOAEidAoETm9kZRIMCgRuYW1lGAEgASgJEicKDGluc3RydWN0aW9u",
             "cxgHIAMoCzIRLllhcm4uSW5zdHJ1Y3Rpb24SHQoHaGVhZGVycxgGIAMoCzIM",
             "Lllhcm4uSGVhZGVySgQIAhADSgQIAxAESgQIBBAFSgQIBRAGIiQKBkhlYWRl",
-            "chILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAkihhQKC0luc3RydWN0aW9u",
+            "chILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAkirRQKC0luc3RydWN0aW9u",
             "EjUKBmp1bXBUbxgBIAEoCzIjLllhcm4uSW5zdHJ1Y3Rpb24uSnVtcFRvSW5z",
             "dHJ1Y3Rpb25IABI/CgtwZWVrQW5kSnVtcBgCIAEoCzIoLllhcm4uSW5zdHJ1",
             "Y3Rpb24uUGVla0FuZEp1bXBJbnN0cnVjdGlvbkgAEjcKB3J1bkxpbmUYAyAB",
@@ -61,46 +61,47 @@ namespace Yarn {
             "b24uRGV0b3VyVG9Ob2RlSW5zdHJ1Y3Rpb25IABJEChNwZWVrQW5kRGV0b3Vy",
             "VG9Ob2RlGBMgASgLMiUuWWFybi5JbnN0cnVjdGlvbi5QZWVrQW5kRGV0b3Vy",
             "VG9Ob2RlSAASNQoGcmV0dXJuGBQgASgLMiMuWWFybi5JbnN0cnVjdGlvbi5S",
-            "ZXR1cm5JbnN0cnVjdGlvbkgAEkYKFGFkZFNhbGllbmN5Q2FuZGlkYXRlGBUg",
-            "ASgLMiYuWWFybi5JbnN0cnVjdGlvbi5BZGRTYWxpZW5jeUNhbmRpZGF0ZUgA",
-            "ElYKHGFkZFNhbGllbmN5Q2FuZGlkYXRlRnJvbU5vZGUYFiABKAsyLi5ZYXJu",
-            "Lkluc3RydWN0aW9uLkFkZFNhbGllbmN5Q2FuZGlkYXRlRnJvbU5vZGVIABJM",
-            "ChdzZWxlY3RTYWxpZW5jeUNhbmRpZGF0ZRgXIAEoCzIpLllhcm4uSW5zdHJ1",
-            "Y3Rpb24uU2VsZWN0U2FsaWVuY3lDYW5kaWRhdGVIABoYChZQZWVrQW5kSnVt",
-            "cEluc3RydWN0aW9uGhsKGVBlZWtBbmRSdW5Ob2RlSW5zdHJ1Y3Rpb24aGAoW",
-            "U2hvd09wdGlvbnNJbnN0cnVjdGlvbhomChVQdXNoU3RyaW5nSW5zdHJ1Y3Rp",
-            "b24SDQoFdmFsdWUYASABKAkaJQoUUHVzaEZsb2F0SW5zdHJ1Y3Rpb24SDQoF",
-            "dmFsdWUYASABKAIaJAoTUHVzaEJvb2xJbnN0cnVjdGlvbhINCgV2YWx1ZRgB",
-            "IAEoCBooChFKdW1wVG9JbnN0cnVjdGlvbhITCgtkZXN0aW5hdGlvbhgBIAEo",
-            "BRo/ChJSdW5MaW5lSW5zdHJ1Y3Rpb24SDgoGbGluZUlEGAEgASgJEhkKEXN1",
-            "YnN0aXR1dGlvbkNvdW50GAIgASgFGkcKFVJ1bkNvbW1hbmRJbnN0cnVjdGlv",
-            "bhITCgtjb21tYW5kVGV4dBgBIAEoCRIZChFzdWJzdGl0dXRpb25Db3VudBgC",
-            "IAEoBRpsChRBZGRPcHRpb25JbnN0cnVjdGlvbhIOCgZsaW5lSUQYASABKAkS",
-            "EwoLZGVzdGluYXRpb24YAiABKAUSGQoRc3Vic3RpdHV0aW9uQ291bnQYAyAB",
-            "KAUSFAoMaGFzQ29uZGl0aW9uGAQgASgIGi0KFkp1bXBJZkZhbHNlSW5zdHJ1",
-            "Y3Rpb24SEwoLZGVzdGluYXRpb24YASABKAUaEAoOUG9wSW5zdHJ1Y3Rpb24a",
-            "LwoXQ2FsbEZ1bmN0aW9uSW5zdHJ1Y3Rpb24SFAoMZnVuY3Rpb25OYW1lGAEg",
-            "ASgJGi8KF1B1c2hWYXJpYWJsZUluc3RydWN0aW9uEhQKDHZhcmlhYmxlTmFt",
-            "ZRgBIAEoCRowChhTdG9yZVZhcmlhYmxlSW5zdHJ1Y3Rpb24SFAoMdmFyaWFi",
-            "bGVOYW1lGAEgASgJGhEKD1N0b3BJbnN0cnVjdGlvbhomChJSdW5Ob2RlSW5z",
-            "dHJ1Y3Rpb24SEAoIbm9kZU5hbWUYASABKAkaKwoXRGV0b3VyVG9Ob2RlSW5z",
-            "dHJ1Y3Rpb24SEAoIbm9kZU5hbWUYASABKAkaFQoTUGVla0FuZERldG91clRv",
-            "Tm9kZRoTChFSZXR1cm5JbnN0cnVjdGlvbhpyChRBZGRTYWxpZW5jeUNhbmRp",
-            "ZGF0ZRIRCgljb250ZW50SUQYASABKAkSGQoRaXNDb25kaXRpb25QYXNzZWQY",
-            "AiABKAgSFwoPY29tcGxleGl0eVNjb3JlGAMgASgFEhMKC2Rlc3RpbmF0aW9u",
-            "GAQgASgFGkUKHEFkZFNhbGllbmN5Q2FuZGlkYXRlRnJvbU5vZGUSEAoIbm9k",
-            "ZU5hbWUYASABKAkSEwoLZGVzdGluYXRpb24YAiABKAUaGQoXU2VsZWN0U2Fs",
-            "aWVuY3lDYW5kaWRhdGVCEQoPSW5zdHJ1Y3Rpb25UeXBlIugCCg1JbnN0cnVj",
-            "dGlvblYxEioKBm9wY29kZRgBIAEoDjIaLllhcm4uSW5zdHJ1Y3Rpb25WMS5P",
-            "cENvZGUSHwoIb3BlcmFuZHMYAiADKAsyDS5ZYXJuLk9wZXJhbmQiiQIKBk9w",
-            "Q29kZRILCgdKVU1QX1RPEAASCAoESlVNUBABEgwKCFJVTl9MSU5FEAISDwoL",
-            "UlVOX0NPTU1BTkQQAxIOCgpBRERfT1BUSU9OEAQSEAoMU0hPV19PUFRJT05T",
-            "EAUSDwoLUFVTSF9TVFJJTkcQBhIOCgpQVVNIX0ZMT0FUEAcSDQoJUFVTSF9C",
-            "T09MEAgSDQoJUFVTSF9OVUxMEAkSEQoNSlVNUF9JRl9GQUxTRRAKEgcKA1BP",
-            "UBALEg0KCUNBTExfRlVOQxAMEhEKDVBVU0hfVkFSSUFCTEUQDRISCg5TVE9S",
-            "RV9WQVJJQUJMRRAOEggKBFNUT1AQDxIMCghSVU5fTk9ERRAQIlcKB09wZXJh",
-            "bmQSFgoMc3RyaW5nX3ZhbHVlGAEgASgJSAASFAoKYm9vbF92YWx1ZRgCIAEo",
-            "CEgAEhUKC2Zsb2F0X3ZhbHVlGAMgASgCSABCBwoFdmFsdWViBnByb3RvMw=="));
+            "ZXR1cm5JbnN0cnVjdGlvbkgAElEKFGFkZFNhbGllbmN5Q2FuZGlkYXRlGBUg",
+            "ASgLMjEuWWFybi5JbnN0cnVjdGlvbi5BZGRTYWxpZW5jeUNhbmRpZGF0ZUlu",
+            "c3RydWN0aW9uSAASYQocYWRkU2FsaWVuY3lDYW5kaWRhdGVGcm9tTm9kZRgW",
+            "IAEoCzI5Lllhcm4uSW5zdHJ1Y3Rpb24uQWRkU2FsaWVuY3lDYW5kaWRhdGVG",
+            "cm9tTm9kZUluc3RydWN0aW9uSAASVwoXc2VsZWN0U2FsaWVuY3lDYW5kaWRh",
+            "dGUYFyABKAsyNC5ZYXJuLkluc3RydWN0aW9uLlNlbGVjdFNhbGllbmN5Q2Fu",
+            "ZGlkYXRlSW5zdHJ1Y3Rpb25IABoYChZQZWVrQW5kSnVtcEluc3RydWN0aW9u",
+            "GhsKGVBlZWtBbmRSdW5Ob2RlSW5zdHJ1Y3Rpb24aGAoWU2hvd09wdGlvbnNJ",
+            "bnN0cnVjdGlvbhomChVQdXNoU3RyaW5nSW5zdHJ1Y3Rpb24SDQoFdmFsdWUY",
+            "ASABKAkaJQoUUHVzaEZsb2F0SW5zdHJ1Y3Rpb24SDQoFdmFsdWUYASABKAIa",
+            "JAoTUHVzaEJvb2xJbnN0cnVjdGlvbhINCgV2YWx1ZRgBIAEoCBooChFKdW1w",
+            "VG9JbnN0cnVjdGlvbhITCgtkZXN0aW5hdGlvbhgBIAEoBRo/ChJSdW5MaW5l",
+            "SW5zdHJ1Y3Rpb24SDgoGbGluZUlEGAEgASgJEhkKEXN1YnN0aXR1dGlvbkNv",
+            "dW50GAIgASgFGkcKFVJ1bkNvbW1hbmRJbnN0cnVjdGlvbhITCgtjb21tYW5k",
+            "VGV4dBgBIAEoCRIZChFzdWJzdGl0dXRpb25Db3VudBgCIAEoBRpsChRBZGRP",
+            "cHRpb25JbnN0cnVjdGlvbhIOCgZsaW5lSUQYASABKAkSEwoLZGVzdGluYXRp",
+            "b24YAiABKAUSGQoRc3Vic3RpdHV0aW9uQ291bnQYAyABKAUSFAoMaGFzQ29u",
+            "ZGl0aW9uGAQgASgIGi0KFkp1bXBJZkZhbHNlSW5zdHJ1Y3Rpb24SEwoLZGVz",
+            "dGluYXRpb24YASABKAUaEAoOUG9wSW5zdHJ1Y3Rpb24aLwoXQ2FsbEZ1bmN0",
+            "aW9uSW5zdHJ1Y3Rpb24SFAoMZnVuY3Rpb25OYW1lGAEgASgJGi8KF1B1c2hW",
+            "YXJpYWJsZUluc3RydWN0aW9uEhQKDHZhcmlhYmxlTmFtZRgBIAEoCRowChhT",
+            "dG9yZVZhcmlhYmxlSW5zdHJ1Y3Rpb24SFAoMdmFyaWFibGVOYW1lGAEgASgJ",
+            "GhEKD1N0b3BJbnN0cnVjdGlvbhomChJSdW5Ob2RlSW5zdHJ1Y3Rpb24SEAoI",
+            "bm9kZU5hbWUYASABKAkaKwoXRGV0b3VyVG9Ob2RlSW5zdHJ1Y3Rpb24SEAoI",
+            "bm9kZU5hbWUYASABKAkaFQoTUGVla0FuZERldG91clRvTm9kZRoTChFSZXR1",
+            "cm5JbnN0cnVjdGlvbhpiCh9BZGRTYWxpZW5jeUNhbmRpZGF0ZUluc3RydWN0",
+            "aW9uEhEKCWNvbnRlbnRJRBgBIAEoCRIXCg9jb21wbGV4aXR5U2NvcmUYAiAB",
+            "KAUSEwoLZGVzdGluYXRpb24YAyABKAUaUAonQWRkU2FsaWVuY3lDYW5kaWRh",
+            "dGVGcm9tTm9kZUluc3RydWN0aW9uEhAKCG5vZGVOYW1lGAEgASgJEhMKC2Rl",
+            "c3RpbmF0aW9uGAIgASgFGiQKIlNlbGVjdFNhbGllbmN5Q2FuZGlkYXRlSW5z",
+            "dHJ1Y3Rpb25CEQoPSW5zdHJ1Y3Rpb25UeXBlIugCCg1JbnN0cnVjdGlvblYx",
+            "EioKBm9wY29kZRgBIAEoDjIaLllhcm4uSW5zdHJ1Y3Rpb25WMS5PcENvZGUS",
+            "HwoIb3BlcmFuZHMYAiADKAsyDS5ZYXJuLk9wZXJhbmQiiQIKBk9wQ29kZRIL",
+            "CgdKVU1QX1RPEAASCAoESlVNUBABEgwKCFJVTl9MSU5FEAISDwoLUlVOX0NP",
+            "TU1BTkQQAxIOCgpBRERfT1BUSU9OEAQSEAoMU0hPV19PUFRJT05TEAUSDwoL",
+            "UFVTSF9TVFJJTkcQBhIOCgpQVVNIX0ZMT0FUEAcSDQoJUFVTSF9CT09MEAgS",
+            "DQoJUFVTSF9OVUxMEAkSEQoNSlVNUF9JRl9GQUxTRRAKEgcKA1BPUBALEg0K",
+            "CUNBTExfRlVOQxAMEhEKDVBVU0hfVkFSSUFCTEUQDRISCg5TVE9SRV9WQVJJ",
+            "QUJMRRAOEggKBFNUT1AQDxIMCghSVU5fTk9ERRAQIlcKB09wZXJhbmQSFgoM",
+            "c3RyaW5nX3ZhbHVlGAEgASgJSAASFAoKYm9vbF92YWx1ZRgCIAEoCEgAEhUK",
+            "C2Zsb2F0X3ZhbHVlGAMgASgCSABCBwoFdmFsdWViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -127,9 +128,9 @@ namespace Yarn {
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.DetourToNodeInstruction), global::Yarn.Instruction.Types.DetourToNodeInstruction.Parser, new[]{ "NodeName" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.PeekAndDetourToNode), global::Yarn.Instruction.Types.PeekAndDetourToNode.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.ReturnInstruction), global::Yarn.Instruction.Types.ReturnInstruction.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.AddSaliencyCandidate), global::Yarn.Instruction.Types.AddSaliencyCandidate.Parser, new[]{ "ContentID", "IsConditionPassed", "ComplexityScore", "Destination" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.AddSaliencyCandidateFromNode), global::Yarn.Instruction.Types.AddSaliencyCandidateFromNode.Parser, new[]{ "NodeName", "Destination" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.SelectSaliencyCandidate), global::Yarn.Instruction.Types.SelectSaliencyCandidate.Parser, null, null, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.AddSaliencyCandidateInstruction), global::Yarn.Instruction.Types.AddSaliencyCandidateInstruction.Parser, new[]{ "ContentID", "ComplexityScore", "Destination" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.AddSaliencyCandidateFromNodeInstruction), global::Yarn.Instruction.Types.AddSaliencyCandidateFromNodeInstruction.Parser, new[]{ "NodeName", "Destination" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.SelectSaliencyCandidateInstruction), global::Yarn.Instruction.Types.SelectSaliencyCandidateInstruction.Parser, null, null, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.InstructionV1), global::Yarn.InstructionV1.Parser, new[]{ "Opcode", "Operands" }, null, new[]{ typeof(global::Yarn.InstructionV1.Types.OpCode) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Operand), global::Yarn.Operand.Parser, new[]{ "StringValue", "BoolValue", "FloatValue" }, new[]{ "Value" }, null, null, null)
           }));
@@ -1293,10 +1294,14 @@ namespace Yarn {
 
     /// <summary>Field number for the "addSaliencyCandidate" field.</summary>
     public const int AddSaliencyCandidateFieldNumber = 21;
+    /// <summary>
+    /// Pops a boolean from the stack, and adds a saliency candidate to the
+    /// current list.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Yarn.Instruction.Types.AddSaliencyCandidate AddSaliencyCandidate {
-      get { return instructionTypeCase_ == InstructionTypeOneofCase.AddSaliencyCandidate ? (global::Yarn.Instruction.Types.AddSaliencyCandidate) instructionType_ : null; }
+    public global::Yarn.Instruction.Types.AddSaliencyCandidateInstruction AddSaliencyCandidate {
+      get { return instructionTypeCase_ == InstructionTypeOneofCase.AddSaliencyCandidate ? (global::Yarn.Instruction.Types.AddSaliencyCandidateInstruction) instructionType_ : null; }
       set {
         instructionType_ = value;
         instructionTypeCase_ = value == null ? InstructionTypeOneofCase.None : InstructionTypeOneofCase.AddSaliencyCandidate;
@@ -1310,8 +1315,8 @@ namespace Yarn {
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Yarn.Instruction.Types.AddSaliencyCandidateFromNode AddSaliencyCandidateFromNode {
-      get { return instructionTypeCase_ == InstructionTypeOneofCase.AddSaliencyCandidateFromNode ? (global::Yarn.Instruction.Types.AddSaliencyCandidateFromNode) instructionType_ : null; }
+    public global::Yarn.Instruction.Types.AddSaliencyCandidateFromNodeInstruction AddSaliencyCandidateFromNode {
+      get { return instructionTypeCase_ == InstructionTypeOneofCase.AddSaliencyCandidateFromNode ? (global::Yarn.Instruction.Types.AddSaliencyCandidateFromNodeInstruction) instructionType_ : null; }
       set {
         instructionType_ = value;
         instructionTypeCase_ = value == null ? InstructionTypeOneofCase.None : InstructionTypeOneofCase.AddSaliencyCandidateFromNode;
@@ -1331,8 +1336,8 @@ namespace Yarn {
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Yarn.Instruction.Types.SelectSaliencyCandidate SelectSaliencyCandidate {
-      get { return instructionTypeCase_ == InstructionTypeOneofCase.SelectSaliencyCandidate ? (global::Yarn.Instruction.Types.SelectSaliencyCandidate) instructionType_ : null; }
+    public global::Yarn.Instruction.Types.SelectSaliencyCandidateInstruction SelectSaliencyCandidate {
+      get { return instructionTypeCase_ == InstructionTypeOneofCase.SelectSaliencyCandidate ? (global::Yarn.Instruction.Types.SelectSaliencyCandidateInstruction) instructionType_ : null; }
       set {
         instructionType_ = value;
         instructionTypeCase_ = value == null ? InstructionTypeOneofCase.None : InstructionTypeOneofCase.SelectSaliencyCandidate;
@@ -1877,19 +1882,19 @@ namespace Yarn {
           break;
         case InstructionTypeOneofCase.AddSaliencyCandidate:
           if (AddSaliencyCandidate == null) {
-            AddSaliencyCandidate = new global::Yarn.Instruction.Types.AddSaliencyCandidate();
+            AddSaliencyCandidate = new global::Yarn.Instruction.Types.AddSaliencyCandidateInstruction();
           }
           AddSaliencyCandidate.MergeFrom(other.AddSaliencyCandidate);
           break;
         case InstructionTypeOneofCase.AddSaliencyCandidateFromNode:
           if (AddSaliencyCandidateFromNode == null) {
-            AddSaliencyCandidateFromNode = new global::Yarn.Instruction.Types.AddSaliencyCandidateFromNode();
+            AddSaliencyCandidateFromNode = new global::Yarn.Instruction.Types.AddSaliencyCandidateFromNodeInstruction();
           }
           AddSaliencyCandidateFromNode.MergeFrom(other.AddSaliencyCandidateFromNode);
           break;
         case InstructionTypeOneofCase.SelectSaliencyCandidate:
           if (SelectSaliencyCandidate == null) {
-            SelectSaliencyCandidate = new global::Yarn.Instruction.Types.SelectSaliencyCandidate();
+            SelectSaliencyCandidate = new global::Yarn.Instruction.Types.SelectSaliencyCandidateInstruction();
           }
           SelectSaliencyCandidate.MergeFrom(other.SelectSaliencyCandidate);
           break;
@@ -2091,7 +2096,7 @@ namespace Yarn {
             break;
           }
           case 170: {
-            global::Yarn.Instruction.Types.AddSaliencyCandidate subBuilder = new global::Yarn.Instruction.Types.AddSaliencyCandidate();
+            global::Yarn.Instruction.Types.AddSaliencyCandidateInstruction subBuilder = new global::Yarn.Instruction.Types.AddSaliencyCandidateInstruction();
             if (instructionTypeCase_ == InstructionTypeOneofCase.AddSaliencyCandidate) {
               subBuilder.MergeFrom(AddSaliencyCandidate);
             }
@@ -2100,7 +2105,7 @@ namespace Yarn {
             break;
           }
           case 178: {
-            global::Yarn.Instruction.Types.AddSaliencyCandidateFromNode subBuilder = new global::Yarn.Instruction.Types.AddSaliencyCandidateFromNode();
+            global::Yarn.Instruction.Types.AddSaliencyCandidateFromNodeInstruction subBuilder = new global::Yarn.Instruction.Types.AddSaliencyCandidateFromNodeInstruction();
             if (instructionTypeCase_ == InstructionTypeOneofCase.AddSaliencyCandidateFromNode) {
               subBuilder.MergeFrom(AddSaliencyCandidateFromNode);
             }
@@ -2109,7 +2114,7 @@ namespace Yarn {
             break;
           }
           case 186: {
-            global::Yarn.Instruction.Types.SelectSaliencyCandidate subBuilder = new global::Yarn.Instruction.Types.SelectSaliencyCandidate();
+            global::Yarn.Instruction.Types.SelectSaliencyCandidateInstruction subBuilder = new global::Yarn.Instruction.Types.SelectSaliencyCandidateInstruction();
             if (instructionTypeCase_ == InstructionTypeOneofCase.SelectSaliencyCandidate) {
               subBuilder.MergeFrom(SelectSaliencyCandidate);
             }
@@ -2313,7 +2318,7 @@ namespace Yarn {
             break;
           }
           case 170: {
-            global::Yarn.Instruction.Types.AddSaliencyCandidate subBuilder = new global::Yarn.Instruction.Types.AddSaliencyCandidate();
+            global::Yarn.Instruction.Types.AddSaliencyCandidateInstruction subBuilder = new global::Yarn.Instruction.Types.AddSaliencyCandidateInstruction();
             if (instructionTypeCase_ == InstructionTypeOneofCase.AddSaliencyCandidate) {
               subBuilder.MergeFrom(AddSaliencyCandidate);
             }
@@ -2322,7 +2327,7 @@ namespace Yarn {
             break;
           }
           case 178: {
-            global::Yarn.Instruction.Types.AddSaliencyCandidateFromNode subBuilder = new global::Yarn.Instruction.Types.AddSaliencyCandidateFromNode();
+            global::Yarn.Instruction.Types.AddSaliencyCandidateFromNodeInstruction subBuilder = new global::Yarn.Instruction.Types.AddSaliencyCandidateFromNodeInstruction();
             if (instructionTypeCase_ == InstructionTypeOneofCase.AddSaliencyCandidateFromNode) {
               subBuilder.MergeFrom(AddSaliencyCandidateFromNode);
             }
@@ -2331,7 +2336,7 @@ namespace Yarn {
             break;
           }
           case 186: {
-            global::Yarn.Instruction.Types.SelectSaliencyCandidate subBuilder = new global::Yarn.Instruction.Types.SelectSaliencyCandidate();
+            global::Yarn.Instruction.Types.SelectSaliencyCandidateInstruction subBuilder = new global::Yarn.Instruction.Types.SelectSaliencyCandidateInstruction();
             if (instructionTypeCase_ == InstructionTypeOneofCase.SelectSaliencyCandidate) {
               subBuilder.MergeFrom(SelectSaliencyCandidate);
             }
@@ -6133,16 +6138,16 @@ namespace Yarn {
       }
 
       [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-      public sealed partial class AddSaliencyCandidate : pb::IMessage<AddSaliencyCandidate>
+      public sealed partial class AddSaliencyCandidateInstruction : pb::IMessage<AddSaliencyCandidateInstruction>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           , pb::IBufferMessage
       #endif
       {
-        private static readonly pb::MessageParser<AddSaliencyCandidate> _parser = new pb::MessageParser<AddSaliencyCandidate>(() => new AddSaliencyCandidate());
+        private static readonly pb::MessageParser<AddSaliencyCandidateInstruction> _parser = new pb::MessageParser<AddSaliencyCandidateInstruction>(() => new AddSaliencyCandidateInstruction());
         private pb::UnknownFieldSet _unknownFields;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public static pb::MessageParser<AddSaliencyCandidate> Parser { get { return _parser; } }
+        public static pb::MessageParser<AddSaliencyCandidateInstruction> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -6158,7 +6163,7 @@ namespace Yarn {
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public AddSaliencyCandidate() {
+        public AddSaliencyCandidateInstruction() {
           OnConstruction();
         }
 
@@ -6166,9 +6171,8 @@ namespace Yarn {
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public AddSaliencyCandidate(AddSaliencyCandidate other) : this() {
+        public AddSaliencyCandidateInstruction(AddSaliencyCandidateInstruction other) : this() {
           contentID_ = other.contentID_;
-          isConditionPassed_ = other.isConditionPassed_;
           complexityScore_ = other.complexityScore_;
           destination_ = other.destination_;
           _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -6176,8 +6180,8 @@ namespace Yarn {
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public AddSaliencyCandidate Clone() {
-          return new AddSaliencyCandidate(this);
+        public AddSaliencyCandidateInstruction Clone() {
+          return new AddSaliencyCandidateInstruction(this);
         }
 
         /// <summary>Field number for the "contentID" field.</summary>
@@ -6195,24 +6199,8 @@ namespace Yarn {
           }
         }
 
-        /// <summary>Field number for the "isConditionPassed" field.</summary>
-        public const int IsConditionPassedFieldNumber = 2;
-        private bool isConditionPassed_;
-        /// <summary>
-        /// A boolean flag indicating whether this content's condition has
-        /// passed.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public bool IsConditionPassed {
-          get { return isConditionPassed_; }
-          set {
-            isConditionPassed_ = value;
-          }
-        }
-
         /// <summary>Field number for the "complexityScore" field.</summary>
-        public const int ComplexityScoreFieldNumber = 3;
+        public const int ComplexityScoreFieldNumber = 2;
         private int complexityScore_;
         /// <summary>
         /// The complexity score of the candidate.
@@ -6227,7 +6215,7 @@ namespace Yarn {
         }
 
         /// <summary>Field number for the "destination" field.</summary>
-        public const int DestinationFieldNumber = 4;
+        public const int DestinationFieldNumber = 3;
         private int destination_;
         /// <summary>
         /// The instruction number in the current node to jump to if this
@@ -6245,12 +6233,12 @@ namespace Yarn {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
         public override bool Equals(object other) {
-          return Equals(other as AddSaliencyCandidate);
+          return Equals(other as AddSaliencyCandidateInstruction);
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public bool Equals(AddSaliencyCandidate other) {
+        public bool Equals(AddSaliencyCandidateInstruction other) {
           if (ReferenceEquals(other, null)) {
             return false;
           }
@@ -6258,7 +6246,6 @@ namespace Yarn {
             return true;
           }
           if (ContentID != other.ContentID) return false;
-          if (IsConditionPassed != other.IsConditionPassed) return false;
           if (ComplexityScore != other.ComplexityScore) return false;
           if (Destination != other.Destination) return false;
           return Equals(_unknownFields, other._unknownFields);
@@ -6269,7 +6256,6 @@ namespace Yarn {
         public override int GetHashCode() {
           int hash = 1;
           if (ContentID.Length != 0) hash ^= ContentID.GetHashCode();
-          if (IsConditionPassed != false) hash ^= IsConditionPassed.GetHashCode();
           if (ComplexityScore != 0) hash ^= ComplexityScore.GetHashCode();
           if (Destination != 0) hash ^= Destination.GetHashCode();
           if (_unknownFields != null) {
@@ -6294,16 +6280,12 @@ namespace Yarn {
             output.WriteRawTag(10);
             output.WriteString(ContentID);
           }
-          if (IsConditionPassed != false) {
-            output.WriteRawTag(16);
-            output.WriteBool(IsConditionPassed);
-          }
           if (ComplexityScore != 0) {
-            output.WriteRawTag(24);
+            output.WriteRawTag(16);
             output.WriteInt32(ComplexityScore);
           }
           if (Destination != 0) {
-            output.WriteRawTag(32);
+            output.WriteRawTag(24);
             output.WriteInt32(Destination);
           }
           if (_unknownFields != null) {
@@ -6320,16 +6302,12 @@ namespace Yarn {
             output.WriteRawTag(10);
             output.WriteString(ContentID);
           }
-          if (IsConditionPassed != false) {
-            output.WriteRawTag(16);
-            output.WriteBool(IsConditionPassed);
-          }
           if (ComplexityScore != 0) {
-            output.WriteRawTag(24);
+            output.WriteRawTag(16);
             output.WriteInt32(ComplexityScore);
           }
           if (Destination != 0) {
-            output.WriteRawTag(32);
+            output.WriteRawTag(24);
             output.WriteInt32(Destination);
           }
           if (_unknownFields != null) {
@@ -6345,9 +6323,6 @@ namespace Yarn {
           if (ContentID.Length != 0) {
             size += 1 + pb::CodedOutputStream.ComputeStringSize(ContentID);
           }
-          if (IsConditionPassed != false) {
-            size += 1 + 1;
-          }
           if (ComplexityScore != 0) {
             size += 1 + pb::CodedOutputStream.ComputeInt32Size(ComplexityScore);
           }
@@ -6362,15 +6337,12 @@ namespace Yarn {
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public void MergeFrom(AddSaliencyCandidate other) {
+        public void MergeFrom(AddSaliencyCandidateInstruction other) {
           if (other == null) {
             return;
           }
           if (other.ContentID.Length != 0) {
             ContentID = other.ContentID;
-          }
-          if (other.IsConditionPassed != false) {
-            IsConditionPassed = other.IsConditionPassed;
           }
           if (other.ComplexityScore != 0) {
             ComplexityScore = other.ComplexityScore;
@@ -6398,14 +6370,10 @@ namespace Yarn {
                 break;
               }
               case 16: {
-                IsConditionPassed = input.ReadBool();
-                break;
-              }
-              case 24: {
                 ComplexityScore = input.ReadInt32();
                 break;
               }
-              case 32: {
+              case 24: {
                 Destination = input.ReadInt32();
                 break;
               }
@@ -6429,14 +6397,10 @@ namespace Yarn {
                 break;
               }
               case 16: {
-                IsConditionPassed = input.ReadBool();
-                break;
-              }
-              case 24: {
                 ComplexityScore = input.ReadInt32();
                 break;
               }
-              case 32: {
+              case 24: {
                 Destination = input.ReadInt32();
                 break;
               }
@@ -6448,16 +6412,16 @@ namespace Yarn {
       }
 
       [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-      public sealed partial class AddSaliencyCandidateFromNode : pb::IMessage<AddSaliencyCandidateFromNode>
+      public sealed partial class AddSaliencyCandidateFromNodeInstruction : pb::IMessage<AddSaliencyCandidateFromNodeInstruction>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           , pb::IBufferMessage
       #endif
       {
-        private static readonly pb::MessageParser<AddSaliencyCandidateFromNode> _parser = new pb::MessageParser<AddSaliencyCandidateFromNode>(() => new AddSaliencyCandidateFromNode());
+        private static readonly pb::MessageParser<AddSaliencyCandidateFromNodeInstruction> _parser = new pb::MessageParser<AddSaliencyCandidateFromNodeInstruction>(() => new AddSaliencyCandidateFromNodeInstruction());
         private pb::UnknownFieldSet _unknownFields;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public static pb::MessageParser<AddSaliencyCandidateFromNode> Parser { get { return _parser; } }
+        public static pb::MessageParser<AddSaliencyCandidateFromNodeInstruction> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -6473,7 +6437,7 @@ namespace Yarn {
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public AddSaliencyCandidateFromNode() {
+        public AddSaliencyCandidateFromNodeInstruction() {
           OnConstruction();
         }
 
@@ -6481,7 +6445,7 @@ namespace Yarn {
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public AddSaliencyCandidateFromNode(AddSaliencyCandidateFromNode other) : this() {
+        public AddSaliencyCandidateFromNodeInstruction(AddSaliencyCandidateFromNodeInstruction other) : this() {
           nodeName_ = other.nodeName_;
           destination_ = other.destination_;
           _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -6489,8 +6453,8 @@ namespace Yarn {
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public AddSaliencyCandidateFromNode Clone() {
-          return new AddSaliencyCandidateFromNode(this);
+        public AddSaliencyCandidateFromNodeInstruction Clone() {
+          return new AddSaliencyCandidateFromNodeInstruction(this);
         }
 
         /// <summary>Field number for the "nodeName" field.</summary>
@@ -6527,12 +6491,12 @@ namespace Yarn {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
         public override bool Equals(object other) {
-          return Equals(other as AddSaliencyCandidateFromNode);
+          return Equals(other as AddSaliencyCandidateFromNodeInstruction);
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public bool Equals(AddSaliencyCandidateFromNode other) {
+        public bool Equals(AddSaliencyCandidateFromNodeInstruction other) {
           if (ReferenceEquals(other, null)) {
             return false;
           }
@@ -6618,7 +6582,7 @@ namespace Yarn {
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public void MergeFrom(AddSaliencyCandidateFromNode other) {
+        public void MergeFrom(AddSaliencyCandidateFromNodeInstruction other) {
           if (other == null) {
             return;
           }
@@ -6682,16 +6646,16 @@ namespace Yarn {
       }
 
       [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-      public sealed partial class SelectSaliencyCandidate : pb::IMessage<SelectSaliencyCandidate>
+      public sealed partial class SelectSaliencyCandidateInstruction : pb::IMessage<SelectSaliencyCandidateInstruction>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           , pb::IBufferMessage
       #endif
       {
-        private static readonly pb::MessageParser<SelectSaliencyCandidate> _parser = new pb::MessageParser<SelectSaliencyCandidate>(() => new SelectSaliencyCandidate());
+        private static readonly pb::MessageParser<SelectSaliencyCandidateInstruction> _parser = new pb::MessageParser<SelectSaliencyCandidateInstruction>(() => new SelectSaliencyCandidateInstruction());
         private pb::UnknownFieldSet _unknownFields;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public static pb::MessageParser<SelectSaliencyCandidate> Parser { get { return _parser; } }
+        public static pb::MessageParser<SelectSaliencyCandidateInstruction> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -6707,7 +6671,7 @@ namespace Yarn {
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public SelectSaliencyCandidate() {
+        public SelectSaliencyCandidateInstruction() {
           OnConstruction();
         }
 
@@ -6715,25 +6679,25 @@ namespace Yarn {
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public SelectSaliencyCandidate(SelectSaliencyCandidate other) : this() {
+        public SelectSaliencyCandidateInstruction(SelectSaliencyCandidateInstruction other) : this() {
           _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public SelectSaliencyCandidate Clone() {
-          return new SelectSaliencyCandidate(this);
+        public SelectSaliencyCandidateInstruction Clone() {
+          return new SelectSaliencyCandidateInstruction(this);
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
         public override bool Equals(object other) {
-          return Equals(other as SelectSaliencyCandidate);
+          return Equals(other as SelectSaliencyCandidateInstruction);
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public bool Equals(SelectSaliencyCandidate other) {
+        public bool Equals(SelectSaliencyCandidateInstruction other) {
           if (ReferenceEquals(other, null)) {
             return false;
           }
@@ -6793,7 +6757,7 @@ namespace Yarn {
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public void MergeFrom(SelectSaliencyCandidate other) {
+        public void MergeFrom(SelectSaliencyCandidateInstruction other) {
           if (other == null) {
             return;
           }

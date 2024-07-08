@@ -18,62 +18,75 @@ namespace Yarn.Compiler
         /// <summary>
         /// Initializes a new instance of the NodeGroupCompiler class.
         /// </summary>
-        /// <param name="nodeGroupName"></param>
-        /// <param name="variableDeclarations"></param>
-        /// <param name="nodes"></param>
-        public NodeGroupCompiler(string nodeGroupName, IDictionary<string, Declaration> variableDeclarations, IEnumerable<YarnSpinnerParser.NodeContext> nodes)
+        /// <param name="nodeGroupName">The name of the node group to
+        /// compile.</param>
+        /// <param name="variableDeclarations">The collection of existing
+        /// variable declarations found during compilation.</param>
+        /// <param name="nodeContexts">The collection of node group parser
+        /// contexts that all belong to this node group.</param>
+        public NodeGroupCompiler(string nodeGroupName, IDictionary<string, Declaration> variableDeclarations, IEnumerable<YarnSpinnerParser.NodeContext> nodeContexts, List<Node> compiledNodes)
         {
+            this.NodeGroupName = nodeGroupName;
             this.VariableDeclarations = variableDeclarations;
-            this.Nodes = nodes;
-            this.CurrentNode = new Node
-            {
-                Name = nodeGroupName
-            };
-            this.CurrentNodeDebugInfo = new NodeDebugInfo("<generated>", nodeGroupName);
+            this.NodeContexts = nodeContexts;
+            this.CompiledNodes = compiledNodes;
         }
 
-        public Node CurrentNode { get; private set; }
+        public Node? CurrentNode { get; private set; }
 
-        public NodeDebugInfo CurrentNodeDebugInfo { get; private set; }
-
+        public NodeDebugInfo? CurrentNodeDebugInfo { get; private set; }
+        public string NodeGroupName { get; }
         public IDictionary<string, Declaration> VariableDeclarations { get; set; }
 
-        private IEnumerable<YarnSpinnerParser.NodeContext> Nodes { get; }
+        private IEnumerable<YarnSpinnerParser.NodeContext> NodeContexts { get; }
+        public List<Node> CompiledNodes { get; }
 
-
-        public (Node,NodeDebugInfo) GetResult()
+        private Node FindNode(string title)
         {
-            var codeGenerator = new CodeGenerationVisitor(this);
+            return this.CompiledNodes.Single(n => n.Name == title);
+        }
 
+        internal IEnumerable<NodeCompilationResult> CompileNodeGroup()
+        {
+            // Create the list of nodes that we'll end up generating
+            List<NodeCompilationResult> generatedNodes = new List<NodeCompilationResult>();
 
-            var jumpToNodeInstructions = new Dictionary<YarnSpinnerParser.NodeContext, Instruction>();
-            Instruction noContentAvailableJump;
-
-
-
-            foreach (var node in this.Nodes)
+            foreach (var nodeContext in this.NodeContexts)
             {
                 var nodeTotalConditionCount = 0;
-                if (node.NodeTitle == null) {
+                if (nodeContext.NodeTitle == null)
+                {
                     // The node doesn't have a title. We can't use it.
                     continue;
                 }
 
-                var whenHeaders = node.GetWhenHeaders();
+                List<string> whenConditionVariableNames = new List<string>();
+
+                var whenHeaders = nodeContext.GetWhenHeaders();
+
+                int totalComplexity = 0;
 
                 for (int i = 0; i < whenHeaders.Count(); i++)
                 {
                     var header = whenHeaders.ElementAt(i);
 
-                    nodeTotalConditionCount += header.ConditionCount;
+                    nodeTotalConditionCount += header.ComplexityScore;
 
                     YarnSpinnerParser.ExpressionContext? expression = header.header_expression.expression();
 
-                    if (expression != null)
-                    {
-                        // Evaluate the expression
-                        codeGenerator.Visit(expression);
-                    }
+                    // Generate a smart variable for this node
+                    var smartVariableName = $"$Yarn.Internal.{nodeContext.NodeGroup}.{nodeContext.NodeTitle}.Condition.{i}";
+
+                    whenConditionVariableNames.Add(smartVariableName);
+
+                    // Create a new smart variable for this header
+                    var compiler = new SmartVariableCompiler(this.VariableDeclarations);
+                    var result = compiler.Compile(nodeContext.SourceFileName ?? "<generated>", smartVariableName, expression);
+
+                    this.CurrentNode = result.Node;
+                    this.CurrentNodeDebugInfo = result.NodeDebugInfo;
+
+                    totalComplexity += header.ComplexityScore;
 
                     if (header.IsAlways)
                     {
@@ -83,9 +96,9 @@ namespace Yarn.Compiler
 
                     if (header.IsOnce)
                     {
-                        // Emit code that checks that the 'once' variable has
-                        // not yet been set.
-                        var onceVariable = Compiler.GetContentViewedVariableName(node.NodeTitle);
+                        // Emit code that checks that the 'once' variable for
+                        // this node has not yet been set.
+                        var onceVariable = Compiler.GetContentViewedVariableName(nodeContext.NodeTitle);
 
                         this.Emit(
                             header.header_when_expression().once,
@@ -131,155 +144,131 @@ namespace Yarn.Compiler
                             });
                     }
 
-                    if (i != 0)
+                    // The top of the stack now contains a boolean value
+                    // indicating whether the condition passed or not.
+
+                    // Add this generated node to the collection of nodes we're
+                    // producing.
+                    generatedNodes.Add(new NodeCompilationResult
                     {
-                        // This isn't 'and' it with the previous result
-                        this.Emit(
-                            header.header_expression.Start,
-                            new Instruction
-                            {
-                                PushFloat = new PushFloatInstruction { Value = 2 },
-                            },
-                            new Instruction
-                            {
-                                CallFunc = new CallFunctionInstruction
-                                {
-                                    FunctionName = CodeGenerationVisitor.GetFunctionName(Types.Boolean, Operator.And)
-                                }
-                            });
-                    }
+                        Node = this.CurrentNode,
+                        NodeDebugInfo = this.CurrentNodeDebugInfo,
+                    });
                 }
 
-                if (whenHeaders.Count() == 0) {
-                    // This node is part of a node group, but it didn't have any
-                    // condition expressions. Push 'true' to ensure that it
-                    // runs.
-                    this.Emit(
-                        node.GetHeader(SpecialHeaderNames.TitleHeader)?.Start,
-                        new Instruction
-                        {
-                            PushBool = new PushBoolInstruction { Value = true }
-                        }
-                    );
-                }
+                // We need to associate this header with the list of smart
+                // variables that determine its saliency.
+                var compiledNode = FindNode(nodeContext.NodeTitle);
+                compiledNode.Headers.Add(new Header
+                {
+                    Key = Node.ContentSaliencyConditionVariablesHeader,
+                    Value = string.Join(Node.ContentSaliencyVariableSeparator.ToString(), whenConditionVariableNames),
+                });
 
-                Instruction skipRegistration;
-
-                // If it's false, jump over the call to add this as a candidate
-                this.Emit(
-                    node.GetHeader(SpecialHeaderNames.TitleHeader)?.header_key,
-                    skipRegistration = new Instruction
-                    {
-                        JumpIfFalse = new Instruction.Types.JumpIfFalseInstruction
-                        {
-                            Destination = -1,
-                        }
-                    }
-                );
-
-                Instruction runThisNodeInstruction;
-
-                // Otherwise, add it as a candidate
-                this.Emit(
-                    node.GetHeader(SpecialHeaderNames.TitleHeader)?.header_value,
-                    // line ID for this option (arg 3)
-                    new Instruction { PushString = new PushStringInstruction { Value = node.NodeTitle } },
-                    // condition count (arg 2)
-                    new Instruction { PushFloat = new PushFloatInstruction { Value = nodeTotalConditionCount } },
-                    // destination if selected (arg 1)
-                    runThisNodeInstruction = new Instruction { PushFloat = new PushFloatInstruction { Value = -1 } },
-                    // parameter count
-                    new Instruction { PushFloat = new PushFloatInstruction { Value = 3 } },
-                    new Instruction { CallFunc = new CallFunctionInstruction { FunctionName = VirtualMachine.AddLineGroupCandidateFunctionName } }
-                );
-
-                jumpToNodeInstructions[node] = runThisNodeInstruction;
-
-                // Mark the point where we'd skip to if we were not adding this
-                // as a candidate
-                skipRegistration.Destination = this.CurrentInstructionNumber;
-                CurrentNodeDebugInfo.AddLabel("nodegroup_skip_registering_" + node.NodeTitle, this.CurrentInstructionNumber);
+                // We also need to add the header that indicates the total
+                // complexity of all of its headers.
+                compiledNode.Headers.Add(new Header
+                {
+                    Key = Node.ContentSaliencyConditionComplexityScoreHeader,
+                    Value = totalComplexity.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                });
             }
 
+            // Now that we've gone through every member of the node group and
+            // added smart variables for its conditions, we'll generate the
+            // 'hub' node that actually adds the nodes as candidates, selects
+            // one (or doesn't, depending on runtime conditions), and runs the
+            // appropriate node.
 
-            // Consult the saliency strategy
-            // We've added all of our candidates; now query which one to jump to
+            var hubNode = new Node()
+            {
+                Name = NodeGroupName,
+            };
+
+            var hubNodeDebugInfo = new NodeDebugInfo("<generated>", NodeGroupName);
+            this.CurrentNode = hubNode;
+            this.CurrentNodeDebugInfo = hubNodeDebugInfo;
+
+            // For each member in the group, add code that registers it as a
+            // candidate. We'll also keep track of each instruction that
+            // registers a node as a candidate.
+            var addCandidateInstructions = new Dictionary<YarnSpinnerParser.NodeContext, Instruction>();
+
+            foreach (var nodeContext in NodeContexts)
+            {
+
+                // Register this node as a candidate
+                Instruction i;
+                this.Emit(i = new Instruction
+                {
+                    AddSaliencyCandidateFromNode = new AddSaliencyCandidateFromNodeInstruction
+                    {
+                        NodeName = nodeContext.NodeTitle,
+                        Destination = -1,
+                    }
+                });
+                addCandidateInstructions[nodeContext] = i;
+            }
+
+            Instruction jumpToNoContentAvailableInstruction;
+
             this.Emit(null,
-                // Where to jump to if there are no candidates
-                noContentAvailableJump = new Instruction { PushFloat = new PushFloatInstruction { Value = -1 } },
-                // The number of parameters (1)
-                new Instruction { PushFloat = new PushFloatInstruction { Value = 1 } },
-                // Call the function
-                new Instruction { CallFunc = new CallFunctionInstruction { FunctionName = VirtualMachine.SelectLineGroupCandidateFunctionName } },
-                // After this call, the appropriate label to jump to will be on the
-                // stack.
+                // Ask the VM to select the most salient option from what's
+                // available.
+                new Instruction { SelectSaliencyCandidate = new SelectSaliencyCandidateInstruction { } },
+                // The top of the stack contains either (true, destination), or
+                // (false). If there's no content, jump over this next
+                // instruction
+                jumpToNoContentAvailableInstruction = new Instruction
+                {
+                    JumpIfFalse = new JumpIfFalseInstruction { Destination = -1 }
+                },
+                // If we're here, then the top of the stack is true. Pop it, and
+                // jump to our node.
+                new Instruction { Pop = new PopInstruction { } },
+                // Now jump to the destination that's at the top of the stack.
                 new Instruction { PeekAndJump = new PeekAndJumpInstruction { } }
             );
 
-            // Generate code that jumps to each node
-            foreach (var node in Nodes)
+            // Update our jump-to-end instruction
+            jumpToNoContentAvailableInstruction.Destination = this.CurrentInstructionNumber;
+            hubNodeDebugInfo.AddLabel("no_content_available", this.CurrentInstructionNumber);
+
+            // If we're here, then there was no content. Return immediately.
+            this.Emit(
+                new Instruction { Return = new ReturnInstruction { } }
+            );
+
+            // For each member of the group, emit code that detours into the
+            // chosen node and return.
+            foreach (var nodeContext in NodeContexts)
             {
-                jumpToNodeInstructions[node].Destination = CurrentInstructionNumber;
+                // Update the add-candidate instruction that points to here
+                addCandidateInstructions[nodeContext].Destination = this.CurrentInstructionNumber;
+                hubNodeDebugInfo.AddLabel("run_candidate_" + nodeContext.NodeTitle, this.CurrentInstructionNumber);
 
-                // If any of the 'when' conditions had a 'once' in them, set the
-                // variable for it now.
-                var whenHeaders = node.GetWhenHeaders();
-                var onceHeader = whenHeaders.FirstOrDefault(h => h.header_when_expression().once != null);
-                if (onceHeader != null && node.NodeTitle != null)
-                {
-                    var onceVariable = Compiler.GetContentViewedVariableName(node.NodeTitle);
-
-                    this.Emit(
-                        onceHeader.header_when_expression().once,
-                        new Instruction
-                        {
-                            PushBool = new PushBoolInstruction { Value = true }
-                        },
-                        new Instruction
-                        {
-                            StoreVariable = new StoreVariableInstruction
-                            {
-                                VariableName = onceVariable
-                            }
-                        },
-                        new Instruction
-                        {
-                            Pop = new PopInstruction { }
-                        }
-                    );
-                }
-
-                this.CurrentNodeDebugInfo.AddLabel($"nodegroup_run_{node.NodeTitle}", CurrentInstructionNumber);
-
-                // Detour into to the node, and then return when we're done.
-                this.Emit(
-                    node.GetHeader(SpecialHeaderNames.TitleHeader)?.header_value,
+                // Emit code that detours into the node and then returns
+                this.Emit(null,
                     new Instruction
                     {
                         DetourToNode = new DetourToNodeInstruction
                         {
-                            NodeName = node.NodeTitle
+                            NodeName = nodeContext.NodeTitle
                         }
                     },
-                    new Instruction {
-                        Return = new ReturnInstruction { }
-                    }
+                    new Instruction { Return = new ReturnInstruction { } }
                 );
             }
 
-            // If we made it here, then no content was available. Return to
-            // where we were called from.
-            noContentAvailableJump.Destination = CurrentInstructionNumber;
-            this.CurrentNodeDebugInfo.AddLabel("nodegroup_none_viable", CurrentInstructionNumber);
-            this.Emit(
-                null,
-                new Instruction
-                {
-                    Return = new ReturnInstruction { }
-                }
-            );
+            // We're now at the end of the node.
+            generatedNodes.Add(new NodeCompilationResult
+            {
+                Node = this.CurrentNode,
+                NodeDebugInfo = this.CurrentNodeDebugInfo,
+            });
 
-            return (CurrentNode, CurrentNodeDebugInfo);
+            // Return the collection of nodes we've generated.
+            return generatedNodes;
         }
 
         /// <inheritdoc/>
@@ -295,7 +284,8 @@ namespace Yarn.Compiler
         /// <inheritdoc/>
         public void Emit(IToken? startToken, params Instruction[] instructions)
         {
-            foreach (var instruction in instructions) {
+            foreach (var instruction in instructions)
+            {
                 this.Emit(startToken, instruction);
             }
         }
@@ -310,7 +300,9 @@ namespace Yarn.Compiler
         {
             get
             {
-                Node currentNode = this.CurrentNode ?? throw new InvalidOperationException($"Can't get current instruction number: {nameof(this.CurrentNode)} is null");
+                Node currentNode = this.CurrentNode
+                    ?? throw new InvalidOperationException($"Can't get current instruction number: {nameof(this.CurrentNode)} is null");
+
                 return currentNode.Instructions.Count;
             }
         }

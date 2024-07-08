@@ -123,7 +123,7 @@ namespace YarnLanguageServer
         {
             if (context.header_key != null && context.header_value != null)
             {
-                if (context.header_key.Text == SpecialHeaderNames.TitleHeader)
+                if (context.header_key.Text == Yarn.Node.TitleHeader)
                 {
                     currentNodeInfo.Title = context.header_value.Text;
                     currentNodeInfo.TitleToken = context.header_value;

@@ -101,13 +101,12 @@ message Instruction {
 
         ReturnInstruction return = 20;
 
-        // Add a saliency candidate to the current list by providing information
-        // directly.
-
-        AddSaliencyCandidate addSaliencyCandidate = 21;
+        // Pops a boolean from the stack, and adds a saliency candidate to the
+        // current list.
+        AddSaliencyCandidateInstruction addSaliencyCandidate = 21;
 
         // Add a saliency candidate to the current list, given a node name.
-        AddSaliencyCandidateFromNode addSaliencyCandidateFromNode = 22;
+        AddSaliencyCandidateFromNodeInstruction addSaliencyCandidateFromNode = 22;
 
         // Attempt to select a single saliency candidate from the current list:
         // - if one is selected, pushes the destination of that candidate and
@@ -116,7 +115,7 @@ message Instruction {
         //
         // In all circumstances, clears the saliency candidate list before
         // returning.
-        SelectSaliencyCandidate selectSaliencyCandidate = 23;
+        SelectSaliencyCandidateInstruction selectSaliencyCandidate = 23;
     }
     message PeekAndJumpInstruction { }
     message PeekAndRunNodeInstruction { }
@@ -200,23 +199,19 @@ message Instruction {
     
     message ReturnInstruction { }
 
-    message AddSaliencyCandidate {
+    message AddSaliencyCandidateInstruction {
         // The unique ID for this piece of content, such as a line ID.
         string contentID = 1;
-
-        // A boolean flag indicating whether this content's condition has
-        // passed.
-        bool isConditionPassed = 2;
         
         // The complexity score of the candidate.
-        int32 complexityScore = 3;
+        int32 complexityScore = 2;
 
         // The instruction number in the current node to jump to if this
         // candidate is selected.
-        int32 destination = 4;
+        int32 destination = 3;
     }
     
-    message AddSaliencyCandidateFromNode {
+    message AddSaliencyCandidateFromNodeInstruction {
         // The name of the node to get saliency information from.
         string nodeName = 1;
 
@@ -225,7 +220,7 @@ message Instruction {
         int32 destination = 2;
     }
 
-    message SelectSaliencyCandidate { }
+    message SelectSaliencyCandidateInstruction { }
 
 }
 

@@ -1,0 +1,5 @@
+title: NodeGroup
+when:
+---
+This node has a when header, but the header has no expression.
+===

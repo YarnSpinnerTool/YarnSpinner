@@ -21,16 +21,6 @@ namespace Yarn.Compiler
     /// </summary>
     internal class TypeCheckerListener : YarnSpinnerParserBaseListener
     {
-
-        /// <summary>
-        /// The special header key used to identify the name of a node.
-        /// </summary>
-        /// <remarks>
-        /// This value is used to help determine when <see
-        /// cref="currentNodeName"/> needs to change.
-        /// </remarks>
-        private const string NodeHeaderTitle = SpecialHeaderNames.TitleHeader;
-
         /// <summary>
         /// Stores the total number of type variables that have been produced.
         /// </summary>
@@ -291,7 +281,7 @@ namespace Yarn.Compiler
             // We don't do any type checking here, but we do want to know if
             // this header was the 'title' header, because we want to know the
             // name of the current node we're in for diagnostic purposes.
-            if (context.header_key.Text == NodeHeaderTitle)
+            if (context.header_key.Text == Node.TitleHeader)
             {
                 this.currentNodeName = context.header_value.Text;
             }

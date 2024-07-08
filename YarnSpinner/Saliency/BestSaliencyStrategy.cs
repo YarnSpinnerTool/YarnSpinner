@@ -8,17 +8,31 @@ namespace Yarn.Saliency
     /// options.
     /// </summary>
     /// <remarks>
-    /// This strategy always returns the single best of the available items,
-    /// regardless of whether it has been seen before. For a saliency strategy
-    /// that takes into account how recently content has been seen, see <see
-    /// cref="BestLeastRecentlyViewedSalienceStrategy"/>.
+    /// This strategy always selects the single best of the available items,
+    /// regardless of how many times it has been seen before. For a saliency
+    /// strategy that takes into account how recently content has been seen, see
+    /// <see cref="BestLeastRecentlyViewedSalienceStrategy"/>.
     /// </remarks>
     public class BestSaliencyStrategy : IContentSaliencyStrategy
     {
         /// <inheritdoc/>
-        public TContent ChooseBestContent<TContent>(IEnumerable<TContent> options) where TContent : IContentSaliencyOption
+        public void ContentWasSelected(ContentSaliencyOption content)
         {
-            return options.OrderByDescending(o => o.ConditionValueCount).First();
+            // This strategy does not need need to track any state, so this
+            // method takes no action.
         }
+
+        /// <inheritdoc/>
+        public ContentSaliencyOption? QueryBestContent(IEnumerable<ContentSaliencyOption> content)
+        {
+            // Filter out any content that has a failing condition, and select
+            // the one that has the highest complexity.
+            return content
+                .Where(o => o.FailingConditionValueCount == 0)
+                .OrderByDescending(o => o.ComplexityScore)
+                .First();
+        }
+
+        
     }
 }

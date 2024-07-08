@@ -15,79 +15,91 @@ namespace Yarn.Saliency
     public class RandomBestLeastRecentlyViewedSalienceStrategy : IContentSaliencyStrategy
     {
         /// <summary>
-        /// Gets the variable storage to use for storing information about how
-        /// often we've seen content.
+        /// Initializes a new instance of the <see
+        /// cref="RandomBestLeastRecentlyViewedSalienceStrategy"/> class.
         /// </summary>
-        private IVariableStorage VariableStorage { get; }
-
+        /// <param name="storage">The variable storage to use when determining
+        /// which content to show.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the provided
+        /// <paramref name="storage"/> argument is null.</exception>
         public RandomBestLeastRecentlyViewedSalienceStrategy(IVariableStorage storage)
         {
             this.VariableStorage = storage ?? throw new ArgumentNullException(nameof(storage));
         }
 
         /// <summary>
-        /// Gets a unique variable name that can be used for tracking the view
-        /// count of a specific piece of content.
+        /// Gets the variable storage to use for storing information about how
+        /// often we've seen content.
         /// </summary>
-        /// <param name="content">The content to generate a variable name
-        /// for.</param>
-        /// <returns>The generated variable name.</returns>
-        private string GetViewCountKeyForContent(IContentSaliencyOption content)
+        private IVariableStorage VariableStorage { get; }
+
+        /// <inheritdoc/>
+        /// <remarks>This method increments the view count for <paramref
+        /// name="content"/>, so that the next time QueryBestContent is run, it
+        /// has an updated count of the number of times the content has been
+        /// viewed.</remarks>
+        public void ContentWasSelected(ContentSaliencyOption content)
         {
-            return $"$Yarn.Internal.Content.ViewCount.{content.ContentID}";
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content), "Content cannot be null");
+            }
+
+            if (VariableStorage.TryGetValue<float>(content.ViewCountKey, out var ViewCount) == false)
+            {
+                ViewCount = 0;
+            }
+
+            ViewCount += 1;
+            VariableStorage.SetValue(content.ViewCountKey, (int)ViewCount);
         }
 
         /// <inheritdoc/>
-        public TContent ChooseBestContent<TContent>(IEnumerable<TContent> options) where TContent : IContentSaliencyOption
+        public ContentSaliencyOption? QueryBestContent(IEnumerable<ContentSaliencyOption> content)
         {
-            // For each of the options, calculate how many times we've seen it,
-            // and what variable name stores this information.
-            var viewCountContent = options.Select(c =>
-            {
-                int count;
-                if (c.ContentID == null)
-                {
-                    // This content represents the null choice. We won't have a
-                    // view count key for this, so create a synthetic value
-                    // where the view count is the highest possible (to push it
-                    // to the bottom of the sorted list, since we want to avoid
-                    // this option as much as we can).
-                    return (ViewCount: int.MaxValue, ViewCountKey: null, Content: c);
-                }
-                else
-                {
-                    // Query the variable storage for how many times we've seen
-                    // content with this ID. If we don't have an answer, then
-                    // assume zero. Additionally, we'll keep the view count key
-                    // for later, since we'll increment it when we're done.
-                    string viewCountKey = GetViewCountKeyForContent(c);
-                    if (!this.VariableStorage.TryGetValue<float>(viewCountKey, out var countAsFloat))
-                    {
-                        countAsFloat = 0;
-                    }
-                    count = (int)countAsFloat;
-                    return (ViewCount: count, ViewCountKey: viewCountKey, Content: c);
-                }
+            // First, filter out all content that has failed any conditions.
+            content = content.Where(c => c.FailingConditionValueCount == 0).ToList();
 
+            if (!content.Any())
+            {
+                // There's no content available.
+                return null;
+            }
+
+            // For each of the options, calculate how many times we've seen it.
+            var viewCountContent = content.Select(c =>
+            {
+                // Query the variable storage for how many times we've seen
+                // content with this ID. If we don't have an answer, then assume
+                // zero.
+                string viewCountKey = c.ViewCountKey;
+
+                if (!this.VariableStorage.TryGetValue<float>(viewCountKey, out var countAsFloat))
+                {
+                    countAsFloat = 0;
+                }
+                int count = (int)countAsFloat;
+                return (ViewCount: count, Content: c);
             });
 
             // Get the group with the least views, and then from there get the
             // group with the best score. Choose a random item from this final
             // group.
-            var (ViewCount, ViewCountKey, Content) = viewCountContent
+            var (ViewCount, Content) = viewCountContent
+                // Find the group of content items that have the least number of
+                // views.
                 .GroupBy(c => c.ViewCount)
                 .OrderBy(c => c.Key)
                 .First()
-                .GroupBy(c => c.Content.ConditionValueCount)
+
+                // Now find the subgroup where the items have the highest
+                // complexity score.
+                .GroupBy(c => c.Content.ComplexityScore)
                 .OrderByDescending(c => c.Key)
                 .First()
-                .RandomElement();
 
-            if (ViewCountKey != null)
-            {
-                int bestViewCount = ViewCount + 1;
-                VariableStorage.SetValue(ViewCountKey, bestViewCount);
-            }
+                // Finally, pick a random element in that subgroup.
+                .RandomElement();
 
             return Content;
         }
@@ -96,7 +108,8 @@ namespace Yarn.Saliency
     /// <summary>
     /// Contains extension methods for <see cref="IEnumerable{T}"/>.
     /// </summary>
-    public static class EnumerableRandomExtension {
+    public static class EnumerableRandomExtension
+    {
         static readonly Random random = new Random();
 
         /// <summary>
@@ -118,8 +131,13 @@ namespace Yarn.Saliency
         public static T RandomElement<T>(this IEnumerable<T> enumerable)
         {
             var count = enumerable.Count();
-            if (count <= 0) {
+            if (count <= 0)
+            {
                 throw new ArgumentException($"Sequence is empty");
+            }
+            if (count == 1)
+            {
+                return enumerable.Single();
             }
 #pragma warning disable CA5394 // System.Random is insecure
             var selection = random.Next(count);
