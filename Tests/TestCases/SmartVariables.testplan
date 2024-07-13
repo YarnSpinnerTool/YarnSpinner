@@ -1,0 +1,11 @@
+set: $player_money = 15
+
+line: `Player: One pie, please.`
+line: `PieMaker: Certainly!`
+
+---
+
+set: $player_money = 0
+
+Player: Can I have a pie?
+PieMaker: You can't afford one!
