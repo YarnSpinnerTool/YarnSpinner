@@ -153,16 +153,6 @@ namespace YarnSpinner.Tests
                 return true;
             });
 
-            HashSet<string> seenOnceTags = new HashSet<string>();
-
-            dialogue.Library.RegisterFunction("once", (string tag) => {
-                if (seenOnceTags.Contains(tag)) {
-                    return false;
-                }
-                seenOnceTags.Add(tag);
-                return true;
-            });
-
             // When a node is complete, do nothing
             dialogue.NodeCompleteHandler = (string nodeName) => {};
         }

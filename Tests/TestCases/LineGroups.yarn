@@ -7,10 +7,10 @@ title: Start
 
 // The first time we speak to the baker, she'll say one of these two lines.
 // Depending on whether or not she knows the player, a different line will run.
-<<if once("baker_intro")>>
-=> Baker: Hey there, friend! Made some fresh pies for you! <<if $knows_player>>
-=> Baker: Hey there! Fresh pies, right out of the oven! <<if not $knows_player>>
-<<endif>>
+<<once>>
+    => Baker: Hey there, friend! Made some fresh pies for you! <<if $knows_player>>
+    => Baker: Hey there! Fresh pies, right out of the oven! <<if not $knows_player>>
+<<endonce>>
 
 // Choose a single line to run.
 // These three will only appear if the player bought a pie earlier.
