@@ -173,7 +173,18 @@ namespace Yarn.Compiler
                     return Array.Empty<string>();
                 }
 
-                return matcher.GetResultsInFullPath(searchDirectoryPath);
+                var results = new List<string>(matcher.GetResultsInFullPath(searchDirectoryPath));
+
+                foreach (var path in this.SourceFilePatterns) {
+                    if (System.IO.Path.IsPathRooted(path) && System.IO.Path.GetExtension(path) == ".yarn") {
+                        // This is an explicit, absolute path to a Yarn file
+                        // (which the globbing matcher won't pick up) - manually
+                        // add it to the list of paths that this project
+                        // references
+                        results.Add(path);
+                    }
+                }
+                return results;
             }
         }
 
