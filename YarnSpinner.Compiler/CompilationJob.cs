@@ -125,6 +125,7 @@ namespace Yarn.Compiler
             {
                 Files = fileList.ToArray(),
                 Library = library,
+                VariableDeclarations = Array.Empty<Declaration>(),
             };
         }
 
