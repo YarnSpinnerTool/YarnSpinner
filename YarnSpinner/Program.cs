@@ -35,8 +35,10 @@ namespace Yarn
                 int instructionCount = 0;
                 foreach (var instruction in entry.Value.Instructions)
                 {
+                    bool hasLabel = false;
                     if (nodeLabels?.TryGetValue(instructionCount, out var labelName) ?? false) {
                         sb.AppendLine(labelName + ":");
+                        hasLabel = true;
                     }
                     string instructionText;
 
@@ -44,7 +46,7 @@ namespace Yarn
 
                     string preface;
 
-                    if (instructionCount % 5 == 0 || instructionCount == entry.Value.Instructions.Count - 1)
+                    if (instructionCount % 5 == 0 || instructionCount == entry.Value.Instructions.Count - 1 || hasLabel)
                     {
                         preface = string.Format(CultureInfo.InvariantCulture, "{0,6}   ", instructionCount);
                     }
@@ -369,6 +371,7 @@ namespace Yarn
                     break;
                 case InstructionTypeOneofCase.RunCommand:
                     operands.Add(this.RunCommand.CommandText);
+                    operands.Add(this.RunCommand.SubstitutionCount);
                     break;
                 case InstructionTypeOneofCase.AddOption:
                     operands.Add(this.AddOption.LineID);
