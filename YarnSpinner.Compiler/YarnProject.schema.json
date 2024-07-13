@@ -23,6 +23,9 @@
                 },
                 "compilerOptions": {
                     "$ref": "#/definitions/CompilerOptions"
+                },
+                "definitions": {
+                    "type": "string"
                 }
             },
             "required": [
