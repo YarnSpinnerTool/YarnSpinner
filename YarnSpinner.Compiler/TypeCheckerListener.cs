@@ -309,6 +309,12 @@ namespace Yarn.Compiler
 
             // The type of this identifier is equal to the type of its default
             // value.
+            if (context.expression() == null) {
+                // No expression present, due to a syntax error. We can't do any
+                // type checking on this.
+                return;
+            }
+
             this.AddEqualityConstraint(typeIdentifier, context.expression().Type, context, s => $"The type of {name}'s initial value \"{context.expression().GetText()}\" ({context.expression().Type.Substitute(s)}) doesn't match the type of the variable {typeIdentifier.Substitute(s)}.");
 
             if (context.type != null)
