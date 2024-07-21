@@ -503,7 +503,23 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics
                 .Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error)
-                .Which.Message.Should().Contain("jump statement's expression must be a String, not a Number");
+                .Which.Message.Should().Contain("jump statement's expression must be convertible to String, but Number is not");
+        }
+        [Fact]
+        public void TestJumpExpressionsMayBeStringEnums()
+        {
+            var source = CreateTestNode(@"
+            
+            <<enum TestEnum>>
+            <<case A = ""A"">>
+            <<endenum>>
+            <<jump {TestEnum.A}>>
+            ");
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library, allowPreviewFeatures: true));
+
+            result.Diagnostics
+                .Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
         }
 
         [Fact]

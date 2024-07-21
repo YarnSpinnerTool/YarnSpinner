@@ -861,11 +861,11 @@ namespace Yarn.Compiler
         {
             if (context.expression() != null)
             {
-                // The type of the expression must resolve to a string.
-                this.AddEqualityConstraint(context.expression()?.Type ?? Types.Error,
+                // The type of the expression must be convertible to a string.
+                this.AddConvertibleConstraint(context.expression()?.Type ?? Types.Error,
                     Types.String,
                     context,
-                    s => $"jump statement's expression must be a {Types.String}, not a {context.expression().Type.Substitute(s)}");
+                    s => $"jump statement's expression must be convertible to {Types.String}, but {context.expression().Type.Substitute(s)} is not");
             }
 
             base.ExitJumpToExpression(context);
