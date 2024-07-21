@@ -1344,6 +1344,17 @@ namespace Yarn.Compiler
                     string variableName = variable.VAR_ID().GetText();
                     if (decls.TryGetValue(variableName, out var dependencyDecl))
                     {
+                        // Is this decl a smart variable? (Only smart variables
+                        // can have dependencies, so they're the only ones we
+                        // need to care about when figuring out dependency
+                        // cycles.)
+                        if (dependencyDecl.IsInlineExpansion == false)
+                        {
+                            // It's a regular stored variable, so skip it and
+                            // move on.
+                            continue;
+                        }
+
                         // Have we seen this declaration before?
                         if (seenDecls.Contains(dependencyDecl))
                         {
@@ -1358,17 +1369,13 @@ namespace Yarn.Compiler
                         // startDecl.
                         dependencies.Add(dependencyDecl);
 
-                        if (dependencyDecl.IsInlineExpansion)
+                        if (dependencyDecl.InitialValueParserContext == null)
                         {
-                            if (dependencyDecl.InitialValueParserContext == null)
-                            {
-                                throw new InvalidOperationException($"Internal error: {dependencyDecl} was marked as being a smart variable, but it has no {nameof(dependencyDecl.InitialValueParserContext)}");
-                            }
-
-                            // Add this smart variable's definition to our
-                            // search.
-                            searchStack.Push(dependencyDecl.InitialValueParserContext);
+                            throw new InvalidOperationException($"Internal error: {dependencyDecl} was marked as being a smart variable, but it has no {nameof(dependencyDecl.InitialValueParserContext)}");
                         }
+
+                        // Add this smart variable's definition to our search.
+                        searchStack.Push(dependencyDecl.InitialValueParserContext);
                     }
                     else
                     {
