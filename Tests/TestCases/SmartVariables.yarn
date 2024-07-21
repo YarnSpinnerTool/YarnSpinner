@@ -25,4 +25,7 @@ title: Start
 
 <<declare $D = $C || $player_can_afford_pie>>
 
+// The same smart variable can appear multiple times in a declaration - this is
+// fine, because it doesn't cause a loop
+<<declare $E = $C || $C>>
 ===

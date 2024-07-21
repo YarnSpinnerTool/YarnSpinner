@@ -1324,7 +1324,7 @@ namespace Yarn.Compiler
         internal static IEnumerable<Declaration> GetDependenciesForVariable(Declaration startDecl, IDictionary<string, Declaration> decls, out Diagnostic? loopError)
         {
             var dependencies = new HashSet<Declaration>();
-            var searchStack = new Stack<ParserRuleContext>();
+            var searchStack = new Stack<(ParserRuleContext ctx, int level)>();
 
             if (startDecl.InitialValueParserContext == null)
             {
@@ -1334,15 +1334,15 @@ namespace Yarn.Compiler
                 return dependencies;
             }
 
-            var seenDecls = new HashSet<Declaration>() {
-                startDecl
+            var seenDecls = new HashSet<(Declaration decl, int level)>() {
+                (startDecl, 0)
             };
 
-            searchStack.Push(startDecl.InitialValueParserContext);
+            searchStack.Push((startDecl.InitialValueParserContext, 0));
 
             while (searchStack.Count > 0)
             {
-                var item = searchStack.Pop();
+                var (item, level) = searchStack.Pop();
 
                 if (item is YarnSpinnerParser.VariableContext variable)
                 {
@@ -1356,20 +1356,21 @@ namespace Yarn.Compiler
                         // cycles.)
                         if (dependencyDecl.IsInlineExpansion == false)
                         {
-                            // It's a regular stored variable, so skip it and
+                            // It's a regular stored variable, so add it and
                             // move on.
+                            dependencies.Add(dependencyDecl);
                             continue;
                         }
 
-                        // Have we seen this declaration before?
-                        if (seenDecls.Contains(dependencyDecl))
+                        // Have we seen this declaration at an earlier level of recusion?
+                        if (seenDecls.Any(i => i.decl == dependencyDecl && i.level != level))
                         {
                             // We've found a dependency loop!
                             loopError = new Diagnostic(startDecl.SourceFileName, variable, $"Smart variables cannot contain reference loops (referencing {variable.GetTextWithWhitespace()} here creates a loop for the smart variable {startDecl.Name})");
                             return Enumerable.Empty<Declaration>();
                         }
 
-                        seenDecls.Add(dependencyDecl);
+                        seenDecls.Add((dependencyDecl, level));
 
                         // Add this variable to the set of dependencies of
                         // startDecl.
@@ -1381,7 +1382,7 @@ namespace Yarn.Compiler
                         }
 
                         // Add this smart variable's definition to our search.
-                        searchStack.Push(dependencyDecl.InitialValueParserContext);
+                        searchStack.Push((dependencyDecl.InitialValueParserContext, level+1));
                     }
                     else
                     {
@@ -1398,7 +1399,7 @@ namespace Yarn.Compiler
 
                 foreach (var child in childContexts)
                 {
-                    searchStack.Push(child);
+                    searchStack.Push((child, level+1));
                 }
             }
 
