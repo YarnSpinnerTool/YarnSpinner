@@ -14,4 +14,15 @@ title: Start
     PieMaker: You can't afford one!
 <<endif>>
 
+// Variables are allowed to appear multiple times in a smart variable
+<<declare $a = false as bool>>
+<<declare $b = false as bool>>
+
+<<declare $C = (((!$a) && $b) || $b)>>
+
+// Smart variables are allowed to reference other smart variables, so long as
+// this does not create a loop
+
+<<declare $D = $C || $player_can_afford_pie>>
+
 ===

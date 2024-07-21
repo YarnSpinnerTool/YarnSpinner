@@ -1,0 +1,10 @@
+title: Start
+---
+// Smart variables are allowed to reference other smart variables, so long as
+// this does not create a loop
+
+<<declare $A = $B || false>> // ensure that the type is known - we want the only error to be about the loop
+<<declare $B = $C>>
+<<declare $C = $A || (2 > 1)>>
+
+===
