@@ -42,7 +42,7 @@ namespace Yarn
                     }
                     string instructionText;
 
-                    instructionText = "    " + instruction.ToString(this, entry.Value, library, helper);
+                    instructionText = "    " + instruction.ToString(entry.Value, library, helper);
 
                     string preface;
 
@@ -236,8 +236,10 @@ namespace Yarn
         partial void OnConstruction() {
             
         }
-        internal string ToString(Program p, Node? containingNode, Library? library, ICodeDumpHelper? helper)
+
+        internal (string Type, IEnumerable<object> Operands, IEnumerable<string> Comments) ToDescription(Node? containingNode, Library? library, ICodeDumpHelper? helper)
         {
+
             // Generate a comment, if the instruction warrants it
             List<string> comments = new List<string>();
 
@@ -247,7 +249,6 @@ namespace Yarn
 
             switch (InstructionTypeCase)
             {
-
                 // These operations all push a single value to the stack
                 case InstructionTypeOneofCase.PushBool:
                 case InstructionTypeOneofCase.PushFloat:
@@ -426,16 +427,27 @@ namespace Yarn
                     break;
             }
 
-            string operandText = string.Join(", ", operands);
-            string commentText = string.Join(", ", comments);
-            if (comments.Count > 0) {
+            return (
+                Type: this.InstructionTypeCase.ToString(),
+                Operands: operands,
+                Comments: comments
+            );
+        }
+
+        internal string ToString(Node? containingNode, Library? library, ICodeDumpHelper? helper)
+        {
+            var result = ToDescription(containingNode, library, helper);
+
+            string operandText = string.Join(", ", result.Operands);
+            string commentText = string.Join(", ", result.Comments);
+            if (commentText.Length > 0) {
                 commentText = "; " + commentText;
             }
 
             return string.Format(
                 CultureInfo.InvariantCulture,
                 "{0,-15} {1,-40} {2, -10}",
-                InstructionTypeCase.ToString(),
+                result.Type,
                 operandText,
                 commentText);
         }
