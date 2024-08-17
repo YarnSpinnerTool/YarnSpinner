@@ -377,6 +377,25 @@ namespace YarnSpinner.Tests
                         .Select(p => new[] {Path.Combine(directory, Path.GetFileName(p))});
         }
 
+        // Returns the list of .node and.yarn files in the Tests/<directory>
+        // directory that have a corresponding .testplan file, indicating that
+        // it is expected to compile without errors.
+        public static IEnumerable<object[]> ValidFileSources(string directoryComponents) {
+
+            var allowedExtensions = new[] { ".node", ".yarn" };
+
+            var directory = Path.Combine(directoryComponents.Split('/'));
+
+            var path = Path.Combine(TestDataPath, directory);
+
+            var files = GetFilesInDirectory(path);
+
+            return files.Where(p => allowedExtensions.Contains(Path.GetExtension(p)))
+                        .Where(p => p.EndsWith(".upgraded.yarn") == false) // don't include ".upgraded.yarn" (used in UpgraderTests)
+                        .Where(p => File.Exists(p.Replace(".yarn", ".testplan"))) // only include file that have a testplan (i.e. are expected to compile)
+                        .Select(p => new[] {Path.Combine(directory, Path.GetFileName(p))});
+        }
+
         public static IEnumerable<object[]> DirectorySources(string directoryComponents) {
             var directory = Path.Combine(directoryComponents.Split('/'));
 

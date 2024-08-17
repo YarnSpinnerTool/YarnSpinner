@@ -368,6 +368,47 @@ namespace YarnSpinner.Tests
             }
 
         }
+
+        // Test every file in Tests/TestCases
+        [Theory(Timeout = 1000)]
+        [MemberData(nameof(ValidFileSources), "TestCases")]
+        public void TestBasicBlockExtraction(string file)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+
+            storage.Clear();
+
+            var scriptFilePath = Path.Combine(TestDataPath, file);
+
+            // Attempt to compile this. If there are errors, we do not expect an
+            // exception to be thrown.
+            CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
+            compilationJob.Library = dialogue.Library;
+
+            compilationJob.AllowPreviewFeatures = true;
+
+            var result = Compiler.Compile(compilationJob);
+
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+
+            result.Program.Nodes.Should().NotBeEmpty();
+
+            foreach (var (nodeName, node) in result.Program.Nodes)
+            {
+                var debugInfo = result.ProjectDebugInfo.GetNodeDebugInfo(nodeName);
+                debugInfo.Should().NotBeNull();
+                var blocks = node.GetBasicBlocks(debugInfo);
+                blocks.Should().NotBeEmpty();
+
+                foreach (var block in blocks)
+                {
+                    block.Instructions.Should().NotBeEmpty();
+                    block.Node.Should().Be(node);
+                    block.ToString().Should().NotBeNullOrWhiteSpace();
+                }
+            }
+        }
+
         [Fact]
         public void TestPreviewFeaturesUnavailable()
         {
