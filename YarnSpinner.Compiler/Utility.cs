@@ -724,7 +724,7 @@ namespace Yarn.Compiler
             // them and build the links between them
             foreach (var block in result)
             {
-                var optionDestinations = new List<int>();
+                var optionDestinations = new List<(int DestinationInstruction, string OptionLineID)>();
                 string? currentStringAtTopOfStack = null;
                 int count = 0;
                 foreach (var instruction in block.Instructions)
@@ -736,17 +736,22 @@ namespace Yarn.Compiler
                                 // Track the destination that this instruction says
                                 // it'll jump to. 
                                 var destinationIndex = instruction.AddOption.Destination;
-                                optionDestinations.Add(destinationIndex);
+                                optionDestinations.Add((destinationIndex, instruction.AddOption.LineID));
                                 break;
                             }
                         case Instruction.InstructionTypeOneofCase.PeekAndJump:
                             {
                                 // We're jumping to a labeled section of the same node.
-                                foreach (var destinationIndex in optionDestinations)
+
+                                // PeekAndJump is really only used inside option
+                                // selection handlers, so we can confidently
+                                // assume that a PeekAndJump is an option.
+                                foreach (var destination in optionDestinations)
                                 {
+                                    var (destinationIndex, destinationLineID) = destination;
                                     var destinationBlock = GetBlock(destinationIndex);
 
-                                    block.AddDestination(destinationBlock, BasicBlock.Condition.Option);
+                                    block.AddDestination(destinationBlock, BasicBlock.Condition.Option, destinationLineID);
                                 }
                                 break;
                             }
@@ -951,7 +956,7 @@ namespace Yarn.Compiler
                 throw new ArgumentNullException(nameof(descendant));
             }
 
-            destinations.Add(new Destination { Type = Destination.DestinationType.Block, Block = descendant, Condition = condition });
+            destinations.Add(new BlockDestination(descendant, condition));
             descendant.ancestors.Add(this);
         }
 
@@ -970,7 +975,29 @@ namespace Yarn.Compiler
                 throw new ArgumentException($"'{nameof(nodeName)}' cannot be null or empty.", nameof(nodeName));
             }
 
-            destinations.Add(new Destination { Type = Destination.DestinationType.Node, NodeName = nodeName, Condition = condition });
+            destinations.Add(new NodeDestination(nodeName, condition));
+        }
+
+        /// <summary>
+        /// Adds a new destination to this block that points to a node, with a
+        /// option's line ID for context.
+        /// </summary>
+        /// <param name="descendant">The new descendant node.</param>
+        /// <param name="condition">The condition under which the node <paramref
+        /// name="descendant"/> will be run.</param>
+        /// <param name="lineID">The line ID of the option that must be selected
+        /// in order for <paramref name="descendant"/> to run.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref
+        /// name="descendant"/> is <see langword="null"/>.</exception>
+        public void AddDestination(BasicBlock descendant, Condition condition, string lineID)
+        {
+            if (descendant is null)
+            {
+                throw new ArgumentNullException(nameof(descendant));
+            }
+
+            destinations.Add(new OptionDestination(lineID, descendant, condition));
+            descendant.ancestors.Add(this);
         }
 
         private HashSet<BasicBlock> ancestors = new HashSet<BasicBlock>();
@@ -985,22 +1012,27 @@ namespace Yarn.Compiler
         /// Destination objects represent links between blocks, or between
         /// blocks and nodes.
         /// </remarks>
-        public struct Destination
+        public abstract class Destination
         {
-            /// <summary>
-            /// The type of a Destination.
-            /// </summary>
-            public enum DestinationType
+            protected Destination(Condition condition)
             {
-                Node,
-                Block,
+                this.Condition = condition;
             }
 
             /// <summary>
-            /// Gets the Destination's type - whether the destination is a
-            /// block, or a node.
+            /// The condition that causes this destination to be reached.
             /// </summary>
-            public DestinationType Type { get; set; }
+            public Condition Condition { get; set; }
+
+
+        }
+
+        public class NodeDestination : Destination
+        {
+            public NodeDestination(string nodeName, Condition condition) : base(condition)
+            {
+                this.NodeName = nodeName;
+            }
 
             /// <summary>
             /// The name of the node that this destination refers to.
@@ -1008,7 +1040,10 @@ namespace Yarn.Compiler
             /// <remarks>This value is only valid when <see cref="Type"/> is
             /// <see cref="DestinationType.Node"/>.</remarks>
             public string NodeName { get; set; }
+        }
 
+        public class BlockDestination : Destination
+        {
             /// <summary>
             /// The block that this destination refers to.
             /// </summary>
@@ -1016,10 +1051,20 @@ namespace Yarn.Compiler
             /// <see cref="DestinationType.Block"/>.</remarks>
             public BasicBlock Block { get; set; }
 
-            /// <summary>
-            /// The condition that causes this destination to be reached.
-            /// </summary>
-            public Condition Condition { get; set; }
+            public BlockDestination(BasicBlock block, Condition condition) : base(condition)
+            {
+                this.Block = block;
+            }
+        }
+
+        public class OptionDestination : BlockDestination
+        {
+            public OptionDestination(string optionLineID, BasicBlock block, Condition condition) : base(block, condition)
+            {
+                this.OptionLineID = optionLineID;
+            }
+
+            public string OptionLineID { get; set; }
         }
 
         /// <summary>
@@ -1031,10 +1076,10 @@ namespace Yarn.Compiler
         /// </remarks>
         public IEnumerable<BasicBlock> Descendants
         {
-            get 
+            get
             {
                 // Start with a queue of immediate children that link to blocks
-                Queue<BasicBlock> candidates = new Queue<BasicBlock>(this.Destinations.Where(d => d.Block != null).Select(d => d.Block));
+                Queue<BasicBlock> candidates = new Queue<BasicBlock>(this.Destinations.OfType<BlockDestination>().Select(d => d.Block));
 
                 List<BasicBlock> descendants = new List<BasicBlock>();
 
@@ -1047,7 +1092,7 @@ namespace Yarn.Compiler
                         continue;
                     }
                     descendants.Add(next);
-                    foreach (var destination in next.Destinations.Where(d => d.Block != null).Select(d => d.Block))
+                    foreach (var destination in next.Destinations.OfType<BlockDestination>().Select(d => d.Block))
                     {
                         candidates.Enqueue(destination);
                     }
