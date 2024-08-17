@@ -701,7 +701,7 @@ namespace Yarn.Compiler
                     NodeName = node.Name,
                     Instructions = new List<Instruction>(currentBlockInstructions),
                     FirstInstructionIndex = lastLeader,
-                    LabelName = info.GetLabel(lastLeader) ?? "<unknown>",
+                    LabelName = info.GetLabel(lastLeader) ?? null,
                 };
                 result.Add(block);
             }
