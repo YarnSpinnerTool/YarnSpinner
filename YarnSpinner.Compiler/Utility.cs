@@ -676,7 +676,7 @@ namespace Yarn.Compiler
                     {
                         var block = new BasicBlock
                         {
-                            NodeName = node.Name,
+                            Node = node,
                             Instructions = new List<Instruction>(currentBlockInstructions),
                             FirstInstructionIndex = lastLeader,
                             LabelName = info.GetLabel(lastLeader) ?? null,
@@ -698,7 +698,7 @@ namespace Yarn.Compiler
             {
                 var block = new BasicBlock
                 {
-                    NodeName = node.Name,
+                    Node = node,
                     Instructions = new List<Instruction>(currentBlockInstructions),
                     FirstInstructionIndex = lastLeader,
                     LabelName = info.GetLabel(lastLeader) ?? null,
@@ -857,12 +857,17 @@ namespace Yarn.Compiler
         /// <summary>
         /// Gets the name of the node that this block is in.
         /// </summary>
-        public string NodeName { get; set; }
+        public string NodeName => Node?.Name ?? "(Unknown)";
 
         /// <summary>
         /// Gets the index of the first instruction of the node that this block is in.
         /// </summary>
         public int FirstInstructionIndex { get; set; }
+
+        /// <summary>
+        /// Gets the Node that this block was extracted from.
+        /// </summary>
+        public Node? Node;
 
         /// <summary>
         /// Gets a descriptive name for the block.
