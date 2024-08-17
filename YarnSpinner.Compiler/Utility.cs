@@ -894,6 +894,32 @@ namespace Yarn.Compiler
         public override string ToString() => this.Name;
 
         /// <summary>
+        /// Gets a string containing the textual description of the instructions
+        /// in this <see cref="BasicBlock"/>.
+        /// </summary>
+        /// <param name="library">The <see cref="Library"/> to use when
+        /// converting instructions to strings.</param>
+        /// <param name="compilationResult">The <see cref="CompilationResult"/>
+        /// that produced <see cref="Node"/>.</param>
+        /// <returns>A string containing the text version of the
+        /// instructions.</returns>
+        public string ToString(Library? library, CompilationResult? compilationResult)
+        {
+            var sb = new StringBuilder();
+            foreach (var i in this.Instructions)
+            {
+                var desc = i.ToDescription(this.Node, library, compilationResult);
+                sb.Append($"{desc.Type} {string.Join(",", desc.Operands)}");
+                if (desc.Comments.Count() > 0) {
+                    sb.AppendLine(" ; " + string.Join(", ", desc.Comments));
+                } else {
+                    sb.AppendLine();
+                }
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
         /// Get the ancestors of this block - that is, blocks that may run immediately before this block.
         /// </summary>
         public IEnumerable<BasicBlock> Ancestors => ancestors;
