@@ -996,7 +996,7 @@ namespace Yarn.Compiler
                 throw new ArgumentNullException(nameof(descendant));
             }
 
-            destinations.Add(new OptionDestination(lineID, descendant, condition));
+            destinations.Add(new OptionDestination(lineID, descendant));
             descendant.ancestors.Add(this);
         }
 
@@ -1023,6 +1023,23 @@ namespace Yarn.Compiler
             /// The condition that causes this destination to be reached.
             /// </summary>
             public Condition Condition { get; set; }
+
+            public override string? ToString()
+            {
+                switch (this.Condition)
+                {
+                    case Condition.ExpressionIsTrue:
+                        return "true";
+                    case Condition.ExpressionIsFalse:
+                        return "false";
+                    case Condition.Option:
+                        return "(option)";
+                    case Condition.Fallthrough:
+                    case Condition.DirectJump:
+                    default:
+                        return null;
+                }
+            }
 
 
         }
@@ -1051,6 +1068,8 @@ namespace Yarn.Compiler
             /// <see cref="DestinationType.Block"/>.</remarks>
             public BasicBlock Block { get; set; }
 
+            public int DestinationInstructionIndex { get => Block.FirstInstructionIndex; }            
+
             public BlockDestination(BasicBlock block, Condition condition) : base(condition)
             {
                 this.Block = block;
@@ -1059,12 +1078,17 @@ namespace Yarn.Compiler
 
         public class OptionDestination : BlockDestination
         {
-            public OptionDestination(string optionLineID, BasicBlock block, Condition condition) : base(block, condition)
+            public OptionDestination(string optionLineID, BasicBlock block) : base(block, Condition.Option)
             {
                 this.OptionLineID = optionLineID;
             }
 
             public string OptionLineID { get; set; }
+
+            public override string ToString()
+            {
+                return this.OptionLineID;
+            }
         }
 
         /// <summary>
