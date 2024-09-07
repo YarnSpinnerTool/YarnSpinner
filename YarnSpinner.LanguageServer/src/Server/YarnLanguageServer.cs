@@ -520,22 +520,39 @@ namespace YarnLanguageServer
 
                 return Task.FromResult(new CompilerOutput
                 {
-                    Data = Array.Empty<byte>(),
+                    Data = string.Empty,
                     StringTable = new Dictionary<string, string>(),
                     Errors = errors.ToArray(),
                 });
             }
 
             var strings = new Dictionary<string, string>();
-            foreach (var line in result.StringTable)
+            var metadata = new Dictionary<string, MetadataOutput>();
+
+            foreach (var line in result.StringTable ?? Enumerable.Empty<KeyValuePair<string,Yarn.Compiler.StringInfo>>())
             {
+                if (line.Value.text == null) {
+                    continue;
+                }
+
                 strings[line.Key] = line.Value.text;
+
+                var metadataEntry = new MetadataOutput
+                {
+                    ID = line.Key,
+                    LineNumber = line.Value.lineNumber.ToString(),
+                    Node = line.Value.nodeName,
+                    Tags = line.Value.metadata.Where(tag => tag.StartsWith("line:") == false).ToArray(),
+                };
+
+                metadata[line.Key] = metadataEntry;
             }
 
             return Task.FromResult(new CompilerOutput
             {
-                Data = result.Program?.ToByteArray() ?? Array.Empty<byte>(),
+                Data = Convert.ToBase64String(result.Program?.ToByteArray() ?? Array.Empty<byte>()),
                 StringTable = strings,
+                MetadataTable = metadata,
                 Errors = Array.Empty<string>(),
             });
         }
