@@ -639,6 +639,7 @@ namespace Yarn.Compiler
                 {
                     case Instruction.InstructionTypeOneofCase.JumpTo:
                     case Instruction.InstructionTypeOneofCase.PeekAndJump:
+                    case Instruction.InstructionTypeOneofCase.PeekAndRunNode:
                     case Instruction.InstructionTypeOneofCase.JumpIfFalse:
                     case Instruction.InstructionTypeOneofCase.Stop:
                     case Instruction.InstructionTypeOneofCase.RunNode:
