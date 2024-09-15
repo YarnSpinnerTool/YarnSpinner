@@ -1049,7 +1049,9 @@ namespace Yarn.Compiler
                     case Condition.Option:
                         return "(option)";
                     case Condition.Fallthrough:
+                        return "(fallthrough)";
                     case Condition.DirectJump:
+                        return "(jump)";
                     default:
                         return null;
                 }
