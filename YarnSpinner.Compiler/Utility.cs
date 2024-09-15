@@ -794,6 +794,11 @@ namespace Yarn.Compiler
                                 if (currentStringAtTopOfStack != null)
                                 {
                                     block.AddDestination(currentStringAtTopOfStack, BasicBlock.Condition.DirectJump);
+                                } else {
+                                    // We don't know the string at the top of
+                                    // the stack. This could be a jump to
+                                    // anywhere.
+                                    block.AddDestinationToAnywhere();
                                 }
                                 break;
                             }
@@ -980,6 +985,14 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// Adds a new destination to this block that points at any other node
+        /// in the program.
+        /// </summary>
+        public void AddDestinationToAnywhere() {
+            destinations.Add(new AnyNodeDestination());
+        }
+
+        /// <summary>
         /// Adds a new destination to this block that points to a node, with a
         /// option's line ID for context.
         /// </summary>
@@ -1058,6 +1071,10 @@ namespace Yarn.Compiler
             /// <remarks>This value is only valid when <see cref="Type"/> is
             /// <see cref="DestinationType.Node"/>.</remarks>
             public string NodeName { get; set; }
+        }
+
+        public class AnyNodeDestination : Destination {
+            public AnyNodeDestination() : base(Condition.DirectJump) {}
         }
 
         public class BlockDestination : Destination
