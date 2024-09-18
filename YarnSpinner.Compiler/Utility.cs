@@ -639,12 +639,15 @@ namespace Yarn.Compiler
                 {
                     case Instruction.InstructionTypeOneofCase.JumpTo:
                     case Instruction.InstructionTypeOneofCase.PeekAndJump:
+                    case Instruction.InstructionTypeOneofCase.RunNode:
                     case Instruction.InstructionTypeOneofCase.PeekAndRunNode:
+                    case Instruction.InstructionTypeOneofCase.DetourToNode:
+                    case Instruction.InstructionTypeOneofCase.PeekAndDetourToNode:
                     case Instruction.InstructionTypeOneofCase.JumpIfFalse:
                     case Instruction.InstructionTypeOneofCase.Stop:
-                    case Instruction.InstructionTypeOneofCase.RunNode:
+                    case Instruction.InstructionTypeOneofCase.Return:
                         // Every instruction after a jump (conditional or
-                        // nonconditional) is a leader.
+                        // nonconditional), or a return, is a leader.
                         leaderIndices.Add(i + 1);
                         break;
                     default:
@@ -726,6 +729,7 @@ namespace Yarn.Compiler
             foreach (var block in result)
             {
                 var optionDestinations = new List<(int DestinationInstruction, string OptionLineID)>();
+                var saliencyDestinations = new List<int>();
                 string? currentStringAtTopOfStack = null;
                 int count = 0;
                 foreach (var instruction in block.Instructions)
@@ -774,15 +778,19 @@ namespace Yarn.Compiler
                                 currentStringAtTopOfStack = instruction.PushString.Value;
                                 break;
                             }
+                        case Instruction.InstructionTypeOneofCase.SelectSaliencyCandidate:
+                        case Instruction.InstructionTypeOneofCase.CallFunc:
+                        case Instruction.InstructionTypeOneofCase.Pop:
                         case Instruction.InstructionTypeOneofCase.PushBool:
                         case Instruction.InstructionTypeOneofCase.PushFloat:
                         case Instruction.InstructionTypeOneofCase.PushVariable:
                             {
-                                // The top of the stack is now no longer a
-                                // string. Again, not a fully accurate
-                                // representation of what's going on, but for
-                                // the moment, we're not supporting 'jump to
-                                // expression' here.
+                                // All of these instructions modify the stack,
+                                // which means that the top of the stack is now
+                                // no longer a string. Again, not a fully
+                                // accurate representation of what's going on,
+                                // but for the moment, we're not supporting
+                                // 'jump to expression' here.
                                 currentStringAtTopOfStack = null;
                                 break;
                             }
@@ -799,6 +807,39 @@ namespace Yarn.Compiler
                                     // the stack. This could be a jump to
                                     // anywhere.
                                     block.AddDestinationToAnywhere();
+                                }
+                                break;
+                            }
+                        case Instruction.InstructionTypeOneofCase.DetourToNode:
+                            {
+                                // We will return to the block that starts on
+                                // the next instruction, so find that block now.
+                                var returnToBlock = GetBlock(block.FirstInstructionIndex + count + 1);
+
+                                block.AddDetourDestination(
+                                    instruction.DetourToNode.NodeName,
+                                    BasicBlock.Condition.DirectJump,
+                                    returnToBlock);
+                                break;
+                            }
+                        case Instruction.InstructionTypeOneofCase.PeekAndDetourToNode:
+                            {
+                                // We will return to the block that starts on
+                                // the next instruction, so find that block now.
+                                var returnToBlock = GetBlock(block.FirstInstructionIndex + count + 1);
+                                
+                                if (currentStringAtTopOfStack != null)
+                                {
+                                    block.AddDetourDestination(currentStringAtTopOfStack,
+                                        BasicBlock.Condition.DirectJump,
+                                        returnToBlock);
+                                }
+                                else
+                                {
+                                    // We don't know the string at the top of
+                                    // the stack. This could be a detour to
+                                    // anywhere.
+                                    block.AddDestinationToAnywhere(returnToBlock);
                                 }
                                 break;
                             }
@@ -984,12 +1025,21 @@ namespace Yarn.Compiler
             destinations.Add(new NodeDestination(nodeName, condition));
         }
 
+        public void AddDetourDestination(string nodeName, Condition condition, BasicBlock returnToBlock) {
+            if (string.IsNullOrEmpty(nodeName))
+            {
+                throw new ArgumentException($"'{nameof(nodeName)}' cannot be null or empty.", nameof(nodeName));
+            }
+
+            destinations.Add(new NodeDestination(nodeName, condition, returnToBlock));
+        }
+
         /// <summary>
         /// Adds a new destination to this block that points at any other node
         /// in the program.
         /// </summary>
-        public void AddDestinationToAnywhere() {
-            destinations.Add(new AnyNodeDestination());
+        public void AddDestinationToAnywhere(BasicBlock? returnToBlock = null) {
+            destinations.Add(new AnyNodeDestination(returnToBlock));
         }
 
         /// <summary>
@@ -1028,15 +1078,25 @@ namespace Yarn.Compiler
         /// </remarks>
         public abstract class Destination
         {
-            protected Destination(Condition condition)
+            protected Destination(Condition condition, BasicBlock? returnTo = null)
             {
                 this.Condition = condition;
+                this.ReturnTo = returnTo;
             }
 
             /// <summary>
             /// The condition that causes this destination to be reached.
             /// </summary>
             public Condition Condition { get; set; }
+
+            /// <summary>
+            /// When this destination is taken, if this value is non-null, a VM
+            /// should push this block onto the call stack. When a Return
+            /// instruction is reached, pop a block off the call stack and
+            /// return to it. If the value is null, the VM should clear the call
+            /// stack.
+            /// </summary>
+            public BasicBlock? ReturnTo {get;set;}
 
             public override string? ToString()
             {
@@ -1062,7 +1122,7 @@ namespace Yarn.Compiler
 
         public class NodeDestination : Destination
         {
-            public NodeDestination(string nodeName, Condition condition) : base(condition)
+            public NodeDestination(string nodeName, Condition condition, BasicBlock? returnTo = null) : base(condition, returnTo)
             {
                 this.NodeName = nodeName;
             }
@@ -1076,7 +1136,7 @@ namespace Yarn.Compiler
         }
 
         public class AnyNodeDestination : Destination {
-            public AnyNodeDestination() : base(Condition.DirectJump) {}
+            public AnyNodeDestination(BasicBlock? returnTo = null) : base(Condition.DirectJump, returnTo) {}
         }
 
         public class BlockDestination : Destination
@@ -1178,7 +1238,7 @@ namespace Yarn.Compiler
 
             /// <summary>
             /// The Destination is reached beacuse of an explicit instruction to
-            /// go to this block.
+            /// go to this block or node.
             /// </summary>
             DirectJump,
 

@@ -410,6 +410,45 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestBasicBlockDetours()
+        {
+            // Given
+            var source = @"
+title: NodeA
+---
+Line 1
+<<detour NodeB>>
+Line 3
+===
+title: NodeB
+---
+Line 2
+===
+";
+            CompilationJob compilationJob = CompilationJob.CreateFromString("input", source);
+            compilationJob.Library = dialogue.Library;
+
+            compilationJob.AllowPreviewFeatures = true;
+
+            var result = Compiler.Compile(compilationJob);
+
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+
+            // When
+            var blocks = result.Program!.Nodes["NodeA"].GetBasicBlocks(result.ProjectDebugInfo.GetNodeDebugInfo("NodeA"));
+
+            // Then
+            blocks.Should().HaveCount(2);
+
+            var firstBlock = blocks.ElementAt(0);
+            var destination = firstBlock.Destinations.Should().ContainSingle().Which.Should().BeOfType<BasicBlock.NodeDestination>().Subject;
+
+            destination.NodeName.Should().Be("NodeB", "the first block detours to NodeB");
+            destination.ReturnTo.Should().NotBeNull("the first block is a detour");
+            destination.ReturnTo.NodeName.Should().Be("NodeA", "after detouring, the first block resumes in NodeA");
+        }
+
+        [Fact]
         public void TestPreviewFeaturesUnavailable()
         {
             // Given
