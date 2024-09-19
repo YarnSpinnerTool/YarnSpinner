@@ -1100,21 +1100,32 @@ namespace Yarn.Compiler
 
             public override string? ToString()
             {
+                string result;
                 switch (this.Condition)
                 {
                     case Condition.ExpressionIsTrue:
-                        return "true";
+                        result = "true";
+                        break;
                     case Condition.ExpressionIsFalse:
-                        return "false";
+                        result = "false";
+                        break;
                     case Condition.Option:
-                        return "(option)";
+                        result = "(option)";
+                        break;
                     case Condition.Fallthrough:
-                        return "(fallthrough)";
+                        result = "(fallthrough)";
+                        break;
                     case Condition.DirectJump:
-                        return "(jump)";
+                        result = "(jump)";
+                        break;
                     default:
-                        return null;
+                        result = "(unknown)";
+                        break;
                 }
+                if (ReturnTo != null) {
+                    result += $" (return to: {ReturnTo})";
+                }
+                return result;
             }
 
 
