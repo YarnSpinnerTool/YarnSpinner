@@ -724,12 +724,12 @@ namespace Yarn.Compiler
                 }
             }
 
+            var peekAndJumpDestinations = new List<(int DestinationInstruction, string? ContentID)>();
+
             // Final pass: now that we have all the blocks, go through each of
             // them and build the links between them
             foreach (var block in result)
             {
-                var optionDestinations = new List<(int DestinationInstruction, string OptionLineID)>();
-                var saliencyDestinations = new List<int>();
                 string? currentStringAtTopOfStack = null;
                 int count = 0;
                 foreach (var instruction in block.Instructions)
@@ -741,7 +741,7 @@ namespace Yarn.Compiler
                                 // Track the destination that this instruction says
                                 // it'll jump to. 
                                 var destinationIndex = instruction.AddOption.Destination;
-                                optionDestinations.Add((destinationIndex, instruction.AddOption.LineID));
+                                peekAndJumpDestinations.Add((destinationIndex, instruction.AddOption.LineID));
                                 break;
                             }
                         case Instruction.InstructionTypeOneofCase.PeekAndJump:
@@ -751,13 +751,15 @@ namespace Yarn.Compiler
                                 // PeekAndJump is really only used inside option
                                 // selection handlers, so we can confidently
                                 // assume that a PeekAndJump is an option.
-                                foreach (var destination in optionDestinations)
+                                foreach (var destination in peekAndJumpDestinations)
                                 {
                                     var (destinationIndex, destinationLineID) = destination;
                                     var destinationBlock = GetBlock(destinationIndex);
 
                                     block.AddDestination(destinationBlock, BasicBlock.Condition.Option, destinationLineID);
                                 }
+                                peekAndJumpDestinations.Clear();
+                                
                                 break;
                             }
                         case Instruction.InstructionTypeOneofCase.JumpTo:
@@ -861,6 +863,24 @@ namespace Yarn.Compiler
                                 block.AddDestination(destinationTrueBlock, BasicBlock.Condition.ExpressionIsTrue);
                                 break;
                             }
+                        case Instruction.InstructionTypeOneofCase.AddSaliencyCandidate:
+                            {
+                                var destinationIndex = instruction.AddSaliencyCandidate.Destination;
+                                peekAndJumpDestinations.Add((
+                                    DestinationInstruction: destinationIndex,
+                                    ContentID: instruction.AddSaliencyCandidate.ContentID
+                                ));
+                                break;
+                            }
+                        case Instruction.InstructionTypeOneofCase.AddSaliencyCandidateFromNode:
+                            {
+                                var destinationIndex = instruction.AddSaliencyCandidateFromNode.Destination;
+                                peekAndJumpDestinations.Add((
+                                    DestinationInstruction: destinationIndex,
+                                    ContentID: null
+                                ));
+                                break;
+                            }
                     }
                     count += 1;
                 }
@@ -868,9 +888,12 @@ namespace Yarn.Compiler
                 if (block.Destinations.Count() == 0)
                 {
                     // We've reached the end of this block, and don't have any
-                    // destinations. If our last destination isn't 'stop', then
+                    // destinations. If our last destination isn't 'stop' or 'return', then
                     // we'll fall through to the next node.
-                    if (block.Instructions.Last().InstructionTypeCase != Instruction.InstructionTypeOneofCase.Stop)
+
+                    var lastInstructionType = block.Instructions.Last().InstructionTypeCase;
+                    if (lastInstructionType != Instruction.InstructionTypeOneofCase.Stop && 
+                        lastInstructionType != Instruction.InstructionTypeOneofCase.Return)
                     {
                         var nextBlockStartInstruction = block.FirstInstructionIndex + block.Instructions.Count();
 
@@ -1053,7 +1076,7 @@ namespace Yarn.Compiler
         /// in order for <paramref name="descendant"/> to run.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref
         /// name="descendant"/> is <see langword="null"/>.</exception>
-        public void AddDestination(BasicBlock descendant, Condition condition, string lineID)
+        public void AddDestination(BasicBlock descendant, Condition condition, string? lineID)
         {
             if (descendant is null)
             {
@@ -1169,16 +1192,16 @@ namespace Yarn.Compiler
 
         public class OptionDestination : BlockDestination
         {
-            public OptionDestination(string optionLineID, BasicBlock block) : base(block, Condition.Option)
+            public OptionDestination(string? optionLineID, BasicBlock block) : base(block, Condition.Option)
             {
                 this.OptionLineID = optionLineID;
             }
 
-            public string OptionLineID { get; set; }
+            public string? OptionLineID { get; set; }
 
             public override string ToString()
             {
-                return this.OptionLineID;
+                return this.OptionLineID ?? "(option)";
             }
         }
 
