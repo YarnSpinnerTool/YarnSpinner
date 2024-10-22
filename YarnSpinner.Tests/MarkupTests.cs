@@ -1,21 +1,23 @@
 using Xunit;
 using System;
+using System.Collections.Generic;
 using Yarn.Markup;
 using FluentAssertions;
 using Xunit.Abstractions;
+using System.Text;
 
 namespace YarnSpinner.Tests
 {
-
-    public class MarkupTests : TestBase
+    public class MarkupTests : TestBase, TimsAttributeMarkerProcessor
     {
-
         public MarkupTests(ITestOutputHelper outputHelper) : base(outputHelper) { }
         
         [Fact]
-        public void TestMarkupParsing() {
+        public void TestMarkupParsing()
+        {
             var line = "A [b]B[/b]";
-            var markup = dialogue.ParseMarkup(line, "en");
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(line, "en");
             
             markup.Text.Should().Be("A B");
             markup.Attributes.Should().ContainSingle();
@@ -24,31 +26,894 @@ namespace YarnSpinner.Tests
             markup.Attributes[0].Length.Should().Be(1);
         }
 
+        /*
+            apropos of nothing while we said for v3 we wanted markup diagnostics
+            that isn't the main impetus for this, that was one particular bug I found
+            take the following:
+
+            [b] this is [pause = 1000] some bold text with a typewriter pause in it [/b]
+            it gets rewritten into the following for display (at runtime not a line creation time):
+            <strong> this is some bold text with a typewriter pause in it </strong>
+            and has a single pause attribute at position 8
+            meant it was as if I had actually written:
+            <strong> [pause = 1000] this is some bold text with a typewriter pause in it </strong>
+            Which mean the pause was at the start and it was very confusing to me
+
+            So now we handle nesting and rewriting instead of just handing it off and hoping
+            however there are situations where a rewriter tag uses it's text length to determine what it rewrites
+            and if those are split to reblance the markup tree correctly it will do weird things
+            for example lets say we have the following (where z tags are a rewriter that appends the current word count to the start of a word for some weird reason)
+            
+            "[b]this is some [z]markup that has[/b] rewrite issues[/z]"
+
+            and the expected end result would be something like:
+
+            "[b]this is some 0:markup 1:that 2:has[/b] 3:rewrite 4:issues"
+
+            but the split will turn this into the following:
+
+            "[b]this is some [z]markup that has[/z][/b][z] rewrite issues[/z]"
+
+            which would result in the following:
+
+            "[b]this is some 0:markup 1:that 2:has[/b] 0:rewrite 1:issues"
+
+            which isn't what the user wants.
+            To fix this properly feels impossible because it means we'd need to know at parse time when certain tags are hit
+            we need them to be the priority over their parents for nesting purposes.
+            And even then there will be situations where that itself isn't going to be possible because the ordering of rewriters will throw it off
+
+            Instead we basically can only prevent this or flag it, we have some options:
+            1. disable misnested markup entirely, so no rewrite just error
+            2. enable misnested markup but warn when when splitting and squishing
+            3. have a list of "this can't be split/renested" tags that throw errors if they are split and squashed, basically a variant of the above
+        */
+
+        private LineParser.MarkupTreeNode descendant(LineParser.MarkupTreeNode root, int[] children)
+        {
+            var current = root;
+            foreach (var child in children)
+            {
+                current.children.Should().HaveCountGreaterThan(child);
+                current = current.children[child];
+            }
+            return current;
+        }
+        private LineParser.MarkupTreeNode Descendant(LineParser.MarkupTreeNode root, params int[] children)
+        {
+            return descendant(root, children);
+        }
+
+        [Theory]
+        [InlineData("this is a line with [markup]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text}, new string[] {"this is a line with ","[","markup","]","a single markup","[","/","markup","]"," inside of it"})]
+        [InlineData("this is a line with [markup = 1]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","1","]","a single markup","[","/","markup","]"," inside of it"})]
+        [InlineData("this is a line with [markup=12]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","12","]","a single markup","[","/","markup","]"," inside of it"})]
+        [InlineData("this is a line with [markup = 12 ]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","12","]","a single markup","[","/","markup","]"," inside of it"})]
+        [InlineData("this is a line with [markup = \"12\" ]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.StringValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","\"12\"","]","a single markup","[","/","markup","]"," inside of it"})]
+        [InlineData("this is a line with [markup=\"12\"]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.StringValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","\"12\"","]","a single markup","[","/","markup","]"," inside of it"})]
+        [InlineData("this is a line with [markup=hello]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.StringValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","hello","]","a single markup","[","/","markup","]"," inside of it"})]
+        [InlineData("this is a line with [markup=true]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.BooleanValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","true","]","a single markup","[","/","markup","]"," inside of it"})]
+        [InlineData("this is a line with [markup=false]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.BooleanValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","false","]","a single markup","[","/","markup","]"," inside of it"})]
+        [InlineData("this is a line with [markup=false var = 12]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.BooleanValue,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","false","var","=","12","]","a single markup","[","/","markup","]"," inside of it"})]
+        [InlineData("this is a line with [markup=false var = 12]two [markup2]markup[/] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.BooleanValue,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,},new string[]{"this is a line with ","[","markup","=","false","var","=","12","]","two ","[","markup2","]","markup","[","/","]"," inside of it"})]
+        [InlineData("this is a line with \\[markup=false var = 12]two [markup2]markup[/] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with \\[markup=false var = 12]two ","[","markup2","]","markup","[","/","]"," inside of it"})]
+        [InlineData("this is a line with [markup markup = 1]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","markup","=","1","]","a single markup","[","/","markup","]"," inside of it"})]
+        public void TestLexerGeneratesCorrectTokens(string line, LineParser.LexerTokenTypes[] types, string[] texts)
+        {
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            
+            // removing the start and end tokens
+            tokens.RemoveAt(0);
+            tokens.RemoveAt(tokens.Count - 1);
+
+            // we should have the same number of tokens as the expected token stream
+            tokens.Should().HaveCount(types.Length);
+            for (int i = 0; i < types.Length; i++)
+            {
+                tokens[i].type.Should().Be(types[i]);
+            }
+
+            // we should have the same number and values of text as the tokens express in their range
+            tokens.Should().HaveCount(texts.Length);
+            for (int i = 0; i < texts.Length; i++)
+            {
+                var token = tokens[i];
+                var text = line.Substring(token.start, token.end + 1 - token.start);
+                text.Should().Be(texts[i]);
+            }
+        }
+
+        [Fact] void TestNoMarkupInLexerConsumesTokens()
+        {
+            var line = "this is a line with [nomarkup]bunch[ /] a = 2 of \" [tag /] [anothertag]invalid shit[/anothertag] yes[/nomarkup]";
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+
+            // removing the start and end tokens
+            tokens.RemoveAt(0);
+            tokens.RemoveAt(tokens.Count - 1);
+
+            LineParser.LexerTokenTypes[] types = {LineParser.LexerTokenTypes.Text,
+                                                  LineParser.LexerTokenTypes.OpenMarker,
+                                                  LineParser.LexerTokenTypes.Identifier,
+                                                  LineParser.LexerTokenTypes.CloseMarker,
+                                                  LineParser.LexerTokenTypes.Text,
+                                                  LineParser.LexerTokenTypes.OpenMarker,
+                                                  LineParser.LexerTokenTypes.CloseSlash,
+                                                  LineParser.LexerTokenTypes.CloseMarker,
+                                                  LineParser.LexerTokenTypes.Text,
+                                                  LineParser.LexerTokenTypes.OpenMarker,
+                                                  LineParser.LexerTokenTypes.Identifier,
+                                                  LineParser.LexerTokenTypes.CloseSlash,
+                                                  LineParser.LexerTokenTypes.CloseMarker,
+                                                  LineParser.LexerTokenTypes.Text,
+                                                  LineParser.LexerTokenTypes.OpenMarker,
+                                                  LineParser.LexerTokenTypes.Identifier,
+                                                  LineParser.LexerTokenTypes.CloseMarker,
+                                                  LineParser.LexerTokenTypes.Text,
+                                                  LineParser.LexerTokenTypes.OpenMarker,
+                                                  LineParser.LexerTokenTypes.CloseSlash,
+                                                  LineParser.LexerTokenTypes.Identifier,
+                                                  LineParser.LexerTokenTypes.CloseMarker,
+                                                  LineParser.LexerTokenTypes.Text,
+                                                  LineParser.LexerTokenTypes.OpenMarker,
+                                                  LineParser.LexerTokenTypes.CloseSlash,
+                                                  LineParser.LexerTokenTypes.Identifier,
+                                                  LineParser.LexerTokenTypes.CloseMarker,
+                                                 };
+            tokens.Should().HaveCount(types.Length);
+            for (int i = 0; i < types.Length; i++)
+            {
+                tokens[i].type.Should().Be(types[i]);
+            }
+        }
+
         [Fact]
-        public void TestOverlappingAttributes() {
+        public void TestUnsquishedTreeWithSingleChildIsValid()
+        {
+            var line = "this is a line with [markup]a single markup[/markup] inside of it";
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            var errors = result.Item2;
+
+            // tree
+            //      text
+            //      attribute
+            //          text
+            //      text
+            tree.children.Should().HaveCount(3);
+            tree.children[1].children.Should().HaveCount(1);
+            errors.Should().BeEmpty();
+        }
+        [Fact]
+        public void TestUnsquishedTreeWithSelfCloseMarkupIsValid()
+        {
+            var line = "this is a line with [markup /]a single self-closing markup inside of it";
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            var errors = result.Item2;
+
+            // tree
+            //      text
+            //      attribute
+            //          text
+            //      text
+            tree.children.Should().HaveCount(3);
+            tree.children[1].children.Should().HaveCount(0);
+            errors.Should().BeEmpty();
+        }
+        [Fact]
+        public void TestUnsquishedTreeWithNestedMarkupIsValid()
+        {
+            var line = "this is a line with [markup]a [inner]nested[/inner] markup[/markup] inside of it";
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            var errors = result.Item2;
+
+            // tree
+            //      text "this is a line with "
+            //      markup
+            //          text "a "
+            //          inner
+            //              text "nested"
+            //          text " markup"
+            //      text
+            tree.children.Should().HaveCount(3);
+            tree.children[1].children.Should().HaveCount(3);
+            Descendant(tree, 1,1).children.Should().HaveCount(1);
+            Descendant(tree, 1,1,0).Should().BeOfType(typeof(Yarn.Markup.LineParser.MarkupTextNode));
+            errors.Should().BeEmpty();
+        }
+        [Fact]
+        public void TestUnsquishedTreeWithSingleChildAndSelfPropertiesIsValid()
+        {
+            var line = "this is a line with [markup = 1]a single markup[/markup] inside of it";
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            // tree
+            //      text
+            //      markup (markup = 1)
+            //          text
+            //      text
+            tree.children.Should().HaveCount(3);
+            tree.children[1].children.Should().HaveCount(1);
+            tree.children[1].properties.Should().HaveCount(1);
+            tree.children[1].properties[0].Value.IntegerValue.Should().Be(1);
+            tree.children[1].properties[0].Name.Should().Be("markup");
+        }
+        [Fact]
+        public void TestUnsquishedTreeWithSingleChildAndNonselfPropertyIsValid()
+        {
+            var line = "this is a line with [markup markup = 1]a single markup[/markup] inside of it";
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            // tree
+            //      text
+            //      markup (markup = 1)
+            //          text
+            //      text
+            tree.children.Should().HaveCount(3);
+            tree.children[1].children.Should().HaveCount(1);
+            tree.children[1].properties.Should().HaveCount(1);
+            tree.children[1].properties[0].Value.IntegerValue.Should().Be(1);
+            tree.children[1].properties[0].Name.Should().Be("markup");
+        }
+        [Fact]
+        public void TestUnsquishedTreeWithSingleChildAndMultipleNonSelfPropertiesIsValid()
+        {
+            var line = "this is a line with [markup markup = 1 markup = 2]a single markup[/markup] inside of it";
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            // tree
+            //      text
+            //      markup (markup = 1)
+            //          text
+            //          close markup
+            //      text
+            tree.children.Should().HaveCount(3);
+            tree.children[1].children.Should().HaveCount(1);
+            tree.children[1].properties.Should().HaveCount(2);
+            tree.children[1].properties[0].Value.IntegerValue.Should().Be(1);
+            tree.children[1].properties[0].Name.Should().Be("markup");
+            tree.children[1].properties[1].Value.IntegerValue.Should().Be(2);
+            tree.children[1].properties[1].Name.Should().Be("markup");
+        }
+        
+        [Fact] public void TestUnsquishedTreeWithSingleChildAndMultipleNonSelfPropertiesOfMultipleTypesIsValid()
+        {
+            var line = "this is a line with [markup markup = 1 markup = markup markup = true markup = 1.1 markup = \"markup\"]a single markup[/markup] inside of it";
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            tree.children.Should().HaveCount(3);
+            tree.children[1].children.Should().HaveCount(1);
+            tree.children[1].properties.Should().HaveCount(5);
+
+            var properties = tree.children[1].properties;
+
+            properties[0].Name.Should().Be("markup");
+            properties[0].Value.IntegerValue.Should().Be(1);
+            
+            properties[1].Name.Should().Be("markup");
+            properties[1].Value.StringValue.Should().Be("markup");
+
+            properties[2].Name.Should().Be("markup");
+            properties[2].Value.BoolValue.Should().Be(true);
+
+            properties[3].Name.Should().Be("markup");
+            properties[3].Value.FloatValue.Should().Be(1.1f);
+
+            properties[4].Name.Should().Be("markup");
+            properties[4].Value.StringValue.Should().Be("markup");
+        }
+
+        [Fact] public void TestUnsquishedTreeWithSelfClosingAndSelfPropertyIsValid()
+        {
+            var line = "this is a line with [markup = 1 /]a single self-closing markup inside of it";
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            tree.children.Should().HaveCount(3);
+            tree.children[1].children.Should().HaveCount(0);
+            tree.children[1].properties.Should().HaveCount(2);
+            tree.children[1].properties[0].Name.Should().Be("markup");
+            tree.children[1].properties[0].Value.IntegerValue.Should().Be(1);
+        }
+        [Fact] public void TestUnsquishedTreeWithSelfClosingAndNonSelfPropertyIsValid()
+        {
+            var line = "this is a line with [markup markup = 1 /]a single self-closing markup inside of it";
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            tree.children.Should().HaveCount(3);
+            tree.children[1].children.Should().HaveCount(0);
+            tree.children[1].properties.Should().HaveCount(2);
+            tree.children[1].properties[0].Name.Should().Be("markup");
+            tree.children[1].properties[0].Value.IntegerValue.Should().Be(1);
+        }
+        // need to test nomarkup
+        [Fact] public void TestUnsquishedTreeWithNoMarkupAllowsInvalidCharacters()
+        {
+            var line = "this is a line with [nomarkup]bunch[ /] a = 2 of \" [tag /] [anothertag]invalid shit[/anothertag] yes[/nomarkup]";
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            tree.children.Should().HaveCount(2);
+            tree.children[1].children.Should().HaveCount(1); // text
+            ((LineParser.MarkupTextNode)Descendant(tree,1,0)).text.Should().Be("bunch[ /] a = 2 of \" [tag /] [anothertag]invalid shit[/anothertag] yes");
+        }
+        [Fact] public void TestUnsquishedNestedMarkupIsValid()
+        {
+            var line = "This is [outer][inner]some [inmost /]nested[/inner][/outer] markup";
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            tree.children.Should().HaveCount(3);
+        }
+
+        [Fact] public void TestUnsquishedImbalancedMarkupIsValid()
+        {
+            var line = "This [outer] is [inner] some [/outer] invalid [/inner] markup";
+            // so what we want this to become:
+            // root
+            //      "this"
+            //      outer
+            //          "is"
+            //          inner
+            //              "some"
+            //      inner
+            //          "invalid"
+            //      "markup"
+
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            tree.children.Should().HaveCount(4);
+
+            // the first and last should be text
+            tree.children[0].Should().BeOfType<LineParser.MarkupTextNode>();
+            tree.children[3].Should().BeOfType<LineParser.MarkupTextNode>();
+            ((LineParser.MarkupTextNode)tree.children[0]).text.Should().Be("This ");
+            ((LineParser.MarkupTextNode)tree.children[3]).text.Should().Be(" markup");
+
+            // the outer markup
+            tree.children[1].children.Should().HaveCount(2);
+            Descendant(tree, 1,1).children.Should().HaveCount(1);
+            // the "is" text
+            ((LineParser.MarkupTextNode)Descendant(tree, 1,0)).text.Should().Be(" is ");
+            // the "some" text inside the inner-inner markup
+            Descendant(tree, 1,1,0).Should().BeOfType<LineParser.MarkupTextNode>();
+            ((LineParser.MarkupTextNode)Descendant(tree, 1,1,0)).text.Should().Be(" some ");
+
+            // the outer-sibling inner markup
+            tree.children[2].children.Should().HaveCount(1);
+            Descendant(tree, 2,0).Should().BeOfType<LineParser.MarkupTextNode>();
+            ((LineParser.MarkupTextNode)Descendant(tree, 2,0)).text.Should().Be(" invalid ");
+        }
+        [Fact] public void TestUnsquishedMultipleImbalancedMarkupIsValid()
+        {
+            var line = "This [a] is [b] some [c] nested [/a] markup [/c] with [/b] invalid structure";
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            // text a b text
+            tree.children.Should().HaveCount(4);
+            
+            // the two outer children should be text
+            ((LineParser.MarkupTextNode)tree.children[0]).text.Should().Be("This ");
+            ((LineParser.MarkupTextNode)tree.children[3]).text.Should().Be(" invalid structure");
+
+            // the outer a node
+            var aNode = tree.children[1];
+            aNode.name.Should().Be("a");
+            aNode.children.Should().HaveCount(2);
+            // outer a's text
+            ((LineParser.MarkupTextNode)aNode.children[0]).text.Should().Be(" is ");
+            
+            var abNode = Descendant(tree, 1,1);
+            abNode.name.Should().Be("b");
+            abNode.children.Should().HaveCount(2);
+            ((LineParser.MarkupTextNode)abNode.children[0]).text.Should().Be(" some ");
+
+            var abcNode = Descendant(tree, 1,1,1);
+            abcNode.name.Should().Be("c");
+            ((LineParser.MarkupTextNode)abcNode.children[0]).text.Should().Be(" nested ");
+
+            // the outer b node
+            var bNode = tree.children[2];
+            bNode.name.Should().Be("b");
+            bNode.children.Should().HaveCount(2);
+            // outer b's text
+            ((LineParser.MarkupTextNode)Descendant(tree, 2,1)).text.Should().Be(" with ");
+
+            var bcNode = Descendant(tree, 2,0);
+            bcNode.name.Should().Be("c");
+            ((LineParser.MarkupTextNode)bcNode.children[0]).text.Should().Be(" markup ");
+        }
+
+        public static LineParser.MarkupTreeNode Node(string name, params LineParser.MarkupTreeNode[] children)
+        {
+            return new LineParser.MarkupTreeNode
+            {
+                name = name,
+                children = new List<LineParser.MarkupTreeNode>(children)
+            };
+        }
+        public static LineParser.MarkupTreeNode Text(string value)
+        {
+            return new LineParser.MarkupTextNode
+            {
+                text = value,
+            };
+        }
+
+        public static IEnumerable<object[]> TreeShapes()
+        {
+            var line = "This [a] is [b] some [c] nested [/a] markup [/c] with [/b] invalid structure.";
+            // This [a] is [b] some [c] nested [/c][/b][/a][b][c] markup [/c] with [/b] invalid structure.
+            var root = Node(null,
+                Text("This "),
+                Node("a",
+                    Text(" is "),
+                    Node("b",
+                        Text(" some "),
+                        Node("c",
+                            Text(" nested ")))),
+                Node("b",
+                    Node("c",
+                        Text(" markup ")),
+                    Text(" with ")),
+                Text(" invalid structure.")
+            );
+            yield return new object[] { line, root };
+
+            line = "This [outer] is [inner] some [/outer] invalid [/inner] markup";
+            // This [outer] is [inner] some [/inner][/outer][inner] invalid [/inner] markup
+            root = Node(null,
+                Text("This "),
+                Node("outer",
+                    Text(" is "),
+                    Node("inner", 
+                        Text(" some "))),
+                Node("inner",
+                    Text(" invalid ")),
+                Text(" markup")
+            );
+
+            yield return new object[] { line, root };
+            
+            line = "This [outer] is [inner] some [/outer][/inner] markup";
+            // This [outer] is [inner] some [/inner][/outer] markup
+            // This [outer] is [inner] some [/] markup
+            root = Node(null,
+                Text("This "),
+                Node("outer",
+                    Text(" is "),
+                    Node("inner",
+                        Text(" some ")
+                    )
+                ),
+                Text(" markup")
+            );
+            yield return new object[] { line, root };
+
+            // [z] this [a] is [b] some [c] markup [d] with [e] both [/c][/e][/d][/a][/z] misclosed tags and double unclosable tags[/b]
+            // [z] this [a] is [b] some [c] markup [d] with [e] both [/e][/d][/c][/b][/a][/z][b] misclosed tags and double unclosable tags[/b]
+            line = "[z] this [a] is [b] some [c] markup [d] with [e] both [/c][/e][/d][/z][/a] misclosed tags and double unclosable tags[/b]";
+            root = Node(null,
+                Node("z",
+                    Text(" this "),
+                    Node("a",
+                        Text(" is "),
+                        Node("b",
+                            Text(" some "),
+                            Node("c",
+                                Text(" markup "),
+                                Node("d",
+                                    Text(" with "),
+                                    Node("e",
+                                        Text(" both ")
+                                    )
+                                )
+                            )
+                        )
+                    )
+                ),
+                Node("b",
+                    Text(" misclosed tags and double unclosable tags"))
+            );
+            yield return new object[] { line, root };
+
+            line = "[a]This is [b]some [c]markup[/b] with[/c] closing tag issues inside a valid tag[/a]";
+            // [a]This is [b]some [c]markup[/c][/b][c] with[/c] closing tag issues[/a]
+            root = Node(null,
+                Node("a",
+                    Text("This is "),
+                    Node("b",
+                        Text("some "),
+                        Node("c",
+                            Text("markup"))),
+                    Node("c",
+                        Text(" with")),
+                    Text(" closing tag issues inside a valid tag"))
+            );
+            yield return new object[] { line, root };
+
+            line = "[a][b]1 [c][X]2[/b] [d]3[/X][/c] 4[/d] [e]5[/e][/a]";
+            root = Node(null,
+                Node("a",
+                    Node("b",
+                        Text("1 "),
+                        Node("c",
+                            Node("X",
+                                Text("2")
+                            )
+                        )
+                    ),
+                    Node("c",
+                        Node("X",
+                            Text(" "),
+                            Node("d",
+                                Text("3")
+                            )
+                        )
+                    ),
+                    Node("d",
+                        Text(" 4")
+                    ),
+                    Text(" "),
+                    Node("e",
+                        Text("5")
+                    )
+                )
+            );
+            yield return new object[] { line, root };
+        }
+        void CompareWalk(LineParser.MarkupTreeNode left, LineParser.MarkupTreeNode right)
+        {
+            // we want to know if they are text
+            var leftIsText = left is LineParser.MarkupTextNode;
+            var rightIsText = right is LineParser.MarkupTextNode;
+
+            // regardless they must be the same
+            leftIsText.Should().Be(rightIsText);
+
+            // ok so they are the same now, are they text?
+            if (leftIsText)
+            {
+                var rightText = ((LineParser.MarkupTextNode)right).text;
+                ((LineParser.MarkupTextNode)left).text.Should().Be(rightText);
+                return;
+            }
+
+            // they aren't text so we need to keep walking and comparing
+            // first up do they have the same name and number of children
+            left.name.Should().Be(right.name);
+            left.children.Should().HaveCount(right.children.Count);
+
+            for (int i = 0; i < left.children.Count; i++)
+            {
+                CompareWalk(left.children[i], right.children[i]);
+            }
+        }
+
+        [Theory]
+        [MemberData(nameof(TreeShapes))]
+        void TestUnsquishedTreeConformsToExpectedShape(string line, LineParser.MarkupTreeNode comparison)
+        {
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            CompareWalk(tree, comparison);
+        }
+
+        [Theory]
+        [InlineData("this is line without markup","this is line without markup")]
+        [InlineData("[a]this is line with basic markup[/a]","this is line with basic markup")]
+        [InlineData("[a]this is line with [b]nested basic[/b] markup[/a]","this is line with nested basic markup")]
+        [InlineData("this is a[nomarkup] line with [b]nomarkup hiding[/b] markup[/nomarkup] elements","this is a line with [b]nomarkup hiding[/b] markup elements")]
+        [InlineData("This is a [bold]line testing basic[/bold] replacement markers", "This is a <b>line testing basic</b> replacement markers")]
+        [InlineData("[a]This is [b]some [c]markup[/b] with[/c] closing tag issues inside a valid tag[/a]", "This is some markup with closing tag issues inside a valid tag")]
+        void TestUnsquishedMarkupStringsWithRewritersAreValid(string line, string comparison) // this one just tests that the strings aren't fucked
+        {
+            var lineParser = new LineParser();
+            lineParser.rewriters["bold"] = this;
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            var builder = new System.Text.StringBuilder();
+            List<MarkupAttribute> attributes = new List<MarkupAttribute>();
+            lineParser.WalkTree(tree, builder, attributes, "en");
+            builder.ToString().Should().Be(comparison);
+        }
+        
+        [Theory]
+        [InlineData("this is line without markup","this is line without markup", 0)]
+        [InlineData("[a]this is line with basic markup[/a]","this is line with basic markup", 1)]
+        [InlineData("[a]this is line with [b]nested basic[/b] markup[/a]","this is line with nested basic markup", 2)]
+        [InlineData("this is a[nomarkup] line with [b]nomarkup hiding[/b] markup[/nomarkup] elements","this is a line with [b]nomarkup hiding[/b] markup elements", 1)]
+        [InlineData("This is a [bold]line testing basic[/bold] replacement markers", "This is a <b>line testing basic</b> replacement markers", 0)]
+        [InlineData("[a]This is [b]some [c]markup[/b] with[/c] closing tag issues inside a valid tag[/a]", "This is some markup with closing tag issues inside a valid tag",3)]
+        void TestSquishedMarkupStringsWithRewritersAreValid(string line, string comparison, int attributeCount)
+        {
+            var lineParser = new LineParser();
+            lineParser.rewriters["bold"] = this;
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            var builder = new System.Text.StringBuilder();
+            List<MarkupAttribute> attributes = new List<MarkupAttribute>();
+            lineParser.WalkTree(tree, builder, attributes, "en");
+            builder.ToString().Should().Be(comparison);
+            lineParser.SquishSplitAttributes(attributes);
+
+            attributes.Should().HaveCount(attributeCount);
+        }
+        void TimsAttributeMarkerProcessor.ReplacementTextForMarker(string name, StringBuilder childBuilder, IEnumerable<MarkupAttribute> childAttributes, string localeCode)
+        {
+            switch (name)
+            {
+                case "bold":
+                {
+                    // for now I am just gonna make it so that it replaces [bold] some text [/bold] with 
+                    // <b> some text </b>
+                    childBuilder.Insert(0, "<b>");
+                    childBuilder.Append("</b>");
+                    break;
+                }
+                case "localise":
+                {
+                    // this is bad Tim...
+                    if (localeCode == "en")
+                    {
+                        childBuilder.Append("cat");
+                    }
+                    else
+                    {
+                        childBuilder.Append("chat");
+                    }
+                    break;
+                }
+                default:
+                {
+                    childBuilder.Append("Unrecognised markup name: ");
+                    childBuilder.Append(name);
+                    break;
+                }
+            }
+        }
+        [Fact]
+        void TestLocalisedStringReplacement()
+        {
+            var line = "This is my pet [localise = cat /], [b]Pumpkin![/b]";
+            var en_comparison = "This is my pet cat, Pumpkin!";
+            var fr_comparison = "This is my pet chat, Pumpkin!";
+
+            var lineParser = new LineParser();
+            lineParser.rewriters["localise"] = this;
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            var builder = new System.Text.StringBuilder();
+            List<MarkupAttribute> attributes = new List<MarkupAttribute>();
+            lineParser.WalkTree(tree, builder, attributes, "en");
+            builder.ToString().Should().Be(en_comparison);
+            lineParser.SquishSplitAttributes(attributes);
+
+            attributes.Should().HaveCount(1);
+
+            builder = new System.Text.StringBuilder();
+            attributes = new List<MarkupAttribute>();
+            lineParser.WalkTree(tree, builder, attributes, "fr");
+            builder.ToString().Should().Be(fr_comparison);
+            lineParser.SquishSplitAttributes(attributes);
+
+            attributes.Should().HaveCount(1);
+        }
+
+        [Theory]
+        [MemberData(nameof(RangeComparisons))]
+        void TestSquishedRangesAreValid(string line, string comparison, int expectedAttributes, Dictionary<string, (int, int)> ranges)
+        {
+            var lineParser = new LineParser();
+            lineParser.rewriters["bold"] = this;
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.Item1;
+            var errors = result.Item2;
+            errors.Should().BeEmpty();
+
+            var builder = new System.Text.StringBuilder();
+            List<MarkupAttribute> attributes = new List<MarkupAttribute>();
+            lineParser.WalkTree(tree, builder, attributes, "en");
+            builder.ToString().Should().Be(comparison);
+            lineParser.SquishSplitAttributes(attributes);
+
+            attributes.Should().HaveCount(expectedAttributes);
+            ranges.Should().HaveCount(expectedAttributes);
+
+            foreach (var attribute in attributes)
+            {
+                var comparisonRange = ranges[attribute.Name];
+                attribute.Length.Should().Be(comparisonRange.Item2);
+                attribute.Position.Should().Be(comparisonRange.Item1);
+            }
+        }
+        public static IEnumerable<object[]> RangeComparisons()
+        {
+            var line = "[a]this is line with basic markup[/a]";
+            var comparison = "this is line with basic markup";
+            var attributeCount = 1;
+            var ranges = new Dictionary<string, (int, int)>
+            {
+                {"a", (0, 30)}
+            };
+            yield return new object[] { line, comparison, attributeCount, ranges };
+
+            line = "[a]this is line with [b]nested basic[/b] markup[/a]";
+            comparison = "this is line with nested basic markup";
+            attributeCount = 2;
+            ranges = new Dictionary<string, (int, int)>
+            {
+                {"a", (0, 37)},
+                {"b", (18, 12)},
+            };
+            yield return new object[] { line, comparison, attributeCount, ranges };
+
+            line = "[a]This is [b]some [c]markup[/b] with[/c] closing tag issues inside a valid tag[/a]";
+            comparison = "This is some markup with closing tag issues inside a valid tag";
+            attributeCount = 3;
+            ranges = new Dictionary<string, (int, int)>
+            {
+                {"a", (0, 62)},
+                {"b", (8, 11)},
+                {"c", (13, 11)},
+            };
+            yield return new object[] { line, comparison, attributeCount, ranges };
+
+            line = "this[z] here[a] is[b] some[c] markup[d] with[e] both[/c][/e][/d][/a][/z] misclosed tags and double unclosable tags[/b]";
+            comparison = "this here is some markup with both misclosed tags and double unclosable tags";
+            attributeCount = 6;
+            ranges = new Dictionary<string, (int, int)>
+            {
+                {"z", (4, 30)},
+                {"a", (9, 25)},
+                {"c", (17, 17)},
+                {"d", (24, 10)},
+                {"e", (29, 5)},
+                {"b", (12, 64)}
+            };
+            yield return new object[] { line, comparison, attributeCount, ranges };
+
+            line = "[a][b]1 [c][X]2[/b] [d]3[/X][/c] 4[/d] [e]5[/e][/a]";
+            comparison = "1 2 3 4 5";
+            ranges = new Dictionary<string, (int, int)>
+            {
+                {"a", (0,9)},
+                {"b", (0,3)},
+                {"c", (2,3)},
+                {"X", (2,3)},
+                {"d", (4,3)},
+                {"e", (8,1)}
+            };
+            /*
+            ROOT
+                a
+                    b
+                        "1 "
+                        c
+                            X
+                                "2"
+                    c
+                        X
+                            " "
+                            d
+                                "3"
+                    d
+                        " 4"
+                    " "
+                    e
+                        "5"
+            */
+            yield return new object[] { line, comparison, attributeCount, ranges };
+        }
+
+        [Fact]
+        public void TestOverlappingAttributes()
+        {
             var line = "[a][b][c]X[/b][/a]X[/c]";
 
-            var markup = dialogue.ParseMarkup(line, "en");
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(line, "en");
 
             markup.Attributes.Count.Should().Be(3);
             markup.Attributes[0].Name.Should().Be("a");
             markup.Attributes[1].Name.Should().Be("b");
             markup.Attributes[2].Name.Should().Be("c");
-
         }
 
         [Fact]
-        public void TestTextExtraction() {
+        public void TestTextExtraction()
+        {
             var line = "A [b]B [c]C[/c][/b]";
 
-            var markup = dialogue.ParseMarkup(line, "en");
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(line, "en");
 
             markup.TextForAttribute(markup.Attributes[0]).Should().Be("B C");
             markup.TextForAttribute(markup.Attributes[1]).Should().Be("C");
         }
 
         [Fact]
-        public void TestAttributeRemoval() {
+        public void TestAttributeRemoval()
+        {
             // A test string with the following attributes:
             // a: Covers the entire string
             // b: Starts outside X, ends inside
@@ -56,11 +921,13 @@ namespace YarnSpinner.Tests
             // d: Starts inside X, ends outside
             // e: Starts and ends outside X
             var line = "[a][b]A [c][X]x[/b] [d]x[/X][/c] B[/d] [e]C[/e][/a]";
-            var originalMarkup = dialogue.ParseMarkup(line, "en");
 
-            // Remove the "X" attribute
-            originalMarkup.Attributes[3].Name.Should().Be("X");
-            var trimmedMarkup = originalMarkup.DeleteRange(originalMarkup.Attributes[3]);
+            var lineParser = new LineParser();
+            var originalMarkup = lineParser.TimsParse(line, "en");
+
+            // find and Remove the "X" attribute
+            originalMarkup.TryGetAttributeWithName("X", out var xAttribute).Should().Be(true);
+            var trimmedMarkup = originalMarkup.DeleteRange(xAttribute);
             
             originalMarkup.Text.Should().Be("A x x B C");
             originalMarkup.Attributes.Count.Should().Be(6);
@@ -94,7 +961,9 @@ namespace YarnSpinner.Tests
         public void TestFindingAttributes()
         {
             var line = "A [b]B[/b] [b]C[/b]";
-            var markup = dialogue.ParseMarkup(line, "en");
+
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(line, "en");
 
             MarkupAttribute attribute;
             bool found;
@@ -117,8 +986,11 @@ namespace YarnSpinner.Tests
         [InlineData("S [á]S[/á]")]
         [InlineData("S [a]á[/a]")]
         [InlineData("S [a]S[/a]")]
-        public void TestMultibyteCharacterParsing(string input) {
-            var markup = dialogue.ParseMarkup(input, "en");
+        public void TestMultibyteCharacterParsing(string input)
+        {
+            // var markup = dialogue.ParseMarkup(input, "en");
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(input, "en");
 
             // All versions of this string should have the same position
             // and length of the attribute, despite the presence of
@@ -132,7 +1004,8 @@ namespace YarnSpinner.Tests
         [InlineData("[a][/a][/b]")]
         [InlineData("[/b]")]
         [InlineData("[a][/][/b]")]
-        public void TestUnexpectedCloseMarkerThrows(string input) {
+        public void TestUnexpectedCloseMarkerThrows(string input)
+        {
             var parsingInvalidMarkup = new Action(() => 
             {
                 var markup = dialogue.ParseMarkup(input, "en");
@@ -142,9 +1015,11 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestMarkupShortcutPropertyParsing() {
+        public void TestMarkupShortcutPropertyParsing()
+        {
             var line = "[a=1]s[/a]";
-            var markup = dialogue.ParseMarkup(line, "en");
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(line, "en");
 
             // Should have a single attribute, "a", at position 0 and
             // length 1
@@ -162,9 +1037,11 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestMarkupMultiplePropertyParsing() {
+        public void TestMarkupMultiplePropertyParsing()
+        {
             var line = "[a p1=1 p2=2]s[/a]";
-            var markup = dialogue.ParseMarkup(line, "en");
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(line, "en");
 
             markup.Attributes[0].Name.Should().Be("a");
             
@@ -188,8 +1065,10 @@ namespace YarnSpinner.Tests
         [InlineData("[a p=13.37]s[/a]", MarkupValueType.Float, "13.37")]
         [InlineData("[a p=true]s[/a]", MarkupValueType.Bool, "True")]
         [InlineData("[a p=false]s[/a]", MarkupValueType.Bool, "False")]
-        public void TestMarkupPropertyParsing(string input, MarkupValueType expectedType, string expectedValueAsString) {
-            var markup = dialogue.ParseMarkup(input, "en");
+        public void TestMarkupPropertyParsing(string input, MarkupValueType expectedType, string expectedValueAsString)
+        {
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(input, "en");
 
             var attribute = markup.Attributes[0];
             var propertyValue= attribute.Properties["p"];
@@ -202,8 +1081,10 @@ namespace YarnSpinner.Tests
         [InlineData("A [b]B [c]C[/c][/b] D")] // attributes can be closed
         [InlineData("A [b]B [c]C[/b][/c] D")] // attributes can be closed out of order
         [InlineData("A [b]B [c]C[/] D")] // "[/]" closes all open attributes
-        public void TestMultipleAttributes(string input) {
-            var markup = dialogue.ParseMarkup(input, "en");
+        public void TestMultipleAttributes(string input)
+        {
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(input, "en");
 
             markup.Text.Should().Be("A B C D");
 
@@ -221,16 +1102,18 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestSelfClosingAttributes() {
+        public void TestSelfClosingAttributes()
+        {
             var line = "A [a/] B";
-            var markup = dialogue.ParseMarkup(line, "en");
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(line, "en");
 
             markup.Text.Should().Be("A B");
 
             markup.Attributes.Should().ContainSingle();
 
             markup.Attributes[0].Name.Should().Be("a");
-            markup.Attributes[0].Properties.Count.Should().Be(0);
+            markup.Attributes[0].Properties.Count.Should().Be(1); // one because of the implicit trimwhitespace attribute on self-closing markup
             markup.Attributes[0].Position.Should().Be(2);
             markup.Attributes[0].Length.Should().Be(0);
         }
@@ -239,11 +1122,12 @@ namespace YarnSpinner.Tests
         [InlineData("A [a/] B", "A B")]
         [InlineData("A [a trimwhitespace=true/] B", "A B")]
         [InlineData("A [a trimwhitespace=false/] B", "A  B")]
-        [InlineData("A [nomarkup/] B", "A  B")]
         [InlineData("A [nomarkup trimwhitespace=false/] B", "A  B")]
         [InlineData("A [nomarkup trimwhitespace=true/] B", "A B")]
-        public void TestAttributesMayTrimTrailingWhitespace(string input, string expectedText) {
-            var markup = dialogue.ParseMarkup(input, "en");
+        public void TestAttributesMayTrimTrailingWhitespace(string input, string expectedText)
+        {
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(input, "en");
 
             markup.Text.Should().Be(expectedText);
         }
@@ -253,8 +1137,10 @@ namespace YarnSpinner.Tests
         [InlineData("Mae: Wow!")] 
         // character attribute can also be explicit
         [InlineData("[character name=\"Mae\"]Mae: [/character]Wow!")] 
-        public void TestImplicitCharacterAttributeParsing(string input) {
-            var markup = dialogue.ParseMarkup(input, "en");
+        public void TestImplicitCharacterAttributeParsing(string input)
+        {
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(input, "en");
 
             markup.Text.Should().Be("Mae: Wow!");
             markup.Attributes.Should().ContainSingle();
@@ -268,13 +1154,16 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestNoMarkupModeParsing() {
+        public void TestNoMarkupModeParsing()
+        {
             var line = "S [a]S[/a] [nomarkup][a]S;][/a][/nomarkup]";
-            var markup = dialogue.ParseMarkup(line, "en");
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(line, "en");
 
             markup.Text.Should().Be("S S [a]S;][/a]");
 
-            markup.Attributes.Count.Should().Be(2);
+            // a and nomarkup
+            markup.Attributes.Should().HaveCount(2);
 
             markup.Attributes[0].Name.Should().Be("a");
             markup.Attributes[0].Position.Should().Be(2);
@@ -286,9 +1175,11 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestMarkupEscaping() {
+        public void TestMarkupEscaping()
+        {
             var line = @"[a]hello \[b\]hello\[/b\][/a]";
-            var markup = dialogue.ParseMarkup(line, "en");
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(line, "en");
 
             markup.Text.Should().Be("hello [b]hello[/b]");
             markup.Attributes.Should().ContainSingle();
@@ -298,13 +1189,14 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestNumericProperties() {
+        public void TestNumericProperties()
+        {
             var line = @"[select value=1 1=one 2=two 3=three /]";
             var markup = dialogue.ParseMarkup(line, "en");
 
             markup.Attributes.Should().ContainSingle();
             markup.Attributes[0].Name.Should().Be("select");
-            markup.Attributes[0].Properties.Count.Should().Be(4);
+            markup.Attributes[0].Properties.Should().HaveCount(4);
             markup.Attributes[0].Properties["value"].IntegerValue.Should().Be(1);
             markup.Attributes[0].Properties["1"].StringValue.Should().Be("one");
             markup.Attributes[0].Properties["2"].StringValue.Should().Be("two");
@@ -314,7 +1206,8 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestNumberPluralisation() {
+        public void TestNumberPluralisation()
+        {
 
             var testCases = new[] {
                 (Value: 1, Locale: "en", Expected: "a single cat"),

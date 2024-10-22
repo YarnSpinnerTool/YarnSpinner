@@ -1006,7 +1006,7 @@ namespace Yarn
             context.AddProgramToAnalysis(this.Program);
         }
 
-        private readonly LineParser lineParser;
+        public readonly LineParser lineParser;
 
         /// <summary>
         /// Parses a line of text, and produces a <see

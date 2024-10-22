@@ -26,10 +26,11 @@ SOFTWARE.
 
 namespace Yarn.Markup
 {
+    using System.Collections.Generic;
     /// <summary>Provides a mechanism for producing replacement text for a
     /// marker.</summary>
     /// <seealso cref="LineParser.RegisterMarkerProcessor"/>
-    internal interface IAttributeMarkerProcessor
+    public interface IAttributeMarkerProcessor
     {
         /// <summary>
         /// Produces the replacement text that should be inserted into a parse
@@ -45,5 +46,10 @@ namespace Yarn.Markup
         /// <param name="localeCode">The locale to use when preparing replacement text.</param>
         /// <returns>The replacement text to insert.</returns>
         string ReplacementTextForMarker(MarkupAttributeMarker marker, string localeCode);
+    }
+
+    public interface TimsAttributeMarkerProcessor
+    {
+        public void ReplacementTextForMarker(string name, System.Text.StringBuilder childBuilder, IEnumerable<MarkupAttribute> childAttributes, string localeCode);
     }
 }

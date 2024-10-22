@@ -342,14 +342,21 @@ namespace Yarn.Markup
             this.Length = length;
             this.Name = name;
 
-            var props = new Dictionary<string, MarkupValue>();
-
-            foreach (var prop in properties)
+            if (properties != null)
             {
-                props.Add(prop.Name, prop.Value);
-            }
+                var props = new Dictionary<string, MarkupValue>();
 
-            this.Properties = props;
+                foreach (var prop in properties)
+                {
+                    props.Add(prop.Name, prop.Value);
+                }
+
+                this.Properties = props;
+            }
+            else
+            {
+                this.Properties = new Dictionary<string, MarkupValue>();
+            }
         }
 
         /// <summary>
@@ -435,6 +442,43 @@ namespace Yarn.Markup
         {
             this.Name = name;
             this.Value = value;
+        }
+
+        internal MarkupProperty(string name, string value)
+        {
+            this.Name = name;
+            this.Value = new MarkupValue
+            {
+                StringValue = value,
+                Type = MarkupValueType.String
+            };
+        }
+        internal MarkupProperty(string name, int value)
+        {
+            this.Name = name;
+            this.Value = new MarkupValue
+            {
+                IntegerValue = value,
+                Type = MarkupValueType.Integer
+            };
+        }
+        internal MarkupProperty(string name, float value)
+        {
+            this.Name = name;
+            this.Value = new MarkupValue
+            {
+                FloatValue = value,
+                Type = MarkupValueType.Float
+            };
+        }
+        internal MarkupProperty(string name, bool value)
+        {
+            this.Name = name;
+            this.Value = new MarkupValue
+            {
+                BoolValue = value,
+                Type = MarkupValueType.Bool
+            };
         }
 
         /// <summary>
@@ -532,7 +576,7 @@ namespace Yarn.Markup
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
     /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
-    internal struct MarkupAttributeMarker
+    public struct MarkupAttributeMarker
     {
         /// <summary>
         /// Initializes a new instance of the <see
