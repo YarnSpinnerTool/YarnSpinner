@@ -417,6 +417,21 @@ namespace Yarn.Markup
 
             return sb.ToString();
         }
+
+        public bool TryGetProperty(string name, out MarkupValue result)
+        {
+            foreach (var prop in this.Properties)
+            {
+                if (prop.Key.Equals(name, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    result = prop.Value;
+                    return true;
+                }
+            }
+
+            result = default;
+            return false;
+        }
     }
 #pragma warning restore CA1815
 #pragma warning restore CA1711

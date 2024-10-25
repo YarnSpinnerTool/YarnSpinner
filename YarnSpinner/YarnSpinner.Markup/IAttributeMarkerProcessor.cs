@@ -50,6 +50,6 @@ namespace Yarn.Markup
 
     public interface TimsAttributeMarkerProcessor
     {
-        public void ReplacementTextForMarker(string name, System.Text.StringBuilder childBuilder, IEnumerable<MarkupAttribute> childAttributes, string localeCode);
+        public List<LineParser.MarkupDiagnostic> ReplacementTextForMarker(MarkupAttribute marker, System.Text.StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode);
     }
 }

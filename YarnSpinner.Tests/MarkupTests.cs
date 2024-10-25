@@ -98,6 +98,7 @@ namespace YarnSpinner.Tests
         [InlineData("this is a line with [markup=false var = 12]two [markup2]markup[/] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.BooleanValue,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,},new string[]{"this is a line with ","[","markup","=","false","var","=","12","]","two ","[","markup2","]","markup","[","/","]"," inside of it"})]
         [InlineData("this is a line with \\[markup=false var = 12]two [markup2]markup[/] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with \\[markup=false var = 12]two ","[","markup2","]","markup","[","/","]"," inside of it"})]
         [InlineData("this is a line with [markup markup = 1]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","markup","=","1","]","a single markup","[","/","markup","]"," inside of it"})]
+        [InlineData("this is a line with [interpolated markup = {$property} /] inside",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.InterpolatedValue,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,},new string[]{"this is a line with ", "[", "interpolated", "markup", "=", "{$property}", "/", "]", " inside"})]
         public void TestLexerGeneratesCorrectTokens(string line, LineParser.LexerTokenTypes[] types, string[] texts)
         {
             var lineParser = new LineParser();
@@ -713,9 +714,11 @@ namespace YarnSpinner.Tests
 
             attributes.Should().HaveCount(attributeCount);
         }
-        void TimsAttributeMarkerProcessor.ReplacementTextForMarker(string name, StringBuilder childBuilder, IEnumerable<MarkupAttribute> childAttributes, string localeCode)
+
+        List<LineParser.MarkupDiagnostic> TimsAttributeMarkerProcessor.ReplacementTextForMarker(MarkupAttribute marker, StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
         {
-            switch (name)
+            var diagnostics = new List<LineParser.MarkupDiagnostic>();
+            switch (marker.Name)
             {
                 case "bold":
                 {
@@ -723,7 +726,8 @@ namespace YarnSpinner.Tests
                     // <b> some text </b>
                     childBuilder.Insert(0, "<b>");
                     childBuilder.Append("</b>");
-                    break;
+                    
+                    return diagnostics;
                 }
                 case "localise":
                 {
@@ -736,13 +740,13 @@ namespace YarnSpinner.Tests
                     {
                         childBuilder.Append("chat");
                     }
-                    break;
+                    return diagnostics;
                 }
                 default:
                 {
                     childBuilder.Append("Unrecognised markup name: ");
-                    childBuilder.Append(name);
-                    break;
+                    childBuilder.Append(marker.Name);
+                    return diagnostics;
                 }
             }
         }
@@ -1065,6 +1069,7 @@ namespace YarnSpinner.Tests
         [InlineData("[a p=13.37]s[/a]", MarkupValueType.Float, "13.37")]
         [InlineData("[a p=true]s[/a]", MarkupValueType.Bool, "True")]
         [InlineData("[a p=false]s[/a]", MarkupValueType.Bool, "False")]
+        [InlineData("[a p={$someValue}]s[/a]", MarkupValueType.String, "$someValue")]
         public void TestMarkupPropertyParsing(string input, MarkupValueType expectedType, string expectedValueAsString)
         {
             var lineParser = new LineParser();
@@ -1189,47 +1194,44 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestNumericProperties()
+        public void TestNumericSelection()
         {
             var line = @"[select value=1 1=one 2=two 3=three /]";
-            var markup = dialogue.ParseMarkup(line, "en");
+            var lineParser = new LineParser();
+            var markup = lineParser.TimsParse(line, "en");
 
             markup.Attributes.Should().ContainSingle();
             markup.Attributes[0].Name.Should().Be("select");
-            markup.Attributes[0].Properties.Should().HaveCount(4);
+            markup.Attributes[0].Properties.Should().HaveCount(5);
             markup.Attributes[0].Properties["value"].IntegerValue.Should().Be(1);
             markup.Attributes[0].Properties["1"].StringValue.Should().Be("one");
             markup.Attributes[0].Properties["2"].StringValue.Should().Be("two");
             markup.Attributes[0].Properties["3"].StringValue.Should().Be("three");
+            markup.Attributes[0].Properties["trimwhitespace"].BoolValue.Should().Be(true);
+
+            // now that we know it is correctly determining all the elements run it again with the rewriters enabled
+            BuiltInMarkupReplacer select = new BuiltInMarkupReplacer();
+            lineParser.rewriters.Add("select",select);
+            markup = lineParser.TimsParse(line, "en");
 
             markup.Text.Should().Be("one");
         }
 
-        [Fact]
-        public void TestNumberPluralisation()
+        [Theory]
+        [InlineData(1,"en", "a single cat")]
+        [InlineData(2,"en", "2 cats")]
+        [InlineData(3,"en", "3 cats")]
+        [InlineData(1,"en-AU", "a single cat")]
+        [InlineData(2,"en-AU", "2 cats")]
+        [InlineData(3,"en-AU", "3 cats")]
+        public void TestNumberPluralisation(int Value, string Locale, string Expected)
         {
-
-            var testCases = new[] {
-                (Value: 1, Locale: "en", Expected: "a single cat"),
-                (Value: 2, Locale: "en", Expected: "2 cats"),
-                (Value: 3, Locale: "en", Expected: "3 cats"),
-                (Value: 1, Locale: "en-AU", Expected: "a single cat"),
-                (Value: 2, Locale: "en-AU", Expected: "2 cats"),
-                (Value: 3, Locale: "en-AU", Expected: "3 cats"),
-            };
-
-            using (new FluentAssertions.Execution.AssertionScope())
-            {
-
-                foreach (var testCase in testCases)
-                {
-                    var line = "[plural value=" + testCase.Value + " one=\"a single cat\" other=\"% cats\"/]";
-
-                    var markup = dialogue.ParseMarkup(line, testCase.Locale);
-                    markup.Text.Should().Be(testCase.Expected, $"{testCase.Value} in locale {testCase.Locale} should have the correct plural case");
-                }
-            }
-
+            var line = "[plural value=" + Value + " one=\"a single cat\" other=\"% cats\"/]";
+            var lineParser = new LineParser();
+            BuiltInMarkupReplacer rewriter = new BuiltInMarkupReplacer();
+            lineParser.rewriters.Add("plural",rewriter);
+            var markup = lineParser.TimsParse(line, Locale);
+            markup.Text.Should().Be(Expected, $"{Value} in locale {Locale} should have the correct plural case");
         }
     }
 }

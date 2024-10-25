@@ -34,7 +34,7 @@ namespace Yarn.Markup
     /// <summary>
     /// Parses text and produces markup information.
     /// </summary>
-    public class LineParser : IMarkupParser
+    public class LineParser
     {
         /// <summary>
         /// The name of the property in replacement attributes that
@@ -50,7 +50,7 @@ namespace Yarn.Markup
 
         /// <summary>
         /// The name of the 'name' property, on the implicitly-generated
-        /// <c>character</c> attriubte.
+        /// <c>character</c> attribute.
         /// </summary>
         /// <seealso cref="CharacterAttribute"/>
         public const string CharacterAttributeNameProperty = "name";
@@ -62,6 +62,7 @@ namespace Yarn.Markup
         /// </summary>
         public const string TrimWhitespaceProperty = "trimwhitespace";
         public const string NoMarkupAttribute = "nomarkup";
+        public const string InternalIncrement = "_internalIncrementingProperty";
 
         /// <summary>
         /// A regular expression that matches a colon followed by optional
@@ -154,6 +155,7 @@ namespace Yarn.Markup
             StringValue,
             NumberValue,
             BooleanValue,
+            InterpolatedValue,
         }
         public class LexerToken
         {
@@ -528,7 +530,7 @@ namespace Yarn.Markup
                                     var length = nextQuote - currentPosition;
                                     for (int i = 0; i < length; i++)
                                     {
-                                        this.stringReader.Read();
+                                        _ = this.stringReader.Read();
                                     }
                                     currentPosition += length;
                                 }
@@ -540,12 +542,45 @@ namespace Yarn.Markup
                                 token.type = LexerTokenTypes.Error;
                             }
 
-                            //[a p="str\"ing"]s[/a]
-                            //012345678901234567890
-
                             token.end = currentPosition;
                             last = token;
                             tokens.Add(token);
+                            mode = LexerMode.Tag;
+                        }
+                        else if (c == '{')
+                        {
+                            // we are an interpolated value
+                            // these won't exist at runtime but to provide diagonostics we need to handle them
+                            // this isn't a full parse, this will just grab up until the next } and it can't be escaped
+                            // any errors in this will be caught by the actual Yarn Spinner parser so we can ignore what is between the { }
+
+                            var token = new LexerToken()
+                            {
+                                start = currentPosition,
+                            };
+
+                            bool exited = false;
+                            while (this.stringReader.Peek() != -1)
+                            {
+                                currentPosition += 1;
+                                if ((char)this.stringReader.Read() == '}')
+                                {
+                                    exited = true;
+                                    break;
+                                }
+                            }
+                            if (exited)
+                            {
+                                token.type = LexerTokenTypes.InterpolatedValue;
+                            }
+                            else
+                            {
+                                token.type = LexerTokenTypes.Error;
+                            }
+                            token.end = currentPosition;
+                            tokens.Add(token);
+                            last = token;
+
                             mode = LexerMode.Tag;
                         }
                         else
@@ -627,12 +662,24 @@ namespace Yarn.Markup
         }
         public class MarkupTextNode: MarkupTreeNode { public string text;}
 
+        public struct MarkupDiagnostic
+        {
+            public string message;
+            public int column;
+
+            public MarkupDiagnostic(string message, int column = -1)
+            {
+                this.message = message;
+                this.column = column;
+            }
+        }
+
         // this exists so that we have a way of seeing which attributes got split as part of the tree walking
         // this can then be used to merge them back together in the end
-        static int internalIncrementingAttribute = 1;
+        private int internalIncrementingAttribute = 1;
         private MarkupProperty internalIDproperty()
         {
-            var idProperty = new MarkupProperty("_internalIncrementingProperty", internalIncrementingAttribute);
+            var idProperty = new MarkupProperty(InternalIncrement, internalIncrementingAttribute);
             internalIncrementingAttribute += 1;
 
             return idProperty;
@@ -695,7 +742,8 @@ namespace Yarn.Markup
                 // we now need to do the rewrite
                 // so in this case we need to give the rewriter the combined child string and it's attributes
                 // because it is up to you to fix any attributes if you modify them
-                rewriter.ReplacementTextForMarker(root.name, childBuilder, childAttributes, localeCode);
+                MarkupAttribute attribute = new MarkupAttribute(builder.Length + offset, root.firstToken.start, childBuilder.Length, root.name, root.properties);
+                rewriter.ReplacementTextForMarker(attribute, childBuilder, childAttributes, localeCode);
             }
             else
             {
@@ -723,7 +771,7 @@ namespace Yarn.Markup
             for (int i = 0; i < attributes.Count; i++)
             {
                 var attribute = attributes[i];
-                if (attribute.Properties.TryGetValue("_internalIncrementingProperty", out var value))
+                if (attribute.Properties.TryGetValue(InternalIncrement, out var value))
                 {
                     if (merged.TryGetValue(value.IntegerValue, out var existingAttribute))
                     {
@@ -757,25 +805,25 @@ namespace Yarn.Markup
 
         // builds a tree of MarkupTreeNode nodes
         // the top is always just the empty root and it must have at least one child even if it's just text
-        public (MarkupTreeNode, List<string>) BuildMarkupTreeFromTokens(List<LexerToken> tokens, string OG)
+        public (MarkupTreeNode, List<MarkupDiagnostic>) BuildMarkupTreeFromTokens(List<LexerToken> tokens, string OG)
         {
             var tree = new MarkupTreeNode();
-            List<string> errors = new List<string>();
+            List<MarkupDiagnostic> diagnostics = new List<MarkupDiagnostic>();
 
             if (tokens == null || tokens.Count < 2)
             {
-                errors.Add("There are not enough tokens to form a valid tree");
-                return (tree, errors);
+                diagnostics.Add(new MarkupDiagnostic("There are not enough tokens to form a valid tree."));
+                return (tree, diagnostics);
             }
             if (string.IsNullOrEmpty(OG))
             {
-                errors.Add("There is a valid list of tokens but no original string");
-                return (tree, errors);
+                diagnostics.Add(new MarkupDiagnostic("There is a valid list of tokens but no original string."));
+                return (tree, diagnostics);
             }
             if (tokens[0].type != LexerTokenTypes.Start && tokens[tokens.Count - 1].type != LexerTokenTypes.End)
             {
-                errors.Add("The token list is malformed, it does not start and end with the correct tokens");
-                return (tree, errors);
+                diagnostics.Add(new MarkupDiagnostic("Token list doesn't start and end with the correct tokens."));
+                return (tree, diagnostics);
             }
 
             bool TryIntFromToken(LexerToken token, out int value)
@@ -829,6 +877,13 @@ namespace Yarn.Markup
                 }
                 return valueString;
             }
+            string ValueFromInterpolatedToken(LexerToken token)
+            {
+                // removing the { } from the interpolated value
+                var valueString = OG.Substring(token.start, token.range);
+                valueString = valueString.Trim('{').Trim('}');
+                return valueString;
+            }
 
             // [ / ]
             LexerTokenTypes[] closeAllPattern = { LexerTokenTypes.OpenMarker, LexerTokenTypes.CloseSlash, LexerTokenTypes.CloseMarker};
@@ -842,6 +897,7 @@ namespace Yarn.Markup
             LexerTokenTypes[] numberPropertyPattern = { LexerTokenTypes.Identifier, LexerTokenTypes.Equals, LexerTokenTypes.NumberValue};
             LexerTokenTypes[] booleanPropertyPattern = { LexerTokenTypes.Identifier, LexerTokenTypes.Equals, LexerTokenTypes.BooleanValue};
             LexerTokenTypes[] stringPropertyPattern = { LexerTokenTypes.Identifier, LexerTokenTypes.Equals, LexerTokenTypes.StringValue};
+            LexerTokenTypes[] interpolatedPropertyPattern = { LexerTokenTypes.Identifier, LexerTokenTypes.Equals, LexerTokenTypes.InterpolatedValue};
             // / ]
             LexerTokenTypes[] selfClosingAttributeEndPattern = { LexerTokenTypes.CloseSlash, LexerTokenTypes.CloseMarker};
 
@@ -867,7 +923,7 @@ namespace Yarn.Markup
                     {
                         // we are at the end
                         // in this case we just want to make sure we clean up any remaning unmatched closes we still have
-                        CleanUpUnmatchedCloses(openNodes, unmatchedCloses, errors);
+                        CleanUpUnmatchedCloses(openNodes, unmatchedCloses, diagnostics);
                         break;
                     }
                     case LexerTokenTypes.Text:
@@ -876,7 +932,7 @@ namespace Yarn.Markup
                         // but first we need to make sure there aren't any closes left to clean up
                         if (unmatchedCloses.Count > 0)
                         {
-                            CleanUpUnmatchedCloses(openNodes, unmatchedCloses, errors);
+                            CleanUpUnmatchedCloses(openNodes, unmatchedCloses, diagnostics);
                         }
 
                         var text = OG.Substring(stream.current.start, stream.current.end + 1 - stream.current.start);
@@ -906,7 +962,7 @@ namespace Yarn.Markup
                             }
                             foreach (var remaining in unmatchedCloses)
                             {
-                                errors.Add($"asked to close {remaining} markup but there is no corresponding opening. Is [/{remaining}] a typo?");
+                                diagnostics.Add(new MarkupDiagnostic($"asked to close {remaining} markup but there is no corresponding opening. Is [/{remaining}] a typo?"));
                             }
                             unmatchedCloses.Clear();
                             break;
@@ -924,7 +980,7 @@ namespace Yarn.Markup
                             if (openNodes.Count == 1)
                             {
                                 // this is an error, we can't close something when we only have the root node
-                                errors.Add($"Asked to close {closeID}, but we don't have an open marker for it.");
+                                diagnostics.Add(new MarkupDiagnostic($"Asked to close {closeID}, but we don't have an open marker for it.", closeIDToken.start));
                             }
                             else
                             {
@@ -933,9 +989,7 @@ namespace Yarn.Markup
                                 // if not then we add this to the list of unmatched closes for later clean up and continue
                                 if (closeID == openNodes.Peek().name)
                                 {
-                                    var top = openNodes.Pop();
-                                    // adding the tracking ID for squish purposes later although this one cannot be split...
-                                    // top.properties.Add(internalIDAttribute());
+                                    _ = openNodes.Pop();
                                 }
                                 else
                                 {
@@ -949,7 +1003,7 @@ namespace Yarn.Markup
                         {
                             // we are a malformed close tag
                             var message = $"Error parsing markup, detected invalid token {stream.LookAhead(2).type}, following a close.";
-                            errors.Add(message);
+                            diagnostics.Add(new MarkupDiagnostic(message, stream.current.start));
                             break;
                         }
 
@@ -962,7 +1016,7 @@ namespace Yarn.Markup
                         if (stream.Peek().type != LexerTokenTypes.Identifier)
                         {
                             var message = $"Error parsing markup, detected invalid token {stream.Peek().type}, following an open marker.";
-                            errors.Add(message);
+                            diagnostics.Add(new MarkupDiagnostic(message, stream.Peek().start));
                             break;
                         }
 
@@ -970,7 +1024,7 @@ namespace Yarn.Markup
                         // but before we can continue we need to make sure that the tree is correctly closed off
                         if (unmatchedCloses.Count > 0)
                         {
-                            CleanUpUnmatchedCloses(openNodes, unmatchedCloses, errors);
+                            CleanUpUnmatchedCloses(openNodes, unmatchedCloses, diagnostics);
                         }
 
                         var idToken = stream.Peek();
@@ -1025,7 +1079,7 @@ namespace Yarn.Markup
                                 }
                                 if (nm == null)
                                 {
-                                    errors.Add($"we entered nomarkup mode but didn't find an exit token");
+                                    diagnostics.Add(new MarkupDiagnostic($"we entered nomarkup mode but didn't find an exit token", tokenStart.start));
                                 }
                                 else
                                 {
@@ -1090,7 +1144,8 @@ namespace Yarn.Markup
                             }
                             else
                             {
-                                errors.Add($"failed to convert the value {stream.LookAhead(2)} into a valid property");
+                                var message = $"failed to convert the value {OG.Substring(stream.LookAhead(2).start, stream.LookAhead(2).range)} into a valid property";
+                                diagnostics.Add(new MarkupDiagnostic(message, stream.LookAhead(2).start));
                                 break;
                             }
                         }
@@ -1102,7 +1157,8 @@ namespace Yarn.Markup
                             }
                             else
                             {
-                                errors.Add($"failed to convert the value {stream.LookAhead(2)} into a valid property");
+                                var message = $"failed to convert the value {OG.Substring(stream.LookAhead(2).start, stream.LookAhead(2).range)} into a valid property";
+                                diagnostics.Add(new MarkupDiagnostic(message, stream.LookAhead(2).start));
                                 break;
                             }
                         }
@@ -1111,9 +1167,18 @@ namespace Yarn.Markup
                             string sValue = ValueFromToken(stream.LookAhead(2));
                             openNodes.Peek().properties.Add(new MarkupProperty(id, sValue));
                         }
+                        else if (stream.ComparePattern(interpolatedPropertyPattern))
+                        {
+                            // we don't really know what type of value the interpolated value is
+                            // but that's fine we only need it to exist for the purposes of diagnostics
+                            // so we will suggest it to be a string
+                            string sValue = ValueFromInterpolatedToken(stream.LookAhead(2));
+                            openNodes.Peek().properties.Add(new MarkupProperty(id, sValue));
+                        }
                         else
                         {
-                            errors.Add("attempted to match a id = value grouping but failed");
+                            var message = $"Expected to find a property and it's value, but instead found \"{id} {OG.Substring(stream.Peek().start, stream.Peek().range)} {OG.Substring(stream.LookAhead(2).start, stream.LookAhead(2).range)}\".";
+                            diagnostics.Add(new MarkupDiagnostic(message, stream.Peek().start));
                             break;
                         }
 
@@ -1136,6 +1201,7 @@ namespace Yarn.Markup
                                 if (property.Name == TrimWhitespaceProperty)
                                 {
                                     found = true;
+                                    break;
                                 }
                             }
                             if (!found)
@@ -1150,7 +1216,7 @@ namespace Yarn.Markup
                         {
                             // we found a / but aren't part of a self closing marker
                             // at this stage this is now an error
-                            errors.Add($"Encountered a rogue closing slash at {stream.current.start}");
+                            diagnostics.Add(new MarkupDiagnostic("Encountered an unexpected closing slash", stream.current.start));
                         }
 
                         break;
@@ -1178,19 +1244,19 @@ namespace Yarn.Markup
                         line += " [" + node.name + "]";
                     }
                 }
-                errors.Add(line);
+                diagnostics.Add(new MarkupDiagnostic(line));
             }
             if (unmatchedCloses.Count > 1)
             {
                 var line = "parsing finished with unmatched closes still remaining: ";
                 foreach (var unmatched in unmatchedCloses)
                 {
-                    line += " /[" + unmatched + "]";
+                    line += " [/" + unmatched + "]";
                 }
-                errors.Add(line);
+                diagnostics.Add(new MarkupDiagnostic(line));
             }
 
-            return (tree, errors);
+            return (tree, diagnostics);
         }
         
         // this cleans up and rebalances the tree for misclosed or invalid closing patterns like the following:
@@ -1198,7 +1264,7 @@ namespace Yarn.Markup
         // This [a] is [b] some [c] nested [/a] markup [/c] with [/b] invalid structure.
         // [z] this [a] is [b] some [c] markup [d] with [e] both [/c][/e][/d][/a][/z] misclosed tags and double unclosable tags[/b]
         // it is a variant of the adoption agency algorithm
-        private void CleanUpUnmatchedCloses(Stack<MarkupTreeNode> openNodes, List<string> unmatchedCloseNames, List<string> errors)
+        private void CleanUpUnmatchedCloses(Stack<MarkupTreeNode> openNodes, List<string> unmatchedCloseNames, List<MarkupDiagnostic> errors)
         {
             var orphans = new Stack<MarkupTreeNode>();
             // while we still have unbalanced closes AND haven't hit the root of the tree
@@ -1237,7 +1303,8 @@ namespace Yarn.Markup
             {
                 foreach (var unmatched in unmatchedCloseNames)
                 {
-                    errors.Add($"asked to close {unmatched} markup but there is no corresponding opening. Is [/{unmatched}] a typo?");
+                    var message = $"asked to close {unmatched} markup but there is no corresponding opening. Is [/{unmatched}] a typo?";
+                    errors.Add(new MarkupDiagnostic(message));
                 }
                 unmatchedCloseNames.Clear();
                 return;
@@ -1282,837 +1349,184 @@ namespace Yarn.Markup
             };
         }
 
-        /// <summary>Parses a line of text, and produces a
-        /// <see cref="MarkupParseResult"/> containing the processed
-        /// text.</summary>
-        /// <param name="input">The text to parse.</param>
-        /// <returns>The resulting markup information.</returns>
-        public MarkupParseResult ParseMarkup(string input, string localeCode)
+        /// <summary>
+        /// Replaces all substitution markers in a text with the given
+        /// substitution list.
+        /// </summary>
+        /// <remarks>
+        /// This method replaces substitution markers - for example, <c>{0}</c>
+        /// - with the corresponding entry in <paramref name="substitutions"/>.
+        /// If <paramref name="text"/> contains a substitution marker whose
+        /// index is not present in <paramref name="substitutions"/>, it is
+        /// ignored.
+        /// </remarks>
+        /// <param name="text">The text containing substitution markers.</param>
+        /// <param name="substitutions">The list of substitutions.</param>
+        /// <returns><paramref name="text"/>, with the content from <paramref
+        /// name="substitutions"/> inserted.</returns>
+        public static string ExpandSubstitutions(string text, IList<string> substitutions)
         {
-            if (string.IsNullOrEmpty(input))
+            if (substitutions == null)
             {
-                // We got a null input; return an empty markup parse result
-                return new MarkupParseResult
-                {
-                    Text = string.Empty,
-                    Attributes = new List<MarkupAttribute>(),
-                };
+                // if we have no substitutions we want to just return the text as is
+                return text;
+            }
+            if (text == null)
+            {
+                // we somehow have substitutions to apply but no text for them to be applied into?
+                throw new ArgumentNullException($"{nameof(text)} is null. Cannot apply substitutions to an empty string");
             }
 
-            this.input = input.Normalize();
-
-            this.stringReader = new StringReader(this.input);
-
-            var stringBuilder = new StringBuilder();
-
-            var markers = new List<MarkupAttributeMarker>();
-
-            int nextCharacter;
-
-            char lastCharacter = char.MinValue;
-
-            // Read the entirety of the line
-            while ((nextCharacter = this.stringReader.Read()) != -1)
+            for (int i = 0; i < substitutions.Count; i++)
             {
-                char c = (char)nextCharacter;
+                string substitution = substitutions[i];
+                text = text.Replace("{" + i + "}", substitution);
+            }
 
-                if (c == '\\')
+            return text;
+        }
+    }
+
+    public class BuiltInMarkupReplacer: TimsAttributeMarkerProcessor
+    {
+        private static readonly System.Text.RegularExpressions.Regex ValuePlaceholderRegex = new System.Text.RegularExpressions.Regex(@"(?<!\\)%");
+
+        // [b] this [a]is[/a] bold [/b]
+        // a 5 -> 7 (range of 2)
+        // <bold> this [a]is[/a] bold </bold>
+        // a 12 -> 14 (range of 2)
+
+        private List<LineParser.MarkupDiagnostic> SelectReplace(MarkupAttribute marker, System.Text.StringBuilder childBuilder, string value)
+        {
+            List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
+
+            if (!marker.TryGetProperty(value, out var replacementProp))
+            {
+                diagnostics.Add(new LineParser.MarkupDiagnostic($"no replacement value for {value} was found"));
+                return diagnostics;
+            }
+
+            string replacement = replacementProp.ToString();
+            replacement = ValuePlaceholderRegex.Replace(replacement, value);
+            childBuilder.Append(replacement);
+
+            return diagnostics;
+        }
+        private List<LineParser.MarkupDiagnostic> PluralReplace(MarkupAttribute marker, string localeCode, System.Text.StringBuilder childBuilder, double numericValue)
+        {
+            List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
+
+            // CLDRPlurals only works with 'neutral' locale names (i.e. "en"),
+            // not 'specific' locale names. We need to check to see if
+            // localeCode is the name of a 'specific' locale name. If is,
+            // we'll fetch its parent, which will be 'neutral', and use that.
+            string languageCode;
+            try
+            {
+                var culture = new System.Globalization.CultureInfo(localeCode);
+                if (culture.IsNeutralCulture)
                 {
-                    // This may be the start of an escaped bracket ("\[" or
-                    // "\]"). Peek ahead to see if it is.
-                    var nextC = (char)this.stringReader.Peek();
-
-                    if (nextC == '[' || nextC == ']')
+                    languageCode = culture.Name;
+                }
+                else
+                {
+                    culture = culture.Parent;
+                    if (culture != null)
                     {
-                        // It is! We'll discard this '\', and read the next
-                        // character as plain text.
-                        c = (char)this.stringReader.Read();
-                        stringBuilder.Append(c);
-                        this.sourcePosition += 1;
-                        continue;
+                        languageCode = culture.Name;
                     }
                     else
                     {
-                        // It wasn't an escaped bracket. Continue on, and
-                        // parse the '\' as a normal character.
+                        languageCode = localeCode;
                     }
                 }
+            }
+            catch (System.Globalization.CultureNotFoundException)
+            {
+                // lanugage code doesn't represent a known culture.
+                // Fallback to using what the user provided and hope.
+                languageCode = localeCode;
+            }
 
-                if (c == '[')
+            CLDRPlurals.PluralCase pluralCase;
+            switch (marker.Name)
+            {
+                case "plural":
+                    pluralCase = CLDRPlurals.NumberPlurals.GetCardinalPluralCase(languageCode, numericValue);
+                    break;
+                case "ordinal":
+                    pluralCase = CLDRPlurals.NumberPlurals.GetOrdinalPluralCase(languageCode, numericValue);
+                    break;
+                default:
+                    diagnostics.Add(new LineParser.MarkupDiagnostic($"Unexpected pluralisation marker name {marker.Name}"));
+                    return diagnostics;
+            }
+
+            string pluralCaseName = pluralCase.ToString().ToUpperInvariant();
+
+            // Now that we know the plural case, we can select the
+            // appropriate replacement text for it
+            if (!marker.TryGetProperty(pluralCaseName, out var replacementValue))
+            {
+                diagnostics.Add(new LineParser.MarkupDiagnostic($"no replacement for {numericValue}'s plural case of {pluralCaseName} was found."));
+                return diagnostics;
+            }
+
+            string input = replacementValue.ToString();
+            childBuilder.Append(ValuePlaceholderRegex.Replace(input, numericValue.ToString()));
+            return diagnostics;
+        }
+
+        public List<LineParser.MarkupDiagnostic> ReplacementTextForMarker(MarkupAttribute marker, System.Text.StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
+        {
+            // all of these are self-closing tags, there is no sensible way to perform a replacement for anything else, so we early out here
+            if (childBuilder.Length > 0 || childAttributes.Count > 0)
+            {
+                List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>
                 {
-                    // How long is our current string, in text elements
-                    // (i.e. visible glyphs)?
-                    this.position = new System.Globalization.StringInfo(stringBuilder.ToString()).LengthInTextElements;
+                    new LineParser.MarkupDiagnostic($"'{marker.Name}' markup only works on self-closing tags.")
+                };
+                return diagnostics;
+            }
+            if (marker.TryGetProperty("value", out var valueProp) == false)
+            {
+                List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>
+                {
+                    new LineParser.MarkupDiagnostic($"no 'value' property was found on the marker, {marker.Name} requires this to exist.")
+                };
+                return diagnostics;
+            }
 
-                    // The start of a marker!
-                    MarkupAttributeMarker marker = this.ParseAttributeMarker();
-
-                    markers.Add(marker);
-
-                    var hadPrecedingWhitespaceOrLineStart = this.position == 0 || char.IsWhiteSpace(lastCharacter);
-
-                    bool wasReplacementMarker = false;
-
-                    // Is this a replacement marker?
-                    if (marker.Name != null && this.markerProcessors.ContainsKey(marker.Name))
+            switch (marker.Name)
+            {
+                case "select":
+                    return SelectReplace(marker, childBuilder, valueProp.ToString());
+                case "plural":
+                case "ordinal":
+                {
+                    switch (valueProp.Type)
                     {
-                        wasReplacementMarker = true;
-
-                        // Process it and get the replacement text!
-                        var replacementText = this.ProcessReplacementMarker(marker, localeCode);
-
-                        // Insert it into our final string and update our
-                        // position accordingly
-                        stringBuilder.Append(replacementText);
-                    }
-
-                    bool trimWhitespaceIfAble = false;
-
-                    if (hadPrecedingWhitespaceOrLineStart)
-                    {
-                        // By default, self-closing markers will trim a
-                        // single trailing whitespace after it if there was
-                        // preceding whitespace. This doesn't happen if the
-                        // marker was a replacement marker, or it has a
-                        // property "trimwhitespace" (which must be
-                        // boolean) set to false. All markers can opt-in to
-                        // trailing whitespace trimming by having a
-                        // 'trimwhitespace' property set to true.
-                        if (marker.Type == TagType.SelfClosing)
+                        case MarkupValueType.Integer:
+                            return PluralReplace(marker, localeCode, childBuilder, valueProp.IntegerValue);
+                        case MarkupValueType.Float:
+                            return PluralReplace(marker, localeCode, childBuilder, valueProp.FloatValue);
+                        default:
                         {
-                            trimWhitespaceIfAble = !wasReplacementMarker;
-                        }
-
-                        if (marker.TryGetProperty(TrimWhitespaceProperty, out var prop))
-                        {
-                            if (prop.Type != MarkupValueType.Bool)
+                            List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>
                             {
-                                throw new MarkupParseException($"Error parsing line {this.input}: attribute {marker.Name} at position {this.position} has a {prop.Type.ToString().ToLower()} property \"{TrimWhitespaceProperty}\" - this property is required to be a boolean value.");
-                            }
-
-                            trimWhitespaceIfAble = prop.BoolValue;
-                        }
-                    }
-
-                    if (trimWhitespaceIfAble)
-                    {
-                        // If there's trailing whitespace, and we want to
-                        // remove it, do so
-                        if (this.PeekWhitespace())
-                        {
-                            // Consume the single trailing whitespace
-                            // character (and don't update position)
-                            this.stringReader.Read();
-                            this.sourcePosition += 1;
+                                new LineParser.MarkupDiagnostic($"Asked to pluralise '{valueProp.ToString()}' but this is a type that does not support pluralisation."),
+                            };
+                            return diagnostics;
                         }
                     }
                 }
-                else
+                default:
                 {
-                    // plain text! add it to the resulting string and
-                    // advance the parser's plain-text position
-                    stringBuilder.Append(c);
-                    this.sourcePosition += 1;
-                }
-                
-                lastCharacter = c;
-            }
-
-            var attributes = this.BuildAttributesFromMarkers(markers);
-
-            var characterAttributeIsPresent = false;
-            foreach (var attribute in attributes)
-            {
-                if (attribute.Name == CharacterAttribute)
-                {
-                    characterAttributeIsPresent = true;
-                }
-            }
-
-            if (characterAttributeIsPresent == false)
-            {
-                // Attempt to generate a character attribute from the start
-                // of the string to the first colon
-                var match = EndOfCharacterMarker.Match(this.input);
-
-                if (match.Success)
-                {
-                    var endRange = match.Index + match.Length;
-                    var characterName = this.input.Substring(0, match.Index);
-
-                    MarkupValue nameValue = new MarkupValue
+                    List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>
                     {
-                        Type = MarkupValueType.String,
-                        StringValue = characterName,
+                        new LineParser.MarkupDiagnostic($"Asked to perform replacement for {marker.Name}, a marker we don't handle."),
                     };
-
-                    MarkupProperty nameProperty = new MarkupProperty(CharacterAttributeNameProperty, nameValue);
-
-                    var characterAttribute = new MarkupAttribute(0, 0, endRange, CharacterAttribute, new[] { nameProperty });
-
-                    attributes.Add(characterAttribute);
-                }
-            }
-
-            return new MarkupParseResult
-            {
-                Text = stringBuilder.ToString(),
-                Attributes = attributes,
-            };
-        }
-
-        /// <summary>
-        /// Parses a marker and generates replacement text to insert into
-        /// the plain text.
-        /// </summary>
-        /// <param name="marker">The marker to parse.</param>
-        /// <param name="localeCode">The locale code to use when processing the marker.</param>
-        /// <returns>The replacement text to insert.</returns>
-        private string ProcessReplacementMarker(MarkupAttributeMarker marker, string localeCode)
-        {
-            // If it's not an open or self-closing marker, we have no text
-            // to insert, so return the empty string
-            if (marker.Type != TagType.Open && marker.Type != TagType.SelfClosing)
-            {
-                return string.Empty;
-            }
-
-            // this is an attribute that we want to replace with text!
-
-            // if this is an opening marker, we read up to the closing
-            // marker, the close-all marker, or the end of the string; this
-            // becomes the value of a property called "contents", and then
-            // we perform the replacement
-            if (marker.Type == TagType.Open)
-            {
-                // Read everything up to the closing tag
-                string markerContents = this.ParseRawTextUpToAttributeClose(marker.Name);
-
-                // Add this as a property
-                marker.Properties.Add(
-                    new MarkupProperty(
-                        ReplacementMarkerContents,
-                        new MarkupValue
-                        {
-                            StringValue = markerContents,
-                            Type = MarkupValueType.String,
-                        }));
-            }
-
-            // Fetch the text that should be inserted into the string at
-            // this point
-            var replacementText = this.markerProcessors[marker.Name].ReplacementTextForMarker(marker, localeCode);
-
-            return replacementText;
-        }
-
-        /// <summary>
-        /// Parses text up to either a close marker with the given name, or
-        /// a close-all marker.
-        /// </summary>
-        /// <remarks>
-        /// The closing marker itself is not included in the returned text.
-        /// </remarks>
-        /// <param name="name">The name of the close marker to look
-        /// for.</param>
-        /// <returns>The text up to the closing marker.</returns>
-        private string ParseRawTextUpToAttributeClose(string name)
-        {
-            var remainderOfLine = this.stringReader.ReadToEnd();
-
-            // Parse up to either [/name] or [/], allowing whitespace
-            // between any elements.
-            var match = System.Text.RegularExpressions.Regex.Match(remainderOfLine, $@"\[\s*\/\s*({name})?\s*\]");
-
-            // If we didn't find it, then there's no closing marker, and
-            // that's an error!
-            if (match.Success == false)
-            {
-                throw new MarkupParseException($"Unterminated marker {name} in line {this.input} at position {this.position}");
-            }
-
-            // Split the line into the part up to the closing tag, and the
-            // part afterwards
-            var closeMarkerPosition = match.Index;
-
-            var rawTextSubstring = remainderOfLine.Substring(0, closeMarkerPosition);
-            var lineAfterRawText = remainderOfLine.Substring(closeMarkerPosition);
-
-            // We've consumed all of this text in the string reader, so to
-            // make it possible to parse the rest, we need to create a new
-            // string reader with the remaining text
-            this.stringReader = new StringReader(lineAfterRawText);
-
-            return rawTextSubstring;
-        }
-
-        /// <summary>
-        /// Creates a list of <see cref="MarkupAttribute"/>s from loose
-        /// <see cref="MarkupAttributeMarker"/>s.
-        /// </summary>
-        /// <param name="markers">The collection of markers.</param>
-        /// <returns>The list of attributes.</returns>
-        /// <throws cref="MarkupParseException">Thrown when a close marker
-        /// is encountered, but no corresponding open marker for it
-        /// exists.</throws>
-        private List<MarkupAttribute> BuildAttributesFromMarkers(List<MarkupAttributeMarker> markers)
-        {
-            // Using a linked list here because we want to append to the
-            // front and be able to walk through it easily
-            var unclosedMarkerList = new LinkedList<MarkupAttributeMarker>();
-
-            var attributes = new List<MarkupAttribute>(markers.Count);
-
-            foreach (var marker in markers)
-            {
-                switch (marker.Type)
-                {
-                    case TagType.Open:
-                        // A new marker! Add it to the unclosed list at the
-                        // start (because there's a high chance that it
-                        // will be closed soon).
-                        unclosedMarkerList.AddFirst(marker);
-                        break;
-                    case TagType.Close:
-                        {
-                            // A close marker! Walk back through the
-                            // unclosed stack to find the most recent
-                            // marker of the same type to find its pair.
-                            MarkupAttributeMarker matchedOpenMarker = default;
-                            foreach (var openMarker in unclosedMarkerList)
-                            {
-                                if (openMarker.Name == marker.Name)
-                                {
-                                    // Found a corresponding open!
-                                    matchedOpenMarker = openMarker;
-                                    break;
-                                }
-                            }
-
-                            if (matchedOpenMarker.Name == null)
-                            {
-                                throw new MarkupParseException($"Unexpected close marker {marker.Name} at position {marker.Position} in line {this.input}");
-                            }
-
-                            // This attribute is now closed, so we can
-                            // remove the marker from the unmatched list
-                            unclosedMarkerList.Remove(matchedOpenMarker);
-
-                            // We can now construct the attribute!
-                            var length = marker.Position - matchedOpenMarker.Position;
-                            var attribute = new MarkupAttribute(matchedOpenMarker, length);
-
-                            attributes.Add(attribute);
-                        }
-
-                        break;
-                    case TagType.SelfClosing:
-                        {
-                            // Self-closing markers create a zero-length
-                            // attribute where they appear
-                            var attribute = new MarkupAttribute(marker, 0);
-                            attributes.Add(attribute);
-                        }
-
-                        break;
-                    case TagType.CloseAll:
-                        {
-                            // Close all currently open markers
-
-                            // For each marker that we currently have open,
-                            // this marker has closed it, so create an
-                            // attribute for it
-                            foreach (var openMarker in unclosedMarkerList)
-                            {
-                                var length = marker.Position - openMarker.Position;
-                                var attribute = new MarkupAttribute(openMarker, length);
-
-                                attributes.Add(attribute);
-                            }
-
-                            // We've now closed all markers, so we can
-                            // clear the unclosed list now
-                            unclosedMarkerList.Clear();
-                        }
-
-                        break;
-                }
-            }
-
-            attributes.Sort(AttributePositionComparison);
-
-            return attributes;
-        }
-
-        /// <summary>
-        /// Parses an open, close, self-closing, or close-all attribute
-        /// marker.
-        /// </summary>
-        /// <returns>The parsed marker.</returns>
-        private MarkupAttributeMarker ParseAttributeMarker()
-        {
-            var sourcePositionAtMarkerStart = this.sourcePosition;
-
-            // We have already consumed the start of the marker '[' before
-            // we enter here. Increment the sourcePosition counter to
-            // account for it.
-            this.sourcePosition += 1;
-
-            // Next, start parsing from the characters that can appear
-            // inside the marker
-            if (this.Peek('/'))
-            {
-                // This is either the start of a closing tag or the start
-                // of the 'close-all' tag
-                this.ParseCharacter('/');
-
-                if (this.Peek(']'))
-                {
-                    // It's the close-all tag!
-                    this.ParseCharacter(']');
-                    return new MarkupAttributeMarker(null, this.position, sourcePositionAtMarkerStart, new List<MarkupProperty>(), TagType.CloseAll);
-                }
-                else
-                {
-                    // It's a named closing tag!
-                    var tagName = this.ParseID();
-                    this.ParseCharacter(']');
-                    return new MarkupAttributeMarker(tagName, this.position, sourcePositionAtMarkerStart, new List<MarkupProperty>(), TagType.Close);
-                }
-            }
-
-            // If we're here, this is either an opening tag, or a
-            // self-closing tag.
-
-            // If the opening ID is not provided, the name of the attribute
-            // is taken from the first property.
-
-            // Tags always start with an ID, which is used as the name of
-            // the attribute.
-            string attributeName = this.ParseID();
-
-            var properties = new List<MarkupProperty>();
-
-            // If the ID was immediately followed by an '=', this was the
-            // first property (its value is also used as the attribute
-            // name.)
-            if (this.Peek('='))
-            {
-                // This is also the first property!
-
-                // Parse the rest of the property now before we parse any
-                // others.
-                this.ParseCharacter('=');
-                var value = this.ParseValue();
-                properties.Add(new MarkupProperty(attributeName, value));
-            }
-
-            // parse all remaining properties
-            while (true)
-            {
-                this.ConsumeWhitespace();
-                var next = this.stringReader.Peek();
-                this.AssertNotEndOfInput(next);
-
-                if ((char)next == ']')
-                {
-                    // End of an Opening tag.
-                    this.ParseCharacter(']');
-                    return new MarkupAttributeMarker(attributeName, this.position, sourcePositionAtMarkerStart, properties, TagType.Open);
-                }
-
-                if ((char)next == '/')
-                {
-                    // End of a self-closing tag.
-                    this.ParseCharacter('/');
-                    this.ParseCharacter(']');
-                    return new MarkupAttributeMarker(attributeName, this.position, sourcePositionAtMarkerStart, properties, TagType.SelfClosing);
-                }
-
-                // Expect another property.
-                var propertyName = this.ParseID();
-                this.ParseCharacter('=');
-                var propertyValue = this.ParseValue();
-
-                properties.Add(new MarkupProperty(propertyName, propertyValue));
-            }
-        }
-
-        /// <summary>
-        /// Parses a property value.
-        /// </summary>
-        /// <remarks>
-        /// Permitted value types are:
-        ///
-        /// <list type="bullet">
-        /// <item>Integers</item>
-        ///
-        /// <item>Floating-point numbers</item>
-        ///
-        /// <item>Strings (delimited by double quotes). (Strings may contain
-        /// escaped quotes with a backslash.)</item>
-        ///
-        /// <item>The words <c>true</c> or <c>false</c>
-        /// </item>
-        ///
-        /// <item>Runs of alphanumeric characters, up to but not including a
-        /// whitespace or the end of a tag; these are interpreted as a string
-        /// (e.g. <c>[mood=happy]</c> is interpreted the same as
-        /// <c>[mood="happy"]</c>
-        /// </item>
-        ///
-        /// <item>Expressions (delimited by curly braces), which are processed
-        /// as inline expressions.
-        /// </item>
-        /// </list>
-        /// </remarks>
-        /// <returns>The parsed value.</returns>
-        private MarkupValue ParseValue()
-        {
-            // parse integers or floats:
-            if (this.PeekNumeric())
-            {
-                // could be an int or a float
-                var integer = this.ParseInteger();
-
-                // if there's a decimal separator, this is a float
-                if (this.Peek('.'))
-                {
-                    // a float
-                    this.ParseCharacter('.');
-
-                    // parse the fractional value
-                    var fraction = this.ParseInteger();
-
-                    // convert it to a float
-                    var fractionDigits = fraction.ToString(System.Globalization.CultureInfo.InvariantCulture).Length;
-                    float floatValue = integer + (float)(fraction / Math.Pow(10, fractionDigits));
-
-                    return new MarkupValue { FloatValue = floatValue, Type = MarkupValueType.Float };
-                }
-                else
-                {
-                    // an integer
-                    return new MarkupValue { IntegerValue = integer, Type = MarkupValueType.Integer };
-                }
-            }
-
-            if (this.Peek('"'))
-            {
-                // a string
-                var stringValue = this.ParseString();
-
-                return new MarkupValue { StringValue = stringValue, Type = MarkupValueType.String };
-            }
-
-            var word = this.ParseID();
-
-            // This ID is expected to be 'true', 'false', or something
-            // else. if it's 'true' or 'false', interpret it as a bool.
-            if (word.Equals("true", StringComparison.OrdinalIgnoreCase))
-            {
-                return new MarkupValue { BoolValue = true, Type = MarkupValueType.Bool };
-            }
-            else if (word.Equals("false", StringComparison.OrdinalIgnoreCase))
-            {
-                return new MarkupValue { BoolValue = false, Type = MarkupValueType.Bool };
-            }
-            else
-            {
-                // interpret this as a one-word string
-                return new MarkupValue { StringValue = word, Type = MarkupValueType.String };
-            }
-        }
-
-        /// <summary>
-        /// Peeks ahead in the LineParser's input without consuming any
-        /// characters.
-        /// </summary>
-        /// <remarks>
-        /// This method returns false if the parser has reached the end of
-        /// the line.
-        /// </remarks>
-        /// <param name="expectedCharacter">The character to look
-        /// for.</param>
-        /// <returns>True if the next character is <paramref
-        /// name="expectedCharacter"/>, false otherwise.</returns>
-        private bool Peek(char expectedCharacter)
-        {
-            this.ConsumeWhitespace();
-            var next = this.stringReader.Peek();
-            if (next == -1)
-            {
-                return false;
-            }
-
-            return (char)next == expectedCharacter;
-        }
-
-        /// <summary>
-        /// Peeks ahead in the LineParser's input without consuming any
-        /// characters, looking for whitespace.
-        /// </summary>
-        /// <remarks>
-        /// This method returns false if the parser has reached the end of
-        /// the line.
-        /// </remarks>
-        /// <returns>True if the next character is whitespace, false
-        /// otherwise.</returns>
-        private bool PeekWhitespace()
-        {
-            var next = this.stringReader.Peek();
-            if (next == -1)
-            {
-                return false;
-            }
-
-            return char.IsWhiteSpace((char)next);
-        }
-
-        /// <summary>
-        /// Peeks ahead in the LineParser's input without consuming any
-        /// characters, looking for numeric characters.
-        /// </summary>
-        /// <remarks>
-        /// This method returns false if the parser has reached the end of
-        /// the line.
-        /// </remarks>
-        /// <returns>True if the next character is numeric, false
-        /// otherwise.</returns>
-        private bool PeekNumeric()
-        {
-            this.ConsumeWhitespace();
-            var next = this.stringReader.Peek();
-            if (next == -1)
-            {
-                return false;
-            }
-
-            return char.IsDigit((char)next);
-        }
-
-        /// <summary>
-        /// Parses an integer from the stream.
-        /// </summary>
-        /// <remarks>
-        /// This method returns false if the parser has reached the end of
-        /// the line.
-        /// </remarks>
-        /// <returns>True if the next character is numeric, false
-        /// otherwise.</returns>
-        private int ParseInteger()
-        {
-            this.ConsumeWhitespace();
-
-            StringBuilder intBuilder = new StringBuilder();
-
-            while (true)
-            {
-                var tempNext = this.stringReader.Peek();
-                this.AssertNotEndOfInput(tempNext);
-                var nextChar = (char)tempNext;
-
-                if (char.IsDigit(nextChar))
-                {
-                    this.stringReader.Read();
-                    intBuilder.Append(nextChar);
-                    this.sourcePosition += 1;
-                }
-                else
-                {
-                    // end of the integer! parse and return it
-                    return int.Parse(intBuilder.ToString(), System.Globalization.CultureInfo.InvariantCulture);
-                }
-            }
-        }
-
-        private string ParseID()
-        {
-            this.ConsumeWhitespace();
-            var idStringBuilder = new StringBuilder();
-
-            // Read the first character, which must be a letter, number, or underscore
-            int tempNext = this.stringReader.Read();
-            this.sourcePosition += 1;
-            this.AssertNotEndOfInput(tempNext);
-            char nextChar = (char)tempNext;
-
-            if (char.IsSurrogate(nextChar))
-            {
-                var nextNext = this.stringReader.Read();
-                this.sourcePosition += 1;
-                this.AssertNotEndOfInput(nextNext);
-                var nextNextChar = (char)nextNext;
-
-                // FIXME: This assumes that all surrogate pairs are
-                // 'letters', which may not be the case.
-                idStringBuilder.Append(nextChar);
-                idStringBuilder.Append(nextNextChar);
-            }
-            else if (char.IsLetterOrDigit(nextChar) || nextChar == '_')
-            {
-                idStringBuilder.Append((char)tempNext);
-            }
-            else
-            {
-                throw new ArgumentException($"Expected an identifier inside markup in line \"{this.input}\"");
-            }
-
-            // Read zero or more letters, numbers, or underscores
-            while (true)
-            {
-                tempNext = this.stringReader.Peek();
-                if (tempNext == -1)
-                {
-                    break;
-                }
-
-                nextChar = (char)tempNext;
-
-                if (char.IsSurrogate(nextChar))
-                {
-                    this.stringReader.Read(); // consume this char
-                    this.sourcePosition += 1;
-
-                    // consume the next character, which we expect to be a
-                    // surrogate pair
-                    var nextNext = this.stringReader.Read();
-                    this.sourcePosition += 1;
-                    this.AssertNotEndOfInput(nextNext);
-                    var nextNextChar = (char)nextNext;
-
-                    // This assumes that all surrogate pairs are 'letters',
-                    // which may not be the case.
-                    idStringBuilder.Append(nextChar);
-                    idStringBuilder.Append(nextNextChar);
-                }
-                else if (char.IsLetterOrDigit(nextChar) || (char)tempNext == '_')
-                {
-                    idStringBuilder.Append((char)tempNext);
-                    this.stringReader.Read(); // consume it
-                    this.sourcePosition += 1;
-                }
-                else
-                {
-                    // no more
-                    break;
-                }
-            }
-
-            return idStringBuilder.ToString();
-        }
-
-        private string ParseString()
-        {
-            this.ConsumeWhitespace();
-
-            var stringStringBuilder = new StringBuilder();
-
-            int tempNext = this.stringReader.Read();
-            this.AssertNotEndOfInput(tempNext);
-            this.sourcePosition += 1;
-
-            char nextChar = (char)tempNext;
-            if (nextChar != '"')
-            {
-                throw new ArgumentException($"Expected a string inside markup in line {this.input}");
-            }
-
-            while (true)
-            {
-                tempNext = this.stringReader.Read();
-                this.AssertNotEndOfInput(tempNext);
-                this.sourcePosition += 1;
-                nextChar = (char)tempNext;
-
-                if (nextChar == '"')
-                {
-                    // end of string - consume it but don't append to the
-                    // final collection
-                    break;
-                }
-                else if (nextChar == '\\')
-                {
-                    // an escaped quote or backslash
-                    int nextNext = this.stringReader.Read();
-                    this.AssertNotEndOfInput(nextNext);
-                    this.sourcePosition += 1;
-                    char nextNextChar = (char)nextNext;
-                    if (nextNextChar == '\\' || nextNextChar == '"')
-                    {
-                        stringStringBuilder.Append(nextNextChar);
-                    }
-                }
-                else
-                {
-                    stringStringBuilder.Append(nextChar);
-                }
-            }
-
-            return stringStringBuilder.ToString();
-        }
-
-        private void ParseCharacter(char character)
-        {
-            this.ConsumeWhitespace();
-
-            int tempNext = this.stringReader.Read();
-            this.AssertNotEndOfInput(tempNext);
-            if ((char)tempNext != character)
-            {
-                throw new MarkupParseException($"Expected a {character} inside markup in line \"{this.input}\"");
-            }
-
-            this.sourcePosition += 1;
-        }
-
-        /// <summary>
-        /// Throws an exception if <paramref name="value"/> is the
-        /// end-of-line character.
-        /// </summary>
-        /// <param name="value">The character to test, as an
-        /// integer.</param>
-        /// <throws cref="MarkupParseException">Thrown when <paramref
-        /// name="value"/> is the end-of-line character.</throws>
-        private void AssertNotEndOfInput(int value)
-        {
-            if (value == -1)
-            {
-                throw new MarkupParseException($"Unexpected end of line inside markup in line \"{this.input}");
-            }
-        }
-
-        /// <summary>
-        /// Reads and discards whitespace, up to the first non-whitespace
-        /// character.
-        /// </summary>
-        /// <param name="allowEndOfLine">If <see langword="false"/>, a <see
-        /// cref="MarkupParseException"/> will be thrown if the end of the line
-        /// is reached while reading whitespace.</param>
-        /// <throws cref="MarkupParseException">Thrown when the end of the line
-        /// is reached, and <paramref name="allowEndOfLine"/> is <see
-        /// langword="false"/>.</throws>
-        private void ConsumeWhitespace(bool allowEndOfLine = false)
-        {
-            while (true)
-            {
-                var tempNext = this.stringReader.Peek();
-                if (tempNext == -1 && allowEndOfLine == false)
-                {
-                    throw new MarkupParseException($"Unexpected end of line inside markup in line \"{this.input}");
-                }
-
-                if (char.IsWhiteSpace((char)tempNext) == true)
-                {
-                    // consume it and continue
-                    this.stringReader.Read();
-                    this.sourcePosition += 1;
-                }
-                else
-                {
-                    // no more whitespace ahead; don't consume it, but
-                    // instead stop eating whitespace
-                    return;
+                    return diagnostics;
                 }
             }
         }
