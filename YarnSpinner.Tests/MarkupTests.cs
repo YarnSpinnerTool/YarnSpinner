@@ -1008,14 +1008,12 @@ namespace YarnSpinner.Tests
         [InlineData("[a][/a][/b]")]
         [InlineData("[/b]")]
         [InlineData("[a][/][/b]")]
-        public void TestUnexpectedCloseMarkerThrows(string input)
+        public void TestUnexpectedCloseMarkerErrors(string input)
         {
-            var parsingInvalidMarkup = new Action(() => 
-            {
-                var markup = dialogue.ParseMarkup(input, "en");
-            });
+            var lineParser = new LineParser();
+            var results = lineParser.TimsParseWithErrors(input, "en");
 
-            parsingInvalidMarkup.Should().Throw<MarkupParseException>();
+            results.Item2.Should().HaveCountGreaterThan(0);
         }
 
         [Fact]

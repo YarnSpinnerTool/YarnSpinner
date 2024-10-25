@@ -1325,6 +1325,10 @@ namespace Yarn.Markup
 
         public MarkupParseResult TimsParse(string input, string localeCode, bool squish = true, bool sort = true)
         {
+            return TimsParseWithErrors(input, localeCode, squish, sort).Item1;
+        }
+        public (MarkupParseResult, List<MarkupDiagnostic>) TimsParseWithErrors(string input, string localeCode, bool squish = true, bool sort = true)
+        {
             var tokens = LexMarkup(input);
             var parseResult = BuildMarkupTreeFromTokens(tokens, input);
 
@@ -1342,11 +1346,12 @@ namespace Yarn.Markup
                 attributes.Sort((a,b) => a.SourcePosition.CompareTo(b.SourcePosition));
             }
             
-            return new MarkupParseResult
+            var markup = new MarkupParseResult
             {
                 Text = builder.ToString(),
                 Attributes = attributes,
             };
+            return (markup, parseResult.Item2);
         }
 
         /// <summary>

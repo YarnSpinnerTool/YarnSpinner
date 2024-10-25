@@ -115,9 +115,10 @@ namespace YarnSpinner.Tests
                 stringInfo.text = shadowLineText;
             }
 
-            var substitutedText = Dialogue.ExpandSubstitutions(stringInfo.text, line.Substitutions);
+            var lineParser = new Yarn.Markup.LineParser();
+            var substitutedText = Yarn.Markup.LineParser.ExpandSubstitutions(stringInfo.text, line.Substitutions);
 
-            return dialogue.ParseMarkup(substitutedText, "en").Text;
+            return lineParser.TimsParse(substitutedText, "en").Text;
         }
         
         public TestBase(ITestOutputHelper outputHelper)
