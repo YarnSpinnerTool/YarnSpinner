@@ -1306,11 +1306,15 @@ namespace Yarn.Markup
             }
         }
 
-        public MarkupParseResult ParseString(string input, string localeCode, bool squish = true, bool sort = true)
+        public MarkupParseResult ParseString(string input, string localeCode, bool squish = true, bool sort = true, bool addImplicitCharacterAttribute = true)
         {
-            return ParseStringWithDiagnostics(input, localeCode, squish, sort).markup;
+            return ParseStringWithDiagnostics(input, localeCode, squish, sort, addImplicitCharacterAttribute).markup;
         }
-        public (MarkupParseResult markup, List<MarkupDiagnostic> diagnostics) ParseStringWithDiagnostics(string input, string localeCode, bool squish = true, bool sort = true)
+
+        private static char[] trimChars = {':', ' '};
+        private static System.Text.RegularExpressions.Regex implicitCharacterRegex = new System.Text.RegularExpressions.Regex(@"^.*:\s*");
+
+        public (MarkupParseResult markup, List<MarkupDiagnostic> diagnostics) ParseStringWithDiagnostics(string input, string localeCode, bool squish = true, bool sort = true, bool addImplicitCharacterAttribute = true)
         {
             input = input.Normalize();
             var tokens = LexMarkup(input);
@@ -1337,6 +1341,36 @@ namespace Yarn.Markup
             {
                 SquishSplitAttributes(attributes);
             }
+
+            var finalText = builder.ToString();
+            
+            if (addImplicitCharacterAttribute)
+            {
+                var hasCharacterAttributeAlready = false;
+                foreach (var attribute in attributes)
+                {
+                    if (attribute.Name == "character")
+                    {
+                        hasCharacterAttributeAlready = true;
+                        break;
+                    }
+                }
+                if (!hasCharacterAttributeAlready)
+                {
+                    var match = implicitCharacterRegex.Match(finalText);
+                    if (match.Success)
+                    {
+                        var characterName = match.Value.TrimEnd(trimChars);
+                        var propertyList = new List<MarkupProperty>
+                        {
+                            new MarkupProperty("name", characterName),
+                        };
+                        var characterMarker = new MarkupAttribute(0, 0, match.Length, "character", propertyList);
+                        attributes.Add(characterMarker);
+                    }
+                }
+            }
+
             if (sort)
             {
                 // finally we want them sorted by their position in the source code
@@ -1345,7 +1379,6 @@ namespace Yarn.Markup
 
             // one last check for any errors that might have been introduced by the rewriters
             // if that happens then again just return the input string
-            var finalText = builder.ToString();
             if (diagnostics.Count > 0)
             {
                 finalText = input;

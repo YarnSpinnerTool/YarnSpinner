@@ -1028,6 +1028,29 @@ namespace YarnSpinner.Tests
         }
 
         [Theory]
+        [InlineData("á: [á]S[/á]")]
+        [InlineData("á: [a]á[/a]")]
+        [InlineData("á: [a]S[/a]")]
+        [InlineData("S: [á]S[/á]")]
+        [InlineData("S: [a]á[/a]")]
+        [InlineData("S: [a]S[/a]")]
+        public void TestMultibyteCharacterParsingWithImplicitCharacterAttributes(string input)
+        {
+            var lineParser = new LineParser();
+            var markup = lineParser.ParseString(input, "en");
+
+            // All versions of this string should have the same position
+            // and length of the attribute, despite the presence of
+            // multibyte characters
+            markup.Attributes.Should().HaveCount(2);
+            markup.Attributes[0].Position.Should().Be(0);
+            markup.Attributes[0].Length.Should().Be(3);
+            
+            markup.Attributes[1].Position.Should().Be(3);
+            markup.Attributes[1].Length.Should().Be(1);
+        }
+
+        [Theory]
         [InlineData("[a][/a][/b]")]
         [InlineData("[/b]")]
         [InlineData("[a][/][/b]")]
