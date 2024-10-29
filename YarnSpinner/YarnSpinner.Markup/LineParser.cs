@@ -31,6 +31,47 @@ namespace Yarn.Markup
     using System.IO;
     using System.Text;
 
+    /*
+        Apropos of nothing while we said for v3 we wanted markup diagnostics, that isn't the main impetus for this rewrite, that was one particular bug I found.
+        Take the following:
+
+        [b] this is [pause = 1000] some bold text with a typewriter pause in it [/b]
+
+        it gets rewritten into the following for display (at runtime not a line creation time):
+
+        <strong> this is some bold text with a typewriter pause in it </strong>
+
+        and has a single pause attribute at position 8, meant it was as if I had actually written:
+
+        <strong> [pause = 1000] this is some bold text with a typewriter pause in it </strong>
+        
+        Which mean the pause was at the start and it was very confusing to me.
+        So now we handle nesting and rewriting instead of just handing it off and hoping.
+
+        However there are situations where a rewriter tag uses it's text length to determine what it rewrites, and if those are split to reblance the markup tree correctly it will do weird things.
+        For example lets say we have the following (where z tags are a rewriter that appends the current word count to the start of a word for some weird reason):
+        
+        "[b]this is some [z]markup that has[/b] rewrite issues[/z]"
+
+        and the expected end result would be something like:
+
+        "[b]this is some 0:markup 1:that 2:has[/b] 3:rewrite 4:issues"
+
+        but the split will turn this into the following:
+
+        "[b]this is some [z]markup that has[/z][/b][z] rewrite issues[/z]"
+
+        which would result in the following:
+
+        "[b]this is some 0:markup 1:that 2:has[/b] 0:rewrite 1:issues"
+
+        which isn't what the user wants.
+
+        To fix this properly feels impossible because it means we'd need to know at parse time when certain tags are hit if they are to be a higher priority tag then their parent.
+        And even then there will be situations where that itself isn't going to be possible because the ordering of rewriters will throw it off.
+        Instead we have to just accept that this situation isn't possible in any tool and if you do need that behaviour correctly nest everything to do it.
+    */
+
     /// <summary>
     /// Parses text and produces markup information.
     /// </summary>
@@ -700,7 +741,7 @@ namespace Yarn.Markup
                 return;
             }
 
-            var childBuilder = new System.Text.StringBuilder();
+            var childBuilder = new StringBuilder();
             var childAttributes = new List<MarkupAttribute>();
             foreach (var child in root.children)
             {
@@ -1332,7 +1373,7 @@ namespace Yarn.Markup
                 return (errorMarkup, parseResult.diagnostics);
             }
             
-            var builder = new System.Text.StringBuilder();
+            var builder = new StringBuilder();
             List<MarkupAttribute> attributes = new List<MarkupAttribute>();
             List<MarkupDiagnostic> diagnostics = new List<MarkupDiagnostic>();
             WalkTree(parseResult.tree, builder, attributes, localeCode, diagnostics);
@@ -1435,7 +1476,7 @@ namespace Yarn.Markup
     {
         private static readonly System.Text.RegularExpressions.Regex ValuePlaceholderRegex = new System.Text.RegularExpressions.Regex(@"(?<!\\)%");
 
-        private List<LineParser.MarkupDiagnostic> SelectReplace(MarkupAttribute marker, System.Text.StringBuilder childBuilder, string value)
+        private List<LineParser.MarkupDiagnostic> SelectReplace(MarkupAttribute marker, StringBuilder childBuilder, string value)
         {
             List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
 
@@ -1451,7 +1492,7 @@ namespace Yarn.Markup
 
             return diagnostics;
         }
-        private List<LineParser.MarkupDiagnostic> PluralReplace(MarkupAttribute marker, string localeCode, System.Text.StringBuilder childBuilder, double numericValue)
+        private List<LineParser.MarkupDiagnostic> PluralReplace(MarkupAttribute marker, string localeCode, StringBuilder childBuilder, double numericValue)
         {
             List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
 
@@ -1516,8 +1557,17 @@ namespace Yarn.Markup
             return diagnostics;
         }
 
-        public List<LineParser.MarkupDiagnostic> ProcessReplacementMarker(MarkupAttribute marker, System.Text.StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
+        public List<LineParser.MarkupDiagnostic> ProcessReplacementMarker(MarkupAttribute marker, StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
         {
+            // we have somehow been given an invalid setup, can't continue so early out.
+            if (childBuilder == null || childAttributes == null)
+            {
+                List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>
+                {
+                    new LineParser.MarkupDiagnostic($"Requested to perform replacement on '{marker.Name}', but haven't been given valid string builder or attributes.")
+                };
+                return diagnostics;
+            }
             // all of these are self-closing tags, there is no sensible way to perform a replacement for anything else, so we early out here
             if (childBuilder.Length > 0 || childAttributes.Count > 0)
             {

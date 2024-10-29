@@ -26,49 +26,6 @@ namespace YarnSpinner.Tests
             markup.Attributes[0].Length.Should().Be(1);
         }
 
-        /*
-            apropos of nothing while we said for v3 we wanted markup diagnostics
-            that isn't the main impetus for this, that was one particular bug I found
-            take the following:
-
-            [b] this is [pause = 1000] some bold text with a typewriter pause in it [/b]
-            it gets rewritten into the following for display (at runtime not a line creation time):
-            <strong> this is some bold text with a typewriter pause in it </strong>
-            and has a single pause attribute at position 8
-            meant it was as if I had actually written:
-            <strong> [pause = 1000] this is some bold text with a typewriter pause in it </strong>
-            Which mean the pause was at the start and it was very confusing to me
-
-            So now we handle nesting and rewriting instead of just handing it off and hoping
-            however there are situations where a rewriter tag uses it's text length to determine what it rewrites
-            and if those are split to reblance the markup tree correctly it will do weird things
-            for example lets say we have the following (where z tags are a rewriter that appends the current word count to the start of a word for some weird reason)
-            
-            "[b]this is some [z]markup that has[/b] rewrite issues[/z]"
-
-            and the expected end result would be something like:
-
-            "[b]this is some 0:markup 1:that 2:has[/b] 3:rewrite 4:issues"
-
-            but the split will turn this into the following:
-
-            "[b]this is some [z]markup that has[/z][/b][z] rewrite issues[/z]"
-
-            which would result in the following:
-
-            "[b]this is some 0:markup 1:that 2:has[/b] 0:rewrite 1:issues"
-
-            which isn't what the user wants.
-            To fix this properly feels impossible because it means we'd need to know at parse time when certain tags are hit
-            we need them to be the priority over their parents for nesting purposes.
-            And even then there will be situations where that itself isn't going to be possible because the ordering of rewriters will throw it off
-
-            Instead we basically can only prevent this or flag it, we have some options:
-            1. disable misnested markup entirely, so no rewrite just error
-            2. enable misnested markup but warn when when splitting and squishing
-            3. have a list of "this can't be split/renested" tags that throw errors if they are split and squashed, basically a variant of the above
-        */
-
         private LineParser.MarkupTreeNode descendant(LineParser.MarkupTreeNode root, int[] children)
         {
             var current = root;
@@ -181,8 +138,8 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
-            var errors = result.Item2;
+            var tree = result.tree;
+            var errors = result.diagnostics;
 
             // tree
             //      text
@@ -200,8 +157,8 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
-            var errors = result.Item2;
+            var tree = result.tree;
+            var errors = result.diagnostics;
 
             // tree
             //      text
@@ -219,8 +176,8 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
-            var errors = result.Item2;
+            var tree = result.tree;
+            var errors = result.diagnostics;
 
             // tree
             //      text "this is a line with "
@@ -243,9 +200,9 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
+            var tree = result.tree;
             
-            var errors = result.Item2;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             // tree
@@ -266,9 +223,9 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
+            var tree = result.tree;
             
-            var errors = result.Item2;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             // tree
@@ -289,9 +246,9 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
+            var tree = result.tree;
             
-            var errors = result.Item2;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             // tree
@@ -315,9 +272,9 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
+            var tree = result.tree;
             
-            var errors = result.Item2;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             tree.children.Should().HaveCount(3);
@@ -348,8 +305,8 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
-            var errors = result.Item2;
+            var tree = result.tree;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             tree.children.Should().HaveCount(3);
@@ -364,8 +321,8 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
-            var errors = result.Item2;
+            var tree = result.tree;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             tree.children.Should().HaveCount(3);
@@ -381,8 +338,8 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
-            var errors = result.Item2;
+            var tree = result.tree;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             tree.children.Should().HaveCount(2);
@@ -395,8 +352,8 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
-            var errors = result.Item2;
+            var tree = result.tree;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             tree.children.Should().HaveCount(3);
@@ -419,8 +376,8 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
-            var errors = result.Item2;
+            var tree = result.tree;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             tree.children.Should().HaveCount(4);
@@ -451,8 +408,8 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
-            var errors = result.Item2;
+            var tree = result.tree;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             // text a b text
@@ -663,8 +620,8 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
-            var errors = result.Item2;
+            var tree = result.tree;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             CompareWalk(tree, comparison);
@@ -683,8 +640,8 @@ namespace YarnSpinner.Tests
             lineParser.RegisterMarkerProcessor("bold", this);
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
-            var errors = result.Item2;
+            var tree = result.tree;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             var builder = new System.Text.StringBuilder();
@@ -710,8 +667,8 @@ namespace YarnSpinner.Tests
             lineParser.RegisterMarkerProcessor("bold", this);
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
-            var errors = result.Item2;
+            var tree = result.tree;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             var builder = new System.Text.StringBuilder();
@@ -773,8 +730,8 @@ namespace YarnSpinner.Tests
             lineParser.RegisterMarkerProcessor("localise", this);
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
-            var errors = result.Item2;
+            var tree = result.tree;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             var builder = new System.Text.StringBuilder();
@@ -810,8 +767,8 @@ namespace YarnSpinner.Tests
             lineParser.RegisterMarkerProcessor("bold", this);
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
-            var tree = result.Item1;
-            var errors = result.Item2;
+            var tree = result.tree;
+            var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
             var builder = new System.Text.StringBuilder();
@@ -1059,7 +1016,7 @@ namespace YarnSpinner.Tests
             var lineParser = new LineParser();
             var results = lineParser.ParseStringWithDiagnostics(input, "en");
 
-            results.Item2.Should().HaveCountGreaterThan(0);
+            results.diagnostics.Should().HaveCountGreaterThan(0);
         }
 
         [Fact]
