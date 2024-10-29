@@ -32,24 +32,6 @@ namespace Yarn.Markup
     /// <seealso cref="LineParser.RegisterMarkerProcessor"/>
     public interface IAttributeMarkerProcessor
     {
-        /// <summary>
-        /// Produces the replacement text that should be inserted into a parse
-        /// result for a given attribute.
-        /// </summary>
-        /// <remarks>
-        /// If the marker is an <i>open</i> marker, the text from the marker's
-        /// position to its corresponding closing marker is provided as a string
-        /// property called <c>contents</c>.
-        /// </remarks>
-        /// <param name="marker">The marker that should have text
-        /// inserted.</param>
-        /// <param name="localeCode">The locale to use when preparing replacement text.</param>
-        /// <returns>The replacement text to insert.</returns>
-        string ReplacementTextForMarker(MarkupAttributeMarker marker, string localeCode);
-    }
-
-    public interface TimsAttributeMarkerProcessor
-    {
-        public List<LineParser.MarkupDiagnostic> ReplacementTextForMarker(MarkupAttribute marker, System.Text.StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode);
+        public List<LineParser.MarkupDiagnostic> ProcessReplacementMarker(MarkupAttribute marker, System.Text.StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode);
     }
 }

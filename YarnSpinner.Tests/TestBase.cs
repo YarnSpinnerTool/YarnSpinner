@@ -118,7 +118,7 @@ namespace YarnSpinner.Tests
             var lineParser = new Yarn.Markup.LineParser();
             var substitutedText = Yarn.Markup.LineParser.ExpandSubstitutions(stringInfo.text, line.Substitutions);
 
-            return lineParser.TimsParse(substitutedText, "en").Text;
+            return lineParser.ParseString(substitutedText, "en").Text;
         }
         
         public TestBase(ITestOutputHelper outputHelper)

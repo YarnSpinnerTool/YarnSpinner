@@ -8,7 +8,7 @@ using System.Text;
 
 namespace YarnSpinner.Tests
 {
-    public class MarkupTests : TestBase, TimsAttributeMarkerProcessor
+    public class MarkupTests : TestBase, IAttributeMarkerProcessor
     {
         public MarkupTests(ITestOutputHelper outputHelper) : base(outputHelper) { }
         
@@ -17,7 +17,7 @@ namespace YarnSpinner.Tests
         {
             var line = "A [b]B[/b]";
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(line, "en");
+            var markup = lineParser.ParseString(line, "en");
             
             markup.Text.Should().Be("A B");
             markup.Attributes.Should().ContainSingle();
@@ -99,10 +99,13 @@ namespace YarnSpinner.Tests
         [InlineData("this is a line with \\[markup=false var = 12]two [markup2]markup[/] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with \\[markup=false var = 12]two ","[","markup2","]","markup","[","/","]"," inside of it"})]
         [InlineData("this is a line with [markup markup = 1]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","markup","=","1","]","a single markup","[","/","markup","]"," inside of it"})]
         [InlineData("this is a line with [interpolated markup = {$property} /] inside",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.InterpolatedValue,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,},new string[]{"this is a line with ", "[", "interpolated", "markup", "=", "{$property}", "/", "]", " inside"})]
+        [InlineData("á [a]S[/a]",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,},new string[]{"á ", "[", "a", "]", "S", "[", "/", "a", "]"})]
         public void TestLexerGeneratesCorrectTokens(string line, LineParser.LexerTokenTypes[] types, string[] texts)
         {
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
+
+            line = line.Normalize();
             
             // removing the start and end tokens
             tokens.RemoveAt(0);
@@ -120,8 +123,9 @@ namespace YarnSpinner.Tests
             for (int i = 0; i < texts.Length; i++)
             {
                 var token = tokens[i];
-                var text = line.Substring(token.start, token.end + 1 - token.start);
-                text.Should().Be(texts[i]);
+                var text = line.Substring(token.start, token.range);
+                var comparison = texts[i].Normalize();
+                text.Should().BeEquivalentTo(comparison);
             }
         }
 
@@ -676,7 +680,7 @@ namespace YarnSpinner.Tests
         void TestUnsquishedMarkupStringsWithRewritersAreValid(string line, string comparison) // this one just tests that the strings aren't fucked
         {
             var lineParser = new LineParser();
-            lineParser.rewriters["bold"] = this;
+            lineParser.RegisterMarkerProcessor("bold", this);
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
             var tree = result.Item1;
@@ -685,7 +689,11 @@ namespace YarnSpinner.Tests
 
             var builder = new System.Text.StringBuilder();
             List<MarkupAttribute> attributes = new List<MarkupAttribute>();
-            lineParser.WalkTree(tree, builder, attributes, "en");
+            List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
+            lineParser.WalkTree(tree, builder, attributes, "en", diagnostics);
+
+            diagnostics.Should().HaveCount(0);
+
             builder.ToString().Should().Be(comparison);
         }
         
@@ -699,7 +707,7 @@ namespace YarnSpinner.Tests
         void TestSquishedMarkupStringsWithRewritersAreValid(string line, string comparison, int attributeCount)
         {
             var lineParser = new LineParser();
-            lineParser.rewriters["bold"] = this;
+            lineParser.RegisterMarkerProcessor("bold", this);
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
             var tree = result.Item1;
@@ -708,14 +716,18 @@ namespace YarnSpinner.Tests
 
             var builder = new System.Text.StringBuilder();
             List<MarkupAttribute> attributes = new List<MarkupAttribute>();
-            lineParser.WalkTree(tree, builder, attributes, "en");
+            List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
+            lineParser.WalkTree(tree, builder, attributes, "en", diagnostics);
+            
+            diagnostics.Should().HaveCount(0);
+
             builder.ToString().Should().Be(comparison);
             lineParser.SquishSplitAttributes(attributes);
 
             attributes.Should().HaveCount(attributeCount);
         }
 
-        List<LineParser.MarkupDiagnostic> TimsAttributeMarkerProcessor.ReplacementTextForMarker(MarkupAttribute marker, StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
+        List<LineParser.MarkupDiagnostic> IAttributeMarkerProcessor.ProcessReplacementMarker(MarkupAttribute marker, StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
         {
             var diagnostics = new List<LineParser.MarkupDiagnostic>();
             switch (marker.Name)
@@ -758,7 +770,7 @@ namespace YarnSpinner.Tests
             var fr_comparison = "This is my pet chat, Pumpkin!";
 
             var lineParser = new LineParser();
-            lineParser.rewriters["localise"] = this;
+            lineParser.RegisterMarkerProcessor("localise", this);
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
             var tree = result.Item1;
@@ -767,7 +779,11 @@ namespace YarnSpinner.Tests
 
             var builder = new System.Text.StringBuilder();
             List<MarkupAttribute> attributes = new List<MarkupAttribute>();
-            lineParser.WalkTree(tree, builder, attributes, "en");
+            List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
+            lineParser.WalkTree(tree, builder, attributes, "en", diagnostics);
+
+            diagnostics.Should().HaveCount(0);
+
             builder.ToString().Should().Be(en_comparison);
             lineParser.SquishSplitAttributes(attributes);
 
@@ -775,7 +791,11 @@ namespace YarnSpinner.Tests
 
             builder = new System.Text.StringBuilder();
             attributes = new List<MarkupAttribute>();
-            lineParser.WalkTree(tree, builder, attributes, "fr");
+            diagnostics = new List<LineParser.MarkupDiagnostic>();
+            lineParser.WalkTree(tree, builder, attributes, "fr", diagnostics);
+
+            diagnostics.Should().HaveCount(0);
+
             builder.ToString().Should().Be(fr_comparison);
             lineParser.SquishSplitAttributes(attributes);
 
@@ -787,7 +807,7 @@ namespace YarnSpinner.Tests
         void TestSquishedRangesAreValid(string line, string comparison, int expectedAttributes, Dictionary<string, (int, int)> ranges)
         {
             var lineParser = new LineParser();
-            lineParser.rewriters["bold"] = this;
+            lineParser.RegisterMarkerProcessor("bold", this);
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
             var tree = result.Item1;
@@ -796,7 +816,11 @@ namespace YarnSpinner.Tests
 
             var builder = new System.Text.StringBuilder();
             List<MarkupAttribute> attributes = new List<MarkupAttribute>();
-            lineParser.WalkTree(tree, builder, attributes, "en");
+            List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
+            lineParser.WalkTree(tree, builder, attributes, "en", diagnostics);
+
+            diagnostics.Should().HaveCount(0);
+
             builder.ToString().Should().Be(comparison);
             lineParser.SquishSplitAttributes(attributes);
 
@@ -895,7 +919,7 @@ namespace YarnSpinner.Tests
             var line = "[a][b][c]X[/b][/a]X[/c]";
 
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(line, "en");
+            var markup = lineParser.ParseString(line, "en");
 
             markup.Attributes.Count.Should().Be(3);
             markup.Attributes[0].Name.Should().Be("a");
@@ -909,7 +933,7 @@ namespace YarnSpinner.Tests
             var line = "A [b]B [c]C[/c][/b]";
 
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(line, "en");
+            var markup = lineParser.ParseString(line, "en");
 
             markup.TextForAttribute(markup.Attributes[0]).Should().Be("B C");
             markup.TextForAttribute(markup.Attributes[1]).Should().Be("C");
@@ -927,7 +951,7 @@ namespace YarnSpinner.Tests
             var line = "[a][b]A [c][X]x[/b] [d]x[/X][/c] B[/d] [e]C[/e][/a]";
 
             var lineParser = new LineParser();
-            var originalMarkup = lineParser.TimsParse(line, "en");
+            var originalMarkup = lineParser.ParseString(line, "en");
 
             // find and Remove the "X" attribute
             originalMarkup.TryGetAttributeWithName("X", out var xAttribute).Should().Be(true);
@@ -967,7 +991,7 @@ namespace YarnSpinner.Tests
             var line = "A [b]B[/b] [b]C[/b]";
 
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(line, "en");
+            var markup = lineParser.ParseString(line, "en");
 
             MarkupAttribute attribute;
             bool found;
@@ -992,9 +1016,8 @@ namespace YarnSpinner.Tests
         [InlineData("S [a]S[/a]")]
         public void TestMultibyteCharacterParsing(string input)
         {
-            // var markup = dialogue.ParseMarkup(input, "en");
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(input, "en");
+            var markup = lineParser.ParseString(input, "en");
 
             // All versions of this string should have the same position
             // and length of the attribute, despite the presence of
@@ -1011,7 +1034,7 @@ namespace YarnSpinner.Tests
         public void TestUnexpectedCloseMarkerErrors(string input)
         {
             var lineParser = new LineParser();
-            var results = lineParser.TimsParseWithErrors(input, "en");
+            var results = lineParser.ParseStringWithDiagnostics(input, "en");
 
             results.Item2.Should().HaveCountGreaterThan(0);
         }
@@ -1021,7 +1044,7 @@ namespace YarnSpinner.Tests
         {
             var line = "[a=1]s[/a]";
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(line, "en");
+            var markup = lineParser.ParseString(line, "en");
 
             // Should have a single attribute, "a", at position 0 and
             // length 1
@@ -1043,7 +1066,7 @@ namespace YarnSpinner.Tests
         {
             var line = "[a p1=1 p2=2]s[/a]";
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(line, "en");
+            var markup = lineParser.ParseString(line, "en");
 
             markup.Attributes[0].Name.Should().Be("a");
             
@@ -1071,7 +1094,7 @@ namespace YarnSpinner.Tests
         public void TestMarkupPropertyParsing(string input, MarkupValueType expectedType, string expectedValueAsString)
         {
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(input, "en");
+            var markup = lineParser.ParseString(input, "en");
 
             var attribute = markup.Attributes[0];
             var propertyValue= attribute.Properties["p"];
@@ -1087,7 +1110,7 @@ namespace YarnSpinner.Tests
         public void TestMultipleAttributes(string input)
         {
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(input, "en");
+            var markup = lineParser.ParseString(input, "en");
 
             markup.Text.Should().Be("A B C D");
 
@@ -1109,7 +1132,7 @@ namespace YarnSpinner.Tests
         {
             var line = "A [a/] B";
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(line, "en");
+            var markup = lineParser.ParseString(line, "en");
 
             markup.Text.Should().Be("A B");
 
@@ -1130,7 +1153,7 @@ namespace YarnSpinner.Tests
         public void TestAttributesMayTrimTrailingWhitespace(string input, string expectedText)
         {
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(input, "en");
+            var markup = lineParser.ParseString(input, "en");
 
             markup.Text.Should().Be(expectedText);
         }
@@ -1143,7 +1166,7 @@ namespace YarnSpinner.Tests
         public void TestImplicitCharacterAttributeParsing(string input)
         {
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(input, "en");
+            var markup = lineParser.ParseString(input, "en");
 
             markup.Text.Should().Be("Mae: Wow!");
             markup.Attributes.Should().ContainSingle();
@@ -1161,7 +1184,7 @@ namespace YarnSpinner.Tests
         {
             var line = "S [a]S[/a] [nomarkup][a]S;][/a][/nomarkup]";
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(line, "en");
+            var markup = lineParser.ParseString(line, "en");
 
             markup.Text.Should().Be("S S [a]S;][/a]");
 
@@ -1182,7 +1205,7 @@ namespace YarnSpinner.Tests
         {
             var line = @"[a]hello \[b\]hello\[/b\][/a]";
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(line, "en");
+            var markup = lineParser.ParseString(line, "en");
 
             markup.Text.Should().Be("hello [b]hello[/b]");
             markup.Attributes.Should().ContainSingle();
@@ -1196,7 +1219,7 @@ namespace YarnSpinner.Tests
         {
             var line = @"[select value=1 1=one 2=two 3=three /]";
             var lineParser = new LineParser();
-            var markup = lineParser.TimsParse(line, "en");
+            var markup = lineParser.ParseString(line, "en");
 
             markup.Attributes.Should().ContainSingle();
             markup.Attributes[0].Name.Should().Be("select");
@@ -1209,8 +1232,8 @@ namespace YarnSpinner.Tests
 
             // now that we know it is correctly determining all the elements run it again with the rewriters enabled
             BuiltInMarkupReplacer select = new BuiltInMarkupReplacer();
-            lineParser.rewriters.Add("select",select);
-            markup = lineParser.TimsParse(line, "en");
+            lineParser.RegisterMarkerProcessor("select", select);
+            markup = lineParser.ParseString(line, "en");
 
             markup.Text.Should().Be("one");
         }
@@ -1227,8 +1250,8 @@ namespace YarnSpinner.Tests
             var line = "[plural value=" + Value + " one=\"a single cat\" other=\"% cats\"/]";
             var lineParser = new LineParser();
             BuiltInMarkupReplacer rewriter = new BuiltInMarkupReplacer();
-            lineParser.rewriters.Add("plural",rewriter);
-            var markup = lineParser.TimsParse(line, Locale);
+            lineParser.RegisterMarkerProcessor("plural", rewriter);
+            var markup = lineParser.ParseString(line, Locale);
             markup.Text.Should().Be(Expected, $"{Value} in locale {Locale} should have the correct plural case");
         }
     }

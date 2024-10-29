@@ -65,20 +65,6 @@ namespace Yarn.Markup
         public const string InternalIncrement = "_internalIncrementingProperty";
 
         /// <summary>
-        /// A regular expression that matches a colon followed by optional
-        /// whitespace.
-        /// </summary>
-        private static readonly System.Text.RegularExpressions.Regex EndOfCharacterMarker = new System.Text.RegularExpressions.Regex(@":\s*");
-
-        /// <summary>
-        /// A comparison function that sorts <see cref="MarkupAttribute"/>s
-        /// by their source position.
-        /// </summary>
-        /// <returns>A value indicating the relative source position of the
-        /// two attributes.</returns>
-        private static readonly Comparison<MarkupAttribute> AttributePositionComparison = (x, y) => x.SourcePosition.CompareTo(y.SourcePosition);
-
-        /// <summary>
         /// A dictionary that maps the names of attributes to an object
         /// that can generate replacement text for those attributes.
         /// </summary>
@@ -107,15 +93,6 @@ namespace Yarn.Markup
         /// </summary>
         private int sourcePosition;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LineParser"/>
-        /// class.
-        /// </summary>
-        internal LineParser()
-        {
-            this.RegisterMarkerProcessor("nomarkup", new NoMarkupTextProcessor());
-        }
-
         /// <summary>Registers an object as a marker processor for a given
         /// marker name.</summary>
         /// <remarks>
@@ -140,6 +117,11 @@ namespace Yarn.Markup
 
             this.markerProcessors.Add(attributeName, markerProcessor);
         }
+        internal void DeregisterMarkerProcessor(string attributeName)
+        {
+            this.markerProcessors.Remove(attributeName);
+        }
+
         
         public enum LexerTokenTypes
         {
@@ -685,8 +667,7 @@ namespace Yarn.Markup
             return idProperty;
         }
 
-        public Dictionary<string, TimsAttributeMarkerProcessor> rewriters = new Dictionary<string, TimsAttributeMarkerProcessor>();
-        public void WalkTree(MarkupTreeNode root, System.Text.StringBuilder builder, List<MarkupAttribute> attributes, string localeCode, int offset = 0)
+        public void WalkTree(MarkupTreeNode root, System.Text.StringBuilder builder, List<MarkupAttribute> attributes, string localeCode, List<MarkupDiagnostic> diagnostics, int offset = 0)
         {
             // text needs to just be added to the builder and continue with one exception
             // if our immediate older sibling is configured to consume whitespace we need to handle this
@@ -723,7 +704,7 @@ namespace Yarn.Markup
             var childAttributes = new List<MarkupAttribute>();
             foreach (var child in root.children)
             {
-                WalkTree(child, childBuilder, childAttributes, localeCode, builder.Length + offset);
+                WalkTree(child, childBuilder, childAttributes, localeCode, diagnostics, builder.Length + offset);
             }
 
             // before we do anything else need to check if we are the true root
@@ -737,13 +718,13 @@ namespace Yarn.Markup
 
             // finally now our children have done their stuff so we can run our own rewriter if necessary
             // to do that we will need the combined finished string of all our children and their attributes
-            if (rewriters.TryGetValue(root.name, out var rewriter))
+            if (markerProcessors.TryGetValue(root.name, out var rewriter))
             {
                 // we now need to do the rewrite
                 // so in this case we need to give the rewriter the combined child string and it's attributes
                 // because it is up to you to fix any attributes if you modify them
                 MarkupAttribute attribute = new MarkupAttribute(builder.Length + offset, root.firstToken.start, childBuilder.Length, root.name, root.properties);
-                rewriter.ReplacementTextForMarker(attribute, childBuilder, childAttributes, localeCode);
+                diagnostics.AddRange(rewriter.ProcessReplacementMarker(attribute, childBuilder, childAttributes, localeCode));
             }
             else
             {
@@ -805,7 +786,7 @@ namespace Yarn.Markup
 
         // builds a tree of MarkupTreeNode nodes
         // the top is always just the empty root and it must have at least one child even if it's just text
-        public (MarkupTreeNode, List<MarkupDiagnostic>) BuildMarkupTreeFromTokens(List<LexerToken> tokens, string OG)
+        public (MarkupTreeNode tree, List<MarkupDiagnostic> diagnostics) BuildMarkupTreeFromTokens(List<LexerToken> tokens, string OG)
         {
             var tree = new MarkupTreeNode();
             List<MarkupDiagnostic> diagnostics = new List<MarkupDiagnostic>();
@@ -825,6 +806,8 @@ namespace Yarn.Markup
                 diagnostics.Add(new MarkupDiagnostic("Token list doesn't start and end with the correct tokens."));
                 return (tree, diagnostics);
             }
+
+            OG = OG.Normalize();
 
             bool TryIntFromToken(LexerToken token, out int value)
             {
@@ -1323,18 +1306,32 @@ namespace Yarn.Markup
             }
         }
 
-        public MarkupParseResult TimsParse(string input, string localeCode, bool squish = true, bool sort = true)
+        public MarkupParseResult ParseString(string input, string localeCode, bool squish = true, bool sort = true)
         {
-            return TimsParseWithErrors(input, localeCode, squish, sort).Item1;
+            return ParseStringWithDiagnostics(input, localeCode, squish, sort).markup;
         }
-        public (MarkupParseResult, List<MarkupDiagnostic>) TimsParseWithErrors(string input, string localeCode, bool squish = true, bool sort = true)
+        public (MarkupParseResult markup, List<MarkupDiagnostic> diagnostics) ParseStringWithDiagnostics(string input, string localeCode, bool squish = true, bool sort = true)
         {
+            input = input.Normalize();
             var tokens = LexMarkup(input);
             var parseResult = BuildMarkupTreeFromTokens(tokens, input);
 
+            // ok so at this point if parseResult.diagnostics is not empty we have lexing/parsing errors
+            // it makes no sense to continue, just set the text to be the input so something exists
+            if (parseResult.diagnostics.Count > 0)
+            {
+                var errorMarkup = new MarkupParseResult
+                {
+                    Text = input,
+                    Attributes = new List<MarkupAttribute>(),
+                };
+                return (errorMarkup, parseResult.diagnostics);
+            }
+            
             var builder = new System.Text.StringBuilder();
             List<MarkupAttribute> attributes = new List<MarkupAttribute>();
-            WalkTree(parseResult.Item1, builder, attributes, localeCode);
+            List<MarkupDiagnostic> diagnostics = new List<MarkupDiagnostic>();
+            WalkTree(parseResult.tree, builder, attributes, localeCode, diagnostics);
             
             if (squish)
             {
@@ -1345,13 +1342,22 @@ namespace Yarn.Markup
                 // finally we want them sorted by their position in the source code
                 attributes.Sort((a,b) => a.SourcePosition.CompareTo(b.SourcePosition));
             }
+
+            // one last check for any errors that might have been introduced by the rewriters
+            // if that happens then again just return the input string
+            var finalText = builder.ToString();
+            if (diagnostics.Count > 0)
+            {
+                finalText = input;
+                attributes.Clear();
+            }
             
             var markup = new MarkupParseResult
             {
-                Text = builder.ToString(),
+                Text = finalText,
                 Attributes = attributes,
             };
-            return (markup, parseResult.Item2);
+            return (markup, diagnostics);
         }
 
         /// <summary>
@@ -1392,14 +1398,9 @@ namespace Yarn.Markup
         }
     }
 
-    public class BuiltInMarkupReplacer: TimsAttributeMarkerProcessor
+    public class BuiltInMarkupReplacer: IAttributeMarkerProcessor
     {
         private static readonly System.Text.RegularExpressions.Regex ValuePlaceholderRegex = new System.Text.RegularExpressions.Regex(@"(?<!\\)%");
-
-        // [b] this [a]is[/a] bold [/b]
-        // a 5 -> 7 (range of 2)
-        // <bold> this [a]is[/a] bold </bold>
-        // a 12 -> 14 (range of 2)
 
         private List<LineParser.MarkupDiagnostic> SelectReplace(MarkupAttribute marker, System.Text.StringBuilder childBuilder, string value)
         {
@@ -1482,7 +1483,7 @@ namespace Yarn.Markup
             return diagnostics;
         }
 
-        public List<LineParser.MarkupDiagnostic> ReplacementTextForMarker(MarkupAttribute marker, System.Text.StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
+        public List<LineParser.MarkupDiagnostic> ProcessReplacementMarker(MarkupAttribute marker, System.Text.StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
         {
             // all of these are self-closing tags, there is no sensible way to perform a replacement for anything else, so we early out here
             if (childBuilder.Length > 0 || childAttributes.Count > 0)
