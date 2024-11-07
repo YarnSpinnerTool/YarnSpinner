@@ -149,7 +149,7 @@ namespace Yarn.Markup
         /// use this marker processor.</param>
         /// <param name="markerProcessor">The object that should be invoked
         /// when markers with this name are encountered.</param>
-        internal void RegisterMarkerProcessor(string attributeName, IAttributeMarkerProcessor markerProcessor)
+        public void RegisterMarkerProcessor(string attributeName, IAttributeMarkerProcessor markerProcessor)
         {
             if (this.markerProcessors.ContainsKey(attributeName))
             {
@@ -158,7 +158,7 @@ namespace Yarn.Markup
 
             this.markerProcessors.Add(attributeName, markerProcessor);
         }
-        internal void DeregisterMarkerProcessor(string attributeName)
+        public void DeregisterMarkerProcessor(string attributeName)
         {
             this.markerProcessors.Remove(attributeName);
         }

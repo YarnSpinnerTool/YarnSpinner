@@ -373,6 +373,18 @@ namespace Yarn.Markup
         {
         }
 
+        public MarkupAttribute Shift(int shift)
+        {
+            List<MarkupProperty> propList = new List<MarkupProperty>();
+            foreach (var property in this.Properties)
+            {
+                var newProperty = new MarkupProperty(property.Key, property.Value);
+                propList.Add(newProperty);
+            }
+            var shifted = new MarkupAttribute(this.Position + shift, this.SourcePosition, this.Length, this.Name, propList);
+            return shifted;
+        }
+
         /// <summary>
         /// Gets the position in the plain text where
         /// this attribute begins.
