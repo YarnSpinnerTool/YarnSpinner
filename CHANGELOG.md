@@ -211,6 +211,13 @@ You can use any of the following kinds of expressions in a `when:` header:
 
 - Standard library functions (e.g. `random`, `round_places`, `dice`) have been moved to the core Yarn Spinner library.
 - Added a `format` function to the standard library, this works identical to the C# `string.Format`.
+- Added `BuiltInMarkupReplacer` new `IAttributeMarkerProcessor` for the built in replacement markers
+- `LineParser` now has `ExpandSubstitutions` method to expand substitutions
+- `LineParser` now has `ParseMarkup` method to parse markup in a line
+- `LineParser` now can return diagnostics around markup
+  - `MarkupDiagnostic` struct encapsulates the diagnostics.
+  - `ParseMarkup` has a variant which returns the `MarkupParseResult` and diagnostics, or just the marked up line. 
+
 
 ### Changed
 
@@ -234,8 +241,19 @@ You can use any of the following kinds of expressions in a `when:` header:
 - `CompilationResult` now includes a property `UserDefinedTypes`, which contains the types that the user has defined in their script (for example, enums).
 - Fixed an issue where the `dice(n)` function would return a value between 0 and n-1, rather than 1 and n.
 - .yarnproject files may now specify absolute paths to specific .yarn files.
+- `IAttributeMarkerProcessor` replacement method changed from `ReplacementTextForMarker(marker, localeCode)` to `ProcessReplacementMarker(marker,childBuilder,childAttributes,localeCode)`
+- Reworked `LineParser` markup handling to better handle reordering and rewriting markers at runtime
+  - `nomarkup` attributes are no longer included in the final parsed line.
+  - `trimwhitespace` property is now included in the final parsed line.
 
 ### Removed
+
+- `Dialogue` no longer has line parser responsibilities:
+  - removed the `ParseMarkup` method.
+  - removed the `ExpandSubstitutions` method.
+  - removed `IAttributeMarkerProcessor` conformance.
+  - see `LineParser` for replacements.
+- `NoMarkupParser` removed due to this functionality now being inside `LineParser`
 
 ## [2.4.2] 2024-02-24
 
