@@ -24,6 +24,8 @@ SOFTWARE.
 
 */
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("YarnLanguageServer.Tests")]
+
 namespace Yarn.Markup
 {
     using System;
@@ -163,8 +165,7 @@ namespace Yarn.Markup
             this.markerProcessors.Remove(attributeName);
         }
 
-        
-        public enum LexerTokenTypes
+        internal enum LexerTokenTypes
         {
             Text,
             OpenMarker,
@@ -180,7 +181,7 @@ namespace Yarn.Markup
             BooleanValue,
             InterpolatedValue,
         }
-        public class LexerToken
+        internal class LexerToken
         {
             internal LexerTokenTypes type;
             internal int start;
@@ -200,13 +201,13 @@ namespace Yarn.Markup
             Value,
         }
 
-        public class TokenStream
+        internal class TokenStream
         {
             // this just manages a list of tokens and their current iterator
             // purely a convenience class and it wraps a list and an int
-            public List<LexerToken> tokens;
-            public int iterator = 0;
-            public LexerToken current
+            internal List<LexerToken> tokens;
+            internal int iterator = 0;
+            internal LexerToken current
             {
                 get
                 {
@@ -227,35 +228,35 @@ namespace Yarn.Markup
                     return tokens[iterator];
                 }
             }
-            public LexerToken Next()
+            internal LexerToken Next()
             {
                 iterator += 1;
                 return current;
             }
-            public LexerToken Previous()
+            internal LexerToken Previous()
             {
                 iterator -= 1;
                 return current;
             }
-            public void Consume(int number)
+            internal void Consume(int number)
             {
                 iterator += number;
             }
-            public LexerToken Peek()
+            internal LexerToken Peek()
             {
                 iterator += 1;
                 var next = current;
                 iterator -= 1;
                 return next;
             }
-            public LexerToken LookAhead(int number)
+            internal LexerToken LookAhead(int number)
             {
                 iterator += number;
                 var lookAhead = current;
                 iterator -= number;
                 return lookAhead;
             }
-            public bool ComparePattern(LexerTokenTypes[] pattern)
+            internal bool ComparePattern(LexerTokenTypes[] pattern)
             {
                 bool match = true;
                 int currentIterator = iterator;
@@ -277,7 +278,7 @@ namespace Yarn.Markup
             }
         }
 
-        public List<LexerToken> LexMarkup(string input)
+        internal List<LexerToken> LexMarkup(string input)
         {
             List<LexerToken> tokens = new List<LexerToken>();
             if (string.IsNullOrEmpty(input))
@@ -676,14 +677,14 @@ namespace Yarn.Markup
             return tokens;
         }
 
-        public class MarkupTreeNode
+        internal class MarkupTreeNode
         {
             public string name;
             public LexerToken firstToken;
             public List<MarkupTreeNode> children = new List<MarkupTreeNode>();
             public List<MarkupProperty> properties = new List<MarkupProperty>();
         }
-        public class MarkupTextNode: MarkupTreeNode { public string text;}
+        internal class MarkupTextNode: MarkupTreeNode { public string text;}
 
         public struct MarkupDiagnostic
         {
@@ -708,7 +709,7 @@ namespace Yarn.Markup
             return idProperty;
         }
 
-        public void WalkTree(MarkupTreeNode root, System.Text.StringBuilder builder, List<MarkupAttribute> attributes, string localeCode, List<MarkupDiagnostic> diagnostics, int offset = 0)
+        internal void WalkTree(MarkupTreeNode root, System.Text.StringBuilder builder, List<MarkupAttribute> attributes, string localeCode, List<MarkupDiagnostic> diagnostics, int offset = 0)
         {
             // text needs to just be added to the builder and continue with one exception
             // if our immediate older sibling is configured to consume whitespace we need to handle this
@@ -783,7 +784,7 @@ namespace Yarn.Markup
             builder.Append(childBuilder);
             attributes.AddRange(childAttributes);
         }
-        public void SquishSplitAttributes(List<MarkupAttribute> attributes)
+        internal void SquishSplitAttributes(List<MarkupAttribute> attributes)
         {
             // grab every attribute that has a _internalIncrementingProperty property
             // then for every attribute with the same value of that property we merge them
@@ -827,7 +828,7 @@ namespace Yarn.Markup
 
         // builds a tree of MarkupTreeNode nodes
         // the top is always just the empty root and it must have at least one child even if it's just text
-        public (MarkupTreeNode tree, List<MarkupDiagnostic> diagnostics) BuildMarkupTreeFromTokens(List<LexerToken> tokens, string OG)
+        internal (MarkupTreeNode tree, List<MarkupDiagnostic> diagnostics) BuildMarkupTreeFromTokens(List<LexerToken> tokens, string OG)
         {
             var tree = new MarkupTreeNode();
             List<MarkupDiagnostic> diagnostics = new List<MarkupDiagnostic>();

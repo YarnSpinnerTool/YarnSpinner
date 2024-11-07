@@ -57,7 +57,7 @@ namespace YarnSpinner.Tests
         [InlineData("this is a line with [markup markup = 1]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","markup","=","1","]","a single markup","[","/","markup","]"," inside of it"})]
         [InlineData("this is a line with [interpolated markup = {$property} /] inside",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.InterpolatedValue,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,},new string[]{"this is a line with ", "[", "interpolated", "markup", "=", "{$property}", "/", "]", " inside"})]
         [InlineData("á [a]S[/a]",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,},new string[]{"á ", "[", "a", "]", "S", "[", "/", "a", "]"})]
-        public void TestLexerGeneratesCorrectTokens(string line, LineParser.LexerTokenTypes[] types, string[] texts)
+        void TestLexerGeneratesCorrectTokens(string line, LineParser.LexerTokenTypes[] types, string[] texts)
         {
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
@@ -447,7 +447,7 @@ namespace YarnSpinner.Tests
             ((LineParser.MarkupTextNode)bcNode.children[0]).text.Should().Be(" markup ");
         }
 
-        public static LineParser.MarkupTreeNode Node(string name, params LineParser.MarkupTreeNode[] children)
+        internal static LineParser.MarkupTreeNode Node(string name, params LineParser.MarkupTreeNode[] children)
         {
             return new LineParser.MarkupTreeNode
             {
@@ -455,7 +455,7 @@ namespace YarnSpinner.Tests
                 children = new List<LineParser.MarkupTreeNode>(children)
             };
         }
-        public static LineParser.MarkupTreeNode Text(string value)
+        internal static LineParser.MarkupTreeNode Text(string value)
         {
             return new LineParser.MarkupTextNode
             {
