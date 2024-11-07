@@ -115,9 +115,15 @@ namespace YarnSpinner.Tests
                 stringInfo.text = shadowLineText;
             }
 
-            var substitutedText = Dialogue.ExpandSubstitutions(stringInfo.text, line.Substitutions);
+            var lineParser = new Yarn.Markup.LineParser();
+            var builtInReplacer = new Yarn.Markup.BuiltInMarkupReplacer();
+            lineParser.RegisterMarkerProcessor("select", builtInReplacer);
+            lineParser.RegisterMarkerProcessor("ordinal", builtInReplacer);
+            lineParser.RegisterMarkerProcessor("plural", builtInReplacer);
 
-            return dialogue.ParseMarkup(substitutedText, "en").Text;
+            var substitutedText = Yarn.Markup.LineParser.ExpandSubstitutions(stringInfo.text, line.Substitutions);
+
+            return lineParser.ParseString(substitutedText, "en").Text;
         }
         
         public TestBase(ITestOutputHelper outputHelper)

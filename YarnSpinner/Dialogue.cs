@@ -520,7 +520,7 @@ namespace Yarn
     /// <summary>
     /// Co-ordinates the execution of Yarn programs.
     /// </summary>
-    public class Dialogue : IAttributeMarkerProcessor, ISmartVariableEvaluator, IMarkupParser
+    public class Dialogue : ISmartVariableEvaluator
     {
 
         /// <summary>
@@ -709,12 +709,6 @@ namespace Yarn
             Library.RegisterFunction("visited_count", delegate(string node){
                 return GetNodeVisitCount(node);
             });
-
-            lineParser = new LineParser();
-
-            lineParser.RegisterMarkerProcessor("select", this);
-            lineParser.RegisterMarkerProcessor("plural", this);
-            lineParser.RegisterMarkerProcessor("ordinal", this);
         }
 
         /// <summary>
@@ -1004,174 +998,6 @@ namespace Yarn
                 return;
             }
             context.AddProgramToAnalysis(this.Program);
-        }
-
-        private readonly LineParser lineParser;
-
-        /// <summary>
-        /// Parses a line of text, and produces a <see
-        /// cref="MarkupParseResult"/> containing the results.
-        /// </summary>
-        /// <remarks>
-        /// The <see cref="MarkupParseResult"/>'s <see
-        /// cref="MarkupParseResult.Text"/> will have any <c>select</c>,
-        /// <c>plural</c> or <c>ordinal</c> markers replaced with the appropriate
-        /// text, following this <see cref="Dialogue"/>'s <see
-        /// cref="LanguageCode"/>.
-        /// </remarks>
-        /// <param name="line">The line of text to parse.</param>
-        /// <returns>The results of parsing the markup.</returns>
-        public MarkupParseResult ParseMarkup(string line, string localeCode)
-        {
-            return this.lineParser.ParseMarkup(line, localeCode);
-        }
-
-        /// <summary>
-        /// Replaces all substitution markers in a text with the given
-        /// substitution list.
-        /// </summary>
-        /// <remarks>
-        /// This method replaces substitution markers - for example, <c>{0}</c>
-        /// - with the corresponding entry in <paramref name="substitutions"/>.
-        /// If <paramref name="text"/> contains a substitution marker whose
-        /// index is not present in <paramref name="substitutions"/>, it is
-        /// ignored.
-        /// </remarks>
-        /// <param name="text">The text containing substitution markers.</param>
-        /// <param name="substitutions">The list of substitutions.</param>
-        /// <returns><paramref name="text"/>, with the content from <paramref
-        /// name="substitutions"/> inserted.</returns>
-        public static string ExpandSubstitutions(string text, IList<string> substitutions)
-        {
-            if (substitutions == null)
-            {
-                // if we have no substitutions we want to just return the text as is
-                return text;
-            }
-            if (text == null)
-            {
-                // we somehow have substitutions to apply but no text for them to be applied into?
-                throw new ArgumentNullException($"{nameof(text)} is null. Cannot apply substitutions to an empty string");
-            }
-
-            for (int i = 0; i < substitutions.Count; i++)
-            {
-                string substitution = substitutions[i];
-                text = text.Replace("{" + i + "}", substitution);
-            }
-
-            return text;
-        }
-
-        /// <summary>
-        /// A regex that matches any <c>%</c> as long as it's not preceded by a
-        /// <c>\</c>.
-        /// </summary>
-        private static readonly Regex ValuePlaceholderRegex = new Regex(@"(?<!\\)%");
-
-        /// <summary>Returns the text that should be used to replace the
-        /// contents of <paramref name="marker"/>.</summary>
-        /// <param name="marker">The marker to generate replacement text
-        /// for.</param>
-        /// <returns>The replacement text for the marker.</returns>
-        /// <throws cref="InvalidOperationException"></throws> <throws
-        /// cref="KeyNotFoundException"></throws> <throws
-        /// cref="ArgumentException">Thrown when the string contains a
-        /// <c>plural</c> or <c>ordinal</c> marker, but the specified value cannot be
-        /// parsed as a number.</throws>
-        string IAttributeMarkerProcessor.ReplacementTextForMarker(MarkupAttributeMarker marker, string localeCode)
-        {
-
-            if (marker.TryGetProperty("value", out var valueProp) == false)
-            {
-                throw new KeyNotFoundException("Expected a property \"value\"");
-            }
-
-            var value = valueProp.ToString();
-
-            // Apply the "select" marker
-            if (marker.Name == "select")
-            {
-                if (!marker.TryGetProperty(value, out var replacementProp))
-                {
-                    throw new KeyNotFoundException($"error: no replacement for {value}");
-                }
-
-                string replacement = replacementProp.ToString();
-                replacement = ValuePlaceholderRegex.Replace(replacement, value);
-                return replacement;
-            }
-
-            // If it's not "select", then it's "plural" or "ordinal"
-
-            // First, ensure that we have a locale code set
-            if (localeCode == null)
-            {
-                throw new InvalidOperationException("Locale code was not provided. 'plural' and 'ordinal' markers cannot be called unless one is set.");
-            }
-
-            // Attempt to parse the value as a double, so we can determine
-            // its plural class
-            if (double.TryParse(value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var doubleValue) == false)
-            {
-                throw new ArgumentException($"Error while pluralising line: '{value}' is not a number");
-            }
-
-            // CLDRPlurals only works with 'neutral' locale names (i.e. "en"),
-            // not 'specific' locale names. We need to check to see if
-            // this.LanguageCode is the name of a 'specific' locale name. If is,
-            // we'll fetch its parent, which will be 'neutral', and use that.
-            string languageCode;
-            try
-            {
-                var culture = new System.Globalization.CultureInfo(localeCode);
-                if (culture.IsNeutralCulture)
-                {
-                    languageCode = culture.Name;
-                }
-                else
-                {
-                    culture = culture.Parent;
-                    if (culture != null) {
-                        languageCode = culture.Name;
-                    } else {
-                        languageCode = localeCode;
-                    }
-                }
-            }
-            catch (System.Globalization.CultureNotFoundException)
-            {
-                // this.LanguageCode doesn't represent a known culture. Fall
-                // back to using what the user provided.
-                languageCode = localeCode;
-            }
-
-            CLDRPlurals.PluralCase pluralCase;
-
-            switch (marker.Name)
-            {
-                case "plural":
-                    pluralCase = CLDRPlurals.NumberPlurals.GetCardinalPluralCase(languageCode, doubleValue);
-                    break;
-                case "ordinal":
-                    pluralCase = CLDRPlurals.NumberPlurals.GetOrdinalPluralCase(languageCode, doubleValue);
-                    break;
-                default:
-                    throw new InvalidOperationException($"Invalid marker name {marker.Name}");
-            }
-
-            string pluralCaseName = pluralCase.ToString().ToUpperInvariant();
-
-            // Now that we know the plural case, we can select the
-            // appropriate replacement text for it
-            if (!marker.TryGetProperty(pluralCaseName, out var replacementValue))
-            {
-                throw new KeyNotFoundException($"error: no replacement for {value}'s plural case of {pluralCaseName}");
-            }
-
-            string input = replacementValue.ToString();
-            return ValuePlaceholderRegex.Replace(input, value);
-
         }
 
         private bool IsNodeVisited(string nodeName)

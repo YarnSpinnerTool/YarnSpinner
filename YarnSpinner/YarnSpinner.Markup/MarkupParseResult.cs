@@ -342,14 +342,21 @@ namespace Yarn.Markup
             this.Length = length;
             this.Name = name;
 
-            var props = new Dictionary<string, MarkupValue>();
-
-            foreach (var prop in properties)
+            if (properties != null)
             {
-                props.Add(prop.Name, prop.Value);
-            }
+                var props = new Dictionary<string, MarkupValue>();
 
-            this.Properties = props;
+                foreach (var prop in properties)
+                {
+                    props.Add(prop.Name, prop.Value);
+                }
+
+                this.Properties = props;
+            }
+            else
+            {
+                this.Properties = new Dictionary<string, MarkupValue>();
+            }
         }
 
         /// <summary>
@@ -364,6 +371,18 @@ namespace Yarn.Markup
         internal MarkupAttribute(MarkupAttributeMarker openingMarker, int length)
         : this(openingMarker.Position, openingMarker.SourcePosition, length, openingMarker.Name, openingMarker.Properties)
         {
+        }
+
+        public MarkupAttribute Shift(int shift)
+        {
+            List<MarkupProperty> propList = new List<MarkupProperty>();
+            foreach (var property in this.Properties)
+            {
+                var newProperty = new MarkupProperty(property.Key, property.Value);
+                propList.Add(newProperty);
+            }
+            var shifted = new MarkupAttribute(this.Position + shift, this.SourcePosition, this.Length, this.Name, propList);
+            return shifted;
         }
 
         /// <summary>
@@ -410,6 +429,21 @@ namespace Yarn.Markup
 
             return sb.ToString();
         }
+
+        public bool TryGetProperty(string name, out MarkupValue result)
+        {
+            foreach (var prop in this.Properties)
+            {
+                if (prop.Key.Equals(name, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    result = prop.Value;
+                    return true;
+                }
+            }
+
+            result = default;
+            return false;
+        }
     }
 #pragma warning restore CA1815
 #pragma warning restore CA1711
@@ -435,6 +469,43 @@ namespace Yarn.Markup
         {
             this.Name = name;
             this.Value = value;
+        }
+
+        internal MarkupProperty(string name, string value)
+        {
+            this.Name = name;
+            this.Value = new MarkupValue
+            {
+                StringValue = value,
+                Type = MarkupValueType.String
+            };
+        }
+        internal MarkupProperty(string name, int value)
+        {
+            this.Name = name;
+            this.Value = new MarkupValue
+            {
+                IntegerValue = value,
+                Type = MarkupValueType.Integer
+            };
+        }
+        internal MarkupProperty(string name, float value)
+        {
+            this.Name = name;
+            this.Value = new MarkupValue
+            {
+                FloatValue = value,
+                Type = MarkupValueType.Float
+            };
+        }
+        internal MarkupProperty(string name, bool value)
+        {
+            this.Name = name;
+            this.Value = new MarkupValue
+            {
+                BoolValue = value,
+                Type = MarkupValueType.Bool
+            };
         }
 
         /// <summary>
@@ -532,7 +603,7 @@ namespace Yarn.Markup
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
     /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
-    internal struct MarkupAttributeMarker
+    public struct MarkupAttributeMarker
     {
         /// <summary>
         /// Initializes a new instance of the <see
