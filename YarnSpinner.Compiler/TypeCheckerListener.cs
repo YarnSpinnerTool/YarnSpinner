@@ -876,6 +876,12 @@ namespace Yarn.Compiler
             // We've just finished walking an enum statement! We're almost ready
             // to add its declaration.
 
+            if (context.exception != null) {
+                // A parse exception exists in this context. Don't attempt to
+                // create a type.
+                return;
+            }
+
             // First: are there any types with the same name as this?
             if (this.knownTypes.Any(t => t.Name == context.name.Text))
             {
