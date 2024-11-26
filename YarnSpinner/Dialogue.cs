@@ -1064,7 +1064,7 @@ namespace Yarn
         /// cref="Saliency.ContentSaliencyOption"/> objects that may appear if
         /// and when the node group <paramref name="nodeGroup"/> is run.
         /// </returns>
-        public IEnumerable<Saliency.ContentSaliencyOption?> GetSaliencyOptionsForNodeGroup(string nodeGroup)
+        public IEnumerable<Saliency.ContentSaliencyOption> GetSaliencyOptionsForNodeGroup(string nodeGroup)
         {
             return SmartVariableEvaluationVirtualMachine.GetSaliencyOptionsForNodeGroup(nodeGroup, this.VariableStorage, this.Library);
         }
