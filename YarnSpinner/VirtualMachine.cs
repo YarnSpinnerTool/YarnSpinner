@@ -315,7 +315,7 @@ namespace Yarn
             }
         }
 
-        public IContentSaliencyStrategy? ContentSaliencyStrategy { get; internal set; }
+        public IContentSaliencyStrategy ContentSaliencyStrategy { get; internal set; } = new FirstSaliencyStrategy();
 
         internal Node? currentNode;
 
@@ -930,10 +930,6 @@ namespace Yarn
                     break;
                 case Instruction.InstructionTypeOneofCase.SelectSaliencyCandidate:
                     {
-                        // Ensure that we have a valid saliency strategy. If we
-                        // don't have one, create a simple one now.
-                        this.ContentSaliencyStrategy ??= new FirstSaliencyStrategy();
-
                         // Pass the collection of salient content candidates to
                         // the strategy and get back either a single thing to
                         // run, or null
