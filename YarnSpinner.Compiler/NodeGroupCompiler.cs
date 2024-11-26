@@ -41,9 +41,9 @@ namespace Yarn.Compiler
         private IEnumerable<YarnSpinnerParser.NodeContext> NodeContexts { get; }
         public List<Node> CompiledNodes { get; }
 
-        private Node FindNode(string title)
+        private Node? FindNode(string title)
         {
-            return this.CompiledNodes.Single(n => n.Name == title);
+            return this.CompiledNodes.SingleOrDefault(n => n.Name == title);
         }
 
         internal IEnumerable<NodeCompilationResult> CompileNodeGroup()
@@ -59,6 +59,16 @@ namespace Yarn.Compiler
                     // The node doesn't have a title. We can't use it.
                     continue;
                 }
+
+                // Find the node in the collection of compiled nodes.
+                var compiledNode = FindNode(nodeContext.NodeTitle);
+                if (compiledNode == null)
+                {
+                    // The node doesn't exist. (Possibly it was empty, and
+                    // omitted as a result.)
+                    continue;
+                }
+
 
                 List<string> whenConditionVariableNames = new List<string>();
 
@@ -158,7 +168,6 @@ namespace Yarn.Compiler
 
                 // We need to associate this header with the list of smart
                 // variables that determine its saliency.
-                var compiledNode = FindNode(nodeContext.NodeTitle);
                 compiledNode.Headers.Add(new Header
                 {
                     Key = Node.ContentSaliencyConditionVariablesHeader,
@@ -246,6 +255,25 @@ namespace Yarn.Compiler
                 // Update the add-candidate instruction that points to here
                 addCandidateInstructions[nodeContext].Destination = this.CurrentInstructionNumber;
                 hubNodeDebugInfo.AddLabel("run_candidate_" + nodeContext.NodeTitle, this.CurrentInstructionNumber);
+
+                var onceHeader = nodeContext.GetWhenHeaders().FirstOrDefault(h => h.IsOnce);
+
+                if (onceHeader != null)
+                {
+                    // The node has a 'when: once' header. We're about to detour
+                    // into it, so we need to set its 'once' flag to true so
+                    // that we don't run it again.
+
+                    // Get the name of the 'once' variable.
+                    var onceVariable = Compiler.GetContentViewedVariableName(nodeContext.NodeTitle
+                        ?? throw new InvalidOperationException("Internal error: node has no title"));
+
+                    // Emit code that sets the 'once' variable to true.
+                    this.Emit(onceHeader.header_expression.once,
+                      new Instruction { PushBool = new PushBoolInstruction { Value = true } },
+                      new Instruction { StoreVariable = new StoreVariableInstruction { VariableName = onceVariable } },
+                      new Instruction { Pop = new PopInstruction { } });
+                }
 
                 // Emit code that detours into the node and then returns
                 this.Emit(null,

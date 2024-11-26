@@ -248,7 +248,34 @@ when: always
             availableContent.Where(c => c.FailingConditionValueCount == 0).Should().HaveCount(2, "2 nodes are passing");
             availableContent.Where(c => c.FailingConditionValueCount > 0).Should().HaveCount(1, "1 node is failing");
         }
+
+        [Fact]
+        public void TestNodesWithOnceHeaderOnlyAppearOnce()
+        {
+            // Given
+
+            string source = @"
+title: Start
+when: once
+---
+This content is only seen once.
+===
+";
+
+            CompileAndPrepareDialogue(source);
+
+            this.dialogue.ContentSaliencyStrategy = new FirstSaliencyStrategy();
+
+            var availableContentBeforeRun = this.dialogue.GetSaliencyOptionsForNodeGroup("Start");
+
+            availableContentBeforeRun.Where(c => c.FailingConditionValueCount == 0).Should().HaveCount(1);
+
+            // When
+            this.dialogue.Continue();
+
+            // Then
+            var availableContentAfterRun = this.dialogue.GetSaliencyOptionsForNodeGroup("Start");
+            availableContentAfterRun.Where(c => c.FailingConditionValueCount == 0).Should().HaveCount(0);
+        }
     }
-
-
 }
