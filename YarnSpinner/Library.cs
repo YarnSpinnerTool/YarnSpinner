@@ -18,7 +18,7 @@ namespace Yarn
     public class Library
     {
         internal Dictionary<string, Delegate> Delegates = new Dictionary<string, Delegate>();
-        
+
         /// <summary>
         /// Returns a <see cref="Delegate"/> with a given name.
         /// </summary>
@@ -37,7 +37,7 @@ namespace Yarn
             {
                 throw new InvalidOperationException($"Function {name} is not present in the library.");
             }
-            
+
         }
 
         /// <summary>
@@ -132,7 +132,8 @@ namespace Yarn
 
         /// <inheritdoc cref="RegisterFunction{TResult}(string,
         /// Func{TResult})"/>
-        public void RegisterFunction(string name, Delegate implementation) {
+        public void RegisterFunction(string name, Delegate implementation)
+        {
             Delegates.Add(name, implementation);
         }
 
@@ -141,7 +142,8 @@ namespace Yarn
         /// </summary>
         /// <param name="name">The name of the function to look for.</param>
         /// <returns><c>true</c> if a function exists in this Library; <c>false</c> otherwise.</returns>
-        public bool FunctionExists(string name) {
+        public bool FunctionExists(string name)
+        {
             return Delegates.ContainsKey(name);
         }
 
@@ -172,9 +174,9 @@ namespace Yarn
                 // we weren't given any type to work with
                 return;
             }
-            
+
             var methods = typeLiteral.Methods;
-            
+
             if (methods == null)
             {
                 // this Type declares no methods; nothing to do
@@ -190,7 +192,7 @@ namespace Yarn
 
                 this.RegisterFunction(canonicalName, methodImplementation);
             }
-            
+
         }
 
         /// <summary>

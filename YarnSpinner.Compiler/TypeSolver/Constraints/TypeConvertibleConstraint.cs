@@ -135,7 +135,8 @@ namespace TypeChecker
                 var fromConstraint = new TypeEqualityConstraint(pair.ElementAt(0), this.FromType);
                 var toConstraint = new TypeEqualityConstraint(pair.ElementAt(1), this.ToType);
 
-                foreach (var constraint in new[] { fromConstraint, toConstraint }) {
+                foreach (var constraint in new[] { fromConstraint, toConstraint })
+                {
                     constraint.SourceExpression = this.SourceExpression;
                     constraint.SourceFileName = this.SourceFileName;
                     constraint.SourceRange = this.SourceRange;
@@ -156,7 +157,7 @@ namespace TypeChecker
                     FailureMessageProvider = this.FailureMessageProvider
                 };
                 return conjunction;
-            
+
             }).NotNull();
 
             if (allPossibleEqualities.Count() == 1)
@@ -203,9 +204,12 @@ namespace TypeChecker
                 // - From == To
                 // - From and To are both concrete types, and From is known to
                 //   be convertible to To.
-                if (ITypeExtensions.Equals(FromType, ToType)) {
+                if (ITypeExtensions.Equals(FromType, ToType))
+                {
                     return true;
-                } else if (FromType is TypeBase fromLiteral && ToType is TypeBase toLiteral && fromLiteral.IsConvertibleTo(toLiteral)) {
+                }
+                else if (FromType is TypeBase fromLiteral && ToType is TypeBase toLiteral && fromLiteral.IsConvertibleTo(toLiteral))
+                {
                     return true;
                 }
 

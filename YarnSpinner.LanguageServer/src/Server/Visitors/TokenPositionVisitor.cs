@@ -30,7 +30,8 @@ namespace YarnLanguageServer
             foreach (var childi in Enumerable.Range(0, node.ChildCount))
             {
                 var result = Visit(node.GetChild(childi));
-                if (result.HasValue) {
+                if (result.HasValue)
+                {
                     return result;
                 }
             }

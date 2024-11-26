@@ -1,31 +1,31 @@
-using Xunit;
+using CLDRPlurals;
+using FluentAssertions;
 using System;
 using System.Collections.Generic;
-using Yarn;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-
-using Yarn.Compiler;
-using CLDRPlurals;
-using System.Globalization;
-
-using FluentAssertions;
+using Xunit;
 using Xunit.Abstractions;
+using Yarn;
+using Yarn.Compiler;
 
 namespace YarnSpinner.Tests
 {
     public class LanguageTests : TestBase
     {
-		public LanguageTests(ITestOutputHelper outputHelper) : base(outputHelper) {
+        public LanguageTests(ITestOutputHelper outputHelper) : base(outputHelper)
+        {
 
             // Register some additional functions
-            dialogue.Library.RegisterFunction("add_three_operands", delegate (int a, int b, int c) {
+            dialogue.Library.RegisterFunction("add_three_operands", delegate (int a, int b, int c)
+            {
                 return a + b + c;
             });
 
             dialogue.Library.RegisterFunction("set_objective_complete", (string objective) => true);
             dialogue.Library.RegisterFunction("is_objective_active", (string objective) => true);
-		}
+        }
 
         [Fact]
         public void TestExampleScript()
@@ -33,14 +33,14 @@ namespace YarnSpinner.Tests
             runtimeErrorsCauseFailures = false;
             var path = Path.Combine(TestDataPath, "Example.yarn");
             var testPath = Path.ChangeExtension(path, ".testplan");
-            
+
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
             result.Diagnostics.Should().BeEmpty();
-            
+
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
-            
+
             this.LoadTestPlan(testPath);
 
             RunStandardTestcase();
@@ -54,11 +54,12 @@ namespace YarnSpinner.Tests
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
             result.Diagnostics.Should().BeEmpty();
-            
+
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
 
-            dialogue.OptionsHandler = delegate (OptionSet optionSets) {
+            dialogue.OptionsHandler = delegate (OptionSet optionSets)
+            {
                 throw new InvalidOperationException("Options should not be shown to the user in this test.");
             };
 
@@ -74,10 +75,10 @@ namespace YarnSpinner.Tests
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
             result.Diagnostics.Should().BeEmpty();
-            
+
             result.Program.Nodes.Count.Should().Be(6);
 
-            foreach (var tag in new[] {"one", "two", "three"})
+            foreach (var tag in new[] { "one", "two", "three" })
             {
                 result.Program.Nodes["Tags"].Tags.Should().Contain(tag);
             }
@@ -105,7 +106,7 @@ namespace YarnSpinner.Tests
             headers.Add("LotsOfHeaders", new List<(string, string)>{
                 ("contains", "lots"),
                 ("title", "LotsOfHeaders"),
-                ("this", "node"),                
+                ("this", "node"),
                 ("of", null),
                 ("blank", null),
                 ("others", "are"),
@@ -155,9 +156,10 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-    public void TestNumberPlurals() {
+        public void TestNumberPlurals()
+        {
 
-            (string, double , PluralCase )[] cardinalTests = new[] {
+            (string, double, PluralCase)[] cardinalTests = new[] {
 
                 // English
                 ("en", 1, PluralCase.One),
@@ -205,7 +207,7 @@ namespace YarnSpinner.Tests
 
             };
 
-            (string, int , PluralCase )[] ordinalTests = new[] {
+            (string, int, PluralCase)[] ordinalTests = new[] {
                 // English
                 ("en", 1, PluralCase.One),
                 ("en", 2, PluralCase.Two),
@@ -223,14 +225,16 @@ namespace YarnSpinner.Tests
                 ("cy", 4, PluralCase.Few),
                 ("cy", 5, PluralCase.Many),
                 ("cy", 10, PluralCase.Other),
-                
+
             };
 
-            foreach (var test in cardinalTests) {
+            foreach (var test in cardinalTests)
+            {
                 CLDRPlurals.NumberPlurals.GetCardinalPluralCase(test.Item1, test.Item2).Should().Be(test.Item3);
             }
 
-            foreach (var test in ordinalTests) {
+            foreach (var test in ordinalTests)
+            {
                 CLDRPlurals.NumberPlurals.GetOrdinalPluralCase(test.Item1, test.Item2).Should().Be(test.Item3);
             }
 
@@ -241,7 +245,7 @@ namespace YarnSpinner.Tests
         [MemberData(nameof(FileSources), "TestCases")]
         [MemberData(nameof(FileSources), "Issues")]
         public void TestCompilationShouldNotBeCultureDependent(string file)
-        { 
+        {
             var path = Path.Combine(TestDataPath, file);
 
             var source = File.ReadAllText(path);
@@ -270,15 +274,16 @@ namespace YarnSpinner.Tests
             var invariantCompilationJob = CompilationJob.CreateFromString("input", source);
             invariantCompilationJob.AllowPreviewFeatures = true;
             invariantCompilationJob.Library = dialogue.Library;
-            
+
             var invariantResult = Compiler.Compile(invariantCompilationJob);
 
             var invariantDiagnostics = invariantResult.Diagnostics.Select(d => d.ToString());
             var invariantProgram = invariantResult.Program;
             var invariantStringTable = invariantResult.StringTable.Values.Select(s => s.ToString());
             var invariantParseTree = FormatParseTreeAsText(invariantParseResult.Tree);
-            
-            foreach (var cultureName in targetCultures) {
+
+            foreach (var cultureName in targetCultures)
+            {
                 CultureInfo.CurrentCulture = new CultureInfo(cultureName);
 
                 var (targetParseResult, _) = Utility.ParseSource(source);
@@ -298,7 +303,7 @@ namespace YarnSpinner.Tests
                 targetDiagnostics.Should().ContainInOrder(invariantDiagnostics);
                 targetProgram.Should().Be(invariantProgram);
                 targetStringTable.Should().ContainInOrder(invariantStringTable);
-                
+
             }
 
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
@@ -322,14 +327,14 @@ namespace YarnSpinner.Tests
             // exception to be thrown.
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
             compilationJob.Library = dialogue.Library;
-            
+
             compilationJob.AllowPreviewFeatures = true;
 
             var testPlanFilePath = Path.ChangeExtension(scriptFilePath, ".testplan");
 
             bool testPlanExists = File.Exists(testPlanFilePath);
 
-            if (testPlanExists == false) 
+            if (testPlanExists == false)
             {
                 // No test plan for this file exists, which indicates that
                 // the file is not expected to compile. We'll actually make
@@ -347,7 +352,7 @@ namespace YarnSpinner.Tests
                 result.Diagnostics.Should().BeEmpty("{0} is expected to have no compile errors", file);
 
                 result.Program.Should().NotBeNull();
-            
+
                 LoadTestPlan(testPlanFilePath);
 
                 dialogue.SetProgram(result.Program);
@@ -463,7 +468,7 @@ Line 2
                 "=> Line group item 2",
             });
 
-            
+
             // When
             var jobWithNoPreviewFeatures = CompilationJob.CreateFromString("input", node);
             var jobWithPreviewFeatures = CompilationJob.CreateFromString("input", node);
@@ -475,19 +480,19 @@ Line 2
             var resultWithPreviewFeatures = Compiler.Compile(jobWithPreviewFeatures);
 
             // Then
-            resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new 
+            resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new
             {
                 Severity = Diagnostic.DiagnosticSeverity.Error,
                 Message = "Language feature \"enums\" is only available when preview features are enabled"
             }, "enums are a preview feature");
 
-            resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new 
+            resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new
             {
                 Severity = Diagnostic.DiagnosticSeverity.Error,
                 Message = "Language feature \"smart variables\" is only available when preview features are enabled"
             }, "smart variables are a preview feature");
 
-            resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new 
+            resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new
             {
                 Severity = Diagnostic.DiagnosticSeverity.Error,
                 Message = "Language feature \"line groups\" is only available when preview features are enabled"
@@ -512,7 +517,8 @@ Line 2
             ");
 
 
-            void RunTest(string source, TestPlan plan) {
+            void RunTest(string source, TestPlan plan)
+            {
                 var job = CompilationJob.CreateFromString("input", source, this.dialogue.Library);
                 var result = Compiler.Compile(job);
                 RunTestPlan(result, plan);
@@ -522,9 +528,9 @@ Line 2
             // Create a plan that expects the first line to be "Line 2" (which
             // it won't get)
             var failingPlan = TestPlan.FromString(@"line: `Line 2`");
-        
+
             // Then
-            Action act =() => RunTest(source, failingPlan);
+            Action act = () => RunTest(source, failingPlan);
             act.Should().Throw<Exception>();
         }
 
@@ -559,7 +565,7 @@ some_other_header2: $b + func_call(42, ""wow"")
             textHeader1.Should().NotBeNull();
             textHeader1.header_value.Should().NotBeNull();
             textHeader1.header_value.Text.Should().Be("$a");
-            
+
             var textHeader2 = node.GetHeader("some_other_header2");
             textHeader2.Should().NotBeNull();
             textHeader2.header_value.Should().NotBeNull();

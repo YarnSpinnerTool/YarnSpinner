@@ -3,11 +3,11 @@
 
 namespace Yarn.Compiler
 {
+    using Antlr4.Runtime;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Text;
-    using Antlr4.Runtime;
 
     /// <summary>
     /// A diagnostic message that describes an error, warning or informational
@@ -142,7 +142,7 @@ namespace Yarn.Compiler
                 token.Column,
                 token.Line - 1,
                 token.Column + token.Text.Length);
-        
+
             this.Message = message;
             this.Context = token.Text;
             this.Severity = severity;
@@ -235,7 +235,8 @@ namespace Yarn.Compiler
             hashCode = (hashCode * -1521134295) + this.Range.GetHashCode();
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Message);
 
-            if (this.Context != null) {
+            if (this.Context != null)
+            {
                 hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Context);
             }
             hashCode = (hashCode * -1521134295) + this.Severity.GetHashCode();
@@ -279,7 +280,7 @@ namespace Yarn.Compiler
             Range range = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
 
             var diagnostic = new Diagnostic(this.fileName, range, msg);
-            
+
             if (offendingSymbol.TokenSource != null)
             {
                 StringBuilder builder = new StringBuilder();

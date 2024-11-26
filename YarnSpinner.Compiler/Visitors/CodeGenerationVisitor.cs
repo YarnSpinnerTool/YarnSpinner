@@ -3,13 +3,13 @@
 
 namespace Yarn.Compiler
 {
+    using Antlr4.Runtime;
+    using Antlr4.Runtime.Misc;
+    using Antlr4.Runtime.Tree;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Text;
-    using Antlr4.Runtime;
-    using Antlr4.Runtime.Misc;
-    using Antlr4.Runtime.Tree;
     using static Yarn.Instruction.Types;
 
     // the visitor for the body of the node does not really return ints, just
@@ -80,17 +80,20 @@ namespace Yarn.Compiler
 
             bool hasAnyCondition = context.GetConditionType() != ParserContextExtensions.ContentConditionType.NoCondition;
 
-            if (hasAnyCondition) {
+            if (hasAnyCondition)
+            {
                 // Jump over this line if the line's condition is false.
                 this.compiler.Emit(
                     context.line_condition().Start,
-                    jumpIfConditionFalseInstruction= new Instruction {
+                    jumpIfConditionFalseInstruction = new Instruction
+                    {
                         JumpIfFalse = new JumpIfFalseInstruction { Destination = -1 }
                     }
                 );
             }
 
-            if (context.line_condition() is YarnSpinnerParser.LineOnceConditionContext once) {
+            if (context.line_condition() is YarnSpinnerParser.LineOnceConditionContext once)
+            {
                 // The line has a 'once' condition that has evaluated to true.
                 // Set the corresponding variable for it so that it doesn't
                 // appear again.
@@ -115,14 +118,16 @@ namespace Yarn.Compiler
                 }
             );
 
-            if (jumpIfConditionFalseInstruction != null) {
+            if (jumpIfConditionFalseInstruction != null)
+            {
                 // We generated a jump instruction to jump over the line. Update
                 // its destination to immediately after the line.
                 jumpIfConditionFalseInstruction.Destination = this.CurrentInstructionNumber;
                 this.compiler.CurrentNodeDebugInfo?.AddLabel("skip_line", this.CurrentInstructionNumber);
             }
 
-            if (hasAnyCondition) {
+            if (hasAnyCondition)
+            {
                 // We evaluated a condition, and the value is still on the
                 // stack. Pop the bool off the stack.
                 this.compiler.Emit(
@@ -221,14 +226,15 @@ namespace Yarn.Compiler
                         context.command_formatted_text().Start,
                         new Instruction { Stop = new StopInstruction { } }
                     );
-                    
+
                     break;
                 default:
                     this.compiler.Emit(
                         context.command_formatted_text().Start,
                         new Instruction
                         {
-                            RunCommand = new RunCommandInstruction {
+                            RunCommand = new RunCommandInstruction
+                            {
                                 CommandText = composedString,
                                 SubstitutionCount = expressionCount,
                             }
@@ -276,7 +282,7 @@ namespace Yarn.Compiler
 
             // label to give us a jump point for when the if finishes
             var jumpsToEndOfIfStatement = new List<Instruction>();
-            
+
             // handle the if
             var ifClause = context.if_clause();
             {
@@ -305,7 +311,8 @@ namespace Yarn.Compiler
             }
 
             this.compiler.CurrentNodeDebugInfo?.AddLabel("endif", CurrentInstructionNumber);
-            foreach (var jump in jumpsToEndOfIfStatement) {
+            foreach (var jump in jumpsToEndOfIfStatement)
+            {
                 jump.Destination = CurrentInstructionNumber;
             }
 
@@ -324,7 +331,7 @@ namespace Yarn.Compiler
 
                 this.compiler.Emit(
                     expression.Start,
-                    jumpToEndOfClause = new Instruction { JumpIfFalse =  new JumpIfFalseInstruction { Destination = -1 } }
+                    jumpToEndOfClause = new Instruction { JumpIfFalse = new JumpIfFalseInstruction { Destination = -1 } }
                 );
             }
 
@@ -442,7 +449,8 @@ namespace Yarn.Compiler
                 // are now.
                 addOptionInstructions[optionCount].Destination = CurrentInstructionNumber;
 
-                if (shortcut.line_statement().line_condition() is YarnSpinnerParser.LineOnceConditionContext once) {
+                if (shortcut.line_statement().line_condition() is YarnSpinnerParser.LineOnceConditionContext once)
+                {
                     // This option has a 'once' condition on it. Generate code
                     // that sets the corresponding 'once' variable for this
                     // option to true, so that we don't see it again.
@@ -483,7 +491,8 @@ namespace Yarn.Compiler
             // point to where we are now.
             this.compiler.CurrentNodeDebugInfo?.AddLabel("group_end", CurrentInstructionNumber);
 
-            foreach (var jump in jumpToEndOfGroupInstructions) {
+            foreach (var jump in jumpToEndOfGroupInstructions)
+            {
                 jump.Destination = CurrentInstructionNumber;
             }
 
@@ -518,7 +527,7 @@ namespace Yarn.Compiler
 
                     // Test to see if the 'once' variable for this content is
                     // false
-                    
+
                     this.compiler.Emit(
                         condition.COMMAND_ONCE().Symbol,
                         new Instruction
@@ -531,12 +540,13 @@ namespace Yarn.Compiler
                         new Instruction
                         {
                             // one argument for 'not'
-                            PushFloat = new PushFloatInstruction { Value = 1 } 
+                            PushFloat = new PushFloatInstruction { Value = 1 }
                         },
-                        new Instruction 
+                        new Instruction
                         {
                             // 'not' the variable
-                            CallFunc = new CallFunctionInstruction {
+                            CallFunc = new CallFunctionInstruction
+                            {
                                 FunctionName = GetFunctionName(Types.Boolean, Operator.Not)
                             }
                         }
@@ -666,10 +676,10 @@ namespace Yarn.Compiler
             }
 
             Instruction noContentAvailableJump;
-            
+
             // We've added all of our candidates; now query which one to jump to
             this.compiler.Emit(context.Start,
-                new Instruction { SelectSaliencyCandidate = new SelectSaliencyCandidateInstruction {}}
+                new Instruction { SelectSaliencyCandidate = new SelectSaliencyCandidateInstruction { } }
             );
 
             // The top of the stack now contains 'true' if a piece of content
@@ -696,7 +706,7 @@ namespace Yarn.Compiler
                 // Ensure that the 'add candidate' instruction that points us to
                 // here has the correct destination
                 addCandidateInstructions[lineGroupItem].Destination = CurrentInstructionNumber;
-                
+
                 // Mark that this instruction, which we jump to, should have a
                 // label
                 this.compiler.CurrentNodeDebugInfo?.AddLabel("run_line_group_item", CurrentInstructionNumber);
@@ -705,17 +715,20 @@ namespace Yarn.Compiler
                 // the stack now.
                 this.compiler.Emit(lineGroupItem.line_statement().Start, new Instruction { Pop = new PopInstruction { } });
 
-                if (onceVariables.TryGetValue(lineGroupItem, out var onceVariable) && onceVariable != null) {
+                if (onceVariables.TryGetValue(lineGroupItem, out var onceVariable) && onceVariable != null)
+                {
                     // We have a 'once' variable for this line group item. Emit
                     // code that sets it to 'true', so that we don't see this
                     // item again.
                     this.compiler.Emit(
                         (lineGroupItem.line_statement()?.line_condition() as YarnSpinnerParser.LineOnceConditionContext)?.COMMAND_ONCE().Symbol ?? lineGroupItem.Start,
-                        
-                        new Instruction {
+
+                        new Instruction
+                        {
                             PushBool = new PushBoolInstruction { Value = true },
                         },
-                        new Instruction {
+                        new Instruction
+                        {
                             StoreVariable = new StoreVariableInstruction { VariableName = onceVariable },
                         },
                         new Instruction { Pop = new PopInstruction { } }
@@ -916,7 +929,7 @@ namespace Yarn.Compiler
             float number = float.Parse(context.NUMBER().GetText(), CultureInfo.InvariantCulture);
 
             this.compiler.Emit(
-                context.Start, 
+                context.Start,
                 new Instruction { PushFloat = new PushFloatInstruction { Value = number } }
             );
 
@@ -926,7 +939,7 @@ namespace Yarn.Compiler
         public override int VisitValueTrue(YarnSpinnerParser.ValueTrueContext context)
         {
             this.compiler.Emit(
-                context.Start, 
+                context.Start,
                 new Instruction { PushBool = new PushBoolInstruction { Value = true } }
             );
 
@@ -936,7 +949,7 @@ namespace Yarn.Compiler
         public override int VisitValueFalse(YarnSpinnerParser.ValueFalseContext context)
         {
             this.compiler.Emit(
-                context.Start, 
+                context.Start,
                 new Instruction { PushBool = new PushBoolInstruction { Value = false } }
             );
             return 0;
@@ -964,8 +977,8 @@ namespace Yarn.Compiler
                 // Otherwise, generate the code that fetches the variable from
                 // storage.
                 this.compiler.Emit(
-                    context.Start, 
-                    new Instruction { PushVariable = new PushVariableInstruction { VariableName = variableName} }
+                    context.Start,
+                    new Instruction { PushVariable = new PushVariableInstruction { VariableName = variableName } }
                 );
             }
 
@@ -978,8 +991,8 @@ namespace Yarn.Compiler
             // want?
             string stringVal = context.STRING().GetText().Trim('"');
             this.compiler.Emit(
-                context.Start, 
-                new Instruction { PushString = new PushStringInstruction { Value =  stringVal } }
+                context.Start,
+                new Instruction { PushString = new PushStringInstruction { Value = stringVal } }
             );
 
             return 0;
@@ -1024,14 +1037,14 @@ namespace Yarn.Compiler
             if (propertyType == Types.String)
             {
                 this.compiler.Emit(
-                    context.Start, 
+                    context.Start,
                     new Instruction { PushString = new PushStringInstruction { Value = value.ToString() } }
                 );
             }
             else if (propertyType == Types.Number)
             {
                 this.compiler.Emit(
-                    context.Start, 
+                    context.Start,
                     new Instruction { PushFloat = new PushFloatInstruction { Value = value.ToSingle(CultureInfo.InvariantCulture) } }
                 );
             }
@@ -1073,7 +1086,8 @@ namespace Yarn.Compiler
 
         private void EmitJumpToNamedNode(ParserRuleContext context, string nodeName, bool detour)
         {
-            switch (detour) {
+            switch (detour)
+            {
                 case true:
                     this.compiler.Emit(context.Start,
                         new Instruction { DetourToNode = new DetourToNodeInstruction { NodeName = nodeName } }
@@ -1097,7 +1111,7 @@ namespace Yarn.Compiler
             {
                 case true:
                     this.compiler.Emit(context.Start,
-                        new Instruction { PeekAndDetourToNode = new PeekAndDetourToNode {  } }
+                        new Instruction { PeekAndDetourToNode = new PeekAndDetourToNode { } }
                     );
                     break;
                 case false:
@@ -1133,7 +1147,7 @@ namespace Yarn.Compiler
             // (i.e. this 'once' statement appears at a different instruction
             // number)
             string onceVariable = context.once_primary_clause().OnceVariableName ?? throw new InvalidOperationException("Internal error: once statement primary clause is missing a once variable");
-            
+
             // Get the token that represents the 'once' keyword in this
             // statement, so that we can associate the generated instructions
             // with it
@@ -1187,7 +1201,7 @@ namespace Yarn.Compiler
             // to the alternate clause, if present, or otherwise to the end of
             // the statement).
             Instruction jumpOverPrimaryClause;
-            
+
             this.compiler.Emit(
                 onceToken,
                 jumpOverPrimaryClause = new Instruction
@@ -1212,7 +1226,8 @@ namespace Yarn.Compiler
             );
 
             // Evaluate the primary clause
-            foreach (var statement in context.once_primary_clause().statement()) {
+            foreach (var statement in context.once_primary_clause().statement())
+            {
                 Visit(statement);
             }
 
@@ -1265,7 +1280,7 @@ namespace Yarn.Compiler
             return 0;
         }
 
-        
+
         // TODO: figure out a better way to do operators
         internal static readonly Dictionary<int, Operator> TokensToOperators = new Dictionary<int, Operator>
         {
@@ -1288,7 +1303,8 @@ namespace Yarn.Compiler
         };
     }
 
-    internal static class ParserContextExtensions {
+    internal static class ParserContextExtensions
+    {
 
         internal enum ContentConditionType
         {
@@ -1308,10 +1324,11 @@ namespace Yarn.Compiler
             RegularCondition,
         }
 
-        public static ContentConditionType GetConditionType(this YarnSpinnerParser.Line_statementContext line) {
+        public static ContentConditionType GetConditionType(this YarnSpinnerParser.Line_statementContext line)
+        {
             return GetConditionType(line.line_condition());
         }
-        
+
         private static ContentConditionType GetConditionType(YarnSpinnerParser.Line_conditionContext? condition)
         {
             if (condition == null)

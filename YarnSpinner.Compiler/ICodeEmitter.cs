@@ -1,9 +1,10 @@
 namespace Yarn.Compiler
 {
-    using System.Collections.Generic;
     using Antlr4.Runtime;
+    using System.Collections.Generic;
 
-    internal struct NodeCompilationResult {
+    internal struct NodeCompilationResult
+    {
         public Node Node;
         public NodeDebugInfo NodeDebugInfo;
         public readonly string Name => Node.Name;

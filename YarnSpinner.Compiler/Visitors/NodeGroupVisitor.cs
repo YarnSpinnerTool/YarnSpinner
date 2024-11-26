@@ -6,7 +6,7 @@ using Yarn.Utility;
 namespace Yarn.Compiler
 {
     internal class NodeGroupVisitor : YarnSpinnerParserBaseVisitor<int>
-    {   
+    {
         public string SourceFile { get; set; }
 
         public NodeGroupVisitor(string sourceFile)
@@ -18,9 +18,10 @@ namespace Yarn.Compiler
         {
             var titleHeader = context.GetHeader(Node.TitleHeader);
 
-            if (titleHeader == null || titleHeader.header_value?.Text == null) {
+            if (titleHeader == null || titleHeader.header_value?.Text == null)
+            {
                 // The node doesn't have a title. It can't be part of a node group.
-                return base.VisitNode(context); 
+                return base.VisitNode(context);
             }
 
             if (context.GetWhenHeaders().Any())

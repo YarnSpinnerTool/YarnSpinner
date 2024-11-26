@@ -1,9 +1,9 @@
-using Xunit;
-using System.Linq;
 using FluentAssertions;
-using System.IO;
-using YarnLanguageServer.Diagnostics;
 using OmniSharp.Extensions.LanguageServer.Protocol;
+using System.IO;
+using System.Linq;
+using Xunit;
+using YarnLanguageServer.Diagnostics;
 
 namespace YarnLanguageServer.Tests
 {
@@ -18,7 +18,7 @@ namespace YarnLanguageServer.Tests
         {
             // Given
             var project = new Project(Project1Path);
-        
+
             // When
             project.ReloadProjectFromDisk(false);
 
@@ -34,7 +34,8 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
-        public void Workspaces_CanOpen() {
+        public void Workspaces_CanOpen()
+        {
             var workspace = new Workspace();
             workspace.Root = TestUtility.PathToTestWorkspace;
             workspace.Initialize();
@@ -98,10 +99,10 @@ namespace YarnLanguageServer.Tests
             // Given
             var workspace = new Workspace();
             workspace.Root = NoProjectPath;
-            
+
             // When
             workspace.Initialize();
-        
+
             // Then
             var project = workspace.Projects.Should().ContainSingle().Subject;
             project.Commands.Should().Contain(c => c.YarnName == "custom_command");

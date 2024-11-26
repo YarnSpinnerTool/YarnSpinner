@@ -13,19 +13,23 @@ namespace TypeChecker
     internal class DisjunctionConstraint : TypeConstraint, IEnumerable<TypeConstraint>
     {
         public IEnumerable<TypeConstraint> Constraints { get; private set; }
-        
+
         /// <inheritdoc/>
         public override IEnumerable<TypeVariable> AllVariables => Constraints.SelectMany(c => c.AllVariables).Distinct();
 
-        public DisjunctionConstraint(TypeConstraint other) {
-            if (other is DisjunctionConstraint disjunctionConstraint) {
+        public DisjunctionConstraint(TypeConstraint other)
+        {
+            if (other is DisjunctionConstraint disjunctionConstraint)
+            {
                 this.Constraints = disjunctionConstraint.Constraints;
-            } else {
+            }
+            else
+            {
                 this.Constraints = new[] { other };
             }
         }
 
-        public DisjunctionConstraint(params TypeConstraint[] constraints) 
+        public DisjunctionConstraint(params TypeConstraint[] constraints)
         : this((IEnumerable<TypeConstraint>)constraints) { }
 
         public DisjunctionConstraint(IEnumerable<TypeConstraint> constraints)
@@ -52,7 +56,8 @@ namespace TypeChecker
             // 1. If we represent a tautology, simplify to 'true'.
             // 2. If we have only a single term, simplify to that term.
             // 3. Otherwise, discard any redundant terms.
-            if (this.IsTautological) {
+            if (this.IsTautological)
+            {
                 return new TrueConstraint(this);
             }
             else if (this.Constraints.Count() == 1)

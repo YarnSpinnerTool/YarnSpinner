@@ -30,7 +30,7 @@ namespace Yarn.Compiler
             else
             {
                 var interval = new Interval(context.Start.StartIndex, context.Stop.StopIndex);
-                return context.Start.InputStream.GetText(interval);   
+                return context.Start.InputStream.GetText(interval);
             }
         }
     }

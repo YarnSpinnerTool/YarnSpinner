@@ -1,11 +1,11 @@
-using Xunit;
-using System.IO;
+using FluentAssertions;
 using System.Collections.Generic;
-using Yarn.Compiler;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using FluentAssertions;
+using Xunit;
 using Xunit.Abstractions;
+using Yarn.Compiler;
 
 namespace YarnSpinner.Tests
 {
@@ -14,22 +14,22 @@ namespace YarnSpinner.Tests
     public class ProjectTests : TestBase
     {
         public ProjectTests(ITestOutputHelper outputHelper) : base(outputHelper) { }
-        
+
         [Fact]
         public void TestLoadingNodes()
         {
             var path = Path.Combine(TestDataPath, "Projects", "Basic", "Test.yarn");
-            
+
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
             result.Diagnostics.Should().BeEmpty();
-            
+
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
 
             // high-level test: load the file, verify it has the nodes we want,
             // and run one
-            
+
             dialogue.NodeNames.Count().Should().Be(3);
 
             dialogue.NodeExists("TestNode").Should().BeTrue();
@@ -43,7 +43,7 @@ namespace YarnSpinner.Tests
             // Parsing a file that contains variable declarations should be
             // able to turned back into a string containing the same
             // information.
-            
+
             var originalText = @"title: Program
 tags: one two
 custom: yes
@@ -65,7 +65,7 @@ custom: yes
 
             result.Diagnostics.Should().BeEmpty();
 
-            var headers = new Dictionary<string,string> {
+            var headers = new Dictionary<string, string> {
                 { "custom", "yes"}
             };
             string[] tags = new[] { "one", "two" };
@@ -108,10 +108,10 @@ custom: yes
             foreach (var path in paths)
             {
                 var content = File.ReadAllText(path);
-                
+
                 // this is the older failing version
                 // var taggedVersion = Utility.AddTagsToLines(content, existingTags);
-                
+
                 var tagged = Utility.TagLines(content, existingTags);
                 var taggedVersion = tagged.Item1;
 
@@ -123,11 +123,11 @@ custom: yes
                 existingTags = tagged.Item2 as List<string>;
             }
             // this is a bit inelegant but I don't want to write to disk
-            var taggedContent = string.Join("\n",taggedLineContent);
+            var taggedContent = string.Join("\n", taggedLineContent);
 
             compilationJob = CompilationJob.CreateFromString("tagged", taggedContent);
             result = Compiler.Compile(compilationJob);
-            
+
             // we should have no errors
             result.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error).Should().Be(false);
 
@@ -141,7 +141,8 @@ custom: yes
 
 
         [Fact]
-        public void TestLineTagsAreAdded() {
+        public void TestLineTagsAreAdded()
+        {
             // Arrange
             var originalText = @"title: Program
 ---
@@ -262,7 +263,7 @@ This is a line with embedded escapable symbols in it: \[ \] \\ \< \> \{ \} \# \/
                 ("line:expected_abc123", "A single line, with a line tag."),
                 ("line:expected_def456", "An option, with a line tag."),
                 ("line:expected_ghi789", "A line with a tag, and a comment."),
-                
+
                 (null, "A line with a conditional and no line tag."),
                 (null, "A line with a conditional, a comment, and no line tag."),
 
@@ -320,7 +321,8 @@ This is a line with embedded escapable symbols in it: \[ \] \\ \< \> \{ \} \# \/
                 ("line:expected_bc59", @"This is a line with embedded escapable symbols in it: \[ \] \ < > { } # /"),
 
             };
-            expectedResults.Sort((a,b) => {
+            expectedResults.Sort((a, b) =>
+            {
                 if (a.tag == null)
                 {
                     if (b.tag == null)
@@ -338,7 +340,7 @@ This is a line with embedded escapable symbols in it: \[ \] \\ \< \> \{ \} \# \/
                 }
                 return a.tag.CompareTo(b.tag);
             });
-            
+
             lineTagRegexMatches.Should().Be(expectedResults.Count);
 
             // used to keep track of all line ids we have already seen
@@ -391,7 +393,7 @@ This is a line with embedded escapable symbols in it: \[ \] \\ \< \> \{ \} \# \/
 
             compilationResult.ProjectDebugInfo.Should().NotBeNull();
             compilationResult.ProjectDebugInfo.Nodes.Should().ContainSingle(n => n.NodeName == "DebugTesting");
-            
+
             // The first instruction of the only node should begin on the third
             // line
             var firstLineInfo = compilationResult.ProjectDebugInfo.Nodes.First().GetLineInfo(0);

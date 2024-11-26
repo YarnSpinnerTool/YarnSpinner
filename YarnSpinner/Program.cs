@@ -9,7 +9,8 @@ namespace Yarn
 
     using NodeLabelsCollection = System.Collections.Generic.IReadOnlyDictionary<int, string>;
 
-    internal interface ICodeDumpHelper {
+    internal interface ICodeDumpHelper
+    {
         public string GetStringForKey(string key);
         public string GetDescriptionForVariable(string variableName);
         public NodeLabelsCollection GetLabelsForNode(string node);
@@ -36,7 +37,8 @@ namespace Yarn
                 foreach (var instruction in entry.Value.Instructions)
                 {
                     bool hasLabel = false;
-                    if (nodeLabels?.TryGetValue(instructionCount, out var labelName) ?? false) {
+                    if (nodeLabels?.TryGetValue(instructionCount, out var labelName) ?? false)
+                    {
                         sb.AppendLine(labelName + ":");
                         hasLabel = true;
                     }
@@ -101,7 +103,7 @@ namespace Yarn
                 }
                 else if (instruction.InstructionTypeCase == Instruction.InstructionTypeOneofCase.AddOption)
                 {
-                    
+
                     stringIDs.Add(instruction.AddOption.LineID);
                 }
             }
@@ -214,12 +216,15 @@ namespace Yarn
         public VariableKind GetVariableKind(string name)
         {
             // If 'name' has an initial value, it is a stored variable
-            if (this.InitialValues.ContainsKey(name)) {
+            if (this.InitialValues.ContainsKey(name))
+            {
                 return VariableKind.Stored;
             }
             // If 'name' is the name of a node in our smart variable nodes, then 
-            foreach (var node in this.SmartVariableNodes) {
-                if (node.Name == name) {
+            foreach (var node in this.SmartVariableNodes)
+            {
+                if (node.Name == name)
+                {
                     return VariableKind.Smart;
                 }
             }
@@ -233,8 +238,9 @@ namespace Yarn
     /// </summary>
     public partial class Instruction
     {
-        partial void OnConstruction() {
-            
+        partial void OnConstruction()
+        {
+
         }
 
         internal (string Type, IEnumerable<object> Operands, IEnumerable<string> Comments) ToDescription(Node? containingNode, Library? library, ICodeDumpHelper? helper)
@@ -260,12 +266,13 @@ namespace Yarn
 
                 // Functions pop 0 or more values, and pop 0 or 1
                 case InstructionTypeOneofCase.CallFunc:
-                    if (library == null) {
+                    if (library == null)
+                    {
                         pops = -1;
                         pushes = -1;
                         break;
                     }
-                    
+
                     var function = library.GetFunction(this.CallFunc.FunctionName);
 
                     pops = function.Method.GetParameters().Length;
@@ -319,15 +326,21 @@ namespace Yarn
 
                     string actualString;
 
-                    if (InstructionTypeCase == InstructionTypeOneofCase.RunLine) {
+                    if (InstructionTypeCase == InstructionTypeOneofCase.RunLine)
+                    {
                         actualString = RunLine.LineID;
-                    } else if (InstructionTypeCase == InstructionTypeOneofCase.AddOption) {
+                    }
+                    else if (InstructionTypeCase == InstructionTypeOneofCase.AddOption)
+                    {
                         actualString = AddOption.LineID;
-                    } else {
+                    }
+                    else
+                    {
                         throw new InvalidOperationException();
                     }
 
-                    if (helper != null) {
+                    if (helper != null)
+                    {
                         actualString = helper.GetStringForKey(actualString);
                     }
 
@@ -338,7 +351,7 @@ namespace Yarn
                     }
 
                     break;
-                
+
                 case InstructionTypeOneofCase.PushVariable:
                     comments.Add(helper?.GetDescriptionForVariable(PushVariable.VariableName) ?? "<no variable info available>");
                     break;
@@ -348,7 +361,7 @@ namespace Yarn
 
             }
 
-            
+
             var operands = new List<object>();
 
             string GetLabel(int instruction)
@@ -377,7 +390,8 @@ namespace Yarn
                 case InstructionTypeOneofCase.AddOption:
                     operands.Add(this.AddOption.LineID);
                     operands.Add(GetLabel(this.AddOption.Destination));
-                    if (this.AddOption.HasCondition) {
+                    if (this.AddOption.HasCondition)
+                    {
                         operands.Add("has_condition");
                     }
                     break;
@@ -440,7 +454,8 @@ namespace Yarn
 
             string operandText = string.Join(", ", result.Operands);
             string commentText = string.Join(", ", result.Comments);
-            if (commentText.Length > 0) {
+            if (commentText.Length > 0)
+            {
                 commentText = "; " + commentText;
             }
 
@@ -452,9 +467,12 @@ namespace Yarn
                 commentText);
         }
 
-        internal bool HasDestination {
-            get {
-                switch (this.InstructionTypeCase) {
+        internal bool HasDestination
+        {
+            get
+            {
+                switch (this.InstructionTypeCase)
+                {
                     case InstructionTypeOneofCase.AddOption:
                     case InstructionTypeOneofCase.JumpTo:
                     case InstructionTypeOneofCase.JumpIfFalse:
@@ -468,9 +486,12 @@ namespace Yarn
             }
         }
 
-        internal int Destination {
-            get {
-                switch (this.InstructionTypeCase) {
+        internal int Destination
+        {
+            get
+            {
+                switch (this.InstructionTypeCase)
+                {
                     case InstructionTypeOneofCase.AddOption:
                         return this.AddOption.Destination;
                     case InstructionTypeOneofCase.JumpTo:
@@ -487,9 +508,11 @@ namespace Yarn
                         throw new ArgumentOutOfRangeException($"Instruction {this} does not have a Destination");
                 }
             }
-            
-            set {
-                switch (this.InstructionTypeCase) {
+
+            set
+            {
+                switch (this.InstructionTypeCase)
+                {
                     case InstructionTypeOneofCase.AddOption:
                         this.AddOption.Destination = value;
                         break;
@@ -527,7 +550,8 @@ namespace Yarn
         /// Gets the collection of tags defined for this node, if any. If no
         /// tags are defined, returns an empty collection.
         /// </summary>
-        public IEnumerable<string> Tags {
+        public IEnumerable<string> Tags
+        {
             get
             {
                 foreach (var header in this.Headers)

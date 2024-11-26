@@ -13,7 +13,8 @@ namespace TypeChecker
     /// constraint systems.</remarks>
     internal class FalseConstraint : TypeConstraint
     {
-        public FalseConstraint(TypeConstraint source) {
+        public FalseConstraint(TypeConstraint source)
+        {
             this.FailureMessageProvider = source.FailureMessageProvider;
             this.SourceContext = source.SourceContext;
             this.SourceExpression = source.SourceExpression;
@@ -25,7 +26,7 @@ namespace TypeChecker
 
         public override IEnumerable<TypeConstraint> Children => Array.Empty<TypeConstraint>();
 
-        public override IEnumerable<TypeConstraint> DescendantsAndSelf { get{ yield return this; } }
+        public override IEnumerable<TypeConstraint> DescendantsAndSelf { get { yield return this; } }
 
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<TypeBase> knownTypes) => this;
 

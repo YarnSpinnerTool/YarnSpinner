@@ -14,7 +14,7 @@ namespace TypeChecker
         /// Gets or sets the name of this type variable.
         /// </summary>
         public string Name { get; set; }
-        
+
         /// <summary>
         /// Gets the parser context associated with this type (that is, the
         /// expression or other parse context whose type is represented by this
@@ -28,7 +28,7 @@ namespace TypeChecker
 
         /// <inheritdoc/>
         public string Description => $"Type variable representing \"{Name}\"";
-        
+
         /// <summary>
         /// Gets the collection of members belonging to this type.
         /// </summary>
@@ -50,13 +50,13 @@ namespace TypeChecker
             Name = name;
             Context = context;
         }
-        
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             return obj is IType type && this.Equals(type);
         }
-        
+
         /// <inheritdoc/>
         public override int GetHashCode()
         {
@@ -66,19 +66,22 @@ namespace TypeChecker
         /// <inheritdoc/>
         public override string ToString()
         {
-            if (Context != null) {
+            if (Context != null)
+            {
                 return $@"{Name} ('{Context.GetText()}')";
-            } else {
+            }
+            else
+            {
                 return Name;
             }
         }
-        
+
         /// <inheritdoc/>
         public bool Equals(IType other)
         {
             return other is TypeVariable otherVariable && this.Equals(otherVariable);
         }
-        
+
         /// <inheritdoc/>
         public bool Equals(TypeVariable other)
         {

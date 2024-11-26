@@ -10,7 +10,8 @@ namespace Yarn.Compiler
     using System.Collections.Generic;
     using System.Linq;
 
-    public class FileCompilationResult {
+    public class FileCompilationResult
+    {
         public List<Node> Nodes { get; internal set; } = new List<Node>();
 
         public List<NodeDebugInfo> DebugInfos { get; internal set; } = new List<NodeDebugInfo>();
@@ -167,15 +168,17 @@ namespace Yarn.Compiler
 
         public string GetStringForKey(string key)
         {
-            if (this.StringTable == null) {
+            if (this.StringTable == null)
+            {
                 throw new InvalidOperationException("No string table available");
             }
             return this.StringTable[key].text;
         }
 
-        internal string DumpProgram() {
+        internal string DumpProgram()
+        {
             return this.Program?.DumpCode(null, this) ?? "<no program>";
         }
-        
+
     }
 }

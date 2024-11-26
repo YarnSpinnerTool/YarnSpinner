@@ -62,12 +62,14 @@ namespace YarnLanguageServer
 
         internal bool MatchesUri(DocumentUri uri)
         {
-            if (uri.Equals(this.Uri)) {
+            if (uri.Equals(this.Uri))
+            {
                 // This URI is for the project itself.
                 return true;
             }
 
-            if (this.IsImplicitProject) {
+            if (this.IsImplicitProject)
+            {
                 return true;
             }
 
@@ -206,8 +208,8 @@ namespace YarnLanguageServer
             CompileProject(notifyOnComplete, Yarn.Compiler.CompilationJob.Type.TypeCheck);
         }
 
-        public Yarn.Compiler.CompilationResult CompileProject(bool notifyOnComplete, Yarn.Compiler.CompilationJob.Type compilationType) {
-
+        public Yarn.Compiler.CompilationResult CompileProject(bool notifyOnComplete, Yarn.Compiler.CompilationJob.Type compilationType)
+        {
             var functionDeclarations = Functions.Select(f => f.Declaration);
 
             var files = this.Files.Select(f => new Yarn.Compiler.CompilationJob.File
@@ -243,14 +245,15 @@ namespace YarnLanguageServer
             var variables = compilationResult.Declarations
                 .Where(decl => decl.IsVariable)
                 .Select(decl => new DebugOutput.Variable
-            {
-                Name = decl.Name,
-                Type = decl.Type?.ToString() ?? "unknown",
-                IsSmartVariable = decl.IsInlineExpansion,
-                ExpressionJSON = decl.IsInlineExpansion ? new ExpressionToJSONVisitor().Visit(decl.InitialValueParserContext).JSONValue : null,
-            });
+                {
+                    Name = decl.Name,
+                    Type = decl.Type?.ToString() ?? "unknown",
+                    IsSmartVariable = decl.IsInlineExpansion,
+                    ExpressionJSON = decl.IsInlineExpansion ? new ExpressionToJSONVisitor().Visit(decl.InitialValueParserContext).JSONValue : null,
+                });
 
-            var projectDebugOutput = new DebugOutput {
+            var projectDebugOutput = new DebugOutput
+            {
                 SourceProjectUri = this.Uri,
                 Variables = variables.ToList(),
             };
@@ -267,7 +270,5 @@ namespace YarnLanguageServer
 
             return Workspace.FuzzySearchItem(declarations.Select(d => (d.Name, d)), name, ConfigurationSource?.Configuration.DidYouMeanThreshold ?? Configuration.Defaults.DidYouMeanThreshold);
         }
-
-        
     }
 }

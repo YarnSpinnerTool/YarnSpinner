@@ -3,8 +3,8 @@
 
 namespace Yarn.Compiler
 {
-    using System.Collections.Generic;
     using Antlr4.Runtime;
+    using System.Collections.Generic;
 
     /// <summary>
     /// A visitor that visits any valid literal (i.e. numbers, bools, strings),
@@ -77,7 +77,8 @@ namespace Yarn.Compiler
     // the code can more easily determine whether a parse node is a literal or
     // not. (We do this so that a declaration can check to see if its initial
     // value was of a literal, or of a reference to an identifier.)
-    public partial class YarnSpinnerParser {
+    public partial class YarnSpinnerParser
+    {
         public interface ILiteralContext { }
         public partial class ValueNumberContext : ILiteralContext { }
         public partial class ValueFalseContext : ILiteralContext { }

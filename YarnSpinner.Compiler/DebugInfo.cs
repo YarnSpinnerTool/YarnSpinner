@@ -9,12 +9,16 @@ namespace Yarn.Compiler
     using System;
     using System.Collections.Generic;
 
-    public class ProjectDebugInfo {
+    public class ProjectDebugInfo
+    {
         public List<NodeDebugInfo> Nodes { get; set; } = new List<NodeDebugInfo>();
 
-        public NodeDebugInfo? GetNodeDebugInfo(string nodeName) {
-            foreach (var debugInfo in Nodes) {
-                if (debugInfo.NodeName == nodeName) {
+        public NodeDebugInfo? GetNodeDebugInfo(string nodeName)
+        {
+            foreach (var debugInfo in Nodes)
+            {
+                if (debugInfo.NodeName == nodeName)
+                {
                     return debugInfo;
                 }
             }
@@ -24,12 +28,13 @@ namespace Yarn.Compiler
         internal static ProjectDebugInfo Combine(params ProjectDebugInfo[] debugInfos)
         {
             var newDebugInfo = new ProjectDebugInfo();
-            foreach (var otherDebugInfo in debugInfos) {
+            foreach (var otherDebugInfo in debugInfos)
+            {
                 newDebugInfo.Nodes.AddRange(otherDebugInfo.Nodes);
             }
 
             return newDebugInfo;
-            
+
         }
     }
 
@@ -67,17 +72,22 @@ namespace Yarn.Compiler
 
         private HashSet<int> instructionsThatAreDestinations = new HashSet<int>();
 
-        internal void AddLabel(string label, int instructionIndex) {
+        internal void AddLabel(string label, int instructionIndex)
+        {
             // Ensure that this label is unique
             label = $"L{this.instructionLabels.Count}_" + label;
-            
+
             this.instructionLabels[instructionIndex] = label;
         }
-        
-        internal string? GetLabel(int instructionIndex) {
-            if (this.instructionLabels.TryGetValue(instructionIndex, out string label)) {
+
+        internal string? GetLabel(int instructionIndex)
+        {
+            if (this.instructionLabels.TryGetValue(instructionIndex, out string label))
+            {
                 return label;
-            } else {
+            }
+            else
+            {
                 return null;
             }
         }
@@ -101,7 +111,8 @@ namespace Yarn.Compiler
                 {
                     FileName = this.FileName,
                     NodeName = this.NodeName,
-                    Position = new Position {
+                    Position = new Position
+                    {
                         Character = info.Character,
                         Line = info.Line,
                     },

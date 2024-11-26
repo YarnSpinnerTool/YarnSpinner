@@ -28,7 +28,8 @@ namespace YarnLanguageServer.Handlers
 
             // Any change to a Yarn project requires that we rebuild the entire
             // workspace
-            if (yarnProjectChanges.Any()) {
+            if (yarnProjectChanges.Any())
+            {
                 needsWorkspaceReload = true;
             }
 

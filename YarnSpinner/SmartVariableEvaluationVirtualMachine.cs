@@ -18,7 +18,7 @@ namespace Yarn
     {
         private static int programCounter = 0;
         private static readonly Stack<IConvertible> _stack = new Stack<IConvertible>(32);
-        
+
         /// <summary>
         /// Evaluates a smart variable.
         /// </summary>
@@ -75,14 +75,14 @@ namespace Yarn
 
             try
             {
-                while (programCounter < smartVariableNode.Instructions.Count) {
+                while (programCounter < smartVariableNode.Instructions.Count)
+                {
                     var instruction = smartVariableNode.Instructions[programCounter];
                     if (EvaluateInstruction(instruction, variableAccess, library, _stack, ref programCounter) == false)
                     {
                         break;
                     }
                 }
-                
             }
             catch (InvalidOperationException e)
             {

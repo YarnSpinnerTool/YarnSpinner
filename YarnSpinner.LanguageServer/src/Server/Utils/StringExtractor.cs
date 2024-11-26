@@ -182,7 +182,8 @@ namespace YarnLanguageServer
             this.csv.NextRecord();
         }
 
-        public void Format(HashSet<string> characters) { 
+        public void Format(HashSet<string> characters)
+        {
             /* does nothing in CSV */
         }
 
@@ -301,8 +302,8 @@ namespace YarnLanguageServer
                 value = value * 255;
                 int v = Convert.ToInt32(value);
                 int p = Convert.ToInt32(value * (1 - saturation));
-                int q = Convert.ToInt32(value * (1 - f * saturation));
-                int t = Convert.ToInt32(value * (1 - (1 - f) * saturation));
+                int q = Convert.ToInt32(value * (1 - (f * saturation)));
+                int t = Convert.ToInt32(value * (1 - ((1 - f) * saturation)));
 
                 switch (hi)
                 {

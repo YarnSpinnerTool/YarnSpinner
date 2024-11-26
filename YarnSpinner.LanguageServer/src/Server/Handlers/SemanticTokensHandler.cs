@@ -31,6 +31,7 @@ namespace YarnLanguageServer.Handlers
             {
                 SemanticTokenVisitor.BuildSemanticTokens(builder, yarnFile);
             }
+
             return Task.CompletedTask;
         }
 

@@ -63,7 +63,7 @@ namespace TypeChecker
         public abstract IEnumerable<TypeConstraint> Children { get; }
 
         public abstract IEnumerable<TypeConstraint> DescendantsAndSelf { get; }
-        
+
         /// <summary>
         /// Gets a value indicating whether this constraint is self-evident.
         /// </summary>

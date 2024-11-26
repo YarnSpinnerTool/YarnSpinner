@@ -6,7 +6,6 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Yarn.Compiler;
-
 using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
 namespace YarnLanguageServer.Handlers
@@ -338,9 +337,11 @@ namespace YarnLanguageServer.Handlers
                     Label = node.Title,
                     Kind = CompletionItemKind.Method,
                     Detail = System.IO.Path.GetFileName(node.File.Uri.AbsolutePath),
-                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit {
+                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit
+                    {
                         NewText = node.Title,
-                        Range = new Range {
+                        Range = new Range
+                        {
                             Start = indexTokenRange.Start,
                             End = request.Position,
                         },
@@ -457,9 +458,11 @@ namespace YarnLanguageServer.Handlers
                     Kind = CompletionItemKind.Function,
                     Documentation = cmd.Documentation,
                     Detail = detailText,
-                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit {
+                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit
+                    {
                         NewText = builder.ToString(),
-                        Range = new Range {
+                        Range = new Range
+                        {
                             Start = indexTokenRange.Start,
                             End = request.Position,
                         },

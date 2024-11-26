@@ -43,7 +43,7 @@ namespace Yarn
             this.name = name;
             this.description = description;
             this.rawType = rawType;
-            
+
             this.AddConvertibleTo(rawType);
         }
 
@@ -55,7 +55,7 @@ namespace Yarn
 
         /// <inheritdoc/>
         public override string Description => description;
-        
+
         /// <summary>
         /// Gets the type of this enum's members.
         /// </summary>
@@ -64,11 +64,15 @@ namespace Yarn
         /// <summary>
         /// Gets the collection of enum cases in this enum.
         /// </summary>
-        public IEnumerable<KeyValuePair<string, ConstantTypeProperty>> EnumCases {
-            get {
-                foreach (var member in TypeMembers) {
-                    if (member.Value is ConstantTypeProperty constant) {
-                        yield return new KeyValuePair<string,ConstantTypeProperty>(member.Key, constant);
+        public IEnumerable<KeyValuePair<string, ConstantTypeProperty>> EnumCases
+        {
+            get
+            {
+                foreach (var member in TypeMembers)
+                {
+                    if (member.Value is ConstantTypeProperty constant)
+                    {
+                        yield return new KeyValuePair<string, ConstantTypeProperty>(member.Key, constant);
                     }
                 }
             }
@@ -80,13 +84,18 @@ namespace Yarn
             { Operator.NotEqualTo.ToString(), TypeUtil.GetMethod((a, b) => !MethodEqualTo(a, b)) },
         };
 
-        internal override IConvertible DefaultValue {
-            get {
+        internal override IConvertible DefaultValue
+        {
+            get
+            {
                 // The default value for an enum type is the first case found
                 // in it. 
-                if (this._typeMembers.Count == 0) {
+                if (this._typeMembers.Count == 0)
+                {
                     throw new InvalidOperationException($"Cannot get a default value for enum {Name}, because it has no members (which is not allowed)");
-                } else {
+                }
+                else
+                {
                     var member = System.Linq.Enumerable.First(this._typeMembers).Value;
                     return (member as ConstantTypeProperty)?.Value ?? 0;
                 }
@@ -105,9 +114,12 @@ namespace Yarn
 
         private static bool MethodEqualTo(Value a, Value b)
         {
-            if (a.InternalValue is string) {
+            if (a.InternalValue is string)
+            {
                 return a.ConvertTo<string>() == b.ConvertTo<string>();
-            } else {
+            }
+            else
+            {
                 return a.ConvertTo<int>() == b.ConvertTo<int>();
             }
         }

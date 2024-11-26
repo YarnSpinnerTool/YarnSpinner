@@ -6,11 +6,10 @@
 
 namespace Yarn.Compiler
 {
+    using Antlr4.Runtime;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Antlr4.Runtime;
-
     using static Instruction.Types;
 
     public class NodeGroupCompiler : ICodeEmitter

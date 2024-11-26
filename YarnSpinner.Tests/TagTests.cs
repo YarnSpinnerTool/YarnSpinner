@@ -1,7 +1,7 @@
-using Xunit;
-using Yarn.Compiler;
 using FluentAssertions;
+using Xunit;
 using Xunit.Abstractions;
+using Yarn.Compiler;
 
 namespace YarnSpinner.Tests
 {
@@ -238,7 +238,8 @@ title: Second
         }
 
         [Fact]
-        public void TestShadowLinesReflectSourceLines() {
+        public void TestShadowLinesReflectSourceLines()
+        {
             var source =
 @"title: Start
 ---

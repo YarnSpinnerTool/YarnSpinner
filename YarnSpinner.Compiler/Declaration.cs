@@ -95,8 +95,10 @@ namespace Yarn.Compiler
         /// A range is valid when its start and end positions are both valid,
         /// and the start position is not after the end position.
         /// </remarks>
-        public bool IsValid {
-            get {
+        public bool IsValid
+        {
+            get
+            {
                 return this.Start.IsValid && this.End.IsValid && this.End >= this.Start;
             }
         }
@@ -155,7 +157,8 @@ namespace Yarn.Compiler
         /// <param name="b">The second position.</param>
         /// <returns>true if a is after or equal to b; false
         /// otherwise.</returns>
-        public static bool operator >=(Position a, Position b) {
+        public static bool operator >=(Position a, Position b)
+        {
             return a.Line >= b.Line && a.Character >= b.Character;
         }
         /// <summary>
@@ -166,7 +169,8 @@ namespace Yarn.Compiler
         /// <param name="b">The second position.</param>
         /// <returns>true if a is before or equal to b; false
         /// otherwise.</returns>
-        public static bool operator <=(Position a, Position b) {
+        public static bool operator <=(Position a, Position b)
+        {
             return a.Line <= b.Line && a.Character <= b.Character;
         }
     }

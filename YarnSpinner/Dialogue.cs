@@ -55,7 +55,7 @@ namespace Yarn
     /// execution.</para>
     /// </remarks>
     /// <seealso cref="Dialogue.LineHandler"/>
-    #pragma warning disable CA1815
+#pragma warning disable CA1815
     public struct Line
     {
         /// <summary>
@@ -82,7 +82,7 @@ namespace Yarn
         /// </summary>
         public readonly string[] Substitutions;
     }
-    #pragma warning restore CA1815
+#pragma warning restore CA1815
 
     /// <summary>
     /// A set of <see cref="OptionSet.Option"/>s, sent from the <see
@@ -93,7 +93,7 @@ namespace Yarn
     /// created by the <see cref="Dialogue"/> during program execution.
     /// </remarks>
     /// <seealso cref="Dialogue.OptionsHandler"/>
-    #pragma warning disable CA1815
+#pragma warning disable CA1815
     public struct OptionSet
     {
         internal OptionSet(Option[] options)
@@ -101,7 +101,7 @@ namespace Yarn
             Options = options;
         }
 
-        #pragma warning disable CA1716
+#pragma warning disable CA1716
         /// <summary>
         /// An option to be presented to the user.
         /// </summary>
@@ -167,7 +167,7 @@ namespace Yarn
             /// </remarks>
             public bool IsAvailable { get; private set; }
         }
-        #pragma warning restore CA1716
+#pragma warning restore CA1716
 
         /// <summary>
         /// Gets the <see cref="Option"/>s that should be presented to the
@@ -176,7 +176,7 @@ namespace Yarn
         /// <seealso cref="Option"/>
         public Option[] Options { get; private set; }
     }
-    #pragma warning restore CA1815
+#pragma warning restore CA1815
 
     /// <summary>
     /// A command, sent from the <see cref="Dialogue"/> to the game.
@@ -186,7 +186,7 @@ namespace Yarn
     /// created by the <see cref="Dialogue"/> during program execution.
     /// </remarks>
     /// <seealso cref="Dialogue.CommandHandler"/>    
-    #pragma warning disable CA1815
+#pragma warning disable CA1815
     public struct Command
     {
         internal Command(string text)
@@ -199,7 +199,7 @@ namespace Yarn
         /// </summary>
         public string Text { get; private set; }
     }
-    #pragma warning restore CA1815
+#pragma warning restore CA1815
 
     /// <summary>
     /// Represents a method that receives diagnostic messages and error
@@ -216,7 +216,8 @@ namespace Yarn
     /// Contains methods for parsing raw text into a <see
     /// cref="MarkupParseResult"/>.
     /// </summary>
-    public interface IMarkupParser {
+    public interface IMarkupParser
+    {
         /// <summary>
         /// Parses a string into markup, given a locale.
         /// </summary>
@@ -230,7 +231,8 @@ namespace Yarn
     /// Represents different kinds of variables that can be fetched from a <see
     /// cref="Dialogue"/> using <see cref="IVariableAccess.TryGetValue{T}(string, out T)"/>.
     /// </summary>
-    public enum VariableKind {
+    public enum VariableKind
+    {
         /// <summary>
         /// The kind of the variable cannot be determined. It may not be known
         /// to the system.
@@ -249,7 +251,8 @@ namespace Yarn
     }
 
     /// <summary>Provides a mechanism for retrieving values.</summary>
-    public interface IVariableAccess {
+    public interface IVariableAccess
+    {
 
         /// <summary>
         /// Given a variable name, attempts to fetch a value for the variable,
@@ -345,8 +348,9 @@ namespace Yarn
 
         /// <inheritdoc/>
         public ISmartVariableEvaluator SmartVariableEvaluator { get; set; }
-    
-        public virtual bool TryGetValue<T>(string variableName, out T result) {
+
+        public virtual bool TryGetValue<T>(string variableName, out T result)
+        {
             switch (GetVariableKind(variableName))
             {
                 case VariableKind.Stored:
@@ -354,10 +358,13 @@ namespace Yarn
                     // variable storage.
 
                     // Try to get the value from the dictionary, and check to see that it's the 
-                    if (TryGetAsType(variables, variableName, out result)) {
+                    if (TryGetAsType(variables, variableName, out result))
+                    {
                         // We successfully fetched it from storage.
                         return true;
-                    } else {
+                    }
+                    else
+                    {
                         // We didn't fetch it from storage. Fall back to the
                         // program's initial value storage.
                         return Program.TryGetInitialValue(variableName, out result);
@@ -401,10 +408,12 @@ namespace Yarn
         public VariableKind GetVariableKind(string name)
         {
             // Does this variable exist in our stored values?
-            if (this.variables.ContainsKey(name)) {
+            if (this.variables.ContainsKey(name))
+            {
                 return VariableKind.Stored;
             }
-            if (this.Program == null) {
+            if (this.Program == null)
+            {
                 // We don't have a Program, so we can't ask it for other
                 // information.
                 return VariableKind.Unknown;
@@ -555,7 +564,7 @@ namespace Yarn
 
                 vm.Program = value;
                 vm.ResetState();
-                
+
                 smartVariableVM.Program = value;
                 smartVariableVM.ResetState();
             }
@@ -679,8 +688,9 @@ namespace Yarn
         /// appropriate content in a line group, or any other situation where
         /// content saliency is relevant.
         /// </remarks>
-        public Saliency.IContentSaliencyStrategy ContentSaliencyStrategy { 
-            get => this.vm.ContentSaliencyStrategy; 
+        public Saliency.IContentSaliencyStrategy ContentSaliencyStrategy
+        {
+            get => this.vm.ContentSaliencyStrategy;
             set => this.vm.ContentSaliencyStrategy = value;
         }
 
@@ -693,7 +703,7 @@ namespace Yarn
         public Dialogue(Yarn.IVariableStorage variableStorage)
         {
             Library = new Library();
-            
+
             this.VariableStorage = variableStorage ?? throw new ArgumentNullException(nameof(variableStorage));
             this.VariableStorage.SmartVariableEvaluator = this;
             this.VariableStorage.Program = this.Program;
@@ -703,10 +713,12 @@ namespace Yarn
 
             Library.ImportLibrary(new StandardLibrary());
 
-            Library.RegisterFunction("visited", delegate(string node){
+            Library.RegisterFunction("visited", delegate (string node)
+            {
                 return IsNodeVisited(node);
             });
-            Library.RegisterFunction("visited_count", delegate(string node){
+            Library.RegisterFunction("visited_count", delegate (string node)
+            {
                 return GetNodeVisitCount(node);
             });
         }
@@ -1021,8 +1033,8 @@ namespace Yarn
         {
             return SmartVariableEvaluationVirtualMachine.TryGetSmartVariable(
                 name,
-                this.VariableStorage, 
-                this.Library, 
+                this.VariableStorage,
+                this.Library,
                 out result);
         }
 
@@ -1083,12 +1095,12 @@ namespace Yarn
                 #region Operators
 
                 // Register the in-built conversion functions
-                this.RegisterFunction("string", delegate(object v)
+                this.RegisterFunction("string", delegate (object v)
                 {
                     return Convert.ToString(v);
                 });
 
-                this.RegisterFunction("number", delegate(object v)
+                this.RegisterFunction("number", delegate (object v)
                 {
                     return Convert.ToSingle(v);
                 });
@@ -1098,7 +1110,7 @@ namespace Yarn
                     return v.ToString(System.Globalization.CultureInfo.InvariantCulture);
                 });
 
-                this.RegisterFunction("bool", delegate(object v)
+                this.RegisterFunction("bool", delegate (object v)
                 {
                     return Convert.ToBoolean(v);
                 });
@@ -1186,11 +1198,13 @@ namespace Yarn
                 #endregion Operators
             }
 
-            private static float Decimal(float value) {
+            private static float Decimal(float value)
+            {
                 return value - Integer(value);
 
             }
-            private static int Integer(float value) {
+            private static int Integer(float value)
+            {
                 return (int)Math.Truncate(value);
             }
         }

@@ -3,10 +3,10 @@
 
 namespace Yarn.Compiler
 {
+    using Antlr4.Runtime;
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using Antlr4.Runtime;
 
     /// <summary>
     /// A Lexer subclass that detects newlines and generates indent and
@@ -25,7 +25,7 @@ namespace Yarn.Compiler
         // } 
 
         private bool InWhenClause = false;
-        
+
         /// <summary>
         /// Returns a value indicating whether the lexer is currently lexing an
         /// expression that's part of a 'when' clause.
@@ -120,9 +120,11 @@ namespace Yarn.Compiler
         public IEnumerable<LexerWarning> Warnings { get => this.warnings; }
 
         private List<IToken> tokens = new List<IToken>();
-        private void PushToken(IToken token) {
+        private void PushToken(IToken token)
+        {
             tokens.Add(token);
-            if (tokens.Count > 5) {
+            if (tokens.Count > 5)
+            {
                 tokens.RemoveAt(0);
             }
         }
@@ -163,7 +165,8 @@ namespace Yarn.Compiler
                     tokenToReturn = null;
                 }
             }
-            if (tokenToReturn != null) {
+            if (tokenToReturn != null)
+            {
                 this.PushToken(tokenToReturn);
             }
 

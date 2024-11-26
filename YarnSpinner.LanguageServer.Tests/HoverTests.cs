@@ -1,14 +1,13 @@
-using System.Threading.Tasks;
 using FluentAssertions;
-using OmniSharp.Extensions.LanguageServer.Protocol.Document;
-using OmniSharp.Extensions.LanguageServer.Protocol.Models;
-using Xunit;
-using Xunit.Abstractions;
-using System.Linq;
-
-using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using OmniSharp.Extensions.LanguageServer.Protocol;
+using OmniSharp.Extensions.LanguageServer.Protocol.Document;
+using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Xunit;
+using Xunit.Abstractions;
 
 #pragma warning disable CS0162
 
@@ -70,7 +69,7 @@ namespace YarnLanguageServer.Tests
             // Given
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
             var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
-        
+
             // When
             var hoverResult = await client.RequestHover(new HoverParams
             {
@@ -80,7 +79,7 @@ namespace YarnLanguageServer.Tests
 
 
             // Then
-            
+
             hoverResult?.Contents.MarkedStrings?.ElementAt(0).Language.Should().Be("text");
             hoverResult?.Contents.MarkedStrings?.ElementAt(0).Value.Should().Be("instance_command_no_params");
 

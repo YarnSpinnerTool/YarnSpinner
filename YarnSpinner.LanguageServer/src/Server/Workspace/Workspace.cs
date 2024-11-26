@@ -63,9 +63,12 @@ namespace YarnLanguageServer
         internal void ReloadWorkspace()
         {
             // Find all actions defined in the workspace
-            if (this.Root != null) {
+            if (this.Root != null)
+            {
                 this.workspaceActions = new HashSet<Action>(this.FindWorkspaceActions(this.Root));
-            } else {
+            }
+            else
+            {
                 this.workspaceActions = new HashSet<Action>();
             }
 
@@ -79,7 +82,8 @@ namespace YarnLanguageServer
                     this.workspaceActions.Add(action);
                 }
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 LanguageServer?.LogError($"Error while loading built-in actions: " + e);
             }
 
@@ -119,7 +123,8 @@ namespace YarnLanguageServer
                 }).NonNull().ToList();
             }
 
-            if (!this.Projects.Any()) {
+            if (!this.Projects.Any())
+            {
                 // There are no .yarnprojects in the workspace. Create a new
                 // 'implicit' project at the root of the workspace that owns ALL
                 // Yarn files, as a convenience.
@@ -151,7 +156,6 @@ namespace YarnLanguageServer
 
                         try
                         {
-
                             var definitionFile = new JsonConfigFile(File.ReadAllText(definitionFilePath), false);
 
                             foreach (var action in definitionFile.GetActions())
@@ -298,7 +302,8 @@ namespace YarnLanguageServer
         /// contains semantic information about the nodes in this file.
         /// </summary>
         /// <seealso cref="Commands.DidChangeNodesNotification"/>
-        public void PublishNodeInfos() {
+        public void PublishNodeInfos()
+        {
             foreach (var file in this.Projects.SelectMany(p => p.Files))
             {
                 this.LanguageServer?.SendNotification(
@@ -386,7 +391,8 @@ namespace YarnLanguageServer
         IEnumerable<Action> IActionSource.GetActions() => this.workspaceActions;
     }
 
-    internal static class EnumerableExtension {
+    internal static class EnumerableExtension
+    {
         public static IEnumerable<T> NonNull<T>(this IEnumerable<T?> enumerable)
             where T : class
         {

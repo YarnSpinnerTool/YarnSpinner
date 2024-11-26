@@ -1,24 +1,24 @@
-using Xunit;
+using FluentAssertions;
 using System;
 using System.Collections.Generic;
-using Yarn.Markup;
-using FluentAssertions;
-using Xunit.Abstractions;
 using System.Text;
+using Xunit;
+using Xunit.Abstractions;
+using Yarn.Markup;
 
 namespace YarnSpinner.Tests
 {
     public class MarkupTests : TestBase, IAttributeMarkerProcessor
     {
         public MarkupTests(ITestOutputHelper outputHelper) : base(outputHelper) { }
-        
+
         [Fact]
         public void TestMarkupParsing()
         {
             var line = "A [b]B[/b]";
             var lineParser = new LineParser();
             var markup = lineParser.ParseString(line, "en");
-            
+
             markup.Text.Should().Be("A B");
             markup.Attributes.Should().ContainSingle();
             markup.Attributes[0].Name.Should().Be("b");
@@ -42,28 +42,28 @@ namespace YarnSpinner.Tests
         }
 
         [Theory]
-        [InlineData("this is a line with [markup]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text}, new string[] {"this is a line with ","[","markup","]","a single markup","[","/","markup","]"," inside of it"})]
-        [InlineData("this is a line with [markup = 1]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","1","]","a single markup","[","/","markup","]"," inside of it"})]
-        [InlineData("this is a line with [markup=12]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","12","]","a single markup","[","/","markup","]"," inside of it"})]
-        [InlineData("this is a line with [markup = 12 ]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","12","]","a single markup","[","/","markup","]"," inside of it"})]
-        [InlineData("this is a line with [markup = \"12\" ]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.StringValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","\"12\"","]","a single markup","[","/","markup","]"," inside of it"})]
-        [InlineData("this is a line with [markup=\"12\"]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.StringValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","\"12\"","]","a single markup","[","/","markup","]"," inside of it"})]
-        [InlineData("this is a line with [markup=hello]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.StringValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","hello","]","a single markup","[","/","markup","]"," inside of it"})]
-        [InlineData("this is a line with [markup=true]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.BooleanValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","true","]","a single markup","[","/","markup","]"," inside of it"})]
-        [InlineData("this is a line with [markup=false]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.BooleanValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","false","]","a single markup","[","/","markup","]"," inside of it"})]
-        [InlineData("this is a line with [markup=false var = 12]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.BooleanValue,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","=","false","var","=","12","]","a single markup","[","/","markup","]"," inside of it"})]
-        [InlineData("this is a line with [markup=false var = 12]two [markup2]markup[/] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.BooleanValue,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,},new string[]{"this is a line with ","[","markup","=","false","var","=","12","]","two ","[","markup2","]","markup","[","/","]"," inside of it"})]
-        [InlineData("this is a line with \\[markup=false var = 12]two [markup2]markup[/] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with \\[markup=false var = 12]two ","[","markup2","]","markup","[","/","]"," inside of it"})]
-        [InlineData("this is a line with [markup markup = 1]a single markup[/markup] inside of it",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.NumberValue,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text},new string[]{"this is a line with ","[","markup","markup","=","1","]","a single markup","[","/","markup","]"," inside of it"})]
-        [InlineData("this is a line with [interpolated markup = {$property} /] inside",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.Equals,LineParser.LexerTokenTypes.InterpolatedValue,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,},new string[]{"this is a line with ", "[", "interpolated", "markup", "=", "{$property}", "/", "]", " inside"})]
-        [InlineData("á [a]S[/a]",new LineParser.LexerTokenTypes[]{LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,LineParser.LexerTokenTypes.Text,LineParser.LexerTokenTypes.OpenMarker,LineParser.LexerTokenTypes.CloseSlash,LineParser.LexerTokenTypes.Identifier,LineParser.LexerTokenTypes.CloseMarker,},new string[]{"á ", "[", "a", "]", "S", "[", "/", "a", "]"})]
+        [InlineData("this is a line with [markup]a single markup[/markup] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "this is a line with ", "[", "markup", "]", "a single markup", "[", "/", "markup", "]", " inside of it" })]
+        [InlineData("this is a line with [markup = 1]a single markup[/markup] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.NumberValue, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "this is a line with ", "[", "markup", "=", "1", "]", "a single markup", "[", "/", "markup", "]", " inside of it" })]
+        [InlineData("this is a line with [markup=12]a single markup[/markup] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.NumberValue, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "this is a line with ", "[", "markup", "=", "12", "]", "a single markup", "[", "/", "markup", "]", " inside of it" })]
+        [InlineData("this is a line with [markup = 12 ]a single markup[/markup] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.NumberValue, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "this is a line with ", "[", "markup", "=", "12", "]", "a single markup", "[", "/", "markup", "]", " inside of it" })]
+        [InlineData("this is a line with [markup = \"12\" ]a single markup[/markup] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.StringValue, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "this is a line with ", "[", "markup", "=", "\"12\"", "]", "a single markup", "[", "/", "markup", "]", " inside of it" })]
+        [InlineData("this is a line with [markup=\"12\"]a single markup[/markup] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.StringValue, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "this is a line with ", "[", "markup", "=", "\"12\"", "]", "a single markup", "[", "/", "markup", "]", " inside of it" })]
+        [InlineData("this is a line with [markup=hello]a single markup[/markup] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.StringValue, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "this is a line with ", "[", "markup", "=", "hello", "]", "a single markup", "[", "/", "markup", "]", " inside of it" })]
+        [InlineData("this is a line with [markup=true]a single markup[/markup] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.BooleanValue, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "this is a line with ", "[", "markup", "=", "true", "]", "a single markup", "[", "/", "markup", "]", " inside of it" })]
+        [InlineData("this is a line with [markup=false]a single markup[/markup] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.BooleanValue, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "this is a line with ", "[", "markup", "=", "false", "]", "a single markup", "[", "/", "markup", "]", " inside of it" })]
+        [InlineData("this is a line with [markup=false var = 12]a single markup[/markup] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.BooleanValue, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.NumberValue, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "this is a line with ", "[", "markup", "=", "false", "var", "=", "12", "]", "a single markup", "[", "/", "markup", "]", " inside of it" })]
+        [InlineData("this is a line with [markup=false var = 12]two [markup2]markup[/] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.BooleanValue, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.NumberValue, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, }, new string[] { "this is a line with ", "[", "markup", "=", "false", "var", "=", "12", "]", "two ", "[", "markup2", "]", "markup", "[", "/", "]", " inside of it" })]
+        [InlineData("this is a line with \\[markup=false var = 12]two [markup2]markup[/] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "this is a line with \\[markup=false var = 12]two ", "[", "markup2", "]", "markup", "[", "/", "]", " inside of it" })]
+        [InlineData("this is a line with [markup markup = 1]a single markup[/markup] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.NumberValue, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "this is a line with ", "[", "markup", "markup", "=", "1", "]", "a single markup", "[", "/", "markup", "]", " inside of it" })]
+        [InlineData("this is a line with [interpolated markup = {$property} /] inside", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.InterpolatedValue, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, }, new string[] { "this is a line with ", "[", "interpolated", "markup", "=", "{$property}", "/", "]", " inside" })]
+        [InlineData("á [a]S[/a]", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, }, new string[] { "á ", "[", "a", "]", "S", "[", "/", "a", "]" })]
         void TestLexerGeneratesCorrectTokens(string line, LineParser.LexerTokenTypes[] types, string[] texts)
         {
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
 
             line = line.Normalize();
-            
+
             // removing the start and end tokens
             tokens.RemoveAt(0);
             tokens.RemoveAt(tokens.Count - 1);
@@ -86,7 +86,8 @@ namespace YarnSpinner.Tests
             }
         }
 
-        [Fact] void TestNoMarkupInLexerConsumesTokens()
+        [Fact]
+        void TestNoMarkupInLexerConsumesTokens()
         {
             var line = "this is a line with [nomarkup]bunch[ /] a = 2 of \" [tag /] [anothertag]invalid shit[/anothertag] yes[/nomarkup]";
             var lineParser = new LineParser();
@@ -189,8 +190,8 @@ namespace YarnSpinner.Tests
             //      text
             tree.children.Should().HaveCount(3);
             tree.children[1].children.Should().HaveCount(3);
-            Descendant(tree, 1,1).children.Should().HaveCount(1);
-            Descendant(tree, 1,1,0).Should().BeOfType(typeof(Yarn.Markup.LineParser.MarkupTextNode));
+            Descendant(tree, 1, 1).children.Should().HaveCount(1);
+            Descendant(tree, 1, 1, 0).Should().BeOfType(typeof(Yarn.Markup.LineParser.MarkupTextNode));
             errors.Should().BeEmpty();
         }
         [Fact]
@@ -201,7 +202,7 @@ namespace YarnSpinner.Tests
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
             var tree = result.tree;
-            
+
             var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
@@ -224,7 +225,7 @@ namespace YarnSpinner.Tests
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
             var tree = result.tree;
-            
+
             var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
@@ -247,7 +248,7 @@ namespace YarnSpinner.Tests
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
             var tree = result.tree;
-            
+
             var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
@@ -265,15 +266,16 @@ namespace YarnSpinner.Tests
             tree.children[1].properties[1].Value.IntegerValue.Should().Be(2);
             tree.children[1].properties[1].Name.Should().Be("markup");
         }
-        
-        [Fact] public void TestUnsquishedTreeWithSingleChildAndMultipleNonSelfPropertiesOfMultipleTypesIsValid()
+
+        [Fact]
+        public void TestUnsquishedTreeWithSingleChildAndMultipleNonSelfPropertiesOfMultipleTypesIsValid()
         {
             var line = "this is a line with [markup markup = 1 markup = markup markup = true markup = 1.1 markup = \"markup\"]a single markup[/markup] inside of it";
             var lineParser = new LineParser();
             var tokens = lineParser.LexMarkup(line);
             var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
             var tree = result.tree;
-            
+
             var errors = result.diagnostics;
             errors.Should().BeEmpty();
 
@@ -285,7 +287,7 @@ namespace YarnSpinner.Tests
 
             properties[0].Name.Should().Be("markup");
             properties[0].Value.IntegerValue.Should().Be(1);
-            
+
             properties[1].Name.Should().Be("markup");
             properties[1].Value.StringValue.Should().Be("markup");
 
@@ -299,7 +301,8 @@ namespace YarnSpinner.Tests
             properties[4].Value.StringValue.Should().Be("markup");
         }
 
-        [Fact] public void TestUnsquishedTreeWithSelfClosingAndSelfPropertyIsValid()
+        [Fact]
+        public void TestUnsquishedTreeWithSelfClosingAndSelfPropertyIsValid()
         {
             var line = "this is a line with [markup = 1 /]a single self-closing markup inside of it";
             var lineParser = new LineParser();
@@ -315,7 +318,8 @@ namespace YarnSpinner.Tests
             tree.children[1].properties[0].Name.Should().Be("markup");
             tree.children[1].properties[0].Value.IntegerValue.Should().Be(1);
         }
-        [Fact] public void TestUnsquishedTreeWithSelfClosingAndNonSelfPropertyIsValid()
+        [Fact]
+        public void TestUnsquishedTreeWithSelfClosingAndNonSelfPropertyIsValid()
         {
             var line = "this is a line with [markup markup = 1 /]a single self-closing markup inside of it";
             var lineParser = new LineParser();
@@ -332,7 +336,8 @@ namespace YarnSpinner.Tests
             tree.children[1].properties[0].Value.IntegerValue.Should().Be(1);
         }
         // need to test nomarkup
-        [Fact] public void TestUnsquishedTreeWithNoMarkupAllowsInvalidCharacters()
+        [Fact]
+        public void TestUnsquishedTreeWithNoMarkupAllowsInvalidCharacters()
         {
             var line = "this is a line with [nomarkup]bunch[ /] a = 2 of \" [tag /] [anothertag]invalid shit[/anothertag] yes[/nomarkup]";
             var lineParser = new LineParser();
@@ -344,9 +349,10 @@ namespace YarnSpinner.Tests
 
             tree.children.Should().HaveCount(2);
             tree.children[1].children.Should().HaveCount(1); // text
-            ((LineParser.MarkupTextNode)Descendant(tree,1,0)).text.Should().Be("bunch[ /] a = 2 of \" [tag /] [anothertag]invalid shit[/anothertag] yes");
+            ((LineParser.MarkupTextNode)Descendant(tree, 1, 0)).text.Should().Be("bunch[ /] a = 2 of \" [tag /] [anothertag]invalid shit[/anothertag] yes");
         }
-        [Fact] public void TestUnsquishedNestedMarkupIsValid()
+        [Fact]
+        public void TestUnsquishedNestedMarkupIsValid()
         {
             var line = "This is [outer][inner]some [inmost /]nested[/inner][/outer] markup";
             var lineParser = new LineParser();
@@ -359,7 +365,8 @@ namespace YarnSpinner.Tests
             tree.children.Should().HaveCount(3);
         }
 
-        [Fact] public void TestUnsquishedImbalancedMarkupIsValid()
+        [Fact]
+        public void TestUnsquishedImbalancedMarkupIsValid()
         {
             var line = "This [outer] is [inner] some [/outer] invalid [/inner] markup";
             // so what we want this to become:
@@ -390,19 +397,20 @@ namespace YarnSpinner.Tests
 
             // the outer markup
             tree.children[1].children.Should().HaveCount(2);
-            Descendant(tree, 1,1).children.Should().HaveCount(1);
+            Descendant(tree, 1, 1).children.Should().HaveCount(1);
             // the "is" text
-            ((LineParser.MarkupTextNode)Descendant(tree, 1,0)).text.Should().Be(" is ");
+            ((LineParser.MarkupTextNode)Descendant(tree, 1, 0)).text.Should().Be(" is ");
             // the "some" text inside the inner-inner markup
-            Descendant(tree, 1,1,0).Should().BeOfType<LineParser.MarkupTextNode>();
-            ((LineParser.MarkupTextNode)Descendant(tree, 1,1,0)).text.Should().Be(" some ");
+            Descendant(tree, 1, 1, 0).Should().BeOfType<LineParser.MarkupTextNode>();
+            ((LineParser.MarkupTextNode)Descendant(tree, 1, 1, 0)).text.Should().Be(" some ");
 
             // the outer-sibling inner markup
             tree.children[2].children.Should().HaveCount(1);
-            Descendant(tree, 2,0).Should().BeOfType<LineParser.MarkupTextNode>();
-            ((LineParser.MarkupTextNode)Descendant(tree, 2,0)).text.Should().Be(" invalid ");
+            Descendant(tree, 2, 0).Should().BeOfType<LineParser.MarkupTextNode>();
+            ((LineParser.MarkupTextNode)Descendant(tree, 2, 0)).text.Should().Be(" invalid ");
         }
-        [Fact] public void TestUnsquishedMultipleImbalancedMarkupIsValid()
+        [Fact]
+        public void TestUnsquishedMultipleImbalancedMarkupIsValid()
         {
             var line = "This [a] is [b] some [c] nested [/a] markup [/c] with [/b] invalid structure";
             var lineParser = new LineParser();
@@ -414,7 +422,7 @@ namespace YarnSpinner.Tests
 
             // text a b text
             tree.children.Should().HaveCount(4);
-            
+
             // the two outer children should be text
             ((LineParser.MarkupTextNode)tree.children[0]).text.Should().Be("This ");
             ((LineParser.MarkupTextNode)tree.children[3]).text.Should().Be(" invalid structure");
@@ -425,13 +433,13 @@ namespace YarnSpinner.Tests
             aNode.children.Should().HaveCount(2);
             // outer a's text
             ((LineParser.MarkupTextNode)aNode.children[0]).text.Should().Be(" is ");
-            
-            var abNode = Descendant(tree, 1,1);
+
+            var abNode = Descendant(tree, 1, 1);
             abNode.name.Should().Be("b");
             abNode.children.Should().HaveCount(2);
             ((LineParser.MarkupTextNode)abNode.children[0]).text.Should().Be(" some ");
 
-            var abcNode = Descendant(tree, 1,1,1);
+            var abcNode = Descendant(tree, 1, 1, 1);
             abcNode.name.Should().Be("c");
             ((LineParser.MarkupTextNode)abcNode.children[0]).text.Should().Be(" nested ");
 
@@ -440,9 +448,9 @@ namespace YarnSpinner.Tests
             bNode.name.Should().Be("b");
             bNode.children.Should().HaveCount(2);
             // outer b's text
-            ((LineParser.MarkupTextNode)Descendant(tree, 2,1)).text.Should().Be(" with ");
+            ((LineParser.MarkupTextNode)Descendant(tree, 2, 1)).text.Should().Be(" with ");
 
-            var bcNode = Descendant(tree, 2,0);
+            var bcNode = Descendant(tree, 2, 0);
             bcNode.name.Should().Be("c");
             ((LineParser.MarkupTextNode)bcNode.children[0]).text.Should().Be(" markup ");
         }
@@ -489,7 +497,7 @@ namespace YarnSpinner.Tests
                 Text("This "),
                 Node("outer",
                     Text(" is "),
-                    Node("inner", 
+                    Node("inner",
                         Text(" some "))),
                 Node("inner",
                     Text(" invalid ")),
@@ -497,7 +505,7 @@ namespace YarnSpinner.Tests
             );
 
             yield return new object[] { line, root };
-            
+
             line = "This [outer] is [inner] some [/outer][/inner] markup";
             // This [outer] is [inner] some [/inner][/outer] markup
             // This [outer] is [inner] some [/] markup
@@ -628,10 +636,10 @@ namespace YarnSpinner.Tests
         }
 
         [Theory]
-        [InlineData("this is line without markup","this is line without markup")]
-        [InlineData("[a]this is line with basic markup[/a]","this is line with basic markup")]
-        [InlineData("[a]this is line with [b]nested basic[/b] markup[/a]","this is line with nested basic markup")]
-        [InlineData("this is a[nomarkup] line with [b]nomarkup hiding[/b] markup[/nomarkup] elements","this is a line with [b]nomarkup hiding[/b] markup elements")]
+        [InlineData("this is line without markup", "this is line without markup")]
+        [InlineData("[a]this is line with basic markup[/a]", "this is line with basic markup")]
+        [InlineData("[a]this is line with [b]nested basic[/b] markup[/a]", "this is line with nested basic markup")]
+        [InlineData("this is a[nomarkup] line with [b]nomarkup hiding[/b] markup[/nomarkup] elements", "this is a line with [b]nomarkup hiding[/b] markup elements")]
         [InlineData("This is a [bold]line testing basic[/bold] replacement markers", "This is a <b>line testing basic</b> replacement markers")]
         [InlineData("[a]This is [b]some [c]markup[/b] with[/c] closing tag issues inside a valid tag[/a]", "This is some markup with closing tag issues inside a valid tag")]
         void TestUnsquishedMarkupStringsWithRewritersAreValid(string line, string comparison) // this one just tests that the strings aren't fucked
@@ -653,14 +661,14 @@ namespace YarnSpinner.Tests
 
             builder.ToString().Should().Be(comparison);
         }
-        
+
         [Theory]
-        [InlineData("this is line without markup","this is line without markup", 0)]
-        [InlineData("[a]this is line with basic markup[/a]","this is line with basic markup", 1)]
-        [InlineData("[a]this is line with [b]nested basic[/b] markup[/a]","this is line with nested basic markup", 2)]
-        [InlineData("this is a[nomarkup] line with [b]nomarkup hiding[/b] markup[/nomarkup] elements","this is a line with [b]nomarkup hiding[/b] markup elements", 1)]
+        [InlineData("this is line without markup", "this is line without markup", 0)]
+        [InlineData("[a]this is line with basic markup[/a]", "this is line with basic markup", 1)]
+        [InlineData("[a]this is line with [b]nested basic[/b] markup[/a]", "this is line with nested basic markup", 2)]
+        [InlineData("this is a[nomarkup] line with [b]nomarkup hiding[/b] markup[/nomarkup] elements", "this is a line with [b]nomarkup hiding[/b] markup elements", 1)]
         [InlineData("This is a [bold]line testing basic[/bold] replacement markers", "This is a <b>line testing basic</b> replacement markers", 0)]
-        [InlineData("[a]This is [b]some [c]markup[/b] with[/c] closing tag issues inside a valid tag[/a]", "This is some markup with closing tag issues inside a valid tag",3)]
+        [InlineData("[a]This is [b]some [c]markup[/b] with[/c] closing tag issues inside a valid tag[/a]", "This is some markup with closing tag issues inside a valid tag", 3)]
         void TestSquishedMarkupStringsWithRewritersAreValid(string line, string comparison, int attributeCount)
         {
             var lineParser = new LineParser();
@@ -675,7 +683,7 @@ namespace YarnSpinner.Tests
             List<MarkupAttribute> attributes = new List<MarkupAttribute>();
             List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
             lineParser.WalkTree(tree, builder, attributes, "en", diagnostics);
-            
+
             diagnostics.Should().HaveCount(0);
 
             builder.ToString().Should().Be(comparison);
@@ -690,33 +698,33 @@ namespace YarnSpinner.Tests
             switch (marker.Name)
             {
                 case "bold":
-                {
-                    // for now I am just gonna make it so that it replaces [bold] some text [/bold] with 
-                    // <b> some text </b>
-                    childBuilder.Insert(0, "<b>");
-                    childBuilder.Append("</b>");
-                    
-                    return diagnostics;
-                }
+                    {
+                        // for now I am just gonna make it so that it replaces [bold] some text [/bold] with 
+                        // <b> some text </b>
+                        childBuilder.Insert(0, "<b>");
+                        childBuilder.Append("</b>");
+
+                        return diagnostics;
+                    }
                 case "localise":
-                {
-                    // this is bad Tim...
-                    if (localeCode == "en")
                     {
-                        childBuilder.Append("cat");
+                        // this is bad Tim...
+                        if (localeCode == "en")
+                        {
+                            childBuilder.Append("cat");
+                        }
+                        else
+                        {
+                            childBuilder.Append("chat");
+                        }
+                        return diagnostics;
                     }
-                    else
-                    {
-                        childBuilder.Append("chat");
-                    }
-                    return diagnostics;
-                }
                 default:
-                {
-                    childBuilder.Append("Unrecognised markup name: ");
-                    childBuilder.Append(marker.Name);
-                    return diagnostics;
-                }
+                    {
+                        childBuilder.Append("Unrecognised markup name: ");
+                        childBuilder.Append(marker.Name);
+                        return diagnostics;
+                    }
             }
         }
         [Fact]
@@ -913,13 +921,13 @@ namespace YarnSpinner.Tests
             // find and Remove the "X" attribute
             originalMarkup.TryGetAttributeWithName("X", out var xAttribute).Should().Be(true);
             var trimmedMarkup = originalMarkup.DeleteRange(xAttribute);
-            
+
             originalMarkup.Text.Should().Be("A x x B C");
             originalMarkup.Attributes.Count.Should().Be(6);
 
             trimmedMarkup.Text.Should().Be("A  B C");
             trimmedMarkup.Attributes.Count.Should().Be(4);
-            
+
             trimmedMarkup.Attributes[0].Name.Should().Be("a");
             trimmedMarkup.Attributes[0].Position.Should().Be(0);
             trimmedMarkup.Attributes[0].Length.Should().Be(6);
@@ -952,7 +960,7 @@ namespace YarnSpinner.Tests
 
             MarkupAttribute attribute;
             bool found;
-            
+
             found = markup.TryGetAttributeWithName("b", out attribute);
 
             found.Should().BeTrue();
@@ -961,7 +969,7 @@ namespace YarnSpinner.Tests
 
             found = markup.TryGetAttributeWithName("c", out _);
 
-            found.Should().BeFalse();                        
+            found.Should().BeFalse();
         }
 
         [Theory]
@@ -1002,7 +1010,7 @@ namespace YarnSpinner.Tests
             markup.Attributes.Should().HaveCount(2);
             markup.Attributes[0].Position.Should().Be(0);
             markup.Attributes[0].Length.Should().Be(3);
-            
+
             markup.Attributes[1].Position.Should().Be(3);
             markup.Attributes[1].Length.Should().Be(1);
         }
@@ -1036,7 +1044,7 @@ namespace YarnSpinner.Tests
             // Should have a single property on this attribute, "a". Value
             // should be an integer, 1
             var value = attribute.Properties["a"];
-            
+
             value.Type.Should().Be(MarkupValueType.Integer);
             value.IntegerValue.Should().Be(1);
         }
@@ -1049,7 +1057,7 @@ namespace YarnSpinner.Tests
             var markup = lineParser.ParseString(line, "en");
 
             markup.Attributes[0].Name.Should().Be("a");
-            
+
             markup.Attributes[0].Properties.Count.Should().Be(2);
 
             var p1 = markup.Attributes[0].Properties["p1"];
@@ -1059,7 +1067,7 @@ namespace YarnSpinner.Tests
             var p2 = markup.Attributes[0].Properties["p2"];
             p2.Type.Should().Be(MarkupValueType.Integer);
             p2.IntegerValue.Should().Be(2);
-            
+
         }
 
         [Theory]
@@ -1077,7 +1085,7 @@ namespace YarnSpinner.Tests
             var markup = lineParser.ParseString(input, "en");
 
             var attribute = markup.Attributes[0];
-            var propertyValue= attribute.Properties["p"];
+            var propertyValue = attribute.Properties["p"];
 
             propertyValue.Type.Should().Be(expectedType);
             propertyValue.ToString().Should().Be(expectedValueAsString);
@@ -1140,9 +1148,9 @@ namespace YarnSpinner.Tests
 
         [Theory]
         // character attribute can be implicit
-        [InlineData("Mae: Wow!")] 
+        [InlineData("Mae: Wow!")]
         // character attribute can also be explicit
-        [InlineData("[character name=\"Mae\"]Mae: [/character]Wow!")] 
+        [InlineData("[character name=\"Mae\"]Mae: [/character]Wow!")]
         public void TestImplicitCharacterAttributeParsing(string input)
         {
             var lineParser = new LineParser();
@@ -1219,12 +1227,12 @@ namespace YarnSpinner.Tests
         }
 
         [Theory]
-        [InlineData(1,"en", "a single cat")]
-        [InlineData(2,"en", "2 cats")]
-        [InlineData(3,"en", "3 cats")]
-        [InlineData(1,"en-AU", "a single cat")]
-        [InlineData(2,"en-AU", "2 cats")]
-        [InlineData(3,"en-AU", "3 cats")]
+        [InlineData(1, "en", "a single cat")]
+        [InlineData(2, "en", "2 cats")]
+        [InlineData(3, "en", "3 cats")]
+        [InlineData(1, "en-AU", "a single cat")]
+        [InlineData(2, "en-AU", "2 cats")]
+        [InlineData(3, "en-AU", "3 cats")]
         public void TestNumberPluralisation(int Value, string Locale, string Expected)
         {
             var line = "[plural value=" + Value + " one=\"a single cat\" other=\"% cats\"/]";

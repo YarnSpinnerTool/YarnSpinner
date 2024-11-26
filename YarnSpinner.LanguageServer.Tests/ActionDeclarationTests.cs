@@ -1,11 +1,11 @@
-using Xunit;
-using System.Linq;
 using FluentAssertions;
-using System.IO;
-using OmniSharp.Extensions.LanguageServer.Protocol.Models;
-using Yarn;
-using System.Text.RegularExpressions;
 using OmniSharp.Extensions.LanguageServer.Protocol;
+using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+using Xunit;
+using Yarn;
 
 namespace YarnLanguageServer.Tests
 {
@@ -15,7 +15,8 @@ namespace YarnLanguageServer.Tests
         private static string ProjectPath = Path.Combine(WorkspacePath, "Test.yarnproject");
 
         [Fact]
-        public void CSharpData_DocumentationCommentsAreExtracted() {
+        public void CSharpData_DocumentationCommentsAreExtracted()
+        {
             var path = Path.Combine(TestUtility.PathToTestData, "TestWorkspace", "Project1", "ExampleCommands.cs");
 
             File.Exists(path).Should().BeTrue($"{path} should exist on disk");
@@ -30,9 +31,10 @@ namespace YarnLanguageServer.Tests
 
             action.Documentation.Should().Be("This command has <c>nested XML</c> nodes.");
         }
-        
+
         [Fact]
-        public void ActionDeclaration_AllYarnFunctions_AreCalled() {
+        public void ActionDeclaration_AllYarnFunctions_AreCalled()
+        {
             var workspace = new Workspace();
             workspace.Root = WorkspacePath;
             workspace.Initialize();
@@ -47,18 +49,20 @@ namespace YarnLanguageServer.Tests
             var declsNode = compiledProgram.Nodes.Single(n => n.Key == "ActionDeclarations").Value;
 
             var functions = workspace.Projects.Single().Functions;
-            
-            foreach (var func in functions) {
-                declsNode.Instructions.Should().Contain(i => 
+
+            foreach (var func in functions)
+            {
+                declsNode.Instructions.Should().Contain(i =>
                     i.InstructionTypeCase == Instruction.InstructionTypeOneofCase.CallFunc
-                    && i.CallFunc.FunctionName == func.YarnName, 
+                    && i.CallFunc.FunctionName == func.YarnName,
                     $"the node should call '{func.YarnName}()'"
                 );
             }
         }
 
         [Fact]
-        public void ActionDeclarations_AreAllPresentInLibrary() {
+        public void ActionDeclarations_AreAllPresentInLibrary()
+        {
             var workspace = new Workspace();
             workspace.Initialize();
 
@@ -71,8 +75,10 @@ namespace YarnLanguageServer.Tests
                 "visited_count"
             };
 
-            foreach (var decl in functions) {
-                if (functionsToOmit.Contains(decl.YarnName)) {
+            foreach (var decl in functions)
+            {
+                if (functionsToOmit.Contains(decl.YarnName))
+                {
                     continue;
                 }
 
@@ -83,7 +89,8 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
-        public void LibraryMethods_AreAllDeclared() {
+        public void LibraryMethods_AreAllDeclared()
+        {
             var workspace = new Workspace();
             workspace.Initialize();
 

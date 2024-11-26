@@ -49,7 +49,7 @@ namespace Yarn.Compiler
         /// This is supplied as part of a <see cref="CompilationJob"/>.
         /// </remarks>
         public IDictionary<string, Declaration> VariableDeclarations { get; set; } = new Dictionary<string, Declaration>();
-        
+
         public HashSet<string> NodesToSkip { get; }
 
         /// <summary>
@@ -169,7 +169,8 @@ namespace Yarn.Compiler
                     throw new InvalidOperationException($"Internal error: {nameof(CurrentNodeDebugInfo)} was null when exiting a node");
                 }
 
-                if (TrackingNodes.Contains(this.CurrentNode.Name)) {
+                if (TrackingNodes.Contains(this.CurrentNode.Name))
+                {
                     // This node needs to be tracked. Add a header that
                     // describes which variable the virtual machine should use
                     // for tracking.

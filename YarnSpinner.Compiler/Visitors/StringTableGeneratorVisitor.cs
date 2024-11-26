@@ -3,12 +3,12 @@
 
 namespace Yarn.Compiler
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
     using Antlr4.Runtime;
     using Antlr4.Runtime.Misc;
     using Antlr4.Runtime.Tree;
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
 
     /// <summary>
     /// A Visitor that walks an expression parse tree and generates string
@@ -81,12 +81,12 @@ namespace Yarn.Compiler
             string? composedString;
 
             GenerateFormattedText(
-                context.line_formatted_text().children, 
-                out composedString, 
+                context.line_formatted_text().children,
+                out composedString,
                 out var _);
 
             // Does this string table already have a string with this ID?
-            if (lineID != null && stringTableManager.ContainsKey(lineID)) 
+            if (lineID != null && stringTableManager.ContainsKey(lineID))
             {
                 // If so, this is an error.
                 ParserRuleContext diagnosticContext;
@@ -101,7 +101,8 @@ namespace Yarn.Compiler
 
             // If the line has a '#shadow:' ID, record that fact.
             var shadowTag = Compiler.GetContentIDTag(ContentIdentifierType.Shadow, hashtags);
-            if (shadowTag != null) {
+            if (shadowTag != null)
+            {
                 context.ShadowLineID = "line:" + shadowTag.text.Text.Substring("shadow:".Length);
             }
 
@@ -186,8 +187,10 @@ namespace Yarn.Compiler
         }
     }
 
-    public partial class YarnSpinnerParser {
-        public partial class Line_statementContext {
+    public partial class YarnSpinnerParser
+    {
+        public partial class Line_statementContext
+        {
             /// <summary>
             /// Gets or sets the localised line ID associated with this line
             /// statement.

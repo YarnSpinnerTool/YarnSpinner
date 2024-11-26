@@ -3,9 +3,9 @@
 
 namespace Yarn.Compiler
 {
+    using Antlr4.Runtime.Misc;
     using System.Collections.Generic;
     using System.Linq;
-    using Antlr4.Runtime.Misc;
 
     internal class JumpGraphListener : YarnSpinnerParserBaseListener
     {
@@ -42,7 +42,7 @@ namespace Yarn.Compiler
             }
         }
 
-        public override void ExitHeader([NotNull] YarnSpinnerParser.HeaderContext context) 
+        public override void ExitHeader([NotNull] YarnSpinnerParser.HeaderContext context)
         {
             if (context.header_key.Text.Equals(Node.TitleHeader))
             {
@@ -55,7 +55,7 @@ namespace Yarn.Compiler
                 var split = positionalString.Split(',');
                 var xString = split[0].Trim();
                 var yString = split[1].Trim();
-                
+
                 int x;
                 int y;
                 if (int.TryParse(xString, out x) && int.TryParse(yString, out y))

@@ -3,11 +3,11 @@
 
 namespace Yarn.Compiler
 {
+    using Antlr4.Runtime;
+    using Antlr4.Runtime.Misc;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Antlr4.Runtime;
-    using Antlr4.Runtime.Misc;
     using TypeChecker;
     using Yarn.Utility;
 
@@ -183,7 +183,9 @@ namespace Yarn.Compiler
                 // We didn't get any types that 'a' must be equal to, and that's
                 // a problem. Produce a constraint saying that 'a' is an error.
                 return AddEqualityConstraint(a, Types.Error, context, failureMessageProvider);
-            } else if (b.Count() == 1) {
+            }
+            else if (b.Count() == 1)
+            {
                 // We got a single type to constrain against. Don't bother
                 // creating a disjunction with only a single constraint - just
                 // the constraint will do.
@@ -309,7 +311,8 @@ namespace Yarn.Compiler
 
             // The type of this identifier is equal to the type of its default
             // value.
-            if (context.expression() == null) {
+            if (context.expression() == null)
+            {
                 // No expression present, due to a syntax error. We can't do any
                 // type checking on this.
                 return;
@@ -431,7 +434,7 @@ namespace Yarn.Compiler
             // we'll need to resolve the type via constraints.
             var matchingTypes = this.knownTypes.Where(t =>
                 // A name was provided, and the type matches the name
-                (typeName == null || t.Name == typeName) 
+                (typeName == null || t.Name == typeName)
                 // The type's members include the provided member name
                 && t.TypeMembers.Keys.Contains(memberName)
             );
@@ -463,10 +466,13 @@ namespace Yarn.Compiler
                 // the member name.
                 this.AddHasEnumMemberConstraint(context.Type, memberName, context.typeMemberReference(), s =>
                 {
-                    if (context.Type.Substitute(s) is TypeBase resolvedType) {
+                    if (context.Type.Substitute(s) is TypeBase resolvedType)
+                    {
                         // The type of the context was resolved, and it doesn't have this member.
                         return $"Type {resolvedType} does not have a member named {memberName}";
-                    } else {
+                    }
+                    else
+                    {
                         // The type of the context couldn't be resolved.
                         return $"No type containing a member named {memberName} could be found";
                     }
@@ -525,10 +531,11 @@ namespace Yarn.Compiler
             IType operandBType = context.expression(1)?.Type ?? Types.Error;
 
             IEnumerable<IType> permittedTypes;
-            
+
             string op = context.op.Text;
 
-            switch (op) {
+            switch (op)
+            {
                 case "+":
                     permittedTypes = new[] { Types.Number, Types.String };
                     break;
@@ -602,7 +609,7 @@ namespace Yarn.Compiler
             }
 
             context.Type = Types.Boolean;
-            
+
             this.AddEqualityConstraint(type0, Types.Boolean, context, s => $"{context.op.Text} operands must be {Types.Boolean}, not {type0.Substitute(s)}");
             this.AddEqualityConstraint(type0, type1, context, s => $"{context.op.Text} operands must be the same type, not {type0} and {type1}");
         }
@@ -761,7 +768,7 @@ namespace Yarn.Compiler
             base.ExitFunction_call(context);
         }
 
-        public override void ExitLineCondition ([NotNull] YarnSpinnerParser.LineConditionContext context)
+        public override void ExitLineCondition([NotNull] YarnSpinnerParser.LineConditionContext context)
         {
             if (context.expression() != null)
             {
@@ -770,7 +777,7 @@ namespace Yarn.Compiler
             base.ExitLineCondition(context);
         }
 
-        public override void ExitLineOnceCondition ([NotNull] YarnSpinnerParser.LineOnceConditionContext context)
+        public override void ExitLineOnceCondition([NotNull] YarnSpinnerParser.LineOnceConditionContext context)
         {
             if (context.expression() != null)
             {
@@ -838,7 +845,7 @@ namespace Yarn.Compiler
             {
                 this.AddEqualityConstraint(context.expression().Type, Types.Boolean, context, s => $"line condition's expression must be a {Types.Boolean}, not a {context.expression().Type.Substitute(s)}");
             }
-            
+
             // Generate a variable for tracking whether we have seen this
             // content before
 
@@ -876,7 +883,8 @@ namespace Yarn.Compiler
             // We've just finished walking an enum statement! We're almost ready
             // to add its declaration.
 
-            if (context.exception != null) {
+            if (context.exception != null)
+            {
                 // A parse exception exists in this context. Don't attempt to
                 // create a type.
                 return;
@@ -1028,17 +1036,20 @@ namespace Yarn.Compiler
                 }
 
                 // If the raw type is number, we require that all values be integers.
-                if (rawType == Types.Number) {
-                    foreach (var @case in context.enum_case_statement()) {
+                if (rawType == Types.Number)
+                {
+                    foreach (var @case in context.enum_case_statement())
+                    {
                         float number = Convert.ToSingle(@case.RawValue!.InternalValue);
-                        if ((int)(number) != number) {
+                        if ((int)(number) != number)
+                        {
                             // Not an integer!
                             this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"Number raw values on enum cases must be integers"));
                         }
                     }
                 }
 
-                
+
             }
             else
             {
@@ -1111,19 +1122,22 @@ namespace Yarn.Compiler
             // A 'when' header contains either the keyword 'always' (indicating
             // that the content can always be selected), or a boolean value.
             var expression = context.expression();
-            
-            if (expression != null) {
+
+            if (expression != null)
+            {
                 // If the header contains an expression, that expression's type
                 // must be boolean
                 this.AddEqualityConstraint(expression.Type, Types.Boolean, context, s => $"'when' header expressions must be a {Types.Boolean} or 'always', not a {expression.Type.Substitute(s)}");
             }
 
-            if (context.once != null) {
+            if (context.once != null)
+            {
                 // The header contains a 'once' condition. Declare the variable
                 // for tracking it.
                 var parentNode = FindParent<YarnSpinnerParser.NodeContext>(context);
 
-                if (parentNode != null && parentNode.NodeTitle != null) {
+                if (parentNode != null && parentNode.NodeTitle != null)
+                {
                     var title = parentNode.NodeTitle;
                     var onceVariable = Compiler.GetContentViewedVariableName(title);
 
@@ -1203,7 +1217,8 @@ namespace Yarn.Compiler
 
         public override void ExitDialogue([NotNull] YarnSpinnerParser.DialogueContext context)
         {
-            if (typeEquations.Count > 0) {
+            if (typeEquations.Count > 0)
+            {
                 // We've reached the end of the file, but we still have
                 // unresolved type equations, indicating that we didn't manage
                 // to fully resolve this type system. Add them as a potential
@@ -1388,7 +1403,7 @@ namespace Yarn.Compiler
                         }
 
                         // Add this smart variable's definition to our search.
-                        searchStack.Push((dependencyDecl.InitialValueParserContext, level+1));
+                        searchStack.Push((dependencyDecl.InitialValueParserContext, level + 1));
                     }
                     else
                     {
@@ -1405,7 +1420,7 @@ namespace Yarn.Compiler
 
                 foreach (var child in childContexts)
                 {
-                    searchStack.Push((child, level+1));
+                    searchStack.Push((child, level + 1));
                 }
             }
 
@@ -1547,7 +1562,8 @@ namespace Yarn.Compiler
         /// Adds 'once' variable information to <see
         /// cref="Once_primary_clauseContext"/>.
         /// </summary>
-        public partial class Once_primary_clauseContext : ParserRuleContext {
+        public partial class Once_primary_clauseContext : ParserRuleContext
+        {
             /// <summary>
             /// The name of the variable that tracks whether once statement
             /// primary clause has been seen before or not.

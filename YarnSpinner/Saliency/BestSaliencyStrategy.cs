@@ -32,7 +32,5 @@ namespace Yarn.Saliency
                 .OrderByDescending(o => o.ComplexityScore)
                 .First();
         }
-
-        
     }
 }

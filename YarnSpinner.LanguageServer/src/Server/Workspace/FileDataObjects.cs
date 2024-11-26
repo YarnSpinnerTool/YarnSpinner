@@ -20,7 +20,7 @@ namespace YarnLanguageServer
         public bool IsBuiltIn;
 
         /// <summary>
-        /// Converts this <see cref="RegisteredDefinition"/> from 
+        /// Converts this <see cref="RegisteredDefinition"/> from.
         /// </summary>
         /// <returns></returns>
         internal Action ToAction()
@@ -57,7 +57,8 @@ namespace YarnLanguageServer
                 "bool" => Yarn.Types.Boolean,
                 "number" or "float" or "int" => Yarn.Types.Number,
                 _ => Yarn.Types.Any,
-            } ?? Yarn.Types.Any;
+            }
+?? Yarn.Types.Any;
         }
 
         public int Priority; // If multiple defined using the same filetype, lower priority wins.

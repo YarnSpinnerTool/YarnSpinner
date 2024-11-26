@@ -31,7 +31,7 @@ namespace Yarn.Markup
     /// </summary>
     public enum MarkupValueType
     {
-        #pragma warning disable CA1720
+#pragma warning disable CA1720
         /// <summary>An integer.</summary>
         Integer,
 
@@ -43,6 +43,6 @@ namespace Yarn.Markup
 
         /// <summary>A bool.</summary>
         Bool,
-        #pragma warning restore CA1720
+#pragma warning restore CA1720
     }
 }

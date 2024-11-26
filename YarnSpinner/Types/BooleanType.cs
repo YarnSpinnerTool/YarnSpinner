@@ -34,7 +34,7 @@ namespace Yarn
             { Operator.Not.ToString(), TypeUtil.GetMethod(MethodNot) },
         };
 
-        internal BooleanType() : base(BooleanType.DefaultMethods) {}
+        internal BooleanType() : base(BooleanType.DefaultMethods) { }
 
         private static bool MethodEqualTo(Value a, Value b)
         {

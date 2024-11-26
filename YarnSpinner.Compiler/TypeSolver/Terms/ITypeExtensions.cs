@@ -98,7 +98,8 @@ namespace TypeChecker
                     SourceFileName = typeConstraint.SourceFileName,
                     SourceRange = typeConstraint.SourceRange
                 };
-            } else if (typeConstraint is TypeConvertibleConstraint typeConvertibleConstraint)
+            }
+            else if (typeConstraint is TypeConvertibleConstraint typeConvertibleConstraint)
             {
                 return new TypeConvertibleConstraint(
                     typeConvertibleConstraint.FromType.Substitute(substitution),
@@ -111,7 +112,8 @@ namespace TypeChecker
                     SourceFileName = typeConstraint.SourceFileName,
                     SourceRange = typeConstraint.SourceRange
                 };
-            } else if (typeConstraint is TypeHasNameConstraint hasNameConstraint)
+            }
+            else if (typeConstraint is TypeHasNameConstraint hasNameConstraint)
             {
                 return new TypeHasNameConstraint(hasNameConstraint.Type.Substitute(substitution), hasNameConstraint.Name)
                 {
@@ -121,7 +123,9 @@ namespace TypeChecker
                     SourceFileName = typeConstraint.SourceFileName,
                     SourceRange = typeConstraint.SourceRange
                 };
-            } else if (typeConstraint is TypeHasMemberConstraint hasMemberConstraint) {
+            }
+            else if (typeConstraint is TypeHasMemberConstraint hasMemberConstraint)
+            {
                 return new TypeHasMemberConstraint(hasMemberConstraint.Type.Substitute(substitution), hasMemberConstraint.MemberName)
                 {
                     FailureMessageProvider = typeConstraint.FailureMessageProvider,
@@ -130,7 +134,9 @@ namespace TypeChecker
                     SourceFileName = typeConstraint.SourceFileName,
                     SourceRange = typeConstraint.SourceRange
                 };
-            } else if (typeConstraint is ConjunctionConstraint conjunctionConstraint) {
+            }
+            else if (typeConstraint is ConjunctionConstraint conjunctionConstraint)
+            {
                 return new ConjunctionConstraint(
                     conjunctionConstraint.Select(c => c.ApplySubstitution(substitution))
                 )
@@ -141,7 +147,9 @@ namespace TypeChecker
                     SourceFileName = typeConstraint.SourceFileName,
                     SourceRange = typeConstraint.SourceRange
                 };
-            } else if (typeConstraint is DisjunctionConstraint disjunctionConstraint) {
+            }
+            else if (typeConstraint is DisjunctionConstraint disjunctionConstraint)
+            {
                 return new DisjunctionConstraint(
                     disjunctionConstraint.Select(c => c.ApplySubstitution(substitution))
                 )
@@ -152,17 +160,25 @@ namespace TypeChecker
                     SourceFileName = typeConstraint.SourceFileName,
                     SourceRange = typeConstraint.SourceRange
                 };
-            } else {
+            }
+            else
+            {
                 throw new ArgumentException($"Failed to apply substitution to constraint {typeConstraint.ToString()}");
             }
         }
 
-        internal static bool Equals(this IType a, IType b) {
-            if (a is TypeVariable vA && b is TypeVariable vB) {
+        internal static bool Equals(this IType a, IType b)
+        {
+            if (a is TypeVariable vA && b is TypeVariable vB)
+            {
                 return vA.Equals(vB);
-            } else if (a is TypeBase bA && b is TypeBase bB) {
+            }
+            else if (a is TypeBase bA && b is TypeBase bB)
+            {
                 return bA.Equals(bB);
-            } else {
+            }
+            else
+            {
                 return false;
             }
         }

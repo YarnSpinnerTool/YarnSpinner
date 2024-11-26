@@ -66,8 +66,8 @@ namespace Yarn
                 // If this is a type literal (i.e. a concrete type), then check
                 // its methods list to see if we have a definition for this
                 // method here.
-                if (currentType is TypeBase currentTypeLiteral 
-                && currentTypeLiteral.Methods != null 
+                if (currentType is TypeBase currentTypeLiteral
+                && currentTypeLiteral.Methods != null
                 && currentTypeLiteral.Methods.ContainsKey(methodName))
                 {
                     return currentTypeLiteral;
@@ -92,7 +92,8 @@ namespace Yarn
                 throw new System.ArgumentException($"'{nameof(methodName)}' cannot be null or empty.", nameof(methodName));
             }
 
-            if (implementingType is EnumType) {
+            if (implementingType is EnumType)
+            {
                 // TODO: Come up with a better way for multiple types to share
                 // the same methods. The reason why we do this is because if we
                 // have two enums, A and B, the current mechanism would come up

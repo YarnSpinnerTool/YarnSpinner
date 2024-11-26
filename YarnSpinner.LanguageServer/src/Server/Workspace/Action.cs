@@ -53,7 +53,7 @@ namespace YarnLanguageServer
         public bool IsStatic => MethodDeclarationSyntax?.Modifiers.Any(m => m.ToString() == "static") ?? true;
 
         /// <summary>
-        /// The language that the action was defined in.
+        /// Gets the language that the action was defined in.
         /// </summary>
         /// <remarks>
         /// For example, if the action is defined in a C# source file, then this property is <c>csharp</c>.
@@ -61,7 +61,7 @@ namespace YarnLanguageServer
         public string? Language { get; internal set; }
 
         /// <summary>
-        /// The signature of the action, as originally defined in the source file.
+        /// Gets the signature of the action, as originally defined in the source file.
         /// </summary>
         public string? Signature { get; internal set; }
 
@@ -104,16 +104,20 @@ namespace YarnLanguageServer
         /// If this action is not a Function, the value of this property is <see
         /// langword="null"/>.
         /// </remarks>
-        public Yarn.Compiler.Declaration? Declaration {
-            get {
-                if (this.Type != ActionType.Function) {
+        public Yarn.Compiler.Declaration? Declaration
+        {
+            get
+            {
+                if (this.Type != ActionType.Function)
+                {
                     return null;
                 }
 
                 var typeBuilder = new Yarn.Compiler.FunctionTypeBuilder()
                     .WithReturnType(this.ReturnType);
 
-                foreach (var param in this.Parameters) {
+                foreach (var param in this.Parameters)
+                {
                     typeBuilder = typeBuilder.WithParameter(param.Type);
                 }
 

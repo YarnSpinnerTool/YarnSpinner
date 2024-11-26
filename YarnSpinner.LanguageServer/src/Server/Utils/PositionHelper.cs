@@ -58,7 +58,8 @@ namespace YarnLanguageServer
             };
         }
 
-        public static Range GetRange(Yarn.Compiler.Range range) {
+        public static Range GetRange(Yarn.Compiler.Range range)
+        {
             return new Range(
                 range.Start.Line,
                 range.Start.Character,

@@ -6,15 +6,16 @@
 
 namespace Yarn.Compiler
 {
+    using Antlr4.Runtime;
+    using Antlr4.Runtime.Tree;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using Antlr4.Runtime;
-    using Antlr4.Runtime.Tree;
     using TypeChecker;
 
-    internal enum ContentIdentifierType {
+    internal enum ContentIdentifierType
+    {
         /// <summary>
         /// The content identifier is a <c>#line:</c> tag.
         /// </summary>
@@ -110,10 +111,12 @@ namespace Yarn.Compiler
 
             // Check to see if any lines that shadow another have a valid source
             // line, the same text as their source line
-            foreach (var shadowLineContext in stringTableManager.LineContexts.Values.Where(v => v.ShadowLineID != null)) {
+            foreach (var shadowLineContext in stringTableManager.LineContexts.Values.Where(v => v.ShadowLineID != null))
+            {
                 var shadowLineID = shadowLineContext.ShadowLineID!;
-                
-                if (shadowLineContext.LineID == null) {
+
+                if (shadowLineContext.LineID == null)
+                {
                     // All lines have a unique line ID, including shadow lines -
                     // it's an error if we have a shadow ID but no line ID
                     throw new InvalidOperationException($"Internal error: line with shadow id {shadowLineID} did not have a line ID of its own");
@@ -121,7 +124,8 @@ namespace Yarn.Compiler
 
                 var sourceFile = stringTableManager.StringTable[shadowLineContext.LineID].fileName;
 
-                if (stringTableManager.LineContexts.TryGetValue(shadowLineID, out var sourceLineContext) == false) {
+                if (stringTableManager.LineContexts.TryGetValue(shadowLineID, out var sourceLineContext) == false)
+                {
                     // No source line found
                     diagnostics.Add(new Diagnostic(
                         sourceFile, shadowLineContext, $"\"{shadowLineID}\" is not a known line ID."
@@ -132,20 +136,23 @@ namespace Yarn.Compiler
                 var sourceText = stringTableManager.StringTable[shadowLineID].text;
                 var shadowText = stringTableManager.StringTable[shadowLineContext.LineID].text;
 
-                if (sourceText == null) {
+                if (sourceText == null)
+                {
                     throw new InvalidOperationException($"Internal error: line with shadow id {shadowLineID} was referencing line {shadowLineID}, but that line's text is null");
                 }
 
                 var sourceContext = stringTableManager.LineContexts[shadowLineID];
 
-                if (sourceContext.line_formatted_text().expression().Length > 0) {
+                if (sourceContext.line_formatted_text().expression().Length > 0)
+                {
                     // Lines must not have inline expressions
                     diagnostics.Add(new Diagnostic(
                         sourceFile, shadowLineContext, $"Shadow lines must not have expressions"
                     ));
                 }
 
-                if (sourceText.Equals(shadowText, StringComparison.CurrentCulture) == false) {
+                if (sourceText.Equals(shadowText, StringComparison.CurrentCulture) == false)
+                {
                     // Lines must be identical
                     diagnostics.Add(new Diagnostic(
                         sourceFile, shadowLineContext, $"Shadow lines must have the same text as their source lines"
@@ -159,7 +166,7 @@ namespace Yarn.Compiler
                 shadowLineTableEntry.text = null;
                 stringTableManager.StringTable[shadowLineContext.LineID] = shadowLineTableEntry;
 
-                                
+
             }
 
             // Ensure that all nodes names in this compilation are unique. Node
@@ -170,7 +177,8 @@ namespace Yarn.Compiler
             // For nodes that have a 'when' clause (that is, they're in a node
             // group), make their node names unique and store which group
             // they're in.
-            foreach (var file in parsedFiles) {
+            foreach (var file in parsedFiles)
+            {
                 var nodeGroupVisitor = new NodeGroupVisitor(file.Name);
                 nodeGroupVisitor.Visit(file.Tree);
             }
@@ -218,7 +226,8 @@ namespace Yarn.Compiler
                 failingConstraints = new HashSet<TypeConstraint>(TypeCheckerListener.ApplySolution(typeSolution, failingConstraints));
             }
 
-            if (failingConstraints.Count > 0) {
+            if (failingConstraints.Count > 0)
+            {
                 // We have a number of constraints that we were unable to
                 // resolve - either they failed to unify during solving, or they
                 // were left unresolved at the end of type-checking all files.
@@ -235,7 +244,8 @@ namespace Yarn.Compiler
                 var watchdog = System.Diagnostics.Stopwatch.StartNew();
 
                 bool anySucceeded;
-                do {
+                do
+                {
 #if !DEBUG
                     if (watchdog.ElapsedMilliseconds > TypeSolverTimeLimit * 1000) {
                         // We've taken too long to solve. Create error
@@ -253,7 +263,8 @@ namespace Yarn.Compiler
                     // constraints to fix, or no constraints ended up resolving.
                     anySucceeded = false;
 
-                    foreach (var constraint in failingConstraints) {
+                    foreach (var constraint in failingConstraints)
+                    {
                         anySucceeded |= Solver.TrySolve(new[] { constraint }, knownTypes, diagnostics, ref typeSolution);
                     }
                     failingConstraints = new HashSet<TypeConstraint>(TypeCheckerListener.ApplySolution(typeSolution, failingConstraints));
@@ -261,14 +272,15 @@ namespace Yarn.Compiler
 
                 // If we have any left, then we well and truly failed to resolve
                 // the constraint, and we should produce diagnostics for them.
-                foreach (var constraint in failingConstraints) {
+                foreach (var constraint in failingConstraints)
+                {
                     foreach (var failureMessage in constraint.GetFailureMessages(typeSolution))
                     {
                         diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceRange, failureMessage));
                     }
                 }
                 watchdog.Stop();
-            }            
+            }
 
             // determining the nodes we need to track visits on
             // this needs to be done before we finish up with declarations
@@ -294,7 +306,7 @@ namespace Yarn.Compiler
             // this way any future variable storage system will know about them
             // if we didn't do this later stages wouldn't be able to interface with them
             declarations.AddRange(trackingDeclarations);
-            
+
             // Apply the type solution to all declarations.
             foreach (var decl in declarations)
             {
@@ -327,8 +339,9 @@ namespace Yarn.Compiler
             foreach (var parsedFile in parsedFiles)
             {
                 Stack<IParseTree> stack = new Stack<IParseTree>();
-                
-                if (!(parsedFile.Tree.Payload is IParseTree parseTree)) {
+
+                if (!(parsedFile.Tree.Payload is IParseTree parseTree))
+                {
                     throw new InvalidOperationException($"Internal error: expected {nameof(parsedFile.Tree.Payload)} to be {nameof(IParseTree)}");
                 }
 
@@ -389,7 +402,8 @@ namespace Yarn.Compiler
 
             // Check to see if we're permitted to use preview features. If not,
             // and preview features are used, then emit errors.
-            foreach (var file in parsedFiles) {
+            foreach (var file in parsedFiles)
+            {
                 var previewFeatureChecker = new PreviewFeatureVisitor(file, !compilationJob.AllowPreviewFeatures, diagnostics);
                 previewFeatureChecker.Visit(file.Tree);
 
@@ -617,7 +631,7 @@ namespace Yarn.Compiler
                             // to a smart variable. That's not allowed, because
                             // smart variables are read-only.
                             diagnostics.Add(new Diagnostic(
-                                file.Name, 
+                                file.Name,
                                 setStatement.variable(),
                                 $"{variableName} cannot be modified (it's a smart variable and is always equal to " +
                                 $"{smartVariables[variableName]?.InitialValueParserContext?.GetTextWithWhitespace() ?? "(unknown)"})"));
@@ -709,7 +723,8 @@ namespace Yarn.Compiler
                     continue;
                 }
 
-                bool HasWhenHeader(YarnSpinnerParser.NodeContext nodeContext) {
+                bool HasWhenHeader(YarnSpinnerParser.NodeContext nodeContext)
+                {
                     return nodeContext.GetWhenHeaders().Any();
                 }
 
@@ -717,11 +732,14 @@ namespace Yarn.Compiler
                 // must have them for the group to be valid. In this situation,
                 // it's not an error for the nodes to share the same name,
                 // because after this check is done, they will be renamed.
-                if (group.All(n => HasWhenHeader(n.Node))) {
+                if (group.All(n => HasWhenHeader(n.Node)))
+                {
                     // No error - all nodes that have this name have at least
                     // one 'when' header
                     continue;
-                } else if (group.Any(n => HasWhenHeader(n.Node))) {
+                }
+                else if (group.Any(n => HasWhenHeader(n.Node)))
+                {
                     // Error - some nodes have a 'when' header, but others
                     // don't. Create errors for these others.
                     foreach (var entry in group.Where(n => n.Node.GetWhenHeaders().Any() == false))
@@ -786,7 +804,7 @@ namespace Yarn.Compiler
                 .ToDictionary(d => d.Name, d => d),
             });
 
-            
+
             return compiler.Compile();
         }
 
@@ -994,7 +1012,8 @@ namespace Yarn.Compiler
         /// <param name="instruction">The instruction to add.</param>
         internal static void Emit(Node node, NodeDebugInfo debugInfo, int sourceLine, int sourceCharacter, Instruction instruction)
         {
-            debugInfo.LinePositions.Add(node.Instructions.Count, new Position {
+            debugInfo.LinePositions.Add(node.Instructions.Count, new Position
+            {
                 Line = sourceLine,
                 Character = sourceCharacter,
             });
@@ -1212,15 +1231,17 @@ namespace Yarn.Compiler
             /// key. To fetch all headers with this key, use <see
             /// cref="GetHeaders"/>.
             /// </remarks>
-            public HeaderContext? GetHeader(string key) {
+            public HeaderContext? GetHeader(string key)
+            {
                 return this.header()?
-                    .FirstOrDefault(h => 
-                        h.header_key?.Text.Equals(key, StringComparison.InvariantCultureIgnoreCase) ?? false 
+                    .FirstOrDefault(h =>
+                        h.header_key?.Text.Equals(key, StringComparison.InvariantCultureIgnoreCase) ?? false
                         && h.header_value != null
                 );
             }
 
-            internal IEnumerable<When_headerContext> GetWhenHeaders() {
+            internal IEnumerable<When_headerContext> GetWhenHeaders()
+            {
                 return this.when_header();
             }
 
@@ -1230,18 +1251,21 @@ namespace Yarn.Compiler
             /// <param name="key">The key of the header to find.</param>
             /// <returns>A collection of headers whose <see cref="HeaderContext.header_key"/>
             /// is <paramref name="key"/>. </returns>
-            internal IEnumerable<HeaderContext> GetHeaders(string? key = null) {
-                if (this.header() == null) {
+            internal IEnumerable<HeaderContext> GetHeaders(string? key = null)
+            {
+                if (this.header() == null)
+                {
                     return Enumerable.Empty<HeaderContext>();
                 }
 
-                if (key == null) {
+                if (key == null)
+                {
                     return this.header();
                 }
 
                 return this.header()
-                    .Where(h => 
-                        h.header_key?.Text.Equals(key, StringComparison.InvariantCultureIgnoreCase) ?? false 
+                    .Where(h =>
+                        h.header_key?.Text.Equals(key, StringComparison.InvariantCultureIgnoreCase) ?? false
                         && h.header_value != null
                 );
             }
@@ -1266,7 +1290,8 @@ namespace Yarn.Compiler
 
             foreach (var child in context.children)
             {
-                if (child is ParserRuleContext childContext) {
+                if (child is ParserRuleContext childContext)
+                {
                     subtreeCount += GetBooleanOperatorCountInExpression(childContext);
                 }
             }
@@ -1313,7 +1338,7 @@ namespace Yarn.Compiler
         {
             internal bool IsOnce => this.header_expression.once != null;
             internal bool IsAlways => this.header_expression.always != null;
-            
+
             /// <summary>
             /// Gets the complexity of this line's condition.
             /// </summary>

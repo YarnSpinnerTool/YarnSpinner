@@ -43,9 +43,12 @@ namespace YarnLanguageServer
                     foreach (var attribute in list.Attributes)
                     {
                         string name;
-                        if (attribute.Name is QualifiedNameSyntax qualifiedName) {
+                        if (attribute.Name is QualifiedNameSyntax qualifiedName)
+                        {
                             name = qualifiedName.Right.ToString();
-                        } else {
+                        }
+                        else
+                        {
                             name = attribute.Name.ToString();
                         }
 
@@ -190,7 +193,8 @@ namespace YarnLanguageServer
             {
                 action.Type = ActionType.Command;
 
-                if (action.IsStatic == false) {
+                if (action.IsStatic == false)
+                {
                     // Instance command methods take an initial GameObject
                     // parameter, which indicates which game object should
                     // receive the command. Add this new parameter to the start
@@ -351,7 +355,8 @@ namespace YarnLanguageServer
 
             documentation = summary ?? triviaStructure.ToString();
 
-            if (remarks != null) {
+            if (remarks != null)
+            {
                 documentation += "\n\n" + remarks;
             }
 

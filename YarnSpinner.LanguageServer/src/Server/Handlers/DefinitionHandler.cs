@@ -32,7 +32,8 @@ namespace YarnLanguageServer.Handlers
 
             IEnumerable<Action> functionDefinitionMatches;
 
-            if (token == null) {
+            if (token == null)
+            {
                 return Task.FromResult(new LocationOrLocationLinks());
             }
 
@@ -42,7 +43,7 @@ namespace YarnLanguageServer.Handlers
                     functionDefinitionMatches = project.FindActions(token.Text, ActionType.Command, fuzzySearch: false);
 
                     var locations = functionDefinitionMatches
-                        .Where(definition => definition.SourceFileUri != null 
+                        .Where(definition => definition.SourceFileUri != null
                             && definition.SourceRange != null)
                         .Select(definition =>
                         new LocationOrLocationLink(new Location

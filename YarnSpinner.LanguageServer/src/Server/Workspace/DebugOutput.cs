@@ -18,7 +18,8 @@ public record DebugOutput
     public List<Variable> Variables { get; set; } = new ();
 
     [JsonObject(NamingStrategyType = typeof(CamelCaseNamingStrategy), MemberSerialization = MemberSerialization.OptOut)]
-    public record Variable {
+    public record Variable
+    {
         public string Name { get; set; } = "(unknown)";
         public string Type { get; set; } = "Error";
         public JToken? ExpressionJSON { get; set; }
@@ -93,11 +94,15 @@ public record class JSONExpression
 
     public JSONExpression? Parent { get; set; }
 
-    public JToken JSONValue {
-        get {
-            if (IsError) {
+    public JToken JSONValue
+    {
+        get
+        {
+            if (IsError)
+            {
                 return new JValue("error");
             }
+
             return Type switch
             {
                 ExpressionType.Error => new JValue("error"),
@@ -123,28 +128,28 @@ public record class JSONExpression
                     },
                 ExpressionType.Literal => (JToken)this.Literal,
                 ExpressionType.Constant => this.Constant switch
-                    {
-                        int intValue => intValue,
-                        bool boolValue => boolValue,
-                        string stringValue => stringValue,
-                        float floatValue => floatValue,
-                        _ => "error"
-                    },
+                {
+                    int intValue => intValue,
+                    bool boolValue => boolValue,
+                    string stringValue => stringValue,
+                    float floatValue => floatValue,
+                    _ => "error"
+                },
                 ExpressionType.LessThan => new JObject
                     {
-                        { "lt", new JArray(Children.Select(c => c.JSONValue))},
+                        { "lt", new JArray(Children.Select(c => c.JSONValue)) },
                     },
                 ExpressionType.LessThanOrEqual => new JObject
                     {
-                        { "lte", new JArray(Children.Select(c => c.JSONValue))},
+                        { "lte", new JArray(Children.Select(c => c.JSONValue)) },
                     },
                 ExpressionType.GreaterThan => new JObject
                     {
-                        { "gt", new JArray(Children.Select(c => c.JSONValue))},
+                        { "gt", new JArray(Children.Select(c => c.JSONValue)) },
                     },
                 ExpressionType.GreaterThanOrEqual => new JObject
                     {
-                        { "gte", new JArray(Children.Select(c => c.JSONValue))},
+                        { "gte", new JArray(Children.Select(c => c.JSONValue)) },
                     },
                 _ => (JToken)"error",
             };
@@ -152,8 +157,8 @@ public record class JSONExpression
     }
 }
 
-internal class ExpressionToJSONVisitor : YarnSpinnerParserBaseVisitor<JSONExpression> {
-
+internal class ExpressionToJSONVisitor : YarnSpinnerParserBaseVisitor<JSONExpression>
+{
     protected override JSONExpression DefaultResult => new ()
     {
         Type = JSONExpression.ExpressionType.Error,
@@ -161,7 +166,6 @@ internal class ExpressionToJSONVisitor : YarnSpinnerParserBaseVisitor<JSONExpres
 
     public override JSONExpression VisitExpAndOrXor([NotNull] YarnSpinnerParser.ExpAndOrXorContext context)
     {
-
         return new JSONExpression
         {
             Type = context.op.Type switch
@@ -236,16 +240,21 @@ internal class ExpressionToJSONVisitor : YarnSpinnerParserBaseVisitor<JSONExpres
             Type = JSONExpression.ExpressionType.Equals,
             Children = context.expression().Select(Visit),
         };
-        if (context.op.Type == YarnSpinnerLexer.OPERATOR_LOGICAL_EQUALS) {
+        if (context.op.Type == YarnSpinnerLexer.OPERATOR_LOGICAL_EQUALS)
+        {
             return equalityExpression;
-        } else if (context.op.Type == YarnSpinnerLexer.OPERATOR_LOGICAL_NOT_EQUALS) {
+        }
+        else if (context.op.Type == YarnSpinnerLexer.OPERATOR_LOGICAL_NOT_EQUALS)
+        {
             // If it's a not-equals, wrap the entire thing in a 'not'
             return new JSONExpression
             {
                 Type = JSONExpression.ExpressionType.Not,
                 Children = new[] { equalityExpression },
             };
-        } else {
+        }
+        else
+        {
             throw new InvalidOperationException($"Unexpected operator in equality expression {context.op.Text}");
         }
     }

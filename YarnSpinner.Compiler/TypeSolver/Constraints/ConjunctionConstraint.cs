@@ -24,7 +24,8 @@ namespace TypeChecker
 
         public ConjunctionConstraint(IEnumerable<TypeConstraint> constraints)
         {
-            if (constraints.Count() == 0) {
+            if (constraints.Count() == 0)
+            {
                 throw new System.ArgumentException($"{nameof(ConjunctionConstraint)} received no terms");
             }
             Constraints = constraints;
@@ -50,11 +51,15 @@ namespace TypeChecker
 
         public override TypeConstraint Simplify(Substitution subst, IEnumerable<Yarn.TypeBase> knownTypes)
         {
-            if (this.IsTautological) {
+            if (this.IsTautological)
+            {
                 // If we are a tautology, simplify to true
                 return new TrueConstraint(this);
-            } else {
-                if (this.Children.Any(c => c is FalseConstraint)) {
+            }
+            else
+            {
+                if (this.Children.Any(c => c is FalseConstraint))
+                {
                     // If any of our children are known to be false, then this
                     // constraint simplifies to false
                     return new FalseConstraint(this);

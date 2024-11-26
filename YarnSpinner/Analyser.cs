@@ -18,7 +18,7 @@ namespace Yarn.Analysis
         public int lineNumber;
         public int columnNumber;
 
-        public enum Severity 
+        public enum Severity
         {
             Error,
             Warning,
@@ -35,7 +35,7 @@ namespace Yarn.Analysis
             this.severity = severity;
         }
 
-        public override string ToString ()
+        public override string ToString()
         {
             return ToString(showSeverity: false);
         }
@@ -48,21 +48,21 @@ namespace Yarn.Analysis
             {
                 switch (severity)
                 {
-                case Severity.Error:
-                    contextLabel = "ERROR: ";
-                    break;
-                case Severity.Warning:
-                    contextLabel = "WARNING: ";
-                    break;
-                case Severity.Note:
-                    contextLabel = "Note: ";
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException ();
+                    case Severity.Error:
+                        contextLabel = "ERROR: ";
+                        break;
+                    case Severity.Warning:
+                        contextLabel = "WARNING: ";
+                        break;
+                    case Severity.Note:
+                        contextLabel = "Note: ";
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
 
-            if (this.nodeName != null) 
+            if (this.nodeName != null)
             {
                 contextLabel += this.nodeName;
                 if (this.lineNumber != -1)
@@ -98,11 +98,11 @@ namespace Yarn.Analysis
         {
             get
             {
-                var classes = new List<System.Type> ();
+                var classes = new List<System.Type>();
 
                 if (_defaultAnalyserClasses == null)
                 {
-                    classes = new List<System.Type> ();
+                    classes = new List<System.Type>();
 
                     var assembly = this.GetType().Assembly;
 
@@ -110,7 +110,7 @@ namespace Yarn.Analysis
                     {
                         if (type.IsSubclassOf(typeof(Analysis.CompiledProgramAnalyser)) && type.IsAbstract == false)
                         {
-                            classes.Add (type);
+                            classes.Add(type);
                         }
                     }
                     _defaultAnalyserClasses = classes;
@@ -122,18 +122,18 @@ namespace Yarn.Analysis
 
         List<CompiledProgramAnalyser> analysers;
 
-        public Context ()
+        public Context()
         {
-            analysers = new List<CompiledProgramAnalyser> ();
+            analysers = new List<CompiledProgramAnalyser>();
 
             foreach (var analyserType in defaultAnalyserClasses)
             {
-                analysers.Add((CompiledProgramAnalyser)Activator.CreateInstance (analyserType));
+                analysers.Add((CompiledProgramAnalyser)Activator.CreateInstance(analyserType));
             }
 
         }
 
-        public Context(params System.Type[] types) 
+        public Context(params System.Type[] types)
         {
             analysers = new List<CompiledProgramAnalyser>();
 
@@ -153,17 +153,17 @@ namespace Yarn.Analysis
 
         public IEnumerable<Diagnosis> FinishAnalysis()
         {
-            List<Diagnosis> diagnoses = new List<Diagnosis> ();
+            List<Diagnosis> diagnoses = new List<Diagnosis>();
 
             foreach (var analyser in analysers)
             {
-                diagnoses.AddRange(analyser.GatherDiagnoses ());
+                diagnoses.AddRange(analyser.GatherDiagnoses());
             }
 
             return diagnoses;
         }
     }
-    
+
     internal abstract class CompiledProgramAnalyser
     {
         public abstract void Diagnose(Yarn.Program program);
@@ -215,8 +215,8 @@ namespace Yarn.Analysis
 
     internal class UnusedVariableChecker : CompiledProgramAnalyser
     {
-        HashSet<string> readVariables = new HashSet<string> ();
-        HashSet<string> writtenVariables = new HashSet<string> ();
+        HashSet<string> readVariables = new HashSet<string>();
+        HashSet<string> writtenVariables = new HashSet<string>();
 
         public override void Diagnose(Program program)
         {
@@ -246,20 +246,20 @@ namespace Yarn.Analysis
         public override IEnumerable<Diagnosis> GatherDiagnoses()
         {
             // Exclude read variables that are also written
-            var readOnlyVariables = new HashSet<string> (readVariables);
-            readOnlyVariables.ExceptWith (writtenVariables);
+            var readOnlyVariables = new HashSet<string>(readVariables);
+            readOnlyVariables.ExceptWith(writtenVariables);
 
             // Exclude written variables that are also read
-            var writeOnlyVariables = new HashSet<string> (writtenVariables);
-            writeOnlyVariables.ExceptWith (readVariables);
+            var writeOnlyVariables = new HashSet<string>(writtenVariables);
+            writeOnlyVariables.ExceptWith(readVariables);
 
             // Generate diagnoses
             var diagnoses = new List<Diagnosis>();
 
             foreach (var writeOnlyVariable in writeOnlyVariables)
             {
-                var message = string.Format (CultureInfo.CurrentCulture, "Variable {0} is assigned, but never read from", writeOnlyVariable);
-                diagnoses.Add(new Diagnosis (message, Diagnosis.Severity.Warning));
+                var message = string.Format(CultureInfo.CurrentCulture, "Variable {0} is assigned, but never read from", writeOnlyVariable);
+                diagnoses.Add(new Diagnosis(message, Diagnosis.Severity.Warning));
             }
 
             return diagnoses;

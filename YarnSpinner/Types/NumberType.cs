@@ -39,7 +39,7 @@ namespace Yarn
             { Operator.LessThanOrEqualTo.ToString(), TypeUtil.GetMethod(MethodLessThanOrEqualTo) },
         };
 
-        public NumberType() : base(NumberType.DefaultMethods) {}
+        public NumberType() : base(NumberType.DefaultMethods) { }
 
         /// <inheritdoc/>
         public float ToBridgedType(Value value)

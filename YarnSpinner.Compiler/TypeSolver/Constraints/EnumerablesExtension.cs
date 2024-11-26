@@ -12,12 +12,12 @@ namespace TypeChecker
         {
             IEnumerable<IEnumerable<T>> emptyProduct =
                 new[] { Enumerable.Empty<T>() };
-            
+
             return sequences.Aggregate(
                     emptyProduct,
-                    (accumulator, sequence) => 
-                        accumulator.SelectMany(accumulatedSequence => 
-                            sequence.Select(item => 
+                    (accumulator, sequence) =>
+                        accumulator.SelectMany(accumulatedSequence =>
+                            sequence.Select(item =>
                                 accumulatedSequence.Concat(new[] { item })
                             )
                         )
@@ -33,9 +33,12 @@ namespace TypeChecker
         /// <param name="sequence">The sequence.</param>
         /// <returns>A sequence containing non-null elements of <paramref
         /// name="sequence"/>.</returns>
-        public static IEnumerable<T> NotNull<T>(this IEnumerable<T?> sequence) where T : class {
-            foreach (var item in sequence) {
-                if (item != null) {
+        public static IEnumerable<T> NotNull<T>(this IEnumerable<T?> sequence) where T : class
+        {
+            foreach (var item in sequence)
+            {
+                if (item != null)
+                {
                     yield return item;
                 }
             }

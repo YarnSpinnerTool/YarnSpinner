@@ -75,7 +75,8 @@ namespace Yarn.Markup
         /// specified name; otherwise, <see langword="false"/>.</returns>
         public bool TryGetAttributeWithName(string name, out MarkupAttribute attribute)
         {
-            if (this.Attributes == null) {
+            if (this.Attributes == null)
+            {
                 throw new InvalidOperationException("Markup parse result does not contain any attributes");
             }
 
@@ -123,8 +124,9 @@ namespace Yarn.Markup
             {
                 return string.Empty;
             }
-            
-            if (string.IsNullOrEmpty(this.Text)) {
+
+            if (string.IsNullOrEmpty(this.Text))
+            {
                 throw new InvalidOperationException("Markup parse result does not contain any text");
             }
 
@@ -193,10 +195,12 @@ namespace Yarn.Markup
         /// attributes.</returns>
         public MarkupParseResult DeleteRange(MarkupAttribute attributeToDelete)
         {
-            if (this.Attributes == null) {
+            if (this.Attributes == null)
+            {
                 throw new System.InvalidOperationException("Markup parse result does not have any attributes.");
             }
-            if (this.Text == null) {
+            if (this.Text == null)
+            {
                 throw new System.InvalidOperationException("Markup parse result does not have any text.");
             }
 
@@ -677,6 +681,26 @@ namespace Yarn.Markup
 
             result = default;
             return false;
+        }
+
+        public override bool Equals(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool operator ==(MarkupAttributeMarker left, MarkupAttributeMarker right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(MarkupAttributeMarker left, MarkupAttributeMarker right)
+        {
+            return !(left == right);
         }
     }
 }

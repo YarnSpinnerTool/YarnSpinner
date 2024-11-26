@@ -1,14 +1,12 @@
-﻿using Xunit;
+﻿using FluentAssertions;
 using System;
 using System.Collections.Generic;
-using Yarn;
 using System.IO;
 using System.Linq;
-
-using Yarn.Compiler;
-
-using FluentAssertions;
+using Xunit;
 using Xunit.Abstractions;
+using Yarn;
+using Yarn.Compiler;
 
 namespace YarnSpinner.Tests
 {
@@ -19,7 +17,7 @@ namespace YarnSpinner.Tests
         public DialogueTests(ITestOutputHelper outputHelper) : base(outputHelper) { }
 
         [Fact]
-        public void TestNodeExists ()
+        public void TestNodeExists()
         {
             var path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
 
@@ -30,19 +28,19 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
 
-            dialogue.SetProgram (result.Program);
+            dialogue.SetProgram(result.Program);
 
-            dialogue.NodeExists ("Sally").Should().BeTrue();
+            dialogue.NodeExists("Sally").Should().BeTrue();
 
             // Test clearing everything
-            dialogue.UnloadAll ();
+            dialogue.UnloadAll();
 
-            dialogue.NodeExists ("Sally").Should().BeFalse();
+            dialogue.NodeExists("Sally").Should().BeFalse();
 
         }
 
         [Fact]
-        public void TestAnalysis() 
+        public void TestAnalysis()
         {
 
             ICollection<Yarn.Analysis.Diagnosis> diagnoses;
@@ -58,7 +56,7 @@ namespace YarnSpinner.Tests
 
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
             compilationJob.Library = dialogue.Library;
-            
+
             var result = Compiler.Compile(compilationJob);
 
             result.Diagnostics.Should().BeEmpty();
@@ -66,16 +64,16 @@ namespace YarnSpinner.Tests
             stringTable = result.StringTable;
 
             dialogue.SetProgram(result.Program);
-            dialogue.Analyse (context);
-            diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
+            dialogue.Analyse(context);
+            diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis());
 
             diagnoses.Count.Should().Be(1);
             diagnoses.First().message.Should().Contain("Variable $bar is assigned, but never read from");
 
-            dialogue.UnloadAll ();
+            dialogue.UnloadAll();
 
             context = new Yarn.Analysis.Context(typeof(Yarn.Analysis.UnusedVariableChecker));
-        
+
             result = Compiler.Compile(CompilationJob.CreateFromFiles(new[] {
                 Path.Combine(SpaceDemoScriptsPath, "Ship.yarn"),
                 Path.Combine(SpaceDemoScriptsPath, "Sally.yarn"),
@@ -83,10 +81,10 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
 
-            dialogue.SetProgram (result.Program);
-            
-            dialogue.Analyse (context);
-            diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
+            dialogue.SetProgram(result.Program);
+
+            dialogue.Analyse(context);
+            diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis());
 
             // This script should contain no unused variables
             diagnoses.Should().BeEmpty();
@@ -109,13 +107,13 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestMissingNode()
         {
-            var path = Path.Combine (TestDataPath, "TestCases", "Smileys.yarn");
+            var path = Path.Combine(TestDataPath, "TestCases", "Smileys.yarn");
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
             result.Diagnostics.Should().BeEmpty();
-            
-            dialogue.SetProgram (result.Program);
+
+            dialogue.SetProgram(result.Program);
 
             runtimeErrorsCauseFailures = false;
 
@@ -124,18 +122,19 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestGettingCurrentNodeName()  {
+        public void TestGettingCurrentNodeName()
+        {
 
             string path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
-            
+
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
             compilationJob.Library = dialogue.Library;
-            
+
             var result = Compiler.Compile(compilationJob);
 
             result.Diagnostics.Should().BeEmpty();
-            
-            dialogue.SetProgram (result.Program);
+
+            dialogue.SetProgram(result.Program);
 
             // dialogue should not be running yet
             dialogue.CurrentNode.Should().BeNull();
@@ -148,8 +147,9 @@ namespace YarnSpinner.Tests
             dialogue.CurrentNode.Should().BeNull();
         }
 
-		[Fact]
-		public void TestGettingTags() {
+        [Fact]
+        public void TestGettingTags()
+        {
 
             var path = Path.Combine(TestDataPath, "Example.yarn");
 
@@ -157,30 +157,32 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
 
-            dialogue.SetProgram (result.Program);
+            dialogue.SetProgram(result.Program);
 
-			var source = dialogue.GetTagsForNode ("LearnMore");
+            var source = dialogue.GetTagsForNode("LearnMore");
 
-			source.Should().NotBeNull();
+            source.Should().NotBeNull();
 
-			source.Should().NotBeEmpty();
+            source.Should().NotBeEmpty();
 
-			source.First().Should().Be("rawText");
-		}
+            source.First().Should().Be("rawText");
+        }
 
         [Fact]
-        public void TestPrepareForLine() {
+        public void TestPrepareForLine()
+        {
             var path = Path.Combine(TestDataPath, "TaggedLines.yarn");
-            
+
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
             result.Diagnostics.Should().BeEmpty();
 
             stringTable = result.StringTable;
-            
+
             bool prepareForLinesWasCalled = false;
 
-            dialogue.PrepareForLinesHandler = (lines) => {
+            dialogue.PrepareForLinesHandler = (lines) =>
+            {
                 // When the Dialogue realises it's about to run the Start
                 // node, it will tell us that it's about to run these two
                 // line IDs
@@ -192,7 +194,7 @@ namespace YarnSpinner.Tests
                 prepareForLinesWasCalled = true;
             };
 
-			dialogue.SetProgram (result.Program);
+            dialogue.SetProgram(result.Program);
             dialogue.SetNode("Start");
 
             prepareForLinesWasCalled.Should().BeTrue();
@@ -200,12 +202,13 @@ namespace YarnSpinner.Tests
 
 
         [Fact]
-        public void TestFunctionArgumentTypeInference() {
+        public void TestFunctionArgumentTypeInference()
+        {
 
             // Register some functions
-            dialogue.Library.RegisterFunction("ConcatString", (string a, string b) => a+b);
-            dialogue.Library.RegisterFunction("AddInt", (int a, int b) => a+b);
-            dialogue.Library.RegisterFunction("AddFloat", (float a, float b) => a+b);
+            dialogue.Library.RegisterFunction("ConcatString", (string a, string b) => a + b);
+            dialogue.Library.RegisterFunction("AddInt", (int a, int b) => a + b);
+            dialogue.Library.RegisterFunction("AddFloat", (float a, float b) => a + b);
             dialogue.Library.RegisterFunction("NegateBool", (bool a) => !a);
 
             // Run some code to exercise these functions
@@ -234,12 +237,13 @@ namespace YarnSpinner.Tests
             dialogue.OptionsHandler = (opts) => { dialogue.SetSelectedOption(opts.Options.First().ID); };
             dialogue.CommandHandler = (command) => { };
 
-            do {
+            do
+            {
                 dialogue.Continue();
             } while (dialogue.IsActive);
 
             // The values should be of the right type and value
-            
+
             this.storage.TryGetValue<string>("$str", out var strValue);
             strValue.Should().Be("ab");
 

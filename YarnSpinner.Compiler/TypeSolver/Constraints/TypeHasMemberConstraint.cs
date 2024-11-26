@@ -34,7 +34,8 @@ namespace TypeChecker
             var typeConstraint = new DisjunctionConstraint(
                 knownTypes
                 .Where(e => e.TypeMembers.ContainsKey(MemberName))
-                .Select(e => new TypeEqualityConstraint(this.Type, e) {
+                .Select(e => new TypeEqualityConstraint(this.Type, e)
+                {
                     SourceExpression = this.SourceExpression,
                     SourceRange = this.SourceRange,
                     SourceFileName = this.SourceFileName,

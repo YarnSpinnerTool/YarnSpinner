@@ -132,7 +132,7 @@ namespace YarnLanguageServer
 
             // Register 'Compile' command
             options.OnExecuteCommand<CompilerOutput>(
-                (commandParams) => CompileCurrentProject(workspace, commandParams),
+                (commandParams) => CompileCurrentProjectAsync(workspace, commandParams),
                 (_, _) => new ExecuteCommandRegistrationOptions
                 {
                     Commands = new[] { Commands.CompileCurrentProject },
@@ -141,7 +141,7 @@ namespace YarnLanguageServer
 
             // Register 'extract voiceovers' command
             options.OnExecuteCommand<VOStringExport>(
-                (commandParams) => ExtractVoiceoverSpreadsheet(workspace, commandParams), (_, _) => new ExecuteCommandRegistrationOptions
+                (commandParams) => ExtractVoiceoverSpreadsheetAsync(workspace, commandParams), (_, _) => new ExecuteCommandRegistrationOptions
                 {
                     Commands = new[] { Commands.ExtractSpreadsheet },
                 }
@@ -149,7 +149,7 @@ namespace YarnLanguageServer
 
             // register graph dialogue command
             options.OnExecuteCommand<string>(
-                (commandParams) => GenerateDialogueGraph(workspace, commandParams), (_, _) => new ExecuteCommandRegistrationOptions
+                (commandParams) => GenerateDialogueGraphAsync(workspace, commandParams), (_, _) => new ExecuteCommandRegistrationOptions
                 {
                     Commands = new[] { Commands.CreateDialogueGraph },
                 }
@@ -157,7 +157,7 @@ namespace YarnLanguageServer
 
             // generate debug information for all projects
             options.OnExecuteCommand<Container<DebugOutput>>(
-                (commandParams) => GenerateDebugOutput(workspace, commandParams),
+                (commandParams) => GenerateDebugOutputAsync(workspace, commandParams),
                 (_, _) => new ExecuteCommandRegistrationOptions
                 {
                     Commands = new[] { Commands.GenerateDebugOutput },
@@ -166,7 +166,7 @@ namespace YarnLanguageServer
 
             // register 'return json for new project' command
             options.OnExecuteCommand<string>(
-                (commandParams) => GetEmptyYarnProjectJSON(workspace, commandParams),
+                (commandParams) => GetEmptyYarnProjectJSONAsync(workspace, commandParams),
                 (_, _) => new ExecuteCommandRegistrationOptions
                 {
                     Commands = new[] { Commands.GetEmptyYarnProjectJSON },
@@ -175,7 +175,7 @@ namespace YarnLanguageServer
 
             // Register List Projects command
             options.OnExecuteCommand<Container<ProjectInfo>>(
-                (commandParams) => ListProjects(workspace, commandParams), (_,_) => new ExecuteCommandRegistrationOptions
+                (commandParams) => ListProjectsAsync(workspace, commandParams), (_, _) => new ExecuteCommandRegistrationOptions
                 {
                     Commands = new[] { Commands.ListProjects },
                 }
@@ -200,7 +200,7 @@ namespace YarnLanguageServer
                 }
             }
 
-            Uri yarnDocumentUri = new(yarnDocumentUriString);
+            Uri yarnDocumentUri = new (yarnDocumentUriString);
 
             var project = workspace.GetProjectsForUri(yarnDocumentUri).FirstOrDefault();
             var yarnFile = project?.GetFileData(yarnDocumentUri);
@@ -219,7 +219,6 @@ namespace YarnLanguageServer
                     },
                     Edits = new List<TextEdit>(),
                 });
-
             }
 
             // Work out the edit needed to add a node.
@@ -303,7 +302,7 @@ namespace YarnLanguageServer
 
             var nodeTitle = commandParams.Arguments[1].ToString();
 
-            Uri yarnDocumentUri = new(yarnDocumentUriString);
+            Uri yarnDocumentUri = new (yarnDocumentUriString);
 
             TextDocumentEdit emptyResult = new TextDocumentEdit
             {
@@ -378,7 +377,7 @@ namespace YarnLanguageServer
 
             var headerValue = commandParams.Arguments[3].ToString();
 
-            Uri yarnDocumentUri = new(yarnDocumentUriString);
+            Uri yarnDocumentUri = new (yarnDocumentUriString);
 
             TextDocumentEdit emptyResult = new TextDocumentEdit
             {
@@ -472,7 +471,7 @@ namespace YarnLanguageServer
                 return Task.FromException<Container<NodeInfo>>(new InvalidOperationException("No document URI was provided."));
             }
 
-            Uri yarnDocumentUri = new(yarnDocumentUriString);
+            Uri yarnDocumentUri = new (yarnDocumentUriString);
 
             var project = workspace.GetProjectsForUri(yarnDocumentUri).FirstOrDefault();
 
@@ -492,7 +491,7 @@ namespace YarnLanguageServer
             return Task.FromResult<Container<NodeInfo>>(result);
         }
 
-        private static Task<CompilerOutput> CompileCurrentProject(Workspace workspace, ExecuteCommandParams<CompilerOutput> commandParams)
+        private static Task<CompilerOutput> CompileCurrentProjectAsync(Workspace workspace, ExecuteCommandParams<CompilerOutput> commandParams)
         {
             if (commandParams.Arguments == null)
             {
@@ -529,9 +528,10 @@ namespace YarnLanguageServer
             var strings = new Dictionary<string, string>();
             var metadata = new Dictionary<string, MetadataOutput>();
 
-            foreach (var line in result.StringTable ?? Enumerable.Empty<KeyValuePair<string,Yarn.Compiler.StringInfo>>())
+            foreach (var line in result.StringTable ?? Enumerable.Empty<KeyValuePair<string, Yarn.Compiler.StringInfo>>())
             {
-                if (line.Value.text == null) {
+                if (line.Value.text == null)
+                {
                     continue;
                 }
 
@@ -557,7 +557,7 @@ namespace YarnLanguageServer
             });
         }
 
-        private static Task<string> GenerateDialogueGraph(Workspace workspace, ExecuteCommandParams<string> commandParams)
+        private static Task<string> GenerateDialogueGraphAsync(Workspace workspace, ExecuteCommandParams<string> commandParams)
         {
             if (commandParams.Arguments == null)
             {
@@ -615,6 +615,7 @@ namespace YarnLanguageServer
                 {
                     sb.AppendLine($"\tsubgraph a{i}");
                 }
+
                 foreach (var node in cluster)
                 {
                     foreach (var jump in node.jumps)
@@ -622,14 +623,18 @@ namespace YarnLanguageServer
                         sb.AppendLine($"\t{node.node}-->{jump}");
                     }
                 }
+
                 if (clustering)
                 {
                     sb.AppendLine("\tend");
                 }
+
                 i++;
             }
+
             return sb.ToString();
         }
+
         private static string DrawDot(List<List<Yarn.Compiler.GraphingNode>> graph, bool clustering)
         {
             // using three individual builders is a bit lazy but it means I can turn stuff on and off as needed
@@ -655,6 +660,7 @@ namespace YarnLanguageServer
                     {
                         sub.Append($"{node.node} ");
                     }
+
                     sub.AppendLine(";");
                     sub.AppendLine("\t}");
                     i++;
@@ -686,8 +692,7 @@ namespace YarnLanguageServer
             return sb.ToString();
         }
 
-
-        private static Task<VOStringExport> ExtractVoiceoverSpreadsheet(Workspace workspace, ExecuteCommandParams<VOStringExport> commandParams)
+        private static Task<VOStringExport> ExtractVoiceoverSpreadsheetAsync(Workspace workspace, ExecuteCommandParams<VOStringExport> commandParams)
         {
             if (commandParams.Arguments == null)
             {
@@ -787,7 +792,6 @@ namespace YarnLanguageServer
             }
 
             fileData = StringExtractor.ExportStrings(lineBlocks, result.StringTable, columns, format, defaultName, useCharacters);
-        
 
             var output = new VOStringExport
             {
@@ -797,7 +801,7 @@ namespace YarnLanguageServer
             return Task.FromResult(output);
         }
 
-        public static Task<Container<DebugOutput>> GenerateDebugOutput(Workspace workspace, ExecuteCommandParams<Container<DebugOutput>> commandParams)
+        public static Task<Container<DebugOutput>> GenerateDebugOutputAsync(Workspace workspace, ExecuteCommandParams<Container<DebugOutput>> commandParams)
         {
             var results = workspace.Projects.Select(project =>
             {
@@ -807,14 +811,14 @@ namespace YarnLanguageServer
             return Task.FromResult(new Container<DebugOutput>(results));
         }
 
-        public static Task<string> GetEmptyYarnProjectJSON(Workspace workspace, ExecuteCommandParams<string> commandParams)
+        public static Task<string> GetEmptyYarnProjectJSONAsync(Workspace workspace, ExecuteCommandParams<string> commandParams)
         {
             var project = new Yarn.Compiler.Project();
 
             return Task.FromResult(project.GetJson());
         }
 
-        private static Task<Container<ProjectInfo>> ListProjects(Workspace workspace, ExecuteCommandParams<Container<ProjectInfo>> commandParams)
+        private static Task<Container<ProjectInfo>> ListProjectsAsync(Workspace workspace, ExecuteCommandParams<Container<ProjectInfo>> commandParams)
         {
             var info = workspace.Projects.Select(p => new ProjectInfo
             {

@@ -1,11 +1,11 @@
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Workspace;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 using Yarn.Compiler;
@@ -37,7 +37,8 @@ public class CommandTests : LanguageServerTestsBase
 
         result.Should().NotBeNullOrEmpty("because the file contains nodes");
 
-        foreach (var node in result) {
+        foreach (var node in result)
+        {
             node.Title.Should().NotBeNullOrEmpty("because all nodes have a title");
             node.Headers.Should().NotBeNullOrEmpty("because all nodes have headers");
             node.BodyStartLine.Should().NotBe(0, "because bodies never start on the first line");
@@ -46,9 +47,12 @@ public class CommandTests : LanguageServerTestsBase
             node.Headers.Should().Contain(h => h.Key == "title", "because all nodes have a header named 'title'")
                 .Which.Value.Should().Be(node.Title, "because the 'title' header populates the Title property");
 
-            if (node == result.First()) {
+            if (node == result.First())
+            {
                 node.HeaderStartLine.Should().Be(0, "because the first node begins on the first line");
-            } else {
+            }
+            else
+            {
                 node.HeaderStartLine.Should().NotBe(0, "because nodes after the first one begin on later lines");
             }
         }
@@ -163,7 +167,7 @@ public class CommandTests : LanguageServerTestsBase
             .Nodes.Should()
             .Contain(n => n.Title == "Start")
             .Which.Headers.Should()
-            .NotContain(n => n.Key == "position", 
+            .NotContain(n => n.Key == "position",
                 "because this node doesn't have this header");
 
 
@@ -183,7 +187,7 @@ public class CommandTests : LanguageServerTestsBase
         result.TextDocument.Uri.ToString().Should().Be("file://" + getInitialNodesChanged);
 
         Task<NodesChangedParams> nodesChangedAfterChangingText = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(getInitialNodesChanged));
-        
+
         ChangeTextInDocument(client, result);
 
         nodeInfo = await nodesChangedAfterChangingText;
@@ -324,11 +328,11 @@ public class CommandTests : LanguageServerTestsBase
         // Given
         var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
         var project1Path = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Project1.yarnproject");
-    
+
         // When
         var result = await client.ExecuteCommand(new ExecuteCommandParams<Container<DebugOutput>>
         {
-            Command = Commands.GenerateDebugOutput, 
+            Command = Commands.GenerateDebugOutput,
         });
 
         // Then
@@ -341,7 +345,7 @@ public class CommandTests : LanguageServerTestsBase
             Type = "String",
             IsSmartVariable = false
         });
-        
+
         firstProject.Variables.Should().ContainEquivalentOf(new
         {
             Name = "$playerCanAffordPies",
@@ -350,9 +354,11 @@ public class CommandTests : LanguageServerTestsBase
         });
     }
 
-    private static YarnSpinnerParser Parse(string input, int initialLexerMode = -1) {
+    private static YarnSpinnerParser Parse(string input, int initialLexerMode = -1)
+    {
         var lexer = new YarnSpinnerLexer(Antlr4.Runtime.CharStreams.fromString(input));
-        if (initialLexerMode >= 0) {
+        if (initialLexerMode >= 0)
+        {
             lexer.PushMode(initialLexerMode);
         }
         var tokenStream = new Antlr4.Runtime.CommonTokenStream(lexer);
@@ -367,7 +373,7 @@ public class CommandTests : LanguageServerTestsBase
         var input = "$foo and ($bar or not true)";
 
         // When
-        
+
         var expressionParseTree = Parse(input, YarnSpinnerLexer.ExpressionMode).expression();
 
         expressionParseTree.Should().NotBeNull();
@@ -403,18 +409,18 @@ public class CommandTests : LanguageServerTestsBase
 
     }
 
-     [Fact]
+    [Fact]
     public async Task Server_OnCreatingNewProject_ReturnsJSON()
     {
         // Given
         var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-        
+
         // When
         var result = await client.ExecuteCommand(new ExecuteCommandParams<string>
         {
             Command = Commands.GetEmptyYarnProjectJSON,
             Arguments = new JArray(
-                
+
             )
         });
 
@@ -427,7 +433,7 @@ public class CommandTests : LanguageServerTestsBase
 
 
     }
-    
+
     public async Task Server_CanListProjects()
     {
         // Set up the server

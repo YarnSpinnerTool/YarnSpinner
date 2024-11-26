@@ -3,14 +3,14 @@
 
 namespace Yarn.Compiler
 {
+    using Antlr4.Runtime;
+    using Antlr4.Runtime.Misc;
+    using Antlr4.Runtime.Tree;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Text;
-    using Antlr4.Runtime;
-    using Antlr4.Runtime.Misc;
-    using Antlr4.Runtime.Tree;
 
     /// <summary>
     /// Utility methods for working with line tags.
@@ -319,7 +319,7 @@ namespace Yarn.Compiler
                         return;
                     }
                 }
-                
+
                 // Find the index of the first token on the default channel to
                 // the left of the newline.
                 var previousTokenIndex = IndexOfPreviousTokenOnChannel(
@@ -555,7 +555,8 @@ namespace Yarn.Compiler
         /// <param name="l"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public static string GetCompiledCodeAsString(Program program, Library? l = null, CompilationResult? result = null) {
+        public static string GetCompiledCodeAsString(Program program, Library? l = null, CompilationResult? result = null)
+        {
             return program.DumpCode(l, result);
         }
 
@@ -574,7 +575,9 @@ namespace Yarn.Compiler
                 Value yarnValue = new Value(yarnType, clrValue);
 
                 return yarnValue;
-            } else {
+            }
+            else
+            {
                 return null;
             }
         }
@@ -657,7 +660,8 @@ namespace Yarn.Compiler
 
                 // If the instruction is labelled (i.e. it is the target of a
                 // jump), it is a leader.
-                if (info.GetLabel(i) != null) {
+                if (info.GetLabel(i) != null)
+                {
                     leaderIndices.Add(i);
                 }
             }
@@ -759,7 +763,7 @@ namespace Yarn.Compiler
                                     block.AddDestination(destinationBlock, BasicBlock.Condition.Option, destinationLineID);
                                 }
                                 peekAndJumpDestinations.Clear();
-                                
+
                                 break;
                             }
                         case Instruction.InstructionTypeOneofCase.JumpTo:
@@ -804,7 +808,9 @@ namespace Yarn.Compiler
                                 if (currentStringAtTopOfStack != null)
                                 {
                                     block.AddDestination(currentStringAtTopOfStack, BasicBlock.Condition.DirectJump);
-                                } else {
+                                }
+                                else
+                                {
                                     // We don't know the string at the top of
                                     // the stack. This could be a jump to
                                     // anywhere.
@@ -829,7 +835,7 @@ namespace Yarn.Compiler
                                 // We will return to the block that starts on
                                 // the next instruction, so find that block now.
                                 var returnToBlock = GetBlock(block.FirstInstructionIndex + count + 1);
-                                
+
                                 if (currentStringAtTopOfStack != null)
                                 {
                                     block.AddDetourDestination(currentStringAtTopOfStack,
@@ -892,7 +898,7 @@ namespace Yarn.Compiler
                     // we'll fall through to the next node.
 
                     var lastInstructionType = block.Instructions.Last().InstructionTypeCase;
-                    if (lastInstructionType != Instruction.InstructionTypeOneofCase.Stop && 
+                    if (lastInstructionType != Instruction.InstructionTypeOneofCase.Stop &&
                         lastInstructionType != Instruction.InstructionTypeOneofCase.Return)
                     {
                         var nextBlockStartInstruction = block.FirstInstructionIndex + block.Instructions.Count();
@@ -950,11 +956,11 @@ namespace Yarn.Compiler
         /// <remarks>
         /// If this block begins at a labelled instruction, the name will be <c>[NodeName].[LabelName]</c>. Otherwise, it will be <c>[NodeName].[FirstInstructionIndex]</c>.
         /// </remarks>
-        public string Name 
+        public string Name
         {
             get
             {
-                if (LabelName != null) 
+                if (LabelName != null)
                 {
                     return $"{NodeName}.{LabelName}";
                 }
@@ -985,9 +991,12 @@ namespace Yarn.Compiler
             {
                 var desc = i.ToDescription(this.Node, library, compilationResult);
                 sb.Append($"{desc.Type} {string.Join(",", desc.Operands)}");
-                if (desc.Comments.Count() > 0) {
+                if (desc.Comments.Count() > 0)
+                {
                     sb.AppendLine(" ; " + string.Join(", ", desc.Comments));
-                } else {
+                }
+                else
+                {
                     sb.AppendLine();
                 }
             }
@@ -1048,7 +1057,8 @@ namespace Yarn.Compiler
             destinations.Add(new NodeDestination(nodeName, condition));
         }
 
-        public void AddDetourDestination(string nodeName, Condition condition, BasicBlock returnToBlock) {
+        public void AddDetourDestination(string nodeName, Condition condition, BasicBlock returnToBlock)
+        {
             if (string.IsNullOrEmpty(nodeName))
             {
                 throw new ArgumentException($"'{nameof(nodeName)}' cannot be null or empty.", nameof(nodeName));
@@ -1061,7 +1071,8 @@ namespace Yarn.Compiler
         /// Adds a new destination to this block that points at any other node
         /// in the program.
         /// </summary>
-        public void AddDestinationToAnywhere(BasicBlock? returnToBlock = null) {
+        public void AddDestinationToAnywhere(BasicBlock? returnToBlock = null)
+        {
             destinations.Add(new AnyNodeDestination(returnToBlock));
         }
 
@@ -1119,7 +1130,7 @@ namespace Yarn.Compiler
             /// return to it. If the value is null, the VM should clear the call
             /// stack.
             /// </summary>
-            public BasicBlock? ReturnTo {get;set;}
+            public BasicBlock? ReturnTo { get; set; }
 
             public override string? ToString()
             {
@@ -1145,7 +1156,8 @@ namespace Yarn.Compiler
                         result = "(unknown)";
                         break;
                 }
-                if (ReturnTo != null) {
+                if (ReturnTo != null)
+                {
                     result += $" (return to: {ReturnTo})";
                 }
                 return result;
@@ -1169,8 +1181,9 @@ namespace Yarn.Compiler
             public string NodeName { get; set; }
         }
 
-        public class AnyNodeDestination : Destination {
-            public AnyNodeDestination(BasicBlock? returnTo = null) : base(Condition.DirectJump, returnTo) {}
+        public class AnyNodeDestination : Destination
+        {
+            public AnyNodeDestination(BasicBlock? returnTo = null) : base(Condition.DirectJump, returnTo) { }
         }
 
         public class BlockDestination : Destination
@@ -1182,7 +1195,7 @@ namespace Yarn.Compiler
             /// <see cref="DestinationType.Block"/>.</remarks>
             public BasicBlock Block { get; set; }
 
-            public int DestinationInstructionIndex { get => Block.FirstInstructionIndex; }            
+            public int DestinationInstructionIndex { get => Block.FirstInstructionIndex; }
 
             public BlockDestination(BasicBlock block, Condition condition) : base(condition)
             {

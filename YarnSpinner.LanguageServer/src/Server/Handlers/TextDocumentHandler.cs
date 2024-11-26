@@ -30,7 +30,8 @@ namespace YarnLanguageServer.Handlers
 
             var projects = workspace.GetProjectsForUri(uri);
 
-            if (!projects.Any()) {
+            if (!projects.Any())
+            {
                 // We don't know what project handles this URI. Log an error.
                 workspace.Window?.LogError($"No known project for URI {uri}");
                 return Unit.Task;

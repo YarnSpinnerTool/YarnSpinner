@@ -18,7 +18,7 @@ namespace YarnSpinner.Tests
         public class Run : IEnumerable<Step>
         {
             public string StartNode { get; private set; } = "Start";
-            
+
             public List<Step> Steps { get; init; } = new();
 
             public IEnumerator<Step> GetEnumerator()
@@ -95,7 +95,7 @@ namespace YarnSpinner.Tests
             }
         }
 
-        public class ActionSetSaliencyStep : Step 
+        public class ActionSetSaliencyStep : Step
         {
             public string SaliencyMode { get; init; }
 
@@ -151,11 +151,12 @@ namespace YarnSpinner.Tests
             var parserErrorListener = new ParserErrorListener("testplan");
             lexer.AddErrorListener(lexerErrorListener);
             parser.AddErrorListener(parserErrorListener);
-            
+
             var testPlanTree = parser.testplan();
 
             var allDiagnostics = lexerErrorListener.Diagnostics.Concat(parserErrorListener.Diagnostics);
-            if (allDiagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error)) {
+            if (allDiagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
+            {
                 throw new XunitException("Syntax errors in test plan: " + string.Join("\n", allDiagnostics));
             }
 
@@ -297,41 +298,49 @@ namespace YarnSpinner.Tests
         Run
     }
 
-    public class TestPlanBuilder {
+    public class TestPlanBuilder
+    {
         private TestPlan testPlan;
         private TestPlan.Run currentRun;
 
-        public TestPlanBuilder() {
+        public TestPlanBuilder()
+        {
             testPlan = new TestPlan();
             currentRun = new TestPlan.Run();
             testPlan.Runs.Add(currentRun);
         }
 
-        public TestPlan GetPlan() {
+        public TestPlan GetPlan()
+        {
             return testPlan;
         }
 
-        public TestPlanBuilder AddLine(string line) {
+        public TestPlanBuilder AddLine(string line)
+        {
             currentRun.Steps.Add(new TestPlan.ExpectLineStep(line, Array.Empty<string>()));
             return this;
         }
 
-        public TestPlanBuilder AddOption(string? text = null) {
+        public TestPlanBuilder AddOption(string? text = null)
+        {
             currentRun.Steps.Add(new TestPlan.ExpectOptionStep(text, Array.Empty<string>(), true));
             return this;
         }
 
-        public TestPlanBuilder AddSelect(int value) {
+        public TestPlanBuilder AddSelect(int value)
+        {
             currentRun.Steps.Add(new TestPlan.ActionSelectStep(value));
             return this;
         }
 
-        public TestPlanBuilder AddCommand(string command) {
+        public TestPlanBuilder AddCommand(string command)
+        {
             currentRun.Steps.Add(new TestPlan.ExpectCommandStep(command));
             return this;
         }
 
-        public TestPlanBuilder AddStop() {
+        public TestPlanBuilder AddStop()
+        {
             currentRun.Steps.Add(new TestPlan.ExpectStop());
             return this;
         }

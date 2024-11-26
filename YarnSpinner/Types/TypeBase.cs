@@ -9,7 +9,8 @@ namespace Yarn
     /// <summary>
     /// Provides properties used to work with members of a type.
     /// </summary>
-    public interface ITypeMember {
+    public interface ITypeMember
+    {
         /// <summary>
         /// Gets or sets the type of this member.
         /// </summary>
@@ -74,7 +75,7 @@ namespace Yarn
 
         /// <inheritdoc />
         public override string ToString() => Name;
-        
+
         /// <summary>
         /// Gets the collection of methods that are defined on this type.
         /// </summary>
@@ -89,7 +90,7 @@ namespace Yarn
         /// Gets the collection of types that this type may be converted to.
         /// </summary>
         public IReadOnlyCollection<IType> ConvertibleToTypes => _convertibleToTypes;
-        
+
         internal Dictionary<string, Delegate> _methods = new Dictionary<string, Delegate>();
         internal Dictionary<string, ITypeMember> _typeMembers = new Dictionary<string, ITypeMember>();
         internal HashSet<IType> _convertibleToTypes = new HashSet<IType>();
@@ -112,7 +113,7 @@ namespace Yarn
                 int depth = 0;
 
                 IType? parent = this.Parent;
-                
+
                 // Walk up the parent hierarchy, adding 1 to our depth each time
                 while (parent != null)
                 {
@@ -175,12 +176,15 @@ namespace Yarn
             return false;
         }
 
-        protected TypeBase(IReadOnlyDictionary<string, Delegate>? methods) {
-            if (methods == null) {
+        protected TypeBase(IReadOnlyDictionary<string, Delegate>? methods)
+        {
+            if (methods == null)
+            {
                 return;
             }
-            
-            foreach (var method in methods) {
+
+            foreach (var method in methods)
+            {
                 this._methods.Add(method.Key, method.Value);
             }
         }

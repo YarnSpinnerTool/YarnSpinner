@@ -25,22 +25,28 @@ namespace TypeChecker
             return clone;
         }
 
-        internal bool TryResolveTypeVariable(TypeVariable variable, out IType? result) {
+        internal bool TryResolveTypeVariable(TypeVariable variable, out IType? result)
+        {
             var checkedSet = new HashSet<TypeVariable>();
 
             var current = variable;
 
-            while (checkedSet.Contains(current) == false) {
-                if (this.ContainsKey(current) == false) {
+            while (checkedSet.Contains(current) == false)
+            {
+                if (this.ContainsKey(current) == false)
+                {
                     result = default;
                     return false;
                 }
                 result = this[current];
-                if (result is TypeVariable typeVariable) {
+                if (result is TypeVariable typeVariable)
+                {
                     checkedSet.Add(current);
                     current = typeVariable;
                     continue;
-                } else {
+                }
+                else
+                {
                     return true;
                 }
             }

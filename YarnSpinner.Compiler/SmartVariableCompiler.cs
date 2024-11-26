@@ -6,11 +6,12 @@
 
 namespace Yarn.Compiler
 {
+    using Antlr4.Runtime;
     using System;
     using System.Collections.Generic;
-    using Antlr4.Runtime;
 
-    internal class SmartVariableCompiler : ICodeEmitter {
+    internal class SmartVariableCompiler : ICodeEmitter
+    {
         public Node? CurrentNode { get; private set; }
         public NodeDebugInfo? CurrentNodeDebugInfo { get; private set; }
         public IDictionary<string, Declaration> VariableDeclarations { get; private set; }
@@ -65,26 +66,29 @@ namespace Yarn.Compiler
 
         public void Emit(IToken? startToken, Instruction instruction)
         {
-            if (this.CurrentNode == null) {
+            if (this.CurrentNode == null)
+            {
                 throw new InvalidOperationException($"{nameof(CurrentNode)} was null when generating a smart variable");
             }
-            
-            if (this.CurrentNodeDebugInfo == null) {
+
+            if (this.CurrentNodeDebugInfo == null)
+            {
                 throw new InvalidOperationException($"{nameof(CurrentNodeDebugInfo)} was null when generating a smart variable");
             }
 
             Compiler.Emit(
-                this.CurrentNode, 
-                this.CurrentNodeDebugInfo, 
-                startToken?.Line - 1 ?? -1, 
-                startToken?.Column ?? -1, 
+                this.CurrentNode,
+                this.CurrentNodeDebugInfo,
+                startToken?.Line - 1 ?? -1,
+                startToken?.Column ?? -1,
                 instruction
             );
         }
 
         public void Emit(IToken startToken, params Instruction[] instructions)
         {
-            foreach (var i in instructions) {
+            foreach (var i in instructions)
+            {
                 this.Emit(startToken, i);
             }
         }

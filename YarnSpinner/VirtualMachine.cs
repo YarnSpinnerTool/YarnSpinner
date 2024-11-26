@@ -122,7 +122,8 @@ namespace Yarn
     /// <summary>
     /// Contains methods for evaluating the value of smart variables
     /// </summary>
-    public interface ISmartVariableEvaluator {
+    public interface ISmartVariableEvaluator
+    {
         /// <summary>
         /// Evaluate the value of a smart variable named <paramref
         /// name="name"/>.
@@ -159,11 +160,12 @@ namespace Yarn
             /// <summary>The value stack.</summary>
             private Stack<Value> stack = new Stack<Value>();
 
-            internal struct CallSite {
+            internal struct CallSite
+            {
                 public string nodeName;
                 public int instruction;
             }
-            
+
             private Stack<CallSite> callStack = new Stack<CallSite>();
 
             /// <summary>Pushes a <see cref="Value"/> object onto the
@@ -222,7 +224,8 @@ namespace Yarn
 
             internal bool CanReturn => this.callStack.Count > 0;
 
-            internal CallSite PopCallStack() {
+            internal CallSite PopCallStack()
+            {
                 return callStack.Pop();
             }
         }
@@ -324,7 +327,8 @@ namespace Yarn
             return SetNode(nodeName, clearState: true);
         }
 
-        internal bool SetNode(string nodeName, bool clearState) {
+        internal bool SetNode(string nodeName, bool clearState)
+        {
             if (Program == null || Program.Nodes.Count == 0)
             {
                 throw new DialogueException($"Cannot load node {nodeName}: No nodes have been loaded.");
@@ -339,8 +343,9 @@ namespace Yarn
             LogDebugMessage?.Invoke("Running node " + nodeName);
 
             currentNode = Program.Nodes[nodeName];
-            
-            if (clearState) {
+
+            if (clearState)
+            {
                 ResetState();
             }
 
@@ -436,19 +441,25 @@ namespace Yarn
             }
         }
 
-        private void ReturnFromNode(Node? node) {
-            if (node == null) {
+        private void ReturnFromNode(Node? node)
+        {
+            if (node == null)
+            {
                 // Nothing to do.
                 return;
             }
             NodeCompleteHandler?.Invoke(node.Name);
 
             string? nodeTrackingVariable = node.TrackingVariableName;
-            if (nodeTrackingVariable != null) {
-                if (this.VariableStorage.TryGetValue(nodeTrackingVariable, out float result)) {
+            if (nodeTrackingVariable != null)
+            {
+                if (this.VariableStorage.TryGetValue(nodeTrackingVariable, out float result))
+                {
                     result += 1;
                     this.VariableStorage.SetValue(nodeTrackingVariable, result);
-                } else {
+                }
+                else
+                {
                     this.LogErrorMessage?.Invoke($"Failed to get the tracking variable for node {node.Name}");
                 }
             }
@@ -480,7 +491,8 @@ namespace Yarn
             {
                 throw new DialogueException($"Cannot continue running dialogue. {nameof(OptionsHandler)} has not been set.");
             }
-            if (Library == null) {
+            if (Library == null)
+            {
                 throw new DialogueException($"Cannot continue running dialogue. {nameof(Library)} has not been set.");
             }
         }
@@ -514,7 +526,7 @@ namespace Yarn
                         }
 
                         Line line = new Line(stringKey, strings);
-                        
+
                         // Suspend execution, because we're about to deliver content
                         CurrentExecutionState = ExecutionState.DeliveringContent;
 
@@ -837,11 +849,12 @@ namespace Yarn
                         ReturnFromNode(currentNode);
 
                         // Unwind the call stack.
-                        while (state.CanReturn) {
+                        while (state.CanReturn)
+                        {
                             var node = Program?.Nodes[state.PopCallStack().nodeName];
                             ReturnFromNode(node);
                         }
-                        
+
                         DialogueCompleteHandler?.Invoke();
                         CurrentExecutionState = ExecutionState.Stopped;
 
@@ -862,12 +875,14 @@ namespace Yarn
                 case Instruction.InstructionTypeOneofCase.Return:
                     {
                         ReturnFromNode(currentNode);
-                        
+
                         State.CallSite returnSite = default;
-                        if (state.CanReturn) {
+                        if (state.CanReturn)
+                        {
                             returnSite = state.PopCallStack();
                         }
-                        if (returnSite.nodeName == null) {
+                        if (returnSite.nodeName == null)
+                        {
                             // We've reached the top of the call stack, so
                             // there's nowhere to return to. Stop the program.
                             DialogueCompleteHandler?.Invoke();
@@ -935,14 +950,15 @@ namespace Yarn
                         // run, or null
                         ContentSaliencyOption? result = this.ContentSaliencyStrategy.QueryBestContent(this.saliencyCandidateList);
 
-                        if (result != null) {
+                        if (result != null)
+                        {
                             // The content that was selected must be one of the candidates.
                             bool selectedContentWasValid = saliencyCandidateList.Contains(result);
 
                             if (selectedContentWasValid == false)
                             {
-                                throw new DialogueException($"Content saliency strategy {ContentSaliencyStrategy} did not " + 
-                                    $"return a valid selection (available content IDs to choose from were " + 
+                                throw new DialogueException($"Content saliency strategy {ContentSaliencyStrategy} did not " +
+                                    $"return a valid selection (available content IDs to choose from were " +
                                     $"{string.Join(", ", saliencyCandidateList)}, but strategy returned {result}");
                             }
 
@@ -955,7 +971,9 @@ namespace Yarn
 
                             // Push a flag indicating that content was selected.
                             this.state.PushValue(true);
-                        } else {
+                        }
+                        else
+                        {
                             // No content was selected.
 
                             // Push a flag indicating that content was not selected.
@@ -983,14 +1001,18 @@ namespace Yarn
             {
                 // Preserve our current state.
                 state.PushCallStack();
-            } else {
+            }
+            else
+            {
                 // We are jumping straight to another node. Unwind the current
                 // call stack and issue a 'node complete' event for every node.
                 ReturnFromNode(this.Program?.Nodes[CurrentNodeName]);
 
-                while (state.CanReturn) {
+                while (state.CanReturn)
+                {
                     var poppedNodeName = state.PopCallStack().nodeName;
-                    if (poppedNodeName != null) {
+                    if (poppedNodeName != null)
+                    {
                         ReturnFromNode(this.Program?.Nodes[poppedNodeName]);
                     }
                 }
@@ -1026,7 +1048,8 @@ namespace Yarn
             throw new System.InvalidOperationException($"Smart node execution nodes must not run lines");
         }
 
-        private static void DummyLineHandler(Yarn.Line line) {
+        private static void DummyLineHandler(Yarn.Line line)
+        {
             throw new System.InvalidOperationException($"Smart node execution nodes must not run lines");
         }
     }

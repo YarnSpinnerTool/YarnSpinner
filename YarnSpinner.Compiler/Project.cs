@@ -3,12 +3,12 @@
 
 namespace Yarn.Compiler
 {
+    using Microsoft.Extensions.FileSystemGlobbing;
     using System;
     using System.Collections.Generic;
     using System.Text.Json;
     using System.Text.Json.Nodes;
     using System.Text.Json.Serialization;
-    using Microsoft.Extensions.FileSystemGlobbing;
 
     /// <summary>
     /// Yarn Projects represent instructions on where to find Yarn scripts and
@@ -138,15 +138,18 @@ namespace Yarn.Compiler
         /// </summary>
         public Dictionary<string, JsonValue> CompilerOptions { get; set; } = new Dictionary<string, JsonValue>();
 
-        private bool GetCompilerOptionsFlag(string key) {
+        private bool GetCompilerOptionsFlag(string key)
+        {
             return CompilerOptions.TryGetValue(key, out var value) && value.GetValue<bool>();
         }
-        private void SetCompilerOptionsFlag(string key, bool value) {
+        private void SetCompilerOptionsFlag(string key, bool value)
+        {
             CompilerOptions[key] = JsonValue.Create(value);
         }
 
         [JsonIgnore]
-        public bool AllowLanguagePreviewFeatures {
+        public bool AllowLanguagePreviewFeatures
+        {
             get => GetCompilerOptionsFlag(AllowPreviewFeaturesKey);
             set => SetCompilerOptionsFlag(AllowPreviewFeaturesKey, value);
         }
@@ -175,8 +178,10 @@ namespace Yarn.Compiler
 
                 var results = new List<string>(matcher.GetResultsInFullPath(searchDirectoryPath));
 
-                foreach (var path in this.SourceFilePatterns) {
-                    if (System.IO.Path.IsPathRooted(path) && System.IO.Path.GetExtension(path) == ".yarn") {
+                foreach (var path in this.SourceFilePatterns)
+                {
+                    if (System.IO.Path.IsPathRooted(path) && System.IO.Path.GetExtension(path) == ".yarn")
+                    {
                         // This is an explicit, absolute path to a Yarn file
                         // (which the globbing matcher won't pick up) - manually
                         // add it to the list of paths that this project
@@ -264,14 +269,18 @@ namespace Yarn.Compiler
         /// <returns><see langword="true"/> if <paramref name="path"/> is a path
         /// that is included in this project; <see langword="false"/>
         /// otherwise.</returns>
-        public bool IsMatchingPath(string path) {
+        public bool IsMatchingPath(string path)
+        {
 
             string searchDirectoryPath = this.SearchDirectoryPath;
-            if (searchDirectoryPath == null) {
+            if (searchDirectoryPath == null)
+            {
                 return false;
             }
-            foreach (var sourceFile in this.SourceFiles) {
-                if (sourceFile.Equals(path)) {
+            foreach (var sourceFile in this.SourceFiles)
+            {
+                if (sourceFile.Equals(path))
+                {
                     return true;
                 }
             }
@@ -319,8 +328,10 @@ namespace Yarn.Compiler
             }
         }
 
-        internal static Project LoadFromString(string text, string path) {
-            try {
+        internal static Project LoadFromString(string text, string path)
+        {
+            try
+            {
                 var project = JsonSerializer.Deserialize<Project>(text, SerializationOptions);
 
                 if (project.FileVersion != CurrentProjectFileVersion)
@@ -331,7 +342,8 @@ namespace Yarn.Compiler
                 project.Path = path;
 
                 return project;
-            } catch (JsonException e)
+            }
+            catch (JsonException e)
             {
                 throw new ArgumentException($"Project file at {path} has invalid JSON", e);
             }

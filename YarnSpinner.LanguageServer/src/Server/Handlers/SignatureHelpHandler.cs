@@ -40,7 +40,7 @@ namespace YarnLanguageServer.Handlers
                         string functionSeparator = fi.Type == ActionType.Command ? " " : ", ";
 
                         string signature = string.Join(
-                            functionSeparator, fi.Parameters.Select(p => 
+                            functionSeparator, fi.Parameters.Select(p =>
                                 $"{(p.DisplayDefaultValue.Any() ? "[" : string.Empty)}{p.DisplayTypeName}:{p.Name}{(p.DisplayDefaultValue.Any() ? "]" : string.Empty)}"
                             )
                         );
@@ -73,7 +73,8 @@ namespace YarnLanguageServer.Handlers
                         };
                 }
 
-                return Task.FromResult<SignatureHelp?>(new SignatureHelp {
+                return Task.FromResult<SignatureHelp?>(new SignatureHelp
+                {
                     Signatures = new Container<SignatureInformation>(results),
                 });
             }

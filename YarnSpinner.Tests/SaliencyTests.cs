@@ -1,15 +1,13 @@
-using Xunit;
 using FluentAssertions;
-
-using Yarn.Compiler;
-using Yarn.Saliency;
-using Xunit.Abstractions;
-
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xunit;
+using Xunit.Abstractions;
 using Yarn;
+using Yarn.Compiler;
+using Yarn.Saliency;
 
 namespace YarnSpinner.Tests
 {
@@ -21,7 +19,8 @@ namespace YarnSpinner.Tests
         {
         }
 
-        private CompilationResult CompileAndPrepareDialogue(string source, string node = "Start") {
+        private CompilationResult CompileAndPrepareDialogue(string source, string node = "Start")
+        {
             var job = CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true);
             var result = Compiler.Compile(job);
             result.Diagnostics.Should().BeEmpty();
@@ -29,12 +28,12 @@ namespace YarnSpinner.Tests
             this.dialogue.SetProgram(result.Program);
             this.dialogue.SetNode(node);
 
-            this.dialogue.LineHandler = (line) => {};
+            this.dialogue.LineHandler = (line) => { };
             this.dialogue.OptionsHandler = (opts) => this.dialogue.SetSelectedOption(opts.Options.First().ID);
-            this.dialogue.CommandHandler = (cmd) => {};
-            this.dialogue.NodeStartHandler = (node) => {};
-            this.dialogue.NodeCompleteHandler = (node) => {};
-            this.dialogue.DialogueCompleteHandler = () => {};
+            this.dialogue.CommandHandler = (cmd) => { };
+            this.dialogue.NodeStartHandler = (node) => { };
+            this.dialogue.NodeCompleteHandler = (node) => { };
+            this.dialogue.DialogueCompleteHandler = () => { };
 
             return result;
 
@@ -45,7 +44,7 @@ namespace YarnSpinner.Tests
         {
             // Given
             var mockSaliencyStrategy = new Mock<IContentSaliencyStrategy>(MockBehavior.Strict);
-            
+
             // Create a mock saliency strategy that mimics the
             // FirstContentStrategy (i.e. it returns the first item in the list,
             // every time)
@@ -152,7 +151,7 @@ expected: 2
             mockSaliencyStrategy.Setup(
                 (s) => s.ContentWasSelected(It.IsAny<ContentSaliencyOption>()));
 
-            dialogue.Library.RegisterFunction("demo_function", (bool a) => {return true;});
+            dialogue.Library.RegisterFunction("demo_function", (bool a) => { return true; });
 
             var result = CompileAndPrepareDialogue(source);
 
@@ -161,18 +160,20 @@ expected: 2
             int nodesInNodeGroup = 0;
             string nodeGroupName = "NodeGroup";
 
-            foreach (var node in result.Program.Nodes) {
+            foreach (var node in result.Program.Nodes)
+            {
                 var nodeGroupHeader = node.Value.Headers.SingleOrDefault(h => h.Key == Yarn.Node.NodeGroupHeader);
 
-                if (nodeGroupHeader == null) {
+                if (nodeGroupHeader == null)
+                {
                     continue;
                 }
 
                 nodeGroupHeader.Value.Should().Be(nodeGroupName);
 
-                var expectedTag = node.Value.Headers.SingleOrDefault(h => h.Key == "expected") 
+                var expectedTag = node.Value.Headers.SingleOrDefault(h => h.Key == "expected")
                     ?? throw new Exception("Node " + node.Key + " is in node group but lacks an 'expected' header");
-                
+
                 expectedComplexities[node.Key] = int.Parse(expectedTag.Value);
 
                 nodesInNodeGroup += 1;

@@ -1,13 +1,12 @@
-using System.Threading.Tasks;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
-using System.Linq;
-
-using System.IO;
-using FluentAssertions.Execution;
 
 #pragma warning disable CS0162
 
@@ -90,11 +89,11 @@ namespace YarnLanguageServer.Tests
 
             nodeInfo.Nodes.Should()
                 .Contain(
-                    ni => ni.Title == "Node2", 
+                    ni => ni.Title == "Node2",
                     "because this file contains a node with this title")
                 .Which.Headers.Should()
                 .Contain(
-                    h => h.Key == "tags" && h.Value == "wow incredible", 
+                    h => h.Key == "tags" && h.Value == "wow incredible",
                     "because this node contains a tags header"
                 );
         }
@@ -102,12 +101,12 @@ namespace YarnLanguageServer.Tests
         [Fact(Timeout = 2000)]
         public async Task Server_OnChangingDocument_SendsNodesChangedNotification()
         {
-            var getInitialNodesChanged = GetNodesChangedNotificationAsync((nodesResult) => 
+            var getInitialNodesChanged = GetNodesChangedNotificationAsync((nodesResult) =>
                 nodesResult.Uri.AbsolutePath.Contains(Path.Combine("Project1", "Test.yarn"))
             );
 
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
-            
+
             var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
             NodesChangedParams? nodeInfo;
@@ -153,7 +152,7 @@ namespace YarnLanguageServer.Tests
                 var diagnosticsResult = await getDiagnosticsTask;
 
                 var enumerable = diagnosticsResult.Diagnostics;
-                
+
                 var errors = enumerable.Where(d => d.Severity == DiagnosticSeverity.Error);
 
                 errors.Should().NotBeNullOrEmpty("because we have introduced a syntax error");
@@ -236,12 +235,14 @@ namespace YarnLanguageServer.Tests
             var library = dialogue.Library;
 
             var libraryDecls = Yarn.Compiler.Compiler.GetDeclarationsFromLibrary(library).Item1.ToDictionary(d => d.Name);
-            
+
             // Then
 
             // All entries in the predefined actions must map to an entry in the library
-            using (new AssertionScope()) {
-                foreach (var actionDecl in builtInActionDecls.Values) {
+            using (new AssertionScope())
+            {
+                foreach (var actionDecl in builtInActionDecls.Values)
+                {
 
                     actionDecl.Should().NotBeNull();
 
@@ -258,8 +259,10 @@ namespace YarnLanguageServer.Tests
 
             // All entries in the library except operators must map to an entry
             // in the predefined actions
-            using (new AssertionScope()) {
-                foreach (var libraryDecl in libraryDecls.Values) {
+            using (new AssertionScope())
+            {
+                foreach (var libraryDecl in libraryDecls.Values)
+                {
 
                     builtInActionDecls.Should().ContainKey(libraryDecl.Name);
 

@@ -1,5 +1,5 @@
-using System.Linq;
 using FluentAssertions;
+using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
 using Yarn;
@@ -17,7 +17,7 @@ namespace YarnSpinner.Tests
         public void TestSmartVariablesCanBeDeclared()
         {
             // Given
-            var source = CreateTestNode("<<declare $smart_var = 1 + 1>>");            
+            var source = CreateTestNode("<<declare $smart_var = 1 + 1>>");
 
             // When
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true));
@@ -27,7 +27,7 @@ namespace YarnSpinner.Tests
 
             var smartVariables = result.Declarations.Where(decl => decl.IsInlineExpansion);
 
-            smartVariables.Should().ContainSingle(d => d.Name == "$smart_var").Which.Type.Should().Be(Types.Number);           
+            smartVariables.Should().ContainSingle(d => d.Name == "$smart_var").Which.Type.Should().Be(Types.Number);
         }
 
         [Fact]
@@ -39,16 +39,16 @@ namespace YarnSpinner.Tests
                 "<<declare $smart_var_string = \"hello\" + \" yes\">>",
                 "<<declare $smart_var_bool = true || false>>",
             });
-        
+
             // When
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true));
-        
+
             // Then
             result.Diagnostics.Should().BeEmpty();
 
             var smartVariables = result.Declarations.Where(decl => decl.IsInlineExpansion);
             smartVariables.Should().HaveCount(3);
-            
+
             smartVariables.Should().Contain(v => v.Name == "$smart_var_number").Which.Type.Should().Be(Types.Number);
             smartVariables.Should().Contain(v => v.Name == "$smart_var_string").Which.Type.Should().Be(Types.String);
             smartVariables.Should().Contain(v => v.Name == "$smart_var_bool").Which.Type.Should().Be(Types.Boolean);
@@ -87,7 +87,7 @@ namespace YarnSpinner.Tests
                 $"<<declare $some_other_int = 2>>",
                 $"<<declare $smart_var = {smartVarExpression}>>",
             });
-            
+
             // When
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true));
 
@@ -99,7 +99,7 @@ namespace YarnSpinner.Tests
             smartVariables
                 .Should().ContainSingle(d => d.Name == "$smart_var")
                 .Which
-                .Type.Should().Be(Types.Number);  
+                .Type.Should().Be(Types.Number);
         }
 
         [Fact]
@@ -117,7 +117,7 @@ namespace YarnSpinner.Tests
                 // smart variables can be used in inline expressions...
                 "{$smart_var}", 
                 // ...and can be used in any expression
-                "<<if string($smart_var) == \"2\">>", 
+                "<<if string($smart_var) == \"2\">>",
                 "pass",
                 "<<endif>>",
             });
@@ -138,7 +138,7 @@ namespace YarnSpinner.Tests
                 "<<declare $smart_var_string = \"hello\" + \" yes\">>",
                 "<<declare $smart_var_bool = true || false>>",
             });
-        
+
             // When
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true));
 
@@ -161,7 +161,7 @@ namespace YarnSpinner.Tests
 
             // When
             bool success = this.dialogue.VariableStorage.TryGetValue<int>("$smart_var", out var evaluationResult);
-            
+
             // Then
             success.Should().BeTrue();
             evaluationResult.Should().Be(2);
@@ -215,7 +215,7 @@ namespace YarnSpinner.Tests
 
             // When
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true));
-        
+
             // Then
             RunTestPlan(result, testPlan);
         }
@@ -228,7 +228,7 @@ namespace YarnSpinner.Tests
                 "<<declare $smart_var = 1 + 1>>",
                 "<<set $smart_var to 3>>", // error!
             });
-        
+
             // When
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
@@ -269,7 +269,7 @@ namespace YarnSpinner.Tests
                 .Contain(d => d.Name == "$stored_var_1").Subject;
             var storedVar2 = result.Declarations.Should()
                 .Contain(d => d.Name == "$stored_var_2").Subject;
-            
+
             smartVar1.IsInlineExpansion.Should().BeTrue();
             smartVar2.IsInlineExpansion.Should().BeTrue();
 
@@ -288,25 +288,25 @@ namespace YarnSpinner.Tests
             storedVar1.Dependents.Should().Contain(smartVar1, "smart_var_1 depends on stored_var_1");
             storedVar1.Dependencies.Should().BeEmpty("stored_var_1 doesn't depend on anything");
 
-            storedVar2.Dependents.Should().Contain(new[] {smartVar1, smartVar2}, "smart_var_1 and smart_var_2 depend on stored_var_2");
+            storedVar2.Dependents.Should().Contain(new[] { smartVar1, smartVar2 }, "smart_var_1 and smart_var_2 depend on stored_var_2");
             storedVar2.Dependencies.Should().BeEmpty("stored_var_2 doesn't depend on anything");
         }
 
         public class FakeVariableStorage : IVariableStorage
         {
             public Program Program { get; set; }
-            
+
             public ISmartVariableEvaluator SmartVariableEvaluator { get => null; set => _ = 0; }
 
-            public void Clear() {}
+            public void Clear() { }
 
             public VariableKind GetVariableKind(string name) => VariableKind.Unknown;
 
-            public void SetValue(string variableName, string stringValue) {}
+            public void SetValue(string variableName, string stringValue) { }
 
-            public void SetValue(string variableName, float floatValue) {}
+            public void SetValue(string variableName, float floatValue) { }
 
-            public void SetValue(string variableName, bool boolValue) {}
+            public void SetValue(string variableName, bool boolValue) { }
 
             public bool TryGetValue<T>(string variableName, out T result)
             {
@@ -320,7 +320,7 @@ namespace YarnSpinner.Tests
         {
             var library = new Library();
             library.ImportLibrary(new Dialogue.StandardLibrary());
-            
+
             var source = CreateTestNode(new[] {
                 "<<declare $smart_var = 3 + 2>>",
             });

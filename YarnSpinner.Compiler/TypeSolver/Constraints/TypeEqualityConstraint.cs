@@ -48,6 +48,6 @@ namespace TypeChecker
 
         public override IEnumerable<TypeConstraint> Children => Array.Empty<TypeConstraint>();
 
-        public override bool IsTautological => ITypeExtensions.Equals(Left,Right);
+        public override bool IsTautological => ITypeExtensions.Equals(Left, Right);
     }
 }

@@ -1,15 +1,13 @@
-using Xunit;
+using FluentAssertions;
 using System;
 using System.Collections.Generic;
-using Yarn;
 using System.Linq;
-
-using Yarn.Compiler;
-
-using FluentAssertions;
-using TypeChecker;
-using Xunit.Abstractions;
 using System.Net.WebSockets;
+using TypeChecker;
+using Xunit;
+using Xunit.Abstractions;
+using Yarn;
+using Yarn.Compiler;
 
 namespace YarnSpinner.Tests
 {
@@ -1040,7 +1038,8 @@ namespace YarnSpinner.Tests
             result.UserDefinedTypes.Should().NotContain(Types.String, "String is built-in, and not user-defined");
         }
 
-        enum TestEnum {
+        enum TestEnum
+        {
             One,
             Two,
             Three = 128

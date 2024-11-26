@@ -3,8 +3,8 @@
 
 namespace Yarn.Compiler
 {
-    using System.Collections.Generic;
     using Antlr4.Runtime.Misc;
+    using System.Collections.Generic;
 
     class NodeTrackingVisitor : YarnSpinnerParserBaseVisitor<string?>
     {

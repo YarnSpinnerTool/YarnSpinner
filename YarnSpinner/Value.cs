@@ -83,11 +83,12 @@ namespace Yarn
 
         public object ConvertTo(System.Type targetType)
         {
-            if (targetType == typeof(Yarn.Value)) {
+            if (targetType == typeof(Yarn.Value))
+            {
                 return this;
             }
 
-            return Convert.ChangeType(this.InternalValue, targetType,  System.Globalization.CultureInfo.InvariantCulture);
+            return Convert.ChangeType(this.InternalValue, targetType, System.Globalization.CultureInfo.InvariantCulture);
         }
 
         /// <summary>

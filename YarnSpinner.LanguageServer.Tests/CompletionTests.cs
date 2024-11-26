@@ -1,12 +1,11 @@
-using System.Threading.Tasks;
 using FluentAssertions;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
-using System.Linq;
-
-using System.IO;
 
 #pragma warning disable CS0162
 
@@ -65,7 +64,8 @@ namespace YarnLanguageServer.Tests
                 Character = 2,
                 Line = 22
             };
-            var middleOfCommand = startOfCommand with {
+            var middleOfCommand = startOfCommand with
+            {
                 Character = 4
             };
 
@@ -88,7 +88,7 @@ namespace YarnLanguageServer.Tests
             {
                 result.TextEdit!.TextEdit!.Range.Start.Should().BeEquivalentTo(startOfCommand, "the completion item's edit should start at the end of the << token");
                 result.TextEdit.TextEdit.Range.End.Should().BeEquivalentTo(middleOfCommand, "the completion item's edit should end at the request position");
-            });        
+            });
         }
 
         [Fact]
@@ -103,7 +103,7 @@ namespace YarnLanguageServer.Tests
                 Character = 7,
                 Line = 10
             };
-            
+
             var expectedLineText = "<<jump Node2>>";
             var lines = File.ReadAllLines(filePath).ElementAt(endOfJumpKeyword.Line).Should().Be(expectedLineText);
 
@@ -140,7 +140,7 @@ namespace YarnLanguageServer.Tests
             {
                 Character = 9,
             };
-            
+
             var expectedLineText = "<<jump Node2>>";
             var lines = File.ReadAllLines(filePath).ElementAt(endOfJumpKeyword.Line).Should().Be(expectedLineText);
 
