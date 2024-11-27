@@ -28,7 +28,7 @@ position: 524,111
 [[See you later.|Sally.Exit]] #line:0facf7
 ===
 
-title: Sally.Watch
+title: Sally_Watch
 tags: 
 colorID: 0
 position: 512,430
@@ -43,7 +43,7 @@ Sally: Oh, Ship wanted to see you. Go say hi to it. #line:df4eaf
 <<endif>>
 ===
 
-title: Sally.Exit
+title: Sally_Exit
 tags: 
 colorID: 6
 position: 211,417
@@ -51,7 +51,7 @@ position: 211,417
 Sally: Bye. #line:60c282
 ===
 
-title: Sally.Sorry
+title: Sally_Sorry
 tags: 
 colorID: 0
 position: 827,439

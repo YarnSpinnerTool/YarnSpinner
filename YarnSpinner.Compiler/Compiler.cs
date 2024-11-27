@@ -684,7 +684,7 @@ namespace Yarn.Compiler
             // have a name
             var nodesWithNames = allNodes.Select(n =>
             {
-                var titleHeader = GetHeadersWithKey(n.Node, Node.TitleHeader).FirstOrDefault();
+                var titleHeader = n.Node.title_header()?.FirstOrDefault();
                 if (titleHeader == null)
                 {
                     return (
@@ -696,7 +696,7 @@ namespace Yarn.Compiler
                 else
                 {
                     return (
-                        Name: titleHeader.header_value.Text ?? null,
+                        Name: titleHeader.title?.Text ?? null,
                         TitleHeader: titleHeader ?? null,
                         Node: n.Node,
                         File: n.File);
@@ -757,6 +757,19 @@ namespace Yarn.Compiler
                     diagnostics.Add(d);
                 }
             }
+
+            // Find nodes that have either zero title headers, or more than one title header
+            foreach (var node in allNodes)
+            {
+                if (node.Node.NodeTitle == null)
+                {
+                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.body(), $"Nodes must have a title"));
+                }
+                if (node.Node.title_header().Length > 1)
+                {
+                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.title_header()[1], $"Nodes must have a single title node"));
+                }
+            }
         }
 
         private static HashSet<string> AddDiagnosticsForEmptyNodes(List<FileParseResult> parseResults, ref List<Diagnostic> diagnostics)
@@ -775,7 +788,7 @@ namespace Yarn.Compiler
 
             foreach (var entry in empties)
             {
-                var title = GetHeadersWithKey(entry.Node, "title").FirstOrDefault().header_value.Text;
+                var title = entry.Node.NodeTitle;
                 var d = new Diagnostic(entry.File.Name, entry.Node, $"Node \"{title}\" is empty and will not be included in the compiled output.", Diagnostic.DiagnosticSeverity.Warning);
                 diagnostics.Add(d);
                 emptyNodes.Add(title);
@@ -1210,9 +1223,10 @@ namespace Yarn.Compiler
 
             /// <summary>
             /// Gets the title of this node, as specified in its '<c>title</c>'
-            /// header. If it is not present, returns <see langword="null"/>.
+            /// header. If it is not present, returns <see langword="null"/>. If
+            /// more than one is present, the first is returned.
             /// </summary>
-            public string? NodeTitle => GetHeader(Node.TitleHeader)?.header_value?.Text;
+            public string? NodeTitle => this.title_header()?.FirstOrDefault()?.title?.Text;
 
             /// <summary>
             /// Gets the name of the node group that this node is part of, if

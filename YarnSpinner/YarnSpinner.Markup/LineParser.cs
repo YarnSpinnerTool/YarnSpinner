@@ -1617,9 +1617,9 @@ namespace Yarn.Markup
                             default:
                                 {
                                     List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>
-                            {
-                                new LineParser.MarkupDiagnostic($"Asked to pluralise '{valueProp.ToString()}' but this is a type that does not support pluralisation."),
-                            };
+                                    {
+                                        new LineParser.MarkupDiagnostic($"Asked to pluralise '{valueProp}' but this is a type that does not support pluralisation."),
+                                    };
                                     return diagnostics;
                                 }
                         }

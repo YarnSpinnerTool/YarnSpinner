@@ -277,16 +277,11 @@ namespace Yarn.Compiler
         {
             this.FileTags.Add(context.text.Text);
         }
-
-        public override void ExitHeader([NotNull] YarnSpinnerParser.HeaderContext context)
+        public override void ExitTitle_header([NotNull] YarnSpinnerParser.Title_headerContext context)
         {
-            // We don't do any type checking here, but we do want to know if
-            // this header was the 'title' header, because we want to know the
-            // name of the current node we're in for diagnostic purposes.
-            if (context.header_key.Text == Node.TitleHeader)
-            {
-                this.currentNodeName = context.header_value.Text;
-            }
+            // We don't do any type checking here, but we do store the name of
+            // the current node we're in for diagnostic purposes.
+            this.currentNodeName = context.title?.Text;
         }
 
         public override void ExitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context)

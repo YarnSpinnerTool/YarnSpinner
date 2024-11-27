@@ -44,16 +44,12 @@ namespace Yarn.Compiler
 
         public override string? VisitNode([NotNull] YarnSpinnerParser.NodeContext context)
         {
-            string? title = null;
+            string? title = context.NodeTitle;
             string? tracking = null;
+
             foreach (var header in context.header())
             {
-                var headerKey = header.header_key.Text;
-                if (headerKey.Equals(Node.TitleHeader))
-                {
-                    title = header.header_value?.Text;
-                }
-                else if (headerKey.Equals("tracking"))
+                if (header.header_key.Text.Equals("tracking"))
                 {
                     tracking = header.header_value?.Text;
                 }

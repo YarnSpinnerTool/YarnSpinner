@@ -245,6 +245,7 @@ You can use any of the following kinds of expressions in a `when:` header:
 - Reworked `LineParser` markup handling to better handle reordering and rewriting markers at runtime
   - `nomarkup` attributes are no longer included in the final parsed line.
   - `trimwhitespace` property is now included in the final parsed line.
+- `title` header values now follow the same parser rules as other identifiers.
 
 ### Removed
 

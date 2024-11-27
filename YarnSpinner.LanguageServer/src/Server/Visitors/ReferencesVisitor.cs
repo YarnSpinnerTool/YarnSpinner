@@ -10,7 +10,7 @@ namespace YarnLanguageServer
 {
     internal class ReferencesVisitor : YarnSpinnerParserBaseVisitor<bool>
     {
-        private readonly List<NodeInfo> nodeInfos = new ();
+        private readonly List<NodeInfo> nodeInfos = new();
 
         private NodeInfo currentNodeInfo = null;
 
@@ -127,16 +127,34 @@ namespace YarnLanguageServer
             return base.VisitVariable(context);
         }
 
+        public override bool VisitTitle_header([NotNull] YarnSpinnerParser.Title_headerContext context)
+        {
+            if (context.title != null)
+            {
+                currentNodeInfo.Title = context.title.Text;
+                currentNodeInfo.TitleToken = context.title;
+
+                if (context.HEADER_TITLE().Payload is not IToken headerTitle)
+                {
+                    // Parse error in this token
+                    return base.VisitTitle_header(context);
+                }
+
+                currentNodeInfo.Headers.Add(new NodeHeader
+                {
+                    Key = context.HEADER_TITLE().GetText(),
+                    Value = context.title.Text,
+                    KeyToken = headerTitle,
+                    ValueToken = context.title,
+                });
+            }
+
+            return base.VisitTitle_header(context);
+        }
         public override bool VisitHeader([NotNull] YarnSpinnerParser.HeaderContext context)
         {
             if (context.header_key != null && context.header_value != null)
             {
-                if (context.header_key.Text == Yarn.Node.TitleHeader)
-                {
-                    currentNodeInfo.Title = context.header_value.Text;
-                    currentNodeInfo.TitleToken = context.header_value;
-                }
-
                 currentNodeInfo.Headers.Add(new NodeHeader
                 {
                     Key = context.header_key.Text,

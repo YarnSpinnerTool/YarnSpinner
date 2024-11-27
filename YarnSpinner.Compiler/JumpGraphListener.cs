@@ -42,13 +42,14 @@ namespace Yarn.Compiler
             }
         }
 
+        public override void ExitTitle_header([NotNull] YarnSpinnerParser.Title_headerContext context)
+        {
+            currentNode = context.title.Text ?? "<unknown>";
+        }
+
         public override void ExitHeader([NotNull] YarnSpinnerParser.HeaderContext context)
         {
-            if (context.header_key.Text.Equals(Node.TitleHeader))
-            {
-                currentNode = context.header_value.Text;
-            }
-            else if (context.header_key.Text.Equals("position"))
+            if (context.header_key.Text.Equals("position"))
             {
                 // later make it also extract x and y where possible
                 var positionalString = context.header_value.Text;

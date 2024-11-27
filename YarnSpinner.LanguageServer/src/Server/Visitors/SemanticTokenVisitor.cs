@@ -16,7 +16,7 @@ namespace YarnLanguageServer
         /// The regular expression that matches a character name at the start of
         /// a line.
         /// </summary>
-        internal static readonly System.Text.RegularExpressions.Regex NameRegex = new (@"^\s*([^\/#]*?):");
+        internal static readonly System.Text.RegularExpressions.Regex NameRegex = new(@"^\s*([^\/#]*?):");
 
         public static void BuildSemanticTokens(SemanticTokensBuilder builder, YarnFileData yarnFile)
         {
@@ -87,17 +87,22 @@ namespace YarnLanguageServer
 
             if (context.header_value?.Text != null)
             {
-                if (context.header_key?.Text == Yarn.Node.TitleHeader)
-                {
-                    AddTokenType(context.header_value, context.header_value, SemanticTokenType.Class);
-                }
-                else
-                {
-                    AddTokenType(context.header_value, context.header_value, SemanticTokenType.String);
-                }
+                AddTokenType(context.header_value, context.header_value, SemanticTokenType.String);
             }
 
             return base.VisitHeader(context);
+        }
+
+        public override bool VisitTitle_header([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.Title_headerContext context)
+        {
+            AddTokenType(context.HEADER_TITLE(), context.HEADER_TITLE(), SemanticTokenType.Property);
+
+            if (context.title?.Text != null)
+            {
+                AddTokenType(context.title, context.title, SemanticTokenType.Class);
+            }
+
+            return base.VisitTitle_header(context);
         }
 
         public override bool VisitShortcut_option([NotNull] YarnSpinnerParser.Shortcut_optionContext context)

@@ -573,11 +573,6 @@ namespace Yarn
         internal const string NodeIsHubNodeHeader = "$Yarn.Internal.NodeGroupHub";
 
         /// <summary>
-        /// The name of the header that indicates a node's title.
-        /// </summary>
-        public const string TitleHeader = "title";
-
-        /// <summary>
         /// The name of the header that indicates which node group a node
         /// belongs to.
         /// </summary>

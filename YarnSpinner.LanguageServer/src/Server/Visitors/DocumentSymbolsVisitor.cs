@@ -36,7 +36,7 @@ namespace YarnLanguageServer
         {
             var result = base.VisitNode(context); // Visit Children first
 
-            var title = documentSymbolsChildren.FirstOrDefault(ds => ds.Name == Yarn.Node.TitleHeader)?.Detail ?? "Node";
+            var title = context.NodeTitle ?? "<unknown>";
 
             var nodeSymbol = new DocumentSymbol
             {

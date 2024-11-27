@@ -42,17 +42,7 @@ namespace Yarn.Compiler
         public override int VisitNode(YarnSpinnerParser.NodeContext context)
         {
             currentNodeContext = context;
-
-            foreach (var header in context.header())
-            {
-                string headerKey = header.header_key.Text;
-                string headerValue = header.header_value?.Text ?? string.Empty;
-
-                if (headerKey.Equals(Node.TitleHeader, StringComparison.InvariantCulture))
-                {
-                    currentNodeName = headerValue;
-                }
-            }
+            currentNodeName = context.NodeTitle ?? "<unknown>";
 
             // This is a regular node
             // this.Visit(context.body());

@@ -25,6 +25,8 @@ NEWLINE: ( '\r'? '\n' | '\r' ) [ \t]* -> channel(WHITESPACE);
 // The 'when' header, in the context of a node's preamble. Move to HeaderWhenMode, 
 HEADER_WHEN: 'when' -> pushMode(HeaderWhenMode);
 
+HEADER_TITLE: 'title' -> pushMode(HeaderTitleMode);
+
 ID : IDENTIFIER_HEAD IDENTIFIER_CHARACTERS?;
 
 fragment IDENTIFIER_HEAD : 
@@ -70,6 +72,13 @@ mode HeaderWhenMode;
 HEADER_WHEN_DELIMITER: WS? ':' WS? {SetInWhenClause(true);} -> type(HEADER_DELIMITER), mode(ExpressionMode);
 // Any other text is not allowed.
 HEADER_WHEN_UNKNOWN: . -> popMode;
+
+mode HeaderTitleMode;
+// When we see the header delimiter inside a 'title' header, flag that we're in a
+// title clause, where we expect to see a single ID.
+HEADER_TITLE_DELIMITER: WS? ':' WS? -> type(HEADER_DELIMITER);
+HEADER_TITLE_ID: WS? ID WS? -> type(ID);
+HEADER_TITLE_NEWLINE : NEWLINE -> type(NEWLINE), popMode;
 
 // Headers before a node.
 mode HeaderMode;

@@ -16,9 +16,9 @@ namespace Yarn.Compiler
 
         public override int VisitNode([NotNull] YarnSpinnerParser.NodeContext context)
         {
-            var titleHeader = context.GetHeader(Node.TitleHeader);
+            var titleHeader = context.title_header().FirstOrDefault();
 
-            if (titleHeader == null || titleHeader.header_value?.Text == null)
+            if (titleHeader == null || titleHeader.title?.Text == null)
             {
                 // The node doesn't have a title. It can't be part of a node group.
                 return base.VisitNode(context);
@@ -27,7 +27,7 @@ namespace Yarn.Compiler
             if (context.GetWhenHeaders().Any())
             {
                 // This node contains at least one 'when' header. 
-                var title = titleHeader.header_value.Text;
+                var title = titleHeader.title.Text;
 
                 // Add a new header to mark which group it's from.
                 var groupHeader = new YarnSpinnerParser.HeaderContext(context, 0)
@@ -42,7 +42,7 @@ namespace Yarn.Compiler
                 var newTitle = $"{title}_{CRC32.GetChecksumString(SourceFile + title + context.Start.Line.ToString())}";
 
                 // Update the title header to the new 'actual' title.
-                titleHeader.header_value = new CommonToken(YarnSpinnerParser.REST_OF_LINE, newTitle);
+                titleHeader.title = new CommonToken(YarnSpinnerParser.REST_OF_LINE, newTitle);
             }
 
             return base.VisitNode(context);

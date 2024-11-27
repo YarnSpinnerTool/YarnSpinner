@@ -559,7 +559,7 @@ some_other_header2: $b + func_call(42, ""wow"")
             YarnSpinnerParser.NodeContext node = dialogue.GetChild<YarnSpinnerParser.NodeContext>(0);
             node.Should().NotBeNull("a node is declared");
 
-            node.GetHeaders().Should().HaveCount(3, "three total non-'when' headers are declared in the node");
+            node.GetHeaders().Should().HaveCount(2, "three total non-'when', non-'title' headers are declared in the node");
 
             var textHeader1 = node.GetHeader("some_other_header1");
             textHeader1.Should().NotBeNull();

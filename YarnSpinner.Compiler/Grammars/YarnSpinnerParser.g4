@@ -12,7 +12,11 @@ file_hashtag
     ;
 
 node
-    : (header|when_header)+  BODY_START  body BODY_END
+    : (header|when_header|title_header)+ BODY_START  body BODY_END
+    ;
+
+title_header:
+    HEADER_TITLE HEADER_DELIMITER title=ID NEWLINE
     ;
 
 when_header:
@@ -200,5 +204,9 @@ structured_command
 
 structured_command_value
     : expression
+    // parse commands as a sequence of IDs, expressions, and (for compatibility)
+    // braced expressions
+
+    // | '{' expression '}'
     | FUNC_ID
     ;

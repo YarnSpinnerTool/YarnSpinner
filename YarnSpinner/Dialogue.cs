@@ -552,10 +552,10 @@ namespace Yarn
         /// <summary>The node that execution will start from.</summary>
         public const string DefaultStartNodeName = "Start";
 
-        private Program program;
+        private Program? program;
 
         /// <summary>Gets or sets the compiled Yarn program.</summary>
-        internal Program Program
+        internal Program? Program
         {
             get => program;
             set

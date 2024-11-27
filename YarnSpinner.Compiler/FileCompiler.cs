@@ -4,6 +4,7 @@
 namespace Yarn.Compiler
 {
     using Antlr4.Runtime;
+    using Antlr4.Runtime.Misc;
     using System;
     using System.Collections.Generic;
     using static Yarn.Instruction.Types;
@@ -226,17 +227,34 @@ namespace Yarn.Compiler
             // empty line.
             var headerValue = context.header_value?.Text ?? String.Empty;
 
-            if (headerKey.Equals(Node.TitleHeader, StringComparison.InvariantCulture))
-            {
-                // Set the name of the node
-                this.CurrentNode.Name = headerValue;
-                this.CurrentNodeDebugInfo.NodeName = this.CurrentNode.Name;
-            }
-
             var header = new Header
             {
                 Key = headerKey,
                 Value = headerValue
+            };
+            this.CurrentNode.Headers.Add(header);
+        }
+
+        public override void ExitTitle_header([NotNull] YarnSpinnerParser.Title_headerContext context)
+        {
+            if (this.CurrentNode == null)
+            {
+                throw new InvalidOperationException($"Internal error: {nameof(CurrentNode)} was null when exiting a header");
+            }
+
+            if (this.CurrentNodeDebugInfo == null)
+            {
+                throw new InvalidOperationException($"Internal error: {nameof(CurrentNodeDebugInfo)} was null when exiting a header");
+            }
+
+            // Set the name of the node
+            this.CurrentNode.Name = context.title.Text ?? "<unknown>";
+            this.CurrentNodeDebugInfo.NodeName = this.CurrentNode.Name;
+
+            var header = new Header
+            {
+                Key = context.HEADER_TITLE()?.GetText(),
+                Value = context.title?.Text,
             };
             this.CurrentNode.Headers.Add(header);
         }
