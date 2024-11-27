@@ -193,6 +193,14 @@ namespace Yarn.Compiler
                 Name = NodeGroupName,
             };
 
+            // Mark that this node is a hub node, so that it can be queried for
+            // later
+            hubNode.Headers.Add(new Header
+            {
+                Key = Node.NodeIsHubNodeHeader,
+                Value = "1"
+            });
+
             var hubNodeDebugInfo = new NodeDebugInfo("<generated>", NodeGroupName);
             this.CurrentNode = hubNode;
             this.CurrentNodeDebugInfo = hubNodeDebugInfo;

@@ -570,6 +570,7 @@ namespace Yarn
         internal const string TrackingVariableNameHeader = "$Yarn.Internal.TrackingVariable";
         internal const string ContentSaliencyConditionVariablesHeader = "$Yarn.Internal.ContentSaliencyVariables";
         internal const string ContentSaliencyConditionComplexityScoreHeader = "$Yarn.Internal.ContentSaliencyComplexity";
+        internal const string NodeIsHubNodeHeader = "$Yarn.Internal.NodeGroupHub";
 
         /// <summary>
         /// The name of the header that indicates a node's title.
@@ -609,6 +610,18 @@ namespace Yarn
             get
             {
                 return GetHeaderValue(TrackingVariableNameHeader);
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this node is the 'hub' node for a
+        /// node group.
+        /// </summary>
+        public bool IsNodeGroupHub
+        {
+            get
+            {
+                return GetHeaderValue(NodeIsHubNodeHeader) != null;
             }
         }
 

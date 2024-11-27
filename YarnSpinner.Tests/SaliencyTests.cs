@@ -278,5 +278,48 @@ This content is only seen once.
             var availableContentAfterRun = this.dialogue.GetSaliencyOptionsForNodeGroup("Start");
             availableContentAfterRun.Where(c => c.FailingConditionValueCount == 0).Should().HaveCount(0);
         }
+
+        [Fact]
+        public void TestDialogueCanBeQueriedForNodeGroups()
+        {
+            // Given
+
+            string source = @"
+title: Start
+when: once
+---
+This content is only seen once.
+===
+title: Start
+when: $a == 2
+---
+This content is only seen when a is 2.
+===
+title: NotAGroup
+---
+This node is not part of a node group.
+===
+";
+
+            CompileAndPrepareDialogue(source);
+
+            this.dialogue.NodeExists("DoesntExist").Should().BeFalse();
+
+            this.dialogue.NodeExists("Start").Should().BeTrue();
+            this.dialogue.IsNodeGroup("Start").Should().BeTrue();
+
+            this.dialogue.NodeExists("NotAGroup").Should().BeTrue();
+            this.dialogue.IsNodeGroup("NotAGroup").Should().BeFalse();
+
+            // We can always ask for saliency options given a valid node name,
+            // even if it's not a node group
+
+            var queryInvalidNodeName = () => { this.dialogue.GetSaliencyOptionsForNodeGroup("DoesntExist"); };
+            queryInvalidNodeName.Should().ThrowExactly<ArgumentException>().WithMessage("*not a valid node name*");
+
+            this.dialogue.GetSaliencyOptionsForNodeGroup("Start").Should().HaveCount(2);
+            this.dialogue.GetSaliencyOptionsForNodeGroup("NotAGroup").Should().HaveCount(1);
+
+        }
     }
 }

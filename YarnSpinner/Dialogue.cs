@@ -1076,9 +1076,60 @@ namespace Yarn
         /// cref="Saliency.ContentSaliencyOption"/> objects that may appear if
         /// and when the node group <paramref name="nodeGroup"/> is run.
         /// </returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref
+        /// name="nodeGroup"/> is not a valid node name.</exception>
         public IEnumerable<Saliency.ContentSaliencyOption> GetSaliencyOptionsForNodeGroup(string nodeGroup)
         {
+            if (NodeExists(nodeGroup) == false)
+            {
+                // This node doesn't exist - it can't be a node OR a node group,
+                // and we've been asked for an invalid value.
+                throw new ArgumentException($"{nodeGroup} is not a valid node name");
+            }
+
+            if (IsNodeGroup(nodeGroup) == false)
+            {
+                // This is not a node group, it's a plain node. Return a single
+                // content saliency "option" that represents this node.
+                return new[] {
+                    new Saliency.ContentSaliencyOption(nodeGroup) {
+                        ComplexityScore = 0,
+                        ContentType = Saliency.ContentSaliencyContentType.Node,
+                        PassingConditionValueCount = 1,
+                        FailingConditionValueCount = 0,
+                    }
+                };
+            }
+
+            // This is a valid node group name. Ask the saliency system to
+            // produce the collection of options that could run.
             return SmartVariableEvaluationVirtualMachine.GetSaliencyOptionsForNodeGroup(nodeGroup, this.VariableStorage, this.Library);
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether <paramref name="nodeName"/> is the
+        /// name of a valid node group in the program.
+        /// </summary>
+        /// <param name="nodeName">The name of the node group to check.</param>
+        /// <returns><see langword="true"/> if <paramref name="nodeName"/> is
+        /// the name of a node group; <see langword="false"/>
+        /// otherwise.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when <see
+        /// cref="Program"/> is null.</exception>
+        public bool IsNodeGroup(string nodeName)
+        {
+            if (this.Program == null)
+            {
+                throw new InvalidOperationException($"Can't determine if {nodeName} is a hub node, because no program has been set.");
+            }
+
+            if (this.Program.Nodes.TryGetValue(nodeName, out var node) == false)
+            {
+                // Not a valid node, so not a valid node group.
+                return false;
+            }
+
+            return node.IsNodeGroupHub;
         }
 
         // The standard, built-in library of functions and operators.
