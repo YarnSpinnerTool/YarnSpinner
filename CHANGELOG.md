@@ -93,7 +93,7 @@ Smart variables can be accessed anywhere a regular variable would be used:
 
 'Once' statements have been added to the language.
 
-A 'once' statement ensures that some content in your dialogue is seen by the player one time only. Uses for this ensuring that lines where a character introduces themselves don't run multiple times, or barks that should never be run more than a single time (the '[arrow in the knee](https://en.wikipedia.org/wiki/Arrow_in_the_knee)' problem.)
+A 'once' statement ensures that some content in your dialogue is seen by the player one time only. Uses for this include ensuring that lines where a character introduces themselves don't run multiple times, or barks that should never be run more than a single time (the '[arrow in the knee](https://en.wikipedia.org/wiki/Arrow_in_the_knee)' problem.)
 
 The `once` keyword can be used in two different ways:
 
@@ -113,8 +113,8 @@ A `once`..`endonce` statement allows you to wrap one or more lines (or other kin
 
 ```
 <<once if $player_is_adventurer>>
-  # The guard knows the player is an adventurer, so say this line, 
-  # but only ever once!
+  // The guard knows the player is an adventurer, so say this line, 
+  // but only ever once!
   Guard: I used to be an adventurer like you, but then I took an arrow in the knee.
 <<endonce>>
 ```
@@ -156,10 +156,10 @@ You can use the `once` keyword at the end of an option to make it so that line i
 Finally, you can use the `once` keyword at the end of a line group item to make it so that it will only ever be run once. As with lines and options, you can combine it with an `if` expression to further control when it may appear.
 
 ```
-# Scenario: The guard is pursuing the player.
-# We'll create some simple, short lines that can run many times without 
-# standing out, and some specific lines that we should only ever hear once, 
-# because hearing them multiple times would make them stand out.
+// Scenario: The guard is pursuing the player.
+// We'll create some simple, short lines that can run many times without 
+// standing out, and some specific lines that we should only ever hear once, 
+// because hearing them multiple times would make them stand out.
 
 => Guard: Halt!
 => Guard: Stop them!
