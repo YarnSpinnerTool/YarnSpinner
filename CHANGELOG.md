@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [3.0.0-beta1] 2024-11-29
+
+### Added
+
 #### Enums
 
 Enums have been added to the Yarn language.
