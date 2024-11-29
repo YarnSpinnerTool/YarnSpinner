@@ -404,7 +404,7 @@ namespace Yarn.Compiler
             // and preview features are used, then emit errors.
             foreach (var file in parsedFiles)
             {
-                var previewFeatureChecker = new PreviewFeatureVisitor(file, !compilationJob.AllowPreviewFeatures, diagnostics);
+                var previewFeatureChecker = new PreviewFeatureVisitor(file, compilationJob.LanguageVersion, diagnostics);
                 previewFeatureChecker.Visit(file.Tree);
 
                 var fileDecls = declarations.Where(d => d.SourceFileName == file.Name);

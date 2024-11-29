@@ -7,10 +7,10 @@ namespace Yarn.Compiler
     internal class PreviewFeatureVisitor : YarnSpinnerParserBaseVisitor<int>
     {
 
-        internal PreviewFeatureVisitor(FileParseResult file, bool previewFeaturesAreErrors, IList<Diagnostic> diagnostics)
+        internal PreviewFeatureVisitor(FileParseResult file, int languageVersion, IList<Diagnostic> diagnostics)
         {
             this.File = file;
-            this.PreviewFeaturesAreErrors = previewFeaturesAreErrors;
+            this.LanguageVersion = languageVersion;
             this.Diagnostics = diagnostics;
         }
 
@@ -26,20 +26,14 @@ namespace Yarn.Compiler
         }
 
         public FileParseResult File { get; }
-        public bool PreviewFeaturesAreErrors { get; }
+        public int LanguageVersion { get; }
         public IList<Diagnostic> Diagnostics { get; }
 
         public void AddDiagnosticsForDeclarations(IEnumerable<Declaration> declarations)
         {
-            if (PreviewFeaturesAreErrors == false)
-            {
-                // We won't generate errors for any declarations
-                return;
-            }
-
             foreach (var decl in declarations)
             {
-                if (decl.IsInlineExpansion)
+                if (decl.IsInlineExpansion && LanguageVersion < Project.YarnSpinnerProjectVersion3)
                 {
                     AddLanguageFeatureError(decl.InitialValueParserContext!, "smart variables");
                 }
@@ -48,7 +42,7 @@ namespace Yarn.Compiler
 
         public override int VisitEnum_statement([NotNull] YarnSpinnerParser.Enum_statementContext context)
         {
-            if (PreviewFeaturesAreErrors)
+            if (LanguageVersion < Project.YarnSpinnerProjectVersion3)
             {
                 AddLanguageFeatureError(context, "enums");
             }
@@ -58,7 +52,7 @@ namespace Yarn.Compiler
 
         public override int VisitLine_group_statement([NotNull] YarnSpinnerParser.Line_group_statementContext context)
         {
-            if (PreviewFeaturesAreErrors)
+            if (LanguageVersion < Project.YarnSpinnerProjectVersion3)
             {
                 AddLanguageFeatureError(context, "line groups");
             }
@@ -68,7 +62,7 @@ namespace Yarn.Compiler
 
         public override int VisitLineOnceCondition([NotNull] YarnSpinnerParser.LineOnceConditionContext context)
         {
-            if (PreviewFeaturesAreErrors)
+            if (LanguageVersion < Project.YarnSpinnerProjectVersion3)
             {
                 AddLanguageFeatureError(context, "'once' conditions");
             }
@@ -78,7 +72,7 @@ namespace Yarn.Compiler
 
         public override int VisitOnce_statement([NotNull] YarnSpinnerParser.Once_statementContext context)
         {
-            if (PreviewFeaturesAreErrors)
+            if (LanguageVersion < Project.YarnSpinnerProjectVersion3)
             {
                 AddLanguageFeatureError(context, "'once' statements");
             }
@@ -88,7 +82,7 @@ namespace Yarn.Compiler
 
         public override int VisitWhen_header([NotNull] YarnSpinnerParser.When_headerContext context)
         {
-            if (PreviewFeaturesAreErrors)
+            if (LanguageVersion < Project.YarnSpinnerProjectVersion3)
             {
                 AddLanguageFeatureError(context, "'when' headers");
             }

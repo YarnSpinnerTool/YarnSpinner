@@ -21,7 +21,17 @@ namespace Yarn.Compiler
         /// <summary>
         /// The current version of <c>.yarnproject</c> file format.
         /// </summary>
-        public const int CurrentProjectFileVersion = 2;
+        public const int CurrentProjectFileVersion = YarnSpinnerProjectVersion3;
+
+        /// <summary>
+        ///  A version number representing Yarn Spinner 2.
+        /// </summary>
+        public const int YarnSpinnerProjectVersion2 = 2;
+
+        /// <summary>
+        ///  A version number representing Yarn Spinner 3.
+        /// </summary>
+        public const int YarnSpinnerProjectVersion3 = 3;
 
         private static readonly JsonSerializerOptions SerializationOptions = new JsonSerializerOptions
         {
@@ -58,7 +68,7 @@ namespace Yarn.Compiler
         /// </remarks>
         [JsonPropertyName("projectFileVersion")]
         [JsonRequired]
-        public int FileVersion { get; set; } = 2;
+        public int FileVersion { get; set; } = CurrentProjectFileVersion;
 
         /// <summary>
         /// Gets the path that the <see cref="Project"/> was loaded from.
@@ -69,7 +79,7 @@ namespace Yarn.Compiler
         /// cref="LoadFromFile(string)"/>, or provided when the <see cref="Project"/> is constructed.
         /// </remarks>
         [JsonIgnore]
-        public string Path { get; set; }
+        public string? Path { get; set; }
 
         /// <summary>
         /// Gets or sets the collection of file search patterns used to locate
@@ -118,7 +128,7 @@ namespace Yarn.Compiler
         /// information and other externally-defined data used by the Yarn
         /// scripts.
         /// </remarks>
-        public string Definitions { get; set; }
+        public string? Definitions { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether this Project is an 'implicit'
@@ -147,6 +157,21 @@ namespace Yarn.Compiler
             CompilerOptions[key] = JsonValue.Create(value);
         }
 
+        /// <summary>
+        /// Gets a value indicating whether <paramref name="number"/> is a valid
+        /// Yarn Spinner version number.
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public static bool IsValidVersionNumber(int number)
+        {
+            return number == YarnSpinnerProjectVersion2 || number == YarnSpinnerProjectVersion3;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether compiler features that are
+        /// not intended for production use are allowed.
+        /// </summary>
         [JsonIgnore]
         public bool AllowLanguagePreviewFeatures
         {
@@ -169,7 +194,7 @@ namespace Yarn.Compiler
             get
             {
                 Matcher matcher = Matcher;
-                string searchDirectoryPath = SearchDirectoryPath;
+                string? searchDirectoryPath = SearchDirectoryPath;
 
                 if (searchDirectoryPath == null)
                 {
@@ -220,14 +245,19 @@ namespace Yarn.Compiler
 
         /// <summary>
         /// Gets the path of the directory from which to start searching for
-        /// .yarn files. This value is null if the directory does not exist on
-        /// disk.
+        /// .yarn files. This value is <see langword="null"/> if the directory
+        /// does not exist on disk.
         /// </summary>
-        private string SearchDirectoryPath
+        private string? SearchDirectoryPath
         {
             get
             {
-                string searchDirectoryPath;
+                if (this.Path == null)
+                {
+                    return null;
+                }
+
+                string? searchDirectoryPath;
 
                 if (System.IO.Directory.Exists(this.Path))
                 {
@@ -272,7 +302,7 @@ namespace Yarn.Compiler
         public bool IsMatchingPath(string path)
         {
 
-            string searchDirectoryPath = this.SearchDirectoryPath;
+            string? searchDirectoryPath = this.SearchDirectoryPath;
             if (searchDirectoryPath == null)
             {
                 return false;
@@ -334,7 +364,12 @@ namespace Yarn.Compiler
             {
                 var project = JsonSerializer.Deserialize<Project>(text, SerializationOptions);
 
-                if (project.FileVersion != CurrentProjectFileVersion)
+                if (project == null)
+                {
+                    throw new ArgumentException("Failed to load Project");
+                }
+
+                if (project.FileVersion > CurrentProjectFileVersion)
                 {
                     throw new ArgumentException($"Project file at {path} has incorrect file version (expected {CurrentProjectFileVersion}, got {project.FileVersion})");
                 }
@@ -373,13 +408,13 @@ namespace Yarn.Compiler
             /// Gets or sets the location at which localized assets may be
             /// found.
             /// </summary>
-            public string Assets { get; set; }
+            public string? Assets { get; set; }
 
             /// <summary>
             /// Gets or sets the location at which the localized string table
             /// may be found.
             /// </summary>
-            public string Strings { get; set; }
+            public string? Strings { get; set; }
         }
     }
 }

@@ -514,7 +514,7 @@ namespace YarnSpinner.Tests
             <<jump {TestEnum.A}>>
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library, allowPreviewFeatures: true));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
             result.Diagnostics
                 .Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
@@ -1025,7 +1025,7 @@ namespace YarnSpinner.Tests
 ");
 
             var compilationJob = CompilationJob.CreateFromString("input", source);
-            compilationJob.AllowPreviewFeatures = true;
+
             var result = Compiler.Compile(compilationJob);
 
             result.ContainsErrors.Should().BeFalse();
@@ -1053,7 +1053,6 @@ namespace YarnSpinner.Tests
             ");
 
             var compilationJob = CompilationJob.CreateFromString("input", source);
-            compilationJob.AllowPreviewFeatures = true;
 
             compilationJob.TypeDeclarations = new List<IType> { EnumTypeBuilder.FromEnum<TestEnum>() };
 

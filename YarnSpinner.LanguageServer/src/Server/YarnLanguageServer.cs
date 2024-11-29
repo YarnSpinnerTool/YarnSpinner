@@ -200,7 +200,7 @@ namespace YarnLanguageServer
                 }
             }
 
-            Uri yarnDocumentUri = new (yarnDocumentUriString);
+            Uri yarnDocumentUri = new(yarnDocumentUriString);
 
             var project = workspace.GetProjectsForUri(yarnDocumentUri).FirstOrDefault();
             var yarnFile = project?.GetFileData(yarnDocumentUri);
@@ -302,7 +302,7 @@ namespace YarnLanguageServer
 
             var nodeTitle = commandParams.Arguments[1].ToString();
 
-            Uri yarnDocumentUri = new (yarnDocumentUriString);
+            Uri yarnDocumentUri = new(yarnDocumentUriString);
 
             TextDocumentEdit emptyResult = new TextDocumentEdit
             {
@@ -377,7 +377,7 @@ namespace YarnLanguageServer
 
             var headerValue = commandParams.Arguments[3].ToString();
 
-            Uri yarnDocumentUri = new (yarnDocumentUriString);
+            Uri yarnDocumentUri = new(yarnDocumentUriString);
 
             TextDocumentEdit emptyResult = new TextDocumentEdit
             {
@@ -471,7 +471,7 @@ namespace YarnLanguageServer
                 return Task.FromException<Container<NodeInfo>>(new InvalidOperationException("No document URI was provided."));
             }
 
-            Uri yarnDocumentUri = new (yarnDocumentUriString);
+            Uri yarnDocumentUri = new(yarnDocumentUriString);
 
             var project = workspace.GetProjectsForUri(yarnDocumentUri).FirstOrDefault();
 
@@ -722,7 +722,7 @@ namespace YarnLanguageServer
                 // Perform a full compilation so that we can produce a basic
                 // block analysis of the file
                 CompilationType = Yarn.Compiler.CompilationJob.Type.FullCompilation,
-                AllowPreviewFeatures = project.All(p => p.AllowPreviewFeatures),
+                LanguageVersion = project.Max(p => p.FileVersion),
             };
 
             var result = Yarn.Compiler.Compiler.Compile(job);

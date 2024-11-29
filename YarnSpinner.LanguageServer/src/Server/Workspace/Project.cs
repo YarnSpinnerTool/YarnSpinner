@@ -58,7 +58,7 @@ namespace YarnLanguageServer
 
         private readonly Yarn.Compiler.Project yarnProject;
 
-        private readonly Dictionary<DocumentUri, YarnFileData> yarnFiles = new ();
+        private readonly Dictionary<DocumentUri, YarnFileData> yarnFiles = new();
 
         internal bool MatchesUri(DocumentUri uri)
         {
@@ -188,7 +188,7 @@ namespace YarnLanguageServer
             }
         }
 
-        internal bool AllowPreviewFeatures => yarnProject.AllowLanguagePreviewFeatures;
+        internal int FileVersion => yarnProject.FileVersion;
 
         internal void ReloadProjectFromDisk(bool notifyOnComplete = true)
         {
@@ -223,7 +223,7 @@ namespace YarnLanguageServer
                 CompilationType = compilationType,
                 Files = files,
                 VariableDeclarations = functionDeclarations,
-                AllowPreviewFeatures = this.yarnProject.AllowLanguagePreviewFeatures,
+                LanguageVersion = this.yarnProject.FileVersion,
             };
 
             var compilationResult = Yarn.Compiler.Compiler.Compile(compilationJob);

@@ -1,8 +1,7 @@
 {
-    "projectFileVersion": 2,
-    "sourceFiles": ["**/*.yarn"],
-    "baseLanguage": "en",
-    "compilerOptions": {
-        "allowPreviewFeatures": true
-    }
+    "projectFileVersion": 3,
+    "sourceFiles": [
+        "**/*.yarn"
+    ],
+    "baseLanguage": "en"
 }

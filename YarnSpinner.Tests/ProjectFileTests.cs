@@ -28,7 +28,7 @@ namespace YarnSpinner.Tests
             // Then
             using (new FluentAssertions.Execution.AssertionScope())
             {
-                project.FileVersion.Should().Be(2);
+                project.FileVersion.Should().Be(3);
                 project.Path.Should().Be(ProjectFilePath);
                 project.SourceFilePatterns.Should().ContainSingle("**/*.yarn");
 

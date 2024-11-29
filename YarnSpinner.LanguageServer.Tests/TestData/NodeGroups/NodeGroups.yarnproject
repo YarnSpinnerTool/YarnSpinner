@@ -1,14 +1,11 @@
 {
-    "projectFileVersion": 2,
-    "sourceFiles": [
-      "**/*.yarn"
-    ],
-    "excludeFiles": [
-      "**/*~/*"
-    ],
-    "localisation": {},
-    "baseLanguage": "en",
-    "compilerOptions": {
-      "allowPreviewFeatures": true
-    }
-  }
+  "projectFileVersion": 3,
+  "sourceFiles": [
+    "**/*.yarn"
+  ],
+  "excludeFiles": [
+    "**/*~/*"
+  ],
+  "localisation": {},
+  "baseLanguage": "en"
+}

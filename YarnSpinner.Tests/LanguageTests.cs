@@ -272,7 +272,7 @@ namespace YarnSpinner.Tests
             var (invariantParseResult, _) = Utility.ParseSource(source);
 
             var invariantCompilationJob = CompilationJob.CreateFromString("input", source);
-            invariantCompilationJob.AllowPreviewFeatures = true;
+            invariantCompilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
             invariantCompilationJob.Library = dialogue.Library;
 
             var invariantResult = Compiler.Compile(invariantCompilationJob);
@@ -289,7 +289,7 @@ namespace YarnSpinner.Tests
                 var (targetParseResult, _) = Utility.ParseSource(source);
 
                 var targetCompilationJob = CompilationJob.CreateFromString("input", source);
-                targetCompilationJob.AllowPreviewFeatures = true;
+                invariantCompilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
                 targetCompilationJob.Library = dialogue.Library;
 
                 var targetResult = Compiler.Compile(targetCompilationJob);
@@ -328,7 +328,7 @@ namespace YarnSpinner.Tests
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
             compilationJob.Library = dialogue.Library;
 
-            compilationJob.AllowPreviewFeatures = true;
+            compilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
 
             var testPlanFilePath = Path.ChangeExtension(scriptFilePath, ".testplan");
 
@@ -390,7 +390,7 @@ namespace YarnSpinner.Tests
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
             compilationJob.Library = dialogue.Library;
 
-            compilationJob.AllowPreviewFeatures = true;
+            compilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
 
             var result = Compiler.Compile(compilationJob);
 
@@ -433,7 +433,7 @@ Line 2
             CompilationJob compilationJob = CompilationJob.CreateFromString("input", source);
             compilationJob.Library = dialogue.Library;
 
-            compilationJob.AllowPreviewFeatures = true;
+            compilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
 
             var result = Compiler.Compile(compilationJob);
 
@@ -473,8 +473,8 @@ Line 2
             var jobWithNoPreviewFeatures = CompilationJob.CreateFromString("input", node);
             var jobWithPreviewFeatures = CompilationJob.CreateFromString("input", node);
 
-            jobWithNoPreviewFeatures.AllowPreviewFeatures = false;
-            jobWithPreviewFeatures.AllowPreviewFeatures = true;
+            jobWithNoPreviewFeatures.LanguageVersion = Project.YarnSpinnerProjectVersion2;
+            jobWithPreviewFeatures.LanguageVersion = Project.YarnSpinnerProjectVersion3;
 
             var resultWithNoPreviewFeatures = Compiler.Compile(jobWithNoPreviewFeatures);
             var resultWithPreviewFeatures = Compiler.Compile(jobWithPreviewFeatures);

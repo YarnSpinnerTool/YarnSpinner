@@ -21,7 +21,7 @@ namespace YarnSpinner.Tests
 
         private CompilationResult CompileAndPrepareDialogue(string source, string node = "Start")
         {
-            var job = CompilationJob.CreateFromString("input", source, allowPreviewFeatures: true);
+            var job = CompilationJob.CreateFromString("input", source);
             var result = Compiler.Compile(job);
             result.Diagnostics.Should().BeEmpty();
 

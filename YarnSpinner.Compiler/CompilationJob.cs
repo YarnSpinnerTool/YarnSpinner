@@ -89,9 +89,9 @@ namespace Yarn.Compiler
         public IEnumerable<Declaration> VariableDeclarations;
 
         /// <summary>
-        /// Whether language preview features are permitted.
+        /// Gets or sets the version of the Yarn language.
         /// </summary>
-        public bool AllowPreviewFeatures { get; set; }
+        public int LanguageVersion { get; set; }
 
         /// <summary>
         /// The collection of type declarations that should be imported and made
@@ -138,16 +138,18 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
-        /// Creates a new <see cref="CompilationJob"/> using the contents
-        /// of a string.
+        /// Creates a new <see cref="CompilationJob"/> using the contents of a
+        /// string.
         /// </summary>
         /// <param name="fileName">The name to assign to the compiled
         /// file.</param>
         /// <param name="source">The text to compile.</param>
-        /// <param name="library">Library of function definitions to use
-        /// during compilation.</param>
+        /// <param name="library">Library of function definitions to use during
+        /// compilation.</param>
+        /// <param name="languageVersion">The version of the Yarn language to
+        /// use.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromString(string fileName, string source, Library library = null, bool allowPreviewFeatures = false)
+        public static CompilationJob CreateFromString(string fileName, string source, Library? library = null, int languageVersion = Project.CurrentProjectFileVersion)
         {
             return new CompilationJob
             {
@@ -159,7 +161,7 @@ namespace Yarn.Compiler
                     },
                 },
                 Library = library,
-                AllowPreviewFeatures = allowPreviewFeatures,
+                LanguageVersion = languageVersion,
             };
         }
     }
