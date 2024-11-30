@@ -45,7 +45,7 @@ jobs:
       - name: Deploy to NuGet
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         run: |
-          dotnet pack -c Release /p:Version=${{ steps.gitversion.outputs.nuGetVersionV2}} -o "nuget"
+          dotnet pack -c Release /p:Version=${{ steps.gitversion.outputs.semVer}} -o "nuget"
           dotnet nuget push nuget/*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
 
       - name: Extract release notes
