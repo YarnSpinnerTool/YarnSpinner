@@ -3,7 +3,7 @@ mode: ContinuousDelivery
 branches:
   develop:
     mode: ContinuousDelivery
-    tag: beta
+    label: beta
 ignore:
   sha: []
 merge-message-formats: {}
