@@ -245,8 +245,15 @@ namespace Yarn
                     break;
                 case Instruction.InstructionTypeOneofCase.PushVariable:
                     string variableName = instruction.PushVariable.VariableName;
-                    variableAccess.TryGetValue<IConvertible>(variableName, out var variableContents);
-                    stack.Push(variableContents);
+
+                    if (variableAccess.TryGetValue<IConvertible>(variableName, out var variableContents))
+                    {
+                        stack.Push(variableContents);
+                    }
+                    else
+                    {
+                        throw new System.InvalidOperationException($"Failed to fetch any value for {variableName} when evaluating a smart variable");
+                    }
                     break;
                 case Instruction.InstructionTypeOneofCase.JumpIfFalse:
                     if (_stack.Peek().ToBoolean(CultureInfo.InvariantCulture) == false)
@@ -301,7 +308,8 @@ namespace Yarn
 
             for (int param = actualParamCount - 1; param >= 0; param--)
             {
-                var value = stack.Pop();
+                var value = stack.Pop()
+                    ?? throw new System.InvalidOperationException($"Internal error: a null value was popped from the stack");
                 var parameterType = parameterInfos[param].ParameterType;
 
                 if (parameterType == typeof(Value))
