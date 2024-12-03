@@ -2,7 +2,6 @@
     "version": "2.0.0",
     "tasks": [
         {
-            // Compile Yarn Spinner protobuf file into .cs
             "label": "protobuf",
             "command": "protoc",
             "type": "process",
@@ -10,7 +9,8 @@
                 "-I=${workspaceRoot}/YarnSpinner",
                 "--csharp_out=${workspaceRoot}/YarnSpinner",
                 "${workspaceRoot}/YarnSpinner/yarn_spinner.proto"
-            ]
+            ],
+            "problemMatcher": []
         },
         {
             "label": "build",

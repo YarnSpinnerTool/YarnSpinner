@@ -1,8 +1,8 @@
 {
     "protoc": {
         "options": [
-            "-I=${workspaceRoot}/YarnSpinner", 
-            "--csharp_out=${workspaceRoot}/YarnSpinner", 
+            "-I=${workspaceRoot}/YarnSpinner",
+            "--csharp_out=${workspaceRoot}/YarnSpinner",
             "${workspaceRoot}/YarnSpinner/yarn_spinner.proto"
         ]
     },
