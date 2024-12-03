@@ -32,6 +32,14 @@ namespace YarnLanguageServer.Handlers
 
             var results = yarnFile.NodeDefinitions.SelectMany(titleToken =>
                {
+                   if (titleToken.StartIndex == -1)
+                   {
+                       // This is an error token - the node doesn't actually
+                       // have a valid title. Return an empty collection of code
+                       // lenses.
+                       return [];
+                   }
+
                    var referenceLocations = ReferencesHandler.GetReferences(project, titleToken.Text, YarnSymbolType.Node);
                    var count = referenceLocations.Count() - 1; // This is a count of 'other' references, so don't include the declaration
 
