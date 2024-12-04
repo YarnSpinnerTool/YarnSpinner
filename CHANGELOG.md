@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- The compiler will now warn if additional text is present on the same line before or after commands and other statements.
+  - For example, the following code will emit a warning, because the last `>` character is likely a typo: `<<wait 5>>>`
+
 ### Changed
 
 ### Removed
