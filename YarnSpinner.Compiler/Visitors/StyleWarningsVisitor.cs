@@ -28,13 +28,13 @@ namespace Yarn.Compiler
             // first token on the channel for that line.
             if (context.Start.Type == YarnSpinnerLexer.COMMAND_START)
             {
-                tokensOnLine ??= GetAllTokensOnLine(tokenStream, context.Start.Line);
+                tokensOnLine = GetAllTokensOnLine(tokenStream, context.Start.Line);
 
                 var indexOfStartToken = tokensOnLine.IndexOf(context.Start);
 
                 if (indexOfStartToken != 0)
                 {
-                    AddDiagnostic(new Diagnostic(this.FileName, tokensOnLine[indexOfStartToken - 1], "Commands should start on a new line", Diagnostic.DiagnosticSeverity.Warning));
+                    AddDiagnostic(new Diagnostic(this.FileName, tokensOnLine[indexOfStartToken - 1], $"Commands should start on a new line", Diagnostic.DiagnosticSeverity.Warning));
                 }
             }
 
@@ -42,23 +42,26 @@ namespace Yarn.Compiler
             // token on the channel for that line.
             if (context.Stop.Type == YarnSpinnerLexer.COMMAND_END)
             {
-                tokensOnLine ??= GetAllTokensOnLine(tokenStream, context.Stop.Line);
+                tokensOnLine = GetAllTokensOnLine(tokenStream, context.Stop.Line);
 
-                var indexOfStartToken = tokensOnLine.IndexOf(context.Stop);
+                var indexOfStopToken = tokensOnLine.IndexOf(context.Stop);
 
-                if (indexOfStartToken != (tokensOnLine.Count - 1))
+                if (indexOfStopToken != (tokensOnLine.Count - 1))
                 {
-                    AddDiagnostic(new Diagnostic(this.FileName, tokensOnLine[indexOfStartToken + 1], "Commands should have no text after them", Diagnostic.DiagnosticSeverity.Warning));
+                    AddDiagnostic(new Diagnostic(this.FileName, tokensOnLine[indexOfStopToken + 1], $"Commands should have no text after them", Diagnostic.DiagnosticSeverity.Warning));
                 }
             }
 
             return base.VisitStatement(context);
         }
 
+        private static int[] OmitTokenTypes = new[] { YarnSpinnerLexer.INDENT, YarnSpinnerLexer.DEDENT };
+
         public static List<IToken> GetAllTokensOnLine(CommonTokenStream tokenStream, int line, int channel = Lexer.DefaultTokenChannel)
         {
+
             return tokenStream.GetTokens()
-                .Where(t => t.Channel == channel && t.Line == line)
+                .Where(t => t.Channel == channel && t.Line == line && OmitTokenTypes.Contains(t.Type) == false)
                 .ToList();
         }
     }
