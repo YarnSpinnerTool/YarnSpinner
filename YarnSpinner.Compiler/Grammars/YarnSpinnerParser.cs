@@ -58,9 +58,9 @@ public partial class YarnSpinnerParser : Parser {
 		COMMAND_SET=72, COMMAND_ENDIF=73, COMMAND_CALL=74, COMMAND_DECLARE=75, 
 		COMMAND_JUMP=76, COMMAND_DETOUR=77, COMMAND_RETURN=78, COMMAND_ENUM=79, 
 		COMMAND_CASE=80, COMMAND_ENDENUM=81, COMMAND_ONCE=82, COMMAND_ENDONCE=83, 
-		COMMAND_LOCAL=84, COMMAND_END=85, COMMAND_TEXT_NEWLINE=86, COMMAND_TEXT_END=87, 
-		COMMAND_EXPRESSION_START=88, COMMAND_TEXT=89, COMMAND_ID_NEWLINE=90, TYPE_STRING=91, 
-		TYPE_NUMBER=92, TYPE_BOOL=93;
+		COMMAND_LOCAL=84, COMMAND_END=85, COMMAND_TEXT_NEWLINE=86, COMMAND_EXPRESSION_START=87, 
+		COMMAND_TEXT=88, COMMAND_ID_NEWLINE=89, TYPE_STRING=90, TYPE_NUMBER=91, 
+		TYPE_BOOL=92;
 	public const int
 		RULE_dialogue = 0, RULE_file_hashtag = 1, RULE_node = 2, RULE_title_header = 3, 
 		RULE_when_header = 4, RULE_header = 5, RULE_header_when_expression = 6, 
@@ -97,7 +97,7 @@ public partial class YarnSpinnerParser : Parser {
 		"'-'", "'*'", "'/'", "'%'", "'('", "')'", "','", "'as'", null, null, "'}'", 
 		null, "'.'", null, null, null, null, null, null, null, "'endif'", null, 
 		null, null, null, null, null, null, null, "'once'", "'endonce'", null, 
-		null, null, null, "'{'", null, null, "'string'", "'number'", "'bool'"
+		null, null, "'{'", null, null, "'string'", "'number'", "'bool'"
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, "INDENT", "DEDENT", "BLANK_LINE_FOLLOWING_OPTION", "WS", "COMMENT", 
@@ -120,9 +120,8 @@ public partial class YarnSpinnerParser : Parser {
 		"COMMAND_ELSEIF", "COMMAND_ELSE", "COMMAND_SET", "COMMAND_ENDIF", "COMMAND_CALL", 
 		"COMMAND_DECLARE", "COMMAND_JUMP", "COMMAND_DETOUR", "COMMAND_RETURN", 
 		"COMMAND_ENUM", "COMMAND_CASE", "COMMAND_ENDENUM", "COMMAND_ONCE", "COMMAND_ENDONCE", 
-		"COMMAND_LOCAL", "COMMAND_END", "COMMAND_TEXT_NEWLINE", "COMMAND_TEXT_END", 
-		"COMMAND_EXPRESSION_START", "COMMAND_TEXT", "COMMAND_ID_NEWLINE", "TYPE_STRING", 
-		"TYPE_NUMBER", "TYPE_BOOL"
+		"COMMAND_LOCAL", "COMMAND_END", "COMMAND_TEXT_NEWLINE", "COMMAND_EXPRESSION_START", 
+		"COMMAND_TEXT", "COMMAND_ID_NEWLINE", "TYPE_STRING", "TYPE_NUMBER", "TYPE_BOOL"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -2692,7 +2691,7 @@ public partial class YarnSpinnerParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Command_formatted_textContext command_formatted_text() {
 			return GetRuleContext<Command_formatted_textContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMAND_TEXT_END() { return GetToken(YarnSpinnerParser.COMMAND_TEXT_END, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMAND_END() { return GetToken(YarnSpinnerParser.COMMAND_END, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public HashtagContext[] hashtag() {
 			return GetRuleContexts<HashtagContext>();
 		}
@@ -2735,7 +2734,7 @@ public partial class YarnSpinnerParser : Parser {
 			State = 318;
 			command_formatted_text();
 			State = 319;
-			Match(COMMAND_TEXT_END);
+			Match(COMMAND_END);
 			{
 			State = 323;
 			ErrorHandler.Sync(this);
@@ -4119,7 +4118,7 @@ public partial class YarnSpinnerParser : Parser {
 	}
 
 	private static int[] _serializedATN = {
-		4,1,93,488,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		4,1,92,488,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
 		7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,14,
 		2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,7,20,2,21,7,21,
 		2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,2,27,7,27,2,28,7,28,
@@ -4234,10 +4233,10 @@ public partial class YarnSpinnerParser : Parser {
 		0,303,43,1,0,0,0,304,302,1,0,0,0,305,306,5,19,0,0,306,307,5,72,0,0,307,
 		308,3,30,15,0,308,309,7,5,0,0,309,310,3,26,13,0,310,311,5,85,0,0,311,45,
 		1,0,0,0,312,313,5,19,0,0,313,314,5,74,0,0,314,315,3,32,16,0,315,316,5,
-		85,0,0,316,47,1,0,0,0,317,318,5,19,0,0,318,319,3,50,25,0,319,323,5,87,
+		85,0,0,316,47,1,0,0,0,317,318,5,19,0,0,318,319,3,50,25,0,319,323,5,85,
 		0,0,320,322,3,22,11,0,321,320,1,0,0,0,322,325,1,0,0,0,323,321,1,0,0,0,
-		323,324,1,0,0,0,324,49,1,0,0,0,325,323,1,0,0,0,326,332,5,89,0,0,327,328,
-		5,88,0,0,328,329,3,26,13,0,329,330,5,63,0,0,330,332,1,0,0,0,331,326,1,
+		323,324,1,0,0,0,324,49,1,0,0,0,325,323,1,0,0,0,326,332,5,88,0,0,327,328,
+		5,87,0,0,328,329,3,26,13,0,329,330,5,63,0,0,330,332,1,0,0,0,331,326,1,
 		0,0,0,331,327,1,0,0,0,332,335,1,0,0,0,333,331,1,0,0,0,333,334,1,0,0,0,
 		334,51,1,0,0,0,335,333,1,0,0,0,336,338,3,54,27,0,337,336,1,0,0,0,338,341,
 		1,0,0,0,339,337,1,0,0,0,339,340,1,0,0,0,340,342,1,0,0,0,341,339,1,0,0,

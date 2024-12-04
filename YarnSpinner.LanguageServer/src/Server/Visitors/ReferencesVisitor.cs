@@ -273,7 +273,7 @@ namespace YarnLanguageServer
 
             var parameterRangeStart = PositionHelper.GetRange(yarnFileData.LineStarts, commandName).End
                 .Delta(0, 1); // need at least one white space character after the command name before any parameters
-            var parameterRangeEnd = PositionHelper.GetRange(yarnFileData.LineStarts, context.COMMAND_TEXT_END().Symbol).Start;
+            var parameterRangeEnd = PositionHelper.GetRange(yarnFileData.LineStarts, context.COMMAND_END().Symbol).Start;
 
             var parameters = tokens.Skip(1);
             var parameterCount = parameters.Count();
@@ -298,7 +298,7 @@ namespace YarnLanguageServer
             {
                 NameToken = commandName,
                 Name = commandName.Text,
-                ExpressionRange = PositionHelper.GetRange(yarnFileData.LineStarts, commandName, context.COMMAND_TEXT_END().Symbol),
+                ExpressionRange = PositionHelper.GetRange(yarnFileData.LineStarts, commandName, context.COMMAND_END().Symbol),
                 ParametersRange = new Range(parameterRangeStart, parameterRangeEnd),
                 ParameterRanges = parameterRanges,
                 ParameterCount = parameterCount,

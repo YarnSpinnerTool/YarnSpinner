@@ -138,7 +138,7 @@ call_statement
     ;
 
 command_statement
-    : COMMAND_START command_formatted_text COMMAND_TEXT_END (hashtag*)
+    : COMMAND_START command_formatted_text COMMAND_END (hashtag*)
     ;
 
 command_formatted_text

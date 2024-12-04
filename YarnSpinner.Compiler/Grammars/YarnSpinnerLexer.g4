@@ -363,7 +363,7 @@ COMMAND_ARBITRARY: . -> type(COMMAND_TEXT), mode(CommandTextMode);
 // Arbitrary commands, which may contain expressions, and end with a '>>'.
 mode CommandTextMode;
 COMMAND_TEXT_NEWLINE: NEWLINE;
-COMMAND_TEXT_END: '>>' -> popMode;
+COMMAND_TEXT_END: '>>' -> type(COMMAND_END), popMode;
 COMMAND_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
 COMMAND_TEXT: ~[>{\r\n]+;
 
