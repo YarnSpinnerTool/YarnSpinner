@@ -37,7 +37,7 @@ namespace YarnLanguageServer.Handlers
                        // This is an error token - the node doesn't actually
                        // have a valid title. Return an empty collection of code
                        // lenses.
-                       return [];
+                       return Enumerable.Empty<CodeLens>();
                    }
 
                    var referenceLocations = ReferencesHandler.GetReferences(project, titleToken.Text, YarnSymbolType.Node);
