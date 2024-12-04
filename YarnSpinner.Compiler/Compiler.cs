@@ -1,4 +1,4 @@
-// Copyright Yarn Spinner Pty Ltd
+﻿// Copyright Yarn Spinner Pty Ltd
 // Licensed under the MIT License. See LICENSE.md in project root for license information.
 
 // Uncomment to ensure that all expressions have a known type at compile time
@@ -414,6 +414,8 @@ namespace Yarn.Compiler
             // Filter out any duplicate diagnostics
             diagnostics = diagnostics.Distinct().ToList();
 
+            AddDiagnosticsForStyleIssues(parsedFiles, ref diagnostics);
+
             // adding in the warnings about empty nodes
             var empties = AddDiagnosticsForEmptyNodes(parsedFiles, ref diagnostics);
 
@@ -603,6 +605,16 @@ namespace Yarn.Compiler
             };
 
             return finalResult;
+        }
+
+        private static void AddDiagnosticsForStyleIssues(List<FileParseResult> parsedFiles, ref List<Diagnostic> diagnostics)
+        {
+            foreach (var file in parsedFiles)
+            {
+                var styleIssuesVisitor = new StyleWarningsVisitor(file.Name, file.Tokens);
+                styleIssuesVisitor.Visit(file.Tree);
+                diagnostics.AddRange(styleIssuesVisitor.Diagnostics);
+            }
         }
 
         private static void AddErrorsForSettingReadonlyVariables(List<FileParseResult> parsedFiles, IEnumerable<Declaration> declarations, List<Diagnostic> diagnostics)
