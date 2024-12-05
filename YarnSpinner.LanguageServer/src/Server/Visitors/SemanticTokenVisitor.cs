@@ -249,7 +249,11 @@ namespace YarnLanguageServer
                 return token;
             });
 
-            AddTokenType(tokens.First(), SemanticTokenType.Function);
+            if (tokens.Any())
+            {
+                AddTokenType(tokens.First(), SemanticTokenType.Function);
+            }
+
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword);
             AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword);
 
