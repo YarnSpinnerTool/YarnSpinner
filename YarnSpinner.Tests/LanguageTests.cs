@@ -341,7 +341,7 @@ namespace YarnSpinner.Tests
                 // it a test failure if it _does_ compile.
 
                 var result = Compiler.Compile(compilationJob);
-                result.Diagnostics.Should().NotBeEmpty("{0} is expected to have compile errors", file);
+                result.Diagnostics.Where(d => d.Severity == Diagnostic.DiagnosticSeverity.Error).Should().NotBeEmpty("{0} is expected to have compile errors", file);
                 result.Diagnostics.Should().AllSatisfy(d => d.Range.IsValid.Should().BeTrue($"{d} should have a valid range"), "all diagnostics should have a valid position");
             }
             else
@@ -349,7 +349,7 @@ namespace YarnSpinner.Tests
                 // Compile the job, and expect it to succeed.
                 var result = Compiler.Compile(compilationJob);
 
-                result.Diagnostics.Should().BeEmpty("{0} is expected to have no compile errors", file);
+                result.Diagnostics.Should().BeEmpty("{0} is expected to have no diagnostics", file);
 
                 result.Program.Should().NotBeNull();
 
