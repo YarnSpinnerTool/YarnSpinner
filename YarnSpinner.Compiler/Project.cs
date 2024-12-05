@@ -16,6 +16,12 @@ namespace Yarn.Compiler
     /// </summary>
     public class Project
     {
+        /// <summary>
+        /// A placeholder string that represents the location of the workspace
+        /// root in paths.
+        /// </summary>
+        public const string WorkspaceRootPlaceholder = "${workspaceRoot}";
+
         internal const string AllowPreviewFeaturesKey = "allowPreviewFeatures";
 
         /// <summary>
@@ -53,8 +59,11 @@ namespace Yarn.Compiler
         /// <summary>
         /// Initializes a new instance of the <see cref="Project"/> class.
         /// </summary>
-        /// <param name="path">The value to use for the new instance's <see cref="Path"/> property.</param>
-        public Project(string path)
+        /// <param name="path">The value to use for the new instance's <see
+        /// cref="Path"/> property.</param>
+        /// <param name="workspaceRootPath">The path to the root of the current
+        /// workspace, or <see langword="null"/>.</param>
+        public Project(string path, string? workspaceRootPath)
         {
             this.Path = path;
         }
@@ -76,7 +85,8 @@ namespace Yarn.Compiler
         /// <remarks>
         /// This value is not stored when the file is saved, but is instead
         /// determined when the file is loaded by <see
-        /// cref="LoadFromFile(string)"/>, or provided when the <see cref="Project"/> is constructed.
+        /// cref="LoadFromFile(string)"/>, or provided when the <see
+        /// cref="Project"/> is constructed.
         /// </remarks>
         [JsonIgnore]
         public string? Path { get; set; }
@@ -140,7 +150,7 @@ namespace Yarn.Compiler
         /// Language Server when opening a folder that contains Yarn files but
         /// no Yarn Project file.
         /// </remarks>
-        internal bool IsImplicit => !System.IO.File.Exists(this.Path);
+        internal bool IsImplicit => Path != null && !System.IO.File.Exists(this.Path);
 
         /// <summary>
         /// Gets or sets a dictionary containing instructions that control how
@@ -227,12 +237,32 @@ namespace Yarn.Compiler
         {
             get
             {
-                if (this.Definitions == null || this.SearchDirectoryPath == null)
+                if (this.Definitions == null)
                 {
                     return null;
                 }
-
-                return System.IO.Path.Combine(this.SearchDirectoryPath, this.Definitions);
+                else if (this.Definitions.IndexOf(WorkspaceRootPlaceholder) != -1)
+                {
+                    if (this.WorkspaceRootPath != null
+                        && System.IO.Directory.Exists(WorkspaceRootPath))
+                    {
+                        return this.Definitions.Replace(WorkspaceRootPlaceholder, WorkspaceRootPath);
+                    }
+                    else
+                    {
+                        // The path contains the placeholder, but we have no
+                        // value to insert it with. Early out here.
+                        return null;
+                    }
+                }
+                else if (this.SearchDirectoryPath != null)
+                {
+                    return System.IO.Path.Combine(this.SearchDirectoryPath, this.Definitions);
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -271,7 +301,8 @@ namespace Yarn.Compiler
                 }
                 else
                 {
-                    // This project does not refer to a file on disk or to a directory.
+                    // This project does not refer to a file on disk or to a
+                    // directory.
                     searchDirectoryPath = null;
                 }
 
@@ -338,19 +369,27 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// The location of the root of the workspace in which this project is
+        /// located.
+        /// </summary>
+        public string? WorkspaceRootPath { get; set; }
+
+        /// <summary>
         /// Loads and parses a <see cref="Project"/> from a file on disk.
         /// </summary>
         /// <param name="path">The path to the file to load.</param>
+        /// <param name="workspaceRoot">The path of the root of the workspace in
+        /// which <see langword="file"/> is located.</param>
         /// <returns>The loaded <see cref="Project"/>.</returns>
         /// <exception cref="ArgumentException">Thrown when the contents of the
         /// file cannot be loaded.</exception>
-        public static Project LoadFromFile(string path)
+        public static Project LoadFromFile(string path, string? workspaceRoot)
         {
             try
             {
                 var text = System.IO.File.ReadAllText(path);
 
-                return LoadFromString(text, path);
+                return LoadFromString(text, path, workspaceRoot);
             }
             catch (System.IO.IOException e)
             {
@@ -358,7 +397,7 @@ namespace Yarn.Compiler
             }
         }
 
-        internal static Project LoadFromString(string text, string path)
+        internal static Project LoadFromString(string text, string path, string? workspaceRoot)
         {
             try
             {
@@ -375,6 +414,7 @@ namespace Yarn.Compiler
                 }
 
                 project.Path = path;
+                project.WorkspaceRootPath = workspaceRoot;
 
                 return project;
             }

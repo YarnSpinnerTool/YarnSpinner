@@ -76,7 +76,7 @@ namespace YarnLanguageServer
             return yarnProject.IsMatchingPath(uri.GetFileSystemPath());
         }
 
-        public Project(string? projectFilePath, bool isImplicit = false)
+        public Project(string? projectFilePath, string? workspaceRoot, bool isImplicit = false)
         {
             this.IsImplicitProject = isImplicit;
 
@@ -84,7 +84,10 @@ namespace YarnLanguageServer
             {
                 // The project path is null. The workspace may not exist on
                 // disk.
-                yarnProject = new Yarn.Compiler.Project();
+                yarnProject = new Yarn.Compiler.Project
+                {
+                    WorkspaceRootPath = workspaceRoot,
+                };
                 return;
             }
 
@@ -94,12 +97,13 @@ namespace YarnLanguageServer
                 yarnProject = new Yarn.Compiler.Project
                 {
                     Path = projectFilePath,
+                    WorkspaceRootPath = workspaceRoot,
                 };
             }
             else if (File.Exists(projectFilePath))
             {
                 // This project is being loaded from a file.
-                yarnProject = Yarn.Compiler.Project.LoadFromFile(projectFilePath);
+                yarnProject = Yarn.Compiler.Project.LoadFromFile(projectFilePath, workspaceRoot);
             }
             else
             {
