@@ -196,7 +196,7 @@ namespace Yarn.Compiler
         {
             var expressionCount = 0;
             var sb = new StringBuilder();
-            foreach (var node in context.command_formatted_text().children)
+            foreach (var node in context.command_formatted_text()?.children ?? Array.Empty<IParseTree>())
             {
                 if (node is ITerminalNode)
                 {
