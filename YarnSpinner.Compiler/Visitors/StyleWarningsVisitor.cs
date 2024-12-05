@@ -55,7 +55,11 @@ namespace Yarn.Compiler
             return base.VisitStatement(context);
         }
 
-        private static int[] OmitTokenTypes = new[] { YarnSpinnerLexer.INDENT, YarnSpinnerLexer.DEDENT };
+        private static int[] OmitTokenTypes = new[] {
+            YarnSpinnerLexer.INDENT,
+            YarnSpinnerLexer.DEDENT,
+            YarnSpinnerLexer.BLANK_LINE_FOLLOWING_OPTION,
+        };
 
         public static List<IToken> GetAllTokensOnLine(CommonTokenStream tokenStream, int line, int channel = Lexer.DefaultTokenChannel)
         {
