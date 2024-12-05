@@ -63,9 +63,10 @@ namespace Yarn.Compiler
         /// cref="Path"/> property.</param>
         /// <param name="workspaceRootPath">The path to the root of the current
         /// workspace, or <see langword="null"/>.</param>
-        public Project(string path, string? workspaceRootPath)
+        public Project(string path, string? workspaceRootPath = null)
         {
             this.Path = path;
+            this.WorkspaceRootPath = workspaceRootPath;
         }
 
         /// <summary>
@@ -383,7 +384,7 @@ namespace Yarn.Compiler
         /// <returns>The loaded <see cref="Project"/>.</returns>
         /// <exception cref="ArgumentException">Thrown when the contents of the
         /// file cannot be loaded.</exception>
-        public static Project LoadFromFile(string path, string? workspaceRoot)
+        public static Project LoadFromFile(string path, string? workspaceRoot = null)
         {
             try
             {
@@ -397,7 +398,7 @@ namespace Yarn.Compiler
             }
         }
 
-        internal static Project LoadFromString(string text, string path, string? workspaceRoot)
+        internal static Project LoadFromString(string text, string path, string? workspaceRoot = null)
         {
             try
             {

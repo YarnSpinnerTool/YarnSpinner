@@ -76,7 +76,7 @@ namespace YarnLanguageServer
             return yarnProject.IsMatchingPath(uri.GetFileSystemPath());
         }
 
-        public Project(string? projectFilePath, string? workspaceRoot, bool isImplicit = false)
+        public Project(string? projectFilePath, string? workspaceRoot = null, bool isImplicit = false)
         {
             this.IsImplicitProject = isImplicit;
 
