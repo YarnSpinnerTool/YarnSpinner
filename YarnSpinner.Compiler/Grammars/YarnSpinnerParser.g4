@@ -142,7 +142,7 @@ command_statement
     ;
 
 command_formatted_text
-	: (COMMAND_TEXT|COMMAND_EXPRESSION_START expression EXPRESSION_END)*
+	: (COMMAND_TEXT|COMMAND_EXPRESSION_START expression EXPRESSION_END)+
 	;
 
 shortcut_option_statement
