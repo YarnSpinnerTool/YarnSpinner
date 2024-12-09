@@ -33,6 +33,11 @@ namespace YarnLanguageServer
             return actions;
         }
 
+        internal void MergeWith(JsonConfigFile newFile)
+        {
+            this.actions.AddRange(newFile.actions);
+        }
+
         internal class JsonConfigFormat
         {
             public List<RegisteredDefinition> Functions { get; set; } = new ();

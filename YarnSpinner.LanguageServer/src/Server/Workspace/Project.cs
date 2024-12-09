@@ -113,10 +113,33 @@ namespace YarnLanguageServer
 
             this.Uri = DocumentUri.FromFileSystemPath(projectFilePath);
 
-            if (File.Exists(yarnProject.DefinitionsPath))
+            foreach (var definitionPath in yarnProject.DefinitionsFiles)
             {
-                var definitionsText = File.ReadAllText(yarnProject.DefinitionsPath);
-                DefinitionsFile = new JsonConfigFile(definitionsText, false);
+                try
+                {
+
+                    if (File.Exists(definitionPath))
+                    {
+                        var definitionsText = File.ReadAllText(definitionPath);
+                        var newFile = new JsonConfigFile(definitionsText, false);
+                        if (DefinitionsFile == null)
+                        {
+                            DefinitionsFile = newFile;
+                        }
+                        else
+                        {
+                            DefinitionsFile.MergeWith(newFile);
+                        }
+                    }
+                }
+                catch (Newtonsoft.Json.JsonException)
+                {
+                    // TODO: handle parse failure
+                }
+                catch (IOException)
+                {
+                    // TODO: handle read failure
+                }
             }
         }
 

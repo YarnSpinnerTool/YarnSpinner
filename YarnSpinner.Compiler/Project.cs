@@ -233,8 +233,27 @@ namespace Yarn.Compiler
         /// Gets the path to the Definitions file, relative to this project's
         /// location.
         /// </summary>
+        /// <seealso cref="DefinitionsFiles"/>
         [JsonIgnore]
+        [Obsolete("Use " + nameof(DefinitionsFilesPattern))]
         public string? DefinitionsPath
+        {
+            get
+            {
+                var files = new List<string>(DefinitionsFiles);
+                if (files.Count > 0)
+                {
+                    return files[0];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        [JsonIgnore]
+        private string? DefinitionsFilesPattern
         {
             get
             {
@@ -263,6 +282,87 @@ namespace Yarn.Compiler
                 else
                 {
                     return null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the absolute paths to the project's Definitions files.
+        /// </summary>
+        public IEnumerable<string> DefinitionsFiles
+        {
+            get
+            {
+                if (DefinitionsFilesPattern == null)
+                {
+                    return Array.Empty<string>();
+                }
+
+                Matcher m = new Matcher(StringComparison.OrdinalIgnoreCase);
+
+
+                if (System.IO.Path.IsPathRooted(DefinitionsFilesPattern))
+                {
+                    if (System.IO.File.Exists(DefinitionsFilesPattern))
+                    {
+                        // The path is to an absolute path that exists on disk; return it as-is
+                        return new[] { DefinitionsFilesPattern };
+                    }
+                    else
+                    {
+                        // The path is absolute but doesn't exist; it may be a
+                        // pattern. Split the pattern into an absolute path and
+                        // the pattern, and attempt to match from there.
+
+                        var fullPath = System.IO.Path.GetFullPath(DefinitionsFilesPattern);
+                        var pathRoot = System.IO.Path.GetPathRoot(fullPath);
+
+                        var pathRelativeToRoot = fullPath.Substring(pathRoot.Length);
+
+                        var allSegments = new Queue<string>(
+                            pathRelativeToRoot
+                                .Split(new[] { System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar })
+                        );
+
+                        var absoluteSegments = new List<string>();
+                        while (allSegments.Count > 0)
+                        {
+                            var segment = allSegments.Peek();
+                            if (segment.Contains("*"))
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                allSegments.Dequeue();
+                                absoluteSegments.Add(segment);
+                            }
+                        }
+
+                        var searchBasePath = pathRoot + System.IO.Path.Combine(absoluteSegments.ToArray());
+                        var searchPattern = System.IO.Path.Combine(allSegments.ToArray());
+
+                        m.AddInclude(searchPattern);
+                        return m.GetResultsInFullPath(searchBasePath);
+                    }
+                }
+                else
+                {
+                    // The path is not absolute, so we can use the matcher
+                    // directly to find paths, starting from our
+
+                    if (SearchDirectoryPath == null)
+                    {
+                        // We don't know where to start searching from.
+                        return Array.Empty<string>();
+                    }
+
+                    m.AddInclude(DefinitionsFilesPattern);
+
+                    IEnumerable<string> results;
+                    results = m.GetResultsInFullPath(SearchDirectoryPath);
+
+                    return results;
                 }
             }
         }

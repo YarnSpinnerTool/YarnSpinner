@@ -12,6 +12,7 @@ namespace YarnLanguageServer.Tests
         private static string Project1Path = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Project1.yarnproject");
         private static string Project2Path = Path.Combine(TestUtility.PathToTestWorkspace, "Project2", "Project2.yarnproject");
         private static string NoProjectPath = Path.Combine(TestUtility.PathToTestWorkspace, "FilesWithNoProject");
+        private static string MultipleDefsPath = Path.Combine(TestUtility.PathToTestWorkspace, "ProjectWithMultipleDefinitionsFiles");
 
         [Fact]
         public void Projects_CanOpen()
@@ -134,6 +135,32 @@ namespace YarnLanguageServer.Tests
             workspace.Root = null;
 
             workspace.Initialize();
+        }
+
+        [Fact]
+        public void Workspace_WithMultipleDefinitionsFiles_UsesMultipleFiles()
+        {
+            // Given
+            var workspace = new Workspace();
+            workspace.Root = MultipleDefsPath;
+            workspace.Initialize();
+
+            // When
+            var projects = workspace.Projects;
+            var relativeProject = projects.Should().Contain(p => p.Uri!.Path.EndsWith("Relative.yarnproject")).Subject;
+            var relativeToWorkspaceProject = projects.Should().Contain(p => p.Uri!.Path.EndsWith("RelativeToWorkspace.yarnproject")).Subject;
+
+            // Then
+            relativeProject.Commands.Should().Contain(c => c.YarnName == "custom_command_1");
+            relativeProject.Functions.Should().Contain(c => c.YarnName == "custom_function_1");
+            relativeProject.Commands.Should().Contain(c => c.YarnName == "custom_command_2");
+            relativeProject.Functions.Should().Contain(c => c.YarnName == "custom_function_2");
+
+            relativeToWorkspaceProject.Commands.Should().Contain(c => c.YarnName == "custom_command_1");
+            relativeToWorkspaceProject.Functions.Should().Contain(c => c.YarnName == "custom_function_1");
+            relativeToWorkspaceProject.Commands.Should().Contain(c => c.YarnName == "custom_command_2");
+            relativeToWorkspaceProject.Functions.Should().Contain(c => c.YarnName == "custom_function_2");
+
         }
     }
 }
