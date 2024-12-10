@@ -278,6 +278,15 @@ namespace YarnLanguageServer.Handlers
                 // list of nodes.
                 ExpandRangeToEndOfPreviousTokenOfType(YarnSpinnerLexer.COMMAND_JUMP, maybeTokenAtRequestPosition.Value, ref rangeOfTokenAtRequestPosition);
 
+                // Add a ' ' after the jump token
+                rangeOfTokenAtRequestPosition = rangeOfTokenAtRequestPosition with
+                {
+                    Start = rangeOfTokenAtRequestPosition.Start with
+                    {
+                        Character = rangeOfTokenAtRequestPosition.Start.Character + 1
+                    }
+                };
+
                 GetNodeNameCompletions(
                     project,
                     request,

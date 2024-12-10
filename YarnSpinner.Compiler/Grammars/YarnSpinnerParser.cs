@@ -95,9 +95,10 @@ public partial class YarnSpinnerParser : Parser {
 		"'true'", "'false'", "'null'", null, null, null, null, null, null, null, 
 		null, null, null, null, "'+='", "'-='", "'*='", "'%='", "'/='", "'+'", 
 		"'-'", "'*'", "'/'", "'%'", "'('", "')'", "','", "'as'", null, null, "'}'", 
-		null, "'.'", null, null, null, null, null, null, null, "'endif'", null, 
-		null, null, null, null, null, null, null, "'once'", "'endonce'", null, 
-		null, null, "'{'", null, null, "'string'", "'number'", "'bool'"
+		null, "'.'", null, null, null, null, null, "'else'", null, "'endif'", 
+		null, null, null, null, "'return'", null, null, "'endenum'", "'once'", 
+		"'endonce'", "'local'", null, null, "'{'", null, null, "'string'", "'number'", 
+		"'bool'"
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, "INDENT", "DEDENT", "BLANK_LINE_FOLLOWING_OPTION", "WS", "COMMENT", 

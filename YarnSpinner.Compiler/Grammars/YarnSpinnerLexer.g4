@@ -315,33 +315,33 @@ COMMAND_WS: WS -> channel(HIDDEN);
 // whitespace), and we want to ensure that we don't accidentally match 
 // things like "iffy" or "settle" as keywords followed by arbitrary text. 
 // So we make some whitespace be part of the definition of the keyword.
-COMMAND_IF: 'if' [\p{White_Space}] -> pushMode(ExpressionMode);
-COMMAND_ELSEIF: 'elseif' [\p{White_Space}] -> pushMode(ExpressionMode);
-COMMAND_ELSE: 'else' [\p{White_Space}]?; // next expected token after 'else' is '>>' so no whitespace is strictly needed 
-COMMAND_SET : 'set' [\p{White_Space}] -> pushMode(ExpressionMode);
-COMMAND_ENDIF: 'endif';
+COMMAND_IF: 'if'  {IsEndOfCommandKeyword()}? -> pushMode(ExpressionMode);
+COMMAND_ELSEIF: 'elseif'  {IsEndOfCommandKeyword()}? -> pushMode(ExpressionMode);
+COMMAND_ELSE: 'else'  {IsEndOfCommandKeyword()}?; 
+COMMAND_SET : 'set'  {IsEndOfCommandKeyword()}? -> pushMode(ExpressionMode);
+COMMAND_ENDIF: 'endif' {IsEndOfCommandKeyword()}?;
 
-COMMAND_CALL: 'call' [\p{White_Space}] -> pushMode(ExpressionMode);
+COMMAND_CALL: 'call'  {IsEndOfCommandKeyword()}? -> pushMode(ExpressionMode);
 
-COMMAND_DECLARE: 'declare' [\p{White_Space}] -> pushMode(ExpressionMode);
+COMMAND_DECLARE: 'declare'  {IsEndOfCommandKeyword()}? -> pushMode(ExpressionMode);
 
-COMMAND_JUMP: 'jump' [\p{White_Space}] -> pushMode(CommandIDOrExpressionMode);
+COMMAND_JUMP: 'jump'  {IsEndOfCommandKeyword()}? -> pushMode(CommandIDOrExpressionMode);
 
-COMMAND_DETOUR: 'detour'  [\p{White_Space}] -> pushMode(CommandIDOrExpressionMode);
+COMMAND_DETOUR: 'detour'   {IsEndOfCommandKeyword()}? -> pushMode(CommandIDOrExpressionMode);
 
-COMMAND_RETURN: 'return' [\p{White_Space}]?; // next expected token after 'return' is '>>' so no whitespace is strictly needed 
+COMMAND_RETURN: 'return'  {IsEndOfCommandKeyword()}? ; // next expected token after 'return' is '>>' so no whitespace is strictly needed 
 
-COMMAND_ENUM: 'enum' [\p{White_Space}] -> pushMode(CommandIDMode);
+COMMAND_ENUM: 'enum'  {IsEndOfCommandKeyword()}? -> pushMode(CommandIDMode);
 
-COMMAND_CASE: 'case' [\p{White_Space}] -> pushMode(ExpressionMode);
+COMMAND_CASE: 'case'  {IsEndOfCommandKeyword()}? -> pushMode(ExpressionMode);
 
-COMMAND_ENDENUM: 'endenum' [\p{White_Space}]?;
+COMMAND_ENDENUM: 'endenum'  {IsEndOfCommandKeyword()}?;
 
-COMMAND_ONCE: 'once';
-COMMAND_ENDONCE: 'endonce';
+COMMAND_ONCE: 'once' {IsEndOfCommandKeyword()}?;
+COMMAND_ENDONCE: 'endonce'  {IsEndOfCommandKeyword()}?;
 
 // Keywords reserved for future language versions
-COMMAND_LOCAL: 'local' [\p{White_Space}]; 
+COMMAND_LOCAL: 'local' {IsEndOfCommandKeyword()}?; 
 
 // End of a command.
 COMMAND_END: '>>' -> popMode;
@@ -369,12 +369,15 @@ COMMAND_TEXT: ~[>{\r\n]+;
 
 // A mode in which we expect to parse a node ID.
 mode CommandIDMode;
+COMMAND_ID_WS: WS -> channel(HIDDEN);
 COMMAND_ID_NEWLINE: NEWLINE;
 COMMAND_ID: ID -> type(ID), popMode;
 COMMAND_ID_END: '>>' -> type(COMMAND_END), popMode; // almost certainly a parse error, but not a lex error
 
 // A mode in which we expect to parse a node ID, or an expression.
 mode CommandIDOrExpressionMode;
+
+COMMAND_ID_OR_EXPRESSION_WS: WS -> channel(HIDDEN);
 
 // We saw an ID; leave this mode immediately
 COMMAND_ID_OR_EXPRESSION_ID: ID -> type(ID), popMode;

@@ -7,6 +7,13 @@ command: `orion`
 command: `andorian`
 command: `note`
 command: `isActive`
+command: `returnToMainMenu`
+command: `oncee`
+command: `enumerated`
+command: `endenumerated`
+command: `cased`
+command: `locality`
+command: `detouring`
 command: `p`
 #command: `!@#$%^&*()⁄€‹›ﬁﬂ‡°·‚‘-=_+`
 command: `hide Collision:GermOnPorch`

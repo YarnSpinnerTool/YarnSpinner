@@ -115,6 +115,30 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// Looks ahead 1 character in the input stream and returns a value
+        /// indicating whether the character is whitespace (as determined by
+        /// <see cref="char.IsWhiteSpace(char)"/>) or the <c>&gt;</c> character.
+        /// </summary>
+        protected bool IsEndOfCommandKeyword()
+        {
+            var c = LAChar(1);
+            return c == '>' || char.IsWhiteSpace(c);
+        }
+
+        private char LAChar(int dist)
+        {
+            int next = this.InputStream.LA(dist);
+            if (next == IntStreamConstants.EOF)
+            {
+                return (char)0;
+            }
+            else
+            {
+                return (char)next;
+            }
+        }
+
+        /// <summary>
         /// Gets the collection of warnings determined during lexing.
         /// </summary>
         public IEnumerable<LexerWarning> Warnings { get => this.warnings; }
