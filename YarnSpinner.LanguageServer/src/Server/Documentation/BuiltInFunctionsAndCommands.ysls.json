@@ -143,6 +143,27 @@
       "ReturnType": "number"
     },
     {
+      "YarnName": "random_range_float",
+      "DefinitionName": "random_range",
+      "Documentation": "Returns a random floating point value between a and b, inclusive.",
+      "Signature": "random_range_float(a, b)",
+      "Parameters": [
+        {
+          "Name": "a",
+          "Type": "number",
+          "Documentation": "Lower bound (inclusive)",
+          "IsParamsArray": false
+        },
+        {
+          "Name": "b",
+          "Type": "number",
+          "Documentation": "Upper bound (inclusive)",
+          "IsParamsArray": false
+        }
+      ],
+      "ReturnType": "number"
+    },
+    {
       "YarnName": "dice",
       "DefinitionName": "dice",
       "Documentation": "Returns a random integer between 1 and sides, inclusive.",
