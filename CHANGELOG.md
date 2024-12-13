@@ -14,6 +14,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Commands are now better at checking to see if the first word is a keyword (e.g. `return`) or a word that just _begins_ with a keyword (`returnToMenu`).
+- `random_range(min, max)` now returns a random integer between `min` and `max`, inclusive. (Previously, it returned a float.)
+- Added a new function, `random_range_float` now returns a random float between `min` and `max`, inclusive. (This is the previous behaviour of `random_range`.)
 
 ### Removed
 

@@ -1183,9 +1183,14 @@ namespace Yarn
                     return (float)Random.NextDouble();
                 });
 
-                this.RegisterFunction<float, float, float>("random_range", (float min, float max) =>
+                this.RegisterFunction("random_range", (float min, float max) =>
                 {
                     return Random.Next((int)max - (int)min + 1) + min;
+                });
+
+                this.RegisterFunction("random_range_float", delegate (float minInclusive, float maxInclusive)
+                {
+                    return Random.Next((int)maxInclusive - (int)minInclusive + 1) + minInclusive;
                 });
 
                 this.RegisterFunction<int, int>("dice", (int sides) =>

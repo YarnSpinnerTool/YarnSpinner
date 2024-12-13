@@ -25,7 +25,7 @@ This package provides support for compiling Yarn source code, so that you can ex
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.1"/>
     <PackageReference Include="CsvHelper" Version="12.2.2" />
     <PackageReference Include="Google.Protobuf" Version="3.25.2"/>
-    <PackageReference Include="System.Text.Json" Version="8.0.4" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
     <PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="8.0.0" />
   </ItemGroup>
 
