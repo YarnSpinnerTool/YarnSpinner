@@ -8,6 +8,7 @@ title: ActionDeclarations
 {visited_count("ActionDeclarations")}
 {random()}
 {random_range(1,5)}
+{random_range_float(1,5)}
 {dice(6)}
 {round(4.5)}
 {round_places(5.2, 1)}
