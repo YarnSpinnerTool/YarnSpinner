@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -28,24 +28,27 @@ namespace YarnLanguageServer.Handlers
             var text = request.TextDocument.Text;
             if (!uri.IsFile) { return Unit.Task; }
 
-            var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
+            var projects = workspace.GetProjectsForUri(uri);
 
-            if (project == null)
+            if (!projects.Any())
             {
                 // We don't know what project handles this URI. Log an error.
                 workspace.Window?.LogError($"No known project for URI {uri}");
                 return Unit.Task;
             }
 
-            if (project.GetFileData(uri) == null)
+            foreach (var project in projects)
             {
-                // The file is not already known to the project. Add it to the
-                // project.
-                project.AddNewFile(uri, request.TextDocument.Text);
+                if (project.GetFileData(uri) == null)
+                {
+                    // The file is not already known to the project. Add it to the
+                    // project.
+                    project.AddNewFile(uri, request.TextDocument.Text);
 
-                // Adding the document to the project may have changed the
-                // current diagnostics.
-                workspace.PublishDiagnostics();
+                    // Adding the document to the project may have changed the
+                    // current diagnostics.
+                    workspace.PublishDiagnostics();
+                }
             }
 
             return Unit.Task;
@@ -57,37 +60,42 @@ namespace YarnLanguageServer.Handlers
 
             if (!uri.IsFile) { return Unit.Task; }
 
-            var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
-            var yarnDocument = project?.GetFileData(uri);
+            // Find all projects that claim this URI
+            var projects = workspace.GetProjectsForUri(uri);
 
-            if (project == null)
+            if (!projects.Any())
             {
                 // We don't have a project that includes this URI. Nothing to
                 // be done.
                 return Unit.Task;
             }
 
-            if (yarnDocument == null)
+            foreach (var project in projects)
             {
-                // We have a project that owns this URI, but no file data for
-                // it. It's likely that this file was just created. Add this
-                // file to the project as empty; we will then attempt to apply
-                // the content changes to this empty document.
-                yarnDocument = project.AddNewFile(uri, string.Empty);
-            }
+                var yarnDocument = project.GetFileData(uri);
 
-            // Next, go through each content change, and apply it.
-            foreach (var contentChange in request.ContentChanges)
-            {
-                yarnDocument.ApplyContentChange(contentChange);
-            }
+                if (yarnDocument == null)
+                {
+                    // We have a project that owns this URI, but no file data for
+                    // it. It's likely that this file was just created. Add this
+                    // file to the project as empty; we will then attempt to apply
+                    // the content changes to this empty document.
+                    yarnDocument = project.AddNewFile(uri, string.Empty);
+                }
 
-            // Finally, update our model using the new content.
-            yarnDocument.Update(yarnDocument.Text);
-            project.CompileProject(
-                notifyOnComplete: true,
-                Yarn.Compiler.CompilationJob.Type.DeclarationsOnly
-            );
+                // Next, go through each content change, and apply it.
+                foreach (var contentChange in request.ContentChanges)
+                {
+                    yarnDocument.ApplyContentChange(contentChange);
+                }
+
+                // Finally, update our model using the new content.
+                yarnDocument.Update(yarnDocument.Text);
+                project.CompileProject(
+                    notifyOnComplete: true,
+                    Yarn.Compiler.CompilationJob.Type.TypeCheck
+                );
+            }
 
             return Unit.Task;
         }

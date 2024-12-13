@@ -5,7 +5,6 @@ using System.Linq;
 using Antlr4.Runtime;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Yarn.Compiler;
-
 // Disambiguate between
 // OmniSharp.Extensions.LanguageServer.Protocol.Models.Diagnostic and
 // Yarn.Compiler.Diagnostic
@@ -14,7 +13,8 @@ using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
 namespace YarnLanguageServer
 {
-    internal interface INotificationSender {
+    internal interface INotificationSender
+    {
         void SendNotification<T>(string method, T @params);
     }
 
@@ -50,7 +50,7 @@ namespace YarnLanguageServer
             LineStarts = TextCoordinateConverter.GetLineStarts(text);
 
             // Lex tokens and comments
-            var commentLexer = new YarnSpinnerLexer(CharStreams.fromstring(text));
+            var commentLexer = new YarnSpinnerLexer(CharStreams.fromString(text));
             var commentTokenStream = new CommonTokenStream(commentLexer);
             CommentTokens = new List<IToken>();
             commentTokenStream.Fill();
@@ -65,7 +65,7 @@ namespace YarnLanguageServer
                 .ToList();
 
             // Now onto the real parsing
-            Lexer = new YarnSpinnerLexer(CharStreams.fromstring(text));
+            Lexer = new YarnSpinnerLexer(CharStreams.fromString(text));
             var tokenStream = new CommonTokenStream(Lexer);
             Parser = new YarnSpinnerParser(tokenStream);
 
@@ -85,10 +85,13 @@ namespace YarnLanguageServer
 
         internal void ApplyContentChange(TextDocumentContentChangeEvent contentChange)
         {
-            if (contentChange.Range == null) {
+            if (contentChange.Range == null)
+            {
                 this.Text = contentChange.Text;
                 return;
-            } else {
+            }
+            else
+            {
                 var range = contentChange.Range;
 
                 var startIndex = LineStarts[range.Start.Line] + range.Start.Character;
@@ -174,21 +177,25 @@ namespace YarnLanguageServer
         /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref
         /// name="lineIndex"/> is less than zero, or equal to or greater than
         /// <see cref="LineCount"/>.</exception>
-        public int GetLineLength(int lineIndex) {
-            if (lineIndex < 0 || lineIndex >= LineCount) {
+        public int GetLineLength(int lineIndex)
+        {
+            if (lineIndex < 0 || lineIndex >= LineCount)
+            {
                 throw new ArgumentOutOfRangeException(nameof(lineIndex), $"Must be between zero and {nameof(LineCount)}");
             }
 
             var start = LineStarts[lineIndex];
             var offset = 0;
 
-            if (Text.Length == 0) {
+            if (Text.Length == 0)
+            {
                 return 0;
             }
 
             var chars = Text.ToCharArray();
 
-            while ((start + offset) < chars.Length && chars[start + offset] != '\r' && chars[start + offset] != '\n') {
+            while ((start + offset) < chars.Length && chars[start + offset] != '\r' && chars[start + offset] != '\n')
+            {
                 offset += 1;
             }
 
@@ -220,8 +227,10 @@ namespace YarnLanguageServer
                 NodeInfos.SelectMany(n => n.FunctionCalls).Select(f => (f.NameToken, YarnSymbolType.Function)),
             };
 
-            foreach (var tokenInfo in allSymbolTokens.SelectMany(g => g)) {
-                if (isTokenMatch(tokenInfo.Token)) {
+            foreach (var tokenInfo in allSymbolTokens.SelectMany(g => g))
+            {
+                if (isTokenMatch(tokenInfo.Token))
+                {
                     return (tokenInfo.Type, tokenInfo.Token);
                 }
             }
@@ -249,7 +258,8 @@ namespace YarnLanguageServer
             int parameterIndex = 0;
             foreach (var parameter in info.Value.ParameterRanges)
             {
-                if (parameter.Contains(position)) {
+                if (parameter.Contains(position))
+                {
                     return (info, parameterIndex);
                 }
 
@@ -266,8 +276,10 @@ namespace YarnLanguageServer
         /// <param name="range">The range to check.</param>
         /// <returns><see langword="true"/> if the specified range is null,
         /// empty, or consists only of white-space characters.</returns>
-        public bool IsNullOrWhitespace(Range range) {
-            if (range.IsEmpty()) {
+        public bool IsNullOrWhitespace(Range range)
+        {
+            if (range.IsEmpty())
+            {
                 return true;
             }
 
@@ -282,13 +294,28 @@ namespace YarnLanguageServer
         /// <inheritdoc cref="IsNullOrWhitespace(Range)"/>
         /// <param name="start">The start of the range to check.</param>
         /// <param name="end">The end of the range to check.</param>
-        public bool IsNullOrWhitespace(Position start, Position end) {
-            if (start > end) {
+        public bool IsNullOrWhitespace(Position start, Position end)
+        {
+            if (start > end)
+            {
                 // Invalid range.
                 return false;
             }
 
             return IsNullOrWhitespace(new Range(start, end));
+        }
+
+        /// <summary>
+        /// Gets a substring of this file's text, indicated by the given range.
+        /// </summary>
+        /// <param name="range">The range of this file to get.</param>
+        /// <returns>A substring of this file's text.</returns>
+        public string GetRange(Range range)
+        {
+            var startOffset = PositionHelper.GetOffset(this.LineStarts, range.Start);
+            var endOffset = PositionHelper.GetOffset(this.LineStarts, range.End);
+
+            return this.Text.Substring(startOffset, endOffset - startOffset);
         }
 
         private YarnActionReference? GetFunctionInfo(Position position)

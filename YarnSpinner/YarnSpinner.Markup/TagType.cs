@@ -29,7 +29,7 @@ namespace Yarn.Markup
     /// <summary>
     /// A type of <see cref="MarkupAttributeMarker"/>.
     /// </summary>
-    internal enum TagType
+    public enum TagType
     {
         /// <summary>
         /// An open marker. For example, <c>[a]</c>.

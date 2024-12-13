@@ -1,0 +1,59 @@
+saliency: first
+
+line: `This content is only seen once.`
+
+option: `Option 1` [disabled]
+option: `Option 2`
+option: `Option 3` [disabled]
+option: `Option 4`
+select: 2
+
+line: `Item 1`
+
+line: `Line 1`
+
+---
+
+line: `This content is seen on all other occasions.`
+
+option: `Option 1` [disabled]
+option: `Option 2` [disabled]
+option: `Option 3` [disabled]
+option: `Option 4`
+select: 4
+
+line: `Item 4`
+line: `Line 4`
+
+---
+
+set: $conditionA = true
+set: $conditionB = true
+set: $conditionC = true
+set: $conditionD = true
+
+line: `This content is seen on all other occasions.`
+line: `This content is only seen once, and only if $conditionA is true.`
+
+option: `Option 1`
+option: `Option 2` [disabled] 
+option: `Option 3`
+option: `Option 4`
+select: 1
+
+line: `Item 2`
+line: `Line 2`
+
+---
+
+line: `This content is seen on all other occasions.`
+
+option: `Option 1` [disabled]
+option: `Option 2` [disabled] 
+option: `Option 3` 
+option: `Option 4`
+
+select: 4
+
+line: `Item 3`
+line: `Line 3`

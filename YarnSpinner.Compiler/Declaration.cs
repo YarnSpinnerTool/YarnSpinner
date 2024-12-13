@@ -13,6 +13,11 @@ namespace Yarn.Compiler
     public class Range
     {
         /// <summary>
+        /// Represents the default value for a Range.
+        /// </summary>
+        internal static readonly Range InvalidRange = new Range(-1, -1, -1, -1);
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Range"/> class, given
         /// start and end information.
         /// </summary>
@@ -69,6 +74,34 @@ namespace Yarn.Compiler
             hashCode = (hashCode * -1521134295) + EqualityComparer<Position>.Default.GetHashCode(this.End);
             return hashCode;
         }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            if (this.Start.Equals(this.End))
+            {
+                return this.Start.ToString();
+            }
+            else
+            {
+                return $"{this.Start}-{this.End}";
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this range is valid.
+        /// </summary>
+        /// <remarks>
+        /// A range is valid when its start and end positions are both valid,
+        /// and the start position is not after the end position.
+        /// </remarks>
+        public bool IsValid
+        {
+            get
+            {
+                return this.Start.IsValid && this.End.IsValid && this.End >= this.Start;
+            }
+        }
     }
 
     /// <summary>
@@ -87,6 +120,12 @@ namespace Yarn.Compiler
         /// </summary>
         public int Character { get; set; } = -1;
 
+        /// <summary>
+        /// Gets a value indicating whether this position has a zero or positive
+        /// line and character number.
+        /// </summary>
+        public bool IsValid => this.Line >= 0 && this.Character >= 0;
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -103,50 +142,39 @@ namespace Yarn.Compiler
             hashCode = (hashCode * -1521134295) + this.Character.GetHashCode();
             return hashCode;
         }
-    }
 
-    /// <summary>
-    /// Represents a potential type error diagnostic message.
-    /// </summary>
-    /// <remarks>
-    /// Because a variable can be declared in a scope different from the current yarn file, or even externally, when we first hit upon any variables of which we don't know the type of we create a deferred diagnostic.
-    /// The idea being that we are hoping another file or step will give the information needed to resolved the type.
-    /// Later once the compiler has finished parsing every file we can see if any of these weren't resolved.
-    /// If they were not they will be promoted into a full diagnostic and presented to the user.
-    /// </remarks>
-    public class DeferredTypeDiagnostic
-    {
-        /// <summary>
-        /// The name of the variable who's type error is being deferred
-        /// </summary>
-        public string Name { get; internal set; }
-        /// <summary>
-        /// The <see cref="Diagnostic"/> that has been deferred.
-        /// </summary>
-        public Diagnostic diagnostic { get; set; }
-        
-        /// <summary>
-        /// Convenience method for constructing new deferred type diagnostics
-        /// </summary>
-        /// <param name="name">The name of the variable</param>
-        /// <param name="diagnostic">The diagnostic that has been deferred</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
-        public static DeferredTypeDiagnostic CreateDeferredTypeDiagnostic(string name, Diagnostic diagnostic)
+        /// <inheritdoc/>
+        public override string ToString()
         {
-            if (string.IsNullOrEmpty(name))
-            {
-                throw new ArgumentException($"'{nameof(name)}' cannot be null or empty.", nameof(name));
-            }
+            return $"{this.Line}:{this.Character}";
+        }
 
-            return new DeferredTypeDiagnostic
-            {
-                Name = name,
-                diagnostic = diagnostic,
-            };
+        /// <summary>
+        /// Compares two positions and returns true if <paramref name="a"/> is
+        /// equal to or after <paramref name="b"/>.
+        /// </summary>
+        /// <param name="a">The first position.</param>
+        /// <param name="b">The second position.</param>
+        /// <returns>true if a is after or equal to b; false
+        /// otherwise.</returns>
+        public static bool operator >=(Position a, Position b)
+        {
+            return a.Line >= b.Line && a.Character >= b.Character;
+        }
+        /// <summary>
+        /// Compares two positions and returns true if <paramref name="a"/> is
+        /// equal to or before <paramref name="b"/>.
+        /// </summary>
+        /// <param name="a">The first position.</param>
+        /// <param name="b">The second position.</param>
+        /// <returns>true if a is before or equal to b; false
+        /// otherwise.</returns>
+        public static bool operator <=(Position a, Position b)
+        {
+            return a.Line <= b.Line && a.Character <= b.Character;
         }
     }
-    
+
     /// <summary>
     /// Represents a variable declaration
     /// </summary>
@@ -156,7 +184,7 @@ namespace Yarn.Compiler
         /// <summary>
         /// Gets the name of this Declaration.
         /// </summary>
-        public string Name { get; internal set; }
+        public string Name { get; internal set; } = "<unknown>";
 
         /// <summary>
         /// Creates a new instance of the <see cref="Declaration"/> class,
@@ -171,7 +199,7 @@ namespace Yarn.Compiler
         /// declaration.</param>
         /// <returns>A new instance of the <see cref="Declaration"/>
         /// class.</returns>
-        public static Declaration CreateVariable(string name, Yarn.IType type, IConvertible defaultValue, string description = null)
+        public static Declaration CreateVariable(string name, IType type, IConvertible defaultValue, string? description = null)
         {
             if (type is null)
             {
@@ -203,13 +231,13 @@ namespace Yarn.Compiler
         /// value has been specified in code or is available from a <see
         /// cref="Dialogue"/>'s <see cref="IVariableStorage"/>.
         /// </summary>
-        public IConvertible DefaultValue { get; internal set; }
+        public IConvertible? DefaultValue { get; internal set; }
 
         /// <summary>
         /// Gets a string describing the purpose of this <see
         /// cref="Declaration"/>.
         /// </summary>
-        public string Description { get; internal set; }
+        public string? Description { get; internal set; }
 
         /// <summary>
         /// Gets the name of the file in which this Declaration was found.
@@ -218,7 +246,7 @@ namespace Yarn.Compiler
         /// If this <see cref="Declaration"/> was not found in a Yarn
         /// source file, this will be <see cref="ExternalDeclaration"/>.
         /// </remarks>
-        public string SourceFileName { get; internal set; }
+        public string SourceFileName { get; internal set; } = ExternalDeclaration;
 
         /// <summary>
         /// Gets the name of the node in which this Declaration was found.
@@ -227,7 +255,7 @@ namespace Yarn.Compiler
         /// If this <see cref="Declaration"/> was not found in a Yarn
         /// source file, this will be <see langword="null"/>.
         /// </remarks>
-        public string SourceNodeName { get; internal set; }
+        public string? SourceNodeName { get; internal set; }
 
         /// <summary>
         /// Gets the line number at which this Declaration was found in the
@@ -240,8 +268,15 @@ namespace Yarn.Compiler
         public int SourceFileLine => this.Range.Start.Line;
 
         /// <summary>
-        /// Gets a value indicating whether get or sets a value indicating
-        /// whether this Declaration was implicitly inferred from usage.
+        /// Gets a value indicating that this Declaration does not refer to a
+        /// stored variable, and instead represents an inline-expanded
+        /// expression (a 'smart variable').
+        /// </summary>
+        public bool IsInlineExpansion { get; internal set; }
+
+        /// <summary>
+        /// Gets a value indicating whether this Declaration was implicitly
+        /// inferred from usage.
         /// </summary>
         /// <value>If <see langword="true"/>, this Declaration was implicitly
         /// inferred from usage. If <see langword="false"/>, this Declaration
@@ -252,7 +287,7 @@ namespace Yarn.Compiler
         /// Gets the type of the variable, as represented by an object that
         /// implements <see cref="IType"/>.
         /// </summary>
-        public Yarn.IType Type { get; internal set; }
+        public IType Type { get; internal set; } = Types.Error;
 
         /// <summary>
         /// The string used for <see cref="SourceFileName"/> if the
@@ -272,8 +307,28 @@ namespace Yarn.Compiler
         public Range Range { get; internal set; } = new Range();
 
         /// <summary>
+        /// Gets or sets the parser context for the initial value provided in
+        /// this variable's 'declare' statement, if any. This is only valid for
+        /// variable declarations, not functions (because functions don't have a
+        /// value.)
+        /// </summary>
+        public YarnSpinnerParser.ExpressionContext? InitialValueParserContext { get; set; }
+
+        /// <summary>
+        /// Gets the collection of <see cref="Declaration"/> objects whose value
+        /// depends upon this <see cref="Declaration"/>.
+        /// </summary>
+        public IEnumerable<Declaration> Dependents { get; internal set; } = Array.Empty<Declaration>();
+
+        /// <summary>
+        /// Gets the collection of <see cref="Declaration"/> objects that this
+        /// <see cref="Declaration"/> depends upon the value of.
+        /// </summary>
+        public IEnumerable<Declaration> Dependencies { get; internal set; } = Array.Empty<Declaration>();
+
+        /// <summary>
         /// Gets a value indicating whether this Declaration represents a
-        /// variable.
+        /// variable, and not a function.
         /// </summary>
         public bool IsVariable => !(this.Type is FunctionType);
 
@@ -292,27 +347,5 @@ namespace Yarn.Compiler
             }
         }
 
-        /// <inheritdoc/>
-        public override bool Equals(object obj)
-        {
-            if (obj == null || !(obj is Declaration otherDecl))
-            {
-                return false;
-            }
-
-            return this.Name == otherDecl.Name &&
-                this.Type == otherDecl.Type &&
-                this.DefaultValue == otherDecl.DefaultValue &&
-                this.Description == otherDecl.Description;
-        }
-
-        /// <inheritdoc/>
-        public override int GetHashCode()
-        {
-            return this.Name.GetHashCode()
-                ^ this.Type.GetHashCode()
-                ^ this.DefaultValue.GetHashCode()
-                ^ (this.Description ?? string.Empty).GetHashCode();
-        }
     }
 }

@@ -1,17 +1,24 @@
-command: flip Harley3 +1
-command: toggle
-command: settings
-command: iffy
-command: nulled
-command: orion
-command: andorian
-command: note
-command: isActive
-command: p
-#command: !@#$%^&*()⁄€‹›ﬁﬂ‡°·‚‘-=_+
-command: hide Collision:GermOnPorch
-command: show 1
-command: show 1
-command: 0
-command: 2 {0}
-command: regular old command
+command: `flip Harley3 +1`
+command: `toggle`
+command: `settings`
+command: `iffy`
+command: `nulled`
+command: `orion`
+command: `andorian`
+command: `note`
+command: `isActive`
+command: `returnToMainMenu`
+command: `oncee`
+command: `enumerated`
+command: `endenumerated`
+command: `cased`
+command: `locality`
+command: `detouring`
+command: `p`
+#command: `!@#$%^&*()⁄€‹›ﬁﬂ‡°·‚‘-=_+`
+command: `hide Collision:GermOnPorch`
+command: `show 1`
+command: `show 1`
+command: `0`
+command: `2 {0}`
+command: `regular old command`

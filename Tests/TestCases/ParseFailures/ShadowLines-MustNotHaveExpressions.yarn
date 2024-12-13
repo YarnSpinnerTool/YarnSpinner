@@ -1,0 +1,7 @@
+title: Start
+---
+Source line {1+1} #line:abc123
+
+// Error: shadow lines must not have expressions
+Source line {1+1} #shadow:abc123
+===

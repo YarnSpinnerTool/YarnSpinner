@@ -2,6 +2,17 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "protobuf",
+            "command": "protoc",
+            "type": "process",
+            "args": [
+                "-I=${workspaceRoot}/YarnSpinner",
+                "--csharp_out=${workspaceRoot}/YarnSpinner",
+                "${workspaceRoot}/YarnSpinner/yarn_spinner.proto"
+            ],
+            "problemMatcher": []
+        },
+        {
             "label": "build",
             "command": "dotnet",
             "type": "process",

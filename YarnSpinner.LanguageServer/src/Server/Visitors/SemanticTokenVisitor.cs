@@ -16,7 +16,7 @@ namespace YarnLanguageServer
         /// The regular expression that matches a character name at the start of
         /// a line.
         /// </summary>
-        internal static readonly System.Text.RegularExpressions.Regex NameRegex = new (@"^\s*([^\/#]*?):");
+        internal static readonly System.Text.RegularExpressions.Regex NameRegex = new(@"^\s*([^\/#]*?):");
 
         public static void BuildSemanticTokens(SemanticTokensBuilder builder, YarnFileData yarnFile)
         {
@@ -42,7 +42,8 @@ namespace YarnLanguageServer
         }
 
         #region Utility Functions
-        private void AddTokenType(IParseTree start, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier) {
+        private void AddTokenType(IParseTree start, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        {
             AddTokenType(start, start, tokenType, tokenModifier);
         }
 
@@ -57,7 +58,7 @@ namespace YarnLanguageServer
             AddTokenType(start, start, tokenType, tokenModifier);
         }
 
-        private void AddTokenType(IToken start, IToken stop, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        private void AddTokenType(IToken? start, IToken? stop, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
         {
             if (start is not null && stop is not null)
             {
@@ -69,7 +70,8 @@ namespace YarnLanguageServer
             }
         }
 
-        private void AddTokenType(Position start, int length, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier) {
+        private void AddTokenType(Position start, int length, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        {
             positions.Add(
                 (start, length, tokenType, tokenModifier)
             );
@@ -85,17 +87,22 @@ namespace YarnLanguageServer
 
             if (context.header_value?.Text != null)
             {
-                if (context.header_key?.Text == "title")
-                {
-                    AddTokenType(context.header_value, context.header_value, SemanticTokenType.Class);
-                }
-                else
-                {
-                    AddTokenType(context.header_value, context.header_value, SemanticTokenType.String);
-                }
+                AddTokenType(context.header_value, context.header_value, SemanticTokenType.String);
             }
 
             return base.VisitHeader(context);
+        }
+
+        public override bool VisitTitle_header([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.Title_headerContext context)
+        {
+            AddTokenType(context.HEADER_TITLE(), context.HEADER_TITLE(), SemanticTokenType.Property);
+
+            if (context.title?.Text != null)
+            {
+                AddTokenType(context.title, context.title, SemanticTokenType.Class);
+            }
+
+            return base.VisitTitle_header(context);
         }
 
         public override bool VisitShortcut_option([NotNull] YarnSpinnerParser.Shortcut_optionContext context)
@@ -111,12 +118,21 @@ namespace YarnLanguageServer
             return base.VisitFunction_call(context);
         }
 
-        public override bool VisitLine_condition([NotNull] YarnSpinnerParser.Line_conditionContext context)
+        public override bool VisitLineCondition([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.LineConditionContext context)
         {
-            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
+            AddTokenType(context.COMMAND_START(), SemanticTokenType.Keyword); // <<
             AddTokenType(context.COMMAND_IF(), SemanticTokenType.Keyword); // if
             AddTokenType(context.COMMAND_END(), SemanticTokenType.Keyword); // >>
-            return base.VisitLine_condition(context);
+            return base.VisitLineCondition(context);
+        }
+
+        public override bool VisitLineOnceCondition([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.LineOnceConditionContext context)
+        {
+            AddTokenType(context.COMMAND_START(), SemanticTokenType.Keyword); // <<
+            AddTokenType(context.COMMAND_ONCE(), SemanticTokenType.Keyword); // once
+            AddTokenType(context.COMMAND_IF(), SemanticTokenType.Keyword); // if
+            AddTokenType(context.COMMAND_END(), SemanticTokenType.Keyword); // >>
+            return base.VisitLineOnceCondition(context);
         }
 
         public override bool VisitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context)
@@ -154,7 +170,7 @@ namespace YarnLanguageServer
         }
 
         public override bool VisitIf_statement([NotNull] YarnSpinnerParser.If_statementContext context)
-        {            
+        {
             AddTokenType(context.COMMAND_START(), SemanticTokenType.Keyword);
             AddTokenType(context.COMMAND_ENDIF(), SemanticTokenType.Keyword);
             AddTokenType(context.COMMAND_END(), SemanticTokenType.Keyword);
@@ -185,7 +201,7 @@ namespace YarnLanguageServer
             AddTokenType(context.COMMAND_END(), SemanticTokenType.Keyword); // >>
             return base.VisitElse_if_clause(context);
         }
-        
+
         public override bool VisitValueString([NotNull] YarnSpinnerParser.ValueStringContext context)
         {
             AddTokenType(context.Start, context.Stop, SemanticTokenType.String);
@@ -197,10 +213,9 @@ namespace YarnLanguageServer
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword);
             AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword);
             AddTokenType(context.op, context.op, SemanticTokenType.Operator); // =
-            AddTokenType(context.COMMAND_SET(), context.COMMAND_SET(),SemanticTokenType.Keyword);
+            AddTokenType(context.COMMAND_SET(), context.COMMAND_SET(), SemanticTokenType.Keyword);
 
             // AddTokenType(context.expression(), context.expression(), SemanticTokenType.Variable); // $variablename
-
             return base.VisitSet_statement(context);
         }
 
@@ -234,11 +249,16 @@ namespace YarnLanguageServer
                 return token;
             });
 
-            AddTokenType(tokens.First(), SemanticTokenType.Function);
+            if (tokens.Any())
+            {
+                AddTokenType(tokens.First(), SemanticTokenType.Function);
+            }
+
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword);
             AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword);
 
-            foreach (var token in tokens.Skip(1)) {
+            foreach (var token in tokens.Skip(1))
+            {
                 AddTokenType(token, SemanticTokenType.Parameter);
             }
 
@@ -256,7 +276,7 @@ namespace YarnLanguageServer
             return base.VisitJumpToNodeName(context);
         }
 
-        public override bool VisitJumpToExpression ([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
+        public override bool VisitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
         {
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
             AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword); // >>
@@ -289,7 +309,8 @@ namespace YarnLanguageServer
             // The text from the start of the line up to its first colon is considered the character's name.
             var text = context.GetTextWithWhitespace();
             var nameMatch = NameRegex.Match(text);
-            if (nameMatch.Success) {
+            if (nameMatch.Success)
+            {
                 var nameGroup = nameMatch.Groups[0];
 
                 var startPosition = context.Start.ToPosition();
@@ -301,7 +322,6 @@ namespace YarnLanguageServer
             return base.VisitLine_statement(context);
         }
 
-        
         #endregion Visitor Method Overrides
     }
 }

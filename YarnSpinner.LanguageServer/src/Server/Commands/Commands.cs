@@ -65,12 +65,12 @@ public static class Commands
     /// </summary>
     public const string ShowNodeInGraphView = "yarn.showNodeInGraphView";
 
+    public const string GenerateDebugOutput = "yarnspinner.generateDebugOutput";
+
+    public const string GetEmptyYarnProjectJSON = "yarnspinner.getEmptyYarnProjectJSON";
+
     /// <summary>
     /// The command to get all projects in the current workspace.
     /// </summary>
     public const string ListProjects = "yarnspinner.listProjects";
-
-    public const string GenerateDebugOutput = "yarnspinner.generateDebugOutput";
-
-    public const string GetEmptyYarnProjectJSON = "yarnspinner.getEmptyYarnProjectJSON";
 }

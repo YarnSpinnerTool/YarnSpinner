@@ -50,42 +50,50 @@ namespace Yarn
     /// line.</item>
     /// </list>
     ///
-    /// <para>You do not create instances of this struct yourself. They are
-    /// created by the <see cref="Dialogue"/> during program execution.</para>
+    /// <para>You typically do not create instances of this struct yourself.
+    /// They are created by the <see cref="Dialogue"/> during program
+    /// execution.</para>
     /// </remarks>
     /// <seealso cref="Dialogue.LineHandler"/>
-    #pragma warning disable CA1815
+#pragma warning disable CA1815
     public struct Line
     {
-        internal Line(string stringID) : this()
+        /// <summary>
+        /// Initialises a new instance of the <see cref="Line"/> struct.
+        /// </summary>
+        /// <param name="stringID">The unique line ID for this content.</param>
+        /// <param name="substitutions">The list of values that should be
+        /// substituted into the final line.
+        /// </param>
+        public Line(string stringID, string[] substitutions) : this()
         {
             this.ID = stringID;
-            this.Substitutions = Array.Empty<string>();
+            this.Substitutions = substitutions;
         }
 
         /// <summary>
         /// The string ID for this line.
         /// </summary>
-        public string ID;
+        public readonly string ID;
 
         /// <summary>
-        /// The values that should be inserted into the user-facing text
-        /// before delivery.
+        /// The values that should be inserted into the user-facing text before
+        /// delivery.
         /// </summary>
-        public string[] Substitutions;
+        public readonly string[] Substitutions;
     }
-    #pragma warning restore CA1815
+#pragma warning restore CA1815
 
     /// <summary>
     /// A set of <see cref="OptionSet.Option"/>s, sent from the <see
     /// cref="Dialogue"/> to the game.
     /// </summary>
     /// <remarks>
-    /// You do not create instances of this struct yourself. They are
+    /// You typically do not create instances of this struct yourself. They are
     /// created by the <see cref="Dialogue"/> during program execution.
     /// </remarks>
     /// <seealso cref="Dialogue.OptionsHandler"/>
-    #pragma warning disable CA1815
+#pragma warning disable CA1815
     public struct OptionSet
     {
         internal OptionSet(Option[] options)
@@ -93,17 +101,17 @@ namespace Yarn
             Options = options;
         }
 
-        #pragma warning disable CA1716
+#pragma warning disable CA1716
         /// <summary>
         /// An option to be presented to the user.
         /// </summary>
         public struct Option
         {
-            internal Option(Line line, int id, string destinationNode, bool isAvailable)
+            internal Option(Line line, int id, int destinationInstruction, bool isAvailable)
             {
                 Line = line;
                 ID = id;
-                DestinationNode = destinationNode;
+                DestinationInstruction = destinationInstruction;
                 IsAvailable = isAvailable;
             }
 
@@ -136,7 +144,7 @@ namespace Yarn
             /// The value of this property not be valid if this is a
             /// shortcut option.
             /// </remarks>
-            public string DestinationNode { get; private set; }
+            internal int DestinationInstruction { get; set; }
 
             /// <summary>
             /// Gets a value indicating whether the player should be
@@ -159,7 +167,7 @@ namespace Yarn
             /// </remarks>
             public bool IsAvailable { get; private set; }
         }
-        #pragma warning restore CA1716
+#pragma warning restore CA1716
 
         /// <summary>
         /// Gets the <see cref="Option"/>s that should be presented to the
@@ -168,7 +176,7 @@ namespace Yarn
         /// <seealso cref="Option"/>
         public Option[] Options { get; private set; }
     }
-    #pragma warning restore CA1815
+#pragma warning restore CA1815
 
     /// <summary>
     /// A command, sent from the <see cref="Dialogue"/> to the game.
@@ -178,7 +186,7 @@ namespace Yarn
     /// created by the <see cref="Dialogue"/> during program execution.
     /// </remarks>
     /// <seealso cref="Dialogue.CommandHandler"/>    
-    #pragma warning disable CA1815
+#pragma warning disable CA1815
     public struct Command
     {
         internal Command(string text)
@@ -191,7 +199,7 @@ namespace Yarn
         /// </summary>
         public string Text { get; private set; }
     }
-    #pragma warning restore CA1815
+#pragma warning restore CA1815
 
     /// <summary>
     /// Represents a method that receives diagnostic messages and error
@@ -204,9 +212,85 @@ namespace Yarn
     /// <param name="message">The text that should be logged.</param>
     public delegate void Logger(string message);
 
-    /// <summary>Provides a mechanism for storing and retrieving instances
-    /// of the <see cref="Value"/> class.</summary>
-    public interface IVariableStorage
+    /// <summary>
+    /// Contains methods for parsing raw text into a <see
+    /// cref="MarkupParseResult"/>.
+    /// </summary>
+    public interface IMarkupParser
+    {
+        /// <summary>
+        /// Parses a string into markup, given a locale.
+        /// </summary>
+        /// <param name="rawText">The text to parse.</param>
+        /// <param name="localeCode">The locale to use when parsing the text.</param>
+        /// <returns></returns>
+        public MarkupParseResult ParseMarkup(string rawText, string localeCode);
+    }
+
+    /// <summary>
+    /// Represents different kinds of variables that can be fetched from a <see
+    /// cref="Dialogue"/> using <see cref="IVariableAccess.TryGetValue{T}(string, out T)"/>.
+    /// </summary>
+    public enum VariableKind
+    {
+        /// <summary>
+        /// The kind of the variable cannot be determined. It may not be known
+        /// to the system.
+        /// </summary>
+        Unknown,
+        /// <summary>
+        /// The variable's value is stored in memory, and may be persisted to
+        /// disk.
+        /// </summary>
+        Stored,
+        /// <summary>
+        /// The variable's value is computed at run-time, and is not persisted
+        /// to disk. 
+        /// </summary>
+        Smart
+    }
+
+    /// <summary>Provides a mechanism for retrieving values.</summary>
+    public interface IVariableAccess
+    {
+
+        /// <summary>
+        /// Given a variable name, attempts to fetch a value for the variable,
+        /// either from storage, initial values found in <see cref="Program"/>,
+        /// or by evaluating a smart variable found in <see cref="Program"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the value to return. The fetched
+        /// value will be converted to this type, if possible.</typeparam>
+        /// <param name="variableName">The name of the variable.</param>
+        /// <param name="result">If this method returns <see langword="true"/>,
+        /// this parameter will contain the fetched value.</param>
+        /// <returns><see langword="true"/> if a value could be fetched; <see
+        /// langword="false"/> otherwise.</returns>
+        bool TryGetValue<T>(string variableName, out T result);
+
+        /// <summary>
+        /// Gets the kind of variable named <paramref name="name"/>.
+        /// </summary>
+        /// <param name="name">The name of the variable.</param>
+        /// <returns>A <see cref="VariableKind"/> enum representing the kind of
+        /// the variable named <paramref name="name"/>.</returns>
+        VariableKind GetVariableKind(string name);
+
+        /// <summary>
+        /// Gets or sets the Yarn <see cref="Program"/> that stores information
+        /// about the initial values of variables, and is able to produce values
+        /// for smart variables.
+        /// </summary>
+        Program Program { get; set; }
+
+        /// <summary>
+        /// Gets or sets the object to use when evaluating smart variables.
+        /// </summary>
+        ISmartVariableEvaluator SmartVariableEvaluator { get; set; }
+    }
+
+    /// <summary>Provides a mechanism for storing values.</summary>
+    public interface IVariableStorage : IVariableAccess
     {
         /// <summary>
         /// Stores a <see cref="string"/> in this VariableStorage.
@@ -233,23 +317,6 @@ namespace Yarn
         void SetValue(string variableName, bool boolValue);
 
         /// <summary>
-        /// Retrieves a value of type <typeparamref name="T"/> by name.
-        /// </summary>
-        /// <typeparam name="T">The type of the variable to
-        /// retrieve.</typeparam>
-        /// <param name="variableName">The name of the variable to retrieve the
-        /// value of.</param>
-        /// <param name="result">On return, if this method returned true,
-        /// contains the retrieved value. If this method returned false,
-        /// contains the default value of <typeparamref name="T"/> (for example,
-        /// <c>0</c> for <see cref="float"/> values, <see langword="null"/> for
-        /// strings, and so on.)</param>
-        /// <returns><see langword="true"/> if a value named <paramref
-        /// name="variableName"/> of type <typeparamref name="T"/> was
-        /// retrieved; <see langword="false"/> otherwise.</returns>
-        bool TryGetValue<T>(string variableName, out T result);
-
-        /// <summary>
         /// Removes all variables from storage.
         /// </summary>
         void Clear();
@@ -263,24 +330,55 @@ namespace Yarn
     {
         private Dictionary<string, object> variables = new Dictionary<string, object>();
 
-        /// <inheritdoc/>
-        public bool TryGetValue<T>(string variableName, out T result)
+        private static bool TryGetAsType<T>(Dictionary<string, object> dictionary, string key, out T result)
         {
-            if (this.variables.TryGetValue(variableName, out var foundValue))
+            if (dictionary.TryGetValue(key, out var objectResult) == true
+                && typeof(T).IsAssignableFrom(objectResult.GetType()))
             {
-                if (typeof(T).IsAssignableFrom(foundValue.GetType()))
-                {
-                    result = (T)foundValue;
-                    return true;
-                }
-                else
-                {
-                    throw new ArgumentException($"Variable {variableName} is present, but is of type {foundValue.GetType()}, not {typeof(T)}");
-                }
+                result = (T)objectResult;
+                return true;
             }
 
             result = default;
             return false;
+        }
+
+        /// <inheritdoc/>
+        public Program Program { get; set; }
+
+        /// <inheritdoc/>
+        public ISmartVariableEvaluator SmartVariableEvaluator { get; set; }
+
+        public virtual bool TryGetValue<T>(string variableName, out T result)
+        {
+            switch (GetVariableKind(variableName))
+            {
+                case VariableKind.Stored:
+                    // This is a stored value. First, attempt to fetch it from the
+                    // variable storage.
+
+                    // Try to get the value from the dictionary, and check to see that it's the 
+                    if (TryGetAsType(variables, variableName, out result))
+                    {
+                        // We successfully fetched it from storage.
+                        return true;
+                    }
+                    else
+                    {
+                        // We didn't fetch it from storage. Fall back to the
+                        // program's initial value storage.
+                        return Program.TryGetInitialValue(variableName, out result);
+                    }
+                case VariableKind.Smart:
+                    // The variable is a smart variable. Ask our smart variable
+                    // evaluator.
+                    return this.SmartVariableEvaluator.TryGetSmartVariable(variableName, out result);
+                case VariableKind.Unknown:
+                default:
+                    // The variable is not known.
+                    result = default;
+                    return false;
+            }
         }
 
         /// <inheritdoc/>
@@ -290,21 +388,39 @@ namespace Yarn
         }
 
         /// <inheritdoc/>
-        public void SetValue(string variableName, string stringValue)
+        public virtual void SetValue(string variableName, string stringValue)
         {
             this.variables[variableName] = stringValue;
         }
 
         /// <inheritdoc/>
-        public void SetValue(string variableName, float floatValue)
+        public virtual void SetValue(string variableName, float floatValue)
         {
             this.variables[variableName] = floatValue;
         }
 
         /// <inheritdoc/>
-        public void SetValue(string variableName, bool boolValue)
+        public virtual void SetValue(string variableName, bool boolValue)
         {
             this.variables[variableName] = boolValue;
+        }
+
+        public VariableKind GetVariableKind(string name)
+        {
+            // Does this variable exist in our stored values?
+            if (this.variables.ContainsKey(name))
+            {
+                return VariableKind.Stored;
+            }
+            if (this.Program == null)
+            {
+                // We don't have a Program, so we can't ask it for other
+                // information.
+                return VariableKind.Unknown;
+            }
+            // Ask our Program about it. It will be able to tell if the variable
+            // is stored, smart, or unknown.
+            return this.Program.GetVariableKind(name);
         }
     }
 
@@ -413,7 +529,7 @@ namespace Yarn
     /// <summary>
     /// Co-ordinates the execution of Yarn programs.
     /// </summary>
-    public class Dialogue : IAttributeMarkerProcessor
+    public class Dialogue : ISmartVariableEvaluator
     {
 
         /// <summary>
@@ -436,10 +552,10 @@ namespace Yarn
         /// <summary>The node that execution will start from.</summary>
         public const string DefaultStartNodeName = "Start";
 
-        private Program program;
+        private Program? program;
 
         /// <summary>Gets or sets the compiled Yarn program.</summary>
-        internal Program Program
+        internal Program? Program
         {
             get => program;
             set
@@ -448,6 +564,9 @@ namespace Yarn
 
                 vm.Program = value;
                 vm.ResetState();
+
+                smartVariableVM.Program = value;
+                smartVariableVM.ResetState();
             }
         }
 
@@ -466,22 +585,6 @@ namespace Yarn
             get => vm.LineHandler;
             set => vm.LineHandler = value;
         }
-
-        /// <summary>
-        /// Gets or sets the <see cref="Dialogue"/>'s locale, as an IETF BCP 47
-        /// code.
-        /// </summary>
-        /// <remarks>
-        /// <para>
-        /// This code is used to determine how the <c>plural</c> and <c>ordinal</c>
-        /// markers determine the plural class of numbers.
-        /// </para>
-        /// <para>
-        /// For example, the code "en-US" represents the English language as
-        /// used in the United States.
-        /// </para>
-        /// </remarks>
-        public string LanguageCode { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="Yarn.OptionsHandler"/> that is called
@@ -551,7 +654,20 @@ namespace Yarn
             set => vm.PrepareForLinesHandler = value;
         }
 
+        /// <summary>
+        /// The virtual machine to use when running dialogue.
+        /// </summary>
         private VirtualMachine vm;
+
+        /// <summary>
+        /// The virtual machine to use when evaluating smart variables.
+        /// </summary>
+        /// <remarks>
+        /// This is kept separate from the main VM in order to prevent
+        /// evaluating smart variables from modifying the evaluation state of
+        /// dialogue.
+        /// </remarks>
+        private VirtualMachine smartVariableVM;
 
         /// <summary>
         /// Gets the <see cref="Yarn.Library"/> that this Dialogue uses to
@@ -564,6 +680,21 @@ namespace Yarn
         public Library Library { get; internal set; }
 
         /// <summary>
+        /// Gets or sets the content saliency strategy used by this <see cref="Dialogue"/>.
+        /// </summary>
+        /// <remarks>
+        /// A content saliency strategy is a class that implements <see
+        /// cref="Yarn.Saliency.IContentSaliencyStrategy"/> and selects the most
+        /// appropriate content in a line group, or any other situation where
+        /// content saliency is relevant.
+        /// </remarks>
+        public Saliency.IContentSaliencyStrategy ContentSaliencyStrategy
+        {
+            get => this.vm.ContentSaliencyStrategy;
+            set => this.vm.ContentSaliencyStrategy = value;
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Dialogue"/> class.
         /// </summary>
         /// <param name="variableStorage">The <see
@@ -571,61 +702,38 @@ namespace Yarn
         /// use.</param>
         public Dialogue(Yarn.IVariableStorage variableStorage)
         {
-            this.VariableStorage = variableStorage ?? throw new ArgumentNullException(nameof(variableStorage));
             Library = new Library();
 
-            this.vm = new VirtualMachine(this);
+            this.VariableStorage = variableStorage ?? throw new ArgumentNullException(nameof(variableStorage));
+            this.VariableStorage.SmartVariableEvaluator = this;
+            this.VariableStorage.Program = this.Program;
+
+            this.vm = new VirtualMachine(this.Library, this.VariableStorage);
+            this.smartVariableVM = new VirtualMachine(this.Library, this.VariableStorage);
 
             Library.ImportLibrary(new StandardLibrary());
 
-            Library.RegisterFunction("visited", delegate(string node){
+            Library.RegisterFunction("visited", delegate (string node)
+            {
                 return IsNodeVisited(node);
             });
-            Library.RegisterFunction("visited_count", delegate(string node){
+            Library.RegisterFunction("visited_count", delegate (string node)
+            {
                 return GetNodeVisitCount(node);
             });
-
-            lineParser = new LineParser();
-
-            lineParser.RegisterMarkerProcessor("select", this);
-            lineParser.RegisterMarkerProcessor("plural", this);
-            lineParser.RegisterMarkerProcessor("ordinal", this);
         }
 
         /// <summary>
         /// Loads all nodes from the provided <see cref="Yarn.Program"/>.
         /// </summary>
         /// <remarks>
-        /// This method replaces any existing nodes have been loaded. If you
-        /// want to load nodes from an _additional_ Program, use the <see
-        /// cref="AddProgram(Program)"/> method.
+        /// This method replaces any existing nodes have been loaded.
         /// </remarks>
         /// <param name="program">The <see cref="Yarn.Program"/> to use.</param>
         public void SetProgram(Program program)
         {
             this.Program = program;
-        }
-
-        /// <summary>
-        /// Loads the nodes from the specified <see cref="Yarn.Program"/>, and
-        /// adds them to the nodes already loaded.
-        /// </summary>
-        /// <param name="program">The additional program to load.</param>
-        /// <remarks>
-        /// If <see cref="Program"/> is <see langword="null"/>, this method has
-        /// the effect as calling <see cref="SetProgram(Program)"/>.
-        /// </remarks>
-        public void AddProgram(Program program)
-        {
-            if (this.Program == null)
-            {
-                this.SetProgram(program);
-                return;
-            }
-            else
-            {
-                this.Program = Program.Combine(this.Program, program);
-            }
+            this.VariableStorage.Program = program;
         }
 
         /// <summary>
@@ -672,7 +780,7 @@ namespace Yarn
         /// <c>startNode</c> has been loaded.</throws>
         public void SetNode(string startNode = DefaultStartNodeName)
         {
-            this.vm.SetNode(startNode);
+            this.vm.SetNode(startNode, clearState: true);
         }
 
         /// <summary>
@@ -788,7 +896,7 @@ namespace Yarn
                 }
                 else
                 {
-                    return this.vm.currentNodeName;
+                    return this.vm.CurrentNodeName;
                 }
             }
         }
@@ -866,17 +974,6 @@ namespace Yarn
         }
 
         /// <summary>
-        /// Returns a textual version of the current program's bytecode.
-        /// </summary>
-        /// <remarks>This can be useful for diagnostic purposes.</remarks>
-        /// <returns>The bytecode of <see cref="Program"/>, as a
-        /// string.</returns>
-        internal string GetByteCode()
-        {
-            return Program.DumpCode(Library);
-        }
-
-        /// <summary>
         /// Gets a value indicating whether a specified node exists in the
         /// Program.
         /// </summary>
@@ -915,174 +1012,6 @@ namespace Yarn
             context.AddProgramToAnalysis(this.Program);
         }
 
-        private readonly LineParser lineParser;
-
-        /// <summary>
-        /// Parses a line of text, and produces a <see
-        /// cref="MarkupParseResult"/> containing the results.
-        /// </summary>
-        /// <remarks>
-        /// The <see cref="MarkupParseResult"/>'s <see
-        /// cref="MarkupParseResult.Text"/> will have any <c>select</c>,
-        /// <c>plural</c> or <c>ordinal</c> markers replaced with the appropriate
-        /// text, following this <see cref="Dialogue"/>'s <see
-        /// cref="LanguageCode"/>.
-        /// </remarks>
-        /// <param name="line">The line of text to parse.</param>
-        /// <returns>The results of parsing the markup.</returns>
-        public MarkupParseResult ParseMarkup(string line)
-        {
-            return this.lineParser.ParseMarkup(line);
-        }
-
-        /// <summary>
-        /// Replaces all substitution markers in a text with the given
-        /// substitution list.
-        /// </summary>
-        /// <remarks>
-        /// This method replaces substitution markers - for example, <c>{0}</c>
-        /// - with the corresponding entry in <paramref name="substitutions"/>.
-        /// If <paramref name="text"/> contains a substitution marker whose
-        /// index is not present in <paramref name="substitutions"/>, it is
-        /// ignored.
-        /// </remarks>
-        /// <param name="text">The text containing substitution markers.</param>
-        /// <param name="substitutions">The list of substitutions.</param>
-        /// <returns><paramref name="text"/>, with the content from <paramref
-        /// name="substitutions"/> inserted.</returns>
-        public static string ExpandSubstitutions(string text, IList<string> substitutions)
-        {
-            if (substitutions == null)
-            {
-                // if we have no substitutions we want to just return the text as is
-                return text;
-            }
-            if (text == null)
-            {
-                // we somehow have substitutions to apply but no text for them to be applied into?
-                throw new ArgumentNullException($"{nameof(text)} is null. Cannot apply substitutions to an empty string");
-            }
-
-            for (int i = 0; i < substitutions.Count; i++)
-            {
-                string substitution = substitutions[i];
-                text = text.Replace("{" + i + "}", substitution);
-            }
-
-            return text;
-        }
-
-        /// <summary>
-        /// A regex that matches any <c>%</c> as long as it's not preceded by a
-        /// <c>\</c>.
-        /// </summary>
-        private static readonly Regex ValuePlaceholderRegex = new Regex(@"(?<!\\)%");
-
-        /// <summary>Returns the text that should be used to replace the
-        /// contents of <paramref name="marker"/>.</summary>
-        /// <param name="marker">The marker to generate replacement text
-        /// for.</param>
-        /// <returns>The replacement text for the marker.</returns>
-        /// <throws cref="InvalidOperationException"></throws> <throws
-        /// cref="KeyNotFoundException"></throws> <throws
-        /// cref="ArgumentException">Thrown when the string contains a
-        /// <c>plural</c> or <c>ordinal</c> marker, but the specified value cannot be
-        /// parsed as a number.</throws>
-        string IAttributeMarkerProcessor.ReplacementTextForMarker(MarkupAttributeMarker marker)
-        {
-
-            if (marker.TryGetProperty("value", out var valueProp) == false)
-            {
-                throw new KeyNotFoundException("Expected a property \"value\"");
-            }
-
-            var value = valueProp.ToString();
-
-            // Apply the "select" marker
-            if (marker.Name == "select")
-            {
-                if (!marker.TryGetProperty(value, out var replacementProp))
-                {
-                    throw new KeyNotFoundException($"error: no replacement for {value}");
-                }
-
-                string replacement = replacementProp.ToString();
-                replacement = ValuePlaceholderRegex.Replace(replacement, value);
-                return replacement;
-            }
-
-            // If it's not "select", then it's "plural" or "ordinal"
-
-            // First, ensure that we have a locale code set
-            if (this.LanguageCode == null)
-            {
-                throw new InvalidOperationException("Dialogue locale code is not set. 'plural' and 'ordinal' markers cannot be called unless one is set.");
-            }
-
-            // Attempt to parse the value as a double, so we can determine
-            // its plural class
-            if (double.TryParse(value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var doubleValue) == false)
-            {
-                throw new ArgumentException($"Error while pluralising line: '{value}' is not a number");
-            }
-
-            // CLDRPlurals only works with 'neutral' locale names (i.e. "en"),
-            // not 'specific' locale names. We need to check to see if
-            // this.LanguageCode is the name of a 'specific' locale name. If is,
-            // we'll fetch its parent, which will be 'neutral', and use that.
-            string languageCode;
-            try
-            {
-                var culture = new System.Globalization.CultureInfo(this.LanguageCode);
-                if (culture.IsNeutralCulture)
-                {
-                    languageCode = culture.Name;
-                }
-                else
-                {
-                    culture = culture.Parent;
-                    if (culture != null) {
-                        languageCode = culture.Name;
-                    } else {
-                        languageCode = this.LanguageCode;
-                    }
-                }
-            }
-            catch (System.Globalization.CultureNotFoundException)
-            {
-                // this.LanguageCode doesn't represent a known culture. Fall
-                // back to using what the user provided.
-                languageCode = this.LanguageCode;
-            }
-
-            CLDRPlurals.PluralCase pluralCase;
-
-            switch (marker.Name)
-            {
-                case "plural":
-                    pluralCase = CLDRPlurals.NumberPlurals.GetCardinalPluralCase(languageCode, doubleValue);
-                    break;
-                case "ordinal":
-                    pluralCase = CLDRPlurals.NumberPlurals.GetOrdinalPluralCase(languageCode, doubleValue);
-                    break;
-                default:
-                    throw new InvalidOperationException($"Invalid marker name {marker.Name}");
-            }
-
-            string pluralCaseName = pluralCase.ToString().ToUpperInvariant();
-
-            // Now that we know the plural case, we can select the
-            // appropriate replacement text for it
-            if (!marker.TryGetProperty(pluralCaseName, out var replacementValue))
-            {
-                throw new KeyNotFoundException($"error: no replacement for {value}'s plural case of {pluralCaseName}");
-            }
-
-            string input = replacementValue.ToString();
-            return ValuePlaceholderRegex.Replace(input, value);
-
-        }
-
         private bool IsNodeVisited(string nodeName)
         {
             float count = 0;
@@ -1099,22 +1028,130 @@ namespace Yarn
             return count;
         }
 
+        /// <inheritdoc />
+        public bool TryGetSmartVariable<T>(string name, out T result)
+        {
+            return SmartVariableEvaluationVirtualMachine.TryGetSmartVariable(
+                name,
+                this.VariableStorage,
+                this.Library,
+                out result);
+        }
+
+        /// <summary>
+        /// Queries the <see cref="Dialogue"/> for what content could possibly
+        /// run if the node group nodeGroup was run.
+        /// </summary>
+        /// <remarks>
+        /// <para>This method evaluates all nodes in the given node group, and
+        /// returns a <see cref="Saliency.ContentSaliencyOption"/> object for
+        /// each node. This object contains the current number of passing and
+        /// failing 'when' clauses on the node, as well as the complexity score
+        /// for that node. This is the same information that's passed to a <see
+        /// cref="Saliency.IContentSaliencyStrategy"/> object's <see
+        /// cref="Saliency.IContentSaliencyStrategy.QueryBestContent(IEnumerable{Saliency.ContentSaliencyOption})"/>
+        /// method. This method is read-only, and calling it will not modify any
+        /// variable state.
+        /// </para>
+        /// <para>Note that this method does not filter its output, and may
+        /// include content options whose <see
+        /// cref="Saliency.ContentSaliencyOption.FailingConditionValueCount"/>
+        /// is greater than zero. It's up to the caller of this function to
+        /// filter out these options if they're not wanted.</para> 
+        /// <para>
+        /// This method can be used to see if <em>any</em> content will appear
+        /// when a given node group is run. If the collection returned by this
+        /// method is empty, then running this node group will not result in any
+        /// content. This can be used, for example, to decide whether to show a
+        /// 'character can be spoken to' indicator. You can also examine the
+        /// individal <see cref="Saliency.ContentSaliencyOption"/> objects to
+        /// see if any content is available that passes a filter, such as
+        /// whether content might appear that has a user-defined 'plot critical'
+        /// tag.
+        /// </para> 
+        /// </remarks>
+        /// <param name="nodeGroup">The name of the node group to get available
+        /// content for.</param>
+        /// <returns>A collection of <see
+        /// cref="Saliency.ContentSaliencyOption"/> objects that may appear if
+        /// and when the node group <paramref name="nodeGroup"/> is run.
+        /// </returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref
+        /// name="nodeGroup"/> is not a valid node name.</exception>
+        public IEnumerable<Saliency.ContentSaliencyOption> GetSaliencyOptionsForNodeGroup(string nodeGroup)
+        {
+            if (NodeExists(nodeGroup) == false)
+            {
+                // This node doesn't exist - it can't be a node OR a node group,
+                // and we've been asked for an invalid value.
+                throw new ArgumentException($"{nodeGroup} is not a valid node name");
+            }
+
+            if (IsNodeGroup(nodeGroup) == false)
+            {
+                // This is not a node group, it's a plain node. Return a single
+                // content saliency "option" that represents this node.
+                return new[] {
+                    new Saliency.ContentSaliencyOption(nodeGroup) {
+                        ComplexityScore = 0,
+                        ContentType = Saliency.ContentSaliencyContentType.Node,
+                        PassingConditionValueCount = 1,
+                        FailingConditionValueCount = 0,
+                    }
+                };
+            }
+
+            // This is a valid node group name. Ask the saliency system to
+            // produce the collection of options that could run.
+            return SmartVariableEvaluationVirtualMachine.GetSaliencyOptionsForNodeGroup(nodeGroup, this.VariableStorage, this.Library);
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether <paramref name="nodeName"/> is the
+        /// name of a valid node group in the program.
+        /// </summary>
+        /// <param name="nodeName">The name of the node group to check.</param>
+        /// <returns><see langword="true"/> if <paramref name="nodeName"/> is
+        /// the name of a node group; <see langword="false"/>
+        /// otherwise.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when <see
+        /// cref="Program"/> is null.</exception>
+        public bool IsNodeGroup(string nodeName)
+        {
+            if (this.Program == null)
+            {
+                throw new InvalidOperationException($"Can't determine if {nodeName} is a hub node, because no program has been set.");
+            }
+
+            if (this.Program.Nodes.TryGetValue(nodeName, out var node) == false)
+            {
+                // Not a valid node, so not a valid node group.
+                return false;
+            }
+
+            return node.IsNodeGroupHub;
+        }
+
         // The standard, built-in library of functions and operators.
         internal class StandardLibrary : Library
         {
-            private static System.Random Random = new Random();
+            /// <summary>
+            /// The internal random number generator used by functions like
+            /// 'random' and 'dice'.
+            /// </summary>
+            private static readonly System.Random Random = new Random();
 
             public StandardLibrary()
             {
                 #region Operators
 
                 // Register the in-built conversion functions
-                this.RegisterFunction("string", delegate(object v)
+                this.RegisterFunction("string", delegate (object v)
                 {
                     return Convert.ToString(v);
                 });
 
-                this.RegisterFunction("number", delegate(object v)
+                this.RegisterFunction("number", delegate (object v)
                 {
                     return Convert.ToSingle(v);
                 });
@@ -1124,95 +1161,90 @@ namespace Yarn
                     return v.ToString(System.Globalization.CultureInfo.InvariantCulture);
                 });
 
-                this.RegisterFunction("bool", delegate(object v)
+                this.RegisterFunction("bool", delegate (object v)
                 {
                     return Convert.ToBoolean(v);
                 });
 
                 // Register the built-in types.
-                this.RegisterMethods(BuiltinTypes.Number);
-                this.RegisterMethods(BuiltinTypes.String);
-                this.RegisterMethods(BuiltinTypes.Boolean);
+                this.RegisterMethods((TypeBase)Types.Number);
+                this.RegisterMethods((TypeBase)Types.String);
+                this.RegisterMethods((TypeBase)Types.Boolean);
 
-                #pragma warning disable CA5394 // System.Random is not cryptographically secure
+                // NOTE: This is part of a workaround for supporting 'EqualTo'
+                // in Enums. See note in TypeUtil.GetCanonicalNameForMethod.
+                this.RegisterMethods(new EnumType("Enum", null, null));
 
-                // Register the built-in functions.
-                this.RegisterFunction("random", delegate ()
+                // Register the built-in utility functions
+
+#pragma warning disable CA5394 // System.Random is cryptographically insecure
+                this.RegisterFunction<float>("random", () =>
                 {
-                    return Random.NextDouble();
+                    return (float)Random.NextDouble();
                 });
 
                 this.RegisterFunction("random_range", (float min, float max) =>
-               {
-                   return Random.Next((int)max - (int)min + 1) + min;
-               });
+                {
+                    return Random.Next((int)max - (int)min + 1) + min;
+                });
 
                 this.RegisterFunction("random_range_float", delegate (float minInclusive, float maxInclusive)
                 {
-                    var t = Random.NextDouble();
-                    return minInclusive + t * (maxInclusive - minInclusive);
+                    return Random.Next((int)maxInclusive - (int)minInclusive + 1) + minInclusive;
                 });
 
-                this.RegisterFunction("dice", delegate (int sides)
+                this.RegisterFunction<int, int>("dice", (int sides) =>
                 {
-                    return Random.Next(1, sides + 1);
+                    return Random.Next(sides) + 1;
                 });
+#pragma warning restore CA5394 // System.Random is cryptographically insecure
 
-                #pragma warning restore CA5394
-
-                this.RegisterFunction("round", delegate (float num)
+                this.RegisterFunction<float, int>("round", (float num) =>
                 {
-                    return (float)Math.Round(num, 0);
+                    return (int)Math.Round(num);
                 });
 
-                this.RegisterFunction("round_places", delegate (float num, int places)
+                this.RegisterFunction<float, int, float>("round_places", (float num, int places) =>
                 {
                     return (float)Math.Round(num, places);
                 });
 
-                this.RegisterFunction("floor", delegate (float num)
+                this.RegisterFunction<float, int>("floor", (float num) =>
                 {
-                    return (float)(int)Math.Floor(num);
+                    return (int)Math.Floor(num);
                 });
 
-                this.RegisterFunction("ceil", delegate (float num)
+                this.RegisterFunction<float, int>("ceil", (float num) =>
                 {
-                    return (float)(int)Math.Ceiling(num);
+                    return (int)Math.Ceiling(num);
                 });
 
-                this.RegisterFunction("inc", delegate (float num)
+                this.RegisterFunction<float, int>("inc", (float value) =>
                 {
-                    if ((num - Math.Truncate(num)) != 0)
+                    if (Decimal(value) == 0)
                     {
-                        return Math.Ceiling(num);
+                        return (int)(value + 1);
                     }
                     else
                     {
-                        return (int)(num + 1);
+                        return (int)Math.Ceiling(value);
                     }
                 });
 
-                this.RegisterFunction("dec", delegate (float num)
+                this.RegisterFunction<float, int>("dec", (float value) =>
                 {
-                    if ((num - Math.Truncate(num)) != 0)
+                    if (Decimal(value) == 0)
                     {
-                        return Math.Floor(num);
+                        return (int)value - 1;
                     }
                     else
                     {
-                        return (int)(num - 1);
+                        return (int)Math.Floor(value);
                     }
                 });
 
-                this.RegisterFunction("decimal", delegate (float num)
-                {
-                    return num - Math.Truncate(num);
-                });
-
-                this.RegisterFunction("int", delegate (float num)
-                {
-                    return Math.Truncate(num);
-                });
+                this.RegisterFunction<float, float>("decimal", Decimal);
+                this.RegisterFunction<float, int>("int", Integer);
 
                 this.RegisterFunction("format", delegate (string formatString, object argument)
                 {
@@ -1220,6 +1252,16 @@ namespace Yarn
                 });
 
                 #endregion Operators
+            }
+
+            private static float Decimal(float value)
+            {
+                return value - Integer(value);
+
+            }
+            private static int Integer(float value)
+            {
+                return (int)Math.Truncate(value);
             }
         }
     }

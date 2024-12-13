@@ -71,7 +71,7 @@
     {
       "YarnName": "bool",
       "DefinitionName": "bool",
-      "Documentation": "Converts value to boolean type.",
+      "Documentation": "Converts a value to bool type.",
       "Signature": "bool(value)",
       "Parameters": [
         {
@@ -86,7 +86,7 @@
     {
       "YarnName": "visited",
       "DefinitionName": "visited",
-      "Documentation": "Returns a boolean value of true if the node with the title of node_name has been entered and exited at least once before, otherwise returns false. Will return false if node_name doesn't match a node in project.",
+      "Documentation": "Returns a bool value of true if the node with the title of node_name has been entered and exited at least once before, otherwise returns false. Will return false if node_name doesn't match a node in project.",
       "Signature": "visited(node_name)",
       "ReturnType": "bool",
       "Parameters": [

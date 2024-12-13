@@ -1,0 +1,25 @@
+{
+    "Commands": [
+        {
+            "YarnName": "custom_command_1",
+            "Parameters": [
+                {
+                    "Name": "target",
+                    "Type": "string"
+                }
+            ]
+        }
+    ],
+    "Functions": [
+        {
+            "YarnName": "custom_function_1",
+            "ReturnType": "bool",
+            "Parameters": [
+                {
+                    "Name": "value",
+                    "Type": "number"
+                }
+            ]
+        }
+    ]
+}

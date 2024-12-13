@@ -29,7 +29,6 @@ public static class DiagnosticConversionExtension
                 YarnDiagnostic.DiagnosticSeverity.Info => DiagnosticSeverity.Information,
                 _ => DiagnosticSeverity.Error,
             },
-            Source = diagnostic.FileName,
         };
     }
 }

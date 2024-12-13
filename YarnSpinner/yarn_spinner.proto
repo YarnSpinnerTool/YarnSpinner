@@ -20,31 +20,212 @@ message Program {
 message Node {
     // The name of this node.
     string name = 1;
-    
+
     // The list of instructions in this node.
-    repeated Instruction instructions = 2;
-
-    // A jump table, mapping the names of labels to positions in the
-    // instructions list.
-    map<string, int32> labels = 3;
+    repeated Instruction instructions = 7;
     
-    // The tags associated with this node.
-    repeated string tags = 4;
-
-    // the entry in the program's string table that contains the original
-    // text of this node; null if this is not available    
-    string sourceTextStringID = 5;
-
+    // The headers present on this node.
     repeated Header headers = 6;
+
+    // Deprecated and removed fields
+    reserved 2, 3, 4, 5;
 }
 
 message Header {
+    // The name of the header.
     string key = 1;
+
+    // The value of the header.
     string value = 2;
 }
 
-// A single Yarn instruction.
 message Instruction {
+    oneof InstructionType {
+        // Jumps to a specified position in the current node.
+        JumpToInstruction jumpTo = 1;
+
+        // Peeks a number on the stack, and jumps to that position in the
+        // current node.
+        PeekAndJumpInstruction peekAndJump = 2;
+
+        // Runs a line of dialogue.
+        RunLineInstruction runLine = 3;
+
+        // Runs a command.
+        RunCommandInstruction runCommand = 4;
+
+        // Adds an option to the 'pending options' list.
+        AddOptionInstruction addOption = 5;
+
+        // Shows all options in the 'pending options' list, then clears the list.
+        ShowOptionsInstruction showOptions = 6;
+
+        // Pushes a string onto the stack.
+        PushStringInstruction pushString = 7;
+
+        // Pushes a floating point number onto the stack.
+        PushFloatInstruction pushFloat = 8;
+
+        // Pushes a boolean onto the stack.
+        PushBoolInstruction pushBool = 9;
+
+        // Peeks a boolean on the stack, and if it's false, jumps to the
+        // indicated position in the current node.
+        JumpIfFalseInstruction jumpIfFalse = 10;
+
+        // Pops a value of any kind off the stack.
+        PopInstruction pop = 11;
+
+        // Calls a named function.
+        CallFunctionInstruction callFunc = 12;
+
+        // Pushes the value of the named variable onto the stack.
+        PushVariableInstruction pushVariable = 13;
+
+        // Peeks a value of any kind on the stack, and stores it in the
+        // indicated variable.
+        StoreVariableInstruction storeVariable = 14;
+
+        // Halts execution.
+        StopInstruction stop = 15;
+
+        // Jumps to the start of a named node.
+        RunNodeInstruction runNode = 16;
+
+        // Peeks a string on the stack, and jumps to the start of that node.
+        PeekAndRunNodeInstruction peekAndRunNode = 17;
+
+        DetourToNodeInstruction detourToNode = 18;
+
+        PeekAndDetourToNode peekAndDetourToNode = 19;
+
+        ReturnInstruction return = 20;
+
+        // Pops a boolean from the stack, and adds a saliency candidate to the
+        // current list.
+        AddSaliencyCandidateInstruction addSaliencyCandidate = 21;
+
+        // Add a saliency candidate to the current list, given a node name.
+        AddSaliencyCandidateFromNodeInstruction addSaliencyCandidateFromNode = 22;
+
+        // Attempt to select a single saliency candidate from the current list:
+        // - if one is selected, pushes the destination of that candidate and
+        //   the value 'true'
+        // - if none is selected, pushes the value 'false'
+        //
+        // In all circumstances, clears the saliency candidate list before
+        // returning.
+        SelectSaliencyCandidateInstruction selectSaliencyCandidate = 23;
+    }
+    message PeekAndJumpInstruction { }
+    message PeekAndRunNodeInstruction { }
+    message ShowOptionsInstruction { } 
+    message PushStringInstruction { 
+        // The value to push.
+        string value = 1; 
+    }
+    message PushFloatInstruction { 
+        // The value to push.
+        float value = 1;
+    }
+    message PushBoolInstruction {
+        // The value to push.
+        bool value = 1;
+    }
+    message JumpToInstruction {
+        // The instruction number in the current node to jump to.
+        int32 destination = 1;
+    }
+    message RunLineInstruction {
+        // The ID of the localised content that should be shown for this line.
+        string lineID = 1;
+
+        // The number of substitutions present in this line that must be popped
+        // off the stack.
+        int32 substitutionCount = 2;
+    }
+    message RunCommandInstruction {
+        // The text of the command to send to the client. 
+        string commandText = 1;
+
+        // The number of substitutions present in this command that must be popped
+        // off the stack.
+        int32 substitutionCount = 2;
+    }
+    message AddOptionInstruction {
+        // The ID of the content that should be shown for this option.
+        string lineID = 1;
+
+        // The instruction number in the current node to jump to if this option
+        // is selected.
+        int32 destination = 2;
+
+        // The number of substitutions present in this option that must be popped
+        // off the stack.
+        int32 substitutionCount = 3;
+
+        // A value indicating whether this instruction has a line condition on
+        // it, whose evaluated value must be popped off the stack.
+        bool hasCondition = 4;
+    }
+    message JumpIfFalseInstruction {
+        // The instruction number in the current node to jump to.
+        int32 destination = 1;
+    }
+    message PopInstruction { }
+    message CallFunctionInstruction {
+        // The name of the function to call.
+        string functionName = 1;
+    }
+    message PushVariableInstruction {
+        // The name of the variable whose value should be pushed onto the stack.
+        string variableName = 1;
+    }
+    message StoreVariableInstruction {
+        // The name of the variable whose value should be updated with the value
+        // currently on top of the stack.
+        string variableName = 1;
+    }
+    message StopInstruction {}
+    message RunNodeInstruction {
+        // The name of the node to begin running.
+        string nodeName = 1;
+    }
+
+    message DetourToNodeInstruction {
+        string nodeName = 1;
+    }
+    message PeekAndDetourToNode { }
+    
+    message ReturnInstruction { }
+
+    message AddSaliencyCandidateInstruction {
+        // The unique ID for this piece of content, such as a line ID.
+        string contentID = 1;
+        
+        // The complexity score of the candidate.
+        int32 complexityScore = 2;
+
+        // The instruction number in the current node to jump to if this
+        // candidate is selected.
+        int32 destination = 3;
+    }
+    
+    message AddSaliencyCandidateFromNodeInstruction {
+        // The name of the node to get saliency information from.
+        string nodeName = 1;
+
+        // The instruction number in the current node to jump to if this
+        // candidate is selected.
+        int32 destination = 2;
+    }
+
+    message SelectSaliencyCandidateInstruction { }
+
+}
+
+// A single Yarn instruction.
+message InstructionV1 {
 
     // The operation that this instruction will perform.
     OpCode opcode = 1;

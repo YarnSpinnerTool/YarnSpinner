@@ -7,10 +7,13 @@
 namespace Yarn.Compiler
 {
     using System.Collections.Generic;
+    using Yarn.Utility;
 
     internal class StringTableManager
     {
         internal Dictionary<string, StringInfo> StringTable = new Dictionary<string, StringInfo>();
+
+        internal Dictionary<string, YarnSpinnerParser.Line_statementContext> LineContexts = new Dictionary<string, YarnSpinnerParser.Line_statementContext>();
 
         internal bool ContainsImplicitStringTags
         {
@@ -18,8 +21,10 @@ namespace Yarn.Compiler
             {
                 foreach (var item in this.StringTable)
                 {
-                    if (item.Value.isImplicitTag)
+                    if (item.Value.isImplicitTag && item.Value.shadowLineID == null)
                     {
+                        // This is an implicitly created line ID, and is not
+                        // shadowing another line.
                         return true;
                     }
                 }
@@ -27,91 +32,34 @@ namespace Yarn.Compiler
             }
         }
 
-        private static class CRC32
-        {
-            private static readonly uint[] LookupTable;
-
-            static CRC32()
-            {
-                uint seedPolynomial = 0xedb88320;
-                LookupTable = new uint[256];
-                uint temp;
-                for (uint i = 0; i < LookupTable.Length; ++i)
-                {
-                    temp = i;
-                    for (int j = 8; j > 0; --j)
-                    {
-                        if ((temp & 1) == 1)
-                        {
-                            temp = (temp >> 1) ^ seedPolynomial;
-                        }
-                        else
-                        {
-                            temp >>= 1;
-                        }
-                    }
-
-                    LookupTable[i] = temp;
-                }
-            }
-
-            public static uint GetChecksum(byte[] bytes)
-            {
-                uint crc = 0xffffffff;
-                for (int i = 0; i < bytes.Length; ++i)
-                {
-                    byte index = (byte)((crc & 0xff) ^ bytes[i]);
-                    crc = (crc >> 8) ^ LookupTable[index];
-                }
-
-                return ~crc;
-            }
-
-            public static uint GetChecksum(string s) {
-                var bytes = System.Text.Encoding.UTF8.GetBytes(s);
-                return GetChecksum(bytes);
-            }
-
-            /// <summary>
-            /// Gets the CRC-32 hash of <paramref name="s"/> as a string
-            /// containing 8 lowercase hexadecimal characters.
-            /// </summary>
-            /// <param name="s">The string to get the checksum of.</param>
-            /// <returns>The string containing the checksum.</returns>
-            public static string GetChecksumString(string s)
-            {
-                uint checksum = GetChecksum(s);
-                byte[] bytes = System.BitConverter.GetBytes(checksum);
-                return System.BitConverter.ToString(bytes).ToLowerInvariant().Replace("-", string.Empty);
-            }
-        }
-
         /// <summary>
         /// Registers a new string in the string table.
         /// </summary>
+        /// <param name="context"></param>
         /// <param name="text">The text of the string to register.</param>
         /// <param name="fileName">The name of the yarn file that this line is contained within</param>
         /// <param name="nodeName">The name of the node that this string
         /// was found in.</param>
-        /// <param name="lineID">The line ID to use for this entry in the
+        /// <param name="existingLineID">The line ID to use for this entry in the
         /// string table.</param>
         /// <param name="lineNumber">The line number that this string was
         /// found in.</param>
         /// <param name="tags">The tags to associate with this string in
         /// the string table.</param>
+        /// <param name="shadowID">The line ID that this line is shadowing.</param>
         /// <returns>The string ID for the newly registered
         /// string.</returns>
-        /// <remarks>If <paramref name="lineID"/> is <see
+        /// <remarks>If <paramref name="existingLineID"/> is <see
         /// langword="null"/>, a line ID will be generated from <paramref
         /// name="fileName"/>, <paramref name="nodeName"/>, and the number
         /// of elements in <see cref="StringTable"/>.</remarks>
-        internal string RegisterString(string text, string fileName, string nodeName, string lineID, int lineNumber, string[] tags)
+        internal string RegisterString(YarnSpinnerParser.Line_statementContext context, string? text, string fileName, string nodeName, string? existingLineID, int lineNumber, string[] tags, string? shadowID)
         {
             string lineIDUsed;
 
             bool isImplicit;
 
-            if (lineID == null)
+            if (existingLineID == null)
             {
                 string candidateSeed = $"{fileName}{nodeName}{this.StringTable.Count}";
                 int count = 0;
@@ -123,7 +71,17 @@ namespace Yarn.Compiler
                     }
 
                     string suffix = count != 0 ? count.ToString() : string.Empty;
-                    lineIDUsed = "line:" + CRC32.GetChecksumString(candidateSeed + suffix);
+
+                    string prefix = "";
+                    if (shadowID != null)
+                    {
+                        // Line IDs that we generate for shadow lines are prefixed
+                        // with a tag to help identify them. (Don't rely on this
+                        // prefix to detect that a line ID is a shadow line - it's
+                        // purely for internal convenience.)
+                        prefix = "sh_";
+                    }
+                    lineIDUsed = "line:" + prefix + CRC32.GetChecksumString(candidateSeed + suffix);
                     count += 1;
                 }
                 while (this.StringTable.ContainsKey(lineIDUsed) == true);
@@ -132,16 +90,18 @@ namespace Yarn.Compiler
             }
             else
             {
-                lineIDUsed = lineID;
+                lineIDUsed = existingLineID;
 
                 isImplicit = false;
             }
 
-            var theString = new StringInfo(text, fileName, nodeName, lineNumber, isImplicit, tags);
+            var theString = new StringInfo(text, fileName, nodeName, lineNumber, isImplicit, tags, shadowID);
 
             // Finally, add this to the string table, and return the line
             // ID.
             this.StringTable.Add(lineIDUsed, theString);
+
+            this.LineContexts.Add(lineIDUsed, context);
 
             return lineIDUsed;
         }

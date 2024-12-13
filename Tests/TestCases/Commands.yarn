@@ -21,6 +21,20 @@ title: Start
 
 <<isActive>>
 
+<<returnToMainMenu>>
+
+<<oncee>>
+
+<<enumerated>>
+
+<<endenumerated>>
+
+<<cased>>
+
+<<locality>>
+
+<<detouring>>
+
 // Commands with a single character
 <<p>>
 

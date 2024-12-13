@@ -63,46 +63,27 @@ namespace YarnLanguageServer
         internal void ReloadWorkspace()
         {
             // Find all actions defined in the workspace
-            if (this.Root != null) {
+            if (this.Root != null)
+            {
                 this.workspaceActions = new HashSet<Action>(this.FindWorkspaceActions(this.Root));
-            } else {
+            }
+            else
+            {
                 this.workspaceActions = new HashSet<Action>();
             }
 
             // Find all actions built in to this DLL
             try
             {
-                var thisAssembly = typeof(Workspace).Assembly;
-                var resources = thisAssembly.GetManifestResourceNames();
-                var jsonAssemblyFiles = resources.Where(r => r.EndsWith("ysls.json"));
+                IEnumerable<Action> predefinedActions = GetPredefinedActions();
 
-                foreach (var doc in jsonAssemblyFiles)
+                foreach (var action in predefinedActions)
                 {
-                    Stream? stream = thisAssembly.GetManifestResourceStream(doc);
-
-                    if (stream == null)
-                    {
-                        LanguageServer?.LogError($"Error while loading built-in actions from {doc}: manifest resource stream is null");
-                        continue;
-                    }
-
-                    try
-                    {
-                        string text = new StreamReader(stream).ReadToEnd();
-                        var docJsonConfig = new JsonConfigFile(text, true);
-
-                        foreach (var action in docJsonConfig.GetActions())
-                        {
-                            this.workspaceActions.Add(action);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        LanguageServer?.LogError($"Failed to load built-in definitions file {doc}: {e}");
-                    }
+                    this.workspaceActions.Add(action);
                 }
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 LanguageServer?.LogError($"Error while loading built-in actions: " + e);
             }
 
@@ -132,7 +113,7 @@ namespace YarnLanguageServer
                 {
                     try
                     {
-                        return new Project(path);
+                        return new Project(path, this.Root);
                     }
                     catch (System.Exception e)
                     {
@@ -142,7 +123,8 @@ namespace YarnLanguageServer
                 }).NonNull().ToList();
             }
 
-            if (!this.Projects.Any()) {
+            if (!this.Projects.Any())
+            {
                 // There are no .yarnprojects in the workspace. Create a new
                 // 'implicit' project at the root of the workspace that owns ALL
                 // Yarn files, as a convenience.
@@ -153,7 +135,7 @@ namespace YarnLanguageServer
                 // considered to be part of the workspace and will not be
                 // compiled. This is consistent with how Yarn Spinner for Unity
                 // works - if a file is not in a project, it is not compiled.)
-                Project implicitProject = new (Root, isImplicit: true);
+                Project implicitProject = new(Root, Root, isImplicit: true);
                 this.Projects = new[] { implicitProject };
 
                 // Additionally, if the workspace contains an actions definition
@@ -174,7 +156,6 @@ namespace YarnLanguageServer
 
                         try
                         {
-
                             var definitionFile = new JsonConfigFile(File.ReadAllText(definitionFilePath), false);
 
                             foreach (var action in definitionFile.GetActions())
@@ -212,6 +193,39 @@ namespace YarnLanguageServer
 
             this.PublishDiagnostics();
             this.PublishNodeInfos();
+        }
+
+        /// <summary>
+        /// Returns the collection of Action objects that are pre-defined in the
+        /// Yarn language.
+        /// </summary>
+        /// <returns>The list of pre-defined actions.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when loading the
+        /// list of pre-defined actions fails.</exception>
+        internal static IEnumerable<Action> GetPredefinedActions()
+        {
+            var predefinedActions = new List<Action>();
+
+            var thisAssembly = typeof(Workspace).Assembly;
+            var resources = thisAssembly.GetManifestResourceNames();
+            var jsonAssemblyFiles = resources.Where(r => r.EndsWith("ysls.json"));
+
+            foreach (var doc in jsonAssemblyFiles)
+            {
+                Stream? stream = thisAssembly.GetManifestResourceStream(doc);
+
+                if (stream == null)
+                {
+                    throw new InvalidOperationException($"Failed to read manifest resource stream for {doc}");
+                }
+
+                string text = new StreamReader(stream).ReadToEnd();
+                var docJsonConfig = new JsonConfigFile(text, true);
+
+                predefinedActions.AddRange(docJsonConfig.GetActions());
+            }
+
+            return predefinedActions;
         }
 
         private IEnumerable<Action> FindWorkspaceActions(string root)
@@ -288,7 +302,8 @@ namespace YarnLanguageServer
         /// contains semantic information about the nodes in this file.
         /// </summary>
         /// <seealso cref="Commands.DidChangeNodesNotification"/>
-        public void PublishNodeInfos() {
+        public void PublishNodeInfos()
+        {
             foreach (var file in this.Projects.SelectMany(p => p.Files))
             {
                 this.LanguageServer?.SendNotification(
@@ -376,7 +391,8 @@ namespace YarnLanguageServer
         IEnumerable<Action> IActionSource.GetActions() => this.workspaceActions;
     }
 
-    internal static class EnumerableExtension {
+    internal static class EnumerableExtension
+    {
         public static IEnumerable<T> NonNull<T>(this IEnumerable<T?> enumerable)
             where T : class
         {

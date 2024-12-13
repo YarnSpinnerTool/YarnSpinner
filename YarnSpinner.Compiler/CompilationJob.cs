@@ -6,6 +6,7 @@
 
 namespace Yarn.Compiler
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -53,7 +54,12 @@ namespace Yarn.Compiler
             /// <summary>The compiler will derive only the variable and
             /// function declarations, and file tags, found in the
             /// script.</summary>
-            DeclarationsOnly,
+            TypeCheck,
+
+            /// <summary>Generate declarations only. This is equivalent to <see
+            /// cref="TypeCheck"/>.</summary>
+            [Obsolete("Use TypeCheck instead")]
+            DeclarationsOnly = TypeCheck,
 
             /// <summary>The compiler will generate a string table
             /// only.</summary>
@@ -83,6 +89,17 @@ namespace Yarn.Compiler
         public IEnumerable<Declaration> VariableDeclarations;
 
         /// <summary>
+        /// Gets or sets the version of the Yarn language.
+        /// </summary>
+        public int LanguageVersion { get; set; }
+
+        /// <summary>
+        /// The collection of type declarations that should be imported and made
+        /// available to the compiler, prior to compilation.
+        /// </summary>
+        public IEnumerable<IType>? TypeDeclarations { get; set; }
+
+        /// <summary>
         /// Creates a new <see cref="CompilationJob"/> using the contents of a
         /// collection of files.
         /// </summary>
@@ -108,6 +125,7 @@ namespace Yarn.Compiler
             {
                 Files = fileList.ToArray(),
                 Library = library,
+                VariableDeclarations = Array.Empty<Declaration>(),
             };
         }
 
@@ -120,16 +138,18 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
-        /// Creates a new <see cref="CompilationJob"/> using the contents
-        /// of a string.
+        /// Creates a new <see cref="CompilationJob"/> using the contents of a
+        /// string.
         /// </summary>
         /// <param name="fileName">The name to assign to the compiled
         /// file.</param>
         /// <param name="source">The text to compile.</param>
-        /// <param name="library">Library of function definitions to use
-        /// during compilation.</param>
+        /// <param name="library">Library of function definitions to use during
+        /// compilation.</param>
+        /// <param name="languageVersion">The version of the Yarn language to
+        /// use.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromString(string fileName, string source, Library library = null)
+        public static CompilationJob CreateFromString(string fileName, string source, Library? library = null, int languageVersion = Project.CurrentProjectFileVersion)
         {
             return new CompilationJob
             {
@@ -141,6 +161,7 @@ namespace Yarn.Compiler
                     },
                 },
                 Library = library,
+                LanguageVersion = languageVersion,
             };
         }
     }

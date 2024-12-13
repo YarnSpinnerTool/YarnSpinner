@@ -10,7 +10,7 @@ namespace YarnLanguageServer
 {
     internal class ReferencesVisitor : YarnSpinnerParserBaseVisitor<bool>
     {
-        private readonly List<NodeInfo> nodeInfos = new ();
+        private readonly List<NodeInfo> nodeInfos = new();
 
         private NodeInfo currentNodeInfo = null;
 
@@ -42,6 +42,7 @@ namespace YarnLanguageServer
                     // Don't want an exception while parsing to take out the entire language server
                 }
             }
+
             return Enumerable.Empty<NodeInfo>();
         }
 
@@ -50,6 +51,7 @@ namespace YarnLanguageServer
             currentNodeInfo = new NodeInfo
             {
                 File = yarnFileData,
+
                 // antlr lines start at 1, but LSP lines start at 0
                 HeaderStartLine = context.Start.Line - 1,
             };
@@ -90,23 +92,29 @@ namespace YarnLanguageServer
 
                 // The first line after the BODY_START
                 currentNodeInfo.BodyStartLine = bodyStartLineIndex + 1;
-            } else {
+            }
+            else
+            {
                 currentNodeInfo.BodyStartLine = currentNodeInfo.HeaderStartLine;
             }
 
-            if (context.BODY_END() != null) {
+            if (context.BODY_END() != null)
+            {
                 var bodyEndLineIndex = context.BODY_END().Symbol.Line - 1;
 
                 // The line before the BODY_END
                 currentNodeInfo.BodyEndLine = bodyEndLineIndex - 1;
-            } else {
+            }
+            else
+            {
                 currentNodeInfo.BodyEndLine = currentNodeInfo.BodyStartLine;
             }
 
             // Zero-length nodes will have "the line before BODY_END" be before
             // "the line after BODY_START", which is no good. In these cases,
             // ensure that the body starts and ends on the same line.
-            if (currentNodeInfo.BodyEndLine < currentNodeInfo.BodyStartLine) {
+            if (currentNodeInfo.BodyEndLine < currentNodeInfo.BodyStartLine)
+            {
                 currentNodeInfo.BodyEndLine = currentNodeInfo.BodyStartLine;
             }
 
@@ -119,16 +127,34 @@ namespace YarnLanguageServer
             return base.VisitVariable(context);
         }
 
+        public override bool VisitTitle_header([NotNull] YarnSpinnerParser.Title_headerContext context)
+        {
+            if (context.title != null)
+            {
+                currentNodeInfo.Title = context.title.Text;
+                currentNodeInfo.TitleToken = context.title;
+
+                if (context.HEADER_TITLE().Payload is not IToken headerTitle)
+                {
+                    // Parse error in this token
+                    return base.VisitTitle_header(context);
+                }
+
+                currentNodeInfo.Headers.Add(new NodeHeader
+                {
+                    Key = context.HEADER_TITLE().GetText(),
+                    Value = context.title.Text,
+                    KeyToken = headerTitle,
+                    ValueToken = context.title,
+                });
+            }
+
+            return base.VisitTitle_header(context);
+        }
         public override bool VisitHeader([NotNull] YarnSpinnerParser.HeaderContext context)
         {
             if (context.header_key != null && context.header_value != null)
             {
-                if (context.header_key.Text == "title")
-                {
-                    currentNodeInfo.Title = context.header_value.Text;
-                    currentNodeInfo.TitleToken = context.header_value;
-                }
-
                 currentNodeInfo.Headers.Add(new NodeHeader
                 {
                     Key = context.header_key.Text,
@@ -186,8 +212,6 @@ namespace YarnLanguageServer
 
                 parameterRanges.Add(new Range(left, parametersRange.End));
 
-
-
                 currentNodeInfo.FunctionCalls.Add(new YarnActionReference
                 {
                     NameToken = context.FUNC_ID().Symbol,
@@ -218,7 +242,6 @@ namespace YarnLanguageServer
 
         public override bool VisitCommand_statement([NotNull] YarnSpinnerParser.Command_statementContext context)
         {
-
             // TODO: figure out how command parameters should work when the
             // parser grammar is not separating parameters itself and
             // instead is effectly treating commands as "here is a run of
@@ -229,7 +252,6 @@ namespace YarnLanguageServer
 
             // for now, register the first COMMAND_FORMATTED_TEXT as a
             // symbol and ignore the rest
-            
             var text = context.command_formatted_text().GetText();
             var components = CommandTextSplitter.SplitCommandText(text);
 
@@ -251,7 +273,7 @@ namespace YarnLanguageServer
 
             var parameterRangeStart = PositionHelper.GetRange(yarnFileData.LineStarts, commandName).End
                 .Delta(0, 1); // need at least one white space character after the command name before any parameters
-            var parameterRangeEnd = PositionHelper.GetRange(yarnFileData.LineStarts, context.COMMAND_TEXT_END().Symbol).Start;
+            var parameterRangeEnd = PositionHelper.GetRange(yarnFileData.LineStarts, context.COMMAND_END().Symbol).Start;
 
             var parameters = tokens.Skip(1);
             var parameterCount = parameters.Count();
@@ -276,7 +298,7 @@ namespace YarnLanguageServer
             {
                 NameToken = commandName,
                 Name = commandName.Text,
-                ExpressionRange = PositionHelper.GetRange(yarnFileData.LineStarts, commandName, context.COMMAND_TEXT_END().Symbol),
+                ExpressionRange = PositionHelper.GetRange(yarnFileData.LineStarts, commandName, context.COMMAND_END().Symbol),
                 ParametersRange = new Range(parameterRangeStart, parameterRangeEnd),
                 ParameterRanges = parameterRanges,
                 ParameterCount = parameterCount,
@@ -286,7 +308,6 @@ namespace YarnLanguageServer
             result.ExpressionRange = new Range(result.ExpressionRange.Start, result.ExpressionRange.End.Delta(0, -2)); // should get right up to the left of >>
 
             currentNodeInfo.CommandCalls.Add(result);
-
 
             return base.VisitCommand_statement(context);
         }
@@ -303,7 +324,8 @@ namespace YarnLanguageServer
             // semantic tokens to fetch info from this.
             var nameMatch = SemanticTokenVisitor.NameRegex.Match(lineText);
 
-            if (nameMatch.Success) {
+            if (nameMatch.Success)
+            {
                 var nameGroup = nameMatch.Groups[1];
 
                 var startPosition = context.Start.ToPosition();

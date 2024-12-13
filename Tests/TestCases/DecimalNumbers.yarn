@@ -10,6 +10,14 @@ title: Start
     Success
 <<endif>>
 
+<<if 1.1 + 0.1 > 1.1>>
+    Success
+<<endif>>
+
+<<if 0.5 * 3 == 1.5>>
+    Success
+<<endif>>
+
 // Inline expressions
 Here's a number: {45.1}
 

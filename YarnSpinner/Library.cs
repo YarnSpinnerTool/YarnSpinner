@@ -5,7 +5,6 @@ namespace Yarn
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
 
     /// <summary>
     /// A collection of functions that can be called from Yarn programs.
@@ -19,7 +18,7 @@ namespace Yarn
     public class Library
     {
         internal Dictionary<string, Delegate> Delegates = new Dictionary<string, Delegate>();
-        
+
         /// <summary>
         /// Returns a <see cref="Delegate"/> with a given name.
         /// </summary>
@@ -38,7 +37,7 @@ namespace Yarn
             {
                 throw new InvalidOperationException($"Function {name} is not present in the library.");
             }
-            
+
         }
 
         /// <summary>
@@ -133,7 +132,8 @@ namespace Yarn
 
         /// <inheritdoc cref="RegisterFunction{TResult}(string,
         /// Func{TResult})"/>
-        public void RegisterFunction(string name, Delegate implementation) {
+        public void RegisterFunction(string name, Delegate implementation)
+        {
             Delegates.Add(name, implementation);
         }
 
@@ -142,7 +142,8 @@ namespace Yarn
         /// </summary>
         /// <param name="name">The name of the function to look for.</param>
         /// <returns><c>true</c> if a function exists in this Library; <c>false</c> otherwise.</returns>
-        public bool FunctionExists(string name) {
+        public bool FunctionExists(string name)
+        {
             return Delegates.ContainsKey(name);
         }
 
@@ -165,16 +166,16 @@ namespace Yarn
         /// <summary>
         /// Registers the methods found inside a type.
         /// </summary>
-        /// <param name="type">The type to register methods from.</param>
-        protected void RegisterMethods(IType type)
+        /// <param name="typeLiteral">The type to register methods from.</param>
+        internal void RegisterMethods(TypeBase typeLiteral)
         {
-            if (type == null)
+            if (typeLiteral == null)
             {
                 // we weren't given any type to work with
                 return;
             }
-            
-            var methods = type.Methods;
+
+            var methods = typeLiteral.Methods;
 
             if (methods == null)
             {
@@ -187,10 +188,11 @@ namespace Yarn
                 var methodName = methodDefinition.Key;
                 var methodImplementation = methodDefinition.Value;
 
-                var canonicalName = TypeUtil.GetCanonicalNameForMethod(type, methodName);
+                var canonicalName = TypeUtil.GetCanonicalNameForMethod(typeLiteral, methodName);
 
                 this.RegisterFunction(canonicalName, methodImplementation);
             }
+
         }
 
         /// <summary>

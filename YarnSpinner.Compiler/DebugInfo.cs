@@ -9,15 +9,50 @@ namespace Yarn.Compiler
     using System;
     using System.Collections.Generic;
 
+    public class ProjectDebugInfo
+    {
+        public List<NodeDebugInfo> Nodes { get; set; } = new List<NodeDebugInfo>();
+
+        public NodeDebugInfo? GetNodeDebugInfo(string nodeName)
+        {
+            foreach (var debugInfo in Nodes)
+            {
+                if (debugInfo.NodeName == nodeName)
+                {
+                    return debugInfo;
+                }
+            }
+            return null;
+        }
+
+        internal static ProjectDebugInfo Combine(params ProjectDebugInfo[] debugInfos)
+        {
+            var newDebugInfo = new ProjectDebugInfo();
+            foreach (var otherDebugInfo in debugInfos)
+            {
+                newDebugInfo.Nodes.AddRange(otherDebugInfo.Nodes);
+            }
+
+            return newDebugInfo;
+
+        }
+    }
+
     /// <summary>
     /// Contains debug information for a node in a Yarn file.
     /// </summary>
-    public class DebugInfo
+    public class NodeDebugInfo
     {
+        public NodeDebugInfo(string fileName, string nodeName)
+        {
+            this.FileName = fileName;
+            this.NodeName = nodeName;
+        }
+
         /// <summary>
         /// Gets or sets the file that this DebugInfo was produced from.
         /// </summary>
-        internal string FileName { get; set; }
+        internal string FileName { get; private set; }
 
         /// <summary>
         /// Gets or sets the node that this DebugInfo was produced from.
@@ -25,11 +60,37 @@ namespace Yarn.Compiler
         internal string NodeName { get; set; }
 
         /// <summary>
-        /// Gets or sets the mapping of instruction numbers to line and
-        /// character information in the file indicated by <see
+        /// Gets or sets the mapping of instruction numbers to <see
+        /// cref="Position"/> information in the file indicated by <see
         /// cref="FileName"/>.
         /// </summary>
-        internal Dictionary<int, (int Line, int Character)> LineInfos { get; set; } = new Dictionary<int, (int Line, int Character)>();
+        internal Dictionary<int, Position> LinePositions { get; set; } = new Dictionary<int, Position>();
+
+        internal IReadOnlyDictionary<int, string> Labels => this.instructionLabels;
+
+        private Dictionary<int, string> instructionLabels = new Dictionary<int, string>();
+
+        private HashSet<int> instructionsThatAreDestinations = new HashSet<int>();
+
+        internal void AddLabel(string label, int instructionIndex)
+        {
+            // Ensure that this label is unique
+            label = $"L{this.instructionLabels.Count}_" + label;
+
+            this.instructionLabels[instructionIndex] = label;
+        }
+
+        internal string? GetLabel(int instructionIndex)
+        {
+            if (this.instructionLabels.TryGetValue(instructionIndex, out string label))
+            {
+                return label;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         /// <summary>
         /// Gets a <see cref="LineInfo"/> object that describes the specified
@@ -44,14 +105,17 @@ namespace Yarn.Compiler
         /// number of instructions present in the node.</exception>
         public LineInfo GetLineInfo(int instructionNumber)
         {
-            if (this.LineInfos.TryGetValue(instructionNumber, out var info))
+            if (this.LinePositions.TryGetValue(instructionNumber, out var info))
             {
                 return new LineInfo
                 {
                     FileName = this.FileName,
                     NodeName = this.NodeName,
-                    LineNumber = info.Line,
-                    CharacterNumber = info.Character,
+                    Position = new Position
+                    {
+                        Character = info.Character,
+                        Line = info.Line,
+                    },
                 };
             }
             else
@@ -78,18 +142,11 @@ namespace Yarn.Compiler
             public string NodeName;
 
             /// <summary>
-            /// The zero-indexed line number in <see cref="FileName"/> that
+            /// The position in <see cref="FileName"/> that
             /// contains the statement or expression that this line was produced
             /// from.
             /// </summary>
-            public int LineNumber;
-
-            /// <summary>
-            /// The zero-indexed character number in <see cref="FileName"/> that
-            /// contains the statement or expression that this line was produced
-            /// from.
-            /// </summary>
-            public int CharacterNumber;
+            public Position Position;
         }
     }
 }

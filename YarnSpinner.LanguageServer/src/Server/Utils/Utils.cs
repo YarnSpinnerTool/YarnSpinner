@@ -7,6 +7,7 @@ namespace YarnLanguageServer
         public static readonly string YarnSelectorPattern = "**/*.yarn";
         public static readonly string YslsJsonSelectorPattern = "**/*.ysls.json";
         public static readonly string CSharpSelectorPattern = "**/*.cs";
+        public static readonly string YarnProjectSelectorPattern = "**/*.yarnproject";
 
         /// <summary>
         /// Selector for any .yarn file in the workspace.

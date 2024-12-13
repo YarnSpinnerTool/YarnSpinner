@@ -1,0 +1,24 @@
+title: Start
+---
+
+<<enum EnumA>>
+<<case One>>
+<<case Two>>
+<<case Three>>
+<<endenum>>
+
+<<enum EnumB>>
+<<case One>>
+<<case Two>>
+<<endenum>>
+
+<<stop>>
+
+<<if some_function(EnumA.One)>>
+<<endif>>
+// some_function is inferred to be of type (EnumA) -> Bool
+
+<<if some_function(EnumA.Two) || some_function(EnumA.Three)>>
+<<endif>>
+
+===

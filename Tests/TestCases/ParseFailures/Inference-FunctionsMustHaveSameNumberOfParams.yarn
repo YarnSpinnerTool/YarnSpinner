@@ -1,0 +1,8 @@
+title: Start
+---
+// Error: functions must be called with the same number of types
+<<declare $a = 1>>
+
+<<set $a = somefunc(1)>> // somefunc is inferred to be (Number) -> Number
+<<set $a = somefunc(1,2)>> // error: somefunc is expected to be called with 1 param
+===

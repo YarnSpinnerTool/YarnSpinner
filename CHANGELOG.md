@@ -8,9 +8,266 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- The compiler will now warn if additional text is present on the same line before or after commands and other statements.
+  - For example, the following code will emit a warning, because the last `>` character is likely a typo: `<<wait 5>>>`
+
 ### Changed
 
+- Commands are now better at checking to see if the first word is a keyword (e.g. `return`) or a word that just _begins_ with a keyword (`returnToMenu`).
+
 ### Removed
+
+## [3.0.0-beta1] 2024-11-29
+
+### Added
+
+#### Enums
+
+Enums have been added to the Yarn language.
+
+Enums are a type of variable that are allowed to be one of a specific set of named values. For example:
+
+```
+// Create a new enum called Food.
+<<enum Food>>
+  <<case Apple>>
+  <<case Orange>>
+  <<case Pear>>
+<<endenum>>
+
+// Declare a new variable with the default value Food.Apple
+<<declare $favouriteFood = Food.Apple>>
+
+// You can set $favouriteFood to the 'apple', 'orange' or 'pear'
+// cases, but nothing else!
+<<set $favouriteFood to Food.Orange>>
+
+// You can use enums in if statements, like any other type of value:
+<<if $favouriteFood == Food.Apple>>
+  I love apples!
+<<endif>>
+
+// You can even skip the name of the enum if Yarn Spinner can 
+// figure it out from context!
+<<set $favouriteFood = .Orange>>
+```
+
+The only valid operators that can be used with enums are `==` (equal to) and `!=` (not equal to).
+
+Enums only support being compared to other values of the same type. 
+
+> For example, if you created a new enum called `Food`, and another enum called `Drink`, you can't compare `Food.Apple` to `Drink.Soda`, because they're different enums.
+
+#### Enum Cases
+
+You declare an enum using the `enum`...`endenum` statement. This can be anywhere in your code. 
+
+Inside your `enum` statement, you put one or more `case` statements, which define one of the values that that enum can be. Each case statement must be unique inside the enum, but you can reuse the same case across different enums.
+
+#### Raw Values
+
+When you add an enum case, you can specify its 'raw value'. This is useful for when you want to use an enum to represent a specific set of numbers or strings. Raw values can be either strings, or numbers. 
+
+Each raw value must be unique inside the enum, but you can reuse the same raw value across different enums. If you specify the raw value of any of an enum's cases, they all must have a raw value. All raw values in an enum must be the same type.
+
+If you don't specify any raw values for an enum, then Yarn Spinner will choose numbers for you as the raw values.
+
+#### Enums and Functions
+
+Functions can receive enums as parameters, as long as the enum's raw value type matches the parameter type. For example, if you have a function `print` that takes a string as a parameter, you can pass any enum to it that uses strings for its raw values; if you have a function `multiplyByTwo` that takes a number as a parameter, you can pass any enum to it that uses numbers for its raw values.
+
+#### Smart Variables
+
+Smart variables have been added to the Yarn language.
+
+A smart variable is one that determines its value at run-time, rather than setting and retrieving a value from storage.
+
+Smart variables give you a simple way to create more complex expressions, and re-use them across your project.
+
+To create a smart variable, declare it using the `declare` statement and provide an expression, rather than a single value:
+
+```
+// $player_can_afford_pie is a boolean value that is 'true' 
+// when the player has more than 10 money
+<<declare $player_can_afford_pie = $player_money > 10>>
+```
+
+Smart variables can be accessed anywhere a regular variable would be used:
+
+```
+// Run some lines if the player can afford a pie
+<<if $player_can_afford_pie>>
+  Player: One pie, please.
+  PieMaker: Certainly!
+<<endif>>
+```
+
+#### 'Once' statements
+
+'Once' statements have been added to the language.
+
+A 'once' statement ensures that some content in your dialogue is seen by the player one time only. Uses for this include ensuring that lines where a character introduces themselves don't run multiple times, or barks that should never be run more than a single time (the '[arrow in the knee](https://en.wikipedia.org/wiki/Arrow_in_the_knee)' problem.)
+
+The `once` keyword can be used in two different ways:
+
+##### `once`..`endonce` Statements
+
+A `once`..`endonce` statement allows you to wrap one or more lines (or other kinds of Yarn content) into a block that will only ever run once.
+
+```
+<<once>>
+  // The guard will introduce herself to the player only once. 
+  Guard: Hail, traveller! Well met.
+  Guard: I am Alys, the guard!
+<<endonce>>
+```
+
+`once`..`endonce` statements can be combined with an `if` expression. If the expression evaluates to `false`, the contents of the `once`..`endonce` block will not be run. (The block may run in the future if it's reached again and the expression evaluates to `true`.)
+
+```
+<<once if $player_is_adventurer>>
+  // The guard knows the player is an adventurer, so say this line, 
+  // but only ever once!
+  Guard: I used to be an adventurer like you, but then I took an arrow in the knee.
+<<endonce>>
+```
+
+The `once`..`endonce` statement can also take an `else` block. This block runs if the first part of the `once` statement didn't run.
+
+```
+<<once>>
+  Guard: Hail, traveller! Well met.
+<<else>>
+  Guard: Welcome back.
+<<endonce>>
+```
+
+##### `once` in line conditions
+
+In Yarn Spinner, you can add conditions to the ends of lines, options and line group items to control when they can be presented to the player.
+
+You can use the `once` keyword at the end of a line to make that line only run once. You can also combine this with an `if` expression to make it only run once, and only when the condition passes. If a line with a `once` or `once if` condition has been run before, Yarn Spinner will skip over that line.
+
+```
+Guard: Greetings, traveller. <<once>>
+Guard: Met some bandits on the road, I see. <<once if $defeated_bandits>>
+Guard: Be safe out there.
+```
+
+You can use the `once` keyword at the end of an option to make it so that line is only available for selection one time. As with lines, you can also combine this with an `if` expression. An option that has a `once` condition may be shown to the user multiple times as part of a collection of options, but after they select that option, it can't be selected again.
+
+```
+-> Where is the castle? <<once>>
+-> I must see the king. Where is he? <<once if $needs_to_see_king>>
+-> Farewell, friend. <<if $friends_with_guard>>
+-> I should go. 
+```
+
+> [!NOTE]
+> Conditions on options control whether the option is _available to be selected_. Depending on how you've configured your game, this may mean that the option is not shown at all to the player, or that the option is visible but not selectable, or something else user-defined.
+
+Finally, you can use the `once` keyword at the end of a line group item to make it so that it will only ever be run once. As with lines and options, you can combine it with an `if` expression to further control when it may appear.
+
+```
+// Scenario: The guard is pursuing the player.
+// We'll create some simple, short lines that can run many times without 
+// standing out, and some specific lines that we should only ever hear once, 
+// because hearing them multiple times would make them stand out.
+
+=> Guard: Halt!
+=> Guard: Stop them!
+=> Guard: You there! Halt, in the name of the king! <<once>>
+=> Guard: Halt, thief! Someone stop them! <<once if $player_stole_treasure>>
+```
+
+#### Node groups and 'when' headers
+
+Much like how line groups let you create groups of lines that the system chooses from based on the current game state, node groups let you create groups of _nodes_ that the system chooses from.
+
+You create a node group by creating one or more nodes that all have the same name, _and_ have a `when:` header.
+
+The `when:` header tells Yarn Spinner under what circumstances a particular node can run. For example:
+
+```
+title: SpeakToGuard
+when: $guard_friendly == true
+---
+// The guard likes us
+Guard: Halt, traveller!
+Player: Why, hello there!
+Guard: Ah, my friend! You may pass.
+===
+
+title: SpeakToGuard
+when: $guard_friendly == false
+---
+// The guard doesn't like us
+Guard: Halt, scum!
+Guard: None shall pass this point!
+===
+```
+
+To run this node group, you run the `SpeakToGuard` node. You can do this from within your Yarn scripts, by calling `<<jump SpeakToGuard>>`, or you can do it from within your game (telling your Dialogue Runner to run the node `SpeakToGuard`). Yarn Spinner will then select the most appropriate node to run, using the saliency strategy that you have configured for your game.
+
+You can have as many `when:` headers in a node as you like. If you have more than one, _all_ of their conditions must pass in order for the node to potentially run.
+
+All nodes in a node group must have a `when:` header. It's a compiler error if any of them don't have one.
+
+You can use any of the following kinds of expressions in a `when:` header:
+
+- `when: <boolean expression>` - any expression that evaluates to the values `true` or `false`.
+- `when: once` - The node will run precisely one time.
+- `when: once if <boolean expression>` - The node will run precisely one time, and only when the expression evaluates to `true`.
+- `when: always` - The node may always run.
+
+#### Other Changes
+
+- Standard library functions (e.g. `random`, `round_places`, `dice`) have been moved to the core Yarn Spinner library.
+- Added a `format` function to the standard library, this works identical to the C# `string.Format`.
+- Added `BuiltInMarkupReplacer` new `IAttributeMarkerProcessor` for the built in replacement markers
+- `LineParser` now has `ExpandSubstitutions` method to expand substitutions
+- `LineParser` now has `ParseMarkup` method to parse markup in a line
+- `LineParser` now can return diagnostics around markup
+  - `MarkupDiagnostic` struct encapsulates the diagnostics.
+  - `ParseMarkup` has a variant which returns the `MarkupParseResult` and diagnostics, or just the marked up line. 
+
+
+### Changed
+
+- The Antlr4.Runtime dependency has been upgraded from 4.7.2 to 4.13.1.
+- The internal format for storing compiled programs has been updated. Existing Yarn scripts will need to be recompiled in order to work in Yarn Spinner 3.0.
+  - Internal jumps inside a node now jump to specific instruction indices, rather than named locations that had to be stored in the file. This change makes compiled Yarn programs smaller.
+- The TestPlan system has been improved. (TestPlan is an internal development tool used for unit-testing Yarn Spinner, and is not designed for end-user use.)
+    - The TestPlan parser is replaced with an Antlr4-generated parser
+    - The TestPlan grammar has been made slightly more consistent:
+        - Line, option and command text must now be wrapped in backticks (`)
+        - The 'set' and 'stop' commands now no longer take a colon (:)
+    - Multiple runs are now supported
+    - TestPlan continuation is now no longer driven by the line/option callback system, which makes it easier to reason about.
+- Fixed a crash in the compiler that could occur if a node's `title:` header did not have a value.
+- Node `visited` and `visited_count` tracking is now handled in the virtual machine when a node is returned from, rather than as a result of compiler-generated code.
+- Empty nodes will no longer be included in the compiled output
+  - a warning diagnostic will be generated for each empty node
+- Fixed a bug where set-referencing inferred value set statements would crash the compiler
+- The language server no longer truncates XML documentation comments when it reaches a nested XML node. 
+- The constructor for `Yarn.Line` is now public. Previously, it was internal.
+- `CompilationResult` now includes a property `UserDefinedTypes`, which contains the types that the user has defined in their script (for example, enums).
+- Fixed an issue where the `dice(n)` function would return a value between 0 and n-1, rather than 1 and n.
+- .yarnproject files may now specify absolute paths to specific .yarn files.
+- `IAttributeMarkerProcessor` replacement method changed from `ReplacementTextForMarker(marker, localeCode)` to `ProcessReplacementMarker(marker,childBuilder,childAttributes,localeCode)`
+- Reworked `LineParser` markup handling to better handle reordering and rewriting markers at runtime
+  - `nomarkup` attributes are no longer included in the final parsed line.
+  - `trimwhitespace` property is now included in the final parsed line.
+- `title` header values now follow the same parser rules as other identifiers.
+
+### Removed
+
+- `Dialogue` no longer has line parser responsibilities:
+  - removed the `ParseMarkup` method.
+  - removed the `ExpandSubstitutions` method.
+  - removed `IAttributeMarkerProcessor` conformance.
+  - see `LineParser` for replacements.
+- `NoMarkupParser` removed due to this functionality now being inside `LineParser`
 
 ## [2.5.0] 2024-12-13
 
@@ -52,6 +309,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Yarn Spinner is and will remain free and open source - we also make it available for purchase as an excellent way to support the team.
 - While you're reading, why not consider our [paid add-ons](https://yarnspinner.itch.io), which add some fantastic and easy-to-customise dialogue views?
 
+- Removed the Yarn Spinner v1 to v2 upgrader.
+- Removed support for 'raw text' nodes.
+  - A 'raw text' node was a node that had 'rawText' in its `tags` header. This indicated to the compiler that the original text of the node should be included in the string table.
+
 ## [2.4.0] 2023-11-14
 
 ### Added
@@ -77,9 +338,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Moved Yarn's built-in functions (for example, 'dice' and 'floor') to Yarn Spinner's core library. Previously, they were implemented in the client game code (for example, the Unity runtime.)
+
 #### Language Server
 
 - Fixed a bug in the language server that would cause it to crash when opening a workspace with no root (for example, creating a new window in Visual Studio Code and then creating a Yarn file, without ever saving anything to disk.)
+- Fixed an error in the language server that would fail to detect `YarnCommand`- and `YarnFunction`-tagged methods if their attributes were fully-qualified (e.g. `Yarn.Unity.YarnCommand`)
+- Renamed VirtualMachine.currentNodeName to VirtualMachine.CurrentNodeName.
 - Fixed an issue where workspaces where no Yarn Projects exist on disk would fail to attach Yarn files to the workspace's implicit Yarn Project.
 - Improved the code-completion behaviour to provide better filtering when offering command completions, in both jump commands and custom commands.
 - Fixed character names being incorrectly recognised when the colon is not part of the line
@@ -87,10 +352,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - If a workspace that has no .yarnproject files in it is opened, the language server will now look for a .ysls.json file containing command and function definitions. A warning will be reported if more than one file is found.
 - The language server now shows a warning if the workspace is opened without a folder.
 
+
 #### Compiler
 
 - Fixed a crash bug when declaration statements were used without a value (`<<declare $var>>`).
 - Fixed a bug where unusual interpolated commands (such as `<<{0}{""}>>`) would resolve to unexpected final values (`<<>>`).
+- Fixed an issue that caused the compiler to hang under some circumstances.
 
 #### Utilities
 
@@ -98,6 +365,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fixed a bug where escaped characters weren't being correctly added back into the file after adding line tags.
 
 ### Removed
+
+- Support for merging `Program` objects has been removed.
+  - This functionality previously existed because in earlier versions of Yarn Spinner, each individual Yarn script was compiled into a separate Program, which was then merged. Yarn Projects now provide the capabilty to compile multiple Yarn scripts at once, and have done for some time.
 
 ## [2.3.1] 2023-07-04
 
@@ -134,6 +404,69 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
     - `assets`: The path to a directory containing the localised assets (for example, voiceover audio) for the project.
   - `definitions` _(optional)_ is the path to a JSON file containing command and function definitions used by the project.
   - `compilerOptions` _(optional)_ is an object containing additional settings used by the Yarn Spinner compiler.
+
+#### Select Content with Line Groups
+
+Yarn Spinner &lt;next&gt; introduces _line groups_. When the dialogue reaches a line group, Yarn Spinner chooses a single item from that group and runs it.
+
+Line groups are especially useful for barks, and for any other situation where the game needs to decide what to show to the player.
+
+>Consider the following example:
+>
+>```
+>// Lines from a soldier who's guarding a castle's draw-bridge.
+>=> Halt!
+>=> Stop right there!
+>=> No entry!
+>```
+>
+>When the dialogue reaches this line group, the soldier will say one of these lines.
+
+Lines in a line group can have _conditions_ that control whether or not they're available to be selected. Conditions can be used to show show lines that depend upon the state of the game.
+
+> For example, imagine that the variable `$is_criminal` represents whether the player has broken the law in the game. The guard can have additional lines added that make sense when this variable is `true`:
+>
+>```
+>=> Halt!
+>=> Stop right there!
+>=> No entry!
+>=> Stop, criminal scum! <<if $is_criminal>>
+>=> Halt, you brigand! <<if $is_criminal>>
+>=> Thief! Stop right there! <<if $is_criminal>>
+>```
+>
+>If `$is_criminal` is true, then any of these lines may be run, but if `$is_criminal` is false, then one of only the first three lines may be run.
+
+Items in line groups can have 'child' items, which can be any kind of content: lines, options, commands, or any other valid syntax. You add child items to an item in a line group by indenting it.
+
+> For example, the 'wish I'd get a transfer' line in the previous example can be moved to a child line:
+> 
+> ```
+> => Another day, guarding the bridge. 
+>   Wish I'd get a transfer.
+> ```
+> 
+> In this example, if the dialogue system selects the line "Another day, guarding the bridge", that line will run, and then the line "Wish I'd get a transfer" will run. 
+
+The way that Yarn Spinner chooses which specific item in a line group to run depends on your game. By default, Yarn Spinner will choose the _first item_ in the line group that passes its condition. However, you can customise this by providing a _saliency strategy_. 'Saliency' means how relevant a piece of content is to the player, and there are several ways to decide which items is the most salient.
+
+Yarn Spinner ships with several saliency strategies to choose from:
+
+* **First**: Chooses the first item. (This strategy is the default, if no other is provided.)
+* **Best**: chooses the item that has the most number of variables in its condition; if multiple are available, chooses the first one in the line group.
+* **Best least-recently-seen**: Chooses the item that the player has seen the fewest number of times, preferring items that have more variables in their condition; if multiple are available, chooses the first in the line group. Tracks view counts in the game's variable storage.
+* **Random best least-recently-seen**: Same as 'best least-recently-seen', but if multiple choices are equally salient, chooses a random one in the group.
+
+You can also create your own custom saliency strategy by creating a C# class that implements the interface `IContentSaliencyStrategy`.
+
+To set a saliency strategy, create an instance of the appropriate saliency strategy class, and set your `Dialogue` object's `ContentSaliencyStrategy` property to it:
+
+```csharp
+VariableStorage storage = /* your game's variable storage */
+Dialogue dialogue = /* your game's dialogue controller */
+
+dialogue.ContentSaliencyStrategy = new Yarn.Saliency.BestLeastRecentlyViewedSalienceStrategy(storage);
+```
 
 ### Changed
 
@@ -230,6 +563,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added a new method, `Utility.DetermineNodeConnections`, that analyses Yarn files and returns a directed graph of node connections.
   - This feature is used in the Language Server to produce reports like voice-over scripts.
 - Language Server: New command "yarnspinner.graph" that exports a string which is a graph representation in either mermaid or dot format depending on config.
+
+### Removed
+
+- Removed `null` from the Yarn grammar.
+  - `null` was removed from the language in version 2.0.0, but it was kept in the grammar to make it possible to emit special error messages when it was used that explained that the language had changed.
 
 ## [2.2.2] 2022-07-22
 

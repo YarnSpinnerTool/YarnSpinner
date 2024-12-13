@@ -1,0 +1,4 @@
+title: Start
+---
+<<set $a = true + false>> // error '+' cannot be used with a bool
+===

@@ -1,0 +1,42 @@
+title: Start
+---
+Line 1
+<<detour Node2>>
+Line 5
+<<jump VisitCountTest>>
+===
+title: Node2
+---
+Line 2
+<<detour {"Node3"}>>
+Line 4
+===
+title: Node3
+---
+Line 3
+
+// Early return
+<<return>>
+
+Error: should not be seen
+===
+title: VisitCountTest
+---
+// 0 - this is the first time we have run this node
+VisitCountTest: {visited_count("VisitCountTest")} 
+<<detour VisitCountTest2>>
+Error: We should not see this
+===
+title: VisitCountTest2
+---
+// still 0 - we detoured into this node but have not yet 'left' VisitCountTest
+VisitCountTest: {visited_count("VisitCountTest")} 
+
+<<jump VisitCountTest3>>
+===
+title: VisitCountTest3
+---
+// now both 1 - we unwound the call stack when we jumped out of VisitCountTest2, thus exiting both nodes
+VisitCountTest: {visited_count("VisitCountTest")} 
+VisitCountTest2: {visited_count("VisitCountTest2")} 
+===

@@ -42,7 +42,16 @@ namespace YarnLanguageServer
                 {
                     foreach (var attribute in list.Attributes)
                     {
-                        var name = attribute.Name.ToString();
+                        string name;
+                        if (attribute.Name is QualifiedNameSyntax qualifiedName)
+                        {
+                            name = qualifiedName.Right.ToString();
+                        }
+                        else
+                        {
+                            name = attribute.Name.ToString();
+                        }
+
                         if (name.EndsWith("Attribute"))
                         {
                             name = name.Remove(name.LastIndexOf("Attribute"));
@@ -82,13 +91,15 @@ namespace YarnLanguageServer
                 .SelectMany(c => c.DescendantNodes())
                 .OfType<InvocationExpressionSyntax>()
                 .Where(i => i.Expression.ToString().Contains("AddCommandHandler"))
-                .Where(i => i.ArgumentList.Arguments.Count == 2);
+                .Where(i => i.ArgumentList.Arguments.Count == 2)
+                .Where(i => i.ArgumentList.Arguments[0].Expression.Kind() == SyntaxKind.StringLiteralExpression);
 
             var addFunctionInvocations = nonGeneratedClasses
                 .SelectMany(c => c.DescendantNodes())
                 .OfType<InvocationExpressionSyntax>()
                 .Where(i => i.Expression.ToString().Contains("AddFunction"))
-                .Where(i => i.ArgumentList.Arguments.Count == 2);
+                .Where(i => i.ArgumentList.Arguments.Count == 2)
+                .Where(i => i.ArgumentList.Arguments[0].Expression.Kind() == SyntaxKind.StringLiteralExpression);
 
             foreach (var invocation in addCommandInvocations)
             {
@@ -105,6 +116,7 @@ namespace YarnLanguageServer
             foreach (var invocation in addFunctionInvocations)
             {
                 Action action = GetActionFromRuntimeRegistration(invocation, ActionType.Function);
+
                 action.SourceFileUri = uri;
 
                 // Set the source range to the range of the method, if we know
@@ -181,7 +193,8 @@ namespace YarnLanguageServer
             {
                 action.Type = ActionType.Command;
 
-                if (action.IsStatic == false) {
+                if (action.IsStatic == false)
+                {
                     // Instance command methods take an initial GameObject
                     // parameter, which indicates which game object should
                     // receive the command. Add this new parameter to the start
@@ -190,7 +203,7 @@ namespace YarnLanguageServer
                     {
                         Name = "target",
                         Description = "The game object that should receive the command",
-                        Type = Yarn.BuiltinTypes.String,
+                        Type = Yarn.Types.String,
                         DisplayTypeName = "GameObject",
                         IsParamsArray = false,
                     };
@@ -247,25 +260,25 @@ namespace YarnLanguageServer
             // 'Any'
             if (typeSyntax == null)
             {
-                return Yarn.BuiltinTypes.Any;
+                return Yarn.Types.Any;
             }
 
             switch (typeSyntax.ToString())
             {
                 case "string":
-                    return Yarn.BuiltinTypes.String;
+                    return Yarn.Types.String;
                 case "int":
                 case "float":
                 case "double":
                 case "byte":
                 case "uint":
                 case "decimal":
-                    return Yarn.BuiltinTypes.Number;
+                    return Yarn.Types.Number;
                 case "bool":
-                    return Yarn.BuiltinTypes.Boolean;
+                    return Yarn.Types.Boolean;
                 default:
                     // We don't know the type. Mark it as 'any'.
-                    return Yarn.BuiltinTypes.Any;
+                    return Yarn.Types.Any;
             }
         }
 
@@ -342,7 +355,8 @@ namespace YarnLanguageServer
 
             documentation = summary ?? triviaStructure.ToString();
 
-            if (remarks != null) {
+            if (remarks != null)
+            {
                 documentation += "\n\n" + remarks;
             }
 

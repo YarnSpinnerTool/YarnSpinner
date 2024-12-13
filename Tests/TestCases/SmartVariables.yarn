@@ -1,0 +1,31 @@
+title: Start
+---
+// Declare a new variable, $player_can_afford_pie, which
+// is a boolean value that is 'true' when the player has
+// more than 10 money
+
+<<declare $player_can_afford_pie = $player_money > 10>>
+
+<<if $player_can_afford_pie>>
+    Player: One pie, please.
+    PieMaker: Certainly!
+<<else>>
+    Player: Can I have a pie?
+    PieMaker: You can't afford one!
+<<endif>>
+
+// Variables are allowed to appear multiple times in a smart variable
+<<declare $a = false as bool>>
+<<declare $b = false as bool>>
+
+<<declare $C = (((!$a) && $b) || $b)>>
+
+// Smart variables are allowed to reference other smart variables, so long as
+// this does not create a loop
+
+<<declare $D = $C || $player_can_afford_pie>>
+
+// The same smart variable can appear multiple times in a declaration - this is
+// fine, because it doesn't cause a loop
+<<declare $E = $C || $C>>
+===

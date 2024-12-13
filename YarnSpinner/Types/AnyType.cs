@@ -3,6 +3,8 @@
 
 namespace Yarn
 {
+    using System;
+    using System.Collections.Generic;
     using MethodCollection = System.Collections.Generic.IReadOnlyDictionary<string, System.Delegate>;
 
     /// <summary>
@@ -13,18 +15,26 @@ namespace Yarn
     /// <remarks>
     /// This is the parent type of all types.
     /// </remarks>
-    internal class AnyType : IType
+    internal class AnyType : TypeBase
     {
-        /// <inheritdoc/>
-        public string Name => "Any";
+        public AnyType() : base(null) { }
+
+        public AnyType(MethodCollection methods) : base(methods) { }
 
         /// <inheritdoc/>
-        public IType Parent { get => null; }
+        public override string Name => "Any";
 
         /// <inheritdoc/>
-        public string Description { get => "Any type."; }
+        public override IType? Parent { get => null; }
 
         /// <inheritdoc/>
-        public MethodCollection Methods => null;
+        public override string Description { get => "Any type."; }
+
+        /// <inheritdoc/>
+        public override MethodCollection Methods => new Dictionary<string, System.Delegate>();
+
+        public IReadOnlyDictionary<string, IType> Members => new Dictionary<string, Yarn.IType>();
+
+        internal override IConvertible DefaultValue => throw new InvalidOperationException("The Any type does not have a default value.");
     }
 }

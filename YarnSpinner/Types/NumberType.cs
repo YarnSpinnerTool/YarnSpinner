@@ -7,19 +7,18 @@ namespace Yarn
     using MethodCollection = System.Collections.Generic.IReadOnlyDictionary<string, System.Delegate>;
 
     /// <summary>
-    /// An <see cref="IBridgeableType{T}"/> that bridges to <see
-    /// cref="float"/> values.
+    /// A type that represents floating-point number values.
     /// </summary>
-    internal class NumberType : TypeBase, IBridgeableType<float>
+    internal class NumberType : TypeBase
     {
         /// <inheritdoc/>
-        public float DefaultValue => default;
+        internal override System.IConvertible DefaultValue => default(float);
 
         /// <inheritdoc/>
         public override string Name => "Number";
 
         /// <inheritdoc/>
-        public override IType Parent => BuiltinTypes.Any;
+        public override IType Parent => Types.Any;
 
         /// <inheritdoc/>
         public override string Description => "Number";
@@ -40,7 +39,7 @@ namespace Yarn
             { Operator.LessThanOrEqualTo.ToString(), TypeUtil.GetMethod(MethodLessThanOrEqualTo) },
         };
 
-        public NumberType() : base(NumberType.DefaultMethods) {}
+        public NumberType() : base(NumberType.DefaultMethods) { }
 
         /// <inheritdoc/>
         public float ToBridgedType(Value value)

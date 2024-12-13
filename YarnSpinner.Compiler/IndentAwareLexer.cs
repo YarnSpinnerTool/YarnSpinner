@@ -3,10 +3,10 @@
 
 namespace Yarn.Compiler
 {
+    using Antlr4.Runtime;
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using Antlr4.Runtime;
 
     /// <summary>
     /// A Lexer subclass that detects newlines and generates indent and
@@ -16,6 +16,49 @@ namespace Yarn.Compiler
     {
         // TODO: come up with a better system
         // pretty sure some of these can vars be rolled up into one another
+
+        // public virtual bool IsInWhenClause {get;set;}
+        // public virtual void EnterWhenClause() { IsInWhenClause = true; }
+        // public virtual void ExitWhenClause() { IsInWhenClause = false; }
+        // public virtual bool CheckMostRecentHeaderKeyType(string text) { 
+
+        // } 
+
+        private bool InWhenClause = false;
+
+        /// <summary>
+        /// Returns a value indicating whether the lexer is currently lexing an
+        /// expression that's part of a 'when' clause.
+        /// </summary>
+        /// <remarks>
+        /// This value is set by <see cref="SetInWhenClause"/>.
+        /// </remarks>
+        public bool IsInWhenClause() => this.InWhenClause;
+
+        /// <summary>
+        /// Sets a value indicating whether the lexer is currently lexing an
+        /// expression that's part of a 'when' clause.
+        /// </summary>
+        /// <param name="val">The value to set.</param>
+        /// <remarks>
+        /// This value can be accessed by calling <see cref="IsInWhenClause"/>.
+        /// </remarks>
+        public virtual void SetInWhenClause(bool val) => this.InWhenClause = val;
+
+        /// <summary>
+        /// The collection of tokens that we have seen, but have not yet
+        /// returned. This is needed when NextToken encounters a newline,
+        /// which means we need to buffer indents or dedents. NextToken
+        /// only returns a single <see cref="IToken"/> at a time, which
+        /// means we use this list to buffer it.
+        /// </summary>
+        private readonly Queue<IToken> pendingTokens = new Queue<IToken>();
+
+        /// <summary>
+        /// The collection of <see cref="LexerWarning"/> objects we've
+        /// generated.
+        /// </summary>
+        private readonly List<LexerWarning> warnings = new List<LexerWarning>();
 
         /// <summary>
         /// A stack keeping track of the levels of indentations we have
@@ -28,37 +71,24 @@ namespace Yarn.Compiler
         /// This is used to see if depth has changed between lines.
         /// </summary>
         private int lastIndent = 0;
+
         /// <summary>
         /// A flag to say the last line observed was a shortcut or not.
         /// Used to determine if tracking indents needs to occur.
         /// </summary>
-        bool lineContainsShortcut = false;
+        private bool lineContainsIndentTrackingToken = false;
+
         /// <summary>
         /// Holds the last observed token from the stream.
         /// Used to see if a line is blank or not.
         /// </summary>
-        IToken lastToken;
+        private IToken? lastToken;
 
         /// <summary>
-        /// holds the line number of the last seen option.
-        /// Lets us work out if the blank line needs to end the option.
+        /// Holds the line number of the last seen indent-tracking content. Lets
+        /// us work out if the blank line needs to end the option.
         /// </summary>
-        int lastSeenOptionContent = -1;
-
-        /// <summary>
-        /// The collection of tokens that we have seen, but have not yet
-        /// returned. This is needed when NextToken encounters a newline,
-        /// which means we need to buffer indents or dedents. NextToken
-        /// only returns a single <see cref="IToken"/> at a time, which
-        /// means we use this list to buffer it.
-        /// </summary>
-        private readonly Queue<IToken> pendingTokens = new Queue<IToken>();
-
-        /// <summary>
-        /// The collection of <see cref="Warning"/> objects we've
-        /// generated.
-        /// </summary>
-        private readonly List<Warning> warnings = new List<Warning>();
+        private int lastSeenIndentTrackingContent = -1;
 
         /// <summary>
         /// Initializes a new instance of the <see
@@ -85,18 +115,53 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// Looks ahead 1 character in the input stream and returns a value
+        /// indicating whether the character is whitespace (as determined by
+        /// <see cref="char.IsWhiteSpace(char)"/>) or the <c>&gt;</c> character.
+        /// </summary>
+        protected bool IsEndOfCommandKeyword()
+        {
+            var c = LAChar(1);
+            return c == '>' || char.IsWhiteSpace(c);
+        }
+
+        private char LAChar(int dist)
+        {
+            int next = this.InputStream.LA(dist);
+            if (next == IntStreamConstants.EOF)
+            {
+                return (char)0;
+            }
+            else
+            {
+                return (char)next;
+            }
+        }
+
+        /// <summary>
         /// Gets the collection of warnings determined during lexing.
         /// </summary>
-        public IEnumerable<Warning> Warnings { get => this.warnings; }
+        public IEnumerable<LexerWarning> Warnings { get => this.warnings; }
+
+        private List<IToken> tokens = new List<IToken>();
+        private void PushToken(IToken token)
+        {
+            tokens.Add(token);
+            if (tokens.Count > 5)
+            {
+                tokens.RemoveAt(0);
+            }
+        }
 
         /// <inheritdoc/>
-        public override IToken NextToken()
+        public override IToken? NextToken()
         {
+            IToken? tokenToReturn;
             if (this.HitEOF && this.pendingTokens.Count > 0)
             {
                 // We have hit the EOF, but we have tokens still pending.
                 // Start returning those tokens.
-                return this.pendingTokens.Dequeue();
+                tokenToReturn = this.pendingTokens.Dequeue();
             }
             else if (this.InputStream.Size == 0)
             {
@@ -105,7 +170,7 @@ namespace Yarn.Compiler
                 this.HitEOF = true;
 
                 // Return the EOF token.
-                return new CommonToken(Eof, "<EOF>");
+                tokenToReturn = new CommonToken(Eof, "<EOF>");
             }
             else
             {
@@ -116,19 +181,25 @@ namespace Yarn.Compiler
                 if (this.pendingTokens.Count > 0)
                 {
                     // Then, return a single token from the queue.
-                    return this.pendingTokens.Dequeue();
+                    tokenToReturn = this.pendingTokens.Dequeue();
                 }
                 else
                 {
                     // Nothing left in the queue. Return null.
-                    return null;
+                    tokenToReturn = null;
                 }
             }
+            if (tokenToReturn != null)
+            {
+                this.PushToken(tokenToReturn);
+            }
+
+            return tokenToReturn;
         }
 
         private void CheckNextToken()
         {
-            var currentToken = base.NextToken();
+            IToken currentToken = base.NextToken();
 
             switch (currentToken.Type)
             {
@@ -145,19 +216,21 @@ namespace Yarn.Compiler
                     this.HandleEndOfFileToken(currentToken);
                     break;
 
+                case YarnSpinnerLexer.LINE_GROUP_ARROW:
                 case YarnSpinnerLexer.SHORTCUT_ARROW:
                     this.pendingTokens.Enqueue(currentToken);
-                    lineContainsShortcut = true;
+                    this.lineContainsIndentTrackingToken = true;
                     break;
 
                 case YarnSpinnerLexer.BODY_END:
                     // we are at the end of the node
                     // depth no longer matters
                     // clear the stack
-                    lineContainsShortcut = false;
-                    lastIndent = 0;
-                    unbalancedIndents.Clear();
-                    lastSeenOptionContent = -1;
+                    this.lineContainsIndentTrackingToken = false;
+                    this.lastIndent = 0;
+                    this.unbalancedIndents.Clear();
+                    this.lastSeenIndentTrackingContent = -1;
+
                     // TODO: this should be empty by now actually...
                     this.pendingTokens.Enqueue(currentToken);
                     break;
@@ -166,7 +239,7 @@ namespace Yarn.Compiler
                     this.pendingTokens.Enqueue(currentToken);
                     break;
             }
-            lastToken = currentToken;
+            this.lastToken = currentToken;
         }
 
         private void HandleEndOfFileToken(IToken currentToken)
@@ -175,7 +248,7 @@ namespace Yarn.Compiler
             // currently have on the stack.
             while (this.unbalancedIndents.Count > 0)
             {
-                var indent = this.unbalancedIndents.Pop();
+                int indent = this.unbalancedIndents.Pop();
 
                 // so that we don't end up printing <dedent from 8> into the stream we set the text to be empty
                 // I dislike this and need to look into if you can set a debug text setting in ANTLR
@@ -199,13 +272,13 @@ namespace Yarn.Compiler
             int currentIndentationLength = this.GetLengthOfNewlineToken(currentToken);
 
             // we have seen an option somewhere
-            if (lastSeenOptionContent != -1)
+            if (this.lastSeenIndentTrackingContent != -1)
             {
                 // we are a blank line
-                if (currentToken.Type == lastToken?.Type)
+                if (currentToken.Type == this.lastToken?.Type)
                 {
                     // is the option content directly above us?
-                    if (this.Line - lastSeenOptionContent == 1)
+                    if (this.Line - this.lastSeenIndentTrackingContent == 1)
                     {
                         // so that we don't end up printing <ending option group> into the stream we set the text to be empty
                         // I dislike this and need to look into if you can set a debug text setting in ANTLR
@@ -215,13 +288,13 @@ namespace Yarn.Compiler
                     }
 
                     // disabling the option tracking
-                    lastSeenOptionContent = -1;
+                    this.lastSeenIndentTrackingContent = -1;
                 }
             }
 
             // we need to actually see if there is a shortcut *somewhere* above us
             // if there isn't we just chug on without worrying
-            if (lineContainsShortcut)
+            if (this.lineContainsIndentTrackingToken)
             {
                 // we have a shortcut *somewhere* above us
                 // that means we need to check our depth
@@ -229,25 +302,31 @@ namespace Yarn.Compiler
 
                 // if the depth of the current line is greater than the previous one
                 // we need to add this depth to the indents stack
-                if (currentIndentationLength > lastIndent)
+                if (currentIndentationLength > this.lastIndent)
                 {
-                    unbalancedIndents.Push(currentIndentationLength);
-                    // so that we don't end up printing <indent to 8> into the stream we set the text to be empty
-                    // I dislike this and need to look into if you can set a debug text setting in ANTLR
+                    this.unbalancedIndents.Push(currentIndentationLength);
+
+                    // so that we don't end up printing <indent to 8> into the
+                    // stream we set the text to be empty. I dislike this and
+                    // need to look into if you can set a debug text setting in
+                    // ANTLR.
+
                     // TODO: see above comment
+                    //
                     // this.InsertToken($"<indent to {currentIndentationLength}>", YarnSpinnerLexer.INDENT);
                     this.InsertToken(string.Empty, YarnSpinnerLexer.INDENT);
                 }
+
                 // we've now started tracking the indentation, or ignored it, so can turn this off
-                lineContainsShortcut = false;
-                lastSeenOptionContent = this.Line;
+                this.lineContainsIndentTrackingToken = false;
+                this.lastSeenIndentTrackingContent = this.Line;
             }
 
             // now we need to see if the current depth requires any indents or dedents
             // we do this by first checking to see if there are any unbalanced indents
-            if (unbalancedIndents.Count > 0)
+            if (this.unbalancedIndents.Count > 0)
             {
-                var top = unbalancedIndents.Peek();
+                int top = this.unbalancedIndents.Peek();
 
                 // later should make it check if indentation has changed inside the statement block and throw out a warning
                 // this.warnings.Add(new Warning { Token = currentToken, Message = "Indentation inside of shortcut block has changed. This is generally a bad idea."});
@@ -263,25 +342,26 @@ namespace Yarn.Compiler
                     // this.InsertToken($"<dedent from {top}>", YarnSpinnerLexer.DEDENT);
                     this.InsertToken(string.Empty, YarnSpinnerLexer.DEDENT);
 
-                    unbalancedIndents.Pop();
+                    this.unbalancedIndents.Pop();
 
-                    if (unbalancedIndents.Count > 0)
+                    if (this.unbalancedIndents.Count > 0)
                     {
-                        top = unbalancedIndents.Peek();
+                        top = this.unbalancedIndents.Peek();
                     }
                     else
                     {
                         top = 0;
+
                         // we've dedented all the way out of the shortcut
                         // as such we are done with the option block
                         // previousLineWasOptionOrOptionBlock = false;
-                        lastSeenOptionContent = this.Line;
+                        this.lastSeenIndentTrackingContent = this.Line;
                     }
                 }
             }
 
             // finally we update the last seen depth
-            lastIndent = currentIndentationLength;
+            this.lastIndent = currentIndentationLength;
         }
 
         // Given a NEWLINE token, return the length of the indentation
@@ -314,7 +394,7 @@ namespace Yarn.Compiler
 
             if (sawSpaces && sawTabs)
             {
-                this.warnings.Add(new Warning { Token = currentToken, Message = "Indentation contains tabs and spaces" });
+                this.warnings.Add(new LexerWarning { Token = currentToken, Message = "Indentation contains tabs and spaces" });
             }
 
             return length;
@@ -332,12 +412,12 @@ namespace Yarn.Compiler
             // ***
             // https://www.antlr.org/api/Java/org/antlr/v4/runtime/Lexer.html#_tokenStartCharIndex
             int startIndex = this.TokenStartCharIndex + this.Text.Length;
-            this.InsertToken(startIndex, startIndex - 1, text, type, this.Line, this.Column, YarnSpinnerLexer.DefaultTokenChannel);
+            this.InsertToken(startIndex, startIndex - 1, text, type, this.Line, this.Column, DefaultTokenChannel);
         }
 
         private void InsertToken(int startIndex, int stopIndex, string text, int type, int line, int column, int channel)
         {
-            var tokenFactorySourcePair = Tuple.Create((ITokenSource)this, (ICharStream)this.InputStream);
+            Tuple<ITokenSource, ICharStream> tokenFactorySourcePair = Tuple.Create((ITokenSource)this, (ICharStream)this.InputStream);
 
             CommonToken token = new CommonToken(tokenFactorySourcePair, type, channel, startIndex, stopIndex)
             {
@@ -352,7 +432,7 @@ namespace Yarn.Compiler
         /// <summary>
         /// A warning emitted during lexing.
         /// </summary>
-        public struct Warning
+        public struct LexerWarning
         {
             /// <summary>
             /// The token associated with the warning.

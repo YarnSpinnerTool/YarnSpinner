@@ -11,7 +11,7 @@ namespace YarnLanguageServer.Handlers
 {
     internal class CodeLensHandler : ICodeLensHandler
     {
-        private Workspace workspace;
+        private readonly Workspace workspace;
 
         public CodeLensHandler(Workspace workspace)
         {

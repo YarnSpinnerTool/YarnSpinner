@@ -1,40 +1,78 @@
-using Xunit;
+using FluentAssertions;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Yarn;
-using System.Reflection;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Globalization;
+using System.Reflection;
+using Xunit.Abstractions;
+using Xunit.Sdk;
+using Yarn;
 using Yarn.Compiler;
-using FluentAssertions;
+using Yarn.Saliency;
 
 namespace YarnSpinner.Tests
 {
+    class DebugMemoryVariableStore : MemoryVariableStore
+    {
+        public override bool TryGetValue<T>(string variableName, out T result)
+        {
+            var fetched = base.TryGetValue(variableName, out result);
+            if (!fetched)
+            {
+                Console.WriteLine($"Get {typeof(T)} var {variableName}; no value found. Falling back to initial values.");
+            }
+            else
+            {
+                Console.WriteLine($"Get {typeof(T)} var {variableName}; got {result}");
+            }
+            return fetched;
+        }
+
+        public override void SetValue(string variableName, bool boolValue)
+        {
+            Console.WriteLine($"Set var {variableName} to {boolValue}");
+            base.SetValue(variableName, boolValue);
+        }
+
+        public override void SetValue(string variableName, float floatValue)
+        {
+            Console.WriteLine($"Set var {variableName} to {floatValue}");
+            base.SetValue(variableName, floatValue);
+        }
+
+        public override void SetValue(string variableName, string stringValue)
+        {
+            Console.WriteLine($"Set var {variableName} to {stringValue}");
+            base.SetValue(variableName, stringValue);
+        }
+    }
 
     public class TestBase
     {
-        protected IVariableStorage storage = new MemoryVariableStore();
+        protected readonly ITestOutputHelper output;
+        protected IVariableStorage storage = new DebugMemoryVariableStore();
         protected Dialogue dialogue;
         protected IDictionary<string, Yarn.Compiler.StringInfo> stringTable;
         protected IEnumerable<Yarn.Compiler.Declaration> declarations;
 
         public string locale = "en";
-        
+
         protected bool runtimeErrorsCauseFailures = true;
 
         // Returns the path that contains the test case files.
 
-        public static string ProjectRootPath {
-            get {
+        public static string ProjectRootPath
+        {
+            get
+            {
                 var path = Assembly.GetCallingAssembly().Location.Split(Path.DirectorySeparatorChar).ToList();
 
                 var index = path.FindIndex(x => x == "YarnSpinner.Tests");
 
                 if (index == -1)
                 {
-                    throw new System.IO.DirectoryNotFoundException("Cannot find test data directory");                    
+                    throw new System.IO.DirectoryNotFoundException("Cannot find test data directory");
                 }
 
                 var testDataDirectory = path.Take(index).ToList();
@@ -64,136 +102,103 @@ namespace YarnSpinner.Tests
 
         protected TestPlan testPlan;
 
-        public string GetComposedTextForLine(Line line) {
-
-            var substitutedText = Dialogue.ExpandSubstitutions(stringTable[line.ID].text, line.Substitutions);
-
-            return dialogue.ParseMarkup(substitutedText).Text;
-        }
-        
-        public TestBase()
+        public string GetComposedTextForLine(Line line)
         {
 
-            dialogue = new Dialogue (storage);
+            stringTable.Should().ContainKey(line.ID);
 
-            dialogue.LanguageCode = "en";
+            var stringInfo = stringTable[line.ID];
 
-            dialogue.LogDebugMessage = delegate(string message) {
+            if (stringInfo.text == null)
+            {
+                stringInfo.shadowLineID.Should().NotBeNull("a line that has null text is expected to be a shadow line (i.e. has a shadow line ID)");
+
+                stringTable.Should().ContainKey(stringInfo.shadowLineID);
+
+                var shadowLineText = stringTable[stringInfo.shadowLineID].text;
+
+                shadowLineText.Should().NotBeNull("shadow line's source text should not be null");
+
+                stringInfo.text = shadowLineText;
+            }
+
+            var lineParser = new Yarn.Markup.LineParser();
+            var builtInReplacer = new Yarn.Markup.BuiltInMarkupReplacer();
+            lineParser.RegisterMarkerProcessor("select", builtInReplacer);
+            lineParser.RegisterMarkerProcessor("ordinal", builtInReplacer);
+            lineParser.RegisterMarkerProcessor("plural", builtInReplacer);
+
+            var substitutedText = Yarn.Markup.LineParser.ExpandSubstitutions(stringInfo.text, line.Substitutions);
+
+            return lineParser.ParseString(substitutedText, "en").Text;
+        }
+
+        public TestBase(ITestOutputHelper outputHelper)
+        {
+            this.output = outputHelper;
+
+            dialogue = new Dialogue(storage);
+
+            dialogue.ContentSaliencyStrategy = new Yarn.Saliency.BestLeastRecentlyViewedSalienceStrategy(storage);
+
+            dialogue.LogDebugMessage = delegate (string message)
+            {
+                output.WriteLine(message);
+
                 Console.ResetColor();
-                Console.WriteLine (message);
-
+                Console.WriteLine(message);
             };
 
-            dialogue.LogErrorMessage = delegate(string message) {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine ("ERROR: " + message);
-                Console.ResetColor ();
+            dialogue.LogErrorMessage = delegate (string message)
+            {
+                output.WriteLine("ERROR: " + message);
 
-                if (runtimeErrorsCauseFailures == true) {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("ERROR: " + message);
+                Console.ResetColor();
+
+                if (runtimeErrorsCauseFailures == true)
+                {
                     message.Should().NotBeNull();
                 }
-                    
+
             };
 
-            dialogue.LineHandler = delegate (Line line) {
-                var id = line.ID;
-
-                stringTable.Keys.Should().Contain(id);
-
-                var lineNumber = stringTable[id].lineNumber;
-
-                var text = GetComposedTextForLine(line);
-
-                Console.WriteLine("Line: " + text);
-
-                if (testPlan != null) {
-                    testPlan.Next();
-
-                    if (testPlan.nextExpectedType == TestPlan.Step.Type.Line) {
-                        $"Line {lineNumber}: {text}".Should().Be($"Line {lineNumber}: {testPlan.nextExpectedValue}");
-                    } else {
-                        throw new Xunit.Sdk.XunitException($"Received line {text}, but was expecting a {testPlan.nextExpectedType.ToString()}");
-                    }
-                }
-            };
-
-            dialogue.OptionsHandler = delegate (OptionSet optionSet) {
-                var optionCount = optionSet.Options.Length;
-
-                Console.WriteLine("Options:");
-                foreach (var option in optionSet.Options) {
-                    var optionText = GetComposedTextForLine(option.Line);
-                    Console.WriteLine(" - " + optionText);
-                }
-
-                if (testPlan != null) {
-                    testPlan.Next();
-
-                    if (testPlan.nextExpectedType != TestPlan.Step.Type.Select) {
-                        throw new Xunit.Sdk.XunitException($"Received {optionCount} options, but wasn't expecting them (was expecting {testPlan.nextExpectedType.ToString()})");
-                    }
-
-                    // Assert that the list of options we were given is
-                    // identical to the list of options we expect
-                    var actualOptionList = optionSet.Options
-                        .Select(o => (GetComposedTextForLine(o.Line), o.IsAvailable))
-                        .ToList();
-                    actualOptionList.Should().Contain(testPlan.nextExpectedOptions);
-
-                    var expectedOptionCount = testPlan.nextExpectedOptions.Count();
-
-                    optionCount.Should().Be(expectedOptionCount);
-                    
-                    if (testPlan.nextOptionToSelect != -1) {
-                        dialogue.SetSelectedOption(testPlan.nextOptionToSelect - 1);                    
-                    } else {
-                        dialogue.SetSelectedOption(0);                    
-                    }
-                }
-
-                
-            };
-
-            dialogue.CommandHandler = delegate (Command command) {
-                Console.WriteLine("Command: " + command.Text);
-                
-                if (testPlan != null) {
-                    testPlan.Next();
-                    if (testPlan.nextExpectedType != TestPlan.Step.Type.Command)
-                    {
-                        throw new Xunit.Sdk.XunitException($"Received command {command.Text}, but wasn't expecting to select one (was expecting {testPlan.nextExpectedType.ToString()})");
-                    }
-                    else
-                    {
-                        // We don't need to get the composed string for a
-                        // command because it's been done for us in the
-                        // virtual machine. The VM can do this because
-                        // commands are not localised, so we don't need to
-                        // refer to the string table to get the text.
-                        command.Text.Should().Be(testPlan.nextExpectedValue);
-                    }
-                }
-            };
-
-            dialogue.Library.RegisterFunction ("assert", delegate(bool value) {
+            dialogue.Library.RegisterFunction("assert", delegate (bool value)
+            {
                 value.Should().BeTrue("assertion should pass");
                 return true;
             });
 
-            
             // When a node is complete, do nothing
-            dialogue.NodeCompleteHandler = (string nodeName) => {};
+            dialogue.NodeCompleteHandler = (string nodeName) => { };
+        }
 
-            // When dialogue is complete, check that we expected a stop
-            dialogue.DialogueCompleteHandler = () => {
-                if (testPlan != null) {
-                    testPlan.Next();
+        /// <summary>
+        /// Runs the result of a Yarn script compilation, checking its behaviour
+        /// against a test plan.
+        /// </summary>
+        /// <param name="compilationResult">The compilation result to
+        /// execute.</param>
+        /// <param name="plan">The test plan to execute.</param>
+        /// <param name="nodeName">The node name to start executing
+        /// from.</param>
+        /// <param name="config">A delegate that is called immediately before
+        /// running the test, and can be used to configure the state of the <see
+        /// cref="Dialogue"/> object that runs the script.</param>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref
+        /// name="plan"/> is <see langword="null"/>.</exception>
+        protected void RunTestPlan(CompilationResult compilationResult, TestPlan plan, Action<Dialogue> config = null)
+        {
+            compilationResult.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
 
-                    if (testPlan.nextExpectedType != TestPlan.Step.Type.Stop) {
-                        throw new Xunit.Sdk.XunitException($"Stopped dialogue, but wasn't expecting to select it (was expecting {testPlan.nextExpectedType.ToString()})");
-                    }
-                }
-            };
+            dialogue.SetProgram(compilationResult.Program);
+            stringTable = compilationResult.StringTable;
+            testPlan = plan ?? throw new ArgumentNullException(nameof(plan));
+
+            config?.Invoke(dialogue);
+
+            RunStandardTestcase();
         }
 
         /// <summary>
@@ -202,69 +207,194 @@ namespace YarnSpinner.Tests
         /// </summary>
         /// <param name="nodeName">The name of the node to start the test
         /// from. Defaults to "Start".</param>
-        protected void RunStandardTestcase(string nodeName = "Start") {
+        protected void RunStandardTestcase()
+        {
 
-            if (testPlan == null) {
+            if (testPlan == null)
+            {
                 throw new Xunit.Sdk.XunitException("Cannot run test: no test plan provided.");
             }
 
-            dialogue.SetNode(nodeName);
-
-            // Called when the test plan encounters a 'set' instruction. Receive
-            // the name of the variable and a string containing the expected
-            // value, and update variable storage appropriately.
-            testPlan.onSetVariable = (name, value) => {
-                if (dialogue.Program.InitialValues.TryGetValue(name, out var operand) == false) {
-                    throw new ArgumentException($"Variable {name} is not valid in program");
-                }
-
-                Console.WriteLine($"Setting {name} to {value}");
-
-                // The way we parse 'value' depends on the declared type of the
-                // variable, chich we can determine from the Program's initial
-                // values.
-
-                switch (operand.ValueCase)
-                {
-                    case Operand.ValueOneofCase.StringValue:
-                        // The variable is a string - use 'value' directly.
-                        dialogue.VariableStorage.SetValue(name, value);
-                        break;
-                    case Operand.ValueOneofCase.BoolValue:
-                        // The variable is boolean - parse it as a bool.
-                        dialogue.VariableStorage.SetValue(name, Convert.ToBoolean(value, CultureInfo.InvariantCulture));
-                        break;
-                    case Operand.ValueOneofCase.FloatValue:
-                        // The variable is number - parse it as a float.
-                        dialogue.VariableStorage.SetValue(name, Convert.ToSingle(value, CultureInfo.InvariantCulture));
-                        break;
-                    default:
-                        // We don't know what this is.
-                        throw new InvalidOperationException($"Invalid variable type {operand.ValueCase}");
-                }
-            };
-
-            testPlan.onRunNode = (name) => dialogue.SetNode(name);
-
-            // Step through any steps at the start of the plan that are not
-            // blocking, so that we execute any 'sets' or 'runs' or similar. (If
-            // we don't do this, then Next() will not be called until the first
-            // piece of content, and that means that the initial state won't be
-            // what the test plan specifies.)
-            while (testPlan.CurrentStep != null && testPlan.CurrentStep.IsBlocking == false) {
-                testPlan.Next();
+            if (dialogue.Program == null)
+            {
+                throw new Xunit.Sdk.XunitException("Cannot run test: dialogue does not have a program.");
             }
 
-            // Finally, run the program.
-            do {
-                dialogue.Continue();
-            } while (dialogue.IsActive);
+            List<TestPlan.ExpectOptionStep> expectedOptions = new();
 
+            var saliencyStrategies = new Dictionary<string, IContentSaliencyStrategy> {
+                { "first", new FirstSaliencyStrategy() },
+                { "best", new BestSaliencyStrategy() },
+                { "best_least_recently_seen", new BestLeastRecentlyViewedSalienceStrategy(dialogue.VariableStorage)}
+            };
+
+            OptionsHandler GetNoOptionsExpectedHandler(TestPlan.Step step) => new OptionsHandler((opts) => throw new XunitException("Expected " + step.ToString() + ", not options"));
+
+            LineHandler GetNoLineExpectedHandler(TestPlan.Step step) => new LineHandler((line) => throw new XunitException("Expected " + step.ToString() + ", not options"));
+
+            CommandHandler GetNoCommandExpectedHandler(TestPlan.Step step) => new CommandHandler((opts) => throw new XunitException("Expected " + step.ToString() + ", not options"));
+
+            DialogueCompleteHandler GetNoStopExpectedHandler(TestPlan.Step step) => new DialogueCompleteHandler(() => throw new XunitException("Expected " + step.ToString() + ", not options"));
+
+            void ExpectLine(TestPlan.ExpectLineStep expectation)
+            {
+                dialogue.OptionsHandler = GetNoOptionsExpectedHandler(expectation);
+                dialogue.CommandHandler = GetNoCommandExpectedHandler(expectation);
+                dialogue.DialogueCompleteHandler = GetNoStopExpectedHandler(expectation);
+                dialogue.LineHandler = (line) =>
+                {
+                    var id = line.ID;
+
+                    stringTable.Keys.Should().Contain(id);
+
+                    var lineNumber = stringTable[id].lineNumber;
+
+                    var text = GetComposedTextForLine(line);
+
+                    if (expectation.ExpectedText != null)
+                    {
+                        text.Should().Be(expectation.ExpectedText);
+                    }
+
+                    if (expectation.ExpectedHashtags.Any())
+                    {
+                        stringTable[id].metadata.Should().Contain(expectation.ExpectedHashtags);
+                    }
+
+                    Console.WriteLine("Line: " + text);
+                };
+            }
+            void ExpectOptionsSelection(TestPlan.ActionSelectStep expectation)
+            {
+                dialogue.CommandHandler = GetNoCommandExpectedHandler(expectation);
+                dialogue.DialogueCompleteHandler = GetNoStopExpectedHandler(expectation);
+                dialogue.LineHandler = GetNoLineExpectedHandler(expectation);
+                dialogue.OptionsHandler = (opts) =>
+                {
+                    opts.Options.Should().HaveSameCount(expectedOptions);
+
+                    foreach (var (Option, Expectation) in opts.Options.Zip(expectedOptions))
+                    {
+                        stringTable.Should().ContainKey(Option.Line.ID);
+
+                        var text = GetComposedTextForLine(Option.Line);
+                        if (Expectation.ExpectedText != null)
+                        {
+
+                            text.Should().Be(Expectation.ExpectedText);
+                        }
+                        if (Expectation.ExpectedHashtags.Any())
+                        {
+                            stringTable[Option.Line.ID].metadata.Should().Contain(Expectation.ExpectedHashtags);
+                        }
+                        Option.IsAvailable.Should().Be(Expectation.ExpectedAvailability, $"option \"{text}\"'s availability was expected to be {Expectation.ExpectedAvailability}");
+                    }
+                    opts.Options.Should().ContainSingle(o => o.ID == expectation.SelectedIndex, "one option should have the ID that we want to select");
+                };
+            }
+            void ExpectCommand(TestPlan.ExpectCommandStep expectation)
+            {
+                dialogue.DialogueCompleteHandler = GetNoStopExpectedHandler(expectation);
+                dialogue.LineHandler = GetNoLineExpectedHandler(expectation);
+                dialogue.OptionsHandler = GetNoOptionsExpectedHandler(expectation);
+                dialogue.CommandHandler = (command) =>
+                {
+                    command.Text.Should().Be(expectation.ExpectedText);
+                };
+            }
+            void ExpectStop(TestPlan.ExpectStop expectation)
+            {
+                dialogue.LineHandler = GetNoLineExpectedHandler(expectation);
+                dialogue.OptionsHandler = GetNoOptionsExpectedHandler(expectation);
+                dialogue.CommandHandler = GetNoCommandExpectedHandler(expectation);
+                dialogue.DialogueCompleteHandler = () =>
+                {
+
+                };
+            }
+
+
+            foreach (var run in testPlan)
+            {
+                dialogue.SetNode(run.StartNode);
+
+                foreach (var step in run)
+                {
+                    if (step is TestPlan.ExpectLineStep line)
+                    {
+                        ExpectLine(line);
+                        dialogue.Continue();
+                    }
+                    else if (step is TestPlan.ExpectOptionStep option)
+                    {
+                        // Add this option to the list of options that we expect
+                        expectedOptions.Add(option);
+                    }
+                    else if (step is TestPlan.ActionSelectStep select)
+                    {
+                        ExpectOptionsSelection(select);
+                        dialogue.Continue();
+                        dialogue.SetSelectedOption(select.SelectedIndex);
+                        expectedOptions.Clear();
+                    }
+                    else if (step is TestPlan.ExpectCommandStep command)
+                    {
+                        ExpectCommand(command);
+                        dialogue.Continue();
+                    }
+                    else if (step is TestPlan.ExpectStop stop)
+                    {
+                        ExpectStop(stop);
+                        dialogue.Continue();
+                        break;
+                    }
+                    else if (step is TestPlan.ActionJumpToNodeStep jump)
+                    {
+                        dialogue.SetNode(jump.NodeName);
+                    }
+                    else if (step is TestPlan.ActionSetVariableStep set)
+                    {
+                        if (dialogue.Program.InitialValues.TryGetValue(set.VariableName, out var operand) == false)
+                        {
+                            throw new ArgumentException($"Variable {set.VariableName} is not valid in program");
+                        }
+                        switch (set.Value)
+                        {
+                            case bool BoolValue:
+                                dialogue.VariableStorage.SetValue(set.VariableName, BoolValue);
+                                break;
+                            case int IntValue:
+                                dialogue.VariableStorage.SetValue(set.VariableName, IntValue);
+                                break;
+                        }
+                    }
+                    else if (step is TestPlan.ActionSetSaliencyStep setSaliency)
+                    {
+                        if (saliencyStrategies.TryGetValue(setSaliency.SaliencyMode, out var saliencyStrategy))
+                        {
+                            dialogue.ContentSaliencyStrategy = saliencyStrategy;
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException($"Unknown saliency strategy '{setSaliency.SaliencyMode}'");
+                        }
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Unhandled step type " + step.GetType());
+                    }
+                }
+            }
         }
 
-        protected string CreateTestNode(string source, string name="Start") {
+        protected string CreateTestNode(string source, string name = "Start")
+        {
             return $"title: {name}\n---\n{source}\n===";
-            
+
+        }
+        protected string CreateTestNode(string[] sourceLines, string name = "Start")
+        {
+            return $"title: {name}\n---\n{string.Join("\n", sourceLines)}\n===";
         }
 
         /// <summary>
@@ -272,13 +402,15 @@ namespace YarnSpinner.Tests
         /// </summary>
         /// <param name="path">The path of the file containing the test
         /// plan.</param>
-        public void LoadTestPlan(string path) {
-            this.testPlan = new TestPlan(path);
+        public void LoadTestPlan(string path)
+        {
+            this.testPlan = TestPlan.FromFile(path);
         }
 
         // Returns the list of .node and.yarn files in the
         // Tests/<directory> directory.
-        public static IEnumerable<object[]> FileSources(string directoryComponents) {
+        public static IEnumerable<object[]> FileSources(string directoryComponents)
+        {
 
             var allowedExtensions = new[] { ".node", ".yarn" };
 
@@ -290,20 +422,44 @@ namespace YarnSpinner.Tests
 
             return files.Where(p => allowedExtensions.Contains(Path.GetExtension(p)))
                         .Where(p => p.EndsWith(".upgraded.yarn") == false) // don't include ".upgraded.yarn" (used in UpgraderTests)
-                        .Select(p => new[] {Path.Combine(directory, Path.GetFileName(p))});
+                        .Select(p => new[] { Path.Combine(directory, Path.GetFileName(p)) });
         }
 
-        public static IEnumerable<object[]> DirectorySources(string directoryComponents) {
+        // Returns the list of .node and.yarn files in the Tests/<directory>
+        // directory that have a corresponding .testplan file, indicating that
+        // it is expected to compile without errors.
+        public static IEnumerable<object[]> ValidFileSources(string directoryComponents)
+        {
+
+            var allowedExtensions = new[] { ".node", ".yarn" };
+
             var directory = Path.Combine(directoryComponents.Split('/'));
 
             var path = Path.Combine(TestDataPath, directory);
 
-            try {
+            var files = GetFilesInDirectory(path);
+
+            return files.Where(p => allowedExtensions.Contains(Path.GetExtension(p)))
+                        .Where(p => p.EndsWith(".upgraded.yarn") == false) // don't include ".upgraded.yarn" (used in UpgraderTests)
+                        .Where(p => File.Exists(p.Replace(".yarn", ".testplan"))) // only include file that have a testplan (i.e. are expected to compile)
+                        .Select(p => new[] { Path.Combine(directory, Path.GetFileName(p)) });
+        }
+
+        public static IEnumerable<object[]> DirectorySources(string directoryComponents)
+        {
+            var directory = Path.Combine(directoryComponents.Split('/'));
+
+            var path = Path.Combine(TestDataPath, directory);
+
+            try
+            {
                 return Directory.GetDirectories(path)
                     .Select(d => d.Replace(TestDataPath + Path.DirectorySeparatorChar, ""))
-                    .Select(d => new[] {d});
-            } catch (DirectoryNotFoundException) {
-                return new string[] { }.Select(d => new[] {d});
+                    .Select(d => new[] { d });
+            }
+            catch (DirectoryNotFoundException)
+            {
+                return new string[] { }.Select(d => new[] { d });
             }
         }
 

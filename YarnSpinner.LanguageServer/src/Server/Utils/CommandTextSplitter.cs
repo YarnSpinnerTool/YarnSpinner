@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using Antlr4.Runtime;
 
 namespace YarnLanguageServer
 {
     public static class CommandTextSplitter
     {
-        public class CommandTextItem {
+        public class CommandTextItem
+        {
             public CommandTextItem(string text, int offset)
             {
                 Text = text;
@@ -130,7 +130,7 @@ namespace YarnLanguageServer
 
                     var bork = new CommandTextItem(output, currentComponentOffset);
                     results.Add(bork);
-                    
+
                     currentComponent.Clear();
                     currentComponentOffset = position + 1;
                 }

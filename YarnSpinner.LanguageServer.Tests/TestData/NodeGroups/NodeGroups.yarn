@@ -1,0 +1,16 @@
+title: SpeakToGuard
+when: $guard_friendly == true
+---
+// The guard likes us
+Guard: Halt, traveller!
+Player: Why, hello there!
+Guard: Ah, my friend! You may pass.
+===
+
+title: SpeakToGuard
+when: $guard_friendly == false
+---
+// The guard doesn't like us
+Guard: Halt, scum!
+Guard: None shall pass this point!
+===

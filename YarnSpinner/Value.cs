@@ -4,13 +4,26 @@
 namespace Yarn
 {
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
+
+    /// <summary>
+    /// Represents a read-only value in the Yarn Spinner virtual machine.
+    /// </summary>
+    public interface IYarnValue
+    {
+        /// <summary>
+        /// Converts this <see cref="IYarnValue"/> to type <typeparamref
+        /// name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">The type to convert to.</typeparam>
+        /// <returns>A value of type T.</returns>
+        public T ConvertTo<T>() where T : IConvertible;
+    }
 
     /// <summary>
     /// A value from inside Yarn.
     /// </summary>
-    internal partial class Value
+    internal partial class Value : IYarnValue
     {
         public Yarn.IType Type { get; internal set; }
 
@@ -34,11 +47,6 @@ namespace Yarn
         {
             this.Type = value.Type;
             this.InternalValue = value.InternalValue;
-        }
-
-        public Value(IBridgeableType<IConvertible> type) {
-            this.Type = type;
-            this.InternalValue = type.DefaultValue;
         }
 
         public Value(IType type, IConvertible internalValue)
@@ -75,11 +83,12 @@ namespace Yarn
 
         public object ConvertTo(System.Type targetType)
         {
-            if (targetType == typeof(Yarn.Value)) {
+            if (targetType == typeof(Yarn.Value))
+            {
                 return this;
             }
 
-            return Convert.ChangeType(this.InternalValue, targetType);
+            return Convert.ChangeType(this.InternalValue, targetType, System.Globalization.CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -92,6 +101,11 @@ namespace Yarn
                 "[Value: type={0}, value={1}]",
                 this.Type.Name,
                 this.ConvertTo<string>());
+        }
+
+        public override int GetHashCode()
+        {
+            return InternalValue.GetHashCode();
         }
     }
 }

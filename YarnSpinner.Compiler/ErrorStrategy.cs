@@ -9,7 +9,7 @@ internal class ErrorStrategy : DefaultErrorStrategy
     /// <inheritdoc/>
     protected override void ReportNoViableAlternative(Parser recognizer, NoViableAltException e)
     {
-        string msg = null;
+        string? msg = null;
 
         if (this.IsInsideRule<YarnSpinnerParser.If_statementContext>(recognizer)
             && recognizer.RuleContext is YarnSpinnerParser.StatementContext
@@ -23,12 +23,22 @@ internal class ErrorStrategy : DefaultErrorStrategy
 
             msg = $"More than one <<else>> statement in an <<if>> statement isn't allowed";
         }
-        else if (e.StartToken.Type == YarnSpinnerLexer.COMMAND_START 
+        else if (e.StartToken.Type == YarnSpinnerLexer.COMMAND_START
             && e.OffendingToken.Type == YarnSpinnerLexer.COMMAND_END)
         {
             // We saw a << immediately followed by a >>. The programmer
             // forgot to include command text.
             msg = $"Command text expected";
+        }
+        else if (recognizer.RuleContext is YarnSpinnerParser.Declare_statementContext
+            && e.OffendingToken.Type == YarnSpinnerLexer.FUNC_ID
+            && recognizer.TokenStream.Get(e.OffendingToken.TokenIndex - 1).Type == YarnSpinnerLexer.COMMAND_DECLARE)
+        {
+            // We're in a <<declare>> statement, and we saw a FUNC_ID
+            // immediately after the 'declare' keyword. The user forgot to
+            // include a '$' before the variable name (which is why the lexer
+            // matched a function ID, rather than a variable ID).
+            msg = "Variable names need to start with a $";
         }
 
         if (msg == null)
@@ -42,7 +52,7 @@ internal class ErrorStrategy : DefaultErrorStrategy
     /// <inheritdoc/>
     protected override void ReportInputMismatch(Parser recognizer, InputMismatchException e)
     {
-        string msg = null;
+        string? msg = null;
 
         switch (recognizer.RuleContext)
         {
@@ -100,7 +110,7 @@ internal class ErrorStrategy : DefaultErrorStrategy
         return false;
     }
 
-    private TRuleType GetEnclosingRule<TRuleType>(Parser recognizer)
+    private TRuleType? GetEnclosingRule<TRuleType>(Parser recognizer)
         where TRuleType : RuleContext
     {
         RuleContext currentContext = recognizer.RuleContext;

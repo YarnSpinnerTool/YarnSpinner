@@ -4,10 +4,10 @@
 namespace Yarn
 {
     using System.Collections.Generic;
-    using MethodCollection = System.Collections.Generic.IReadOnlyDictionary<string, System.Delegate>;
+    using System.Linq;
 
     /// <summary>
-    /// A type that represents functions.
+    /// A type that represents a function.
     /// </summary>
     /// <remarks>
     /// Functions have parameters and a return type, and can be called from
@@ -50,7 +50,7 @@ namespace Yarn
         }
 
         /// <inheritdoc/>
-        public IType Parent { get => BuiltinTypes.Any; }
+        public IType Parent { get => Types.Any; }
 
         /// <summary>
         /// Gets the type of value that this function returns.
@@ -69,8 +69,14 @@ namespace Yarn
         public List<IType> Parameters { get; } = new List<IType>();
 
         /// <inheritdoc/>
-        // Functions do not have any methods themselves
-        public MethodCollection Methods => null;
+        // Functions do not have any type members
+        public IReadOnlyDictionary<string, ITypeMember> TypeMembers => TypeBase.EmptyTypeMemberDictionary;
+
+        public FunctionType(IType returnType, params IType[] parameterTypes)
+        {
+            ReturnType = returnType ?? Types.Error;
+            Parameters = parameterTypes.ToList();
+        }
 
         /// <summary>
         /// Adds a new parameter to the function.
@@ -80,6 +86,17 @@ namespace Yarn
         internal void AddParameter(IType parameterType)
         {
             this.Parameters.Add(parameterType);
+        }
+
+        public string ToString() => $"({string.Join(", ", Parameters)}) -> {ReturnType}";
+
+        public bool Equals(IType other)
+        {
+            return other is FunctionType otherFunction
+                && otherFunction.ReturnType == ReturnType
+                && Parameters
+                    .Zip(otherFunction.Parameters, (a, b) => (First: a, Second: b))
+                    .All(pair => pair.First == pair.Second);
         }
     }
 }

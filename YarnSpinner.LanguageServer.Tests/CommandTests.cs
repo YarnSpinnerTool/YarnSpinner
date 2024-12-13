@@ -1,13 +1,14 @@
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Workspace;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
+using Yarn.Compiler;
 
 namespace YarnLanguageServer.Tests;
 
@@ -36,7 +37,8 @@ public class CommandTests : LanguageServerTestsBase
 
         result.Should().NotBeNullOrEmpty("because the file contains nodes");
 
-        foreach (var node in result) {
+        foreach (var node in result)
+        {
             node.Title.Should().NotBeNullOrEmpty("because all nodes have a title");
             node.Headers.Should().NotBeNullOrEmpty("because all nodes have headers");
             node.BodyStartLine.Should().NotBe(0, "because bodies never start on the first line");
@@ -45,9 +47,12 @@ public class CommandTests : LanguageServerTestsBase
             node.Headers.Should().Contain(h => h.Key == "title", "because all nodes have a header named 'title'")
                 .Which.Value.Should().Be(node.Title, "because the 'title' header populates the Title property");
 
-            if (node == result.First()) {
+            if (node == result.First())
+            {
                 node.HeaderStartLine.Should().Be(0, "because the first node begins on the first line");
-            } else {
+            }
+            else
+            {
                 node.HeaderStartLine.Should().NotBe(0, "because nodes after the first one begin on later lines");
             }
         }
@@ -76,7 +81,8 @@ public class CommandTests : LanguageServerTestsBase
 
         nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
-        nodeInfo.Nodes.Should().HaveCount(3, "because the file has three nodes");
+        // Remember how many nodes we had before making the change
+        var count = nodeInfo.Nodes.Count;
 
         var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
         {
@@ -93,11 +99,13 @@ public class CommandTests : LanguageServerTestsBase
         result.Edits.Should().NotBeNullOrEmpty();
         result.TextDocument.Uri.ToString().Should().Be("file://" + filePath);
 
+        Task<NodesChangedParams> nodesChangedAfterChangingText = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
+
         ChangeTextInDocument(client, result);
 
-        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
+        nodeInfo = await nodesChangedAfterChangingText;
 
-        nodeInfo.Nodes.Should().HaveCount(4, "because we added a node");
+        nodeInfo.Nodes.Should().HaveCount(count + 1, "because we added a node");
         nodeInfo.Nodes.Should()
             .Contain(n => n.Title == "Node",
                 "because the new node should be called Title")
@@ -118,7 +126,11 @@ public class CommandTests : LanguageServerTestsBase
 
         NodesChangedParams? nodeInfo = await getInitialNodesChanged;
 
-        nodeInfo.Nodes.Should().HaveCount(3, "because the file has three nodes");
+        // Remember how many nodes we had before making the change
+        var count = nodeInfo.Nodes.Count;
+
+        // Expect to receive a 'nodes changed' notification
+        Task<NodesChangedParams> nodesChangedAfterRemovingNode = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
 
         var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
         {
@@ -135,12 +147,9 @@ public class CommandTests : LanguageServerTestsBase
 
         ChangeTextInDocument(client, result);
 
-        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
+        nodeInfo = await nodesChangedAfterRemovingNode;
 
-        nodeInfo.Nodes.Should().HaveCount(2, "because we removed a node");
-        nodeInfo.Nodes.Should()
-            .Contain(n => n.Title == "Node2",
-                "because the only remaining node is Node2");
+        nodeInfo.Nodes.Should().HaveCount(count - 1, "because we removed a node");
     }
 
     [Fact]
@@ -158,7 +167,7 @@ public class CommandTests : LanguageServerTestsBase
             .Nodes.Should()
             .Contain(n => n.Title == "Start")
             .Which.Headers.Should()
-            .NotContain(n => n.Key == "position", 
+            .NotContain(n => n.Key == "position",
                 "because this node doesn't have this header");
 
 
@@ -177,9 +186,11 @@ public class CommandTests : LanguageServerTestsBase
         result.Edits.Should().NotBeNullOrEmpty();
         result.TextDocument.Uri.ToString().Should().Be("file://" + getInitialNodesChanged);
 
+        Task<NodesChangedParams> nodesChangedAfterChangingText = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(getInitialNodesChanged));
+
         ChangeTextInDocument(client, result);
 
-        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(getInitialNodesChanged));
+        nodeInfo = await nodesChangedAfterChangingText;
 
         nodeInfo.Nodes.Should()
             .Contain(n => n.Title == "Start")
@@ -230,9 +241,11 @@ public class CommandTests : LanguageServerTestsBase
         result.Edits.Should().NotBeNullOrEmpty();
         result.TextDocument.Uri.ToString().Should().Be("file://" + filePath);
 
+        Task<NodesChangedParams> nodesChangedAfterChangingText = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
+
         ChangeTextInDocument(client, result);
 
-        nodeInfo = await GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
+        nodeInfo = await nodesChangedAfterChangingText;
 
         nodeInfo.Nodes.Should()
             .Contain(n => n.Title == "Node2")
@@ -310,6 +323,117 @@ public class CommandTests : LanguageServerTestsBase
     }
 
     [Fact]
+    public async Task Server_OnGetDebugInfo_ReturnsDebugInfo()
+    {
+        // Given
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+        var project1Path = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Project1.yarnproject");
+
+        // When
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<Container<DebugOutput>>
+        {
+            Command = Commands.GenerateDebugOutput,
+        });
+
+        // Then
+        var firstProject = result.Should().Contain(info => DocumentUri.GetFileSystemPath(info.SourceProjectUri!) == project1Path).Subject;
+
+        firstProject.Variables.Should().NotBeEmpty();
+        firstProject.Variables.Should().ContainEquivalentOf(new
+        {
+            Name = "$myVar",
+            Type = "String",
+            IsSmartVariable = false
+        });
+
+        firstProject.Variables.Should().ContainEquivalentOf(new
+        {
+            Name = "$playerCanAffordPies",
+            Type = "Bool",
+            IsSmartVariable = true
+        });
+    }
+
+    private static YarnSpinnerParser Parse(string input, int initialLexerMode = -1)
+    {
+        var lexer = new YarnSpinnerLexer(Antlr4.Runtime.CharStreams.fromString(input));
+        if (initialLexerMode >= 0)
+        {
+            lexer.PushMode(initialLexerMode);
+        }
+        var tokenStream = new Antlr4.Runtime.CommonTokenStream(lexer);
+        var parser = new YarnSpinnerParser(tokenStream);
+        return parser;
+    }
+
+    [Fact]
+    public void ExpressionFormatter_GivenExpressions_CanProduceObjects()
+    {
+        // Given
+        var input = "$foo and ($bar or not true)";
+
+        // When
+
+        var expressionParseTree = Parse(input, YarnSpinnerLexer.ExpressionMode).expression();
+
+        expressionParseTree.Should().NotBeNull();
+
+        var andExpression = new ExpressionToJSONVisitor().Visit(expressionParseTree);
+
+        // Then
+        andExpression.Type.Should().Be(JSONExpression.ExpressionType.And);
+        andExpression.Children.Should().HaveCount(2);
+
+        var fooReference = andExpression.Children.ElementAt(0)!;
+        fooReference.Type.Should().Be(JSONExpression.ExpressionType.Literal);
+        fooReference.Literal.Should().Be("$foo");
+        fooReference.Children.Should().BeEmpty();
+
+        var orExpression = andExpression.Children.ElementAt(1)!;
+        orExpression.Type.Should().Be(JSONExpression.ExpressionType.Or);
+        orExpression.Children.Should().HaveCount(2);
+
+        var barReference = orExpression.Children.ElementAt(0);
+        barReference.Type.Should().Be(JSONExpression.ExpressionType.Literal);
+        barReference.Literal.Should().Be("$bar");
+        barReference.Children.Should().BeEmpty();
+
+        var notExpression = orExpression.Children.ElementAt(1);
+        notExpression.Type.Should().Be(JSONExpression.ExpressionType.Not);
+        notExpression.Children.Should().ContainSingle();
+
+        var trueConstant = notExpression.Children.Single();
+        trueConstant.Type.Should().Be(JSONExpression.ExpressionType.Constant);
+        trueConstant.Constant.Should().Be(true);
+        trueConstant.Children.Should().BeEmpty();
+
+    }
+
+    [Fact]
+    public async Task Server_OnCreatingNewProject_ReturnsJSON()
+    {
+        // Given
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+
+        // When
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<string>
+        {
+            Command = Commands.GetEmptyYarnProjectJSON,
+            Arguments = new JArray(
+
+            )
+        });
+
+        result.Should().NotBeNullOrEmpty();
+
+        // The resulting JSON should parse to a valid Project
+        var parsedProject = Yarn.Compiler.Project.LoadFromString(result, "(none)");
+
+        parsedProject.Should().BeEquivalentTo(new Yarn.Compiler.Project("(none)"));
+
+
+    }
+
     public async Task Server_CanListProjects()
     {
         // Set up the server
@@ -325,4 +449,5 @@ public class CommandTests : LanguageServerTestsBase
         result.Should().ContainSingle(p => p.Uri!.Path.EndsWith("Project1.yarnproject"));
         result.Should().ContainSingle(p => p.Uri!.Path.EndsWith("Project2.yarnproject"));
     }
+
 }

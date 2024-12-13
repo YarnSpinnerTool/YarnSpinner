@@ -26,3 +26,12 @@ title: CommandWorkout
 <<static_command_no_params>>
 <<static_command_with_params One Two>>
 ===
+title: SmartVariables
+---
+<<declare $math = 1 + 1>>
+<<declare $gold = 0>>
+<<declare $playerCanAffordPies = $gold >= 5>>
+<<declare $isAlive = false>>
+<<declare $canEnterDoor = $isAlive>>
+<<declare $complexTest = $foo and ($bar or not true)>>
+=== 

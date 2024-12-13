@@ -3,11 +3,12 @@
 
 namespace Yarn.Compiler
 {
+    using Microsoft.Extensions.FileSystemGlobbing;
     using System;
     using System.Collections.Generic;
     using System.Text.Json;
+    using System.Text.Json.Nodes;
     using System.Text.Json.Serialization;
-    using Microsoft.Extensions.FileSystemGlobbing;
 
     /// <summary>
     /// Yarn Projects represent instructions on where to find Yarn scripts and
@@ -16,9 +17,27 @@ namespace Yarn.Compiler
     public class Project
     {
         /// <summary>
+        /// A placeholder string that represents the location of the workspace
+        /// root in paths.
+        /// </summary>
+        public const string WorkspaceRootPlaceholder = "${workspaceRoot}";
+
+        internal const string AllowPreviewFeaturesKey = "allowPreviewFeatures";
+
+        /// <summary>
         /// The current version of <c>.yarnproject</c> file format.
         /// </summary>
-        public const int CurrentProjectFileVersion = 2;
+        public const int CurrentProjectFileVersion = YarnSpinnerProjectVersion3;
+
+        /// <summary>
+        ///  A version number representing Yarn Spinner 2.
+        /// </summary>
+        public const int YarnSpinnerProjectVersion2 = 2;
+
+        /// <summary>
+        ///  A version number representing Yarn Spinner 3.
+        /// </summary>
+        public const int YarnSpinnerProjectVersion3 = 3;
 
         private static readonly JsonSerializerOptions SerializationOptions = new JsonSerializerOptions
         {
@@ -31,6 +50,26 @@ namespace Yarn.Compiler
         };
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Project"/> class.
+        /// </summary>
+        public Project()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Project"/> class.
+        /// </summary>
+        /// <param name="path">The value to use for the new instance's <see
+        /// cref="Path"/> property.</param>
+        /// <param name="workspaceRootPath">The path to the root of the current
+        /// workspace, or <see langword="null"/>.</param>
+        public Project(string path, string? workspaceRootPath = null)
+        {
+            this.Path = path;
+            this.WorkspaceRootPath = workspaceRootPath;
+        }
+
+        /// <summary>
         /// Gets or sets the file version of the project.
         /// </summary>
         /// <remarks>
@@ -39,7 +78,7 @@ namespace Yarn.Compiler
         /// </remarks>
         [JsonPropertyName("projectFileVersion")]
         [JsonRequired]
-        public int FileVersion { get; set; } = 2;
+        public int FileVersion { get; set; } = CurrentProjectFileVersion;
 
         /// <summary>
         /// Gets the path that the <see cref="Project"/> was loaded from.
@@ -47,10 +86,11 @@ namespace Yarn.Compiler
         /// <remarks>
         /// This value is not stored when the file is saved, but is instead
         /// determined when the file is loaded by <see
-        /// cref="LoadFromFile(string)"/>.
+        /// cref="LoadFromFile(string)"/>, or provided when the <see
+        /// cref="Project"/> is constructed.
         /// </remarks>
         [JsonIgnore]
-        public string Path { get; set; }
+        public string? Path { get; set; }
 
         /// <summary>
         /// Gets or sets the collection of file search patterns used to locate
@@ -99,13 +139,56 @@ namespace Yarn.Compiler
         /// information and other externally-defined data used by the Yarn
         /// scripts.
         /// </remarks>
-        public string Definitions { get; set; }
+        public string? Definitions { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating whether this Project is an 'implicit'
+        /// project (that is, it does not currently represent a file that exists
+        /// on disk.)
+        /// </summary>
+        /// <remarks>
+        /// An implicit project is created by tools like the Yarn Spinner
+        /// Language Server when opening a folder that contains Yarn files but
+        /// no Yarn Project file.
+        /// </remarks>
+        internal bool IsImplicit => Path != null && !System.IO.File.Exists(this.Path);
 
         /// <summary>
         /// Gets or sets a dictionary containing instructions that control how
         /// the Yarn Spinner compiler should compile a project.
         /// </summary>
-        public Dictionary<string, object> CompilerOptions { get; set; } = new Dictionary<string, object>();
+        public Dictionary<string, JsonValue> CompilerOptions { get; set; } = new Dictionary<string, JsonValue>();
+
+        private bool GetCompilerOptionsFlag(string key)
+        {
+            return CompilerOptions.TryGetValue(key, out var value) && value.GetValue<bool>();
+        }
+        private void SetCompilerOptionsFlag(string key, bool value)
+        {
+            CompilerOptions[key] = JsonValue.Create(value);
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether <paramref name="number"/> is a valid
+        /// Yarn Spinner version number.
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public static bool IsValidVersionNumber(int number)
+        {
+            return number == YarnSpinnerProjectVersion2 || number == YarnSpinnerProjectVersion3;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether compiler features that are
+        /// not intended for production use are allowed.
+        /// </summary>
+        [JsonIgnore]
+        public bool AllowLanguagePreviewFeatures
+        {
+            get => GetCompilerOptionsFlag(AllowPreviewFeaturesKey);
+            set => SetCompilerOptionsFlag(AllowPreviewFeaturesKey, value);
+        }
 
         /// <summary>
         /// Gets the collection of Yarn files that should be used to compile the
@@ -122,14 +205,27 @@ namespace Yarn.Compiler
             get
             {
                 Matcher matcher = Matcher;
-                string searchDirectoryPath = SearchDirectoryPath;
+                string? searchDirectoryPath = SearchDirectoryPath;
 
                 if (searchDirectoryPath == null)
                 {
                     return Array.Empty<string>();
                 }
 
-                return matcher.GetResultsInFullPath(searchDirectoryPath);
+                var results = new List<string>(matcher.GetResultsInFullPath(searchDirectoryPath));
+
+                foreach (var path in this.SourceFilePatterns)
+                {
+                    if (System.IO.Path.IsPathRooted(path) && System.IO.Path.GetExtension(path) == ".yarn")
+                    {
+                        // This is an explicit, absolute path to a Yarn file
+                        // (which the globbing matcher won't pick up) - manually
+                        // add it to the list of paths that this project
+                        // references
+                        results.Add(path);
+                    }
+                }
+                return results;
             }
         }
 
@@ -137,30 +233,162 @@ namespace Yarn.Compiler
         /// Gets the path to the Definitions file, relative to this project's
         /// location.
         /// </summary>
+        /// <seealso cref="DefinitionsFiles"/>
         [JsonIgnore]
-        public string DefinitionsPath
+        [Obsolete("Use " + nameof(DefinitionsFilesPattern))]
+        public string? DefinitionsPath
         {
             get
             {
-                if (this.Definitions == null || this.SearchDirectoryPath == null)
+                var files = new List<string>(DefinitionsFiles);
+                if (files.Count > 0)
+                {
+                    return files[0];
+                }
+                else
                 {
                     return null;
                 }
+            }
+        }
 
-                return System.IO.Path.Combine(this.SearchDirectoryPath, this.Definitions);
+        [JsonIgnore]
+        private string? DefinitionsFilesPattern
+        {
+            get
+            {
+                if (this.Definitions == null)
+                {
+                    return null;
+                }
+                else if (this.Definitions.IndexOf(WorkspaceRootPlaceholder) != -1)
+                {
+                    if (this.WorkspaceRootPath != null
+                        && System.IO.Directory.Exists(WorkspaceRootPath))
+                    {
+                        return this.Definitions.Replace(WorkspaceRootPlaceholder, WorkspaceRootPath);
+                    }
+                    else
+                    {
+                        // The path contains the placeholder, but we have no
+                        // value to insert it with. Early out here.
+                        return null;
+                    }
+                }
+                else if (this.SearchDirectoryPath != null)
+                {
+                    return System.IO.Path.Combine(this.SearchDirectoryPath, this.Definitions);
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
         /// <summary>
-        /// Gets the path of the directory from which to start searching for
-        /// .yarn files. This value is null if the directory does not exist on
-        /// disk.
+        /// Gets the absolute paths to the project's Definitions files.
         /// </summary>
-        private string SearchDirectoryPath
+        public IEnumerable<string> DefinitionsFiles
         {
             get
             {
-                string searchDirectoryPath;
+                if (DefinitionsFilesPattern == null)
+                {
+                    return Array.Empty<string>();
+                }
+
+                Matcher m = new Matcher(StringComparison.OrdinalIgnoreCase);
+
+
+                if (System.IO.Path.IsPathRooted(DefinitionsFilesPattern))
+                {
+                    if (System.IO.File.Exists(DefinitionsFilesPattern))
+                    {
+                        // The path is to an absolute path that exists on disk; return it as-is
+                        return new[] { DefinitionsFilesPattern };
+                    }
+                    else
+                    {
+                        // The path is absolute but doesn't exist; it may be a
+                        // pattern. Split the pattern into an absolute path and
+                        // the pattern, and attempt to match from there.
+
+                        var fullPath = System.IO.Path.GetFullPath(DefinitionsFilesPattern);
+                        var pathRoot = System.IO.Path.GetPathRoot(fullPath);
+
+                        var pathRelativeToRoot = fullPath.Substring(pathRoot.Length);
+
+                        var allSegments = new Queue<string>(
+                            pathRelativeToRoot
+                                .Split(new[] { System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar })
+                        );
+
+                        var absoluteSegments = new List<string>();
+                        while (allSegments.Count > 0)
+                        {
+                            var segment = allSegments.Peek();
+                            if (segment.Contains("*"))
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                allSegments.Dequeue();
+                                absoluteSegments.Add(segment);
+                            }
+                        }
+
+                        var searchBasePath = pathRoot + System.IO.Path.Combine(absoluteSegments.ToArray());
+                        var searchPattern = System.IO.Path.Combine(allSegments.ToArray());
+
+                        m.AddInclude(searchPattern);
+                        return m.GetResultsInFullPath(searchBasePath);
+                    }
+                }
+                else
+                {
+                    // The path is not absolute, so we can use the matcher
+                    // directly to find paths, starting from our
+
+                    if (SearchDirectoryPath == null)
+                    {
+                        // We don't know where to start searching from.
+                        return Array.Empty<string>();
+                    }
+
+                    m.AddInclude(DefinitionsFilesPattern);
+
+                    IEnumerable<string> results;
+                    results = m.GetResultsInFullPath(SearchDirectoryPath);
+
+                    return results;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Contains any data parsed from the source file that was not matched
+        /// to a property on this type.
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement>? ExtensionData { get; set; }
+
+        /// <summary>
+        /// Gets the path of the directory from which to start searching for
+        /// .yarn files. This value is <see langword="null"/> if the directory
+        /// does not exist on disk.
+        /// </summary>
+        private string? SearchDirectoryPath
+        {
+            get
+            {
+                if (this.Path == null)
+                {
+                    return null;
+                }
+
+                string? searchDirectoryPath;
 
                 if (System.IO.Directory.Exists(this.Path))
                 {
@@ -174,7 +402,8 @@ namespace Yarn.Compiler
                 }
                 else
                 {
-                    // This project does not refer to a file on disk or to a directory.
+                    // This project does not refer to a file on disk or to a
+                    // directory.
                     searchDirectoryPath = null;
                 }
 
@@ -202,14 +431,18 @@ namespace Yarn.Compiler
         /// <returns><see langword="true"/> if <paramref name="path"/> is a path
         /// that is included in this project; <see langword="false"/>
         /// otherwise.</returns>
-        public bool IsMatchingPath(string path) {
+        public bool IsMatchingPath(string path)
+        {
 
-            string searchDirectoryPath = this.SearchDirectoryPath;
-            if (searchDirectoryPath == null) {
+            string? searchDirectoryPath = this.SearchDirectoryPath;
+            if (searchDirectoryPath == null)
+            {
                 return false;
             }
-            foreach (var sourceFile in this.SourceFiles) {
-                if (sourceFile.Equals(path)) {
+            foreach (var sourceFile in this.SourceFiles)
+            {
+                if (sourceFile.Equals(path))
+                {
                     return true;
                 }
             }
@@ -237,36 +470,58 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// The location of the root of the workspace in which this project is
+        /// located.
+        /// </summary>
+        public string? WorkspaceRootPath { get; set; }
+
+        /// <summary>
         /// Loads and parses a <see cref="Project"/> from a file on disk.
         /// </summary>
         /// <param name="path">The path to the file to load.</param>
+        /// <param name="workspaceRoot">The path of the root of the workspace in
+        /// which <see langword="file"/> is located.</param>
         /// <returns>The loaded <see cref="Project"/>.</returns>
         /// <exception cref="ArgumentException">Thrown when the contents of the
         /// file cannot be loaded.</exception>
-        public static Project LoadFromFile(string path)
+        public static Project LoadFromFile(string path, string? workspaceRoot = null)
         {
             try
             {
                 var text = System.IO.File.ReadAllText(path);
 
+                return LoadFromString(text, path, workspaceRoot);
+            }
+            catch (System.IO.IOException e)
+            {
+                throw new ArgumentException($"Project file at {path} cannot be opened", e);
+            }
+        }
+
+        internal static Project LoadFromString(string text, string path, string? workspaceRoot = null)
+        {
+            try
+            {
                 var project = JsonSerializer.Deserialize<Project>(text, SerializationOptions);
 
-                if (project.FileVersion != CurrentProjectFileVersion)
+                if (project == null)
+                {
+                    throw new ArgumentException("Failed to load Project");
+                }
+
+                if (project.FileVersion > CurrentProjectFileVersion)
                 {
                     throw new ArgumentException($"Project file at {path} has incorrect file version (expected {CurrentProjectFileVersion}, got {project.FileVersion})");
                 }
 
                 project.Path = path;
+                project.WorkspaceRootPath = workspaceRoot;
 
                 return project;
             }
             catch (JsonException e)
             {
                 throw new ArgumentException($"Project file at {path} has invalid JSON", e);
-            }
-            catch (System.IO.IOException e)
-            {
-                throw new ArgumentException($"Project file at {path} cannot be opened", e);
             }
         }
 
@@ -294,13 +549,13 @@ namespace Yarn.Compiler
             /// Gets or sets the location at which localized assets may be
             /// found.
             /// </summary>
-            public string Assets { get; set; }
+            public string? Assets { get; set; }
 
             /// <summary>
             /// Gets or sets the location at which the localized string table
             /// may be found.
             /// </summary>
-            public string Strings { get; set; }
+            public string? Strings { get; set; }
         }
     }
 }

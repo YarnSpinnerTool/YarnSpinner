@@ -20,14 +20,18 @@ namespace YarnLanguageServer
             // and doesn't include text on hidden channels (e.g.
             // whitespace and comments).
             var interval = new Interval(context.Start.StartIndex, context.Stop.StopIndex);
-            if (interval.Length <= 0) {
+            if (interval.Length <= 0)
+            {
                 return string.Empty;
-            } else {
+            }
+            else
+            {
                 return context.Start.InputStream.GetText(interval);
             }
         }
 
-        public static Yarn.Compiler.Position ToPosition(this Antlr4.Runtime.IToken token) {
+        public static Yarn.Compiler.Position ToPosition(this Antlr4.Runtime.IToken token)
+        {
             return new Yarn.Compiler.Position
             {
                 Line = token.Line - 1,

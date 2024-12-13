@@ -7,19 +7,18 @@ namespace Yarn
     using MethodCollection = System.Collections.Generic.IReadOnlyDictionary<string, System.Delegate>;
 
     /// <summary>
-    /// An <see cref="IBridgeableType{T}"/> that bridges to <see
-    /// cref="bool"/> values.
+    /// A type that represents boolean values.
     /// </summary>
-    internal class BooleanType : TypeBase, IBridgeableType<bool>
+    internal class BooleanType : TypeBase
     {
         /// <inheritdoc/>
-        public bool DefaultValue => default;
+        internal override System.IConvertible DefaultValue => default(bool);
 
         /// <inheritdoc/>
         public override string Name => "Bool";
 
         /// <inheritdoc/>
-        public override IType Parent => BuiltinTypes.Any;
+        public override IType Parent => Types.Any;
 
         /// <inheritdoc/>
         public override string Description => "Bool";
@@ -35,7 +34,7 @@ namespace Yarn
             { Operator.Not.ToString(), TypeUtil.GetMethod(MethodNot) },
         };
 
-        internal BooleanType() : base(BooleanType.DefaultMethods) {}
+        internal BooleanType() : base(BooleanType.DefaultMethods) { }
 
         private static bool MethodEqualTo(Value a, Value b)
         {

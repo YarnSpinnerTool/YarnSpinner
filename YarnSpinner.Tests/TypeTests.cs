@@ -1,28 +1,24 @@
-using Xunit;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Yarn;
-using System.IO;
-using System.Linq;
-
-using Yarn.Compiler;
-using CLDRPlurals;
-
 using FluentAssertions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.WebSockets;
+using TypeChecker;
+using Xunit;
+using Xunit.Abstractions;
+using Yarn;
+using Yarn.Compiler;
 
 namespace YarnSpinner.Tests
 {
-
-
     public class TypeTests : TestBase
     {
-        public TypeTests() : base()
+        public TypeTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
         }
 
         [Fact]
-        void TestVariableDeclarationsParsed()
+        public void TestVariableDeclarationsParsed()
         {
             var source = CreateTestNode(@"
             <<declare $int = 5>>            
@@ -42,10 +38,10 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
 
-            var expectedDeclarations = new List<Declaration>() {
-                new Declaration {
+            var expectedDeclarations = new List<object>() {
+                new {
                     Name = "$int",
-                    Type = BuiltinTypes.Number,
+                    Type = Types.Number,
                     DefaultValue = 5f,
                     Range = new Yarn.Compiler.Range {
                         Start = {
@@ -59,10 +55,12 @@ namespace YarnSpinner.Tests
                     },
                     SourceNodeName = "Start",
                     SourceFileName = "input",
+                    Dependents = Enumerable.Empty<Declaration>(),
+                    Dependencies = Enumerable.Empty<Declaration>(),
                 },
-                new Declaration {
+                new {
                     Name = "$str",
-                    Type = BuiltinTypes.String,
+                    Type = Types.String,
                     DefaultValue = "yes",
                     Range = new Yarn.Compiler.Range {
                         Start = {
@@ -76,10 +74,12 @@ namespace YarnSpinner.Tests
                     },
                     SourceNodeName = "Start",
                     SourceFileName = "input",
+                    Dependents = Enumerable.Empty<Declaration>(),
+                    Dependencies = Enumerable.Empty<Declaration>(),
                 },
-                new Declaration {
+                new  {
                     Name = "$bool",
-                    Type = BuiltinTypes.Boolean,
+                    Type = Types.Boolean,
                     DefaultValue = true,
                     Range = new Yarn.Compiler.Range {
                         Start = {
@@ -93,23 +93,17 @@ namespace YarnSpinner.Tests
                     },
                     SourceNodeName = "Start",
                     SourceFileName = "input",
+                    Dependents = Enumerable.Empty<Declaration>(),
+                    Dependencies = Enumerable.Empty<Declaration>(),
                 },
             };
 
-            var actualDeclarations = new List<Declaration>(result.Declarations);
+            var actualDeclarations = new List<Declaration>(result.Declarations).Where(d => d.Name.StartsWith("$"));
 
-            for (int i = 0; i < expectedDeclarations.Count; i++)
+            actualDeclarations.Should().BeEquivalentTo(expectedDeclarations, (config) =>
             {
-                Declaration expected = expectedDeclarations[i];
-                Declaration actual = actualDeclarations[i];
-
-                actual.Name.Should().Be(expected.Name);
-                actual.Type.Should().Be(expected.Type);
-                actual.DefaultValue.Should().Be(expected.DefaultValue);
-                actual.Range.Should().Be(expected.Range);
-                actual.SourceNodeName.Should().Be(expected.SourceNodeName);
-                actual.SourceFileName.Should().Be(expected.SourceFileName);
-            }
+                return config.WithTracing();
+            });
         }
 
         [Fact]
@@ -150,8 +144,9 @@ namespace YarnSpinner.Tests
             var declarations = new[] {
                 new Declaration {
                     Name = "$int",
-                    Type = BuiltinTypes.Number,
+                    Type = Types.Number,
                     DefaultValue = 0,
+                    SourceFileName = Declaration.ExternalDeclaration,
                 }
             };
 
@@ -165,9 +160,9 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
 
-            // No variables are declared in the source code, so we should
-            // expect an empty collection of variable declarations
-            result.Declarations.Should().BeEmpty();
+            // The only variable declarations we should know about should be
+            // external
+            result.Declarations.Where(d => d.Name.StartsWith("$")).Should().OnlyContain(d => d.SourceFileName == Declaration.ExternalDeclaration);
         }
 
         [Fact]
@@ -180,7 +175,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Should().Contain(p => p.Message.Contains("$int has already been declared"));
+            result.Diagnostics.Should().ContainSingle().Which.Message.Should().Be("Redeclaration of existing variable $int");
         }
 
         [Fact]
@@ -193,7 +188,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Should().Contain(p => p.Message == "$int (Number) cannot be assigned a String");
+            result.Diagnostics.Should().ContainSingle().Which.Message.Should().Be("$int (Number) cannot be assigned a String");
         }
 
         [Theory]
@@ -253,23 +248,11 @@ namespace YarnSpinner.Tests
             // Should compile with no exceptions
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Declarations.Should().Contain(d => d.Name == "$int").Which.Type.Should().Be(BuiltinTypes.Number);
-            result.Declarations.Should().Contain(d => d.Name == "$bool").Which.Type.Should().Be(BuiltinTypes.Boolean);
-            result.Declarations.Should().Contain(d => d.Name == "$str").Which.Type.Should().Be(BuiltinTypes.String);
-
             result.Diagnostics.Should().BeEmpty();
-        }
 
-        [Fact]
-        public void TestNullNotAllowed()
-        {
-            var source = CreateTestNode(@"
-            <<declare $err = null>> // error, null not allowed
-            ");
+            result.Declarations.Should().ContainSingle(d => d.Name == "$bool").Which.Type.Should().Be(Types.Boolean);
+            result.Declarations.Should().ContainSingle(d => d.Name == "$str").Which.Type.Should().Be(Types.String);
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-
-            result.Diagnostics.Should().Contain(p => p.Message.Contains("Null is not a permitted type"));
         }
 
         [Theory]
@@ -296,11 +279,11 @@ namespace YarnSpinner.Tests
             // type of the variable should be Boolean, because that's the return
             // type of all of the functions we declared.
             result.Declarations.Where(d => d.Name == "$bool")
-                .Should().ContainSingle().Which.Type.Should().Be(BuiltinTypes.Boolean);
+                .Should().ContainSingle().Which.Type.Should().Be(Types.Boolean);
         }
 
         [Theory, CombinatorialData]
-        public void TestOperatorsAreTypeChecked([CombinatorialValues(
+        public void TestNumericOperatorsAreTypeChecked([CombinatorialValues(
             "= 1 + 1",
             "= 1 / 1",
             "= 1 - 1",
@@ -312,26 +295,55 @@ namespace YarnSpinner.Tests
             "*= 1"
             )] string operation, bool declared)
         {
-
             string source = CreateTestNode($@"
                 {(declared ? "<<declare $var = 0>>" : "")}
                 <<set $var {operation}>>
             ");
+            TestOperationIsChecked(source, Types.Number);
+        }
 
+        [Theory, CombinatorialData]
+        public void TestLogicOperatorsAreTypeChecked([CombinatorialValues(
+            "= true and false",
+            "= true or false",
+            "= not true",
+            "= true xor false"
+            )] string operation, bool declared)
+        {
+            string source = CreateTestNode($@"
+                {(declared ? "<<declare $var = false>>" : "")}
+                <<set $var {operation}>>
+            ");
+            TestOperationIsChecked(source, Types.Boolean);
+        }
+
+        [Theory, CombinatorialData]
+        public void TestStringOperatorsAreTypeChecked([CombinatorialValues(
+            @"= ""string"" + ""otherstring"""
+            )] string operation, bool declared)
+        {
+            string source = CreateTestNode($@"
+                {(declared ? "<<declare $var = \"\">>" : "")}
+                <<set $var {operation}>>
+            ");
+            TestOperationIsChecked(source, Types.String);
+        }
+
+        private void TestOperationIsChecked(string source, IType expectedType)
+        {
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
             result.Declarations.Should().Contain(d => d.Name == "$var")
-                .Which.Type.Should().Be(BuiltinTypes.Number);
+                .Which.Type.Should().Be(expectedType);
 
             result.Diagnostics.Should().BeEmpty();
-
         }
 
         [Fact]
-        public void TestFailingFunctionDeclarationReturnType() {
-            
+        public void TestFailingFunctionDeclarationReturnType()
+        {
             dialogue.Library.RegisterFunction("func_invalid_return", () => new List<int> { 1, 2, 3 });
-            
+
             var source = CreateTestNode(@"Hello");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
@@ -348,22 +360,25 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("*parameter listOfInts's type (System.Collections.Generic.List`1[System.Int32]) cannot be used in Yarn functions*");
+            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("*parameter listOfInts's type (System.Collections.Generic.List`1[System.Int32]) cannot be used in Yarn functions");
         }
 
         [Theory]
-        [InlineData("<<set $bool = func_void_bool(1)>>", "expects 0 parameters, but received 1")]
-        [InlineData("<<set $bool = func_int_bool()>>", "expects 1 parameter, but received 0")]
-        [InlineData("<<set $bool = func_int_bool(true)>>", "expects a Number, not a Bool")]
-        [InlineData(@"<<set $bool = func_string_string_bool(""1"", 2)>>", "expects a String, not a Number")]
+        [InlineData("<<set $bool = func_void_bool(1)>>", "* expects 0 parameters, not 1")]
+        [InlineData("<<set $bool = func_int_bool()>>", "* expects 1 parameter, not 0")]
+        [InlineData("<<set $bool = func_int_bool(true)>>", "true (Bool) is not convertible to Number")]
+        [InlineData(@"<<set $bool = func_int_int_bool(""1"", 2)>>", "\"1\" (String) is not convertible to Number")]
+        [InlineData(@"<<set $bool = func_string_string_bool(""1"", 2)>>", "2 (Number) is not convertible to String")]
         [InlineData("<<set $int = func_void_bool()>>", @"$int (Number) cannot be assigned a Bool")]
+        [InlineData("<<set $bool = func_void_int()>>", @"$bool (Bool) cannot be assigned a Number")]
         public void TestFailingFunctionSignatures(string source, string expectedExceptionMessage)
         {
+            dialogue.Library.RegisterFunction("func_void_int", () => 1);
             dialogue.Library.RegisterFunction("func_void_bool", () => true);
             dialogue.Library.RegisterFunction("func_int_bool", (int i) => true);
             dialogue.Library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
             dialogue.Library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
-            
+
             var failingSource = CreateTestNode($@"
                 <<declare $bool = false>>
                 <<declare $int = 1>>
@@ -373,8 +388,8 @@ namespace YarnSpinner.Tests
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, dialogue.Library));
 
             var diagnosticMessages = result.Diagnostics.Select(d => d.Message);
-    
-            diagnosticMessages.Should().ContainMatch($"*{expectedExceptionMessage}*");
+
+            diagnosticMessages.Should().ContainMatch(expectedExceptionMessage);
         }
 
         [Fact]
@@ -410,17 +425,17 @@ namespace YarnSpinner.Tests
             compilationJob.VariableDeclarations = new[] {
                 new Declaration {
                     Name = "$external_str",
-                    Type = BuiltinTypes.String,
+                    Type = Types.String,
                     DefaultValue = "Hello",
                 },
                 new Declaration {
                     Name = "$external_int",
-                    Type = BuiltinTypes.Boolean,
+                    Type = Types.Boolean,
                     DefaultValue = true,
                 },
                 new Declaration {
                     Name = "$external_bool",
-                    Type = BuiltinTypes.Number,
+                    Type = Types.Number,
                     DefaultValue = 42,
                 },
             };
@@ -455,13 +470,10 @@ namespace YarnSpinner.Tests
 
             var variableDeclarations = result.Declarations.Where(d => d.Name.StartsWith("$"));
 
-            variableDeclarations.Should().Contain(d => d.Name == "$str").Which.Type.Should().Be(BuiltinTypes.String);
-            variableDeclarations.Should().Contain(d => d.Name == "$int").Which.Type.Should().Be(BuiltinTypes.Number);
-            variableDeclarations.Should().Contain(d => d.Name == "$bool").Which.Type.Should().Be(BuiltinTypes.Boolean);
+            variableDeclarations.Should().Contain(d => d.Name == "$str").Which.Type.Should().Be(Types.String);
+            variableDeclarations.Should().Contain(d => d.Name == "$int").Which.Type.Should().Be(Types.Number);
+            variableDeclarations.Should().Contain(d => d.Name == "$bool").Which.Type.Should().Be(Types.Boolean);
         }
-
-        
-
 
         [Theory]
         [InlineData(@"<<declare $str = ""hello"" as number>>")]
@@ -473,7 +485,39 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+            result.Diagnostics
+                .Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error)
+                .Which.Message.Should().MatchRegex(@"\$(.+?)'s type \(.+?\) must be .+?");
+        }
+
+        [Fact]
+        public void TestJumpExpressionsMustBeStrings()
+        {
+            var source = CreateTestNode(@"<<set $x = 5>>
+            <<jump {$x}>>
+            ");
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+
+            result.Diagnostics
+                .Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error)
+                .Which.Message.Should().Contain("jump statement's expression must be convertible to String, but Number is not");
+        }
+        [Fact]
+        public void TestJumpExpressionsMayBeStringEnums()
+        {
+            var source = CreateTestNode(@"
+            
+            <<enum TestEnum>>
+            <<case A = ""A"">>
+            <<endenum>>
+            <<jump {TestEnum.A}>>
+            ");
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+
+            result.Diagnostics
+                .Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
         }
 
         [Fact]
@@ -503,7 +547,7 @@ namespace YarnSpinner.Tests
             <<declare $multiline = 42>>
 
             ");
-            
+
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
             result.Diagnostics.Should().BeEmpty();
@@ -511,68 +555,63 @@ namespace YarnSpinner.Tests
             var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
                     Name = "$prefix_int",
-                    Type = BuiltinTypes.Number,
+                    Type = Types.Number,
                     DefaultValue = 42f,
                     Description = "prefix: a number",
                 },
                 new Declaration {
                     Name = "$prefix_str",
-                    Type = BuiltinTypes.String,
+                    Type = Types.String,
                     DefaultValue = "Hello",
                     Description = "prefix: a string",
                 },
                 new Declaration {
                     Name = "$prefix_bool",
-                    Type = BuiltinTypes.Boolean,
+                    Type = Types.Boolean,
                     DefaultValue = true,
                     Description = "prefix: a bool",
                 },
                 new Declaration {
                     Name = "$suffix_int",
-                    Type = BuiltinTypes.Number,
+                    Type = Types.Number,
                     DefaultValue = 42f,
                     Description = "suffix: a number",
                 },
                 new Declaration {
                     Name = "$suffix_str",
-                    Type = BuiltinTypes.String,
+                    Type = Types.String,
                     DefaultValue = "Hello",
                     Description = "suffix: a string",
                 },
                 new Declaration {
                     Name = "$suffix_bool",
-                    Type = BuiltinTypes.Boolean,
+                    Type = Types.Boolean,
                     DefaultValue = true,
                     Description = "suffix: a bool",
                 },
                 new Declaration {
                     Name = "$none_int",
-                    Type = BuiltinTypes.Number,
+                    Type = Types.Number,
                     DefaultValue = 42f,
                     Description = null,
                 },
                 new Declaration {
                     Name = "$multiline",
-                    Type = BuiltinTypes.Number,
+                    Type = Types.Number,
                     DefaultValue = 42f,
                     Description = "Multi-line doc comment",
                 },
             };
 
-            var actualDeclarations = new List<Declaration>(result.Declarations);
+            var actualDeclarations = new List<Declaration>(result.Declarations).Where(d => d.Name.StartsWith("$"));
 
-            actualDeclarations.Count().Should().Be(expectedDeclarations.Count());
-
-            for (int i = 0; i < expectedDeclarations.Count; i++)
-            {
-                Declaration expected = expectedDeclarations[i];
-                Declaration actual = actualDeclarations[i];
-
-                actual.Name.Should().Be(expected.Name);
-                actual.Type.Should().Be(expected.Type);
-                actual.DefaultValue.Should().Be(expected.DefaultValue);
-                actual.Description.Should().Be(expected.Description);
-            }
+            actualDeclarations.Should().BeEquivalentTo(expectedDeclarations, config =>
+                config
+                    .Including(o => o.Name)
+                    .Including(o => o.Type)
+                    .Including(o => o.DefaultValue)
+                    .Including(o => o.Description)
+            );
 
         }
 
@@ -610,7 +649,7 @@ namespace YarnSpinner.Tests
 
         [Theory]
         [InlineData(@"{number(""hello"")}")]
-        [InlineData(@"{bool(""hello"")}")]        
+        [InlineData(@"{bool(""hello"")}")]
         public void TestTypeConversionFailure(string test)
         {
             var source = CreateTestNode(test);
@@ -654,14 +693,6 @@ namespace YarnSpinner.Tests
             {true and func_str_bool(""hello"")}
             ");
 
-            dialogue.Library.RegisterFunction("func_void_bool", () => true);
-            dialogue.Library.RegisterFunction("func_void_int", () => 1);
-            dialogue.Library.RegisterFunction("func_void_str", () => "llo");
-
-            dialogue.Library.RegisterFunction("func_int_bool", (int i) => true);
-            dialogue.Library.RegisterFunction("func_bool_bool", (bool b) => true);
-            dialogue.Library.RegisterFunction("func_str_bool", (string s) => true);
-
             testPlan = new TestPlanBuilder()
                 .AddLine("True")
                 .AddLine("True")
@@ -675,16 +706,49 @@ namespace YarnSpinner.Tests
                 .AddLine("True")
                 .GetPlan();
 
-            // the library is NOT attached to this compilation job; all
-            // functions will be implicitly declared
+            // A list of function names that are referred to in the above source
+            // code, and the method signatures that should be inferred for them
+            var expectedFunctions = new (string Name, string Description)[]{
+                ("func_void_bool", "() -> Bool"),
+                ("func_void_int", "() -> Number"),
+                ("func_void_str", "() -> String"),
+                ("func_int_bool", "(Number) -> Bool"),
+                ("func_bool_bool", "(Bool) -> Bool"),
+                ("func_str_bool", "(String) -> Bool"),
+            };
+
+            // all functions will be implicitly declared
             var compilationJob = CompilationJob.CreateFromString("input", source);
             var result = Compiler.Compile(compilationJob);
 
+            var functions = result.Declarations.Where(d => d.Type is FunctionType);
+
+
+            foreach (var expectedFunction in expectedFunctions)
+            {
+                functions.Should().ContainEquivalentOf(new
+                {
+                    Name = expectedFunction.Name,
+                    Type = new
+                    {
+                        Description = expectedFunction.Description
+                    }
+                });
+            }
+
             result.Diagnostics.Should().BeEmpty();
+
+            dialogue.Library.RegisterFunction("func_void_bool", () => true);
+            dialogue.Library.RegisterFunction("func_void_int", () => 1);
+            dialogue.Library.RegisterFunction("func_void_str", () => "llo");
+
+            dialogue.Library.RegisterFunction("func_int_bool", (int i) => true);
+            dialogue.Library.RegisterFunction("func_bool_bool", (bool b) => true);
+            dialogue.Library.RegisterFunction("func_str_bool", (string s) => true);
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
-            
+
             RunStandardTestcase();
         }
 
@@ -692,7 +756,8 @@ namespace YarnSpinner.Tests
         [InlineData("1", "Number")]
         [InlineData("\"hello\"", "String")]
         [InlineData("true", "Bool")]
-        public void TestImplicitVariableDeclarations(string value, string typeName) {
+        public void TestImplicitVariableDeclarations(string value, string typeName)
+        {
             var source = CreateTestNode($@"
             <<set $v = {value}>>
             ");
@@ -709,15 +774,15 @@ namespace YarnSpinner.Tests
         public void TestNestedImplicitFunctionDeclarations()
         {
             var source = CreateTestNode(@"
-            {func_bool_bool(bool(func_int_bool(1)))}
+            {func_bool_bool(func_int_bool(1) and true) and true}
             ");
 
             dialogue.Library.RegisterFunction("func_int_bool", (int i) => i == 1);
             dialogue.Library.RegisterFunction("func_bool_bool", (bool b) => b);
 
-             testPlan = new TestPlanBuilder()
-                .AddLine("True")
-                .GetPlan();
+            testPlan = new TestPlanBuilder()
+               .AddLine("True")
+               .GetPlan();
 
             // the library is NOT attached to this compilation job; all
             // functions will be implicitly declared
@@ -726,17 +791,19 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
 
-            result.Declarations.Should().HaveCount(2);
+            var expectedIntBoolFunctionType = new FunctionTypeBuilder().WithParameter(Types.Number).WithReturnType(Types.Boolean).FunctionType;
+            var expectedBoolBoolFunctionType = new FunctionTypeBuilder().WithParameter(Types.Boolean).WithReturnType(Types.Boolean).FunctionType;
 
-            // Both declarations that resulted from the compile should be functions found on line 1
-            foreach (var decl in result.Declarations) {
-                decl.Range.Start.Line.Should().Be(3);
-                decl.Type.Should().BeOfType<FunctionType>();
-            }
+            result.Declarations.Should().ContainSingle(d => d.Name == "func_int_bool")
+                .Which.Type.Should().BeEquivalentTo(expectedIntBoolFunctionType);
+
+            result.Declarations.Should().ContainSingle(d => d.Name == "func_bool_bool")
+                .Which.Type.Should().BeEquivalentTo(expectedBoolBoolFunctionType);
+
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
-            
+
             RunStandardTestcase();
 
         }
@@ -751,20 +818,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("Function func expects 1 parameter, but received 2");
-        }
-
-        [Fact]
-        public void TestMultipleImplicitRedeclarationsOfFunctionParameterTypeFail()
-        {
-            var source = CreateTestNode(@"
-            {func(1)}
-            {func(true)} // wrong type of parameter (previous decl had number)
-            ");
-
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-
-            result.Diagnostics.Should().Contain(d => d.Message.Contains("expects a Number, not a Bool"));
+            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("func was called elsewhere with 1 parameter, but is called with 2 parameters here");
         }
 
         [Fact]
@@ -785,15 +839,15 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Should().Contain(d => d.Message.Contains("Terms of 'if statement' must be Bool, not String"));
+            result.Diagnostics.Should().ContainSingle().Which.Message.Contains("if statement's expression must be a Boolean, not a String");
         }
 
         [Fact]
-        public void TestBuiltinTypesAreEnumerated()
+        public void TestTypesAreEnumerated()
         {
-            var allBuiltinTypes = BuiltinTypes.AllBuiltinTypes;
+            var allTypes = Types.AllBuiltinTypes;
 
-            allBuiltinTypes.Should().NotBeEmpty();
+            allTypes.Should().NotBeEmpty();
         }
 
         [Fact]
@@ -807,7 +861,7 @@ namespace YarnSpinner.Tests
                 .WithSourceFileName("MyFile.yarn")
                 .WithSourceNodeName("Test")
                 .WithRange(new Yarn.Compiler.Range(0, 0, 0, 10))
-                .WithType(BuiltinTypes.String)
+                .WithType(Types.String)
                 .Declaration;
 
             var expectedDeclaration = new Declaration
@@ -818,25 +872,23 @@ namespace YarnSpinner.Tests
                 SourceFileName = "MyFile.yarn",
                 SourceNodeName = "Test",
                 Range = new Yarn.Compiler.Range(0, 0, 0, 10),
-                Type = BuiltinTypes.String
+                Type = Types.String
             };
 
             // Then
-            declaration.Should().Be(expectedDeclaration);
+            declaration.Should().BeEquivalentTo(expectedDeclaration);
         }
 
         [Fact]
-        public void TestFunctionTypeBuilderCanBuildTypes() {
+        public void TestFunctionTypeBuilderCanBuildTypes()
+        {
             // Given
-            var expectedFunctionType = new FunctionType();
-            expectedFunctionType.ReturnType = BuiltinTypes.String;
-            expectedFunctionType.AddParameter(BuiltinTypes.String);
-            expectedFunctionType.AddParameter(BuiltinTypes.Number);
+            var expectedFunctionType = new FunctionType(Types.String, Types.String, Types.Number);
 
             var functionType = new FunctionTypeBuilder()
-                .WithParameter(BuiltinTypes.String)
-                .WithParameter(BuiltinTypes.Number)
-                .WithReturnType(BuiltinTypes.String)
+                .WithParameter(Types.String)
+                .WithParameter(Types.Number)
+                .WithReturnType(Types.String)
                 .FunctionType;
 
             // Then
@@ -847,20 +899,166 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestSelfReferencingSetErrors()
+        public void TestSolverCanResolveConvertabilityConstraints()
         {
-            // this test should fail on the v3 type system which is good, but for now I want to make sure its tested as is
-            // plus when this fails on v3 it's a good reminder to remove the hack
-            var source = CreateTestNode("<<set $badInference = $badInference + 1>>");
+            var boolType = Types.Boolean;
+            var anyType = Types.Any;
+            var unknownType1 = new TypeChecker.TypeVariable("T1", null);
+            var unknownType2 = new TypeChecker.TypeVariable("T2", null);
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            // Attempt to solve the following system of equations:
+            // T1 c> Any ; T1 == T2 ; T2 == Boolean
+            var constraints = new TypeChecker.TypeConstraint[] {
+                new TypeChecker.TypeConvertibleConstraint(unknownType1, anyType),
+                new TypeChecker.TypeEqualityConstraint(unknownType1, unknownType2),
+                new TypeChecker.TypeEqualityConstraint(unknownType2, boolType),
+            };
 
-            // we should have one diagnostic
-            result.Diagnostics.Count().Should().Be(1);
-            // it's an error
-            result.Diagnostics.FirstOrDefault().Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
-            // and it's the "I found this twice so don't know what to do" error
-            result.Diagnostics.Should().Contain(d => d.Message.Contains("\"$badInference\" has had its default value inferred in multiple places:"));
+            var diagnostics = new List<Diagnostic>();
+
+            Substitution solution = null;
+
+            bool hasSolution = TypeChecker.Solver.TrySolve(constraints, Types.AllBuiltinTypes.OfType<TypeBase>(), diagnostics, ref solution);
+
+            using (new FluentAssertions.Execution.AssertionScope())
+            {
+                diagnostics.Should().BeEmpty();
+                hasSolution.Should().BeTrue();
+
+                // T1 should resolve to Bool
+                solution.TryResolveTypeVariable(unknownType1, out var result1).Should().BeTrue();
+                result1.Should().Be(boolType);
+
+                // T2 should also resolve to Bool
+                solution.TryResolveTypeVariable(unknownType2, out var result2).Should().BeTrue();
+                result2.Should().Be(boolType);
+            }
+        }
+
+        [Fact]
+        public void TestSolverCannotResolveMismatchedConvertabilityConstraint()
+        {
+            var boolType = Types.Boolean;
+            var numberType = Types.Number;
+            var unknownType1 = new TypeChecker.TypeVariable("T1", null);
+            var unknownType2 = new TypeChecker.TypeVariable("T2", null);
+
+            // Attempt to solve the following unresolvable system of equations:
+            // T1 c> T2 ; T1 == Bool ; T2 == Number
+            var constraints = new TypeChecker.TypeConstraint[] {
+                new TypeChecker.TypeConvertibleConstraint(unknownType1, unknownType2),
+                new TypeChecker.TypeEqualityConstraint(unknownType1, boolType),
+                new TypeChecker.TypeEqualityConstraint(unknownType2, numberType),
+            };
+
+            var diagnostics = new List<Diagnostic>();
+
+            Substitution solution = null;
+
+            var hasSolution = TypeChecker.Solver.TrySolve(constraints, Types.AllBuiltinTypes.OfType<TypeBase>(), diagnostics, ref solution);
+
+            using (new FluentAssertions.Execution.AssertionScope())
+            {
+                hasSolution.Should().BeFalse();
+            }
+
+        }
+
+        /// <summary>
+        /// A type constraint that's used for testing the internal logic of the
+        /// type solver.
+        /// </summary>
+        class AbstractTypeConstraint : TypeConstraint
+        {
+            public string Name { get; }
+            public AbstractTypeConstraint(string name) => this.Name = name;
+            public override string ToString() => this.Name;
+            // Overridden abstract methods
+            public override IEnumerable<TypeVariable> AllVariables => Array.Empty<TypeVariable>();
+            public override IEnumerable<TypeConstraint> DescendantsAndSelf => new[] { this };
+            public override IEnumerable<TypeConstraint> Children => Array.Empty<TypeConstraint>();
+            public override TypeConstraint Simplify(Substitution subst, IEnumerable<TypeBase> knownTypes) => this;
+        }
+
+        [Fact]
+        public void TestConstraintsCanConvertToDisjunctiveNormalForm()
+        {
+            var a = new AbstractTypeConstraint("A");
+            var b = new AbstractTypeConstraint("B");
+            var c = new AbstractTypeConstraint("C");
+            var d = new AbstractTypeConstraint("D");
+            var e = new AbstractTypeConstraint("E");
+            var f = new AbstractTypeConstraint("F");
+
+            // Input: and(or(a,b), or(c,and(d,e)), f)
+            var testConstraint = new ConjunctionConstraint(new TypeConstraint[] {
+                new DisjunctionConstraint(new[] {
+                    a,b
+                }),
+                new DisjunctionConstraint(new TypeConstraint[] {
+                    c, new ConjunctionConstraint(d,e),
+                }),
+                f
+            });
+
+            // Expected result:
+            // or(and(a,c,f), and(b,c,f), and(a,d,e,f), and(b,d,e,f))
+            DisjunctionConstraint resultConstraint = Solver.ToDisjunctiveNormalForm(testConstraint);
+
+            resultConstraint.Children.Should().AllBeOfType<ConjunctionConstraint>();
+            resultConstraint.Children.Should().HaveCount(4);
+            resultConstraint.Children.ElementAt(0).Children.Should().BeEquivalentTo(new[] { a, c, f });
+            resultConstraint.Children.ElementAt(1).Children.Should().BeEquivalentTo(new[] { a, d, e, f });
+            resultConstraint.Children.ElementAt(2).Children.Should().BeEquivalentTo(new[] { b, c, f });
+            resultConstraint.Children.ElementAt(3).Children.Should().BeEquivalentTo(new[] { b, d, e, f });
+        }
+
+        [Fact]
+        public void TestUserDefinedTypesAreProvided()
+        {
+            var source = CreateTestNode(@"
+<<enum MyEnum>>
+<<case One>>
+<<case Two>>
+<<case Three>>
+<<endenum>>
+");
+
+            var compilationJob = CompilationJob.CreateFromString("input", source);
+
+            var result = Compiler.Compile(compilationJob);
+
+            result.ContainsErrors.Should().BeFalse();
+            result.UserDefinedTypes.Should().NotBeEmpty();
+
+            var userEnum = result.UserDefinedTypes
+                .Should().Contain(i => i.Name == "MyEnum")
+                .Which.Should().BeOfType<EnumType>();
+
+            result.UserDefinedTypes.Should().NotContain(Types.String, "String is built-in, and not user-defined");
+        }
+
+        enum TestEnum
+        {
+            One,
+            Two,
+            Three = 128
+        }
+
+        [Fact]
+        public void TestExternalEnumsAreImported()
+        {
+            var source = CreateTestNode(@"<<set $var1 = TestEnum.One>>
+            <<set $var2 = .Two>>
+            ");
+
+            var compilationJob = CompilationJob.CreateFromString("input", source);
+
+            compilationJob.TypeDeclarations = new List<IType> { EnumTypeBuilder.FromEnum<TestEnum>() };
+
+            var result = Compiler.Compile(compilationJob);
+
+            result.ContainsErrors.Should().BeFalse();
         }
     }
 }

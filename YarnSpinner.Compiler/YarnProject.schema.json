@@ -7,7 +7,7 @@
             "additionalProperties": false,
             "properties": {
                 "projectFileVersion": {
-                    "type": "integer",
+                    "type": "integer"
                 },
                 "sourceFiles": {
                     "type": "array",
@@ -23,6 +23,9 @@
                 },
                 "compilerOptions": {
                     "$ref": "#/definitions/CompilerOptions"
+                },
+                "definitions": {
+                    "type": "string"
                 }
             },
             "required": [

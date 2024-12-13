@@ -3,13 +3,12 @@
 
 namespace Yarn.Compiler
 {
+    using Antlr4.Runtime;
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.IO;
     using System.Text;
-    using Antlr4.Runtime;
-    
+
     /// <summary>
     /// A diagnostic message that describes an error, warning or informational
     /// message that the user can take action on.
@@ -36,13 +35,13 @@ namespace Yarn.Compiler
         /// <summary>
         /// Gets or sets the description of the issue.
         /// </summary>
-        public string Message { get; set; } = "(internal error: no message provided)";
+        public string Message { get; set; }
 
         /// <summary>
         /// Gets or sets the source text of <see cref="FileName"/> containing
         /// the issue.
         /// </summary>
-        public string Context { get; set; } = null;
+        public string? Context { get; set; } = null;
 
         /// <summary>
         /// Gets or sets the severity of the issue.
@@ -87,7 +86,7 @@ namespace Yarn.Compiler
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
         public Diagnostic(string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
-        : this(null, message, severity)
+        : this("(unknown)", message, severity)
         {
         }
 
@@ -102,10 +101,13 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
-        public Diagnostic(string fileName, ParserRuleContext context, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        public Diagnostic(string fileName, ParserRuleContext? context, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
 
+            // TODO: maybe fail instead of silently dropping this? if the
+            // context is null, then the range is set to (0,0-0,0), which isn't
+            // super useful
             if (context != null)
             {
                 this.Range = new Range(
@@ -113,9 +115,36 @@ namespace Yarn.Compiler
                     context.Start.Column,
                     context.Stop.Line - 1,
                     context.Stop.Column + context.Stop.Text.Length);
+
+                this.Context = context.GetTextWithWhitespace();
             }
             this.Message = message;
-            this.Context = context.GetTextWithWhitespace();
+            this.Severity = severity;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Diagnostic"/> class.
+        /// </summary>
+        /// <param name="fileName"><inheritdoc cref="FileName"
+        /// path="/summary/node()"/></param>
+        /// <param name="token">The token at which the error
+        /// occurred.</param>
+        /// <param name="message"><inheritdoc cref="Message"
+        /// path="/summary/node()"/></param>
+        /// <param name="severity"><inheritdoc cref="Severity"
+        /// path="/summary/node()"/></param>
+        public Diagnostic(string fileName, IToken token, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        {
+            this.FileName = fileName;
+
+            this.Range = new Range(
+                token.Line - 1,
+                token.Column,
+                token.Line - 1,
+                token.Column + token.Text.Length);
+
+            this.Message = message;
+            this.Context = token.Text;
             this.Severity = severity;
         }
 
@@ -133,7 +162,7 @@ namespace Yarn.Compiler
         public Diagnostic(string fileName, Range range, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
-            this.Range = range;
+            this.Range = range ?? new Range();
             this.Message = message;
             this.Severity = severity;
         }
@@ -144,13 +173,13 @@ namespace Yarn.Compiler
         public enum DiagnosticSeverity
         {
             /// <summary>
-            /// An error.
+            /// An informational diagnostic.
             /// </summary>
             /// <remarks>
-            /// If a Yarn source file contains errors, it cannot be compiled,
-            /// and the compilation process will fail.
+            /// Infos represent possible issues or steps that the user may wish
+            /// to fix, but are unlikely to cause problems.
             /// </remarks>
-            Error,
+            Info = 1,
 
             /// <summary>
             /// An warning.
@@ -159,16 +188,17 @@ namespace Yarn.Compiler
             /// Warnings represent possible problems that the user should fix,
             /// but do not cause the compilation process to fail.
             /// </remarks>
-            Warning,
+            Warning = 2,
 
             /// <summary>
-            /// An informational diagnostic.
+            /// An error.
             /// </summary>
             /// <remarks>
-            /// Infos represent possible issues or steps that the user may wish
-            /// to fix, but are unlikely to cause problems.
+            /// If a Yarn source file contains errors, it cannot be compiled,
+            /// and the compilation process will fail.
             /// </remarks>
-            Info,
+            Error = 3,
+
         }
 
         /// <inheritdoc/>
@@ -204,7 +234,11 @@ namespace Yarn.Compiler
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.FileName);
             hashCode = (hashCode * -1521134295) + this.Range.GetHashCode();
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Message);
-            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Context);
+
+            if (this.Context != null)
+            {
+                hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Context);
+            }
             hashCode = (hashCode * -1521134295) + this.Severity.GetHashCode();
             return hashCode;
         }
@@ -246,7 +280,7 @@ namespace Yarn.Compiler
             Range range = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
 
             var diagnostic = new Diagnostic(this.fileName, range, msg);
-            
+
             if (offendingSymbol.TokenSource != null)
             {
                 StringBuilder builder = new StringBuilder();

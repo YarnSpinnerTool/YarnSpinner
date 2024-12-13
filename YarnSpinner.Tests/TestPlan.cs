@@ -1,329 +1,348 @@
+using Antlr4.Runtime;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
+using Xunit.Sdk;
+using Yarn.Compiler;
+
+#nullable enable
 
 namespace YarnSpinner.Tests
 {
-    public class TestPlan
+    public class TestPlan : IEnumerable<TestPlan.Run>
     {
-        public class Step
+
+        public class Run : IEnumerable<Step>
         {
-            public enum Type
+            public string StartNode { get; private set; } = "Start";
+
+            public List<Step> Steps { get; init; } = new();
+
+            public IEnumerator<Step> GetEnumerator()
             {
-                // expecting to see this specific line
-                Line, 
-                
-                // expecting to see this specific option (if '*' is given,
-                // means 'see an option, don't care about text')
-                Option, 
-
-                // expecting options to have been presented; value = the
-                // index to select
-                Select,
-
-                // expecting to see this specific command
-                Command,
-
-                // expecting to stop the test here (this is optional - a
-                // 'stop' at the end of a test plan is assumed)
-                Stop,
-
-                // sets a variable to a value
-                Set,
-
-                // runs a new node.
-                Run
+                return ((IEnumerable<Step>)this.Steps).GetEnumerator();
             }
 
-            public Type type {get;private set;}
-            public bool IsBlocking => !(this.type == Type.Set || this.type == Type.Run);
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return ((IEnumerable)this.Steps).GetEnumerator();
+            }
+        }
 
-            public List<IConvertible> parameters;
-            
-            public Step(string s) {
+        public abstract class Step { }
 
-                parameters = new List<IConvertible>();
+        public abstract class ExpectContentStep : Step
+        {
+            public string? ExpectedText { get; init; }
+        }
 
-                var reader = new Reader(s);
+        public class ExpectLineStep : ExpectContentStep
+        {
+            public List<string> ExpectedHashtags { get; init; } = new();
 
-                try {
-                    type = reader.ReadNext<Type>();
+            public ExpectLineStep(string? text, IEnumerable<string> hashtags)
+            {
+                this.ExpectedText = text;
+                this.ExpectedHashtags.AddRange(hashtags);
+            }
 
-                    if (type == Type.Stop) {
-                        return;
-                    }
-
-                    var delimiter = (char)reader.Read();
-                    if (delimiter != ':') {
-                        throw new ArgumentException("Expected ':' after step type");
-                    }
-
-                    switch (type) {
-                        // for lines, options and commands: we expect to
-                        // see the rest of this line
-                        case Type.Line:
-                        case Type.Option:
-                        case Type.Command:
-                            
-                            var stringValue = reader.ReadToEnd().Trim();
-                            if (stringValue == "*") {
-                                // '*' represents "we want to see an option
-                                // but don't care what its text is" -
-                                // represent this as the null value
-                                stringValue = null; 
-                            }
-
-                            bool expectOptionEnabled = true;
-
-                            // Options whose text ends with " [disabled]"
-                            // are expected to be present, but have their
-                            // 'allowed' flag set to false
-                            if (type == Type.Option && stringValue.EndsWith(" [disabled]")) {
-                                expectOptionEnabled = false;
-                                stringValue = stringValue.Replace(" [disabled]", "");
-                            }
-                            parameters.Add(stringValue);
-                            if (type == Type.Option) {
-                                parameters.Add(expectOptionEnabled);
-                            }
-                            break;
-
-                        case Type.Select:
-                            var intValue = reader.ReadNext<int>();
-
-                            if (intValue < 1) {
-                                throw new ArgumentOutOfRangeException($"Cannot select option {intValue} - must be >= 1");
-                            }
-
-                            parameters.Add(intValue);
-                            break;
-                        case Type.Run:
-                            var nodeName = reader.ReadNext<string>();
-                            parameters.Add(nodeName);
-                            break;
-
-                        case Type.Set:
-                            var variableName = reader.ReadNext<string>();
-                            var value = reader.ReadNext<string>();
-
-                            if (variableName.StartsWith("$") == false) {
-                                throw new ArgumentException($"Variables must start with $");
-                            }
-
-                            parameters.Add(variableName);
-                            parameters.Add(value);
-                            break;
-
-                        default:
-                            throw new ArgumentException($"Unhandled type {type}");
-                    }
-                } catch (Exception e) {
-                    // there was a syntax or semantic error
-                    throw new ArgumentException($"Failed to parse step line: '{s}' (reason: {e.Message})", e);
+            public override string ToString()
+            {
+                if (this.ExpectedHashtags.Count > 0)
+                {
+                    return $"Line \"{this.ExpectedText}\" with hashtags {string.Join(", ", this.ExpectedHashtags)}";
                 }
-                
-
-
+                else
+                {
+                    return $"Line \"{this.ExpectedText}\"";
+                }
             }
+        }
 
-            internal Step(Type type, string stringValue) {
-                this.type = type;
-                this.parameters = new List<IConvertible> { stringValue };
-            }
+        public class ExpectOptionStep : ExpectContentStep
+        {
+            public List<string> ExpectedHashtags { get; init; } = new();
+            public bool ExpectedAvailability = true;
 
-            internal Step(Type type, int intValue) {
-                this.type = type;
-                this.parameters = new List<IConvertible> { intValue };
-            }
-
-            internal Step(Type type) {
-
-            }
-
-            private class Reader : StringReader
+            public ExpectOptionStep(string? text, IEnumerable<string> hashtags, bool expectedAvailability)
             {
-                // hat tip to user Dennis from Stackoverflow:
-                // https://stackoverflow.com/a/26669930/2153213
-                public Reader(string s) : base(s) { }
+                this.ExpectedText = text;
+                this.ExpectedHashtags.AddRange(hashtags);
+                this.ExpectedAvailability = expectedAvailability;
+            }
+        }
 
-                // Parse the next T from this string, ignoring leading
-                // whitespace
-                public T ReadNext<T>() where T : System.IConvertible
-                {                    
-                    var sb = new StringBuilder();
+        public class ExpectCommandStep : ExpectContentStep
+        {
+            public ExpectCommandStep(string text)
+            {
+                this.ExpectedText = text;
+            }
+        }
 
-                    do
+        public class ExpectStop : Step { }
+
+        public class ActionSelectStep : Step
+        {
+            public int SelectedIndex { get; init; }
+
+            public ActionSelectStep(int selectedIndex)
+            {
+                this.SelectedIndex = selectedIndex;
+            }
+        }
+
+        public class ActionSetSaliencyStep : Step
+        {
+            public string SaliencyMode { get; init; }
+
+            public ActionSetSaliencyStep(string saliencyMode)
+            {
+                this.SaliencyMode = saliencyMode;
+            }
+        }
+
+        public class ActionSetVariableStep : Step
+        {
+            public string VariableName { get; init; }
+            public object Value { get; init; }
+
+            public ActionSetVariableStep(string variableName, object value)
+            {
+                this.VariableName = variableName;
+                this.Value = value;
+            }
+        }
+
+        public class ActionJumpToNodeStep : Step
+        {
+            public string NodeName { get; init; }
+
+            public ActionJumpToNodeStep(string nodeName)
+            {
+                this.NodeName = nodeName;
+            }
+        }
+
+        public List<Run> Runs { get; init; } = new();
+
+        public TestPlan() { }
+
+        public static TestPlan FromFile(string path)
+        {
+            var text = File.ReadAllText(path);
+            return FromString(text);
+        }
+
+        public static TestPlan FromString(string text)
+        {
+            var plan = new TestPlan();
+            var charStream = CharStreams.fromString(text);
+            var lexer = new YarnSpinnerTestPlanLexer(charStream);
+
+            var tokenStream = new CommonTokenStream(lexer);
+            var parser = new YarnSpinnerTestPlanParser(tokenStream);
+            lexer.RemoveErrorListeners();
+            parser.RemoveErrorListeners();
+            var lexerErrorListener = new LexerErrorListener("testplan");
+            var parserErrorListener = new ParserErrorListener("testplan");
+            lexer.AddErrorListener(lexerErrorListener);
+            parser.AddErrorListener(parserErrorListener);
+
+            var testPlanTree = parser.testplan();
+
+            var allDiagnostics = lexerErrorListener.Diagnostics.Concat(parserErrorListener.Diagnostics);
+            if (allDiagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
+            {
+                throw new XunitException("Syntax errors in test plan: " + string.Join("\n", allDiagnostics));
+            }
+
+            foreach (var runContext in testPlanTree.run())
+            {
+                var run = new Run();
+                Step step;
+                foreach (var stepContext in runContext.step())
+                {
+                    if (stepContext.actionJumpToNode() != null)
                     {
-                        var current = Read();
-                        if (current < 0)
-                            break;
-
-                        // eat leading whitespace
-                        if (char.IsWhiteSpace((char)current))
-                            continue;
-
-                        sb.Append((char)current);
-
-                        var next = (char)Peek();
-                        if (char.IsLetterOrDigit(next))
-                            continue;
-                        if (next == '_')
-                            continue;
-                        break;
-
-                    } while (true);
-
-                    var value = sb.ToString();
-
-                    var type = typeof(T);
-                    if (type.IsEnum)
-                        return (T)Enum.Parse(type, value, true);
-
-                    return (T)((IConvertible)value).ToType(
-                        typeof(T), 
-                        System.Globalization.CultureInfo.InvariantCulture
-                    );
+                        step = new ActionJumpToNodeStep(
+                           stepContext.actionJumpToNode().nodeName.Text
+                       );
+                    }
+                    else if (stepContext.actionSelect() != null)
+                    {
+                        step = new ActionSelectStep(
+                            int.Parse(
+                                stepContext.actionSelect().NUMBER().GetText(),
+                                NumberStyles.Integer,
+                                CultureInfo.InvariantCulture
+                            ) - 1
+                        );
+                    }
+                    else if (stepContext.actionSet() != null)
+                    {
+                        if (stepContext.actionSet() is YarnSpinnerTestPlanParser.ActionSetBoolContext setBoolContext)
+                        {
+                            step = new ActionSetVariableStep(
+                                setBoolContext.variable.Text,
+                                bool.Parse(setBoolContext.value.Text)
+                            );
+                        }
+                        else if (stepContext.actionSet() is YarnSpinnerTestPlanParser.ActionSetNumberContext setNumberContext)
+                        {
+                            step = new ActionSetVariableStep(
+                                setNumberContext.variable.Text,
+                                int.Parse(setNumberContext.value.Text, NumberStyles.Integer, CultureInfo.InvariantCulture)
+                            );
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException("Unhandled 'set' type: " + stepContext.GetTextWithWhitespace());
+                        }
+                    }
+                    else if (stepContext.lineExpected() != null)
+                    {
+                        if (stepContext.lineExpected() is YarnSpinnerTestPlanParser.LineWithAnyTextExpectedContext any)
+                        {
+                            step = new ExpectLineStep(
+                                null,
+                                any.hashtag().Select(h => h.GetText())
+                            );
+                        }
+                        else if (stepContext.lineExpected() is YarnSpinnerTestPlanParser.LineWithSpecificTextExpectedContext specific)
+                        {
+                            step = new ExpectLineStep(
+                                specific.TEXT().GetText().Trim('`'),
+                                specific.hashtag().Select(h => h.GetText())
+                            );
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException();
+                        }
+                    }
+                    else if (stepContext.optionExpected() != null)
+                    {
+                        step = new ExpectOptionStep(
+                            stepContext.optionExpected().TEXT().GetText().Trim('`'),
+                            stepContext.optionExpected().hashtag().Select(h => h.GetText()),
+                            stepContext.optionExpected().isDisabled == null
+                        );
+                    }
+                    else if (stepContext.commandExpected() != null)
+                    {
+                        step = new ExpectCommandStep(
+                            stepContext.commandExpected().TEXT().GetText().Trim('`')
+                        );
+                    }
+                    else if (stepContext.stopExpected() != null)
+                    {
+                        step = new ExpectStop();
+                    }
+                    else if (stepContext.actionSetSaliencyMode() != null)
+                    {
+                        step = new ActionSetSaliencyStep(
+                            stepContext.actionSetSaliencyMode().saliencyMode.Text
+                        );
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Unhandled step type: " + stepContext.GetTextWithWhitespace());
+                    }
+                    run.Steps.Add(step);
                 }
-
+                plan.Runs.Add(run);
 
             }
+
+            return plan;
         }
 
-        internal List<Step> Steps = new List<Step>();
-
-        private int currentTestPlanStep = 0;
-
-        public Step CurrentStep => currentTestPlanStep < Steps.Count ? Steps[currentTestPlanStep] : null;
-        
-        public TestPlan.Step.Type nextExpectedType;
-        public List<(string line, bool enabled)> nextExpectedOptions = new List<(string line, bool enabled)>();
-        public int nextOptionToSelect = -1;
-        public string nextExpectedValue = null;
-
-        // The delegate to call when a 'set' step is run. Receives the variable
-        // name and the value.
-        public Action<string, string> onSetVariable;
-
-        // The delegate to call when a 'run' step is run. Receives the node name.
-        public Action<string> onRunNode;
-
-        internal TestPlan() {
-            // Start with the empty step
-        }
-
-        public TestPlan(string path)
+        public IEnumerator<Run> GetEnumerator()
         {
-            Steps = File.ReadAllLines(path)
-                .Where(line => line.TrimStart().StartsWith("#") == false) // skip commented lines
-                .Where(line => line.Trim() != "") // skip empty or blank lines
-                .Select(line => new Step(line)) // convert remaining lines to steps
-                .ToList();
+            return ((IEnumerable<Run>)this.Runs).GetEnumerator();
         }
 
-        public void Next() {
-            // step through the test plan until we hit an expectation to
-            // see a line, option, or command. specifically, we're waiting
-            // to see if we got a Line, Select, Command or Assert step
-            // type.
-
-            if (nextExpectedType == Step.Type.Select) {
-                // our previously-notified task was to select an option.
-                // we've now moved past that, so clear the list of expected
-                // options.
-                nextExpectedOptions.Clear();
-                nextOptionToSelect = 0;
-            }
-
-            while (currentTestPlanStep < Steps.Count) {
-                
-                Step currentStep = Steps[currentTestPlanStep];
-
-                currentTestPlanStep += 1;
-
-                switch (currentStep.type) {
-                    case Step.Type.Set:
-                        var name = (string)currentStep.parameters[0];
-                        var value = (string)currentStep.parameters[1];
-                        onSetVariable(name, value);
-                        continue;
-                    case Step.Type.Run:
-                        var node = (string)currentStep.parameters[0];
-                        onRunNode(node);
-                        continue;
-                    case Step.Type.Stop:
-                        nextExpectedType = currentStep.type;
-                        goto done;
-                    case Step.Type.Line:
-                    case Step.Type.Command:
-                        nextExpectedType = currentStep.type;
-                        nextExpectedValue = (string)currentStep.parameters[0];
-                        goto done;
-                    case Step.Type.Select:
-                        nextExpectedType = currentStep.type;
-                        nextOptionToSelect = (int)currentStep.parameters[0];
-                        goto done;
-                    case Step.Type.Option:
-                        nextExpectedOptions.Add(((string)currentStep.parameters[0], (bool)currentStep.parameters[1]));
-                        continue;                                           
-                }
-            } 
-
-            // We've fallen off the end of the test plan step list. We
-            // expect a stop here.
-            nextExpectedType = Step.Type.Stop;
-
-            done:
-            return;
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)this.Runs).GetEnumerator();
         }
+    }
+    public enum StepType
+    {
+        // expecting to see this specific line
+        Line,
 
+        // expecting to see this specific option (if '*' is given,
+        // means 'see an option, don't care about text')
+        Option,
 
+        // expecting options to have been presented; value = the
+        // index to select
+        Select,
+
+        // expecting to see this specific command
+        Command,
+
+        // expecting to stop the test here (this is optional - a
+        // 'stop' at the end of a test plan is assumed)
+        Stop,
+
+        // sets a variable to a value
+        Set,
+
+        // runs a new node.
+        Run
     }
 
-    public class TestPlanBuilder {
-
+    public class TestPlanBuilder
+    {
         private TestPlan testPlan;
+        private TestPlan.Run currentRun;
 
-        public TestPlanBuilder() {
+        public TestPlanBuilder()
+        {
             testPlan = new TestPlan();
+            currentRun = new TestPlan.Run();
+            testPlan.Runs.Add(currentRun);
         }
 
-        public TestPlan GetPlan() {
+        public TestPlan GetPlan()
+        {
             return testPlan;
         }
 
-        public TestPlanBuilder AddLine(string line) {
-            testPlan.Steps.Add(new TestPlan.Step(TestPlan.Step.Type.Line, line));
+        public TestPlanBuilder AddLine(string line)
+        {
+            currentRun.Steps.Add(new TestPlan.ExpectLineStep(line, Array.Empty<string>()));
             return this;
         }
 
-        public TestPlanBuilder AddOption(string text = null) {
-            TestPlan.Step item = new TestPlan.Step(TestPlan.Step.Type.Option, text);
-            item.parameters.Add(true); // 'is command expected to be available' parameter
-            this.testPlan.Steps.Add(item);
-            return this;
-
-        }
-
-        public TestPlanBuilder AddSelect(int value) {
-            testPlan.Steps.Add(new TestPlan.Step(TestPlan.Step.Type.Select, value));
-            return this;
-
-        }
-
-        public TestPlanBuilder AddCommand(string command) {
-            testPlan.Steps.Add(new TestPlan.Step(TestPlan.Step.Type.Command, command));
-            return this;
-
-        }
-
-        public TestPlanBuilder AddStop() {
-            testPlan.Steps.Add(new TestPlan.Step(TestPlan.Step.Type.Stop));
+        public TestPlanBuilder AddOption(string? text = null)
+        {
+            currentRun.Steps.Add(new TestPlan.ExpectOptionStep(text, Array.Empty<string>(), true));
             return this;
         }
 
+        public TestPlanBuilder AddSelect(int value)
+        {
+            currentRun.Steps.Add(new TestPlan.ActionSelectStep(value));
+            return this;
+        }
+
+        public TestPlanBuilder AddCommand(string command)
+        {
+            currentRun.Steps.Add(new TestPlan.ExpectCommandStep(command));
+            return this;
+        }
+
+        public TestPlanBuilder AddStop()
+        {
+            currentRun.Steps.Add(new TestPlan.ExpectStop());
+            return this;
+        }
     }
-
-
 }

@@ -26,8 +26,8 @@ SOFTWARE.
 
 namespace Yarn.Markup
 {
+    using System;
     using System.Collections.Generic;
-    using System.Runtime.InteropServices;
 
 #pragma warning disable CA1815
     /// <summary>
@@ -37,7 +37,7 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
+    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
     public struct MarkupParseResult
     {
         /// <summary>
@@ -75,6 +75,11 @@ namespace Yarn.Markup
         /// specified name; otherwise, <see langword="false"/>.</returns>
         public bool TryGetAttributeWithName(string name, out MarkupAttribute attribute)
         {
+            if (this.Attributes == null)
+            {
+                throw new InvalidOperationException("Markup parse result does not contain any attributes");
+            }
+
             foreach (var a in this.Attributes)
             {
                 if (a.Name == name)
@@ -118,6 +123,11 @@ namespace Yarn.Markup
             if (attribute.Length == 0)
             {
                 return string.Empty;
+            }
+
+            if (string.IsNullOrEmpty(this.Text))
+            {
+                throw new InvalidOperationException("Markup parse result does not contain any text");
             }
 
             if (this.Text.Length < attribute.Position + attribute.Length)
@@ -185,6 +195,15 @@ namespace Yarn.Markup
         /// attributes.</returns>
         public MarkupParseResult DeleteRange(MarkupAttribute attributeToDelete)
         {
+            if (this.Attributes == null)
+            {
+                throw new System.InvalidOperationException("Markup parse result does not have any attributes.");
+            }
+            if (this.Text == null)
+            {
+                throw new System.InvalidOperationException("Markup parse result does not have any text.");
+            }
+
             var newAttributes = new List<MarkupAttribute>();
 
             // Address the trivial case: if the attribute has a zero
@@ -304,7 +323,7 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
+    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
     public struct MarkupAttribute
     {
         /// <summary>
@@ -327,14 +346,21 @@ namespace Yarn.Markup
             this.Length = length;
             this.Name = name;
 
-            var props = new Dictionary<string, MarkupValue>();
-
-            foreach (var prop in properties)
+            if (properties != null)
             {
-                props.Add(prop.Name, prop.Value);
-            }
+                var props = new Dictionary<string, MarkupValue>();
 
-            this.Properties = props;
+                foreach (var prop in properties)
+                {
+                    props.Add(prop.Name, prop.Value);
+                }
+
+                this.Properties = props;
+            }
+            else
+            {
+                this.Properties = new Dictionary<string, MarkupValue>();
+            }
         }
 
         /// <summary>
@@ -349,6 +375,18 @@ namespace Yarn.Markup
         internal MarkupAttribute(MarkupAttributeMarker openingMarker, int length)
         : this(openingMarker.Position, openingMarker.SourcePosition, length, openingMarker.Name, openingMarker.Properties)
         {
+        }
+
+        public MarkupAttribute Shift(int shift)
+        {
+            List<MarkupProperty> propList = new List<MarkupProperty>();
+            foreach (var property in this.Properties)
+            {
+                var newProperty = new MarkupProperty(property.Key, property.Value);
+                propList.Add(newProperty);
+            }
+            var shifted = new MarkupAttribute(this.Position + shift, this.SourcePosition, this.Length, this.Name, propList);
+            return shifted;
         }
 
         /// <summary>
@@ -395,6 +433,21 @@ namespace Yarn.Markup
 
             return sb.ToString();
         }
+
+        public bool TryGetProperty(string name, out MarkupValue result)
+        {
+            foreach (var prop in this.Properties)
+            {
+                if (prop.Key.Equals(name, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    result = prop.Value;
+                    return true;
+                }
+            }
+
+            result = default;
+            return false;
+        }
     }
 #pragma warning restore CA1815
 #pragma warning restore CA1711
@@ -406,7 +459,7 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
+    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
 #pragma warning disable CA1815
     public struct MarkupProperty
     {
@@ -420,6 +473,43 @@ namespace Yarn.Markup
         {
             this.Name = name;
             this.Value = value;
+        }
+
+        internal MarkupProperty(string name, string value)
+        {
+            this.Name = name;
+            this.Value = new MarkupValue
+            {
+                StringValue = value,
+                Type = MarkupValueType.String
+            };
+        }
+        internal MarkupProperty(string name, int value)
+        {
+            this.Name = name;
+            this.Value = new MarkupValue
+            {
+                IntegerValue = value,
+                Type = MarkupValueType.Integer
+            };
+        }
+        internal MarkupProperty(string name, float value)
+        {
+            this.Name = name;
+            this.Value = new MarkupValue
+            {
+                FloatValue = value,
+                Type = MarkupValueType.Float
+            };
+        }
+        internal MarkupProperty(string name, bool value)
+        {
+            this.Name = name;
+            this.Value = new MarkupValue
+            {
+                BoolValue = value,
+                Type = MarkupValueType.Bool
+            };
         }
 
         /// <summary>
@@ -442,7 +532,7 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
+    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
     public struct MarkupValue
     {
         /// <summary>Gets the integer value of this property.</summary>
@@ -484,20 +574,26 @@ namespace Yarn.Markup
         public MarkupValueType Type { get; internal set; }
 
         /// <inheritdoc/>
-        public override string ToString()
+        public readonly override string ToString()
+        {
+            return this.ToString(System.Globalization.CultureInfo.CurrentCulture);
+        }
+
+        /// <inheritdoc/>
+        public readonly string ToString(IFormatProvider formatProvider)
         {
             switch (this.Type)
             {
                 case MarkupValueType.Integer:
-                    return this.IntegerValue.ToString();
+                    return this.IntegerValue.ToString(formatProvider);
                 case MarkupValueType.Float:
-                    return this.FloatValue.ToString();
+                    return this.FloatValue.ToString(formatProvider);
                 case MarkupValueType.String:
                     return this.StringValue;
                 case MarkupValueType.Bool:
                     return this.BoolValue.ToString();
                 default:
-                    throw new System.InvalidOperationException($"Invalid markup value type {this.Type}");
+                    return $"[Invalid markup value type {this.Type}]";
             }
         }
     }
@@ -510,8 +606,8 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
-    internal struct MarkupAttributeMarker
+    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
+    public struct MarkupAttributeMarker
     {
         /// <summary>
         /// Initializes a new instance of the <see
@@ -585,6 +681,26 @@ namespace Yarn.Markup
 
             result = default;
             return false;
+        }
+
+        public override bool Equals(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool operator ==(MarkupAttributeMarker left, MarkupAttributeMarker right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(MarkupAttributeMarker left, MarkupAttributeMarker right)
+        {
+            return !(left == right);
         }
     }
 }

@@ -1,0 +1,6 @@
+title: Start
+---
+<<enum Food>>
+    <<case Orange = test_function()>> // error! raw values must be a constant value
+<<endenum>>
+===

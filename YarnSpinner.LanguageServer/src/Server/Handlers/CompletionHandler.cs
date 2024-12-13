@@ -6,7 +6,6 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Yarn.Compiler;
-
 using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
 namespace YarnLanguageServer.Handlers
@@ -279,6 +278,15 @@ namespace YarnLanguageServer.Handlers
                 // list of nodes.
                 ExpandRangeToEndOfPreviousTokenOfType(YarnSpinnerLexer.COMMAND_JUMP, maybeTokenAtRequestPosition.Value, ref rangeOfTokenAtRequestPosition);
 
+                // Add a ' ' after the jump token
+                rangeOfTokenAtRequestPosition = rangeOfTokenAtRequestPosition with
+                {
+                    Start = rangeOfTokenAtRequestPosition.Start with
+                    {
+                        Character = rangeOfTokenAtRequestPosition.Start.Character + 1
+                    }
+                };
+
                 GetNodeNameCompletions(
                     project,
                     request,
@@ -325,6 +333,7 @@ namespace YarnLanguageServer.Handlers
                         }
                 }
             }
+
             return Task.FromResult(new CompletionList(results));
         }
 
@@ -337,9 +346,11 @@ namespace YarnLanguageServer.Handlers
                     Label = node.Title,
                     Kind = CompletionItemKind.Method,
                     Detail = System.IO.Path.GetFileName(node.File.Uri.AbsolutePath),
-                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit {
+                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit
+                    {
                         NewText = node.Title,
-                        Range = new Range {
+                        Range = new Range
+                        {
                             Start = indexTokenRange.Start,
                             End = request.Position,
                         },
@@ -350,7 +361,7 @@ namespace YarnLanguageServer.Handlers
 
         private static void GetVariableNameCompletions(Project project, Range indexTokenRange, List<CompletionItem> results)
         {
-            System.Text.StringBuilder builder = new ();
+            System.Text.StringBuilder builder = new();
             foreach (var function in project.Functions.DistinctBy(f => f.YarnName))
             {
                 builder.Append(function.YarnName);
@@ -425,7 +436,7 @@ namespace YarnLanguageServer.Handlers
             var project = workspace.GetProjectsForUri(uri).First();
 
             // adding any known commands
-            System.Text.StringBuilder builder = new ();
+            System.Text.StringBuilder builder = new();
             foreach (var cmd in project.Commands.DistinctBy(c => c.YarnName))
             {
                 builder.Append(cmd.YarnName);
@@ -456,9 +467,11 @@ namespace YarnLanguageServer.Handlers
                     Kind = CompletionItemKind.Function,
                     Documentation = cmd.Documentation,
                     Detail = detailText,
-                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit {
+                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit
+                    {
                         NewText = builder.ToString(),
-                        Range = new Range {
+                        Range = new Range
+                        {
                             Start = indexTokenRange.Start,
                             End = request.Position,
                         },
@@ -469,7 +482,7 @@ namespace YarnLanguageServer.Handlers
             }
         }
 
-        public static readonly HashSet<int> PreferedRules = new ()
+        public static readonly HashSet<int> PreferedRules = new()
         {
             YarnSpinnerParser.RULE_command_statement,
             YarnSpinnerParser.RULE_variable,
@@ -483,7 +496,7 @@ namespace YarnLanguageServer.Handlers
             // YarnSpinnerLexer.VAR_ID
         };
 
-        public static readonly HashSet<int> IgnoredTokens = new ()
+        public static readonly HashSet<int> IgnoredTokens = new()
         {
             YarnSpinnerLexer.OPERATOR_ASSIGNMENT,
             YarnSpinnerLexer.OPERATOR_MATHS_ADDITION,
@@ -505,7 +518,6 @@ namespace YarnLanguageServer.Handlers
             YarnSpinnerLexer.EXPRESSION_START,
             YarnSpinnerLexer.HASHTAG,
             YarnSpinnerLexer.COMMAND_TEXT,
-            YarnSpinnerLexer.COMMAND_TEXT_END,
             YarnSpinnerLexer.COMMAND_EXPRESSION_START,
             YarnSpinnerLexer.INDENT,
             YarnSpinnerLexer.DEDENT,
@@ -519,7 +531,7 @@ namespace YarnLanguageServer.Handlers
             YarnSpinnerLexer.VAR_ID,
         };
 
-        public static readonly Dictionary<string, string> UserFriendlyTokenText = new ()
+        public static readonly Dictionary<string, string> UserFriendlyTokenText = new()
         {
             { "COMMAND_IF", "if" },
             { "COMMAND_ELSEIF", "elseif" },
@@ -534,7 +546,7 @@ namespace YarnLanguageServer.Handlers
             { "KEYWORD_NULL", "null" },
         };
 
-        public static readonly Dictionary<string, string> TokenSnippets = new ()
+        public static readonly Dictionary<string, string> TokenSnippets = new()
         {
             { "COMMAND_SET", "set \\$$1 to ${2:value}" },
             { "COMMAND_DECLARE", "declare \\$$1 to ${2:value}" },

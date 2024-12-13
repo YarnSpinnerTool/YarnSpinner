@@ -3,14 +3,14 @@
 
 namespace Yarn.Compiler
 {
+    using Antlr4.Runtime.Misc;
     using System.Collections.Generic;
     using System.Linq;
-    using Antlr4.Runtime.Misc;
 
     internal class JumpGraphListener : YarnSpinnerParserBaseListener
     {
-        private List<string> jumps;
-        private string currentNode;
+        private List<string> jumps = new List<string>();
+        private string? currentNode;
         private (int x, int y) position;
         private bool hasPositionalInformation; // tuples are value type so I can't null check them
 
@@ -23,7 +23,7 @@ namespace Yarn.Compiler
 
         public override void EnterNode([NotNull] YarnSpinnerParser.NodeContext context)
         {
-            jumps = new List<string>();
+            jumps.Clear();
             currentNode = null;
             hasPositionalInformation = false;
         }
@@ -33,7 +33,7 @@ namespace Yarn.Compiler
             {
                 var node = new GraphingNode
                 {
-                    node = this.currentNode,
+                    node = this.currentNode ?? "(unknown)",
                     jumps = this.jumps.ToArray(),
                     hasPositionalInformation = this.hasPositionalInformation,
                     position = this.position,
@@ -42,20 +42,21 @@ namespace Yarn.Compiler
             }
         }
 
-        public override void ExitHeader([NotNull] YarnSpinnerParser.HeaderContext context) 
+        public override void ExitTitle_header([NotNull] YarnSpinnerParser.Title_headerContext context)
         {
-            if (context.header_key.Text.Equals("title"))
-            {
-                currentNode = context.header_value.Text;
-            }
-            else if (context.header_key.Text.Equals("position"))
+            currentNode = context.title.Text ?? "<unknown>";
+        }
+
+        public override void ExitHeader([NotNull] YarnSpinnerParser.HeaderContext context)
+        {
+            if (context.header_key.Text.Equals("position"))
             {
                 // later make it also extract x and y where possible
                 var positionalString = context.header_value.Text;
                 var split = positionalString.Split(',');
                 var xString = split[0].Trim();
                 var yString = split[1].Trim();
-                
+
                 int x;
                 int y;
                 if (int.TryParse(xString, out x) && int.TryParse(yString, out y))

@@ -10,5 +10,5 @@ public record NodesChangedParams : IRequest, IEquatable<NodesChangedParams>
     public Uri Uri { get; init; } = null;
 
     [Newtonsoft.Json.JsonProperty("nodes")]
-    public List<NodeInfo> Nodes { get; init; } = new();
+    public List<NodeInfo> Nodes { get; init; } = new ();
 }

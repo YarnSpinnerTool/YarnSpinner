@@ -1,0 +1,14 @@
+title: Start
+---
+<<enum Colour>>
+    <<case Red>>
+    <<case Green>>
+    <<case Blue>>
+<<endenum>>
+
+<<declare $smart_var = 1 + 1>>
+
+=> Line group 1
+=> Line group 2
+=> Line group 3
+===

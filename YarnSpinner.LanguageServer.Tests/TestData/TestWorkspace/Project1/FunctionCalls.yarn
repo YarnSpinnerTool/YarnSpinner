@@ -1,0 +1,12 @@
+title: FunctionCalls
+---
+// This is allowed, because 'dice' is a known function.
+<<if dice(6) == 6>>
+    Pass 1
+<<endif>>
+
+// This is allowed, because if a function doesn't exist, the compiler will infer its signature.
+<<if doesnotexist(6) == 6>>
+    Pass 2
+<<endif>>
+===

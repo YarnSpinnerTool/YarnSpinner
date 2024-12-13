@@ -115,7 +115,8 @@ namespace YarnLanguageServer
         /// <param name="span">The text span to get a range for.</param>
         /// <param name="lineStarts">The line start information to use.</param>
         /// <returns>The <see cref="Range"/>.</returns>
-        public static Range GetRange(Microsoft.CodeAnalysis.Text.TextSpan span, IReadOnlyList<int> lineStarts) {
+        public static Range GetRange(Microsoft.CodeAnalysis.Text.TextSpan span, IReadOnlyList<int> lineStarts)
+        {
             var start = GetPosition(lineStarts, span.Start);
             var end = GetPosition(lineStarts, span.End);
             return new Range(start, end);

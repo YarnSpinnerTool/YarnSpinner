@@ -1,0 +1,31 @@
+title: Start
+---
+
+
+<<enum EnumA>>
+    <<case One = "A-One">>
+    <<case Two = "A-Two">>
+    <<case Three = "A-Three">>
+<<endenum>>
+
+<<enum EnumB>>
+    <<case One = "B-One">>
+    <<case Two = "B-Two">>
+    <<case Three = "B-Three">>
+<<endenum>>
+
+// stop before calling these methods; this test case only cares about
+// compilation, not runtime results
+
+<<stop>>
+
+<<call set_objective_complete(EnumA.One)>>
+<<call set_objective_complete(EnumB.One)>>
+
+<<if is_objective_active(EnumA.One)>>
+<<endif>>
+
+<<if is_objective_active(EnumB.One)>>
+<<endif>>
+
+===

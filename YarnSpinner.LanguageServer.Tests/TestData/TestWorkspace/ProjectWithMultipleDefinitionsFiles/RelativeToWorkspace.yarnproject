@@ -1,0 +1,11 @@
+{
+  "projectFileVersion": 3,
+  "sourceFiles": [
+    "**/*.yarn"
+  ],
+  "excludeFiles": [],
+  "localisation": {},
+  "definitions": "${workspaceRoot}/*.ysls.json",
+  "baseLanguage": "en",
+  "compilerOptions": {}
+}

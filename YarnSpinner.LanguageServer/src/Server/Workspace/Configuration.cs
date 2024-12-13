@@ -9,7 +9,7 @@ namespace YarnLanguageServer
     {
         // This whole setup will probably get reworked once I get a days away from staring at Visual Studio configuaration documentation
         private bool csharplookup = false;
-        
+
         private bool needReinitialize = false;
 
         public bool CSharpLookup
@@ -25,7 +25,8 @@ namespace YarnLanguageServer
             }
         }
 
-        public static class Defaults {
+        public static class Defaults
+        {
             public const float DidYouMeanThreshold = 0.24f;
         }
 

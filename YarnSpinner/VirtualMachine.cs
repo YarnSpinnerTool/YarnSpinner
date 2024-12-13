@@ -1,11 +1,12 @@
-﻿// Copyright Yarn Spinner Pty Ltd
+// Copyright Yarn Spinner Pty Ltd
 // Licensed under the MIT License. See LICENSE.md in project root for license information.
+
+using Yarn.Saliency;
 
 namespace Yarn
 {
     using System;
     using System.Collections.Generic;
-    using static Yarn.Instruction.Types;
 
     /// <summary>
     /// A value used by an Instruction.
@@ -118,13 +119,34 @@ namespace Yarn
         Modulo,
     }
 
+    /// <summary>
+    /// Contains methods for evaluating the value of smart variables
+    /// </summary>
+    public interface ISmartVariableEvaluator
+    {
+        /// <summary>
+        /// Evaluate the value of a smart variable named <paramref
+        /// name="name"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the returned value.</typeparam>
+        /// <param name="name">The name of the variable.</param>
+        /// <param name="result">On return, contains the returned value of the
+        /// smart variable, or the <see langword="default"/> value of
+        /// <typeparamref name="T"/> if a smart variable named <paramref
+        /// name="name"/> could not be found or its value could not be returned
+        /// as type <typeparamref name="T"/>.</param>
+        /// <returns><see langword="true"/> if the smart variable was evaluated,
+        /// <see langword="false"/> otherwise.</returns>
+        bool TryGetSmartVariable<T>(string name, out T result);
+    }
+
     internal class VirtualMachine
     {
         internal class State
         {
             /// <summary>The name of the node that we're currently
             /// in.</summary>
-            public string currentNodeName;
+            public string? currentNodeName;
 
             /// <summary>The instruction number in the current
             /// node.</summary>
@@ -133,10 +155,18 @@ namespace Yarn
             /// <summary>The current list of options that will be delivered
             /// when the next RunOption instruction is
             /// encountered.</summary>
-            public List<(Line line, string destination, bool enabled)> currentOptions = new List<(Line line, string destination, bool enabled)>();
+            public List<PendingOption> currentOptions = new List<PendingOption>();
 
             /// <summary>The value stack.</summary>
             private Stack<Value> stack = new Stack<Value>();
+
+            internal struct CallSite
+            {
+                public string nodeName;
+                public int instruction;
+            }
+
+            private Stack<CallSite> callStack = new Stack<CallSite>();
 
             /// <summary>Pushes a <see cref="Value"/> object onto the
             /// stack.</summary>
@@ -148,17 +178,17 @@ namespace Yarn
 
             public void PushValue(string s)
             {
-                stack.Push(new Value(BuiltinTypes.String, s));
+                stack.Push(new Value(Types.String, s));
             }
 
             public void PushValue(float f)
             {
-                stack.Push(new Value(BuiltinTypes.Number, f));
+                stack.Push(new Value(Types.Number, f));
             }
 
             public void PushValue(bool b)
             {
-                stack.Push(new Value(BuiltinTypes.Boolean, b));
+                stack.Push(new Value(Types.Boolean, b));
             }
 
             /// <summary>Removes a value from the top of the stack, and
@@ -182,11 +212,28 @@ namespace Yarn
             {
                 stack.Clear();
             }
+
+            internal void PushCallStack()
+            {
+                callStack.Push(new CallSite
+                {
+                    nodeName = currentNodeName,
+                    instruction = programCounter
+                });
+            }
+
+            internal bool CanReturn => this.callStack.Count > 0;
+
+            internal CallSite PopCallStack()
+            {
+                return callStack.Pop();
+            }
         }
 
-        internal VirtualMachine(Dialogue d)
+        internal VirtualMachine(Library library, IVariableStorage storage)
         {
-            dialogue = d;
+            this.Library = library;
+            this.VariableStorage = storage;
             state = new State();
         }
 
@@ -196,30 +243,30 @@ namespace Yarn
             state = new State();
         }
 
-        public LineHandler LineHandler;
-        public OptionsHandler OptionsHandler;
-        public CommandHandler CommandHandler;
-        public NodeStartHandler NodeStartHandler;
-        public NodeCompleteHandler NodeCompleteHandler;
-        public DialogueCompleteHandler DialogueCompleteHandler;
-        public PrepareForLinesHandler PrepareForLinesHandler;
+        public LineHandler? LineHandler;
+        public OptionsHandler? OptionsHandler;
+        public CommandHandler? CommandHandler;
+        public NodeStartHandler? NodeStartHandler;
+        public NodeCompleteHandler? NodeCompleteHandler;
+        public DialogueCompleteHandler? DialogueCompleteHandler;
+        public PrepareForLinesHandler? PrepareForLinesHandler;
 
-        private Dialogue dialogue;
+        public IVariableStorage VariableStorage { get; set; }
+        public Library Library { get; set; }
+        public Logger? LogDebugMessage { get; set; }
+        public Logger? LogErrorMessage { get; set; }
 
         /// <summary>
         /// The <see cref="Program"/> that this virtual machine is running.
         /// </summary>
-        internal Program Program { get; set; }
+        internal Program? Program { get; set; }
 
-        private State state = new State();
+        internal State state = new State();
 
-        public string currentNodeName
-        {
-            get
-            {
-                return state.currentNodeName;
-            }
-        }
+        public string? CurrentNodeName => state.currentNodeName;
+
+        [Obsolete("Use CurrentNodeName")]
+        public string? currentNodeName => CurrentNodeName;
 
         public enum ExecutionState
         {
@@ -254,7 +301,7 @@ namespace Yarn
             Running,
         }
 
-        private ExecutionState _executionState;
+        internal ExecutionState _executionState;
         public ExecutionState CurrentExecutionState
         {
             get
@@ -271,9 +318,16 @@ namespace Yarn
             }
         }
 
-        Node currentNode;
+        public IContentSaliencyStrategy ContentSaliencyStrategy { get; internal set; } = new FirstSaliencyStrategy();
+
+        internal Node? currentNode;
 
         public bool SetNode(string nodeName)
+        {
+            return SetNode(nodeName, clearState: true);
+        }
+
+        internal bool SetNode(string nodeName, bool clearState)
         {
             if (Program == null || Program.Nodes.Count == 0)
             {
@@ -286,11 +340,17 @@ namespace Yarn
                 throw new DialogueException($"No node named {nodeName} has been loaded.");
             }
 
-            dialogue.LogDebugMessage?.Invoke("Running node " + nodeName);
+            LogDebugMessage?.Invoke("Running node " + nodeName);
 
             currentNode = Program.Nodes[nodeName];
-            ResetState();
+
+            if (clearState)
+            {
+                ResetState();
+            }
+
             state.currentNodeName = nodeName;
+            state.programCounter = 0;
 
             NodeStartHandler?.Invoke(nodeName);
 
@@ -332,8 +392,8 @@ namespace Yarn
 
             // We now know what number option was selected; push the
             // corresponding node name to the stack
-            var destinationNode = state.currentOptions[selectedOptionID].destination;
-            state.PushValue(destinationNode);
+            var destinationInstruction = state.currentOptions[selectedOptionID].destination;
+            state.PushValue(destinationInstruction);
 
             // We no longer need the accumulated list of options; clear it
             // so that it's ready for the next one
@@ -363,7 +423,7 @@ namespace Yarn
             CurrentExecutionState = ExecutionState.Running;
 
             // Execute instructions until something forces us to stop
-            while (CurrentExecutionState == ExecutionState.Running)
+            while (currentNode != null && CurrentExecutionState == ExecutionState.Running)
             {
                 Instruction currentInstruction = currentNode.Instructions[state.programCounter];
 
@@ -371,14 +431,39 @@ namespace Yarn
 
                 state.programCounter++;
 
-                if (state.programCounter >= currentNode.Instructions.Count)
+                if (currentNode != null && state.programCounter >= currentNode.Instructions.Count)
                 {
-                    NodeCompleteHandler?.Invoke(currentNode.Name);
+                    ReturnFromNode(currentNode);
                     CurrentExecutionState = ExecutionState.Stopped;
                     DialogueCompleteHandler?.Invoke();
-                    dialogue.LogDebugMessage("Run complete.");
+                    LogDebugMessage?.Invoke("Run complete.");
                 }
             }
+        }
+
+        private void ReturnFromNode(Node? node)
+        {
+            if (node == null)
+            {
+                // Nothing to do.
+                return;
+            }
+            NodeCompleteHandler?.Invoke(node.Name);
+
+            string? nodeTrackingVariable = node.TrackingVariableName;
+            if (nodeTrackingVariable != null)
+            {
+                if (this.VariableStorage.TryGetValue(nodeTrackingVariable, out float result))
+                {
+                    result += 1;
+                    this.VariableStorage.SetValue(nodeTrackingVariable, result);
+                }
+                else
+                {
+                    this.LogErrorMessage?.Invoke($"Failed to get the tracking variable for node {node.Name}");
+                }
+            }
+
         }
 
         /// <summary>
@@ -406,65 +491,41 @@ namespace Yarn
             {
                 throw new DialogueException($"Cannot continue running dialogue. {nameof(OptionsHandler)} has not been set.");
             }
-        }
-
-        /// Looks up the instruction number for a named label in the current node.
-        internal int FindInstructionPointForLabel(string labelName)
-        {
-            if (currentNode.Labels.ContainsKey(labelName) == false)
+            if (Library == null)
             {
-                // Couldn't find the node..
-                throw new ArgumentOutOfRangeException($"Unknown label {labelName} in node {state.currentNodeName}");
+                throw new DialogueException($"Cannot continue running dialogue. {nameof(Library)} has not been set.");
             }
-
-            return currentNode.Labels[labelName];
         }
 
         internal void RunInstruction(Instruction i)
         {
-            switch (i.Opcode)
+            switch (i.InstructionTypeCase)
             {
-                case OpCode.JumpTo:
+                case Instruction.InstructionTypeOneofCase.JumpTo:
+                    state.programCounter = i.JumpTo.Destination - 1;
+                    break;
+                case Instruction.InstructionTypeOneofCase.PeekAndJump:
                     {
-                        // - JumpTo
-                        // Jumps to a named label
-                        state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
-
-                        break;
+                        state.programCounter = state.PeekValue().ConvertTo<int>() - 1;
                     }
-
-                case OpCode.RunLine:
+                    break;
+                case Instruction.InstructionTypeOneofCase.RunLine:
                     {
-                        // - RunLine
                         // Looks up a string from the string table and
                         // passes it to the client as a line
-                        string stringKey = i.Operands[0].StringValue;
+                        string stringKey = i.RunLine.LineID;
 
-                        Line line = new Line(stringKey);
 
-                        // The second operand, if provided (compilers prior
-                        // to v1.1 don't include it), indicates the number
-                        // of expressions in the line. We need to pop these
-                        // values off the stack and deliver them to the
-                        // line handler.
-                        if (i.Operands.Count > 1)
+                        var expressionCount = i.RunLine.SubstitutionCount;
+
+                        var strings = new string[expressionCount];
+
+                        for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--)
                         {
-                            // TODO: we only have float operands, which is
-                            // unpleasant. we should make 'int' operands a
-                            // valid type, but doing that implies that the
-                            // language differentiates between floats and
-                            // ints itself. something to think about.
-                            var expressionCount = (int)i.Operands[1].FloatValue;
-
-                            var strings = new string[expressionCount];
-
-                            for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--)
-                            {
-                                strings[expressionIndex] = state.PopValue().ConvertTo<string>();
-                            }
-
-                            line.Substitutions = strings;
+                            strings[expressionIndex] = state.PopValue().ConvertTo<string>();
                         }
+
+                        Line line = new Line(stringKey, strings);
 
                         // Suspend execution, because we're about to deliver content
                         CurrentExecutionState = ExecutionState.DeliveringContent;
@@ -480,47 +541,32 @@ namespace Yarn
 
                         break;
                     }
-
-                case OpCode.RunCommand:
+                case Instruction.InstructionTypeOneofCase.RunCommand:
                     {
-                        // - RunCommand
                         // Passes a string to the client as a custom command
-                        string commandText = i.Operands[0].StringValue;
+                        string commandText = i.RunCommand.CommandText;
 
-                        // The second operand, if provided (compilers prior
-                        // to v1.1 don't include it), indicates the number
-                        // of expressions in the command. We need to pop
-                        // these values off the stack and deliver them to
-                        // the line handler.
-                        if (i.Operands.Count > 1)
+                        var expressionCount = i.RunCommand.SubstitutionCount;
+
+                        // we create a list of replacements, these are: (startIndex, length, newVal) tuples
+                        // where the startIndex and length come directly from the command itself,
+                        // and the new value comes from the stack
+                        var replacements = new List<(int StartIndex, int Length, string Value)>();
+                        for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--)
                         {
-                            // TODO: we only have float operands, which is
-                            // unpleasant. we should make 'int' operands a
-                            // valid type, but doing that implies that the
-                            // language differentiates between floats and
-                            // ints itself. something to think about.
-                            var expressionCount = (int)i.Operands[1].FloatValue;
+                            var substitution = state.PopValue().ConvertTo<string>();
 
-                            // we create a list of replacements, these are: (startIndex, length, newVal) tuples
-                            // where the startIndex and length come directly from the command itself,
-                            // and the new value comes from the stack
-                            var replacements = new List<(int, int, string)>();
-                            for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--)
+                            var marker = "{" + expressionIndex + "}";
+                            var replacementIndex = commandText.LastIndexOf(marker, StringComparison.Ordinal);
+                            if (replacementIndex != -1)
                             {
-                                var substitution = state.PopValue().ConvertTo<string>();
-
-                                var marker = "{" + expressionIndex + "}";
-                                var replacementIndex = commandText.LastIndexOf(marker, StringComparison.Ordinal);
-                                if (replacementIndex != -1)
-                                {
-                                    replacements.Add((replacementIndex, marker.Length, substitution));
-                                }
+                                replacements.Add((replacementIndex, marker.Length, substitution));
                             }
-                            // now we make those changes on the command string
-                            foreach (var replacement in replacements)
-                            {
-                                commandText = commandText.Remove(replacement.Item1, replacement.Item2).Insert(replacement.Item1, replacement.Item3);
-                            }
+                        }
+                        // now we make those changes on the command string
+                        foreach (var replacement in replacements)
+                        {
+                            commandText = commandText.Remove(replacement.StartIndex, replacement.Length).Insert(replacement.StartIndex, replacement.Value);
                         }
 
                         CurrentExecutionState = ExecutionState.DeliveringContent;
@@ -538,80 +584,125 @@ namespace Yarn
 
                         break;
                     }
-
-                case OpCode.PushString:
+                case Instruction.InstructionTypeOneofCase.AddOption:
                     {
-                        // - PushString
-                        // Pushes a string value onto the stack. The operand is an index into
-                        // the string table, so that's looked up first.
-                        state.PushValue(i.Operands[0].StringValue);
+                        // Add an option to the current state.
+
+                        var lineID = i.AddOption.LineID;
+
+                        // get the number of expressions that we're
+                        // working with
+                        var expressionCount = i.AddOption.SubstitutionCount;
+
+                        var strings = new string[expressionCount];
+
+                        // pop the expression values off the stack in
+                        // reverse order, and store the list of substitutions
+                        for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--)
+                        {
+                            string substitution = state.PopValue().ConvertTo<string>();
+                            strings[expressionIndex] = substitution;
+                        }
+
+                        var line = new Line(lineID, strings);
+
+                        // Indicates whether the VM believes that the
+                        // option should be shown to the user, based on any
+                        // conditions that were attached to the option.
+                        var lineConditionPassed = true;
+
+                        // Get a bool that indicates
+                        // whether this option had a condition or not.
+                        // If it does, then a bool value will exist on
+                        // the stack indiciating whether the condition
+                        // passed or not. We pass that information to
+                        // the game.
+
+                        var hasLineCondition = i.AddOption.HasCondition;
+
+                        if (hasLineCondition)
+                        {
+                            // This option has a condition. Get it from
+                            // the stack.
+                            lineConditionPassed = state.PopValue().ConvertTo<bool>();
+                        }
+
+                        state.currentOptions.Add(new PendingOption
+                        {
+                            line = line,
+                            destination = i.AddOption.Destination,
+                            enabled = lineConditionPassed,
+                        });
 
                         break;
                     }
-
-                case OpCode.PushFloat:
+                case Instruction.InstructionTypeOneofCase.ShowOptions:
                     {
-                        // - PushFloat
-                        // Pushes a floating point onto the stack.
-                        state.PushValue(i.Operands[0].FloatValue);
+                        // If we have no options to show, immediately stop.
+                        if (state.currentOptions.Count == 0)
+                        {
+                            CurrentExecutionState = ExecutionState.Stopped;
+                            DialogueCompleteHandler?.Invoke();
+                            break;
+                        }
+
+                        // Present the list of options to the user and let them pick
+                        var optionChoices = new List<OptionSet.Option>();
+
+                        for (int optionIndex = 0; optionIndex < state.currentOptions.Count; optionIndex++)
+                        {
+                            var option = state.currentOptions[optionIndex];
+                            optionChoices.Add(new OptionSet.Option(option.line, optionIndex, option.destination, option.enabled));
+                        }
+
+                        // We can't continue until our client tell us which
+                        // option to pick
+                        CurrentExecutionState = ExecutionState.WaitingOnOptionSelection;
+
+                        // Pass the options set to the client, as well as a
+                        // delegate for them to call when the user has made
+                        // a selection
+                        OptionsHandler?.Invoke(new OptionSet(optionChoices.ToArray()));
+
+                        if (CurrentExecutionState == ExecutionState.WaitingForContinue)
+                        {
+                            // we are no longer waiting on an option
+                            // selection - the options handler must have
+                            // called SetSelectedOption! Continue running
+                            // immediately.
+                            CurrentExecutionState = ExecutionState.Running;
+                        }
 
                         break;
                     }
-
-                case OpCode.PushBool:
+                case Instruction.InstructionTypeOneofCase.PushString:
+                    state.PushValue(i.PushString.Value);
+                    break;
+                case Instruction.InstructionTypeOneofCase.PushFloat:
+                    state.PushValue(i.PushFloat.Value);
+                    break;
+                case Instruction.InstructionTypeOneofCase.PushBool:
+                    state.PushValue(i.PushBool.Value);
+                    break;
+                case Instruction.InstructionTypeOneofCase.JumpIfFalse:
                     {
-                        // - PushBool
-                        // Pushes a boolean value onto the stack.
-                        state.PushValue(i.Operands[0].BoolValue);
-
-                        break;
-                    }
-
-                case OpCode.PushNull:
-                    {
-                        throw new InvalidOperationException("PushNull is no longer valid op code, because null is no longer a valid value from Yarn Spinner 2.0 onwards. To fix this error, re-compile the original source code.");
-                    }
-
-                case OpCode.JumpIfFalse:
-                    {
-                        // - JumpIfFalse
-                        // Jumps to a named label if the value on the top of the stack
-                        // evaluates to the boolean value 'false'.
                         if (state.PeekValue().ConvertTo<bool>() == false)
                         {
-                            state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
+                            state.programCounter = i.JumpIfFalse.Destination - 1;
                         }
-                        break;
                     }
-
-                case OpCode.Jump:
+                    break;
+                case Instruction.InstructionTypeOneofCase.Pop:
+                    state.PopValue();
+                    break;
+                case Instruction.InstructionTypeOneofCase.CallFunc:
                     {
-                        // - Jump
-                        // Jumps to a label whose name is on the stack.
-                        var jumpDestination = state.PeekValue().ConvertTo<string>();
-                        state.programCounter = FindInstructionPointForLabel(jumpDestination) - 1;
-
-                        break;
-                    }
-
-                case OpCode.Pop:
-                    {
-                        // - Pop
-                        // Pops a value from the stack.
-                        state.PopValue();
-                        break;
-                    }
-
-                case OpCode.CallFunc:
-                    {
-
-                        // - CallFunc
                         // Call a function, whose parameters are expected to
                         // be on the stack. Pushes the function's return value,
                         // if it returns one.
-                        var functionName = i.Operands[0].StringValue;
+                        var functionName = i.CallFunc.FunctionName;
 
-                        var function = dialogue.Library.GetFunction(functionName);
+                        var function = Library.GetFunction(functionName);
 
                         var parameterInfos = function.Method.GetParameters();
 
@@ -647,7 +738,7 @@ namespace Yarn
 
                             if (functionReturnsValue)
                             {
-                                if (BuiltinTypes.TypeMappings.TryGetValue(returnValue.GetType(), out var yarnType))
+                                if (Types.TypeMappings.TryGetValue(returnValue.GetType(), out var yarnType))
                                 {
                                     Value yarnValue = new Value(yarnType, returnValue);
 
@@ -663,23 +754,22 @@ namespace Yarn
 
                         break;
                     }
-
-                case OpCode.PushVariable:
+                case Instruction.InstructionTypeOneofCase.PushVariable:
                     {
-                        // - PushVariable
+
                         // Get the contents of a variable, push that onto the stack.
-                        var variableName = i.Operands[0].StringValue;
+                        var variableName = i.PushVariable.VariableName;
 
                         Value loadedValue;
 
-                        var didLoadValue = dialogue.VariableStorage.TryGetValue<IConvertible>(variableName, out var loadedObject);
+                        var didLoadValue = VariableStorage.TryGetValue<IConvertible>(variableName, out var loadedObject);
 
 
                         if (didLoadValue)
                         {
                             System.Type loadedObjectType = loadedObject.GetType();
 
-                            var hasType = BuiltinTypes.TypeMappings.TryGetValue(loadedObjectType, out var yarnType);
+                            var hasType = Types.TypeMappings.TryGetValue(loadedObjectType, out var yarnType);
 
                             if (hasType)
                             {
@@ -692,6 +782,10 @@ namespace Yarn
                         }
                         else
                         {
+                            if (Program == null)
+                            {
+                                throw new InvalidOperationException("Program is null");
+                            }
                             // We don't have a value for this. The initial
                             // value may be found in the program. (If it's
                             // not, then the variable's value is undefined,
@@ -701,13 +795,13 @@ namespace Yarn
                                 switch (value.ValueCase)
                                 {
                                     case Operand.ValueOneofCase.StringValue:
-                                        loadedValue = new Value(BuiltinTypes.String, value.StringValue);
+                                        loadedValue = new Value(Types.String, value.StringValue);
                                         break;
                                     case Operand.ValueOneofCase.BoolValue:
-                                        loadedValue = new Value(BuiltinTypes.Boolean, value.BoolValue);
+                                        loadedValue = new Value(Types.Boolean, value.BoolValue);
                                         break;
                                     case Operand.ValueOneofCase.FloatValue:
-                                        loadedValue = new Value(BuiltinTypes.Number, value.FloatValue);
+                                        loadedValue = new Value(Types.Number, value.FloatValue);
                                         break;
                                     default:
                                         throw new ArgumentOutOfRangeException($"Unknown initial value type {value.ValueCase} for variable {variableName}");
@@ -722,26 +816,25 @@ namespace Yarn
                         state.PushValue(loadedValue);
 
                         break;
-                    }
 
-                case OpCode.StoreVariable:
+                    }
+                case Instruction.InstructionTypeOneofCase.StoreVariable:
                     {
-                        // - StoreVariable
                         // Store the top value on the stack in a variable.
                         var topValue = state.PeekValue();
-                        var destinationVariableName = i.Operands[0].StringValue;
+                        var destinationVariableName = i.StoreVariable.VariableName;
 
-                        if (topValue.Type == BuiltinTypes.Number)
+                        if (topValue.Type == Types.Number)
                         {
-                            dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<float>());
+                            VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<float>());
                         }
-                        else if (topValue.Type == BuiltinTypes.String)
+                        else if (topValue.Type == Types.String)
                         {
-                            dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<string>());
+                            VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<string>());
                         }
-                        else if (topValue.Type == BuiltinTypes.Boolean)
+                        else if (topValue.Type == Types.Boolean)
                         {
-                            dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<bool>());
+                            VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<bool>());
                         }
                         else
                         {
@@ -750,156 +843,222 @@ namespace Yarn
 
                         break;
                     }
-
-                case OpCode.Stop:
+                case Instruction.InstructionTypeOneofCase.Stop:
                     {
-                        // - Stop
                         // Immediately stop execution, and report that fact.
-                        NodeCompleteHandler(currentNode.Name);
+                        ReturnFromNode(currentNode);
+
+                        // Unwind the call stack.
+                        while (state.CanReturn)
+                        {
+                            var node = Program?.Nodes[state.PopCallStack().nodeName];
+                            ReturnFromNode(node);
+                        }
+
                         DialogueCompleteHandler?.Invoke();
                         CurrentExecutionState = ExecutionState.Stopped;
 
                         break;
                     }
-
-                case OpCode.RunNode:
+                case Instruction.InstructionTypeOneofCase.RunNode:
+                    ExecuteJumpToNode(i.RunNode.NodeName, false);
+                    break;
+                case Instruction.InstructionTypeOneofCase.PeekAndRunNode:
+                    ExecuteJumpToNode(null, false);
+                    break;
+                case Instruction.InstructionTypeOneofCase.DetourToNode:
+                    ExecuteJumpToNode(i.DetourToNode.NodeName, true);
+                    break;
+                case Instruction.InstructionTypeOneofCase.PeekAndDetourToNode:
+                    ExecuteJumpToNode(null, true);
+                    break;
+                case Instruction.InstructionTypeOneofCase.Return:
                     {
-                        // - RunNode
-                        // Run a node
+                        ReturnFromNode(currentNode);
 
-                        // Pop a string from the stack, and jump to a node
-                        // with that name.
-                        string nodeName = state.PopValue().ConvertTo<string>();
-
-                        NodeCompleteHandler(currentNode.Name);
-
-                        SetNode(nodeName);
-
-                        // Decrement program counter here, because it will
-                        // be incremented when this function returns, and
-                        // would mean skipping the first instruction
-                        state.programCounter -= 1;
-
-                        break;
-                    }
-
-                case OpCode.AddOption:
-                    {
-                        // - AddOption
-                        // Add an option to the current state.
-
-                        var line = new Line(i.Operands[0].StringValue);
-
-                        if (i.Operands.Count > 2)
+                        State.CallSite returnSite = default;
+                        if (state.CanReturn)
                         {
-                            // TODO: we only have float operands, which is
-                            // unpleasant. we should make 'int' operands a
-                            // valid type, but doing that implies that the
-                            // language differentiates between floats and
-                            // ints itself. something to think about.
-
-                            // get the number of expressions that we're
-                            // working with out of the third operand
-                            var expressionCount = (int)i.Operands[2].FloatValue;
-
-                            var strings = new string[expressionCount];
-
-                            // pop the expression values off the stack in
-                            // reverse order, and store the list of substitutions
-                            for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--)
-                            {
-                                string substitution = state.PopValue().ConvertTo<string>();
-                                strings[expressionIndex] = substitution;
-                            }
-
-                            line.Substitutions = strings;
+                            returnSite = state.PopCallStack();
                         }
-
-                        // Indicates whether the VM believes that the
-                        // option should be shown to the user, based on any
-                        // conditions that were attached to the option.
-                        var lineConditionPassed = true;
-
-                        if (i.Operands.Count > 3)
+                        if (returnSite.nodeName == null)
                         {
-                            // The fourth operand is a bool that indicates
-                            // whether this option had a condition or not.
-                            // If it does, then a bool value will exist on
-                            // the stack indiciating whether the condition
-                            // passed or not. We pass that information to
-                            // the game.
-
-                            var hasLineCondition = i.Operands[3].BoolValue;
-
-                            if (hasLineCondition)
-                            {
-                                // This option has a condition. Get it from
-                                // the stack.
-                                lineConditionPassed = state.PopValue().ConvertTo<bool>();
-                            }
-                        }
-
-                        state.currentOptions.Add(
-                            (line, // line to show
-                            destination: i.Operands[1].StringValue, // node name
-                            enabled: lineConditionPassed)); // whether the line condition passed
-
-                        break;
-                    }
-
-                case OpCode.ShowOptions:
-                    {
-                        // - ShowOptions
-                        // If we have no options to show, immediately stop.
-                        if (state.currentOptions.Count == 0)
-                        {
-                            CurrentExecutionState = ExecutionState.Stopped;
+                            // We've reached the top of the call stack, so
+                            // there's nowhere to return to. Stop the program.
                             DialogueCompleteHandler?.Invoke();
+                            CurrentExecutionState = ExecutionState.Stopped;
                             break;
                         }
-
-                        // Present the list of options to the user and let them pick
-                        var optionChoices = new List<OptionSet.Option>();
-
-                        for (int optionIndex = 0; optionIndex < state.currentOptions.Count; optionIndex++)
-                        {
-                            var option = state.currentOptions[optionIndex];
-                            optionChoices.Add(new OptionSet.Option(option.line, optionIndex, option.destination, option.enabled));
-                        }
-
-                        // We can't continue until our client tell us which
-                        // option to pick
-                        CurrentExecutionState = ExecutionState.WaitingOnOptionSelection;
-
-                        // Pass the options set to the client, as well as a
-                        // delegate for them to call when the user has made
-                        // a selection
-                        OptionsHandler(new OptionSet(optionChoices.ToArray()));
-
-                        if (CurrentExecutionState == ExecutionState.WaitingForContinue)
-                        {
-                            // we are no longer waiting on an option
-                            // selection - the options handler must have
-                            // called SetSelectedOption! Continue running
-                            // immediately.
-                            CurrentExecutionState = ExecutionState.Running;
-                        }
-
-                        break;
+                        SetNode(returnSite.nodeName, clearState: false);
+                        state.programCounter = returnSite.instruction;
                     }
-
-                default:
+                    break;
+                case Instruction.InstructionTypeOneofCase.AddSaliencyCandidate:
                     {
-                        // - default
-                        // Whoa, no idea what OpCode this is. Stop the program
-                        // and throw an exception.
-                        CurrentExecutionState = ExecutionState.Stopped;
-                        throw new ArgumentOutOfRangeException(
-                            $"Unknown opcode {i.Opcode}"
-                        );
+                        var condition = this.state.PopValue().ConvertTo<bool>();
+
+                        var candidate = new ContentSaliencyOption(i.AddSaliencyCandidate.ContentID)
+                        {
+                            ComplexityScore = i.AddSaliencyCandidate.ComplexityScore,
+                            FailingConditionValueCount = condition ? 0 : 1,
+                            PassingConditionValueCount = condition ? 1 : 0,
+                            Destination = i.AddSaliencyCandidate.Destination,
+                            ContentType = ContentSaliencyContentType.Line,
+                        };
+
+                        saliencyCandidateList.Add(candidate);
                     }
+                    break;
+                case Instruction.InstructionTypeOneofCase.AddSaliencyCandidateFromNode:
+                    {
+                        var nodeName = i.AddSaliencyCandidateFromNode.NodeName;
+                        var node = this.Program.Nodes[nodeName];
+
+                        int passed = 0;
+                        int failed = 0;
+
+                        foreach (var variableName in node.ContentSaliencyConditionVariables)
+                        {
+                            // For each condition variable in this node,
+                            // evaluate it, and record whether it evaluated to
+                            // true or false.
+                            this.VariableStorage.SmartVariableEvaluator.TryGetSmartVariable(variableName, out bool result);
+
+                            if (result) { passed += 1; }
+                            else { failed += 1; }
+                        }
+
+                        int conditionComplexityScore = node.ContentSaliencyConditionComplexityScore;
+
+                        var candidate = new ContentSaliencyOption(nodeName)
+                        {
+                            ComplexityScore = conditionComplexityScore,
+                            FailingConditionValueCount = failed,
+                            PassingConditionValueCount = passed,
+                            Destination = i.AddSaliencyCandidateFromNode.Destination,
+                            ContentType = ContentSaliencyContentType.Node,
+                        };
+
+                        this.saliencyCandidateList.Add(candidate);
+
+                    }
+                    break;
+                case Instruction.InstructionTypeOneofCase.SelectSaliencyCandidate:
+                    {
+                        // Pass the collection of salient content candidates to
+                        // the strategy and get back either a single thing to
+                        // run, or null
+                        ContentSaliencyOption? result = this.ContentSaliencyStrategy.QueryBestContent(this.saliencyCandidateList);
+
+                        if (result != null)
+                        {
+                            // The content that was selected must be one of the candidates.
+                            bool selectedContentWasValid = saliencyCandidateList.Contains(result);
+
+                            if (selectedContentWasValid == false)
+                            {
+                                throw new DialogueException($"Content saliency strategy {ContentSaliencyStrategy} did not " +
+                                    $"return a valid selection (available content IDs to choose from were " +
+                                    $"{string.Join(", ", saliencyCandidateList)}, but strategy returned {result}");
+                            }
+
+                            // Indicate to the strategy that we are committing
+                            // to this item.
+                            this.ContentSaliencyStrategy.ContentWasSelected(result);
+
+                            // Push the destination that we're jumping to.
+                            this.state.PushValue(result.Destination);
+
+                            // Push a flag indicating that content was selected.
+                            this.state.PushValue(true);
+                        }
+                        else
+                        {
+                            // No content was selected.
+
+                            // Push a flag indicating that content was not selected.
+                            this.state.PushValue(false);
+                        }
+
+                        // Clear the saliency candidate list
+                        saliencyCandidateList.Clear();
+                    }
+                    break;
+                default:
+                    // Whoa, no idea what OpCode this is. Stop the program
+                    // and throw an exception.
+                    CurrentExecutionState = ExecutionState.Stopped;
+
+                    throw new ArgumentOutOfRangeException($"{i.InstructionTypeCase} is not a supported instruction.");
             }
         }
+
+        private List<ContentSaliencyOption> saliencyCandidateList = new List<ContentSaliencyOption>();
+
+        private void ExecuteJumpToNode(string? nodeName, bool isDetour)
+        {
+            if (isDetour)
+            {
+                // Preserve our current state.
+                state.PushCallStack();
+            }
+            else
+            {
+                // We are jumping straight to another node. Unwind the current
+                // call stack and issue a 'node complete' event for every node.
+                ReturnFromNode(this.Program?.Nodes[CurrentNodeName]);
+
+                while (state.CanReturn)
+                {
+                    var poppedNodeName = state.PopCallStack().nodeName;
+                    if (poppedNodeName != null)
+                    {
+                        ReturnFromNode(this.Program?.Nodes[poppedNodeName]);
+                    }
+                }
+
+            }
+
+            if (nodeName == null)
+            {
+                // The node name wasn't supplied - get it from the top of the stack.
+                nodeName = state.PeekValue().ConvertTo<string>();
+            }
+
+            SetNode(nodeName, clearState: !isDetour);
+
+            // Decrement program counter here, because it will
+            // be incremented when this function returns, and
+            // would mean skipping the first instruction
+            state.programCounter -= 1;
+        }
+
+        private static void DummyCommandHandler(Command command)
+        {
+            throw new System.InvalidOperationException($"Smart node execution nodes must not run commands");
+        }
+
+        private static void DummyOptionsHandler(OptionSet options)
+        {
+            throw new System.InvalidOperationException($"Smart node execution nodes must not run options");
+        }
+
+        private static void DummyPrepareForLinesHandler(IEnumerable<string> lineIDs)
+        {
+            throw new System.InvalidOperationException($"Smart node execution nodes must not run lines");
+        }
+
+        private static void DummyLineHandler(Yarn.Line line)
+        {
+            throw new System.InvalidOperationException($"Smart node execution nodes must not run lines");
+        }
+    }
+
+    internal struct PendingOption
+    {
+        public Line line;
+        public int destination;
+        public bool enabled;
     }
 }
 

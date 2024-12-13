@@ -1,0 +1,28 @@
+title: Start
+---
+<<once>>
+    This content is only seen once.
+<<else>>
+    This content is seen on all other occasions.
+<<endonce>>
+
+<<once if $conditionA>>
+    This content is only seen once, and only if $conditionA is true.
+<<endonce>>
+
+-> Option 1 <<once if $conditionB>> // only selectable once, and only if $conditionB is true
+-> Option 2 <<once>> // only selectable once
+-> Option 3 <<if $conditionB>> // only selectable if $conditionB is true
+-> Option 4 // always selectable
+
+=> Item 1 <<once>> // will only appear once
+=> Item 2 <<once if $conditionC>> // will only appear once, and only if $conditionC is true
+=> Item 3 <<if $conditionC>> // will only appear if $conditionC is true
+=> Item 4 // may always appear
+
+Line 1 <<once>> // line will only run once
+Line 2 <<once if $conditionD>> // line will only run once, and only if $conditionD is true
+Line 3 <<if $conditionD>> // line will only run if $conditionD is true
+Line 4 // line will always run
+===
+

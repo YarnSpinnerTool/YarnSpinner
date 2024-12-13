@@ -6,9 +6,9 @@
 
 namespace Yarn.Compiler
 {
-    using System.Collections.Generic;
     using Antlr4.Runtime;
     using Antlr4.Runtime.Tree;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Contains the result of parsing a single file of source code.

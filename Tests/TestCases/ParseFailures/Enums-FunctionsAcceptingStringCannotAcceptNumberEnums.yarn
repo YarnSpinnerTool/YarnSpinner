@@ -1,0 +1,28 @@
+title: Start
+---
+
+
+<<enum EnumA>>
+    <<case One>>
+    <<case Two>>
+    <<case Three>>
+<<endenum>>
+
+<<enum EnumB>>
+    <<case One = 1>>
+    <<case Two = 2>>
+    <<case Three = 3>>
+<<endenum>>
+
+// Error: set_objective_complete expects a string, so it can't be passed an enum
+// that has numbers as its raw value type
+<<call set_objective_complete(EnumA.One)>>
+<<call set_objective_complete(EnumB.One)>>
+
+<<if is_objective_active(EnumA.One)>>
+<<endif>>
+
+<<if is_objective_active(EnumB.One)>>
+<<endif>>
+
+===

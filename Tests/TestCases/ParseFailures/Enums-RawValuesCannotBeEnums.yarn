@@ -1,0 +1,10 @@
+title: Start
+---
+<<enum Food>>
+    <<case Apple = 1>>
+<<endenum>>
+
+<<enum DayOfWeek>>
+    <<case Monday = Food.Apple>> // error! raw values can't be enums
+<<endenum>>
+===
