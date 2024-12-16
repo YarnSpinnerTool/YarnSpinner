@@ -4,13 +4,11 @@
 # Unity project
 #
 # Usage: ./sync-yarnspinner-dlls.sh {PATH TO YARNSPINNER-UNITY PROJECT}
-# Run this script in the root of the Yarn Spinner Core directory.
 
-set -e 
+set -e
+pushd $1
 
-YARNSPINNER_UNITY_FOLDER=$1
-
-YARNSPINNER_FOLDER=.
+YARNSPINNER_FOLDER=$(readlink -f $1/../YarnSpinner)
 
 YARNSPINNER_DLLS_DIR=$1/Packages/dev.yarnspinner.unity/Runtime/DLLs/
 
@@ -33,10 +31,12 @@ assemblyalias --target-directory ".build-tmp" --prefix "Yarn." --assemblies-to-a
 assemblyalias --target-directory ".build-tmp" --internalize --prefix "Yarn." --assemblies-to-alias "System*;Microsoft.Bcl*;Microsoft.Extensions*"
 
 cp -v .build-tmp/*.dll $YARNSPINNER_DLLS_DIR
-cp -v .build-tmp/*.pdb $YARNSPINNER_DLLS_DIR
-cp -v .build-tmp/*.xml $YARNSPINNER_DLLS_DIR
+cp -v .build-tmp/*.pdb $YARNSPINNER_DLLS_DIR || true
+cp -v .build-tmp/*.xml $YARNSPINNER_DLLS_DIR || true
 rm -fv $YARNSPINNER_DLLS_DIR/Microsoft.CSharp.dll
 
 rm -rf .build-tmp
 
 echo "Synced current working directory of Yarn Spinner from $YARNSPINNER_FOLDER"
+
+popd
