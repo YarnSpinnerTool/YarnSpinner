@@ -23,6 +23,7 @@ if [ -d .build-tmp ]; then
 fi
 
 cd $YARNSPINNER_FOLDER
+dotnet-gitversion /updateAssemblyInfo
 mkdir -p .build-tmp
 dotnet build  --configuration Debug -o .build-tmp YarnSpinner.Compiler
 
@@ -36,6 +37,8 @@ cp -v .build-tmp/*.xml $YARNSPINNER_DLLS_DIR || true
 rm -fv $YARNSPINNER_DLLS_DIR/Microsoft.CSharp.dll
 
 rm -rf .build-tmp
+
+git checkout  "*/AssemblyInfo.cs"
 
 echo "Synced current working directory of Yarn Spinner from $YARNSPINNER_FOLDER"
 
