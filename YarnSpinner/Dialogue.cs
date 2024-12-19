@@ -986,7 +986,7 @@ namespace Yarn
 
             foreach (var header in node.Headers)
             {
-                if (header.Key == nodeName)
+                if (header.Key == headerName)
                 {
                     return header.Value.Trim();
                 }
