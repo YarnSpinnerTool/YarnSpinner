@@ -947,22 +947,88 @@ namespace Yarn
         /// <param name="nodeName">The name of the node.</param>
         /// <returns>The node's tags, or <see langword="null"/> if the node is
         /// not present in the Program.</returns>
+        [Obsolete("Use GetHeaderValue(nodeName, \"tags\"), and split the result by spaces", true)]
         public IEnumerable<string> GetTagsForNode(string nodeName)
         {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets the value of the header named <paramref name="headerName"/> on
+        /// the node named <paramref name="nodeName"/>, or <see
+        /// langword="null"/> if the header can't be found.
+        /// </summary>
+        /// <remarks>If the node has more than one header named <paramref
+        /// name="headerName"/>, the first one is used.</remarks>
+        /// <param name="nodeName">The name of the node.</param>
+        /// <param name="headerName">The name of the header.</param>
+        /// <returns>The value of the first header on the node with the
+        /// specified header value.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the program
+        /// is not loaded, the program contains no nodes, or the program does
+        /// not contain a node named <paramref name="nodeName"/>.</exception>
+        public string? GetHeaderValue(string nodeName, string headerName)
+        {
+            if (this.Program == null)
+            {
+                throw new InvalidOperationException($"Can't get headers for node {nodeName}, because no program is set");
+            }
+
             if (this.Program.Nodes.Count == 0)
             {
-                this.LogErrorMessage?.Invoke("No nodes are loaded!");
-                return null;
+                throw new InvalidOperationException($"Can't get headers for node {nodeName}, because the program contains no nodes");
             }
-            else if (this.Program.Nodes.ContainsKey(nodeName))
+
+            if (this.Program.Nodes.TryGetValue(nodeName, out var node) == false)
             {
-                return this.Program.GetTagsForNode(nodeName);
+                throw new InvalidOperationException($"Can't get headers for node {nodeName}: no node with this name was found");
             }
-            else
+
+            foreach (var header in node.Headers)
             {
-                this.LogErrorMessage?.Invoke("No node named " + nodeName);
-                return null;
+                if (header.Key == nodeName)
+                {
+                    return header.Value.Trim();
+                }
             }
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the collection of headers present on the node named <paramref
+        /// name="nodeName"/>.
+        /// </summary>
+        /// <param name="nodeName">The name of the node to get headers
+        /// for.</param>
+        /// <returns>A collection of key-values pairs, each one representing a
+        /// header on the node.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the program
+        /// is not loaded, the program contains no nodes, or the program does
+        /// not contain a node named <paramref name="nodeName"/>.</exception>
+        public IEnumerable<KeyValuePair<string, string>> GetHeaders(string nodeName)
+        {
+            if (this.Program == null)
+            {
+                throw new InvalidOperationException($"Can't get headers for node {nodeName}, because no program is set");
+            }
+
+            if (this.Program.Nodes.Count == 0)
+            {
+                throw new InvalidOperationException($"Can't get headers for node {nodeName}, because the program contains no nodes");
+            }
+
+            if (this.Program.Nodes.TryGetValue(nodeName, out var node) == false)
+            {
+                throw new InvalidOperationException($"Can't get headers for node {nodeName}: no node with this name was found");
+            }
+            var result = new List<KeyValuePair<string, string>>(node.Headers.Count);
+
+            foreach (var header in node.Headers)
+            {
+                result.Add(new KeyValuePair<string, string>(header.Key.Trim(), header.Value.Trim()));
+            }
+
+            return result;
         }
 
         /// <summary>

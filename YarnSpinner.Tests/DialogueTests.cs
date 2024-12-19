@@ -159,7 +159,7 @@ namespace YarnSpinner.Tests
 
             dialogue.SetProgram(result.Program);
 
-            var source = dialogue.GetTagsForNode("LearnMore");
+            var source = dialogue.GetHeaderValue("LearnMore", "tags").Split(' ');
 
             source.Should().NotBeNull();
 
