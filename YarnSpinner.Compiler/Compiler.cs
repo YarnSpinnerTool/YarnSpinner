@@ -312,6 +312,13 @@ namespace Yarn.Compiler
             {
                 decl.Type = TypeChecker.ITypeExtensions.Substitute(decl.Type, typeSolution);
 
+                // If this value is of an error type, don't attempt to create a
+                // value for it.
+                if (decl.Type == Types.Error)
+                {
+                    continue;
+                }
+
                 // If this was an implicit declaration, then we didn't have an
                 // initial value to use. Instead, set its default value to one
                 // provided by the type.
