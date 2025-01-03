@@ -8,12 +8,11 @@ namespace Yarn.Utility
     /// </summary>
     public static class CRC32
     {
-        private static readonly uint[] LookupTable;
+        private static readonly uint[] LookupTable = new uint[256];
 
         static CRC32()
         {
             uint seedPolynomial = 0xedb88320;
-            LookupTable = new uint[256];
             uint temp;
             for (uint i = 0; i < LookupTable.Length; ++i)
             {
@@ -43,6 +42,11 @@ namespace Yarn.Utility
         /// name="bytes"/>.</returns>
         public static uint GetChecksum(byte[] bytes)
         {
+            if (bytes == null)
+            {
+                throw new System.ArgumentNullException(nameof(bytes));
+            }
+
             uint crc = 0xffffffff;
             for (int i = 0; i < bytes.Length; ++i)
             {
