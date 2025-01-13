@@ -57,6 +57,8 @@ namespace YarnSpinner.Tests
         [InlineData("this is a line with [markup markup = 1]a single markup[/markup] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.NumberValue, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "this is a line with ", "[", "markup", "markup", "=", "1", "]", "a single markup", "[", "/", "markup", "]", " inside of it" })]
         [InlineData("this is a line with [interpolated markup = {$property} /] inside", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.InterpolatedValue, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, }, new string[] { "this is a line with ", "[", "interpolated", "markup", "=", "{$property}", "/", "]", " inside" })]
         [InlineData("á [a]S[/a]", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, }, new string[] { "á ", "[", "a", "]", "S", "[", "/", "a", "]" })]
+        [InlineData("start [markup=-1 /] end", new LineParser.LexerTokenTypes[] {LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.NumberValue, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text}, new string[] {"start ", "[", "markup", "=", "-1", "/", "]", " end"})]
+        [InlineData("start [markup=-1.0 /] end", new LineParser.LexerTokenTypes[] {LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.NumberValue, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text}, new string[] {"start ", "[", "markup", "=", "-1.0", "/", "]", " end"})]
         void TestLexerGeneratesCorrectTokens(string line, LineParser.LexerTokenTypes[] types, string[] texts)
         {
             var lineParser = new LineParser();
@@ -1079,6 +1081,8 @@ namespace YarnSpinner.Tests
         [InlineData("[a p=true]s[/a]", MarkupValueType.Bool, "True")]
         [InlineData("[a p=false]s[/a]", MarkupValueType.Bool, "False")]
         [InlineData("[a p={$someValue}]s[/a]", MarkupValueType.String, "$someValue")]
+        [InlineData("[p=-1 /]", MarkupValueType.Integer, "-1")]
+        [InlineData("[p=-1.1 /]", MarkupValueType.Float, "-1.1")]
         public void TestMarkupPropertyParsing(string input, MarkupValueType expectedType, string expectedValueAsString)
         {
             var lineParser = new LineParser();

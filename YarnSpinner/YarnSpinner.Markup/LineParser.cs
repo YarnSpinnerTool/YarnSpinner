@@ -468,7 +468,8 @@ namespace Yarn.Markup
                     if (!char.IsWhiteSpace(c))
                     {
                         // we are a number
-                        if (char.IsDigit(c))
+                        // this happens if we are either a digit or the negation symbol
+                        if (char.IsDigit(c) || c == '-')
                         {
                             var token = new LexerToken()
                             {
