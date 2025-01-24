@@ -1366,6 +1366,30 @@ namespace Yarn.Compiler
             }
         }
 
+        public partial class NodeContext
+        {
+            /// <summary>
+            /// Gets the computed total complexity of this node's 'when'
+            /// conditions.
+            /// </summary>
+            /// <remarks>
+            /// If this node has no such conditions, this value is -1.
+            /// </remarks>
+            public int ComplexityScore
+            {
+                get
+                {
+                    var headers = this.GetWhenHeaders();
+                    if (headers == null || !headers.Any())
+                    {
+                        return -1;
+                    }
+
+                    return headers.Sum(h => h.ComplexityScore);
+                }
+            }
+        }
+
         /// <inheritdoc/>
         public partial class When_headerContext
         {

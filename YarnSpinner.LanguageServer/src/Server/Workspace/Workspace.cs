@@ -179,7 +179,7 @@ namespace YarnLanguageServer
                 project.NotificationSender = this;
 
                 // When a project reloads, publish diagnostics.
-                project.OnProjectCompiled += () =>
+                project.OnProjectCompiled += (compilationResult) =>
                 {
                     PublishDiagnostics();
                     PublishNodeInfos();

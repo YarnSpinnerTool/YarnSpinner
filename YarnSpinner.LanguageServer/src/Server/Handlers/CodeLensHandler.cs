@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
@@ -30,8 +31,9 @@ namespace YarnLanguageServer.Handlers
                 return Task.FromResult(new CodeLensContainer());
             }
 
-            var results = yarnFile.NodeDefinitions.SelectMany(titleToken =>
+            var results = yarnFile.NodeInfos.SelectMany(nodeInfo =>
                {
+                   var titleToken = nodeInfo.TitleToken;
                    if (titleToken.StartIndex == -1)
                    {
                        // This is an error token - the node doesn't actually
@@ -52,8 +54,7 @@ namespace YarnLanguageServer.Handlers
                        ContractResolver = new CamelCasePropertyNamesContractResolver(),
                    };
 
-                   return new CodeLens[]
-                   {
+                   List<CodeLens> lenses = new() {
                         new CodeLens {
                            Range = PositionHelper.GetRange(yarnFile.LineStarts, titleToken),
                            Command = new Command
@@ -81,6 +82,21 @@ namespace YarnLanguageServer.Handlers
                            },
                         },
                    };
+
+                   if (nodeInfo.NodeGroupComplexity >= 0)
+                   {
+                       lenses.Add(new CodeLens
+                       {
+                           Range = PositionHelper.GetRange(yarnFile.LineStarts, titleToken),
+                           Command = new Command
+                           {
+                               Name = string.Empty,
+                               Title = $"Complexity: {nodeInfo.NodeGroupComplexity}",
+                           },
+                       });
+                   }
+
+                   return lenses;
                });
 
             CodeLensContainer result = new CodeLensContainer(results);

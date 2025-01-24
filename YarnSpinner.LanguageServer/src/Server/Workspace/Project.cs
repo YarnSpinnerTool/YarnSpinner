@@ -54,7 +54,7 @@ namespace YarnLanguageServer
 
         private JsonConfigFile? DefinitionsFile { get; set; }
 
-        public event System.Action? OnProjectCompiled;
+        public event System.Action<Yarn.Compiler.CompilationResult>? OnProjectCompiled;
 
         private readonly Yarn.Compiler.Project yarnProject;
 
@@ -259,7 +259,7 @@ namespace YarnLanguageServer
 
             if (notifyOnComplete)
             {
-                OnProjectCompiled?.Invoke();
+                OnProjectCompiled?.Invoke(compilationResult);
             }
 
             return compilationResult;
