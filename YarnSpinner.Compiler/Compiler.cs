@@ -168,7 +168,7 @@ namespace Yarn.Compiler
 
 
             }
-
+            
             // Ensure that all nodes names in this compilation are unique. Node
             // name uniqueness is important for several processes, so we do this
             // check here.
@@ -502,7 +502,7 @@ namespace Yarn.Compiler
                         nodeContexts: group,
                         compiledNodes: compiledNodes
                         );
-
+                        
                     var generatedNodes = codegen.CompileNodeGroup();
 
                     foreach (var generatedNode in generatedNodes)
@@ -724,6 +724,7 @@ namespace Yarn.Compiler
 
             // Find nodes whose titles have invalid characters, and generate
             // diagnostics for them
+
             var nodesWithIllegalTitleCharacters = nodesWithNames.Where(n => invalidTitleCharacters.IsMatch(n.Name));
 
             foreach (var node in nodesWithIllegalTitleCharacters)
@@ -731,11 +732,11 @@ namespace Yarn.Compiler
                 diagnostics.Add(new Diagnostic(node.File.Name, node.TitleHeader, $"The node '{node.Name}' contains illegal characters."));
             }
 
-            var nodesByName = nodesWithNames.GroupBy(n => n.Name);
+            var nodesByTitle = nodesWithNames.GroupBy(n => n.Name);
 
             // Find groups of nodes with the same name and generate diagnostics
             // for each
-            foreach (var group in nodesByName)
+            foreach (var group in nodesByTitle)
             {
                 if (group.Count() == 1)
                 {
@@ -751,21 +752,54 @@ namespace Yarn.Compiler
                 // must have them for the group to be valid. In this situation,
                 // it's not an error for the nodes to share the same name,
                 // because after this check is done, they will be renamed.
-                if (group.All(n => HasWhenHeader(n.Node)))
+
+                if (group.Any(n => HasWhenHeader(n.Node)))
                 {
-                    // No error - all nodes that have this name have at least
-                    // one 'when' header
-                    continue;
-                }
-                else if (group.Any(n => HasWhenHeader(n.Node)))
-                {
-                    // Error - some nodes have a 'when' header, but others
-                    // don't. Create errors for these others.
-                    foreach (var entry in group.Where(n => n.Node.GetWhenHeaders().Any() == false))
+                    if (!group.All(n => HasWhenHeader(n.Node)))
                     {
-                        var d = new Diagnostic(entry.File.Name, entry.TitleHeader, $"All nodes in the group '{entry.Node.NodeTitle}' must have a 'when' clause (use 'when: always' if you want this node to not have any conditions)");
-                        diagnostics.Add(d);
+                        // Error - some nodes have a 'when' header, but others
+                        // don't. Create errors for these others.
+                        foreach (var entry in group.Where(n => n.Node.GetWhenHeaders().Any() == false))
+                        {
+                            var d = new Diagnostic(entry.File.Name, entry.TitleHeader, $"All nodes in the group '{entry.Node.NodeTitle}' must have a 'when' clause (use 'when: always' if you want this node to not have any conditions)");
+                            diagnostics.Add(d);
+                        }
                     }
+
+                    // Else no error - all nodes that have this name have at least
+                    // one 'when' header
+
+                    // If subtitles will be used to disambiguate node names then check
+                    // if those are unique
+                    var nodesBySubtitle = group.GroupBy(n => n.Node.GetHeader("subtitle"));
+
+                    foreach (var subgroup in nodesBySubtitle)
+                    {
+                        if (subgroup.Key == null)
+                        {
+                            continue;
+                        }
+
+                        var subtitle = subgroup.Key.header_value?.Text;
+
+                        // multiple nulls are allowed but multiple of a value are not
+                        if (subgroup.Count() > 1)
+                        {
+                            foreach (var entry in group)
+                            {
+                                var d = new Diagnostic(entry.File.Name, subgroup.Key, $"More than one node in group {entry.Name} has subtitle {subtitle}");
+                                diagnostics.Add(d);
+                            }
+                        }
+                        if (invalidTitleCharacters.IsMatch(subtitle))
+                        {
+                            foreach (var entry in group)
+                            {
+                                diagnostics.Add(new Diagnostic(entry.File.Name, subgroup.Key, $"The node subtitle '{subtitle}' contains illegal characters."));
+                            }
+                        }
+                    }
+
                     continue;
                 }
 

@@ -1,0 +1,16 @@
+title: NodeName
+---
+This is the a normal node named 'NodeName'.
+===
+title: NodeName
+subtitle: SomeSubtitle
+when: always
+---
+This is the a nodegroup node named 'NodeName'.
+===
+title: NodeName
+subtitle: UniqueSubtitle
+when: always
+---
+This is the a second nodegroup node named 'NodeName'.
+===
