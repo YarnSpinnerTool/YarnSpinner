@@ -502,7 +502,7 @@ namespace Yarn.Compiler
                         nodeContexts: group,
                         compiledNodes: compiledNodes
                         );
-                        
+
                     var generatedNodes = codegen.CompileNodeGroup();
 
                     foreach (var generatedNode in generatedNodes)
@@ -771,7 +771,7 @@ namespace Yarn.Compiler
 
                     // If subtitles will be used to disambiguate node names then check
                     // if those are unique
-                    var nodesBySubtitle = group.GroupBy(n => n.Node.GetHeader("subtitle"));
+                    var nodesBySubtitle = group.GroupBy(n => n.Node.GetHeader("subtitle")?.header_value?.Text ?? null);
 
                     foreach (var subgroup in nodesBySubtitle)
                     {
@@ -780,14 +780,14 @@ namespace Yarn.Compiler
                             continue;
                         }
 
-                        var subtitle = subgroup.Key.header_value?.Text;
+                        var subtitle = subgroup.Key;
 
                         // multiple nulls are allowed but multiple of a value are not
                         if (subgroup.Count() > 1)
                         {
                             foreach (var entry in group)
                             {
-                                var d = new Diagnostic(entry.File.Name, subgroup.Key, $"More than one node in group {entry.Name} has subtitle {subtitle}");
+                                var d = new Diagnostic(entry.File.Name, entry.Node.GetHeader("subtitle"), $"More than one node in group {entry.Name} has subtitle {subtitle}");
                                 diagnostics.Add(d);
                             }
                         }
@@ -795,7 +795,7 @@ namespace Yarn.Compiler
                         {
                             foreach (var entry in group)
                             {
-                                diagnostics.Add(new Diagnostic(entry.File.Name, subgroup.Key, $"The node subtitle '{subtitle}' contains illegal characters."));
+                                diagnostics.Add(new Diagnostic(entry.File.Name, entry.Node.GetHeader("subtitle"), $"The node subtitle '{subtitle}' contains illegal characters."));
                             }
                         }
                     }
