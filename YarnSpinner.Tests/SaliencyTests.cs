@@ -349,8 +349,10 @@ This is a random start node which should get a UUID name.
             this.dialogue.NodeExists("Start.Special").Should().BeTrue();
             // the program should now contain nodes named
             // ["Start.Special", "Start.<UUID>", "Start.<a different UUID"]
-            var nodes = result.Program.Nodes.Keys.Where(n => n.Contains("Start."));
-            (nodes.Count() == 3).Should().BeTrue();
+            // (plus probably 4 generated internal nodes)
+            var nodes = result.Program.Nodes.Values;
+            var numNodes = nodes.Where(n => n.Name.StartsWith("Start.")).Count();
+            (numNodes == 3).Should().BeTrue();
         }
     }
 }
