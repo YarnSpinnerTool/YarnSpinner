@@ -1,0 +1,18 @@
+title: NodeName
+subtitle: SharedSubtitle
+when: always
+---
+This is the first node named 'NodeName'.
+===
+title: NodeName
+subtitle: SharedSubtitle
+when: always
+---
+This is the second node named 'NodeName'.
+===
+title: NodeName
+subtitle: UniqueSubtitle
+when: always
+---
+This is the third node named 'NodeName'.
+===

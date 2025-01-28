@@ -321,5 +321,36 @@ This node is not part of a node group.
             this.dialogue.GetSaliencyOptionsForNodeGroup("NotAGroup").Should().HaveCount(1);
 
         }
+
+                [Fact]
+        public void TestNodeGroupWithSparseSubtitles()
+        {
+            string source = @"
+title: Start
+subtitle: Special
+when: always
+---
+This is a special start node which should get a subtitle name.
+===
+title: Start
+when: always
+---
+This is a random start node which should get a UUID name.
+===
+title: Start
+when: always
+---
+This is a random start node which should get a UUID name.
+===
+";
+            var result = CompileAndPrepareDialogue(source);
+
+            this.dialogue.IsNodeGroup("Start").Should().BeTrue();
+            this.dialogue.NodeExists("Start.Special").Should().BeTrue();
+            // the program should now contain nodes named
+            // ["Start.Special", "Start.<UUID>", "Start.<a different UUID"]
+            var nodes = result.Program.Nodes.Keys.Where(n => n.Contains("Start."));
+            (nodes.Count() == 3).Should().BeTrue();
+        }
     }
 }

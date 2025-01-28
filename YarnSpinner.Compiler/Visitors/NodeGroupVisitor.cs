@@ -1,5 +1,6 @@
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
+using System;
 using System.Linq;
 using Yarn.Utility;
 
@@ -38,8 +39,19 @@ namespace Yarn.Compiler
 
                 context.AddChild(groupHeader);
 
-                // Calculate a new unique title for this node and update its title header.
-                var newTitle = $"{title}_{CRC32.GetChecksumString(SourceFile + title + context.Start.Line.ToString())}";
+                var subtitle = context.GetHeader("subtitle")?.header_value ?? null;
+
+                // Calculate a new unique title for this node and update its title header
+                string? newTitle;
+                if (String.IsNullOrEmpty(subtitle?.Text) == false)
+                {
+                    newTitle = $"{title}.{subtitle?.Text}";
+                }
+                else
+                {
+                    newTitle = $"{title}.{CRC32.GetChecksumString(SourceFile + title + context.Start.Line.ToString())}";
+                }
+
 
                 // Update the title header to the new 'actual' title.
                 titleHeader.title = new CommonToken(YarnSpinnerParser.REST_OF_LINE, newTitle);
