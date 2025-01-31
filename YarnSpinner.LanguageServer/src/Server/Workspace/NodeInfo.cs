@@ -37,10 +37,10 @@ public record NodeInfo
     public int HeaderStartLine { get; set; } = 0;
 
     [JsonProperty("headers")]
-    public List<NodeHeader> Headers { get; init; } = new ();
+    public List<NodeHeader> Headers { get; init; } = new();
 
     [JsonProperty("jumps")]
-    public List<NodeJump> Jumps { get; init; } = new ();
+    public List<NodeJump> Jumps { get; init; } = new();
 
     /// <summary>
     /// Gets or sets the text that can be shown as a short preview of the
@@ -53,10 +53,18 @@ public record NodeInfo
 
     internal IToken TitleToken { get; set; }
 
-    internal List<YarnActionReference> FunctionCalls { get; init; } = new ();
-    internal List<YarnActionReference> CommandCalls { get; init; } = new ();
-    internal List<IToken> VariableReferences { get; init; } = new ();
-    internal List<(string Name, int LineIndex)> CharacterNames { get; init; } = new ();
+    internal List<YarnActionReference> FunctionCalls { get; init; } = new();
+    internal List<YarnActionReference> CommandCalls { get; init; } = new();
+    internal List<IToken> VariableReferences { get; init; } = new();
+    internal List<(string Name, int LineIndex)> CharacterNames { get; init; } = new();
+
+    /// <summary>
+    /// Gets the computed complexity for this node.
+    /// </summary>
+    /// <remarks>
+    /// If this node is not part of a node group, this value is -1.
+    /// </remarks>
+    public int NodeGroupComplexity { get; internal set; } = -1;
 
     /// <summary>
     /// Gets a value indicating whether this <see cref="NodeInfo"/> has a valid

@@ -54,6 +54,8 @@ namespace YarnLanguageServer
 
                 // antlr lines start at 1, but LSP lines start at 0
                 HeaderStartLine = context.Start.Line - 1,
+
+                NodeGroupComplexity = context.ComplexityScore,
             };
 
             // Get the first few lines of the node's body as a preview

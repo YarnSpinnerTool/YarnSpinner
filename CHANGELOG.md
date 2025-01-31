@@ -12,8 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - For example, the following code will emit a warning, because the last `>` character is likely a typo: `<<wait 5>>>`
 - Added a new method, `Dialogue.GetHeaders`, which returns the collection of headers present on a node.
 - Added a new method, `Dialogue.GetHeaderValue`, which returns the value of the specified header on a node.
+- Language Server: Nodes that are part of a node group now show their condition complexity as a code lens.
 - Added a new method, `Dialogue.HasSalientContent(nodegroup)`, which returns a bool if there is any salient content for the requested nodegroup.
-
 
 ### Changed
 
