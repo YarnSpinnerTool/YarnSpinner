@@ -724,39 +724,64 @@ namespace Yarn.Markup
             return idProperty;
         }
 
-        internal void WalkTree(MarkupTreeNode root, System.Text.StringBuilder builder, List<MarkupAttribute> attributes, string localeCode, List<MarkupDiagnostic> diagnostics, int offset = 0)
+        
+        // This keeps track of the last seen older sibling during tree walking.
+        // This is necessary to prevent a bug with "Yes... which I would have shown [emotion=\"frown\" /] had [b]you[/b] not interrupted me."
+        // where the b tag is a rewriter and the emotion tag is not.
+        // in that case because previously we only kept the last fully processed non-replacement sibling the emotion tag would eat the whitespace AFTER the b tag had replaced itself
+        private MarkupTreeNode? sibling = null;
+        internal void WalkAndProcessTree(MarkupTreeNode root, System.Text.StringBuilder builder, List<MarkupAttribute> attributes, string localeCode, List<MarkupDiagnostic> diagnostics, int offset = 0)
         {
-            // text needs to just be added to the builder and continue with one exception
-            // if our immediate older sibling is configured to consume whitespace we need to handle this
+            sibling = null;
+            WalkTree(root, builder, attributes, localeCode, diagnostics, offset = 0);
+        }
+
+        private void WalkTree(MarkupTreeNode root, System.Text.StringBuilder builder, List<MarkupAttribute> attributes, string localeCode, List<MarkupDiagnostic> diagnostics, int offset = 0)
+        {
+            // if we are a text node
             if (root is MarkupTextNode)
             {
                 var line = ((MarkupTextNode)root).text;
-                // do we have ANY siblings
-                if (attributes.Count > 0)
+
+                // and we have an older sibling
+                if (sibling != null)
                 {
-                    var sibling = attributes[attributes.Count - 1];
-                    if (sibling.Properties.TryGetValue(TrimWhitespaceProperty, out var value))
+                    foreach (var property in sibling.properties)
                     {
-                        if (value.BoolValue)
+                        // and that sibling has the whitespace trimming property
+                        if (property.Name == TrimWhitespaceProperty)
                         {
-                            // our older sibling has requested that we trim our leftmost whitespace
-                            // but we only do that if our leftmost character is whitespace
-                            // and we only trim a SINGLE whitespace
-                            if (Char.IsWhiteSpace(line[0]) && line.Length > 1)
+                            // and that the whitespace trim is true
+                            if (property.Value.BoolValue == true)
                             {
-                                line = line.Substring(1);
+                                // and the text has a length of at least 1
+                                if (line.Length > 0)
+                                {
+                                    // and that the first character is whitespace
+                                    if (Char.IsWhiteSpace(line[0]))
+                                    {
+                                        // then we can trim the whitespace
+                                        line = line.Substring(1);
+                                    }
+                                }
                             }
+                            break;
                         }
                     }
                 }
-                // finally if we have any escaped markup we need to handle that now as well
-                // which is just a find and replace of \[ and \] with [ ]
+
+                // finally if there are any escaped markup in the line we need to clean them up also
                 line = line.Replace("\\[", "[");
                 line = line.Replace("\\]", "]");
+                // then we add ourselves to the growing line
                 builder.Append(line);
+                // and make ourselve the new older sibling
+                sibling = root;
                 return;
             }
 
+            // we aren't text so we will need to handle all our children
+            // we do this recursively
             var childBuilder = new StringBuilder();
             var childAttributes = new List<MarkupAttribute>();
             foreach (var child in root.children)
@@ -764,7 +789,7 @@ namespace Yarn.Markup
                 WalkTree(child, childBuilder, childAttributes, localeCode, diagnostics, builder.Length + offset);
             }
 
-            // before we do anything else need to check if we are the true root
+            // before we go any further if we are the root node that means we have finished and can just wrap up
             if (string.IsNullOrEmpty(root.name))
             {
                 // we are so we have nothing left to do, just add our children and be done
@@ -798,7 +823,11 @@ namespace Yarn.Markup
             // and our attributes have been added, all we need to do is add this to our siblings and continue
             builder.Append(childBuilder);
             attributes.AddRange(childAttributes);
+            
+            // finally we make ourselves the most immediate oldest sibling
+            sibling = root;
         }
+
         internal void SquishSplitAttributes(List<MarkupAttribute> attributes)
         {
             // grab every attribute that has a _internalIncrementingProperty property
@@ -1392,7 +1421,8 @@ namespace Yarn.Markup
             var builder = new StringBuilder();
             List<MarkupAttribute> attributes = new List<MarkupAttribute>();
             List<MarkupDiagnostic> diagnostics = new List<MarkupDiagnostic>();
-            WalkTree(parseResult.tree, builder, attributes, localeCode, diagnostics);
+            
+            WalkAndProcessTree(parseResult.tree, builder, attributes, localeCode, diagnostics);
 
             if (squish)
             {

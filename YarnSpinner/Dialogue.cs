@@ -1173,6 +1173,18 @@ namespace Yarn
         }
 
         /// <summary>
+        /// Returns if the node group has any potential nodes to be run based on the current salient selector.
+        /// </summary>
+        /// <param name="nodeGroup">The name of the node group.</param>
+        /// <returns>True if there is any salient content for the requested node group</returns>
+        public bool HasSalientContent(string nodeGroup)
+        {
+            var options = GetSaliencyOptionsForNodeGroup(nodeGroup);
+            var best = ContentSaliencyStrategy.QueryBestContent(options);
+            return best != null;
+        }
+
+        /// <summary>
         /// Gets a value indicating whether <paramref name="nodeName"/> is the
         /// name of a valid node group in the program.
         /// </summary>

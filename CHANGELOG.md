@@ -12,11 +12,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - For example, the following code will emit a warning, because the last `>` character is likely a typo: `<<wait 5>>>`
 - Added a new method, `Dialogue.GetHeaders`, which returns the collection of headers present on a node.
 - Added a new method, `Dialogue.GetHeaderValue`, which returns the value of the specified header on a node.
+- Added a new method, `Dialogue.HasSalientContent(nodegroup)`, which returns a bool if there is any salient content for the requested nodegroup.
+
 
 ### Changed
 
 - Commands are now better at checking to see if the first word is a keyword (e.g. `return`) or a word that just _begins_ with a keyword (`returnToMenu`).
 - Fixed an error where the compiler would crash if an error expression resulted in the implicit declaration of a variable (for example, `<<set $x = >>`).
+- Fixed an error where whitespace consumption of markup could extend beyond it's immediate younger text sibling.
 
 ### Removed
 

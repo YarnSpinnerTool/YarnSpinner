@@ -657,7 +657,7 @@ namespace YarnSpinner.Tests
             var builder = new System.Text.StringBuilder();
             List<MarkupAttribute> attributes = new List<MarkupAttribute>();
             List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
-            lineParser.WalkTree(tree, builder, attributes, "en", diagnostics);
+            lineParser.WalkAndProcessTree(tree, builder, attributes, "en", diagnostics);
 
             diagnostics.Should().HaveCount(0);
 
@@ -684,7 +684,7 @@ namespace YarnSpinner.Tests
             var builder = new System.Text.StringBuilder();
             List<MarkupAttribute> attributes = new List<MarkupAttribute>();
             List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
-            lineParser.WalkTree(tree, builder, attributes, "en", diagnostics);
+            lineParser.WalkAndProcessTree(tree, builder, attributes, "en", diagnostics);
 
             diagnostics.Should().HaveCount(0);
 
@@ -747,7 +747,7 @@ namespace YarnSpinner.Tests
             var builder = new System.Text.StringBuilder();
             List<MarkupAttribute> attributes = new List<MarkupAttribute>();
             List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
-            lineParser.WalkTree(tree, builder, attributes, "en", diagnostics);
+            lineParser.WalkAndProcessTree(tree, builder, attributes, "en", diagnostics);
 
             diagnostics.Should().HaveCount(0);
 
@@ -759,7 +759,7 @@ namespace YarnSpinner.Tests
             builder = new System.Text.StringBuilder();
             attributes = new List<MarkupAttribute>();
             diagnostics = new List<LineParser.MarkupDiagnostic>();
-            lineParser.WalkTree(tree, builder, attributes, "fr", diagnostics);
+            lineParser.WalkAndProcessTree(tree, builder, attributes, "fr", diagnostics);
 
             diagnostics.Should().HaveCount(0);
 
@@ -784,7 +784,7 @@ namespace YarnSpinner.Tests
             var builder = new System.Text.StringBuilder();
             List<MarkupAttribute> attributes = new List<MarkupAttribute>();
             List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
-            lineParser.WalkTree(tree, builder, attributes, "en", diagnostics);
+            lineParser.WalkAndProcessTree(tree, builder, attributes, "en", diagnostics);
 
             diagnostics.Should().HaveCount(0);
 
@@ -1245,6 +1245,48 @@ namespace YarnSpinner.Tests
             lineParser.RegisterMarkerProcessor("plural", rewriter);
             var markup = lineParser.ParseString(line, Locale);
             markup.Text.Should().Be(Expected, $"{Value} in locale {Locale} should have the correct plural case");
+        }
+
+        [Theory]
+        [InlineData("Yes... which I would have shown [emotion=\"frown\" /] had [b]you[/b] not interrupted me.", "Yes... which I would have shown had <b>you</b> not interrupted me.", "b")]
+        [InlineData("Yes... which I would have shown [emotion=\"frown\" trimwhitespace=false /] had [b]you[/b] not interrupted me.", "Yes... which I would have shown  had <b>you</b> not interrupted me.", "b")]
+        [InlineData("Yes... which I would have shown [emotion/] had [b]you[/b] not interrupted me.", "Yes... which I would have shown had <b>you</b> not interrupted me.", "b")]
+        [InlineData("Yes... which I would have shown [emotion/] had [b]you [emotion=\"frown\" /] not[/b] interrupted me.", "Yes... which I would have shown had <b>you not</b> interrupted me.", "b")]
+        [InlineData("Yes... which I would have [b]shown [emotion=\"frown\" /] [/b]had you not interrupted me.", "Yes... which I would have <b>shown </b>had you not interrupted me.", "b")]
+        [InlineData("Yes... which I would have [b]shown [emotion=\"frown\" /][/b]had you not interrupted me.", "Yes... which I would have <b>shown </b>had you not interrupted me.", "b")]
+        public void TestOlderSiblingNearReplacementMarkersCorrectlyRespectsWhitespaceConsumption(string line, string expected, string tag)
+        {
+            var lineParser = new LineParser();
+            var rewriter = new BBCodeChevronReplacer(tag);
+            lineParser.RegisterMarkerProcessor(tag, rewriter);
+
+            var markup = lineParser.ParseStringWithDiagnostics(line, "en-AU", false, false, false);
+            markup.diagnostics.Should().BeEmpty();
+
+            markup.markup.Text.Should().Be(expected);
+        }
+    }
+
+    public class BBCodeChevronReplacer: IAttributeMarkerProcessor
+    {
+        private string tag;
+        public BBCodeChevronReplacer(string markerName)
+        {
+            tag = markerName;
+        }
+
+        public List<LineParser.MarkupDiagnostic> ProcessReplacementMarker(MarkupAttribute marker, StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
+        {
+            List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
+            if (marker.Name != tag)
+            {
+                diagnostics.Add(new LineParser.MarkupDiagnostic($"Asked to replace {marker.Name} but this only handles {tag} markers."));
+                return diagnostics;
+            }
+
+            childBuilder.Insert(0,$"<{tag}>");
+            childBuilder.Append($"</{tag}>");
+            return diagnostics;
         }
     }
 }
