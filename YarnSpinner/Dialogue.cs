@@ -1277,6 +1277,9 @@ namespace Yarn
                 });
 #pragma warning restore CA5394 // System.Random is cryptographically insecure
 
+                this.RegisterFunction("min", (float a, float b) => Math.Min(a, b));
+                this.RegisterFunction("max", (float a, float b) => Math.Max(a, b));
+
                 this.RegisterFunction<float, int>("round", (float num) =>
                 {
                     return (int)Math.Round(num);

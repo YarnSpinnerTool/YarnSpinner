@@ -305,6 +305,48 @@
       "ReturnType": "number"
     },
     {
+      "YarnName": "min",
+      "DefinitionName": "min",
+      "Documentation": "Compares a and b, and returns the smaller of the two.",
+      "Signature": "min(a,b)",
+      "Parameters": [
+        {
+          "Name": "a",
+          "Type": "number",
+          "Documentation": "The first number to compare.",
+          "IsParamsArray": false
+        },
+        {
+          "Name": "b",
+          "Type": "number",
+          "Documentation": "The second number to compare.",
+          "IsParamsArray": false
+        }
+      ],
+      "ReturnType": "number"
+    },
+    {
+      "YarnName": "max",
+      "DefinitionName": "max",
+      "Documentation": "Compares a and b, and returns the larger of the two.",
+      "Signature": "max(a,b)",
+      "Parameters": [
+        {
+          "Name": "a",
+          "Type": "number",
+          "Documentation": "The first number to compare.",
+          "IsParamsArray": false
+        },
+        {
+          "Name": "b",
+          "Type": "number",
+          "Documentation": "The second number to compare.",
+          "IsParamsArray": false
+        }
+      ],
+      "ReturnType": "number"
+    },
+    {
       "YarnName": "format",
       "DefinitionName": "format",
       "Documentation": "Formats the argument parameter into the format_string. Intended for user facing text. Is a wrapper around String.Format and uses the format string rules from that.",

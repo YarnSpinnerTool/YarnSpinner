@@ -19,4 +19,6 @@ title: ActionDeclarations
 {decimal(2.3)}
 {int(2.3)}
 {format("{0:F2}", 1)}
+{min(2,3)}
+{max(4,5)}
 ===
