@@ -12,17 +12,17 @@ namespace Yarn.Saliency
     /// This strategy stores information about the number of times each piece of
     /// content has been seen in the provided <see cref="VariableStorage"/>.
     /// </remarks>
-    public class RandomBestLeastRecentlyViewedSalienceStrategy : IContentSaliencyStrategy
+    public class RandomBestLeastRecentlyViewedSaliencyStrategy : IContentSaliencyStrategy
     {
         /// <summary>
         /// Initializes a new instance of the <see
-        /// cref="RandomBestLeastRecentlyViewedSalienceStrategy"/> class.
+        /// cref="RandomBestLeastRecentlyViewedSaliencyStrategy"/> class.
         /// </summary>
         /// <param name="storage">The variable storage to use when determining
         /// which content to show.</param>
         /// <exception cref="ArgumentNullException">Thrown when the provided
         /// <paramref name="storage"/> argument is null.</exception>
-        public RandomBestLeastRecentlyViewedSalienceStrategy(IVariableStorage storage)
+        public RandomBestLeastRecentlyViewedSaliencyStrategy(IVariableStorage storage)
         {
             this.VariableStorage = storage ?? throw new ArgumentNullException(nameof(storage));
         }

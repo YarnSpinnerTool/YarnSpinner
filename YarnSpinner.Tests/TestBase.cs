@@ -139,7 +139,7 @@ namespace YarnSpinner.Tests
 
             dialogue = new Dialogue(storage);
 
-            dialogue.ContentSaliencyStrategy = new Yarn.Saliency.BestLeastRecentlyViewedSalienceStrategy(storage);
+            dialogue.ContentSaliencyStrategy = new Yarn.Saliency.BestLeastRecentlyViewedSaliencyStrategy(storage);
 
             dialogue.LogDebugMessage = delegate (string message)
             {
@@ -225,7 +225,7 @@ namespace YarnSpinner.Tests
             var saliencyStrategies = new Dictionary<string, IContentSaliencyStrategy> {
                 { "first", new FirstSaliencyStrategy() },
                 { "best", new BestSaliencyStrategy() },
-                { "best_least_recently_seen", new BestLeastRecentlyViewedSalienceStrategy(dialogue.VariableStorage)}
+                { "best_least_recently_seen", new BestLeastRecentlyViewedSaliencyStrategy(dialogue.VariableStorage)}
             };
 
             OptionsHandler GetNoOptionsExpectedHandler(TestPlan.Step step) => new OptionsHandler((opts) => throw new XunitException("Expected " + step.ToString() + ", not options"));

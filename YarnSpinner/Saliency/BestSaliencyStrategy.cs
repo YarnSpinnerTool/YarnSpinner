@@ -11,7 +11,7 @@ namespace Yarn.Saliency
     /// This strategy always selects the single best of the available items,
     /// regardless of how many times it has been seen before. For a saliency
     /// strategy that takes into account how recently content has been seen, see
-    /// <see cref="BestLeastRecentlyViewedSalienceStrategy"/>.
+    /// <see cref="BestLeastRecentlyViewedSaliencyStrategy"/>.
     /// </remarks>
     public class BestSaliencyStrategy : IContentSaliencyStrategy
     {
