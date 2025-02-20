@@ -1526,7 +1526,7 @@ namespace Yarn.Markup
         {
             List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
 
-            if (!marker.TryGetProperty(value, out var replacementProp))
+            if (!marker.TryGetProperty(value, out MarkupValue replacementProp))
             {
                 diagnostics.Add(new LineParser.MarkupDiagnostic($"no replacement value for {value} was found"));
                 return diagnostics;
@@ -1592,7 +1592,7 @@ namespace Yarn.Markup
 
             // Now that we know the plural case, we can select the
             // appropriate replacement text for it
-            if (!marker.TryGetProperty(pluralCaseName, out var replacementValue))
+            if (!marker.TryGetProperty(pluralCaseName, out MarkupValue replacementValue))
             {
                 diagnostics.Add(new LineParser.MarkupDiagnostic($"no replacement for {numericValue}'s plural case of {pluralCaseName} was found."));
                 return diagnostics;
@@ -1623,7 +1623,7 @@ namespace Yarn.Markup
                 };
                 return diagnostics;
             }
-            if (marker.TryGetProperty("value", out var valueProp) == false)
+            if (marker.TryGetProperty("value", out MarkupValue valueProp) == false)
             {
                 List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>
                 {
