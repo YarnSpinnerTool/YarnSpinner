@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Language Server: Nodes that are part of a node group now show their condition complexity as a code lens.
 - Added a new method, `Dialogue.HasSalientContent(nodegroup)`, which returns a bool if there is any salient content for the requested nodegroup.
 - Added `min(a,b)` and `max(a,b)` to the standard library.
+- Added unwrapped `TryGetProperty` calls to markup, allowing direct access to the type if you know it ahead of time.
 
 ### Changed
 

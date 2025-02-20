@@ -434,7 +434,10 @@ namespace Yarn.Markup
             return sb.ToString();
         }
 
-        public bool TryGetProperty(string name, out MarkupValue result)
+        // these methods and the ones for MarkupAttributeMarker are identical
+        // don't have time for v3 release but later we should merge these two types
+        // they are too similar to be different
+        private bool TryGetPropertyInternal(string name, out MarkupValue result)
         {
             foreach (var prop in this.Properties)
             {
@@ -445,6 +448,86 @@ namespace Yarn.Markup
                 }
             }
 
+            result = default;
+            return false;
+        }
+        public bool TryGetProperty(string name, out MarkupValue result)
+        {
+            var worked = TryGetPropertyInternal(name, out var value);
+
+            result = value;
+            return worked;
+        }
+        public bool TryGetProperty(string name, out float result)
+        {
+            if (TryGetPropertyInternal(name, out var property))
+            {
+                switch (property.Type)
+                {
+                    case MarkupValueType.Float:
+                    {
+                        result = property.FloatValue;
+                        return true;
+                    }
+                    case MarkupValueType.Integer:
+                    {
+                        result = property.IntegerValue;
+                        return true;
+                    }
+                }
+            }
+
+            result = default;
+            return false;
+        }
+        public bool TryGetProperty(string name, out int result)
+        {
+            if (TryGetPropertyInternal(name, out var property))
+            {
+                switch (property.Type)
+                {
+                    case MarkupValueType.Integer:
+                    {
+                        result = property.IntegerValue;
+                        return true;
+                    }
+                }
+            }
+
+            result = default;
+            return false;
+        }
+        public bool TryGetProperty(string name, out string? result)
+        {
+            if (TryGetPropertyInternal(name, out var property))
+            {
+                switch (property.Type)
+                {
+                    case MarkupValueType.String:
+                    {
+                        result = property.StringValue;
+                        return true;
+                    }
+                }
+            }
+            
+            result = default;
+            return false;
+        }
+        public bool TryGetProperty(string name, out bool result)
+        {
+            if (TryGetPropertyInternal(name, out var property))
+            {
+                switch (property.Type)
+                {
+                    case MarkupValueType.Bool:
+                    {
+                        result = property.BoolValue;
+                        return true;
+                    }
+                }
+            }
+            
             result = default;
             return false;
         }
@@ -656,6 +739,20 @@ namespace Yarn.Markup
         /// </summary>
         internal int SourcePosition { get; set; }
 
+        private bool TryGetPropertyInternal(string name, out MarkupValue result)
+        {
+            foreach (var prop in this.Properties)
+            {
+                if (prop.Name.Equals(name, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    result = prop.Value;
+                    return true;
+                }
+            }
+
+            result = default;
+            return false;
+        }
         /// <summary>
         /// Gets the property associated with the specified key, if
         /// present.
@@ -682,25 +779,78 @@ namespace Yarn.Markup
             result = default;
             return false;
         }
-
-        public override bool Equals(object obj)
+        public bool TryGetProperty(string name, out float result)
         {
-            throw new NotImplementedException();
+            if (TryGetPropertyInternal(name, out var property))
+            {
+                switch (property.Type)
+                {
+                    case MarkupValueType.Float:
+                    {
+                        result = property.FloatValue;
+                        return true;
+                    }
+                    case MarkupValueType.Integer:
+                    {
+                        result = property.IntegerValue;
+                        return true;
+                    }
+                }
+            }
+
+            result = default;
+            return false;
         }
-
-        public override int GetHashCode()
+        public bool TryGetProperty(string name, out int result)
         {
-            throw new NotImplementedException();
+            if (TryGetPropertyInternal(name, out var property))
+            {
+                switch (property.Type)
+                {
+                    case MarkupValueType.Integer:
+                    {
+                        result = property.IntegerValue;
+                        return true;
+                    }
+                }
+            }
+
+            result = default;
+            return false;
         }
-
-        public static bool operator ==(MarkupAttributeMarker left, MarkupAttributeMarker right)
+        public bool TryGetProperty(string name, out string? result)
         {
-            return left.Equals(right);
+            if (TryGetPropertyInternal(name, out var property))
+            {
+                switch (property.Type)
+                {
+                    case MarkupValueType.String:
+                    {
+                        result = property.StringValue;
+                        return true;
+                    }
+                }
+            }
+            
+            result = default;
+            return false;
         }
-
-        public static bool operator !=(MarkupAttributeMarker left, MarkupAttributeMarker right)
+        public bool TryGetProperty(string name, out bool result)
         {
-            return !(left == right);
+            if (TryGetPropertyInternal(name, out var property))
+            {
+                switch (property.Type)
+                {
+                    case MarkupValueType.Bool:
+                    {
+                        result = property.BoolValue;
+                        return true;
+                    }
+                }
+            }
+            
+            result = default;
+            return false;
         }
     }
 }
