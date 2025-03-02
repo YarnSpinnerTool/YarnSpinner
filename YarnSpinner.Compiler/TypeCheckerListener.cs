@@ -228,7 +228,7 @@ namespace Yarn.Compiler
             {
                 SourceContext = context,
                 SourceFileName = this.sourceFileName,
-                SourceRange = GetRange(context),
+                SourceRange = Utility.GetRange(context),
                 FailureMessageProvider = failureMessageProvider,
                 SourceExpression = context.GetTextWithWhitespace()
             };
@@ -261,7 +261,7 @@ namespace Yarn.Compiler
                         SourceContext = context,
                         SourceExpression = context.GetTextWithWhitespace(),
                         SourceFileName = this.sourceFileName,
-                        SourceRange = GetRange(context),
+                        SourceRange = Utility.GetRange(context),
                         FailureMessageProvider = failureMessageProvider,
                     };
                 })
@@ -270,7 +270,7 @@ namespace Yarn.Compiler
                 SourceContext = context,
                 SourceExpression = context.GetTextWithWhitespace(),
                 SourceFileName = this.sourceFileName,
-                SourceRange = GetRange(context),
+                SourceRange = Utility.GetRange(context),
                 FailureMessageProvider = failureMessageProvider,
             };
 
@@ -283,7 +283,7 @@ namespace Yarn.Compiler
             TypeConvertibleConstraint item = new TypeConvertibleConstraint(from, to);
             item.SourceFileName = this.sourceFileName;
             item.SourceContext = context;
-            item.SourceRange = GetRange(context);
+            item.SourceRange = Utility.GetRange(context);
             item.FailureMessageProvider = failureMessageProvider;
             item.SourceExpression = context.GetTextWithWhitespace();
 
@@ -296,7 +296,7 @@ namespace Yarn.Compiler
             TypeHasMemberConstraint item = new TypeHasMemberConstraint(type, memberName);
             item.SourceContext = context;
             item.SourceFileName = this.sourceFileName;
-            item.SourceRange = GetRange(context);
+            item.SourceRange = Utility.GetRange(context);
             item.FailureMessageProvider = failureMessageProvider;
             item.SourceExpression = context.GetTextWithWhitespace();
 
@@ -308,7 +308,7 @@ namespace Yarn.Compiler
             TypeHasNameConstraint item = new TypeHasNameConstraint(type, name);
             item.SourceContext = context;
             item.SourceFileName = this.sourceFileName;
-            item.SourceRange = GetRange(context);
+            item.SourceRange = Utility.GetRange(context);
             item.FailureMessageProvider = failureMessageProvider;
             item.SourceExpression = context.GetTextWithWhitespace();
 
@@ -420,7 +420,7 @@ namespace Yarn.Compiler
                 DefaultValue = null,
                 SourceFileName = this.sourceFileName,
                 SourceNodeName = this.currentNodeName,
-                Range = variableContext != null ? GetRange(variableContext) : Range.InvalidRange,
+                Range = variableContext != null ? Utility.GetRange(variableContext) : Range.InvalidRange,
                 IsImplicit = false,
                 IsInlineExpansion = false,
                 InitialValueParserContext = context.expression(),
@@ -428,8 +428,6 @@ namespace Yarn.Compiler
 
             this.AddDeclaration(declaration);
         }
-
-        private static Range GetRange(ParserRuleContext context) => Utility.GetRange(context);
 
         public override void ExitValueTrue([NotNull] YarnSpinnerParser.ValueTrueContext context)
         {
@@ -544,7 +542,7 @@ namespace Yarn.Compiler
                     Name = name,
                     Type = typeVariable,
                     Description = $"Implicitly declared in {this.sourceFileName}, node {this.currentNodeName}",
-                    Range = GetRange(context),
+                    Range = Utility.GetRange(context),
                     IsImplicit = true,
                     IsInlineExpansion = false,
                     SourceFileName = this.sourceFileName,
@@ -752,7 +750,7 @@ namespace Yarn.Compiler
                     Name = functionName ?? "<unknown>",
                     IsImplicit = true,
                     SourceFileName = this.sourceFileName,
-                    Range = GetRange(context),
+                    Range = Utility.GetRange(context),
                     Type = functionType,
                 };
 
