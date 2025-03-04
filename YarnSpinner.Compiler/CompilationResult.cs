@@ -144,6 +144,8 @@ namespace Yarn.Compiler
         /// </summary>
         public IReadOnlyCollection<IType> UserDefinedTypes { get; internal set; } = Array.Empty<IType>();
 
+        public IEnumerable<QuestGraphEdge> QuestGraphEdges { get; internal set; }
+
         /// <inheritdoc/>
         public string? GetDescriptionForVariable(string variableName)
         {

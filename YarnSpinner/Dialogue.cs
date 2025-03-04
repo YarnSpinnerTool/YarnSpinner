@@ -734,6 +734,41 @@ namespace Yarn
             {
                 return GetNodeVisitCount(node);
             });
+
+            bool GetNodeState(string questNodeName, string stateType)
+            {
+                var node = new QuestGraphNodeDescriptor(questNodeName);
+
+                var variableName = $"$Quest_{node.Quest}_{node.Name}_{stateType}";
+
+                if (TryGetSmartVariable(variableName, out bool result))
+                {
+                    return result;
+                }
+                else
+                {
+                    throw new ArgumentException("Unknown quest node " + questNodeName);
+                }
+            }
+
+            #region Quest Graph Support
+            Library.RegisterFunction("is_complete", delegate (string questNodeName)
+            {
+                return GetNodeState(questNodeName, "Complete");
+            });
+            Library.RegisterFunction("is_active", delegate (string questNodeName)
+            {
+                return GetNodeState(questNodeName, "Active");
+            });
+            Library.RegisterFunction("is_reachable", delegate (string questNodeName)
+            {
+                return GetNodeState(questNodeName, "Reachable");
+            });
+            Library.RegisterFunction("is_no_longer_needed", delegate (string questNodeName)
+            {
+                return GetNodeState(questNodeName, "NoLongerNeeded");
+            });
+            #endregion
         }
 
         /// <summary>

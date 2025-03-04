@@ -183,6 +183,32 @@ namespace Yarn.Compiler
                 nodeGroupVisitor.Visit(file.Tree);
             }
 
+            // Identify quest graph edges
+            var questGraphEdges = new List<QuestGraphEdge>();
+            foreach (var file in parsedFiles)
+            {
+                var visitor = new QuestGraphVisitor(file, compilationJob.LanguageVersion, diagnostics, declarations);
+                visitor.Visit(file.Tree);
+                questGraphEdges.AddRange(visitor.Edges);
+            }
+
+            // Validate quest graph edges: duplicate edges are only allowed when they have no condition
+            foreach (var group in questGraphEdges.GroupBy(e => e.FromNode.GetHashCode() ^ e.ToNode.GetHashCode()))
+            {
+                if (group.Count() > 1 && !group.All(e => e.Requirement == null))
+                {
+                    var requirement = group.Where(e => e.Requirement != null).First().Requirement;
+                    // Create an error for every duplicate edge that specifies a requirement
+                    foreach (var edge in group.Where(e => e.Requirement != null))
+                    {
+                        var d = new Diagnostic(edge.File, edge.Range, $"Quest graph links can only be declared more than once if they don't have a requirement; to make this quest graph link become true at this point, make its condition \"{requirement}\" become true", Diagnostic.DiagnosticSeverity.Error);
+                        diagnostics.Add(d);
+                    }
+                }
+            }
+
+            questGraphEdges = questGraphEdges.Distinct().ToList();
+
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
             {
                 // Stop at this point
@@ -193,6 +219,7 @@ namespace Yarn.Compiler
                     Program = null,
                     StringTable = stringTableManager.StringTable,
                     Diagnostics = diagnostics,
+                    QuestGraphEdges = questGraphEdges,
                 };
             }
 
@@ -444,6 +471,7 @@ namespace Yarn.Compiler
                     StringTable = null,
                     FileTags = fileTags,
                     Diagnostics = diagnostics,
+                    QuestGraphEdges = questGraphEdges,
                 };
             }
 
@@ -615,6 +643,7 @@ namespace Yarn.Compiler
                 ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
                 ProjectDebugInfo = projectDebugInfo,
                 UserDefinedTypes = userDefinedTypes,
+                QuestGraphEdges = questGraphEdges,
             };
 
             return finalResult;
@@ -1487,5 +1516,34 @@ namespace Yarn.Compiler
                 }
             }
         }
+
+
+        public partial class Command_statementContext
+        {
+            /// <summary>
+            /// The effect that this command should have. If this value is null,
+            /// then a <c>RunCommand</c> instruction is generated.
+            /// </summary>
+            public Statements.CommandStatementEffect? commandEffect = null;
+        }
     }
+
+    namespace Statements
+    {
+        public abstract class CommandStatementEffect { }
+
+        public sealed class SetBoolVariableCommandEffect : CommandStatementEffect
+        {
+            public string VariableName { get; set; }
+            public bool Value { get; set; }
+            public SetBoolVariableCommandEffect(string variableName, bool value)
+            {
+                this.VariableName = variableName;
+                this.Value = value;
+            }
+        }
+
+        public sealed class NoOpCommandEffect : CommandStatementEffect { }
+    }
+
 }

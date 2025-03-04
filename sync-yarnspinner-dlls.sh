@@ -28,7 +28,7 @@ mkdir -p .build-tmp
 dotnet build -p:TargetFrameworks=netstandard2.0 --configuration Debug -o .build-tmp YarnSpinner.Compiler
 
 # some types we are going to want to use externally but the rest should be fully internal to Yarn Spinner itself
-assemblyalias --target-directory ".build-tmp" --prefix "Yarn." --assemblies-to-alias "Antlr*;Csv*;Google*;"
+assemblyalias --target-directory ".build-tmp" --prefix "Yarn." --assemblies-to-alias "Antlr*;Csv*;Google*;System.Text.Json"
 assemblyalias --target-directory ".build-tmp" --internalize --prefix "Yarn." --assemblies-to-alias "System*;Microsoft.Bcl*;Microsoft.Extensions*"
 
 cp -v .build-tmp/*.dll $YARNSPINNER_DLLS_DIR

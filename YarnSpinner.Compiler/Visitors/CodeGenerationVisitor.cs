@@ -201,6 +201,32 @@ namespace Yarn.Compiler
         {
             var expressionCount = 0;
             var sb = new StringBuilder();
+
+            // If a compiler-defined effect is present for this command, emit
+            // the necessary code for it instead of emitting a RunCommand
+            // instruction like we would normally
+            if (context.commandEffect != null)
+            {
+                switch (context.commandEffect)
+                {
+                    case Statements.SetBoolVariableCommandEffect setBool:
+                        this.compiler.Emit(
+                            context.command_formatted_text().Start,
+                            context.command_formatted_text().Stop,
+                            new Instruction { PushBool = new PushBoolInstruction { Value = setBool.Value } },
+                            new Instruction { StoreVariable = new StoreVariableInstruction { VariableName = setBool.VariableName } },
+                            new Instruction { Pop = new PopInstruction { } }
+                        );
+                        break;
+                    case Statements.NoOpCommandEffect _:
+                        // no-op
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException($"Unknown command effect type {context.commandEffect.GetType()}");
+                }
+                return 0;
+            }
+
             foreach (var node in context.command_formatted_text()?.children ?? Array.Empty<IParseTree>())
             {
                 if (node is ITerminalNode)
