@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Nodes;
+
+#nullable enable
 
 namespace Yarn.Compiler
 {
@@ -13,7 +16,7 @@ namespace Yarn.Compiler
             return visitor.Edges;
         }
 
-        public static System.Text.Json.JsonDocument? ExtractQuestGraph(Project project)
+        public static System.Text.Json.JsonDocument? ExtractQuestGraph(Project project, JsonDocument? existingQuestGraph)
         {
 
             var job = CompilationJob.CreateFromFiles(project.SourceFiles);
@@ -32,71 +35,104 @@ namespace Yarn.Compiler
                 edges.SelectMany(e => new[] { e.FromNode, e.ToNode }).Distinct()
                 ;
 
-            JsonElement SerializeNode(QuestGraphNodeDescriptor node)
+            var document = existingQuestGraph != null
+                ? (JsonObject.Create(existingQuestGraph.RootElement) ?? new JsonObject())
+                : new JsonObject();
+
+            JsonArray GetOrCreateArray(string name)
             {
-                return JsonSerializer.SerializeToElement(new
+                var array = document[name]?.AsArray();
+                if (array == null)
                 {
-                    id = node.Name,
-                    quest = "Quest_" + node.Quest,
-                    name = Utility.SplitCamelCase(node.Name),
-                });
+                    array = new JsonArray();
+                    document[name] = array;
+                }
+                return array;
             }
 
-            var stepsJSON = nodes
-                .Where(n => n.Type == QuestGraphNodeDescriptor.NodeType.Step)
-                .Select(SerializeNode);
+            var questsJSON = GetOrCreateArray("quests");
+            var tasksJSON = GetOrCreateArray("tasks");
+            var goalsJSON = GetOrCreateArray("goals");
+            var variablesJSON = GetOrCreateArray("variables");
+            var edgesJSON = GetOrCreateArray("edges");
 
-            var tasksJSON = nodes
-                .Where(n => n.Type == QuestGraphNodeDescriptor.NodeType.Task)
-                .Select(SerializeNode);
-
-            var questsJSON = nodes.Select(n => n.Quest).Distinct().Select(q => new
+            static JsonObject GetOrCreateElement(JsonArray array, System.Func<JsonNode, bool> predicate)
             {
-                id = "Quest_" + q,
-            }).Select(d => JsonSerializer.SerializeToElement(d));
-
-            var edgesJSON = edges.Select(e =>
-            {
-                if (e.VariableName == null)
+                JsonObject? element = array.Where(i => i != null).FirstOrDefault(predicate!)?.AsObject();
+                if (element == null)
                 {
-                    return JsonSerializer.SerializeToElement(new
-                    {
-                        start = $"Quest_{e.FromNode.Quest}_{e.FromNode.Name}",
-                        end = $"Quest_{e.ToNode.Quest}_{e.ToNode.Name}",
-                    });
+                    element = new JsonObject();
+                    array.Add(element);
                 }
-                else
-                {
-                    return JsonSerializer.SerializeToElement(new
-                    {
-                        start = $"Quest_{e.FromNode.Quest}_{e.FromNode.Name}",
-                        end = $"Quest_{e.ToNode.Quest}_{e.ToNode.Name}",
-                        label = e.Description ?? "(no description)",
-                        condition = e.VariableName,
-                    });
-                }
-            });
+                return element;
+            }
 
-            var variablesJSON = edges
-                .Where(e => e.VariableName != null)
-                .Select(e => new
-                {
-                    id = e.VariableName,
-                    type = "bool",
-                    description = e.Description ?? "(no description)",
-                    source = e.VariableCreation == QuestGraphEdge.VariableType.Implicit ? "CreatedInEditor" : "ImportedFromYarnScript"
-                });
-
-            var documentJSON = JsonSerializer.SerializeToDocument(new
+            static void SetValueIfNotExists(JsonObject obj, string name, JsonNode value)
             {
-                quests = questsJSON,
-                goals = stepsJSON,
-                tasks = tasksJSON,
-                variables = variablesJSON,
-                edges = edgesJSON,
-            });
+                if (obj.ContainsKey(name))
+                {
+                    return;
+                }
+                obj[name] = value;
+            }
 
-            return documentJSON;
+
+            (JsonArray, IEnumerable<QuestGraphNodeDescriptor>)[] nodePairs = new[] {
+                    (goalsJSON, nodes.Where(n => n.Type == QuestGraphNodeDescriptor.NodeType.Step)),
+                    (tasksJSON, nodes.Where(n => n.Type == QuestGraphNodeDescriptor.NodeType.Task)),
+                };
+
+            foreach (var (array, nodesToAdd) in nodePairs)
+            {
+                foreach (var nodeToAdd in nodesToAdd)
+                {
+                    var nodeJSON = GetOrCreateElement(array,
+                        g => g["quest"]?.GetValue<string>() == "Quest_" + nodeToAdd.Quest
+                            && g["id"]?.GetValue<string>() == nodeToAdd.Name
+                    );
+
+                    nodeJSON["quest"] = "Quest_" + nodeToAdd.Quest;
+                    nodeJSON["id"] = nodeToAdd.Name;
+                    SetValueIfNotExists(nodeJSON, "name", Utility.SplitCamelCase(nodeToAdd.Name));
+                }
+            }
+
+
+            foreach (var questName in nodes.Select(n => n.Quest).Distinct())
+            {
+                var questJSON = GetOrCreateElement(questsJSON, q => q["id"]?.GetValue<string>() == "Quest_" + questName);
+                questJSON["id"] = "Quest_" + questName;
+            }
+
+            foreach (var edgeData in edges)
+            {
+                var fromNodeID = $"Quest_{edgeData.FromNode.Quest}_{edgeData.FromNode.Name}";
+                var toNodeID = $"Quest_{edgeData.ToNode.Quest}_{edgeData.ToNode.Name}";
+
+                var edgeJSON = GetOrCreateElement(edgesJSON,
+                    e => e["start"]?.GetValue<string>() == fromNodeID
+                        && e["end"]?.GetValue<string>() == toNodeID
+                    );
+
+                edgeJSON["start"] = fromNodeID;
+                edgeJSON["end"] = toNodeID;
+
+                if (edgeData.VariableName != null)
+                {
+                    edgeJSON["condition"] = edgeData.VariableName;
+                    SetValueIfNotExists(edgeJSON, "label", edgeData.Description ?? "(no description)");
+
+                    var variableJSON = GetOrCreateElement(variablesJSON, v => v["id"]?.GetValue<string>() == edgeData.VariableName);
+
+                    variableJSON["id"] = edgeData.VariableName;
+                    variableJSON["type"] = "bool";
+                    variableJSON["source"] = edgeData.VariableCreation == QuestGraphEdge.VariableType.Implicit ? "CreatedInEditor" : "ImportedFromYarnScript";
+
+                    SetValueIfNotExists(variableJSON, "description", edgeData.Description ?? "(no description)");
+                }
+            }
+
+            return JsonSerializer.SerializeToDocument(document);
         }
     }
 
