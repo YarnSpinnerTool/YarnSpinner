@@ -19,17 +19,18 @@ namespace Yarn
         public string? Requirement { get; }
         public string? Description { get; }
 
-
-
-        // matches "A --> B [when C]"
-        private static readonly Regex regex = new Regex(@"^(.*?)\s*--\s*(.*?)(?:\s+when\s+(.*?))?$");
+        // matches "quest A -- B [when C]"
+        private static readonly Regex regex = new Regex(@"^quest\s\s*(.*?)\s*--\s*(.*?)(?:\s+when\s+(.*?))?$");
 
         public static bool CanParse(string input) => regex.IsMatch(input);
 
         public static QuestGraphEdgeDescriptor Parse(string input, string? description)
         {
-
             var match = regex.Match(input);
+            if (match.Success == false)
+            {
+                throw new ArgumentException($"Failed to parse edge {input}");
+            }
 
             string from = match.Groups[1].Value;
             string to = match.Groups[2].Value;

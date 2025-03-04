@@ -21,8 +21,8 @@ namespace YarnSpinner.Tests
         public void TestGraphEdgesCanBeParsed()
         {
             // Given
-            var edgeWithoutCondition = QuestGraphEdge.Parse("Q:A -- Q:B");
-            var edgeWithCondition = QuestGraphEdge.Parse("Q:A -- Q:B when C");
+            var edgeWithoutCondition = QuestGraphEdge.Parse("quest Q:A -- Q:B");
+            var edgeWithCondition = QuestGraphEdge.Parse("quest Q:A -- Q:B when C");
 
             // Then
             edgeWithoutCondition.FromNode.Name.Should().Be("A");
@@ -44,16 +44,16 @@ namespace YarnSpinner.Tests
 Mayor: you gotta go deal with this dragon!
 
 /// the player learns about the dragon
-<<TheDragon:Step:Start -- TheDragon:Step:DealWithDragon>>
-<<TheDragon:Step:DealWithDragon -- TheDragon:Task:SlayDragon>>
-<<TheDragon:Step:DealWithDragon -- TheDragon:Task:BefriendDragon>>
+<<quest TheDragon:Step:Start -- TheDragon:Step:DealWithDragon>>
+<<quest TheDragon:Step:DealWithDragon -- TheDragon:Task:SlayDragon>>
+<<quest TheDragon:Step:DealWithDragon -- TheDragon:Task:BefriendDragon>>
 
 -> Slay Dragon
     /// dragon is slain
-    <<TheDragon:Task:SlayDragon -- TheDragon:Step:DragonDead>>
+    <<quest TheDragon:Task:SlayDragon -- TheDragon:Step:DragonDead>>
 -> Befriend Dragon
     /// dragon is befriended
-    <<TheDragon:Task:BefriendDragon -- TheDragon:Step:DragonBefriended>>
+    <<quest TheDragon:Task:BefriendDragon -- TheDragon:Step:DragonBefriended>>
 ===";
 
             var (parseResult, diagnostics) = Yarn.Compiler.Utility.ParseSource(source);
@@ -108,7 +108,7 @@ Mayor: you gotta go deal with this dragon!
         {
             var source = @"title: Start
 ---
-<<Q:A -- Q:B>>
+<<quest Q:A -- Q:B>>
 ===";
 
             var job = CompilationJob.CreateFromString("input", source);
@@ -126,8 +126,8 @@ Mayor: you gotta go deal with this dragon!
         {
             var source = @"title: Start
 ---
-<<Q:A -- Q:B>>
-<<Q:C -- Q:D when $condition>>
+<<quest Q:A -- Q:B>>
+<<quest Q:C -- Q:D when $condition>>
 ===";
 
             var job = CompilationJob.CreateFromString("input", source);
@@ -143,7 +143,7 @@ Mayor: you gotta go deal with this dragon!
         {
             var source = @"title: Start
 ---
-<<Q:A -- Q:B when $condition>>
+<<quest Q:A -- Q:B when $condition>>
 ===";
 
             var job = CompilationJob.CreateFromString("input", source);
@@ -159,9 +159,9 @@ Mayor: you gotta go deal with this dragon!
             // Given
             var source = @"title: Start
 ---
-<<Q:A -- Q:B>>
-<<Q:A -- Q:B>>
-<<Q:B -- Q:C>>
+<<quest Q:A -- Q:B>>
+<<quest Q:A -- Q:B>>
+<<quest Q:B -- Q:C>>
 ===";
 
             var job = CompilationJob.CreateFromString("input", source);
@@ -180,8 +180,8 @@ Mayor: you gotta go deal with this dragon!
             // Given
             var source = @"title: Start
 ---
-<<Q:A -- Q:B>>
-<<Q:A -- Q:B when $x>>
+<<quest Q:A -- Q:B>>
+<<quest Q:A -- Q:B when $x>>
 ===";
 
             var job = CompilationJob.CreateFromString("input", source);
