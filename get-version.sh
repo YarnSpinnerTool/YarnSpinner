@@ -27,7 +27,7 @@ SemVer="v$major.$minor.$patch$prerelease"
 
 # If there are any commits since the current tag, add that note
 if [ "$commits_since_tag" -gt 0 ]; then
-    SemVer="$Semver+$commits_since_tag"
+    SemVer="$SemVer+$commits_since_tag"
 fi
 
 # Update the AssemblyInfo.cs files
