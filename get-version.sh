@@ -23,7 +23,7 @@ OutputAssemblyFileVersion="$major.$minor.$patch.$commits_since_tag"
 
 # Calculate the semver from the version (should be the same as the version, but
 # just in case)
-SemVer="v$major.$minor.$patch$prerelease"
+SemVer="$major.$minor.$patch$prerelease"
 
 # If there are any commits since the current tag, add that note
 if [ "$commits_since_tag" -gt 0 ]; then
