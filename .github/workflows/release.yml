@@ -22,16 +22,9 @@ jobs:
       - name: Fetch all commits
         run: git fetch --unshallow
 
-      - uses: gittools/actions/gitversion/setup@v0.9.10
-        name: Install GitVersion
-        with:
-          versionSpec: "6.x"
-
-      - uses: gittools/actions/gitversion/execute@v0.9.10
-        name: Execute GitVersion
-        id: gitversion # step id used as reference for output values
-        with:
-          updateAssemblyInfo: true
+      - name: Update version
+        id: version
+        run: ./get-version.sh
 
       - name: Restore dependencies
         run: dotnet restore
@@ -45,7 +38,7 @@ jobs:
       - name: Deploy to NuGet
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         run: |
-          dotnet pack -c Release /p:Version=${{ steps.gitversion.outputs.SemVer}} -o "nuget"
+          dotnet pack -c Release /p:Version=${{ steps.version.outputs.SemVer }} -o "nuget"
           dotnet nuget push nuget/*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
 
       - name: Extract release notes
