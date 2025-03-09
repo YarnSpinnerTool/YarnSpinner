@@ -158,7 +158,7 @@ namespace Yarn
             public List<PendingOption> currentOptions = new List<PendingOption>();
 
             /// <summary>The value stack.</summary>
-            private Stack<Value> stack = new Stack<Value>();
+            public Stack<Value> stack = new Stack<Value>();
 
             internal struct CallSite
             {
@@ -696,64 +696,9 @@ namespace Yarn
                     state.PopValue();
                     break;
                 case Instruction.InstructionTypeOneofCase.CallFunc:
-                    {
-                        // Call a function, whose parameters are expected to
-                        // be on the stack. Pushes the function's return value,
-                        // if it returns one.
-                        var functionName = i.CallFunc.FunctionName;
+                    CallFunction(i, Library, state.stack);
+                    break;
 
-                        var function = Library.GetFunction(functionName);
-
-                        var parameterInfos = function.Method.GetParameters();
-
-                        var expectedParamCount = parameterInfos.Length;
-
-                        // Expect the compiler to have placed the number of parameters
-                        // actually passed at the top of the stack.
-                        var actualParamCount = (int)state.PopValue().ConvertTo<int>();
-
-                        if (expectedParamCount != actualParamCount)
-                        {
-                            throw new InvalidOperationException($"Function {functionName} expected {expectedParamCount} parameters, but received {actualParamCount}");
-                        }
-
-                        // Get the parameters, which were pushed in reverse
-                        Value[] parameters = new Value[actualParamCount];
-                        var parametersToUse = new object[actualParamCount];
-
-                        for (int param = actualParamCount - 1; param >= 0; param--)
-                        {
-                            var value = state.PopValue();
-                            var parameterType = parameterInfos[param].ParameterType;
-                            // Perform type checking on this parameter
-                            parametersToUse[param] = value.ConvertTo(parameterType);
-                        }
-
-                        // Invoke the function
-                        try
-                        {
-                            IConvertible returnValue = (IConvertible)function.DynamicInvoke(parametersToUse);
-                            // If the function returns a value, push it
-                            bool functionReturnsValue = function.Method.ReturnType != typeof(void);
-
-                            if (functionReturnsValue)
-                            {
-                                if (Types.TypeMappings.TryGetValue(returnValue.GetType(), out var yarnType))
-                                {
-                                    Value yarnValue = new Value(yarnType, returnValue);
-
-                                    this.state.PushValue(yarnValue);
-                                }
-                            }
-                        }
-                        catch (System.Reflection.TargetInvocationException ex)
-                        {
-                            // The function threw an exception. Re-throw the exception it threw.
-                            throw ex.InnerException;
-                        }
-
-                        break;
-                    }
                 case Instruction.InstructionTypeOneofCase.PushVariable:
                     {
 
@@ -1051,6 +996,108 @@ namespace Yarn
         private static void DummyLineHandler(Yarn.Line line)
         {
             throw new System.InvalidOperationException($"Smart node execution nodes must not run lines");
+        }
+
+        public static void CallFunction(Instruction i, Library Library, Stack<Value> stack)
+        {
+            // Call a function, whose parameters are expected to
+            // be on the stack. Pushes the function's return value,
+            // if it returns one.
+            var functionName = i.CallFunc.FunctionName;
+
+            var function = Library.GetFunction(functionName);
+
+            var parameterInfos = function.Method.GetParameters();
+
+            System.Reflection.ParameterInfo? lastParameter = parameterInfos.Length > 0 ? parameterInfos[parameterInfos.Length - 1] : null;
+            Type? variadicParameterType = (lastParameter?.ParameterType.IsArray ?? false) ? lastParameter.ParameterType.GetElementType() : null;
+
+            var expectedRequiredParamCount = parameterInfos.Length;
+
+            if (variadicParameterType != null)
+            {
+                // The last parameter of the C# function is the
+                // params array
+                expectedRequiredParamCount -= 1;
+            }
+
+            // Expect the compiler to have placed the number of parameters
+            // actually passed at the top of the stack.
+            var actualParamCount = (int)stack.Pop().ConvertTo<int>();
+
+            if (expectedRequiredParamCount != actualParamCount && variadicParameterType == null)
+            {
+                throw new InvalidOperationException($"Function {functionName} expected {expectedRequiredParamCount} parameters, but received {actualParamCount}");
+            }
+
+            var variadicParamCount = actualParamCount - expectedRequiredParamCount;
+
+            // Get the parameters, which were pushed in reverse
+            Value[] parameters = new Value[actualParamCount];
+
+            // Create an array for storing the parameters we'll
+            // submit. If the function accepts variadic parameters,
+            // add space for the params array.
+            var parametersToUse = new object[expectedRequiredParamCount + ((variadicParameterType != null) ? 1 : 0)];
+            Array? variadicParameters = null;
+            if (variadicParameterType != null)
+            {
+                variadicParameters = Array.CreateInstance(variadicParameterType, variadicParamCount);
+            }
+
+            for (int param = actualParamCount - 1; param >= 0; param--)
+            {
+                var value = stack.Pop();
+
+                bool isVariadicParameter = param >= expectedRequiredParamCount;
+
+                if (isVariadicParameter && variadicParameters != null)
+                {
+                    if (variadicParameterType == null)
+                    {
+                        throw new System.InvalidOperationException($"Internal error: Variadic parameter encounted but {nameof(variadicParameterType)} was null");
+                    }
+
+                    // Perform type checking on this parameter
+                    variadicParameters.SetValue(value.ConvertTo(variadicParameterType), param - expectedRequiredParamCount);
+                }
+                else
+                {
+                    var parameterType = parameterInfos[param].ParameterType;
+                    // Perform type checking on this parameter
+                    parametersToUse[param] = value.ConvertTo(parameterType);
+                }
+            }
+
+            if (variadicParameters != null)
+            {
+                parametersToUse[expectedRequiredParamCount] = variadicParameters;
+            }
+
+            // Invoke the function
+            try
+            {
+                IConvertible returnValue = (IConvertible)function.DynamicInvoke(parametersToUse);
+                // If the function returns a value, push it
+                bool functionReturnsValue = function.Method.ReturnType != typeof(void);
+
+                if (functionReturnsValue)
+                {
+                    if (Types.TypeMappings.TryGetValue(returnValue.GetType(), out var yarnType))
+                    {
+                        Value yarnValue = new Value(yarnType, returnValue);
+
+                        stack.Push(yarnValue);
+                    }
+                }
+            }
+            catch (System.Reflection.TargetInvocationException ex)
+            {
+                // The function threw an exception. Re-throw the exception it threw.
+                throw ex.InnerException;
+            }
+
+
         }
     }
 

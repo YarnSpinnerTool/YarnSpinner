@@ -17,7 +17,7 @@ namespace Yarn
     internal static class SmartVariableEvaluationVirtualMachine
     {
         private static int programCounter = 0;
-        private static readonly Stack<IConvertible> _stack = new Stack<IConvertible>(32);
+        private static readonly Stack<Value> _stack = new Stack<Value>(32);
 
         /// <summary>
         /// Evaluates a smart variable.
@@ -94,7 +94,7 @@ namespace Yarn
                 throw new System.InvalidOperationException("Error when evaluating smart variable: stack did not contain a value after evaluation");
             }
 
-            IConvertible calculatedResult = _stack.Pop();
+            Value calculatedResult = _stack.Pop();
 
             int endStackValue = _stack.Count;
 
@@ -103,7 +103,7 @@ namespace Yarn
                 throw new InvalidOperationException($"Error when evaluating smart variable: stack had {endStackValue - startStackValue} dangling value(s)");
             }
 
-            return TryConvertToType(calculatedResult, out result);
+            return TryConvertToType(calculatedResult.InternalValue, out result);
         }
 
         /// <summary>
@@ -223,7 +223,7 @@ namespace Yarn
             Instruction instruction,
             IVariableAccess variableAccess,
             Library library,
-            Stack<IConvertible> stack,
+            Stack<Value> stack,
             ref int programCounter)
         {
             switch (instruction.InstructionTypeCase)
@@ -241,14 +241,15 @@ namespace Yarn
                     stack.Pop();
                     break;
                 case Instruction.InstructionTypeOneofCase.CallFunc:
-                    CallFunction(instruction, library, stack);
+                    VirtualMachine.CallFunction(instruction, library, stack);
+
                     break;
                 case Instruction.InstructionTypeOneofCase.PushVariable:
                     string variableName = instruction.PushVariable.VariableName;
 
                     if (variableAccess.TryGetValue<IConvertible>(variableName, out var variableContents))
                     {
-                        stack.Push(variableContents);
+                        stack.Push(Value.From(variableContents));
                     }
                     else
                     {
@@ -256,7 +257,7 @@ namespace Yarn
                     }
                     break;
                 case Instruction.InstructionTypeOneofCase.JumpIfFalse:
-                    if (_stack.Peek().ToBoolean(CultureInfo.InvariantCulture) == false)
+                    if (_stack.Peek().ConvertTo<bool>() == false)
                     {
                         // Set the program counter directly
                         programCounter = instruction.JumpIfFalse.Destination;
@@ -282,65 +283,6 @@ namespace Yarn
             return true;
         }
 
-        private static void CallFunction(Instruction i, Library Library, Stack<IConvertible> stack)
-        {
-            // Get the function to call
-            var functionName = i.CallFunc.FunctionName;
 
-            var function = Library.GetFunction(functionName);
-
-            // Get the parameters that we'll pass to the function
-            var parameterInfos = function.Method.GetParameters();
-
-            var expectedParamCount = parameterInfos.Length;
-
-            // Expect the compiler to have placed the number of parameters
-            // actually passed at the top of the stack.
-            var actualParamCount = Convert.ToInt32(stack.Pop(), CultureInfo.InvariantCulture);
-
-            if (expectedParamCount != actualParamCount)
-            {
-                throw new InvalidOperationException($"Function {functionName} expected {expectedParamCount} parameters, but received {actualParamCount}");
-            }
-
-            // Get the parameter values, which were pushed in reverse
-            var parametersToUse = new object[actualParamCount];
-
-            for (int param = actualParamCount - 1; param >= 0; param--)
-            {
-                var value = stack.Pop()
-                    ?? throw new System.InvalidOperationException($"Internal error: a null value was popped from the stack");
-                var parameterType = parameterInfos[param].ParameterType;
-
-                if (parameterType == typeof(Value))
-                {
-                    if (Types.TypeMappings.TryGetValue(value.GetType(), out var yarnType))
-                        parametersToUse[param] = new Value(yarnType, value);
-                }
-                else
-                {
-                    parametersToUse[param] = Convert.ChangeType(value, parameterType, CultureInfo.InvariantCulture);
-                }
-            }
-
-            // Invoke the function
-            try
-            {
-                IConvertible returnValue = (IConvertible)function.DynamicInvoke(parametersToUse);
-                // If the function returns a value, push it
-                bool functionReturnsValue = function.Method.ReturnType != typeof(void);
-
-                if (functionReturnsValue)
-                {
-                    stack.Push(returnValue);
-                }
-            }
-            catch (System.Reflection.TargetInvocationException ex)
-            {
-                // The function threw an exception. Re-throw the exception it
-                // threw.
-                throw ex.InnerException;
-            }
-        }
     }
 }
