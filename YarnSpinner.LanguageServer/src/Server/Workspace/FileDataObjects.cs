@@ -38,9 +38,10 @@ namespace YarnLanguageServer
                         Description = p.Documentation,
                         DisplayTypeName = p.Type,
                         IsParamsArray = p.IsParamsArray,
-                        Type = GetYarnType(p.Type),
+                        Type = GetYarnType(p.Type) ?? Types.Any,
                     };
                 }).ToList(),
+                VariadicParameterType = GetYarnType(this.VariadicParameterType),
                 ReturnType = GetYarnType(this.ReturnType),
                 SourceFileUri = this.DefinitionFile,
                 Language = this.Language ?? "csharp",
@@ -49,16 +50,20 @@ namespace YarnLanguageServer
             return action;
         }
 
-        private static IType GetYarnType(string? type)
+        private static IType? GetYarnType(string? type)
         {
-            return type?.ToLowerInvariant() switch
+            if (type == null)
+            {
+                return null;
+            }
+
+            return type.ToLowerInvariant() switch
             {
                 "string" => Yarn.Types.String,
                 "bool" => Yarn.Types.Boolean,
                 "number" or "float" or "int" => Yarn.Types.Number,
                 _ => Yarn.Types.Any,
-            }
-?? Yarn.Types.Any;
+            };
         }
 
         public int Priority; // If multiple defined using the same filetype, lower priority wins.
@@ -68,7 +73,10 @@ namespace YarnLanguageServer
         public string FileName; // an optional field used exlusively to aid searching for fuller info for things defined in json
 
         // For functions, the name of the return type of this action
-        public string ReturnType;
+        public string? ReturnType;
+
+        // For functions, the name of the type that optional parameters must be
+        public string? VariadicParameterType;
     }
 
     public struct ParameterInfo

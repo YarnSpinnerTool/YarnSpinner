@@ -54,7 +54,7 @@ namespace Yarn.Compiler
         /// <param name="description">The description to apply to the
         /// Declaration.</param>
         /// <inheritdoc cref="WithName" path="/returns"/>
-        public DeclarationBuilder WithDescription(string description)
+        public DeclarationBuilder WithDescription(string? description)
         {
             this.Declaration.Description = description;
             return this;

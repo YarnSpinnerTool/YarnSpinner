@@ -99,5 +99,19 @@ namespace Yarn.Compiler
             // produce a new function type
             return functionTypeBuilder;
         }
+
+        /// <summary>
+        /// Sets the <see cref="FunctionType.VariadicParameterType"/> of the
+        /// <see cref="FunctionType"/>.
+        /// </summary>
+        /// <param name="variadicParameterType">The variadic parameter type to
+        /// apply to the function.</param>
+        /// <returns>The <see cref="FunctionTypeBuilder"/> instance that
+        /// received this method call.</returns>
+        public FunctionTypeBuilder WithVariadicParameterType(IType? variadicParameterType)
+        {
+            this.FunctionType.VariadicParameterType = variadicParameterType;
+            return this;
+        }
     }
 }

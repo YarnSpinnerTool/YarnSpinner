@@ -48,6 +48,15 @@ namespace YarnLanguageServer
         public Yarn.IType? ReturnType { get; set; }
 
         /// <summary>
+        /// Gets or sets the type that all variadic parameters (that is,
+        /// parameters that appear after the last required parameter) must be.
+        /// </summary>
+        /// <remarks>
+        /// This method is only never non-null for functions.
+        /// </remarks>
+        public Yarn.IType? VariadicParameterType { get; set; }
+
+        /// <summary>
         /// Gets a value indicating whether the implementing method is static.
         /// </summary>
         public bool IsStatic => MethodDeclarationSyntax?.Modifiers.Any(m => m.ToString() == "static") ?? true;
@@ -113,8 +122,16 @@ namespace YarnLanguageServer
                     return null;
                 }
 
+                if (this.ReturnType == null)
+                {
+                    // No return type provided. We can't produce a valid
+                    // declaration for this function.
+                    return null;
+                }
+
                 var typeBuilder = new Yarn.Compiler.FunctionTypeBuilder()
-                    .WithReturnType(this.ReturnType);
+                    .WithReturnType(this.ReturnType)
+                    .WithVariadicParameterType(this.VariadicParameterType);
 
                 foreach (var param in this.Parameters)
                 {
