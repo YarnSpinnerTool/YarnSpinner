@@ -228,13 +228,13 @@ namespace YarnSpinner.Tests
                 { "best_least_recently_seen", new BestLeastRecentlyViewedSaliencyStrategy(dialogue.VariableStorage)}
             };
 
-            OptionsHandler GetNoOptionsExpectedHandler(TestPlan.Step step) => new OptionsHandler((opts) => throw new XunitException("Expected " + step.ToString() + ", not options"));
+            OptionsHandler GetNoOptionsExpectedHandler(TestPlan.Step step) => new OptionsHandler((opts) => throw new XunitException($"Expected {step}, not options"));
 
-            LineHandler GetNoLineExpectedHandler(TestPlan.Step step) => new LineHandler((line) => throw new XunitException("Expected " + step.ToString() + ", not options"));
+            LineHandler GetNoLineExpectedHandler(TestPlan.Step step) => new LineHandler((line) => throw new XunitException($"Expected {step}, not line \"{GetComposedTextForLine(line)}\""));
 
-            CommandHandler GetNoCommandExpectedHandler(TestPlan.Step step) => new CommandHandler((opts) => throw new XunitException("Expected " + step.ToString() + ", not options"));
+            CommandHandler GetNoCommandExpectedHandler(TestPlan.Step step) => new CommandHandler((cmd) => throw new XunitException($"Expected {step}, not command \"{cmd}\""));
 
-            DialogueCompleteHandler GetNoStopExpectedHandler(TestPlan.Step step) => new DialogueCompleteHandler(() => throw new XunitException("Expected " + step.ToString() + ", not options"));
+            DialogueCompleteHandler GetNoStopExpectedHandler(TestPlan.Step step) => new DialogueCompleteHandler(() => throw new XunitException($"Expected {step}, not stop"));
 
             void ExpectLine(TestPlan.ExpectLineStep expectation)
             {
