@@ -107,5 +107,37 @@ namespace Yarn
         {
             return InternalValue.GetHashCode();
         }
+
+        public static implicit operator Value(string str)
+        {
+            return new Value(Types.String, str);
+        }
+        public static implicit operator Value(float f)
+        {
+            return new Value(Types.Number, f);
+        }
+        public static implicit operator Value(double d)
+        {
+            return new Value(Types.Number, d);
+        }
+        public static implicit operator Value(int i)
+        {
+            return new Value(Types.Number, i);
+        }
+        public static implicit operator Value(bool b)
+        {
+            return new Value(Types.Boolean, b);
+        }
+        public static Value From(IConvertible convertible)
+        {
+            if (Types.TypeMappings.TryGetValue(convertible.GetType(), out var type))
+            {
+                return new Value(type, convertible);
+            }
+            else
+            {
+                throw new ArgumentException($"Can't convert value of type {convertible} to a Yarn value");
+            }
+        }
     }
 }
