@@ -4,6 +4,7 @@
 most_recent_tag=$(git describe --tags --match="v*" --abbrev=0)
 commits_since_tag=$(git rev-list $most_recent_tag..HEAD | wc -l | awk '{$1=$1};1')
 sha=$(git log -1 --format=%H)
+short_sha=$(git log -1 --format=%h)
 branch=$(git rev-parse --abbrev-ref HEAD)
 
 # A regex for extracting data from a version number: major, minor, patch,
@@ -40,6 +41,7 @@ done
 # If we're running in GitHub Workflows, output our calculated SemVer
 if [[ -n $GITHUB_OUTPUT ]]; then
     echo "SemVer=$SemVer" >> "$GITHUB_OUTPUT"
+    echo "ShortSha=$short_sha" >> "$GITHUB_OUTPUT"
 fi
 
 # Log our SemVer
