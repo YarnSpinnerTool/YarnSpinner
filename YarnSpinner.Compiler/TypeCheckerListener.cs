@@ -722,8 +722,10 @@ namespace Yarn.Compiler
             int actualParameters = context.expression()?.Count() ?? 0;
             int expectedParameters = functionType.Parameters.Count();
 
+            bool functionIsVariadic = functionType.VariadicParameterType != null;
+
             // Check to see if we have the expected number of parameters
-            if (actualParameters != expectedParameters)
+            if (actualParameters != expectedParameters && !functionIsVariadic)
             {
                 // We don't! Create a diagnostic message and make this
                 // expression be the Error type.
@@ -748,13 +750,20 @@ namespace Yarn.Compiler
                 this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
             }
 
-            for (int paramID = 0; paramID < Math.Min(expectedParameters, actualParameters); paramID++)
+            for (int paramID = 0; paramID < actualParameters; paramID++)
             {
-                var expectedType = functionType.Parameters[paramID];
                 var parameterExpression = context.expression()[paramID];
-                var actualType = parameterExpression.Type;
+                try
+                {
+                    var expectedType = functionType.GetParameterAt(paramID); //functionType.Parameters[paramID];
+                    var actualType = parameterExpression.Type;
 
-                this.AddConvertibleConstraint(actualType, expectedType, parameterExpression, s => $"{parameterExpression.GetText()} ({parameterExpression.Type.Substitute(s)}) is not convertible to {expectedType.Substitute(s)}");
+                    this.AddConvertibleConstraint(actualType, expectedType, parameterExpression, s => $"{parameterExpression.GetText()} ({parameterExpression.Type.Substitute(s)}) is not convertible to {expectedType.Substitute(s)}");
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, parameterExpression, "Unexpected parameter in call to function " + functionName ?? "<unknown>"));
+                }
             }
 
             // The type of this function call is the return type of the function

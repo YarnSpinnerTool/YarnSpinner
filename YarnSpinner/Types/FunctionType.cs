@@ -68,6 +68,43 @@ namespace Yarn
         /// </remarks>
         public List<IType> Parameters { get; } = new List<IType>();
 
+        /// <summary>
+        /// Gets the type of the parameter at the given index.
+        /// </summary>
+        /// <param name="index">The index of the parameter to get the type
+        /// for.</param>
+        /// <returns>The type of the parameter. If <paramref name="index"/> is
+        /// beyond the length of <see cref="Parameters"/>, and <see
+        /// cref="VariadicParameterType"/> is not <see langword="null"/>, <see
+        /// cref="VariadicParameterType"/> is returned. </returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">Thrown when
+        /// <paramref name="index"/> is less than zero, or is beyond the length
+        /// of <see cref="Parameters"/> and <see cref="VariadicParameterType"/>
+        /// is <see langword="null"/>.
+        /// </exception>
+        public IType GetParameterAt(int index)
+        {
+            if (index < 0)
+            {
+                throw new System.ArgumentOutOfRangeException(nameof(index));
+            }
+
+            if (index < this.Parameters.Count)
+            {
+                return this.Parameters[index];
+            }
+            else if (this.VariadicParameterType != null)
+            {
+                return this.VariadicParameterType;
+            }
+            else
+            {
+                throw new System.ArgumentOutOfRangeException(nameof(index));
+            }
+        }
+
+        public IType? VariadicParameterType { get; internal set; }
+
         /// <inheritdoc/>
         // Functions do not have any type members
         public IReadOnlyDictionary<string, ITypeMember> TypeMembers => TypeBase.EmptyTypeMemberDictionary;
@@ -76,6 +113,7 @@ namespace Yarn
         {
             ReturnType = returnType ?? Types.Error;
             Parameters = parameterTypes.ToList();
+            VariadicParameterType = null;
         }
 
         /// <summary>

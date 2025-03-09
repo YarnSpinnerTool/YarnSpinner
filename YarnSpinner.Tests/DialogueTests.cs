@@ -285,6 +285,130 @@ namespace YarnSpinner.Tests
             boolResult.Should().Be(true);
         }
 
+        [Fact]
+        public void TestVariadicFunctions()
+        {
+            // Given
+            int VariadicAdd(params int[] a)
+            {
+                // A function with a single params array
+                return a.Sum();
+            }
+            string VariadicStringAdd(string s, params int[] a)
+            {
+                // A function with a normal parameter, followed by a params
+                // array
+                return s + a.Sum().ToString();
+            }
+
+            this.dialogue.Library.RegisterFunction("variadic_add", VariadicAdd);
+            this.dialogue.Library.RegisterFunction("variadic_string_add", VariadicStringAdd);
+
+            var testPlan = new TestPlanBuilder()
+                .AddLine("6")
+                .AddLine("s6")
+                .AddLine("0")
+                .AddLine("s0")
+                .AddLine("0")
+                .AddLine("0")
+                .AddLine("0")
+                .AddLine("6")
+                .AddLine("s6")
+                .AddStop()
+                .GetPlan();
+
+            var source = @"title: Start
+---
+
+<<declare $smart_variadic_add = variadic_add(1,2,3)>>
+<<declare $smart_variadic_string_add = variadic_string_add(""s"", 1,2,3)>>
+
+{variadic_add(1,2,3)}
+{variadic_string_add(""s"",1,2,3)}
+{variadic_add()}
+{variadic_string_add(""s"")}
+{variadic_add($a)} // infer these types to be Number
+{variadic_string_add($b)} // infer to be String
+{variadic_string_add($c, $d)} // infer to be String, Number
+{$smart_variadic_add}
+{$smart_variadic_string_add}
+===";
+
+            // When
+            var job = CompilationJob.CreateFromString("input", source);
+            job.Library = this.dialogue.Library;
+
+            var result = Compiler.Compile(job);
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+
+            this.dialogue.SetProgram(result.Program);
+
+            // Dynamically evaluate the smart variable
+            this.dialogue.TryGetSmartVariable("$smart_variadic_add", out float manuallyEvaluatedA).Should().BeTrue();
+            this.dialogue.TryGetSmartVariable("$smart_variadic_string_add", out string manuallyEvaluatedB).Should().BeTrue();
+
+            manuallyEvaluatedA.Should().Be(6);
+            manuallyEvaluatedB.Should().Be("s6");
+
+            // Then
+
+            var funcWithAllVariadicParams = result
+                .Declarations.Should().Contain(d => d.Type is FunctionType && d.Name == "variadic_add")
+                .Which.Type.Should().BeOfType<FunctionType>().Subject;
+            funcWithAllVariadicParams.VariadicParameterType.Should().Be(Types.Number);
+
+            var funcWithOneVariadicParam = result
+                .Declarations.Should().Contain(d => d.Type is FunctionType && d.Name == "variadic_string_add")
+                .Which.Type.Should().BeOfType<FunctionType>().Subject;
+            funcWithOneVariadicParam.Parameters.Should().ContainSingle().Which.Should().Be(Types.String);
+            funcWithAllVariadicParams.VariadicParameterType.Should().Be(Types.Number);
+
+            result.Declarations.Should().Contain(d => d.Name == "$a").Which.Type.Should().Be(Types.Number);
+            result.Declarations.Should().Contain(d => d.Name == "$b").Which.Type.Should().Be(Types.String);
+            result.Declarations.Should().Contain(d => d.Name == "$c").Which.Type.Should().Be(Types.String);
+            result.Declarations.Should().Contain(d => d.Name == "$d").Which.Type.Should().Be(Types.Number);
+
+            this.RunTestPlan(result, testPlan);
+        }
+
+        [Fact]
+        public void TestVariadicFunctionsMustAllBeSameType()
+        {
+            // Given
+            // Given
+            int VariadicAdd(params int[] a)
+            {
+                // A function with a single params array
+                return a.Sum();
+            }
+            string VariadicStringAdd(string s, params int[] a)
+            {
+                // A function with a normal parameter, followed by a params
+                // array
+                return s + a.Sum().ToString();
+            }
+
+            this.dialogue.Library.RegisterFunction("variadic_add", VariadicAdd);
+            this.dialogue.Library.RegisterFunction("variadic_string_add", VariadicStringAdd);
+
+            var source = @"title: Start
+---
+{variadic_add(1,true,3)}
+{variadic_string_add(""s"",1,true,3)}
+===";
+
+            // When
+            var job = CompilationJob.CreateFromString("input", source);
+            job.Library = this.dialogue.Library;
+
+            var result = Compiler.Compile(job);
+
+            // Then
+            result.ContainsErrors.Should().BeTrue();
+            result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error && d.Range.Start.Line == 2);
+            result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error && d.Range.Start.Line == 3);
+        }
+
     }
 }
 

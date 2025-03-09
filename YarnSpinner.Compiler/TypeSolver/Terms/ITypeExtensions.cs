@@ -47,8 +47,12 @@ namespace TypeChecker
             else if (term is FunctionType function)
             {
                 // Functions are substituted by applying the substitution to
-                // their return types and to each of their argument types.
-                return new FunctionType(function.ReturnType.Substitute(s), function.Parameters.Select(a => a.Substitute(s)).ToArray());
+                // their return types and to each of their argument types
+                // (including the variadic parameter type, if present).
+                return new FunctionType(function.ReturnType.Substitute(s), function.Parameters.Select(a => a.Substitute(s)).ToArray())
+                {
+                    VariadicParameterType = function.VariadicParameterType?.Substitute(s),
+                };
             }
             else
             {

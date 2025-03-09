@@ -881,8 +881,12 @@ namespace Yarn.Compiler
 
                 var includeMethod = true;
 
-                foreach (var paramInfo in method.GetParameters())
+                System.Reflection.ParameterInfo[] array = method.GetParameters();
+                for (int i = 0; i < array.Length; i++)
                 {
+                    var isLast = i == array.Length - 1;
+
+                    System.Reflection.ParameterInfo? paramInfo = array[i];
                     if (paramInfo.ParameterType == typeof(Value))
                     {
                         // Don't type-check this method - it's an operator
@@ -902,13 +906,35 @@ namespace Yarn.Compiler
                         continue;
                     }
 
-                    if (Types.TypeMappings.TryGetValue(paramInfo.ParameterType, out var yarnParameterType) == false)
+                    var isLastParamArray = isLast
+                        && paramInfo.ParameterType.IsArray;
+                    // Normally, we'd check for the presence of a
+                    // System.ParamArrayAttribute, but C# doesn't generate
+                    // them for local functions. Instead, assume that if the
+                    // last parameter is an array of a valid type, it's a
+                    // params array.
+
+                    if (isLastParamArray)
+                    {
+                        // This is a params array. Is the type of the array valid?
+                        if (Types.TypeMappings.TryGetValue(paramInfo.ParameterType.GetElementType(), out var yarnParamsElementType))
+                        {
+                            functionType.VariadicParameterType = yarnParamsElementType;
+                        }
+                        else
+                        {
+                            diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: params array {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used in Yarn functions"));
+                        }
+                    }
+                    else if (Types.TypeMappings.TryGetValue(paramInfo.ParameterType, out var yarnParameterType) == false)
                     {
                         diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used in Yarn functions"));
-                        continue;
+                    }
+                    else
+                    {
+                        functionType.AddParameter(yarnParameterType);
                     }
 
-                    functionType.AddParameter(yarnParameterType);
                 }
 
                 if (includeMethod == false)
