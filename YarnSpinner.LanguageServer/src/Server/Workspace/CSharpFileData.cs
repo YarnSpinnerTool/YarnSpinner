@@ -233,16 +233,29 @@ namespace YarnLanguageServer
                 Signature = $"{method.Identifier.Text}{method.ParameterList}",
             };
 
-            foreach (var parameter in method.ParameterList.Parameters)
+            for (int i = 0; i < method.ParameterList.Parameters.Count; i++)
             {
-                action.Parameters.Add(new Action.ParameterInfo
+                ParameterSyntax? parameter = method.ParameterList.Parameters[i];
+
+                var isLastParameter = i == method.ParameterList.Parameters.Count - 1;
+
+                if (isLastParameter && parameter.Type is ArrayTypeSyntax arrayTypeSyntax)
                 {
-                    Name = parameter.Identifier.ToString(),
-                    Description = GetParameterDocumentation(method, parameter.Identifier.ToString()),
-                    DisplayDefaultValue = parameter.Default?.Value?.ToString(),
-                    Type = GetYarnType(parameter.Type),
-                    DisplayTypeName = parameter.Type?.ToString() ?? "(unknown)",
-                });
+                    // If this is the last parameter and it's an array, then
+                    // this parameter is where all variadic parameters will go.
+                    action.VariadicParameterType = GetYarnType(arrayTypeSyntax.ElementType);
+                }
+                else
+                {
+                    action.Parameters.Add(new Action.ParameterInfo
+                    {
+                        Name = parameter.Identifier.ToString(),
+                        Description = GetParameterDocumentation(method, parameter.Identifier.ToString()),
+                        DisplayDefaultValue = parameter.Default?.Value?.ToString(),
+                        Type = GetYarnType(parameter.Type),
+                        DisplayTypeName = parameter.Type?.ToString() ?? "(unknown)",
+                    });
+                }
             }
 
             return action;

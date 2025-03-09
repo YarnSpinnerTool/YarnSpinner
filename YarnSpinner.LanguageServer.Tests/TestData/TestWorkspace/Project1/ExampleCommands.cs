@@ -55,6 +55,12 @@ public class ExampleCommands
         return -1;
     }
 
+    [YarnFunction("function_with_params_array")]
+    public static int FunctionWithParamsArray(int one, params int[] ints)
+    {
+        return -1;
+    }
+
     /// <summary>
     /// This command has <c>nested XML</c> nodes.
     /// </summary>

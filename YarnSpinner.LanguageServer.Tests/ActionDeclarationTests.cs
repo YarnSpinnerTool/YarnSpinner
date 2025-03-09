@@ -139,5 +139,40 @@ namespace YarnLanguageServer.Tests
                 Types.TypeMappings[implParameter.ParameterType].Should().Be(declParameter.Type);
             }
         }
+
+        [Fact]
+        public void ActionsFoundInCSharpFile_AreIdentified()
+        {
+            // Given
+            var path = Path.Combine(TestUtility.PathToTestData, "TestWorkspace", "Project1", "ActionDeclarationUsage.yarn");
+
+            var workspace = new Workspace();
+            workspace.Root = Path.Combine(TestUtility.PathToTestData, "TestWorkspace", "Project1");
+            workspace.Configuration.CSharpLookup = true;
+            workspace.Initialize();
+
+            // When
+            var diagnostics = workspace
+                .GetDiagnostics()
+                .Where(d => d.Key.AbsolutePath.EndsWith("ActionDeclarationUsage.yarn"))
+                .SelectMany(d => d.Value);
+
+            // Then
+
+            diagnostics.Should().NotContain(d => d.Severity == DiagnosticSeverity.Error);
+
+            // A single command should be detected as unknown
+            diagnostics.Should().HaveCount(2);
+
+            diagnostics.Should().Contain(d => d.Message == "Could not find command definition for unknown_command",
+                "unknown_command is not declared");
+            diagnostics.Should().Contain(d => d.Message == "Could not find function definition for unknown_function",
+                "unknown_function is not declared");
+
+            // We should have detected the function with a params array as having the correct type
+            workspace.Projects.Single().Functions
+                .Should().Contain(f => f.YarnName == "function_with_params_array")
+                .Which.VariadicParameterType.Should().Be(Types.Number);
+        }
     }
 }
