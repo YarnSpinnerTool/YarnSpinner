@@ -237,7 +237,7 @@ namespace YarnLanguageServer
 
         public Yarn.Compiler.CompilationResult CompileProject(bool notifyOnComplete, Yarn.Compiler.CompilationJob.Type compilationType)
         {
-            var functionDeclarations = Functions.Select(f => f.Declaration);
+            var functionDeclarations = Functions.Select(f => f.Declaration).NonNull();
 
             var files = this.Files.Select(f => new Yarn.Compiler.CompilationJob.File
             {
