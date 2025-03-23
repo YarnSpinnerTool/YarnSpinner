@@ -72,8 +72,8 @@ namespace YarnLanguageServer
 
                 if (actionAttribute != null)
                 {
-                    // Ignore duplicate method declarations
-                    // (can happen if the samee method declaration is a decendent of multiple classes ie. is in a nested class)
+                    // Don't add the same method declaration multiple times
+                    // (can happen if a method declaration is a decendent of multiple classes ie. is in a nested class)
                      taggedMethods.TryAdd(method, actionAttribute);
                 }
             }
