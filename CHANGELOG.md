@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Added support for variadic functions.
+- Language Server: Warn on `jump` statements if destination node that does not exist. Offer to create a stub node, or rename to an existing node title.
 
 ### Changed
 
