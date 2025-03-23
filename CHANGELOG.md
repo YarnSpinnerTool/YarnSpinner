@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Added support for variadic functions.
+- Language Server: Fixed an error that would crash the language server if a `YarnCommand`- and `YarnFunction`-tagged method was declared inside a nested C# class
 
 ### Changed
 
