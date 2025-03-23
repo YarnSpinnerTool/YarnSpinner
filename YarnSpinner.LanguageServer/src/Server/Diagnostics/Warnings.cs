@@ -16,6 +16,7 @@ namespace YarnLanguageServer.Diagnostics
             results = results.Concat(UnknownCommands(yarnFile));
             results = results.Concat(UndefinedFunctions(yarnFile, configuration));
             results = results.Concat(UndeclaredVariables(yarnFile));
+            results = results.Concat(UndefinedJumpDestination(yarnFile));
 
             return results;
         }
@@ -89,6 +90,23 @@ namespace YarnLanguageServer.Diagnostics
                 Range = PositionHelper.GetRange(yarnFile.LineStarts, v),
                 Code = nameof(YarnDiagnosticCode.YRNMsngVarDec),
                 Data = JToken.FromObject(v.Text),
+            });
+        }
+
+        private static IEnumerable<Diagnostic> UndefinedJumpDestination(YarnFileData yarnFile)
+        {
+            var project = yarnFile.Project;
+
+            var undefinedJumpTargets = yarnFile.NodeJumps
+                .Where(jump => !project.FindNodes(jump.DestinationTitle).Any());
+
+            return undefinedJumpTargets.Select(t => new Diagnostic
+            {
+                Message = $"Jump to unknown node '{t.DestinationTitle}'",
+                Severity = DiagnosticSeverity.Warning,
+                Range = PositionHelper.GetRange(yarnFile.LineStarts, t.DestinationToken),
+                Code = nameof(YarnDiagnosticCode.YRNMsngJumpNode),
+                Data = JToken.FromObject(t.DestinationTitle),
             });
         }
     }
