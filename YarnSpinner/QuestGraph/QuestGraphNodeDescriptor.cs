@@ -30,6 +30,8 @@ namespace Yarn
 
         public NodePosition Position { get; set; }
 
+        public readonly string FullName => $"Quest_{Quest}_{Name}";
+
         public QuestGraphNodeDescriptor(string name, NodeType type, string quest)
         {
             this.Name = name;
