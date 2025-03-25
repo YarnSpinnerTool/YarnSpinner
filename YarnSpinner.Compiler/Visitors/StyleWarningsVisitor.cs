@@ -14,10 +14,13 @@ namespace Yarn.Compiler
     internal class StyleWarningsVisitor : DiagnosticsGeneratorVisitor
     {
         private readonly CommonTokenStream tokenStream;
+        private readonly ILookup<int, IToken> tokenLineLookup;
 
         public StyleWarningsVisitor(string fileName, CommonTokenStream tokenStream) : base(fileName)
         {
             this.tokenStream = tokenStream;
+            this.tokenLineLookup = tokenStream.GetTokens().ToLookup(token => token.Line);
+
         }
 
         public override int VisitStatement([NotNull] YarnSpinnerParser.StatementContext context)
@@ -61,11 +64,10 @@ namespace Yarn.Compiler
             YarnSpinnerLexer.BLANK_LINE_FOLLOWING_OPTION,
         };
 
-        public static List<IToken> GetAllTokensOnLine(CommonTokenStream tokenStream, int line, int channel = Lexer.DefaultTokenChannel)
+        private List<IToken> GetAllTokensOnLine(CommonTokenStream tokenStream, int line, int channel = Lexer.DefaultTokenChannel)
         {
-
-            return tokenStream.GetTokens()
-                .Where(t => t.Channel == channel && t.Line == line && OmitTokenTypes.Contains(t.Type) == false)
+            return tokenLineLookup[line]
+                .Where(t => t.Channel == channel && OmitTokenTypes.Contains(t.Type) == false)
                 .ToList();
         }
     }
