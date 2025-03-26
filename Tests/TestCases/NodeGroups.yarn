@@ -77,3 +77,8 @@ when: always
 ---
 Detour test 2
 ===
+title: TestCaseFunctionConditions
+when: min(1,2) == 1
+---
+TestCaseFunctionConditions
+===

@@ -342,5 +342,31 @@ namespace YarnSpinner.Tests
             variableValue.Should().Be(5);
 
         }
+
+        [Fact]
+        public void TestSmartVariablesCanCallFunctions()
+        {
+
+            // Given
+            var source = CreateTestNode("<<declare $smart_var = add_three_operands(1,2,3)>>");
+            var job = CompilationJob.CreateFromString("input", source);
+
+            this.dialogue.Library.RegisterFunction("add_three_operands", delegate (int a, int b, int c)
+            {
+                return a + b + c;
+            });
+
+            job.Library = this.dialogue.Library;
+            var result = Compiler.Compile(job);
+            this.dialogue.SetProgram(result.Program);
+            result.ContainsErrors.Should().BeFalse();
+
+            // When
+            bool success = this.dialogue.VariableStorage.TryGetValue<int>("$smart_var", out var evaluationResult);
+
+            // Then
+            success.Should().BeTrue();
+            evaluationResult.Should().Be(6);
+        }
     }
 }

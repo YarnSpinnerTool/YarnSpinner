@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using Microsoft.Extensions.DependencyInjection;
@@ -76,7 +77,7 @@ namespace YarnLanguageServer
                             workspace.Configuration.Initialize(optsArray);
                         }
 
-                        workspace.Initialize(server);
+                        workspace.Initialize(server, token);
                         await Task.CompletedTask.ConfigureAwait(false);
                     }
                     catch (Exception e)
@@ -132,7 +133,7 @@ namespace YarnLanguageServer
 
             // Register 'Compile' command
             options.OnExecuteCommand<CompilerOutput>(
-                (commandParams) => CompileCurrentProjectAsync(workspace, commandParams),
+                (commandParams, cancellationToken) => CompileCurrentProjectAsync(workspace, commandParams, cancellationToken),
                 (_, _) => new ExecuteCommandRegistrationOptions
                 {
                     Commands = new[] { Commands.CompileCurrentProject },
@@ -157,7 +158,7 @@ namespace YarnLanguageServer
 
             // generate debug information for all projects
             options.OnExecuteCommand<Container<DebugOutput>>(
-                (commandParams) => GenerateDebugOutputAsync(workspace, commandParams),
+                (commandParams, cancellationToken) => GenerateDebugOutputAsync(workspace, commandParams, cancellationToken),
                 (_, _) => new ExecuteCommandRegistrationOptions
                 {
                     Commands = new[] { Commands.GenerateDebugOutput },
@@ -491,7 +492,7 @@ namespace YarnLanguageServer
             return Task.FromResult<Container<NodeInfo>>(result);
         }
 
-        private static Task<CompilerOutput> CompileCurrentProjectAsync(Workspace workspace, ExecuteCommandParams<CompilerOutput> commandParams)
+        private static Task<CompilerOutput> CompileCurrentProjectAsync(Workspace workspace, ExecuteCommandParams<CompilerOutput> commandParams, CancellationToken cancellationToken)
         {
             if (commandParams.Arguments == null)
             {
@@ -508,7 +509,7 @@ namespace YarnLanguageServer
             // compilation (which will produce the compiled program's bytecode.)
             // This will also have the effect of updating the workspace's
             // diagnostics.
-            var result = project.CompileProject(true, Yarn.Compiler.CompilationJob.Type.FullCompilation);
+            var result = project.CompileProject(true, Yarn.Compiler.CompilationJob.Type.FullCompilation, cancellationToken);
 
             var errors = result.Diagnostics.Where(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error).Select(d => d.ToString());
 
@@ -801,11 +802,11 @@ namespace YarnLanguageServer
             return Task.FromResult(output);
         }
 
-        public static Task<Container<DebugOutput>> GenerateDebugOutputAsync(Workspace workspace, ExecuteCommandParams<Container<DebugOutput>> commandParams)
+        public static Task<Container<DebugOutput>> GenerateDebugOutputAsync(Workspace workspace, ExecuteCommandParams<Container<DebugOutput>> commandParams, CancellationToken cancellationToken)
         {
             var results = workspace.Projects.Select(project =>
             {
-                return project.GetDebugOutput();
+                return project.GetDebugOutput(cancellationToken);
             });
 
             return Task.FromResult(new Container<DebugOutput>(results));

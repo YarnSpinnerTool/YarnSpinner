@@ -8,6 +8,7 @@ namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
 
     /// <summary>
     /// An object that contains Yarn source code to compile, and instructions on
@@ -98,6 +99,12 @@ namespace Yarn.Compiler
         /// available to the compiler, prior to compilation.
         /// </summary>
         public IEnumerable<IType>? TypeDeclarations { get; set; }
+
+        /// <summary>
+        /// A cancellation token that can be used to signal that the compilation
+        /// should be cancelled.
+        /// </summary>
+        public CancellationToken CancellationToken { get; set; }
 
         /// <summary>
         /// Creates a new <see cref="CompilationJob"/> using the contents of a

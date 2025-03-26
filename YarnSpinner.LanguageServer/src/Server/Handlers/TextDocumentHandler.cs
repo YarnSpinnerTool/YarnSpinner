@@ -93,7 +93,8 @@ namespace YarnLanguageServer.Handlers
                 yarnDocument.Update(yarnDocument.Text);
                 project.CompileProject(
                     notifyOnComplete: true,
-                    Yarn.Compiler.CompilationJob.Type.TypeCheck
+                    Yarn.Compiler.CompilationJob.Type.TypeCheck,
+                    cancellationToken
                 );
             }
 

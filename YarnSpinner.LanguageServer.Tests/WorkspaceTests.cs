@@ -2,6 +2,7 @@ using FluentAssertions;
 using OmniSharp.Extensions.LanguageServer.Protocol;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Xunit;
 using YarnLanguageServer.Diagnostics;
 
@@ -21,7 +22,7 @@ namespace YarnLanguageServer.Tests
             var project = new Project(Project1Path);
 
             // When
-            project.ReloadProjectFromDisk(false);
+            project.ReloadProjectFromDisk(false, CancellationToken.None);
 
             // Then
             project.Files.Should().NotBeEmpty();
