@@ -213,7 +213,9 @@ namespace Yarn.Compiler
             var walker = new Antlr4.Runtime.Tree.ParseTreeWalker();
             foreach (var parsedFile in parsedFiles)
             {
-                var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, declarations, knownTypes, typeSolution, failingConstraints);
+                compilationJob.CancellationToken.ThrowIfCancellationRequested();
+
+                var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, declarations, knownTypes, typeSolution, failingConstraints, compilationJob.CancellationToken);
 
                 walker.Walk(typeCheckerListener, parsedFile.Tree);
 
@@ -246,6 +248,7 @@ namespace Yarn.Compiler
                 bool anySucceeded;
                 do
                 {
+                    compilationJob.CancellationToken.ThrowIfCancellationRequested();
 #if !DEBUG
                     if (watchdog.ElapsedMilliseconds > TypeSolverTimeLimit * 1000) {
                         // We've taken too long to solve. Create error
@@ -310,6 +313,8 @@ namespace Yarn.Compiler
             // Apply the type solution to all declarations.
             foreach (var decl in declarations)
             {
+                compilationJob.CancellationToken.ThrowIfCancellationRequested();
+
                 decl.Type = TypeChecker.ITypeExtensions.Substitute(decl.Type, typeSolution);
 
                 // If this value is of an error type, don't attempt to create a
@@ -457,6 +462,7 @@ namespace Yarn.Compiler
                 // files.
                 foreach (var parsedFile in parsedFiles)
                 {
+                    compilationJob.CancellationToken.ThrowIfCancellationRequested();
                     FileCompilationResult compilationResult = GenerateCode(parsedFile, declarations, compilationJob, trackingNodes, empties);
 
                     fileCompilationResults.Add(compilationResult);

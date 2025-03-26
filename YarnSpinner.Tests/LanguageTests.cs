@@ -2,6 +2,7 @@ using CLDRPlurals;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -610,6 +611,72 @@ some_other_header2: $b + func_call(42, ""wow"")
             // this is not meant to be a structured command, so errors should be
             // ignored).
             parsedInvalidCommand.context.command_id.Text.Should().Be("walk");
+        }
+
+        [Fact]
+        public void TestCompilationCanBeCancelled()
+        {
+            string GenerateExampleSource(int expressions)
+            {
+                var sb = new System.Text.StringBuilder();
+
+                sb.AppendLine("title: Start");
+                sb.AppendLine("---");
+
+                for (int i = 0; i < expressions; i++)
+                {
+                    sb.AppendLine($"<<declare $a{i} = 0>>");
+                }
+
+                sb.AppendLine("===");
+
+                return sb.ToString();
+            }
+
+            var expressionCount = 10_000;
+
+            // Given
+            var source = GenerateExampleSource(expressionCount);
+
+            // When
+
+            // Run the compilation without cancelling it
+            Stopwatch withoutCancelling = Stopwatch.StartNew();
+
+            {
+                var job = CompilationJob.CreateFromString("input", source);
+
+                var result = Compiler.Compile(job);
+
+                result.ContainsErrors.Should().BeFalse();
+                result.Declarations.Where(d => d.IsVariable).Should().HaveCount(expressionCount);
+                withoutCancelling.Stop();
+            }
+
+            Stopwatch withCancelling = Stopwatch.StartNew();
+
+            // Run the compilation and cancel it 500 milliseconds after starting
+            var cancellationSource = new System.Threading.CancellationTokenSource();
+            cancellationSource.CancelAfter(500);
+
+            var withCancellingTask = System.Threading.Tasks.Task.Run(() =>
+            {
+                var job = CompilationJob.CreateFromString("input", source);
+                job.CancellationToken = cancellationSource.Token;
+
+                var result = Compiler.Compile(job);
+
+                result.ContainsErrors.Should().BeFalse();
+                result.Declarations.Where(d => d.IsVariable).Should().HaveCount(expressionCount);
+                withCancelling.Stop();
+            });
+
+            new Action(withCancellingTask.Wait)
+                .Should().Throw<OperationCanceledException>("the compilation should be cancelled");
+
+            // Then
+            withCancelling.Elapsed.Should().BeLessThan(withoutCancelling.Elapsed,
+                "cancelling a compilation should complete sooner than letting the compilation run to completion");
         }
     }
 }

@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Added support for variadic functions.
+- Added support for cancelling compilation.
+  - To enable cancelling a compilation, supply a `CancellationToken` to your `CompilationJob` object. You can request that the compilation be cancelled by cancelling the token. For more information, see [Task Cancellation](https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/task-cancellation).
 
 ### Changed
 
