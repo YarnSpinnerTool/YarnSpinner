@@ -35,3 +35,10 @@ title: SmartVariables
 <<declare $canEnterDoor = $isAlive>>
 <<declare $complexTest = $foo and ($bar or not true)>>
 === 
+
+title: JumpToTest
+---
+// This is used to test typo fixing and creating stub nodes for jumps to node titles that don't exist
+<<jump Jump2Test>>
+
+===

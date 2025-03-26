@@ -21,6 +21,11 @@
         YRNMsngCmdDef,
 
         /// <summary>
+        /// Warning: Jump to undefined node
+        /// </summary>
+        YRNMsngJumpDest,
+
+        /// <summary>
         /// Error: Command or Function that has an incorrect number of parameters
         /// </summary>
         YRNCmdParamCnt,

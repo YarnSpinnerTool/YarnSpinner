@@ -157,6 +157,12 @@ namespace YarnLanguageServer
             return FindDeclarations(Variables, name, fuzzySearch);
         }
 
+        internal IEnumerable<string> FindNodes(string name, bool fuzzySearch = false)
+        {
+            var nodeNames = this.yarnFiles.Values.SelectMany(file => file.NodeInfos.Select(node => node.Title)).Distinct();
+            return FindNodes(nodeNames, name, fuzzySearch);
+        }
+
         /// <summary>
         /// Finds actions of the given type that match a name.
         /// </summary>
@@ -298,6 +304,17 @@ namespace YarnLanguageServer
             }
 
             return Workspace.FuzzySearchItem(declarations.Select(d => (d.Name, d)), name, ConfigurationSource?.Configuration.DidYouMeanThreshold ?? Configuration.Defaults.DidYouMeanThreshold);
+        }
+
+        private IEnumerable<string> FindNodes(IEnumerable<string> nodeNames, string name, bool fuzzySearch)
+        {
+            if (fuzzySearch == false)
+            {
+                return nodeNames.Where(n => n.Equals(name));
+            }
+
+            return Workspace.FuzzySearchItem(nodeNames.Select(n => (n, n)), name, ConfigurationSource?.Configuration.DidYouMeanThreshold ?? Configuration.Defaults.DidYouMeanThreshold)
+                .Select(n => n);
         }
     }
 }
