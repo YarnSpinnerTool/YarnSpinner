@@ -4,6 +4,7 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using Xunit;
 using Yarn;
 
@@ -44,7 +45,7 @@ namespace YarnLanguageServer.Tests
             diagnostics.Should().NotContain(d => d.Severity == DiagnosticSeverity.Warning);
             diagnostics.Should().NotContain(d => d.Severity == DiagnosticSeverity.Error);
 
-            var compiledOutput = workspace.Projects.Single().CompileProject(false, Yarn.Compiler.CompilationJob.Type.FullCompilation);
+            var compiledOutput = workspace.Projects.Single().CompileProject(false, Yarn.Compiler.CompilationJob.Type.FullCompilation, CancellationToken.None);
             var compiledProgram = compiledOutput.Program;
             var declsNode = compiledProgram.Nodes.Single(n => n.Key == "ActionDeclarations").Value;
 

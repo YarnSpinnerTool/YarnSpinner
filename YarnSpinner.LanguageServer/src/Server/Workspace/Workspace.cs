@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
@@ -60,7 +61,7 @@ namespace YarnLanguageServer
 
         Configuration IConfigurationSource.Configuration => this.Configuration;
 
-        internal void ReloadWorkspace()
+        internal void ReloadWorkspace(CancellationToken cancellationToken)
         {
             // Find all actions defined in the workspace
             if (this.Root != null)
@@ -188,7 +189,7 @@ namespace YarnLanguageServer
                 // Reload the project without notifying. (When we load a
                 // workspace, all projects will reload at once, so we'll wait
                 // until they're all created.)
-                project.ReloadProjectFromDisk(false);
+                project.ReloadProjectFromDisk(false, cancellationToken);
             }
 
             this.PublishDiagnostics();
@@ -318,14 +319,18 @@ namespace YarnLanguageServer
         /// <summary>
         /// Initializes this Workspace without a language server.
         /// </summary>
+        /// <param name="cancellationToken">A cancellation token that can be
+        /// used to cancel initialization.</param>
         /// <remarks>
         /// Workspaces deliver information about the changing state of the
         /// project via their language server. If a Workspace has no language
         /// server, it will not report on any changes.
         /// </remarks>
-        internal void Initialize()
+        internal void Initialize(CancellationToken cancellationToken = default)
         {
-            ReloadWorkspace();
+            // Initializing the workspace without a language server cannot be
+            // cancelled.
+            ReloadWorkspace(cancellationToken);
         }
 
         /// <summary>
@@ -333,10 +338,10 @@ namespace YarnLanguageServer
         /// </summary>
         /// <inheritdoc cref="Initialize" path="/remarks"/>
         /// <param name="server">The language server to use.</param>
-        internal void Initialize(ILanguageServer server)
+        internal void Initialize(ILanguageServer server, CancellationToken cancellationToken)
         {
             this.LanguageServer = server;
-            Initialize();
+            Initialize(cancellationToken);
         }
 
         /// <summary>

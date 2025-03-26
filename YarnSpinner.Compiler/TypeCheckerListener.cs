@@ -8,8 +8,18 @@ namespace Yarn.Compiler
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using TypeChecker;
     using Yarn.Utility;
+
+    internal abstract class InterruptableListener : YarnSpinnerParserBaseListener
+    {
+        protected CancellationToken CancellationToken { get; private set; }
+        protected InterruptableListener(CancellationToken cancellationToken)
+        {
+            this.CancellationToken = cancellationToken;
+        }
+    }
 
     /// <summary>
     /// <see cref="TypeCheckerListener"/> creates type constraints (subclasses
@@ -19,7 +29,7 @@ namespace Yarn.Compiler
     /// the types of expressions and values in the source code (or to determine
     /// if there was a type error.)
     /// </summary>
-    internal class TypeCheckerListener : YarnSpinnerParserBaseListener
+    internal class TypeCheckerListener : InterruptableListener
     {
         /// <summary>
         /// Stores the total number of type variables that have been produced.
@@ -135,7 +145,7 @@ namespace Yarn.Compiler
         /// cref="TypeConstraint"/> objects. During type checking, this
         /// collection will be added to if a type constraint fails to resolve by
         /// the end of a file.</param>
-        public TypeCheckerListener(string sourceFileName, CommonTokenStream tokens, List<Declaration> knownDeclarations, List<TypeBase> knownTypes, Substitution typeSolution, HashSet<TypeConstraint> failingTypeConstraints)
+        public TypeCheckerListener(string sourceFileName, CommonTokenStream tokens, List<Declaration> knownDeclarations, List<TypeBase> knownTypes, Substitution typeSolution, HashSet<TypeConstraint> failingTypeConstraints, CancellationToken cancellationToken) : base(cancellationToken)
         {
             this.sourceFileName = sourceFileName;
             this.tokens = tokens;
@@ -143,6 +153,21 @@ namespace Yarn.Compiler
             this.knownTypes = knownTypes;
             this.typeSolution = typeSolution;
             this.failingTypeConstraints = failingTypeConstraints;
+
+            // Cache our declarations in our lookup table, to accelerate later
+            // queries
+            foreach (var decls in knownDeclarations)
+            {
+                try
+                {
+                    this.declarationLookup.Add(decls.Name, decls);
+                }
+                catch (ArgumentException)
+                {
+                    // Duplicate name; error diagnostics will be emitted
+                    // earlier, so ignore this here
+                }
+            }
         }
 
         /// <summary>
@@ -154,7 +179,41 @@ namespace Yarn.Compiler
         /// <returns>A <see cref="Declaration"/> object for <paramref
         /// name="name"/>, or <see langword="null"/> if none was
         /// found.</returns>
-        private Declaration? GetKnownDeclaration(string? name) => this.knownDeclarations.FirstOrDefault(d => d.Name == name);
+        private Declaration? GetKnownDeclaration(string? name)
+        {
+            if (name == null) { return null; }
+            if (declarationLookup.TryGetValue(name, out var result))
+            {
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private void AddDeclaration(Declaration declaration)
+        {
+            knownDeclarations.Add(declaration);
+            try
+            {
+
+                declarationLookup.Add(declaration.Name, declaration);
+            }
+            catch (ArgumentException)
+            {
+                // Declaration with this name already exists; this is already an
+                // error elsewhere, so drop this
+            }
+        }
+
+        private void RemoveDeclaration(Declaration declaration)
+        {
+            knownDeclarations.Remove(declaration);
+            declarationLookup.Remove(declaration.Name);
+        }
+
+        private Dictionary<string, Declaration> declarationLookup = new Dictionary<string, Declaration>();
 
         private void AddDiagnostic(ParserRuleContext context, string message, Diagnostic.DiagnosticSeverity severity = Diagnostic.DiagnosticSeverity.Error)
         {
@@ -348,7 +407,7 @@ namespace Yarn.Compiler
 
                 // Remove the implicit declaration from the known declarations
                 // in preparation for adding the new one.
-                this.knownDeclarations.Remove(declaration);
+                this.RemoveDeclaration(declaration);
             }
 
             declaration = new Declaration
@@ -365,7 +424,7 @@ namespace Yarn.Compiler
                 InitialValueParserContext = context.expression(),
             };
 
-            this.knownDeclarations.Add(declaration);
+            this.AddDeclaration(declaration);
         }
 
         private static Range GetRange(ParserRuleContext context)
@@ -504,7 +563,7 @@ namespace Yarn.Compiler
                     SourceFileName = this.sourceFileName,
                     SourceNodeName = this.currentNodeName,
                 };
-                this.knownDeclarations.Add(declaration);
+                this.AddDeclaration(declaration);
             }
 
             context.Type = declaration.Type;
@@ -710,7 +769,7 @@ namespace Yarn.Compiler
                     Type = functionType,
                 };
 
-                this.knownDeclarations.Add(functionDecl);
+                this.AddDeclaration(functionDecl);
             }
             else
             {
@@ -831,7 +890,7 @@ namespace Yarn.Compiler
                     IsImplicit = true,
                 };
 
-                this.knownDeclarations.Add(decl);
+                this.AddDeclaration(decl);
             }
             else
             {
@@ -1153,6 +1212,8 @@ namespace Yarn.Compiler
 
         public override void ExitStatement([NotNull] YarnSpinnerParser.StatementContext context)
         {
+            this.CancellationToken.ThrowIfCancellationRequested();
+
             try
             {
                 if (this.typeEquations.Count == 0)

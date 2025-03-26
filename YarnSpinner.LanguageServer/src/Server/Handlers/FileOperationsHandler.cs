@@ -78,7 +78,7 @@ namespace YarnLanguageServer.Handlers
 
             if (needsWorkspaceReload)
             {
-                workspace.ReloadWorkspace();
+                workspace.ReloadWorkspace(cancellationToken);
             }
 
             return Unit.Task;

@@ -16,9 +16,6 @@ namespace Yarn
     /// </remarks>
     internal static class SmartVariableEvaluationVirtualMachine
     {
-        private static int programCounter = 0;
-        private static readonly Stack<Value> _stack = new Stack<Value>(32);
-
         /// <summary>
         /// Evaluates a smart variable.
         /// </summary>
@@ -61,24 +58,24 @@ namespace Yarn
                 throw new ArgumentException($"'{nameof(name)}' cannot be null or empty.", nameof(name));
             }
 
-            int startStackValue = _stack.Count;
+            var stack = new Stack<Value>();
 
-            var program = variableAccess.Program;
-
-            if (program.Nodes.TryGetValue(name, out Node smartVariableNode) == false)
+            if (variableAccess.Program.Nodes.TryGetValue(name, out Node smartVariableNode) == false)
             {
+                // No node with this name exists. Return a value indicating that
+                // we failed to get the smart variable's value.
                 result = default!;
                 return false;
             }
 
-            programCounter = 0;
+            var programCounter = 0;
 
             try
             {
                 while (programCounter < smartVariableNode.Instructions.Count)
                 {
                     var instruction = smartVariableNode.Instructions[programCounter];
-                    if (EvaluateInstruction(instruction, variableAccess, library, _stack, ref programCounter) == false)
+                    if (EvaluateInstruction(instruction, variableAccess, library, stack, ref programCounter) == false)
                     {
                         break;
                     }
@@ -89,18 +86,16 @@ namespace Yarn
                 throw new InvalidOperationException($"Error when evaluating smart variable {name}: {e.Message}");
             }
 
-            if (_stack.Count < 1)
+            if (stack.Count < 1)
             {
                 throw new System.InvalidOperationException("Error when evaluating smart variable: stack did not contain a value after evaluation");
             }
 
-            Value calculatedResult = _stack.Pop();
+            Value calculatedResult = stack.Pop();
 
-            int endStackValue = _stack.Count;
-
-            if (startStackValue != endStackValue)
+            if (stack.Count > 0)
             {
-                throw new InvalidOperationException($"Error when evaluating smart variable: stack had {endStackValue - startStackValue} dangling value(s)");
+                throw new InvalidOperationException($"Error when evaluating smart variable: stack had {stack.Count} dangling value(s)");
             }
 
             return TryConvertToType(calculatedResult.InternalValue, out result);
@@ -257,7 +252,7 @@ namespace Yarn
                     }
                     break;
                 case Instruction.InstructionTypeOneofCase.JumpIfFalse:
-                    if (_stack.Peek().ConvertTo<bool>() == false)
+                    if (stack.Peek().ConvertTo<bool>() == false)
                     {
                         // Set the program counter directly
                         programCounter = instruction.JumpIfFalse.Destination;

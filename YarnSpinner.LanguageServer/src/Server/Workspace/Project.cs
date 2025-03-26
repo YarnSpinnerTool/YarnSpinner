@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using OmniSharp.Extensions.LanguageServer.Protocol;
 
 namespace YarnLanguageServer
@@ -223,7 +224,7 @@ namespace YarnLanguageServer
 
         internal int FileVersion => yarnProject.FileVersion;
 
-        internal void ReloadProjectFromDisk(bool notifyOnComplete = true)
+        internal void ReloadProjectFromDisk(bool notifyOnComplete, CancellationToken cancellationToken)
         {
             IEnumerable<string> sourceFilePaths = this.yarnProject.SourceFiles;
 
@@ -238,10 +239,10 @@ namespace YarnLanguageServer
                 this.yarnFiles.Add(uri, fileData);
             }
 
-            CompileProject(notifyOnComplete, Yarn.Compiler.CompilationJob.Type.TypeCheck);
+            CompileProject(notifyOnComplete, Yarn.Compiler.CompilationJob.Type.TypeCheck, cancellationToken);
         }
 
-        public Yarn.Compiler.CompilationResult CompileProject(bool notifyOnComplete, Yarn.Compiler.CompilationJob.Type compilationType)
+        public Yarn.Compiler.CompilationResult CompileProject(bool notifyOnComplete, Yarn.Compiler.CompilationJob.Type compilationType, CancellationToken cancellationToken)
         {
             var functionDeclarations = Functions.Select(f => f.Declaration).NonNull();
 
@@ -257,6 +258,7 @@ namespace YarnLanguageServer
                 Files = files,
                 VariableDeclarations = functionDeclarations,
                 LanguageVersion = this.yarnProject.FileVersion,
+                CancellationToken = cancellationToken,
             };
 
             var compilationResult = Yarn.Compiler.Compiler.Compile(compilationJob);
@@ -271,9 +273,9 @@ namespace YarnLanguageServer
             return compilationResult;
         }
 
-        internal DebugOutput GetDebugOutput()
+        internal DebugOutput GetDebugOutput(CancellationToken cancellationToken)
         {
-            var compilationResult = this.CompileProject(false, Yarn.Compiler.CompilationJob.Type.FullCompilation);
+            var compilationResult = this.CompileProject(false, Yarn.Compiler.CompilationJob.Type.FullCompilation, cancellationToken);
 
             var variables = compilationResult.Declarations
                 .Where(decl => decl.IsVariable)
