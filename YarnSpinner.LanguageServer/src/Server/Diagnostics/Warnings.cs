@@ -105,7 +105,7 @@ namespace YarnLanguageServer.Diagnostics
                 Message = $"Jump to unknown node '{t.DestinationTitle}'",
                 Severity = DiagnosticSeverity.Warning,
                 Range = PositionHelper.GetRange(yarnFile.LineStarts, t.DestinationToken),
-                Code = nameof(YarnDiagnosticCode.YRNMsngJumpNode),
+                Code = nameof(YarnDiagnosticCode.YRNMsngJumpDest),
                 Data = JToken.FromObject(t.DestinationTitle),
             });
         }

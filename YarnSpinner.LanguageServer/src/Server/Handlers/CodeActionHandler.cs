@@ -37,8 +37,8 @@ namespace YarnLanguageServer.Handlers
                     case nameof(YarnDiagnosticCode.YRNMsngVarDec):
                         results.AddRange(HandleYRNMsngVarDec(diagnostic, request.TextDocument.Uri));
                         break;
-                    case nameof(YarnDiagnosticCode.YRNMsngJumpNode):
-                        results.AddRange(HandleYRNMsngJumpNode(diagnostic, request.TextDocument.Uri));
+                    case nameof(YarnDiagnosticCode.YRNMsngJumpDest):
+                        results.AddRange(HandleYRNMsngJumpDest(diagnostic, request.TextDocument.Uri));
                         break;
                 }
             }
@@ -161,7 +161,7 @@ namespace YarnLanguageServer.Handlers
             return suggestions;
         }
 
-        private IEnumerable<CommandOrCodeAction> HandleYRNMsngJumpNode(Diagnostic diagnostic, DocumentUri uri)
+        private IEnumerable<CommandOrCodeAction> HandleYRNMsngJumpDest(Diagnostic diagnostic, DocumentUri uri)
         {
             var jumpDestination = diagnostic.Data?.ToString();
             if (string.IsNullOrEmpty(jumpDestination)) { return Enumerable.Empty<CommandOrCodeAction>(); }

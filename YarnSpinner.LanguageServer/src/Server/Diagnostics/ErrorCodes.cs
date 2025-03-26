@@ -23,7 +23,7 @@
         /// <summary>
         /// Warning: Jump to undefined node
         /// </summary>
-        YRNMsngJumpNode,
+        YRNMsngJumpDest,
 
         /// <summary>
         /// Error: Command or Function that has an incorrect number of parameters
