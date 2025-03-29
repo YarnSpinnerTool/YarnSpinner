@@ -6,12 +6,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 using OmniSharp.Extensions.LanguageServer.Protocol.Window;
 using OmniSharp.Extensions.LanguageServer.Protocol.Workspace;
 using OmniSharp.Extensions.LanguageServer.Server;
+using static YarnLanguageServer.JsonConfigFile;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("YarnLanguageServer.Tests")]
 
@@ -179,6 +181,15 @@ namespace YarnLanguageServer
                 (commandParams) => ListProjectsAsync(workspace, commandParams), (_, _) => new ExecuteCommandRegistrationOptions
                 {
                     Commands = new[] { Commands.ListProjects },
+                }
+            );
+
+            // Register Load External Action Source command
+            options.OnExecuteCommand<bool>(
+                (commandParams, cancellationToken) => LoadExternalActionSourceAsync(workspace, commandParams, cancellationToken),
+                (_, _) => new ExecuteCommandRegistrationOptions
+                {
+                    Commands = new[] { Commands.LoadExternalActionSource },
                 }
             );
 
@@ -828,6 +839,52 @@ namespace YarnLanguageServer
                 IsImplicitProject = p.IsImplicitProject,
             });
             return Task.FromResult(Container.From(info));
+        }
+
+        private static Task<bool> LoadExternalActionSourceAsync(Workspace workspace, ExecuteCommandParams<bool> commandParams, CancellationToken cancellationToken)
+        {
+            if (commandParams.Arguments == null || commandParams.Arguments.Count < 2)
+            {
+                workspace.ShowMessage($"{Commands.LoadExternalActionSource} expects at least two arguments: a source key and a json of actions (same format as ysls.json)", MessageType.Error);
+                return Task.FromResult(false);
+            }
+
+            var externalActionSourceName = commandParams.Arguments[0].ToString();
+            var externalActionContent = commandParams.Arguments[1].ToString();
+
+            var parsedActions = JsonConvert.DeserializeObject<JsonConfigFormat>(externalActionContent);
+            if (parsedActions == null)
+            {
+                workspace.ShowMessage($"Failed to parse external action source JSON for {externalActionSourceName}", MessageType.Error);
+                return Task.FromResult(false);
+            }
+
+            var actionsToImport = new HashSet<Action>();
+            foreach (var definition in parsedActions.Functions)
+            {
+                Action action = definition.ToAction();
+                action.IsBuiltIn = false;
+                action.Type = ActionType.Function;
+                if (!actionsToImport.Add(action)) {
+                    workspace.ShowMessage($"Duplicate action found for function: {externalActionSourceName}", MessageType.Error);
+                    return Task.FromResult(false);
+                }
+            }
+
+            foreach (var definition in parsedActions.Commands)
+            {
+                Action action = definition.ToAction();
+                action.IsBuiltIn = false;
+                action.Type = ActionType.Command;
+                if (!actionsToImport.Add(action)) {
+                    workspace.ShowMessage($"Duplicate action found for command: {externalActionSourceName}", MessageType.Error);
+                    return Task.FromResult(false);
+                }
+            }
+
+            workspace.ImportExternalActionSource(externalActionSourceName, actionsToImport);
+            workspace.ReloadWorkspace(cancellationToken);
+            return Task.FromResult(true);
         }
     }
 }
