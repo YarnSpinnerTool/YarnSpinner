@@ -59,6 +59,11 @@ namespace YarnLanguageServer
         /// </summary>
         private HashSet<Action> workspaceActions = new HashSet<Action>();
 
+        /// <summary>
+        /// The collection of actions loaded using the loadExternalActionSource command.
+        /// </summary>
+        private Dictionary<string, HashSet<Action>> externalActions = new Dictionary<string, HashSet<Action>>();
+
         Configuration IConfigurationSource.Configuration => this.Configuration;
 
         internal void ReloadWorkspace(CancellationToken cancellationToken)
@@ -71,6 +76,15 @@ namespace YarnLanguageServer
             else
             {
                 this.workspaceActions = new HashSet<Action>();
+            }
+
+            // Merge in the actions from external sources
+            foreach (var externalSource in this.externalActions)
+            {
+                foreach (var action in externalSource.Value)
+                {
+                    this.workspaceActions.Add(action);
+                }
             }
 
             // Find all actions built in to this DLL
@@ -227,6 +241,21 @@ namespace YarnLanguageServer
             }
 
             return predefinedActions;
+        }
+
+        /// <summary>
+        ///  Imports an external action source into the workspace.
+        ///  </summary>
+        /// <remarks>
+        ///  Existing actions with the same source key will be deleted / replaced.
+        ///  This will not automatically relaod the workspace,
+        ///  so it is up to the caller to call <see cref="ReloadWorkspace(CancellationToken)"/> after importing
+        ///  the external actions to ensure that the workspace is up to date with the new actions.
+        /// </remarks>
+        internal void ImportExternalActionSource(string sourceKey, HashSet<Action> actionsSet)
+        {
+            this.externalActions.Remove(sourceKey);
+            this.externalActions.Add(sourceKey, actionsSet);
         }
 
         private IEnumerable<Action> FindWorkspaceActions(string root)
