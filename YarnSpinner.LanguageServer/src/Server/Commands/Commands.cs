@@ -50,6 +50,11 @@ public static class Commands
     public const string ExtractSpreadsheet = "yarnspinner.extract-spreadsheet";
 
     /// <summary>
+    /// The command to add tags to any lines that need them.
+    /// </summary>
+    public const string TagLines = "yarnspinner.tag-lines";
+
+    /// <summary>
     /// The command to generate a graph of the Yarn Project.
     /// Will be presented as a directed graph of nodes and jumps.
     /// </summary>
