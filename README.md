@@ -49,6 +49,6 @@ Yarn Spinner needs your help to be as awesome as it can be! You don't have to be
 
 * Yarn Spinner's development is powered by our wonderful Patreon supporters and Itch.io. [Become a patron](https://patreon.com/secretlab), or [buy Yarn Spinner on Itch.io](https://yarnspinner.itch.io), and help us make Yarn Spinner be amazing.
 * Our [issues page](https://github.com/YarnSpinnerTool/YarnSpinner/issues) contains a list of things we'd love your help in improving.
-* Follow [Yarn Spinner on Twitter](https://bsky.app/profile/yarnspinner.dev). 
+* Follow [Yarn Spinner on Bluesky](https://bsky.app/profile/yarnspinner.dev). 
 
 If you want to contribute to Yarn Spinner, [go read our contributor's guide!](CONTRIBUTING.md)
