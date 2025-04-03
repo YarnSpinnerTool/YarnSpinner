@@ -182,6 +182,14 @@ namespace YarnLanguageServer
                 }
             );
 
+            options.OnExecuteCommand<WorkspaceEdit>(
+                (commandParams, cancellationToken) => TagLinesAsync(workspace, commandParams, cancellationToken),
+                (_, _) => new ExecuteCommandRegistrationOptions
+                {
+                    Commands = new[] { Commands.TagLines },
+                }
+            );
+
             return options;
         }
 
@@ -828,6 +836,97 @@ namespace YarnLanguageServer
                 IsImplicitProject = p.IsImplicitProject,
             });
             return Task.FromResult(Container.From(info));
+        }
+
+        private static Task<WorkspaceEdit> TagLinesAsync(Workspace workspace, ExecuteCommandParams<WorkspaceEdit> commandParams, CancellationToken cancellationToken)
+        {
+            if (commandParams.Arguments == null || commandParams.Arguments.Count == 0)
+            {
+                throw new ArgumentException(Commands.TagLines + " expects the first argument to be a URI of the project (or a document in the project) to add line tags to.");
+            }
+
+            var projectOrDocumentUri = new Uri(commandParams.Arguments[0].ToString());
+            var project = workspace.GetProjectsForUri(projectOrDocumentUri);
+
+            var allFilesInProject = project
+                .SelectMany(p => p.Files)
+                .DistinctBy(p => p.Uri);
+
+            // Compiling the whole workspace so we can get access to the program and make sure we don't end up with duplicate tags
+            var job = new Yarn.Compiler.CompilationJob
+            {
+                Files = allFilesInProject.Select(file =>
+                {
+                    return new Yarn.Compiler.CompilationJob.File
+                    {
+                        FileName = file.Uri.ToString(),
+                        Source = file.Text,
+                    };
+                }),
+                CancellationToken = cancellationToken,
+                CompilationType = Yarn.Compiler.CompilationJob.Type.FullCompilation,
+                LanguageVersion = project.Max(p => p.FileVersion),
+            };
+
+            var compilationResult = Yarn.Compiler.Compiler.Compile(job);
+
+            var anyErrorMessages = compilationResult?.Diagnostics.Any(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error) ?? false;
+
+            if (compilationResult == null || anyErrorMessages || compilationResult.Program == null || compilationResult.ProjectDebugInfo == null || cancellationToken.IsCancellationRequested)
+            {
+                throw new InvalidOperationException("Failed to compile the project.");
+            }
+
+            var tags = compilationResult.StringTable?.Where(info => !info.Value.isImplicitTag)?.Select(info => info.Key).Distinct()?.ToList() ?? new List<string>();
+            var documentEdits = new List<WorkspaceEditDocumentChange>();
+            foreach (var file in allFilesInProject)
+            {
+                var contents = file.Text;
+                (var taggedContents, IList<string> newTags) = Yarn.Compiler.Utility.TagLines(contents, tags);
+
+                if (newTags.Any())
+                {
+                    // We found some untagged lines and added tags to them!
+                    tags.AddRange(newTags);
+                    var lineEdits = new List<TextEdit>();
+                    var oldContentsLines = contents.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+                    var taggedContentsLines = taggedContents.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+
+                    foreach (var lineIndex in Enumerable.Range(0, taggedContentsLines.Length))
+                    {
+                        // if the lines are the same, no need to edit
+                        if (oldContentsLines[lineIndex] == taggedContentsLines[lineIndex])
+                        {
+                            continue;
+                        }
+
+                        // Add an edit to add the new tag to the end of the line
+                        var endOfLineIndex = oldContentsLines[lineIndex].Length;
+                        var endOfLinePosition = new Position(lineIndex, endOfLineIndex);
+                        lineEdits.Add(new TextEdit
+                        {
+                            NewText = taggedContentsLines[lineIndex][endOfLineIndex..].TrimEnd(),
+                            Range = new OmniSharp.Extensions.LanguageServer.Protocol.Models.Range(endOfLinePosition, endOfLinePosition),
+                        });
+                    }
+
+                    if (lineEdits.Any())
+                    {
+                        documentEdits.Add(new WorkspaceEditDocumentChange(
+                            new TextDocumentEdit
+                            {
+                                TextDocument = new OptionalVersionedTextDocumentIdentifier
+                                {
+                                    Uri = file.Uri,
+                                },
+                                Edits = lineEdits,
+                            }));
+                    }
+                }
+            }
+
+            var result = new WorkspaceEdit { DocumentChanges = documentEdits };
+            return Task.FromResult(result);
         }
     }
 }
