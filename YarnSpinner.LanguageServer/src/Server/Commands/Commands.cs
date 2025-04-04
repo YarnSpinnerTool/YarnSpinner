@@ -73,4 +73,11 @@ public static class Commands
     /// The command to get all projects in the current workspace.
     /// </summary>
     public const string ListProjects = "yarnspinner.listProjects";
+
+    /// <summary>
+    /// The command to import function and command definitions from external sources.
+    /// </summary>
+    /// <param name="sourceKey">The unique key identifying the external action source.</param>
+    /// <param name="sourceContent">A string containing JSON with the same schema as the .ysls.json file.</param>
+    public const string LoadExternalActionSource = "yarnspinner.loadExternalActionSource";
 }
