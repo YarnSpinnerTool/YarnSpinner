@@ -313,7 +313,7 @@ namespace Yarn.Compiler
                 // And then look for a line ID hashtag.
                 foreach (var text in texts)
                 {
-                    if (text.StartsWith("line:"))
+                    if (text.StartsWith("line:") || text.StartsWith("shadow:"))
                     {
                         // This line contains a line code. Nothing left to do.
                         return;
