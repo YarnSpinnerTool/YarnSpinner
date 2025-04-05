@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Improved the performance of the type checker when dealing with large numbers of variable declarations.
+- `Yarn.Compiler.Utility.TagLines` won't add line tag to shadow lines.
 
 ### Removed
 
