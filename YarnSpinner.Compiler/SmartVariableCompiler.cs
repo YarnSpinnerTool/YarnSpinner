@@ -43,7 +43,10 @@ namespace Yarn.Compiler
         public NodeCompilationResult Compile(string sourceFileName, string nodeName, YarnSpinnerParser.ExpressionContext? expression)
         {
             this.CurrentNode = new Node();
-            this.CurrentNodeDebugInfo = new NodeDebugInfo(sourceFileName, nodeName);
+            this.CurrentNodeDebugInfo = new NodeDebugInfo(sourceFileName, nodeName)
+            {
+                IsImplicit = true
+            };
 
             this.CurrentNode.Name = nodeName;
             this.CurrentNode.Headers.Add(new Header { Key = "tags", Value = Program.SmartVariableNodeTag });
@@ -55,6 +58,8 @@ namespace Yarn.Compiler
                 // empty node with the appropriate tags.
                 var codeGenerator = new CodeGenerationVisitor(this);
                 codeGenerator.Visit(expression);
+
+                this.CurrentNodeDebugInfo.Range = new Range(expression.Start.Line, expression.Start.Column, expression.Stop.Line, expression.Stop.Column);
             }
 
             return new NodeCompilationResult
