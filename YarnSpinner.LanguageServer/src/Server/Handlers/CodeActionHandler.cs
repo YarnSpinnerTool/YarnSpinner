@@ -37,6 +37,9 @@ namespace YarnLanguageServer.Handlers
                     case nameof(YarnDiagnosticCode.YRNMsngVarDec):
                         results.AddRange(HandleYRNMsngVarDec(diagnostic, request.TextDocument.Uri));
                         break;
+                    case nameof(YarnDiagnosticCode.YRNMsngJumpDest):
+                        results.AddRange(HandleYRNMsngJumpDest(diagnostic, request.TextDocument.Uri));
+                        break;
                 }
             }
 
@@ -154,6 +157,93 @@ namespace YarnLanguageServer.Handlers
                     return replaceAction;
                 })
                 .Select(s => new CommandOrCodeAction(s));
+
+            return suggestions;
+        }
+
+        private IEnumerable<CommandOrCodeAction> HandleYRNMsngJumpDest(Diagnostic diagnostic, DocumentUri uri)
+        {
+            var jumpDestination = diagnostic.Data?.ToString();
+            if (string.IsNullOrEmpty(jumpDestination)) { return Enumerable.Empty<CommandOrCodeAction>(); }
+
+            var project = workspace.GetProjectsForUri(uri).FirstOrDefault();
+            if (project == null) { return Enumerable.Empty<CommandOrCodeAction>(); }
+
+            // Suggest potential renamings by fuzzy-searching for the existing
+            // input, and offering suggestions that replace the text.
+            var suggestions =
+                project.FindNodes(jumpDestination, true)
+                .Where(name => name != jumpDestination)
+                .Distinct()
+                .Take(10)
+                .Select(name =>
+                {
+                    var edits = new Dictionary<DocumentUri, IEnumerable<TextEdit>>();
+                    edits[uri] = new List<TextEdit> { new TextEdit { NewText = name, Range = diagnostic.Range } };
+
+                    var replaceAction = new CodeAction
+                    {
+                        Title = $"Rename to '{name}'",
+                        Kind = CodeActionKind.QuickFix,
+                        Edit = new WorkspaceEdit { Changes = edits },
+                    };
+                    return replaceAction;
+                })
+                .Select(s => new CommandOrCodeAction(s));
+
+            var yarnFile = project.GetFileData((System.Uri)uri);
+            if (yarnFile == null) { return suggestions; }
+
+            // Offer to create a new node with the missing node title if the jump destination doesn't exist
+            var insertDeclarationEdit = new Dictionary<DocumentUri, IEnumerable<TextEdit>>();
+
+            // Could share most of this code with AddNodeToDocumentAsync command
+            var newNodeText = new System.Text.StringBuilder()
+                .AppendLine($"title: {jumpDestination}")
+                .AppendLine("---")
+                .AppendLine()
+                .AppendLine("===");
+
+            Position insertPosition;
+
+            var lastLineIsEmpty = yarnFile.Text.EndsWith('\n');
+
+            int lastLineIndex = yarnFile.LineCount - 1;
+
+            if (lastLineIsEmpty)
+            {
+                // The final line ends with a newline. Insert the node
+                // there.
+                insertPosition = new Position(lastLineIndex, 0);
+            }
+            else
+            {
+                // The final line does not end with a newline. Insert a
+                // newline at the end of the last line, followed by the new
+                // text.
+                var endOfLastLine = yarnFile.GetLineLength(lastLineIndex);
+                newNodeText.Insert(0, System.Environment.NewLine);
+                insertPosition = new Position(lastLineIndex, endOfLastLine);
+            }
+
+            insertDeclarationEdit[uri] = new List<TextEdit> {
+                new TextEdit {
+                    NewText = newNodeText.ToString(),
+                    Range = new Range(insertPosition, insertPosition),
+                },
+            };
+
+            suggestions = suggestions.Prepend(
+                new CommandOrCodeAction(
+                    new CodeAction
+                    {
+                        Title = $"Generate node '{jumpDestination}'",
+                        Kind = CodeActionKind.QuickFix,
+                        IsPreferred = true,
+                        Edit = new WorkspaceEdit { Changes = insertDeclarationEdit },
+                    }
+                )
+            );
 
             return suggestions;
         }
