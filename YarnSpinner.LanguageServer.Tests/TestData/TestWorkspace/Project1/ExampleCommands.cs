@@ -69,4 +69,13 @@ public class ExampleCommands
     {
 
     }
+
+    static class NestingTestParentClass
+    {
+     
+        [YarnCommand("command_nested_in_parent_class")]
+        public static void CommandNestedInParentClass()
+        {
+        }
+    }
 }

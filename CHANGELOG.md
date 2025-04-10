@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Improved the performance of the type checker when dealing with large numbers of variable declarations.
 - Fixed an issue where `Utility.TagLines` would add `#line:` tags to lines with `#shadow:` tags (which isn't allowed.)
+- Language Server: Fixed an error that would crash the language server if a `YarnCommand`- and `YarnFunction`-tagged method was declared inside a nested C# class
 
 ### Removed
 
