@@ -136,7 +136,15 @@ namespace Yarn.Compiler
         public override void EnterNode(YarnSpinnerParser.NodeContext context)
         {
             this.CurrentNode = new Node();
-            this.CurrentNodeDebugInfo = new NodeDebugInfo(FileParseResult.Name, "<unknown>");
+            this.CurrentNodeDebugInfo = new NodeDebugInfo(FileParseResult.Name, "<unknown>")
+            {
+                Range = new Range(
+                    context.Start.Line,
+                    context.Start.Column,
+                    context.Stop.Line,
+                    context.Stop.Column + (context.Stop.StopIndex - context.Stop.StartIndex)
+                )
+            };
         }
 
         /// <summary>
