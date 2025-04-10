@@ -204,6 +204,8 @@ namespace Yarn.Compiler
             var hubNodeDebugInfo = new NodeDebugInfo("<generated>", NodeGroupName);
             this.CurrentNode = hubNode;
             this.CurrentNodeDebugInfo = hubNodeDebugInfo;
+            this.CurrentNodeDebugInfo.IsImplicit = true;
+            this.CurrentNodeDebugInfo.FileName = null;
 
             // For each member in the group, add code that registers it as a
             // candidate. We'll also keep track of each instruction that

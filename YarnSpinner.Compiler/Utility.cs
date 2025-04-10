@@ -145,7 +145,7 @@ namespace Yarn.Compiler
         /// <returns>The modified source code, with line tags
         /// added.</returns>
         [Obsolete("This method doesn't return the new tags, just the modified text which can cause issues with multiple files. Please use TagLines instead")]
-        public static string AddTagsToLines(string contents, ICollection<string> existingLineTags = null)
+        public static string AddTagsToLines(string contents, ICollection<string>? existingLineTags = null)
         {
             // First, get the parse tree for this source code.
             var (parseSource, diagnostics) = ParseSource(contents);
@@ -175,33 +175,31 @@ namespace Yarn.Compiler
 
             // Apply these text replacements to the original source and return
             // it.
-            return untaggedLineListener.RewrittenNodes().Item1;
+            return untaggedLineListener.RewrittenNodes().ModifiedSource;
         }
 
         /// <summary>
-        /// Given Yarn source code, adds line tags to the ends of all lines
-        /// that need one and do not already have one.
+        /// Given Yarn source code, adds line tags to the ends of all lines that
+        /// need one and do not already have one.
         /// </summary>
         /// <remarks><para>
-        /// This method ensures that it does not generate line
-        /// tags that are already present in the file, or present in the
-        /// <paramref name="existingLineTags"/> collection.
+        /// This method ensures that it does not generate line tags that are
+        /// already present in the file, or present in the <paramref
+        /// name="existingLineTags"/> collection.
         /// </para>
         /// <para>
         /// Line tags are added to any line of source code that contains
         /// user-visible text: lines, options, and shortcut options.
         /// </para>
         /// </remarks>
-        /// <param name="contents">The source code to add line tags
-        /// to.</param>
-        /// <param name="existingLineTags">The collection of line tags
-        /// already exist elsewhere in the source code; the newly added
-        /// line tags will not be duplicates of any in this
-        /// collection.</param>
-        /// <returns>Tuple of the modified source code, with line tags
-        /// added and the list of new line tags generated.
+        /// <param name="contents">The source code to add line tags to.</param>
+        /// <param name="existingLineTags">The collection of line tags already
+        /// exist elsewhere in the source code; the newly added line tags will
+        /// not be duplicates of any in this collection.</param>
+        /// <returns>Tuple of the modified source code, with line tags added and
+        /// an updated list of line IDs.
         /// </returns>
-        public static (string, IList<string>) TagLines(string contents, ICollection<string> existingLineTags = null)
+        public static (string ModifiedSource, IList<string> LineIDs) TagLines(string contents, ICollection<string>? existingLineTags = null)
         {
             // First, get the parse tree for this source code.
             var (parseSource, diagnostics) = ParseSource(contents);
@@ -211,14 +209,11 @@ namespace Yarn.Compiler
             {
                 // We encountered a parse error. Bail here; we aren't confident
                 // in our ability to correctly insert a line tag.
-                return (null, null);
+                return (contents, existingLineTags.ToList() ?? new List<string>());
             }
 
             // Make sure we have a list of line tags to work with.
-            if (existingLineTags == null)
-            {
-                existingLineTags = new List<string>();
-            }
+            existingLineTags ??= new List<string>();
 
             // Create the line listener, which will produce TextReplacements for
             // each new line tag.
@@ -276,7 +271,7 @@ namespace Yarn.Compiler
         /// </summary>
         private class UntaggedLineListener : YarnSpinnerParserBaseListener
         {
-            private readonly IList<string> existingStrings;
+            private readonly IList<string> knownLineIDs;
 
             private readonly CommonTokenStream TokenStream;
 
@@ -293,7 +288,7 @@ namespace Yarn.Compiler
             /// <see cref="IParseTree"/> this instance is operating on.</param>
             public UntaggedLineListener(IList<string> existingStrings, CommonTokenStream tokenStream)
             {
-                this.existingStrings = existingStrings;
+                this.knownLineIDs = existingStrings;
                 this.TokenStream = tokenStream;
                 this.rewriter = new TokenStreamRewriter(TokenStream);
             }
@@ -308,14 +303,20 @@ namespace Yarn.Compiler
                 var hashtags = context.hashtag();
 
                 // Get the text for all of these hashtags...
-                var texts = StringTableGeneratorVisitor.GetHashtagTexts(hashtags);
+                var hashtagTexts = StringTableGeneratorVisitor.GetHashtagTexts(hashtags);
 
                 // And then look for a line ID hashtag.
-                foreach (var text in texts)
+                foreach (var hashtag in hashtagTexts)
                 {
-                    if (text.StartsWith("line:"))
+                    if (hashtag.StartsWith("line:"))
                     {
                         // This line contains a line code. Nothing left to do.
+                        return;
+                    }
+                    if (hashtag.StartsWith("shadow:"))
+                    {
+                        // This line contains a shadow line tag, which aren't
+                        // allowed to have line IDs of their own.
                         return;
                     }
                 }
@@ -341,11 +342,11 @@ namespace Yarn.Compiler
                 var previousToken = TokenStream.Get(previousTokenIndex);
 
                 // Generate a new, unique line ID.
-                string newLineID = Utility.GenerateString(existingStrings);
+                string newLineID = Utility.GenerateString(knownLineIDs);
 
                 // Record that we've used this new line ID, so that we don't
                 // accidentally use it twice.
-                existingStrings.Add(newLineID);
+                knownLineIDs.Add(newLineID);
 
                 this.rewriter.InsertAfter(previousToken, $" #{newLineID} ");
             }
@@ -399,9 +400,9 @@ namespace Yarn.Compiler
                 return -1;
             }
 
-            public (string, IList<string>) RewrittenNodes()
+            public (string ModifiedSource, IList<string> KnownLineIDs) RewrittenNodes()
             {
-                return (this.rewriter.GetText(), existingStrings);
+                return (this.rewriter.GetText(), knownLineIDs);
             }
         }
 

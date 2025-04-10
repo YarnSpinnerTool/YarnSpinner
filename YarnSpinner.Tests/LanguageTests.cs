@@ -678,6 +678,64 @@ some_other_header2: $b + func_call(42, ""wow"")
             withCancelling.Elapsed.Should().BeLessThan(withoutCancelling.Elapsed,
                 "cancelling a compilation should complete sooner than letting the compilation run to completion");
         }
+
+        [Fact]
+        public void TestNodeDebugInfoContainsInfo()
+        {
+            // Given
+            var source = @"title: NodeA
+---
+Line 1
+Line 2
+<<declare $smartVar = 1+1>>
+===
+title: NodeB
+---
+Line 3
+===
+title: NodeGroup
+when: always
+---
+Line in a node group
+===
+";
+
+
+            // When
+            var compilationJob = CompilationJob.CreateFromString("input", source);
+            var result = Compiler.Compile(compilationJob);
+
+            // Then
+            result.ProjectDebugInfo.Nodes.Should().HaveCount(6);
+
+            var nodeAInfo = result.ProjectDebugInfo.GetNodeDebugInfo("NodeA");
+            var nodeBInfo = result.ProjectDebugInfo.GetNodeDebugInfo("NodeB");
+            var smartVarInfo = result.ProjectDebugInfo.GetNodeDebugInfo("$smartVar");
+            var nodeGroupHub = result.ProjectDebugInfo.GetNodeDebugInfo("NodeGroup");
+            var nodeGroupItem = result.ProjectDebugInfo.Nodes.FirstOrDefault(n => n.NodeName.StartsWith("NodeGroup_"));
+            var nodeGroupItemCondition = result.ProjectDebugInfo.Nodes.FirstOrDefault(n => n.NodeName.Contains(".Condition."));
+
+            nodeAInfo.Should().NotBeNull();
+            nodeBInfo.Should().NotBeNull();
+            smartVarInfo.Should().NotBeNull();
+            nodeGroupHub.Should().NotBeNull();
+            nodeGroupItem.Should().NotBeNull();
+            nodeGroupItemCondition.Should().NotBeNull();
+
+            new[] { nodeAInfo, nodeBInfo, smartVarInfo }.Should().AllSatisfy(i => i.FileName.Should().Be("input"));
+            nodeAInfo.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(1, 0, 6, 2));
+            nodeBInfo.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(7, 0, 10, 2));
+            smartVarInfo.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(5, 22, 5, 24),
+                "the position of the smart variable 'node' is defined by the expression");
+
+            nodeAInfo.IsImplicit.Should().BeFalse();
+            nodeBInfo.IsImplicit.Should().BeFalse();
+            smartVarInfo.IsImplicit.Should().BeTrue();
+
+            nodeGroupHub.IsImplicit.Should().BeTrue("node group hubs are created by the compiler and do not appear in the input source code");
+            nodeGroupItem.IsImplicit.Should().BeFalse("nodes in a node group are present in the input source code");
+            nodeGroupItemCondition.IsImplicit.Should().BeTrue("node group condition smart variables are created by the compiler");
+        }
     }
 }
 
