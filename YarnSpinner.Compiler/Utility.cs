@@ -303,14 +303,20 @@ namespace Yarn.Compiler
                 var hashtags = context.hashtag();
 
                 // Get the text for all of these hashtags...
-                var texts = StringTableGeneratorVisitor.GetHashtagTexts(hashtags);
+                var hashtagTexts = StringTableGeneratorVisitor.GetHashtagTexts(hashtags);
 
                 // And then look for a line ID hashtag.
-                foreach (var text in texts)
+                foreach (var hashtag in hashtagTexts)
                 {
-                    if (text.StartsWith("line:") || text.StartsWith("shadow:"))
+                    if (hashtag.StartsWith("line:"))
                     {
                         // This line contains a line code. Nothing left to do.
+                        return;
+                    }
+                    if (hashtag.StartsWith("shadow:"))
+                    {
+                        // This line contains a shadow line tag, which aren't
+                        // allowed to have line IDs of their own.
                         return;
                     }
                 }
