@@ -216,6 +216,9 @@ This is a line with an embedded \#hashtag in it. #line:expected_326d
 This is a line with embedded escapable symbols in it: \[ \] \\ \< \> \{ \} \# \/
 This is a line with embedded escapable symbols in it: \[ \] \\ \< \> \{ \} \# \/ #line:expected_bc59
 
+// Lines with a shadow tag (should never have a line tag added)
+A single line, with a line tag. #shadow:expected_abc123
+
 ===";
 
             {
@@ -230,14 +233,14 @@ This is a line with embedded escapable symbols in it: \[ \] \\ \< \> \{ \} \# \/
 
             // Act
 
-            var output = Utility.AddTagsToLines(originalText);
+            var (output, newTags) = Utility.TagLines(originalText, []);
 
             var compilationJob = CompilationJob.CreateFromString("input", output);
             compilationJob.CompilationType = CompilationJob.Type.StringsOnly;
 
             var compilationResult = Compiler.Compile(compilationJob);
 
-            compilationResult.Diagnostics.Should().BeEmpty();
+            compilationResult.Diagnostics.Should().BeEmpty("adding line tags should not introduce compile errors");
 
             // Assert
             var lineTagRegex = new Regex(@"#line:\w+");
@@ -320,6 +323,9 @@ This is a line with embedded escapable symbols in it: \[ \] \\ \< \> \{ \} \# \/
                 (null, @"This is a line with embedded escapable symbols in it: \[ \] \ < > { } # /"),
                 ("line:expected_bc59", @"This is a line with embedded escapable symbols in it: \[ \] \ < > { } # /"),
 
+                // The shadow line should not receive a line ID, so we don't
+                // include an entry for it.
+                // (null, "A single line, with a line tag."),
             };
             expectedResults.Sort((a, b) =>
             {
@@ -374,9 +380,9 @@ This is a line with embedded escapable symbols in it: \[ \] \\ \< \> \{ \} \# \/
                 }
             }
 
-            // we now should have seen every line ID
-            compilationResult.StringTable.Count.Should().Be(expectedResults.Count);
-            compilationResult.StringTable.Count.Should().Be(visitedIDs.Count);
+            // we now should have seen every line ID, plus the entry for the shadow line
+            compilationResult.StringTable.Count.Should().Be(expectedResults.Count + 1);
+            compilationResult.StringTable.Count.Should().Be(visitedIDs.Count + 1);
         }
 
         [Fact]
