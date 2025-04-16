@@ -12,7 +12,7 @@ namespace YarnLanguageServer
     {
         private readonly List<NodeInfo> nodeInfos = new();
 
-        private NodeInfo currentNodeInfo = null;
+        private NodeInfo? currentNodeInfo = null;
 
         private YarnFileData yarnFileData;
 
@@ -22,14 +22,17 @@ namespace YarnLanguageServer
         /// </summary>
         private CommonTokenStream tokens;
 
+        public ReferencesVisitor(YarnFileData yarnFileData, CommonTokenStream tokens)
+        {
+            this.yarnFileData = yarnFileData;
+            this.tokens = tokens;
+        }
+
         public static IEnumerable<NodeInfo>
             Visit(YarnFileData yarnFileData, CommonTokenStream tokens)
         {
-            var visitor = new ReferencesVisitor
-            {
-                yarnFileData = yarnFileData,
-                tokens = tokens,
-            };
+            var visitor = new ReferencesVisitor(yarnFileData, tokens);
+
             if (yarnFileData.ParseTree != null)
             {
                 try
@@ -125,12 +128,22 @@ namespace YarnLanguageServer
 
         public override bool VisitVariable([NotNull] YarnSpinnerParser.VariableContext context)
         {
+            if (currentNodeInfo == null)
+            {
+                return base.VisitVariable(context);
+            }
+
             currentNodeInfo.VariableReferences.Add(context.Stop);
             return base.VisitVariable(context);
         }
 
         public override bool VisitTitle_header([NotNull] YarnSpinnerParser.Title_headerContext context)
         {
+            if (currentNodeInfo == null)
+            {
+                return base.VisitTitle_header(context);
+            }
+
             if (context.title != null)
             {
                 currentNodeInfo.Title = context.title.Text;
@@ -153,8 +166,14 @@ namespace YarnLanguageServer
 
             return base.VisitTitle_header(context);
         }
+
         public override bool VisitHeader([NotNull] YarnSpinnerParser.HeaderContext context)
         {
+            if (currentNodeInfo == null)
+            {
+                return base.VisitHeader(context);
+            }
+
             if (context.header_key != null && context.header_value != null)
             {
                 currentNodeInfo.Headers.Add(new NodeHeader
@@ -171,6 +190,17 @@ namespace YarnLanguageServer
 
         public override bool VisitJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context)
         {
+            if (currentNodeInfo == null)
+            {
+                return VisitJumpToNodeName(context);
+            }
+
+            if (context.destination == null)
+            {
+                // Missing destination; ignore
+                return base.VisitJumpToNodeName(context);
+            }
+
             var jump = new NodeJump
             {
                 DestinationTitle = context.destination.Text,
@@ -184,6 +214,11 @@ namespace YarnLanguageServer
 
         public override bool VisitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context)
         {
+            if (currentNodeInfo == null)
+            {
+                return base.VisitFunction_call(context);
+            }
+
             try
             {
                 Range parametersRange;
@@ -234,8 +269,13 @@ namespace YarnLanguageServer
 
         public override bool VisitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context)
         {
+            if (currentNodeInfo == null)
+            {
+                return base.VisitDeclare_statement(context);
+            }
+
             var token = context.variable().VAR_ID().Symbol;
-            var documentation = GetDocumentComments(context, true).OrDefault($"(variable) {token.Text}");
+            var documentation = GetDocumentComments(context, true)?.OrDefault($"(variable) {token.Text}");
 
             currentNodeInfo.VariableReferences.Add(token);
 
@@ -244,6 +284,11 @@ namespace YarnLanguageServer
 
         public override bool VisitCommand_statement([NotNull] YarnSpinnerParser.Command_statementContext context)
         {
+            if (currentNodeInfo == null)
+            {
+                return base.VisitCommand_statement(context);
+            }
+
             // TODO: figure out how command parameters should work when the
             // parser grammar is not separating parameters itself and
             // instead is effectly treating commands as "here is a run of
@@ -316,6 +361,11 @@ namespace YarnLanguageServer
 
         public override bool VisitLine_statement([NotNull] YarnSpinnerParser.Line_statementContext context)
         {
+            if (currentNodeInfo == null)
+            {
+                return base.VisitLine_statement(context);
+            }
+
             var lineText = context.line_formatted_text().GetTextWithWhitespace();
 
             lineText = lineText.TrimStart();
@@ -339,9 +389,9 @@ namespace YarnLanguageServer
             return base.VisitLine_statement(context);
         }
 
-        public string GetDocumentComments(ParserRuleContext context, bool allowCommentsAfter = true)
+        public string? GetDocumentComments(ParserRuleContext context, bool allowCommentsAfter = true)
         {
-            string description = null;
+            string? description = null;
 
             var precedingComments = tokens.GetHiddenTokensToLeft(context.Start.TokenIndex, YarnSpinnerLexer.COMMENTS);
 
