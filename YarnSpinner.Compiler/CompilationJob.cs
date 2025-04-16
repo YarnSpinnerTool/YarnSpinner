@@ -87,7 +87,17 @@ namespace Yarn.Compiler
         /// <summary>
         /// The declarations for variables.
         /// </summary>
-        public IEnumerable<Declaration> VariableDeclarations;
+        [Obsolete("Use " + nameof(Declarations))]
+        public IEnumerable<Declaration> VariableDeclarations
+        {
+            readonly get => Declarations;
+            set => Declarations = value;
+        }
+
+        /// <summary>
+        /// The declarations for variables and functions.
+        /// </summary>
+        public IEnumerable<Declaration> Declarations;
 
         /// <summary>
         /// Gets or sets the version of the Yarn language.
