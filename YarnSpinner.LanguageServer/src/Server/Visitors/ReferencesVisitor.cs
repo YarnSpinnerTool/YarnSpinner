@@ -188,6 +188,25 @@ namespace YarnLanguageServer
             return base.VisitHeader(context);
         }
 
+        public override bool VisitDetourToNodeName([NotNull] YarnSpinnerParser.DetourToNodeNameContext context)
+        {
+            if (currentNodeInfo == null)
+            {
+                return base.VisitDetourToNodeName(context);
+            }
+
+            if (context.destination == null)
+            {
+                // Missing destination; ignore
+                return base.VisitDetourToNodeName(context);
+            }
+
+            var jump = new NodeJump(context.destination.Text, context.destination, NodeJump.JumpType.Detour);
+            currentNodeInfo.Jumps.Add(jump);
+
+            return base.VisitDetourToNodeName(context);
+        }
+
         public override bool VisitJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context)
         {
             if (currentNodeInfo == null)
@@ -201,12 +220,7 @@ namespace YarnLanguageServer
                 return base.VisitJumpToNodeName(context);
             }
 
-            var jump = new NodeJump
-            {
-                DestinationTitle = context.destination.Text,
-                DestinationToken = context.destination,
-            };
-
+            var jump = new NodeJump(context.destination.Text, context.destination, NodeJump.JumpType.Jump);
             currentNodeInfo.Jumps.Add(jump);
 
             return base.VisitJumpToNodeName(context);

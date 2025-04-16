@@ -1,0 +1,20 @@
+title: Node1
+---
+<<jump Node2>>
+===
+title: Node2
+---
+<<detour Node3>>
+===
+title: Node3
+---
+No-op
+===
+title: Node4
+---
+<<if $x>>
+    <<jump Node1>>
+<<else>>
+    <<jump Node2>>
+<<endif>>
+===
