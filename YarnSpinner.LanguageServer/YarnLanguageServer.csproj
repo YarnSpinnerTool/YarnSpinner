@@ -10,6 +10,9 @@
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <UseAppHost>False</UseAppHost>
     <Nullable>enable</Nullable>
+
+    <!-- The keyword 'new' should be followed by a space. -->
+    <NoWarn>$(NoWarn);SA1000</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
