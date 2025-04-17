@@ -34,7 +34,8 @@ namespace YarnLanguageServer.Handlers
             var results = yarnFile.NodeInfos.SelectMany(nodeInfo =>
                {
                    var titleToken = nodeInfo.TitleToken;
-                   if (titleToken.StartIndex == -1)
+
+                   if (titleToken == null || titleToken.StartIndex == -1)
                    {
                        // This is an error token - the node doesn't actually
                        // have a valid title. Return an empty collection of code
