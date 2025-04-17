@@ -214,7 +214,7 @@ namespace YarnLanguageServer
             Func<IToken, bool> isTokenMatch = (IToken t) => PositionHelper.DoesPositionContainToken(position, t);
 
             var allSymbolTokens = new IEnumerable<(IToken Token, YarnSymbolType Type)>[] {
-                // Jumps
+                // Jumps and Detours
                 NodeInfos.SelectMany(n => n.Jumps).Select(j => (j.DestinationToken, YarnSymbolType.Node)),
 
                 // Commands

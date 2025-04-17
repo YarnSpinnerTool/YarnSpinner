@@ -265,6 +265,17 @@ namespace YarnLanguageServer
             return base.VisitCommand_statement(context);
         }
 
+        public override bool VisitDetourToNodeName([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.DetourToNodeNameContext context)
+        {
+            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
+            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword); // >>
+
+            AddTokenType(context.COMMAND_DETOUR(), SemanticTokenType.Function); // detour
+            AddTokenType(context.destination, SemanticTokenType.Class); // node_name
+
+            return base.VisitDetourToNodeName(context);
+        }
+
         public override bool VisitJumpToNodeName([NotNull] YarnSpinnerParser.JumpToNodeNameContext context)
         {
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
@@ -274,6 +285,16 @@ namespace YarnLanguageServer
             AddTokenType(context.destination, SemanticTokenType.Class); // node_name
 
             return base.VisitJumpToNodeName(context);
+        }
+
+        public override bool VisitDetourToExpression([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.DetourToExpressionContext context)
+        {
+            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
+            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword); // >>
+
+            AddTokenType(context.COMMAND_DETOUR(), SemanticTokenType.Function); // detour
+
+            return base.VisitDetourToExpression(context);
         }
 
         public override bool VisitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
