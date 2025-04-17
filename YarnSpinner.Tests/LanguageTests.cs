@@ -712,7 +712,7 @@ Line in a node group
             var nodeBInfo = result.ProjectDebugInfo.GetNodeDebugInfo("NodeB");
             var smartVarInfo = result.ProjectDebugInfo.GetNodeDebugInfo("$smartVar");
             var nodeGroupHub = result.ProjectDebugInfo.GetNodeDebugInfo("NodeGroup");
-            var nodeGroupItem = result.ProjectDebugInfo.Nodes.FirstOrDefault(n => n.NodeName.StartsWith("NodeGroup_"));
+            var nodeGroupItem = result.ProjectDebugInfo.Nodes.FirstOrDefault(n => n.NodeName.StartsWith("NodeGroup."));
             var nodeGroupItemCondition = result.ProjectDebugInfo.Nodes.FirstOrDefault(n => n.NodeName.Contains(".Condition."));
 
             nodeAInfo.Should().NotBeNull();
