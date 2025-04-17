@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added `NodeDebugInfo.Range`, which contains the range in which a node appears in the source code.
 - Added `NodeDebugInfo.IsImplicit`, which indicates whether the node was created by the compiler (and does not appear in the source code).
 - Language Server: Warn on `jump` statements if destination node that does not exist. Offer to create a stub node, or rename to an existing node title.
+- The `subtitle` header on a node can be used to control its internal name, for debugging purposes.
 
 ### Changed
 
