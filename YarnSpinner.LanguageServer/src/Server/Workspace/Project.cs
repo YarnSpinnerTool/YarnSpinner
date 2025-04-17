@@ -118,7 +118,6 @@ namespace YarnLanguageServer
             {
                 try
                 {
-
                     if (File.Exists(definitionPath))
                     {
                         var definitionsText = File.ReadAllText(definitionPath);

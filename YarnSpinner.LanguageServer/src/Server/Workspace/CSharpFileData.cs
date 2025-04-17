@@ -22,7 +22,7 @@ namespace YarnLanguageServer
             string[] actionAttributeNames = new string[] { "YarnCommand", "YarnFunction" };
 
             // Build the collection of method declarations that have a Yarn action attribute on them
-            Dictionary<MethodDeclarationSyntax, AttributeSyntax> taggedMethods = new ();
+            Dictionary<MethodDeclarationSyntax, AttributeSyntax> taggedMethods = new();
 
             // Get all classes that do not have the GeneratedCode attribute
             var nonGeneratedClasses = root.DescendantNodes().OfType<ClassDeclarationSyntax>().Where(classDecl =>
@@ -74,7 +74,7 @@ namespace YarnLanguageServer
                 {
                     // Don't add the same method declaration multiple times
                     // (can happen if a method declaration is a decendent of multiple classes ie. is in a nested class)
-                     taggedMethods.TryAdd(method, actionAttribute);
+                    taggedMethods.TryAdd(method, actionAttribute);
                 }
             }
 

@@ -40,8 +40,8 @@ namespace YarnLanguageServer
 
         internal class JsonConfigFormat
         {
-            public List<RegisteredDefinition> Functions { get; set; } = new ();
-            public List<RegisteredDefinition> Commands { get; set; } = new ();
+            public List<RegisteredDefinition> Functions { get; set; } = new();
+            public List<RegisteredDefinition> Commands { get; set; } = new();
         }
     }
 }

@@ -15,7 +15,7 @@ public record DebugOutput
 {
     public DocumentUri? SourceProjectUri { get; set; }
 
-    public List<Variable> Variables { get; set; } = new ();
+    public List<Variable> Variables { get; set; } = new();
 
     [JsonObject(NamingStrategyType = typeof(CamelCaseNamingStrategy), MemberSerialization = MemberSerialization.OptOut)]
     public record Variable
@@ -159,7 +159,7 @@ public record class JSONExpression
 
 internal class ExpressionToJSONVisitor : YarnSpinnerParserBaseVisitor<JSONExpression>
 {
-    protected override JSONExpression DefaultResult => new ()
+    protected override JSONExpression DefaultResult => new()
     {
         Type = JSONExpression.ExpressionType.Error,
     };

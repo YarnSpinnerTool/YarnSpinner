@@ -17,7 +17,6 @@ public record MetadataOutput
     [JsonProperty("tags")]
     public string[] Tags { get; set; }
 }
-;
 
 public record CompilerOutput
 {
