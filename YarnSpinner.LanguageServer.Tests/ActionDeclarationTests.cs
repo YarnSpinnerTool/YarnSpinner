@@ -47,7 +47,9 @@ namespace YarnLanguageServer.Tests
 
             var compiledOutput = workspace.Projects.Single().CompileProject(false, Yarn.Compiler.CompilationJob.Type.FullCompilation, CancellationToken.None);
             var compiledProgram = compiledOutput.Program;
-            var declsNode = compiledProgram.Nodes.Single(n => n.Key == "ActionDeclarations").Value;
+
+            compiledProgram.Should().NotBeNull();
+            var declsNode = compiledProgram!.Nodes.Single(n => n.Key == "ActionDeclarations").Value;
 
             var functions = workspace.Projects.Single().Functions;
 
