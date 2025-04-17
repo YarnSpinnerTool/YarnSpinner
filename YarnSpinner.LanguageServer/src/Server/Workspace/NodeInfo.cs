@@ -49,9 +49,9 @@ public record NodeInfo
     [JsonProperty("previewText")]
     public string PreviewText { get; set; } = string.Empty;
 
-    internal YarnFileData File { get; init; }
+    internal YarnFileData? File { get; init; }
 
-    internal IToken TitleToken { get; set; }
+    internal IToken? TitleToken { get; set; }
 
     internal List<YarnActionReference> FunctionCalls { get; init; } = new();
     internal List<YarnActionReference> CommandCalls { get; init; } = new();
@@ -75,12 +75,19 @@ public record NodeInfo
     /// <see langword="null"/>, empty or whitespace, and <see
     /// cref="TitleToken"/> is not null.
     /// </remarks>
+    [System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Title))]
+    [System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(TitleToken))]
     public bool HasTitle => !string.IsNullOrWhiteSpace(Title) && TitleToken != null;
 
-    internal Range TitleHeaderRange
+    internal Range? TitleHeaderRange
     {
         get
         {
+            if (this.File == null || this.TitleToken == null)
+            {
+                return null;
+            }
+
             var start = TextCoordinateConverter.GetPosition(this.File.LineStarts, TitleToken.StartIndex);
             var end = TextCoordinateConverter.GetPosition(this.File.LineStarts, TitleToken.StopIndex + 1);
             return new Range(start, end);

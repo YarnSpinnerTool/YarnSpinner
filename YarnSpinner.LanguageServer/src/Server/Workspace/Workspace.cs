@@ -25,12 +25,12 @@ namespace YarnLanguageServer
     public class Workspace : INotificationSender, IActionSource, IConfigurationSource
     {
         public string? Root { get; internal set; }
+        public IWindowLanguageServer? Window => LanguageServer?.Window;
+
         internal Configuration Configuration { get; set; } = new Configuration();
         internal IEnumerable<Project> Projects { get; set; } = Array.Empty<Project>();
 
         private ILanguageServer? LanguageServer { get; set; }
-
-        public IWindowLanguageServer? Window => LanguageServer?.Window;
 
         /// <summary>
         /// Have we shown a warning about the workspace having no root folder?
@@ -60,6 +60,106 @@ namespace YarnLanguageServer
         private HashSet<Action> workspaceActions = new HashSet<Action>();
 
         Configuration IConfigurationSource.Configuration => this.Configuration;
+
+        /// <summary>
+        /// Sends the DidChangeNodesNotification message to the client, which
+        /// contains semantic information about the nodes in this file.
+        /// </summary>
+        /// <seealso cref="Commands.DidChangeNodesNotification"/>
+        public void PublishNodeInfos()
+        {
+            foreach (var file in this.Projects.SelectMany(p => p.Files))
+            {
+                this.LanguageServer?.SendNotification(
+                    Commands.DidChangeNodesNotification, new NodesChangedParams
+                    {
+                        Uri = file.Uri,
+                        Nodes = file.NodeInfos,
+                    });
+            }
+        }
+
+        public void SendNotification<T>(string method, T @params)
+        {
+            this.LanguageServer?.SendNotification<T>(method, @params);
+        }
+
+        IEnumerable<Action> IActionSource.GetActions() => this.workspaceActions;
+
+        /// <summary>
+        /// Returns the collection of Action objects that are pre-defined in the
+        /// Yarn language.
+        /// </summary>
+        /// <returns>The list of pre-defined actions.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when loading the
+        /// list of pre-defined actions fails.</exception>
+        internal static IEnumerable<Action> GetPredefinedActions()
+        {
+            var predefinedActions = new List<Action>();
+
+            var thisAssembly = typeof(Workspace).Assembly;
+            var resources = thisAssembly.GetManifestResourceNames();
+            var jsonAssemblyFiles = resources.Where(r => r.EndsWith("ysls.json"));
+
+            foreach (var doc in jsonAssemblyFiles)
+            {
+                Stream? stream = thisAssembly.GetManifestResourceStream(doc);
+
+                if (stream == null)
+                {
+                    throw new InvalidOperationException($"Failed to read manifest resource stream for {doc}");
+                }
+
+                string text = new StreamReader(stream).ReadToEnd();
+                var docJsonConfig = new JsonConfigFile(text, true);
+
+                predefinedActions.AddRange(docJsonConfig.GetActions());
+            }
+
+            return predefinedActions;
+        }
+
+        internal static IEnumerable<T> FuzzySearchItem<T>(IEnumerable<(string Name, T Item)> items, string name, float threshold)
+        {
+            var lev = new Fastenshtein.Levenshtein(name.ToLower());
+
+            return items.Select(searchItem =>
+                {
+                    float distance = lev.DistanceFrom(searchItem.Name.ToLower());
+                    var normalizedDistance = distance / Math.Max(Math.Max(name.Length, searchItem.Name.Length), 1);
+
+                    if (distance <= 1
+                        || searchItem.Name.Contains(name, StringComparison.OrdinalIgnoreCase)
+                        || name.Contains(searchItem.Name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        // include strings that contain each other even if they don't meet the threshold
+                        // usecase is more the user didn't finish typing instead of the user made a typo
+                        normalizedDistance = Math.Min(normalizedDistance, threshold);
+                    }
+
+                    return (searchItem.Item, Distance: normalizedDistance);
+                })
+                .Where(scoredfd => scoredfd.Distance <= threshold)
+                .OrderBy(scorefd => scorefd.Distance)
+                .Select(scoredfd => scoredfd.Item);
+        }
+
+        /// <summary>
+        /// Initializes this Workspace without a language server.
+        /// </summary>
+        /// <param name="cancellationToken">A cancellation token that can be
+        /// used to cancel initialization.</param>
+        /// <remarks>
+        /// Workspaces deliver information about the changing state of the
+        /// project via their language server. If a Workspace has no language
+        /// server, it will not report on any changes.
+        /// </remarks>
+        internal void Initialize(CancellationToken cancellationToken = default)
+        {
+            // Initializing the workspace without a language server cannot be
+            // cancelled.
+            ReloadWorkspace(cancellationToken);
+        }
 
         internal void ReloadWorkspace(CancellationToken cancellationToken)
         {
@@ -196,66 +296,6 @@ namespace YarnLanguageServer
             this.PublishNodeInfos();
         }
 
-        /// <summary>
-        /// Returns the collection of Action objects that are pre-defined in the
-        /// Yarn language.
-        /// </summary>
-        /// <returns>The list of pre-defined actions.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when loading the
-        /// list of pre-defined actions fails.</exception>
-        internal static IEnumerable<Action> GetPredefinedActions()
-        {
-            var predefinedActions = new List<Action>();
-
-            var thisAssembly = typeof(Workspace).Assembly;
-            var resources = thisAssembly.GetManifestResourceNames();
-            var jsonAssemblyFiles = resources.Where(r => r.EndsWith("ysls.json"));
-
-            foreach (var doc in jsonAssemblyFiles)
-            {
-                Stream? stream = thisAssembly.GetManifestResourceStream(doc);
-
-                if (stream == null)
-                {
-                    throw new InvalidOperationException($"Failed to read manifest resource stream for {doc}");
-                }
-
-                string text = new StreamReader(stream).ReadToEnd();
-                var docJsonConfig = new JsonConfigFile(text, true);
-
-                predefinedActions.AddRange(docJsonConfig.GetActions());
-            }
-
-            return predefinedActions;
-        }
-
-        private IEnumerable<Action> FindWorkspaceActions(string root)
-        {
-            var csharpWorkspaceFiles = System.IO.Directory.EnumerateFiles(root, "*.cs", System.IO.SearchOption.AllDirectories);
-
-            // Filter out any C# files that are in Unity directories not
-            // directly authored by the user
-            csharpWorkspaceFiles = csharpWorkspaceFiles.Where(f => !f.Contains("PackageCache") && !f.Contains("Library"));
-
-            foreach (var file in csharpWorkspaceFiles)
-            {
-                var text = System.IO.File.ReadAllText(file);
-
-                if (!text.ContainsAny("YarnCommand", "YarnFunction", "AddCommandHandler", "AddFunction"))
-                {
-                    // This C# file doesn't contain any Yarn functions, so skip
-                    // it
-                    continue;
-                }
-
-                var uri = new Uri(file);
-                foreach (var action in CSharpFileData.ParseActionsFromCode(text, uri))
-                {
-                    yield return action;
-                }
-            }
-        }
-
         internal Dictionary<Uri, IEnumerable<Diagnostic>> GetDiagnostics()
         {
             var result = new Dictionary<Uri, IEnumerable<Diagnostic>>();
@@ -299,41 +339,6 @@ namespace YarnLanguageServer
         }
 
         /// <summary>
-        /// Sends the DidChangeNodesNotification message to the client, which
-        /// contains semantic information about the nodes in this file.
-        /// </summary>
-        /// <seealso cref="Commands.DidChangeNodesNotification"/>
-        public void PublishNodeInfos()
-        {
-            foreach (var file in this.Projects.SelectMany(p => p.Files))
-            {
-                this.LanguageServer?.SendNotification(
-                    Commands.DidChangeNodesNotification, new NodesChangedParams
-                    {
-                        Uri = file.Uri,
-                        Nodes = file.NodeInfos,
-                    });
-            }
-        }
-
-        /// <summary>
-        /// Initializes this Workspace without a language server.
-        /// </summary>
-        /// <param name="cancellationToken">A cancellation token that can be
-        /// used to cancel initialization.</param>
-        /// <remarks>
-        /// Workspaces deliver information about the changing state of the
-        /// project via their language server. If a Workspace has no language
-        /// server, it will not report on any changes.
-        /// </remarks>
-        internal void Initialize(CancellationToken cancellationToken = default)
-        {
-            // Initializing the workspace without a language server cannot be
-            // cancelled.
-            ReloadWorkspace(cancellationToken);
-        }
-
-        /// <summary>
         /// Initializes this Workspace without a language server.
         /// </summary>
         /// <inheritdoc cref="Initialize" path="/remarks"/>
@@ -363,37 +368,32 @@ namespace YarnLanguageServer
             });
         }
 
-        public void SendNotification<T>(string method, T @params)
+        private IEnumerable<Action> FindWorkspaceActions(string root)
         {
-            this.LanguageServer?.SendNotification<T>(method, @params);
-        }
+            var csharpWorkspaceFiles = System.IO.Directory.EnumerateFiles(root, "*.cs", System.IO.SearchOption.AllDirectories);
 
-        internal static IEnumerable<T> FuzzySearchItem<T>(IEnumerable<(string Name, T Item)> items, string name, float threshold)
-        {
-            var lev = new Fastenshtein.Levenshtein(name.ToLower());
+            // Filter out any C# files that are in Unity directories not
+            // directly authored by the user
+            csharpWorkspaceFiles = csharpWorkspaceFiles.Where(f => !f.Contains("PackageCache") && !f.Contains("Library"));
 
-            return items.Select(searchItem =>
+            foreach (var file in csharpWorkspaceFiles)
+            {
+                var text = System.IO.File.ReadAllText(file);
+
+                if (!text.ContainsAny("YarnCommand", "YarnFunction", "AddCommandHandler", "AddFunction"))
                 {
-                    float distance = lev.DistanceFrom(searchItem.Name.ToLower());
-                    var normalizedDistance = distance / Math.Max(Math.Max(name.Length, searchItem.Name.Length), 1);
+                    // This C# file doesn't contain any Yarn functions, so skip
+                    // it
+                    continue;
+                }
 
-                    if (distance <= 1
-                        || searchItem.Name.Contains(name, StringComparison.OrdinalIgnoreCase)
-                        || name.Contains(searchItem.Name, StringComparison.OrdinalIgnoreCase))
-                    {
-                        // include strings that contain each other even if they don't meet the threshold
-                        // usecase is more the user didn't finish typing instead of the user made a typo
-                        normalizedDistance = Math.Min(normalizedDistance, threshold);
-                    }
-
-                    return (searchItem.Item, Distance: normalizedDistance);
-                })
-                .Where(scoredfd => scoredfd.Distance <= threshold)
-                .OrderBy(scorefd => scorefd.Distance)
-                .Select(scoredfd => scoredfd.Item);
+                var uri = new Uri(file);
+                foreach (var action in CSharpFileData.ParseActionsFromCode(text, uri))
+                {
+                    yield return action;
+                }
+            }
         }
-
-        IEnumerable<Action> IActionSource.GetActions() => this.workspaceActions;
     }
 
     internal static class EnumerableExtension

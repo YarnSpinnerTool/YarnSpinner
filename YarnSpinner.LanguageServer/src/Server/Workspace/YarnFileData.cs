@@ -5,6 +5,7 @@ using System.Linq;
 using Antlr4.Runtime;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Yarn.Compiler;
+
 // Disambiguate between
 // OmniSharp.Extensions.LanguageServer.Protocol.Models.Diagnostic and
 // Yarn.Compiler.Diagnostic
@@ -45,6 +46,14 @@ namespace YarnLanguageServer
             Update(text);
         }
 
+        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(Lexer))]
+        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(Parser))]
+        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(LineStarts))]
+        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(ParseTree))]
+        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(Tokens))]
+        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(CommentTokens))]
+        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(DocumentSymbols))]
+        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(NodeInfos))]
         public void Update(string text)
         {
             LineStarts = TextCoordinateConverter.GetLineStarts(text);
@@ -107,18 +116,6 @@ namespace YarnLanguageServer
             }
         }
 
-        public int? GetRawToken(Position position)
-        {
-            // TODO: Not sure if it's even worth using a visitor vs just iterating through the token list.
-            var result = TokenPositionVisitor.Visit(this, position);
-            if (result != null) { return result; }
-
-            // The parse tree doesn't have whitespace tokens so need to manually search sometimes
-            var match = this.Tokens.FirstOrDefault(t => PositionHelper.DoesPositionContainToken(position, t));
-            result = match?.TokenIndex;
-            return result;
-        }
-
         /// <summary>
         /// Gets the collection of all references to commands in this file.
         /// </summary>
@@ -135,7 +132,7 @@ namespace YarnLanguageServer
         /// Gets the collection of all tokens in this file that represent the
         /// title in a node definition.
         /// </summary>
-        public IEnumerable<IToken> NodeDefinitions => NodeInfos.Where(n => n.HasTitle).Select(n => n.TitleToken);
+        public IEnumerable<IToken> NodeDefinitions => NodeInfos.Where(n => n.HasTitle).Select(n => n.TitleToken).NonNull();
 
         /// <summary>
         /// Gets the collection of all function references in this file.
@@ -165,7 +162,7 @@ namespace YarnLanguageServer
         /// a <i>single</i> Yarn project. Multiple <see cref="YarnFileData"/>
         /// objects may exist for one file on disk.
         /// </remarks>
-        public Project Project { get; internal set; }
+        public Project? Project { get; internal set; }
 
         /// <summary>
         /// Gets the length of the line at the specified index, up to but not
@@ -316,6 +313,18 @@ namespace YarnLanguageServer
             var endOffset = PositionHelper.GetOffset(this.LineStarts, range.End);
 
             return this.Text.Substring(startOffset, endOffset - startOffset);
+        }
+
+        public int? GetRawToken(Position position)
+        {
+            // TODO: Not sure if it's even worth using a visitor vs just iterating through the token list.
+            var result = TokenPositionVisitor.Visit(this, position);
+            if (result != null) { return result; }
+
+            // The parse tree doesn't have whitespace tokens so need to manually search sometimes
+            var match = this.Tokens.FirstOrDefault(t => PositionHelper.DoesPositionContainToken(position, t));
+            result = match?.TokenIndex;
+            return result;
         }
 
         private YarnActionReference? GetFunctionInfo(Position position)
