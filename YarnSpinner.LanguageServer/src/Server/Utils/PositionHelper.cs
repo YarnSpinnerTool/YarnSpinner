@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-using System.Collections.Immutable;
 using Antlr4.Runtime;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System.Collections.Immutable;
 
 namespace YarnLanguageServer
 {

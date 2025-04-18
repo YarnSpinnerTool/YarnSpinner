@@ -1,13 +1,13 @@
 namespace YarnLanguageServer
 {
+    using ClosedXML.Excel;
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using ClosedXML.Excel;
 
     public static class StringExtractor
     {
-        public static byte[] ExportStrings(string[][] lineBlocks, IDictionary<string, Yarn.Compiler.StringInfo> stringTable, string[] columns, string format = "csv", string defaultName = "NO CHAR", bool includeCharacters = true)
+        public static byte[] ExportStringsAsSpreadsheet(string[][] lineBlocks, IDictionary<string, Yarn.Compiler.StringInfo> stringTable, string[] columns, string format = "csv", string defaultName = "NO CHAR", bool includeCharacters = true)
         {
             // bail out if we have no line
             if (lineBlocks.Length == 0)
@@ -51,8 +51,16 @@ namespace YarnLanguageServer
                 {
                     var line = stringTable[lineID];
 
+                    if (line.text == null)
+                    {
+                        // No text available for this line
+                        continue;
+                    }
+
                     string character = defaultName;
-                    string text = line.text;
+                    string? text = line.text;
+
+
                     if (includeCharacters)
                     {
                         var index = line.text.IndexOf(':');

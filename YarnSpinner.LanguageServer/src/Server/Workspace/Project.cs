@@ -1,9 +1,9 @@
+using OmniSharp.Extensions.LanguageServer.Protocol;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using OmniSharp.Extensions.LanguageServer.Protocol;
 
 namespace YarnLanguageServer
 {
@@ -158,7 +158,11 @@ namespace YarnLanguageServer
 
         internal IEnumerable<string> FindNodes(string name, bool fuzzySearch = false)
         {
-            var nodeNames = this.yarnFiles.Values.SelectMany(file => file.NodeInfos.Select(node => node.Title)).Distinct();
+            var nodeNames = this.yarnFiles.Values
+                .SelectMany(file => file.NodeInfos.Select(node => node.Title))
+                .NonNull()
+                .Distinct();
+
             return FindNodes(nodeNames, name, fuzzySearch);
         }
 
@@ -255,7 +259,7 @@ namespace YarnLanguageServer
             {
                 CompilationType = compilationType,
                 Files = files,
-                VariableDeclarations = functionDeclarations,
+                Declarations = functionDeclarations,
                 LanguageVersion = this.yarnProject.FileVersion,
                 CancellationToken = cancellationToken,
             };

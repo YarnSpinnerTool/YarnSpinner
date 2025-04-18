@@ -1,14 +1,14 @@
-using System.Collections.Generic;
 using Antlr4.Runtime;
 using Newtonsoft.Json;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System.Collections.Generic;
 
 namespace YarnLanguageServer;
 
 public record NodeInfo
 {
     [JsonProperty("title")]
-    public string Title { get; set; } = string.Empty;
+    public string? Title { get; set; } = null;
 
     /// <summary>
     /// Gets or sets the line on which body content starts.
@@ -56,7 +56,7 @@ public record NodeInfo
     internal List<YarnActionReference> FunctionCalls { get; init; } = new();
     internal List<YarnActionReference> CommandCalls { get; init; } = new();
     internal List<IToken> VariableReferences { get; init; } = new();
-    internal List<(string Name, int LineIndex)> CharacterNames { get; init; } = new();
+    internal List<(string name, int lineIndex)> CharacterNames { get; init; } = new();
 
     /// <summary>
     /// Gets the computed complexity for this node.

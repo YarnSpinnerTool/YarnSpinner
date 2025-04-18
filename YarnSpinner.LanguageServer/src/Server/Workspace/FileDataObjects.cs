@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Antlr4.Runtime;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Antlr4.Runtime;
 using Yarn;
 using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 

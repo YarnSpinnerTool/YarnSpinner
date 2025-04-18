@@ -3,16 +3,13 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <IsPackable>false</IsPackable>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <LangVersion>10.0</LangVersion>
     <StartupObject></StartupObject>
     <ApplicationIcon />
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <UseAppHost>False</UseAppHost>
     <Nullable>enable</Nullable>
-
-    <!-- The keyword 'new' should be followed by a space. -->
-    <NoWarn>$(NoWarn);SA1000</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -30,10 +27,6 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="*" />
     <PackageReference Include="morelinq" Version="3.3.2" />
     <PackageReference Include="OmniSharp.Extensions.LanguageServer" Version="0.19.7" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" />
     <PackageReference Include="System.IO" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Handles" Version="4.3.0" />

@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
+using OmniSharp.Extensions.LanguageServer.Protocol.Document;
+using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
-using OmniSharp.Extensions.LanguageServer.Protocol.Document;
-using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 
 namespace YarnLanguageServer.Handlers
 {
@@ -91,15 +91,26 @@ namespace YarnLanguageServer.Handlers
                     var nDefinitionMatches = project.Nodes
                         .Where(nt => nt.Title == token.Text);
 
-                    locations = nDefinitionMatches.Select(definition =>
-                        new LocationOrLocationLink(
-                            new Location
-                            {
-                                Uri = definition.File.Uri,
-                                Range = definition.TitleHeaderRange,
-                            }
-                        )
-                    );
+                    locations = nDefinitionMatches
+
+                    .Select(definition =>
+                    {
+                        if (definition.File == null || definition.TitleHeaderRange == null)
+                        {
+                            return null;
+                        }
+                        else
+                        {
+                            return new LocationOrLocationLink(
+                                new Location
+                                {
+                                    Uri = definition.File.Uri,
+                                    Range = definition.TitleHeaderRange,
+                                }
+                            );
+                        }
+                    }).NonNull();
+
                     return Task.FromResult(new LocationOrLocationLinks(locations));
             }
 

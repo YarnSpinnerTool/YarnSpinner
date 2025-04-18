@@ -1,9 +1,9 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Workspace;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace YarnLanguageServer.Handlers
 {

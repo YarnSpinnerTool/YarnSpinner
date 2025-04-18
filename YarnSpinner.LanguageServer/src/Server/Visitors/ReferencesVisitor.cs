@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Antlr4.Runtime;
+using Antlr4.Runtime.Misc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Antlr4.Runtime;
-using Antlr4.Runtime.Misc;
 using Yarn.Compiler;
 using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
@@ -155,13 +155,12 @@ namespace YarnLanguageServer
                     return base.VisitTitle_header(context);
                 }
 
-                currentNodeInfo.Headers.Add(new NodeHeader
-                {
-                    Key = context.HEADER_TITLE().GetText(),
-                    Value = context.title.Text,
-                    KeyToken = headerTitle,
-                    ValueToken = context.title,
-                });
+                currentNodeInfo.Headers.Add(new NodeHeader(
+                    key: context.HEADER_TITLE().GetText(),
+                    value: context.title.Text,
+                    keyToken: headerTitle,
+                    valueToken: context.title)
+                );
             }
 
             return base.VisitTitle_header(context);
@@ -176,13 +175,12 @@ namespace YarnLanguageServer
 
             if (context.header_key != null && context.header_value != null)
             {
-                currentNodeInfo.Headers.Add(new NodeHeader
-                {
-                    Key = context.header_key.Text,
-                    Value = context.header_value.Text,
-                    KeyToken = context.header_key,
-                    ValueToken = context.header_value,
-                });
+                currentNodeInfo.Headers.Add(new NodeHeader(
+                    key: context.header_key.Text,
+                    value: context.header_value.Text,
+                    keyToken: context.header_key,
+                    valueToken: context.header_value
+                ));
             }
 
             return base.VisitHeader(context);

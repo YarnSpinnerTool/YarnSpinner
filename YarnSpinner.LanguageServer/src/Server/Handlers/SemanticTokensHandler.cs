@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
+﻿using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace YarnLanguageServer.Handlers
 {
@@ -42,8 +42,8 @@ namespace YarnLanguageServer.Handlers
                 DocumentSelector = Utils.YarnDocumentSelector,
                 Legend = new SemanticTokensLegend()
                 {
-                    TokenModifiers = capability?.TokenModifiers,
-                    TokenTypes = capability?.TokenTypes,
+                    TokenModifiers = capability?.TokenModifiers ?? new(),
+                    TokenTypes = capability?.TokenTypes ?? new(),
                 },
                 Full = new SemanticTokensCapabilityRequestFull
                 {

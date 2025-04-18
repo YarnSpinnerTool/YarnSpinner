@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using MoreLinq;
+﻿using MoreLinq;
 using Newtonsoft.Json.Linq;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System.Collections.Generic;
+using System.Linq;
 using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
 namespace YarnLanguageServer.Diagnostics
@@ -23,6 +23,12 @@ namespace YarnLanguageServer.Diagnostics
 
         private static IEnumerable<Diagnostic> UnknownCommands(YarnFileData yarnFile)
         {
+            if (yarnFile.Project == null)
+            {
+                // No known project for this file; no diagnostics we can produce
+                yield break;
+            }
+
             var knownCommands = yarnFile.Project.Commands;
             foreach (var commandReference in yarnFile.CommandReferences)
             {
@@ -51,7 +57,13 @@ namespace YarnLanguageServer.Diagnostics
             }
 
             var project = yarnFile.Project;
-            var knownFunctions = project.Functions;
+            var knownFunctions = project?.Functions;
+
+            if (knownFunctions == null)
+            {
+                // No known functions; we can't produce any diagnostics
+                yield break;
+            }
 
             foreach (var functionReference in yarnFile.FunctionReferences)
             {
@@ -73,6 +85,12 @@ namespace YarnLanguageServer.Diagnostics
         private static IEnumerable<Diagnostic> UndeclaredVariables(YarnFileData yarnFile)
         {
             var project = yarnFile.Project;
+
+            if (project == null)
+            {
+                // No project, so no diagnostics we can produce
+                return Enumerable.Empty<Diagnostic>();
+            }
 
             // Find all variable references in this file where the declaration,
             // if any, is an implicit one. If it is, then we should suggest that
@@ -96,6 +114,11 @@ namespace YarnLanguageServer.Diagnostics
         private static IEnumerable<Diagnostic> UndefinedJumpDestination(YarnFileData yarnFile)
         {
             var project = yarnFile.Project;
+
+            if (project == null)
+            {
+                return Enumerable.Empty<Diagnostic>();
+            }
 
             var undefinedJumpTargets = yarnFile.NodeJumps
                 .Where(jump => !project.FindNodes(jump.DestinationTitle).Any());

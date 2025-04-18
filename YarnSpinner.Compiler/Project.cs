@@ -86,7 +86,7 @@ namespace Yarn.Compiler
         /// <remarks>
         /// This value is not stored when the file is saved, but is instead
         /// determined when the file is loaded by <see
-        /// cref="LoadFromFile(string)"/>, or provided when the <see
+        /// cref="LoadFromFile(string, string?)"/>, or provided when the <see
         /// cref="Project"/> is constructed.
         /// </remarks>
         [JsonIgnore]

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Antlr4.Runtime.Misc;
+﻿using Antlr4.Runtime.Misc;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System.Collections.Generic;
+using System.Linq;
 using Yarn.Compiler;
 
 namespace YarnLanguageServer

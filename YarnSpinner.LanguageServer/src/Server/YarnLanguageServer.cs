@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Google.Protobuf;
+﻿using Google.Protobuf;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
@@ -12,6 +6,12 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 using OmniSharp.Extensions.LanguageServer.Protocol.Window;
 using OmniSharp.Extensions.LanguageServer.Protocol.Workspace;
 using OmniSharp.Extensions.LanguageServer.Server;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("YarnLanguageServer.Tests")]
 
@@ -25,22 +25,6 @@ namespace YarnLanguageServer
         {
             get => server ?? throw new InvalidOperationException("Server has not yet been initialized.");
             set => server = value;
-        }
-
-        private static async Task Main(string[] args)
-        {
-            if (args.Contains("--waitForDebugger"))
-            {
-                while (!Debugger.IsAttached) { await Task.Delay(100).ConfigureAwait(false); }
-            }
-
-            Server = await LanguageServer.From(
-                options => ConfigureOptions(options)
-                    .WithInput(Console.OpenStandardInput())
-                    .WithOutput(Console.OpenStandardOutput())
-            ).ConfigureAwait(false);
-
-            await Server.WaitForExit.ConfigureAwait(false);
         }
 
         public static LanguageServerOptions ConfigureOptions(LanguageServerOptions options)
@@ -185,19 +169,78 @@ namespace YarnLanguageServer
             return options;
         }
 
+        public static Task<Container<DebugOutput>> GenerateDebugOutputAsync(Workspace workspace, ExecuteCommandParams<Container<DebugOutput>> commandParams, CancellationToken cancellationToken)
+        {
+            var results = workspace.Projects.Select(project =>
+            {
+                return project.GetDebugOutput(cancellationToken);
+            });
+
+            return Task.FromResult(new Container<DebugOutput>(results));
+        }
+
+        public static Task<string> GetEmptyYarnProjectJSONAsync(Workspace workspace, ExecuteCommandParams<string> commandParams)
+        {
+            var project = new Yarn.Compiler.Project();
+
+            return Task.FromResult(project.GetJson());
+        }
+
+        private static async Task Main(string[] args)
+        {
+            if (args.Contains("--waitForDebugger"))
+            {
+                while (!Debugger.IsAttached) { await Task.Delay(100).ConfigureAwait(false); }
+            }
+
+            Server = await LanguageServer.From(
+                options => ConfigureOptions(options)
+                    .WithInput(Console.OpenStandardInput())
+                    .WithOutput(Console.OpenStandardOutput())
+            ).ConfigureAwait(false);
+
+            await Server.WaitForExit.ConfigureAwait(false);
+        }
+
+        private static Task<Container<ProjectInfo>> ListProjectsAsync(Workspace workspace, ExecuteCommandParams<Container<ProjectInfo>> commandParams)
+        {
+            var info = workspace.Projects.Select(p => new ProjectInfo
+            {
+                Uri = p.Uri,
+                Files = p.Files.Select(f => OmniSharp.Extensions.LanguageServer.Protocol.DocumentUri.From(f.Uri)),
+                IsImplicitProject = p.IsImplicitProject,
+            });
+            return Task.FromResult(Container.From(info));
+        }
+
         private static Task<TextDocumentEdit> AddNodeToDocumentAsync(Workspace workspace, ExecuteCommandParams<TextDocumentEdit> commandParams)
         {
+            if (commandParams.Arguments == null)
+            {
+                // No arguments supplied
+                workspace.ShowMessage($"{nameof(AddNodeToDocumentAsync)}: No arguments supplied", MessageType.Error);
+
+                return Task.FromResult<TextDocumentEdit>(new());
+            }
+
             var yarnDocumentUriString = commandParams.Arguments[0].ToString();
 
             var headers = new Dictionary<string, string>();
 
             if (commandParams.Arguments.Count >= 2)
             {
-                var headerObject = commandParams.Arguments[1] as JObject;
-
-                foreach (var property in headerObject)
+                if (commandParams.Arguments[1] is JObject headerObject)
                 {
-                    headers.Add(property.Key, property.Value.ToString());
+                    foreach (var property in headerObject)
+                    {
+                        headers.Add(property.Key, property.Value.ToString());
+                    }
+                }
+                else
+                {
+                    workspace.ShowMessage("AddNodeToDocumentAsync: Argument 1 is expected to be an Object", MessageType.Error);
+
+                    return Task.FromResult<TextDocumentEdit>(new());
                 }
             }
 
@@ -206,7 +249,7 @@ namespace YarnLanguageServer
             var project = workspace.GetProjectsForUri(yarnDocumentUri).FirstOrDefault();
             var yarnFile = project?.GetFileData(yarnDocumentUri);
 
-            if (yarnFile == null)
+            if (project == null || yarnFile == null)
             {
                 workspace.ShowMessage($"Can't add node: {yarnDocumentUri} is not a part of any project", MessageType.Error);
 
@@ -299,6 +342,14 @@ namespace YarnLanguageServer
 
         private static Task<TextDocumentEdit> RemoveNodeFromDocumentAsync(Workspace workspace, ExecuteCommandParams<TextDocumentEdit> commandParams)
         {
+            if (commandParams.Arguments == null)
+            {
+                // No arguments supplied
+                workspace.ShowMessage($"{nameof(RemoveNodeFromDocumentAsync)}: No arguments supplied", MessageType.Error);
+
+                return Task.FromResult<TextDocumentEdit>(new());
+            }
+
             var yarnDocumentUriString = commandParams.Arguments[0].ToString();
 
             var nodeTitle = commandParams.Arguments[1].ToString();
@@ -370,6 +421,14 @@ namespace YarnLanguageServer
 
         private static Task<TextDocumentEdit> UpdateNodeHeaderAsync(Workspace workspace, ExecuteCommandParams<TextDocumentEdit> commandParams)
         {
+            if (commandParams.Arguments == null)
+            {
+                // No arguments supplied
+                workspace.ShowMessage($"{nameof(UpdateNodeHeaderAsync)}: No arguments supplied", MessageType.Error);
+
+                return Task.FromResult<TextDocumentEdit>(new());
+            }
+
             var yarnDocumentUriString = commandParams.Arguments[0].ToString();
 
             var nodeTitle = commandParams.Arguments[1].ToString();
@@ -734,14 +793,11 @@ namespace YarnLanguageServer
                 .Select(d => d.Message)
                 .ToArray();
 
-            if (errorMessages.Length != 0 || result.Program == null || result.ProjectDebugInfo == null)
+            if (errorMessages.Length != 0 || result.Program == null || result.ProjectDebugInfo == null || result.StringTable == null)
             {
                 // We have errors (or we don't have any material to work with.)
-                return Task.FromResult(new VOStringExport
-                {
-                    File = fileData,
-                    Errors = errorMessages,
-                });
+                return Task.FromResult(new VOStringExport(fileData, errorMessages));
+
             }
 
             // We have no errors, and we have debug info for this project,
@@ -792,42 +848,11 @@ namespace YarnLanguageServer
                 useCharacters = true;
             }
 
-            fileData = StringExtractor.ExportStrings(lineBlocks, result.StringTable, columns, format, defaultName, useCharacters);
+            fileData = StringExtractor.ExportStringsAsSpreadsheet(lineBlocks, result.StringTable, columns, format, defaultName, useCharacters);
 
-            var output = new VOStringExport
-            {
-                File = fileData,
-                Errors = errorMessages,
-            };
+            var output = new VOStringExport(fileData, errorMessages);
+
             return Task.FromResult(output);
-        }
-
-        public static Task<Container<DebugOutput>> GenerateDebugOutputAsync(Workspace workspace, ExecuteCommandParams<Container<DebugOutput>> commandParams, CancellationToken cancellationToken)
-        {
-            var results = workspace.Projects.Select(project =>
-            {
-                return project.GetDebugOutput(cancellationToken);
-            });
-
-            return Task.FromResult(new Container<DebugOutput>(results));
-        }
-
-        public static Task<string> GetEmptyYarnProjectJSONAsync(Workspace workspace, ExecuteCommandParams<string> commandParams)
-        {
-            var project = new Yarn.Compiler.Project();
-
-            return Task.FromResult(project.GetJson());
-        }
-
-        private static Task<Container<ProjectInfo>> ListProjectsAsync(Workspace workspace, ExecuteCommandParams<Container<ProjectInfo>> commandParams)
-        {
-            var info = workspace.Projects.Select(p => new ProjectInfo
-            {
-                Uri = p.Uri,
-                Files = p.Files.Select(f => OmniSharp.Extensions.LanguageServer.Protocol.DocumentUri.From(f.Uri)),
-                IsImplicitProject = p.IsImplicitProject,
-            });
-            return Task.FromResult(Container.From(info));
         }
     }
 }

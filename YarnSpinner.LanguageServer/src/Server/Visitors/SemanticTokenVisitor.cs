@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using Antlr4.Runtime;
+﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Yarn.Compiler;
 using Position = Yarn.Compiler.Position;
 
@@ -40,44 +40,6 @@ namespace YarnLanguageServer
         {
             this.positions = new List<(Position start, int length, SemanticTokenType tokenType, SemanticTokenModifier[] tokenModifiers)>();
         }
-
-        #region Utility Functions
-        private void AddTokenType(IParseTree start, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
-        {
-            AddTokenType(start, start, tokenType, tokenModifier);
-        }
-
-        private void AddTokenType(IParseTree start, IParseTree stop, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
-        {
-            // Note only works for terminal nodes
-            AddTokenType(start?.Payload as IToken, stop?.Payload as IToken, tokenType, tokenModifier);
-        }
-
-        private void AddTokenType(IToken start, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
-        {
-            AddTokenType(start, start, tokenType, tokenModifier);
-        }
-
-        private void AddTokenType(IToken? start, IToken? stop, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
-        {
-            if (start is not null && stop is not null)
-            {
-                int length = stop.StopIndex - start.StartIndex + 1;
-
-                positions.Add(
-                    (start.ToPosition(), length, tokenType, tokenModifier)
-                );
-            }
-        }
-
-        private void AddTokenType(Position start, int length, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
-        {
-            positions.Add(
-                (start, length, tokenType, tokenModifier)
-            );
-        }
-
-        #endregion Utility Functions
 
         #region Visitor Method Overrides
 
@@ -344,5 +306,44 @@ namespace YarnLanguageServer
         }
 
         #endregion Visitor Method Overrides
+
+        #region Utility Functions
+        private void AddTokenType(IParseTree start, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        {
+            AddTokenType(start, start, tokenType, tokenModifier);
+        }
+
+        private void AddTokenType(IParseTree start, IParseTree stop, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        {
+            // Note only works for terminal nodes
+            AddTokenType(start?.Payload as IToken, stop?.Payload as IToken, tokenType, tokenModifier);
+        }
+
+        private void AddTokenType(IToken start, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        {
+            AddTokenType(start, start, tokenType, tokenModifier);
+        }
+
+        private void AddTokenType(IToken? start, IToken? stop, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        {
+            if (start is not null && stop is not null)
+            {
+                int length = stop.StopIndex - start.StartIndex + 1;
+
+                positions.Add(
+                    (start.ToPosition(), length, tokenType, tokenModifier)
+                );
+            }
+        }
+
+        private void AddTokenType(Position start, int length, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        {
+            positions.Add(
+                (start, length, tokenType, tokenModifier)
+            );
+        }
+
+        #endregion Utility Functions
+
     }
 }

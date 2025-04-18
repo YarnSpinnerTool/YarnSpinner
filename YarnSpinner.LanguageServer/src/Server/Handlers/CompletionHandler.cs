@@ -1,15 +1,45 @@
-﻿using System.Collections.Generic;
+﻿using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
+using OmniSharp.Extensions.LanguageServer.Protocol.Document;
+using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
-using OmniSharp.Extensions.LanguageServer.Protocol.Document;
-using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Yarn.Compiler;
 using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
 namespace YarnLanguageServer.Handlers
 {
+    internal static class ContextExtensions
+    {
+        public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree)
+            where T : Antlr4.Runtime.ParserRuleContext
+        {
+            return IsChildOfContext<T>(tree, out _);
+        }
+
+        public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree, out T? result)
+            where T : Antlr4.Runtime.ParserRuleContext
+        {
+            var type = typeof(T);
+
+            while (tree != null)
+            {
+                if (type.IsAssignableFrom(tree.Payload.GetType()))
+                {
+                    result = (T)tree;
+                    return true;
+                }
+
+                tree = tree.Parent;
+            }
+
+            result = default;
+
+            return false;
+        }
+    }
+
     internal class CompletionHandler : ICompletionHandler
     {
         private Workspace workspace;
@@ -184,8 +214,8 @@ namespace YarnLanguageServer.Handlers
                 // list by distance.
                 var charactersByDistance = yarnFile.NodeInfos
                     .SelectMany(ni => ni.CharacterNames)
-                    .Select(c => (c.Name, Distance: System.Math.Abs(cursorLineIndex - c.LineIndex)))
-                    .GroupBy(c => c.Name)
+                    .Select(c => (c.name, Distance: System.Math.Abs(cursorLineIndex - c.lineIndex)))
+                    .GroupBy(c => c.name)
                     .Select(group => group.MinBy(c => c.Distance))
                     .OrderBy(c => c.Distance);
 
@@ -341,6 +371,11 @@ namespace YarnLanguageServer.Handlers
         {
             foreach (var node in project.Nodes)
             {
+                if (node.Title == null || node.File == null)
+                {
+                    continue;
+                }
+
                 results.Add(new CompletionItem
                 {
                     Label = node.Title,
@@ -552,16 +587,6 @@ namespace YarnLanguageServer.Handlers
             { "COMMAND_DECLARE", "declare \\$$1 to ${2:value}" },
         };
 
-        public CompletionRegistrationOptions GetRegistrationOptions(CompletionCapability capability, ClientCapabilities clientCapabilities)
-        {
-            return new CompletionRegistrationOptions
-            {
-                DocumentSelector = Utils.YarnDocumentSelector,
-                TriggerCharacters = new Container<string>(new List<string> { "$", "<", " ", "{" }),
-                AllCommitCharacters = new Container<string>(new List<string> { " " }), // maybe >> or }
-            };
-        }
-
         /// <summary>
         /// Checks to see if a parse rule context of type <typeparamref
         /// name="T"/> is an ancestor of <paramref name="tree"/>.
@@ -644,35 +669,15 @@ namespace YarnLanguageServer.Handlers
                 return null;
             }
         }
-    }
 
-    internal static class ContextExtensions
-    {
-        public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree)
-            where T : Antlr4.Runtime.ParserRuleContext
+        public CompletionRegistrationOptions GetRegistrationOptions(CompletionCapability capability, ClientCapabilities clientCapabilities)
         {
-            return IsChildOfContext<T>(tree, out _);
-        }
-
-        public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree, out T? result)
-            where T : Antlr4.Runtime.ParserRuleContext
-        {
-            var type = typeof(T);
-
-            while (tree != null)
+            return new CompletionRegistrationOptions
             {
-                if (type.IsAssignableFrom(tree.Payload.GetType()))
-                {
-                    result = (T)tree;
-                    return true;
-                }
-
-                tree = tree.Parent;
-            }
-
-            result = default;
-
-            return false;
+                DocumentSelector = Utils.YarnDocumentSelector,
+                TriggerCharacters = new Container<string>(new List<string> { "$", "<", " ", "{" }),
+                AllCommitCharacters = new Container<string>(new List<string> { " " }), // maybe >> or }
+            };
         }
     }
 }

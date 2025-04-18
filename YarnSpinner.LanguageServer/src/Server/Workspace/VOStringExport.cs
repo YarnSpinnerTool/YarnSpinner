@@ -8,5 +8,11 @@ public record VOStringExport
     public byte[] File { get; set; }
 
     [JsonProperty("errors")]
-    public string[] Errors { get; set; }
+    public string[] Errors { get; set; } = System.Array.Empty<string>();
+
+    public VOStringExport(byte[] file, string[] errors)
+    {
+        this.File = file;
+        this.Errors = errors;
+    }
 }

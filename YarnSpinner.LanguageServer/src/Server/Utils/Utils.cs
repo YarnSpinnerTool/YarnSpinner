@@ -30,7 +30,8 @@ namespace YarnLanguageServer
             Title = "editor.action.triggerParameterHints",
         };
 
-        public static string OrDefault(this string str, string @default = default)
+        [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(@default))]
+        public static string? OrDefault(this string str, string? @default = default)
         {
             return string.IsNullOrEmpty(str) ? @default : str;
         }

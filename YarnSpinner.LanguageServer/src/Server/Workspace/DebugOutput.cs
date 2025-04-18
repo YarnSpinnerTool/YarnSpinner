@@ -1,11 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Antlr4.Runtime.Misc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using OmniSharp.Extensions.LanguageServer.Protocol;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Yarn.Compiler;
 
 namespace YarnLanguageServer;

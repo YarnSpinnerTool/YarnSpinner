@@ -1,13 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading;
 using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 using OmniSharp.Extensions.LanguageServer.Protocol.Window;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading;
 using YarnLanguageServer.Diagnostics;
 
 namespace YarnLanguageServer
@@ -71,11 +71,10 @@ namespace YarnLanguageServer
             foreach (var file in this.Projects.SelectMany(p => p.Files))
             {
                 this.LanguageServer?.SendNotification(
-                    Commands.DidChangeNodesNotification, new NodesChangedParams
-                    {
-                        Uri = file.Uri,
-                        Nodes = file.NodeInfos,
-                    });
+                    Commands.DidChangeNodesNotification,
+                    new NodesChangedParams(file.Uri, file.NodeInfos)
+                );
+
             }
         }
 
@@ -119,29 +118,29 @@ namespace YarnLanguageServer
             return predefinedActions;
         }
 
-        internal static IEnumerable<T> FuzzySearchItem<T>(IEnumerable<(string Name, T Item)> items, string name, float threshold)
+        internal static IEnumerable<T> FuzzySearchItem<T>(IEnumerable<(string name, T item)> items, string name, float threshold)
         {
             var lev = new Fastenshtein.Levenshtein(name.ToLower());
 
             return items.Select(searchItem =>
                 {
-                    float distance = lev.DistanceFrom(searchItem.Name.ToLower());
-                    var normalizedDistance = distance / Math.Max(Math.Max(name.Length, searchItem.Name.Length), 1);
+                    float distance = lev.DistanceFrom(searchItem.name.ToLower());
+                    var normalizedDistance = distance / Math.Max(Math.Max(name.Length, searchItem.name.Length), 1);
 
                     if (distance <= 1
-                        || searchItem.Name.Contains(name, StringComparison.OrdinalIgnoreCase)
-                        || name.Contains(searchItem.Name, StringComparison.OrdinalIgnoreCase))
+                        || searchItem.name.Contains(name, StringComparison.OrdinalIgnoreCase)
+                        || name.Contains(searchItem.name, StringComparison.OrdinalIgnoreCase))
                     {
                         // include strings that contain each other even if they don't meet the threshold
                         // usecase is more the user didn't finish typing instead of the user made a typo
                         normalizedDistance = Math.Min(normalizedDistance, threshold);
                     }
 
-                    return (searchItem.Item, Distance: normalizedDistance);
+                    return (searchItem.item, Distance: normalizedDistance);
                 })
                 .Where(scoredfd => scoredfd.Distance <= threshold)
                 .OrderBy(scorefd => scorefd.Distance)
-                .Select(scoredfd => scoredfd.Item);
+                .Select(scoredfd => scoredfd.item);
         }
 
         /// <summary>

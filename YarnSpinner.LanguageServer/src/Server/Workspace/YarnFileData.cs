@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Antlr4.Runtime;
+using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using Antlr4.Runtime;
-using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Yarn.Compiler;
-
 // Disambiguate between
 // OmniSharp.Extensions.LanguageServer.Protocol.Models.Diagnostic and
 // Yarn.Compiler.Diagnostic
@@ -210,7 +209,7 @@ namespace YarnLanguageServer
         {
             Func<IToken, bool> isTokenMatch = (IToken t) => PositionHelper.DoesPositionContainToken(position, t);
 
-            var allSymbolTokens = new IEnumerable<(IToken Token, YarnSymbolType Type)>[] {
+            var allSymbolTokens = new IEnumerable<(IToken token, YarnSymbolType type)>[] {
                 // Jumps and Detours
                 NodeInfos.SelectMany(n => n.Jumps).Select(j => (j.DestinationToken, YarnSymbolType.Node)),
 
@@ -226,9 +225,9 @@ namespace YarnLanguageServer
 
             foreach (var tokenInfo in allSymbolTokens.SelectMany(g => g))
             {
-                if (isTokenMatch(tokenInfo.Token))
+                if (isTokenMatch(tokenInfo.token))
                 {
-                    return (tokenInfo.Type, tokenInfo.Token);
+                    return (tokenInfo.type, tokenInfo.token);
                 }
             }
 
@@ -237,7 +236,7 @@ namespace YarnLanguageServer
             return (YarnSymbolType.Unknown, null);
         }
 
-        public (YarnActionReference?, int? activeParameterIndex) GetParameterInfo(Position position)
+        public (YarnActionReference? actionReference, int? activeParameterIndex) GetParameterInfo(Position position)
         {
             var info = GetFunctionInfo(position);
             if (info == null)
