@@ -259,6 +259,59 @@ public class CommandTests : LanguageServerTestsBase
     }
 
     [Fact]
+    public async Task Server_OnUpdateHeaderCommand_ReturnsTextEditDeletingHeader()
+    {
+        var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+        Task<NodesChangedParams> getInitialNodesChanged = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
+
+        // Set up the server
+        var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+
+        NodesChangedParams? nodeInfo = await getInitialNodesChanged;
+
+        const string headerName = "tags";
+        const string headerOldValue = "wow incredible";
+
+        nodeInfo
+            .Nodes.Should()
+            .Contain(n => n.UniqueTitle == "Node2")
+            .Which.Headers.Should()
+            .HaveCount(2)
+            .And
+            .Contain(n => n.Key == headerName && n.Value == headerOldValue,
+                "because this node has this header");
+
+        var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
+        {
+            Command = Commands.UpdateNodeHeader,
+            Arguments = new JArray {
+                filePath,
+                "Node2", // this node already has this header, so we're replacing it
+                headerName,
+                null
+            }
+        });
+
+        result.Should().NotBeNull();
+        result.Edits.Should().NotBeNullOrEmpty();
+        result.TextDocument.Uri.ToString().Should().Be("file://" + filePath);
+
+        Task<NodesChangedParams> nodesChangedAfterChangingText = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
+
+        ChangeTextInDocument(client, result);
+
+        nodeInfo = await nodesChangedAfterChangingText;
+
+        nodeInfo.Nodes.Should()
+            .Contain(n => n.UniqueTitle == "Node2")
+            .Which.Headers.Should()
+            .HaveCount(1, "because we deleted a header")
+            .And.NotContain(n => n.Key == headerName,
+                "because we removed this header");
+
+    }
+
+    [Fact]
     public async Task Server_OnGettingVoiceoverSpreadsheet_ReturnsData()
     {
         // Given

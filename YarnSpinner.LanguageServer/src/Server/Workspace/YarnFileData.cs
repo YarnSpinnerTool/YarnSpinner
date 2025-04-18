@@ -170,24 +170,24 @@ namespace YarnLanguageServer
         public Project? Project { get; internal set; }
 
         /// <summary>
-        /// Gets the length of the line at the specified index, up to but not
+        /// Gets the length of the line at the specified index, optionally
         /// including the line terminator.
         /// </summary>
         /// <param name="lineIndex">The zero-based index of the line to get the
         /// length of.</param>
+        /// <param name="includeLineTerminator">If <see langword="true"/>, the
+        /// resulting value will include the line terminator.</param>
         /// <returns>The length of the line.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref
         /// name="lineIndex"/> is less than zero, or equal to or greater than
         /// <see cref="LineCount"/>.</exception>
-        public int GetLineLength(int lineIndex)
+        public int GetLineLength(int lineIndex, bool includeLineTerminator = false)
         {
             if (lineIndex < 0 || lineIndex >= LineCount)
             {
                 throw new ArgumentOutOfRangeException(nameof(lineIndex), $"Must be between zero and {nameof(LineCount)}");
             }
 
-            var start = LineStarts[lineIndex];
-            var offset = 0;
 
             if (Text.Length == 0)
             {
@@ -196,8 +196,27 @@ namespace YarnLanguageServer
 
             var chars = Text.ToCharArray();
 
-            while ((start + offset) < chars.Length && chars[start + offset] != '\r' && chars[start + offset] != '\n')
+            var start = LineStarts[lineIndex];
+            int end;
+            if ((lineIndex + 1) < LineStarts.Length)
             {
+                end = LineStarts[lineIndex + 1];
+            }
+            else
+            {
+                end = chars.Length;
+            }
+
+            var offset = 0;
+
+
+            while ((start + offset) < end)
+            {
+                if (!includeLineTerminator && (chars[start + offset] == '\r' || chars[start + offset] == '\n'))
+                {
+                    break;
+                }
+
                 offset += 1;
             }
 

@@ -28,7 +28,7 @@ public static class Commands
     public const string RemoveNode = "yarnspinner.remove-node";
 
     /// <summary>
-    /// The command to create or update a header for a node in a file.
+    /// The command to create, update, or remove a header for a node in a file.
     /// </summary>
     public const string UpdateNodeHeader = "yarnspinner.update-node-header";
 

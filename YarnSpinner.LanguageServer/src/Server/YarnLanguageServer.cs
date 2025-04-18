@@ -435,7 +435,11 @@ namespace YarnLanguageServer
 
             var headerKey = commandParams.Arguments[2].ToString();
 
-            var headerValue = commandParams.Arguments[3].ToString();
+            var headerValueToken = commandParams.Arguments[3];
+
+            var headerValue = headerValueToken.Type == JTokenType.String
+                ? headerValueToken.Value<string>()
+                : null;
 
             Uri yarnDocumentUri = new(yarnDocumentUriString);
 
@@ -479,7 +483,14 @@ namespace YarnLanguageServer
             // Does this node contain a header with this title?
             var existingHeader = node.Headers.Find(h => h.Key == headerKey);
 
-            var headerText = $"{headerKey}: {headerValue}";
+            if (headerValue == null && existingHeader == null)
+            {
+                // We want to delete this header, but it's already not there.
+                // There's nothing to do.
+                return Task.FromResult(emptyResult);
+            }
+
+            string headerText;
 
             Position startPosition;
             Position endPosition;
@@ -490,6 +501,7 @@ namespace YarnLanguageServer
                 var line = existingHeader.KeyToken.Line - 1;
                 startPosition = new Position(line, 0);
                 endPosition = new Position(line, yarnFile.GetLineLength(line));
+                headerText = $"{headerKey}: {headerValue}" + Environment.NewLine;
             }
             else
             {
@@ -499,8 +511,7 @@ namespace YarnLanguageServer
                 startPosition = new Position(line, 0);
                 endPosition = new Position(line, 0);
 
-                // Add a newline so that the delimiter stays on its own line
-                headerText += Environment.NewLine;
+                headerText = $"{headerKey}: {headerValue}" + Environment.NewLine;
             }
 
             // Return the edit that creates or updates this header
