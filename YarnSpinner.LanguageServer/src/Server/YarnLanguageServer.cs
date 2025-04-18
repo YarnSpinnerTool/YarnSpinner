@@ -500,8 +500,15 @@ namespace YarnLanguageServer
                 // Create an edit to replace it
                 var line = existingHeader.KeyToken.Line - 1;
                 startPosition = new Position(line, 0);
-                endPosition = new Position(line, yarnFile.GetLineLength(line));
-                headerText = $"{headerKey}: {headerValue}" + Environment.NewLine;
+                endPosition = new Position(line + 1, 0);
+                if (headerValue == null)
+                {
+                    headerText = "";
+                }
+                else
+                {
+                    headerText = $"{headerKey}: {headerValue}" + Environment.NewLine;
+                }
             }
             else
             {
