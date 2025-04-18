@@ -163,7 +163,9 @@ namespace YarnLanguageServer
                 .NonNull()
                 .Distinct();
 
-            return FindNodes(nodeNames, name, fuzzySearch);
+            var nodeGroupNames = this.yarnFiles.Values.SelectMany(file => file.NodeGroupNames).Distinct();
+
+            return FindNodeNames(nodeNames.Concat(nodeGroupNames), name, fuzzySearch);
         }
 
         /// <summary>
@@ -309,7 +311,7 @@ namespace YarnLanguageServer
             return Workspace.FuzzySearchItem(declarations.Select(d => (d.Name, d)), name, ConfigurationSource?.Configuration.DidYouMeanThreshold ?? Configuration.Defaults.DidYouMeanThreshold);
         }
 
-        private IEnumerable<string> FindNodes(IEnumerable<string> nodeNames, string name, bool fuzzySearch)
+        private IEnumerable<string> FindNodeNames(IEnumerable<string> nodeNames, string name, bool fuzzySearch)
         {
             if (fuzzySearch == false)
             {
