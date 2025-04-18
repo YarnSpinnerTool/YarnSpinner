@@ -213,6 +213,8 @@ namespace YarnLanguageServer
 
         internal IEnumerable<NodeInfo> Nodes => yarnFiles.Values.SelectMany(file => file.NodeInfos);
 
+        internal IEnumerable<string> NodeGroupNames => yarnFiles.Values.SelectMany(file => file.NodeGroupNames);
+
         internal IEnumerable<Action> Functions => AllActions.Where(a => a.Type == ActionType.Function);
 
         internal IEnumerable<Action> Commands => AllActions.Where(a => a.Type == ActionType.Command);

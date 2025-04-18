@@ -376,6 +376,14 @@ namespace YarnLanguageServer.Handlers
                     continue;
                 }
 
+                if (node.NodeGroupName != null)
+                {
+                    // Don't offer completions for specific nodes in a node
+                    // group; instead, we'll generate completion items for each
+                    // node group as a whole
+                    continue;
+                }
+
                 results.Add(new CompletionItem
                 {
                     Label = node.UniqueTitle,
@@ -384,6 +392,25 @@ namespace YarnLanguageServer.Handlers
                     TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit
                     {
                         NewText = node.UniqueTitle,
+                        Range = new Range
+                        {
+                            Start = indexTokenRange.Start,
+                            End = request.Position,
+                        },
+                    }),
+                });
+            }
+
+            foreach (var nodeGroupName in project.NodeGroupNames)
+            {
+                results.Add(new CompletionItem
+                {
+                    Label = nodeGroupName,
+                    Kind = CompletionItemKind.Method,
+                    Detail = "Node group",
+                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit
+                    {
+                        NewText = nodeGroupName,
                         Range = new Range
                         {
                             Start = indexTokenRange.Start,

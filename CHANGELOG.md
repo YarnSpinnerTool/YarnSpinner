@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fixed an issue where `Utility.TagLines` would add `#line:` tags to lines with `#shadow:` tags (which isn't allowed.)
 - Language Server: Fixed an error that would crash the language server if a `YarnCommand`- and `YarnFunction`-tagged method was declared inside a nested C# class
 - `CompilationJob.VariableDeclarations` has been renamed to `CompilationJob.Declarations`. (`VariableDeclarations` now forwards to `Declarations`, and is marked as deprecated.)
+- Language Server: completions now contain node groups, and no longer include the names of individual nodes in a group (which cannot be jumped to directly.)
 
 ### Removed
 
