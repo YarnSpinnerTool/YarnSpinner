@@ -23,7 +23,7 @@ namespace Yarn.Compiler
             }
 
             // Get the node's title information.
-            if (!Utility.TryGetNodeTitle(SourceFile, context, out var sourceTitle, out var uniqueTitle))
+            if (!Utility.TryGetNodeTitle(SourceFile, context, out var _, out var uniqueTitle, out _, out var nodeGroupName))
             {
                 // The node's title or nodegroup name can't be determined.
                 return base.VisitNode(context);
@@ -42,11 +42,12 @@ namespace Yarn.Compiler
             // It's in a node group. We need to mark it as belonging to a node
             // group and update its title.
 
-            // Add a new header to mark which group it's from.
+            // Add a new header to mark which group it's from, so that this
+            // information is available at runtime.
             var groupHeader = new YarnSpinnerParser.HeaderContext(context, 0)
             {
                 header_key = new CommonToken(YarnSpinnerParser.ID, Node.NodeGroupHeader),
-                header_value = new CommonToken(YarnSpinnerParser.REST_OF_LINE, sourceTitle)
+                header_value = new CommonToken(YarnSpinnerParser.REST_OF_LINE, nodeGroupName)
             };
 
             context.AddChild(groupHeader);

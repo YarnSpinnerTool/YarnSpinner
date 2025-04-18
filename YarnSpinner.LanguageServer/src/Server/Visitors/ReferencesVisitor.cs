@@ -11,6 +11,7 @@ namespace YarnLanguageServer
     internal class ReferencesVisitor : YarnSpinnerParserBaseVisitor<bool>
     {
         private readonly List<NodeInfo> nodeInfos = new();
+        private readonly HashSet<string> nodeGroupNames = new();
 
         private NodeInfo? currentNodeInfo = null;
 
@@ -28,8 +29,8 @@ namespace YarnLanguageServer
             this.tokens = tokens;
         }
 
-        public static IEnumerable<NodeInfo>
-            Visit(YarnFileData yarnFileData, CommonTokenStream tokens)
+        public static void
+            Visit(YarnFileData yarnFileData, CommonTokenStream tokens, out IEnumerable<NodeInfo> nodeInfos, out IEnumerable<string> nodeGroupNames)
         {
             var visitor = new ReferencesVisitor(yarnFileData, tokens);
 
@@ -38,7 +39,9 @@ namespace YarnLanguageServer
                 try
                 {
                     visitor.Visit(yarnFileData.ParseTree);
-                    return visitor.nodeInfos;
+                    nodeInfos = visitor.nodeInfos;
+                    nodeGroupNames = visitor.nodeGroupNames;
+                    return;
                 }
                 catch (Exception)
                 {
@@ -46,7 +49,8 @@ namespace YarnLanguageServer
                 }
             }
 
-            return Enumerable.Empty<NodeInfo>();
+            nodeInfos = Enumerable.Empty<NodeInfo>();
+            nodeGroupNames = Enumerable.Empty<string>();
         }
 
         public override bool VisitNode([NotNull] YarnSpinnerParser.NodeContext context)
@@ -61,10 +65,17 @@ namespace YarnLanguageServer
                 NodeGroupComplexity = context.ComplexityScore,
             };
 
-            Yarn.Compiler.Utility.TryGetNodeTitle(yarnFileData.Uri.ToString(), context, out string? sourceTitle, out string? uniqueTitle);
+            Utility.TryGetNodeTitle(yarnFileData.Uri.ToString(), context, out string? sourceTitle, out string? uniqueTitle, out string? subtitle, out string? nodeGroupName);
 
             currentNodeInfo.SourceTitle = sourceTitle;
             currentNodeInfo.UniqueTitle = uniqueTitle;
+            currentNodeInfo.Subtitle = subtitle;
+            currentNodeInfo.NodeGroupName = nodeGroupName;
+
+            if (nodeGroupName != null)
+            {
+                nodeGroupNames.Add(nodeGroupName);
+            }
 
             // Get the first few lines of the node's body as a preview
             if (context.BODY_START != null)

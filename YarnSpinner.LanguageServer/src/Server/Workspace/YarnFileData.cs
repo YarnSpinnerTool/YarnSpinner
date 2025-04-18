@@ -31,6 +31,8 @@ namespace YarnLanguageServer
 
         public List<NodeInfo> NodeInfos { get; protected set; }
 
+        public List<string> NodeGroupNames { get; protected set; }
+
         public Uri Uri { get; set; }
         public INotificationSender? NotificationSender { get; protected set; }
 
@@ -53,6 +55,7 @@ namespace YarnLanguageServer
         [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(CommentTokens))]
         [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(DocumentSymbols))]
         [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(NodeInfos))]
+        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(NodeGroupNames))]
         public void Update(string text)
         {
             LineStarts = TextCoordinateConverter.GetLineStarts(text);
@@ -86,7 +89,10 @@ namespace YarnLanguageServer
 
             // should probably just set these directly inside the visit
             // function, or refactor all these into a references object
-            NodeInfos = ReferencesVisitor.Visit(this, tokenStream).ToList();
+
+            ReferencesVisitor.Visit(this, tokenStream, out var nodeInfos, out var nodeGroupNames);
+            this.NodeInfos = nodeInfos.ToList();
+            this.NodeGroupNames = nodeGroupNames.ToList();
 
             DocumentSymbols = DocumentSymbolsVisitor.Visit(this);
         }

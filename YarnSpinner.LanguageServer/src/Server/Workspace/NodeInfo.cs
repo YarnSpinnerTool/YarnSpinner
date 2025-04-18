@@ -21,6 +21,19 @@ public record NodeInfo
     public string? SourceTitle { get; set; } = null;
 
     /// <summary>
+    /// The subtitle of the node, if present.
+    /// </summary>
+    /// <remarks>This value is null if a subtitle header is not present.</remarks>
+    [JsonProperty("subtitle")]
+    public string? Subtitle { get; set; } = null;
+
+    [JsonProperty("nodeGroup")]
+    /// <summary>
+    /// The name of the node group the node is a member of, if any.
+    /// </summary>
+    public string? NodeGroupName { get; internal set; }
+
+    /// <summary>
     /// Gets or sets the line on which body content starts.
     /// </summary>
     /// <remarks>

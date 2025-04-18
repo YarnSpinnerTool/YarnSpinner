@@ -591,20 +591,27 @@ namespace Yarn.Compiler
         /// <param name="sourceFileName">The name of the file in which the node
         /// is defined, or <see langword="null"/> if not available.</param>
         /// <param name="nodeContext">The parsed node's context.</param>
-        /// <param name="sourceTitle">On return, contains the title of the node, as it
-        /// appears in the source code.</param>
+        /// <param name="sourceTitle">On return, contains the title of the node,
+        /// as it appears in the source code.</param>
         /// <param name="uniqueTitle">On return, contains the unique title of
         /// the node, as stored in the output program.</param>
-        /// <returns><see langword="true"/> if the <paramref name="sourceTitle"/> and
-        /// <paramref name="uniqueTitle"/> could be determined; <see
-        /// langword="false"/> otherwise.</returns>
+        /// <param name="subtitle">The sub-title of the node, if present. This
+        /// value is always <see langword="null"/> if the node is not in a node
+        /// group.</param>
+        /// <param name="nodeGroupName">The name of the node group the node is a
+        /// member of, if any.</param>
+        /// <returns><see langword="true"/> if the <paramref
+        /// name="sourceTitle"/> and <paramref name="uniqueTitle"/> could be
+        /// determined; <see langword="false"/> otherwise.</returns>
         public static bool TryGetNodeTitle(
             string? sourceFileName,
             YarnSpinnerParser.NodeContext nodeContext,
             [System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
             out string? sourceTitle,
             [System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-            out string? uniqueTitle
+            out string? uniqueTitle,
+            out string? subtitle,
+            out string? nodeGroupName
             )
         {
             // Try and find the current title, if present.
@@ -613,7 +620,7 @@ namespace Yarn.Compiler
             if (string.IsNullOrEmpty(uniqueTitle))
             {
                 // No title was found.
-                uniqueTitle = sourceTitle = null;
+                uniqueTitle = sourceTitle = subtitle = nodeGroupName = null;
                 return false;
             }
 
@@ -621,20 +628,24 @@ namespace Yarn.Compiler
             // source.
             sourceTitle = uniqueTitle;
 
+            subtitle = nodeContext.GetHeader("subtitle")?.header_value?.Text;
+
+            nodeGroupName = null;
+
             if (nodeContext.GetWhenHeaders().Any())
             {
                 // The node is in a node group. Its real title (as stored in the
                 // Program) will be different, to uniquely identify it. This
                 // value depends on whether it has an explicit subtitle or not.
 
-                var subtitle = nodeContext.GetHeader("subtitle")?.header_value?.Text;
+                nodeGroupName = sourceTitle;
 
                 // Calculate a new unique title for this node and update its title header
                 if (subtitle != null && string.IsNullOrEmpty(subtitle) == false)
                 {
                     // The node's unique title is derived from its original
                     // title and its subtitle.
-                    uniqueTitle = $"{uniqueTitle}.{subtitle}";
+                    uniqueTitle = $"{sourceTitle}.{subtitle}";
                 }
                 else
                 {
@@ -646,13 +657,13 @@ namespace Yarn.Compiler
                         + uniqueTitle
                         + nodeContext.Start.Line.ToString());
 
-                    uniqueTitle = $"{uniqueTitle}.{checksum}";
+                    uniqueTitle = $"{sourceTitle}.{checksum}";
                 }
             }
 
             if (uniqueTitle == null || sourceTitle == null)
             {
-                uniqueTitle = sourceTitle = null;
+                uniqueTitle = sourceTitle = subtitle = nodeGroupName = null;
                 return false;
             }
 
