@@ -61,6 +61,11 @@ namespace YarnLanguageServer
                 NodeGroupComplexity = context.ComplexityScore,
             };
 
+            Yarn.Compiler.Utility.TryGetNodeTitle(yarnFileData.Uri.ToString(), context, out string? sourceTitle, out string? uniqueTitle);
+
+            currentNodeInfo.SourceTitle = sourceTitle;
+            currentNodeInfo.UniqueTitle = uniqueTitle;
+
             // Get the first few lines of the node's body as a preview
             if (context.BODY_START != null)
             {
@@ -146,7 +151,6 @@ namespace YarnLanguageServer
 
             if (context.title != null)
             {
-                currentNodeInfo.Title = context.title.Text;
                 currentNodeInfo.TitleToken = context.title;
 
                 if (context.HEADER_TITLE().Payload is not IToken headerTitle)

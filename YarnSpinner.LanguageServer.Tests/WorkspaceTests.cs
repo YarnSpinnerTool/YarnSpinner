@@ -51,7 +51,7 @@ namespace YarnLanguageServer.Tests
             // The node NotIncludedInProject is inside a file that is not
             // included in a .yarnproject; because we have opened a workspace
             // that includes .yarnprojects, the file will not be included
-            workspace.Projects.Should().AllSatisfy(p => p.Nodes.Should().NotContain(n => n.Title == "NotIncludedInProject"));
+            workspace.Projects.Should().AllSatisfy(p => p.Nodes.Should().NotContain(n => n.UniqueTitle == "NotIncludedInProject"));
 
             workspace.Projects.Should().AllSatisfy(p => p.Uri!.Should().NotBeNull());
 
@@ -76,7 +76,7 @@ namespace YarnLanguageServer.Tests
             // Then
             var project = workspace.Projects.Should().ContainSingle().Subject;
             var file = project.Files.Should().ContainSingle().Subject;
-            file.NodeInfos.Should().Contain(n => n.Title == "NotIncludedInProject");
+            file.NodeInfos.Should().Contain(n => n.UniqueTitle == "NotIncludedInProject");
             project.Diagnostics.Should().NotContain(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error);
 
         }

@@ -11,6 +11,7 @@ namespace Yarn.Compiler
     using System.Globalization;
     using System.Linq;
     using System.Text;
+    using Yarn.Utility;
 
     /// <summary>
     /// Utility methods for working with line tags.
@@ -581,6 +582,81 @@ namespace Yarn.Compiler
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Gets the title for a node as defined in the source code, along with
+        /// its unique title (which may be different to the source title.)
+        /// </summary>
+        /// <param name="sourceFileName">The name of the file in which the node
+        /// is defined, or <see langword="null"/> if not available.</param>
+        /// <param name="nodeContext">The parsed node's context.</param>
+        /// <param name="sourceTitle">On return, contains the title of the node, as it
+        /// appears in the source code.</param>
+        /// <param name="uniqueTitle">On return, contains the unique title of
+        /// the node, as stored in the output program.</param>
+        /// <returns><see langword="true"/> if the <paramref name="sourceTitle"/> and
+        /// <paramref name="uniqueTitle"/> could be determined; <see
+        /// langword="false"/> otherwise.</returns>
+        public static bool TryGetNodeTitle(
+            string? sourceFileName,
+            YarnSpinnerParser.NodeContext nodeContext,
+            [System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+            out string? sourceTitle,
+            [System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+            out string? uniqueTitle
+            )
+        {
+            // Try and find the current title, if present.
+            uniqueTitle = nodeContext.title_header()?.FirstOrDefault()?.title?.Text;
+
+            if (string.IsNullOrEmpty(uniqueTitle))
+            {
+                // No title was found.
+                uniqueTitle = sourceTitle = null;
+                return false;
+            }
+
+            // The node group name of a node is its title, as it appears in the
+            // source.
+            sourceTitle = uniqueTitle;
+
+            if (nodeContext.GetWhenHeaders().Any())
+            {
+                // The node is in a node group. Its real title (as stored in the
+                // Program) will be different, to uniquely identify it. This
+                // value depends on whether it has an explicit subtitle or not.
+
+                var subtitle = nodeContext.GetHeader("subtitle")?.header_value?.Text;
+
+                // Calculate a new unique title for this node and update its title header
+                if (subtitle != null && string.IsNullOrEmpty(subtitle) == false)
+                {
+                    // The node's unique title is derived from its original
+                    // title and its subtitle.
+                    uniqueTitle = $"{uniqueTitle}.{subtitle}";
+                }
+                else
+                {
+                    // The node's unique title is derived from its original
+                    // title, the name of the file it's in, and the position
+                    // it's in in the file.
+                    string checksum = CRC32.GetChecksumString(
+                        (sourceFileName ?? "")
+                        + uniqueTitle
+                        + nodeContext.Start.Line.ToString());
+
+                    uniqueTitle = $"{uniqueTitle}.{checksum}";
+                }
+            }
+
+            if (uniqueTitle == null || sourceTitle == null)
+            {
+                uniqueTitle = sourceTitle = null;
+                return false;
+            }
+
+            return true;
         }
     }
 

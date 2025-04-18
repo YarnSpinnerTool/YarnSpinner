@@ -1,8 +1,6 @@
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
-using System;
 using System.Linq;
-using Yarn.Utility;
 
 namespace Yarn.Compiler
 {
@@ -17,45 +15,44 @@ namespace Yarn.Compiler
 
         public override int VisitNode([NotNull] YarnSpinnerParser.NodeContext context)
         {
-            var titleHeader = context.title_header().FirstOrDefault();
-
-            if (titleHeader == null || titleHeader.title?.Text == null)
+            if (!context.GetWhenHeaders().Any())
             {
-                // The node doesn't have a title. It can't be part of a node group.
+                // The node does not contain any 'when' headers. It's not part
+                // of a node group, and doesn't need to be modified.
                 return base.VisitNode(context);
             }
 
-            if (context.GetWhenHeaders().Any())
+            // Get the node's title information.
+            if (!Utility.TryGetNodeTitle(SourceFile, context, out var sourceTitle, out var uniqueTitle))
             {
-                // This node contains at least one 'when' header. 
-                var title = titleHeader.title.Text;
-
-                // Add a new header to mark which group it's from.
-                var groupHeader = new YarnSpinnerParser.HeaderContext(context, 0)
-                {
-                    header_key = new CommonToken(YarnSpinnerParser.ID, Node.NodeGroupHeader),
-                    header_value = new CommonToken(YarnSpinnerParser.REST_OF_LINE, title)
-                };
-
-                context.AddChild(groupHeader);
-
-                var subtitle = context.GetHeader("subtitle")?.header_value ?? null;
-
-                // Calculate a new unique title for this node and update its title header
-                string? newTitle;
-                if (String.IsNullOrEmpty(subtitle?.Text) == false)
-                {
-                    newTitle = $"{title}.{subtitle?.Text}";
-                }
-                else
-                {
-                    newTitle = $"{title}.{CRC32.GetChecksumString(SourceFile + title + context.Start.Line.ToString())}";
-                }
-
-
-                // Update the title header to the new 'actual' title.
-                titleHeader.title = new CommonToken(YarnSpinnerParser.REST_OF_LINE, newTitle);
+                // The node's title or nodegroup name can't be determined.
+                return base.VisitNode(context);
             }
+
+            var titleHeader = context.title_header().FirstOrDefault();
+
+            if (titleHeader == null || !context.GetWhenHeaders().Any())
+            {
+                // The node either lacks a title header, or lacks 'when'
+                // headers.
+                return base.VisitNode(context);
+            }
+
+            // This node contains a title header and at least one 'when' header.
+            // It's in a node group. We need to mark it as belonging to a node
+            // group and update its title.
+
+            // Add a new header to mark which group it's from.
+            var groupHeader = new YarnSpinnerParser.HeaderContext(context, 0)
+            {
+                header_key = new CommonToken(YarnSpinnerParser.ID, Node.NodeGroupHeader),
+                header_value = new CommonToken(YarnSpinnerParser.REST_OF_LINE, sourceTitle)
+            };
+
+            context.AddChild(groupHeader);
+
+            // Update the title header to the new 'actual' title.
+            titleHeader.title = new CommonToken(YarnSpinnerParser.REST_OF_LINE, uniqueTitle);
 
             return base.VisitNode(context);
         }

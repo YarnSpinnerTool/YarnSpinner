@@ -105,7 +105,7 @@ namespace YarnLanguageServer.Tests
             var workspace = server.Services.GetService<Workspace>()!;
             var project = workspace.GetProjectsForUri(filePath).Single();
             var node = project.Nodes.Should()
-                .ContainSingle(n => n.Title == "Node2", "the project should contain a single node called Node2")
+                .ContainSingle(n => n.UniqueTitle == "Node2", "the project should contain a single node called Node2")
                 .Subject;
 
             var definition = definitionsResult.Should().ContainSingle().Subject;

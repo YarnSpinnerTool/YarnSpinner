@@ -44,8 +44,8 @@ public class CodeActionTests : LanguageServerTestsBase
         var codeActionHandler = new CodeActionHandler(workspace);
         var CodeActionParams = new CodeActionParams
         {
-            Context = new CodeActionContext { Diagnostics = Container.From(jumpToWarning!)}, 
-            TextDocument = new TextDocumentIdentifier(DocumentUri.FromFileSystemPath(filePath)) 
+            Context = new CodeActionContext { Diagnostics = Container.From(jumpToWarning!) },
+            TextDocument = new TextDocumentIdentifier(DocumentUri.FromFileSystemPath(filePath))
         };
 
         var commandOrCodeActions = await codeActionHandler.Handle(CodeActionParams, default);
@@ -66,9 +66,9 @@ public class CodeActionTests : LanguageServerTestsBase
 
         nodeInfo = await nodesChangedAfterRemovingNode;
 
-        var jumpToNode = nodeInfo.Nodes.Find(n => n.Title == "JumpToTest");
+        var jumpToNode = nodeInfo.Nodes.Find(n => n.UniqueTitle == "JumpToTest");
         nodeInfo.Nodes.Should().HaveCount(nodeCount, "because didn't change any nodes");
-        jumpToNode!.Jumps.Where(j=>j.DestinationTitle == "JumpToTest").Should().HaveCount(1, "because we fixed the typo and are jumping to the existing JumpToTest node");
+        jumpToNode!.Jumps.Where(j => j.DestinationTitle == "JumpToTest").Should().HaveCount(1, "because we fixed the typo and are jumping to the existing JumpToTest node");
     }
 
     [Fact]
@@ -97,7 +97,7 @@ public class CodeActionTests : LanguageServerTestsBase
         };
         var commandOrCodeActions = await codeActionHandler.Handle(CodeActionParams, default);
 
-        var generateNodeFix = commandOrCodeActions.FirstOrDefault(c => 
+        var generateNodeFix = commandOrCodeActions.FirstOrDefault(c =>
         c.CodeAction?.Title?.Contains("Generate node 'Jump2Test'") ?? false);
 
         generateNodeFix.Should().NotBeNull("Expecting a code action to generate a new node");
@@ -109,7 +109,7 @@ public class CodeActionTests : LanguageServerTestsBase
         var nodeCount = nodeInfo.Nodes.Count;
 
         // Remember how many jumps we had to JumpToTest we had before making the change
-        var jumpCount = nodeInfo.Nodes.Find(n => n.Title == "JumpToTest")?.Jumps.Count ?? 0;
+        var jumpCount = nodeInfo.Nodes.Find(n => n.UniqueTitle == "JumpToTest")?.Jumps.Count ?? 0;
 
         // Expect to receive a 'nodes changed' notification
         Task<NodesChangedParams> nodesChangedAfterRemovingNode = GetNodesChangedNotificationAsync(n => n.Uri.ToString().Contains(filePath));
@@ -118,12 +118,12 @@ public class CodeActionTests : LanguageServerTestsBase
 
         nodeInfo = await nodesChangedAfterRemovingNode;
 
-        var jumpToNode = nodeInfo.Nodes.Find(n => n.Title == "JumpToTest");
-        var jump2Node = nodeInfo.Nodes.Find(n => n.Title == "Jump2Test");
+        var jumpToNode = nodeInfo.Nodes.Find(n => n.UniqueTitle == "JumpToTest");
+        var jump2Node = nodeInfo.Nodes.Find(n => n.UniqueTitle == "Jump2Test");
         jump2Node.Should().NotBeNull("because we have created a new node");
         nodeInfo.Nodes.Should().HaveCount(nodeCount + 1, "because we have added a single new node");
-        jumpToNode!.Jumps.Where(j=>j.DestinationTitle == "JumpToTest").Should().HaveCount(0, "because we are jumping to the new generated node, not the exisiting JumpToTest node");
-        jumpToNode!.Jumps.Where(j=>j.DestinationTitle == "Jump2Test").Should().HaveCount(1, "because we are jumping to the new generated node, not the exisiting JumpToTest node");
+        jumpToNode!.Jumps.Where(j => j.DestinationTitle == "JumpToTest").Should().HaveCount(0, "because we are jumping to the new generated node, not the exisiting JumpToTest node");
+        jumpToNode!.Jumps.Where(j => j.DestinationTitle == "Jump2Test").Should().HaveCount(1, "because we are jumping to the new generated node, not the exisiting JumpToTest node");
     }
 
 }

@@ -85,11 +85,11 @@ namespace YarnLanguageServer.Tests
             nodeInfo.Should().NotBeNull("because this notification always carries a parameters object");
             nodeInfo.Nodes.Should().NotBeNullOrEmpty("because this notification always contains a list of node infos, even if it's empty");
 
-            nodeInfo.Nodes.Should().Contain(ni => ni.Title == "Start", "because this file contains a node with this title");
+            nodeInfo.Nodes.Should().Contain(ni => ni.UniqueTitle == "Start", "because this file contains a node with this title");
 
             nodeInfo.Nodes.Should()
                 .Contain(
-                    ni => ni.Title == "Node2",
+                    ni => ni.UniqueTitle == "Node2",
                     "because this file contains a node with this title")
                 .Which.Headers.Should()
                 .Contain(
@@ -125,7 +125,7 @@ namespace YarnLanguageServer.Tests
             nodeInfo = await nodesChanged;
 
             nodeInfo.Nodes.Should().HaveCount(6, "because we added a new node");
-            nodeInfo.Nodes.Should().Contain(n => n.Title == "Node3", "because the new node we added has this title");
+            nodeInfo.Nodes.Should().Contain(n => n.UniqueTitle == "Node3", "because the new node we added has this title");
         }
 
         [Fact(Timeout = 2000)]

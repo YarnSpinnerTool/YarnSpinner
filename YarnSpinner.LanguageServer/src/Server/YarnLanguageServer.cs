@@ -268,7 +268,7 @@ namespace YarnLanguageServer
             // Work out the edit needed to add a node.
 
             // Figure out the name of the new node.
-            var allNodeTitles = project.Files.SelectMany(yf => yf.NodeInfos).Select(n => n.Title);
+            var allNodeTitles = project.Files.SelectMany(yf => yf.NodeInfos).Select(n => n.UniqueTitle);
 
             var candidateCount = 0;
             var candidateName = "Node";
@@ -377,7 +377,7 @@ namespace YarnLanguageServer
             }
 
             // First: does this file contain a node with this title?
-            var nodes = yarnFile.NodeInfos.Where(n => n.Title == nodeTitle);
+            var nodes = yarnFile.NodeInfos.Where(n => n.UniqueTitle == nodeTitle);
 
             if (nodes.Count() != 1)
             {
@@ -460,7 +460,7 @@ namespace YarnLanguageServer
             }
 
             // Does this file contain a node with this title?
-            var nodes = yarnFile.NodeInfos.Where(n => n.Title == nodeTitle);
+            var nodes = yarnFile.NodeInfos.Where(n => n.UniqueTitle == nodeTitle);
 
             if (nodes.Count() != 1)
             {

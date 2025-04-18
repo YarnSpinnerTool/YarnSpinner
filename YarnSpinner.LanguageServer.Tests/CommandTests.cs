@@ -39,13 +39,13 @@ public class CommandTests : LanguageServerTestsBase
 
         foreach (var node in result)
         {
-            node.Title.Should().NotBeNullOrEmpty("because all nodes have a title");
+            node.UniqueTitle.Should().NotBeNullOrEmpty("because all nodes have a title");
             node.Headers.Should().NotBeNullOrEmpty("because all nodes have headers");
             node.BodyStartLine.Should().NotBe(0, "because bodies never start on the first line");
             node.HeaderStartLine.Should().NotBe(node.BodyStartLine, "because bodies never start at the same line as their headers");
 
             node.Headers.Should().Contain(h => h.Key == "title", "because all nodes have a header named 'title'")
-                .Which.Value.Should().Be(node.Title, "because the 'title' header populates the Title property");
+                .Which.Value.Should().Be(node.UniqueTitle, "because the 'title' header populates the Title property");
 
             if (node == result.First())
             {
@@ -57,13 +57,13 @@ public class CommandTests : LanguageServerTestsBase
             }
         }
 
-        result.Should().Contain(n => n.Title == "Node2")
+        result.Should().Contain(n => n.UniqueTitle == "Node2")
               .Which
               .Headers.Should().Contain(h => h.Key == "tags", "because Node2 has a 'tags' header")
               .Which
               .Value.Should().Be("wow incredible", "because Node2's 'tags' header has this value");
 
-        result.Should().Contain(n => n.Title == "Start")
+        result.Should().Contain(n => n.UniqueTitle == "Start")
             .Which
             .Jumps.Should().NotBeNullOrEmpty("because the Start node contains jumps")
             .And
@@ -107,7 +107,7 @@ public class CommandTests : LanguageServerTestsBase
 
         nodeInfo.Nodes.Should().HaveCount(count + 1, "because we added a node");
         nodeInfo.Nodes.Should()
-            .Contain(n => n.Title == "Node",
+            .Contain(n => n.UniqueTitle == "Node",
                 "because the new node should be called Title")
             .Which.Headers.Should()
             .Contain(h => h.Key == "position" && h.Value == "100,100",
@@ -165,7 +165,7 @@ public class CommandTests : LanguageServerTestsBase
 
         nodeInfo
             .Nodes.Should()
-            .Contain(n => n.Title == "Start")
+            .Contain(n => n.UniqueTitle == "Start")
             .Which.Headers.Should()
             .NotContain(n => n.Key == "position",
                 "because this node doesn't have this header");
@@ -193,7 +193,7 @@ public class CommandTests : LanguageServerTestsBase
         nodeInfo = await nodesChangedAfterChangingText;
 
         nodeInfo.Nodes.Should()
-            .Contain(n => n.Title == "Start")
+            .Contain(n => n.UniqueTitle == "Start")
             .Which.Headers.Should()
             .Contain(n => n.Key == "position",
                 "because we added this new header")
@@ -219,7 +219,7 @@ public class CommandTests : LanguageServerTestsBase
 
         nodeInfo
             .Nodes.Should()
-            .Contain(n => n.Title == "Node2")
+            .Contain(n => n.UniqueTitle == "Node2")
             .Which.Headers.Should()
             .HaveCount(2)
             .And
@@ -248,7 +248,7 @@ public class CommandTests : LanguageServerTestsBase
         nodeInfo = await nodesChangedAfterChangingText;
 
         nodeInfo.Nodes.Should()
-            .Contain(n => n.Title == "Node2")
+            .Contain(n => n.UniqueTitle == "Node2")
             .Which.Headers.Should()
             .HaveCount(2, "because we added no new headers")
             .And.Contain(n => n.Key == headerName,

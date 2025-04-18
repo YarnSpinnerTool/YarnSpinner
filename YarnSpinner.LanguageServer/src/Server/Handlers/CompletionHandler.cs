@@ -371,19 +371,19 @@ namespace YarnLanguageServer.Handlers
         {
             foreach (var node in project.Nodes)
             {
-                if (node.Title == null || node.File == null)
+                if (node.UniqueTitle == null || node.File == null)
                 {
                     continue;
                 }
 
                 results.Add(new CompletionItem
                 {
-                    Label = node.Title,
+                    Label = node.UniqueTitle,
                     Kind = CompletionItemKind.Method,
                     Detail = System.IO.Path.GetFileName(node.File.Uri.AbsolutePath),
                     TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit
                     {
-                        NewText = node.Title,
+                        NewText = node.UniqueTitle,
                         Range = new Range
                         {
                             Start = indexTokenRange.Start,

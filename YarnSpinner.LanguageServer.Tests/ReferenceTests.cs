@@ -35,7 +35,7 @@ namespace YarnLanguageServer.Tests
             (IEnumerable<Location> References, IEnumerable<NodeJump> Jumps) GetReferencesAndJumps(string name)
             {
                 IEnumerable<Location> references = ReferencesHandler.GetReferences(project, name, YarnSymbolType.Node);
-                IEnumerable<NodeJump> jumps = project.Nodes.Single(n => n.Title == name).Jumps;
+                IEnumerable<NodeJump> jumps = project.Nodes.Single(n => n.UniqueTitle == name).Jumps;
                 return (references, jumps);
             }
 

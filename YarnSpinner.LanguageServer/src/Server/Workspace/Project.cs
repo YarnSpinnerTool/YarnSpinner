@@ -159,7 +159,7 @@ namespace YarnLanguageServer
         internal IEnumerable<string> FindNodes(string name, bool fuzzySearch = false)
         {
             var nodeNames = this.yarnFiles.Values
-                .SelectMany(file => file.NodeInfos.Select(node => node.Title))
+                .SelectMany(file => file.NodeInfos.Select(node => node.UniqueTitle))
                 .NonNull()
                 .Distinct();
 

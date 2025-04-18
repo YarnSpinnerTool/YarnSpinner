@@ -7,8 +7,18 @@ namespace YarnLanguageServer;
 
 public record NodeInfo
 {
-    [JsonProperty("title")]
-    public string? Title { get; set; } = null;
+    /// <summary>
+    /// The title of the node, as stored in the program.
+    /// </summary>
+    [JsonProperty("uniqueTitle")]
+    public string? UniqueTitle { get; set; } = null;
+
+    /// <summary>
+    /// The title of the node, as defined in the source code.
+    /// </summary>
+    /// <remarks>This may be different to the node's <see cref="UniqueTitle"/>.</remarks>
+    [JsonProperty("sourceTitle")]
+    public string? SourceTitle { get; set; } = null;
 
     /// <summary>
     /// Gets or sets the line on which body content starts.
@@ -71,13 +81,13 @@ public record NodeInfo
     /// title.
     /// </summary>
     /// <remarks>
-    /// This value is <see langword="true"/> when <see cref="Title"/> is not
+    /// This value is <see langword="true"/> when <see cref="UniqueTitle"/> is not
     /// <see langword="null"/>, empty or whitespace, and <see
     /// cref="TitleToken"/> is not null.
     /// </remarks>
-    [System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Title))]
+    [System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(UniqueTitle))]
     [System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(TitleToken))]
-    public bool HasTitle => !string.IsNullOrWhiteSpace(Title) && TitleToken != null;
+    public bool HasTitle => !string.IsNullOrWhiteSpace(UniqueTitle) && TitleToken != null;
 
     internal Range? TitleHeaderRange
     {

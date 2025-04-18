@@ -89,7 +89,7 @@ namespace YarnLanguageServer.Handlers
 
                 case YarnSymbolType.Node:
                     var nDefinitionMatches = project.Nodes
-                        .Where(nt => nt.Title == token.Text);
+                        .Where(nt => nt.UniqueTitle == token.Text);
 
                     locations = nDefinitionMatches
 
