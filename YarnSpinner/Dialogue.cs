@@ -1080,17 +1080,11 @@ namespace Yarn
 
         private bool IsNodeVisited(string nodeName)
         {
-            float count = 0;
-            if (VariableStorage.TryGetValue<float>(Library.GenerateUniqueVisitedVariableForNode(nodeName), out count))
-            {
-                return count > 0;
-            }
-            return false;
+            return GetNodeVisitCount(nodeName) > 0;
         }
         private float GetNodeVisitCount(string nodeName)
         {
-            float count = 0;
-            VariableStorage.TryGetValue<float>(Library.GenerateUniqueVisitedVariableForNode(nodeName), out count);
+            VariableStorage.TryGetValue(Library.GenerateUniqueVisitedVariableForNode(nodeName), out float count);
             return count;
         }
 

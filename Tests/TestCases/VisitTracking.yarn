@@ -1,27 +1,58 @@
 title: Start
 ---
 beginning
-<<jump NoTrack>>
+
+<<detour ImplicitTrack>>
+<<detour NoTrack>>
+<<detour Track>>
+
+<<detour NodeGroupImplicitTrack>>
+<<detour NodeGroupNoTrack>>
+<<detour NodeGroupTrack>>
+
+entered End
+
+did we visit ImplicitTrack? {visited("ImplicitTrack")}!
+did we visit NoTrack? {visited("NoTrack")}!
+did we visit Track? {visited("Trac" + "k")}!
+did we visit NodeGroupImplicitTrack? {visited("NodeGroupImplicitTrack")}!
+did we visit NodeGroupNoTrack? {visited("NodeGroupNoTrack")}!
+did we visit NodeGroupTrack? {visited("NodeGroupTrac" + "k")}!
+
+done
+===
+
+title: ImplicitTrack
+---
+entered ImplicitTrack
 ===
 
 title: NoTrack
 tracking: never
 ---
 entered NoTrack
-<<jump Track>>
 ===
 
 title: Track
 tracking: always
 ---
 entered Track
-<<jump End>>
 ===
 
-title: End
+title: NodeGroupImplicitTrack
+when: always
 ---
-entered End
-did we visit NoTrack? {visited("NoTrack")}!
-did we visit Track? {visited("Trac" + "k")}!
-done
+entered NodeGroupImplicitTrack
+===
+title: NodeGroupTrack
+when: always
+tracking: always
+---
+entered NodeGroupTrack
+===
+title: NodeGroupNoTrack
+when: always
+tracking: never
+---
+entered NodeGroupNoTrack
 ===
