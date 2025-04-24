@@ -1171,6 +1171,28 @@ namespace YarnSpinner.Tests
             markup.Attributes[0].Properties["name"].StringValue.Should().Be("Mae");
         }
 
+        [Theory]
+        // character attribute can be implicit and will only grab the first instance of :
+        // otherwise should be nigh identical to the above
+        [InlineData("Mae: Incredible: Wow!")]
+        // character attribute can also be explicit
+        [InlineData("[character name=\"Mae\"]Mae: [/character]Incredible: Wow!")]
+        public void TestImplicitCharacterAttributeParsingWithTheLeftmostColon(string input)
+        {
+            var lineParser = new LineParser();
+            var markup = lineParser.ParseString(input, "en");
+
+            markup.Text.Should().Be("Mae: Incredible: Wow!");
+            markup.Attributes.Should().ContainSingle();
+
+            markup.Attributes[0].Name.Should().Be("character");
+            markup.Attributes[0].Position.Should().Be(0);
+            markup.Attributes[0].Length.Should().Be(5);
+
+            markup.Attributes[0].Properties.Count.Should().Be(1);
+            markup.Attributes[0].Properties["name"].StringValue.Should().Be("Mae");
+        }
+
         [Fact]
         public void TestNoMarkupModeParsing()
         {

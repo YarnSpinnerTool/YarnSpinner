@@ -1398,7 +1398,7 @@ namespace Yarn.Markup
         }
 
         private static char[] trimChars = { ':', ' ' };
-        private static System.Text.RegularExpressions.Regex implicitCharacterRegex = new System.Text.RegularExpressions.Regex(@"^.*:\s*");
+        private static System.Text.RegularExpressions.Regex implicitCharacterRegex = new System.Text.RegularExpressions.Regex(@"^[^:]*:\s*");
 
         public (MarkupParseResult markup, List<MarkupDiagnostic> diagnostics) ParseStringWithDiagnostics(string input, string localeCode, bool squish = true, bool sort = true, bool addImplicitCharacterAttribute = true)
         {
