@@ -1220,12 +1220,12 @@ namespace Yarn
                 // Register the in-built conversion functions
                 this.RegisterFunction("string", delegate (object v)
                 {
-                    return Convert.ToString(v);
+                    return Convert.ToString(v, System.Globalization.CultureInfo.InvariantCulture);
                 });
 
                 this.RegisterFunction("number", delegate (object v)
                 {
-                    return Convert.ToSingle(v);
+                    return Convert.ToSingle(v, System.Globalization.CultureInfo.InvariantCulture);
                 });
 
                 this.RegisterFunction("format_invariant", delegate (float v)
