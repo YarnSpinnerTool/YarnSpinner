@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 
 namespace Yarn.Analysis
 {
-    public class Diagnosis
+    internal class Diagnosis
     {
         public string message;
         public string nodeName;
@@ -91,7 +91,7 @@ namespace Yarn.Analysis
         }
     }
 
-    public class Context
+    internal class Context
     {
         IEnumerable<System.Type> _defaultAnalyserClasses;
         internal IEnumerable<System.Type> defaultAnalyserClasses
