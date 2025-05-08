@@ -9,21 +9,21 @@
 
     <PackageId>YarnSpinner</PackageId>
     <Title>Yarn Spinner</Title>
-    <Version>2.0.0</Version>
+    <Version>0.0.0</Version>
     <Authors>Secret Lab Pty. Ltd. and Yarn Spinner contributors</Authors>
-    <PackageDescription>Yarn Spinner is a tool for creating interactive dialogue for games.
+    <PackageDescription><![CDATA[Yarn Spinner is a tool for creating interactive dialogue for games.
 
-Write your conversations in Yarn, a simple programming language that's designed to be easy for writers to learn, while also powerful enough to handle whatever you need.</PackageDescription>
+Write your conversations in Yarn, a simple programming language that's designed to be easy for writers to learn, while also powerful enough to handle whatever you need.]]></PackageDescription>
     <Company>Secret Lab Pty. Ltd.</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/YarnSpinnerTool/YarnSpinner</RepositoryUrl>    
+    <RepositoryUrl>https://github.com/YarnSpinnerTool/YarnSpinner</RepositoryUrl>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisLevel>latest</AnalysisLevel>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.25.2"/>
+    <PackageReference Include="Google.Protobuf" Version="3.25.2" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
