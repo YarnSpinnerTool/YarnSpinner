@@ -1598,7 +1598,11 @@ namespace Yarn.Markup
         }
     }
 
-    internal class BuiltInMarkupReplacer : IAttributeMarkerProcessor
+    /// <summary>
+    /// A marker processor that handles the built-in markers <c>[select]</c>
+    /// <c>[plural]</c>, and <c>[ordinal]</c>.
+    /// </summary>
+    public class BuiltInMarkupReplacer : IAttributeMarkerProcessor
     {
         private static readonly System.Text.RegularExpressions.Regex ValuePlaceholderRegex = new System.Text.RegularExpressions.Regex(@"(?<!\\)%");
 
@@ -1689,6 +1693,7 @@ namespace Yarn.Markup
             return diagnostics;
         }
 
+        /// <inheritdoc/>
         public List<LineParser.MarkupDiagnostic> ProcessReplacementMarker(MarkupAttribute marker, StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
         {
             // we have somehow been given an invalid setup, can't continue so early out.
