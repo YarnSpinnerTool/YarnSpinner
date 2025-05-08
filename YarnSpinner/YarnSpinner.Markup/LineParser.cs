@@ -1612,7 +1612,7 @@ namespace Yarn.Markup
                 return diagnostics;
             }
 
-            string replacement = replacementProp.ToString();
+            string replacement = replacementProp.ToString(System.Globalization.CultureInfo.InvariantCulture);
             replacement = ValuePlaceholderRegex.Replace(replacement, value);
             childBuilder.Append(replacement);
 

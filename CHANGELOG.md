@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `CompilationJob.VariableDeclarations` has been renamed to `CompilationJob.Declarations`. (`VariableDeclarations` now forwards to `Declarations`, and is marked as deprecated.)
 - Language Server: completions now contain node groups, and no longer include the names of individual nodes in a group (which cannot be jumped to directly.)
 - `LineParser` now correctly detects the first `:` in a line for the implicit character name
+- The `select` marker now converts its value using the invariant culture, not the user's current culture. (This is realistically not a huge change, since values passed to `select` are either integers or non-user-facing strings, but it avoids a potential bug.)
 
 ### Removed
 
