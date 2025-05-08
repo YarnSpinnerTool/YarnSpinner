@@ -56,7 +56,7 @@ namespace Yarn.Markup
         /// </summary>
         /// <param name="text">The plain text.</param>
         /// <param name="attributes">The list of attributes.</param>
-        internal MarkupParseResult(string text, List<MarkupAttribute> attributes)
+        public MarkupParseResult(string text, List<MarkupAttribute> attributes)
         {
             this.Text = text;
             this.Attributes = attributes;
@@ -378,7 +378,15 @@ namespace Yarn.Markup
         {
         }
 
-        internal readonly MarkupAttribute Shift(int shift)
+        /// <summary>
+        /// Creates a new <see cref="MarkupAttribute"/> based on the current
+        /// instance whose <see cref="Position"/> is shifted towards the end of
+        /// the string by <paramref name="shift"/> characters.
+        /// </summary>
+        /// <param name="shift">The number of characters to shift by.</param>
+        /// <returns>A new <see cref="MarkupAttribute"/> with an updated <see
+        /// cref="Position"/>.</returns>
+        public readonly MarkupAttribute Shift(int shift)
         {
             List<MarkupProperty> propList = new List<MarkupProperty>();
             foreach (var property in this.Properties)
