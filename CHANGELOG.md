@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added `NodeDebugInfo.IsImplicit`, which indicates whether the node was created by the compiler (and does not appear in the source code).
 - Language Server: Warn on `jump` statements if destination node that does not exist. Offer to create a stub node, or rename to an existing node title.
 - The `subtitle` header on a node can be used to control its internal name, for debugging purposes.
+- A .NET Standard 2.1 version of the `YarnSpinner` and `YarnSpinner.Compiler` packages have been added.
 
 ### Changed
 
@@ -25,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Language Server: completions now contain node groups, and no longer include the names of individual nodes in a group (which cannot be jumped to directly.)
 - `LineParser` now correctly detects the first `:` in a line for the implicit character name
 - The `select` marker now converts its value using the invariant culture, not the user's current culture. (This is realistically not a huge change, since values passed to `select` are either integers or non-user-facing strings, but it avoids a potential bug.)
+- The language version for `YarnSpinner` and `YarnSpinner.Compiler` has changed from C# 8 to C# 9.
 
 ### Removed
 
