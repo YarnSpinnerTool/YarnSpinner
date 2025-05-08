@@ -27,7 +27,7 @@ namespace Yarn
         public override IType Parent => Types.Any;
 
         /// <inheritdoc/>
-        public override string Description { get; }
+        public override string Description { get; } = "String";
 
         /// <inheritdoc/>
         internal override System.IConvertible DefaultValue => string.Empty;
@@ -38,12 +38,6 @@ namespace Yarn
             { Operator.NotEqualTo.ToString(), TypeUtil.GetMethod((a, b) => !MethodEqualTo(a, b)) },
             { Operator.Add.ToString(), TypeUtil.GetMethod(MethodConcatenate) },
         };
-
-        /// <inheritdoc/>
-        public string ToBridgedType(Value value)
-        {
-            return value.ConvertTo<string>();
-        }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
@@ -70,7 +64,7 @@ namespace Yarn
 
         private static bool MethodEqualTo(Value a, Value b)
         {
-            return a.ConvertTo<string>().Equals(b.ConvertTo<string>());
+            return a.ConvertTo<string>().Equals(b.ConvertTo<string>(), System.StringComparison.Ordinal);
         }
     }
 }

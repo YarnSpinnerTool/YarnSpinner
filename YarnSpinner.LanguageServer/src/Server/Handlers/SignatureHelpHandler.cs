@@ -10,7 +10,7 @@ namespace YarnLanguageServer.Handlers
 {
     internal class SignatureHelpHandler : ISignatureHelpHandler
     {
-        private Workspace workspace;
+        private readonly Workspace workspace;
 
         public SignatureHelpHandler(Workspace workspace)
         {

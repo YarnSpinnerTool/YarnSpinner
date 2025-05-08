@@ -55,9 +55,9 @@ namespace YarnLanguageServer.Tests
         {
         }
 
-        NotificationListeners<PublishDiagnosticsParams> ReceivedDiagnosticsNotifications = new();
+        readonly NotificationListeners<PublishDiagnosticsParams> ReceivedDiagnosticsNotifications = new();
 
-        NotificationListeners<NodesChangedParams> NodesChangedNotification = new();
+        readonly NotificationListeners<NodesChangedParams> NodesChangedNotification = new();
 
         protected virtual string RootPath => TestUtility.PathToTestWorkspace;
 
@@ -110,7 +110,7 @@ namespace YarnLanguageServer.Tests
         {
             if (workspaceEdit.Changes == null) { return; }
 
-            foreach ((var docUri, var textEdits) in workspaceEdit.Changes) 
+            foreach ((var docUri, var textEdits) in workspaceEdit.Changes)
             {
                 foreach (var edit in textEdits)
                 {

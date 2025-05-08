@@ -10,9 +10,9 @@ namespace TypeChecker
     /// type variables). It is produced during the process of type resolution by
     /// the <see cref="Solver"/> class.
     /// </summary>
-    public class Substitution : IDictionary<TypeVariable, IType>
+    internal class Substitution : IDictionary<TypeVariable, IType>
     {
-        private Dictionary<TypeVariable, IType> data;
+        private readonly Dictionary<TypeVariable, IType> data;
 
         public IType this[TypeVariable key] { get => this.data[key]; set => this.data[key] = value; }
 

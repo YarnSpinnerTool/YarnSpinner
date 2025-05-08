@@ -6,6 +6,8 @@ namespace Yarn
     using System;
     using System.Collections.Generic;
 
+#nullable enable
+
     /// <summary>
     /// Provides properties used to work with members of a type.
     /// </summary>
@@ -154,6 +156,12 @@ namespace Yarn
             // 1. there is an explicit conversion available, or 
             // 2. it is a descendant of that type, or
             // 3. the two types are identical.
+
+            if (otherType is null)
+            {
+                throw new ArgumentNullException(nameof(otherType));
+            }
+
             if (_convertibleToTypes.Contains(otherType))
             {
                 // An explicit conversion exists.
@@ -176,6 +184,11 @@ namespace Yarn
             return false;
         }
 
+        /// <summary>
+        /// Initialises a new instance of the <see cref="TypeBase"/> class with
+        /// a collection of methods.
+        /// </summary>
+        /// <param name="methods">The methods that belong to this type.</param>
         protected TypeBase(IReadOnlyDictionary<string, Delegate>? methods)
         {
             if (methods == null)
@@ -189,6 +202,13 @@ namespace Yarn
             }
         }
 
+        /// <summary>
+        /// Gets whether this type is an ancestor of <paramref name="other"/>.
+        /// </summary>
+        /// <param name="other">The type to check.</param>
+        /// <returns><see langword="true"/> if this type is an ancestor of
+        /// <paramref name="other"/>; <see langword="false"/>
+        /// otherwise.</returns>
         public bool IsAncestorOf(TypeBase other)
         {
             IType? current = other;
@@ -203,15 +223,17 @@ namespace Yarn
             return false;
         }
 
+        /// <inheritdoc/>
         public bool Equals(TypeBase other)
         {
             return other != null
                 && this.Name == other.Name;
         }
 
-        public override bool Equals(object other)
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
         {
-            if (other is TypeBase otherType)
+            if (obj is TypeBase otherType)
             {
                 return Equals(otherType);
             }
@@ -219,6 +241,7 @@ namespace Yarn
             return false;
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             return this.Name.GetHashCode();

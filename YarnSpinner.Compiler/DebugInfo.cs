@@ -1,5 +1,5 @@
-// Copyright Yarn Spinner Pty Ltd
-// Licensed under the MIT License. See LICENSE.md in project root for license information.
+// Copyright Yarn Spinner Pty Ltd Licensed under the MIT License. See LICENSE.md
+// in project root for license information.
 
 // Uncomment to ensure that all expressions have a known type at compile time
 // #define VALIDATE_ALL_EXPRESSIONS
@@ -9,10 +9,23 @@ namespace Yarn.Compiler
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Contains debugging information for compiled Yarn Projects.
+    /// </summary>
     public class ProjectDebugInfo
     {
+        /// <summary>
+        /// The debugging info for the nodes in the project.
+        /// </summary>
         public List<NodeDebugInfo> Nodes { get; set; } = new List<NodeDebugInfo>();
 
+        /// <summary>
+        /// Gets the debugging info for a given node, if it exists.
+        /// </summary>
+        /// <param name="nodeName">The name of the node to get debugging info
+        /// for.</param>
+        /// <returns>The debugging info for the node, or <see langword="null"/>
+        /// if none is present.</returns>
         public NodeDebugInfo? GetNodeDebugInfo(string nodeName)
         {
             foreach (var debugInfo in Nodes)
@@ -43,6 +56,12 @@ namespace Yarn.Compiler
     /// </summary>
     public class NodeDebugInfo
     {
+        /// <summary>
+        /// Initialises a new instance of the NodeDebugInfo class.
+        /// </summary>
+        /// <param name="fileName">The file that the node was defined
+        /// in.</param>
+        /// <param name="nodeName">The name of the node.</param>
         public NodeDebugInfo(string? fileName, string nodeName)
         {
             this.FileName = fileName;
@@ -85,9 +104,7 @@ namespace Yarn.Compiler
         /// </remarks>
         public bool IsImplicit { get; internal set; } = false;
 
-        private Dictionary<int, string> instructionLabels = new Dictionary<int, string>();
-
-        private HashSet<int> instructionsThatAreDestinations = new HashSet<int>();
+        private readonly Dictionary<int, string> instructionLabels = new Dictionary<int, string>();
 
         internal void AddLabel(string label, int instructionIndex)
         {
@@ -159,9 +176,8 @@ namespace Yarn.Compiler
             public string NodeName;
 
             /// <summary>
-            /// The position in <see cref="FileName"/> that
-            /// contains the statement or expression that this line was produced
-            /// from.
+            /// The position in <see cref="FileName"/> that contains the
+            /// statement or expression that this line was produced from.
             /// </summary>
             public Position Position;
         }

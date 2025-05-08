@@ -15,7 +15,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// Produces <see cref="BasicBlock"/> objects from a Node.
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="node">The node to get basic blocks from.</param>
+        /// <param name="info">An object containing debugging information for
+        /// the node.</param>
         /// <returns></returns>
         /// <exception cref="System.InvalidOperationException"></exception>
         public static IEnumerable<BasicBlock> GetBasicBlocks(this Node node, NodeDebugInfo info)

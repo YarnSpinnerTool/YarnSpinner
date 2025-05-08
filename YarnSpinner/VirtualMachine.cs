@@ -166,7 +166,7 @@ namespace Yarn
                 public int instruction;
             }
 
-            private Stack<CallSite> callStack = new Stack<CallSite>();
+            private readonly Stack<CallSite> callStack = new Stack<CallSite>();
 
             /// <summary>Pushes a <see cref="Value"/> object onto the
             /// stack.</summary>
@@ -215,6 +215,11 @@ namespace Yarn
 
             internal void PushCallStack()
             {
+                if (currentNodeName == null)
+                {
+                    throw new InvalidOperationException("Internal error: Can't push current call stack, because not running a node");
+                }
+
                 callStack.Push(new CallSite
                 {
                     nodeName = currentNodeName,
@@ -363,7 +368,8 @@ namespace Yarn
                 var stringIDs = Program.LineIDsForNode(nodeName);
 
                 // Deliver the string IDs
-                this.PrepareForLinesHandler(stringIDs);
+                this.PrepareForLinesHandler(stringIDs ?? new List<string>());
+
             }
 
             return true;
@@ -709,8 +715,7 @@ namespace Yarn
 
                         var didLoadValue = VariableStorage.TryGetValue<IConvertible>(variableName, out var loadedObject);
 
-
-                        if (didLoadValue)
+                        if (didLoadValue && loadedObject != null)
                         {
                             System.Type loadedObjectType = loadedObject.GetType();
 
@@ -727,14 +732,16 @@ namespace Yarn
                         }
                         else
                         {
-                            if (Program == null)
-                            {
-                                throw new InvalidOperationException("Program is null");
-                            }
                             // We don't have a value for this. The initial
                             // value may be found in the program. (If it's
                             // not, then the variable's value is undefined,
                             // which isn't allowed.)
+
+                            if (Program == null)
+                            {
+                                throw new InvalidOperationException("Program is null");
+                            }
+
                             if (Program.InitialValues.TryGetValue(variableName, out var value))
                             {
                                 switch (value.ValueCase)
@@ -857,7 +864,21 @@ namespace Yarn
                 case Instruction.InstructionTypeOneofCase.AddSaliencyCandidateFromNode:
                     {
                         var nodeName = i.AddSaliencyCandidateFromNode.NodeName;
-                        var node = this.Program.Nodes[nodeName];
+
+                        if (this.Program == null)
+                        {
+                            throw new InvalidOperationException($"Failed to add saliency candidate from node {nodeName}: {nameof(Program)} is null");
+                        }
+
+                        if (this.Program.Nodes.TryGetValue(nodeName, out var node) == false)
+                        {
+                            throw new InvalidOperationException($"Failed to add saliency candidate from node {nodeName}: no node with this name is loaded");
+                        }
+
+                        if (this.VariableStorage.SmartVariableEvaluator == null)
+                        {
+                            throw new InvalidOperationException($"Failed to add saliency candidate from node {nodeName}: {nameof(this.VariableStorage.SmartVariableEvaluator)} is not set");
+                        }
 
                         int passed = 0;
                         int failed = 0;
@@ -938,7 +959,7 @@ namespace Yarn
             }
         }
 
-        private List<ContentSaliencyOption> saliencyCandidateList = new List<ContentSaliencyOption>();
+        private readonly List<ContentSaliencyOption> saliencyCandidateList = new List<ContentSaliencyOption>();
 
         private void ExecuteJumpToNode(string? nodeName, bool isDetour)
         {

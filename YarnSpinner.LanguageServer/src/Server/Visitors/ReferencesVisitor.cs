@@ -15,7 +15,7 @@ namespace YarnLanguageServer
 
         private NodeInfo? currentNodeInfo = null;
 
-        private YarnFileData yarnFileData;
+        private readonly YarnFileData yarnFileData;
 
         /// <summary>
         /// The CommonTokenStream derived from the file we're parsing. This

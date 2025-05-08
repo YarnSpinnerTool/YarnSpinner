@@ -39,17 +39,17 @@ namespace TypeChecker
         /// Gets or sets the range of text that contained the expression that
         /// produced this constraint.
         /// </summary>
-        public Yarn.Compiler.Range SourceRange { get; set; }
+        public Yarn.Compiler.Range SourceRange { get; set; } = Yarn.Compiler.Range.InvalidRange;
 
         /// <summary>
         /// Gets or sets the name of the file that contained the expression that
         /// produced this constraint.
         /// </summary>
-        public string SourceFileName { get; set; }
+        public string SourceFileName { get; set; } = "<unknown>";
 
-        public string SourceExpression { get; internal set; }
+        public string SourceExpression { get; internal set; } = "<unknown>";
 
-        public ParserRuleContext SourceContext { get; internal set; }
+        public ParserRuleContext? SourceContext { get; internal set; }
 
         public virtual IEnumerable<string> GetFailureMessages(Substitution subst) => new[] { FailureMessageProvider?.Invoke(subst) ?? this.ToString() };
 

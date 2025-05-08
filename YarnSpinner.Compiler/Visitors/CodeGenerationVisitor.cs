@@ -17,7 +17,7 @@ namespace Yarn.Compiler
     // Instructions
     internal partial class CodeGenerationVisitor : YarnSpinnerParserBaseVisitor<int>
     {
-        private ICodeEmitter compiler;
+        private readonly ICodeEmitter compiler;
 
         public CodeGenerationVisitor(ICodeEmitter compiler)
         {
@@ -784,7 +784,7 @@ namespace Yarn.Compiler
 
         internal static string GetFunctionName(IType type, Operator op)
         {
-            TypeBase implementingType = TypeUtil.FindImplementingTypeForMethod(type, op.ToString());
+            TypeBase? implementingType = TypeUtil.FindImplementingTypeForMethod(type, op.ToString());
             if (implementingType == null)
             {
                 throw new InvalidOperationException($"Internal error: Codegen failed to get implementation type for {op} given input type {type}.");
@@ -854,7 +854,7 @@ namespace Yarn.Compiler
 
             // Figure out the canonical name for the method that the VM should
             // invoke in order to perform this work
-            TypeBase implementingType = TypeUtil.FindImplementingTypeForMethod(type, op.ToString());
+            TypeBase? implementingType = TypeUtil.FindImplementingTypeForMethod(type, op.ToString());
 
             // Couldn't find an implementation method? That's an error! The type
             // checker should have caught this.

@@ -60,10 +60,5 @@ namespace Yarn
         {
             return !a.ConvertTo<bool>();
         }
-
-        public bool ToBridgedType(Value value)
-        {
-            return value.ConvertTo<bool>();
-        }
     }
 }

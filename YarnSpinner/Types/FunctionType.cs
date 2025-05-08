@@ -3,6 +3,7 @@
 
 namespace Yarn
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -15,7 +16,7 @@ namespace Yarn
     /// application registers new functions (such as through using the <see
     /// cref="Library.RegisterFunction"/> methods or similar.)
     /// </remarks>
-    public class FunctionType : IType
+    public class FunctionType : IType, IEquatable<IType>
     {
         /// <inheritdoc/>
         public string Name { get => "Function"; }
@@ -103,12 +104,25 @@ namespace Yarn
             }
         }
 
+        /// <summary>
+        /// Gets the type of value that this type of function accepts as a
+        /// variadic parameter.
+        /// </summary>
+        /// <remarks>This value is <see langword="null"/> if this type of
+        /// function does not accept variadic parameters.</remarks>
         public IType? VariadicParameterType { get; internal set; }
 
         /// <inheritdoc/>
         // Functions do not have any type members
         public IReadOnlyDictionary<string, ITypeMember> TypeMembers => TypeBase.EmptyTypeMemberDictionary;
 
+        /// <summary>
+        /// Initialises a new instances of the <see cref="FunctionType"/> class.
+        /// </summary>
+        /// <param name="returnType">The type of the value that this type of
+        /// function returns.</param>
+        /// <param name="parameterTypes">The types of the parameters that this
+        /// type of function accepts.</param>
         public FunctionType(IType returnType, params IType[] parameterTypes)
         {
             ReturnType = returnType ?? Types.Error;
@@ -126,8 +140,10 @@ namespace Yarn
             this.Parameters.Add(parameterType);
         }
 
-        public string ToString() => $"({string.Join(", ", Parameters)}) -> {ReturnType}";
+        /// <inheritdoc/>
+        public override string ToString() => $"({string.Join(", ", Parameters)}) -> {ReturnType}";
 
+        /// <inheritdoc/>
         public bool Equals(IType other)
         {
             return other is FunctionType otherFunction

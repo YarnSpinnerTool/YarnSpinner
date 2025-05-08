@@ -9,12 +9,12 @@ namespace Yarn.Compiler
 
     internal class JumpGraphListener : YarnSpinnerParserBaseListener
     {
-        private List<string> jumps = new List<string>();
+        private readonly List<string> jumps = new List<string>();
         private string? currentNode;
         private (int x, int y) position;
         private bool hasPositionalInformation; // tuples are value type so I can't null check them
 
-        private List<GraphingNode> connections;
+        private readonly List<GraphingNode> connections;
 
         public JumpGraphListener(List<GraphingNode> connections)
         {
@@ -57,9 +57,7 @@ namespace Yarn.Compiler
                 var xString = split[0].Trim();
                 var yString = split[1].Trim();
 
-                int x;
-                int y;
-                if (int.TryParse(xString, out x) && int.TryParse(yString, out y))
+                if (int.TryParse(xString, out int x) && int.TryParse(yString, out int y))
                 {
                     hasPositionalInformation = true;
                     position = (x, y);

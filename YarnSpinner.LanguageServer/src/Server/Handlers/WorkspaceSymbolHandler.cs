@@ -9,7 +9,7 @@ namespace YarnLanguageServer.Handlers
 {
     internal class WorkspaceSymbolHandler : IWorkspaceSymbolsHandler
     {
-        private Workspace workspace;
+        private readonly Workspace workspace;
 
         public WorkspaceSymbolHandler(Workspace workspace)
         {

@@ -77,7 +77,7 @@ namespace Yarn.Compiler
         /// The <see cref="Library"/> that contains declarations for
         /// functions.
         /// </summary>
-        public Library Library;
+        public Library? Library;
 
         /// <summary>
         /// The type of compilation to perform.
@@ -124,7 +124,7 @@ namespace Yarn.Compiler
         /// <param name="library">The <see cref="Library"/> containing functions
         /// to use for this compilation.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromFiles(IEnumerable<string> paths, Library library = null)
+        public static CompilationJob CreateFromFiles(IEnumerable<string> paths, Library? library = null)
         {
             var fileList = new List<File>();
 
@@ -142,7 +142,7 @@ namespace Yarn.Compiler
             {
                 Files = fileList.ToArray(),
                 Library = library,
-                VariableDeclarations = Array.Empty<Declaration>(),
+                Declarations = Array.Empty<Declaration>(),
             };
         }
 

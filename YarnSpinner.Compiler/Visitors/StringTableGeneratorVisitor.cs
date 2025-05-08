@@ -22,10 +22,10 @@ namespace Yarn.Compiler
     {
         private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
 
-        private YarnSpinnerParser.NodeContext currentNodeContext;
-        private string currentNodeName;
-        private string fileName;
-        private StringTableManager stringTableManager;
+        private YarnSpinnerParser.NodeContext? currentNodeContext;
+        private string? currentNodeName;
+        private readonly string fileName;
+        private readonly StringTableManager stringTableManager;
 
         /// <summary>
         /// Gets the collection of <see cref="Diagnostic"/> objects
@@ -112,7 +112,7 @@ namespace Yarn.Compiler
                 context,
                 composedString?.ToString(),
                 fileName,
-                currentNodeName,
+                currentNodeName ?? "<unknown node>",
                 lineID,
                 lineNumber,
                 hashtagText,

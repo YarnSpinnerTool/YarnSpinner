@@ -42,7 +42,7 @@ namespace YarnLanguageServer.Handlers
 
     internal class CompletionHandler : ICompletionHandler
     {
-        private Workspace workspace;
+        private readonly Workspace workspace;
         private List<CompletionItem> statementCompletions;
         private List<CompletionItem> keywordCompletions;
 

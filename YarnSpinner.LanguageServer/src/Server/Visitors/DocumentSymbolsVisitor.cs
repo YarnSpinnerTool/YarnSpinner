@@ -12,7 +12,7 @@ namespace YarnLanguageServer
         private List<DocumentSymbol> documentSymbols;
 
         private List<DocumentSymbol> documentSymbolsChildren;
-        private YarnFileData yarnFileData;
+        private readonly YarnFileData yarnFileData;
 
         protected DocumentSymbolsVisitor(YarnFileData yarnFileData)
         {

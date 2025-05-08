@@ -14,7 +14,7 @@ namespace Yarn.Compiler
     {
         private readonly ParserRuleContext context;
         private readonly string sourceFileName;
-        private List<Diagnostic> diagnostics;
+        private readonly List<Diagnostic> diagnostics;
 
         /// <summary>
         /// Initializes a new instance of the <see
@@ -39,7 +39,7 @@ namespace Yarn.Compiler
             {
                 string message = $"Expected a constant type";
                 this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
-                return new Value(Types.Error, null);
+                return new Value(Types.Error, "<ERROR>");
             }
         }
 
@@ -79,10 +79,30 @@ namespace Yarn.Compiler
     // value was of a literal, or of a reference to an identifier.)
     public partial class YarnSpinnerParser
     {
+        /// <summary>
+        /// Marks that a type represents a <see cref="ParserRuleContext"/> that
+        /// represents a literal value.
+        /// </summary>
         public interface ILiteralContext { }
+
+        /// <summary>
+        /// A number literal value.
+        /// </summary>
         public partial class ValueNumberContext : ILiteralContext { }
+
+        /// <summary>
+        /// A false boolean literal value.
+        /// </summary>
         public partial class ValueFalseContext : ILiteralContext { }
+
+        /// <summary>
+        /// A true boolean literal value.
+        /// </summary>
         public partial class ValueTrueContext : ILiteralContext { }
+
+        /// <summary>
+        /// A string literal value.
+        /// </summary>
         public partial class ValueStringContext : ILiteralContext { }
     }
 }

@@ -11,8 +11,29 @@ namespace Yarn
 
     internal interface ICodeDumpHelper
     {
-        public string GetStringForKey(string key);
-        public string GetDescriptionForVariable(string variableName);
+        /// <summary>
+        /// Gets the user-facing string for a given key from the code dump
+        /// helper's string table.
+        /// </summary>
+        /// <param name="key">The key to fetch a string for.</param>
+        /// <returns>The found string, or <see langword="null"/> if none was
+        /// found.</returns>
+        public string? GetStringForKey(string key);
+
+        /// <summary>
+        /// Gets the description for a given variable, if it exists.
+        /// </summary>
+        /// <param name="variableName">The name of the variable.</param>
+        /// <returns>The description for the variable, or <see langword="null"/>
+        /// if none was found.</returns>
+        public string? GetDescriptionForVariable(string variableName);
+
+        /// <summary>
+        /// Gets the mapping of instruction indices to named labels found in the
+        /// node.
+        /// </summary>
+        /// <param name="node">The name of the node.</param>
+        /// <returns>The instruction label mapping.</returns>
         public NodeLabelsCollection GetLabelsForNode(string node);
     }
 
@@ -69,10 +90,14 @@ namespace Yarn
         }
 
         /// <summary>
-        /// Identifies and returns a list of all line and option IDs inside the node.
+        /// Identifies and returns a list of all line and option IDs inside the
+        /// node.
         /// </summary>
-        /// <param name="nodeName">The name of the node whos line IDs you covet.</param>
-        /// <returns>The line IDs of all lines and options inside the node, or null if <paramref name="nodeName"/> doesn't exist in the program.</returns>
+        /// <param name="nodeName">The name of the node whos line IDs you
+        /// covet.</param>
+        /// <returns>The line IDs of all lines and options inside the node, or
+        /// <see langword="null"/> if <paramref name="nodeName"/> doesn't exist
+        /// in the program.</returns>
         public List<string>? LineIDsForNode(string nodeName)
         {
             // if there is no node matching the name bail out
@@ -341,7 +366,7 @@ namespace Yarn
 
                     if (helper != null)
                     {
-                        actualString = helper.GetStringForKey(actualString);
+                        actualString = helper.GetStringForKey(actualString) ?? "<unknown>";
                     }
 
                     // Add the string for this option, if it has one

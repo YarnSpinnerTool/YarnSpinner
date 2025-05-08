@@ -11,7 +11,7 @@ namespace YarnLanguageServer.Handlers
 {
     internal class HoverHandler : IHoverHandler
     {
-        private Workspace workspace;
+        private readonly Workspace workspace;
 
         public HoverHandler(Workspace workspace)
         {

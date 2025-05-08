@@ -32,6 +32,8 @@ namespace Yarn
     using System.Text.RegularExpressions;
     using Yarn.Markup;
 
+#nullable enable
+
     /// <summary>
     /// A line of dialogue, sent from the <see cref="Dialogue"/> to the game.
     /// </summary>
@@ -43,10 +45,10 @@ namespace Yarn
     /// <item>Use the value in the <see cref="ID"/> field to look up the
     /// appropriate user-facing text in the string table. </item>
     ///
-    /// <item>Use <see cref="Dialogue.ExpandSubstitutions"/> to replace all
+    /// <item>Use <see cref="LineParser.ExpandSubstitutions(string, IList{string})"/> to replace all
     /// substitutions in the user-facing text.</item>
     ///
-    /// <item>Use <see cref="Dialogue.ParseMarkup"/> to parse all markup in the
+    /// <item>Use <see cref="LineParser.ParseString(string, string, bool, bool, bool)"/> to parse all markup in the
     /// line.</item>
     /// </list>
     ///
@@ -74,13 +76,13 @@ namespace Yarn
         /// <summary>
         /// The string ID for this line.
         /// </summary>
-        public readonly string ID;
+        public string ID { get; }
 
         /// <summary>
         /// The values that should be inserted into the user-facing text before
         /// delivery.
         /// </summary>
-        public readonly string[] Substitutions;
+        public string[] Substitutions { get; }
     }
 #pragma warning restore CA1815
 
@@ -266,7 +268,7 @@ namespace Yarn
         /// this parameter will contain the fetched value.</param>
         /// <returns><see langword="true"/> if a value could be fetched; <see
         /// langword="false"/> otherwise.</returns>
-        bool TryGetValue<T>(string variableName, out T result);
+        bool TryGetValue<T>(string variableName, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out T? result);
 
         /// <summary>
         /// Gets the kind of variable named <paramref name="name"/>.
@@ -281,12 +283,12 @@ namespace Yarn
         /// about the initial values of variables, and is able to produce values
         /// for smart variables.
         /// </summary>
-        Program Program { get; set; }
+        Program? Program { get; set; }
 
         /// <summary>
         /// Gets or sets the object to use when evaluating smart variables.
         /// </summary>
-        ISmartVariableEvaluator SmartVariableEvaluator { get; set; }
+        ISmartVariableEvaluator? SmartVariableEvaluator { get; set; }
     }
 
     /// <summary>Provides a mechanism for storing values.</summary>
@@ -328,9 +330,9 @@ namespace Yarn
     /// </summary>
     public class MemoryVariableStore : IVariableStorage
     {
-        private Dictionary<string, object> variables = new Dictionary<string, object>();
+        private readonly Dictionary<string, object> variables = new Dictionary<string, object>();
 
-        private static bool TryGetAsType<T>(Dictionary<string, object> dictionary, string key, out T result)
+        private static bool TryGetAsType<T>(Dictionary<string, object> dictionary, string key, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out T? result)
         {
             if (dictionary.TryGetValue(key, out var objectResult) == true
                 && typeof(T).IsAssignableFrom(objectResult.GetType()))
@@ -339,18 +341,24 @@ namespace Yarn
                 return true;
             }
 
-            result = default;
+            result = default!;
             return false;
         }
 
         /// <inheritdoc/>
-        public Program Program { get; set; }
+        public Program? Program { get; set; }
 
         /// <inheritdoc/>
-        public ISmartVariableEvaluator SmartVariableEvaluator { get; set; }
+        public ISmartVariableEvaluator? SmartVariableEvaluator { get; set; }
 
-        public virtual bool TryGetValue<T>(string variableName, out T result)
+        /// <inheritdoc/>
+        public virtual bool TryGetValue<T>(string variableName, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out T? result)
         {
+            if (Program == null)
+            {
+                throw new InvalidOperationException($"Can't get variable {variableName}: {nameof(Program)} is null");
+            }
+
             switch (GetVariableKind(variableName))
             {
                 case VariableKind.Stored:
@@ -372,6 +380,10 @@ namespace Yarn
                 case VariableKind.Smart:
                     // The variable is a smart variable. Ask our smart variable
                     // evaluator.
+                    if (SmartVariableEvaluator == null)
+                    {
+                        throw new InvalidOperationException($"Can't get variable {variableName}: {nameof(SmartVariableEvaluator)} is null");
+                    }
                     return this.SmartVariableEvaluator.TryGetSmartVariable(variableName, out result);
                 case VariableKind.Unknown:
                 default:
@@ -405,6 +417,7 @@ namespace Yarn
             this.variables[variableName] = boolValue;
         }
 
+        /// <inheritdoc/>
         public VariableKind GetVariableKind(string name)
         {
             // Does this variable exist in our stored values?
@@ -542,12 +555,12 @@ namespace Yarn
         /// Invoked when the Dialogue needs to report debugging
         /// information.
         /// </summary>
-        public Logger LogDebugMessage { get; set; }
+        public Logger? LogDebugMessage { get; set; }
 
         /// <summary>
         /// Invoked when the Dialogue needs to report an error.
         /// </summary>
-        public Logger LogErrorMessage { get; set; }
+        public Logger? LogErrorMessage { get; set; }
 
         /// <summary>The node that execution will start from.</summary>
         public const string DefaultStartNodeName = "Start";
@@ -580,7 +593,7 @@ namespace Yarn
         /// Gets or sets the <see cref="Yarn.LineHandler"/> that is called when
         /// a line is ready to be shown to the user.
         /// </summary>
-        public LineHandler LineHandler
+        public LineHandler? LineHandler
         {
             get => vm.LineHandler;
             set => vm.LineHandler = value;
@@ -597,7 +610,7 @@ namespace Yarn
         /// <see cref="OptionSet.Option"/> was selected by the user. If <see
         /// cref="SetSelectedOption"/> is not called, an exception is thrown.
         /// </remarks>
-        public OptionsHandler OptionsHandler
+        public OptionsHandler? OptionsHandler
         {
             get => vm.OptionsHandler;
             set => vm.OptionsHandler = value;
@@ -607,7 +620,7 @@ namespace Yarn
         /// Gets or sets the <see cref="Yarn.CommandHandler"/> that is called
         /// when a command is to be delivered to the game.
         /// </summary>
-        public CommandHandler CommandHandler
+        public CommandHandler? CommandHandler
         {
             get => vm.CommandHandler;
             set => vm.CommandHandler = value;
@@ -617,7 +630,7 @@ namespace Yarn
         /// Gets or sets the <see cref="Yarn.NodeStartHandler"/> that is called
         /// when a node is started.
         /// </summary>
-        public NodeStartHandler NodeStartHandler
+        public NodeStartHandler? NodeStartHandler
         {
             get => vm.NodeStartHandler;
             set => vm.NodeStartHandler = value;
@@ -627,7 +640,7 @@ namespace Yarn
         /// Gets or sets the <see cref="Yarn.NodeCompleteHandler"/> that is
         /// called when a node is complete.
         /// </summary>
-        public NodeCompleteHandler NodeCompleteHandler
+        public NodeCompleteHandler? NodeCompleteHandler
         {
             get => vm.NodeCompleteHandler;
             set => vm.NodeCompleteHandler = value;
@@ -637,7 +650,7 @@ namespace Yarn
         /// Gets or sets the <see cref="Yarn.DialogueCompleteHandler"/> that is
         /// called when the dialogue reaches its end.
         /// </summary>
-        public DialogueCompleteHandler DialogueCompleteHandler
+        public DialogueCompleteHandler? DialogueCompleteHandler
         {
             get => vm.DialogueCompleteHandler;
             set => vm.DialogueCompleteHandler = value;
@@ -648,7 +661,7 @@ namespace Yarn
         /// when the dialogue anticipates delivering some lines.
         /// </summary>
         /// <value></value>
-        public PrepareForLinesHandler PrepareForLinesHandler
+        public PrepareForLinesHandler? PrepareForLinesHandler
         {
             get => vm.PrepareForLinesHandler;
             set => vm.PrepareForLinesHandler = value;
@@ -657,7 +670,7 @@ namespace Yarn
         /// <summary>
         /// The virtual machine to use when running dialogue.
         /// </summary>
-        private VirtualMachine vm;
+        private readonly VirtualMachine vm;
 
         /// <summary>
         /// The virtual machine to use when evaluating smart variables.
@@ -667,7 +680,7 @@ namespace Yarn
         /// evaluating smart variables from modifying the evaluation state of
         /// dialogue.
         /// </remarks>
-        private VirtualMachine smartVariableVM;
+        private readonly VirtualMachine smartVariableVM;
 
         /// <summary>
         /// Gets the <see cref="Yarn.Library"/> that this Dialogue uses to
@@ -762,8 +775,8 @@ namespace Yarn
         /// running a node.
         /// </summary>
         /// <param name="startNode">The name of the node that will be run. The
-        /// node have been loaded by calling <see cref="SetProgram(Program)"/>
-        /// or <see cref="AddProgram(Program)"/>.</param>
+        /// node have been loaded by calling <see
+        /// cref="SetProgram(Program)"/>.</param>
         /// <remarks>
         /// <para>
         /// After this method is called, you call <see cref="Continue"/> to
@@ -873,11 +886,13 @@ namespace Yarn
         /// <summary>
         /// Gets the names of the nodes in the currently loaded Program.
         /// </summary>
+        /// <remarks>If no program is currently loaded, an empty collection is
+        /// returned.</remarks>
         public IEnumerable<string> NodeNames
         {
             get
             {
-                return this.Program.Nodes.Keys;
+                return this.Program?.Nodes.Keys ?? Array.Empty<string>();
             }
         }
 
@@ -886,7 +901,7 @@ namespace Yarn
         /// </summary>
         /// <remarks>If <see cref="Continue"/> has never been called, this value
         /// will be <see langword="null"/>.</remarks>
-        public string CurrentNode
+        public string? CurrentNode
         {
             get
             {
@@ -919,14 +934,14 @@ namespace Yarn
         /// need to test for that yourself.
         /// </para>
         /// </remarks>
-        public string GetStringIDForNode(string nodeName)
+        public string? GetStringIDForNode(string nodeName)
         {
-            if (this.Program.Nodes.Count == 0)
+            if (this.Program?.Nodes.Count == 0)
             {
                 this.LogErrorMessage?.Invoke("No nodes are loaded!");
                 return null;
             }
-            else if (this.Program.Nodes.ContainsKey(nodeName))
+            else if (this.Program?.Nodes.ContainsKey(nodeName) ?? false)
             {
                 return "line:" + nodeName;
             }
@@ -1068,9 +1083,9 @@ namespace Yarn
         /// Begins analysis of the <see cref="Program"/> by the <paramref name="context"/>
         /// </summary>
         /// <param name="context">The Context that performs the analysis</param>
-        public void Analyse(Analysis.Context context)
+        internal void Analyse(Analysis.Context context)
         {
-            if (context == null)
+            if (context == null || this.Program == null)
             {
                 // can't perform analysis on nothing
                 return;
@@ -1220,12 +1235,12 @@ namespace Yarn
                 // Register the in-built conversion functions
                 this.RegisterFunction("string", delegate (object v)
                 {
-                    return Convert.ToString(v, System.Globalization.CultureInfo.InvariantCulture);
+                    return Convert.ToString(v, System.Globalization.CultureInfo.CurrentCulture);
                 });
 
                 this.RegisterFunction("number", delegate (object v)
                 {
-                    return Convert.ToSingle(v, System.Globalization.CultureInfo.InvariantCulture);
+                    return Convert.ToSingle(v, System.Globalization.CultureInfo.CurrentCulture);
                 });
 
                 this.RegisterFunction("format_invariant", delegate (float v)
@@ -1235,7 +1250,7 @@ namespace Yarn
 
                 this.RegisterFunction("bool", delegate (object v)
                 {
-                    return Convert.ToBoolean(v);
+                    return Convert.ToBoolean(v, System.Globalization.CultureInfo.CurrentCulture);
                 });
 
                 // Register the built-in types.
@@ -1245,7 +1260,7 @@ namespace Yarn
 
                 // NOTE: This is part of a workaround for supporting 'EqualTo'
                 // in Enums. See note in TypeUtil.GetCanonicalNameForMethod.
-                this.RegisterMethods(new EnumType("Enum", null, null));
+                this.RegisterMethods(new EnumType("Enum", "default", new AnyType()));
 
                 // Register the built-in utility functions
 

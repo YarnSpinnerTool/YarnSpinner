@@ -14,7 +14,7 @@ namespace Yarn.Analysis
     internal class Diagnosis
     {
         public string message;
-        public string nodeName;
+        public string? nodeName;
         public int lineNumber;
         public int columnNumber;
 
@@ -26,7 +26,7 @@ namespace Yarn.Analysis
         }
         public Severity severity;
 
-        public Diagnosis(string message, Severity severity, string nodeName = null, int lineNumber = -1, int columnNumber = -1)
+        public Diagnosis(string message, Severity severity, string? nodeName = null, int lineNumber = -1, int columnNumber = -1)
         {
             this.message = message;
             this.nodeName = nodeName;
@@ -58,7 +58,7 @@ namespace Yarn.Analysis
                         contextLabel = "Note: ";
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        throw new InvalidOperationException($"Invalid severity {severity}");
                 }
             }
 
@@ -93,8 +93,8 @@ namespace Yarn.Analysis
 
     internal class Context
     {
-        IEnumerable<System.Type> _defaultAnalyserClasses;
-        internal IEnumerable<System.Type> defaultAnalyserClasses
+        IEnumerable<System.Type>? _defaultAnalyserClasses;
+        internal IEnumerable<System.Type> DefaultAnalyserClasses
         {
             get
             {
@@ -120,13 +120,13 @@ namespace Yarn.Analysis
             }
         }
 
-        List<CompiledProgramAnalyser> analysers;
+        readonly List<CompiledProgramAnalyser> analysers;
 
         public Context()
         {
             analysers = new List<CompiledProgramAnalyser>();
 
-            foreach (var analyserType in defaultAnalyserClasses)
+            foreach (var analyserType in DefaultAnalyserClasses)
             {
                 analysers.Add((CompiledProgramAnalyser)Activator.CreateInstance(analyserType));
             }
@@ -172,7 +172,7 @@ namespace Yarn.Analysis
 
     internal class VariableLister : CompiledProgramAnalyser
     {
-        HashSet<string> variables = new HashSet<string>();
+        readonly HashSet<string> variables = new HashSet<string>();
 
         public override void Diagnose(Yarn.Program program)
         {
@@ -215,8 +215,8 @@ namespace Yarn.Analysis
 
     internal class UnusedVariableChecker : CompiledProgramAnalyser
     {
-        HashSet<string> readVariables = new HashSet<string>();
-        HashSet<string> writtenVariables = new HashSet<string>();
+        readonly HashSet<string> readVariables = new HashSet<string>();
+        readonly HashSet<string> writtenVariables = new HashSet<string>();
 
         public override void Diagnose(Program program)
         {

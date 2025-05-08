@@ -9,7 +9,7 @@ namespace YarnLanguageServer.Handlers
 {
     internal class SemanticTokensHandler : SemanticTokensHandlerBase
     {
-        private Workspace workspace;
+        private readonly Workspace workspace;
 
         public SemanticTokensHandler(Workspace workspace)
         {

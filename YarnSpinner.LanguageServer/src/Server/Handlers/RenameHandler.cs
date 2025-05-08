@@ -9,7 +9,7 @@ namespace YarnLanguageServer.Handlers
 {
     internal class RenameHandler : IRenameHandler, IPrepareRenameHandler
     {
-        private Workspace workspace;
+        private readonly Workspace workspace;
 
         public RenameHandler(Workspace workspace)
         {

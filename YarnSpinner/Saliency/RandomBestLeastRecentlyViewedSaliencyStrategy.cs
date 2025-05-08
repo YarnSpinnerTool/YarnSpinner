@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+#nullable enable
+
 namespace Yarn.Saliency
 {
     /// <summary>
@@ -130,19 +132,20 @@ namespace Yarn.Saliency
         /// name="enumerable"/> contains no items.</exception>
         public static T RandomElement<T>(this IEnumerable<T> enumerable)
         {
-            var count = enumerable.Count();
+            var list = enumerable.ToList();
+            var count = list.Count;
             if (count <= 0)
             {
                 throw new ArgumentException($"Sequence is empty");
             }
             if (count == 1)
             {
-                return enumerable.Single();
+                return list[0];
             }
 #pragma warning disable CA5394 // System.Random is insecure
             var selection = random.Next(count);
 #pragma warning restore 5394
-            return enumerable.ElementAt(selection);
+            return list[selection];
         }
     }
 }

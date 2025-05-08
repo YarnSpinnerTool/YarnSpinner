@@ -12,7 +12,7 @@ namespace YarnLanguageServer.Handlers
 {
     internal class CodeActionHandler : ICodeActionHandler
     {
-        private Workspace workspace;
+        private readonly Workspace workspace;
 
         public CodeActionHandler(Workspace workspace)
         {

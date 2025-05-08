@@ -10,7 +10,7 @@ namespace Yarn.Compiler
     using System.Collections.Generic;
     using System.Linq;
 
-    public class FileCompilationResult
+    internal class FileCompilationResult
     {
         public List<Node> Nodes { get; internal set; } = new List<Node>();
 
@@ -144,11 +144,13 @@ namespace Yarn.Compiler
         /// </summary>
         public IReadOnlyCollection<IType> UserDefinedTypes { get; internal set; } = Array.Empty<IType>();
 
-        public string GetDescriptionForVariable(string variableName)
+        /// <inheritdoc/>
+        public string? GetDescriptionForVariable(string variableName)
         {
-            return this.Declarations.FirstOrDefault(d => d.Name == variableName)?.Description ?? "<unknown variable>";
+            return this.Declarations.FirstOrDefault(d => d.Name == variableName)?.Description;
         }
 
+        /// <inheritdoc/>
         public IReadOnlyDictionary<int, string> GetLabelsForNode(string node)
         {
             if (this.ProjectDebugInfo == null)
@@ -166,7 +168,8 @@ namespace Yarn.Compiler
             }
         }
 
-        public string GetStringForKey(string key)
+        /// <inheritdoc/>
+        public string? GetStringForKey(string key)
         {
             if (this.StringTable == null)
             {

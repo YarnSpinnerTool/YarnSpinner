@@ -9,7 +9,7 @@ namespace YarnLanguageServer.Handlers
 {
     internal class ConfigurationHandler : IDidChangeConfigurationHandler
     {
-        private Workspace workspace;
+        private readonly Workspace workspace;
 
         public ConfigurationHandler(Workspace workspace)
         {

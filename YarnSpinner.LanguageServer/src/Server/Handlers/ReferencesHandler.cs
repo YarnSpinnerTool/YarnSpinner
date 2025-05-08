@@ -12,7 +12,7 @@ namespace YarnLanguageServer.Handlers
 {
     internal class ReferencesHandler : IReferencesHandler
     {
-        private Workspace workspace;
+        private readonly Workspace workspace;
 
         public ReferencesHandler(Workspace workspace)
         {

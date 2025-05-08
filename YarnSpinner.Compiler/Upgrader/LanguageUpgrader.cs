@@ -9,12 +9,26 @@ namespace Yarn.Compiler.Upgrader
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// An upgrade job.
+    /// </summary>
     public struct UpgradeJob
     {
+        /// <summary>
+        /// The collection of files to upgrade.
+        /// </summary>
         public List<Yarn.Compiler.CompilationJob.File> Files;
 
+        /// <summary>
+        /// The type of the upgrade to perform.
+        /// </summary>
         public UpgradeType UpgradeType;
 
+        /// <summary>
+        /// Initialises a new instances of the UpgradeJob struct.
+        /// </summary>
+        /// <param name="upgradeType">The type of the upgrade.</param>
+        /// <param name="files">The files to upgrade.</param>
         public UpgradeJob(UpgradeType upgradeType, IEnumerable<CompilationJob.File> files)
         {
             this.Files = new List<CompilationJob.File>(files);
@@ -22,15 +36,21 @@ namespace Yarn.Compiler.Upgrader
         }
     }
 
+    /// <summary>
+    /// The result of an upgrade.
+    /// </summary>
     public struct UpgradeResult
     {
+        /// <summary>
+        /// The files produced as part of the upgrade.
+        /// </summary>
         public List<OutputFile> Files;
 
         /// <summary>
         /// Gets a collection containing all <see cref="Diagnostic"/>
         /// objects across all of the files in <see cref="Files"/>.
         /// </summary>
-        public IEnumerable<Diagnostic> Diagnostics => Files.SelectMany(f => f.Diagnostics);
+        public readonly IEnumerable<Diagnostic> Diagnostics => Files.SelectMany(f => f.Diagnostics);
 
         internal static UpgradeResult Merge(UpgradeResult a, UpgradeResult b)
         {
@@ -54,13 +74,36 @@ namespace Yarn.Compiler.Upgrader
             };
         }
 
+        /// <summary>
+        /// A file generated as part of an upgrade.
+        /// </summary>
         public struct OutputFile
         {
+            /// <summary>
+            /// The path of the file.
+            /// </summary>
             public string Path;
-            public IEnumerable<TextReplacement> Replacements;
-            public string OriginalSource;
-            public string UpgradedSource => LanguageUpgrader.ApplyReplacements(this.OriginalSource, this.Replacements);
 
+            /// <summary>
+            /// The list of replacements needed to be made in order to go from
+            /// <see cref="OriginalSource"/> to <see cref="UpgradedSource"/>.
+            /// </summary>
+            public IEnumerable<TextReplacement> Replacements;
+
+            /// <summary>
+            /// The original text of the file, prior to upgrades.
+            /// </summary>
+            public string OriginalSource;
+
+            /// <summary>
+            /// The upgraded text of the file.
+            /// </summary>
+            public readonly string UpgradedSource => LanguageUpgrader.ApplyReplacements(this.OriginalSource, this.Replacements);
+
+            /// <summary>
+            /// The diagnostics produced for this file as a result of the
+            /// upgrade process.
+            /// </summary>
             public IEnumerable<Diagnostic> Diagnostics;
 
             /// <summary>
@@ -75,7 +118,7 @@ namespace Yarn.Compiler.Upgrader
                 string path,
                 IEnumerable<TextReplacement> replacements,
                 string originalSource,
-                IEnumerable<Diagnostic> diagnostics = null)
+                IEnumerable<Diagnostic>? diagnostics = null)
             {
                 this.Path = path;
                 this.Replacements = replacements;
@@ -87,7 +130,7 @@ namespace Yarn.Compiler.Upgrader
             internal OutputFile(
                 string path,
                 string newContent,
-                IEnumerable<Diagnostic> diagnostics = null)
+                IEnumerable<Diagnostic>? diagnostics = null)
             {
                 this.Path = path;
                 this.OriginalSource = newContent;

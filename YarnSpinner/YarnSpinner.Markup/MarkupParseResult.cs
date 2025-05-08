@@ -37,19 +37,19 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
+    /// <seealso cref="LineParser.ParseString(string, string, bool, bool, bool)"/>
     public struct MarkupParseResult
     {
         /// <summary>
         /// The original text, with all parsed markers removed.
         /// </summary>
-        public string Text;
+        public string Text { get; }
 
         /// <summary>
         /// The list of <see cref="MarkupAttribute"/>s in this parse
         /// result.
         /// </summary>
-        public List<MarkupAttribute> Attributes;
+        public List<MarkupAttribute> Attributes { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MarkupParseResult"/> struct.
@@ -73,7 +73,7 @@ namespace Yarn.Markup
         /// <returns><see langword="true"/> if the <see
         /// cref="MarkupParseResult"/> contains an attribute with the
         /// specified name; otherwise, <see langword="false"/>.</returns>
-        public bool TryGetAttributeWithName(string name, out MarkupAttribute attribute)
+        public readonly bool TryGetAttributeWithName(string name, out MarkupAttribute attribute)
         {
             if (this.Attributes == null)
             {
@@ -118,7 +118,7 @@ namespace Yarn.Markup
         /// attribute's <see cref="MarkupAttribute.Position"/> and <see
         /// cref="MarkupAttribute.Length"/> properties describe a range of
         /// text outside the maximum range of <see cref="Text"/>.</throws>
-        public string TextForAttribute(MarkupAttribute attribute)
+        public readonly string TextForAttribute(MarkupAttribute attribute)
         {
             if (attribute.Length == 0)
             {
@@ -132,7 +132,7 @@ namespace Yarn.Markup
 
             if (this.Text.Length < attribute.Position + attribute.Length)
             {
-                throw new System.ArgumentOutOfRangeException($"Attribute represents a range not representable by this text. Does this {nameof(MarkupAttribute)} belong to this {nameof(MarkupParseResult)}?");
+                throw new System.ArgumentException($"Attribute represents a range not representable by this text. Does this {nameof(MarkupAttribute)} belong to this {nameof(MarkupParseResult)}?", nameof(attribute));
             }
 
             return this.Text.Substring(attribute.Position, attribute.Length);
@@ -193,7 +193,7 @@ namespace Yarn.Markup
         /// <returns>A new <see cref="MarkupParseResult"/> object, with the
         /// plain text modified and an updated collection of
         /// attributes.</returns>
-        public MarkupParseResult DeleteRange(MarkupAttribute attributeToDelete)
+        public readonly MarkupParseResult DeleteRange(MarkupAttribute attributeToDelete)
         {
             if (this.Attributes == null)
             {
@@ -320,10 +320,11 @@ namespace Yarn.Markup
     /// Represents a range of text in a marked-up string.
     /// </summary>
     /// <remarks>
-    /// You do not create instances of this struct yourself. It is created
-    /// by objects that can parse markup, such as <see cref="Dialogue"/>.
+    /// You do not create instances of this struct yourself. It is created by
+    /// objects that can parse markup, such as <see cref="LineParser"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
+    /// <seealso cref="LineParser.ParseString(string, string, bool, bool,
+    /// bool)"/>
     public struct MarkupAttribute
     {
         /// <summary>
@@ -377,7 +378,7 @@ namespace Yarn.Markup
         {
         }
 
-        public MarkupAttribute Shift(int shift)
+        internal readonly MarkupAttribute Shift(int shift)
         {
             List<MarkupProperty> propList = new List<MarkupProperty>();
             foreach (var property in this.Properties)
@@ -419,7 +420,7 @@ namespace Yarn.Markup
         internal int SourcePosition { get; private set; }
 
         /// <inheritdoc/>
-        public override string ToString()
+        public override readonly string ToString()
         {
             var sb = new System.Text.StringBuilder();
             sb.Append($"[{this.Name}] - {this.Position}-{this.Position + this.Length} ({this.Length}");
@@ -437,7 +438,7 @@ namespace Yarn.Markup
         // these methods and the ones for MarkupAttributeMarker are identical
         // don't have time for v3 release but later we should merge these two types
         // they are too similar to be different
-        private bool TryGetPropertyInternal(string name, out MarkupValue result)
+        private readonly bool TryGetPropertyInternal(string name, out MarkupValue result)
         {
             foreach (var prop in this.Properties)
             {
@@ -451,6 +452,17 @@ namespace Yarn.Markup
             result = default;
             return false;
         }
+
+        /// <summary>
+        /// Gets a property named <paramref name="name"/> from this
+        /// attribute, if present.
+        /// </summary>
+        /// <param name="name">The name of the property.</param>
+        /// <param name="result">On return, the property's value if found, or
+        /// zero if not.</param>
+        /// <returns><see langword="true"/> if a property named <paramref
+        /// name="name"/> was found; <see langword="false"/>
+        /// otherwise.</returns>
         public bool TryGetProperty(string name, out MarkupValue result)
         {
             var worked = TryGetPropertyInternal(name, out var value);
@@ -458,6 +470,17 @@ namespace Yarn.Markup
             result = value;
             return worked;
         }
+
+        /// <summary>
+        /// Gets a float property named <paramref name="name"/> from this
+        /// attribute, if present.
+        /// </summary>
+        /// <param name="name">The name of the property.</param>
+        /// <param name="result">On return, the property's value if found, or
+        /// zero if not.</param>
+        /// <returns><see langword="true"/> if a property named <paramref
+        /// name="name"/> was found; <see langword="false"/>
+        /// otherwise.</returns>
         public bool TryGetProperty(string name, out float result)
         {
             if (TryGetPropertyInternal(name, out var property))
@@ -465,21 +488,32 @@ namespace Yarn.Markup
                 switch (property.Type)
                 {
                     case MarkupValueType.Float:
-                    {
-                        result = property.FloatValue;
-                        return true;
-                    }
+                        {
+                            result = property.FloatValue;
+                            return true;
+                        }
                     case MarkupValueType.Integer:
-                    {
-                        result = property.IntegerValue;
-                        return true;
-                    }
+                        {
+                            result = property.IntegerValue;
+                            return true;
+                        }
                 }
             }
 
             result = default;
             return false;
         }
+
+        /// <summary>
+        /// Gets an integer property named <paramref name="name"/> from this
+        /// attribute, if present.
+        /// </summary>
+        /// <param name="name">The name of the property.</param>
+        /// <param name="result">On return, the property's value if found, or
+        /// zero if not.</param>
+        /// <returns><see langword="true"/> if a property named <paramref
+        /// name="name"/> was found; <see langword="false"/>
+        /// otherwise.</returns>
         public bool TryGetProperty(string name, out int result)
         {
             if (TryGetPropertyInternal(name, out var property))
@@ -487,16 +521,28 @@ namespace Yarn.Markup
                 switch (property.Type)
                 {
                     case MarkupValueType.Integer:
-                    {
-                        result = property.IntegerValue;
-                        return true;
-                    }
+                        {
+                            result = property.IntegerValue;
+                            return true;
+                        }
                 }
             }
 
             result = default;
             return false;
         }
+
+
+        /// <summary>
+        /// Gets a string property named <paramref name="name"/> from this
+        /// attribute, if present.
+        /// </summary>
+        /// <param name="name">The name of the property.</param>
+        /// <param name="result">On return, the property's value if found, or
+        /// <see langword="null"/> if not.</param>
+        /// <returns><see langword="true"/> if a property named <paramref
+        /// name="name"/> was found; <see langword="false"/>
+        /// otherwise.</returns>
         public bool TryGetProperty(string name, out string? result)
         {
             if (TryGetPropertyInternal(name, out var property))
@@ -504,16 +550,28 @@ namespace Yarn.Markup
                 switch (property.Type)
                 {
                     case MarkupValueType.String:
-                    {
-                        result = property.StringValue;
-                        return true;
-                    }
+                        {
+                            result = property.StringValue;
+                            return true;
+                        }
                 }
             }
-            
+
             result = default;
             return false;
         }
+
+
+        /// <summary>
+        /// Gets a boolean property named <paramref name="name"/> from this
+        /// attribute, if present.
+        /// </summary>
+        /// <param name="name">The name of the property.</param>
+        /// <param name="result">On return, the property's value if found, or
+        /// <see langword="false"/> if not.</param>
+        /// <returns><see langword="true"/> if a property named <paramref
+        /// name="name"/> was found; <see langword="false"/>
+        /// otherwise.</returns>
         public bool TryGetProperty(string name, out bool result)
         {
             if (TryGetPropertyInternal(name, out var property))
@@ -521,13 +579,13 @@ namespace Yarn.Markup
                 switch (property.Type)
                 {
                     case MarkupValueType.Bool:
-                    {
-                        result = property.BoolValue;
-                        return true;
-                    }
+                        {
+                            result = property.BoolValue;
+                            return true;
+                        }
                 }
             }
-            
+
             result = default;
             return false;
         }
@@ -539,10 +597,11 @@ namespace Yarn.Markup
     /// A property associated with a <see cref="MarkupAttribute"/>.
     /// </summary>
     /// <remarks>
-    /// You do not create instances of this struct yourself. It is created
-    /// by objects that can parse markup, such as <see cref="Dialogue"/>.
+    /// You do not create instances of this struct yourself. It is created by
+    /// objects that can parse markup, such as <see cref="LineParser"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
+    /// <seealso cref="LineParser.ParseString(string, string, bool, bool,
+    /// bool)"/>
 #pragma warning disable CA1815
     public struct MarkupProperty
     {
@@ -613,9 +672,10 @@ namespace Yarn.Markup
     /// </summary>
     /// <remarks>
     /// You do not create instances of this struct yourself. It is created
-    /// by objects that can parse markup, such as <see cref="Dialogue"/>.
+    /// by objects that can parse markup, such as <see cref="LineParser"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
+    /// <seealso cref="LineParser.ParseString(string, string, bool, bool,
+    /// bool)"/>
     public struct MarkupValue
     {
         /// <summary>Gets the integer value of this property.</summary>
@@ -687,10 +747,11 @@ namespace Yarn.Markup
     /// </summary>
     /// <remarks>
     /// You do not create instances of this struct yourself. It is created
-    /// by objects that can parse markup, such as <see cref="Dialogue"/>.
+    /// by objects that can parse markup, such as <see cref="LineParser"/>.
     /// </remarks>
-    /// <seealso cref="Dialogue.ParseMarkup(string,string)"/>
-    public struct MarkupAttributeMarker
+    /// <seealso cref="LineParser.ParseString(string, string, bool, bool,
+    /// bool)"/>
+    internal struct MarkupAttributeMarker
     {
         /// <summary>
         /// Initializes a new instance of the <see
@@ -739,7 +800,7 @@ namespace Yarn.Markup
         /// </summary>
         internal int SourcePosition { get; set; }
 
-        private bool TryGetPropertyInternal(string name, out MarkupValue result)
+        private readonly bool TryGetPropertyInternal(string name, out MarkupValue result)
         {
             foreach (var prop in this.Properties)
             {
@@ -765,7 +826,7 @@ namespace Yarn.Markup
         /// <returns><see langword="true"/> if the <see
         /// cref="MarkupAttributeMarker"/> contains an element with the
         /// specified key; otherwise, <see langword="false"/>.</returns>
-        public bool TryGetProperty(string name, out MarkupValue result)
+        public readonly bool TryGetProperty(string name, out MarkupValue result)
         {
             foreach (var prop in this.Properties)
             {
@@ -779,76 +840,76 @@ namespace Yarn.Markup
             result = default;
             return false;
         }
-        public bool TryGetProperty(string name, out float result)
+        public readonly bool TryGetProperty(string name, out float result)
         {
             if (TryGetPropertyInternal(name, out var property))
             {
                 switch (property.Type)
                 {
                     case MarkupValueType.Float:
-                    {
-                        result = property.FloatValue;
-                        return true;
-                    }
+                        {
+                            result = property.FloatValue;
+                            return true;
+                        }
                     case MarkupValueType.Integer:
-                    {
-                        result = property.IntegerValue;
-                        return true;
-                    }
+                        {
+                            result = property.IntegerValue;
+                            return true;
+                        }
                 }
             }
 
             result = default;
             return false;
         }
-        public bool TryGetProperty(string name, out int result)
+        public readonly bool TryGetProperty(string name, out int result)
         {
             if (TryGetPropertyInternal(name, out var property))
             {
                 switch (property.Type)
                 {
                     case MarkupValueType.Integer:
-                    {
-                        result = property.IntegerValue;
-                        return true;
-                    }
+                        {
+                            result = property.IntegerValue;
+                            return true;
+                        }
                 }
             }
 
             result = default;
             return false;
         }
-        public bool TryGetProperty(string name, out string? result)
+        public readonly bool TryGetProperty(string name, out string? result)
         {
             if (TryGetPropertyInternal(name, out var property))
             {
                 switch (property.Type)
                 {
                     case MarkupValueType.String:
-                    {
-                        result = property.StringValue;
-                        return true;
-                    }
+                        {
+                            result = property.StringValue;
+                            return true;
+                        }
                 }
             }
-            
+
             result = default;
             return false;
         }
-        public bool TryGetProperty(string name, out bool result)
+        public readonly bool TryGetProperty(string name, out bool result)
         {
             if (TryGetPropertyInternal(name, out var property))
             {
                 switch (property.Type)
                 {
                     case MarkupValueType.Bool:
-                    {
-                        result = property.BoolValue;
-                        return true;
-                    }
+                        {
+                            result = property.BoolValue;
+                            return true;
+                        }
                 }
             }
-            
+
             result = default;
             return false;
         }

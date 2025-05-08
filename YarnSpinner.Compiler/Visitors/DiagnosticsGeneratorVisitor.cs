@@ -11,7 +11,7 @@ namespace Yarn.Compiler
 
         private YarnSpinnerParser.NodeContext? currentNodeContext;
         private string? currentNodeName;
-        private string fileName;
+        private readonly string fileName;
 
         /// <summary>
         /// Gets the collection of <see cref="Diagnostic"/> objects

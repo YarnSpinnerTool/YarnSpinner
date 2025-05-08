@@ -10,7 +10,7 @@ namespace YarnLanguageServer.Handlers
 {
     internal class FileOperationsHandler : IDidChangeWatchedFilesHandler
     {
-        private Workspace workspace;
+        private readonly Workspace workspace;
 
         public FileOperationsHandler(Workspace workspace)
         {

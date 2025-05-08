@@ -58,9 +58,9 @@ namespace Yarn.Compiler
                 knownTypes.AddRange(compilationJob.TypeDeclarations.OfType<TypeBase>());
             }
 
-            if (compilationJob.VariableDeclarations != null)
+            if (compilationJob.Declarations != null)
             {
-                declarations.AddRange(compilationJob.VariableDeclarations);
+                declarations.AddRange(compilationJob.Declarations);
             }
 
             var diagnostics = new List<Diagnostic>();
@@ -168,7 +168,7 @@ namespace Yarn.Compiler
 
 
             }
-            
+
             // Ensure that all nodes names in this compilation are unique. Node
             // name uniqueness is important for several processes, so we do this
             // check here.
@@ -848,9 +848,12 @@ namespace Yarn.Compiler
             foreach (var entry in empties)
             {
                 var title = entry.Node.NodeTitle;
-                var d = new Diagnostic(entry.File.Name, entry.Node, $"Node \"{title}\" is empty and will not be included in the compiled output.", Diagnostic.DiagnosticSeverity.Warning);
+                var d = new Diagnostic(entry.File.Name, entry.Node, $"Node \"{title ?? "(missing title)"}\" is empty and will not be included in the compiled output.", Diagnostic.DiagnosticSeverity.Warning);
                 diagnostics.Add(d);
-                emptyNodes.Add(title);
+                if (title != null)
+                {
+                    emptyNodes.Add(title);
+                }
             }
             return emptyNodes;
         }

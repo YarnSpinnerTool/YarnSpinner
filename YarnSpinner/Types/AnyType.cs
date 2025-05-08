@@ -33,8 +33,6 @@ namespace Yarn
         /// <inheritdoc/>
         public override MethodCollection Methods => new Dictionary<string, System.Delegate>();
 
-        public IReadOnlyDictionary<string, IType> Members => new Dictionary<string, Yarn.IType>();
-
         internal override IConvertible DefaultValue => throw new InvalidOperationException("The Any type does not have a default value.");
     }
 }

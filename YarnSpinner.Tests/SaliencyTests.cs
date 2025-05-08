@@ -322,7 +322,7 @@ This node is not part of a node group.
 
         }
 
-                [Fact]
+        [Fact]
         public void TestNodeGroupWithSparseSubtitles()
         {
             string source = @"

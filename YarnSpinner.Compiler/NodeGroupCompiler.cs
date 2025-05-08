@@ -12,7 +12,7 @@ namespace Yarn.Compiler
     using System.Linq;
     using static Instruction.Types;
 
-    public class NodeGroupCompiler : ICodeEmitter
+    internal class NodeGroupCompiler : ICodeEmitter
     {
         /// <summary>
         /// Initializes a new instance of the NodeGroupCompiler class.
@@ -23,6 +23,8 @@ namespace Yarn.Compiler
         /// variable declarations found during compilation.</param>
         /// <param name="nodeContexts">The collection of node group parser
         /// contexts that all belong to this node group.</param>
+        /// <param name="compiledNodes">The collection of existing compiled
+        /// nodes in the compilation.</param>
         public NodeGroupCompiler(string nodeGroupName, IDictionary<string, Declaration> variableDeclarations, IEnumerable<YarnSpinnerParser.NodeContext> nodeContexts, List<Node> compiledNodes)
         {
             this.NodeGroupName = nodeGroupName;

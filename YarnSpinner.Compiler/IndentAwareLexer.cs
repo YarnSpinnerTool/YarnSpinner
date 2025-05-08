@@ -64,7 +64,7 @@ namespace Yarn.Compiler
         /// A stack keeping track of the levels of indentations we have
         /// seen so far that are relevant to shortcuts.
         /// </summary>
-        private Stack<int> unbalancedIndents = new Stack<int>();
+        private readonly Stack<int> unbalancedIndents = new Stack<int>();
 
         /// <summary>
         /// Keeps track of the last indentation encounterd.
@@ -143,7 +143,7 @@ namespace Yarn.Compiler
         /// </summary>
         public IEnumerable<LexerWarning> Warnings { get => this.warnings; }
 
-        private List<IToken> tokens = new List<IToken>();
+        private readonly List<IToken> tokens = new List<IToken>();
         private void PushToken(IToken token)
         {
             tokens.Add(token);

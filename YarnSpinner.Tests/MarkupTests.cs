@@ -57,8 +57,8 @@ namespace YarnSpinner.Tests
         [InlineData("this is a line with [markup markup = 1]a single markup[/markup] inside of it", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.NumberValue, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "this is a line with ", "[", "markup", "markup", "=", "1", "]", "a single markup", "[", "/", "markup", "]", " inside of it" })]
         [InlineData("this is a line with [interpolated markup = {$property} /] inside", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.InterpolatedValue, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, }, new string[] { "this is a line with ", "[", "interpolated", "markup", "=", "{$property}", "/", "]", " inside" })]
         [InlineData("á [a]S[/a]", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.CloseMarker, }, new string[] { "á ", "[", "a", "]", "S", "[", "/", "a", "]" })]
-        [InlineData("start [markup=-1 /] end", new LineParser.LexerTokenTypes[] {LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.NumberValue, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text}, new string[] {"start ", "[", "markup", "=", "-1", "/", "]", " end"})]
-        [InlineData("start [markup=-1.0 /] end", new LineParser.LexerTokenTypes[] {LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.NumberValue, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text}, new string[] {"start ", "[", "markup", "=", "-1.0", "/", "]", " end"})]
+        [InlineData("start [markup=-1 /] end", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.NumberValue, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "start ", "[", "markup", "=", "-1", "/", "]", " end" })]
+        [InlineData("start [markup=-1.0 /] end", new LineParser.LexerTokenTypes[] { LineParser.LexerTokenTypes.Text, LineParser.LexerTokenTypes.OpenMarker, LineParser.LexerTokenTypes.Identifier, LineParser.LexerTokenTypes.Equals, LineParser.LexerTokenTypes.NumberValue, LineParser.LexerTokenTypes.CloseSlash, LineParser.LexerTokenTypes.CloseMarker, LineParser.LexerTokenTypes.Text }, new string[] { "start ", "[", "markup", "=", "-1.0", "/", "]", " end" })]
         void TestLexerGeneratesCorrectTokens(string line, LineParser.LexerTokenTypes[] types, string[] texts)
         {
             var lineParser = new LineParser();
@@ -74,7 +74,7 @@ namespace YarnSpinner.Tests
             tokens.Should().HaveCount(types.Length);
             for (int i = 0; i < types.Length; i++)
             {
-                tokens[i].type.Should().Be(types[i]);
+                tokens[i].Type.Should().Be(types[i]);
             }
 
             // we should have the same number and values of text as the tokens express in their range
@@ -82,7 +82,7 @@ namespace YarnSpinner.Tests
             for (int i = 0; i < texts.Length; i++)
             {
                 var token = tokens[i];
-                var text = line.Substring(token.start, token.range);
+                var text = line.Substring(token.Start, token.Range);
                 var comparison = texts[i].Normalize();
                 text.Should().BeEquivalentTo(comparison);
             }
@@ -130,7 +130,7 @@ namespace YarnSpinner.Tests
             tokens.Should().HaveCount(types.Length);
             for (int i = 0; i < types.Length; i++)
             {
-                tokens[i].type.Should().Be(types[i]);
+                tokens[i].Type.Should().Be(types[i]);
             }
         }
 
@@ -689,7 +689,7 @@ namespace YarnSpinner.Tests
             diagnostics.Should().HaveCount(0);
 
             builder.ToString().Should().Be(comparison);
-            lineParser.SquishSplitAttributes(attributes);
+            LineParser.SquishSplitAttributes(attributes);
 
             attributes.Should().HaveCount(attributeCount);
         }
@@ -752,7 +752,7 @@ namespace YarnSpinner.Tests
             diagnostics.Should().HaveCount(0);
 
             builder.ToString().Should().Be(en_comparison);
-            lineParser.SquishSplitAttributes(attributes);
+            LineParser.SquishSplitAttributes(attributes);
 
             attributes.Should().HaveCount(1);
 
@@ -764,7 +764,7 @@ namespace YarnSpinner.Tests
             diagnostics.Should().HaveCount(0);
 
             builder.ToString().Should().Be(fr_comparison);
-            lineParser.SquishSplitAttributes(attributes);
+            LineParser.SquishSplitAttributes(attributes);
 
             attributes.Should().HaveCount(1);
         }
@@ -789,7 +789,7 @@ namespace YarnSpinner.Tests
             diagnostics.Should().HaveCount(0);
 
             builder.ToString().Should().Be(comparison);
-            lineParser.SquishSplitAttributes(attributes);
+            LineParser.SquishSplitAttributes(attributes);
 
             attributes.Should().HaveCount(expectedAttributes);
             ranges.Should().HaveCount(expectedAttributes);
@@ -1289,9 +1289,9 @@ namespace YarnSpinner.Tests
         }
     }
 
-    public class BBCodeChevronReplacer: IAttributeMarkerProcessor
+    public class BBCodeChevronReplacer : IAttributeMarkerProcessor
     {
-        private string tag;
+        private readonly string tag;
         public BBCodeChevronReplacer(string markerName)
         {
             tag = markerName;
@@ -1306,7 +1306,7 @@ namespace YarnSpinner.Tests
                 return diagnostics;
             }
 
-            childBuilder.Insert(0,$"<{tag}>");
+            childBuilder.Insert(0, $"<{tag}>");
             childBuilder.Append($"</{tag}>");
             return diagnostics;
         }

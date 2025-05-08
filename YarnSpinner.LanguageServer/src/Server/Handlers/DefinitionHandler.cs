@@ -10,7 +10,7 @@ namespace YarnLanguageServer.Handlers
 {
     internal class DefinitionHandler : IDefinitionHandler
     {
-        private Workspace workspace;
+        private readonly Workspace workspace;
 
         public DefinitionHandler(Workspace workspace)
         {

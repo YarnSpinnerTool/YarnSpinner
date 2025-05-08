@@ -149,7 +149,7 @@ namespace YarnLanguageServer
 
     public class CSVStringWriter : ISpreadsheetWriter
     {
-        private string[] columns;
+        private readonly string[] columns;
 
         private MemoryStream memory;
         private StreamWriter stream;
@@ -213,7 +213,7 @@ namespace YarnLanguageServer
         private int columnIndex = 1;
         private IXLWorksheet sheet;
         private XLWorkbook wb;
-        private string[] columns;
+        private readonly string[] columns;
 
         public ExcelStringWriter(string[] columns)
         {

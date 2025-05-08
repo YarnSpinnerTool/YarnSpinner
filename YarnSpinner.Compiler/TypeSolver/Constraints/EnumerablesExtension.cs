@@ -5,8 +5,18 @@ using System.Linq;
 
 namespace TypeChecker
 {
+    /// <summary>
+    /// Contains extension methods for working with <see cref="IEnumerable{T}"/>
+    /// types.
+    /// </summary>
     public static class EnumerablesExtension
     {
+        /// <summary>
+        /// Gets the Cartesian product of 2 or more sequences.
+        /// </summary>
+        /// <typeparam name="T">The type of the values in the sequences.</typeparam>
+        /// <param name="sequences">The sequences to combine.</param>
+        /// <returns>The Cartesian product of the sequences.</returns>
         public static IEnumerable<IEnumerable<T>> CartesianProduct<T>
                 (this IEnumerable<IEnumerable<T>> sequences)
         {

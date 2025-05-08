@@ -17,7 +17,7 @@ namespace Yarn.Compiler
 
         internal struct CompilationContext
         {
-            internal Library Library;
+            internal Library? Library;
             internal FileParseResult FileParseResult;
             internal HashSet<string> TrackingNodes;
             internal Dictionary<string, Declaration> VariableDeclarations;
@@ -26,8 +26,6 @@ namespace Yarn.Compiler
         }
 
         private FileCompilationResult CompilationResult { get; set; }
-
-        private int labelCount = 0;
 
         /// <summary>
         /// Gets the current node to which instructions are being added.
@@ -60,7 +58,7 @@ namespace Yarn.Compiler
         /// <remarks>
         /// This is supplied as part of a <see cref="CompilationJob"/>.
         /// </remarks>
-        internal Library Library { get; set; }
+        internal Library? Library { get; set; }
 
         NodeDebugInfo? ICodeEmitter.CurrentNodeDebugInfo => this.CurrentNodeDebugInfo;
 

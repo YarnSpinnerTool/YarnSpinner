@@ -13,7 +13,7 @@ namespace YarnLanguageServer.Handlers
 {
     internal class TextDocumentHandler : TextDocumentSyncHandlerBase
     {
-        private Workspace workspace;
+        private readonly Workspace workspace;
 
         public TextDocumentHandler(Workspace workspace)
         {

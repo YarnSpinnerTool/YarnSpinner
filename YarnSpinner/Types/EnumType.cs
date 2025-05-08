@@ -4,16 +4,25 @@ namespace Yarn
     using System.Collections.Generic;
     using MethodCollection = System.Collections.Generic.IReadOnlyDictionary<string, System.Delegate>;
 
+    /// <summary>
+    /// The base type for all enumeration types.
+    /// </summary>
     public class EnumBase : TypeBase
     {
+        /// <summary>
+        /// Initialises a new instance of the <see cref="EnumBase"/> class.
+        /// </summary>
         public EnumBase() : base(null)
         {
         }
 
+        /// <inheritdoc/>
         public override string Name => "Enum";
 
+        /// <inheritdoc/>
         public override IType? Parent => Types.Any;
 
+        /// <inheritdoc/>
         public override string Description => "Enum";
 
         internal override IConvertible DefaultValue => throw new InvalidOperationException();

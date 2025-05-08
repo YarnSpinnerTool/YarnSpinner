@@ -145,6 +145,8 @@ namespace Yarn.Compiler
         /// cref="TypeConstraint"/> objects. During type checking, this
         /// collection will be added to if a type constraint fails to resolve by
         /// the end of a file.</param>
+        /// <param name="cancellationToken">A token used to indicate that type
+        /// checking should be cancelled.</param>
         public TypeCheckerListener(string sourceFileName, CommonTokenStream tokens, List<Declaration> knownDeclarations, List<TypeBase> knownTypes, Substitution typeSolution, HashSet<TypeConstraint> failingTypeConstraints, CancellationToken cancellationToken) : base(cancellationToken)
         {
             this.sourceFileName = sourceFileName;
@@ -213,7 +215,7 @@ namespace Yarn.Compiler
             declarationLookup.Remove(declaration.Name);
         }
 
-        private Dictionary<string, Declaration> declarationLookup = new Dictionary<string, Declaration>();
+        private readonly Dictionary<string, Declaration> declarationLookup = new Dictionary<string, Declaration>();
 
         private void AddDiagnostic(ParserRuleContext context, string message, Diagnostic.DiagnosticSeverity severity = Diagnostic.DiagnosticSeverity.Error)
         {

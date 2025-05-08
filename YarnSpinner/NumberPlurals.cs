@@ -1928,7 +1928,7 @@ namespace CLDRPlurals
         {
             string text = number.ToString(System.Globalization.CultureInfo.InvariantCulture);
             string text2 = (text.IndexOf('.') < 0) ? "" : text.Split('.')[1];
-            if (text2 == "")
+            if (string.IsNullOrEmpty(text2))
             {
                 return 0;
             }

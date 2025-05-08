@@ -276,7 +276,7 @@ namespace Yarn.Compiler
 
             private readonly CommonTokenStream TokenStream;
 
-            private TokenStreamRewriter rewriter;
+            private readonly TokenStreamRewriter rewriter;
 
             /// <summary>
             /// Initializes a new instance of the <see
@@ -413,6 +413,8 @@ namespace Yarn.Compiler
         /// entered.
         /// </summary>
         /// <param name="nodes">The nodes to get string blocks for.</param>
+        /// <param name="projectDebugInfo">An object containing debugging
+        /// information for the project.</param>
         /// <returns>A collection of runs of lines.</returns>
         public static List<List<string>> ExtractStringBlocks(IEnumerable<Node> nodes, ProjectDebugInfo projectDebugInfo)
         {
@@ -671,6 +673,9 @@ namespace Yarn.Compiler
         }
     }
 
+    /// <summary>
+    /// A node for representation in a visual graph.
+    /// </summary>
     public struct GraphingNode
     {
         /// <summary>

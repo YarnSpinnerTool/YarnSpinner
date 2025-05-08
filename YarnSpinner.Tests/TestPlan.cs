@@ -300,8 +300,8 @@ namespace YarnSpinner.Tests
 
     public class TestPlanBuilder
     {
-        private TestPlan testPlan;
-        private TestPlan.Run currentRun;
+        private readonly TestPlan testPlan;
+        private readonly TestPlan.Run currentRun;
 
         public TestPlanBuilder()
         {

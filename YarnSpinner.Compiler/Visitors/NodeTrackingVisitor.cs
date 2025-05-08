@@ -8,8 +8,8 @@ namespace Yarn.Compiler
 
     class NodeTrackingVisitor : YarnSpinnerParserBaseVisitor<string?>
     {
-        HashSet<string> TrackingNode;
-        HashSet<string> NeverVisitNodes;
+        readonly HashSet<string> TrackingNode;
+        readonly HashSet<string> NeverVisitNodes;
 
         public NodeTrackingVisitor(HashSet<string> ExistingTrackedNodes, HashSet<string> ExistingBlockedNodes)
         {

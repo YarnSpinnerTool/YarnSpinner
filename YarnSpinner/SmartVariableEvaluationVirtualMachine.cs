@@ -10,7 +10,7 @@ namespace Yarn
     /// variables.
     /// </summary>
     /// <remarks>
-    /// This class implements a subset of the <see cref="Instruction.Opcode"/>
+    /// This class implements a subset of the <see cref="Instruction"/>
     /// operations, and is designed for evaluating smart variable implementation
     /// nodes.
     /// </remarks>
@@ -51,6 +51,11 @@ namespace Yarn
             if (library is null)
             {
                 throw new ArgumentNullException(nameof(library));
+            }
+
+            if (variableAccess.Program is null)
+            {
+                throw new InvalidOperationException($"{nameof(variableAccess.Program)} cannot be null");
             }
 
             if (string.IsNullOrEmpty(name))
@@ -132,7 +137,8 @@ namespace Yarn
             )
         {
             // Retrieve the program from the variable access.
-            var program = variableAccess.Program;
+            var program = variableAccess.Program
+                ?? throw new InvalidOperationException($"{nameof(variableAccess.Program)} cannot be null");
 
             // Check if the specified node group exists in the program.
             if (program.Nodes.ContainsKey(nodeGroupName) == false)

@@ -34,7 +34,7 @@ namespace Yarn
         /// </summary>
         internal static IEnumerable<IType> AllBuiltinTypes => _allTypes;
 
-        private static List<IType> _allTypes = new List<IType> { String, Number, Boolean, Any, Error };
+        private static readonly List<IType> _allTypes = new List<IType> { String, Number, Boolean, Any, Error };
 
         /// <summary>
         /// Gets a dictionary that maps CLR types to their corresponding

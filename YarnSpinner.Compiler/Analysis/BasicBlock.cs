@@ -130,7 +130,7 @@ namespace Yarn.Compiler
         /// </summary>
         /// <param name="nodeName">The name of the destination node.</param>
         /// <param name="condition">The condition under which <paramref
-        /// name="descendant"/> will be run.</param>
+        /// name="nodeName"/> will be jumped to.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref
         /// name="nodeName"/> is <see langword="null"/>.</exception>
         public void AddDestination(string nodeName, Condition condition)
@@ -143,6 +143,17 @@ namespace Yarn.Compiler
             destinations.Add(new NodeDestination(nodeName, condition));
         }
 
+        /// <summary>
+        /// Adds a new destination to this block that represents a detour to a
+        /// node.
+        /// </summary>
+        /// <param name="nodeName">The name of the destination node.</param>
+        /// <param name="condition">The condition under which <paramref
+        /// name="nodeName"/> will be jumped to.</param>
+        /// <param name="returnToBlock">The name of the block that will be
+        /// returned to when the detour returns.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref
+        /// name="nodeName"/> is <see langword="null"/>.</exception>
         public void AddDetourDestination(string nodeName, Condition condition, BasicBlock returnToBlock)
         {
             if (string.IsNullOrEmpty(nodeName))
@@ -184,9 +195,9 @@ namespace Yarn.Compiler
             descendant.ancestors.Add(this);
         }
 
-        private HashSet<BasicBlock> ancestors = new HashSet<BasicBlock>();
+        private readonly HashSet<BasicBlock> ancestors = new HashSet<BasicBlock>();
 
-        private HashSet<Destination> destinations = new HashSet<Destination>();
+        private readonly HashSet<Destination> destinations = new HashSet<Destination>();
 
         /// <summary>
         /// A destination represents a <see cref="BasicBlock"/> or node that may
@@ -198,6 +209,14 @@ namespace Yarn.Compiler
         /// </remarks>
         public abstract class Destination
         {
+            /// <summary>
+            /// Initialises a new instance of the <see cref="Destination"/>
+            /// class.
+            /// </summary>
+            /// <param name="condition">The condition under which the
+            /// destination will be run.</param>
+            /// <param name="returnTo">An optional block that may be returned to
+            /// later in the program execution.</param>
             protected Destination(Condition condition, BasicBlock? returnTo = null)
             {
                 this.Condition = condition;
@@ -218,6 +237,7 @@ namespace Yarn.Compiler
             /// </summary>
             public BasicBlock? ReturnTo { get; set; }
 
+            /// <inheritdoc/>
             public override string? ToString()
             {
                 string result;
@@ -252,8 +272,21 @@ namespace Yarn.Compiler
 
         }
 
+        /// <summary>
+        /// A destination that represents a jump or detour to a node.
+        /// </summary>
         public class NodeDestination : Destination
         {
+            /// <summary>
+            /// Initialises a new instance of the <see cref="NodeDestination"/>
+            /// class.
+            /// </summary>
+            /// <param name="condition">The condition under which the
+            /// destination will be run.</param>
+            /// <param name="returnTo">An optional block that may be returned to
+            /// later in the program execution.</param>
+            /// <param name="nodeName">The name of the node to jump or detour
+            /// to.</param>
             public NodeDestination(string nodeName, Condition condition, BasicBlock? returnTo = null) : base(condition, returnTo)
             {
                 this.NodeName = nodeName;
@@ -262,42 +295,76 @@ namespace Yarn.Compiler
             /// <summary>
             /// The name of the node that this destination refers to.
             /// </summary>
-            /// <remarks>This value is only valid when <see cref="Type"/> is
-            /// <see cref="DestinationType.Node"/>.</remarks>
             public string NodeName { get; set; }
         }
 
+        /// <summary>
+        /// A destination that represents a jump or detour to any possible node.
+        /// </summary>
         public class AnyNodeDestination : Destination
         {
+            /// <summary>
+            /// Initialises a new instance of the <see cref="AnyNodeDestination"/>
+            /// class.
+            /// </summary>
+            /// <param name="returnTo">An optional block that may be returned to
+            /// later in the program execution.</param>
             public AnyNodeDestination(BasicBlock? returnTo = null) : base(Condition.DirectJump, returnTo) { }
         }
 
+        /// <summary>
+        /// A destination that represents a jump to a specific block.
+        /// </summary>
         public class BlockDestination : Destination
         {
             /// <summary>
             /// The block that this destination refers to.
             /// </summary>
-            /// <remarks>This value is only valid when <see cref="Type"/> is
-            /// <see cref="DestinationType.Block"/>.</remarks>
             public BasicBlock Block { get; set; }
 
+            /// <summary>
+            /// Gets the index of the first instruction of the block in its
+            /// containing node.
+            /// </summary>
             public int DestinationInstructionIndex { get => Block.FirstInstructionIndex; }
 
+            /// <summary>
+            /// Initialises a new instance of the <see
+            /// cref="BlockDestination"/> class.
+            /// </summary>
+            /// <param name="block">The block that is jumped to.</param>
+            /// <param name="condition">The condition under which the
+            /// destination is taken.</param>
             public BlockDestination(BasicBlock block, Condition condition) : base(condition)
             {
                 this.Block = block;
             }
         }
 
+        /// <summary>
+        /// A destination that represents an option being selected.
+        /// </summary>
         public class OptionDestination : BlockDestination
         {
+            /// <summary>
+            /// Initialises a new instance of the <see
+            /// cref="OptionDestination"/> class.
+            /// </summary>
+            /// <param name="optionLineID">The ID of the line associated with
+            /// this option.</param>
+            /// <param name="block">The block that is jumped to when this option
+            /// is selected.</param>
             public OptionDestination(string? optionLineID, BasicBlock block) : base(block, Condition.Option)
             {
                 this.OptionLineID = optionLineID;
             }
 
+            /// <summary>
+            /// Gets or sets the ID of the line associated with this option.
+            /// </summary>
             public string? OptionLineID { get; set; }
 
+            /// <inheritdoc/>
             public override string ToString()
             {
                 return this.OptionLineID ?? "(option)";
@@ -417,6 +484,14 @@ namespace Yarn.Compiler
             /// The string table ID of the line that will be shown to the player.
             /// </summary>
             public string LineID;
+
+            /// <summary>
+            /// Initialises a new instance of the <see cref="LineElement"/>
+            /// class.
+            /// </summary>
+            /// <param name="lineID">The ID of the line that this element
+            /// represents.</param>
+            public LineElement(string lineID) => this.LineID = lineID;
         }
 
         /// <summary>
@@ -445,6 +520,17 @@ namespace Yarn.Compiler
             /// The collection of options that will be delivered to the player.
             /// </summary>
             public IEnumerable<Option> Options;
+
+            /// <summary>
+            /// Initialises a new instance of the <see cref="OptionsElement"/>
+            /// class.
+            /// </summary>
+            /// <param name="options">The options that will be delivered to the
+            /// player.</param>
+            public OptionsElement(IEnumerable<Option> options)
+            {
+                this.Options = options;
+            }
         }
 
         /// <summary>
@@ -456,6 +542,16 @@ namespace Yarn.Compiler
             /// The text of the command.
             /// </summary>
             public string CommandText;
+
+            /// <summary>
+            /// Initialises a new instance of the <see cref="CommandElement"/>
+            /// class.
+            /// </summary>
+            /// <param name="commandText">The text of the command.</param>
+            public CommandElement(string commandText)
+            {
+                this.CommandText = commandText;
+            }
         }
 
         /// <summary>
@@ -478,8 +574,11 @@ namespace Yarn.Compiler
         /// To tell the difference between the different kinds of content, use
         /// the <see langword="is"/> operator to check the type of each item:
         /// <code>
-        /// foreach (var item in block.PlayerVisibleContent) { if (item is
-        /// LineElement line) { // Do something with line } }
+        /// foreach (var item in block.PlayerVisibleContent) { 
+        ///     if (item is LineElement line) {
+        ///          // Do something with line 
+        ///     } 
+        /// }
         /// </code>
         /// </example>
         /// </remarks>
@@ -493,17 +592,11 @@ namespace Yarn.Compiler
                     switch (instruction.InstructionTypeCase)
                     {
                         case Instruction.InstructionTypeOneofCase.RunLine:
-                            yield return new LineElement
-                            {
-                                LineID = instruction.RunLine.LineID,
-                            };
+                            yield return new LineElement(instruction.RunLine.LineID);
                             break;
 
                         case Instruction.InstructionTypeOneofCase.RunCommand:
-                            yield return new CommandElement
-                            {
-                                CommandText = instruction.RunCommand.CommandText,
-                            };
+                            yield return new CommandElement(instruction.RunCommand.CommandText);
                             break;
 
                         case Instruction.InstructionTypeOneofCase.AddOption:
@@ -516,14 +609,13 @@ namespace Yarn.Compiler
                             break;
 
                         case Instruction.InstructionTypeOneofCase.ShowOptions:
-                            yield return new OptionsElement
-                            {
-                                Options = accumulatedOptions.Select(o => new OptionsElement.Option
+                            yield return new OptionsElement(
+                                accumulatedOptions.Select(o => new OptionsElement.Option
                                 {
                                     Destination = o.Destination,
                                     LineID = o.LineID,
-                                })
-                            };
+                                }));
+
                             accumulatedOptions.Clear();
                             break;
                     }

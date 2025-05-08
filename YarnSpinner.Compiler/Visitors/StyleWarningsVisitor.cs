@@ -58,7 +58,7 @@ namespace Yarn.Compiler
             return base.VisitStatement(context);
         }
 
-        private static int[] OmitTokenTypes = new[] {
+        private static readonly int[] OmitTokenTypes = new[] {
             YarnSpinnerLexer.INDENT,
             YarnSpinnerLexer.DEDENT,
             YarnSpinnerLexer.BLANK_LINE_FOLLOWING_OPTION,

@@ -45,7 +45,7 @@ namespace Yarn
         /// name="type"/> is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentException">Thrown if methodName is <see
         /// langword="null"/> or empty.</exception>
-        internal static TypeBase FindImplementingTypeForMethod(IType type, string methodName)
+        internal static TypeBase? FindImplementingTypeForMethod(IType type, string methodName)
         {
             if (type is null)
             {
@@ -114,6 +114,8 @@ namespace Yarn
             return $"{implementingType.Name}.{methodName}";
         }
 
+        private static readonly char[] separator = new[] { '.' };
+
         internal static void GetNamesFromCanonicalName(string canonicalName, out string typeName, out string methodName)
         {
             if (string.IsNullOrEmpty(canonicalName))
@@ -121,7 +123,7 @@ namespace Yarn
                 throw new System.ArgumentException($"'{nameof(canonicalName)}' cannot be null or empty.", nameof(canonicalName));
             }
 
-            var components = canonicalName.Split(new[] { '.' }, 2);
+            var components = canonicalName.Split(separator, 2);
 
             if (components.Length != 2)
             {
