@@ -471,7 +471,7 @@ namespace Yarn.Markup
         /// <returns><see langword="true"/> if a property named <paramref
         /// name="name"/> was found; <see langword="false"/>
         /// otherwise.</returns>
-        public bool TryGetProperty(string name, out MarkupValue result)
+        public readonly bool TryGetProperty(string name, out MarkupValue result)
         {
             var worked = TryGetPropertyInternal(name, out var value);
 
@@ -522,7 +522,7 @@ namespace Yarn.Markup
         /// <returns><see langword="true"/> if a property named <paramref
         /// name="name"/> was found; <see langword="false"/>
         /// otherwise.</returns>
-        public bool TryGetProperty(string name, out int result)
+        public readonly bool TryGetProperty(string name, out int result)
         {
             if (TryGetPropertyInternal(name, out var property))
             {
@@ -551,7 +551,7 @@ namespace Yarn.Markup
         /// <returns><see langword="true"/> if a property named <paramref
         /// name="name"/> was found; <see langword="false"/>
         /// otherwise.</returns>
-        public bool TryGetProperty(string name, out string? result)
+        public readonly bool TryGetProperty(string name, out string? result)
         {
             if (TryGetPropertyInternal(name, out var property))
             {
@@ -580,7 +580,7 @@ namespace Yarn.Markup
         /// <returns><see langword="true"/> if a property named <paramref
         /// name="name"/> was found; <see langword="false"/>
         /// otherwise.</returns>
-        public bool TryGetProperty(string name, out bool result)
+        public readonly bool TryGetProperty(string name, out bool result)
         {
             if (TryGetPropertyInternal(name, out var property))
             {
