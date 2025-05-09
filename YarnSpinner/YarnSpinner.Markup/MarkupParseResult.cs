@@ -28,6 +28,7 @@ namespace Yarn.Markup
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
 #pragma warning disable CA1815
     /// <summary>
@@ -551,7 +552,7 @@ namespace Yarn.Markup
         /// <returns><see langword="true"/> if a property named <paramref
         /// name="name"/> was found; <see langword="false"/>
         /// otherwise.</returns>
-        public readonly bool TryGetProperty(string name, out string? result)
+        public readonly bool TryGetProperty(string name, [NotNullWhen(true)] out string? result)
         {
             if (TryGetPropertyInternal(name, out var property))
             {
