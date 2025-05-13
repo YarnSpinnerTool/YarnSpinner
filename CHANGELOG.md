@@ -27,6 +27,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `LineParser` now correctly detects the first `:` in a line for the implicit character name
 - The `select` marker now converts its value using the invariant culture, not the user's current culture. (This is realistically not a huge change, since values passed to `select` are either integers or non-user-facing strings, but it avoids a potential bug.)
 - The language version for `YarnSpinner` and `YarnSpinner.Compiler` has changed from C# 8 to C# 9.
+- Language Server: Keyword highlighting for built-in syntax like `jump` and `enum` is now more consistent.
 
 ### Removed
 

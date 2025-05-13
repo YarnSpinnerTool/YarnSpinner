@@ -164,6 +164,40 @@ namespace YarnLanguageServer
             return base.VisitElse_if_clause(context);
         }
 
+        public override bool VisitOnce_statement([NotNull] YarnSpinnerParser.Once_statementContext context)
+        {
+
+            AddTokenType(context.once_primary_clause()?.COMMAND_ONCE(), SemanticTokenType.Keyword);
+            AddTokenType(context.once_primary_clause()?.COMMAND_IF(), SemanticTokenType.Keyword);
+
+            AddTokenType(context.once_alternate_clause()?.COMMAND_ELSE(), SemanticTokenType.Keyword);
+
+            AddTokenType(context.COMMAND_ENDONCE(), SemanticTokenType.Keyword);
+
+            return base.VisitOnce_statement(context);
+        }
+
+        public override bool VisitEnum_statement([NotNull] YarnSpinnerParser.Enum_statementContext context)
+        {
+            AddTokenType(context.COMMAND_ENUM(), SemanticTokenType.Keyword);
+            AddTokenType(context.COMMAND_ENDENUM(), SemanticTokenType.Keyword);
+
+            return base.VisitEnum_statement(context);
+        }
+
+        public override bool VisitEnum_case_statement([NotNull] YarnSpinnerParser.Enum_case_statementContext context)
+        {
+            AddTokenType(context.COMMAND_CASE(), SemanticTokenType.Keyword);
+            AddTokenType(context.FUNC_ID(), SemanticTokenType.EnumMember);
+            return base.VisitEnum_case_statement(context);
+        }
+
+        public override bool VisitReturn_statement([NotNull] YarnSpinnerParser.Return_statementContext context)
+        {
+            AddTokenType(context.COMMAND_RETURN(), SemanticTokenType.Keyword);
+            return base.VisitReturn_statement(context);
+        }
+
         public override bool VisitValueString([NotNull] YarnSpinnerParser.ValueStringContext context)
         {
             AddTokenType(context.Start, context.Stop, SemanticTokenType.String);
@@ -232,7 +266,7 @@ namespace YarnLanguageServer
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
             AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword); // >>
 
-            AddTokenType(context.COMMAND_DETOUR(), SemanticTokenType.Function); // detour
+            AddTokenType(context.COMMAND_DETOUR(), SemanticTokenType.Keyword); // detour
             AddTokenType(context.destination, SemanticTokenType.Class); // node_name
 
             return base.VisitDetourToNodeName(context);
@@ -243,7 +277,7 @@ namespace YarnLanguageServer
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
             AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword); // >>
 
-            AddTokenType(context.COMMAND_JUMP(), SemanticTokenType.Function); // jump
+            AddTokenType(context.COMMAND_JUMP(), SemanticTokenType.Keyword); // jump
             AddTokenType(context.destination, SemanticTokenType.Class); // node_name
 
             return base.VisitJumpToNodeName(context);
@@ -254,7 +288,7 @@ namespace YarnLanguageServer
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
             AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword); // >>
 
-            AddTokenType(context.COMMAND_DETOUR(), SemanticTokenType.Function); // detour
+            AddTokenType(context.COMMAND_DETOUR(), SemanticTokenType.Keyword); // detour
 
             return base.VisitDetourToExpression(context);
         }
@@ -264,7 +298,7 @@ namespace YarnLanguageServer
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
             AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword); // >>
 
-            AddTokenType(context.COMMAND_JUMP(), SemanticTokenType.Function); // jump
+            AddTokenType(context.COMMAND_JUMP(), SemanticTokenType.Keyword); // jump
 
             return base.VisitJumpToExpression(context);
         }
