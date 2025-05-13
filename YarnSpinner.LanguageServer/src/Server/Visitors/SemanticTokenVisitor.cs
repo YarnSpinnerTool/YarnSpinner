@@ -308,18 +308,23 @@ namespace YarnLanguageServer
         #endregion Visitor Method Overrides
 
         #region Utility Functions
-        private void AddTokenType(IParseTree start, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        private void AddTokenType(IParseTree? start, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
         {
+            if (start == null)
+            {
+                return;
+            }
+
             AddTokenType(start, start, tokenType, tokenModifier);
         }
 
-        private void AddTokenType(IParseTree start, IParseTree stop, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        private void AddTokenType(IParseTree? start, IParseTree stop, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
         {
             // Note only works for terminal nodes
             AddTokenType(start?.Payload as IToken, stop?.Payload as IToken, tokenType, tokenModifier);
         }
 
-        private void AddTokenType(IToken start, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        private void AddTokenType(IToken? start, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
         {
             AddTokenType(start, start, tokenType, tokenModifier);
         }
