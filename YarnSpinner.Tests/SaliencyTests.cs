@@ -84,6 +84,18 @@ expected: 1
 <<stop>>
 ===
 title: NodeGroup
+when: true
+expected: 1
+---
+<<stop>>
+===
+title: NodeGroup
+when: !false
+expected: 1
+---
+<<stop>>
+===
+title: NodeGroup
 when: $condition is true
 expected: 1
 ---

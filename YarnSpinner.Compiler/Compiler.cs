@@ -1374,19 +1374,19 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
-        /// Gets the total number of boolean operations - ands, ors, nots, and
+        /// Gets the total number of binary boolean operations - ands, ors, and
         /// xors - present in an expression and its sub-expressions.
         /// </summary>
         /// <param name="context">An expression.</param>
-        /// <returns>The total number of boolean operations in the
+        /// <returns>The total number of binary boolean operations in the
         /// expression.</returns>
         private static int GetBooleanOperatorCountInExpression(ParserRuleContext context)
         {
             var subtreeCount = 0;
 
-            if (context is ExpAndOrXorContext || context is ExpNotContext)
+            if (context is ExpAndOrXorContext)
             {
-                // This expression is a boolean expression.
+                // This expression is a binary boolean expression.
                 subtreeCount += 1;
             }
 
