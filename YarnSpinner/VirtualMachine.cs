@@ -239,6 +239,7 @@ namespace Yarn
         {
             this.Library = library;
             this.VariableStorage = storage;
+            this.ContentSaliencyStrategy = new RandomBestLeastRecentlyViewedSaliencyStrategy(storage);
             state = new State();
         }
 
@@ -323,7 +324,7 @@ namespace Yarn
             }
         }
 
-        public IContentSaliencyStrategy ContentSaliencyStrategy { get; internal set; } = new FirstSaliencyStrategy();
+        public IContentSaliencyStrategy ContentSaliencyStrategy { get; internal set; }
 
         internal Node? currentNode;
 
