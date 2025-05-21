@@ -63,11 +63,19 @@ namespace Yarn
             return hash;
         }
 
-
-
         public bool Equals(QuestGraphEdgeDescriptor other)
         {
             return this.FromNode == other.FromNode && this.ToNode == other.ToNode && this.Requirement == other.Requirement;
+        }
+
+        public static bool operator ==(QuestGraphEdgeDescriptor left, QuestGraphEdgeDescriptor right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(QuestGraphEdgeDescriptor left, QuestGraphEdgeDescriptor right)
+        {
+            return !(left == right);
         }
     }
 }

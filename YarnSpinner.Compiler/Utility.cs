@@ -11,8 +11,8 @@ namespace Yarn.Compiler
     using System.Globalization;
     using System.Linq;
     using System.Text;
-    using Yarn.Utility;
     using System.Text.Json;
+    using Yarn.Utility;
 
     /// <summary>
     /// Utility methods for working with line tags.
