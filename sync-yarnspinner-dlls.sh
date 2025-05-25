@@ -6,11 +6,11 @@
 # Usage: ./sync-yarnspinner-dlls.sh {PATH TO YARNSPINNER-UNITY PROJECT}
 
 set -e
-pushd $1
 
-YARNSPINNER_FOLDER=$(readlink -f $1/../YarnSpinner)
-
+YARNSPINNER_FOLDER=$(readlink -f "$(dirname $0)")
 YARNSPINNER_DLLS_DIR=$1/Packages/dev.yarnspinner.unity/Runtime/DLLs/
+
+pushd $1
 
 if [ ! -d $YARNSPINNER_DLLS_DIR ]; then
     echo "Can't copy Yarn Spinner DLLS to $YARNSPINNER_DLLS_DIR because this directory does not exist"
