@@ -133,11 +133,11 @@ namespace Yarn.Compiler
 
                     variableJSON["id"] = edgeData.VariableName;
                     variableJSON["type"] = "bool";
-                    variableJSON["source"] = edgeData.VariableCreation == QuestGraphEdge.VariableType.Implicit ? "CreatedInEditor" : "ImportedFromYarnScript";
+                    variableJSON["source"] = edgeData.VariableCreation == QuestGraphEdgeDescriptor.VariableType.Implicit ? "CreatedInEditor" : "ImportedFromYarnScript";
 
                     SetValueIfNotExists(variableJSON, "description", edgeData.Description ?? "(no description)");
 
-                    if (edgeData.VariableCreation == QuestGraphEdge.VariableType.Implicit)
+                    if (edgeData.VariableCreation == QuestGraphEdgeDescriptor.VariableType.Implicit)
                     {
                         // Create a rule that this variable is only true if its
                         // source node is reachable (i.e. the only way that it

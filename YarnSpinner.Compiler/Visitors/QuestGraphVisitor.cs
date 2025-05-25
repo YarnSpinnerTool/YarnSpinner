@@ -9,15 +9,10 @@ namespace Yarn.Compiler
     // TODO: when-condition for links referencing completion state for nodes
     // (i.e. <<q1:a -- q1:b when q2:c>> means 'q2:c' is completed
 
+
     public struct QuestGraphEdge
     {
         public QuestGraphEdgeDescriptor EdgeDescriptor { get; private set; }
-        public enum VariableType
-        {
-            Implicit,
-            External,
-            None,
-        }
 
         public QuestGraphEdge(QuestGraphEdgeDescriptor descriptor)
         {
@@ -77,59 +72,9 @@ namespace Yarn.Compiler
             };
         }
 
+        public readonly QuestGraphEdgeDescriptor.VariableType VariableCreation => this.EdgeDescriptor.VariableCreation;
 
-        public VariableType VariableCreation
-        {
-            get
-            {
-                // If an edge explicitly has a condition, its condition is
-                // external
-                if (!string.IsNullOrEmpty(this.Requirement))
-                {
-                    return VariableType.External;
-                }
-
-                // By default, we don't add a variable condition on links from a
-                // step to a task, so its variable type is None
-                if (this.FromNode.Type == QuestGraphNodeDescriptor.NodeType.Step
-                    && this.ToNode.Type == QuestGraphNodeDescriptor.NodeType.Task
-                    && this.Requirement == null)
-                {
-                    return VariableType.None;
-                }
-
-                // Otherwise, it implicitly creates a variable
-                return VariableType.Implicit;
-            }
-        }
-
-        public string? VariableName
-        {
-            get
-            {
-                switch (this.VariableCreation)
-                {
-                    case VariableType.Implicit:
-                        if (string.IsNullOrEmpty(this.Description) == false)
-                        {
-                            return "$" + this.Description!.Replace(" ", "_");
-                        }
-                        else
-                        {
-                            return $"${this.FromNode.Quest}{this.FromNode.Name}_{this.ToNode.Quest}{this.ToNode.Name}";
-                        }
-
-                    case VariableType.External:
-                        return this.VariableContext?.VAR_ID().GetText() ?? throw new System.InvalidOperationException("Variable type is external but variable context is null");
-
-                    case VariableType.None:
-                    default:
-                        return null;
-
-                }
-
-            }
-        }
+        public readonly string? VariableName => this.EdgeDescriptor.VariableName;
 
         public string? File { get; internal set; }
 
@@ -259,7 +204,7 @@ namespace Yarn.Compiler
             var variableName = edge.VariableName;
             if (variableName != null)
             {
-                if (edge.VariableCreation == QuestGraphEdge.VariableType.Implicit)
+                if (edge.VariableCreation == QuestGraphEdgeDescriptor.VariableType.Implicit)
                 {
                     // Record that executing this command should set the
                     // connection's variable to true

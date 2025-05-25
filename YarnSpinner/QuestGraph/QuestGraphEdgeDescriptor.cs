@@ -3,9 +3,18 @@ using System.Text.RegularExpressions;
 
 namespace Yarn
 {
-
+    [System.Serializable]
     public struct QuestGraphEdgeDescriptor : IEquatable<QuestGraphEdgeDescriptor>
     {
+
+        public enum VariableType
+        {
+            Implicit,
+            External,
+            None,
+        }
+
+
         public QuestGraphEdgeDescriptor(QuestGraphNodeDescriptor fromNode, QuestGraphNodeDescriptor toNode, string? requirement, string? description)
         {
             this.FromNode = fromNode;
@@ -20,7 +29,7 @@ namespace Yarn
         public string? Description { get; }
 
         // matches "quest A -- B [when C]"
-        private static readonly Regex regex = new Regex(@"^quest\s\s*(.*?)\s*--\s*(.*?)(?:\s+when\s+(.*?))?$");
+        private static readonly Regex regex = new Regex(@"^quest\s+(.*?)\s*--\s*(.*?)(?:\s+when\s+(.*?))?$");
 
         public static bool CanParse(string input) => regex.IsMatch(input);
 
@@ -42,6 +51,58 @@ namespace Yarn
             }
 
             return new QuestGraphEdgeDescriptor(from, to, requirement, description);
+        }
+
+        public VariableType VariableCreation
+        {
+            get
+            {
+                // If an edge explicitly has a condition, its condition is
+                // external
+                if (!string.IsNullOrEmpty(this.Requirement))
+                {
+                    return VariableType.External;
+                }
+
+                // By default, we don't add a variable condition on links from a
+                // step to a task, so its variable type is None
+                if (this.FromNode.Type == QuestGraphNodeDescriptor.NodeType.Step
+                    && this.ToNode.Type == QuestGraphNodeDescriptor.NodeType.Task
+                    && string.IsNullOrEmpty(this.Requirement))
+                {
+                    return VariableType.None;
+                }
+
+                // Otherwise, it implicitly creates a variable
+                return VariableType.Implicit;
+            }
+        }
+
+        public string? VariableName
+        {
+            get
+            {
+                switch (this.VariableCreation)
+                {
+                    case QuestGraphEdgeDescriptor.VariableType.Implicit:
+                        if (string.IsNullOrEmpty(this.Description) == false)
+                        {
+                            return "$" + this.Description!.Replace(" ", "_");
+                        }
+                        else
+                        {
+                            return $"${this.FromNode.Quest}{this.FromNode.Name}_{this.ToNode.Quest}{this.ToNode.Name}";
+                        }
+
+                    case QuestGraphEdgeDescriptor.VariableType.External:
+                        return this.Requirement ?? throw new System.InvalidOperationException("Variable type is external but variable name is null");
+
+                    case QuestGraphEdgeDescriptor.VariableType.None:
+                    default:
+                        return null;
+
+                }
+            }
         }
 
         public override int GetHashCode()
