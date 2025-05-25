@@ -183,6 +183,17 @@ namespace Yarn
             }
         }
 
+        /// <summary>
+        /// Gets the name of the smart variable that can be used to fetch
+        /// current value of the specified property of a quest node.
+        /// </summary>
+        /// <param name="property">The property to get a smart variable name for.</param>
+        /// <returns>The name of the smart variable.</returns>
+        public string GetSmartVariableForState(QuestNodeStateProperty property)
+        {
+            return $"$Quest_{Quest}_{Name}_{property}";
+        }
+
 
         /// <inheritdoc/>
         public readonly bool Equals(QuestGraphNodeDescriptor other)
