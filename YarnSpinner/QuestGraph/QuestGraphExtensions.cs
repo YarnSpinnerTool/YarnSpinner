@@ -5,16 +5,17 @@ using Yarn;
 
 namespace Yarn
 {
+    public enum QuestNodeStateProperty
+    {
+        Complete, Reachable, NoLongerNeeded, Active
+    }
+
     /// <summary>
     /// Contains methods for working with <see cref="Dialogue"/> objects and
     /// quest graphs.
     /// </summary>
     public static class QuestGraphExtensions
     {
-        private enum QuestNodeProperty
-        {
-            Complete, Reachable, NoLongerNeeded, Active
-        }
 
         /// <summary>
         /// Registers functions for querying the state of quest graph nodes into
@@ -32,32 +33,32 @@ namespace Yarn
 
             dialogue.Library.RegisterFunction("is_complete", delegate (string questNodeName)
             {
-                return GetQuestNodeState(dialogue, questNodeName, QuestNodeProperty.Complete);
+                return GetQuestNodeState(dialogue, questNodeName, QuestNodeStateProperty.Complete);
             });
             dialogue.Library.RegisterFunction("is_active", delegate (string questNodeName)
             {
-                return GetQuestNodeState(dialogue, questNodeName, QuestNodeProperty.Active);
+                return GetQuestNodeState(dialogue, questNodeName, QuestNodeStateProperty.Active);
             });
             dialogue.Library.RegisterFunction("is_reachable", delegate (string questNodeName)
             {
-                return GetQuestNodeState(dialogue, questNodeName, QuestNodeProperty.Reachable);
+                return GetQuestNodeState(dialogue, questNodeName, QuestNodeStateProperty.Reachable);
             });
             dialogue.Library.RegisterFunction("is_no_longer_needed", delegate (string questNodeName)
             {
-                return GetQuestNodeState(dialogue, questNodeName, QuestNodeProperty.NoLongerNeeded);
+                return GetQuestNodeState(dialogue, questNodeName, QuestNodeStateProperty.NoLongerNeeded);
             });
         }
 
-        private static bool GetQuestNodeState(Dialogue dialogue, string questNodeName, QuestNodeProperty property)
+        private static bool GetQuestNodeState(Dialogue dialogue, string questNodeName, QuestNodeStateProperty property)
         {
             var node = new QuestGraphNodeDescriptor(questNodeName);
 
             string stateType = property switch
             {
-                QuestNodeProperty.Complete => "Complete",
-                QuestNodeProperty.Reachable => "Reachable",
-                QuestNodeProperty.NoLongerNeeded => "NoLongerNeeded",
-                QuestNodeProperty.Active => "Active",
+                QuestNodeStateProperty.Complete => "Complete",
+                QuestNodeStateProperty.Reachable => "Reachable",
+                QuestNodeStateProperty.NoLongerNeeded => "NoLongerNeeded",
+                QuestNodeStateProperty.Active => "Active",
                 _ => throw new ArgumentOutOfRangeException(nameof(property)),
             };
 
