@@ -171,7 +171,10 @@ Mayor: you gotta go deal with this dragon!
             // When
 
             // Then
-            result.QuestGraphEdges.Should().HaveCount(2);
+            result.QuestGraphEdges.Should().HaveCount(2, "there are 2 distinct edges");
+            result.Program!.Nodes["Start"].Instructions
+                .Where(i => i.InstructionTypeCase == Instruction.InstructionTypeOneofCase.StoreVariable)
+                .Should().HaveCount(3, "there are 3 quest edge transitions");
         }
 
         [Fact]
