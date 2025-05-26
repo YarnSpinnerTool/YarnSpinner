@@ -85,6 +85,7 @@ namespace Yarn.Compiler
                 // Jump over this line if the line's condition is false.
                 this.compiler.Emit(
                     context.line_condition().Start,
+                    context.line_condition().Stop,
                     jumpIfConditionFalseInstruction = new Instruction
                     {
                         JumpIfFalse = new JumpIfFalseInstruction { Destination = -1 }
@@ -99,6 +100,7 @@ namespace Yarn.Compiler
                 // appear again.
                 this.compiler.Emit(
                     once.COMMAND_ONCE().Symbol,
+                    once.COMMAND_ONCE().Symbol,
                     new Instruction { PushBool = new PushBoolInstruction { Value = true } },
                     new Instruction { StoreVariable = new StoreVariableInstruction { VariableName = Compiler.GetContentViewedVariableName(lineID) } },
                     new Instruction { Pop = new PopInstruction { } }
@@ -111,7 +113,8 @@ namespace Yarn.Compiler
 
             // Run the line.
             this.compiler.Emit(
-                context.Start,
+                context.line_formatted_text().Start,
+                context.line_formatted_text().Stop,
                 new Instruction
                 {
                     RunLine = new RunLineInstruction { LineID = lineID, SubstitutionCount = expressionCount }
@@ -132,6 +135,7 @@ namespace Yarn.Compiler
                 // stack. Pop the bool off the stack.
                 this.compiler.Emit(
                     context.line_condition().Start,
+                    context.line_condition().Stop,
                     new Instruction { Pop = new PopInstruction { } }
                 );
             }
@@ -173,6 +177,7 @@ namespace Yarn.Compiler
 
             this.compiler.Emit(
                 context.Start,
+                context.Stop,
                 new Instruction { StoreVariable = new StoreVariableInstruction { VariableName = variableName } },
                 new Instruction { Pop = new PopInstruction { } }
             );
@@ -224,6 +229,7 @@ namespace Yarn.Compiler
                     // execution
                     this.compiler.Emit(
                         context.command_formatted_text().Start,
+                        context.command_formatted_text().Stop,
                         new Instruction { Stop = new StopInstruction { } }
                     );
 
@@ -231,6 +237,7 @@ namespace Yarn.Compiler
                 default:
                     this.compiler.Emit(
                         context.command_formatted_text().Start,
+                        context.command_formatted_text().Stop,
                         new Instruction
                         {
                             RunCommand = new RunCommandInstruction
@@ -258,6 +265,7 @@ namespace Yarn.Compiler
 
             this.compiler.Emit(
                 functionContext.Start,
+                functionContext.Stop,
                 // push the number of parameters onto the stack
                 new Instruction { PushFloat = new PushFloatInstruction { Value = parameters.Length } },
                 // then call the function itself
@@ -331,6 +339,7 @@ namespace Yarn.Compiler
 
                 this.compiler.Emit(
                     expression.Start,
+                    expression.Stop,
                     jumpToEndOfClause = new Instruction { JumpIfFalse = new JumpIfFalseInstruction { Destination = -1 } }
                 );
             }
@@ -342,6 +351,7 @@ namespace Yarn.Compiler
             }
 
             this.compiler.Emit(
+                clauseContext.Stop,
                 clauseContext.Stop,
                 jumpToEndOfIfStatement = new Instruction { JumpTo = new JumpToInstruction { Destination = -1 } }
             );
@@ -360,6 +370,7 @@ namespace Yarn.Compiler
                 }
 
                 this.compiler.Emit(
+                    clauseContext.Stop,
                     clauseContext.Stop,
                     new Instruction { Pop = new PopInstruction { } }
                 );
@@ -412,6 +423,7 @@ namespace Yarn.Compiler
                 // And add this option to the list.
                 this.compiler.Emit(
                     shortcut.line_statement().Start,
+                    shortcut.line_statement().Stop,
                     addOptionInstruction = new Instruction
                     {
                         AddOption = new AddOptionInstruction
@@ -429,6 +441,7 @@ namespace Yarn.Compiler
             }
 
             this.compiler.Emit(
+                context.Start,
                 context.Stop,
                 // All of the options that we intend to show are now ready to
                 // go. Show them.
@@ -456,6 +469,7 @@ namespace Yarn.Compiler
                     // option to true, so that we don't see it again.
                     this.compiler.Emit(
                         once.COMMAND_ONCE().Symbol,
+                        once.COMMAND_ONCE().Symbol,
                         new Instruction
                         {
                             PushBool = new PushBoolInstruction { Value = true }
@@ -479,6 +493,7 @@ namespace Yarn.Compiler
                 // Jump to the end of this shortcut option group.
                 this.compiler.Emit(
                     shortcut.Stop,
+                    shortcut.Stop,
                     jumpToEnd = new Instruction { JumpTo = new JumpToInstruction { Destination = -1 } }
                 );
 
@@ -497,6 +512,7 @@ namespace Yarn.Compiler
             }
 
             this.compiler.Emit(
+                context.Stop,
                 context.Stop,
                 new Instruction { Pop = new PopInstruction { } }
             );
@@ -530,6 +546,7 @@ namespace Yarn.Compiler
 
                     this.compiler.Emit(
                         condition.COMMAND_ONCE().Symbol,
+                        condition.COMMAND_ONCE().Symbol,
                         new Instruction
                         {
                             PushVariable = new PushVariableInstruction
@@ -560,6 +577,7 @@ namespace Yarn.Compiler
 
                         this.compiler.Emit(
                             expr.Start,
+                            expr.Stop,
                             new Instruction
                             {
                                 PushFloat = new PushFloatInstruction
@@ -651,13 +669,18 @@ namespace Yarn.Compiler
                 {
                     // There is no expression; push 'true' onto the stack and
                     // note that it had a complexity of zero
-                    this.compiler.Emit(lineStatement.Start, new Instruction { PushBool = new PushBoolInstruction { Value = true } });
+                    this.compiler.Emit(
+                        lineStatement.Start,
+                        lineStatement.Stop,
+                        new Instruction { PushBool = new PushBoolInstruction { Value = true } }
+                    );
                     conditionCount = 0;
                 }
 
                 // Add this line group item
                 this.compiler.Emit(
                     lineStatement.Start,
+                    lineStatement.Stop,
                     addCandidateInstruction = new Instruction
                     {
                         AddSaliencyCandidate = new AddSaliencyCandidateInstruction
@@ -678,13 +701,17 @@ namespace Yarn.Compiler
             Instruction noContentAvailableJump;
 
             // We've added all of our candidates; now query which one to jump to
-            this.compiler.Emit(context.Start,
+            this.compiler.Emit(
+                context.Start,
+                context.Stop,
                 new Instruction { SelectSaliencyCandidate = new SelectSaliencyCandidateInstruction { } }
             );
 
             // The top of the stack now contains 'true' if a piece of content
             // was selected, and 'false' if not. 
-            this.compiler.Emit(context.Start,
+            this.compiler.Emit(
+                context.Start,
+                context.Stop,
                 // If the top of the stack is false, immediately jump to the end
                 // of this entire line group.
                 noContentAvailableJump = new Instruction { JumpIfFalse = new JumpIfFalseInstruction { Destination = -1 } },
@@ -713,16 +740,21 @@ namespace Yarn.Compiler
 
                 // We got here via a peek-and-jump; we can discard the top of
                 // the stack now.
-                this.compiler.Emit(lineGroupItem.line_statement().Start, new Instruction { Pop = new PopInstruction { } });
+                this.compiler.Emit(
+                    lineGroupItem.line_statement().Start,
+                    lineGroupItem.line_statement().Stop,
+                    new Instruction { Pop = new PopInstruction { } }
+                );
 
                 if (onceVariables.TryGetValue(lineGroupItem, out var onceVariable) && onceVariable != null)
                 {
                     // We have a 'once' variable for this line group item. Emit
                     // code that sets it to 'true', so that we don't see this
                     // item again.
+                    IToken token = (lineGroupItem.line_statement()?.line_condition() as YarnSpinnerParser.LineOnceConditionContext)?.COMMAND_ONCE().Symbol ?? lineGroupItem.Start;
                     this.compiler.Emit(
-                        (lineGroupItem.line_statement()?.line_condition() as YarnSpinnerParser.LineOnceConditionContext)?.COMMAND_ONCE().Symbol ?? lineGroupItem.Start,
-
+                        token,
+                        token,
                         new Instruction
                         {
                             PushBool = new PushBoolInstruction { Value = true },
@@ -748,7 +780,9 @@ namespace Yarn.Compiler
 
                 // Run the line.
                 this.compiler.Emit(
-                    context.Start,
+                    lineGroupItem.line_statement().line_formatted_text()?.Start ?? lineGroupItem.Start,
+                    lineGroupItem.line_statement().line_formatted_text()?.Stop ?? lineGroupItem.Stop,
+
                     new Instruction
                     {
                         RunLine = new RunLineInstruction { LineID = lineID, SubstitutionCount = expressionCount }
@@ -766,6 +800,7 @@ namespace Yarn.Compiler
                 Instruction jumpToEnd;
 
                 this.compiler.Emit(
+                    lineGroupItem.Stop,
                     lineGroupItem.Stop,
                     jumpToEnd = new Instruction { JumpTo = new JumpToInstruction { Destination = -1 } }
                 );
@@ -867,6 +902,7 @@ namespace Yarn.Compiler
 
             this.compiler.Emit(
                 operatorToken,
+                operatorToken,
                 // Indicate that we are pushing this many items for comparison
                 new Instruction { PushFloat = new PushFloatInstruction { Value = operands.Length } },
                 // Call that function.
@@ -930,6 +966,7 @@ namespace Yarn.Compiler
 
             this.compiler.Emit(
                 context.Start,
+                context.Stop,
                 new Instruction { PushFloat = new PushFloatInstruction { Value = number } }
             );
 
@@ -940,6 +977,7 @@ namespace Yarn.Compiler
         {
             this.compiler.Emit(
                 context.Start,
+                context.Stop,
                 new Instruction { PushBool = new PushBoolInstruction { Value = true } }
             );
 
@@ -950,6 +988,7 @@ namespace Yarn.Compiler
         {
             this.compiler.Emit(
                 context.Start,
+                context.Stop,
                 new Instruction { PushBool = new PushBoolInstruction { Value = false } }
             );
             return 0;
@@ -978,6 +1017,7 @@ namespace Yarn.Compiler
                 // storage.
                 this.compiler.Emit(
                     context.Start,
+                    context.Stop,
                     new Instruction { PushVariable = new PushVariableInstruction { VariableName = variableName } }
                 );
             }
@@ -992,6 +1032,7 @@ namespace Yarn.Compiler
             string stringVal = context.STRING().GetText().Trim('"');
             this.compiler.Emit(
                 context.Start,
+                context.Stop,
                 new Instruction { PushString = new PushStringInstruction { Value = stringVal } }
             );
 
@@ -1038,6 +1079,7 @@ namespace Yarn.Compiler
             {
                 this.compiler.Emit(
                     context.Start,
+                    context.Stop,
                     new Instruction { PushString = new PushStringInstruction { Value = value.ToString() } }
                 );
             }
@@ -1045,6 +1087,7 @@ namespace Yarn.Compiler
             {
                 this.compiler.Emit(
                     context.Start,
+                    context.Stop,
                     new Instruction { PushFloat = new PushFloatInstruction { Value = value.ToSingle(CultureInfo.InvariantCulture) } }
                 );
             }
@@ -1089,12 +1132,16 @@ namespace Yarn.Compiler
             switch (detour)
             {
                 case true:
-                    this.compiler.Emit(context.Start,
+                    this.compiler.Emit(
+                        context.Start,
+                        context.Stop,
                         new Instruction { DetourToNode = new DetourToNodeInstruction { NodeName = nodeName } }
                     );
                     break;
                 case false:
-                    this.compiler.Emit(context.Start,
+                    this.compiler.Emit(
+                        context.Start,
+                        context.Stop,
                         new Instruction { RunNode = new RunNodeInstruction { NodeName = nodeName } }
                     );
                     break;
@@ -1110,12 +1157,17 @@ namespace Yarn.Compiler
             switch (detour)
             {
                 case true:
-                    this.compiler.Emit(context.Start,
+                    this.compiler.Emit(
+                        context.Start,
+                        context.Stop,
                         new Instruction { PeekAndDetourToNode = new PeekAndDetourToNode { } }
                     );
                     break;
                 case false:
-                    this.compiler.Emit(context.Start, new Instruction { PeekAndRunNode = new PeekAndRunNodeInstruction { } });
+                    this.compiler.Emit(
+                    context.Start,
+                    context.Stop,
+                    new Instruction { PeekAndRunNode = new PeekAndRunNodeInstruction { } });
                     break;
             }
         }
@@ -1134,7 +1186,10 @@ namespace Yarn.Compiler
 
         public override int VisitReturn_statement([NotNull] YarnSpinnerParser.Return_statementContext context)
         {
-            this.compiler.Emit(context.Start, new Instruction { Return = new ReturnInstruction { } });
+            this.compiler.Emit(
+                context.Start,
+                context.Stop,
+                new Instruction { Return = new ReturnInstruction { } });
             return 0;
         }
 
@@ -1157,6 +1212,7 @@ namespace Yarn.Compiler
 
             // Evaluate the once variable
             this.compiler.Emit(
+                onceToken,
                 onceToken,
                 new Instruction
                 {
@@ -1183,6 +1239,7 @@ namespace Yarn.Compiler
 
                 this.compiler.Emit(
                     onceToken,
+                    onceToken,
                     new Instruction
                     {
                         PushFloat = new PushFloatInstruction { Value = 2 },
@@ -1204,6 +1261,7 @@ namespace Yarn.Compiler
 
             this.compiler.Emit(
                 onceToken,
+                onceToken,
                 jumpOverPrimaryClause = new Instruction
                 {
                     JumpIfFalse = new JumpIfFalseInstruction { Destination = -1 }
@@ -1213,6 +1271,7 @@ namespace Yarn.Compiler
             // If we haven't jumped, we're in the 'once' content. Set the 'once'
             // variable to true so that we don't see it again.
             this.compiler.Emit(
+                onceToken,
                 onceToken,
                 new Instruction
                 {
@@ -1240,6 +1299,7 @@ namespace Yarn.Compiler
                 // Start by jumping over this clause if we DID run the primary
                 // clause.
                 this.compiler.Emit(
+                    context.once_primary_clause().Stop,
                     context.once_primary_clause().Stop,
                     jumpOverAlternateClause = new Instruction
                     {
@@ -1273,6 +1333,7 @@ namespace Yarn.Compiler
 
             // Pop the result of evaluating the condition, which was left on the stack.
             this.compiler.Emit(
+                context.Stop,
                 context.Stop,
                 new Instruction { Pop = new PopInstruction { } }
             );

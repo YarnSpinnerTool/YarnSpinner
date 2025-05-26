@@ -80,15 +80,15 @@ namespace Yarn.Compiler
 
         /// <summary>
         /// Gets or sets the mapping of instruction numbers to <see
-        /// cref="Position"/> information in the file indicated by <see
+        /// cref="Range"/> information in the file indicated by <see
         /// cref="FileName"/>.
         /// </summary>
-        internal Dictionary<int, Position> LinePositions { get; set; } = new Dictionary<int, Position>();
+        internal Dictionary<int, Range> LineRanges { get; set; } = new Dictionary<int, Range>();
 
         /// <summary>
         /// The range in the file in which the node appears.
         /// </summary>
-        public Range Range { get; internal set; } = new Range();
+        public Range Range { get; internal set; } = new Range(Position.InvalidPosition, Position.InvalidPosition);
 
         internal IReadOnlyDictionary<int, string> Labels => this.instructionLabels;
 
@@ -139,17 +139,16 @@ namespace Yarn.Compiler
         /// number of instructions present in the node.</exception>
         public LineInfo GetLineInfo(int instructionNumber)
         {
-            if (this.LinePositions.TryGetValue(instructionNumber, out var info))
+            if (this.LineRanges.TryGetValue(instructionNumber, out var info))
             {
                 return new LineInfo
                 {
                     FileName = this.FileName,
                     NodeName = this.NodeName,
-                    Position = new Position
-                    {
-                        Character = info.Character,
-                        Line = info.Line,
-                    },
+                    Position = new Position(
+                        info.Start.Line,
+                        info.Start.Character
+                    ),
                 };
             }
             else

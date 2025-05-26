@@ -29,7 +29,10 @@ namespace Yarn.Compiler
         /// <param name="startToken">The first token in the expression or
         /// statement that was responsible for emitting this
         /// instruction.</param>
-        void Emit(IToken startToken, Instruction instruction);
+        /// <param name="endToken">The last token in the expression or
+        /// statement that was responsible for emitting this
+        /// instruction.</param>
+        void Emit(IToken startToken, IToken endToken, Instruction instruction);
 
         /// <summary>
         /// Adds instructions to the current node in the <see cref="Program"/>.
@@ -42,7 +45,10 @@ namespace Yarn.Compiler
         /// <param name="startToken">The first token in the expression or
         /// statement that was responsible for emitting this
         /// instruction.</param>
-        void Emit(IToken startToken, params Instruction[] instructions);
+        /// <param name="endToken">The last token in the expression or
+        /// statement that was responsible for emitting this
+        /// instruction.</param>
+        void Emit(IToken startToken, IToken endToken, params Instruction[] instructions);
 
         /// <summary>
         /// Creates a new instruction, and appends it to the current node in the

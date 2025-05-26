@@ -331,7 +331,7 @@ namespace YarnLanguageServer
                 var nameGroup = nameMatch.Groups[0];
 
                 var startPosition = context.Start.ToPosition();
-                startPosition.Character += nameGroup.Index;
+                startPosition += new Position(0, nameGroup.Index);
 
                 AddTokenType(startPosition, nameGroup.Length, SemanticTokenType.Label);
             }

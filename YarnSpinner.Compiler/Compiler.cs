@@ -1106,18 +1106,11 @@ namespace Yarn.Compiler
         /// <param name="node">The node to append instructions to.</param>
         /// <param name="debugInfo">The <see cref="NodeDebugInfo"/> object to add
         /// line debugging information to.</param>
-        /// <param name="sourceLine">The zero-indexed line in the source input
-        /// corresponding to this instruction.</param>
-        /// <param name="sourceCharacter">The zero-indexed character in the
-        /// source input corresponding to this instruction.</param>
+        /// <param name="range">The range of source code corresponding to this instruction.</param>
         /// <param name="instruction">The instruction to add.</param>
-        internal static void Emit(Node node, NodeDebugInfo debugInfo, int sourceLine, int sourceCharacter, Instruction instruction)
+        internal static void Emit(Node node, NodeDebugInfo debugInfo, Range range, Instruction instruction)
         {
-            debugInfo.LinePositions.Add(node.Instructions.Count, new Position
-            {
-                Line = sourceLine,
-                Character = sourceCharacter,
-            });
+            debugInfo.LineRanges.Add(node.Instructions.Count, range);
 
             node.Instructions.Add(instruction);
         }

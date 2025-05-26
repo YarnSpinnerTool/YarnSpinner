@@ -30,7 +30,7 @@ namespace Yarn.Compiler
         /// Gets or sets the range of the file indicated by <see
         /// cref="FileName"/> that the issue occurred in.
         /// </summary>
-        public Range Range { get; set; } = new Range();
+        public Range Range { get; set; } = Range.InvalidRange;
 
         /// <summary>
         /// Gets or sets the description of the issue.
@@ -162,7 +162,7 @@ namespace Yarn.Compiler
         public Diagnostic(string fileName, Range range, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
-            this.Range = range ?? new Range();
+            this.Range = range ?? Range.InvalidRange;
             this.Message = message;
             this.Severity = severity;
         }

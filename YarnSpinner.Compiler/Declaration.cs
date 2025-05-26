@@ -15,7 +15,7 @@ namespace Yarn.Compiler
         /// <summary>
         /// Represents the default value for a Range.
         /// </summary>
-        internal static readonly Range InvalidRange = new Range(-1, -1, -1, -1);
+        internal static readonly Range InvalidRange = new(-1, -1, -1, -1);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Range"/> class, given
@@ -31,32 +31,33 @@ namespace Yarn.Compiler
         /// end of the range.</param>
         public Range(int startLine, int startCharacter, int endLine, int endCharacter)
         {
-            this.Start = new Position { Line = startLine, Character = startCharacter };
-            this.End = new Position { Line = endLine, Character = endCharacter };
+            this.Start = new Position(startLine, startCharacter);
+            this.End = new Position(endLine, endCharacter);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Range"/> class.
+        /// Initializes a new instance of the <see cref="Range"/> class, given
+        /// start and end information.
         /// </summary>
-        /// <remarks>
-        /// The <see cref="Start"/> and <see cref="End"/> positions will both be
-        /// set to have a line and character index of -1.
-        /// </remarks>
-        public Range()
+        /// <param name="startPosition">The position at the start of
+        /// the range.</param>
+        /// <param name="endPosition">The position at the end of
+        /// the range.</param>
+        public Range(Position startPosition, Position endPosition)
         {
-            this.Start = new Position();
-            this.End = new Position();
+            this.Start = startPosition;
+            this.End = endPosition;
         }
 
         /// <summary>
         /// Gets or sets the start position of this range.
         /// </summary>
-        public Position Start { get; set; } = new Position();
+        public Position Start { get; private set; }
 
         /// <summary>
         /// Gets or sets the end position of this range.
         /// </summary>
-        public Position End { get; set; } = new Position();
+        public Position End { get; private set; }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
@@ -78,14 +79,7 @@ namespace Yarn.Compiler
         /// <inheritdoc/>
         public override string ToString()
         {
-            if (this.Start.Equals(this.End))
-            {
-                return this.Start.ToString();
-            }
-            else
-            {
-                return $"{this.Start}-{this.End}";
-            }
+            return $"{this.Start}-{this.End}";
         }
 
         /// <summary>
@@ -113,18 +107,44 @@ namespace Yarn.Compiler
         /// <summary>
         /// Gets or sets the zero-indexed line of this position.
         /// </summary>
-        public int Line { get; set; } = -1;
+        public int Line { get; private set; } = -1;
 
         /// <summary>
         /// Gets or sets the zero-indexed character number of this position.
         /// </summary>
-        public int Character { get; set; } = -1;
+        public int Character { get; private set; } = -1;
 
         /// <summary>
         /// Gets a value indicating whether this position has a zero or positive
         /// line and character number.
         /// </summary>
         public bool IsValid => this.Line >= 0 && this.Character >= 0;
+
+        /// <summary>
+        /// Represents the default value for a Position.
+        /// </summary>
+        public static readonly Position InvalidPosition = new(-1, -1);
+
+        /// <summary>
+        /// Initialises a new instance of the Position class with the specified
+        /// line and character.
+        /// </summary>
+        /// <param name="line">The zero-indexed line number.</param>
+        /// <param name="character">The zero-index character number.</param>
+        public Position(int line, int character)
+        {
+            this.Line = line;
+            this.Character = character;
+        }
+
+        /// <summary>
+        /// Initialises a new instance of the Position class.
+        /// </summary>
+        public Position()
+        {
+            this.Line = InvalidPosition.Line;
+            this.Character = InvalidPosition.Character;
+        }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
@@ -172,6 +192,17 @@ namespace Yarn.Compiler
         public static bool operator <=(Position a, Position b)
         {
             return a.Line <= b.Line && a.Character <= b.Character;
+        }
+
+        /// <summary>
+        /// Adds two positions by component and returns the result.
+        /// </summary>
+        /// <param name="a">The first position.</param>
+        /// <param name="b">The second position.</param>
+        /// <returns>The resulting combined position.</returns>
+        public static Position operator +(Position a, Position b)
+        {
+            return new Position(a.Line + b.Line, a.Character + b.Character);
         }
     }
 
@@ -304,7 +335,7 @@ namespace Yarn.Compiler
         /// <c>&lt;&lt;declare $x = 1&gt;&gt;</c> would have a Range referring
         /// to the <c>$x</c> symbol.
         /// </remarks>
-        public Range Range { get; internal set; } = new Range();
+        public Range Range { get; internal set; } = Range.InvalidRange;
 
         /// <summary>
         /// Gets or sets the parser context for the initial value provided in

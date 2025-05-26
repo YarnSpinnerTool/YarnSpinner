@@ -91,27 +91,29 @@ namespace Yarn.Compiler
         /// <param name="startToken">The first token in the expression or
         /// statement that was responsible for emitting this
         /// instruction.</param>
+        /// <param name="endToken">The last token in the expression or
+        /// statement that was responsible for emitting this
+        /// instruction.</param>
         /// <param name="instruction">The instruction to emit.</param>
-        public void Emit(IToken? startToken, Instruction instruction)
+        public void Emit(IToken? startToken, IToken? endToken, Instruction instruction)
         {
             Compiler.Emit(this.CurrentNode ?? throw new InvalidOperationException(),
                           this.CurrentNodeDebugInfo ?? throw new InvalidOperationException(),
-                          startToken?.Line - 1 ?? -1,
-                          startToken?.Column ?? -1,
+                          Utility.GetRange(startToken, endToken),
                           instruction);
         }
 
-        public void Emit(IToken startToken, params Instruction[] instructions)
+        public void Emit(IToken startToken, IToken endToken, params Instruction[] instructions)
         {
             foreach (var i in instructions)
             {
-                this.Emit(startToken, i);
+                this.Emit(startToken, endToken, i);
             }
         }
 
         public void Emit(Instruction instruction)
         {
-            this.Emit(null, instruction);
+            this.Emit(null, null, instruction);
         }
 
         // This replaces the CompileNode from the old compiler. We will start
@@ -137,9 +139,9 @@ namespace Yarn.Compiler
             this.CurrentNodeDebugInfo = new NodeDebugInfo(FileParseResult.Name, "<unknown>")
             {
                 Range = new Range(
-                    context.Start.Line,
+                    context.Start.Line - 1,
                     context.Start.Column,
-                    context.Stop.Line,
+                    context.Stop.Line - 1,
                     context.Stop.Column + (context.Stop.StopIndex - context.Stop.StartIndex)
                 )
             };
@@ -313,7 +315,7 @@ namespace Yarn.Compiler
             Compiler.Emit(
                 this.CurrentNode,
                 this.CurrentNodeDebugInfo,
-                context.Stop.Line - 1, 0,
+                Utility.GetRange(context.Stop, context.Stop),
                 new Instruction { Return = new ReturnInstruction { } }
             );
         }

@@ -59,7 +59,7 @@ namespace Yarn.Compiler
                 var codeGenerator = new CodeGenerationVisitor(this);
                 codeGenerator.Visit(expression);
 
-                this.CurrentNodeDebugInfo.Range = new Range(expression.Start.Line, expression.Start.Column, expression.Stop.Line, expression.Stop.Column);
+                this.CurrentNodeDebugInfo.Range = new Range(expression.Start.Line - 1, expression.Start.Column, expression.Stop.Line - 1, expression.Stop.Column + expression.Stop.Text.Length);
             }
 
             return new NodeCompilationResult
@@ -69,7 +69,7 @@ namespace Yarn.Compiler
             };
         }
 
-        public void Emit(IToken? startToken, Instruction instruction)
+        public void Emit(IToken? startToken, IToken? endToken, Instruction instruction)
         {
             if (this.CurrentNode == null)
             {
@@ -84,23 +84,22 @@ namespace Yarn.Compiler
             Compiler.Emit(
                 this.CurrentNode,
                 this.CurrentNodeDebugInfo,
-                startToken?.Line - 1 ?? -1,
-                startToken?.Column ?? -1,
+                Utility.GetRange(startToken, endToken),
                 instruction
             );
         }
 
-        public void Emit(IToken startToken, params Instruction[] instructions)
+        public void Emit(IToken startToken, IToken endToken, params Instruction[] instructions)
         {
             foreach (var i in instructions)
             {
-                this.Emit(startToken, i);
+                this.Emit(startToken, endToken, i);
             }
         }
 
         public void Emit(Instruction instruction)
         {
-            this.Emit(null, instruction);
+            this.Emit(null, null, instruction);
         }
     }
 }

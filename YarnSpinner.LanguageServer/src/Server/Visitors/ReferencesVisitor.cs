@@ -407,9 +407,6 @@ namespace YarnLanguageServer
             {
                 var nameGroup = nameMatch.Groups[1];
 
-                var startPosition = context.Start.ToPosition();
-                startPosition.Character += nameGroup.Index;
-
                 currentNodeInfo.CharacterNames.Add((nameGroup.ToString(), context.Start.Line - 1));
             }
 

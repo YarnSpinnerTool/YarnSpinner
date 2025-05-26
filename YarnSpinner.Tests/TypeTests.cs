@@ -43,16 +43,7 @@ namespace YarnSpinner.Tests
                     Name = "$int",
                     Type = Types.Number,
                     DefaultValue = 5f,
-                    Range = new Yarn.Compiler.Range {
-                        Start = {
-                            Line = 3,
-                            Character = 22,
-                        },
-                        End = {
-                            Line = 3,
-                            Character = 26,
-                        }
-                    },
+                    Range = new Yarn.Compiler.Range(new(3, 22), new(3, 26)),
                     SourceNodeName = "Start",
                     SourceFileName = "input",
                     Dependents = Enumerable.Empty<Declaration>(),
@@ -62,16 +53,7 @@ namespace YarnSpinner.Tests
                     Name = "$str",
                     Type = Types.String,
                     DefaultValue = "yes",
-                    Range = new Yarn.Compiler.Range {
-                        Start = {
-                            Line = 4,
-                            Character = 22,
-                        },
-                        End = {
-                            Line = 4,
-                            Character = 26,
-                        }
-                    },
+                    Range= new Yarn.Compiler.Range(new(4, 22), new (4, 26)),
                     SourceNodeName = "Start",
                     SourceFileName = "input",
                     Dependents = Enumerable.Empty<Declaration>(),
@@ -81,16 +63,7 @@ namespace YarnSpinner.Tests
                     Name = "$bool",
                     Type = Types.Boolean,
                     DefaultValue = true,
-                    Range = new Yarn.Compiler.Range {
-                        Start = {
-                            Line = 13,
-                            Character = 22,
-                        },
-                        End = {
-                            Line = 13,
-                            Character = 27,
-                        }
-                    },
+                    Range= new Yarn.Compiler.Range(new(13, 22), new (13, 27)),
                     SourceNodeName = "Start",
                     SourceFileName = "input",
                     Dependents = Enumerable.Empty<Declaration>(),

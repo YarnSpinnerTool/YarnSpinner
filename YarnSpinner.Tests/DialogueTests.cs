@@ -404,7 +404,7 @@ namespace YarnSpinner.Tests
             var result = Compiler.Compile(job);
 
             // Then
-            result.ContainsErrors.Should().BeTrue();
+            result.Diagnostics.Where(d => d.Severity == Diagnostic.DiagnosticSeverity.Error).Should().HaveCount(2);
             result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error && d.Range.Start.Line == 2);
             result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error && d.Range.Start.Line == 3);
         }

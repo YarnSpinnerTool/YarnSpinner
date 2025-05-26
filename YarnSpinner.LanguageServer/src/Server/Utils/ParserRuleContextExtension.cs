@@ -32,11 +32,7 @@ namespace YarnLanguageServer
 
         public static Yarn.Compiler.Position ToPosition(this Antlr4.Runtime.IToken token)
         {
-            return new Yarn.Compiler.Position
-            {
-                Line = token.Line - 1,
-                Character = token.Column,
-            };
+            return new Yarn.Compiler.Position(token.Line - 1, token.Column);
         }
     }
 }

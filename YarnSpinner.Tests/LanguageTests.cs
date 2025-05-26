@@ -723,9 +723,9 @@ Line in a node group
             nodeGroupItemCondition.Should().NotBeNull();
 
             new[] { nodeAInfo, nodeBInfo, smartVarInfo }.Should().AllSatisfy(i => i.FileName.Should().Be("input"));
-            nodeAInfo.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(1, 0, 6, 2));
-            nodeBInfo.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(7, 0, 10, 2));
-            smartVarInfo.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(5, 22, 5, 24),
+            nodeAInfo.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(0, 0, 5, 2));
+            nodeBInfo.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(6, 0, 9, 2));
+            smartVarInfo.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(4, 22, 4, 25),
                 "the position of the smart variable 'node' is defined by the expression");
 
             nodeAInfo.IsImplicit.Should().BeFalse();

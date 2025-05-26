@@ -429,22 +429,7 @@ namespace Yarn.Compiler
             this.AddDeclaration(declaration);
         }
 
-        private static Range GetRange(ParserRuleContext context)
-        {
-            return new Range
-            {
-                Start =
-                    {
-                        Line = context.Start.Line - 1,
-                        Character = context.Start.Column,
-                    },
-                End =
-                    {
-                        Line = context.Stop.Line - 1,
-                        Character = context.Stop.Column + context.GetText().Length,
-                    },
-            };
-        }
+        private static Range GetRange(ParserRuleContext context) => Utility.GetRange(context);
 
         public override void ExitValueTrue([NotNull] YarnSpinnerParser.ValueTrueContext context)
         {

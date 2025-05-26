@@ -102,7 +102,10 @@ namespace Yarn.Compiler
                     if (header.IsAlways)
                     {
                         // Emit a 'true' for this 'when: always' header
-                        this.Emit(header.header_expression.once, new Instruction { PushBool = new PushBoolInstruction { Value = true } });
+                        this.Emit(
+                            header.header_expression.always,
+                            header.header_expression.always,
+                            new Instruction { PushBool = new PushBoolInstruction { Value = true } });
                     }
 
                     if (header.IsOnce)
@@ -112,6 +115,7 @@ namespace Yarn.Compiler
                         var onceVariable = Compiler.GetContentViewedVariableName(nodeContext.NodeTitle);
 
                         this.Emit(
+                            header.header_when_expression().once,
                             header.header_when_expression().once,
                             new Instruction
                             {
@@ -141,6 +145,7 @@ namespace Yarn.Compiler
                     {
                         // 'and' the two together
                         this.Emit(
+                            header.header_expression.once,
                             header.header_expression.once,
                             new Instruction
                             {
@@ -232,7 +237,9 @@ namespace Yarn.Compiler
 
             Instruction jumpToNoContentAvailableInstruction;
 
-            this.Emit(null,
+            this.Emit(
+                null,
+                null,
                 // Ask the VM to select the most salient option from what's
                 // available.
                 new Instruction { SelectSaliencyCandidate = new SelectSaliencyCandidateInstruction { } },
@@ -280,14 +287,18 @@ namespace Yarn.Compiler
                         ?? throw new InvalidOperationException("Internal error: node has no title"));
 
                     // Emit code that sets the 'once' variable to true.
-                    this.Emit(onceHeader.header_expression.once,
-                      new Instruction { PushBool = new PushBoolInstruction { Value = true } },
-                      new Instruction { StoreVariable = new StoreVariableInstruction { VariableName = onceVariable } },
-                      new Instruction { Pop = new PopInstruction { } });
+                    this.Emit(
+                        onceHeader.header_expression.once,
+                        onceHeader.header_expression.once,
+                        new Instruction { PushBool = new PushBoolInstruction { Value = true } },
+                        new Instruction { StoreVariable = new StoreVariableInstruction { VariableName = onceVariable } },
+                        new Instruction { Pop = new PopInstruction { } });
                 }
 
                 // Emit code that detours into the node and then returns
-                this.Emit(null,
+                this.Emit(
+                    null,
+                    null,
                     new Instruction
                     {
                         DetourToNode = new DetourToNodeInstruction
@@ -311,28 +322,27 @@ namespace Yarn.Compiler
         }
 
         /// <inheritdoc/>
-        public void Emit(IToken? startToken, Instruction instruction)
+        public void Emit(IToken? startToken, IToken? endToken, Instruction instruction)
         {
             Compiler.Emit(this.CurrentNode ?? throw new InvalidOperationException(),
                           this.CurrentNodeDebugInfo ?? throw new InvalidOperationException(),
-                          startToken?.Line - 1 ?? -1,
-                          startToken?.Column ?? -1,
+                          Utility.GetRange(startToken, endToken),
                           instruction);
         }
 
         /// <inheritdoc/>
-        public void Emit(IToken? startToken, params Instruction[] instructions)
+        public void Emit(IToken? startToken, IToken? endToken, params Instruction[] instructions)
         {
             foreach (var instruction in instructions)
             {
-                this.Emit(startToken, instruction);
+                this.Emit(startToken, endToken, instruction);
             }
         }
 
         /// <inheritdoc/>
         public void Emit(Instruction instruction)
         {
-            this.Emit(null, instruction);
+            this.Emit(null, null, instruction);
         }
 
         private int CurrentInstructionNumber

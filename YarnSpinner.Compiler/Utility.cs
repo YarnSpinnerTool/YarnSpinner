@@ -267,6 +267,22 @@ namespace Yarn.Compiler
             return tag;
         }
 
+        internal static Range GetRange(IToken? startToken, IToken? endToken)
+        {
+            var startPosition = startToken != null ? new Position(startToken.Line - 1, startToken.Column) : null;
+            var endPosition = endToken != null ? new Position(endToken.Line - 1, endToken.Column + endToken.Text.Length) : null;
+
+            startPosition ??= Position.InvalidPosition;
+            endPosition ??= startPosition;
+
+            return new Range(startPosition, endPosition);
+        }
+
+        internal static Range GetRange(ParserRuleContext context)
+        {
+            return GetRange(context.Start, context.Stop);
+        }
+
         /// <summary>
         /// An <see cref="IYarnSpinnerParserListener"/> that produces line tags.
         /// </summary>
