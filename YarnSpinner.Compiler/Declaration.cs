@@ -15,7 +15,7 @@ namespace Yarn.Compiler
         /// <summary>
         /// Represents the default value for a Range.
         /// </summary>
-        internal static readonly Range InvalidRange = new(-1, -1, -1, -1);
+        public static readonly Range InvalidRange = new(-1, -1, -1, -1);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Range"/> class, given
