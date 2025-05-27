@@ -139,16 +139,13 @@ namespace Yarn.Compiler
         /// number of instructions present in the node.</exception>
         public LineInfo GetLineInfo(int instructionNumber)
         {
-            if (this.LineRanges.TryGetValue(instructionNumber, out var info))
+            if (this.LineRanges.TryGetValue(instructionNumber, out var range))
             {
                 return new LineInfo
                 {
                     FileName = this.FileName,
                     NodeName = this.NodeName,
-                    Position = new Position(
-                        info.Start.Line,
-                        info.Start.Character
-                    ),
+                    Range = range,
                 };
             }
             else
@@ -175,10 +172,10 @@ namespace Yarn.Compiler
             public string NodeName;
 
             /// <summary>
-            /// The position in <see cref="FileName"/> that contains the
+            /// The range in <see cref="FileName"/> that contains the
             /// statement or expression that this line was produced from.
             /// </summary>
-            public Position Position;
+            public Range Range;
         }
     }
 }

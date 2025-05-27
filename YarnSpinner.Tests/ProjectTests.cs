@@ -406,8 +406,8 @@ A single line, with a line tag. #shadow:expected_abc123
 
             firstLineInfo.FileName.Should().Be("input");
             firstLineInfo.NodeName.Should().Be("DebugTesting");
-            firstLineInfo.Position.Line.Should().Be(2);
-            firstLineInfo.Position.Character.Should().Be(0);
+            firstLineInfo.Range.Start.Line.Should().Be(2);
+            firstLineInfo.Range.Start.Character.Should().Be(0);
         }
     }
 }
