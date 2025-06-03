@@ -5,9 +5,27 @@ using Yarn;
 
 namespace Yarn
 {
+    /// <summary>
+    /// The types of properties a node on a quest graph has.
+    /// </summary>
     public enum QuestNodeStateProperty
     {
-        Complete, Reachable, NoLongerNeeded, Active
+        /// <summary>
+        /// The quest graph node is complete.
+        /// </summary>
+        Complete,
+        /// <summary>
+        /// The quest graph node is reachable.
+        /// </summary>
+        Reachable,
+        /// <summary>
+        /// The quest graph node is no longer needed.
+        /// </summary>
+        NoLongerNeeded,
+        /// <summary>
+        /// The quest graph node is currently active in its quest.
+        /// </summary>
+        Active
     }
 
     /// <summary>
