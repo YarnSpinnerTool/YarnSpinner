@@ -8,13 +8,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+### Updated
+
+### Removed
+
+## [3.0.2] 2025-06-12
+
+### Added
+
 - Added a new function, `has_any_content`, which takes the name of a node group and returns `true` if any of its member nodes could run.
 
 ### Updated
 
 - Fixed a bug where interpolated boolean values inside markup were being incorrectly determined as a string and not a bool.
-
-### Removed
 
 ## [3.0.1] 2025-06-12
 
