@@ -366,6 +366,21 @@
         }
       ],
       "ReturnType": "string"
+    },
+    {
+      "YarnName": "has_any_content",
+      "DefinitionName": "has_any_content",
+      "Documentation": "Checks to see if a node group has any members that could possibly run.",
+      "Signature": "has_any_content(node_group)",
+      "Parameters": [
+        {
+          "Name": "node_group",
+          "Type": "string",
+          "Documentation": "The name of a node group.",
+          "IsParamsArray": false
+        }
+      ],
+      "ReturnType": "bool"
     }
   ]
 }

@@ -730,6 +730,33 @@ namespace Yarn
             {
                 return GetNodeVisitCount(node);
             });
+            Library.RegisterFunction("has_any_content", delegate (string nodeGroup)
+            {
+                if (this.Program == null)
+                {
+                    // we somehow don't have a program, so we don't have ANY
+                    // content, let alone this specific content
+                    return false;
+                }
+
+                if (this.Program.Nodes.TryGetValue(nodeGroup, out var node) == false)
+                {
+                    // No node with this name
+                    return false;
+                }
+
+                if (!node.IsNodeGroupHub)
+                {
+                    // Not a node group hub, so it always has content available
+                    return true;
+                }
+
+                var options = this.GetSaliencyOptionsForNodeGroup(nodeGroup);
+                var bestOption = this.ContentSaliencyStrategy.QueryBestContent(options);
+
+                // Did the saliency strategy indicate that an option could be selected?
+                return bestOption != null;
+            });
         }
 
         /// <summary>

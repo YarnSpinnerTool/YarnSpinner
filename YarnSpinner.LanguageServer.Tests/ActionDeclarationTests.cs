@@ -75,7 +75,8 @@ namespace YarnLanguageServer.Tests
 
             var functionsToOmit = new[] {
                 "visited",
-                "visited_count"
+                "visited_count",
+                "has_any_content",
             };
 
             foreach (var decl in functions)
