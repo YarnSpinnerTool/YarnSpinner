@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Updated
 
+- Fixed a bug where interpolated boolean values inside markup were being incorrectly determined as a string and not a bool.
+
 ### Removed
 
 ## [3.0.1] 2025-06-12

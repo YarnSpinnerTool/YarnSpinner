@@ -641,9 +641,9 @@ namespace Yarn.Markup
                             // ok so now we have accumulated all the value characters
                             // which we now want to do some quick checks on, is it true or false
                             var value = input.Substring(token.Start, currentPosition + 1 - token.Start);
-                            if (value == "true" || value == "false")
+                            if (value == "true" || value == "True" || value == "false" || value == "False")
                             {
-                                // This was the word 'true' or 'false', so this
+                                // This was the word '[T]rue' or '[F]alse', so this
                                 // is a boolean value and not an undelimited
                                 // string
                                 token.Type = LexerTokenTypes.BooleanValue;
@@ -967,13 +967,15 @@ namespace Yarn.Markup
             }
             bool TryBoolFromToken(LexerToken token, out bool value)
             {
+                // at this point the lexer has determined that it is either a true or false value
+                // so we are safe to do the ignore case check
                 var valueString = OG.Substring(token.Start, token.Range);
-                if (valueString == "true")
+                if (valueString.Equals("true", StringComparison.OrdinalIgnoreCase))
                 {
                     value = true;
                     return true;
                 }
-                if (valueString == "false")
+                if (valueString.Equals("false", StringComparison.OrdinalIgnoreCase))
                 {
                     value = false;
                     return true;
