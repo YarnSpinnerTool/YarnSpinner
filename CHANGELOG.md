@@ -10,11 +10,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Updated
 
+### Removed
+
+## [3.0.1] 2025-06-12
+
+### Updated
+
 - Complexity scoring for `when:` headers no longer counts `not` operations. This means that `when: $x` and `when: not $x` have the same score of 1.
 - `VirtualMachine.ContentSaliencyStrategy` now defaults to `RandomBestLeastRecentlyViewed`, not `First`
 - `NodeDebugInfo.LineInfo` now stores ranges of text, rather than just the start position.
-
-### Removed
 
 ## [3.0.0] 2025-05-16
 
