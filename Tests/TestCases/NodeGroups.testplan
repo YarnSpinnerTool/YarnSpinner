@@ -49,10 +49,10 @@ line: `Detour test 1`
 line: `Returned from detoured node group 1`
 line: `Detour test 2`
 line: `Returned from detoured node group 2`
-d
+
 stop
 
---
+---
 
 node: TestCaseFunctionConditions
 

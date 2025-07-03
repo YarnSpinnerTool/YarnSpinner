@@ -4,9 +4,9 @@ title: Start
 
 // "add_three_operands" is a function that adds three operands together
 
-<<call assert(add_three_operands(1, 2, 4*1) == 7)>>
+{add_three_operands(1, 2, 4*1)}
 
 // function calls as parameters
 
-<<call assert(add_three_operands(1, 2, add_three_operands(1,2,3)) == 9)>>
+{add_three_operands(1, 2, add_three_operands(1,2,3))}
 ===

@@ -14,8 +14,8 @@ line: `did we visit ImplicitTrack? True!`
 line: `did we visit NoTrack? False!`
 line: `did we visit Track? True!`
 
-lind: `did we visit NodeGroupImplicitTrack? True!`
-lind: `did we visit NodeGroupNoTrack? False!`
-lind: `did we visit NodeGroupTrack? True!`
+line: `did we visit NodeGroupImplicitTrack? True!`
+line: `did we visit NodeGroupNoTrack? False!`
+line: `did we visit NodeGroupTrack? True!`
 
 line: `done`

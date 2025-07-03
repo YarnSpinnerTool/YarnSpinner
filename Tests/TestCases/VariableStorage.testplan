@@ -1,1 +1,17 @@
-# no lines, just asserts
+line: `1`
+line: `-1`
+line: `foo`
+line: `46`
+line: `44`
+line: `92`
+line: `23`
+line: `46`
+line: `92`
+line: `46`
+line: `45`
+line: `47`
+line: `45`
+line: `92`
+line: `23`
+line: `foobar`
+line: `foobar`
