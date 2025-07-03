@@ -278,7 +278,13 @@ namespace Yarn.Compiler
             return new Range(startPosition, endPosition);
         }
 
-        internal static Range GetRange(ParserRuleContext context)
+        /// <summary>
+        /// Gets the range covered by a <see cref="ParserRuleContext"/> in the
+        /// source code.
+        /// </summary>
+        /// <param name="context">The context to get a range for.</param>
+        /// <returns>The <see cref="Range"/> covered by this context.</returns>
+        public static Range GetRange(ParserRuleContext context)
         {
             return GetRange(context.Start, context.Stop);
         }
