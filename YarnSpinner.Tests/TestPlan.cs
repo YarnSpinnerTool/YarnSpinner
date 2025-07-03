@@ -221,7 +221,7 @@ namespace YarnSpinner.Tests
                         }
                         else
                         {
-                            throw new InvalidOperationException();
+                            throw new InvalidOperationException("Unknown step line type " + stepContext.GetType());
                         }
                     }
                     else if (stepContext.optionExpected() != null)
