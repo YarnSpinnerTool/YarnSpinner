@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Updated
 
+- When the `tags:` header on a node is blank, `Node.Tags` now returns an empty collection, instead of a collection containing a single empty string.
+
 ### Removed
 
 ## [3.0.2] 2025-06-12
