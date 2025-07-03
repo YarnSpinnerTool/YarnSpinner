@@ -25,12 +25,15 @@ namespace Yarn.Compiler
         /// contexts that all belong to this node group.</param>
         /// <param name="compiledNodes">The collection of existing compiled
         /// nodes in the compilation.</param>
-        public NodeGroupCompiler(string nodeGroupName, IDictionary<string, Declaration> variableDeclarations, IEnumerable<YarnSpinnerParser.NodeContext> nodeContexts, List<Node> compiledNodes)
+        /// <param name="trackingNodes">The collection of node names for whom
+        /// tracking information should be added.</param>
+        public NodeGroupCompiler(string nodeGroupName, IDictionary<string, Declaration> variableDeclarations, IEnumerable<YarnSpinnerParser.NodeContext> nodeContexts, List<Node> compiledNodes, IEnumerable<string> trackingNodes)
         {
             this.NodeGroupName = nodeGroupName;
             this.VariableDeclarations = variableDeclarations;
             this.NodeContexts = nodeContexts;
             this.CompiledNodes = compiledNodes;
+            this.TrackingNodes = trackingNodes;
         }
 
         public Node? CurrentNode { get; private set; }
@@ -41,6 +44,7 @@ namespace Yarn.Compiler
 
         private IEnumerable<YarnSpinnerParser.NodeContext> NodeContexts { get; }
         public List<Node> CompiledNodes { get; }
+        public IEnumerable<string> TrackingNodes { get; }
 
         private Node? FindNode(string title)
         {
@@ -207,6 +211,23 @@ namespace Yarn.Compiler
                 Key = Node.NodeIsHubNodeHeader,
                 Value = "1"
             });
+
+            if (TrackingNodes.Contains(NodeGroupName))
+            {
+                if (NodeContexts.All(n => n.GetHeader("tracking")?.header_value?.Text == "never"))
+                {
+                    // All member nodes are not tracked, so we should not be tracked
+                }
+                else
+                {
+                    // Track this node
+                    hubNode.Headers.Add(new Header
+                    {
+                        Key = Node.TrackingVariableNameHeader,
+                        Value = Library.GenerateUniqueVisitedVariableForNode(NodeGroupName)
+                    });
+                }
+            }
 
             var hubNodeDebugInfo = new NodeDebugInfo("<generated>", NodeGroupName);
             this.CurrentNode = hubNode;

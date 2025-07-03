@@ -250,10 +250,12 @@ namespace Yarn.Compiler
                 {
                     compilationJob.CancellationToken.ThrowIfCancellationRequested();
 #if !DEBUG
-                    if (watchdog.ElapsedMilliseconds > TypeSolverTimeLimit * 1000) {
+                    if (watchdog.ElapsedMilliseconds > TypeSolverTimeLimit * 1000)
+                    {
                         // We've taken too long to solve. Create error
                         // diagnostics for the affected expressions.
-                        foreach (var constraint in failingConstraints) {
+                        foreach (var constraint in failingConstraints)
+                        {
                             diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceContext, $"Expression failed to resolve in a reasonable time ({TypeSolverTimeLimit}). Try simplifying this expression."));
                         }
                         break;
@@ -506,7 +508,8 @@ namespace Yarn.Compiler
                         nodeGroupName: group.Key,
                         variableDeclarations: declarations.ToDictionary(d => d.Name, d => d),
                         nodeContexts: group,
-                        compiledNodes: compiledNodes
+                        compiledNodes: compiledNodes,
+                        trackingNodes: trackingNodes
                         );
 
                     var generatedNodes = codegen.CompileNodeGroup();
