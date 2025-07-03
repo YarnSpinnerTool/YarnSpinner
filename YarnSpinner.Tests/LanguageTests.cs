@@ -157,6 +157,24 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestIdentifiersMayContainValidCharacters()
+        {
+            var source = @"
+title: Start
+---
+<<declare $demo = 1 as number>>
+<<declare $实验 = 1 as number>>
+<<declare $эксперимент = 1 as number>>
+<<declare $mục = 1 as number>>
+<<declare $🧶 = 1 as number>>
+===
+";
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            result.ContainsErrors.Should().BeFalse();
+        }
+
+        [Fact]
         public void TestNumberPlurals()
         {
 
