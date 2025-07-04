@@ -9,6 +9,7 @@ beginning
 <<detour NodeGroupImplicitTrack>>
 <<detour NodeGroupNoTrack>>
 <<detour NodeGroupTrack>>
+<<detour NodeGroupWithSubtitle>>
 
 entered End
 
@@ -18,6 +19,7 @@ did we visit Track? {visited("Trac" + "k")}!
 did we visit NodeGroupImplicitTrack? {visited("NodeGroupImplicitTrack")}!
 did we visit NodeGroupNoTrack? {visited("NodeGroupNoTrack")}!
 did we visit NodeGroupTrack? {visited("NodeGroupTrac" + "k")}!
+did we visit NodeGroupWithSubtitle.ABC123? {visited("NodeGroupWithSubtitle.ABC123")}!
 
 done
 ===
@@ -55,4 +57,10 @@ when: always
 tracking: never
 ---
 entered NodeGroupNoTrack
+===
+title: NodeGroupWithSubtitle
+when: always
+subtitle: ABC123
+---
+entered NodeGroupWithSubtitle.ABC123
 ===
