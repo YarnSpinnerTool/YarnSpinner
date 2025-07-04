@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - When the `tags:` header on a node is blank, `Node.Tags` now returns an empty collection, instead of a collection containing a single empty string.
 - Fixed an issue that would cause testplans with syntax errors to incorrectly pass.
+- Fixed an issue where using `visited()` or `visited_count()` would not correctly track visiting node groups.
 
 ### Removed
 
