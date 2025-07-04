@@ -60,6 +60,14 @@ namespace Yarn.Compiler
                 if (tracking.Equals("always"))
                 {
                     TrackingNode.Add(title);
+                    // If we're in a node group, 'title' is actually our
+                    // rewritten individual node title. We'll track that, but we
+                    // also need to track the hub node, so we'll also add that
+                    // to the tracking list.
+                    if (string.IsNullOrEmpty(context.NodeGroup) == false)
+                    {
+                        TrackingNode.Add(context.NodeGroup);
+                    }
                 }
                 else if (tracking.Equals("never"))
                 {
