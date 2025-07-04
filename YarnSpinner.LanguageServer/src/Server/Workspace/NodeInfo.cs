@@ -2,6 +2,7 @@ using Antlr4.Runtime;
 using Newtonsoft.Json;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace YarnLanguageServer;
 
@@ -80,6 +81,9 @@ public record NodeInfo
     internal List<YarnActionReference> CommandCalls { get; init; } = new();
     internal List<IToken> VariableReferences { get; init; } = new();
     internal List<(string name, int lineIndex)> CharacterNames { get; init; } = new();
+
+    [JsonProperty("containsExternalJumps")]
+    public bool ContainsExternalJumps => this.Jumps.Any(j => this.File != null && j.DestinationFile != null && j.DestinationFile.Uri != this.File.Uri);
 
     /// <summary>
     /// Gets the computed complexity for this node.

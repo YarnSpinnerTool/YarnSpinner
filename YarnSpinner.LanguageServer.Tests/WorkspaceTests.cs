@@ -14,6 +14,7 @@ namespace YarnLanguageServer.Tests
         private static string Project2Path = Path.Combine(TestUtility.PathToTestWorkspace, "Project2", "Project2.yarnproject");
         private static string NoProjectPath = Path.Combine(TestUtility.PathToTestWorkspace, "FilesWithNoProject");
         private static string MultipleDefsPath = Path.Combine(TestUtility.PathToTestWorkspace, "ProjectWithMultipleDefinitionsFiles");
+        private static string JumpsAndDetoursPath = Path.Combine(TestUtility.PathToTestWorkspace, "JumpsAndDetours");
 
         [Fact]
         public void Projects_CanOpen()
@@ -162,6 +163,22 @@ namespace YarnLanguageServer.Tests
             relativeToWorkspaceProject.Commands.Should().Contain(c => c.YarnName == "custom_command_2");
             relativeToWorkspaceProject.Functions.Should().Contain(c => c.YarnName == "custom_function_2");
 
+        }
+
+        [Fact]
+        public void Workspace_WithJumpsBetweenFiles_IdentifiesJumpsToOtherFiles()
+        {
+            var workspace = new Workspace();
+            workspace.Root = JumpsAndDetoursPath;
+            workspace.Initialize();
+
+            var project = workspace.Projects.Single();
+            var file = project.Files.Single(f => f.Uri.AbsolutePath.EndsWith("JumpsAndDetours.yarn"));
+            var node1 = file.NodeInfos.Single(n => n.UniqueTitle == "Node1");
+            var node2 = file.NodeInfos.Single(n => n.UniqueTitle == "Node2");
+
+            node1.ContainsExternalJumps.Should().BeTrue();
+            node2.ContainsExternalJumps.Should().BeFalse();
         }
     }
 }

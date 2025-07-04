@@ -272,6 +272,24 @@ namespace YarnLanguageServer
 
             this.LastCompilationResult = compilationResult;
 
+
+            // For all jumps in all files, attempt to identify the file that the
+            // target of the jump is in, and store it in the jump info
+            var nodesToFiles = this.Files
+                .SelectMany(f => f.NodeInfos
+                    .Where(n => n.SourceTitle != null))
+                    .ToLookup(n => n.SourceTitle!);
+
+
+            foreach (var file in this.Files)
+            {
+                foreach (var jump in file.NodeJumps)
+                {
+                    var nodesWithTitle = nodesToFiles.FirstOrDefault(n => n.Key == jump.DestinationTitle);
+                    jump.DestinationFile = nodesWithTitle?.FirstOrDefault()?.File;
+                }
+            }
+
             if (notifyOnComplete)
             {
                 OnProjectCompiled?.Invoke(compilationResult);
