@@ -4,6 +4,10 @@ using System;
 
 public class ExampleCommands
 {
+    // This uses syntax from C#11 and has tripped up the CodeAnalysis.CSharp in the past
+    [Export]
+    public required Control TrapPanel { get; set; }
+
     // This is an example of a static command with no parameters, and doesn't
     // have a documentation comment. (The method is below this field to prevent
     // the parser from associating this comment with the method.)
@@ -72,7 +76,7 @@ public class ExampleCommands
 
     static class NestingTestParentClass
     {
-     
+
         [YarnCommand("command_nested_in_parent_class")]
         public static void CommandNestedInParentClass()
         {
