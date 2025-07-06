@@ -79,6 +79,7 @@ namespace YarnLanguageServer.Tests
 
 
             // Then
+            Assert.NotNull(hoverResult);
             hoverResult?.Contents.MarkedStrings?.ElementAt(0).Language.Should().Be("text");
             hoverResult?.Contents.MarkedStrings?.ElementAt(0).Value.Should().Be("instance_command_no_params");
 
