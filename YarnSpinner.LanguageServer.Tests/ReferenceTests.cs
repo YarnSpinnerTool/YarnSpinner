@@ -48,7 +48,7 @@ namespace YarnLanguageServer.Tests
             {
 
                 node1.References.Should().HaveCount(2);
-                node1.Jumps.Should().HaveCount(1);
+                node1.Jumps.Should().HaveCount(2);
                 node1.Jumps.Should().Contain(j => j.DestinationTitle == "Node2" && j.Type == NodeJump.JumpType.Jump);
 
                 node2.References.Should().HaveCount(3);
