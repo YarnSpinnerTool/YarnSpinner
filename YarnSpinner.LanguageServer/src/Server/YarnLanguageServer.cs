@@ -608,12 +608,7 @@ namespace YarnLanguageServer
 
             foreach (var line in result.StringTable ?? Enumerable.Empty<KeyValuePair<string, Yarn.Compiler.StringInfo>>())
             {
-                if (line.Value.text == null)
-                {
-                    continue;
-                }
-
-                strings[line.Key] = line.Value.text;
+                strings[line.Key] = line.Value.text ?? string.Empty;
 
                 var metadataEntry = new MetadataOutput
                 {
