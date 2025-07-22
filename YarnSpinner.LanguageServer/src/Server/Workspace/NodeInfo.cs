@@ -91,6 +91,7 @@ public record NodeInfo
     /// <remarks>
     /// If this node is not part of a node group, this value is -1.
     /// </remarks>
+    [JsonProperty("nodeGroupComplexity")]
     public int NodeGroupComplexity { get; internal set; } = -1;
 
     /// <summary>
