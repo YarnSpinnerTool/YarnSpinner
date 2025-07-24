@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Language Server: NodeInfo objects now indicate whether a node contains any jumps to nodes in a different file.
 - Language Server: Fixed an issue where the Compile workspace command output was missing shadow lines
 - Language Server: `Microsoft.CodeAnalysis.CSharp` package updated to v4.14.0, fixing command detection in C# files using recent syntax added to C# (eg. `Required Members` from C# 11)
+- Language Server: enum declaration statements are now included in code completions.
 
 ### Removed
 

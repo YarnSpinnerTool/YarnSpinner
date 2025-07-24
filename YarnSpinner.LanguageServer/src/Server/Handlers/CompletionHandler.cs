@@ -116,6 +116,14 @@ namespace YarnLanguageServer.Handlers
                     Documentation = "Stop ends the current dialogue.",
                     InsertTextFormat = InsertTextFormat.PlainText,
                 },
+                new CompletionItem{
+                    Label = "enum declaration",
+                    Documentation = "Create a new enum type.",
+                    Kind = CompletionItemKind.Snippet,
+                    InsertText = "<<enum ${1:NewEnumType}>>\n    <<case ${2:EnumCase}>>\n<<endenum>>",
+                    InsertTextFormat = InsertTextFormat.Snippet,
+                    InsertTextMode = InsertTextMode.AdjustIndentation,
+                }
             };
 
             this.keywordCompletions = new List<CompletionItem> {
