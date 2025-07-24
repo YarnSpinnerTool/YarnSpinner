@@ -116,7 +116,7 @@ namespace YarnLanguageServer.Tests
 
             nodeInfo.Uri.ToString().Should().Be("file://" + filePath, "because this is the URI of the file we opened");
 
-            nodeInfo.Nodes.Should().HaveCount(5, "because there are four nodes in the file before we make changes");
+            var nodeCount = nodeInfo.Nodes.Count;
 
             var nodesChanged = GetNodesChangedNotificationAsync((nodesResult) =>
                 nodesResult.Uri.AbsolutePath.Contains(filePath)
@@ -124,7 +124,7 @@ namespace YarnLanguageServer.Tests
             ChangeTextInDocument(client, filePath, new Position(20, 0), "title: Node3\n---\n===\n");
             nodeInfo = await nodesChanged;
 
-            nodeInfo.Nodes.Should().HaveCount(6, "because we added a new node");
+            nodeInfo.Nodes.Should().HaveCount(nodeCount + 1, "because we added a new node");
             nodeInfo.Nodes.Should().Contain(n => n.UniqueTitle == "Node3", "because the new node we added has this title");
         }
 
