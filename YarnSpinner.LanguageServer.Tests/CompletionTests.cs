@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Microsoft.Extensions.DependencyInjection;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using System.IO;
@@ -159,6 +160,36 @@ namespace YarnLanguageServer.Tests
                 item.TextEdit!.TextEdit!.Range.Start.Should().BeEquivalentTo(endOfJumpKeyword);
                 item.TextEdit.TextEdit.Range.End.Should().BeEquivalentTo(middleOfNodeName);
             });
+        }
+
+        [Fact]
+        public async Task Server_OnCompletionRequestedInSetStatement_OffersVariableNames()
+        {
+            // Given
+            // Given
+            var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+            var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+            var workspace = server.Workspace.GetService<Workspace>()!;
+            var project = workspace.Projects.Single(p => p.Uri!.Path.Contains("Project1"));
+
+            ChangeTextInDocument(client, filePath, new Position(48, 0), "<<set ");
+
+            // When
+            var completionResults = await client.RequestCompletion(new CompletionParams
+            {
+                TextDocument = new TextDocumentIdentifier { Uri = filePath },
+                Position = new Position(48, "<<set ".Length)
+            });
+
+            // Then
+            completionResults.Should().NotBeEmpty();
+            completionResults.Should().AllSatisfy(item =>
+            {
+                var decl = project.Variables.Should().Contain(v => v.Name == item.Label, "the completion should be a variable name").Subject;
+                decl.IsVariable.Should().BeTrue("the declaration should be a variable");
+                decl.IsInlineExpansion.Should().BeFalse("the variable should be a stored variable");
+            }, "all completion results should be stored variables");
+
         }
 
     }

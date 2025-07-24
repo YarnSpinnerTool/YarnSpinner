@@ -42,3 +42,10 @@ title: JumpToTest
 <<jump Jump2Test>>
 
 ===
+title: CodeCompletionTests
+---
+// This node exists for testing code-completion requests
+
+
+<<stop>>
+===

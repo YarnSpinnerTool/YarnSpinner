@@ -339,16 +339,39 @@ namespace YarnLanguageServer
             return this.Text.Substring(startOffset, endOffset - startOffset);
         }
 
-        public int? GetRawToken(Position position)
+        public bool TryGetRawToken(Position position, out int rawToken)
         {
             // TODO: Not sure if it's even worth using a visitor vs just iterating through the token list.
             var result = TokenPositionVisitor.Visit(this, position);
-            if (result != null) { return result; }
+            if (result.HasValue)
+            {
+                rawToken = result.Value;
+                return true;
+            }
 
             // The parse tree doesn't have whitespace tokens so need to manually search sometimes
             var match = this.Tokens.FirstOrDefault(t => PositionHelper.DoesPositionContainToken(position, t));
             result = match?.TokenIndex;
-            return result;
+            if (result.HasValue)
+            {
+                rawToken = result.Value;
+                return true;
+            }
+            rawToken = default;
+            return false;
+        }
+
+        [Obsolete("Use " + nameof(TryGetRawToken))]
+        public int? GetRawToken(Position position)
+        {
+            if (TryGetRawToken(position, out var token))
+            {
+                return token;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private YarnActionReference? GetFunctionInfo(Position position)
