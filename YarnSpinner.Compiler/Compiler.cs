@@ -433,6 +433,10 @@ namespace Yarn.Compiler
             // adding in the warnings about empty nodes
             var empties = AddDiagnosticsForEmptyNodes(parsedFiles, ref diagnostics);
 
+            // The user-defined types are all types that we know about, minus
+            // all types that were pre-defined.
+            var userDefinedTypes = knownTypes.Except(Types.AllBuiltinTypes).ToList();
+
             // All declarations must now have a concrete type. If they don't,
             // then we couldn't solve for their type, and can't continue.
             if (compilationJob.CompilationType == CompilationJob.Type.TypeCheck)
@@ -446,6 +450,7 @@ namespace Yarn.Compiler
                     StringTable = null,
                     FileTags = fileTags,
                     Diagnostics = diagnostics,
+                    UserDefinedTypes = userDefinedTypes,
                 };
             }
 
@@ -603,10 +608,6 @@ namespace Yarn.Compiler
             {
                 Nodes = nodeDebugInfos,
             };
-
-            // The user-defined types are all types that we know about, minus
-            // all types that were pre-defined.
-            var userDefinedTypes = knownTypes.Except(Types.AllBuiltinTypes).ToList();
 
             var finalResult = new CompilationResult
             {
