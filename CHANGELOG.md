@@ -17,7 +17,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Language Server: Fixed an issue where the Compile workspace command output was missing shadow lines
 - Language Server: `Microsoft.CodeAnalysis.CSharp` package updated to v4.14.0, fixing command detection in C# files using recent syntax added to C# (eg. `Required Members` from C# 11)
 - Language Server: enum declaration statements are now included in code completions.
+- Language Server: enum values are now included in code completions.
 - Language Server: `<<set>>` statements now offer variable names in their code completions.
+- Language Server: hovering smart variables now shows their definition.
 
 ### Removed
 
