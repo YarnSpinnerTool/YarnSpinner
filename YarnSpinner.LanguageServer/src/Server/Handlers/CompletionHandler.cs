@@ -209,6 +209,27 @@ namespace YarnLanguageServer.Handlers
                     Documentation = "Set assigns the value of the expression to a variable",
                     InsertTextFormat = InsertTextFormat.PlainText,
                 },
+                new CompletionItem{
+                    Label = "enum",
+                    Kind = CompletionItemKind.Keyword,
+                    InsertText = "enum",
+                    Documentation = "Enums are collections of predefined values.",
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                },
+                new CompletionItem{
+                    Label = "case",
+                    Kind = CompletionItemKind.Keyword,
+                    InsertText = "case",
+                    Documentation = new MarkupContent{ Kind=MarkupKind.Markdown, Value= "`case` creates a new member in an enum." },
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                },
+                new CompletionItem{
+                    Label = "endenum",
+                    Kind = CompletionItemKind.Keyword,
+                    InsertText = "endenum",
+                    Documentation = new MarkupContent{ Kind=MarkupKind.Markdown, Value= "`endenum` ends an enum declaration." },
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                }
             };
         }
 
@@ -520,6 +541,7 @@ namespace YarnLanguageServer.Handlers
             Function = 1,
             StoredVariable = 2,
             SmartVariable = 4,
+            EnumCases = 8,
             All = ~0,
         }
 
@@ -529,8 +551,6 @@ namespace YarnLanguageServer.Handlers
 
             if (identifierTypes.HasFlag(IdentifierTypes.Function))
             {
-
-
                 foreach (var function in project.Functions.DistinctBy(f => f.YarnName))
                 {
                     builder.Append(function.YarnName);
@@ -592,6 +612,29 @@ namespace YarnLanguageServer.Handlers
                         TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = variable.Name, Range = indexTokenRange.CollapseToEnd() }),
                         InsertTextFormat = InsertTextFormat.PlainText,
                     });
+                }
+            }
+
+            if (identifierTypes.HasFlag(IdentifierTypes.EnumCases))
+            {
+                foreach (var userEnum in project.Enums)
+                {
+                    foreach (var enumCase in userEnum.EnumCases)
+                    {
+                        var fullName = userEnum.Name + "." + enumCase.Key;
+                        results.Add(new CompletionItem
+                        {
+                            Label = fullName,
+                            Kind = CompletionItemKind.EnumMember,
+                            Documentation = enumCase.Value.Description,
+                            TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit
+                            {
+                                NewText = fullName,
+                                Range = indexTokenRange.CollapseToEnd()
+                            }),
+                            InsertTextFormat = InsertTextFormat.PlainText,
+                        });
+                    }
                 }
             }
         }

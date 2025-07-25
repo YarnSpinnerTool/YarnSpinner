@@ -33,6 +33,20 @@ namespace YarnLanguageServer
             }
         }
 
+        internal IEnumerable<Yarn.EnumType> Enums
+        {
+            get
+            {
+                if (LastCompilationResult == null)
+                {
+                    return Enumerable.Empty<Yarn.EnumType>();
+                }
+
+                var enums = LastCompilationResult.UserDefinedTypes.OfType<Yarn.EnumType>();
+                return enums;
+            }
+        }
+
         internal IEnumerable<Yarn.Compiler.Diagnostic> Diagnostics
         {
             get

@@ -10,6 +10,12 @@ This is a line.
 
 <<jump Node2>>
 
+<<enum TestEnum>>
+<<case Item1>>
+<<case Item2>>
+<<case Item3>>
+<<endenum>>
+
 ===
 title: Node2
 tags: wow incredible
