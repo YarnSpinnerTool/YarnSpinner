@@ -14,22 +14,46 @@ namespace YarnLanguageServer.Handlers
 {
     internal static class ContextExtensions
     {
+        public static bool IsChildOfContext(this Antlr4.Runtime.Tree.IParseTree tree, params System.Type[] parentContextTypes)
+        {
+            foreach (var type in parentContextTypes)
+            {
+                if (TryGetAncestorOfType(tree, type, out _))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree)
             where T : Antlr4.Runtime.ParserRuleContext
         {
             return IsChildOfContext<T>(tree, out _);
         }
 
-        public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree, out T? result)
+        public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree, [NotNullWhen(true)] out T? result)
             where T : Antlr4.Runtime.ParserRuleContext
         {
-            var type = typeof(T);
+            if (TryGetAncestorOfType(tree, typeof(T), out var ancestor))
+            {
+                result = (T)ancestor;
+                return true;
+            }
+            else
+            {
+                result = default;
+                return false;
+            }
+        }
+        private static bool TryGetAncestorOfType(this Antlr4.Runtime.Tree.IParseTree tree, System.Type type, [NotNullWhen(true)] out Antlr4.Runtime.ParserRuleContext? result)
+        {
 
             while (tree != null)
             {
                 if (type.IsAssignableFrom(tree.Payload.GetType()))
                 {
-                    result = (T)tree;
+                    result = (Antlr4.Runtime.ParserRuleContext)tree;
                     return true;
                 }
 
@@ -366,19 +390,36 @@ namespace YarnLanguageServer.Handlers
                     results
                 );
             }
+            else if (context?.IsChildOfContext(
+                typeof(YarnSpinnerParser.ExpressionContext),
+                typeof(YarnSpinnerParser.If_clauseContext),
+                typeof(YarnSpinnerParser.Else_if_clauseContext)
+            ) ?? false)
+            {
+                // We're in the middle of an expression. Offer identifier completions.
+                GetIdentifierCompletions(project, rangeOfTokenAtRequestPosition, results, IdentifierTypes.All);
+            }
             else if (context?.IsChildOfContext<YarnSpinnerParser.Set_statementContext>() ?? false)
             {
                 // We're in the middle of a set statement.
 
-                // If the previous token was the 'set' command, offer variable name completions.
-                if (TryGetRelativeTokenOnLine(-1, out var previousToken) && previousToken.Type == YarnSpinnerLexer.COMMAND_SET)
+                if (TryGetRelativeTokenOnLine(-1, out var previousToken))
                 {
-                    GetIdentifierCompletions(project, rangeOfTokenAtRequestPosition, results, IdentifierTypes.StoredVariable);
+                    // If the previous token was the 'set' command, offer variable name completions.
+                    if (previousToken.Type == YarnSpinnerLexer.COMMAND_SET)
+                    {
+                        GetIdentifierCompletions(project, rangeOfTokenAtRequestPosition, results, IdentifierTypes.StoredVariable);
+                    }
+                    else if (previousToken.Type == YarnSpinnerLexer.OPERATOR_ASSIGNMENT)
+                    {
+                        // If the previous token was the 'equals' token, offer all identifier completions. 
+                        GetIdentifierCompletions(project, rangeOfTokenAtRequestPosition, results, IdentifierTypes.All);
+                    }
                 }
             }
             else
             {
-                switch (tokenAtRequestPosition.Type)
+                switch (tokensOnLine.Where(t => t.Channel != YarnSpinnerLexer.Hidden).LastOrDefault()?.Type)
                 {
                     case YarnSpinnerLexer.COMMAND_START:
                         {
