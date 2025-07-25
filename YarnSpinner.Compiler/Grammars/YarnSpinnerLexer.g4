@@ -352,7 +352,7 @@ COMMAND_END: '>>' -> popMode;
 // Switch to CommandTextMode, and also jump into ExpressionMode to 
 // lex the rest of the expression. When we're done, the closing brace } 
 // will return us to CommandTextMode for the remainder of the command.
-COMMAND_EXPRESSION_AT_START: '{' -> type(COMMAND_EXPRESSION_START), mode(CommandTextMode), pushMode(ExpressionMode);
+COMMAND_EXPRESSION_AT_START: '{' -> type(EXPRESSION_START), mode(CommandTextMode), pushMode(ExpressionMode);
 
 // If we see anything that we don't expect, assume that this 
 // is a command with arbitrary text inside it. Replace this 
@@ -364,7 +364,7 @@ COMMAND_ARBITRARY: . -> type(COMMAND_TEXT), mode(CommandTextMode);
 mode CommandTextMode;
 COMMAND_TEXT_NEWLINE: NEWLINE;
 COMMAND_TEXT_END: '>>' -> type(COMMAND_END), popMode;
-COMMAND_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
+COMMAND_EXPRESSION_START: '{' -> type(EXPRESSION_START), pushMode(ExpressionMode);
 COMMAND_TEXT: ~[>{\r\n]+;
 
 // A mode in which we expect to parse a node ID.

@@ -405,7 +405,6 @@ namespace YarnLanguageServer.Handlers
 
                     // inline expressions, if, and elseif are the same thing
                     case YarnSpinnerLexer.EXPRESSION_START:
-                    case YarnSpinnerLexer.COMMAND_EXPRESSION_START:
                     case YarnSpinnerLexer.COMMAND_IF:
                     case YarnSpinnerLexer.COMMAND_ELSEIF:
                         {
@@ -659,7 +658,6 @@ namespace YarnLanguageServer.Handlers
             YarnSpinnerLexer.EXPRESSION_START,
             YarnSpinnerLexer.HASHTAG,
             YarnSpinnerLexer.COMMAND_TEXT,
-            YarnSpinnerLexer.COMMAND_EXPRESSION_START,
             YarnSpinnerLexer.INDENT,
             YarnSpinnerLexer.DEDENT,
             YarnSpinnerLexer.WHITESPACE,
