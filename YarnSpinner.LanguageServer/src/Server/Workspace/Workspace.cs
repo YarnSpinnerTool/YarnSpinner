@@ -316,6 +316,9 @@ namespace YarnLanguageServer
                 // Add warnings for this file
                 diags = diags.Concat(Warnings.GetWarnings(file, this.Configuration));
 
+                // Add hints for this file
+                diags = diags.Concat(Hints.GetHints(file, this.Configuration));
+
                 // Add the resulting list to the dictionary.
                 result[uri] = diags;
             }
