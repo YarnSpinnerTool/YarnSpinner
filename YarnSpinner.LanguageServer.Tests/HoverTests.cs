@@ -21,7 +21,6 @@ namespace YarnLanguageServer.Tests
         {
         }
 
-
         [Fact]
         public async Task Server_OnHoverVariable_ShouldReceiveHoverInfo()
         {
@@ -48,7 +47,7 @@ namespace YarnLanguageServer.Tests
             // is expected to be returned
             var validHoverPosition = new Position
             {
-                Line = 18,
+                Line = 24,
                 Character = 14,
             };
 
@@ -73,7 +72,7 @@ namespace YarnLanguageServer.Tests
             // When
             var hoverResult = await client.RequestHover(new HoverParams
             {
-                Position = new Position { Line = 23, Character = 10 },
+                Position = new Position { Line = 29, Character = 10 },
                 TextDocument = new TextDocumentIdentifier { Uri = filePath },
             });
 

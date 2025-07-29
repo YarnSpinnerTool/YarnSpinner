@@ -17,7 +17,7 @@ namespace YarnLanguageServer.Handlers
             this.workspace = workspace;
         }
 
-        public Task<Unit> Handle(DidChangeWatchedFilesParams request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DidChangeWatchedFilesParams request, CancellationToken cancellationToken)
         {
             var yarnChanges = request.Changes.Where(c => c.Uri.Path.EndsWith(".yarn"));
             var csChanges = request.Changes.Where(c => c.Uri.Path.EndsWith(".cs"));
@@ -78,10 +78,15 @@ namespace YarnLanguageServer.Handlers
 
             if (needsWorkspaceReload)
             {
-                workspace.ReloadWorkspace(cancellationToken);
+                try
+                {
+                    await workspace.ReloadWorkspaceAsync(cancellationToken);
+
+                }
+                catch (System.OperationCanceledException) { }
             }
 
-            return Unit.Task;
+            return Unit.Value;
         }
 
         public DidChangeWatchedFilesRegistrationOptions GetRegistrationOptions(DidChangeWatchedFilesCapability capability, ClientCapabilities clientCapabilities)

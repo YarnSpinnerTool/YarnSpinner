@@ -121,7 +121,8 @@ namespace YarnLanguageServer.Tests
             var nodesChanged = GetNodesChangedNotificationAsync((nodesResult) =>
                 nodesResult.Uri.AbsolutePath.Contains(filePath)
             );
-            ChangeTextInDocument(client, filePath, new Position(20, 0), "title: Node3\n---\n===\n");
+            // Insert a new node at the top of the file
+            ChangeTextInDocument(client, filePath, new Position(0, 0), "title: Node3\n---\nLine Content\n===\n");
             nodeInfo = await nodesChanged;
 
             nodeInfo.Nodes.Should().HaveCount(nodeCount + 1, "because we added a new node");
@@ -219,8 +220,8 @@ namespace YarnLanguageServer.Tests
                 completions.Should().Contain(c => c.Label == "Start",
                     "because 'Start' is a node we could jump to");
 
-                completions.Should().NotContain(c => c.Label == "Node2",
-                    "because while 'Node2' is a node we could jump to, we're currently in a syntax error");
+                completions.Should().Contain(c => c.Label == "Node2",
+                    "because 'Node2' is a node we could jump to, even though it's after a syntax error");
             }
         }
 
@@ -228,7 +229,7 @@ namespace YarnLanguageServer.Tests
         public void Workspace_BuiltInFunctions_MatchesDefaultLibrary()
         {
             // Given
-            var builtInActionDecls = Workspace.GetPredefinedActions().Where(a => a.Type == ActionType.Function).Select(f => f.Declaration).ToDictionary(d => d.Name);
+            var builtInActionDecls = Workspace.GetPredefinedActions().Where(a => a.Type == ActionType.Function).Select(f => f.Declaration).ToDictionary(d => d!.Name);
 
             var storage = new Yarn.MemoryVariableStore();
             var dialogue = new Yarn.Dialogue(storage);
@@ -270,7 +271,7 @@ namespace YarnLanguageServer.Tests
 
                     libraryDecl.Should().BeEquivalentTo(actionDecl, (config) =>
                     {
-                        return config.Excluding(info => info.Description);
+                        return config.Excluding(info => info!.Description);
                     });
                 }
             }

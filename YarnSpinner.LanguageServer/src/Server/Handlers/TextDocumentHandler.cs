@@ -5,6 +5,7 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Window;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -54,11 +55,11 @@ namespace YarnLanguageServer.Handlers
             return Unit.Task;
         }
 
-        public override Task<Unit> Handle(DidChangeTextDocumentParams request, CancellationToken cancellationToken)
+        public override async Task<Unit> Handle(DidChangeTextDocumentParams request, CancellationToken cancellationToken)
         {
             var uri = request.TextDocument.Uri.ToUri();
 
-            if (!uri.IsFile) { return Unit.Task; }
+            if (!uri.IsFile) { return Unit.Value; }
 
             // Find all projects that claim this URI
             var projects = workspace.GetProjectsForUri(uri);
@@ -67,8 +68,10 @@ namespace YarnLanguageServer.Handlers
             {
                 // We don't have a project that includes this URI. Nothing to
                 // be done.
-                return Unit.Task;
+                return Unit.Value;
             }
+
+            var compilationTasks = new List<Task>();
 
             foreach (var project in projects)
             {
@@ -91,14 +94,25 @@ namespace YarnLanguageServer.Handlers
 
                 // Finally, update our model using the new content.
                 yarnDocument.Update(yarnDocument.Text);
-                project.CompileProject(
+
+                compilationTasks.Add(project.CompileProjectAsync(
                     notifyOnComplete: true,
                     Yarn.Compiler.CompilationJob.Type.TypeCheck,
                     cancellationToken
-                );
+                ));
             }
 
-            return Unit.Task;
+            try
+            {
+                await Task.WhenAll(compilationTasks);
+            }
+            catch (System.OperationCanceledException)
+            {
+                // Ignore any cancelled compilations - if we're cancelled or
+                // not, then there's nothing we need to do about it.
+            }
+
+            return Unit.Value;
         }
 
         #endregion Handlers

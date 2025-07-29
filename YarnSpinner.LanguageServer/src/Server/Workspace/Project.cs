@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace YarnLanguageServer
 {
@@ -19,6 +20,8 @@ namespace YarnLanguageServer
         public IEnumerable<YarnFileData> Files => yarnFiles.Values;
         public DocumentUri? Uri { get; init; }
         public bool IsImplicitProject { get; init; }
+
+        CancellationTokenSource? currentCompilationCTS = null;
 
         internal IEnumerable<Yarn.Compiler.Declaration> Variables
         {
@@ -245,7 +248,7 @@ namespace YarnLanguageServer
 
         internal int FileVersion => yarnProject.FileVersion;
 
-        internal void ReloadProjectFromDisk(bool notifyOnComplete, CancellationToken cancellationToken)
+        internal async Task ReloadProjectFromDiskAsync(bool notifyOnComplete, CancellationToken cancellationToken)
         {
             IEnumerable<string> sourceFilePaths = this.yarnProject.SourceFiles;
 
@@ -260,18 +263,33 @@ namespace YarnLanguageServer
                 this.yarnFiles.Add(uri, fileData);
             }
 
-            CompileProject(notifyOnComplete, Yarn.Compiler.CompilationJob.Type.TypeCheck, cancellationToken);
+            await CompileProjectAsync(notifyOnComplete, Yarn.Compiler.CompilationJob.Type.TypeCheck, cancellationToken);
         }
 
-        public Yarn.Compiler.CompilationResult CompileProject(bool notifyOnComplete, Yarn.Compiler.CompilationJob.Type compilationType, CancellationToken cancellationToken)
+        public struct CompileProjectOptions
         {
-            var functionDeclarations = Functions.Select(f => f.Declaration).NonNull();
+            public bool NotifyOnComplete;
+            public bool ThrowOnCancellation;
+        }
+
+        public async Task<Yarn.Compiler.CompilationResult> CompileProjectAsync(bool notifyOnComplete, Yarn.Compiler.CompilationJob.Type compilationType, CancellationToken cancellationToken)
+        {
+            // If there's an existing cancellation token source for this project, cancel it now
+            if (currentCompilationCTS != null)
+            {
+                await currentCompilationCTS.CancelAsync();
+                currentCompilationCTS.Dispose();
+            }
+
+            currentCompilationCTS = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+
+            var functionDeclarations = Functions.Select(f => f.Declaration).NonNull().ToArray();
 
             var files = this.Files.Select(f => new Yarn.Compiler.CompilationJob.File
             {
                 FileName = f.Uri.AbsolutePath,
                 Source = f.Text,
-            });
+            }).ToArray();
 
             var compilationJob = new Yarn.Compiler.CompilationJob
             {
@@ -282,7 +300,14 @@ namespace YarnLanguageServer
                 CancellationToken = cancellationToken,
             };
 
-            var compilationResult = Yarn.Compiler.Compiler.Compile(compilationJob);
+            var compilationResult = await Task.Run(() =>
+            {
+                var compilationResult = Yarn.Compiler.Compiler.Compile(compilationJob);
+                return compilationResult;
+            }).ConfigureAwait(ConfigureAwaitOptions.ContinueOnCapturedContext);
+
+            // This compilation is cancelled. Early out.
+            cancellationToken.ThrowIfCancellationRequested();
 
             this.LastCompilationResult = compilationResult;
 
@@ -308,13 +333,15 @@ namespace YarnLanguageServer
             {
                 OnProjectCompiled?.Invoke(compilationResult);
             }
+            currentCompilationCTS.Dispose();
+            currentCompilationCTS = null;
 
             return compilationResult;
         }
 
-        internal DebugOutput GetDebugOutput(CancellationToken cancellationToken)
+        async internal Task<DebugOutput> GetDebugOutputAsync(CancellationToken cancellationToken)
         {
-            var compilationResult = this.CompileProject(false, Yarn.Compiler.CompilationJob.Type.FullCompilation, cancellationToken);
+            var compilationResult = await this.CompileProjectAsync(false, Yarn.Compiler.CompilationJob.Type.FullCompilation, cancellationToken);
 
             var variables = compilationResult.Declarations
                 .Where(decl => decl.IsVariable)

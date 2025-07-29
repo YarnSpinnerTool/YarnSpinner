@@ -3,6 +3,7 @@ using OmniSharp.Extensions.LanguageServer.Protocol;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 using YarnLanguageServer.Diagnostics;
 
@@ -17,13 +18,13 @@ namespace YarnLanguageServer.Tests
         private static string JumpsAndDetoursPath = Path.Combine(TestUtility.PathToTestWorkspace, "JumpsAndDetours");
 
         [Fact]
-        public void Projects_CanOpen()
+        public async Task Projects_CanOpen()
         {
             // Given
             var project = new Project(Project1Path);
 
             // When
-            project.ReloadProjectFromDisk(false, CancellationToken.None);
+            await project.ReloadProjectFromDiskAsync(false, CancellationToken.None);
 
             // Then
             project.Files.Should().NotBeEmpty();
@@ -37,11 +38,11 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
-        public void Workspaces_CanOpen()
+        public async Task Workspaces_CanOpen()
         {
             var workspace = new Workspace();
             workspace.Root = TestUtility.PathToTestWorkspace;
-            workspace.Initialize();
+            await workspace.InitializeAsync();
 
             var diagnostics = workspace.GetDiagnostics();
 
@@ -67,12 +68,12 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
-        public void Workspaces_WithNoProjects_HaveImplicitProject()
+        public async Task Workspaces_WithNoProjects_HaveImplicitProject()
         {
             // Given
             var workspace = new Workspace();
             workspace.Root = NoProjectPath;
-            workspace.Initialize();
+            await workspace.InitializeAsync();
 
             // Then
             var project = workspace.Projects.Should().ContainSingle().Subject;
@@ -97,14 +98,14 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
-        public void Workspaces_WithDefsJsonAndNoProject_FindsCommands()
+        public async Task Workspaces_WithDefsJsonAndNoProject_FindsCommands()
         {
             // Given
             var workspace = new Workspace();
             workspace.Root = NoProjectPath;
 
             // When
-            workspace.Initialize();
+            await workspace.InitializeAsync();
 
             // Then
             var project = workspace.Projects.Should().ContainSingle().Subject;
@@ -116,12 +117,12 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
-        public void Workspaces_WithDefinitionsFile_UseDefinitions()
+        public async Task Workspaces_WithDefinitionsFile_UseDefinitions()
         {
             // Given
             var workspace = new Workspace();
             workspace.Root = Path.GetDirectoryName(Project2Path);
-            workspace.Initialize();
+            await workspace.InitializeAsync();
 
             // Then
             var project = workspace.Projects.Should().ContainSingle().Subject;
@@ -130,22 +131,22 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
-        public void Workspace_WithNullRoot_OpensSuccessfully()
+        public async Task Workspace_WithNullRoot_OpensSuccessfully()
         {
             // Given
             var workspace = new Workspace();
             workspace.Root = null;
 
-            workspace.Initialize();
+            await workspace.InitializeAsync();
         }
 
         [Fact]
-        public void Workspace_WithMultipleDefinitionsFiles_UsesMultipleFiles()
+        public async Task Workspace_WithMultipleDefinitionsFiles_UsesMultipleFiles()
         {
             // Given
             var workspace = new Workspace();
             workspace.Root = MultipleDefsPath;
-            workspace.Initialize();
+            await workspace.InitializeAsync();
 
             // When
             var projects = workspace.Projects;
@@ -166,11 +167,11 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
-        public void Workspace_WithJumpsBetweenFiles_IdentifiesJumpsToOtherFiles()
+        public async Task Workspace_WithJumpsBetweenFiles_IdentifiesJumpsToOtherFiles()
         {
             var workspace = new Workspace();
             workspace.Root = JumpsAndDetoursPath;
-            workspace.Initialize();
+            await workspace.InitializeAsync();
 
             var project = workspace.Projects.Single();
             var file = project.Files.Single(f => f.Uri.AbsolutePath.EndsWith("JumpsAndDetours.yarn"));

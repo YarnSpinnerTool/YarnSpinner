@@ -34,10 +34,16 @@ namespace YarnLanguageServer.Tests
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
             var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
+            var lineContainingCommand = File
+                .ReadAllLines(filePath)
+                .Index()
+                .Single(l => l.Item == "<<static_command_no_docs>>")
+                .Index;
+
             var startOfCommand = new Position
             {
                 Character = 2,
-                Line = 22
+                Line = lineContainingCommand
             };
 
             // When
@@ -67,10 +73,16 @@ namespace YarnLanguageServer.Tests
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
             var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
+            var lineContainingCommand = File
+                .ReadAllLines(filePath)
+                .Index()
+                .Single(l => l.Item == "<<static_command_no_docs>>")
+                .Index;
+
             var startOfCommand = new Position
             {
                 Character = 2,
-                Line = 22
+                Line = lineContainingCommand
             };
             var middleOfCommand = startOfCommand with
             {

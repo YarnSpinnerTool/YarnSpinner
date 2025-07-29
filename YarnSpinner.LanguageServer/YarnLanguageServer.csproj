@@ -10,6 +10,10 @@
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <UseAppHost>False</UseAppHost>
     <Nullable>enable</Nullable>
+    <!-- CS4014 Async function is not awaited and will run synchronously -->
+    <!-- VSTHRD110 Observe result of async calls -->
+    <WarningsAsErrors>CS4014;VSTHRD110</WarningsAsErrors>
+
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

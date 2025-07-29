@@ -61,7 +61,7 @@ namespace YarnLanguageServer
                             workspace.Configuration.Initialize(optsArray);
                         }
 
-                        workspace.Initialize(server, token);
+                        await workspace.InitializeAsync(server, token);
                         await Task.CompletedTask.ConfigureAwait(false);
                     }
                     catch (Exception e)
@@ -169,14 +169,14 @@ namespace YarnLanguageServer
             return options;
         }
 
-        public static Task<Container<DebugOutput>> GenerateDebugOutputAsync(Workspace workspace, ExecuteCommandParams<Container<DebugOutput>> commandParams, CancellationToken cancellationToken)
+        public static async Task<Container<DebugOutput>> GenerateDebugOutputAsync(Workspace workspace, ExecuteCommandParams<Container<DebugOutput>> commandParams, CancellationToken cancellationToken)
         {
-            var results = workspace.Projects.Select(project =>
+            var results = await Task.WhenAll(workspace.Projects.Select(project =>
             {
-                return project.GetDebugOutput(cancellationToken);
-            });
+                return project.GetDebugOutputAsync(cancellationToken);
+            }));
 
-            return Task.FromResult(new Container<DebugOutput>(results));
+            return new Container<DebugOutput>(results);
         }
 
         public static Task<string> GetEmptyYarnProjectJSONAsync(Workspace workspace, ExecuteCommandParams<string> commandParams)
@@ -569,7 +569,7 @@ namespace YarnLanguageServer
             return Task.FromResult<Container<NodeInfo>>(result);
         }
 
-        private static Task<CompilerOutput> CompileCurrentProjectAsync(Workspace workspace, ExecuteCommandParams<CompilerOutput> commandParams, CancellationToken cancellationToken)
+        private static async Task<CompilerOutput> CompileCurrentProjectAsync(Workspace workspace, ExecuteCommandParams<CompilerOutput> commandParams, CancellationToken cancellationToken)
         {
             if (commandParams.Arguments == null)
             {
@@ -586,7 +586,7 @@ namespace YarnLanguageServer
             // compilation (which will produce the compiled program's bytecode.)
             // This will also have the effect of updating the workspace's
             // diagnostics.
-            var result = project.CompileProject(true, Yarn.Compiler.CompilationJob.Type.FullCompilation, cancellationToken);
+            var result = await project.CompileProjectAsync(true, Yarn.Compiler.CompilationJob.Type.FullCompilation, cancellationToken);
 
             var errors = result.Diagnostics.Where(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error).Select(d => d.ToString());
 
@@ -595,12 +595,12 @@ namespace YarnLanguageServer
                 // The compilation produced errors. Return a failed compilation.
                 workspace.ShowMessage("Compilation failed. See the Problems tab for details.", MessageType.Error);
 
-                return Task.FromResult(new CompilerOutput
+                return new CompilerOutput
                 {
                     Data = string.Empty,
                     StringTable = new Dictionary<string, string>(),
                     Errors = errors.ToArray(),
-                });
+                };
             }
 
             var strings = new Dictionary<string, string>();
@@ -621,13 +621,13 @@ namespace YarnLanguageServer
                 metadata[line.Key] = metadataEntry;
             }
 
-            return Task.FromResult(new CompilerOutput
+            return new CompilerOutput
             {
                 Data = Convert.ToBase64String(result.Program?.ToByteArray() ?? Array.Empty<byte>()),
                 StringTable = strings,
                 MetadataTable = metadata,
                 Errors = Array.Empty<string>(),
-            });
+            };
         }
 
         private static Task<string> GenerateDialogueGraphAsync(Workspace workspace, ExecuteCommandParams<string> commandParams)

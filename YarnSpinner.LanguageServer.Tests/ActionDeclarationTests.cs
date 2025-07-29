@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 using Yarn;
 
@@ -34,18 +35,18 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
-        public void ActionDeclaration_AllYarnFunctions_AreCalled()
+        public async Task ActionDeclaration_AllYarnFunctions_AreCalled()
         {
             var workspace = new Workspace();
             workspace.Root = WorkspacePath;
-            workspace.Initialize();
+            await workspace.InitializeAsync();
 
             var diagnostics = workspace.GetDiagnostics().SelectMany(d => d.Value);
 
             diagnostics.Should().NotContain(d => d.Severity == DiagnosticSeverity.Warning);
             diagnostics.Should().NotContain(d => d.Severity == DiagnosticSeverity.Error);
 
-            var compiledOutput = workspace.Projects.Single().CompileProject(false, Yarn.Compiler.CompilationJob.Type.FullCompilation, CancellationToken.None);
+            var compiledOutput = await workspace.Projects.Single().CompileProjectAsync(false, Yarn.Compiler.CompilationJob.Type.FullCompilation, CancellationToken.None);
             var compiledProgram = compiledOutput.Program;
 
             compiledProgram.Should().NotBeNull();
@@ -64,10 +65,10 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
-        public void ActionDeclarations_AreAllPresentInLibrary()
+        public async Task ActionDeclarations_AreAllPresentInLibrary()
         {
             var workspace = new Workspace();
-            workspace.Initialize();
+            await workspace.InitializeAsync();
 
             var functions = workspace.Projects.Single().Functions;
 
@@ -93,10 +94,10 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
-        public void LibraryMethods_AreAllDeclared()
+        public async Task LibraryMethods_AreAllDeclared()
         {
             var workspace = new Workspace();
-            workspace.Initialize();
+            await workspace.InitializeAsync();
 
             var functions = workspace.Projects.Single().Functions;
 
@@ -145,7 +146,7 @@ namespace YarnLanguageServer.Tests
         }
 
         [Fact]
-        public void ActionsFoundInCSharpFile_AreIdentified()
+        public async Task ActionsFoundInCSharpFile_AreIdentified()
         {
             // Given
             var path = Path.Combine(TestUtility.PathToTestData, "TestWorkspace", "Project1", "ActionDeclarationUsage.yarn");
@@ -153,7 +154,7 @@ namespace YarnLanguageServer.Tests
             var workspace = new Workspace();
             workspace.Root = Path.Combine(TestUtility.PathToTestData, "TestWorkspace", "Project1");
             workspace.Configuration.CSharpLookup = true;
-            workspace.Initialize();
+            await workspace.InitializeAsync();
 
             // When
             var diagnostics = workspace

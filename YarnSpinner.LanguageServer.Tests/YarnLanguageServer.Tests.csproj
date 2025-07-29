@@ -5,6 +5,16 @@
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
+    <!-- CS4014 Async function is not awaited and will run
+    synchronously -->
+    <!-- VSTHRD110 Observe result of async calls -->
+    <!-- CS1998 Async method lacks 'await' operators -->
+    <WarningsAsErrors>CS4014;VSTHRD110;CS1998</WarningsAsErrors>
+
+    <!-- VSTHRD200 Async methods should have 'Async' suffix -->
+    <!-- (Some tests are async, and are not called directly, so no need to add
+    'Async' suffix for caller clarity -->
+    <NoWarn>VSTHRD200</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

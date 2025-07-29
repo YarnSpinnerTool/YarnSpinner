@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Language Server: enum values are now included in code completions.
 - Language Server: `<<set>>` statements now offer variable names in their code completions.
 - Language Server: hovering smart variables now shows their definition.
+- Language Server: Make compilation asynchronous
 
 ### Removed
 
