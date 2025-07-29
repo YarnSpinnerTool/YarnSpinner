@@ -244,6 +244,21 @@ namespace YarnLanguageServer
                 }
             }
 
+            string body = "";
+            if (commandParams.Arguments.Count >= 3)
+            {
+                if (commandParams.Arguments[2].Type == JTokenType.String)
+                {
+                    body = (string)commandParams.Arguments[2];
+                }
+                else
+                {
+                    workspace.ShowMessage("AddNodeToDocumentAsync: Argument 2 is expected to be a String", MessageType.Error);
+
+                    return Task.FromResult<TextDocumentEdit>(new());
+                }
+            }
+
             Uri yarnDocumentUri = new(yarnDocumentUriString);
 
             var project = workspace.GetProjectsForUri(yarnDocumentUri).FirstOrDefault();
@@ -290,7 +305,7 @@ namespace YarnLanguageServer
 
             newNodeText
                 .AppendLine("---")
-                .AppendLine()
+                .AppendLine(body)
                 .AppendLine("===");
 
             Position position;
