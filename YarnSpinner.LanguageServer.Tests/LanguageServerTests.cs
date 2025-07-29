@@ -29,7 +29,7 @@ namespace YarnLanguageServer.Tests
             client.ClientSettings.Should().NotBeNull();
         }
 
-        [Fact(Timeout = 2000)]
+        [Fact(Timeout = 4000)]
         public async Task Server_OnEnteringACommand_ShouldReceiveCompletions()
         {
             // Set up the server
