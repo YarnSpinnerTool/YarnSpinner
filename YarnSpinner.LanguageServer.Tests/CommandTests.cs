@@ -84,6 +84,8 @@ public class CommandTests : LanguageServerTestsBase
         // Remember how many nodes we had before making the change
         var count = nodeInfo.Nodes.Count;
 
+        var nodeContents = "New Node Contents";
+
         var result = await client.ExecuteCommand(new ExecuteCommandParams<TextDocumentEdit>
         {
             Command = Commands.AddNode,
@@ -91,7 +93,8 @@ public class CommandTests : LanguageServerTestsBase
                 filePath,
                 new JObject(
                     new JProperty("position", "100,100")
-                )
+                ),
+                nodeContents,
             }
         });
 
@@ -106,12 +109,15 @@ public class CommandTests : LanguageServerTestsBase
         nodeInfo = await nodesChangedAfterChangingText;
 
         nodeInfo.Nodes.Should().HaveCount(count + 1, "because we added a node");
-        nodeInfo.Nodes.Should()
+        var newNode = nodeInfo.Nodes.Should()
             .Contain(n => n.UniqueTitle == "Node",
-                "because the new node should be called Title")
-            .Which.Headers.Should()
-            .Contain(h => h.Key == "position" && h.Value == "100,100",
-                "because we specified these coordinates when creating the node");
+                "because the new node should be called Title").Subject;
+
+        newNode.PreviewText.Should().Be(nodeContents);
+
+        newNode.Headers.Should()
+        .Contain(h => h.Key == "position" && h.Value == "100,100",
+            "because we specified these coordinates when creating the node");
     }
 
     [Fact]
