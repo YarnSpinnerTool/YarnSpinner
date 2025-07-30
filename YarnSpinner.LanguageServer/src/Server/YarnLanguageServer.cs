@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
+using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 using OmniSharp.Extensions.LanguageServer.Protocol.Window;
@@ -166,6 +167,14 @@ namespace YarnLanguageServer
                 }
             );
 
+            // Register 'get document state' command
+            options.OnExecuteCommand<DocumentStateOutput>(
+                (commandParams) => GetDocumentStateAsync(workspace, commandParams), (_, _) => new ExecuteCommandRegistrationOptions
+                {
+                    Commands = new[] { Commands.GetDocumentState }
+                }
+            );
+
             return options;
         }
 
@@ -211,6 +220,55 @@ namespace YarnLanguageServer
                 IsImplicitProject = p.IsImplicitProject,
             });
             return Task.FromResult(Container.From(info));
+        }
+
+        private static Task<DocumentStateOutput> GetDocumentStateAsync(Workspace workspace, ExecuteCommandParams<DocumentStateOutput> commandParams)
+        {
+            if (commandParams.Arguments?.Count < 1)
+            {
+                throw new ArgumentException("Expected at least one argument passed to " + Commands.GetDocumentState);
+            }
+            if (commandParams.Arguments![0].Type != JTokenType.String)
+            {
+                throw new ArgumentException("Expected parameter 0 of " + Commands.GetDocumentState + " to be a string");
+            }
+
+
+            DocumentUri uri;
+            try
+            {
+                uri = DocumentUri.Parse((string)commandParams.Arguments[0], strict: true);
+            }
+            catch
+            {
+                return Task.FromResult(DocumentStateOutput.InvalidUri);
+            }
+
+            var projects = workspace.GetProjectsForUri(uri);
+
+            if (!projects.Any())
+            {
+                return Task.FromResult(new DocumentStateOutput(uri)
+                {
+                    State = DocumentStateOutput.DocumentState.NotFound
+                });
+            }
+
+            var nodes = projects
+                .SelectMany(project => project.Nodes.Where(n => n.File != null && uri == n.File.Uri))
+                .NonNull()
+                .DistinctBy(n => n.UniqueTitle)
+                ;
+
+            // The document contains errors if any of its projects have an error
+            // diagnostic attributable to this file
+            var containsErrors = projects.SelectMany(p => p.Diagnostics.Where(d => d.FileName == uri.ToString())).Any(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error);
+
+            return Task.FromResult(new DocumentStateOutput(uri)
+            {
+                Nodes = nodes.ToList(),
+                State = containsErrors ? DocumentStateOutput.DocumentState.ContainsErrors : DocumentStateOutput.DocumentState.Valid
+            });
         }
 
         private static Task<TextDocumentEdit> AddNodeToDocumentAsync(Workspace workspace, ExecuteCommandParams<TextDocumentEdit> commandParams)
