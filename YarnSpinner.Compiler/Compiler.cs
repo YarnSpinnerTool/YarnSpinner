@@ -95,7 +95,7 @@ namespace Yarn.Compiler
             // and figure out what variables they've declared
             var stringTableManager = new StringTableManager();
 
-            foreach (var file in compilationJob.Files)
+            foreach (var file in compilationJob.Inputs.OfType<CompilationJob.File>())
             {
                 var parseResult = ParseSyntaxTree(file, ref diagnostics);
                 parsedFiles.Add(parseResult);
@@ -103,10 +103,38 @@ namespace Yarn.Compiler
                 // ok now we will add in our lastline tags
                 // we do this BEFORE we build our strings table otherwise the tags will get missed
                 // this should probably be a flag instead of every time though
-                var lastLineTagger = new LastLineBeforeOptionsVisitor();
-                lastLineTagger.Visit(parseResult.Tree);
+            }
 
-                RegisterStrings(file.FileName, stringTableManager, parseResult.Tree, ref diagnostics);
+            foreach (var parseTree in compilationJob.Inputs.OfType<FileParseResult>())
+            {
+                parsedFiles.Add(parseTree);
+            }
+
+            // Assign every node its title
+            var allNodes = parsedFiles.SelectMany(r =>
+            {
+                var dialogue = r.Tree.Payload as YarnSpinnerParser.DialogueContext;
+                if (dialogue == null)
+                {
+                    return Enumerable.Empty<(YarnSpinnerParser.NodeContext Node, FileParseResult File)>();
+                }
+
+                return dialogue.node().Select(n => (Node: n, File: r));
+            });
+            foreach (var node in allNodes)
+            {
+                var titleHeader = node.Node.title_header()?.FirstOrDefault();
+                if (titleHeader != null)
+                {
+                    node.Node.NodeTitle = titleHeader.title?.Text;
+                }
+            }
+
+            foreach (var parsedInput in parsedFiles)
+            {
+                var lastLineTagger = new LastLineBeforeOptionsVisitor();
+                lastLineTagger.Visit(parsedInput.Tree);
+                RegisterStrings(parsedInput.FileName, stringTableManager, parsedInput.Tree, ref diagnostics);
             }
 
             // Check to see if any lines that shadow another have a valid source
@@ -193,6 +221,7 @@ namespace Yarn.Compiler
                     Program = null,
                     StringTable = stringTableManager.StringTable,
                     Diagnostics = diagnostics,
+                    ParseResults = parsedFiles,
                 };
             }
 
@@ -451,6 +480,7 @@ namespace Yarn.Compiler
                     FileTags = fileTags,
                     Diagnostics = diagnostics,
                     UserDefinedTypes = userDefinedTypes,
+                    ParseResults = parsedFiles,
                 };
             }
 
@@ -619,6 +649,7 @@ namespace Yarn.Compiler
                 ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
                 ProjectDebugInfo = projectDebugInfo,
                 UserDefinedTypes = userDefinedTypes,
+                ParseResults = parsedFiles,
             };
 
             return finalResult;
@@ -714,6 +745,7 @@ namespace Yarn.Compiler
             var nodesWithNames = allNodes.Select(n =>
             {
                 var titleHeader = n.Node.title_header()?.FirstOrDefault();
+                string? title = n.Node.NodeTitle;
                 if (titleHeader == null)
                 {
                     return (
@@ -725,7 +757,7 @@ namespace Yarn.Compiler
                 else
                 {
                     return (
-                        Name: titleHeader.title?.Text ?? null,
+                        Name: title,
                         TitleHeader: titleHeader ?? null,
                         Node: n.Node,
                         File: n.File);
@@ -1166,15 +1198,8 @@ namespace Yarn.Compiler
         /// have a line ID.</exception>
         internal static string GetContentID(ContentIdentifierType type, YarnSpinnerParser.Line_statementContext line)
         {
-            var lineIDHashTag = GetContentIDTag(type, line.hashtag());
-
-            if (lineIDHashTag == null)
-            {
+            return line.LineID ??
                 throw new ArgumentException($"Internal error: line does not have a {type} ID");
-            }
-
-            var lineID = lineIDHashTag.text.Text;
-            return lineID;
         }
 
         /// <summary>
@@ -1311,13 +1336,13 @@ namespace Yarn.Compiler
             /// header. If it is not present, returns <see langword="null"/>. If
             /// more than one is present, the first is returned.
             /// </summary>
-            public string? NodeTitle => this.title_header()?.FirstOrDefault()?.title?.Text;
+            public string? NodeTitle { get; set; }
 
             /// <summary>
             /// Gets the name of the node group that this node is part of, if
             /// any.
             /// </summary>
-            public string? NodeGroup => GetHeader(Node.NodeGroupHeader)?.header_value?.Text;
+            public string? NodeGroup { get; set; }
 
             /// <summary>
             /// Gets the first header in this node named <paramref name="key"/>.
@@ -1493,3 +1518,4 @@ namespace Yarn.Compiler
         }
     }
 }
+;

@@ -183,5 +183,7 @@ namespace Yarn.Compiler
             return this.Program?.DumpCode(null, this) ?? "<no program>";
         }
 
+        public IEnumerable<FileParseResult> ParseResults { get; internal set; }
+
     }
 }

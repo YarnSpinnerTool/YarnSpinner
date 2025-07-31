@@ -14,9 +14,7 @@ namespace Yarn.Compiler
         // technically unecessary in that case but this feels uncommon enough to not bother edgecasing
         public override byte VisitLine_statement([NotNull] YarnSpinnerParser.Line_statementContext context)
         {
-            var hashtag = new YarnSpinnerParser.HashtagContext(context, 0);
-            hashtag.text = new CommonToken(YarnSpinnerLexer.HASHTAG_TEXT, "lastline");
-            context.AddChild(hashtag);
+            context.IsLastLineBeforeOptions = true;
 
             return 0;
         }
