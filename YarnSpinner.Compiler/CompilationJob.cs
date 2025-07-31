@@ -35,7 +35,7 @@ namespace Yarn.Compiler
         /// <summary>
         /// Represents the contents of a file to compile.
         /// </summary>
-        public struct File : ISourceInput
+        public class File : ISourceInput
         {
             /// <summary>
             /// The name of the file.
@@ -52,6 +52,8 @@ namespace Yarn.Compiler
             /// </summary>
             public string Source;
         }
+
+
 
         /// <summary>
         /// The type of compilation that the compiler will do.
@@ -82,7 +84,7 @@ namespace Yarn.Compiler
         /// The <see cref="File"/> structs that represent the content to
         /// parse..
         /// </summary>
-        [Obsolete("Use " + nameof(Inputs))]
+        [Obsolete("Use " + nameof(Inputs), true)]
         public IEnumerable<File> Files
         {
             get
@@ -191,13 +193,14 @@ namespace Yarn.Compiler
         /// <param name="library">The <see cref="Library"/> containing functions
         /// to use for this compilation.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromInputs(IEnumerable<ISourceInput> inputs, Library? library = null)
+        public static CompilationJob CreateFromInputs(IEnumerable<ISourceInput> inputs, Library? library = null, int languageVersion = Project.CurrentProjectFileVersion)
         {
             return new CompilationJob
             {
                 Inputs = inputs,
                 Library = library,
                 Declarations = Array.Empty<Declaration>(),
+                LanguageVersion = languageVersion,
             };
         }
 

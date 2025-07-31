@@ -366,7 +366,12 @@ title: Start
             else
             {
                 // Compile the job, and expect it to succeed.
-                var result = Compiler.Compile(compilationJob);
+                var resultFromSource = Compiler.Compile(compilationJob);
+
+                var jobFromInputs = CompilationJob.CreateFromInputs(resultFromSource.ParseResults.OfType<ISourceInput>(), compilationJob.Library, compilationJob.LanguageVersion);
+                var result = Compiler.Compile(jobFromInputs);
+
+                result.Should().BeEquivalentTo(resultFromSource);
 
                 result.Diagnostics.Should().BeEmpty("{0} is expected to have no diagnostics", file);
 
@@ -753,6 +758,48 @@ Line in a node group
             nodeGroupHub.IsImplicit.Should().BeTrue("node group hubs are created by the compiler and do not appear in the input source code");
             nodeGroupItem.IsImplicit.Should().BeFalse("nodes in a node group are present in the input source code");
             nodeGroupItemCondition.IsImplicit.Should().BeTrue("node group condition smart variables are created by the compiler");
+        }
+
+        [Theory]
+        [InlineData([CompilationJob.Type.TypeCheck])]
+        [InlineData([CompilationJob.Type.FullCompilation])]
+        [InlineData([CompilationJob.Type.StringsOnly])]
+        public void TestCompilingFromExistingParseTree(CompilationJob.Type type)
+        {
+            // Given
+            var source = @"title: NodeA
+---
+Line 1
+Line 2
+<<declare $smartVar = 1+1>>
+===
+title: NodeB
+---
+Line 3
+===
+title: NodeGroup
+when: always
+---
+Line in a node group
+===
+";
+
+            var firstJob = CompilationJob.CreateFromString("input", source);
+            firstJob.CompilationType = type;
+
+            // When
+            var firstResult = Compiler.Compile(firstJob);
+
+            // Then
+            firstResult.ParseResults.Should().NotBeNull();
+            firstResult.ParseResults.Should().NotBeEmpty();
+
+            var secondJob = CompilationJob.CreateFromInputs(firstResult.ParseResults.OfType<ISourceInput>(), null);
+            secondJob.CompilationType = type;
+            var secondResult = Compiler.Compile(secondJob);
+
+            secondResult.Should().BeEquivalentTo(firstResult, config => config.WithTracing());
+
         }
     }
 }

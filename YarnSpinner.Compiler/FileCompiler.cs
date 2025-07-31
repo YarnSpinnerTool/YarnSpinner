@@ -136,6 +136,12 @@ namespace Yarn.Compiler
         public override void EnterNode(YarnSpinnerParser.NodeContext context)
         {
             this.CurrentNode = new Node();
+
+            if (context.NodeTitle == null)
+            {
+                throw new InvalidOperationException("Internal error: node context has no title");
+            }
+
             this.CurrentNodeDebugInfo = new NodeDebugInfo(FileParseResult.Name, "<unknown>")
             {
                 Range = new Range(
@@ -145,6 +151,25 @@ namespace Yarn.Compiler
                     context.Stop.Column + (context.Stop.StopIndex - context.Stop.StartIndex)
                 )
             };
+
+            // Set the name of the node
+            this.CurrentNode.Name = context.NodeTitle;
+            this.CurrentNodeDebugInfo.NodeName = context.NodeTitle;
+
+            this.CurrentNode.Headers.Add(new Header
+            {
+                Key = "title",
+                Value = context.NodeTitle,
+            });
+            if (context.NodeGroup != null)
+            {
+                this.CurrentNode.Headers.Add(new Header
+                {
+                    Key = Node.NodeGroupHeader,
+                    Value = context.NodeGroup,
+                });
+            }
+
         }
 
         /// <summary>
@@ -239,30 +264,6 @@ namespace Yarn.Compiler
             {
                 Key = headerKey,
                 Value = headerValue
-            };
-            this.CurrentNode.Headers.Add(header);
-        }
-
-        public override void ExitTitle_header([NotNull] YarnSpinnerParser.Title_headerContext context)
-        {
-            if (this.CurrentNode == null)
-            {
-                throw new InvalidOperationException($"Internal error: {nameof(CurrentNode)} was null when exiting a header");
-            }
-
-            if (this.CurrentNodeDebugInfo == null)
-            {
-                throw new InvalidOperationException($"Internal error: {nameof(CurrentNodeDebugInfo)} was null when exiting a header");
-            }
-
-            // Set the name of the node
-            this.CurrentNode.Name = context.title.Text ?? "<unknown>";
-            this.CurrentNodeDebugInfo.NodeName = this.CurrentNode.Name;
-
-            var header = new Header
-            {
-                Key = context.HEADER_TITLE()?.GetText(),
-                Value = context.title?.Text,
             };
             this.CurrentNode.Headers.Add(header);
         }

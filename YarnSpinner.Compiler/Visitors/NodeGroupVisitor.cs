@@ -29,12 +29,9 @@ namespace Yarn.Compiler
                 return base.VisitNode(context);
             }
 
-            var titleHeader = context.title_header().FirstOrDefault();
-
-            if (titleHeader == null || !context.GetWhenHeaders().Any())
+            if (!context.GetWhenHeaders().Any())
             {
-                // The node either lacks a title header, or lacks 'when'
-                // headers.
+                // The node lacks 'when' headers. It's not part of a group.
                 return base.VisitNode(context);
             }
 
@@ -42,18 +39,13 @@ namespace Yarn.Compiler
             // It's in a node group. We need to mark it as belonging to a node
             // group and update its title.
 
-            // Add a new header to mark which group it's from, so that this
-            // information is available at runtime.
-            var groupHeader = new YarnSpinnerParser.HeaderContext(context, 0)
-            {
-                header_key = new CommonToken(YarnSpinnerParser.ID, Node.NodeGroupHeader),
-                header_value = new CommonToken(YarnSpinnerParser.REST_OF_LINE, nodeGroupName)
-            };
-
-            context.AddChild(groupHeader);
-
             // Update the title header to the new 'actual' title.
-            titleHeader.title = new CommonToken(YarnSpinnerParser.REST_OF_LINE, uniqueTitle);
+            context.NodeTitle = uniqueTitle;
+
+            // Note which group it's from, so that this information is available
+            // at runtime.
+            context.NodeGroup = nodeGroupName;
+
 
             return base.VisitNode(context);
         }

@@ -18,12 +18,14 @@ namespace Yarn.Compiler
     /// it provides access to the parse tree, and the stream of tokens used to
     /// produce that parse tree.
     /// </remarks>
-    public struct FileParseResult
+    public struct FileParseResult : ISourceInput
     {
         /// <summary>
         /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream)" path="/param[@name='name']"/>
         /// </summary>
         public string Name { get; }
+
+        public string FileName => Name;
 
         /// <summary>
         /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream)" path="/param[@name='tree']"/>
