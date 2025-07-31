@@ -96,10 +96,10 @@ namespace YarnSpinner.Tests
 
             var compilationJob = new CompilationJob
             {
-                Files = new[] {
+                Inputs = [
                     new CompilationJob.File { FileName = "sourceA", Source = sourceA  },
                     new CompilationJob.File { FileName = "sourceB", Source = sourceB  },
-                },
+                ],
             };
 
             var result = Compiler.Compile(compilationJob);
