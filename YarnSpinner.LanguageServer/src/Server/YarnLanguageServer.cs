@@ -856,9 +856,9 @@ namespace YarnLanguageServer
             // to make sure it works
             var job = new Yarn.Compiler.CompilationJob
             {
-                Files = allFilesInProject.Select(file =>
+                Inputs = allFilesInProject.Select(file =>
                 {
-                    return new Yarn.Compiler.CompilationJob.File
+                    return (Yarn.Compiler.ISourceInput)new Yarn.Compiler.CompilationJob.File
                     {
                         FileName = file.Uri.ToString(),
                         Source = file.Text,

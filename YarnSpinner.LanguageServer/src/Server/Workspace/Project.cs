@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Yarn.Compiler;
 
 namespace YarnLanguageServer
 {
@@ -285,16 +286,16 @@ namespace YarnLanguageServer
 
             var functionDeclarations = Functions.Select(f => f.Declaration).NonNull().ToArray();
 
-            var files = this.Files.Select(f => new Yarn.Compiler.CompilationJob.File
+            IEnumerable<Yarn.Compiler.ISourceInput> inputs = this.Files.Select(f => (ISourceInput)(new Yarn.Compiler.CompilationJob.File
             {
                 FileName = f.Uri.AbsolutePath,
                 Source = f.Text,
-            }).ToArray();
+            }));
 
             var compilationJob = new Yarn.Compiler.CompilationJob
             {
                 CompilationType = compilationType,
-                Files = files,
+                Inputs = inputs,
                 Declarations = functionDeclarations,
                 LanguageVersion = this.yarnProject.FileVersion,
                 CancellationToken = cancellationToken,
