@@ -21,8 +21,6 @@ namespace YarnLanguageServer
         public DocumentUri? Uri { get; init; }
         public bool IsImplicitProject { get; init; }
 
-        CancellationTokenSource? currentCompilationCTS = null;
-
         internal IEnumerable<Yarn.Compiler.Declaration> Variables
         {
             get
@@ -274,14 +272,6 @@ namespace YarnLanguageServer
 
         public async Task<Yarn.Compiler.CompilationResult> CompileProjectAsync(bool notifyOnComplete, Yarn.Compiler.CompilationJob.Type compilationType, CancellationToken cancellationToken)
         {
-            // If there's an existing cancellation token source for this project, cancel it now
-            if (currentCompilationCTS != null)
-            {
-                await currentCompilationCTS.CancelAsync();
-                currentCompilationCTS.Dispose();
-            }
-
-            currentCompilationCTS = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
 
             var functionDeclarations = Functions.Select(f => f.Declaration).NonNull().ToArray();
 
@@ -306,9 +296,6 @@ namespace YarnLanguageServer
                 return compilationResult;
             }).ConfigureAwait(ConfigureAwaitOptions.ContinueOnCapturedContext);
 
-            // This compilation is cancelled. Early out.
-            cancellationToken.ThrowIfCancellationRequested();
-
             this.LastCompilationResult = compilationResult;
 
 
@@ -318,7 +305,6 @@ namespace YarnLanguageServer
                 .SelectMany(f => f.NodeInfos
                     .Where(n => n.SourceTitle != null))
                     .ToLookup(n => n.SourceTitle!);
-
 
             foreach (var file in this.Files)
             {
@@ -333,9 +319,6 @@ namespace YarnLanguageServer
             {
                 OnProjectCompiled?.Invoke(compilationResult);
             }
-            currentCompilationCTS.Dispose();
-            currentCompilationCTS = null;
-
             return compilationResult;
         }
 
