@@ -288,7 +288,7 @@ title: Start
 
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
 
-            var (invariantParseResult, _) = Utility.ParseSource(source);
+            var invariantParseResult = Utility.ParseSourceText(source);
 
             var invariantCompilationJob = CompilationJob.CreateFromString("input", source);
             invariantCompilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
@@ -305,7 +305,7 @@ title: Start
             {
                 CultureInfo.CurrentCulture = new CultureInfo(cultureName);
 
-                var (targetParseResult, _) = Utility.ParseSource(source);
+                var targetParseResult = Utility.ParseSourceText(source);
 
                 var targetCompilationJob = CompilationJob.CreateFromString("input", source);
                 invariantCompilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
@@ -580,7 +580,7 @@ some_other_header2: $b + func_call(42, ""wow"")
             var diagnostics = new List<Diagnostic>();
 
             // When
-            var parseResult = Compiler.ParseSyntaxTree("input", source, ref diagnostics);
+            var parseResult = Utility.ParseSourceText(source);
 
             // Then
             diagnostics.Should().NotContain(e => e.Severity == Diagnostic.DiagnosticSeverity.Error, "the parse should contain no errors");

@@ -1038,15 +1038,15 @@ namespace Yarn.Compiler
             return (declarations, diagnostics);
         }
 
-        private static FileParseResult ParseSyntaxTree(CompilationJob.File file, ref List<Diagnostic> diagnostics)
+        private static FileParseResult ParseSyntaxTree(CompilationJob.File file)
         {
             string source = file.Source;
             string fileName = file.FileName;
 
-            return ParseSyntaxTree(fileName, source, ref diagnostics);
+            return ParseSyntaxTree(fileName, source);
         }
 
-        internal static FileParseResult ParseSyntaxTree(string fileName, string source, ref List<Diagnostic> diagnostics)
+        internal static FileParseResult ParseSyntaxTree(string fileName, string source)
         {
             ICharStream input = CharStreams.fromString(source);
 
@@ -1073,8 +1073,6 @@ namespace Yarn.Compiler
 
             var newDiagnostics = lexerErrorListener.Diagnostics.Concat(parserErrorListener.Diagnostics);
 
-            diagnostics.AddRange(newDiagnostics);
-
             // Now that we've parsed the file, we'll go through all of the nodes
             // and record which file they came from.
             foreach (var node in tree.node())
@@ -1082,7 +1080,7 @@ namespace Yarn.Compiler
                 node.SourceFileName = fileName;
             }
 
-            return new FileParseResult(fileName, tree, tokens);
+            return new FileParseResult(fileName, tree, tokens, newDiagnostics);
         }
 
         /// <summary>
