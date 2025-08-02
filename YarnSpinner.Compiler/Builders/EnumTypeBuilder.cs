@@ -13,6 +13,13 @@ namespace Yarn.Compiler
     /// </summary>
     public class EnumTypeBuilder
     {
+        /// <summary>
+        /// Creates a new <see cref="EnumType"/> given a CLR enum type.
+        /// </summary>
+        /// <typeparam name="TEnum">The type of the CLR enum.</typeparam>
+        /// <param name="description">An optional description to apply to the
+        /// new Yarn enum type.</param>
+        /// <returns>A Yarn type representing the enum.</returns>
         public static EnumType FromEnum<TEnum>(string? description = null) where TEnum : System.Enum
         {
             var enumType = new EnumType(

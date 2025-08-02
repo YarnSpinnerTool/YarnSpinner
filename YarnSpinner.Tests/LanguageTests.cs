@@ -371,7 +371,14 @@ title: Start
                 var jobFromInputs = CompilationJob.CreateFromInputs(resultFromSource.ParseResults.OfType<ISourceInput>(), compilationJob.Library, compilationJob.LanguageVersion);
                 var result = Compiler.Compile(jobFromInputs);
 
-                result.Should().BeEquivalentTo(resultFromSource);
+                // Re-use the parsed tree from the compile; it should produce an
+                // identical result. (We exclude Declarations from the
+                // comparison and instead compare them by ToString because
+                // Declarations gets very nested, which appears to trip up
+                // BeEquivalentTo.)
+                result.Should().BeEquivalentTo(resultFromSource, c => c.Excluding(ctx => ctx.Path == "Declarations"));
+                result.Declarations.Select(d => d.ToString())
+                    .Should().ContainInOrder(resultFromSource.Declarations.Select(d => d.ToString()));
 
                 result.Diagnostics.Should().BeEmpty("{0} is expected to have no diagnostics", file);
 
