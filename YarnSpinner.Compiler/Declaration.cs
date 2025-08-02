@@ -366,7 +366,20 @@ namespace Yarn.Compiler
         /// <inheritdoc/>
         public override string ToString()
         {
-            string result = $"{this.Name} : {this.Type} = {this.DefaultValue}";
+            string result = $"{this.Name} : {this.Type}";
+            if (this.IsVariable)
+            {
+                result += " = ";
+                if (IsInlineExpansion)
+                {
+                    result += this.InitialValueParserContext?.GetText() ?? "missing parser context!";
+                }
+                else
+                {
+
+                    result += this.DefaultValue;
+                }
+            }
 
             if (string.IsNullOrEmpty(this.Description))
             {
