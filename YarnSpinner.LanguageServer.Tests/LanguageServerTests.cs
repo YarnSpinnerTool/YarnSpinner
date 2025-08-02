@@ -1,5 +1,6 @@
 using FluentAssertions;
 using FluentAssertions.Execution;
+using Microsoft.Extensions.DependencyInjection;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using System.IO;
@@ -129,44 +130,72 @@ namespace YarnLanguageServer.Tests
             nodeInfo.Nodes.Should().Contain(n => n.UniqueTitle == "Node3", "because the new node we added has this title");
         }
 
+        private static async Task WaitForCompilationComplete(Workspace workspace)
+        {
+            const int maxTimeBeforeStartingCompilation = 100;
+            System.Threading.CancellationTokenSource cancelSource;
+
+            // Wait until compilation starts
+
+            cancelSource = new System.Threading.CancellationTokenSource(maxTimeBeforeStartingCompilation);
+            while (!workspace.IsAnyProjectCompiling || (cancelSource.IsCancellationRequested && !System.Diagnostics.Debugger.IsAttached))
+            {
+                await Task.Yield();
+            }
+            if (cancelSource.IsCancellationRequested && !System.Diagnostics.Debugger.IsAttached)
+            {
+                // Fail if we didn't start to compile in time and we're not debugging
+                throw new System.TimeoutException($"Workspace failed to start compilation within {maxTimeBeforeStartingCompilation}ms");
+            }
+            cancelSource.Dispose();
+
+            // Workspace is now compiling; wait for it to finish
+
+            const int maxTimeBeforeFinishingCompilation = 4000;
+            cancelSource = new System.Threading.CancellationTokenSource(maxTimeBeforeFinishingCompilation);
+            while (workspace.IsAnyProjectCompiling || (cancelSource.IsCancellationRequested && !System.Diagnostics.Debugger.IsAttached))
+            {
+                await Task.Yield();
+            }
+            if (cancelSource.IsCancellationRequested && !System.Diagnostics.Debugger.IsAttached)
+            {
+                // Fail if we didn't compile in time and we're not debugging
+                throw new System.TimeoutException($"Workspace failed to finish compilation within {maxTimeBeforeFinishingCompilation}ms");
+            }
+        }
+
         [Fact(Timeout = 2000)]
         public async Task Server_OnInvalidChanges_ProducesSyntaxErrors()
         {
             var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
-            Task<PublishDiagnosticsParams> getDiagnosticsTask = GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains(filePath));
-
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+            var workspace = server.GetService<Workspace>()!;
+            workspace.Should().NotBeNull();
+            workspace.IsAnyProjectCompiling.Should().BeFalse();
+
 
             {
-                var errors = (await getDiagnosticsTask).Diagnostics.Where(d => d.Severity == DiagnosticSeverity.Error);
+                var errors = workspace.GetDiagnostics().Values.SelectMany(d => d).Where(d => d.Severity == DiagnosticSeverity.Error);
 
                 errors.Should().BeNullOrEmpty("because the original project contains no syntax errors");
             }
 
             // Introduce an error
-            getDiagnosticsTask = GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains(filePath));
-
             ChangeTextInDocument(client, filePath, new Position(9, 0), "<<set");
+            await WaitForCompilationComplete(workspace);
 
             {
-                var diagnosticsResult = await getDiagnosticsTask;
-
-                var enumerable = diagnosticsResult.Diagnostics;
-
-                var errors = enumerable.Where(d => d.Severity == DiagnosticSeverity.Error);
-
+                var errors = workspace.GetDiagnostics().Values.SelectMany(d => d).Where(d => d.Severity == DiagnosticSeverity.Error);
                 errors.Should().NotBeNullOrEmpty("because we have introduced a syntax error");
             }
 
             // Remove the error
-            getDiagnosticsTask = GetDiagnosticsAsync(diags => diags.Uri.ToString().Contains(filePath));
             ChangeTextInDocument(client, filePath, new Position(9, 0), new Position(9, 5), "");
+            await WaitForCompilationComplete(workspace);
 
             {
-                PublishDiagnosticsParams diagnosticsResult = await getDiagnosticsTask;
-
-                var errors = diagnosticsResult.Diagnostics.Where(d => d.Severity == DiagnosticSeverity.Error);
+                var errors = workspace.GetDiagnostics().Values.SelectMany(d => d).Where(d => d.Severity == DiagnosticSeverity.Error);
 
                 errors.Should().BeNullOrEmpty("because the syntax error was removed");
             }

@@ -374,6 +374,21 @@ namespace YarnLanguageServer
             });
         }
 
+        public bool IsAnyProjectCompiling
+        {
+            get
+            {
+                foreach (var project in Projects)
+                {
+                    if (project.IsCompiling)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
         private IEnumerable<Action> FindWorkspaceActions(string root)
         {
             var csharpWorkspaceFiles = System.IO.Directory.EnumerateFiles(root, "*.cs", System.IO.SearchOption.AllDirectories);

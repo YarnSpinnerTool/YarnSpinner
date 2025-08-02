@@ -22,6 +22,8 @@ namespace YarnLanguageServer
         public DocumentUri? Uri { get; init; }
         public bool IsImplicitProject { get; init; }
 
+        public bool IsCompiling { get; private set; }
+
         internal IEnumerable<Yarn.Compiler.Declaration> Variables
         {
             get
@@ -273,14 +275,11 @@ namespace YarnLanguageServer
 
         public async Task<Yarn.Compiler.CompilationResult> CompileProjectAsync(bool notifyOnComplete, Yarn.Compiler.CompilationJob.Type compilationType, CancellationToken cancellationToken)
         {
+            IsCompiling = true;
 
             var functionDeclarations = Functions.Select(f => f.Declaration).NonNull().ToArray();
 
-            IEnumerable<Yarn.Compiler.ISourceInput> inputs = this.Files.Select(f => (ISourceInput)(new Yarn.Compiler.CompilationJob.File
-            {
-                FileName = f.Uri.AbsolutePath,
-                Source = f.Text,
-            }));
+            IEnumerable<Yarn.Compiler.ISourceInput> inputs = this.Files.Select(f => (ISourceInput)f.FileParseResult);
 
             var compilationJob = new Yarn.Compiler.CompilationJob
             {
@@ -320,6 +319,8 @@ namespace YarnLanguageServer
             {
                 OnProjectCompiled?.Invoke(compilationResult);
             }
+
+            IsCompiling = false;
             return compilationResult;
         }
 

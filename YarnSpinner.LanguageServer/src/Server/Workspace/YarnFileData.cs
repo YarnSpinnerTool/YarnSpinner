@@ -20,9 +20,8 @@ namespace YarnLanguageServer
 
     internal class YarnFileData
     {
-        public YarnSpinnerLexer Lexer { get; protected set; }
-        public YarnSpinnerParser Parser { get; protected set; }
-        public YarnSpinnerParser.DialogueContext ParseTree { get; protected set; }
+        public FileParseResult FileParseResult { get; protected set; }
+        public YarnSpinnerParser.DialogueContext? ParseTree { get; protected set; }
         public IList<IToken> Tokens { get; protected set; }
         public IList<IToken> CommentTokens { get; protected set; }
         public IEnumerable<DocumentSymbol> DocumentSymbols { get; protected set; }
@@ -47,8 +46,6 @@ namespace YarnLanguageServer
             Update(text);
         }
 
-        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(Lexer))]
-        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(Parser))]
         [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(LineStarts))]
         [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(ParseTree))]
         [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(Tokens))]
@@ -60,37 +57,33 @@ namespace YarnLanguageServer
         {
             LineStarts = TextCoordinateConverter.GetLineStarts(text);
 
+            var parseResult = Yarn.Compiler.Utility.ParseSourceText(text, this.Uri.AbsolutePath);
+
+            FileParseResult = new FileParseResult(this.Uri.AbsolutePath, parseResult.Tree, parseResult.Tokens, parseResult.Diagnostics);
+
             // Lex tokens and comments
-            var commentLexer = new YarnSpinnerLexer(CharStreams.fromString(text));
-            var commentTokenStream = new CommonTokenStream(commentLexer);
             CommentTokens = new List<IToken>();
-            commentTokenStream.Fill();
-            CommentTokens = commentTokenStream.GetTokens()
+            CommentTokens = parseResult.Tokens.GetTokens()
                 .Where(token =>
                     token.Channel == 2 &&
                     token.Type != YarnSpinnerLexer.Eof)
                 .ToList();
-            Tokens = commentTokenStream.GetTokens()
+            Tokens = parseResult.Tokens.GetTokens()
                 .Where(token =>
                     token.Type != YarnSpinnerLexer.Eof)
                 .ToList();
 
-            // Now onto the real parsing
-            Lexer = new YarnSpinnerLexer(CharStreams.fromString(text));
-            var tokenStream = new CommonTokenStream(Lexer);
-            Parser = new YarnSpinnerParser(tokenStream);
+            ParseTree = parseResult.Tree as YarnSpinnerParser.DialogueContext;
 
-            // Turn off compiler error listeners
-            Parser.RemoveErrorListeners();
-            Lexer.RemoveErrorListeners();
-
-            // Attempt actual parse
-            ParseTree = Parser.dialogue(); // Dialogue is the root node of the syntax tree
+            if (ParseTree == null)
+            {
+                throw new InvalidOperationException($"Parsed input context type was not {nameof(YarnSpinnerParser.DialogueContext)}");
+            }
 
             // should probably just set these directly inside the visit
             // function, or refactor all these into a references object
 
-            ReferencesVisitor.Visit(this, tokenStream, out var nodeInfos, out var nodeGroupNames);
+            ReferencesVisitor.Visit(this, parseResult.Tokens, out var nodeInfos, out var nodeGroupNames);
             this.NodeInfos = nodeInfos.ToList();
             this.NodeGroupNames = nodeGroupNames.ToList();
 

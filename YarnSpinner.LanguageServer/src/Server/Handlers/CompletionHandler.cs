@@ -348,7 +348,7 @@ namespace YarnLanguageServer.Handlers
 
             var results = new List<CompletionItem>();
 
-            var vocabulary = yarnFile.Lexer.Vocabulary;
+            var vocabulary = YarnSpinnerLexer.DefaultVocabulary;
             var tokenName = vocabulary.GetSymbolicName(tokenAtRequestPosition.Type);
 
             void ExpandRangeToEndOfPreviousTokenOfType(int tokenType, int startIndex, ref Range range)
