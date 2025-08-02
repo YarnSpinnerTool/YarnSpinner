@@ -97,7 +97,8 @@ namespace Yarn.Compiler
 
             foreach (var file in compilationJob.Inputs.OfType<CompilationJob.File>())
             {
-                var parseResult = ParseSyntaxTree(file, ref diagnostics);
+                var parseResult = ParseSyntaxTree(file);
+                diagnostics.AddRange(parseResult.Diagnostics);
                 parsedFiles.Add(parseResult);
 
                 // ok now we will add in our lastline tags
@@ -108,6 +109,7 @@ namespace Yarn.Compiler
             foreach (var parseTree in compilationJob.Inputs.OfType<FileParseResult>())
             {
                 parsedFiles.Add(parseTree);
+                diagnostics.AddRange(parseTree.Diagnostics);
             }
 
             // Assign every node its title
