@@ -28,6 +28,11 @@ namespace YarnLanguageServer
             set => server = value;
         }
 
+        public static void LogMessage(string message)
+        {
+            server?.Log(message);
+        }
+
         public static LanguageServerOptions ConfigureOptions(LanguageServerOptions options)
         {
             var workspace = new Workspace();
@@ -53,6 +58,7 @@ namespace YarnLanguageServer
                     try
                     {
                         workspace.Root = request.RootPath;
+                        Server = server;
 
                         server.Log("Server initialize.");
 

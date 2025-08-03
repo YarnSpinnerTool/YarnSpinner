@@ -71,8 +71,6 @@ namespace YarnLanguageServer.Handlers
                 return Unit.Value;
             }
 
-            var compilationTasks = new List<Task>();
-
             foreach (var project in projects)
             {
                 var yarnDocument = project.GetFileData(uri);
@@ -95,21 +93,11 @@ namespace YarnLanguageServer.Handlers
                 // Finally, update our model using the new content.
                 yarnDocument.Update(yarnDocument.Text);
 
-                compilationTasks.Add(project.CompileProjectAsync(
+                _ = project.CompileProjectAsync(
                     notifyOnComplete: true,
                     Yarn.Compiler.CompilationJob.Type.TypeCheck,
                     cancellationToken
-                ));
-            }
-
-            try
-            {
-                await Task.WhenAll(compilationTasks);
-            }
-            catch (System.OperationCanceledException)
-            {
-                // Ignore any cancelled compilations - if we're cancelled or
-                // not, then there's nothing we need to do about it.
+                );
             }
 
             return Unit.Value;
