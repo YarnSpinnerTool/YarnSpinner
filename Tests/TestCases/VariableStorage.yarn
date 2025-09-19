@@ -13,16 +13,16 @@ title: Start
 <<set $num1 to 1>>
 
 // Test numeric storage
-<<call assert($num1 == 1)>>
+{$num1}
 
 <<set $num1 to -1>>
 
 // Test numeric storage (negative)
-<<call assert($num1 == -1)>>
+{$num1}
 
 // Test string storage
 <<set $str1 to "foo">>
-<<call assert($str1 == "foo")>>
+{$str1}
 
 // Test immediate value arithmetic
 <<set $num1 = 45>>
@@ -30,44 +30,44 @@ title: Start
 <<set $num2 = $num1 + 1>>
 
 // Test immediate addition
-<<call assert($num2 == 46)>>
+{$num2}
 
 <<set $num2 = $num1 - 1>>
 
 // Test immediate subtraction
-<<call assert($num2 == 44)>>
+{$num2}
 
 <<set $num1 = 46>>
 <<set $num2 = $num1 * 2>>
 
 // Test immediate multiplication
-<<call assert($num2 == 92)>>
+{$num2}
 
 <<set $num2 = $num1 / 2>>
 
 // Test immediate division
-<<call assert($num2 == 23)>>
+{$num2}
 
 <<set $num1 = 45>>
 <<set $num1 += 1>>
 
 // Test immediate assignment addition
-<<call assert($num1 == 46)>>
+{$num1}
 
 <<set $num1 *= 2>>
 
 // Test immediate assignment multiplication
-<<call assert($num1 == 92)>>
+{$num1}
 
 <<set $num1 /= 2>>
 
 // Test immediate assignment division
-<<call assert($num1 == 46)>>
+{$num1}
 
 <<set $num1 -= 1>>
 
 // Test immediate assignment subtraction
-<<call assert($num1 == 45)>>
+{$num1}
 
 // Testing variable arithmetic
 <<set $num1 = 46>>
@@ -75,23 +75,23 @@ title: Start
 <<set $num3 = $num1 + $num2>>
 
 // Test variable addition
-<<call assert($num3 == 47)>>
+{$num3}
 
 <<set $num3 = $num1 - $num2>>
 
 // Test variable subtraction
-<<call assert($num3 == 45)>>
+{$num3}
 
 <<set $num2 = 2>>
 <<set $num3 = $num1 * $num2>>
 
 // Test variable multiplication
-<<call assert($num3 == 92)>>
+{$num3}
 
 <<set $num3 = $num1 / $num2>>
 
 // Test variable division
-<<call assert($num3 == 23)>>
+{$num3}
 
 // Testing string addition
 <<set $str1 = "foo">>
@@ -99,11 +99,11 @@ title: Start
 <<set $str3 = $str1 + "bar">>
 
 // "Test immediate string addition
-<<call assert($str3 == "foobar")>>
+{$str3}
 
 <<set $str3 = $str1 + $str2>>
 
 // "Test string addition
-<<call assert($str3 == "foobar")>>
+{$str3}
 
 ===

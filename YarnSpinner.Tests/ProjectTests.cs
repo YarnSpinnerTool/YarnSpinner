@@ -380,6 +380,10 @@ A single line, with a line tag. #shadow:expected_abc123
                 }
             }
 
+            // The modified source does not have a #line tag on the same line as a #shadow tag
+            var lineTagOnSameLineAsShadowTag = new Regex(@"(#line.*#shadow.*)|(#shadow.*#line.*)");
+            output.Should().NotMatchRegex(lineTagOnSameLineAsShadowTag);
+
             // we now should have seen every line ID, plus the entry for the shadow line
             compilationResult.StringTable.Count.Should().Be(expectedResults.Count + 1);
             compilationResult.StringTable.Count.Should().Be(visitedIDs.Count + 1);

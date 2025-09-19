@@ -1,0 +1,26 @@
+title: Start
+---
+Content for NodeGroupConditional available: {has_any_content("NodeGroupConditional")}
+Content for NodeGroupAlways available: {has_any_content("NodeGroupAlways")}
+Content for NotANodeGroup available: {has_any_content("NotANodeGroup")}
+
+<<set $a = true>>
+
+Content for NodeGroupConditional available: {has_any_content("NodeGroupConditional")}
+Content for NodeGroupAlways available: {has_any_content("NodeGroupAlways")}
+Content for NotANodeGroup available: {has_any_content("NotANodeGroup")}
+===
+title: NodeGroupConditional
+when: $a == true
+---
+conditional content
+===
+title: NodeGroupAlways
+when: always
+---
+always-available content
+===
+title: NotANodeGroup
+---
+this is not a node group but will always "have content available"
+===

@@ -66,7 +66,14 @@ namespace Yarn.Compiler
             var lineIDTag = Compiler.GetContentIDTag(ContentIdentifierType.Line, hashtags);
             var lineID = lineIDTag?.text.Text ?? null;
 
-            var hashtagText = GetHashtagTexts(hashtags);
+            var hashtagTexts = new List<string>(GetHashtagTexts(hashtags));
+
+            if (context.IsLastLineBeforeOptions)
+            {
+                hashtagTexts.Add("lastline");
+            }
+
+            var hashtagText = hashtagTexts.ToArray();
 
             string? composedString;
 
@@ -121,14 +128,7 @@ namespace Yarn.Compiler
 
             context.LineID = lineID;
 
-            if (lineIDTag == null)
-            {
-                // Create a new line: hashtag and add it to the parse tree
-                var hashtag = new YarnSpinnerParser.HashtagContext(context, 0);
-                hashtag.text = new CommonToken(YarnSpinnerLexer.HASHTAG_TEXT, lineID);
-                context.AddChild(hashtag);
-            }
-
+            context.LineIDIsImplicit = lineIDTag == null;
 
             return 0;
         }
@@ -188,10 +188,22 @@ namespace Yarn.Compiler
             public string? LineID { get; set; }
 
             /// <summary>
+            /// Gets or sets a value indiciating whether the line ID was added
+            /// implicitly.
+            /// </summary>
+            public bool LineIDIsImplicit { get; set; } = false;
+
+            /// <summary>
             /// Gets or sets the shadow line ID associated with this line
             /// statement.
             /// </summary>
             public string? ShadowLineID { get; set; }
+
+            /// <summary>
+            /// Gets or sets a value indicating whether this line is the last
+            /// one before a group of options.
+            /// </summary>
+            public bool IsLastLineBeforeOptions { get; internal set; }
         }
     }
 }

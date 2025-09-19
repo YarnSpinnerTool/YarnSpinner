@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
+using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 using OmniSharp.Extensions.LanguageServer.Protocol.Window;
@@ -25,6 +26,11 @@ namespace YarnLanguageServer
         {
             get => server ?? throw new InvalidOperationException("Server has not yet been initialized.");
             set => server = value;
+        }
+
+        public static void LogMessage(string message)
+        {
+            server?.Log(message);
         }
 
         public static LanguageServerOptions ConfigureOptions(LanguageServerOptions options)
@@ -52,6 +58,7 @@ namespace YarnLanguageServer
                     try
                     {
                         workspace.Root = request.RootPath;
+                        Server = server;
 
                         server.Log("Server initialize.");
 
@@ -61,7 +68,7 @@ namespace YarnLanguageServer
                             workspace.Configuration.Initialize(optsArray);
                         }
 
-                        workspace.Initialize(server, token);
+                        await workspace.InitializeAsync(server, token);
                         await Task.CompletedTask.ConfigureAwait(false);
                     }
                     catch (Exception e)
@@ -166,17 +173,25 @@ namespace YarnLanguageServer
                 }
             );
 
+            // Register 'get document state' command
+            options.OnExecuteCommand<DocumentStateOutput>(
+                (commandParams) => GetDocumentStateAsync(workspace, commandParams), (_, _) => new ExecuteCommandRegistrationOptions
+                {
+                    Commands = new[] { Commands.GetDocumentState }
+                }
+            );
+
             return options;
         }
 
-        public static Task<Container<DebugOutput>> GenerateDebugOutputAsync(Workspace workspace, ExecuteCommandParams<Container<DebugOutput>> commandParams, CancellationToken cancellationToken)
+        public static async Task<Container<DebugOutput>> GenerateDebugOutputAsync(Workspace workspace, ExecuteCommandParams<Container<DebugOutput>> commandParams, CancellationToken cancellationToken)
         {
-            var results = workspace.Projects.Select(project =>
+            var results = await Task.WhenAll(workspace.Projects.Select(project =>
             {
-                return project.GetDebugOutput(cancellationToken);
-            });
+                return project.GetDebugOutputAsync(cancellationToken);
+            }));
 
-            return Task.FromResult(new Container<DebugOutput>(results));
+            return new Container<DebugOutput>(results);
         }
 
         public static Task<string> GetEmptyYarnProjectJSONAsync(Workspace workspace, ExecuteCommandParams<string> commandParams)
@@ -213,6 +228,55 @@ namespace YarnLanguageServer
             return Task.FromResult(Container.From(info));
         }
 
+        private static Task<DocumentStateOutput> GetDocumentStateAsync(Workspace workspace, ExecuteCommandParams<DocumentStateOutput> commandParams)
+        {
+            if (commandParams.Arguments?.Count < 1)
+            {
+                throw new ArgumentException("Expected at least one argument passed to " + Commands.GetDocumentState);
+            }
+            if (commandParams.Arguments![0].Type != JTokenType.String)
+            {
+                throw new ArgumentException("Expected parameter 0 of " + Commands.GetDocumentState + " to be a string");
+            }
+
+
+            DocumentUri uri;
+            try
+            {
+                uri = DocumentUri.Parse((string)commandParams.Arguments[0], strict: true);
+            }
+            catch
+            {
+                return Task.FromResult(DocumentStateOutput.InvalidUri);
+            }
+
+            var projects = workspace.GetProjectsForUri(uri);
+
+            if (!projects.Any())
+            {
+                return Task.FromResult(new DocumentStateOutput(uri)
+                {
+                    State = DocumentStateOutput.DocumentState.NotFound
+                });
+            }
+
+            var nodes = projects
+                .SelectMany(project => project.Nodes.Where(n => n.File != null && uri == n.File.Uri))
+                .NonNull()
+                .DistinctBy(n => n.UniqueTitle)
+                ;
+
+            // The document contains errors if any of its projects have an error
+            // diagnostic attributable to this file
+            var containsErrors = projects.SelectMany(p => p.Diagnostics.Where(d => d.FileName == uri.ToString())).Any(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error);
+
+            return Task.FromResult(new DocumentStateOutput(uri)
+            {
+                Nodes = nodes.ToList(),
+                State = containsErrors ? DocumentStateOutput.DocumentState.ContainsErrors : DocumentStateOutput.DocumentState.Valid
+            });
+        }
+
         private static Task<TextDocumentEdit> AddNodeToDocumentAsync(Workspace workspace, ExecuteCommandParams<TextDocumentEdit> commandParams)
         {
             if (commandParams.Arguments == null)
@@ -239,6 +303,21 @@ namespace YarnLanguageServer
                 else
                 {
                     workspace.ShowMessage("AddNodeToDocumentAsync: Argument 1 is expected to be an Object", MessageType.Error);
+
+                    return Task.FromResult<TextDocumentEdit>(new());
+                }
+            }
+
+            string body = "";
+            if (commandParams.Arguments.Count >= 3)
+            {
+                if (commandParams.Arguments[2].Type == JTokenType.String)
+                {
+                    body = (string)commandParams.Arguments[2];
+                }
+                else
+                {
+                    workspace.ShowMessage("AddNodeToDocumentAsync: Argument 2 is expected to be a String", MessageType.Error);
 
                     return Task.FromResult<TextDocumentEdit>(new());
                 }
@@ -290,7 +369,7 @@ namespace YarnLanguageServer
 
             newNodeText
                 .AppendLine("---")
-                .AppendLine()
+                .AppendLine(body)
                 .AppendLine("===");
 
             Position position;
@@ -569,7 +648,7 @@ namespace YarnLanguageServer
             return Task.FromResult<Container<NodeInfo>>(result);
         }
 
-        private static Task<CompilerOutput> CompileCurrentProjectAsync(Workspace workspace, ExecuteCommandParams<CompilerOutput> commandParams, CancellationToken cancellationToken)
+        private static async Task<CompilerOutput> CompileCurrentProjectAsync(Workspace workspace, ExecuteCommandParams<CompilerOutput> commandParams, CancellationToken cancellationToken)
         {
             if (commandParams.Arguments == null)
             {
@@ -586,7 +665,7 @@ namespace YarnLanguageServer
             // compilation (which will produce the compiled program's bytecode.)
             // This will also have the effect of updating the workspace's
             // diagnostics.
-            var result = project.CompileProject(true, Yarn.Compiler.CompilationJob.Type.FullCompilation, cancellationToken);
+            var result = await project.CompileProjectAsync(true, Yarn.Compiler.CompilationJob.Type.FullCompilation, cancellationToken);
 
             var errors = result.Diagnostics.Where(d => d.Severity == Yarn.Compiler.Diagnostic.DiagnosticSeverity.Error).Select(d => d.ToString());
 
@@ -595,12 +674,12 @@ namespace YarnLanguageServer
                 // The compilation produced errors. Return a failed compilation.
                 workspace.ShowMessage("Compilation failed. See the Problems tab for details.", MessageType.Error);
 
-                return Task.FromResult(new CompilerOutput
+                return new CompilerOutput
                 {
                     Data = string.Empty,
                     StringTable = new Dictionary<string, string>(),
                     Errors = errors.ToArray(),
-                });
+                };
             }
 
             var strings = new Dictionary<string, string>();
@@ -608,12 +687,7 @@ namespace YarnLanguageServer
 
             foreach (var line in result.StringTable ?? Enumerable.Empty<KeyValuePair<string, Yarn.Compiler.StringInfo>>())
             {
-                if (line.Value.text == null)
-                {
-                    continue;
-                }
-
-                strings[line.Key] = line.Value.text;
+                strings[line.Key] = line.Value.text ?? string.Empty;
 
                 var metadataEntry = new MetadataOutput
                 {
@@ -626,13 +700,13 @@ namespace YarnLanguageServer
                 metadata[line.Key] = metadataEntry;
             }
 
-            return Task.FromResult(new CompilerOutput
+            return new CompilerOutput
             {
                 Data = Convert.ToBase64String(result.Program?.ToByteArray() ?? Array.Empty<byte>()),
                 StringTable = strings,
                 MetadataTable = metadata,
                 Errors = Array.Empty<string>(),
-            });
+            };
         }
 
         private static Task<string> GenerateDialogueGraphAsync(Workspace workspace, ExecuteCommandParams<string> commandParams)
@@ -788,9 +862,9 @@ namespace YarnLanguageServer
             // to make sure it works
             var job = new Yarn.Compiler.CompilationJob
             {
-                Files = allFilesInProject.Select(file =>
+                Inputs = allFilesInProject.Select(file =>
                 {
-                    return new Yarn.Compiler.CompilationJob.File
+                    return (Yarn.Compiler.ISourceInput)new Yarn.Compiler.CompilationJob.File
                     {
                         FileName = file.Uri.ToString(),
                         Source = file.Text,

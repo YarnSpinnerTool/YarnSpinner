@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Microsoft.Extensions.DependencyInjection;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using System.IO;
@@ -19,6 +20,13 @@ namespace YarnLanguageServer.Tests
         {
         }
 
+        private static int GetNodeBodyLineNumber(Workspace workspace, string nodeName)
+        {
+            var projectContainingNode = workspace.Projects.Single(p => p.Nodes.Any(n => n.SourceTitle == nodeName));
+            var node = projectContainingNode.Nodes.Single(n => n.SourceTitle == nodeName);
+            return node.BodyStartLine;
+        }
+
         [Fact]
         public async Task Server_OnCompletingStartOfCommand_ReturnsValidCompletions()
         {
@@ -26,10 +34,16 @@ namespace YarnLanguageServer.Tests
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
             var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
+            var lineContainingCommand = File
+                .ReadAllLines(filePath)
+                .Index()
+                .Single(l => l.Item == "<<static_command_no_docs>>")
+                .Index;
+
             var startOfCommand = new Position
             {
                 Character = 2,
-                Line = 22
+                Line = lineContainingCommand
             };
 
             // When
@@ -59,10 +73,16 @@ namespace YarnLanguageServer.Tests
             var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
             var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
 
+            var lineContainingCommand = File
+                .ReadAllLines(filePath)
+                .Index()
+                .Single(l => l.Item == "<<static_command_no_docs>>")
+                .Index;
+
             var startOfCommand = new Position
             {
                 Character = 2,
-                Line = 22
+                Line = lineContainingCommand
             };
             var middleOfCommand = startOfCommand with
             {
@@ -159,6 +179,107 @@ namespace YarnLanguageServer.Tests
                 item.TextEdit!.TextEdit!.Range.Start.Should().BeEquivalentTo(endOfJumpKeyword);
                 item.TextEdit.TextEdit.Range.End.Should().BeEquivalentTo(middleOfNodeName);
             });
+        }
+
+        [Fact]
+        public async Task Server_OnCompletionRequestedInSetStatement_OffersVariableNamesForAssignment()
+        {
+            // Given
+            // Given
+            var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+            var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+            var workspace = server.Workspace.GetService<Workspace>()!;
+            var project = workspace.Projects.Single(p => p.Uri!.Path.Contains("Project1"));
+            var insertionLineNumber = GetNodeBodyLineNumber(workspace, "CodeCompletionTests");
+
+            ChangeTextInDocument(client, filePath, new Position(insertionLineNumber, 0), "<<set ");
+
+            // When
+            var completionResults = await client.RequestCompletion(new CompletionParams
+            {
+                TextDocument = new TextDocumentIdentifier { Uri = filePath },
+                Position = new Position(insertionLineNumber, "<<set ".Length)
+            });
+
+            var storedVariables = project.Variables.Where(v => v.IsInlineExpansion == false);
+            var smartVariables = project.Variables.Where(v => v.IsInlineExpansion == true);
+
+
+            // Then
+            storedVariables.Should().AllSatisfy(v => completionResults.Should().Contain(res => res.Label == v.Name));
+            smartVariables.Should().AllSatisfy(v => completionResults.Should().NotContain(res => res.Label == v.Name));
+        }
+
+
+        [Fact]
+        public async Task Server_OnCompletionRequestedInSetStatement_OffersIdentifiersForValues()
+        {
+            // Given
+            var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+            var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+            var workspace = server.Workspace.GetService<Workspace>()!;
+            var project = workspace.Projects.Single(p => p.Uri!.Path.Contains("Project1"));
+            var insertionLineNumber = GetNodeBodyLineNumber(workspace, "CodeCompletionTests");
+
+            ChangeTextInDocument(client, filePath, new Position(insertionLineNumber, 0), "<<set $x = ");
+
+            // When
+            var completionResults = await client.RequestCompletion(new CompletionParams
+            {
+                TextDocument = new TextDocumentIdentifier { Uri = filePath },
+                Position = new Position(insertionLineNumber, "<<set $x = ".Length)
+            });
+
+            var allFunctionsAndVariables = Enumerable.Concat(project.Variables, project.Functions.Select(a => a.Declaration));
+            var allEnumCaseNames = project.Enums.SelectMany(e => e.EnumCases.Select(c => $"{e.Name}.{c.Key}"));
+
+            allFunctionsAndVariables.Should().NotBeEmpty();
+            allFunctionsAndVariables.Should().AllSatisfy(decl => decl.Should().NotBeNull());
+            allEnumCaseNames.Should().NotBeEmpty();
+
+            // Then
+            // All functions and variables should be in the list of completions
+            allFunctionsAndVariables.Should().AllSatisfy(decl => completionResults.Should().Contain(res => res.Label == decl!.Name));
+            // All enum cases should be in the list of completions
+            allEnumCaseNames.Should().AllSatisfy(caseName => completionResults.Should().Contain(res => res.Label == caseName));
+        }
+
+        [InlineData(["<<if "])]
+        [InlineData(["<<elseif "])]
+        [InlineData(["<<myCoolCommand {"])]
+        [Theory]
+        public async Task Server_OnCompletionRequestedInStatement_OffersIdentifiers(string expression)
+        {
+            // Given
+            var (client, server) = await Initialize(ConfigureClient, ConfigureServer);
+            var filePath = Path.Combine(TestUtility.PathToTestWorkspace, "Project1", "Test.yarn");
+            var workspace = server.Workspace.GetService<Workspace>()!;
+            var project = workspace.Projects.Single(p => p.Uri!.Path.Contains("Project1"));
+            var insertionLineNumber = GetNodeBodyLineNumber(workspace, "CodeCompletionTests");
+
+            ChangeTextInDocument(client, filePath, new Position(insertionLineNumber, 0), expression);
+
+            // When
+            var completionResults = await client.RequestCompletion(new CompletionParams
+            {
+                TextDocument = new TextDocumentIdentifier { Uri = filePath },
+                Position = new Position(insertionLineNumber, expression.Length)
+            });
+
+            // Then
+            completionResults.Should().NotBeEmpty();
+
+            var allFunctionsAndVariables = Enumerable.Concat(project.Variables, project.Functions.Select(a => a.Declaration));
+            var allEnumCaseNames = project.Enums.SelectMany(e => e.EnumCases.Select(c => $"{e.Name}.{c.Key}"));
+
+            allFunctionsAndVariables.Should().NotBeEmpty();
+            allFunctionsAndVariables.Should().AllSatisfy(decl => decl.Should().NotBeNull());
+            allEnumCaseNames.Should().NotBeEmpty();
+
+            // All functions and variables should be in the list of completions
+            allFunctionsAndVariables.Should().AllSatisfy(decl => completionResults.Should().Contain(res => res.Label == decl!.Name));
+
+            allEnumCaseNames.Should().AllSatisfy(caseName => completionResults.Should().Contain(res => res.Label == caseName));
         }
 
     }

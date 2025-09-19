@@ -71,26 +71,36 @@ namespace YarnLanguageServer.Handlers
                     break;
 
                 case YarnSymbolType.Variable:
-                    var variableDefinitions = project.FindVariables(token.Text);
-                    if (variableDefinitions.Any())
+                    var variableDeclarations = project.FindVariables(token.Text);
+                    if (variableDeclarations.Any())
                     {
-                        var definition = variableDefinitions
+                        var declaration = variableDeclarations
                             .OrderBy(v =>
                                 v.SourceFileName == request.TextDocument.Uri ? // definitions in the current file get priority
                                     Math.Abs(token.Line - v.Range.Start.Line) // within a file, closest definition wins
                                     : 100_000) // don't care what order out of current file definitions come in
                             .First();
 
-                        DeclarationHelper.GetDeclarationInfo(definition, out var type, out var defaultValue);
+                        DeclarationHelper.GetDeclarationInfo(declaration, out var type, out var defaultValue);
 
-                        var description = new System.Text.StringBuilder()
-                            .AppendFormat("`(variable) {0} : {1}`", definition.Name ?? "(unknown)", type)
+                        bool isSmartVariable = declaration.IsInlineExpansion;
+
+                        var descriptionBuilder = new System.Text.StringBuilder()
+                            .AppendLine($"{(isSmartVariable ? "Smart Variable" : "Variable")}: `{declaration.Name ?? "(unknown)"} : {type}`")
                             .AppendLine()
-                            .AppendLine()
-                            .AppendLine(definition.Description)
-                            .AppendLine()
-                            .AppendFormat($"Initial value: {defaultValue}")
-                            .ToString();
+                            .AppendLine(declaration.Description)
+                            .AppendLine();
+
+                        if (isSmartVariable && declaration.InitialValueParserContext != null)
+                        {
+                            descriptionBuilder.AppendFormat($"Value: `{declaration.InitialValueParserContext.GetTextWithWhitespace()}`");
+                        }
+                        else
+                        {
+                            descriptionBuilder.Append($"Initial value: `{defaultValue}`");
+                        }
+
+                        var description = descriptionBuilder.ToString();
 
                         var result = new Hover
                         {

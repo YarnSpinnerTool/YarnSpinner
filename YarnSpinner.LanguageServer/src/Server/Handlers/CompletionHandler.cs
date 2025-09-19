@@ -1,7 +1,9 @@
 ﻿using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,22 +14,46 @@ namespace YarnLanguageServer.Handlers
 {
     internal static class ContextExtensions
     {
+        public static bool IsChildOfContext(this Antlr4.Runtime.Tree.IParseTree tree, params System.Type[] parentContextTypes)
+        {
+            foreach (var type in parentContextTypes)
+            {
+                if (TryGetAncestorOfType(tree, type, out _))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree)
             where T : Antlr4.Runtime.ParserRuleContext
         {
             return IsChildOfContext<T>(tree, out _);
         }
 
-        public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree, out T? result)
+        public static bool IsChildOfContext<T>(this Antlr4.Runtime.Tree.IParseTree tree, [NotNullWhen(true)] out T? result)
             where T : Antlr4.Runtime.ParserRuleContext
         {
-            var type = typeof(T);
+            if (TryGetAncestorOfType(tree, typeof(T), out var ancestor))
+            {
+                result = (T)ancestor;
+                return true;
+            }
+            else
+            {
+                result = default;
+                return false;
+            }
+        }
+        private static bool TryGetAncestorOfType(this Antlr4.Runtime.Tree.IParseTree tree, System.Type type, [NotNullWhen(true)] out Antlr4.Runtime.ParserRuleContext? result)
+        {
 
             while (tree != null)
             {
                 if (type.IsAssignableFrom(tree.Payload.GetType()))
                 {
-                    result = (T)tree;
+                    result = (Antlr4.Runtime.ParserRuleContext)tree;
                     return true;
                 }
 
@@ -116,6 +142,14 @@ namespace YarnLanguageServer.Handlers
                     Documentation = "Stop ends the current dialogue.",
                     InsertTextFormat = InsertTextFormat.PlainText,
                 },
+                new CompletionItem{
+                    Label = "enum declaration",
+                    Documentation = "Create a new enum type.",
+                    Kind = CompletionItemKind.Snippet,
+                    InsertText = "<<enum ${1:NewEnumType}>>\n    <<case ${2:EnumCase}>>\n<<endenum>>",
+                    InsertTextFormat = InsertTextFormat.Snippet,
+                    InsertTextMode = InsertTextMode.AdjustIndentation,
+                }
             };
 
             this.keywordCompletions = new List<CompletionItem> {
@@ -175,6 +209,27 @@ namespace YarnLanguageServer.Handlers
                     Documentation = "Set assigns the value of the expression to a variable",
                     InsertTextFormat = InsertTextFormat.PlainText,
                 },
+                new CompletionItem{
+                    Label = "enum",
+                    Kind = CompletionItemKind.Keyword,
+                    InsertText = "enum",
+                    Documentation = "Enums are collections of predefined values.",
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                },
+                new CompletionItem{
+                    Label = "case",
+                    Kind = CompletionItemKind.Keyword,
+                    InsertText = "case",
+                    Documentation = new MarkupContent{ Kind=MarkupKind.Markdown, Value= "`case` creates a new member in an enum." },
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                },
+                new CompletionItem{
+                    Label = "endenum",
+                    Kind = CompletionItemKind.Keyword,
+                    InsertText = "endenum",
+                    Documentation = new MarkupContent{ Kind=MarkupKind.Markdown, Value= "`endenum` ends an enum declaration." },
+                    InsertTextFormat = InsertTextFormat.PlainText,
+                }
             };
         }
 
@@ -257,14 +312,31 @@ namespace YarnLanguageServer.Handlers
 
             var context = ParseTreeFromPosition(yarnFile.ParseTree, request.Position.Character, request.Position.Line + 1);
 
-            var maybeTokenAtRequestPosition = yarnFile.GetRawToken(request.Position);
-            if (!maybeTokenAtRequestPosition.HasValue)
+            if (yarnFile.TryGetRawToken(request.Position, out var tokenIndexAtRequestPosition) == false
+                || tokenIndexAtRequestPosition < 0
+                || tokenIndexAtRequestPosition >= yarnFile.Tokens.Count)
             {
                 // We don't know what completions to offer for here.
                 return Task.FromResult(new CompletionList());
             }
 
-            var tokenAtRequestPosition = yarnFile.Tokens[maybeTokenAtRequestPosition.Value];
+            var tokenAtRequestPosition = yarnFile.Tokens[tokenIndexAtRequestPosition];
+
+            var tokensOnLine = new List<Antlr4.Runtime.IToken>() { tokenAtRequestPosition };
+            {
+                int tokenIndex = tokenIndexAtRequestPosition - 1;
+                while (tokenIndex >= 0)
+                {
+                    var priorToken = yarnFile.Tokens[tokenIndex];
+                    if (priorToken.Line != tokenAtRequestPosition.Line) { break; }
+
+                    if (priorToken.Channel != Antlr4.Runtime.Lexer.Hidden)
+                    {
+                        tokensOnLine.Insert(0, priorToken);
+                    }
+                    tokenIndex -= 1;
+                }
+            }
 
             var rangeOfTokenAtRequestPosition = PositionHelper.GetRange(yarnFile.LineStarts, tokenAtRequestPosition);
             if (tokenAtRequestPosition.Type == YarnSpinnerLexer.COMMAND_END
@@ -276,7 +348,7 @@ namespace YarnLanguageServer.Handlers
 
             var results = new List<CompletionItem>();
 
-            var vocabulary = yarnFile.Lexer.Vocabulary;
+            var vocabulary = YarnSpinnerLexer.DefaultVocabulary;
             var tokenName = vocabulary.GetSymbolicName(tokenAtRequestPosition.Type);
 
             void ExpandRangeToEndOfPreviousTokenOfType(int tokenType, int startIndex, ref Range range)
@@ -301,12 +373,27 @@ namespace YarnLanguageServer.Handlers
                 }
             }
 
+            bool TryGetRelativeTokenOnLine(int relativePosition, [NotNullWhen(true)] out Antlr4.Runtime.IToken? token)
+            {
+                var index = tokensOnLine.Count - 1 + relativePosition;
+                if (index < 0 || index >= tokensOnLine.Count)
+                {
+                    token = default;
+                    return false;
+                }
+                else
+                {
+                    token = tokensOnLine[index];
+                    return true;
+                }
+            }
+
             if (context?.IsChildOfContext<YarnSpinnerParser.Jump_statementContext>() ?? false)
             {
                 // We're in the middle of a jump statement. Expand the
                 // replacement range to the end of the '<<jump ', and offer the
                 // list of nodes.
-                ExpandRangeToEndOfPreviousTokenOfType(YarnSpinnerLexer.COMMAND_JUMP, maybeTokenAtRequestPosition.Value, ref rangeOfTokenAtRequestPosition);
+                ExpandRangeToEndOfPreviousTokenOfType(YarnSpinnerLexer.COMMAND_JUMP, tokenIndexAtRequestPosition, ref rangeOfTokenAtRequestPosition);
 
                 // Add a ' ' after the jump token
                 rangeOfTokenAtRequestPosition = rangeOfTokenAtRequestPosition with
@@ -324,9 +411,36 @@ namespace YarnLanguageServer.Handlers
                     results
                 );
             }
+            else if (context?.IsChildOfContext(
+                typeof(YarnSpinnerParser.ExpressionContext),
+                typeof(YarnSpinnerParser.If_clauseContext),
+                typeof(YarnSpinnerParser.Else_if_clauseContext)
+            ) ?? false)
+            {
+                // We're in the middle of an expression. Offer identifier completions.
+                GetIdentifierCompletions(project, rangeOfTokenAtRequestPosition, results, IdentifierTypes.All);
+            }
+            else if (context?.IsChildOfContext<YarnSpinnerParser.Set_statementContext>() ?? false)
+            {
+                // We're in the middle of a set statement.
+
+                if (TryGetRelativeTokenOnLine(-1, out var previousToken))
+                {
+                    // If the previous token was the 'set' command, offer variable name completions.
+                    if (previousToken.Type == YarnSpinnerLexer.COMMAND_SET)
+                    {
+                        GetIdentifierCompletions(project, rangeOfTokenAtRequestPosition, results, IdentifierTypes.StoredVariable);
+                    }
+                    else if (previousToken.Type == YarnSpinnerLexer.OPERATOR_ASSIGNMENT)
+                    {
+                        // If the previous token was the 'equals' token, offer all identifier completions. 
+                        GetIdentifierCompletions(project, rangeOfTokenAtRequestPosition, results, IdentifierTypes.All);
+                    }
+                }
+            }
             else
             {
-                switch (tokenAtRequestPosition.Type)
+                switch (tokensOnLine.Where(t => t.Channel != YarnSpinnerLexer.Hidden).LastOrDefault()?.Type)
                 {
                     case YarnSpinnerLexer.COMMAND_START:
                         {
@@ -345,7 +459,7 @@ namespace YarnLanguageServer.Handlers
                             // statement. Expand our range to the end of our
                             // starting command token, so that the results we send
                             // back can be filtered.
-                            ExpandRangeToEndOfPreviousTokenOfType(YarnSpinnerLexer.COMMAND_START, maybeTokenAtRequestPosition.Value, ref rangeOfTokenAtRequestPosition);
+                            ExpandRangeToEndOfPreviousTokenOfType(YarnSpinnerLexer.COMMAND_START, tokenIndexAtRequestPosition, ref rangeOfTokenAtRequestPosition);
                             GetCommandCompletions(request, rangeOfTokenAtRequestPosition, results);
 
                             break;
@@ -353,11 +467,10 @@ namespace YarnLanguageServer.Handlers
 
                     // inline expressions, if, and elseif are the same thing
                     case YarnSpinnerLexer.EXPRESSION_START:
-                    case YarnSpinnerLexer.COMMAND_EXPRESSION_START:
                     case YarnSpinnerLexer.COMMAND_IF:
                     case YarnSpinnerLexer.COMMAND_ELSEIF:
                         {
-                            GetVariableNameCompletions(project, rangeOfTokenAtRequestPosition, results);
+                            GetIdentifierCompletions(project, rangeOfTokenAtRequestPosition, results, IdentifierTypes.All);
 
                             break;
                         }
@@ -421,59 +534,108 @@ namespace YarnLanguageServer.Handlers
             }
         }
 
-        private static void GetVariableNameCompletions(Project project, Range indexTokenRange, List<CompletionItem> results)
+        [Flags]
+        enum IdentifierTypes
+        {
+            None = 0,
+            Function = 1,
+            StoredVariable = 2,
+            SmartVariable = 4,
+            EnumCases = 8,
+            All = ~0,
+        }
+
+        private static void GetIdentifierCompletions(Project project, Range indexTokenRange, List<CompletionItem> results, IdentifierTypes identifierTypes)
         {
             System.Text.StringBuilder builder = new();
-            foreach (var function in project.Functions.DistinctBy(f => f.YarnName))
+
+            if (identifierTypes.HasFlag(IdentifierTypes.Function))
             {
-                builder.Append(function.YarnName);
-                builder.Append('(');
-
-                var parameters = new List<string>();
-                int i = 1;
-                foreach (var param in function.Parameters)
+                foreach (var function in project.Functions.DistinctBy(f => f.YarnName))
                 {
-                    if (param.IsParamsArray)
+                    builder.Append(function.YarnName);
+                    builder.Append('(');
+
+                    var parameters = new List<string>();
+                    int i = 1;
+                    foreach (var param in function.Parameters)
                     {
-                        parameters.Add($"${{{i}:{param.Name}...}}");
-                    }
-                    else
-                    {
-                        parameters.Add($"${{{i}:{param.Name}}}");
+                        if (param.IsParamsArray)
+                        {
+                            parameters.Add($"${{{i}:{param.Name}...}}");
+                        }
+                        else
+                        {
+                            parameters.Add($"${{{i}:{param.Name}}}");
+                        }
+
+                        i++;
                     }
 
-                    i++;
+                    builder.Append(string.Join(", ", parameters));
+
+                    builder.Append(')');
+
+                    results.Add(new CompletionItem
+                    {
+                        Label = function.YarnName,
+                        Kind = CompletionItemKind.Function,
+                        Documentation = function.Documentation,
+
+                        // would be good in the future to also show the return type but we don't know that at this stage, something for the future
+                        Detail = (function.SourceFileUri?.AbsolutePath == null || function.IsBuiltIn) ? null : System.IO.Path.GetFileName(function.SourceFileUri.AbsolutePath),
+                        TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
+                        InsertTextFormat = InsertTextFormat.Snippet,
+                    });
+                    builder.Clear();
                 }
-
-                builder.Append(string.Join(", ", parameters));
-
-                builder.Append(')');
-
-                results.Add(new CompletionItem
-                {
-                    Label = function.YarnName,
-                    Kind = CompletionItemKind.Function,
-                    Documentation = function.Documentation,
-
-                    // would be good in the future to also show the return type but we don't know that at this stage, something for the future
-                    Detail = (function.SourceFileUri?.AbsolutePath == null || function.IsBuiltIn) ? null : System.IO.Path.GetFileName(function.SourceFileUri.AbsolutePath),
-                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = builder.ToString(), Range = indexTokenRange.CollapseToEnd() }),
-                    InsertTextFormat = InsertTextFormat.Snippet,
-                });
-                builder.Clear();
             }
 
-            foreach (var variable in project.Variables)
+            var allowStored = identifierTypes.HasFlag(IdentifierTypes.StoredVariable);
+            var allowSmart = identifierTypes.HasFlag(IdentifierTypes.SmartVariable);
+            if (identifierTypes.HasFlag(IdentifierTypes.StoredVariable) || identifierTypes.HasFlag(IdentifierTypes.SmartVariable))
             {
-                results.Add(new CompletionItem
+                foreach (var variable in project.Variables)
                 {
-                    Label = variable.Name,
-                    Kind = CompletionItemKind.Variable,
-                    Documentation = variable.Description,
-                    Detail = variable.Type.Name,
-                    TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = variable.Name, Range = indexTokenRange.CollapseToEnd() }),
-                    InsertTextFormat = InsertTextFormat.PlainText,
-                });
+                    var isSmart = variable.IsInlineExpansion;
+                    var isStored = !variable.IsInlineExpansion;
+
+                    if (isStored && !allowStored) { continue; }
+                    if (isSmart && !allowSmart) { continue; }
+
+                    results.Add(new CompletionItem
+                    {
+                        Label = variable.Name,
+                        Kind = CompletionItemKind.Variable,
+                        Documentation = variable.Description,
+                        Detail = variable.Type.Name,
+                        TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit { NewText = variable.Name, Range = indexTokenRange.CollapseToEnd() }),
+                        InsertTextFormat = InsertTextFormat.PlainText,
+                    });
+                }
+            }
+
+            if (identifierTypes.HasFlag(IdentifierTypes.EnumCases))
+            {
+                foreach (var userEnum in project.Enums)
+                {
+                    foreach (var enumCase in userEnum.EnumCases)
+                    {
+                        var fullName = userEnum.Name + "." + enumCase.Key;
+                        results.Add(new CompletionItem
+                        {
+                            Label = fullName,
+                            Kind = CompletionItemKind.EnumMember,
+                            Documentation = enumCase.Value.Description,
+                            TextEdit = new TextEditOrInsertReplaceEdit(new TextEdit
+                            {
+                                NewText = fullName,
+                                Range = indexTokenRange.CollapseToEnd()
+                            }),
+                            InsertTextFormat = InsertTextFormat.PlainText,
+                        });
+                    }
+                }
             }
         }
 
@@ -580,7 +742,6 @@ namespace YarnLanguageServer.Handlers
             YarnSpinnerLexer.EXPRESSION_START,
             YarnSpinnerLexer.HASHTAG,
             YarnSpinnerLexer.COMMAND_TEXT,
-            YarnSpinnerLexer.COMMAND_EXPRESSION_START,
             YarnSpinnerLexer.INDENT,
             YarnSpinnerLexer.DEDENT,
             YarnSpinnerLexer.WHITESPACE,

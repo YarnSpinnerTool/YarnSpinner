@@ -1,9 +1,12 @@
 using OmniSharp.Extensions.LanguageServer.Protocol;
+using OmniSharp.Extensions.LanguageServer.Protocol.Window;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
+using Yarn.Compiler;
 
 namespace YarnLanguageServer
 {
@@ -20,6 +23,8 @@ namespace YarnLanguageServer
         public DocumentUri? Uri { get; init; }
         public bool IsImplicitProject { get; init; }
 
+        public bool IsCompiling { get; private set; }
+
         internal IEnumerable<Yarn.Compiler.Declaration> Variables
         {
             get
@@ -30,6 +35,20 @@ namespace YarnLanguageServer
                 }
 
                 return LastCompilationResult.Declarations.Where(d => d.IsVariable == true);
+            }
+        }
+
+        internal IEnumerable<Yarn.EnumType> Enums
+        {
+            get
+            {
+                if (LastCompilationResult == null)
+                {
+                    return Enumerable.Empty<Yarn.EnumType>();
+                }
+
+                var enums = LastCompilationResult.UserDefinedTypes.OfType<Yarn.EnumType>();
+                return enums;
             }
         }
 
@@ -51,7 +70,34 @@ namespace YarnLanguageServer
         internal IConfigurationSource? ConfigurationSource { get; set; }
         internal INotificationSender? NotificationSender { get; set; }
 
-        private Yarn.Compiler.CompilationResult? LastCompilationResult { get; set; }
+        private TaskCompletionSource<CompilationResult> LastCompilationResultSource = new TaskCompletionSource<CompilationResult>();
+
+        private CancellationTokenSource? CurrentCancellationSource = new();
+
+        public Task<CompilationResult> CompilationTask => LastCompilationResultSource.Task;
+
+        /// <summary>
+        /// Synchronously gets the last compilation result if available, or <see
+        /// langword="null"/> if no compilation result is available.
+        /// </summary>
+        private Yarn.Compiler.CompilationResult? LastCompilationResult
+        {
+            get
+            {
+                if (LastCompilationResultSource.Task.IsCompletedSuccessfully)
+                {
+                    // We've already checked that a result is available, so
+                    // we're safe to synchronously get the result here
+#pragma warning disable VSTHRD002
+                    return LastCompilationResultSource.Task.Result;
+#pragma warning restore
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
 
         private JsonConfigFile? DefinitionsFile { get; set; }
 
@@ -231,7 +277,7 @@ namespace YarnLanguageServer
 
         internal int FileVersion => yarnProject.FileVersion;
 
-        internal void ReloadProjectFromDisk(bool notifyOnComplete, CancellationToken cancellationToken)
+        internal async Task ReloadProjectFromDiskAsync(bool notifyOnComplete, CancellationToken cancellationToken)
         {
             IEnumerable<string> sourceFilePaths = this.yarnProject.SourceFiles;
 
@@ -246,43 +292,91 @@ namespace YarnLanguageServer
                 this.yarnFiles.Add(uri, fileData);
             }
 
-            CompileProject(notifyOnComplete, Yarn.Compiler.CompilationJob.Type.TypeCheck, cancellationToken);
+            await CompileProjectAsync(notifyOnComplete, Yarn.Compiler.CompilationJob.Type.TypeCheck, cancellationToken);
         }
 
-        public Yarn.Compiler.CompilationResult CompileProject(bool notifyOnComplete, Yarn.Compiler.CompilationJob.Type compilationType, CancellationToken cancellationToken)
+        public struct CompileProjectOptions
         {
-            var functionDeclarations = Functions.Select(f => f.Declaration).NonNull();
+            public bool NotifyOnComplete;
+            public bool ThrowOnCancellation;
+        }
 
-            var files = this.Files.Select(f => new Yarn.Compiler.CompilationJob.File
+        static int compileCount = 0;
+
+        public async Task<Yarn.Compiler.CompilationResult> CompileProjectAsync(bool notifyOnComplete, Yarn.Compiler.CompilationJob.Type compilationType, CancellationToken cancellationToken)
+        {
+            compileCount += 1;
+            var thisCompilation = compileCount;
+
+            YarnLanguageServer.LogMessage("Beginning compilation " + thisCompilation);
+            if (!IsCompiling)
             {
-                FileName = f.Uri.AbsolutePath,
-                Source = f.Text,
-            });
+                LastCompilationResultSource = new();
+            }
+
+            IsCompiling = true;
+
+            if (CurrentCancellationSource != null)
+            {
+                await CurrentCancellationSource.CancelAsync();
+                CurrentCancellationSource.Dispose();
+            }
+            CurrentCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            var thisCompilationToken = CurrentCancellationSource.Token;
+
+            var functionDeclarations = Functions.Select(f => f.Declaration).NonNull().ToArray();
+
+            IEnumerable<Yarn.Compiler.ISourceInput> inputs = this.Files.Select(f => (ISourceInput)f.FileParseResult);
 
             var compilationJob = new Yarn.Compiler.CompilationJob
             {
                 CompilationType = compilationType,
-                Files = files,
+                Inputs = inputs,
                 Declarations = functionDeclarations,
                 LanguageVersion = this.yarnProject.FileVersion,
-                CancellationToken = cancellationToken,
+                CancellationToken = thisCompilationToken,
             };
 
             var compilationResult = Yarn.Compiler.Compiler.Compile(compilationJob);
 
-            this.LastCompilationResult = compilationResult;
-
-            if (notifyOnComplete)
+            if (!thisCompilationToken.IsCancellationRequested)
             {
-                OnProjectCompiled?.Invoke(compilationResult);
+                YarnLanguageServer.LogMessage($"Compilation {thisCompilation} complete.");
+                // For all jumps in all files, attempt to identify the file that the
+                // target of the jump is in, and store it in the jump info
+                var nodesToFiles = this.Files
+                    .SelectMany(f => f.NodeInfos
+                        .Where(n => n.SourceTitle != null))
+                        .ToLookup(n => n.SourceTitle!);
+
+                foreach (var file in this.Files)
+                {
+                    foreach (var jump in file.NodeJumps)
+                    {
+                        var nodesWithTitle = nodesToFiles.FirstOrDefault(n => n.Key == jump.DestinationTitle);
+                        jump.DestinationFile = nodesWithTitle?.FirstOrDefault()?.File;
+                    }
+                }
+
+                this.LastCompilationResultSource.SetResult(compilationResult);
+                if (notifyOnComplete)
+                {
+                    OnProjectCompiled?.Invoke(compilationResult);
+                }
+
+                IsCompiling = false;
+            }
+            else
+            {
+                YarnLanguageServer.Server.Log($"Compilation {thisCompilation} cancelled.");
             }
 
             return compilationResult;
         }
 
-        internal DebugOutput GetDebugOutput(CancellationToken cancellationToken)
+        async internal Task<DebugOutput> GetDebugOutputAsync(CancellationToken cancellationToken)
         {
-            var compilationResult = this.CompileProject(false, Yarn.Compiler.CompilationJob.Type.FullCompilation, cancellationToken);
+            var compilationResult = await this.CompileProjectAsync(false, Yarn.Compiler.CompilationJob.Type.FullCompilation, cancellationToken);
 
             var variables = compilationResult.Declarations
                 .Where(decl => decl.IsVariable)

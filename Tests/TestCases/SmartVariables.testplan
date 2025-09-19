@@ -7,5 +7,5 @@ line: `PieMaker: Certainly!`
 
 set: $player_money = 0
 
-Player: Can I have a pie?
-PieMaker: You can't afford one!
+line: `Player: Can I have a pie?`
+line: `PieMaker: You can't afford one!`

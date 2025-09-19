@@ -21,6 +21,11 @@ public record NodeJump
     [JsonProperty("type")]
     public JumpType Type { get; init; }
 
+    internal YarnFileData? DestinationFile { get; set; }
+
+    [JsonProperty("destinationFileUri")]
+    internal System.Uri? DestinationFileUri => DestinationFile?.Uri;
+
     /// <summary>
     /// A type of jump from one node to another.
     /// </summary>

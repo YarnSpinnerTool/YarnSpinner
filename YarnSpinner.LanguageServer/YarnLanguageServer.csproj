@@ -10,6 +10,10 @@
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <UseAppHost>False</UseAppHost>
     <Nullable>enable</Nullable>
+    <!-- CS4014 Async function is not awaited and will run synchronously -->
+    <!-- VSTHRD110 Observe result of async calls -->
+    <WarningsAsErrors>CS4014;VSTHRD110</WarningsAsErrors>
+
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -23,7 +27,7 @@
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.96.0" />
     <PackageReference Include="Fastenshtein" Version="1.0.0.7" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.0-3.final" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="*" />
     <PackageReference Include="morelinq" Version="3.3.2" />
     <PackageReference Include="OmniSharp.Extensions.LanguageServer" Version="0.19.7" />

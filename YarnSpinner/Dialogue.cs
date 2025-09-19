@@ -565,16 +565,12 @@ namespace Yarn
         /// <summary>The node that execution will start from.</summary>
         public const string DefaultStartNodeName = "Start";
 
-        private Program? program;
-
         /// <summary>Gets or sets the compiled Yarn program.</summary>
         internal Program? Program
         {
-            get => program;
+            get => vm?.Program;
             set
             {
-                program = value;
-
                 vm.Program = value;
                 vm.ResetState();
 
@@ -733,6 +729,33 @@ namespace Yarn
             Library.RegisterFunction("visited_count", delegate (string node)
             {
                 return GetNodeVisitCount(node);
+            });
+            Library.RegisterFunction("has_any_content", delegate (string nodeGroup)
+            {
+                if (this.Program == null)
+                {
+                    // we somehow don't have a program, so we don't have ANY
+                    // content, let alone this specific content
+                    return false;
+                }
+
+                if (this.Program.Nodes.TryGetValue(nodeGroup, out var node) == false)
+                {
+                    // No node with this name
+                    return false;
+                }
+
+                if (!node.IsNodeGroupHub)
+                {
+                    // Not a node group hub, so it always has content available
+                    return true;
+                }
+
+                var options = this.GetSaliencyOptionsForNodeGroup(nodeGroup);
+                var bestOption = this.ContentSaliencyStrategy.QueryBestContent(options);
+
+                // Did the saliency strategy indicate that an option could be selected?
+                return bestOption != null;
             });
         }
 

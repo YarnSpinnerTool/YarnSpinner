@@ -18,22 +18,30 @@ namespace Yarn.Compiler
     /// it provides access to the parse tree, and the stream of tokens used to
     /// produce that parse tree.
     /// </remarks>
-    public struct FileParseResult
+    public struct FileParseResult : ISourceInput
     {
         /// <summary>
-        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream)" path="/param[@name='name']"/>
+        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream, IEnumerable{Diagnostic})" path="/param[@name='name']"/>
         /// </summary>
         public string Name { get; }
 
+        /// <inheritdoc/>>
+        public string FileName => Name;
+
         /// <summary>
-        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream)" path="/param[@name='tree']"/>
+        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream, IEnumerable{Diagnostic})" path="/param[@name='tree']"/>
         /// </summary>
         public IParseTree Tree { get; }
 
         /// <summary>
-        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream)" path="/param[@name='tokens']"/>
+        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream, IEnumerable{Diagnostic})" path="/param[@name='tokens']"/>
         /// </summary>
         public CommonTokenStream Tokens { get; }
+
+        /// <summary>
+        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream, IEnumerable{Diagnostic})" path="/param[@name='tokens']"/>
+        /// </summary>
+        public IEnumerable<Diagnostic> Diagnostics { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileParseResult"/>
@@ -42,11 +50,13 @@ namespace Yarn.Compiler
         /// <param name="name">The name of the file.</param>
         /// <param name="tree">The parse tree extracted from the file.</param>
         /// <param name="tokens">The tokens extracted from the file.</param>
-        public FileParseResult(string name, IParseTree tree, CommonTokenStream tokens)
+        /// <param name="diagnostics">The diagnostics produced from parsing the file.</param>
+        public FileParseResult(string name, IParseTree tree, CommonTokenStream tokens, IEnumerable<Diagnostic> diagnostics)
         {
             this.Name = name;
             this.Tree = tree;
             this.Tokens = tokens;
+            this.Diagnostics = new List<Diagnostic>(diagnostics);
         }
 
         /// <inheritdoc/>

@@ -10,13 +10,39 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Updated
 
+- When the `tags:` header on a node is blank, `Node.Tags` now returns an empty collection, instead of a collection containing a single empty string.
+- Fixed an issue that would cause testplans with syntax errors to incorrectly pass.
+- Fixed an issue where using `visited()` or `visited_count()` would not correctly track visiting node groups.
+- Language Server: NodeInfo objects now indicate whether a node contains any jumps to nodes in a different file.
+- Language Server: Fixed an issue where the Compile workspace command output was missing shadow lines
+- Language Server: `Microsoft.CodeAnalysis.CSharp` package updated to v4.14.0, fixing command detection in C# files using recent syntax added to C# (eg. `Required Members` from C# 11)
+- Language Server: enum declaration statements are now included in code completions.
+- Language Server: enum values are now included in code completions.
+- Language Server: `<<set>>` statements now offer variable names in their code completions.
+- Language Server: hovering smart variables now shows their definition.
+- Language Server: Make compilation asynchronous
+- Language Server: 'Undeclared variable' warnings have had their severity reduced to "hint".
+
+### Removed
+
+## [3.0.2] 2025-06-12
+
+### Added
+
+- Added a new function, `has_any_content`, which takes the name of a node group and returns `true` if any of its member nodes could run.
+
+### Updated
+
+- Fixed a bug where interpolated boolean values inside markup were being incorrectly determined as a string and not a bool.
+
+## [3.0.1] 2025-06-12
+
+### Updated
+
 - Complexity scoring for `when:` headers no longer counts `not` operations. This means that `when: $x` and `when: not $x` have the same score of 1.
 - `VirtualMachine.ContentSaliencyStrategy` now defaults to `RandomBestLeastRecentlyViewed`, not `First`
 - Evaluating a smart variable can now perform nested evaluations of other smart variables.
 - `NodeDebugInfo.LineInfo` now stores ranges of text, rather than just the start position.
-
-
-### Removed
 
 ## [3.0.0] 2025-05-16
 

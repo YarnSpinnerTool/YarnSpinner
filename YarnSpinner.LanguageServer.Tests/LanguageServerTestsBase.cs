@@ -137,11 +137,13 @@ namespace YarnLanguageServer.Tests
             options.WithLink("keepalive", "ka");
             options.WithLink("throw", "t");
             options.OnRequest(
+#pragma warning disable CS1998 // async method lacks 'await' operators
                 "throw", async ct =>
                 {
                     throw new NotSupportedException();
                     return Task.CompletedTask;
                 }
+#pragma warning restore
             );
 
             options.OnPublishDiagnostics((diagnosticsParams) =>

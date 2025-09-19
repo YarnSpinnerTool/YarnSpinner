@@ -150,10 +150,10 @@ namespace Yarn.Compiler
         public static string AddTagsToLines(string contents, ICollection<string>? existingLineTags = null)
         {
             // First, get the parse tree for this source code.
-            var (parseSource, diagnostics) = ParseSource(contents);
+            var parseSource = ParseSourceText(contents);
 
             // Were there any error-level diagnostics?
-            if (diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
+            if (parseSource.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {
                 // We encountered a parse error. Bail here; we aren't confident
                 // in our ability to correctly insert a line tag.
@@ -204,10 +204,10 @@ namespace Yarn.Compiler
         public static (string ModifiedSource, IList<string> LineIDs) TagLines(string contents, ICollection<string>? existingLineTags = null)
         {
             // First, get the parse tree for this source code.
-            var (parseSource, diagnostics) = ParseSource(contents);
+            var parseSource = ParseSourceText(contents);
 
             // Were there any error-level diagnostics?
-            if (diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
+            if (parseSource.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {
                 // We encountered a parse error. Bail here; we aren't confident
                 // in our ability to correctly insert a line tag.
@@ -240,12 +240,27 @@ namespace Yarn.Compiler
         /// stores the parse tree and tokens, and a collection of <see
         /// cref="Diagnostic"/> objects that describe problems in the source
         /// code.</returns>
+        [Obsolete("Use ParseSourceText")]
         public static (FileParseResult, IEnumerable<Diagnostic>) ParseSource(string source)
         {
-            var diagnostics = new List<Diagnostic>();
-            var result = Compiler.ParseSyntaxTree("<input>", source, ref diagnostics);
+            var result = Compiler.ParseSyntaxTree("<input>", source);
 
-            return (result, diagnostics);
+            return (result, result.Diagnostics);
+        }
+
+        /// <summary>
+        /// Parses a string of Yarn source code, and produces a <see
+        /// cref="FileParseResult"/>.
+        /// </summary>
+        /// <param name="source">The source code to parse.</param>
+        /// <param name="sourceName">The name of the source.</param>
+        /// <returns>A <see cref="FileParseResult"/> representing the result of
+        /// parsing the source.</returns>
+        public static FileParseResult ParseSourceText(string source, string sourceName = "<input>")
+        {
+            var result = Compiler.ParseSyntaxTree(sourceName, source);
+
+            return result;
         }
 
         /// <summary>
@@ -279,7 +294,13 @@ namespace Yarn.Compiler
             return new Range(startPosition, endPosition);
         }
 
-        internal static Range GetRange(ParserRuleContext context)
+        /// <summary>
+        /// Gets the range covered by a <see cref="ParserRuleContext"/> in the
+        /// source code.
+        /// </summary>
+        /// <param name="context">The context to get a range for.</param>
+        /// <returns>The <see cref="Range"/> covered by this context.</returns>
+        public static Range GetRange(ParserRuleContext context)
         {
             return GetRange(context.Start, context.Stop);
         }
@@ -556,7 +577,7 @@ namespace Yarn.Compiler
             List<List<GraphingNode>> cluster = new List<List<GraphingNode>>();
             foreach (var contents in YarnFileContents)
             {
-                var (parseSource, diagnostics) = ParseSource(contents);
+                var parseSource = ParseSourceText(contents);
 
                 List<GraphingNode> connections = new List<GraphingNode>();
                 var jumpListener = new JumpGraphListener(connections);

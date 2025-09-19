@@ -6,7 +6,10 @@ namespace Yarn.Compiler
     using Antlr4.Runtime;
     using Antlr4.Runtime.Misc;
 
-    internal static class ParserRuleContextExtension
+    /// <summary>
+    /// Contains extension methods for <see cref="ParserRuleContext"/> objects.
+    /// </summary>
+    public static class ParserRuleContextExtension
     {
         /// <summary>
         /// Returns the original text of this <see cref="ParserRuleContext"/>,

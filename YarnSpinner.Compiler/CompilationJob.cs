@@ -11,6 +11,17 @@ namespace Yarn.Compiler
     using System.Threading;
 
     /// <summary>
+    /// An input into a Yarn Spinner compilation.
+    /// </summary>
+    public interface ISourceInput
+    {
+        /// <summary>
+        /// The name of the input.
+        /// </summary>
+        public string FileName { get; }
+    }
+
+    /// <summary>
     /// An object that contains Yarn source code to compile, and instructions on
     /// how to compile it.
     /// </summary>
@@ -24,7 +35,7 @@ namespace Yarn.Compiler
         /// <summary>
         /// Represents the contents of a file to compile.
         /// </summary>
-        public struct File
+        public class File : ISourceInput
         {
             /// <summary>
             /// The name of the file.
@@ -34,13 +45,15 @@ namespace Yarn.Compiler
             /// between. This is useful for diagnostics, and for attributing
             /// <see cref="Line"/> objects to their original source
             /// files.</remarks>
-            public string FileName;
+            public string FileName { get; set; }
 
             /// <summary>
             /// The source code of this file.
             /// </summary>
             public string Source;
         }
+
+
 
         /// <summary>
         /// The type of compilation that the compiler will do.
@@ -71,7 +84,25 @@ namespace Yarn.Compiler
         /// The <see cref="File"/> structs that represent the content to
         /// parse..
         /// </summary>
-        public IEnumerable<File> Files;
+        [Obsolete("Use " + nameof(Inputs), true)]
+        public IEnumerable<File> Files
+        {
+            get
+            {
+                List<File> files = new();
+                foreach (var input in Inputs)
+                {
+                    if (input is File file)
+                    {
+                        files.Add(file);
+                    }
+                }
+                return files;
+            }
+        }
+
+
+        public IEnumerable<ISourceInput> Inputs;
 
         /// <summary>
         /// The <see cref="Library"/> that contains declarations for
@@ -126,7 +157,7 @@ namespace Yarn.Compiler
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
         public static CompilationJob CreateFromFiles(IEnumerable<string> paths, Library? library = null)
         {
-            var fileList = new List<File>();
+            var fileList = new List<ISourceInput>();
 
             // Read every file and add it to the file list
             foreach (var path in paths)
@@ -140,7 +171,7 @@ namespace Yarn.Compiler
 
             return new CompilationJob
             {
-                Files = fileList.ToArray(),
+                Inputs = fileList,
                 Library = library,
                 Declarations = Array.Empty<Declaration>(),
             };
@@ -152,6 +183,25 @@ namespace Yarn.Compiler
         public static CompilationJob CreateFromFiles(params string[] paths)
         {
             return CreateFromFiles((IEnumerable<string>)paths);
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="CompilationJob"/> using the contents of a
+        /// collection of source inputs.
+        /// </summary>
+        /// <param name="inputs">The inputs to the compilation.</param>
+        /// <param name="library">The <see cref="Library"/> containing functions
+        /// to use for this compilation.</param>
+        /// <returns>A new <see cref="CompilationJob"/>.</returns>
+        public static CompilationJob CreateFromInputs(IEnumerable<ISourceInput> inputs, Library? library = null, int languageVersion = Project.CurrentProjectFileVersion)
+        {
+            return new CompilationJob
+            {
+                Inputs = inputs,
+                Library = library,
+                Declarations = Array.Empty<Declaration>(),
+                LanguageVersion = languageVersion,
+            };
         }
 
         /// <summary>
@@ -170,7 +220,7 @@ namespace Yarn.Compiler
         {
             return new CompilationJob
             {
-                Files = new List<File>
+                Inputs = new List<ISourceInput>
                 {
                     new File
                     {

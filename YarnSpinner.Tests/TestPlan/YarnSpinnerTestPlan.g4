@@ -2,8 +2,7 @@ grammar YarnSpinnerTestPlan;
 
 
 testplan
-    : run ('---' run)*
-    | EOF
+    : run ('---' run)* EOF
     ;
 
 run

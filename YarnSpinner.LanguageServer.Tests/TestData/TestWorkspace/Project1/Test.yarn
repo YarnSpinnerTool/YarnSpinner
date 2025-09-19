@@ -10,6 +10,12 @@ This is a line.
 
 <<jump Node2>>
 
+<<enum TestEnum>>
+<<case Item1>>
+<<case Item2>>
+<<case Item3>>
+<<endenum>>
+
 ===
 title: Node2
 tags: wow incredible
@@ -41,4 +47,11 @@ title: JumpToTest
 // This is used to test typo fixing and creating stub nodes for jumps to node titles that don't exist
 <<jump Jump2Test>>
 
+===
+title: CodeCompletionTests
+---
+// This node exists for testing code-completion requests
+
+
+<<stop>>
 ===

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using YarnLanguageServer.Diagnostics;
 
 namespace YarnLanguageServer
@@ -153,14 +154,14 @@ namespace YarnLanguageServer
         /// project via their language server. If a Workspace has no language
         /// server, it will not report on any changes.
         /// </remarks>
-        internal void Initialize(CancellationToken cancellationToken = default)
+        internal async Task InitializeAsync(CancellationToken cancellationToken = default)
         {
             // Initializing the workspace without a language server cannot be
             // cancelled.
-            ReloadWorkspace(cancellationToken);
+            await ReloadWorkspaceAsync(cancellationToken);
         }
 
-        internal void ReloadWorkspace(CancellationToken cancellationToken)
+        internal async Task ReloadWorkspaceAsync(CancellationToken cancellationToken)
         {
             // Find all actions defined in the workspace
             if (this.Root != null)
@@ -271,6 +272,8 @@ namespace YarnLanguageServer
                 }
             }
 
+            var reloadTasks = new List<Task>();
+
             // Configure each project in the workspace
             foreach (var project in this.Projects)
             {
@@ -288,8 +291,9 @@ namespace YarnLanguageServer
                 // Reload the project without notifying. (When we load a
                 // workspace, all projects will reload at once, so we'll wait
                 // until they're all created.)
-                project.ReloadProjectFromDisk(false, cancellationToken);
+                reloadTasks.Add(project.ReloadProjectFromDiskAsync(false, cancellationToken));
             }
+            await Task.WhenAll(reloadTasks);
 
             this.PublishDiagnostics();
             this.PublishNodeInfos();
@@ -311,6 +315,9 @@ namespace YarnLanguageServer
 
                 // Add warnings for this file
                 diags = diags.Concat(Warnings.GetWarnings(file, this.Configuration));
+
+                // Add hints for this file
+                diags = diags.Concat(Hints.GetHints(file, this.Configuration));
 
                 // Add the resulting list to the dictionary.
                 result[uri] = diags;
@@ -342,10 +349,10 @@ namespace YarnLanguageServer
         /// </summary>
         /// <inheritdoc cref="Initialize" path="/remarks"/>
         /// <param name="server">The language server to use.</param>
-        internal void Initialize(ILanguageServer server, CancellationToken cancellationToken)
+        internal async Task InitializeAsync(ILanguageServer server, CancellationToken cancellationToken)
         {
             this.LanguageServer = server;
-            Initialize(cancellationToken);
+            await InitializeAsync(cancellationToken);
         }
 
         /// <summary>
@@ -365,6 +372,21 @@ namespace YarnLanguageServer
                 Message = message,
                 Type = messageType,
             });
+        }
+
+        public bool IsAnyProjectCompiling
+        {
+            get
+            {
+                foreach (var project in Projects)
+                {
+                    if (project.IsCompiling)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
         }
 
         private IEnumerable<Action> FindWorkspaceActions(string root)

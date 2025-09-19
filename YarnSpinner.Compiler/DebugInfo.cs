@@ -160,13 +160,13 @@ namespace Yarn.Compiler
         public struct LineInfo
         {
             /// <summary>
-            /// The file name of the source that this intruction was produced
+            /// The file name of the source that this instruction was produced
             /// from.
             /// </summary>
             public string? FileName;
 
             /// <summary>
-            /// The node name of the source that this intruction was produced
+            /// The node name of the source that this instruction was produced
             /// from.
             /// </summary>
             public string NodeName;

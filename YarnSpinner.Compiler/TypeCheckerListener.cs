@@ -1140,7 +1140,7 @@ namespace Yarn.Compiler
                 newEnumType.AddMember(
                     @case.name.Text,
                     new ConstantTypeProperty(
-                        newEnumType,
+                        rawType,
                         @case.RawValue?.InternalValue ?? 0,
                         @case.Description ?? string.Empty));
             }

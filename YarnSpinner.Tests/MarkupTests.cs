@@ -1083,6 +1083,13 @@ namespace YarnSpinner.Tests
         [InlineData("[a p={$someValue}]s[/a]", MarkupValueType.String, "$someValue")]
         [InlineData("[p=-1 /]", MarkupValueType.Integer, "-1")]
         [InlineData("[p=-1.1 /]", MarkupValueType.Float, "-1.1")]
+        [InlineData("[p={$someValue}]s[/p]", MarkupValueType.String, "$someValue")]
+        [InlineData("[p=True]s[/p]", MarkupValueType.Bool, "True")]
+        [InlineData("[p=true]s[/p]", MarkupValueType.Bool, "True")]
+        [InlineData("[p=False]s[/p]", MarkupValueType.Bool, "False")]
+        [InlineData(@"[p=""string""]s[/p]", MarkupValueType.String, "string")]
+        [InlineData("[p=string]s[/p]", MarkupValueType.String, "string")]
+        [InlineData(@"[p=""str\""ing""]s[/p]", MarkupValueType.String, @"str""ing")]
         public void TestMarkupPropertyParsing(string input, MarkupValueType expectedType, string expectedValueAsString)
         {
             var lineParser = new LineParser();

@@ -1,6 +1,7 @@
 title: Node1
 ---
 <<jump Node2>>
+<<jump NodeInAnotherFile>>
 ===
 title: Node2
 ---

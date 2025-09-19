@@ -15,7 +15,6 @@ namespace YarnLanguageServer.Diagnostics
 
             results = results.Concat(UnknownCommands(yarnFile));
             results = results.Concat(UndefinedFunctions(yarnFile, configuration));
-            results = results.Concat(UndeclaredVariables(yarnFile));
             results = results.Concat(UndefinedJumpDestination(yarnFile));
 
             return results;
@@ -82,34 +81,7 @@ namespace YarnLanguageServer.Diagnostics
             }
         }
 
-        private static IEnumerable<Diagnostic> UndeclaredVariables(YarnFileData yarnFile)
-        {
-            var project = yarnFile.Project;
 
-            if (project == null)
-            {
-                // No project, so no diagnostics we can produce
-                return Enumerable.Empty<Diagnostic>();
-            }
-
-            // Find all variable references in this file where the declaration,
-            // if any, is an implicit one. If it is, then we should suggest that
-            // the user create a declaration for it.
-            var undeclaredVariables = yarnFile.VariableReferences
-                .Where(@ref => project.FindVariables(@ref.Text)
-                    .FirstOrDefault()?
-                    .IsImplicit ?? false
-                );
-
-            return undeclaredVariables.Select(v => new Diagnostic
-            {
-                Message = "Variable should be declared",
-                Severity = DiagnosticSeverity.Warning,
-                Range = PositionHelper.GetRange(yarnFile.LineStarts, v),
-                Code = nameof(YarnDiagnosticCode.YRNMsngVarDec),
-                Data = JToken.FromObject(v.Text),
-            });
-        }
 
         private static IEnumerable<Diagnostic> UndefinedJumpDestination(YarnFileData yarnFile)
         {

@@ -583,7 +583,9 @@ namespace Yarn
                 {
                     if (header.Key == "tags")
                     {
-                        return header.Value.Split(' ');
+                        return header.Value.Length != 0
+                            ? header.Value.Split(' ')
+                            : Array.Empty<string>();
                     }
                 }
                 return Array.Empty<string>();

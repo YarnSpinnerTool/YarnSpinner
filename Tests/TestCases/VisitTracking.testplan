@@ -7,6 +7,7 @@ line: `entered Track`
 line: `entered NodeGroupImplicitTrack`
 line: `entered NodeGroupNoTrack`
 line: `entered NodeGroupTrack`
+line: `entered NodeGroupWithSubtitle.ABC123`
 
 line: `entered End`
 
@@ -14,8 +15,9 @@ line: `did we visit ImplicitTrack? True!`
 line: `did we visit NoTrack? False!`
 line: `did we visit Track? True!`
 
-lind: `did we visit NodeGroupImplicitTrack? True!`
-lind: `did we visit NodeGroupNoTrack? False!`
-lind: `did we visit NodeGroupTrack? True!`
+line: `did we visit NodeGroupImplicitTrack? True!`
+line: `did we visit NodeGroupNoTrack? False!`
+line: `did we visit NodeGroupTrack? True!`
+line: `did we visit NodeGroupWithSubtitle.ABC123? True!`
 
 line: `done`

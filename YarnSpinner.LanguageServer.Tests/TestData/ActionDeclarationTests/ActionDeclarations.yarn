@@ -21,4 +21,5 @@ title: ActionDeclarations
 {format("{0:F2}", 1)}
 {min(2,3)}
 {max(4,5)}
+{has_any_content("some_node")}
 ===

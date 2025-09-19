@@ -95,18 +95,48 @@ namespace Yarn.Compiler
             // and figure out what variables they've declared
             var stringTableManager = new StringTableManager();
 
-            foreach (var file in compilationJob.Files)
+            foreach (var file in compilationJob.Inputs.OfType<CompilationJob.File>())
             {
-                var parseResult = ParseSyntaxTree(file, ref diagnostics);
+                var parseResult = ParseSyntaxTree(file);
+                diagnostics.AddRange(parseResult.Diagnostics);
                 parsedFiles.Add(parseResult);
 
                 // ok now we will add in our lastline tags
                 // we do this BEFORE we build our strings table otherwise the tags will get missed
                 // this should probably be a flag instead of every time though
-                var lastLineTagger = new LastLineBeforeOptionsVisitor();
-                lastLineTagger.Visit(parseResult.Tree);
+            }
 
-                RegisterStrings(file.FileName, stringTableManager, parseResult.Tree, ref diagnostics);
+            foreach (var parseTree in compilationJob.Inputs.OfType<FileParseResult>())
+            {
+                parsedFiles.Add(parseTree);
+                diagnostics.AddRange(parseTree.Diagnostics);
+            }
+
+            // Assign every node its title
+            var allNodes = parsedFiles.SelectMany(r =>
+            {
+                var dialogue = r.Tree.Payload as YarnSpinnerParser.DialogueContext;
+                if (dialogue == null)
+                {
+                    return Enumerable.Empty<(YarnSpinnerParser.NodeContext Node, FileParseResult File)>();
+                }
+
+                return dialogue.node().Select(n => (Node: n, File: r));
+            });
+            foreach (var node in allNodes)
+            {
+                var titleHeader = node.Node.title_header()?.FirstOrDefault();
+                if (titleHeader != null)
+                {
+                    node.Node.NodeTitle = titleHeader.title?.Text;
+                }
+            }
+
+            foreach (var parsedInput in parsedFiles)
+            {
+                var lastLineTagger = new LastLineBeforeOptionsVisitor();
+                lastLineTagger.Visit(parsedInput.Tree);
+                RegisterStrings(parsedInput.FileName, stringTableManager, parsedInput.Tree, ref diagnostics);
             }
 
             // Check to see if any lines that shadow another have a valid source
@@ -220,6 +250,7 @@ namespace Yarn.Compiler
                     StringTable = stringTableManager.StringTable,
                     Diagnostics = diagnostics,
                     QuestGraphEdges = questGraphEdges,
+                    ParseResults = parsedFiles,
                 };
             }
 
@@ -277,10 +308,12 @@ namespace Yarn.Compiler
                 {
                     compilationJob.CancellationToken.ThrowIfCancellationRequested();
 #if !DEBUG
-                    if (watchdog.ElapsedMilliseconds > TypeSolverTimeLimit * 1000) {
+                    if (watchdog.ElapsedMilliseconds > TypeSolverTimeLimit * 1000)
+                    {
                         // We've taken too long to solve. Create error
                         // diagnostics for the affected expressions.
-                        foreach (var constraint in failingConstraints) {
+                        foreach (var constraint in failingConstraints)
+                        {
                             diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceContext, $"Expression failed to resolve in a reasonable time ({TypeSolverTimeLimit}). Try simplifying this expression."));
                         }
                         break;
@@ -458,6 +491,10 @@ namespace Yarn.Compiler
             // adding in the warnings about empty nodes
             var empties = AddDiagnosticsForEmptyNodes(parsedFiles, ref diagnostics);
 
+            // The user-defined types are all types that we know about, minus
+            // all types that were pre-defined.
+            var userDefinedTypes = knownTypes.Except(Types.AllBuiltinTypes).ToList();
+
             // All declarations must now have a concrete type. If they don't,
             // then we couldn't solve for their type, and can't continue.
             if (compilationJob.CompilationType == CompilationJob.Type.TypeCheck)
@@ -472,6 +509,8 @@ namespace Yarn.Compiler
                     FileTags = fileTags,
                     Diagnostics = diagnostics,
                     QuestGraphEdges = questGraphEdges,
+                    UserDefinedTypes = userDefinedTypes,
+                    ParseResults = parsedFiles,
                 };
             }
 
@@ -534,7 +573,8 @@ namespace Yarn.Compiler
                         nodeGroupName: group.Key,
                         variableDeclarations: declarations.ToDictionary(d => d.Name, d => d),
                         nodeContexts: group,
-                        compiledNodes: compiledNodes
+                        compiledNodes: compiledNodes,
+                        trackingNodes: trackingNodes
                         );
 
                     var generatedNodes = codegen.CompileNodeGroup();
@@ -629,10 +669,6 @@ namespace Yarn.Compiler
                 Nodes = nodeDebugInfos,
             };
 
-            // The user-defined types are all types that we know about, minus
-            // all types that were pre-defined.
-            var userDefinedTypes = knownTypes.Except(Types.AllBuiltinTypes).ToList();
-
             var finalResult = new CompilationResult
             {
                 Program = program,
@@ -644,6 +680,7 @@ namespace Yarn.Compiler
                 ProjectDebugInfo = projectDebugInfo,
                 UserDefinedTypes = userDefinedTypes,
                 QuestGraphEdges = questGraphEdges,
+                ParseResults = parsedFiles,
             };
 
             return finalResult;
@@ -739,6 +776,7 @@ namespace Yarn.Compiler
             var nodesWithNames = allNodes.Select(n =>
             {
                 var titleHeader = n.Node.title_header()?.FirstOrDefault();
+                string? title = n.Node.NodeTitle;
                 if (titleHeader == null)
                 {
                     return (
@@ -750,7 +788,7 @@ namespace Yarn.Compiler
                 else
                 {
                     return (
-                        Name: titleHeader.title?.Text ?? null,
+                        Name: title,
                         TitleHeader: titleHeader ?? null,
                         Node: n.Node,
                         File: n.File);
@@ -1031,15 +1069,15 @@ namespace Yarn.Compiler
             return (declarations, diagnostics);
         }
 
-        private static FileParseResult ParseSyntaxTree(CompilationJob.File file, ref List<Diagnostic> diagnostics)
+        private static FileParseResult ParseSyntaxTree(CompilationJob.File file)
         {
             string source = file.Source;
             string fileName = file.FileName;
 
-            return ParseSyntaxTree(fileName, source, ref diagnostics);
+            return ParseSyntaxTree(fileName, source);
         }
 
-        internal static FileParseResult ParseSyntaxTree(string fileName, string source, ref List<Diagnostic> diagnostics)
+        internal static FileParseResult ParseSyntaxTree(string fileName, string source)
         {
             ICharStream input = CharStreams.fromString(source);
 
@@ -1066,8 +1104,6 @@ namespace Yarn.Compiler
 
             var newDiagnostics = lexerErrorListener.Diagnostics.Concat(parserErrorListener.Diagnostics);
 
-            diagnostics.AddRange(newDiagnostics);
-
             // Now that we've parsed the file, we'll go through all of the nodes
             // and record which file they came from.
             foreach (var node in tree.node())
@@ -1075,7 +1111,7 @@ namespace Yarn.Compiler
                 node.SourceFileName = fileName;
             }
 
-            return new FileParseResult(fileName, tree, tokens);
+            return new FileParseResult(fileName, tree, tokens, newDiagnostics);
         }
 
         /// <summary>
@@ -1191,15 +1227,8 @@ namespace Yarn.Compiler
         /// have a line ID.</exception>
         internal static string GetContentID(ContentIdentifierType type, YarnSpinnerParser.Line_statementContext line)
         {
-            var lineIDHashTag = GetContentIDTag(type, line.hashtag());
-
-            if (lineIDHashTag == null)
-            {
+            return line.LineID ??
                 throw new ArgumentException($"Internal error: line does not have a {type} ID");
-            }
-
-            var lineID = lineIDHashTag.text.Text;
-            return lineID;
         }
 
         /// <summary>
@@ -1336,13 +1365,13 @@ namespace Yarn.Compiler
             /// header. If it is not present, returns <see langword="null"/>. If
             /// more than one is present, the first is returned.
             /// </summary>
-            public string? NodeTitle => this.title_header()?.FirstOrDefault()?.title?.Text;
+            public string? NodeTitle { get; set; }
 
             /// <summary>
             /// Gets the name of the node group that this node is part of, if
             /// any.
             /// </summary>
-            public string? NodeGroup => GetHeader(Node.NodeGroupHeader)?.header_value?.Text;
+            public string? NodeGroup { get; set; }
 
             /// <summary>
             /// Gets the first header in this node named <paramref name="key"/>.
@@ -1547,3 +1576,4 @@ namespace Yarn.Compiler
     }
 
 }
+;
