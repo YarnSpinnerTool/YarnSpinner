@@ -195,38 +195,44 @@ namespace Yarn.Compiler
         /// project.
         /// </summary>
         /// <remarks>
-        /// This collection uses a <see cref="Matcher"/> to find all files
+        /// This collection uses a <see cref="GetMatcher(IEnumerable{string})"/> to find all files
         /// specified by <see cref="SourceFilePatterns"/>, excluding those that
         /// are specified by <see cref="ExcludeFilePatterns"/>.
         /// </remarks>
         [JsonIgnore]
-        public IEnumerable<string> SourceFiles
+        public IEnumerable<string> SourceFiles => ResolvePaths(this.SourceFilePatterns);
+
+        /// <summary>
+        /// Finds files in <see cref="SearchDirectoryPath"/> that match any of
+        /// the patterns in <paramref name="patterns"/>.
+        /// </summary>
+        /// <param name="patterns">The search patterns to use. These can include
+        /// wildcards, like "*.yarn" and "**/*.txt".</param>
+        /// <returns>The list of found files.</returns>
+        public IEnumerable<string> ResolvePaths(IEnumerable<string> patterns)
         {
-            get
+            Matcher matcher = GetMatcher(patterns);
+            string? searchDirectoryPath = SearchDirectoryPath;
+
+            if (searchDirectoryPath == null)
             {
-                Matcher matcher = Matcher;
-                string? searchDirectoryPath = SearchDirectoryPath;
-
-                if (searchDirectoryPath == null)
-                {
-                    return Array.Empty<string>();
-                }
-
-                var results = new List<string>(matcher.GetResultsInFullPath(searchDirectoryPath));
-
-                foreach (var path in this.SourceFilePatterns)
-                {
-                    if (System.IO.Path.IsPathRooted(path) && System.IO.Path.GetExtension(path) == ".yarn")
-                    {
-                        // This is an explicit, absolute path to a Yarn file
-                        // (which the globbing matcher won't pick up) - manually
-                        // add it to the list of paths that this project
-                        // references
-                        results.Add(path);
-                    }
-                }
-                return results;
+                return Array.Empty<string>();
             }
+
+            var results = new List<string>(matcher.GetResultsInFullPath(searchDirectoryPath));
+
+            foreach (var path in patterns)
+            {
+                if (System.IO.Path.IsPathRooted(path) && System.IO.Path.GetExtension(path) == ".yarn")
+                {
+                    // This is an explicit, absolute path to a Yarn file
+                    // (which the globbing matcher won't pick up) - manually
+                    // add it to the list of paths that this project
+                    // references
+                    results.Add(path);
+                }
+            }
+            return results;
         }
 
         /// <summary>
@@ -411,16 +417,13 @@ namespace Yarn.Compiler
             }
         }
 
-        private Matcher Matcher
+        private Matcher GetMatcher(IEnumerable<string> patterns)
         {
-            get
-            {
-                Matcher matcher = new Matcher(StringComparison.OrdinalIgnoreCase);
+            Matcher matcher = new Matcher(StringComparison.OrdinalIgnoreCase);
 
-                matcher.AddIncludePatterns(this.SourceFilePatterns);
-                matcher.AddExcludePatterns(this.ExcludeFilePatterns);
-                return matcher;
-            }
+            matcher.AddIncludePatterns(patterns);
+            matcher.AddExcludePatterns(this.ExcludeFilePatterns);
+            return matcher;
         }
 
         /// <summary>
@@ -447,7 +450,7 @@ namespace Yarn.Compiler
                 }
             }
 
-            var result = this.Matcher.Match(searchDirectoryPath, path);
+            var result = this.GetMatcher(SourceFilePatterns).Match(searchDirectoryPath, path);
             return result.HasMatches;
         }
 
