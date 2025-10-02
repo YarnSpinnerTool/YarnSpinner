@@ -157,15 +157,15 @@ namespace Yarn.Compiler
         /// Gets or sets a dictionary containing instructions that control how
         /// the Yarn Spinner compiler should compile a project.
         /// </summary>
-        public Dictionary<string, JsonValue> CompilerOptions { get; set; } = new Dictionary<string, JsonValue>();
+        public Dictionary<string, JsonElement> CompilerOptions { get; set; } = new Dictionary<string, JsonElement>();
 
         private bool GetCompilerOptionsFlag(string key)
         {
-            return CompilerOptions.TryGetValue(key, out var value) && value.GetValue<bool>();
+            return CompilerOptions.TryGetValue(key, out var value) && value.GetBoolean();
         }
         private void SetCompilerOptionsFlag(string key, bool value)
         {
-            CompilerOptions[key] = JsonValue.Create(value);
+            CompilerOptions[key] = JsonSerializer.SerializeToElement(value, SerializationOptions);
         }
 
         /// <summary>
