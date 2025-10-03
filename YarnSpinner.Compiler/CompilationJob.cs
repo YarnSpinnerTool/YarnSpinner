@@ -37,6 +37,7 @@ namespace Yarn.Compiler
         /// </summary>
         public class File : ISourceInput
         {
+
             /// <summary>
             /// The name of the file.
             /// </summary>
@@ -53,7 +54,15 @@ namespace Yarn.Compiler
             public string Source;
         }
 
-
+        /// <summary>
+        /// Represents a parsed <see cref="QuestGraph"/> to include in the
+        /// compilation.
+        /// </summary>
+        internal class QuestGraphInput : ISourceInput
+        {
+            public string FileName { get; set; }
+            public QuestGraphs.QuestGraph QuestGraph { get; set; }
+        }
 
         /// <summary>
         /// The type of compilation that the compiler will do.
@@ -177,6 +186,52 @@ namespace Yarn.Compiler
             };
         }
 
+        /// <summary>
+        /// Creates a new <see cref="CompilationJob"/> using the contents of a
+        /// collection of files.
+        /// </summary>
+        /// <param name="project">The Yarn Project to create a compilation job from.</param>
+        /// <param name="library">The <see cref="Library"/> containing functions
+        /// to use for this compilation.</param>
+        /// <returns>A new <see cref="CompilationJob"/>.</returns>
+        public static CompilationJob CreateFromProject(Project project, Library? library = null)
+        {
+            var fileList = new List<ISourceInput>();
+
+            // Read every file and add it to the file list
+            foreach (var path in project.SourceFiles)
+            {
+                fileList.Add(new File
+                {
+                    FileName = path,
+                    Source = System.IO.File.ReadAllText(path),
+                });
+            }
+
+            foreach (var questGraph in project.QuestGraphPaths)
+            {
+
+
+                var text = System.IO.File.ReadAllText(questGraph);
+                var graph = System.Text.Json.JsonSerializer.Deserialize<Yarn.QuestGraphs.QuestGraph>(text, QuestGraphs.Converter.Settings);
+
+                if (graph == null)
+                {
+                    // TODO: Log an error?
+                    continue;
+                }
+
+                fileList.Add(new QuestGraphInput
+                {
+                    FileName = questGraph,
+                    QuestGraph = graph,
+                });
+
+            }
+
+            return CreateFromInputs(fileList, library, project.FileVersion);
+        }
+
         /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, Library)" path="/summary"/>
         /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, Library)" path="/param[@name='paths']"/>
         /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, Library)" path="/returns"/>
@@ -192,6 +247,8 @@ namespace Yarn.Compiler
         /// <param name="inputs">The inputs to the compilation.</param>
         /// <param name="library">The <see cref="Library"/> containing functions
         /// to use for this compilation.</param>
+        /// <param name="languageVersion">The version of the Yarn Spinner
+        /// language to use. Defaults to the most recent version.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
         public static CompilationJob CreateFromInputs(IEnumerable<ISourceInput> inputs, Library? library = null, int languageVersion = Project.CurrentProjectFileVersion)
         {

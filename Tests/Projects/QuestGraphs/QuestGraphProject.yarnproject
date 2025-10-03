@@ -1,0 +1,14 @@
+{
+  "projectFileVersion": 3,
+  "sourceFiles": [
+    "**/*.yarn"
+  ],
+  "baseLanguage": "en",
+  "compilerOptions": {
+    "questGraphs": {
+      "files": [
+        "**/*.questgraph"
+      ]
+    }
+  }
+}

@@ -106,6 +106,14 @@ namespace Yarn.Compiler
                 // this should probably be a flag instead of every time though
             }
 
+            foreach (var questGraph in compilationJob.Inputs.OfType<CompilationJob.QuestGraphInput>())
+            {
+                var scriptContent = questGraph.QuestGraph.GetYarnDefinitionScript();
+                var parseResult = ParseSyntaxTree(questGraph.FileName, scriptContent);
+                diagnostics.AddRange(parseResult.Diagnostics);
+                parsedFiles.Add(parseResult);
+            }
+
             foreach (var parseTree in compilationJob.Inputs.OfType<FileParseResult>())
             {
                 parsedFiles.Add(parseTree);

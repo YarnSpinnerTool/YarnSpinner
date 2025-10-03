@@ -25,7 +25,7 @@ namespace Yarn.Compiler
         internal const string AllowPreviewFeaturesKey = "allowPreviewFeatures";
 
         /// <summary>
-        /// The current version of <c>.yarnproject</c> file format.
+        /// The current version of the <c>.yarnproject</c> file format.
         /// </summary>
         public const int CurrentProjectFileVersion = YarnSpinnerProjectVersion3;
 
@@ -469,6 +469,47 @@ namespace Yarn.Compiler
                 }
 
                 return current;
+            }
+        }
+
+        internal IEnumerable<string> QuestGraphPaths
+        {
+            get
+            {
+                var project = this;
+                if (!project.CompilerOptions.TryGetValue("questGraphs", out var info))
+                {
+                    return Array.Empty<string>();
+                }
+
+                if (!info.TryGetProperty("files", out var filePatterns))
+                {
+                    return Array.Empty<string>();
+                }
+                if (filePatterns.ValueKind != JsonValueKind.Array)
+                {
+                    return Array.Empty<string>();
+                }
+
+                List<string> resultPaths = new();
+                var patterns = new List<string>();
+
+                foreach (var pattern in filePatterns.EnumerateArray())
+                {
+                    var patternString = pattern.GetString();
+                    if (patternString != null)
+                    {
+                        patterns.Add(patternString);
+                    }
+                }
+
+                var graphs = project.ResolvePaths(patterns);
+                foreach (var graph in graphs)
+                {
+                    resultPaths.Add(graph);
+                }
+
+                return resultPaths;
             }
         }
 
