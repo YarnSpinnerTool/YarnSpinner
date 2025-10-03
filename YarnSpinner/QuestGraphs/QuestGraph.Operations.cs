@@ -1,11 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 #nullable enable
 
 namespace Yarn.QuestGraphs
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     static class EnumerableExtensions
     {
         public static IEnumerable<T> NonNull<T>(this IEnumerable<T?> values) where T : class
@@ -14,10 +13,8 @@ namespace Yarn.QuestGraphs
         }
     }
 
-    internal partial class Expression
+    public partial class Expression
     {
-
-
         public static Expression And(IEnumerable<Expression?> children)
         {
             // Filter out nulls
@@ -98,9 +95,9 @@ namespace Yarn.QuestGraphs
                 return Constant(false);
             }
 
-            if (child.Type == ConditionType.Boolean && child.Value.HasValue)
+            if (child.Type == ConditionType.Boolean)
             {
-                return Constant(!child.Value.Value);
+                return Constant(!child.Value);
             }
 
             return new Expression
@@ -120,8 +117,12 @@ namespace Yarn.QuestGraphs
         }
     }
 
-    internal partial class QuestGraph
+    public partial class QuestGraph
     {
+        /// <summary>
+        /// Gets a value indicating that the quest graph contains at least one
+        /// cycle.
+        /// </summary>
         public bool ContainsCycle
         {
             get
@@ -238,20 +239,18 @@ namespace Yarn.QuestGraphs
             var incomingEdges = GetIncomingEdges(node);
 
             // If a node has no incoming edges, then it is always reachable
-            if (incomingEdges.Count() == 0)
+            if (!incomingEdges.Any())
             {
                 return new Expression
                 {
                     Type = ConditionType.Boolean,
                     Value = true,
                 };
-
             }
 
             // Otherwise, a node is reachable if the right number of its
             // incoming edges are complete
             List<Expression> parentExpressions = incomingEdges.Select(e => this.GetCompleteExpression(e)).ToList();
-
 
             if (node.RequirementMode.Enum.HasValue)
             {
@@ -262,10 +261,19 @@ namespace Yarn.QuestGraphs
 
                     case RequirementModeEnum.RequiresAny:
                         return Expression.Or(parentExpressions);
+
+                    default:
+                        throw new ArgumentException("Unhandled requirement kind " + node.RequirementMode.ToString());
                 }
             }
-            throw new ArgumentException("Unhandled requirement kind " + node.RequirementMode.ToString());
-
+            else if (node.RequirementMode.RequirementModeClass != null)
+            {
+                throw new NotImplementedException($"Requirement mode {node.RequirementMode} is not yet implemented.");
+            }
+            else
+            {
+                throw new ArgumentException("Unhandled requirement kind " + node.RequirementMode.ToString());
+            }
         }
 
         internal Expression GetActiveExpression(Node node)
@@ -405,22 +413,21 @@ namespace Yarn.QuestGraphs
             }
         }
 
-        public string GetExpressionAsYarnString(Expression? expression)
+        internal string GetExpressionAsYarnString(Expression? expression)
         {
             if (expression == null)
             {
                 return "false";
             }
 
-
             switch (expression.Type)
             {
                 case ConditionType.And:
-                    if (expression.Children == null || expression.Children?.NonNull().Count() == 0)
+                    if (expression.Children == null || !expression.Children.NonNull().Any())
                     {
                         return "false";
                     }
-                    return $"({string.Join("&&", expression.Children?.NonNull().Select(c => this.GetExpressionAsYarnString(c)))})";
+                    return $"({string.Join("&&", expression.Children.NonNull().Select(c => this.GetExpressionAsYarnString(c)))})";
 
                 case ConditionType.Not:
                     if (expression.Children?.NonNull().Count() != 1)
@@ -430,14 +437,14 @@ namespace Yarn.QuestGraphs
                     return $"!({this.GetExpressionAsYarnString(expression.Children[0])})";
 
                 case ConditionType.Or:
-                    if (expression.Children == null || ((List<Expression?>?)expression.Children)?.NonNull().Count() == 0)
+                    if (expression.Children == null || !expression.Children.NonNull().Any())
                     {
                         return "false";
                     }
-                    return $"({string.Join("||", expression.Children?.NonNull().Select(c => GetExpressionAsYarnString(c)))})";
+                    return $"({string.Join("||", expression.Children.NonNull().Select(c => GetExpressionAsYarnString(c)))})";
 
                 case ConditionType.Boolean:
-                    return $"{((expression.Value ?? false) ? "true" : "false")}";
+                    return $"{(expression.Value ? "true" : "false")}";
 
                 case ConditionType.Equals:
                     if (expression.Children?.NonNull().Count() != 2)
@@ -475,10 +482,9 @@ namespace Yarn.QuestGraphs
                 default:
                     throw new InvalidOperationException("Unknwn expression type " + expression.Type);
             }
-
         }
 
-        public string GetYarnDefinitionScript()
+        internal string GetYarnDefinitionScript()
         {
             var yarnFileContentsSB = new System.Text.StringBuilder();
             yarnFileContentsSB.AppendLine("title: " + this.Title.Replace(" ", "") + "_Variables_");
@@ -502,8 +508,10 @@ namespace Yarn.QuestGraphs
             return yarnFileContentsSB.ToString();
         }
 
-        internal string GetNodeVariableName(Node node, NodeStateLabel state)
+        public string GetNodeVariableName(Node node, NodeStateLabel state)
         {
+            if (node == null) { throw new ArgumentNullException(nameof(node)); }
+
             if (Nodes.Contains(node) == false)
             {
                 throw new ArgumentException("Node " + node + " is not present in this quest graph");
@@ -523,16 +531,15 @@ namespace Yarn.QuestGraphs
                 questName = "NoQuest";
             }
 
-            var variableName = $"$Quest_{questName}_{node.YarnName}_{state}";
+            var variableName = $"${this.Id}_{questName}_{node.YarnName}_{state}";
             return variableName;
-
         }
 
         static IEnumerable<string> GetQuestNodeSmartVariables(QuestGraph questGraphDocument)
         {
             if (questGraphDocument.ContainsCycle)
             {
-                throw new Exception("Graph contains cycle");
+                throw new InvalidOperationException("Graph contains cycle");
             }
 
             var quests = questGraphDocument.Quests.ToDictionary(q => q.Id);
@@ -558,8 +565,8 @@ namespace Yarn.QuestGraphs
 
                 var sb = new System.Text.StringBuilder();
 
-                string questName = node.Quest != null && quests.ContainsKey(node.Quest)
-                    ? (quests[node.Quest].Name ?? quests[node.Quest].YarnName)
+                string questName = node.Quest != null && quests.TryGetValue(node.Quest, out Quest? quest)
+                    ? (quest.Name ?? quest.YarnName)
                     : "NoQuest";
 
                 sb.AppendLine($"// [{node.Type} {node.Id}] {questName}: {node.DisplayName}");
