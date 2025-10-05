@@ -1,0 +1,169 @@
+syntax = "proto3";
+
+option csharp_namespace = "Yarn.QuestGraphs";
+package QuestGraphs;
+
+// The type of a Variable.
+enum VariableType {
+  Bool = 0;
+};
+
+// The source of a Variable.
+enum VariableSourceType {
+  CreatedInEditor = 0;
+  ImportedFromYarnScript = 1;
+  SystemGenerated = 2;
+}
+
+// A state a Node can be in.
+enum NodeStateType {
+  // The node is currently, or has been previously, available to be completed.
+  Reachable = 0;
+  // The node is currently active. 
+  Active = 1;
+  // The node has been completed. 
+  Complete = 2;
+  // The node was previously active, but is no longer available to be completed.
+  // This state is only valid for Task nodes.
+  NoLongerNeeded = 3;
+}
+
+// Describes a specific node being in a specific state.
+message NodeState {
+  // The ID of the node.
+  string node = 1;
+  // The state of the node.
+  NodeStateType state = 2;
+}
+
+message NAryExpression {
+  repeated Expression children = 1;
+}
+
+message BinaryExpression {
+  Expression first = 1;
+  Expression second = 2;
+}
+message UnaryExpression {
+  Expression expr = 1;
+}
+
+message EmptyExpression {}
+
+message Expression {
+  oneof treeNode {
+    EmptyExpression empty = 1;
+    string variable = 2;
+    bool boolean = 3;
+    NodeState node = 4;
+    NAryExpression and = 5;
+    NAryExpression or = 6;
+    UnaryExpression not = 7;
+    BinaryExpression implies = 8;
+    BinaryExpression equals = 9;
+  }
+}
+
+message Variable {
+  string id = 1;
+  string yarnName = 2;
+  optional string name = 3;
+  optional string description = 4;
+  optional bool isPermanent = 5;
+  
+  optional Expression definition = 6;
+  VariableType type = 7;
+  VariableSourceType source = 8;
+}
+
+message Quest {
+  string id = 1;
+  string yarnName = 2;
+  optional string name = 3;
+  optional string description = 4;
+}
+
+message NodeRequirementAll {}
+message NodeRequirementAny {}
+
+message Position {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+message TaskNodeData {
+  bool completesQuest = 1;
+  bool staysCompleteForever = 2;
+}
+
+enum StepCompletionStyle {
+  None = 0;
+  Success = 1;
+  Failure = 2;
+}
+
+message StepNodeData {
+  bool isHidden = 1;
+  StepCompletionStyle completionStyle = 2;
+}
+
+enum NodeRequirementType {
+  All = 0;
+  Any = 1;
+}
+
+message NodeRequirement {
+   NodeRequirementType type = 1;
+}
+
+message Node {
+  string id = 1;
+  optional string quest = 2;
+  string yarnName = 3;
+  optional string description = 4;
+  Position position = 5;
+  optional string displayName = 6;
+  optional string note = 7;
+  NodeRequirement requirement  = 8;
+    
+  oneof type {
+    TaskNodeData task = 9;
+    StepNodeData step = 10;
+  }
+}
+
+message Edge {
+  string id = 1;
+  string start = 2;
+  string end = 3;
+  optional Expression condition = 4;
+  optional string label = 5;
+}
+
+message Note {
+  string id = 1;
+  Position position = 2;
+  string contents = 3;
+}
+
+message NamedCondition {
+  string id = 1;
+  string displayName = 2;
+  optional string description = 3;
+  Expression condition = 4;
+}
+
+message QuestGraph  {
+
+  string id = 1;
+  string title = 2;
+  
+  repeated Variable variables = 3;
+  repeated Quest quests = 4;
+  repeated Node nodes = 5;
+  repeated Edge edges = 6;
+  repeated Note notes = 7;
+  repeated NamedCondition rules = 8;
+  
+  // state: QuestGraphStateSchema,
+}

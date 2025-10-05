@@ -42,7 +42,7 @@ namespace YarnSpinner.Tests
 
             var graphText = File.ReadAllText(graphs.Single());
 
-            var questGraph = JsonSerializer.Deserialize<Yarn.QuestGraphs.QuestGraph>(graphText, Yarn.QuestGraphs.Converter.Settings);
+            var questGraph = Yarn.QuestGraphs.QuestGraph.Parser.ParseJson(graphText);
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace YarnSpinner.Tests
             graphs.Should().ContainSingle().Which.Should().EndWith(".questgraph");
             var graphText = File.ReadAllText(graphs.Single());
 
-            var questGraph = JsonSerializer.Deserialize<Yarn.QuestGraphs.QuestGraph>(graphText, Yarn.QuestGraphs.Converter.Settings);
+            var questGraph = Yarn.QuestGraphs.QuestGraph.Parser.ParseJson(graphText);
 
             var text = questGraph.GetYarnDefinitionScript();
 
@@ -67,7 +67,7 @@ namespace YarnSpinner.Tests
             Yarn.Compiler.Project project = Yarn.Compiler.Project.LoadFromFile(ProjectFilePath);
 
             var questGraphContents = File.ReadAllText(project.QuestGraphPaths.Single());
-            var questGraph = JsonSerializer.Deserialize<Yarn.QuestGraphs.QuestGraph>(questGraphContents, Yarn.QuestGraphs.Converter.Settings)!;
+            var questGraph = Yarn.QuestGraphs.QuestGraph.Parser.ParseJson(questGraphContents);
             questGraph.Should().NotBeNull();
 
             var job = CompilationJob.CreateFromProject(project);
@@ -78,7 +78,7 @@ namespace YarnSpinner.Tests
             questGraph.Nodes.Should().NotBeEmpty();
             questGraph.Nodes.Should().AllSatisfy(questNode =>
             {
-                var nodeReachableVariable = questGraph.GetNodeVariableName(questNode, Yarn.QuestGraphs.NodeStateLabel.Reachable);
+                var nodeReachableVariable = questGraph.GetNodeVariableName(questNode, Yarn.QuestGraphs.NodeStateType.Reachable);
                 result.Program.Nodes.Should().Contain(yarnNode => yarnNode.Value.Name == nodeReachableVariable);
             }, "every node the quest graph should have a 'reachable' smart variable defined");
         }

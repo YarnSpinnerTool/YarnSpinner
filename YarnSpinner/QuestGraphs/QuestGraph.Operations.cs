@@ -11,34 +11,42 @@ namespace Yarn.QuestGraphs
         {
             return values.Where(v => v != null)!;
         }
+        public static IEnumerable<Expression> NonEmpty(this IEnumerable<Expression?> values)
+        {
+            return values.Where(v => v.IsEmpty() == false)!;
+        }
+        public static bool IsEmpty(this Expression? expression)
+        {
+            return expression == null || expression.TreeNodeCase == Expression.TreeNodeOneofCase.Empty || expression.TreeNodeCase == Expression.TreeNodeOneofCase.None;
+        }
     }
 
     public partial class Expression
     {
-        public static Expression And(IEnumerable<Expression?> children)
+        public static Expression MakeAnd(IEnumerable<Expression?> children)
         {
             // Filter out nulls
-            var expressions = children.NonNull();
+            var expressions = children.NonEmpty();
 
             // Simplify the expression - if all of our terms are all boolean
             // true, or any of them are boolean false, the expression
             // immediately simplifies
-            if (expressions.All(e => e.Type == ConditionType.Boolean && e.Value == true))
+            if (expressions.All(e => e.TreeNodeCase == TreeNodeOneofCase.Boolean && e.Boolean == true))
             {
-                return Constant(true);
+                return MakeConstant(true);
             }
-            if (expressions.Any(e => e.Type == ConditionType.Boolean && e.Value == false))
+            if (expressions.Any(e => e.TreeNodeCase == TreeNodeOneofCase.Boolean && e.Boolean == false))
             {
-                return Constant(false);
+                return MakeConstant(false);
             }
 
             // Filter out lingering 'true's, which are meaningless
-            expressions = expressions.Where(e => !(e.Type == ConditionType.Boolean && e.Value == true));
+            expressions = expressions.Where(e => !(e.TreeNodeCase == TreeNodeOneofCase.Boolean && e.Boolean == true));
 
             if (!expressions.Any())
             {
                 // No remaining operands, so become 'false'
-                return Constant(false);
+                return MakeConstant(false);
             }
             if (expressions.Count() == 1)
             {
@@ -46,33 +54,36 @@ namespace Yarn.QuestGraphs
                 return expressions.Single();
             }
 
-            return new Expression
+
+
+            var result = new Expression
             {
-                Type = ConditionType.And,
-                Children = new List<Expression?>(expressions),
+                And = { }
             };
+            result.And.Children.AddRange(expressions);
+            return result;
         }
 
-        public static Expression Or(IEnumerable<Expression?> children)
+        public static Expression MakeOr(IEnumerable<Expression?> children)
         {
             // Filter out nulls
-            var expressions = children.NonNull();
+            var expressions = children.NonEmpty();
 
             // Simplify the expression if any of our terms are a true value -
             // this expression is true no matter what the values of any other
             // terms are
-            if (expressions.Any(e => e.Type == ConditionType.Boolean && e.Value == true))
+            if (expressions.Any(e => e.TreeNodeCase == TreeNodeOneofCase.Boolean && e.Boolean == true))
             {
-                return Constant(true);
+                return MakeConstant(true);
             }
 
             // Filter out 'false's, which are meaningless
-            expressions = expressions.Where(e => !(e.Type == ConditionType.Boolean && e.Value == false));
+            expressions = expressions.Where(e => !(e.TreeNodeCase == TreeNodeOneofCase.Boolean && e.Boolean == false));
 
             if (!expressions.Any())
             {
                 // No remaining operands, so become 'false'
-                return Constant(false);
+                return MakeConstant(false);
             }
             if (expressions.Count() == 1)
             {
@@ -81,38 +92,37 @@ namespace Yarn.QuestGraphs
                 return expressions.Single();
             }
 
-            return new Expression
+            var result = new Expression
             {
-                Type = ConditionType.Or,
-                Children = new List<Expression?>(expressions),
+                Or = { }
             };
+            result.And.Children.AddRange(expressions);
+            return result;
         }
 
-        public static Expression Not(Expression? child)
+        public static Expression MakeNot(Expression? child)
         {
             if (child == null)
             {
-                return Constant(false);
+                return MakeConstant(false);
             }
 
-            if (child.Type == ConditionType.Boolean)
+            if (child.TreeNodeCase == TreeNodeOneofCase.Boolean)
             {
-                return Constant(!child.Value);
+                return MakeConstant(!child.Boolean);
             }
 
             return new Expression
             {
-                Type = ConditionType.Not,
-                Children = new List<Expression?>(new[] { child }),
+                Not = { Expr = child },
             };
         }
 
-        public static Expression Constant(bool value)
+        public static Expression MakeConstant(bool value)
         {
             return new Expression
             {
-                Type = ConditionType.Boolean,
-                Value = value
+                Boolean = value,
             };
         }
     }
@@ -236,49 +246,34 @@ namespace Yarn.QuestGraphs
             // number of incoming edges (determined by requirementMode) are
             // complete
 
-            var incomingEdges = GetIncomingEdges(node);
+            var incomingEdges = GetIncomingEdges(node).ToList();
 
             // If a node has no incoming edges, then it is always reachable
-            if (!incomingEdges.Any())
+            if (incomingEdges.Count == 0)
             {
-                return new Expression
-                {
-                    Type = ConditionType.Boolean,
-                    Value = true,
-                };
+                return Expression.MakeConstant(true);
             }
 
             // Otherwise, a node is reachable if the right number of its
             // incoming edges are complete
             List<Expression> parentExpressions = incomingEdges.Select(e => this.GetCompleteExpression(e)).ToList();
 
-            if (node.RequirementMode.Enum.HasValue)
+            switch (node.Requirement.Type)
             {
-                switch (node.RequirementMode.Enum)
-                {
-                    case RequirementModeEnum.RequiresAll:
-                        return Expression.And(parentExpressions);
+                case NodeRequirementType.All:
+                    return Expression.MakeAnd(parentExpressions);
+                case NodeRequirementType.Any:
+                    return Expression.MakeOr(parentExpressions);
+                default:
+                    throw new ArgumentException("Unhandled requirement kind " + node.Requirement.ToString());
+            }
 
-                    case RequirementModeEnum.RequiresAny:
-                        return Expression.Or(parentExpressions);
 
-                    default:
-                        throw new ArgumentException("Unhandled requirement kind " + node.RequirementMode.ToString());
-                }
-            }
-            else if (node.RequirementMode.RequirementModeClass != null)
-            {
-                throw new NotImplementedException($"Requirement mode {node.RequirementMode} is not yet implemented.");
-            }
-            else
-            {
-                throw new ArgumentException("Unhandled requirement kind " + node.RequirementMode.ToString());
-            }
         }
 
         internal Expression GetActiveExpression(Node node)
         {
-            if (node.Type == NodeType.Step)
+            if (node.TypeCase == Node.TypeOneofCase.Step)
             {
                 // A step is active if it is reachable and none of its child
                 // steps in the same quest are reachable, or it has no
@@ -286,15 +281,15 @@ namespace Yarn.QuestGraphs
 
                 var stepIsReachable = GetReachableExpression(node);
 
-                var descendantStepsInQuest = GetDescendants(node).Where(s => s.Type == NodeType.Step && s.Quest == node.Quest);
+                var descendantStepsInQuest = GetDescendants(node).Where(s => s.TypeCase == Node.TypeOneofCase.Step && s.Quest == node.Quest);
 
-                var noDescendantStepsReachable = Expression.Not(
-                    Expression.Or(descendantStepsInQuest.Select(s => GetReachableExpression(s)))
+                var noDescendantStepsReachable = Expression.MakeNot(
+                    Expression.MakeOr(descendantStepsInQuest.Select(s => GetReachableExpression(s)))
                 );
 
-                return Expression.And(new[] { stepIsReachable, noDescendantStepsReachable });
+                return Expression.MakeAnd(new[] { stepIsReachable, noDescendantStepsReachable });
             }
-            else if (node.Type == NodeType.Task)
+            if (node.TypeCase == Node.TypeOneofCase.Task)
             {
                 // A task is active if it is reachable, none of its outgoing
                 // edges are complete, it is not 'no longer needed', and none of
@@ -303,30 +298,30 @@ namespace Yarn.QuestGraphs
                 var taskIsReachable = GetReachableExpression(node);
 
                 var outgoingEdges = GetOutgoingEdges(node);
-                var noOutgoingEdgeIsComplete = Expression.Not(
-                    Expression.Or(outgoingEdges.Select(e => GetCompleteExpression(e)))
+                var noOutgoingEdgeIsComplete = Expression.MakeNot(
+                    Expression.MakeOr(outgoingEdges.Select(e => GetCompleteExpression(e)))
                 );
 
-                var noChildIsReachable = Expression.Not(
-                    Expression.Or(GetDescendants(node).Select(c => GetReachableExpression(c)))
+                var noChildIsReachable = Expression.MakeNot(
+                    Expression.MakeOr(GetDescendants(node).Select(c => GetReachableExpression(c)))
                 );
 
-                var notNoLongerNeeded = Expression.Not(GetNoLongerNeededExpression(node));
+                var notNoLongerNeeded = Expression.MakeNot(GetNoLongerNeededExpression(node));
 
-                return Expression.And(new[] {
+                return Expression.MakeAnd(new[] {
                 taskIsReachable, noOutgoingEdgeIsComplete, noChildIsReachable, notNoLongerNeeded
             });
             }
             else
             {
-                throw new ArgumentException("Unhandled node type " + node.Type);
+                throw new ArgumentException("Unhandled node type " + node.TypeCase);
             }
 
         }
 
         internal Expression GetNoLongerNeededExpression(Node task)
         {
-            if (task.Type != NodeType.Task)
+            if (task.TypeCase != Node.TypeOneofCase.Task)
             {
                 throw new ArgumentException("Can't get a NoLongerNeeded expression for non-task node");
             }
@@ -337,28 +332,28 @@ namespace Yarn.QuestGraphs
 
             var nodeIsReachable = GetReachableExpression(task);
 
-            var nodeIsNotComplete = Expression.Not(GetCompleteExpression(task));
+            var nodeIsNotComplete = Expression.MakeNot(GetCompleteExpression(task));
 
             var ancestorSteps = GetAncestors(task)
-                .Where(n => n.Type == NodeType.Step)
+                .Where(n => n.TypeCase == Node.TypeOneofCase.Step)
                 .Where(step => step.Quest == task.Quest);
 
-            var noAncestorStepIsActive = Expression.Not(
-                Expression.Or(ancestorSteps.Select(g => GetActiveExpression(g)))
+            var noAncestorStepIsActive = Expression.MakeNot(
+                Expression.MakeOr(ancestorSteps.Select(g => GetActiveExpression(g)))
             );
 
-            var noOutgoingEdgeIsComplete = Expression.Not(
-                Expression.Or(GetOutgoingEdges(task).Select(e => GetCompleteExpression(e)))
+            var noOutgoingEdgeIsComplete = Expression.MakeNot(
+                Expression.MakeOr(GetOutgoingEdges(task).Select(e => GetCompleteExpression(e)))
             );
 
-            return Expression.And(new[] {
+            return Expression.MakeAnd(new[] {
                 nodeIsReachable, nodeIsNotComplete, noAncestorStepIsActive, noOutgoingEdgeIsComplete
             });
         }
 
         internal Expression GetCompleteExpression(Node node)
         {
-            if (node.Type == NodeType.Step)
+            if (node.TypeCase == Node.TypeOneofCase.Step)
             {
                 // A step is complete if it is reachable and not active (i.e. it
                 // was active in the past, but it is no longer), or if it is
@@ -366,8 +361,8 @@ namespace Yarn.QuestGraphs
                 // quest (i.e. once reached, we never leave it)
 
                 var stepIsReachable = GetReachableExpression(node);
-                var notActive = Expression.Not(GetActiveExpression(node));
-                var hasNoOutgoingEdgesToSameQuest = Expression.Constant(
+                var notActive = Expression.MakeNot(GetActiveExpression(node));
+                var hasNoOutgoingEdgesToSameQuest = Expression.MakeConstant(
                     !GetOutgoingEdges(node).Any(e =>
                     {
                         var (start, end) = GetNodes(e);
@@ -375,25 +370,25 @@ namespace Yarn.QuestGraphs
                     })
                 );
 
-                return Expression.And(new[] {
+                return Expression.MakeAnd(new[] {
                 stepIsReachable,
-                Expression.Or(new[] {notActive, hasNoOutgoingEdgesToSameQuest})
+                Expression.MakeOr(new[] {notActive, hasNoOutgoingEdgesToSameQuest})
             });
             }
-            else if (node.Type == NodeType.Task)
+            else if (node.TypeCase == Node.TypeOneofCase.Task)
             {
                 // A task is complete if it is reachable and any of its outgoing
                 // edges are satisfied
 
                 var stepIsReachable = GetReachableExpression(node);
 
-                var anyOutgoingEdgeSatisfied = Expression.Or(GetOutgoingEdges(node).Select(e => GetCompleteExpression(e)));
+                var anyOutgoingEdgeSatisfied = Expression.MakeOr(GetOutgoingEdges(node).Select(e => GetCompleteExpression(e)));
 
-                return Expression.And(new[] { stepIsReachable, anyOutgoingEdgeSatisfied });
+                return Expression.MakeAnd(new[] { stepIsReachable, anyOutgoingEdgeSatisfied });
             }
             else
             {
-                throw new ArgumentException("Unhandled node type " + node.Type);
+                throw new ArgumentException("Unhandled node type " + node.TypeCase);
             }
         }
 
@@ -409,7 +404,7 @@ namespace Yarn.QuestGraphs
             }
             else
             {
-                return Expression.And(new[] { startReachable, e.Condition });
+                return Expression.MakeAnd(new[] { startReachable, e.Condition });
             }
         }
 
@@ -420,67 +415,67 @@ namespace Yarn.QuestGraphs
                 return "false";
             }
 
-            switch (expression.Type)
+            switch (expression.TreeNodeCase)
             {
-                case ConditionType.And:
-                    if (expression.Children == null || !expression.Children.NonNull().Any())
+                case Expression.TreeNodeOneofCase.And:
+                    if (expression.And.Children == null || !expression.And.Children.NonEmpty().Any())
                     {
                         return "false";
                     }
-                    return $"({string.Join("&&", expression.Children.NonNull().Select(c => this.GetExpressionAsYarnString(c)))})";
+                    return $"({string.Join("&&", expression.And.Children.NonNull().Select(c => this.GetExpressionAsYarnString(c)))})";
 
-                case ConditionType.Not:
-                    if (expression.Children?.NonNull().Count() != 1)
+                case Expression.TreeNodeOneofCase.Not:
+                    if (expression.Not.Expr.IsEmpty())
                     {
                         return "false";
                     }
-                    return $"!({this.GetExpressionAsYarnString(expression.Children[0])})";
+                    return $"!({this.GetExpressionAsYarnString(expression.Not.Expr)})";
 
-                case ConditionType.Or:
-                    if (expression.Children == null || !expression.Children.NonNull().Any())
+                case Expression.TreeNodeOneofCase.Or:
+                    if (expression.Or.Children == null || !expression.Or.Children.NonNull().Any())
                     {
                         return "false";
                     }
-                    return $"({string.Join("||", expression.Children.NonNull().Select(c => GetExpressionAsYarnString(c)))})";
+                    return $"({string.Join("||", expression.Or.Children.NonNull().Select(c => GetExpressionAsYarnString(c)))})";
 
-                case ConditionType.Boolean:
-                    return $"{(expression.Value ? "true" : "false")}";
+                case Expression.TreeNodeOneofCase.Boolean:
+                    return $"{(expression.Boolean ? "true" : "false")}";
 
-                case ConditionType.Equals:
-                    if (expression.Children?.NonNull().Count() != 2)
+                case Expression.TreeNodeOneofCase.Equals_:
+                    if (expression.Equals_.First.IsEmpty() || expression.Equals_.Second.IsEmpty())
                     {
                         return "false";
                     }
-                    return $"({GetExpressionAsYarnString(expression.Children[0])}=={GetExpressionAsYarnString(expression.Children[1])})";
+                    return $"({GetExpressionAsYarnString(expression.Equals_.First)}=={GetExpressionAsYarnString(expression.Equals_.Second)})";
 
-                case ConditionType.Implies:
-                    if (expression.Children?.NonNull().Count() != 2)
+                case Expression.TreeNodeOneofCase.Implies:
+                    if (expression.Equals_.First.IsEmpty() || expression.Equals_.Second.IsEmpty())
                     {
                         return "false";
                     }
                     return GetExpressionAsYarnString(
-                        Expression.Or(new[] {
-                            Expression.Not(expression.Children[0]), expression.Children[1] }
+                        Expression.MakeOr(new[] {
+                            Expression.MakeNot(expression.Equals_.First), expression.Equals_.Second }
                         ));
 
-                case ConditionType.Node:
+                case Expression.TreeNodeOneofCase.Node:
                     {
-                        var node = Nodes.Single(n => n.Id == expression.Node);
+                        var node = Nodes.Single(n => n.Id == expression.Node.Node);
 
-                        return expression.State switch
+                        return expression.Node.State switch
                         {
-                            NodeStateLabel.Active => GetExpressionAsYarnString(this.GetActiveExpression(node)),
-                            NodeStateLabel.Complete => GetExpressionAsYarnString(this.GetCompleteExpression(node)),
-                            NodeStateLabel.NoLongerNeeded => GetExpressionAsYarnString(this.GetNoLongerNeededExpression(node)),
-                            NodeStateLabel.Reachable => GetExpressionAsYarnString(this.GetReachableExpression(node)),
-                            _ => throw new InvalidOperationException("Invalid node state " + expression.State),
+                            NodeStateType.Active => GetExpressionAsYarnString(this.GetActiveExpression(node)),
+                            NodeStateType.Complete => GetExpressionAsYarnString(this.GetCompleteExpression(node)),
+                            NodeStateType.NoLongerNeeded => GetExpressionAsYarnString(this.GetNoLongerNeededExpression(node)),
+                            NodeStateType.Reachable => GetExpressionAsYarnString(this.GetReachableExpression(node)),
+                            _ => throw new InvalidOperationException("Invalid node state " + expression.Node.State),
                         };
                     }
 
-                case ConditionType.Variable:
+                case Expression.TreeNodeOneofCase.Variable:
                     return this.Variables.Single(v => v.Id == expression.Variable).YarnName;
                 default:
-                    throw new InvalidOperationException("Unknwn expression type " + expression.Type);
+                    throw new InvalidOperationException("Unknown expression type " + expression.TreeNodeCase);
             }
         }
 
@@ -499,7 +494,7 @@ namespace Yarn.QuestGraphs
                 yarnFileContentsSB.AppendLine(questNode);
             }
 
-            foreach (var variables in this.Variables.Where(v => v.Source == VariableKind.CreatedInEditor))
+            foreach (var variables in this.Variables.Where(v => v.Source == VariableSourceType.CreatedInEditor))
             {
                 yarnFileContentsSB.AppendLine($"<<declare {variables.YarnName} = false>>");
             }
@@ -508,7 +503,7 @@ namespace Yarn.QuestGraphs
             return yarnFileContentsSB.ToString();
         }
 
-        public string GetNodeVariableName(Node node, NodeStateLabel state)
+        public string GetNodeVariableName(Node node, NodeStateType state)
         {
             if (node == null) { throw new ArgumentNullException(nameof(node)); }
 
@@ -544,15 +539,15 @@ namespace Yarn.QuestGraphs
 
             var quests = questGraphDocument.Quests.ToDictionary(q => q.Id);
 
-            string GetVariableDeclaration(Node node, Expression expression, Yarn.QuestGraphs.NodeStateLabel property)
+            string GetVariableDeclaration(Node node, Expression expression, Yarn.QuestGraphs.NodeStateType property)
             {
                 var variableName = questGraphDocument.GetNodeVariableName(node, property);
                 var expressionString = questGraphDocument.GetExpressionAsYarnString(expression);
 
-                if (expression.Type == ConditionType.Boolean)
+                if (expression.TreeNodeCase == Expression.TreeNodeOneofCase.Boolean)
                 {
                     // Wrap raw boolean values to ensure that it's parsed as an
-                    // expression and becomes a smart variable
+                    // Expression.MakeAnd becomes a smart variable
                     expressionString = $"({expressionString})";
                 }
 
@@ -569,24 +564,24 @@ namespace Yarn.QuestGraphs
                     ? (quest.Name ?? quest.YarnName)
                     : "NoQuest";
 
-                sb.AppendLine($"// [{node.Type} {node.Id}] {questName}: {node.DisplayName}");
+                sb.AppendLine($"// [{node.TypeCase} {node.Id}] {questName}: {node.DisplayName}");
 
-                sb.AppendLine(GetVariableDeclaration(node, questGraphDocument.GetReachableExpression(node), NodeStateLabel.Reachable));
+                sb.AppendLine(GetVariableDeclaration(node, questGraphDocument.GetReachableExpression(node), NodeStateType.Reachable));
 
-                if (node.Type == NodeType.Step)
+                if (node.TypeCase == Node.TypeOneofCase.Step)
                 {
-                    sb.AppendLine(GetVariableDeclaration(node, questGraphDocument.GetActiveExpression(node), NodeStateLabel.Active));
-                    sb.AppendLine(GetVariableDeclaration(node, questGraphDocument.GetCompleteExpression(node), NodeStateLabel.Complete));
+                    sb.AppendLine(GetVariableDeclaration(node, questGraphDocument.GetActiveExpression(node), NodeStateType.Active));
+                    sb.AppendLine(GetVariableDeclaration(node, questGraphDocument.GetCompleteExpression(node), NodeStateType.Complete));
                 }
-                else if (node.Type == NodeType.Task)
+                else if (node.TypeCase == Node.TypeOneofCase.Task)
                 {
-                    sb.AppendLine(GetVariableDeclaration(node, questGraphDocument.GetActiveExpression(node), NodeStateLabel.Active));
-                    sb.AppendLine(GetVariableDeclaration(node, questGraphDocument.GetNoLongerNeededExpression(node), NodeStateLabel.NoLongerNeeded));
-                    sb.AppendLine(GetVariableDeclaration(node, questGraphDocument.GetCompleteExpression(node), NodeStateLabel.Complete));
+                    sb.AppendLine(GetVariableDeclaration(node, questGraphDocument.GetActiveExpression(node), NodeStateType.Active));
+                    sb.AppendLine(GetVariableDeclaration(node, questGraphDocument.GetNoLongerNeededExpression(node), NodeStateType.NoLongerNeeded));
+                    sb.AppendLine(GetVariableDeclaration(node, questGraphDocument.GetCompleteExpression(node), NodeStateType.Complete));
                 }
                 else
                 {
-                    throw new System.InvalidOperationException($"Can't get expressions for node {node} ({questName}: {node.DisplayName ?? node.YarnName})  of type {node.Type}");
+                    throw new System.InvalidOperationException($"Can't get expressions for node {node} ({questName}: {node.DisplayName ?? node.YarnName})  of type {node.TypeCase}");
                 }
 
                 yield return sb.ToString();

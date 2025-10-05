@@ -213,7 +213,7 @@ namespace Yarn.Compiler
 
 
                 var text = System.IO.File.ReadAllText(questGraph);
-                var graph = System.Text.Json.JsonSerializer.Deserialize<Yarn.QuestGraphs.QuestGraph>(text, QuestGraphs.Converter.Settings);
+                var graph = QuestGraphs.QuestGraph.Parser.ParseJson(text);
 
                 if (graph == null)
                 {
