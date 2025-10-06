@@ -58,7 +58,7 @@ namespace Yarn.QuestGraphs
 
             var result = new Expression
             {
-                And = { }
+                And = new NAryExpression()
             };
             result.And.Children.AddRange(expressions);
             return result;
@@ -94,9 +94,9 @@ namespace Yarn.QuestGraphs
 
             var result = new Expression
             {
-                Or = { }
+                Or = new NAryExpression()
             };
-            result.And.Children.AddRange(expressions);
+            result.Or.Children.AddRange(expressions);
             return result;
         }
 
@@ -114,7 +114,7 @@ namespace Yarn.QuestGraphs
 
             return new Expression
             {
-                Not = { Expr = child },
+                Not = new UnaryExpression { Expr = child },
             };
         }
 
