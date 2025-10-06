@@ -49,43 +49,42 @@ namespace Yarn.QuestGraphs {
             "CgxfZGVzY3JpcHRpb25CDgoMX2lzUGVybWFuZW50Qg0KC19kZWZpbml0aW9u",
             "ImsKBVF1ZXN0EgoKAmlkGAEgASgJEhAKCHlhcm5OYW1lGAIgASgJEhEKBG5h",
             "bWUYAyABKAlIAIgBARIYCgtkZXNjcmlwdGlvbhgEIAEoCUgBiAEBQgcKBV9u",
-            "YW1lQg4KDF9kZXNjcmlwdGlvbiIUChJOb2RlUmVxdWlyZW1lbnRBbGwiFAoS",
-            "Tm9kZVJlcXVpcmVtZW50QW55IiAKCFBvc2l0aW9uEgkKAXgYASABKAUSCQoB",
-            "eRgCIAEoBSJECgxUYXNrTm9kZURhdGESFgoOY29tcGxldGVzUXVlc3QYASAB",
-            "KAgSHAoUc3RheXNDb21wbGV0ZUZvcmV2ZXIYAiABKAgiWwoMU3RlcE5vZGVE",
-            "YXRhEhAKCGlzSGlkZGVuGAEgASgIEjkKD2NvbXBsZXRpb25TdHlsZRgCIAEo",
-            "DjIgLlF1ZXN0R3JhcGhzLlN0ZXBDb21wbGV0aW9uU3R5bGUiQQoPTm9kZVJl",
-            "cXVpcmVtZW50Ei4KBHR5cGUYASABKA4yIC5RdWVzdEdyYXBocy5Ob2RlUmVx",
-            "dWlyZW1lbnRUeXBlIuwCCgROb2RlEgoKAmlkGAEgASgJEhIKBXF1ZXN0GAIg",
-            "ASgJSAGIAQESEAoIeWFybk5hbWUYAyABKAkSGAoLZGVzY3JpcHRpb24YBCAB",
-            "KAlIAogBARInCghwb3NpdGlvbhgFIAEoCzIVLlF1ZXN0R3JhcGhzLlBvc2l0",
-            "aW9uEhgKC2Rpc3BsYXlOYW1lGAYgASgJSAOIAQESEQoEbm90ZRgHIAEoCUgE",
-            "iAEBEjEKC3JlcXVpcmVtZW50GAggASgLMhwuUXVlc3RHcmFwaHMuTm9kZVJl",
-            "cXVpcmVtZW50EikKBHRhc2sYCSABKAsyGS5RdWVzdEdyYXBocy5UYXNrTm9k",
-            "ZURhdGFIABIpCgRzdGVwGAogASgLMhkuUXVlc3RHcmFwaHMuU3RlcE5vZGVE",
-            "YXRhSABCBgoEdHlwZUIICgZfcXVlc3RCDgoMX2Rlc2NyaXB0aW9uQg4KDF9k",
-            "aXNwbGF5TmFtZUIHCgVfbm90ZSKLAQoERWRnZRIKCgJpZBgBIAEoCRINCgVz",
-            "dGFydBgCIAEoCRILCgNlbmQYAyABKAkSLwoJY29uZGl0aW9uGAQgASgLMhcu",
-            "UXVlc3RHcmFwaHMuRXhwcmVzc2lvbkgAiAEBEhIKBWxhYmVsGAUgASgJSAGI",
-            "AQFCDAoKX2NvbmRpdGlvbkIICgZfbGFiZWwiTQoETm90ZRIKCgJpZBgBIAEo",
-            "CRInCghwb3NpdGlvbhgCIAEoCzIVLlF1ZXN0R3JhcGhzLlBvc2l0aW9uEhAK",
-            "CGNvbnRlbnRzGAMgASgJIocBCg5OYW1lZENvbmRpdGlvbhIKCgJpZBgBIAEo",
-            "CRITCgtkaXNwbGF5TmFtZRgCIAEoCRIYCgtkZXNjcmlwdGlvbhgDIAEoCUgA",
-            "iAEBEioKCWNvbmRpdGlvbhgEIAEoCzIXLlF1ZXN0R3JhcGhzLkV4cHJlc3Np",
-            "b25CDgoMX2Rlc2NyaXB0aW9uIocCCgpRdWVzdEdyYXBoEgoKAmlkGAEgASgJ",
-            "Eg0KBXRpdGxlGAIgASgJEigKCXZhcmlhYmxlcxgDIAMoCzIVLlF1ZXN0R3Jh",
-            "cGhzLlZhcmlhYmxlEiIKBnF1ZXN0cxgEIAMoCzISLlF1ZXN0R3JhcGhzLlF1",
-            "ZXN0EiAKBW5vZGVzGAUgAygLMhEuUXVlc3RHcmFwaHMuTm9kZRIgCgVlZGdl",
-            "cxgGIAMoCzIRLlF1ZXN0R3JhcGhzLkVkZ2USIAoFbm90ZXMYByADKAsyES5R",
-            "dWVzdEdyYXBocy5Ob3RlEioKBXJ1bGVzGAggAygLMhsuUXVlc3RHcmFwaHMu",
-            "TmFtZWRDb25kaXRpb24qGAoMVmFyaWFibGVUeXBlEggKBEJvb2wQACpaChJW",
-            "YXJpYWJsZVNvdXJjZVR5cGUSEwoPQ3JlYXRlZEluRWRpdG9yEAASGgoWSW1w",
-            "b3J0ZWRGcm9tWWFyblNjcmlwdBABEhMKD1N5c3RlbUdlbmVyYXRlZBACKkwK",
-            "DU5vZGVTdGF0ZVR5cGUSDQoJUmVhY2hhYmxlEAASCgoGQWN0aXZlEAESDAoI",
-            "Q29tcGxldGUQAhISCg5Ob0xvbmdlck5lZWRlZBADKjkKE1N0ZXBDb21wbGV0",
-            "aW9uU3R5bGUSCAoETm9uZRAAEgsKB1N1Y2Nlc3MQARILCgdGYWlsdXJlEAIq",
-            "JwoTTm9kZVJlcXVpcmVtZW50VHlwZRIHCgNBbGwQABIHCgNBbnkQAUITqgIQ",
-            "WWFybi5RdWVzdEdyYXBoc2IGcHJvdG8z"));
+            "YW1lQg4KDF9kZXNjcmlwdGlvbiIgCghQb3NpdGlvbhIJCgF4GAEgASgFEgkK",
+            "AXkYAiABKAUiRAoMVGFza05vZGVEYXRhEhYKDmNvbXBsZXRlc1F1ZXN0GAEg",
+            "ASgIEhwKFHN0YXlzQ29tcGxldGVGb3JldmVyGAIgASgIIlsKDFN0ZXBOb2Rl",
+            "RGF0YRIQCghpc0hpZGRlbhgBIAEoCBI5Cg9jb21wbGV0aW9uU3R5bGUYAiAB",
+            "KA4yIC5RdWVzdEdyYXBocy5TdGVwQ29tcGxldGlvblN0eWxlIkEKD05vZGVS",
+            "ZXF1aXJlbWVudBIuCgR0eXBlGAEgASgOMiAuUXVlc3RHcmFwaHMuTm9kZVJl",
+            "cXVpcmVtZW50VHlwZSLsAgoETm9kZRIKCgJpZBgBIAEoCRISCgVxdWVzdBgC",
+            "IAEoCUgBiAEBEhAKCHlhcm5OYW1lGAMgASgJEhgKC2Rlc2NyaXB0aW9uGAQg",
+            "ASgJSAKIAQESJwoIcG9zaXRpb24YBSABKAsyFS5RdWVzdEdyYXBocy5Qb3Np",
+            "dGlvbhIYCgtkaXNwbGF5TmFtZRgGIAEoCUgDiAEBEhEKBG5vdGUYByABKAlI",
+            "BIgBARIxCgtyZXF1aXJlbWVudBgIIAEoCzIcLlF1ZXN0R3JhcGhzLk5vZGVS",
+            "ZXF1aXJlbWVudBIpCgR0YXNrGAkgASgLMhkuUXVlc3RHcmFwaHMuVGFza05v",
+            "ZGVEYXRhSAASKQoEc3RlcBgKIAEoCzIZLlF1ZXN0R3JhcGhzLlN0ZXBOb2Rl",
+            "RGF0YUgAQgYKBHR5cGVCCAoGX3F1ZXN0Qg4KDF9kZXNjcmlwdGlvbkIOCgxf",
+            "ZGlzcGxheU5hbWVCBwoFX25vdGUiiwEKBEVkZ2USCgoCaWQYASABKAkSDQoF",
+            "c3RhcnQYAiABKAkSCwoDZW5kGAMgASgJEi8KCWNvbmRpdGlvbhgEIAEoCzIX",
+            "LlF1ZXN0R3JhcGhzLkV4cHJlc3Npb25IAIgBARISCgVsYWJlbBgFIAEoCUgB",
+            "iAEBQgwKCl9jb25kaXRpb25CCAoGX2xhYmVsIk0KBE5vdGUSCgoCaWQYASAB",
+            "KAkSJwoIcG9zaXRpb24YAiABKAsyFS5RdWVzdEdyYXBocy5Qb3NpdGlvbhIQ",
+            "Cghjb250ZW50cxgDIAEoCSKHAQoOTmFtZWRDb25kaXRpb24SCgoCaWQYASAB",
+            "KAkSEwoLZGlzcGxheU5hbWUYAiABKAkSGAoLZGVzY3JpcHRpb24YAyABKAlI",
+            "AIgBARIqCgljb25kaXRpb24YBCABKAsyFy5RdWVzdEdyYXBocy5FeHByZXNz",
+            "aW9uQg4KDF9kZXNjcmlwdGlvbiKHAgoKUXVlc3RHcmFwaBIKCgJpZBgBIAEo",
+            "CRINCgV0aXRsZRgCIAEoCRIoCgl2YXJpYWJsZXMYAyADKAsyFS5RdWVzdEdy",
+            "YXBocy5WYXJpYWJsZRIiCgZxdWVzdHMYBCADKAsyEi5RdWVzdEdyYXBocy5R",
+            "dWVzdBIgCgVub2RlcxgFIAMoCzIRLlF1ZXN0R3JhcGhzLk5vZGUSIAoFZWRn",
+            "ZXMYBiADKAsyES5RdWVzdEdyYXBocy5FZGdlEiAKBW5vdGVzGAcgAygLMhEu",
+            "UXVlc3RHcmFwaHMuTm90ZRIqCgVydWxlcxgIIAMoCzIbLlF1ZXN0R3JhcGhz",
+            "Lk5hbWVkQ29uZGl0aW9uKhgKDFZhcmlhYmxlVHlwZRIICgRCb29sEAAqWgoS",
+            "VmFyaWFibGVTb3VyY2VUeXBlEhMKD0NyZWF0ZWRJbkVkaXRvchAAEhoKFklt",
+            "cG9ydGVkRnJvbVlhcm5TY3JpcHQQARITCg9TeXN0ZW1HZW5lcmF0ZWQQAipM",
+            "Cg1Ob2RlU3RhdGVUeXBlEg0KCVJlYWNoYWJsZRAAEgoKBkFjdGl2ZRABEgwK",
+            "CENvbXBsZXRlEAISEgoOTm9Mb25nZXJOZWVkZWQQAyo5ChNTdGVwQ29tcGxl",
+            "dGlvblN0eWxlEggKBE5vbmUQABILCgdTdWNjZXNzEAESCwoHRmFpbHVyZRAC",
+            "KicKE05vZGVSZXF1aXJlbWVudFR5cGUSBwoDQWxsEAASBwoDQW55EAFCE6oC",
+            "EFlhcm4uUXVlc3RHcmFwaHNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Yarn.QuestGraphs.VariableType), typeof(global::Yarn.QuestGraphs.VariableSourceType), typeof(global::Yarn.QuestGraphs.NodeStateType), typeof(global::Yarn.QuestGraphs.StepCompletionStyle), typeof(global::Yarn.QuestGraphs.NodeRequirementType), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -97,8 +96,6 @@ namespace Yarn.QuestGraphs {
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.QuestGraphs.Expression), global::Yarn.QuestGraphs.Expression.Parser, new[]{ "Empty", "Variable", "Boolean", "Node", "And", "Or", "Not", "Implies", "Equals_" }, new[]{ "TreeNode" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.QuestGraphs.Variable), global::Yarn.QuestGraphs.Variable.Parser, new[]{ "Id", "YarnName", "Name", "Description", "IsPermanent", "Definition", "Type", "Source" }, new[]{ "Name", "Description", "IsPermanent", "Definition" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.QuestGraphs.Quest), global::Yarn.QuestGraphs.Quest.Parser, new[]{ "Id", "YarnName", "Name", "Description" }, new[]{ "Name", "Description" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.QuestGraphs.NodeRequirementAll), global::Yarn.QuestGraphs.NodeRequirementAll.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.QuestGraphs.NodeRequirementAny), global::Yarn.QuestGraphs.NodeRequirementAny.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.QuestGraphs.Position), global::Yarn.QuestGraphs.Position.Parser, new[]{ "X", "Y" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.QuestGraphs.TaskNodeData), global::Yarn.QuestGraphs.TaskNodeData.Parser, new[]{ "CompletesQuest", "StaysCompleteForever" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.QuestGraphs.StepNodeData), global::Yarn.QuestGraphs.StepNodeData.Parser, new[]{ "IsHidden", "CompletionStyle" }, null, null, null, null),
@@ -2735,328 +2732,6 @@ namespace Yarn.QuestGraphs {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class NodeRequirementAll : pb::IMessage<NodeRequirementAll>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<NodeRequirementAll> _parser = new pb::MessageParser<NodeRequirementAll>(() => new NodeRequirementAll());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<NodeRequirementAll> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[8]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NodeRequirementAll() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NodeRequirementAll(NodeRequirementAll other) : this() {
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NodeRequirementAll Clone() {
-      return new NodeRequirementAll(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as NodeRequirementAll);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(NodeRequirementAll other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(NodeRequirementAll other) {
-      if (other == null) {
-        return;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class NodeRequirementAny : pb::IMessage<NodeRequirementAny>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<NodeRequirementAny> _parser = new pb::MessageParser<NodeRequirementAny>(() => new NodeRequirementAny());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<NodeRequirementAny> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[9]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NodeRequirementAny() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NodeRequirementAny(NodeRequirementAny other) : this() {
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NodeRequirementAny Clone() {
-      return new NodeRequirementAny(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as NodeRequirementAny);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(NodeRequirementAny other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(NodeRequirementAny other) {
-      if (other == null) {
-        return;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Position : pb::IMessage<Position>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3071,7 +2746,7 @@ namespace Yarn.QuestGraphs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[10]; }
+      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3306,7 +2981,7 @@ namespace Yarn.QuestGraphs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[11]; }
+      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3541,7 +3216,7 @@ namespace Yarn.QuestGraphs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[12]; }
+      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3776,7 +3451,7 @@ namespace Yarn.QuestGraphs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[13]; }
+      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3974,7 +3649,7 @@ namespace Yarn.QuestGraphs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[14]; }
+      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4638,7 +4313,7 @@ namespace Yarn.QuestGraphs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[15]; }
+      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5007,7 +4682,7 @@ namespace Yarn.QuestGraphs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[16]; }
+      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5288,7 +4963,7 @@ namespace Yarn.QuestGraphs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[17]; }
+      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5620,7 +5295,7 @@ namespace Yarn.QuestGraphs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[18]; }
+      get { return global::Yarn.QuestGraphs.QuestGraphReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
