@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- `ReplacementMarkerResult` struct that encapsulates diagnostics of replacement markup processors and also an invisible characters count.
+  - this allows for replacement markup to declare how many invisible characters they have added
+  - this is necessary because both Unity and Godot (and likely every tool out there) has some variant of rich text strings where the attributes on the rich text is within the string itself
+  - any sibling markup following the replacement needs to not be pushed down by the invisible elements of the string
+
 ### Updated
 
 - When the `tags:` header on a node is blank, `Node.Tags` now returns an empty collection, instead of a collection containing a single empty string.
@@ -22,6 +27,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Language Server: hovering smart variables now shows their definition.
 - Language Server: Make compilation asynchronous
 - Language Server: 'Undeclared variable' warnings have had their severity reduced to "hint".
+- Fixed a bug where self-closing replacement markup was consuming whitespace
+- `IAttributeMarkerProcessor` now return a `ReplacementMarkerResult` struct instead of just a list of diagnostics
 
 ### Removed
 

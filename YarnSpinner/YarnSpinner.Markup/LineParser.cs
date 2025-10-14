@@ -776,10 +776,19 @@ namespace Yarn.Markup
         // where the b tag is a rewriter and the emotion tag is not.
         // in that case because previously we only kept the last fully processed non-replacement sibling the emotion tag would eat the whitespace AFTER the b tag had replaced itself
         private MarkupTreeNode? sibling = null;
+        // this keeps track of all accumulated invisible characters added by any replacement markup.
+        // this is necessary to prevent a bug with the following:
+            // "this is a line [bold]with some replacement[/bold] markup and a non-replacement[a/]  markup"
+        // assuming that this is intended to replace the [bold] with <b> in unity we would end up as though we had written:
+            // "this is a line <b>with some replacement</b> markup and a non-replacement[a/]  markup"
+        // but this has now pushed the [a] markup down by 7 invisible characters
+        // so each replacement markup processor needs to let us know how many (if any) invisible characters there are so we can backshift any sibling attributes after a replacement markup
+        private int invisibleCharacters = 0;
         internal void WalkAndProcessTree(MarkupTreeNode root, System.Text.StringBuilder builder, List<MarkupAttribute> attributes, string localeCode, List<MarkupDiagnostic> diagnostics, int offset = 0)
         {
             sibling = null;
-            WalkTree(root, builder, attributes, localeCode, diagnostics, offset = 0);
+            invisibleCharacters = 0;
+            WalkTree(root, builder, attributes, localeCode, diagnostics, offset);
         }
 
         private void WalkTree(MarkupTreeNode root, System.Text.StringBuilder builder, List<MarkupAttribute> attributes, string localeCode, List<MarkupDiagnostic> diagnostics, int offset = 0)
@@ -852,7 +861,9 @@ namespace Yarn.Markup
                 // so in this case we need to give the rewriter the combined child string and it's attributes
                 // because it is up to you to fix any attributes if you modify them
                 MarkupAttribute attribute = new MarkupAttribute(builder.Length + offset, root.firstToken?.Start ?? -1, childBuilder.Length, root.name!, root.properties);
-                diagnostics.AddRange(rewriter.ProcessReplacementMarker(attribute, childBuilder, childAttributes, localeCode));
+                var result = rewriter.ProcessReplacementMarker(attribute, childBuilder, childAttributes, localeCode);
+                diagnostics.AddRange(result.Diagnostics);
+                invisibleCharacters += result.InvisibleCharacters;
             }
             else
             {
@@ -861,17 +872,20 @@ namespace Yarn.Markup
                 // the source position one is easy enough, that is just the position of the first token (wait you never added these you dingus)
                 // we know the length of all the children text because of the childBuilder so that gives us our range
                 // and we know our relative start because of our siblings text in the builder
-                MarkupAttribute attribute = new MarkupAttribute(builder.Length + offset, root.firstToken?.Start ?? -1, childBuilder.Length, root.name!, root.properties);
+                MarkupAttribute attribute = new MarkupAttribute(builder.Length - invisibleCharacters + offset, root.firstToken?.Start ?? -1, childBuilder.Length, root.name!, root.properties);
                 attributes.Add(attribute);
+
+                // finally we make ourselves the most immediate oldest sibling
+                // we only do this because we are not a replacement markup
+                // because with replacement markup can safely assume they've already done any text modification as needed
+                // but non-replacement markup needs to be tracked in case our immediate next sibling is text and needs to do whitespace trimming
+                sibling = root;
             }
 
             // ok now at this stage inside childBuilder we have a valid modified (if was necessary) string
             // and our attributes have been added, all we need to do is add this to our siblings and continue
             builder.Append(childBuilder);
             attributes.AddRange(childAttributes);
-
-            // finally we make ourselves the most immediate oldest sibling
-            sibling = root;
         }
 
         internal static void SquishSplitAttributes(List<MarkupAttribute> attributes)
@@ -1696,7 +1710,7 @@ namespace Yarn.Markup
         }
 
         /// <inheritdoc/>
-        public List<LineParser.MarkupDiagnostic> ProcessReplacementMarker(MarkupAttribute marker, StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
+        public ReplacementMarkerResult ProcessReplacementMarker(MarkupAttribute marker, StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
         {
             // we have somehow been given an invalid setup, can't continue so early out.
             if (childBuilder == null || childAttributes == null)
@@ -1705,7 +1719,7 @@ namespace Yarn.Markup
                 {
                     new($"Requested to perform replacement on '{marker.Name}', but haven't been given valid string builder or attributes.")
                 };
-                return diagnostics;
+                return new ReplacementMarkerResult(diagnostics, 0);
             }
             // all of these are self-closing tags, there is no sensible way to perform a replacement for anything else, so we early out here
             if (childBuilder.Length > 0 || childAttributes.Count > 0)
@@ -1714,7 +1728,7 @@ namespace Yarn.Markup
                 {
                     new LineParser.MarkupDiagnostic($"'{marker.Name}' markup only works on self-closing tags.")
                 };
-                return diagnostics;
+                return new ReplacementMarkerResult(diagnostics, 0);
             }
             if (marker.TryGetProperty("value", out MarkupValue valueProp) == false)
             {
@@ -1722,29 +1736,29 @@ namespace Yarn.Markup
                 {
                     new LineParser.MarkupDiagnostic($"no 'value' property was found on the marker, {marker.Name} requires this to exist.")
                 };
-                return diagnostics;
+                return new ReplacementMarkerResult(diagnostics, 0);
             }
 
             switch (marker.Name)
             {
                 case "select":
-                    return SelectReplace(marker, childBuilder, valueProp.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                    return new ReplacementMarkerResult(SelectReplace(marker, childBuilder, valueProp.ToString(System.Globalization.CultureInfo.InvariantCulture)), 0);
                 case "plural":
                 case "ordinal":
                     {
                         switch (valueProp.Type)
                         {
                             case MarkupValueType.Integer:
-                                return PluralReplace(marker, localeCode, childBuilder, valueProp.IntegerValue);
+                                return new ReplacementMarkerResult(PluralReplace(marker, localeCode, childBuilder, valueProp.IntegerValue), 0);
                             case MarkupValueType.Float:
-                                return PluralReplace(marker, localeCode, childBuilder, valueProp.FloatValue);
+                                return new ReplacementMarkerResult(PluralReplace(marker, localeCode, childBuilder, valueProp.FloatValue), 0);
                             default:
                                 {
                                     List<LineParser.MarkupDiagnostic> diagnostics = new()
                                     {
                                         new LineParser.MarkupDiagnostic($"Asked to pluralise '{valueProp}' but this is a type that does not support pluralisation."),
                                     };
-                                    return diagnostics;
+                                    return new ReplacementMarkerResult(diagnostics, 0);
                                 }
                         }
                     }
@@ -1752,9 +1766,9 @@ namespace Yarn.Markup
                     {
                         List<LineParser.MarkupDiagnostic> diagnostics = new()
                         {
-                        new LineParser.MarkupDiagnostic($"Asked to perform replacement for {marker.Name}, a marker we don't handle."),
-                    };
-                        return diagnostics;
+                            new LineParser.MarkupDiagnostic($"Asked to perform replacement for {marker.Name}, a marker we don't handle."),
+                        };
+                        return new ReplacementMarkerResult(diagnostics, 0);
                     }
             }
         }

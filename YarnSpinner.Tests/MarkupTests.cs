@@ -694,7 +694,39 @@ namespace YarnSpinner.Tests
             attributes.Should().HaveCount(attributeCount);
         }
 
-        List<LineParser.MarkupDiagnostic> IAttributeMarkerProcessor.ProcessReplacementMarker(MarkupAttribute marker, StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
+        [Theory]
+        [InlineData("this is a line with non-replacement[a/]  markup", "this is a line with non-replacement markup", new string[] { "a" },new int[] { 35 })]
+        [InlineData("this is a line [bold]with some replacement[/bold] markup and a non-replacement[a/]  markup", "this is a line <b>with some replacement</b> markup and a non-replacement markup", new string[] { "a" }, new int[] { 65 })]
+        [InlineData("this is a [bold]line with some [italics]nested[a trimwhitespace=false /] tags[/italics][b trimwhitespace=false /][/bold] in[c trimwhitespace=false /] it", "this is a <b>line with some <i>nested tags</i></b> in it", new string[] { "a", "b", "c" }, new int[] { 31, 36, 39 })]
+        [InlineData("this is a line with [blocky]markup[/blocky] that actually has[a trimwhitespace=false /] visible characters", "this is a line with [markup] that actually has visible characters", new string[] { "a" }, new int[] { 46 })]
+        [InlineData("this is a line with [wacky]markup[/wacky] that actually has[a trimwhitespace=false /] both", "this is a line with <b>[markup]</b> that actually has both", new string[] { "a" }, new int[] { 46 })]
+        [InlineData("this is a line with [wacky]internal[a trimwhitespace=false /] both[/wacky] markup","this is a line with <b>[internal both]</b> markup", new string[] { "a" }, new int[] { 29 })]
+        [InlineData("this is a [wacky]line with some [blocky]nested[a trimwhitespace=false /] tags[/blocky][b trimwhitespace=false /][/wacky] in[c trimwhitespace=false /] it", "this is a <b>[line with some [nested tags]]</b> in it", new string[] { "a", "b", "c" }, new int[] { 33, 39, 43 })]
+        void TestSquishedMarkupStringsWithInvisibleCharactersAreValid(string line, string comparison, string[] markerNames, int[] markerPositions)
+        {
+            markerNames.Should().HaveSameCount(markerPositions);
+
+            var lineParser = new LineParser();
+            lineParser.RegisterMarkerProcessor("bold", this);
+            lineParser.RegisterMarkerProcessor("italics", this);
+            lineParser.RegisterMarkerProcessor("blocky", this);
+            lineParser.RegisterMarkerProcessor("wacky", this);
+
+            var result = lineParser.ParseStringWithDiagnostics(line, "en");
+
+            result.diagnostics.Should().BeEmpty();
+            result.markup.Text.Should().Be(comparison);
+            result.markup.Attributes.Should().HaveCount(markerPositions.Length);
+
+            for (int i = 0; i < markerNames.Length; i++)
+            {
+                var name = markerNames[i];
+                result.markup.TryGetAttributeWithName(name, out var attribute).Should().BeTrue();
+                attribute.Position.Should().Be(markerPositions[i]);
+            }
+        }
+
+        public ReplacementMarkerResult ProcessReplacementMarker(MarkupAttribute marker, StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
         {
             var diagnostics = new List<LineParser.MarkupDiagnostic>();
             switch (marker.Name)
@@ -706,7 +738,37 @@ namespace YarnSpinner.Tests
                         childBuilder.Insert(0, "<b>");
                         childBuilder.Append("</b>");
 
-                        return diagnostics;
+                        return new ReplacementMarkerResult(diagnostics, 7);
+                    }
+                case "italics":
+                    {
+                        childBuilder.Insert(0, "<i>");
+                        childBuilder.Append("</i>");
+                        return new ReplacementMarkerResult(diagnostics, 7);
+                    }
+                case "blocky":
+                    {
+                        childBuilder.Insert(0, '[');
+                        childBuilder.Append(']');
+
+                        for (int i = 0; i < childAttributes.Count; i++)
+                        {
+                            childAttributes[i] = childAttributes[i].Shift(1);
+                        }
+
+                        return new ReplacementMarkerResult(diagnostics, 0);
+                    }
+                case "wacky":
+                    {
+                        childBuilder.Insert(0, "<b>[");
+                        childBuilder.Append("]</b>");
+
+                        for (int i = 0; i < childAttributes.Count; i++)
+                        {
+                            childAttributes[i] = childAttributes[i].Shift(1);
+                        }
+
+                        return new ReplacementMarkerResult(diagnostics, 7);
                     }
                 case "localise":
                     {
@@ -719,16 +781,22 @@ namespace YarnSpinner.Tests
                         {
                             childBuilder.Append("chat");
                         }
-                        return diagnostics;
+                        return new ReplacementMarkerResult(diagnostics, 0);
+                    }
+                case "scr":
+                    {
+                        childBuilder.Append("scr");
+                        return new ReplacementMarkerResult(diagnostics, 0);
                     }
                 default:
                     {
                         childBuilder.Append("Unrecognised markup name: ");
                         childBuilder.Append(marker.Name);
-                        return diagnostics;
+                        return new ReplacementMarkerResult(diagnostics, 0);
                     }
             }
         }
+
         [Fact]
         void TestLocalisedStringReplacement()
         {
@@ -1294,6 +1362,20 @@ namespace YarnSpinner.Tests
 
             markup.markup.Text.Should().Be(expected);
         }
+
+        [Theory]
+        [InlineData("a line with a self-closing[scr /] replacement tag","a line with a self-closingscr replacement tag")]
+        [InlineData("a line with a self-closing[scnr /] -non-replacement tag","a line with a self-closing-non-replacement tag")]
+        [InlineData("a line with a self-closing[scnr trimwhitespace=false /] non-replacement tag","a line with a self-closing non-replacement tag")]
+        public void TestSelfclosingReplacementMarkersDoNotConsumeWhitespace(string line, string expected)
+        {
+            var lineParser = new LineParser();
+            lineParser.RegisterMarkerProcessor("scr", this);
+
+            var markup = lineParser.ParseStringWithDiagnostics(line, "en-AU");
+            markup.diagnostics.Should().BeEmpty();
+            markup.markup.Text.Should().Be(expected);
+        }
     }
 
     public class BBCodeChevronReplacer : IAttributeMarkerProcessor
@@ -1304,18 +1386,18 @@ namespace YarnSpinner.Tests
             tag = markerName;
         }
 
-        public List<LineParser.MarkupDiagnostic> ProcessReplacementMarker(MarkupAttribute marker, StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
+        public ReplacementMarkerResult ProcessReplacementMarker(MarkupAttribute marker, StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
         {
             List<LineParser.MarkupDiagnostic> diagnostics = new List<LineParser.MarkupDiagnostic>();
             if (marker.Name != tag)
             {
                 diagnostics.Add(new LineParser.MarkupDiagnostic($"Asked to replace {marker.Name} but this only handles {tag} markers."));
-                return diagnostics;
+                return new ReplacementMarkerResult(diagnostics, 0);
             }
 
             childBuilder.Insert(0, $"<{tag}>");
             childBuilder.Append($"</{tag}>");
-            return diagnostics;
+            return new ReplacementMarkerResult(diagnostics, 5 + tag.Length * 2);
         }
     }
 }

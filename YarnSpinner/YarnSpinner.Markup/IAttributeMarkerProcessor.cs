@@ -62,7 +62,58 @@ namespace Yarn.Markup
         /// </list>
         /// </example>
         /// <returns>The collection of diagnostics produced during processing,
-        /// if any.</returns>
-        public List<LineParser.MarkupDiagnostic> ProcessReplacementMarker(MarkupAttribute marker, System.Text.StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode);
+        /// and the number of invisible characters created during processing.</returns>
+        public ReplacementMarkerResult ProcessReplacementMarker(MarkupAttribute marker, System.Text.StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode);
+    }
+
+    /// <summary>
+    /// A bundle of results from processing replacement markers.
+    /// </summary>
+    /// <seealso cref="IAttributeMarkerProcessor"/>
+    public struct ReplacementMarkerResult
+    {
+        /// <summary>
+        /// The collection of diagnostics produced during processing, if any.
+        /// </summary>
+        public List<LineParser.MarkupDiagnostic> Diagnostics;
+        /// <summary>
+        /// The number of invisible characters added into the line during processing.
+        /// </summary>
+        /// <remarks>
+        /// This will vary depending on what the replacement markup needs to do.
+        /// <list type="bullet">
+        /// <item>
+        /// <para>
+        /// When only inserting rich-text tags, this should be the length of all inserted text.
+        /// For example <c>"this is text with [bold]some bold[/bold] elements"</c> translated into Unity style rich-text become <c>"this is text with &lt;b>some bold&lt;/b> elements"</c>.
+        /// In this case then the value of <c>InvisibleCharacters</c> would be seven.
+        /// </para>
+        /// </item>
+        /// <item>
+        /// <para>
+        /// When only modifying the content of the children text, such as making all text upper case, this should be <c>0</c>.
+        /// For example <c>"this is text with [upper]some uppercased[/upper] elements"</c> is transformed into <c>"this is text with SOME UPPERCASED elements"</c>.
+        /// The number of invisible character will be zero.
+        /// </para>
+        /// </item>
+        /// <item>
+        /// When adding new content into the line (regardless of being added at the start, end, or middle) this should be zero but the replacement processor should make sure to shift along it's children attributes where appropriate.
+        /// For example <c>"this is text with [emph]some emphasised[/emph] elements"</c> transformed into <c>"this is text with !!some emphasised!! elements"</c> the value of <c>InvisibleCharacters</c> would be zero.
+        /// In this case however the <c>childAttributes</c> in <see cref="IAttributeMarkerProcessor.ProcessReplacementMarker"/> would need to be shifted down two.
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public int InvisibleCharacters;
+
+        /// <summary>
+        /// Convenience constructor for replacement markup results.
+        /// </summary>
+        /// <param name="diagnostics">The diagnostics generated during processing</param>
+        /// <param name="invisibleCharacters">the number of invisible characters generated during processing.</param>
+        public ReplacementMarkerResult(List<LineParser.MarkupDiagnostic> diagnostics, int invisibleCharacters)
+        {
+            this.Diagnostics = diagnostics;
+            this.InvisibleCharacters = invisibleCharacters;
+        }
     }
 }
