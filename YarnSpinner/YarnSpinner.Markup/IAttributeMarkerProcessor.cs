@@ -115,5 +115,15 @@ namespace Yarn.Markup
             this.Diagnostics = diagnostics;
             this.InvisibleCharacters = invisibleCharacters;
         }
+
+        /// <summary>
+        /// Convenience form of <see cref="ReplacementMarkerResult.ReplacementMarkerResult(List{LineParser.MarkupDiagnostic}, int)"/> for when there are no diagnostics.
+        /// </summary>
+        /// <param name="invisibleCharacters">the number of invisible characters generated during processing.</param>
+        public ReplacementMarkerResult(int invisibleCharacters)
+        {
+            this.Diagnostics = new List<LineParser.MarkupDiagnostic>();
+            this.InvisibleCharacters = invisibleCharacters;
+        }
     }
 }
