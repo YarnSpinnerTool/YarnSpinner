@@ -9,8 +9,10 @@ option: `Option 4`
 select: 2
 
 line: `Item 1`
-
 line: `Line 1`
+line: `Line 4`
+
+stop
 
 ---
 
@@ -24,6 +26,8 @@ select: 4
 
 line: `Item 4`
 line: `Line 4`
+
+stop
 
 ---
 
@@ -43,6 +47,10 @@ select: 1
 
 line: `Item 2`
 line: `Line 2`
+line: `Line 3`
+line: `Line 4`
+
+stop
 
 ---
 
@@ -57,3 +65,6 @@ select: 4
 
 line: `Item 3`
 line: `Line 3`
+line: `Line 4`
+
+stop

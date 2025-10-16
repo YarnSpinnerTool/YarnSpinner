@@ -40,3 +40,24 @@ select: 1
 
 option: `Option1`
 select: 1
+
+option: `Option A` [disabled]
+option: `Option B` [disabled]
+select: 0
+line: `Line after fallthrough option block 1`
+
+option: `Option A`
+option: `Option B` [disabled]
+select: 1
+option: `Option A1` [disabled]
+option: `Option A2` [disabled]
+select: 0
+line: `Line inside Option A fallthrough block 2`
+line: `Line after fallthrough option block 2`
+
+option: `Option A` [disabled]
+option: `Option B` [disabled]
+select: 0
+line: `Line after fallthrough option block 3`
+
+stop

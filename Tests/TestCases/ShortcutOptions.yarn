@@ -64,4 +64,23 @@ Bea: line text
     -> Option2
 <<endif>>
 
+-> Option A <<if false>>
+-> Option B <<if false>>
+Line after fallthrough option block 1
+
+-> Option A
+	-> Option A1 <<if false>>
+	-> Option A2 <<if false>>
+	Line inside Option A fallthrough block 2
+-> Option B <<if false>>
+Line after fallthrough option block 2
+
+-> Option A <<if false>>
+	-> Option A1 <<if false>>
+	-> Option A2 <<if false>>
+-> Option B <<if false>>
+	-> Option B1 <<if false>>
+	-> Option B2 <<if false>>
+Line after fallthrough option block 3
+
 ===

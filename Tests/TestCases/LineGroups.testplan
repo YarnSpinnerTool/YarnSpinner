@@ -38,6 +38,14 @@ stop
 
 line: `Baker: Want another?`
 
+option: `Buy Pie`
+option: `Don't Buy Pie`
+select: 1
+
+line: `Baker: Pleasure doin' business with you!`
+
+stop
+
 ---
 
 # Now, let's set the 'knows player' variable, and we'll get a more specific one
@@ -45,3 +53,11 @@ line: `Baker: Want another?`
 set: $knows_player = true
 
 line: `Baker: Another pie for my best customer?`
+
+option: `Buy Pie`
+option: `Don't Buy Pie`
+select: 1
+
+line: `Baker: Enjoy!`
+
+stop

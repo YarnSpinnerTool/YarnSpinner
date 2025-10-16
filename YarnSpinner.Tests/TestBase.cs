@@ -273,6 +273,7 @@ namespace YarnSpinner.Tests
                 {
                     opts.Options.Should().HaveSameCount(expectedOptions);
 
+                    bool isAnyAvailable = false;
                     foreach (var (Option, Expectation) in opts.Options.Zip(expectedOptions))
                     {
                         stringTable.Should().ContainKey(Option.Line.ID);
@@ -280,7 +281,6 @@ namespace YarnSpinner.Tests
                         var text = GetComposedTextForLine(Option.Line);
                         if (Expectation.ExpectedText != null)
                         {
-
                             text.Should().Be(Expectation.ExpectedText);
                         }
                         if (Expectation.ExpectedHashtags.Any())
@@ -288,8 +288,19 @@ namespace YarnSpinner.Tests
                             stringTable[Option.Line.ID].metadata.Should().Contain(Expectation.ExpectedHashtags);
                         }
                         Option.IsAvailable.Should().Be(Expectation.ExpectedAvailability, $"option \"{text}\"'s availability was expected to be {Expectation.ExpectedAvailability}");
+                        if (Option.IsAvailable)
+                        {
+                            isAnyAvailable = true;
+                        }
                     }
-                    opts.Options.Should().ContainSingle(o => o.ID == expectation.SelectedIndex, "one option should have the ID that we want to select");
+                    if (isAnyAvailable)
+                    {
+                        opts.Options.Should().ContainSingle(o => o.ID == expectation.SelectedIndex, "one option should have the ID that we want to select");
+                    }
+                    else
+                    {
+                        expectation.SelectedIndex.Should().Be(-1);
+                    }
                 };
             }
             void ExpectCommand(TestPlan.ExpectCommandStep expectation)

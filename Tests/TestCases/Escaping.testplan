@@ -45,3 +45,4 @@ line: `<<escaped command>>`
 line: `{0} escaped line with interpolation`
 line: `// escaped comment`
 line: `[a]escaped markup[/a]`
+stop
