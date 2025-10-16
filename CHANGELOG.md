@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - this allows for replacement markup to declare how many invisible characters they have added
   - this is necessary because both Unity and Godot (and likely every tool out there) has some variant of rich text strings where the attributes on the rich text is within the string itself
   - any sibling markup following the replacement needs to not be pushed down by the invisible elements of the string
+- `Dialogue.NoOptionSelected` is the special value to send back during option selection to indicate no option should be added.
 
 ### Updated
 
@@ -29,6 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Language Server: 'Undeclared variable' warnings have had their severity reduced to "hint".
 - Fixed a bug where self-closing replacement markup was consuming whitespace
 - `IAttributeMarkerProcessor` now return a `ReplacementMarkerResult` struct instead of just a list of diagnostics
+- Options can fall be told to not select anything, this is intended to support falling through when there are no available options to select
 
 ### Removed
 
