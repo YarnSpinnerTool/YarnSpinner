@@ -440,12 +440,19 @@ namespace Yarn.Compiler
                 optionCount++;
             }
 
+            Instruction endJump = new Instruction { JumpIfFalse = new JumpIfFalseInstruction { Destination = -1 } };
+            jumpToEndOfGroupInstructions.Add(endJump);
+
             this.compiler.Emit(
                 context.Start,
                 context.Stop,
                 // All of the options that we intend to show are now ready to
                 // go. Show them.
                 new Instruction { ShowOptions = new ShowOptionsInstruction { } },
+
+                // our fallthrough jump destination
+                endJump,
+
                 // The top of the stack now contains the name of the label we
                 // want to jump to. Jump to it now.
                 new Instruction { PeekAndJump = new PeekAndJumpInstruction { } }

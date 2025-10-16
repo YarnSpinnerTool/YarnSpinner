@@ -565,6 +565,11 @@ namespace Yarn
         /// <summary>The node that execution will start from.</summary>
         public const string DefaultStartNodeName = "Start";
 
+        /// <summary>
+        /// The value to indicate to the dialogue runner that no option was selected and dialogue should fallthrough to the rest of the program.
+        /// </summary>
+        public const int NoOptionSelected = -1;
+
         /// <summary>Gets or sets the compiled Yarn program.</summary>
         internal Program? Program
         {

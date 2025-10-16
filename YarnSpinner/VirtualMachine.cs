@@ -392,15 +392,24 @@ namespace Yarn
                 This method should only be called after the Dialogue is waiting for the user to select an option.");
             }
 
-            if (selectedOptionID < 0 || selectedOptionID >= state.currentOptions.Count)
+            if (selectedOptionID == Dialogue.NoOptionSelected)
             {
-                throw new ArgumentOutOfRangeException($"{selectedOptionID} is not a valid option ID (expected a number between 0 and {state.currentOptions.Count - 1}.");
+                // Push a flag indicating that no option was selected.
+                // this means the jump if false will pass taking us to the end of the option statement
+                this.state.PushValue(false);
             }
+            else
+            {    
+                if (selectedOptionID < 0 || selectedOptionID >= state.currentOptions.Count)
+                {
+                    throw new ArgumentOutOfRangeException($"{selectedOptionID} is not a valid option ID (expected a number between 0 and {state.currentOptions.Count - 1}.");
+                }
 
-            // We now know what number option was selected; push the
-            // corresponding node name to the stack
-            var destinationInstruction = state.currentOptions[selectedOptionID].destination;
-            state.PushValue(destinationInstruction);
+                // We now know what number option was selected; push the
+                // corresponding node name to the stack
+                var destinationInstruction = state.currentOptions[selectedOptionID].destination;
+                state.PushValue(destinationInstruction);
+            }
 
             // We no longer need the accumulated list of options; clear it
             // so that it's ready for the next one
