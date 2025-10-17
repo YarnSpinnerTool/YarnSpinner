@@ -853,6 +853,11 @@ namespace Yarn
             this.vm.SetSelectedOption(selectedOptionID);
         }
 
+        public void SetCommandComplete()
+        {
+            this.vm.SetCommandComplete();
+        }
+
         /// <summary>
         /// Starts, or continues, execution of the current Program.
         /// </summary>
