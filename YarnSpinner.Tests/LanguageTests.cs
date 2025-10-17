@@ -2,10 +2,12 @@ using CLDRPlurals;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Xunit;
 using Xunit.Abstractions;
 using Yarn;
@@ -808,6 +810,319 @@ Line in a node group
             secondResult.Should().BeEquivalentTo(firstResult, config => config.WithTracing());
 
         }
+
+
+        // Test every file in Tests/TestCases
+        [Theory(Timeout = 1000)]
+        [MemberData(nameof(FileSources), "TestCases")]
+        [MemberData(nameof(FileSources), "TestCases/ParseFailures")]
+        [MemberData(nameof(FileSources), "Issues")]
+        public void TestFastParser(string file)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine($"INFO: Loading file {file}");
+
+            storage.Clear();
+
+            var scriptFilePath = Path.Combine(TestDataPath, file);
+
+            // Attempt to compile this. If there are errors, we do not expect an
+            // exception to be thrown.
+            CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
+
+            compilationJob.Library = dialogue.Library;
+
+            compilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
+
+            var testPlanFilePath = Path.ChangeExtension(scriptFilePath, ".testplan");
+
+            bool testPlanExists = File.Exists(testPlanFilePath);
+
+            if (testPlanExists == false)
+            {
+                // No test plan for this file exists, which indicates that
+                // the file is not expected to compile. We'll actually make
+                // it a test failure if it _does_ compile.
+
+                var result = Compiler.Compile(compilationJob);
+                result.Diagnostics.Where(d => d.Severity == Diagnostic.DiagnosticSeverity.Error).Should().NotBeEmpty("{0} is expected to have compile errors", file);
+                result.Diagnostics.Should().AllSatisfy(d => d.Range.IsValid.Should().BeTrue($"{d} should have a valid range"), "all diagnostics should have a valid position");
+                return;
+            }
+
+            // Compile the job, and expect it to succeed.
+            var fullCompilationResult = Compiler.Compile(compilationJob);
+
+            fullCompilationResult.ContainsErrors.Should().BeFalse();
+
+            // Perform a fast parse on the content.
+            var fileContents = File.ReadAllText(scriptFilePath);
+            var nodeInfos = BasicNodeParser.GetBasicNodeInfos(fileContents, scriptFilePath).ToList();
+
+            nodeInfos.Should().AllSatisfy(n => fullCompilationResult.Program.Nodes.Keys.Should().Contain(n.Title), "every node found by the fast parse should exist in the full parse");
+        }
+
+        [Fact]
+        public void TestFastParserFindingLinks()
+        {
+            // Given
+            var source = @"title: Start
+---
+<<jump DemoJump>>
+<<detour DemoDetour>>
+<<jump {""expression""}>>
+===
+";
+
+            // When
+            var nodeInfos = BasicNodeParser.GetBasicNodeInfos(source, "input");
+
+            // Then
+            var node = nodeInfos.Single();
+            node.Links.Should().HaveCount(2);
+            node.Links.Should().Contain(l => l.LinkType == BasicNodeInfo.Link.Type.Jump && l.Destination == "DemoJump");
+            node.Links.Should().Contain(l => l.LinkType == BasicNodeInfo.Link.Type.Detour && l.Destination == "DemoDetour");
+        }
+    }
+    // Copyright (c) Microsoft Corporation.
+    // Licensed under the MIT License.
+
+    public static class TextCoordinateConverter
+    {
+        /// <summary>
+        /// Gets the indices at which lines start in <paramref name="text"/>.
+        /// </summary>
+        /// <param name="text">The text to get line starts for.</param>
+        /// <returns>A collection of indices indicating where a new line
+        /// starts.</returns>
+        public static ImmutableArray<int> GetLineStarts(string text)
+        {
+            var lineStarts = new List<int> { 0 };
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                char character = text[i];
+
+                if (character == '\r')
+                {
+                    if (i < text.Length - 1 && text[i + 1] == '\n')
+                    {
+                        continue;
+                    }
+
+                    lineStarts.Add(i + 1);
+                }
+
+                if (text[i] == '\n')
+                {
+                    lineStarts.Add(i + 1);
+                }
+            }
+
+            return lineStarts.ToImmutableArray();
+        }
+
+        public static (int line, int character) GetPosition(IReadOnlyList<int> lineStarts, int offset)
+        {
+            if (lineStarts.Count == 0)
+            {
+                throw new ArgumentException($"{nameof(lineStarts)} must not be empty.");
+            }
+
+            if (lineStarts[0] != 0)
+            {
+                throw new ArgumentException($"The first element of {nameof(lineStarts)} must be 0, but got {lineStarts[0]}.");
+            }
+
+            if (offset < 0)
+            {
+                throw new ArgumentException($"{nameof(offset)} must not be a negative number.");
+            }
+
+            int line = BinarySearch(lineStarts, offset);
+
+            if (line < 0)
+            {
+                // If the actual line start was not found,
+                // the binary search returns the 2's-complement of the next line start, so substracting 1.
+                line = ~line - 1;
+            }
+
+            return (line, offset - lineStarts[line]);
+        }
+
+        public static int GetOffset(IReadOnlyList<int> lineStarts, int line, int character)
+        {
+            if (line < 0 || line >= lineStarts.Count)
+            {
+                throw new ArgumentException("The specified line number is not valid.");
+            }
+
+            return lineStarts[line] + character;
+        }
+
+        private static int BinarySearch(IReadOnlyList<int> values, int target)
+        {
+            int start = 0;
+            int end = values.Count - 1;
+
+            while (start <= end)
+            {
+                int mid = start + ((end - start) / 2);
+
+                if (values[mid] == target)
+                {
+                    return mid;
+                }
+                else if (values[mid] < target)
+                {
+                    start = mid + 1;
+                }
+                else
+                {
+                    end = mid - 1;
+                }
+            }
+
+            return ~start;
+        }
+    }
+
+
+
+    public class BasicNodeParser
+    {
+        public static IEnumerable<BasicNodeInfo> GetBasicNodeInfos(string source, string inputName)
+        {
+
+            var lineStarts = TextCoordinateConverter.GetLineStarts(source);
+
+            var nodeMatchRegex = new Regex(
+                @"\s*           # any leading whitespace before the node
+                (?<headers>.*?) # headers (i.e. everything up to the ---)
+                ^\s*---\s*\r?\n # the start-of-node marker, on its own line, being lenient around whitespace
+                (?<body>.*?)    # the body (i.e. everything up to the ===)
+                ^\s*===         # the end-of-node marker, on its own line
+                ", RegexOptions.Singleline | RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace);
+
+            var jumpOrDetourRegex = new Regex(@"
+                <<                   # start of command
+                (?<type>jump|detour) # the command keyword itself
+                \s+                  # gap between keyword and destination
+                (?<destination>\w+)  # destination
+                >>                   # end of command
+                ",
+            RegexOptions.IgnorePatternWhitespace);
+
+            var headerRegex = new Regex(@"
+                (?<key>\w+)          # the header key
+                :\s*                 # key/value delimiter and trailing space
+                (?<value>[^\r\n]*)   # the header body: everything up to the end of the line
+                \r?\n                # end of line
+                ", RegexOptions.IgnorePatternWhitespace);
+
+
+            foreach (Match nodeMatch in nodeMatchRegex.Matches(source))
+            {
+                var startPosition = TextCoordinateConverter.GetPosition(lineStarts, nodeMatch.Index);
+                var endPosition = TextCoordinateConverter.GetPosition(lineStarts, nodeMatch.Index + nodeMatch.Length);
+
+                // thought: TextCoordinateConverter.GetPosition does a binary
+                // search across the entire source, which is overkill here when
+                // we know that the line number is between startPosition and
+                // endPosition, so it might be better to do a linear sweep
+                // through lineStarts starting at startPosition.line
+                var headerGroup = nodeMatch.Groups["headers"];
+                var headerStartPosition = TextCoordinateConverter.GetPosition(lineStarts, headerGroup.Index);
+                var headerEndPosition = TextCoordinateConverter.GetPosition(lineStarts, headerGroup.Index + headerGroup.Length);
+
+                var bodyGroup = nodeMatch.Groups["body"];
+                var bodyStartPosition = TextCoordinateConverter.GetPosition(lineStarts, bodyGroup.Index);
+                var bodyEndPosition = TextCoordinateConverter.GetPosition(lineStarts, bodyGroup.Index + bodyGroup.Length);
+
+                var headersRegion = source.Substring(headerGroup.Index, headerGroup.Length);
+
+                var headerMatches = headerRegex.Matches(headersRegion);
+
+                var headers = headerMatches.Select(m =>
+                {
+                    return new BasicNodeInfo.Header
+                    {
+                        Key = m.Groups["key"].Value,
+                        Value = m.Groups["value"].Value,
+                    };
+                }).ToArray();
+
+                var bodyRegion = source.Substring(bodyGroup.Index, bodyGroup.Length);
+
+                var linkMatches = jumpOrDetourRegex.Matches(bodyRegion);
+
+                var links = linkMatches.Select(l =>
+                {
+                    return new BasicNodeInfo.Link
+                    {
+                        LinkType = l.Groups["type"].Value switch
+                        {
+                            "jump" => BasicNodeInfo.Link.Type.Jump,
+                            "detour" => BasicNodeInfo.Link.Type.Detour,
+                            _ => throw new InvalidOperationException("unexpected link type " + l.Groups["type"].Value)
+                        },
+                        Destination = l.Groups["destination"].Value
+                    };
+                }).ToArray();
+
+                var title = headers.FirstOrDefault(h => h.Key == "title").Value;
+                var subtitle = headers.FirstOrDefault(h => h.Key == "subtitle").Value;
+                var hasWhenHeaders = headers.Any(h => h.Key == "when");
+
+                var uniqueTitle = hasWhenHeaders ? Utility.GetNodeUniqueName(inputName, title, subtitle, headerStartPosition.line + 1) : title;
+
+                var node = new BasicNodeInfo
+                {
+                    InputName = inputName,
+                    NodeRange = new Yarn.Compiler.Range(startPosition.line, startPosition.character, endPosition.line, endPosition.character),
+                    BodyRange = new Yarn.Compiler.Range(bodyStartPosition.line, bodyStartPosition.character, bodyEndPosition.line, bodyEndPosition.character),
+                    HeadersRange = new Yarn.Compiler.Range(headerStartPosition.line, headerStartPosition.character, headerEndPosition.line, headerEndPosition.character),
+
+                    Title = uniqueTitle,
+                    Body = bodyRegion,
+                    Headers = headers,
+                    Links = links,
+                };
+
+                yield return node;
+            }
+        }
+    }
+
+    public struct BasicNodeInfo
+    {
+        public Yarn.Compiler.Range? NodeRange { get; set; }
+        public Yarn.Compiler.Range? TitleHeaderRange { get; set; }
+        public Yarn.Compiler.Range? HeadersRange { get; set; }
+        public Yarn.Compiler.Range? BodyRange { get; set; }
+
+
+        public string? Title { get; set; }
+        public Header[]? Headers { get; set; }
+        public Link[]? Links { get; set; }
+        public string? Body { get; set; }
+
+        public string? InputName { get; set; }
+
+        public struct Link
+        {
+            public enum Type { Jump, Detour }
+            public string? Destination { get; set; }
+            public Type LinkType { get; set; }
+        }
+
+        public struct Header
+        {
+            public string? Key { get; set; }
+            public string? Value { get; set; }
+        }
     }
 }
+
 
