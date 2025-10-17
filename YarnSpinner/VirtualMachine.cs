@@ -274,6 +274,9 @@ namespace Yarn
         [Obsolete("Use CurrentNodeName")]
         public string? currentNodeName => CurrentNodeName;
 
+        // Flags when we are currently in a call to Continue, to prevent a recursive call.
+        private bool isContinuing = false;
+
         public enum ExecutionState
         {
             /// <summary>
@@ -387,7 +390,6 @@ namespace Yarn
         {
             if (CurrentExecutionState != ExecutionState.WaitingOnOptionSelection)
             {
-
                 throw new DialogueException(@"SetSelectedOption was called, but Dialogue wasn't waiting for a selection.
                 This method should only be called after the Dialogue is waiting for the user to select an option.");
             }
@@ -399,7 +401,7 @@ namespace Yarn
                 this.state.PushValue(false);
             }
             else
-            {    
+            {
                 if (selectedOptionID < 0 || selectedOptionID >= state.currentOptions.Count)
                 {
                     throw new ArgumentOutOfRangeException($"{selectedOptionID} is not a valid option ID (expected a number between 0 and {state.currentOptions.Count - 1}.");
@@ -409,6 +411,8 @@ namespace Yarn
                 // corresponding node name to the stack
                 var destinationInstruction = state.currentOptions[selectedOptionID].destination;
                 state.PushValue(destinationInstruction);
+                // pushing a true to indicate that an option was selected
+                state.PushValue(true);
             }
 
             // We no longer need the accumulated list of options; clear it
@@ -422,38 +426,54 @@ namespace Yarn
         /// Resumes execution.
         internal void Continue()
         {
-            CheckCanContinue();
-
-            if (CurrentExecutionState == ExecutionState.DeliveringContent)
+            // if we are already running continue early out to avoid a recursive call.
+            // This is necessary because continue can be called externally, even when it's a bad idea.
+            if (isContinuing)
             {
-                // We were delivering a line, option set, or command, and
-                // the client has called Continue() on us. We're still
-                // inside the stack frame of the client callback, so to
-                // avoid recursion, we'll note that our state has changed
-                // back to Running; when we've left the callback, we'll
-                // continue executing instructions.
-                CurrentExecutionState = ExecutionState.Running;
                 return;
             }
+            CheckCanContinue();
+            isContinuing = true;
 
-            CurrentExecutionState = ExecutionState.Running;
-
-            // Execute instructions until something forces us to stop
-            while (currentNode != null && CurrentExecutionState == ExecutionState.Running)
+            try
             {
-                Instruction currentInstruction = currentNode.Instructions[state.programCounter];
-
-                RunInstruction(currentInstruction);
-
-                state.programCounter++;
-
-                if (currentNode != null && state.programCounter >= currentNode.Instructions.Count)
+                if (CurrentExecutionState == ExecutionState.DeliveringContent)
                 {
-                    ReturnFromNode(currentNode);
-                    CurrentExecutionState = ExecutionState.Stopped;
-                    DialogueCompleteHandler?.Invoke();
-                    LogDebugMessage?.Invoke("Run complete.");
+                    // We were delivering a line, option set, or command, and
+                    // the client has called Continue() on us. We're still
+                    // inside the stack frame of the client callback, so to
+                    // avoid recursion, we'll note that our state has changed
+                    // back to Running; when we've left the callback, we'll
+                    // continue executing instructions.
+                    CurrentExecutionState = ExecutionState.Running;
+                    return;
                 }
+
+                CurrentExecutionState = ExecutionState.Running;
+
+                // Execute instructions until something forces us to stop
+                while (currentNode != null && CurrentExecutionState == ExecutionState.Running)
+                {
+                    Instruction currentInstruction = currentNode.Instructions[state.programCounter];
+
+                    RunInstruction(currentInstruction);
+
+                    state.programCounter++;
+
+                    if (currentNode != null && state.programCounter >= currentNode.Instructions.Count)
+                    {
+                        ReturnFromNode(currentNode);
+                        CurrentExecutionState = ExecutionState.Stopped;
+                        DialogueCompleteHandler?.Invoke();
+                        LogDebugMessage?.Invoke("Run complete.");
+                    }
+                }
+            }
+            finally
+            {
+                // clearing continuing flag, this call to continue is done
+                // we can now be called
+                isContinuing = false;
             }
         }
 
@@ -688,7 +708,6 @@ namespace Yarn
                             // immediately.
                             CurrentExecutionState = ExecutionState.Running;
                         }
-
                         break;
                     }
                 case Instruction.InstructionTypeOneofCase.PushString:

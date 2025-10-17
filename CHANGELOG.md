@@ -31,6 +31,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fixed a bug where self-closing replacement markup was consuming whitespace
 - `IAttributeMarkerProcessor` now return a `ReplacementMarkerResult` struct instead of just a list of diagnostics
 - Options can fall be told to not select anything, this is intended to support falling through when there are no available options to select
+  - you will have to recompile your Yarn Projects to make this work
 
 ### Removed
 

@@ -453,6 +453,10 @@ namespace Yarn.Compiler
                 // our fallthrough jump destination
                 endJump,
 
+                // we didn't jump so top of the stack contains a true
+                // clean this up by popping it off
+                new Instruction { Pop = new PopInstruction { } },
+
                 // The top of the stack now contains the name of the label we
                 // want to jump to. Jump to it now.
                 new Instruction { PeekAndJump = new PeekAndJumpInstruction { } }
@@ -468,6 +472,9 @@ namespace Yarn.Compiler
                 // Make this option's AddOption instruction point at where we
                 // are now.
                 addOptionInstructions[optionCount].Destination = CurrentInstructionNumber;
+                
+                // top of the stack contains our jumped destination, popping that off the stack
+                compiler.Emit(new Instruction { Pop = new PopInstruction { } });
 
                 if (shortcut.line_statement().line_condition() is YarnSpinnerParser.LineOnceConditionContext once)
                 {
@@ -517,12 +524,6 @@ namespace Yarn.Compiler
             {
                 jump.Destination = CurrentInstructionNumber;
             }
-
-            this.compiler.Emit(
-                context.Stop,
-                context.Stop,
-                new Instruction { Pop = new PopInstruction { } }
-            );
 
             return 0;
         }
