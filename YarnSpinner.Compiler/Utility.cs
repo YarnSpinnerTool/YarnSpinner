@@ -665,7 +665,7 @@ namespace Yarn.Compiler
 
             // The node group name of a node is its title, as it appears in the
             // source.
-            sourceTitle = uniqueTitle;
+            sourceTitle = uniqueTitle!;
 
             subtitle = nodeContext.GetHeader("subtitle")?.header_value?.Text;
 
@@ -679,25 +679,7 @@ namespace Yarn.Compiler
 
                 nodeGroupName = sourceTitle;
 
-                // Calculate a new unique title for this node and update its title header
-                if (subtitle != null && string.IsNullOrEmpty(subtitle) == false)
-                {
-                    // The node's unique title is derived from its original
-                    // title and its subtitle.
-                    uniqueTitle = $"{sourceTitle}.{subtitle}";
-                }
-                else
-                {
-                    // The node's unique title is derived from its original
-                    // title, the name of the file it's in, and the position
-                    // it's in in the file.
-                    string checksum = CRC32.GetChecksumString(
-                        (sourceFileName ?? "")
-                        + uniqueTitle
-                        + nodeContext.Start.Line.ToString());
-
-                    uniqueTitle = $"{sourceTitle}.{checksum}";
-                }
+                uniqueTitle = GetNodeUniqueName(sourceFileName, sourceTitle, subtitle, nodeContext.Start.Line);
             }
 
             if (uniqueTitle == null || sourceTitle == null)
@@ -707,6 +689,30 @@ namespace Yarn.Compiler
             }
 
             return true;
+
+        }
+
+        internal static string GetNodeUniqueName(string? sourceFileName, string title, string? subtitle, int startLine)
+        {
+            // Calculate a new unique title for this node and update its title header
+            if (subtitle != null && string.IsNullOrEmpty(subtitle) == false)
+            {
+                // The node's unique title is derived from its original
+                // title and its subtitle.
+                return $"{title}.{subtitle}";
+            }
+            else
+            {
+                // The node's unique title is derived from its original
+                // title, the name of the file it's in, and the position
+                // it's in in the file.
+                string checksum = CRC32.GetChecksumString(
+                    (sourceFileName ?? "")
+                    + title
+                    + startLine.ToString());
+
+                return $"{title}.{checksum}";
+            }
         }
     }
 
@@ -736,5 +742,6 @@ namespace Yarn.Compiler
         /// <see cref="hasPositionalInformation"/> is <see langword="true"/>.
         /// </summary>
         public (int x, int y) position;
+
     }
 }
