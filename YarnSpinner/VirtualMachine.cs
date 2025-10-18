@@ -423,17 +423,19 @@ namespace Yarn
             CurrentExecutionState = ExecutionState.WaitingForContinue;
         }
 
-        public void SetCommandComplete()
+        internal void SignalContentComplete()
         {
             if (_executionState != ExecutionState.DeliveringContent)
             {
-                throw new InvalidOperationException("SetCommandComplete can only be called when a command is being dispatched.");
+                throw new InvalidOperationException($"{nameof(SignalContentComplete)} can only be called when " +
+                    "a command is being dispatched.");
             }
             if (!isContinuing)
             {
-                throw new InvalidOperationException("SetCommandComplete can only be called when a command synchronously completes. The VM is not currently running an instruction.");
-
+                throw new InvalidOperationException($"{nameof(SignalContentComplete)} can only be called when " +
+                    "a command synchronously completes. The VM is not currently running an instruction.");
             }
+
             _executionState = ExecutionState.Running;
         }
 

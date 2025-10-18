@@ -853,9 +853,15 @@ namespace Yarn
             this.vm.SetSelectedOption(selectedOptionID);
         }
 
-        public void SetCommandComplete()
+        /// <summary>
+        /// Signals that the currently running content has completed synchronously.
+        /// </summary>
+        /// <remarks>
+        /// This method is not intended to be called by user code.
+        /// </remarks>
+        public void SignalContentComplete()
         {
-            this.vm.SetCommandComplete();
+            this.vm.SignalContentComplete();
         }
 
         /// <summary>
