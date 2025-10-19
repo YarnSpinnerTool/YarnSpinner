@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - this is necessary because both Unity and Godot (and likely every tool out there) has some variant of rich text strings where the attributes on the rich text is within the string itself
   - any sibling markup following the replacement needs to not be pushed down by the invisible elements of the string
 - `Dialogue.NoOptionSelected` is the special value to send back during option selection to indicate no option should be added.
+- Fixed an issue where variables declared with negative numbers as their initial value would become smart variables ([#421](https://github.com/YarnSpinnerTool/YarnSpinner/issues/421))
 
 ### Updated
 
