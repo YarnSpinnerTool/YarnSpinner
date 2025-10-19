@@ -14,6 +14,10 @@ title: Start
     PieMaker: You can't afford one!
 <<endif>>
 
+// Negative numbers are not interpreted as smart variables (issue #421)
+<<declare $x = -1>>
+<<set $x += 1>>
+
 // Variables are allowed to appear multiple times in a smart variable
 <<declare $a = false as bool>>
 <<declare $b = false as bool>>

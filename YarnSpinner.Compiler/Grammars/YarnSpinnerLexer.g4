@@ -230,6 +230,12 @@ KEYWORD_TRUE  : 'true' ;
 KEYWORD_FALSE : 'false' ;
 KEYWORD_NULL : 'null' ;
 
+// Integer or decimal numbers.
+NUMBER
+    : ('-')? INT
+    | ('-')? INT '.' INT
+    ;
+
 OPERATOR_ASSIGNMENT : '=' | 'to' ;
 
 OPERATOR_LOGICAL_LESS_THAN_EQUALS : '<=' | 'lte' ;
@@ -279,12 +285,6 @@ VAR_ID : '$' ID ;
 
 // Dots ('.')
 DOT : '.' ;
-
-// Integer or decimal numbers.
-NUMBER
-    : INT
-    | INT '.' INT
-    ;
 
 // Newlines (only syntactically relevant when inside a 'when' clause). 
 // We use a newline to indicate that the expression is over, but only
