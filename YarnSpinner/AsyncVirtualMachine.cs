@@ -1,6 +1,6 @@
 // Copyright Yarn Spinner Pty Ltd
 // Licensed under the MIT License. See LICENSE.md in project root for license information.
-
+#pragma warning disable CA2007
 namespace Yarn
 {
     using System;
@@ -118,17 +118,55 @@ namespace Yarn
             state = new State();
         }
 
-        internal interface DialogueResponder
+        // ok so the thinking is start doesnt do the callback thing
+        // because you started it, you must have done your setup alread surely
+        // but I do still need to call into the infrastructure right?
+        // so basically the flow will be:
+        // player clicks on start
+        // dialogue sets the start node up
+        // dialogue sets itself up as the responder
+        // dialogue calls continue
+        // dialogue returns
+        // the vm when start is called (which will call continue as a forget)
+
+        public interface DialogueResponder
         {
             ValueTask HandleLine(Line line, CancellationToken token);
             ValueTask<int> HandleOptions(OptionSet options, CancellationToken token);
-            ValueTask HandleCommands(Command command, CancellationToken token);
+            ValueTask HandleCommand(Command command, CancellationToken token);
             ValueTask HandleNodeStart(string node, CancellationToken token);
             ValueTask HandleNodeComplete(string node, CancellationToken token);
             ValueTask HandleDialogueComplete();
             ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token);
         }
-        public DialogueResponder dialogueResponder;
+        private DialogueResponder? dialogueResponder;
+        public DialogueResponder Responder
+        {
+            get
+            {
+                if (dialogueResponder == null)
+                {
+                    throw new ArgumentNullException($"Attempted to access {nameof(Responder)} without having set one.");
+                }
+                return dialogueResponder;
+            }
+            set
+            {
+                dialogueResponder = value;
+            }
+        }
+
+        public bool IsDialogueRunning
+        {
+            get
+            {
+                if (dialogueCancellationSource == null || dialogueCancellationSource.IsCancellationRequested)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
 
         public IVariableStorage VariableStorage { get; set; }
         public Library Library { get; set; }
@@ -148,7 +186,12 @@ namespace Yarn
 
         internal Node? currentNode;
 
-        CancellationTokenSource dialogueCancellationSource = new CancellationTokenSource();
+        CancellationTokenSource? dialogueCancellationSource;
+
+        // the global token exists so that the cancellation source can be linked into this token
+        // this way in the case of Unity it can be the Application.exitCancellationToken
+        // in other tools they can use their equivalent but mostly exists for testing porpoises
+        public CancellationToken GlobalToken;
 
         public ValueTask SetNode(string nodeName)
         {
@@ -167,7 +210,7 @@ namespace Yarn
                 throw new DialogueException($"No node named {nodeName} has been loaded.");
             }
 
-            LogDebugMessage?.Invoke("Running node " + nodeName);
+            LogDebugMessage?.Invoke("Setting node " + nodeName);
 
             currentNode = Program.Nodes[nodeName];
 
@@ -179,63 +222,71 @@ namespace Yarn
             state.currentNodeName = nodeName;
             state.programCounter = 0;
 
-            await dialogueResponder.HandleNodeStart(nodeName, dialogueCancellationSource.Token);
-
             // figure out what lines we anticipate running
             var stringIDs = Program.LineIDsForNode(nodeName);
 
-            // Deliver the string IDs
-            await dialogueResponder.PrepareForLines(stringIDs ?? new List<string>(), dialogueCancellationSource.Token);
+            // if we are already running dialogue we have a specific token ready for this
+            // but this can be called before starting dialogue
+            // and in those cases we won't yet have a token so we fall back to using the global one
+            var token = dialogueCancellationSource?.Token ?? GlobalToken;
+
+            // Deliver the string ID
+            await Responder.PrepareForLines(stringIDs ?? new List<string>(), token);
         }
 
         public async ValueTask Stop()
         {
-            await dialogueResponder.HandleDialogueComplete();
+            // we have already cancelled dialogue, no reason to do it again
+            if (dialogueCancellationSource == null || dialogueCancellationSource.IsCancellationRequested)
+            {
+                LogDebugMessage?.Invoke("Dialogue has already been cancelled");
+                return;
+            }
+
+            await Responder.HandleDialogueComplete();
+
             currentNode = null;
             dialogueCancellationSource.Cancel();
-
-            // TODO work out a better way to signal dialogue has stopped?
+            dialogueCancellationSource = null;
+            ResetState();
         }
 
-        public void SetSelectedOption(int selectedOptionID)
+        public async ValueTask Start()
         {
-            if (selectedOptionID == Dialogue.NoOptionSelected)
+            if (this.currentNode == null)
             {
-                // Push a flag indicating that no option was selected.
-                // this means the jump if false will pass taking us to the end of the option statement
-                this.state.PushValue(false);
-            }
-            else
-            {
-                if (selectedOptionID < 0 || selectedOptionID >= state.currentOptions.Count)
-                {
-                    throw new ArgumentOutOfRangeException($"{selectedOptionID} is not a valid option ID (expected a number between 0 and {state.currentOptions.Count - 1}.");
-                }
-
-                // We now know what number option was selected; push the
-                // corresponding node name to the stack
-                var destinationInstruction = state.currentOptions[selectedOptionID].destination;
-                state.PushValue(destinationInstruction);
-                // pushing a true to indicate that an option was selected
-                state.PushValue(true);
+                LogErrorMessage?.Invoke("Current node has not been set, unable to start dialogue");
+                return;
             }
 
-            // We no longer need the accumulated list of options; clear it
-            // so that it's ready for the next one
-            state.currentOptions.Clear();
-        }
+            LogDebugMessage?.Invoke($"Starting dialogue with {this.currentNode}");
 
-        /// Resumes execution.
-        internal async ValueTask Continue()
-        {
+            // need to see if we are already running
+            // if we are then we 
+            if (dialogueCancellationSource != null && !dialogueCancellationSource.IsCancellationRequested)
+            {
+                LogErrorMessage?.Invoke("Dialogue is already running, cannot start during this");
+                throw new DialogueException("Dialogue is already running, cannot start new dialogue while existing dialogue is in progress. Stop the current dialogue before starting anew");
+            }
+
+            // refreshing our dialogue cancellation token
+            // the old one will have been cancelled either by dialogue finishing or being stopped
+            dialogueCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(GlobalToken);
+            
+            // kick off executing instructions
             var canContinue = true;
 
             // Execute instructions until something forces us to stop
             while (currentNode != null && canContinue)
             {
+                if (dialogueCancellationSource.IsCancellationRequested)
+                {
+                    return;
+                }
+
                 Instruction currentInstruction = currentNode.Instructions[state.programCounter];
 
-                canContinue = await RunInstruction(currentInstruction);
+                canContinue = await RunInstruction(currentInstruction, dialogueCancellationSource.Token);
 
                 state.programCounter++;
 
@@ -248,6 +299,7 @@ namespace Yarn
             }
         }
 
+
         private async ValueTask ReturnFromNode(Node? node)
         {
             if (node == null)
@@ -255,7 +307,11 @@ namespace Yarn
                 // Nothing to do.
                 return;
             }
-            await dialogueResponder.HandleNodeComplete(node.Name, dialogueCancellationSource.Token);
+            if (dialogueCancellationSource == null || dialogueCancellationSource.IsCancellationRequested)
+            {
+                return;
+            }
+            await Responder.HandleNodeComplete(node.Name, dialogueCancellationSource.Token);
 
             string? nodeTrackingVariable = node.TrackingVariableName;
             if (nodeTrackingVariable != null)
@@ -272,7 +328,7 @@ namespace Yarn
             }
         }
 
-        internal async ValueTask<bool> RunInstruction(Instruction i)
+        internal async ValueTask<bool> RunInstruction(Instruction i, CancellationToken cancellationToken)
         {
             switch (i.InstructionTypeCase)
             {
@@ -290,7 +346,6 @@ namespace Yarn
                         // passes it to the client as a line
                         string stringKey = i.RunLine.LineID;
 
-
                         var expressionCount = i.RunLine.SubstitutionCount;
 
                         var strings = new string[expressionCount];
@@ -302,7 +357,7 @@ namespace Yarn
 
                         Line line = new Line(stringKey, strings);
 
-                        await dialogueResponder.HandleLine(line, dialogueCancellationSource.Token);
+                        await Responder.HandleLine(line, cancellationToken);
 
                         return true;
                     }
@@ -336,7 +391,7 @@ namespace Yarn
 
                         var command = new Command(commandText);
 
-                        await dialogueResponder.HandleCommands(command, dialogueCancellationSource.Token);
+                        await Responder.HandleCommand(command, cancellationToken);
 
                         return true;
                     }
@@ -411,8 +466,32 @@ namespace Yarn
                             optionChoices.Add(new OptionSet.Option(option.line, optionIndex, option.destination, option.enabled));
                         }
 
-                        var chosenOption = await dialogueResponder.HandleOptions(new OptionSet(optionChoices.ToArray()), dialogueCancellationSource.Token);
-                        SetSelectedOption(chosenOption);
+                        var chosenOption = await Responder.HandleOptions(new OptionSet(optionChoices.ToArray()), cancellationToken);
+                        
+                        if (chosenOption == Dialogue.NoOptionSelected)
+                        {
+                            // Push a flag indicating that no option was selected.
+                            // this means the jump if false will pass taking us to the end of the option statement
+                            this.state.PushValue(false);
+                        }
+                        else
+                        {
+                            if (chosenOption < 0 || chosenOption >= state.currentOptions.Count)
+                            {
+                                throw new ArgumentOutOfRangeException($"{chosenOption} is not a valid option ID (expected a number between 0 and {state.currentOptions.Count - 1}.");
+                            }
+
+                            // We now know what number option was selected; push the
+                            // corresponding node name to the stack
+                            var destinationInstruction = state.currentOptions[chosenOption].destination;
+                            state.PushValue(destinationInstruction);
+                            // pushing a true to indicate that an option was selected
+                            state.PushValue(true);
+                        }
+
+                        // We no longer need the accumulated list of options; clear it
+                        // so that it's ready for the next one
+                        state.currentOptions.Clear();
 
                         return true;
                     }
@@ -546,16 +625,16 @@ namespace Yarn
                         return false;
                     }
                 case Instruction.InstructionTypeOneofCase.RunNode:
-                    ExecuteJumpToNode(i.RunNode.NodeName, false);
+                    await ExecuteJumpToNode(i.RunNode.NodeName, false);
                     return true;
                 case Instruction.InstructionTypeOneofCase.PeekAndRunNode:
-                    ExecuteJumpToNode(null, false);
+                    await ExecuteJumpToNode(null, false);
                     return true;
                 case Instruction.InstructionTypeOneofCase.DetourToNode:
-                    ExecuteJumpToNode(i.DetourToNode.NodeName, true);
+                    await ExecuteJumpToNode(i.DetourToNode.NodeName, true);
                     return true;
                 case Instruction.InstructionTypeOneofCase.PeekAndDetourToNode:
-                    ExecuteJumpToNode(null, true);
+                    await ExecuteJumpToNode(null, true);
                     return true;
                 case Instruction.InstructionTypeOneofCase.Return:
                     {
@@ -689,7 +768,7 @@ namespace Yarn
 
         private readonly List<ContentSaliencyOption> saliencyCandidateList = new List<ContentSaliencyOption>();
 
-        private void ExecuteJumpToNode(string? nodeName, bool isDetour)
+        private async ValueTask ExecuteJumpToNode(string? nodeName, bool isDetour)
         {
             if (isDetour)
             {
@@ -700,14 +779,14 @@ namespace Yarn
             {
                 // We are jumping straight to another node. Unwind the current
                 // call stack and issue a 'node complete' event for every node.
-                ReturnFromNode(this.Program?.Nodes[CurrentNodeName]);
+                await ReturnFromNode(this.Program?.Nodes[CurrentNodeName]);
 
                 while (state.CanReturn)
                 {
                     var poppedNodeName = state.PopCallStack().nodeName;
                     if (poppedNodeName != null)
                     {
-                        ReturnFromNode(this.Program?.Nodes[poppedNodeName]);
+                        await ReturnFromNode(this.Program?.Nodes[poppedNodeName]);
                     }
                 }
 
@@ -719,7 +798,7 @@ namespace Yarn
                 nodeName = state.PeekValue().ConvertTo<string>();
             }
 
-            SetNode(nodeName, clearState: !isDetour);
+            await SetNode(nodeName, clearState: !isDetour);
 
             // Decrement program counter here, because it will
             // be incremented when this function returns, and
@@ -845,8 +924,6 @@ namespace Yarn
                 // The function threw an exception. Re-throw the exception it threw.
                 throw ex.InnerException;
             }
-
-
         }
     }
 }
