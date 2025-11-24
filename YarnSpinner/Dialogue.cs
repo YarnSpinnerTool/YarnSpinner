@@ -555,12 +555,32 @@ namespace Yarn
         /// Invoked when the Dialogue needs to report debugging
         /// information.
         /// </summary>
-        public Logger? LogDebugMessage { get; set; }
+        public Logger? LogDebugMessage
+        {
+            get
+            {
+                return vm.LogDebugMessage;
+            }
+            set
+            {
+                vm.LogDebugMessage = value;
+            }
+        }
 
         /// <summary>
         /// Invoked when the Dialogue needs to report an error.
         /// </summary>
-        public Logger? LogErrorMessage { get; set; }
+        public Logger? LogErrorMessage
+        {
+            get
+            {
+                return vm.LogErrorMessage;
+            }
+            set
+            {
+                vm.LogErrorMessage = value;
+            }
+        }
 
         /// <summary>The node that execution will start from.</summary>
         public const string DefaultStartNodeName = "Start";
