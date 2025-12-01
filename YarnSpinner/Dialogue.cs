@@ -557,14 +557,8 @@ namespace Yarn
         /// </summary>
         public Logger? LogDebugMessage
         {
-            get
-            {
-                return vm.LogDebugMessage;
-            }
-            set
-            {
-                vm.LogDebugMessage = value;
-            }
+            get => vm.LogDebugMessage;
+            set => vm.LogDebugMessage = value;
         }
 
         /// <summary>
@@ -572,21 +566,16 @@ namespace Yarn
         /// </summary>
         public Logger? LogErrorMessage
         {
-            get
-            {
-                return vm.LogErrorMessage;
-            }
-            set
-            {
-                vm.LogErrorMessage = value;
-            }
+            get => vm.LogErrorMessage;
+            set => vm.LogErrorMessage = value;
         }
 
-        /// <summary>The node that execution will start from.</summary>
+        /// <summary>The default name of the node that execution will start
+        /// from.</summary>
         public const string DefaultStartNodeName = "Start";
 
         /// <summary>
-        /// The value to indicate to the dialogue runner that no option was selected and dialogue should fallthrough to the rest of the program.
+        /// The value to indicate to the dialogue runner that no option was selected and dialogue should fall through to the rest of the program.
         /// </summary>
         public const int NoOptionSelected = -1;
 

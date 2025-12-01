@@ -47,6 +47,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fixed a bug where self-closing replacement markup was consuming whitespace
 - `IAttributeMarkerProcessor.ProcessReplacementMarker` now returns a `ReplacementMarkerResult` struct instead of just a list of diagnostics.
 - Type Checker: Fixed a crash that could occur if multiple declarations with the same name were provided.
+- `Dialogue.LogDebugMessage` and `Dialogue.LogErrorMessage` now wrap the values of `VirtualMachine.LogDebugMessage and VirtualMachine.LogErrorMessage`, respectively.
 
 ### Removed
 
