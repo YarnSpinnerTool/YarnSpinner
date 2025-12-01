@@ -1,0 +1,19 @@
+title: Start
+---
+Visited: {visited("NodeGroup")}
+Visit Count: {visited_count("NodeGroup")}
+<<detour NodeGroup>>
+Visited: {visited("NodeGroup")}
+Visit Count: {visited_count("NodeGroup")}
+<<detour NodeGroup>>
+Visited: {visited("NodeGroup")}
+Visit Count: {visited_count("NodeGroup")}
+<<detour NodeGroup>>
+Visited: {visited("NodeGroup")}
+Visit Count: {visited_count("NodeGroup")}
+===
+title: NodeGroup
+when: always
+---
+I'm a node group
+===

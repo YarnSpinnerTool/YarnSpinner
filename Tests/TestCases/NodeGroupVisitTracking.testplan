@@ -1,0 +1,14 @@
+line: `Visited: False`
+line: `Visit Count: 0`
+
+line: `I'm a node group`
+line: `Visited: True`
+line: `Visit Count: 1`
+
+line: `I'm a node group`
+line: `Visited: True`
+line: `Visit Count: 2`
+
+line: `I'm a node group`
+line: `Visited: True`
+line: `Visit Count: 3`
