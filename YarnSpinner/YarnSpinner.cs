@@ -24,88 +24,89 @@ namespace Yarn {
     static YarnSpinnerReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChJ5YXJuX3NwaW5uZXIucHJvdG8SBFlhcm4i+QEKB1Byb2dyYW0SDAoEbmFt",
+            "ChJ5YXJuX3NwaW5uZXIucHJvdG8SBFlhcm4ikwIKB1Byb2dyYW0SDAoEbmFt",
             "ZRgBIAEoCRInCgVub2RlcxgCIAMoCzIYLllhcm4uUHJvZ3JhbS5Ob2Rlc0Vu",
             "dHJ5EjgKDmluaXRpYWxfdmFsdWVzGAMgAygLMiAuWWFybi5Qcm9ncmFtLklu",
-            "aXRpYWxWYWx1ZXNFbnRyeRo4CgpOb2Rlc0VudHJ5EgsKA2tleRgBIAEoCRIZ",
-            "CgV2YWx1ZRgCIAEoCzIKLllhcm4uTm9kZToCOAEaQwoSSW5pdGlhbFZhbHVl",
-            "c0VudHJ5EgsKA2tleRgBIAEoCRIcCgV2YWx1ZRgCIAEoCzINLllhcm4uT3Bl",
-            "cmFuZDoCOAEidAoETm9kZRIMCgRuYW1lGAEgASgJEicKDGluc3RydWN0aW9u",
-            "cxgHIAMoCzIRLllhcm4uSW5zdHJ1Y3Rpb24SHQoHaGVhZGVycxgGIAMoCzIM",
-            "Lllhcm4uSGVhZGVySgQIAhADSgQIAxAESgQIBBAFSgQIBRAGIiQKBkhlYWRl",
-            "chILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAkirRQKC0luc3RydWN0aW9u",
-            "EjUKBmp1bXBUbxgBIAEoCzIjLllhcm4uSW5zdHJ1Y3Rpb24uSnVtcFRvSW5z",
-            "dHJ1Y3Rpb25IABI/CgtwZWVrQW5kSnVtcBgCIAEoCzIoLllhcm4uSW5zdHJ1",
-            "Y3Rpb24uUGVla0FuZEp1bXBJbnN0cnVjdGlvbkgAEjcKB3J1bkxpbmUYAyAB",
-            "KAsyJC5ZYXJuLkluc3RydWN0aW9uLlJ1bkxpbmVJbnN0cnVjdGlvbkgAEj0K",
-            "CnJ1bkNvbW1hbmQYBCABKAsyJy5ZYXJuLkluc3RydWN0aW9uLlJ1bkNvbW1h",
-            "bmRJbnN0cnVjdGlvbkgAEjsKCWFkZE9wdGlvbhgFIAEoCzImLllhcm4uSW5z",
-            "dHJ1Y3Rpb24uQWRkT3B0aW9uSW5zdHJ1Y3Rpb25IABI/CgtzaG93T3B0aW9u",
-            "cxgGIAEoCzIoLllhcm4uSW5zdHJ1Y3Rpb24uU2hvd09wdGlvbnNJbnN0cnVj",
-            "dGlvbkgAEj0KCnB1c2hTdHJpbmcYByABKAsyJy5ZYXJuLkluc3RydWN0aW9u",
-            "LlB1c2hTdHJpbmdJbnN0cnVjdGlvbkgAEjsKCXB1c2hGbG9hdBgIIAEoCzIm",
-            "Lllhcm4uSW5zdHJ1Y3Rpb24uUHVzaEZsb2F0SW5zdHJ1Y3Rpb25IABI5Cghw",
-            "dXNoQm9vbBgJIAEoCzIlLllhcm4uSW5zdHJ1Y3Rpb24uUHVzaEJvb2xJbnN0",
-            "cnVjdGlvbkgAEj8KC2p1bXBJZkZhbHNlGAogASgLMiguWWFybi5JbnN0cnVj",
-            "dGlvbi5KdW1wSWZGYWxzZUluc3RydWN0aW9uSAASLwoDcG9wGAsgASgLMiAu",
-            "WWFybi5JbnN0cnVjdGlvbi5Qb3BJbnN0cnVjdGlvbkgAEj0KCGNhbGxGdW5j",
-            "GAwgASgLMikuWWFybi5JbnN0cnVjdGlvbi5DYWxsRnVuY3Rpb25JbnN0cnVj",
-            "dGlvbkgAEkEKDHB1c2hWYXJpYWJsZRgNIAEoCzIpLllhcm4uSW5zdHJ1Y3Rp",
-            "b24uUHVzaFZhcmlhYmxlSW5zdHJ1Y3Rpb25IABJDCg1zdG9yZVZhcmlhYmxl",
-            "GA4gASgLMiouWWFybi5JbnN0cnVjdGlvbi5TdG9yZVZhcmlhYmxlSW5zdHJ1",
-            "Y3Rpb25IABIxCgRzdG9wGA8gASgLMiEuWWFybi5JbnN0cnVjdGlvbi5TdG9w",
-            "SW5zdHJ1Y3Rpb25IABI3CgdydW5Ob2RlGBAgASgLMiQuWWFybi5JbnN0cnVj",
-            "dGlvbi5SdW5Ob2RlSW5zdHJ1Y3Rpb25IABJFCg5wZWVrQW5kUnVuTm9kZRgR",
-            "IAEoCzIrLllhcm4uSW5zdHJ1Y3Rpb24uUGVla0FuZFJ1bk5vZGVJbnN0cnVj",
-            "dGlvbkgAEkEKDGRldG91clRvTm9kZRgSIAEoCzIpLllhcm4uSW5zdHJ1Y3Rp",
-            "b24uRGV0b3VyVG9Ob2RlSW5zdHJ1Y3Rpb25IABJEChNwZWVrQW5kRGV0b3Vy",
-            "VG9Ob2RlGBMgASgLMiUuWWFybi5JbnN0cnVjdGlvbi5QZWVrQW5kRGV0b3Vy",
-            "VG9Ob2RlSAASNQoGcmV0dXJuGBQgASgLMiMuWWFybi5JbnN0cnVjdGlvbi5S",
-            "ZXR1cm5JbnN0cnVjdGlvbkgAElEKFGFkZFNhbGllbmN5Q2FuZGlkYXRlGBUg",
-            "ASgLMjEuWWFybi5JbnN0cnVjdGlvbi5BZGRTYWxpZW5jeUNhbmRpZGF0ZUlu",
-            "c3RydWN0aW9uSAASYQocYWRkU2FsaWVuY3lDYW5kaWRhdGVGcm9tTm9kZRgW",
-            "IAEoCzI5Lllhcm4uSW5zdHJ1Y3Rpb24uQWRkU2FsaWVuY3lDYW5kaWRhdGVG",
-            "cm9tTm9kZUluc3RydWN0aW9uSAASVwoXc2VsZWN0U2FsaWVuY3lDYW5kaWRh",
-            "dGUYFyABKAsyNC5ZYXJuLkluc3RydWN0aW9uLlNlbGVjdFNhbGllbmN5Q2Fu",
-            "ZGlkYXRlSW5zdHJ1Y3Rpb25IABoYChZQZWVrQW5kSnVtcEluc3RydWN0aW9u",
-            "GhsKGVBlZWtBbmRSdW5Ob2RlSW5zdHJ1Y3Rpb24aGAoWU2hvd09wdGlvbnNJ",
-            "bnN0cnVjdGlvbhomChVQdXNoU3RyaW5nSW5zdHJ1Y3Rpb24SDQoFdmFsdWUY",
-            "ASABKAkaJQoUUHVzaEZsb2F0SW5zdHJ1Y3Rpb24SDQoFdmFsdWUYASABKAIa",
-            "JAoTUHVzaEJvb2xJbnN0cnVjdGlvbhINCgV2YWx1ZRgBIAEoCBooChFKdW1w",
-            "VG9JbnN0cnVjdGlvbhITCgtkZXN0aW5hdGlvbhgBIAEoBRo/ChJSdW5MaW5l",
-            "SW5zdHJ1Y3Rpb24SDgoGbGluZUlEGAEgASgJEhkKEXN1YnN0aXR1dGlvbkNv",
-            "dW50GAIgASgFGkcKFVJ1bkNvbW1hbmRJbnN0cnVjdGlvbhITCgtjb21tYW5k",
-            "VGV4dBgBIAEoCRIZChFzdWJzdGl0dXRpb25Db3VudBgCIAEoBRpsChRBZGRP",
-            "cHRpb25JbnN0cnVjdGlvbhIOCgZsaW5lSUQYASABKAkSEwoLZGVzdGluYXRp",
-            "b24YAiABKAUSGQoRc3Vic3RpdHV0aW9uQ291bnQYAyABKAUSFAoMaGFzQ29u",
-            "ZGl0aW9uGAQgASgIGi0KFkp1bXBJZkZhbHNlSW5zdHJ1Y3Rpb24SEwoLZGVz",
-            "dGluYXRpb24YASABKAUaEAoOUG9wSW5zdHJ1Y3Rpb24aLwoXQ2FsbEZ1bmN0",
-            "aW9uSW5zdHJ1Y3Rpb24SFAoMZnVuY3Rpb25OYW1lGAEgASgJGi8KF1B1c2hW",
-            "YXJpYWJsZUluc3RydWN0aW9uEhQKDHZhcmlhYmxlTmFtZRgBIAEoCRowChhT",
-            "dG9yZVZhcmlhYmxlSW5zdHJ1Y3Rpb24SFAoMdmFyaWFibGVOYW1lGAEgASgJ",
-            "GhEKD1N0b3BJbnN0cnVjdGlvbhomChJSdW5Ob2RlSW5zdHJ1Y3Rpb24SEAoI",
-            "bm9kZU5hbWUYASABKAkaKwoXRGV0b3VyVG9Ob2RlSW5zdHJ1Y3Rpb24SEAoI",
-            "bm9kZU5hbWUYASABKAkaFQoTUGVla0FuZERldG91clRvTm9kZRoTChFSZXR1",
-            "cm5JbnN0cnVjdGlvbhpiCh9BZGRTYWxpZW5jeUNhbmRpZGF0ZUluc3RydWN0",
-            "aW9uEhEKCWNvbnRlbnRJRBgBIAEoCRIXCg9jb21wbGV4aXR5U2NvcmUYAiAB",
-            "KAUSEwoLZGVzdGluYXRpb24YAyABKAUaUAonQWRkU2FsaWVuY3lDYW5kaWRh",
-            "dGVGcm9tTm9kZUluc3RydWN0aW9uEhAKCG5vZGVOYW1lGAEgASgJEhMKC2Rl",
-            "c3RpbmF0aW9uGAIgASgFGiQKIlNlbGVjdFNhbGllbmN5Q2FuZGlkYXRlSW5z",
-            "dHJ1Y3Rpb25CEQoPSW5zdHJ1Y3Rpb25UeXBlIugCCg1JbnN0cnVjdGlvblYx",
-            "EioKBm9wY29kZRgBIAEoDjIaLllhcm4uSW5zdHJ1Y3Rpb25WMS5PcENvZGUS",
-            "HwoIb3BlcmFuZHMYAiADKAsyDS5ZYXJuLk9wZXJhbmQiiQIKBk9wQ29kZRIL",
-            "CgdKVU1QX1RPEAASCAoESlVNUBABEgwKCFJVTl9MSU5FEAISDwoLUlVOX0NP",
-            "TU1BTkQQAxIOCgpBRERfT1BUSU9OEAQSEAoMU0hPV19PUFRJT05TEAUSDwoL",
-            "UFVTSF9TVFJJTkcQBhIOCgpQVVNIX0ZMT0FUEAcSDQoJUFVTSF9CT09MEAgS",
-            "DQoJUFVTSF9OVUxMEAkSEQoNSlVNUF9JRl9GQUxTRRAKEgcKA1BPUBALEg0K",
-            "CUNBTExfRlVOQxAMEhEKDVBVU0hfVkFSSUFCTEUQDRISCg5TVE9SRV9WQVJJ",
-            "QUJMRRAOEggKBFNUT1AQDxIMCghSVU5fTk9ERRAQIlcKB09wZXJhbmQSFgoM",
-            "c3RyaW5nX3ZhbHVlGAEgASgJSAASFAoKYm9vbF92YWx1ZRgCIAEoCEgAEhUK",
-            "C2Zsb2F0X3ZhbHVlGAMgASgCSABCBwoFdmFsdWViBnByb3RvMw=="));
+            "aXRpYWxWYWx1ZXNFbnRyeRIYChBsYW5ndWFnZV92ZXJzaW9uGAQgASgFGjgK",
+            "Ck5vZGVzRW50cnkSCwoDa2V5GAEgASgJEhkKBXZhbHVlGAIgASgLMgouWWFy",
+            "bi5Ob2RlOgI4ARpDChJJbml0aWFsVmFsdWVzRW50cnkSCwoDa2V5GAEgASgJ",
+            "EhwKBXZhbHVlGAIgASgLMg0uWWFybi5PcGVyYW5kOgI4ASJ0CgROb2RlEgwK",
+            "BG5hbWUYASABKAkSJwoMaW5zdHJ1Y3Rpb25zGAcgAygLMhEuWWFybi5JbnN0",
+            "cnVjdGlvbhIdCgdoZWFkZXJzGAYgAygLMgwuWWFybi5IZWFkZXJKBAgCEANK",
+            "BAgDEARKBAgEEAVKBAgFEAYiJAoGSGVhZGVyEgsKA2tleRgBIAEoCRINCgV2",
+            "YWx1ZRgCIAEoCSKtFAoLSW5zdHJ1Y3Rpb24SNQoGanVtcFRvGAEgASgLMiMu",
+            "WWFybi5JbnN0cnVjdGlvbi5KdW1wVG9JbnN0cnVjdGlvbkgAEj8KC3BlZWtB",
+            "bmRKdW1wGAIgASgLMiguWWFybi5JbnN0cnVjdGlvbi5QZWVrQW5kSnVtcElu",
+            "c3RydWN0aW9uSAASNwoHcnVuTGluZRgDIAEoCzIkLllhcm4uSW5zdHJ1Y3Rp",
+            "b24uUnVuTGluZUluc3RydWN0aW9uSAASPQoKcnVuQ29tbWFuZBgEIAEoCzIn",
+            "Lllhcm4uSW5zdHJ1Y3Rpb24uUnVuQ29tbWFuZEluc3RydWN0aW9uSAASOwoJ",
+            "YWRkT3B0aW9uGAUgASgLMiYuWWFybi5JbnN0cnVjdGlvbi5BZGRPcHRpb25J",
+            "bnN0cnVjdGlvbkgAEj8KC3Nob3dPcHRpb25zGAYgASgLMiguWWFybi5JbnN0",
+            "cnVjdGlvbi5TaG93T3B0aW9uc0luc3RydWN0aW9uSAASPQoKcHVzaFN0cmlu",
+            "ZxgHIAEoCzInLllhcm4uSW5zdHJ1Y3Rpb24uUHVzaFN0cmluZ0luc3RydWN0",
+            "aW9uSAASOwoJcHVzaEZsb2F0GAggASgLMiYuWWFybi5JbnN0cnVjdGlvbi5Q",
+            "dXNoRmxvYXRJbnN0cnVjdGlvbkgAEjkKCHB1c2hCb29sGAkgASgLMiUuWWFy",
+            "bi5JbnN0cnVjdGlvbi5QdXNoQm9vbEluc3RydWN0aW9uSAASPwoLanVtcElm",
+            "RmFsc2UYCiABKAsyKC5ZYXJuLkluc3RydWN0aW9uLkp1bXBJZkZhbHNlSW5z",
+            "dHJ1Y3Rpb25IABIvCgNwb3AYCyABKAsyIC5ZYXJuLkluc3RydWN0aW9uLlBv",
+            "cEluc3RydWN0aW9uSAASPQoIY2FsbEZ1bmMYDCABKAsyKS5ZYXJuLkluc3Ry",
+            "dWN0aW9uLkNhbGxGdW5jdGlvbkluc3RydWN0aW9uSAASQQoMcHVzaFZhcmlh",
+            "YmxlGA0gASgLMikuWWFybi5JbnN0cnVjdGlvbi5QdXNoVmFyaWFibGVJbnN0",
+            "cnVjdGlvbkgAEkMKDXN0b3JlVmFyaWFibGUYDiABKAsyKi5ZYXJuLkluc3Ry",
+            "dWN0aW9uLlN0b3JlVmFyaWFibGVJbnN0cnVjdGlvbkgAEjEKBHN0b3AYDyAB",
+            "KAsyIS5ZYXJuLkluc3RydWN0aW9uLlN0b3BJbnN0cnVjdGlvbkgAEjcKB3J1",
+            "bk5vZGUYECABKAsyJC5ZYXJuLkluc3RydWN0aW9uLlJ1bk5vZGVJbnN0cnVj",
+            "dGlvbkgAEkUKDnBlZWtBbmRSdW5Ob2RlGBEgASgLMisuWWFybi5JbnN0cnVj",
+            "dGlvbi5QZWVrQW5kUnVuTm9kZUluc3RydWN0aW9uSAASQQoMZGV0b3VyVG9O",
+            "b2RlGBIgASgLMikuWWFybi5JbnN0cnVjdGlvbi5EZXRvdXJUb05vZGVJbnN0",
+            "cnVjdGlvbkgAEkQKE3BlZWtBbmREZXRvdXJUb05vZGUYEyABKAsyJS5ZYXJu",
+            "Lkluc3RydWN0aW9uLlBlZWtBbmREZXRvdXJUb05vZGVIABI1CgZyZXR1cm4Y",
+            "FCABKAsyIy5ZYXJuLkluc3RydWN0aW9uLlJldHVybkluc3RydWN0aW9uSAAS",
+            "UQoUYWRkU2FsaWVuY3lDYW5kaWRhdGUYFSABKAsyMS5ZYXJuLkluc3RydWN0",
+            "aW9uLkFkZFNhbGllbmN5Q2FuZGlkYXRlSW5zdHJ1Y3Rpb25IABJhChxhZGRT",
+            "YWxpZW5jeUNhbmRpZGF0ZUZyb21Ob2RlGBYgASgLMjkuWWFybi5JbnN0cnVj",
+            "dGlvbi5BZGRTYWxpZW5jeUNhbmRpZGF0ZUZyb21Ob2RlSW5zdHJ1Y3Rpb25I",
+            "ABJXChdzZWxlY3RTYWxpZW5jeUNhbmRpZGF0ZRgXIAEoCzI0Lllhcm4uSW5z",
+            "dHJ1Y3Rpb24uU2VsZWN0U2FsaWVuY3lDYW5kaWRhdGVJbnN0cnVjdGlvbkgA",
+            "GhgKFlBlZWtBbmRKdW1wSW5zdHJ1Y3Rpb24aGwoZUGVla0FuZFJ1bk5vZGVJ",
+            "bnN0cnVjdGlvbhoYChZTaG93T3B0aW9uc0luc3RydWN0aW9uGiYKFVB1c2hT",
+            "dHJpbmdJbnN0cnVjdGlvbhINCgV2YWx1ZRgBIAEoCRolChRQdXNoRmxvYXRJ",
+            "bnN0cnVjdGlvbhINCgV2YWx1ZRgBIAEoAhokChNQdXNoQm9vbEluc3RydWN0",
+            "aW9uEg0KBXZhbHVlGAEgASgIGigKEUp1bXBUb0luc3RydWN0aW9uEhMKC2Rl",
+            "c3RpbmF0aW9uGAEgASgFGj8KElJ1bkxpbmVJbnN0cnVjdGlvbhIOCgZsaW5l",
+            "SUQYASABKAkSGQoRc3Vic3RpdHV0aW9uQ291bnQYAiABKAUaRwoVUnVuQ29t",
+            "bWFuZEluc3RydWN0aW9uEhMKC2NvbW1hbmRUZXh0GAEgASgJEhkKEXN1YnN0",
+            "aXR1dGlvbkNvdW50GAIgASgFGmwKFEFkZE9wdGlvbkluc3RydWN0aW9uEg4K",
+            "BmxpbmVJRBgBIAEoCRITCgtkZXN0aW5hdGlvbhgCIAEoBRIZChFzdWJzdGl0",
+            "dXRpb25Db3VudBgDIAEoBRIUCgxoYXNDb25kaXRpb24YBCABKAgaLQoWSnVt",
+            "cElmRmFsc2VJbnN0cnVjdGlvbhITCgtkZXN0aW5hdGlvbhgBIAEoBRoQCg5Q",
+            "b3BJbnN0cnVjdGlvbhovChdDYWxsRnVuY3Rpb25JbnN0cnVjdGlvbhIUCgxm",
+            "dW5jdGlvbk5hbWUYASABKAkaLwoXUHVzaFZhcmlhYmxlSW5zdHJ1Y3Rpb24S",
+            "FAoMdmFyaWFibGVOYW1lGAEgASgJGjAKGFN0b3JlVmFyaWFibGVJbnN0cnVj",
+            "dGlvbhIUCgx2YXJpYWJsZU5hbWUYASABKAkaEQoPU3RvcEluc3RydWN0aW9u",
+            "GiYKElJ1bk5vZGVJbnN0cnVjdGlvbhIQCghub2RlTmFtZRgBIAEoCRorChdE",
+            "ZXRvdXJUb05vZGVJbnN0cnVjdGlvbhIQCghub2RlTmFtZRgBIAEoCRoVChNQ",
+            "ZWVrQW5kRGV0b3VyVG9Ob2RlGhMKEVJldHVybkluc3RydWN0aW9uGmIKH0Fk",
+            "ZFNhbGllbmN5Q2FuZGlkYXRlSW5zdHJ1Y3Rpb24SEQoJY29udGVudElEGAEg",
+            "ASgJEhcKD2NvbXBsZXhpdHlTY29yZRgCIAEoBRITCgtkZXN0aW5hdGlvbhgD",
+            "IAEoBRpQCidBZGRTYWxpZW5jeUNhbmRpZGF0ZUZyb21Ob2RlSW5zdHJ1Y3Rp",
+            "b24SEAoIbm9kZU5hbWUYASABKAkSEwoLZGVzdGluYXRpb24YAiABKAUaJAoi",
+            "U2VsZWN0U2FsaWVuY3lDYW5kaWRhdGVJbnN0cnVjdGlvbkIRCg9JbnN0cnVj",
+            "dGlvblR5cGUi6AIKDUluc3RydWN0aW9uVjESKgoGb3Bjb2RlGAEgASgOMhou",
+            "WWFybi5JbnN0cnVjdGlvblYxLk9wQ29kZRIfCghvcGVyYW5kcxgCIAMoCzIN",
+            "Lllhcm4uT3BlcmFuZCKJAgoGT3BDb2RlEgsKB0pVTVBfVE8QABIICgRKVU1Q",
+            "EAESDAoIUlVOX0xJTkUQAhIPCgtSVU5fQ09NTUFORBADEg4KCkFERF9PUFRJ",
+            "T04QBBIQCgxTSE9XX09QVElPTlMQBRIPCgtQVVNIX1NUUklORxAGEg4KClBV",
+            "U0hfRkxPQVQQBxINCglQVVNIX0JPT0wQCBINCglQVVNIX05VTEwQCRIRCg1K",
+            "VU1QX0lGX0ZBTFNFEAoSBwoDUE9QEAsSDQoJQ0FMTF9GVU5DEAwSEQoNUFVT",
+            "SF9WQVJJQUJMRRANEhIKDlNUT1JFX1ZBUklBQkxFEA4SCAoEU1RPUBAPEgwK",
+            "CFJVTl9OT0RFEBAiVwoHT3BlcmFuZBIWCgxzdHJpbmdfdmFsdWUYASABKAlI",
+            "ABIUCgpib29sX3ZhbHVlGAIgASgISAASFQoLZmxvYXRfdmFsdWUYAyABKAJI",
+            "AEIHCgV2YWx1ZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Program), global::Yarn.Program.Parser, new[]{ "Name", "Nodes", "InitialValues" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Program), global::Yarn.Program.Parser, new[]{ "Name", "Nodes", "InitialValues", "LanguageVersion" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Node), global::Yarn.Node.Parser, new[]{ "Name", "Instructions", "Headers" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Header), global::Yarn.Header.Parser, new[]{ "Key", "Value" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction), global::Yarn.Instruction.Parser, new[]{ "JumpTo", "PeekAndJump", "RunLine", "RunCommand", "AddOption", "ShowOptions", "PushString", "PushFloat", "PushBool", "JumpIfFalse", "Pop", "CallFunc", "PushVariable", "StoreVariable", "Stop", "RunNode", "PeekAndRunNode", "DetourToNode", "PeekAndDetourToNode", "Return", "AddSaliencyCandidate", "AddSaliencyCandidateFromNode", "SelectSaliencyCandidate" }, new[]{ "InstructionType" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction.Types.PeekAndJumpInstruction), global::Yarn.Instruction.Types.PeekAndJumpInstruction.Parser, null, null, null, null, null),
@@ -180,6 +181,7 @@ namespace Yarn {
       name_ = other.name_;
       nodes_ = other.nodes_.Clone();
       initialValues_ = other.initialValues_.Clone();
+      languageVersion_ = other.languageVersion_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -234,6 +236,21 @@ namespace Yarn {
       get { return initialValues_; }
     }
 
+    /// <summary>Field number for the "language_version" field.</summary>
+    public const int LanguageVersionFieldNumber = 4;
+    private int languageVersion_;
+    /// <summary>
+    /// The version of the Yarn Spinner language that this program was compiled under.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int LanguageVersion {
+      get { return languageVersion_; }
+      set {
+        languageVersion_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -252,6 +269,7 @@ namespace Yarn {
       if (Name != other.Name) return false;
       if (!Nodes.Equals(other.Nodes)) return false;
       if (!InitialValues.Equals(other.InitialValues)) return false;
+      if (LanguageVersion != other.LanguageVersion) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -262,6 +280,7 @@ namespace Yarn {
       if (Name.Length != 0) hash ^= Name.GetHashCode();
       hash ^= Nodes.GetHashCode();
       hash ^= InitialValues.GetHashCode();
+      if (LanguageVersion != 0) hash ^= LanguageVersion.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -286,6 +305,10 @@ namespace Yarn {
       }
       nodes_.WriteTo(output, _map_nodes_codec);
       initialValues_.WriteTo(output, _map_initialValues_codec);
+      if (LanguageVersion != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(LanguageVersion);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -302,6 +325,10 @@ namespace Yarn {
       }
       nodes_.WriteTo(ref output, _map_nodes_codec);
       initialValues_.WriteTo(ref output, _map_initialValues_codec);
+      if (LanguageVersion != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(LanguageVersion);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -317,6 +344,9 @@ namespace Yarn {
       }
       size += nodes_.CalculateSize(_map_nodes_codec);
       size += initialValues_.CalculateSize(_map_initialValues_codec);
+      if (LanguageVersion != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(LanguageVersion);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -334,6 +364,9 @@ namespace Yarn {
       }
       nodes_.MergeFrom(other.nodes_);
       initialValues_.MergeFrom(other.initialValues_);
+      if (other.LanguageVersion != 0) {
+        LanguageVersion = other.LanguageVersion;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -345,7 +378,11 @@ namespace Yarn {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -361,6 +398,10 @@ namespace Yarn {
             initialValues_.AddEntriesFrom(input, _map_initialValues_codec);
             break;
           }
+          case 32: {
+            LanguageVersion = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -372,7 +413,11 @@ namespace Yarn {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -386,6 +431,10 @@ namespace Yarn {
           }
           case 26: {
             initialValues_.AddEntriesFrom(ref input, _map_initialValues_codec);
+            break;
+          }
+          case 32: {
+            LanguageVersion = input.ReadInt32();
             break;
           }
         }
@@ -599,7 +648,11 @@ namespace Yarn {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -626,7 +679,11 @@ namespace Yarn {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -840,7 +897,11 @@ namespace Yarn {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -863,7 +924,11 @@ namespace Yarn {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -1911,7 +1976,11 @@ namespace Yarn {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -2133,7 +2202,11 @@ namespace Yarn {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -2481,7 +2554,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -2496,7 +2573,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -2634,7 +2715,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -2649,7 +2734,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -2787,7 +2876,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -2802,7 +2895,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -2972,7 +3069,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -2991,7 +3092,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -3165,7 +3270,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -3184,7 +3293,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -3358,7 +3471,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -3377,7 +3494,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -3551,7 +3672,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -3570,7 +3695,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -3777,7 +3906,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -3800,7 +3933,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -4011,7 +4148,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -4034,7 +4175,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -4311,7 +4456,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -4342,7 +4491,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -4528,7 +4681,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -4547,7 +4704,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -4689,7 +4850,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -4704,7 +4869,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -4874,7 +5043,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -4893,7 +5066,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -5067,7 +5244,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -5086,7 +5267,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -5261,7 +5446,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -5280,7 +5469,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -5422,7 +5615,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -5437,7 +5634,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -5607,7 +5808,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -5626,7 +5831,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -5797,7 +6006,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -5816,7 +6029,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -5958,7 +6175,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -5973,7 +6194,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -6111,7 +6336,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -6126,7 +6355,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -6361,7 +6594,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -6388,7 +6625,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -6603,7 +6844,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -6626,7 +6871,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -6772,7 +7021,11 @@ namespace Yarn {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -6787,7 +7040,11 @@ namespace Yarn {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -6986,7 +7243,11 @@ namespace Yarn {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -7009,7 +7270,11 @@ namespace Yarn {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -7445,7 +7710,11 @@ namespace Yarn {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -7472,7 +7741,11 @@ namespace Yarn {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;

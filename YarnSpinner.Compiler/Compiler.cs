@@ -633,6 +633,7 @@ namespace Yarn.Compiler
             }
 
             var program = new Program();
+            program.LanguageVersion = compilationJob.LanguageVersion;
             program.Nodes.Add(compiledNodes.Where(n => n.Name != null).ToDictionary(n => n.Name, n => n));
             program.InitialValues.Add(initialValues);
 

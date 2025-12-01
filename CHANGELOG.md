@@ -27,8 +27,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - To indicate that your game did not select an option and that the game should continue anyway, your code should call `SetSelectedOption` with the special `Dialogue.NoOptionSelected` value.
 - Added a `ReplacementMarkerResult` struct that encapsulates diagnostics of replacement markup processors, and also an invisible characters count.
   - This allows for replacement markup to declare how many invisible characters they have added.
-  - This is necessary because both Unity and Godot (and likely every tool out there) has some variant of rich text strings, where the attributes on the rich text is within the string itself. When markup processing modifies the string (such as by the `select` or `plural` markers, any sibling markup following the replacement needs to not be pushed down by the invisible elements of the string.
+  - This is necessary because both Unity and Godot (and likely every tool out there) has some variant of rich text strings, where the attributes on the rich text is within the string itself. When markup processing modifies the string (such as by the `select` or `plural` markers, any sibling markup following the replacement needs to not be pushed down by the invisible elements of the string.)
 - Fixed an issue where variables declared with negative numbers as their initial value would become smart variables ([#421](https://github.com/YarnSpinnerTool/YarnSpinner/issues/421))
+- Compiled Yarn Spinner `Program` objects now contain the `LanguageVersion` they were compiled against, to help with backward compatibility.
 
 ### Updated
 

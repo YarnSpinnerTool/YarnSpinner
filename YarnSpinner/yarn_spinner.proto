@@ -14,6 +14,9 @@ message Program {
     // instruction is run, and the value is not found in the storage, this
     // value will be used
     map<string, Operand> initial_values = 3;
+
+    // The version of the Yarn Spinner language that this program was compiled under.
+    int32 language_version = 4;
 }
 
 // A collection of instructions
