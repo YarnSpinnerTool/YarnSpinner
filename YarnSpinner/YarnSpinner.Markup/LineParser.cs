@@ -1362,6 +1362,10 @@ namespace Yarn.Markup
             // we have now run off the end of the line
             // if we have any unmatched closes still lying around we want to close them off now
             // because at this stage it doesn't matter about ordering
+            if (unmatchedCloses.Count > 1)
+            {
+                CleanUpUnmatchedCloses(openNodes, unmatchedCloses, diagnostics);
+            }
 
             // ok last thing to check is is there only one element left on the stack of open nodes
             if (openNodes.Count > 1)

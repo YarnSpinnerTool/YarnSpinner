@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Fixed a bug where unbalanced markup without text siblings or children would cause an error
+
 ### Removed
 
 ## [3.1.0] 2025-12-02

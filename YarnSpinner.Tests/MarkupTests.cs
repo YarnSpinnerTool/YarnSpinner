@@ -368,6 +368,96 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestUnsquishedImbalancedMarkupIsValidWhenImbalanceOccursAtEndOfLine()
+        {
+            var line = "start[a]ab[b]bc[c]cb[/b][/c][/a]";
+
+            /*
+            root
+                "start"
+                a
+                    "ab"
+                    b
+                        "bc"
+                        c
+                            "cb"
+            */
+
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var tree = result.tree;
+            var errors = result.diagnostics;
+            errors.Should().BeEmpty();
+
+            tree.children.Should().HaveCount(2); // text and a node
+
+            // a has two kids
+            Descendant(tree, 1).children.Should().HaveCount(2);
+
+            // first is text
+            ((LineParser.MarkupTextNode)Descendant(tree, 1, 0)).text.Should().Be("ab");
+
+            // b has two kids
+            Descendant(tree, 1,1).children.Should().HaveCount(2);
+
+            // first is text
+            ((LineParser.MarkupTextNode)Descendant(tree, 1,1,0)).text.Should().Be("bc");
+
+            // c has one child and it's text
+            Descendant(tree, 1,1,1).children.Should().HaveCount(1);
+            ((LineParser.MarkupTextNode)Descendant(tree, 1,1,1,0)).text.Should().Be("cb");
+        }
+
+        [Fact]
+        public void TestUnsquishedImbalancedMarkupWithExcessCloseIsInvalid()
+        {
+            var line = "start[a]ab[b]bc[c]cb[/b][/c][/a][/d]";
+
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var errors = result.diagnostics;
+            errors.Should().HaveCount(1);
+        }
+
+        [Fact]
+        public void TestUnsquishedImbalancedMarkupWithExcessCloseAndOpenIsInvalid()
+        {
+            var line = "start[a]ab[b]bc[c]cb[/b][/c][/d]";
+
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var errors = result.diagnostics;
+            errors.Should().HaveCount(1);
+        }
+
+        [Fact]
+        public void TestUnclosedMarkupIsInvalid()
+        {
+            var line = "start[a]end";
+
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var errors = result.diagnostics;
+            errors.Should().HaveCount(1);
+        }
+
+        [Fact]
+        public void TestUnopenedMarkupIsInvalid()
+        {
+            var line = "end[/a]";
+
+            var lineParser = new LineParser();
+            var tokens = lineParser.LexMarkup(line);
+            var result = lineParser.BuildMarkupTreeFromTokens(tokens, line);
+            var errors = result.diagnostics;
+            errors.Should().HaveCount(1);
+        }
+
+        [Fact]
         public void TestUnsquishedImbalancedMarkupIsValid()
         {
             var line = "This [outer] is [inner] some [/outer] invalid [/inner] markup";
