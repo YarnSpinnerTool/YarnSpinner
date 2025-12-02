@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [3.1.0] 2025-12-02
+
+### Added
+
 - If no options in an option group are available, Yarn Spinner will now fall through to the next line after the options.
   - For example, consider the following Yarn Spinner script:
     ```
@@ -49,8 +57,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `IAttributeMarkerProcessor.ProcessReplacementMarker` now returns a `ReplacementMarkerResult` struct instead of just a list of diagnostics.
 - Type Checker: Fixed a crash that could occur if multiple declarations with the same name were provided.
 - `Dialogue.LogDebugMessage` and `Dialogue.LogErrorMessage` now wrap the values of `VirtualMachine.LogDebugMessage and VirtualMachine.LogErrorMessage`, respectively.
-
-### Removed
 
 ## [3.0.2] 2025-06-12
 
