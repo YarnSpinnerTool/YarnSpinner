@@ -145,7 +145,7 @@ namespace Yarn.Compiler
             return hashtagText.ToArray();
         }
 
-        private void GenerateFormattedText(IList<IParseTree> nodes, out string outputString, out int expressionCount)
+        internal static void GenerateFormattedText(IList<IParseTree> nodes, out string outputString, out int expressionCount)
         {
             expressionCount = 0;
             StringBuilder composedString = new StringBuilder();

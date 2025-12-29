@@ -883,6 +883,52 @@ Line in a node group
             node.Links.Should().Contain(l => l.LinkType == BasicNodeInfo.Link.Type.Jump && l.Destination == "DemoJump");
             node.Links.Should().Contain(l => l.LinkType == BasicNodeInfo.Link.Type.Detour && l.Destination == "DemoDetour");
         }
+
+        [Fact]
+        public void TestCustomLineTags()
+        {
+            var source = @"title: Node1
+---
+Carlton: immediately although unlike
+Carlton: schematise enfranchise enthusiastically now
+Shelley: a grizzled fold
+===
+title: Node2
+---
+Shelley: to comfortable mare
+Carlton: ew pain boo joyfully so
+Shelley: amidst forewarn notwithstanding aha yum
+-> of potentially intent
+-> district incommode soon
+===
+title: NodeGroup
+when: always
+---
+Shelley: vacantly failing yowza an
+===
+title: NodeGroup
+when: always
+---
+Shelley: hmph apropos hmph
+===
+";
+
+            var (taggedSource, updatedLines) = Utility.TagLines(new CompilationJob.File
+            {
+                FileName = "TestLineIDs.yarn",
+                Source = source,
+            },
+                existingLineTags: null,
+                lineTagGenerator: new DescriptiveLineTagGenerator()
+            );
+
+            var job = CompilationJob.CreateFromString("TestLineIDs.yarn", taggedSource);
+
+            var result = Compiler.Compile(job);
+
+
+
+        }
     }
     // Copyright (c) Microsoft Corporation.
     // Licensed under the MIT License.
