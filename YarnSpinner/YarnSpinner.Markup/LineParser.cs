@@ -776,11 +776,12 @@ namespace Yarn.Markup
         // where the b tag is a rewriter and the emotion tag is not.
         // in that case because previously we only kept the last fully processed non-replacement sibling the emotion tag would eat the whitespace AFTER the b tag had replaced itself
         private MarkupTreeNode? sibling = null;
+
         // this keeps track of all accumulated invisible characters added by any replacement markup.
         // this is necessary to prevent a bug with the following:
-            // "this is a line [bold]with some replacement[/bold] markup and a non-replacement[a/]  markup"
+        // "this is a line [bold]with some replacement[/bold] markup and a non-replacement[a/]  markup"
         // assuming that this is intended to replace the [bold] with <b> in unity we would end up as though we had written:
-            // "this is a line <b>with some replacement</b> markup and a non-replacement[a/]  markup"
+        // "this is a line <b>with some replacement</b> markup and a non-replacement[a/]  markup"
         // but this has now pushed the [a] markup down by 7 invisible characters
         // so each replacement markup processor needs to let us know how many (if any) invisible characters there are so we can backshift any sibling attributes after a replacement markup
         private int invisibleCharacters = 0;
