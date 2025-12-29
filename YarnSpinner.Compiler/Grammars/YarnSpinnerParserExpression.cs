@@ -36,5 +36,19 @@ namespace Yarn.Compiler
                 return context.Start.InputStream.GetText(interval);
             }
         }
+
+
+        public static T? GetParentContextOfType<T>(this RuleContext context) where T : ParserRuleContext
+        {
+            if (context.Parent == null)
+            {
+                return null;
+            }
+            if (context.Parent is T parent)
+            {
+                return parent;
+            }
+            return context.Parent.GetParentContextOfType<T>();
+        }
     }
 }

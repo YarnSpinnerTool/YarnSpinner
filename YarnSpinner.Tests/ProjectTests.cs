@@ -91,14 +91,14 @@ custom: yes
             compilationJob.CompilationType = CompilationJob.Type.StringsOnly;
             var result = Compiler.Compile(compilationJob);
 
-            result.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error).Should().Be(false);
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error, "there should be no errors before adding string tags");
 
             var totalUntaggedLines = result.StringTable.Where(i => i.Value.isImplicitTag).Count();
             var totalLines = result.StringTable.Count();
             // at this stage these should be the same
             totalUntaggedLines.Should().Be(totalLines);
 
-            var existingTags = result.StringTable.Where(i => i.Value.isImplicitTag == false).Select(i => i.Key).ToList();
+            var existingTags = result.StringTable.Where(i => i.Value.isImplicitTag == false).Select(i => i.Key).ToHashSet();
             existingTags.Should().BeEmpty();
 
             // now we tag every line
@@ -120,7 +120,10 @@ custom: yes
                 taggedLineContent.Add(taggedVersion);
 
                 // this is the fix
-                existingTags = tagged.Item2 as List<string>;
+                foreach (var taggedLineID in tagged.LineIDs)
+                {
+                    existingTags.Add(taggedLineID);
+                }
             }
             // this is a bit inelegant but I don't want to write to disk
             var taggedContent = string.Join("\n", taggedLineContent);
@@ -129,7 +132,7 @@ custom: yes
             result = Compiler.Compile(compilationJob);
 
             // we should have no errors
-            result.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error).Should().Be(false);
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error, "there should be no errors after adding string tags");
 
             // we should have as many lines as we did originally
             var taggedLinesCount = result.StringTable.Count();
