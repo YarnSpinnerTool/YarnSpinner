@@ -45,15 +45,13 @@ namespace Yarn.Compiler
             /// between. This is useful for diagnostics, and for attributing
             /// <see cref="Line"/> objects to their original source
             /// files.</remarks>
-            public string FileName { get; set; }
+            public string FileName { get; set; } = "<unknown>";
 
             /// <summary>
             /// The source code of this file.
             /// </summary>
-            public string Source;
+            public string Source = string.Empty;
         }
-
-
 
         /// <summary>
         /// The type of compilation that the compiler will do.
@@ -100,7 +98,6 @@ namespace Yarn.Compiler
                 return files;
             }
         }
-
 
         public IEnumerable<ISourceInput> Inputs;
 
