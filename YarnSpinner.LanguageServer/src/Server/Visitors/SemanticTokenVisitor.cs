@@ -311,7 +311,9 @@ namespace YarnLanguageServer
 
         public override bool VisitFile_hashtag([NotNull] YarnSpinnerParser.File_hashtagContext context)
         {
-            AddTokenType(context.Start, context.Stop, SemanticTokenType.Label);
+            // file hashtags (like #line:123 or command parameters) should be marked as comments, not labels
+            // only character names from VisitLine_statement should be labels
+            AddTokenType(context.Start, context.Stop, SemanticTokenType.Comment, SemanticTokenModifier.Declaration);
             return base.VisitFile_hashtag(context);
         }
 
@@ -323,7 +325,8 @@ namespace YarnLanguageServer
 
         public override bool VisitLine_statement([NotNull] YarnSpinnerParser.Line_statementContext context)
         {
-            // The text from the start of the line up to its first colon is considered the character's name.
+            // the text from the start of the line up to its first colon is the character's name
+            // we mark character names as "type" tokens to distinguish them from command parameters
             var text = context.GetTextWithWhitespace();
             var nameMatch = NameRegex.Match(text);
             if (nameMatch.Success)
@@ -333,7 +336,8 @@ namespace YarnLanguageServer
                 var startPosition = context.Start.ToPosition();
                 startPosition += new Position(0, nameGroup.Index);
 
-                AddTokenType(startPosition, nameGroup.Length, SemanticTokenType.Label);
+                // use Type instead of Label to avoid confusion with command parameters
+                AddTokenType(startPosition, nameGroup.Length, SemanticTokenType.Type);
             }
 
             return base.VisitLine_statement(context);
