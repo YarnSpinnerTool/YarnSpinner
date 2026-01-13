@@ -1235,9 +1235,62 @@ namespace YarnSpinner.Tests
         [InlineData("[p=-1,1 /]")]
         public void TestMarkupPropertyParsingUsesInvariantNumberParsingFails(string input)
         {
-            var lineParser = new LineParser();
-            var markup = lineParser.ParseStringWithDiagnostics(input, "en");
-            markup.diagnostics.Should().ContainSingle();
+            var targetCultures = new[] {
+                "en",
+                "zh-Hans",
+                "ru",
+                "es-US",
+                "es",
+                "sw",
+                "ar",
+                "pt-BR",
+                "de",
+                "fr",
+                "fr-FR",
+                "ja",
+                "pl",
+                "ko",
+            };
+
+            foreach (var culture in targetCultures)
+            {    
+                System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo(culture);
+                var lineParser = new LineParser();
+                var markup = lineParser.ParseStringWithDiagnostics(input, culture);
+                markup.diagnostics.Should().ContainSingle();
+            }
+        }
+
+        [Theory]
+        [InlineData("[p=1.1 /]", 1.1)]
+        [InlineData("[p=-1.1 /]",-1.1)]
+        public void TestMarkupPropertyParsingUsesInvariantNumber(string input, float propertyValue)
+        {
+            var targetCultures = new[] {
+                "en",
+                "zh-Hans",
+                "ru",
+                "es-US",
+                "es",
+                "sw",
+                "ar",
+                "pt-BR",
+                "de",
+                "fr",
+                "fr-FR",
+                "ja",
+                "pl",
+                "ko",
+            };
+
+            foreach (var culture in targetCultures)
+            {    
+                System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo(culture);
+                var lineParser = new LineParser();
+                var markup = lineParser.ParseStringWithDiagnostics(input, culture);
+                markup.diagnostics.Should().BeEmpty();
+                markup.markup.Attributes[0].Properties["p"].FloatValue.Should().Be(propertyValue);
+            }
         }
 
 
