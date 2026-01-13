@@ -1231,6 +1231,17 @@ namespace YarnSpinner.Tests
         }
 
         [Theory]
+        [InlineData("[p=1,1 /]")]
+        [InlineData("[p=-1,1 /]")]
+        public void TestMarkupPropertyParsingUsesInvariantNumberParsingFails(string input)
+        {
+            var lineParser = new LineParser();
+            var markup = lineParser.ParseStringWithDiagnostics(input, "en");
+            markup.diagnostics.Should().ContainSingle();
+        }
+
+
+        [Theory]
         [InlineData(@"[a p=""string""]s[/a]", MarkupValueType.String, "string")]
         [InlineData(@"[a p=""str\""ing""]s[/a]", MarkupValueType.String, @"str""ing")]
         [InlineData("[a p=string]s[/a]", MarkupValueType.String, "string")]
@@ -1252,6 +1263,8 @@ namespace YarnSpinner.Tests
         {
             var lineParser = new LineParser();
             var markup = lineParser.ParseString(input, "en");
+
+            markup.Attributes.Should().ContainSingle();
 
             var attribute = markup.Attributes[0];
             var propertyValue = attribute.Properties["p"];
