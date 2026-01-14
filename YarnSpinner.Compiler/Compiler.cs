@@ -213,6 +213,18 @@ namespace Yarn.Compiler
                 nodeGroupVisitor.Visit(file.Tree);
             }
 
+            // extract node metadata for language server features
+            // this includes jumps, function calls, commands, variables, character names, tags, and structural info
+            var nodeMetadata = new List<NodeMetadata>();
+            foreach (var file in parsedFiles)
+            {
+                if (file.Tree.Payload is YarnSpinnerParser.DialogueContext dialogueContext)
+                {
+                    var metadata = NodeMetadataVisitor.Extract(file.Name, dialogueContext);
+                    nodeMetadata.AddRange(metadata);
+                }
+            }
+
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
             {
                 // Stop at this point
@@ -224,6 +236,7 @@ namespace Yarn.Compiler
                     StringTable = stringTableManager.StringTable,
                     Diagnostics = diagnostics,
                     ParseResults = parsedFiles,
+                    NodeMetadata = nodeMetadata,
                 };
             }
 
@@ -483,6 +496,7 @@ namespace Yarn.Compiler
                     Diagnostics = diagnostics,
                     UserDefinedTypes = userDefinedTypes,
                     ParseResults = parsedFiles,
+                    NodeMetadata = nodeMetadata,
                 };
             }
 
@@ -653,6 +667,7 @@ namespace Yarn.Compiler
                 ProjectDebugInfo = projectDebugInfo,
                 UserDefinedTypes = userDefinedTypes,
                 ParseResults = parsedFiles,
+                NodeMetadata = nodeMetadata,
             };
 
             return finalResult;
