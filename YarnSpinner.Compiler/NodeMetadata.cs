@@ -104,6 +104,12 @@ namespace Yarn.Compiler
         /// whether this is a jump or a detour
         /// </summary>
         public JumpType Type { get; set; }
+
+        /// <summary>
+        /// the source location of this jump statement in the file
+        /// used for precise error reporting (YS0002)
+        /// </summary>
+        public Range Range { get; set; } = Range.InvalidRange;
     }
 
     /// <summary>

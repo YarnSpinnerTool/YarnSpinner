@@ -552,14 +552,9 @@ namespace Yarn.Compiler
                 };
                 this.AddDeclaration(declaration);
 
-                // YS0001: Variable used without being declared
-                // This is a warning - user should declare it with <<declare>>
-                this.diagnostics.Add(new Diagnostic(
-                    this.sourceFileName,
-                    context,
-                    $"Variable '{name}' is used but not declared. Declare it with: <<declare {name} = value>>",
-                    Diagnostic.DiagnosticSeverity.Warning
-                ) { Code = "YS0001" });
+                // NOTE: We don't emit YS0001 here because this variable might be explicitly declared
+                // in a different file that hasn't been type-checked yet. We'll check for implicit
+                // declarations after all files are processed and emit warnings then.
             }
 
             context.Type = declaration.Type;

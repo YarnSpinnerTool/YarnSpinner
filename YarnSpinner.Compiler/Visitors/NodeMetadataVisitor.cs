@@ -84,10 +84,18 @@ namespace Yarn.Compiler
             var destinationName = context.destination.Text;
             if (!string.IsNullOrWhiteSpace(destinationName))
             {
+                // Get the range of the entire jump command (from << to >>)
+                // Use COMMAND_START as the start to ensure we get the actual line of the statement
+                var commandStart = context.COMMAND_START()?.Symbol;
+                var commandEnd = context.COMMAND_END()?.Symbol;
+
                 currentNode.Jumps.Add(new JumpInfo
                 {
                     DestinationTitle = destinationName,
-                    Type = JumpType.Jump
+                    Type = JumpType.Jump,
+                    Range = commandStart != null && commandEnd != null
+                        ? Utility.GetRange(commandStart, commandEnd)
+                        : Utility.GetRange(context)
                 });
             }
 
@@ -104,10 +112,17 @@ namespace Yarn.Compiler
             var destinationName = context.destination.Text;
             if (!string.IsNullOrWhiteSpace(destinationName))
             {
+                // Get the range of the entire detour command (from << to >>)
+                var commandStart = context.COMMAND_START()?.Symbol;
+                var commandEnd = context.COMMAND_END()?.Symbol;
+
                 currentNode.Jumps.Add(new JumpInfo
                 {
                     DestinationTitle = destinationName,
-                    Type = JumpType.Detour
+                    Type = JumpType.Detour,
+                    Range = commandStart != null && commandEnd != null
+                        ? Utility.GetRange(commandStart, commandEnd)
+                        : Utility.GetRange(context)
                 });
             }
 

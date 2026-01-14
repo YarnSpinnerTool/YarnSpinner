@@ -233,11 +233,10 @@ namespace Yarn.Compiler
                 {
                     if (!string.IsNullOrWhiteSpace(jump.DestinationTitle) && !allNodeTitles.Contains(jump.DestinationTitle))
                     {
-                        // find the actual jump statement in the parse tree to get precise range
-                        // for now, report at node level
+                        // Use the jump's precise range for accurate error highlighting
                         diagnostics.Add(new Diagnostic(
                             node.Uri,
-                            new Range(node.BodyStartLine, 0, node.BodyEndLine, 0),
+                            jump.Range,
                             $"Node '{jump.DestinationTitle}' does not exist. Check spelling or create the node.",
                             Diagnostic.DiagnosticSeverity.Warning
                         ) { Code = "YS0002" });
@@ -275,6 +274,8 @@ namespace Yarn.Compiler
             var failingConstraints = new HashSet<TypeConstraint>();
 
             var walker = new Antlr4.Runtime.Tree.ParseTreeWalker();
+
+            // Type check all files
             foreach (var parsedFile in parsedFiles)
             {
                 compilationJob.CancellationToken.ThrowIfCancellationRequested();
@@ -290,6 +291,19 @@ namespace Yarn.Compiler
                 typeSolution = typeCheckerListener.TypeSolution;
 
                 failingConstraints = new HashSet<TypeConstraint>(TypeCheckerListener.ApplySolution(typeSolution, failingConstraints));
+            }
+
+            // After all files are type-checked, check for variables that are still implicitly declared
+            // (i.e., were used but never had a <<declare>> statement in any file)
+            // YS0001: Variable used without being declared
+            foreach (var declaration in declarations.Where(d => d.IsImplicit))
+            {
+                diagnostics.Add(new Diagnostic(
+                    declaration.SourceFileName,
+                    declaration.Range,
+                    $"Variable '{declaration.Name}' is used but not declared. Declare it with: <<declare {declaration.Name} = value>>",
+                    Diagnostic.DiagnosticSeverity.Warning
+                ) { Code = "YS0001" });
             }
 
             if (failingConstraints.Count > 0)
