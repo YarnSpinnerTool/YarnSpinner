@@ -84,18 +84,15 @@ namespace Yarn.Compiler
             var destinationName = context.destination.Text;
             if (!string.IsNullOrWhiteSpace(destinationName))
             {
-                // Get the range of the entire jump command (from << to >>)
-                // Use COMMAND_START as the start to ensure we get the actual line of the statement
-                var commandStart = context.COMMAND_START()?.Symbol;
-                var commandEnd = context.COMMAND_END()?.Symbol;
+                // Use the destination token itself for the range
+                // This ensures we highlight exactly where the problematic node name is
+                var destinationToken = context.destination;
 
                 currentNode.Jumps.Add(new JumpInfo
                 {
                     DestinationTitle = destinationName,
                     Type = JumpType.Jump,
-                    Range = commandStart != null && commandEnd != null
-                        ? Utility.GetRange(commandStart, commandEnd)
-                        : Utility.GetRange(context)
+                    Range = Utility.GetRange(destinationToken, destinationToken)
                 });
             }
 
