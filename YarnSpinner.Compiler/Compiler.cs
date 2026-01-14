@@ -159,7 +159,7 @@ namespace Yarn.Compiler
                     // No source line found
                     diagnostics.Add(new Diagnostic(
                         sourceFile, shadowLineContext, $"\"{shadowLineID}\" is not a known line ID."
-                    ));
+                    ) { Code = "YS0014" });
                     continue;
                 }
 
@@ -178,7 +178,7 @@ namespace Yarn.Compiler
                     // Lines must not have inline expressions
                     diagnostics.Add(new Diagnostic(
                         sourceFile, shadowLineContext, $"Shadow lines must not have expressions"
-                    ));
+                    ) { Code = "YS0016" });
                 }
 
                 if (sourceText.Equals(shadowText, StringComparison.CurrentCulture) == false)
@@ -186,7 +186,7 @@ namespace Yarn.Compiler
                     // Lines must be identical
                     diagnostics.Add(new Diagnostic(
                         sourceFile, shadowLineContext, $"Shadow lines must have the same text as their source lines"
-                    ));
+                    ) { Code = "YS0015" });
                 }
 
                 // The shadow line is valid. Strip the text from its StringInfo,
@@ -866,7 +866,7 @@ namespace Yarn.Compiler
                 // More than one node has this name! Report an error on both.
                 foreach (var entry in group)
                 {
-                    var d = new Diagnostic(entry.File.Name, entry.TitleHeader, $"More than one node is named {entry.Name}");
+                    var d = new Diagnostic(entry.File.Name, entry.TitleHeader, $"More than one node is named {entry.Name}") { Code = "YS0003" };
                     diagnostics.Add(d);
                 }
             }
@@ -876,11 +876,11 @@ namespace Yarn.Compiler
             {
                 if (node.Node.NodeTitle == null)
                 {
-                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.body(), $"Nodes must have a title"));
+                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.body(), $"Nodes must have a title") { Code = "YS0011" });
                 }
                 if (node.Node.title_header().Length > 1)
                 {
-                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.title_header()[1], $"Nodes must have a single title node"));
+                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.title_header()[1], $"Nodes must have a single title node") { Code = "YS0011" });
                 }
             }
         }

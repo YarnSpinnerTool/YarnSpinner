@@ -90,7 +90,7 @@ namespace Yarn.Compiler
 
                 diagnosticContext = lineIDTag ?? (ParserRuleContext)context;
 
-                this.diagnostics.Add(new Diagnostic(fileName, diagnosticContext, $"Duplicate line ID {lineID}"));
+                this.diagnostics.Add(new Diagnostic(fileName, diagnosticContext, $"Duplicate line ID {lineID}") { Code = "YS0012" });
 
                 return 0;
             }

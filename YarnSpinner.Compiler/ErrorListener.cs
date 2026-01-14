@@ -49,6 +49,13 @@ namespace Yarn.Compiler
         public DiagnosticSeverity Severity { get; set; } = DiagnosticSeverity.Error;
 
         /// <summary>
+        /// gets or sets the error code for this diagnostic
+        /// error codes help users look up documentation and categorise issues
+        /// follows the format YS0001, YS0002, etc
+        /// </summary>
+        public string? Code { get; set; } = null;
+
+        /// <summary>
         /// Gets the zero-indexed line number in FileName at which the issue
         /// begins.
         /// </summary>
