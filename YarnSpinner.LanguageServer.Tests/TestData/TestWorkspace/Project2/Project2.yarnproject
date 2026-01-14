@@ -1,8 +1,0 @@
-{
-    "projectFileVersion": 3,
-    "sourceFiles": [
-        "**/*.yarn"
-    ],
-    "baseLanguage": "en",
-    "definitions": "Functions.ysls.json"
-}

@@ -1,9 +1,0 @@
-title: Start
----
-<<custom_command "woo">>
-<<if custom_function(2)>>
-
-<<endif>>
-<<if unknown_function(3)>>
-<<endif>>
-===
