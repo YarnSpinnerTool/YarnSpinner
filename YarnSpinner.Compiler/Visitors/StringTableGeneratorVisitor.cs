@@ -109,10 +109,10 @@ namespace Yarn.Compiler
                 var message = "Lines cannot have both a '#line' tag and a '#shadow' tag.";
 
                 this.diagnostics.Add(new Diagnostic(
-                    fileName, shadowTag, message));
+                    fileName, shadowTag, message) { Code = "YS0013" });
 
                 this.diagnostics.Add(new Diagnostic(
-                    fileName, lineIDTag, message));
+                    fileName, lineIDTag, message) { Code = "YS0013" });
             }
 
             lineID = stringTableManager.RegisterString(

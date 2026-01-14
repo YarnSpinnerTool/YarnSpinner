@@ -225,6 +225,26 @@ namespace Yarn.Compiler
                 }
             }
 
+            // validate jump targets - YS0002: warn about jumps to non-existent nodes
+            var allNodeTitles = new HashSet<string>(nodeMetadata.Select(n => n.Title));
+            foreach (var node in nodeMetadata)
+            {
+                foreach (var jump in node.Jumps)
+                {
+                    if (!string.IsNullOrWhiteSpace(jump.DestinationTitle) && !allNodeTitles.Contains(jump.DestinationTitle))
+                    {
+                        // find the actual jump statement in the parse tree to get precise range
+                        // for now, report at node level
+                        diagnostics.Add(new Diagnostic(
+                            node.Uri,
+                            new Range(node.BodyStartLine, 0, node.BodyEndLine, 0),
+                            $"Node '{jump.DestinationTitle}' does not exist. Check spelling or create the node.",
+                            Diagnostic.DiagnosticSeverity.Warning
+                        ) { Code = "YS0002" });
+                    }
+                }
+            }
+
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
             {
                 // Stop at this point
@@ -325,7 +345,7 @@ namespace Yarn.Compiler
                 {
                     foreach (var failureMessage in constraint.GetFailureMessages(typeSolution))
                     {
-                        diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceRange, failureMessage));
+                        diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceRange, failureMessage) { Code = "YS0010" });
                     }
                 }
                 watchdog.Stop();

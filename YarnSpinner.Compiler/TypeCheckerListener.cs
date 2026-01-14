@@ -551,6 +551,15 @@ namespace Yarn.Compiler
                     SourceNodeName = this.currentNodeName,
                 };
                 this.AddDeclaration(declaration);
+
+                // YS0001: Variable used without being declared
+                // This is a warning - user should declare it with <<declare>>
+                this.diagnostics.Add(new Diagnostic(
+                    this.sourceFileName,
+                    context,
+                    $"Variable '{name}' is used but not declared. Declare it with: <<declare {name} = value>>",
+                    Diagnostic.DiagnosticSeverity.Warning
+                ) { Code = "YS0001" });
             }
 
             context.Type = declaration.Type;
@@ -793,7 +802,7 @@ namespace Yarn.Compiler
                     message = $"{functionName} expects {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, not {actualParameters}";
                 }
 
-                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
+                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message) { Code = "YS0009" });
             }
 
             for (int paramID = 0; paramID < actualParameters; paramID++)
@@ -808,7 +817,7 @@ namespace Yarn.Compiler
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, parameterExpression, "Unexpected parameter in call to function " + functionName ?? "<unknown>"));
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, parameterExpression, "Unexpected parameter in call to function " + functionName ?? "<unknown>") { Code = "YS0009" });
                 }
             }
 

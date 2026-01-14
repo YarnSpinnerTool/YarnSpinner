@@ -266,7 +266,15 @@ namespace Yarn.Compiler
         public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
             Range range = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
-            this.diagnostics.Add(new Diagnostic(this.fileName, range, msg));
+            var diagnostic = new Diagnostic(this.fileName, range, msg);
+
+            // Assign error code for lexer errors (typically YS0005 for token recognition)
+            if (msg.ToLowerInvariant().Contains("token recognition error"))
+            {
+                diagnostic.Code = "YS0005";
+            }
+
+            this.diagnostics.Add(diagnostic);
         }
     }
 
@@ -326,7 +334,45 @@ namespace Yarn.Compiler
                 diagnostic.Range = new Range(offendingSymbol.Line - 1, offendingSymbol.Column, offendingSymbol.Line - 1, offendingSymbol.Column + offendingSymbol.Text.Length);
             }
 
+            // Assign error codes based on ANTLR message patterns
+            diagnostic.Code = CategorizeParserError(msg);
+
             this.diagnostics.Add(diagnostic);
+        }
+
+        /// <summary>
+        /// Categorizes parser errors from ANTLR messages and assigns appropriate error codes
+        /// </summary>
+        private string? CategorizeParserError(string message)
+        {
+            var msg = message.ToLowerInvariant();
+
+            // YS0004: Missing delimiter (=== or ---)
+            if (msg.Contains("missing") && (msg.Contains("===") || msg.Contains("'==='") || msg.Contains("delimiter")))
+            {
+                return "YS0004";
+            }
+
+            // YS0006: Unclosed command (missing >>)
+            if (msg.Contains("missing") && (msg.Contains("'>'") || msg.Contains(">>")))
+            {
+                return "YS0006";
+            }
+
+            // YS0007: Unclosed scope (missing endif, endonce, etc)
+            if (msg.Contains("missing") && (msg.Contains("endif") || msg.Contains("endonce") || msg.Contains("end")))
+            {
+                return "YS0007";
+            }
+
+            // YS0005: Malformed dialogue / syntax error
+            if (msg.Contains("extraneous input") || msg.Contains("mismatched input"))
+            {
+                return "YS0005";
+            }
+
+            // Default: no specific code for other ANTLR errors
+            return null;
         }
     }
 }
