@@ -1231,6 +1231,70 @@ namespace YarnSpinner.Tests
         }
 
         [Theory]
+        [InlineData("[p=1,1 /]")]
+        [InlineData("[p=-1,1 /]")]
+        public void TestMarkupPropertyParsingUsesInvariantNumberParsingFails(string input)
+        {
+            var targetCultures = new[] {
+                "en",
+                "zh-Hans",
+                "ru",
+                "es-US",
+                "es",
+                "sw",
+                "ar",
+                "pt-BR",
+                "de",
+                "fr",
+                "fr-FR",
+                "ja",
+                "pl",
+                "ko",
+            };
+
+            foreach (var culture in targetCultures)
+            {    
+                System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo(culture);
+                var lineParser = new LineParser();
+                var markup = lineParser.ParseStringWithDiagnostics(input, culture);
+                markup.diagnostics.Should().ContainSingle();
+            }
+        }
+
+        [Theory]
+        [InlineData("[p=1.1 /]", 1.1)]
+        [InlineData("[p=-1.1 /]",-1.1)]
+        public void TestMarkupPropertyParsingUsesInvariantNumber(string input, float propertyValue)
+        {
+            var targetCultures = new[] {
+                "en",
+                "zh-Hans",
+                "ru",
+                "es-US",
+                "es",
+                "sw",
+                "ar",
+                "pt-BR",
+                "de",
+                "fr",
+                "fr-FR",
+                "ja",
+                "pl",
+                "ko",
+            };
+
+            foreach (var culture in targetCultures)
+            {    
+                System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo(culture);
+                var lineParser = new LineParser();
+                var markup = lineParser.ParseStringWithDiagnostics(input, culture);
+                markup.diagnostics.Should().BeEmpty();
+                markup.markup.Attributes[0].Properties["p"].FloatValue.Should().Be(propertyValue);
+            }
+        }
+
+
+        [Theory]
         [InlineData(@"[a p=""string""]s[/a]", MarkupValueType.String, "string")]
         [InlineData(@"[a p=""str\""ing""]s[/a]", MarkupValueType.String, @"str""ing")]
         [InlineData("[a p=string]s[/a]", MarkupValueType.String, "string")]
@@ -1252,6 +1316,8 @@ namespace YarnSpinner.Tests
         {
             var lineParser = new LineParser();
             var markup = lineParser.ParseString(input, "en");
+
+            markup.Attributes.Should().ContainSingle();
 
             var attribute = markup.Attributes[0];
             var propertyValue = attribute.Properties["p"];
