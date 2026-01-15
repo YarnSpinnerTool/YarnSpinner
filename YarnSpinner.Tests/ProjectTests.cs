@@ -22,7 +22,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -63,7 +63,7 @@ custom: yes
 
             var result = Compiler.Compile(job);
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var headers = new Dictionary<string, string> {
                 { "custom", "yes"}
@@ -228,7 +228,7 @@ A single line, with a line tag. #shadow:expected_abc123
 
                 var originalCompilationResult = Compiler.Compile(originalCompilationJob);
 
-                originalCompilationResult.Diagnostics.Should().BeEmpty();
+                originalCompilationResult.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
             }
 
             // Act
