@@ -22,5 +22,6 @@ command: `show 1`
 command: `0`
 command: `2 {0}`
 command: `regular old command`
+command: `zorp 2.1`
 
 stop

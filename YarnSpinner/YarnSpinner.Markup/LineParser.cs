@@ -517,9 +517,8 @@ namespace Yarn.Markup
                             // now here we have gobbled every contiguous digit/period
                             // so can finish up the token and return to tag mode
                             // but before we do that we want to do a quick check to see if its actually a valid float
-
 #pragma warning disable CA1846 // Prefer 'AsSpan' over 'Substring' (not available in .NET Standard 2.0)
-                            if (float.TryParse(input.Substring(token.Start, currentPosition + 1 - token.Start), out _))
+                            if (float.TryParse(input.Substring(token.Start, currentPosition + 1 - token.Start), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out _))
 #pragma warning restore CA1846 // Prefer 'AsSpan' over 'Substring'
                             {
                                 token.End = currentPosition;
@@ -959,7 +958,8 @@ namespace Yarn.Markup
             {
                 var valueString = OG.Substring(token.Start, token.Range);
 
-                if (int.TryParse(valueString, out value))
+
+                if (int.TryParse(valueString, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out value))
                 {
                     return true;
                 }
@@ -971,7 +971,7 @@ namespace Yarn.Markup
             {
                 var valueString = OG.Substring(token.Start, token.Range);
 
-                if (float.TryParse(valueString, out value))
+                if (float.TryParse(valueString, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out value))
                 {
                     return true;
                 }
