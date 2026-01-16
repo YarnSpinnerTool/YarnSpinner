@@ -69,9 +69,10 @@ namespace Yarn.Compiler
         /// YS0001: A variable has been implicitly declared with multiple conflicting types.
         /// </summary>
         /// <remarks>
-        /// This error occurs when a variable is used with different types across
+        /// <para>This error occurs when a variable is used with different types across
         /// different files or contexts without an explicit declaration, and the
-        /// compiler cannot determine which type is correct.
+        /// compiler cannot determine which type is correct.</para>
+        /// <para>Format placeholders: 0: variable name, 1: type names.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor ImplicitVariableTypeConflict = new DiagnosticDescriptor(
             code: "YS0001",
@@ -83,6 +84,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0002: A type mismatch occurred during type checking.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: expected type, 1: actual type.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor TypeMismatch = new DiagnosticDescriptor(
             code: "YS0002",
             messageTemplate: "Type mismatch: expected {0}, got {1}",
@@ -93,6 +97,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0003: An undefined variable was referenced.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: variable name.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor UndefinedVariable = new DiagnosticDescriptor(
             code: "YS0003",
             messageTemplate: "Undefined variable: {0}",
@@ -115,6 +122,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0005: Malformed dialogue or syntax error.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: specific syntax error message.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor SyntaxError = new DiagnosticDescriptor(
             code: "YS0005",
             messageTemplate: "{0}",
@@ -135,6 +145,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0007: Unclosed control flow scope (missing endif, endonce, etc.).
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: missing token.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor UnclosedScope = new DiagnosticDescriptor(
             code: "YS0007",
             messageTemplate: "Unclosed scope: missing {0}",
@@ -157,6 +170,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0009: Node is never referenced.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: node title.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor UnusedNode = new DiagnosticDescriptor(
             code: "YS0009",
             messageTemplate: "Node '{0}' is never referenced",
@@ -167,6 +183,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0010: Variable is declared but never used.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: variable name.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor UnusedVariable = new DiagnosticDescriptor(
             code: "YS0010",
             messageTemplate: "Variable '{0}' is declared but never used",
@@ -180,8 +199,9 @@ namespace Yarn.Compiler
         /// YS0011: Duplicate node title.
         /// </summary>
         /// <remarks>
-        /// This diagnostic is not emitted for node groups where nodes share
-        /// a title but have different `when:` clauses.
+        /// <para>This diagnostic is not emitted for node groups where nodes
+        /// share a title but have different `when:` clauses.</para>
+        /// <para>Format placeholders: 0: node title.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor DuplicateNodeTitle = new DiagnosticDescriptor(
             code: "YS0011",
@@ -193,6 +213,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0012: Jump to undefined node.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: node title.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor UndefinedNode = new DiagnosticDescriptor(
             code: "YS0012",
             messageTemplate: "Jump to undefined node: '{0}'",
@@ -203,6 +226,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0013: Invalid function call.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: function name.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor InvalidFunctionCall = new DiagnosticDescriptor(
             code: "YS0013",
             messageTemplate: "Invalid function call: {0}",
@@ -213,6 +239,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0014: Invalid command.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: command name</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor InvalidCommand = new DiagnosticDescriptor(
             code: "YS0014",
             messageTemplate: "Invalid command: {0}",
@@ -223,6 +252,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0015: Cyclic dependency detected.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: error message.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor CyclicDependency = new DiagnosticDescriptor(
             code: "YS0015",
             messageTemplate: "Cyclic dependency detected: {0}",
@@ -233,6 +265,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0016: Unknown character name.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: character name.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor UnknownCharacter = new DiagnosticDescriptor(
             code: "YS0016",
             messageTemplate: "Unknown character: '{0}'",
