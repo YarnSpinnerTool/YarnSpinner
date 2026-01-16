@@ -552,9 +552,11 @@ namespace Yarn.Compiler
                 };
                 this.AddDeclaration(declaration);
 
-                // NOTE: We don't emit YS0001 here because this variable might be explicitly declared
-                // in a different file that hasn't been type-checked yet. We'll check for implicit
-                // declarations after all files are processed and emit warnings then.
+                // NOTE: We don't emit YS0001 (implicit variable type conflict) here because this
+                // variable might be explicitly declared in a different file that hasn't been
+                // type-checked yet. YS0001 indicates that a variable has been implicitly declared
+                // with multiple conflicting types across different files or contexts. We check for
+                // these conflicts after all files are processed and emit warnings then.
             }
 
             context.Type = declaration.Type;
