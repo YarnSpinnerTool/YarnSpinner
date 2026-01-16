@@ -5,13 +5,16 @@ namespace Yarn.Compiler
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using Antlr4.Runtime.Misc;
 
     /// <summary>
-    /// extracts node metadata during compilation for language server features
-    /// this visitor walks the parse tree and gathers information about nodes including
-    /// jumps, function calls, commands, variables, character names, and structural information
+    /// Extracts node metadata during compilation for language server features.
     /// </summary>
+    /// <remarks>
+    /// This visitor walks the parse tree and gathers information about nodes including
+    /// jumps, function calls, commands, variables, character names, and structural information.
+    /// </remarks>
     internal class NodeMetadataVisitor : YarnSpinnerParserBaseVisitor<object>
     {
         private readonly List<NodeMetadata> nodes = new List<NodeMetadata>();
@@ -20,13 +23,22 @@ namespace Yarn.Compiler
         private int previewLineCount = 0;
         private const int MaxPreviewLines = 3;
 
+        /// <summary>
+        /// Regex for detecting implicit character names in dialogue lines.
+        /// </summary>
+        /// <remarks>
+        /// Matches the pattern "characterName: " at the start of a line.
+        /// This uses the same logic as LineParser for consistency.
+        /// </remarks>
+        private static readonly Regex implicitCharacterRegex = new Regex(@"^[^:]*:\s*");
+
         public NodeMetadataVisitor(string fileUri)
         {
             this.fileUri = fileUri;
         }
 
         /// <summary>
-        /// extracts metadata from a parse tree
+        /// Extracts metadata from a parse tree.
         /// </summary>
         public static List<NodeMetadata> Extract(string fileUri, YarnSpinnerParser.DialogueContext dialogueContext)
         {
@@ -37,22 +49,22 @@ namespace Yarn.Compiler
 
         public override object VisitNode([NotNull] YarnSpinnerParser.NodeContext context)
         {
-            // start a new node metadata object
+            // Start a new node metadata object.
             currentNode = new NodeMetadata
             {
                 Uri = fileUri,
-                // get complexity score from the compiler (set by nodetrackingvisitor or nodegroupvisitor)
+                // Get complexity score from the compiler (set by nodeTrackingVisitor or nodeGroupVisitor).
                 NodeGroupComplexity = context.ComplexityScore,
-                // header starts at the first delimiter, convert from 1 based to 0 based
+                // Header starts at the first delimiter, convert from 1-based to 0-based.
                 HeaderStartLine = context.Start.Line - 1
             };
 
             previewLineCount = 0;
 
-            // visit children to extract all the metadata
+            // Visit children to extract all the metadata.
             base.VisitNode(context);
 
-            // only add nodes that have a title
+            // Only add nodes that have a title.
             if (!string.IsNullOrWhiteSpace(currentNode.Title))
             {
                 nodes.Add(currentNode);
@@ -67,7 +79,7 @@ namespace Yarn.Compiler
             if (currentNode != null && context.title != null)
             {
                 currentNode.Title = context.title.Text;
-                // capture the line where title is declared, convert from 1 based to 0 based
+                // Capture the line where title is declared, convert from 1-based to 0-based.
                 currentNode.TitleLine = context.Start.Line - 1;
             }
 
@@ -153,26 +165,22 @@ namespace Yarn.Compiler
                 return base.VisitCommand_statement(context);
             }
 
-            // get command text from the formatted text
+            // Get command text from the formatted text.
             var commandFormattedText = context.command_formatted_text();
             if (commandFormattedText != null)
             {
                 var commandText = commandFormattedText.GetText();
                 if (!string.IsNullOrWhiteSpace(commandText))
                 {
-                    // extract command name which is the first word
+                    // Extract command name which is the first word.
                     var parts = commandText.Split(new[] { ' ', '\t' }, System.StringSplitOptions.RemoveEmptyEntries);
                     if (parts.Length > 0)
                     {
                         var commandName = parts[0];
 
-                        // skip flow control keywords (these are not commands from the game perspective)
-                        if (commandName != "if" && commandName != "elseif" && commandName != "else" && commandName != "endif")
+                        if (!currentNode.CommandCalls.Contains(commandName))
                         {
-                            if (!currentNode.CommandCalls.Contains(commandName))
-                            {
-                                currentNode.CommandCalls.Add(commandName);
-                            }
+                            currentNode.CommandCalls.Add(commandName);
                         }
                     }
                 }
@@ -204,7 +212,7 @@ namespace Yarn.Compiler
                 var headerKey = context.header_key?.Text?.ToLowerInvariant();
                 var headerValue = context.header_value?.Text;
 
-                // extract tags from tags header
+                // Extract tags from tags header.
                 if (headerKey == "tags" && !string.IsNullOrWhiteSpace(headerValue))
                 {
                     var tags = headerValue.Split(new[] { ' ', '\t' }, System.StringSplitOptions.RemoveEmptyEntries);
@@ -225,10 +233,10 @@ namespace Yarn.Compiler
         {
             if (currentNode != null && currentNode.BodyStartLine == -1)
             {
-                // body starts after the second delimiter, convert from 1 based to 0 based
+                // Body starts after the second delimiter, convert from 1-based to 0-based.
                 currentNode.BodyStartLine = context.Start.Line - 1;
-                // body ends at the stop token line, convert from 1 based to 0 based
-                // note: the stop token might be null if the node is unclosed but we handle that
+                // Body ends at the stop token line, convert from 1-based to 0-based.
+                // Note: the stop token might be null if the node is unclosed but we handle that.
                 currentNode.BodyEndLine = (context.Stop?.Line ?? context.Start.Line) - 1;
             }
 
@@ -242,33 +250,33 @@ namespace Yarn.Compiler
                 return base.VisitLine_statement(context);
             }
 
-            // extract character name from lines that match the pattern charactername: dialogue
+            // Extract character name from lines that match the pattern "characterName: dialogue".
             var lineText = context.line_formatted_text()?.GetText();
             if (!string.IsNullOrWhiteSpace(lineText))
             {
-                // look for character name before colon
-                var colonIndex = lineText.IndexOf(':');
-                if (colonIndex > 0 && colonIndex < lineText.Length - 1)
+                // Use the same regex logic as LineParser for consistency.
+                var match = implicitCharacterRegex.Match(lineText);
+                if (match.Success)
                 {
-                    var potentialCharacter = lineText.Substring(0, colonIndex).Trim();
-                    // basic heuristic: character names are usually short and dont contain newlines
-                    if (potentialCharacter.Length < 30 && !potentialCharacter.Contains('\n'))
+                    // Extract character name by removing the colon and trailing whitespace.
+                    var characterName = match.Value.TrimEnd(':', ' ', '\t');
+                    if (!string.IsNullOrWhiteSpace(characterName))
                     {
-                        if (!currentNode.CharacterNames.Contains(potentialCharacter))
+                        if (!currentNode.CharacterNames.Contains(characterName))
                         {
-                            currentNode.CharacterNames.Add(potentialCharacter);
+                            currentNode.CharacterNames.Add(characterName);
                         }
                     }
                 }
 
-                // build preview text from first few lines
+                // Build preview text from first few lines.
                 if (previewLineCount < MaxPreviewLines)
                 {
                     if (previewLineCount > 0)
                     {
                         currentNode.PreviewText += "\n";
                     }
-                    // limit preview line length to avoid huge strings
+                    // Limit preview line length to avoid huge strings.
                     var previewLine = lineText.Length > 100 ? lineText.Substring(0, 100) + "..." : lineText;
                     currentNode.PreviewText += previewLine;
                     previewLineCount++;
