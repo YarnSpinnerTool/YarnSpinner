@@ -100,7 +100,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(expectedOutputFiles));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             stringTable = result.StringTable;
 

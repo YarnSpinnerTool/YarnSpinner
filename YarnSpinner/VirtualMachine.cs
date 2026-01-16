@@ -567,7 +567,6 @@ namespace Yarn
                         // passes it to the client as a line
                         string stringKey = i.RunLine.LineID;
 
-
                         var expressionCount = i.RunLine.SubstitutionCount;
 
                         var strings = new string[expressionCount];
