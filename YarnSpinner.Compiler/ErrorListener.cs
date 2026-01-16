@@ -49,10 +49,12 @@ namespace Yarn.Compiler
         public DiagnosticSeverity Severity { get; set; } = DiagnosticSeverity.Error;
 
         /// <summary>
-        /// gets or sets the error code for this diagnostic
-        /// error codes help users look up documentation and categorise issues
-        /// follows the format YS0001, YS0002, etc
+        /// Gets or sets the error code for this diagnostic.
         /// </summary>
+        /// <remarks>
+        /// Error codes help users look up documentation and categorize issues.
+        /// Follows the format YS0001, YS0002, etc.
+        /// </remarks>
         public string? Code { get; set; } = null;
 
         /// <summary>
@@ -174,6 +176,72 @@ namespace Yarn.Compiler
             this.Severity = severity;
         }
 
+        // ===== FACTORY METHODS USING DIAGNOSTICDESCRIPTOR =====
+        // These methods ensure error codes and messages are always correctly paired
+
+        /// <summary>
+        /// Creates a new <see cref="Diagnostic"/> using a <see cref="DiagnosticDescriptor"/>.
+        /// </summary>
+        /// <param name="fileName">The file where the diagnostic occurred.</param>
+        /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
+        /// <param name="args">Arguments to format the message template.</param>
+        /// <returns>A new diagnostic instance.</returns>
+        public static Diagnostic CreateDiagnostic(string fileName, DiagnosticDescriptor descriptor, params object[] args)
+        {
+            return new Diagnostic(fileName, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
+            {
+                Code = descriptor.Code
+            };
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="Diagnostic"/> using a <see cref="DiagnosticDescriptor"/> with range information.
+        /// </summary>
+        /// <param name="fileName">The file where the diagnostic occurred.</param>
+        /// <param name="range">The range in the file where the diagnostic occurred.</param>
+        /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
+        /// <param name="args">Arguments to format the message template.</param>
+        /// <returns>A new diagnostic instance.</returns>
+        public static Diagnostic CreateDiagnostic(string fileName, Range range, DiagnosticDescriptor descriptor, params object[] args)
+        {
+            return new Diagnostic(fileName, range, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
+            {
+                Code = descriptor.Code
+            };
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="Diagnostic"/> using a <see cref="DiagnosticDescriptor"/> with parser context.
+        /// </summary>
+        /// <param name="fileName">The file where the diagnostic occurred.</param>
+        /// <param name="context">The parser context where the diagnostic occurred.</param>
+        /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
+        /// <param name="args">Arguments to format the message template.</param>
+        /// <returns>A new diagnostic instance.</returns>
+        public static Diagnostic CreateDiagnostic(string fileName, ParserRuleContext? context, DiagnosticDescriptor descriptor, params object[] args)
+        {
+            return new Diagnostic(fileName, context, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
+            {
+                Code = descriptor.Code
+            };
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="Diagnostic"/> using a <see cref="DiagnosticDescriptor"/> with token information.
+        /// </summary>
+        /// <param name="fileName">The file where the diagnostic occurred.</param>
+        /// <param name="token">The token where the diagnostic occurred.</param>
+        /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
+        /// <param name="args">Arguments to format the message template.</param>
+        /// <returns>A new diagnostic instance.</returns>
+        public static Diagnostic CreateDiagnostic(string fileName, IToken token, DiagnosticDescriptor descriptor, params object[] args)
+        {
+            return new Diagnostic(fileName, token, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
+            {
+                Code = descriptor.Code
+            };
+        }
+
         /// <summary>
         /// The severity of the issue.
         /// </summary>
@@ -189,7 +257,7 @@ namespace Yarn.Compiler
             Info = 1,
 
             /// <summary>
-            /// An warning.
+            /// A warning.
             /// </summary>
             /// <remarks>
             /// Warnings represent possible problems that the user should fix,
