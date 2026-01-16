@@ -96,7 +96,7 @@ namespace Yarn.Compiler
         public static readonly DiagnosticDescriptor UndefinedVariable = new DiagnosticDescriptor(
             code: "YS0003",
             messageTemplate: "Undefined variable: {0}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
             description: "Variable used without being declared"
         );
 
@@ -179,11 +179,15 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0011: Duplicate node title.
         /// </summary>
+        /// <remarks>
+        /// This diagnostic is not emitted for node groups where nodes share
+        /// a title but have different `when:` clauses.
+        /// </remarks>
         public static readonly DiagnosticDescriptor DuplicateNodeTitle = new DiagnosticDescriptor(
             code: "YS0011",
             messageTemplate: "Duplicate node title: '{0}'",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Multiple nodes have the same title"
+            description: "Multiple nodes have the same title without when: clauses"
         );
 
         /// <summary>
