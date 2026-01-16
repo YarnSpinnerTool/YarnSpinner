@@ -37,7 +37,15 @@ namespace Yarn.Compiler
 
                 if (indexOfStartToken != 0)
                 {
-                    AddDiagnostic(new Diagnostic(this.FileName, tokensOnLine[indexOfStartToken - 1], $"Commands should start on a new line", Diagnostic.DiagnosticSeverity.Warning));
+                    // Get the command name to include in the diagnostic message
+                    string? commandName = GetCommandName(context);
+                    var diagnostic = Diagnostic.CreateDiagnostic(
+                        this.FileName,
+                        context.Start,
+                        DiagnosticDescriptor.LineContentBeforeCommand,
+                        commandName ?? "command"
+                    );
+                    AddDiagnostic(diagnostic);
                 }
             }
 
@@ -51,7 +59,15 @@ namespace Yarn.Compiler
 
                 if (indexOfStopToken != (tokensOnLine.Count - 1))
                 {
-                    AddDiagnostic(new Diagnostic(this.FileName, tokensOnLine[indexOfStopToken + 1], $"Commands should have no text after them", Diagnostic.DiagnosticSeverity.Warning));
+                    // Get the command name to include in the diagnostic message
+                    string? commandName = GetCommandName(context);
+                    var diagnostic = Diagnostic.CreateDiagnostic(
+                        this.FileName,
+                        context.Stop,
+                        DiagnosticDescriptor.LineContentAfterCommand,
+                        commandName ?? "command"
+                    );
+                    AddDiagnostic(diagnostic);
                 }
             }
 
@@ -69,6 +85,37 @@ namespace Yarn.Compiler
             return tokenLineLookup[line]
                 .Where(t => t.Channel == channel && OmitTokenTypes.Contains(t.Type) == false)
                 .ToList();
+        }
+
+        private string? GetCommandName(YarnSpinnerParser.StatementContext context)
+        {
+            // Get all tokens in the statement to find the command keyword
+            var tokens = tokenStream.GetTokens(context.Start.TokenIndex, context.Stop.TokenIndex);
+
+            foreach (var token in tokens)
+            {
+                switch (token.Type)
+                {
+                    case YarnSpinnerLexer.COMMAND_IF:
+                        return "if";
+                    case YarnSpinnerLexer.COMMAND_ELSEIF:
+                        return "elseif";
+                    case YarnSpinnerLexer.COMMAND_ELSE:
+                        return "else";
+                    case YarnSpinnerLexer.COMMAND_ENDIF:
+                        return "endif";
+                    case YarnSpinnerLexer.COMMAND_SET:
+                        return "set";
+                    case YarnSpinnerLexer.COMMAND_DECLARE:
+                        return "declare";
+                    case YarnSpinnerLexer.COMMAND_JUMP:
+                        return "jump";
+                    case YarnSpinnerLexer.COMMAND_CALL:
+                        return "call";
+                }
+            }
+
+            return null;
         }
     }
 }

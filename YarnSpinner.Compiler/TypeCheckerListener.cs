@@ -544,7 +544,9 @@ namespace Yarn.Compiler
                     Name = name,
                     Type = typeVariable,
                     Description = $"Implicitly declared in {this.sourceFileName}, node {this.currentNodeName}",
-                    Range = GetRange(context),
+                    // Use the variable token's position directly to avoid issues with
+                    // error recovery affecting the context's range
+                    Range = Utility.GetRange(variableID.Symbol, variableID.Symbol),
                     IsImplicit = true,
                     IsInlineExpansion = false,
                     SourceFileName = this.sourceFileName,

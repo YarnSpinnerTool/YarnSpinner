@@ -293,6 +293,16 @@ namespace Yarn.Compiler
                 failingConstraints = new HashSet<TypeConstraint>(TypeCheckerListener.ApplySolution(typeSolution, failingConstraints));
             }
 
+            // Validate syntax patterns (stray >>, unenclosed commands, line content after commands)
+            foreach (var parsedFile in parsedFiles)
+            {
+                compilationJob.CancellationToken.ThrowIfCancellationRequested();
+
+                var syntaxValidator = new SyntaxValidationListener(parsedFile.Name, parsedFile.Tokens);
+                walker.Walk(syntaxValidator, parsedFile.Tree);
+                diagnostics.AddRange(syntaxValidator.Diagnostics);
+            }
+
             // After all files are type-checked, check for variables that are still implicitly declared
             // (i.e., were used but never had a <<declare>> statement in any file)
             // YS0001: Variable used without being declared

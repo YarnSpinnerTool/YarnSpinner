@@ -336,10 +336,24 @@ namespace Yarn.Compiler
             Range range = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
             var diagnostic = new Diagnostic(this.fileName, range, msg);
 
-            // Assign error code for lexer errors (typically YS0005 for token recognition)
+            // Assign error code for lexer errors
             if (msg.ToLowerInvariant().Contains("token recognition error"))
             {
-                diagnostic.Code = "YS0005";
+                // Check if we're in CommandMode or ExpressionMode - this indicates an unclosed command
+                if (recognizer is Lexer lexer && lexer.ModeStack != null && lexer.ModeStack.Count > 0)
+                {
+                    // If we have a mode stack, we're likely inside an unclosed command
+                    diagnostic.Code = "YS0006";
+                    var descriptor = DiagnosticDescriptor.GetDescriptor("YS0006");
+                    if (descriptor != null)
+                    {
+                        diagnostic.Message = descriptor.MessageTemplate;
+                    }
+                }
+                else
+                {
+                    diagnostic.Code = "YS0005";
+                }
             }
 
             this.diagnostics.Add(diagnostic);
@@ -405,6 +419,16 @@ namespace Yarn.Compiler
             // Assign error codes based on ANTLR message patterns
             diagnostic.Code = CategorizeParserError(msg);
 
+            // If we assigned a code, update the message to be user-friendly
+            if (!string.IsNullOrEmpty(diagnostic.Code))
+            {
+                var descriptor = DiagnosticDescriptor.GetDescriptor(diagnostic.Code);
+                if (descriptor != null)
+                {
+                    diagnostic.Message = descriptor.MessageTemplate;
+                }
+            }
+
             this.diagnostics.Add(diagnostic);
         }
 
@@ -422,9 +446,21 @@ namespace Yarn.Compiler
             }
 
             // YS0006: Unclosed command (missing >>)
+            // Match direct "missing >>" messages
             if (msg.Contains("missing") && (msg.Contains("'>'") || msg.Contains(">>")))
             {
                 return "YS0006";
+            }
+            // Match "unexpected" errors with command keywords
+            // Pattern: "unexpected 'keyword'" or "unexpected 'keyword'" (different quote styles)
+            if (msg.Contains("unexpected"))
+            {
+                // Check for command keywords with word boundaries
+                if (System.Text.RegularExpressions.Regex.IsMatch(msg, @"\b(set|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)\b") ||
+                    System.Text.RegularExpressions.Regex.IsMatch(msg, @"'(set|if|elseif|else|endif|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)'"))
+                {
+                    return "YS0006";
+                }
             }
 
             // YS0007: Unclosed scope (missing endif, endonce, etc)

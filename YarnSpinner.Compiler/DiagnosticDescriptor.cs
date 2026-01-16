@@ -240,6 +240,46 @@ namespace Yarn.Compiler
             description: "Character name not defined in project configuration"
         );
 
+        /// <summary>
+        /// YS0017: Stray command end marker without matching start marker.
+        /// </summary>
+        public static readonly DiagnosticDescriptor StrayCommandEnd = new DiagnosticDescriptor(
+            code: "YS0017",
+            messageTemplate: "Stray '>>' without matching '<<'. Did you forget to open the command?",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "Command end marker without corresponding start marker"
+        );
+
+        /// <summary>
+        /// YS0018: Command keyword outside of command block.
+        /// </summary>
+        public static readonly DiagnosticDescriptor UnenclosedCommand = new DiagnosticDescriptor(
+            code: "YS0018",
+            messageTemplate: "'{0}' command must be enclosed in '<<' and '>>'. Did you mean '<<{0} ...'?",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "Command keyword appearing outside of command markers"
+        );
+
+        /// <summary>
+        /// YS0019: Line content after a non-flow-control command.
+        /// </summary>
+        public static readonly DiagnosticDescriptor LineContentAfterCommand = new DiagnosticDescriptor(
+            code: "YS0019",
+            messageTemplate: "Line content after '<<{0}>>' command. Commands should be on their own line.",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
+            description: "Non-flow-control commands should be on their own line"
+        );
+
+        /// <summary>
+        /// YS0020: Line content before a non-flow-control command.
+        /// </summary>
+        public static readonly DiagnosticDescriptor LineContentBeforeCommand = new DiagnosticDescriptor(
+            code: "YS0020",
+            messageTemplate: "Line content before '<<{0}>>' command. Commands should start on a new line.",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
+            description: "Non-flow-control commands should start on their own line"
+        );
+
         // Registry for lookup by code
         private static readonly Dictionary<string, DiagnosticDescriptor> descriptorsByCode = new Dictionary<string, DiagnosticDescriptor>
         {
@@ -259,6 +299,10 @@ namespace Yarn.Compiler
             { InvalidCommand.Code, InvalidCommand },
             { CyclicDependency.Code, CyclicDependency },
             { UnknownCharacter.Code, UnknownCharacter },
+            { StrayCommandEnd.Code, StrayCommandEnd },
+            { UnenclosedCommand.Code, UnenclosedCommand },
+            { LineContentAfterCommand.Code, LineContentAfterCommand },
+            { LineContentBeforeCommand.Code, LineContentBeforeCommand },
         };
 
         /// <summary>
