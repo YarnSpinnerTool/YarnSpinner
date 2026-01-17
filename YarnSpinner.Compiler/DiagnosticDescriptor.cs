@@ -63,7 +63,7 @@ namespace Yarn.Compiler
             return string.Format(MessageTemplate, args);
         }
 
-        // ===== TYPE CHECKING ERRORS =====
+        #region Type Checking Errors
 
         /// <summary>
         /// YS0001: A variable has been implicitly declared with multiple conflicting types.
@@ -106,8 +106,9 @@ namespace Yarn.Compiler
             defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
             description: "Variable used without being declared"
         );
+        #endregion
 
-        // ===== SYNTAX ERRORS =====
+        #region Syntax Errors
 
         /// <summary>
         /// YS0004: Missing node delimiter (=== or ---).
@@ -154,8 +155,9 @@ namespace Yarn.Compiler
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "Control flow block not properly closed"
         );
+        #endregion
 
-        // ===== SEMANTIC WARNINGS =====
+        #region Semantic Warnings
 
         /// <summary>
         /// YS0008: Unreachable code detected.
@@ -193,7 +195,7 @@ namespace Yarn.Compiler
             description: "Variable declaration that is not referenced"
         );
 
-        // ===== ADDITIONAL CODES =====
+        #region Additional Codes
 
         /// <summary>
         /// YS0011: Duplicate node title.
@@ -274,6 +276,8 @@ namespace Yarn.Compiler
             defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
             description: "Character name not defined in project configuration"
         );
+
+        #endregion
 
         // Registry for lookup by code
         private static readonly Dictionary<string, DiagnosticDescriptor> descriptorsByCode = new Dictionary<string, DiagnosticDescriptor>
