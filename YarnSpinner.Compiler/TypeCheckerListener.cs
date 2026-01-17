@@ -217,9 +217,9 @@ namespace Yarn.Compiler
 
         private readonly Dictionary<string, Declaration> declarationLookup = new Dictionary<string, Declaration>();
 
-        private void AddDiagnostic(ParserRuleContext context, string message, Diagnostic.DiagnosticSeverity severity = Diagnostic.DiagnosticSeverity.Error)
+        private void AddDiagnostic(DiagnosticDescriptor descriptor, ParserRuleContext context, params string[] args)
         {
-            this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message, severity));
+            this.diagnostics.Add(descriptor.Create(this.sourceFileName, context, args));
         }
 
         private TypeEqualityConstraint AddEqualityConstraint(IType a, IType b, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
@@ -355,7 +355,7 @@ namespace Yarn.Compiler
             // this name? It's an error if we do.
             if (declaration != null && declaration.IsImplicit == false)
             {
-                this.AddDiagnostic(context, $"Redeclaration of existing variable {name}");
+                this.AddDiagnostic(DiagnosticDescriptor.RedeclarationOfExistingVariable, context, name ?? "unknown");
                 return;
             }
 
@@ -891,7 +891,7 @@ namespace Yarn.Compiler
             {
                 // If we're here, we've somehow generated the same 'once'
                 // variable for more than one piece of content.
-                this.AddDiagnostic(context, $"Internal error: redeclaration of existing 'once' variable {onceVariableName}");
+                this.AddDiagnostic(DiagnosticDescriptor.InternalError, context, $"Redeclaration of existing 'once' variable {onceVariableName}");
             }
         }
 

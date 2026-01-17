@@ -50,6 +50,54 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// Creates a new Diagnostic using this descriptor.
+        /// </summary>
+        /// <param name="sourceFile">The name of the file in which this error
+        /// occurred.</param>
+        /// <param name="args">The arguments to use when composing the
+        /// diagnostic's message.</param>
+        /// <returns>The diagnostic.</returns>
+        public Diagnostic Create(string sourceFile, params string[] args)
+            => Diagnostic.CreateDiagnostic(sourceFile, this, args);
+
+        /// <summary>
+        /// Creates a new Diagnostic using this descriptor.
+        /// </summary>
+        /// <param name="sourceFile">The name of the file in which this error
+        /// occurred.</param>
+        /// <param name="context">The parse context associated with this error.</param>
+        /// <param name="args">The arguments to use when composing the
+        /// diagnostic's message.</param>
+        /// <returns>The diagnostic.</returns>
+        public Diagnostic Create(string sourceFile, Antlr4.Runtime.ParserRuleContext context, params string[] args)
+            => Diagnostic.CreateDiagnostic(sourceFile, context, this, args);
+
+        /// <summary>
+        /// Creates a new Diagnostic using this descriptor.
+        /// </summary>
+        /// <param name="sourceFile">The name of the file in which this error
+        /// occurred.</param>
+        /// <param name="token">The token associated with this error.</param>
+        /// <param name="args">The arguments to use when composing the
+        /// diagnostic's message.</param>
+        /// <returns>The diagnostic.</returns>
+
+        public Diagnostic Create(string sourceFile, Antlr4.Runtime.IToken token, params string[] args)
+            => Diagnostic.CreateDiagnostic(sourceFile, token, this, args);
+
+        /// <summary>
+        /// Creates a new Diagnostic using this descriptor.
+        /// </summary>
+        /// <param name="sourceFile">The name of the file in which this error
+        /// occurred.</param>
+        /// <param name="range">The range of the file associated with this error.</param>
+        /// <param name="args">The arguments to use when composing the
+        /// diagnostic's message.</param>
+        /// <returns>The diagnostic.</returns>
+        public Diagnostic Create(string sourceFile, Range range, params string[] args)
+            => Diagnostic.CreateDiagnostic(sourceFile, range, this, args);
+
+        /// <summary>
         /// Formats the message template with the provided arguments.
         /// </summary>
         /// <param name="args">Arguments to format the message template with.</param>
@@ -63,15 +111,16 @@ namespace Yarn.Compiler
             return string.Format(MessageTemplate, args);
         }
 
-        // ===== TYPE CHECKING ERRORS =====
+        #region Type Checking Errors
 
         /// <summary>
         /// YS0001: A variable has been implicitly declared with multiple conflicting types.
         /// </summary>
         /// <remarks>
-        /// This error occurs when a variable is used with different types across
+        /// <para>This error occurs when a variable is used with different types across
         /// different files or contexts without an explicit declaration, and the
-        /// compiler cannot determine which type is correct.
+        /// compiler cannot determine which type is correct.</para>
+        /// <para>Format placeholders: 0: variable name, 1: type names.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor ImplicitVariableTypeConflict = new DiagnosticDescriptor(
             code: "YS0001",
@@ -83,6 +132,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0002: A type mismatch occurred during type checking.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: expected type, 1: actual type.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor TypeMismatch = new DiagnosticDescriptor(
             code: "YS0002",
             messageTemplate: "Type mismatch: expected {0}, got {1}",
@@ -93,14 +145,18 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0003: An undefined variable was referenced.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: variable name.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor UndefinedVariable = new DiagnosticDescriptor(
             code: "YS0003",
             messageTemplate: "Undefined variable: {0}",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
             description: "Variable used without being declared"
         );
+        #endregion
 
-        // ===== SYNTAX ERRORS =====
+        #region Syntax Errors
 
         /// <summary>
         /// YS0004: Missing node delimiter (=== or ---).
@@ -115,6 +171,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0005: Malformed dialogue or syntax error.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: specific syntax error message.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor SyntaxError = new DiagnosticDescriptor(
             code: "YS0005",
             messageTemplate: "{0}",
@@ -135,14 +194,18 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0007: Unclosed control flow scope (missing endif, endonce, etc.).
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: missing token.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor UnclosedScope = new DiagnosticDescriptor(
             code: "YS0007",
             messageTemplate: "Unclosed scope: missing {0}",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "Control flow block not properly closed"
         );
+        #endregion
 
-        // ===== SEMANTIC WARNINGS =====
+        #region Semantic Warnings
 
         /// <summary>
         /// YS0008: Unreachable code detected.
@@ -157,6 +220,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0009: Node is never referenced.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: node title.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor UnusedNode = new DiagnosticDescriptor(
             code: "YS0009",
             messageTemplate: "Node '{0}' is never referenced",
@@ -167,6 +233,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0010: Variable is declared but never used.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: variable name.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor UnusedVariable = new DiagnosticDescriptor(
             code: "YS0010",
             messageTemplate: "Variable '{0}' is declared but never used",
@@ -174,14 +243,15 @@ namespace Yarn.Compiler
             description: "Variable declaration that is not referenced"
         );
 
-        // ===== ADDITIONAL CODES =====
+        #region Additional Codes
 
         /// <summary>
         /// YS0011: Duplicate node title.
         /// </summary>
         /// <remarks>
-        /// This diagnostic is not emitted for node groups where nodes share
-        /// a title but have different `when:` clauses.
+        /// <para>This diagnostic is not emitted for node groups where nodes
+        /// share a title but have different `when:` clauses.</para>
+        /// <para>Format placeholders: 0: node title.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor DuplicateNodeTitle = new DiagnosticDescriptor(
             code: "YS0011",
@@ -193,6 +263,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0012: Jump to undefined node.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: node title.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor UndefinedNode = new DiagnosticDescriptor(
             code: "YS0012",
             messageTemplate: "Jump to undefined node: '{0}'",
@@ -203,6 +276,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0013: Invalid function call.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: function name.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor InvalidFunctionCall = new DiagnosticDescriptor(
             code: "YS0013",
             messageTemplate: "Invalid function call: {0}",
@@ -213,6 +289,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0014: Invalid command.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: command name</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor InvalidCommand = new DiagnosticDescriptor(
             code: "YS0014",
             messageTemplate: "Invalid command: {0}",
@@ -223,6 +302,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0015: Cyclic dependency detected.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: error message.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor CyclicDependency = new DiagnosticDescriptor(
             code: "YS0015",
             messageTemplate: "Cyclic dependency detected: {0}",
@@ -233,6 +315,9 @@ namespace Yarn.Compiler
         /// <summary>
         /// YS0016: Unknown character name.
         /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: character name.</para>
+        /// </remarks>
         public static readonly DiagnosticDescriptor UnknownCharacter = new DiagnosticDescriptor(
             code: "YS0016",
             messageTemplate: "Unknown character: '{0}'",
@@ -240,24 +325,29 @@ namespace Yarn.Compiler
             description: "Character name not defined in project configuration"
         );
 
+        #endregion
+
         /// <summary>
-        /// YS0017: Stray command end marker without matching start marker.
+        /// YS0017: Lines cannot have both a '#line' tag and a '#shadow' tag.
         /// </summary>
-        public static readonly DiagnosticDescriptor StrayCommandEnd = new DiagnosticDescriptor(
+        public static readonly DiagnosticDescriptor LinesCantHaveLineAndShadowTag = new DiagnosticDescriptor(
             code: "YS0017",
-            messageTemplate: "Stray '>>' without matching '<<'. Did you forget to open the command?",
+            messageTemplate: "Lines cannot have both a '#line' tag and a '#shadow' tag.",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Command end marker without corresponding start marker"
+            description: "Shadow tags represent copies of another line elsewhere, and don't get their own line ID."
         );
 
         /// <summary>
-        /// YS0018: Command keyword outside of command block.
+        /// YS0018: Lines cannot have both a '#line' tag and a '#shadow' tag.
         /// </summary>
-        public static readonly DiagnosticDescriptor UnenclosedCommand = new DiagnosticDescriptor(
+        /// <remarks>
+        /// <para>Format placeholders: 0: line ID.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor DuplicateLineID = new DiagnosticDescriptor(
             code: "YS0018",
-            messageTemplate: "'{0}' command must be enclosed in '<<' and '>>'. Did you mean '<<{0} ...'?",
+            messageTemplate: "Duplicate line ID '{0}'",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Command keyword appearing outside of command markers"
+            description: "All line IDs in a Yarn Spinner project must be unique."
         );
 
         /// <summary>
@@ -280,6 +370,68 @@ namespace Yarn.Compiler
             description: "Non-flow-control commands should start on their own line"
         );
 
+        /// <summary>
+        /// YS0021: Stray command end marker without matching start marker.
+        /// </summary>
+        public static readonly DiagnosticDescriptor StrayCommandEnd = new DiagnosticDescriptor(
+            code: "YS0021",
+            messageTemplate: "Stray '>>' without matching '<<'. Did you forget to open the command?",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "Command end marker without corresponding start marker"
+        );
+
+        /// <summary>
+        /// YS0022: Command keyword outside of command block.
+        /// </summary>
+        public static readonly DiagnosticDescriptor UnenclosedCommand = new DiagnosticDescriptor(
+            code: "YS0022",
+            messageTemplate: "'{0}' command must be enclosed in '<<' and '>>'. Did you mean '<<{0} ...'?",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "Command keyword appearing outside of command markers"
+        );
+
+        #endregion
+
+        /// <summary>
+        /// YSXXX1: Redeclaration of existing variable
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: variable name.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor RedeclarationOfExistingVariable = new DiagnosticDescriptor(
+            code: "YSXXX1",
+            messageTemplate: "Redeclaration of existing variable {0}",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "Variables can only have a single declaration."
+        );
+
+        /// <summary>
+        /// YSXXX2: Redeclaration of existing type
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: type name.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor RedeclarationOfExistingType = new DiagnosticDescriptor(
+            code: "YSXXX2",
+            messageTemplate: "Redeclaration of existing type {0}",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "A type with this name already exists."
+        );
+
+        /// <summary>
+        /// YSXXX3: Internal error.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: error description.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor InternalError = new DiagnosticDescriptor(
+            code: "YSXXX3",
+            messageTemplate: "Internal compiler error: {0}",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "An internal error was detected by the compiler. Please file an issue."
+>>>>>>> e98a6182162cc3d2e2b9dd4326239611d148f767
+        );
+
         // Registry for lookup by code
         private static readonly Dictionary<string, DiagnosticDescriptor> descriptorsByCode = new Dictionary<string, DiagnosticDescriptor>
         {
@@ -299,10 +451,15 @@ namespace Yarn.Compiler
             { InvalidCommand.Code, InvalidCommand },
             { CyclicDependency.Code, CyclicDependency },
             { UnknownCharacter.Code, UnknownCharacter },
-            { StrayCommandEnd.Code, StrayCommandEnd },
-            { UnenclosedCommand.Code, UnenclosedCommand },
+            { LinesCantHaveLineAndShadowTag.Code, LinesCantHaveLineAndShadowTag },
+            { DuplicateLineID.Code, DuplicateLineID },
             { LineContentAfterCommand.Code, LineContentAfterCommand },
             { LineContentBeforeCommand.Code, LineContentBeforeCommand },
+            { StrayCommandEnd.Code, StrayCommandEnd },
+            { UnenclosedCommand.Code, UnenclosedCommand },
+            { RedeclarationOfExistingVariable.Code, RedeclarationOfExistingVariable },
+            { RedeclarationOfExistingType.Code, RedeclarationOfExistingType },
+            { InternalError.Code, InternalError },
         };
 
         /// <summary>

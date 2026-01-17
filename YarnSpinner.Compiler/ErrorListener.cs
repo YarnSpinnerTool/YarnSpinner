@@ -110,6 +110,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
+        [Obsolete("Use " + nameof(CreateDiagnostic) + " to create diagnostics.")]
         public Diagnostic(string fileName, ParserRuleContext? context, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
@@ -142,6 +143,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
+        [Obsolete("Use " + nameof(CreateDiagnostic) + " to create diagnostics.")]
         public Diagnostic(string fileName, IToken token, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
@@ -168,6 +170,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
+        [Obsolete("Use " + nameof(CreateDiagnostic) + " to create diagnostics.")]
         public Diagnostic(string fileName, Range range, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
@@ -175,6 +178,11 @@ namespace Yarn.Compiler
             this.Message = message;
             this.Severity = severity;
         }
+
+        // 'Identifier' is obsolete (TODO: re enable this after we finish making
+        // the constructor for Diagnostic private, so that the only way to
+        // create a diagnostic is via a DiagnosticDescriptor)
+#pragma warning disable CS0618
 
         // ===== FACTORY METHODS USING DIAGNOSTICDESCRIPTOR =====
         // These methods ensure error codes and messages are always correctly paired
@@ -241,6 +249,8 @@ namespace Yarn.Compiler
                 Code = descriptor.Code
             };
         }
+#pragma warning restore CS0618
+
 
         /// <summary>
         /// The severity of the issue.
