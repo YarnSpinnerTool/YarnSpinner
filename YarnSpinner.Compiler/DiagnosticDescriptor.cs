@@ -315,39 +315,39 @@ namespace Yarn.Compiler
         #endregion
 
         /// <summary>
-        /// YSXXXX: Redeclaration of existing variable
+        /// YSXXX1: Redeclaration of existing variable
         /// </summary>
         /// <remarks>
         /// <para>Format placeholders: 0: variable name.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor RedeclarationOfExistingVariable = new DiagnosticDescriptor(
-            code: "YSXXXX",
+            code: "YSXXX1",
             messageTemplate: "Redeclaration of existing variable {0}",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "Variables can only have a single declaration."
         );
 
         /// <summary>
-        /// YSXXXX: Redeclaration of existing type
+        /// YSXXX2: Redeclaration of existing type
         /// </summary>
         /// <remarks>
         /// <para>Format placeholders: 0: type name.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor RedeclarationOfExistingType = new DiagnosticDescriptor(
-            code: "YSXXXX",
+            code: "YSXXX2",
             messageTemplate: "Redeclaration of existing type {0}",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "A type with this name already exists."
         );
 
         /// <summary>
-        /// YSXXXX: Internal error.
+        /// YSXXX3: Internal error.
         /// </summary>
         /// <remarks>
         /// <para>Format placeholders: 0: error description.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor InternalError = new DiagnosticDescriptor(
-            code: "YSXXXX",
+            code: "YSXXX3",
             messageTemplate: "Internal compiler error: {0}",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "An internal error was detected by the compiler. Please file an issue."
