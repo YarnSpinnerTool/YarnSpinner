@@ -429,7 +429,6 @@ namespace Yarn.Compiler
             messageTemplate: "Internal compiler error: {0}",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "An internal error was detected by the compiler. Please file an issue."
->>>>>>> e98a6182162cc3d2e2b9dd4326239611d148f767
         );
 
         // Registry for lookup by code
