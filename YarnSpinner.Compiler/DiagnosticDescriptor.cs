@@ -279,6 +279,70 @@ namespace Yarn.Compiler
 
         #endregion
 
+        /// <summary>
+        /// YS0017: Lines cannot have both a '#line' tag and a '#shadow' tag.
+        /// </summary>
+        public static readonly DiagnosticDescriptor LinesCantHaveLineAndShadowTag = new DiagnosticDescriptor(
+            code: "YS0017",
+            messageTemplate: "Lines cannot have both a '#line' tag and a '#shadow' tag.",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "Shadow tags represent copies of another line elsewhere, and don't get their own line ID."
+        );
+
+        /// <summary>
+        /// YS0018: Lines cannot have both a '#line' tag and a '#shadow' tag.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: line ID.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor DuplicateLineID = new DiagnosticDescriptor(
+            code: "YS0018",
+            messageTemplate: "Duplicate line ID '{0}'",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "All line IDs in a Yarn Spinner project must be unique."
+        );
+
+        #endregion
+
+        /// <summary>
+        /// YSXXXX: Redeclaration of existing variable
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: variable name.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor RedeclarationOfExistingVariable = new DiagnosticDescriptor(
+            code: "YSXXXX",
+            messageTemplate: "Redeclaration of existing variable {0}",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "Variables can only have a single declaration."
+        );
+
+        /// <summary>
+        /// YSXXXX: Redeclaration of existing type
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: type name.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor RedeclarationOfExistingType = new DiagnosticDescriptor(
+            code: "YSXXXX",
+            messageTemplate: "Redeclaration of existing type {0}",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "A type with this name already exists."
+        );
+
+        /// <summary>
+        /// YSXXXX: Internal error.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: error description.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor InternalError = new DiagnosticDescriptor(
+            code: "YSXXXX",
+            messageTemplate: "Internal compiler error: {0}",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "An internal error was detected by the compiler. Please file an issue."
+        );
+
         // Registry for lookup by code
         private static readonly Dictionary<string, DiagnosticDescriptor> descriptorsByCode = new Dictionary<string, DiagnosticDescriptor>
         {
@@ -298,6 +362,11 @@ namespace Yarn.Compiler
             { InvalidCommand.Code, InvalidCommand },
             { CyclicDependency.Code, CyclicDependency },
             { UnknownCharacter.Code, UnknownCharacter },
+            { LinesCantHaveLineAndShadowTag.Code, LinesCantHaveLineAndShadowTag },
+            { DuplicateLineID.Code, DuplicateLineID },
+            { RedeclarationOfExistingVariable.Code, RedeclarationOfExistingVariable },
+            { RedeclarationOfExistingType.Code, RedeclarationOfExistingType },
+            { InternalError.Code, InternalError },
         };
 
         /// <summary>
