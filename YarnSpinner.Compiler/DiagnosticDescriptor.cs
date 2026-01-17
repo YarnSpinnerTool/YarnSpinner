@@ -49,13 +49,51 @@ namespace Yarn.Compiler
             Description = description;
         }
 
+        /// <summary>
+        /// Creates a new Diagnostic using this descriptor.
+        /// </summary>
+        /// <param name="sourceFile">The name of the file in which this error
+        /// occurred.</param>
+        /// <param name="args">The arguments to use when composing the
+        /// diagnostic's message.</param>
+        /// <returns>The diagnostic.</returns>
         public Diagnostic Create(string sourceFile, params string[] args)
             => Diagnostic.CreateDiagnostic(sourceFile, this, args);
+
+        /// <summary>
+        /// Creates a new Diagnostic using this descriptor.
+        /// </summary>
+        /// <param name="sourceFile">The name of the file in which this error
+        /// occurred.</param>
+        /// <param name="context">The parse context associated with this error.</param>
+        /// <param name="args">The arguments to use when composing the
+        /// diagnostic's message.</param>
+        /// <returns>The diagnostic.</returns>
         public Diagnostic Create(string sourceFile, Antlr4.Runtime.ParserRuleContext context, params string[] args)
             => Diagnostic.CreateDiagnostic(sourceFile, context, this, args);
 
+        /// <summary>
+        /// Creates a new Diagnostic using this descriptor.
+        /// </summary>
+        /// <param name="sourceFile">The name of the file in which this error
+        /// occurred.</param>
+        /// <param name="token">The token associated with this error.</param>
+        /// <param name="args">The arguments to use when composing the
+        /// diagnostic's message.</param>
+        /// <returns>The diagnostic.</returns>
+
         public Diagnostic Create(string sourceFile, Antlr4.Runtime.IToken token, params string[] args)
             => Diagnostic.CreateDiagnostic(sourceFile, token, this, args);
+
+        /// <summary>
+        /// Creates a new Diagnostic using this descriptor.
+        /// </summary>
+        /// <param name="sourceFile">The name of the file in which this error
+        /// occurred.</param>
+        /// <param name="range">The range of the file associated with this error.</param>
+        /// <param name="args">The arguments to use when composing the
+        /// diagnostic's message.</param>
+        /// <returns>The diagnostic.</returns>
         public Diagnostic Create(string sourceFile, Range range, params string[] args)
             => Diagnostic.CreateDiagnostic(sourceFile, range, this, args);
 
