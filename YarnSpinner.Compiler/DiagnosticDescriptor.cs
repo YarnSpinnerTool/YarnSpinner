@@ -49,6 +49,16 @@ namespace Yarn.Compiler
             Description = description;
         }
 
+        public Diagnostic Create(string sourceFile, params string[] args)
+            => Diagnostic.CreateDiagnostic(sourceFile, this, args);
+        public Diagnostic Create(string sourceFile, Antlr4.Runtime.ParserRuleContext context, params string[] args)
+            => Diagnostic.CreateDiagnostic(sourceFile, context, this, args);
+
+        public Diagnostic Create(string sourceFile, Antlr4.Runtime.IToken token, params string[] args)
+            => Diagnostic.CreateDiagnostic(sourceFile, token, this, args);
+        public Diagnostic Create(string sourceFile, Range range, params string[] args)
+            => Diagnostic.CreateDiagnostic(sourceFile, range, this, args);
+
         /// <summary>
         /// Formats the message template with the provided arguments.
         /// </summary>
