@@ -163,7 +163,8 @@ line before options #line:0
         [Fact]
         public void TestInterruptedLinesNotTagged()
         {
-            var source = CreateTestNode(@"
+            var source = string.Join("\n",
+                CreateTestNode(@"
 line before command #line:0
 <<custom command>>
 -> option 1
@@ -177,7 +178,9 @@ line before jump #line:3
 <<jump nodename>>
 line before call #line:4
 <<call string(5)>>
-            ");
+            "),
+            CreateTestNode("placeholder node", "nodename"));
+            ;
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
