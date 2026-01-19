@@ -102,6 +102,11 @@ namespace Yarn.Compiler
     public class JumpInfo
     {
         /// <summary>
+        /// The URI of the file in which this jump occurs.
+        /// </summary>
+        public string Uri { get; set; } = string.Empty;
+
+        /// <summary>
         /// the title of the destination node
         /// </summary>
         public string DestinationTitle { get; set; } = string.Empty;
