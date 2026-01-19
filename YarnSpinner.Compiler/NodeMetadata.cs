@@ -70,6 +70,12 @@ namespace Yarn.Compiler
         public int OptionCount { get; set; } = 0;
 
         /// <summary>
+        /// detailed information about each shortcut option in this node
+        /// includes text, conditions, and grouping for visual display
+        /// </summary>
+        public List<OptionInfo> Options { get; set; } = new List<OptionInfo>();
+
+        /// <summary>
         /// zero based line number where the node header starts (first three dashes)
         /// </summary>
         public int HeaderStartLine { get; set; } = -1;
@@ -126,5 +132,28 @@ namespace Yarn.Compiler
         /// a detour to another node that will return
         /// </summary>
         Detour
+    }
+
+    /// <summary>
+    /// information about a shortcut option within a node
+    /// </summary>
+    public class OptionInfo
+    {
+        /// <summary>
+        /// the display text of the option (before any pipe separator)
+        /// </summary>
+        public string Text { get; set; } = string.Empty;
+
+        /// <summary>
+        /// zero based line number where this option appears
+        /// </summary>
+        public int LineNumber { get; set; } = -1;
+
+        /// <summary>
+        /// group identifier - consecutive options that are presented together get the same group id
+        /// used for visual grouping in the editor to show which options appear at the same time
+        /// increments each time options are separated by dialogue or commands
+        /// </summary>
+        public int GroupId { get; set; } = 0;
     }
 }

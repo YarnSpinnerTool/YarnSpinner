@@ -23,6 +23,14 @@ namespace Yarn.Compiler
         private int previewLineCount = 0;
         private const int MaxPreviewLines = 3;
 
+        // Track option grouping
+        private int currentOptionGroup = 0;
+        private Dictionary<int, int> indentToGroupId = new Dictionary<int, int>();
+        private Dictionary<int, int> indentToLastLine = new Dictionary<int, int>();
+        private Dictionary<int, int> indentToMinSeenSince = new Dictionary<int, int>(); // Track minimum indent seen since last option at each level
+        private int lastOptionIndent = -1;
+        private int lastLineNumber = -1;
+
         /// <summary>
         /// Regex for detecting implicit character names in dialogue lines.
         /// </summary>
@@ -60,6 +68,12 @@ namespace Yarn.Compiler
             };
 
             previewLineCount = 0;
+
+            // Reset option grouping for new node
+            currentOptionGroup = 0;
+            indentToGroupId = new Dictionary<int, int>();
+            indentToLastLine = new Dictionary<int, int>();
+            lastOptionIndent = -1;
 
             // Visit children to extract all the metadata.
             base.VisitNode(context);
@@ -291,6 +305,62 @@ namespace Yarn.Compiler
             if (currentNode != null)
             {
                 currentNode.OptionCount++;
+
+                // Get line number and column (indent) of this option
+                int lineNumber = context.Start.Line - 1; // Convert to 0-based
+                int indent = context.Start.Column;
+
+                // Get the option text from the line_statement
+                var lineStatement = context.line_statement();
+                var optionText = lineStatement?.line_formatted_text()?.GetText() ?? string.Empty;
+
+                // Determine group ID for this option
+                // Rule: Options at the same indent belong to the same group UNLESS there's a large gap
+                // that's NOT caused by nested options (i.e., we haven't gone deeper since last option at this indent)
+                int groupId = 0;
+
+                bool wentDeeper = lastOptionIndent > indent;
+
+                if (indentToGroupId.TryGetValue(indent, out int existingGroupId) &&
+                    indentToLastLine.TryGetValue(indent, out int lastLine))
+                {
+                    int lineGap = lineNumber - lastLine;
+
+                    // If we went deeper (nested options), ignore the gap and stay in the same group
+                    // Otherwise, only start a new group if gap > 5 (indicating narrator content)
+                    if (wentDeeper || lineGap <= 5)
+                    {
+                        groupId = existingGroupId;
+                    }
+                    else
+                    {
+                        // Large gap without going deeper - narrator content between option blocks
+                        groupId = currentOptionGroup;
+                        indentToGroupId[indent] = groupId;
+                        currentOptionGroup++;
+                    }
+                }
+                else
+                {
+                    // First time seeing this indent
+                    groupId = currentOptionGroup;
+                    indentToGroupId[indent] = groupId;
+                    currentOptionGroup++;
+                }
+
+                // Remember this line number for this indent level
+                indentToLastLine[indent] = lineNumber;
+
+                // Add option info
+                currentNode.Options.Add(new OptionInfo
+                {
+                    Text = optionText,
+                    LineNumber = lineNumber,
+                    GroupId = groupId
+                });
+
+                // Track this indent as the last seen
+                lastOptionIndent = indent;
             }
 
             return base.VisitShortcut_option(context);
