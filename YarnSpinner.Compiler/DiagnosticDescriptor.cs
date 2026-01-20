@@ -81,7 +81,6 @@ namespace Yarn.Compiler
         /// <param name="args">The arguments to use when composing the
         /// diagnostic's message.</param>
         /// <returns>The diagnostic.</returns>
-
         public Diagnostic Create(string sourceFile, Antlr4.Runtime.IToken token, params string[] args)
             => Diagnostic.CreateDiagnostic(sourceFile, token, this, args);
 
@@ -150,7 +149,7 @@ namespace Yarn.Compiler
         /// </remarks>
         public static readonly DiagnosticDescriptor UndefinedVariable = new DiagnosticDescriptor(
             code: "YS0003",
-            messageTemplate: "Undefined variable: {0}",
+            messageTemplate: "Variable '{0}' is used but not declared. Declare it with: <<declare {0} = value>>",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
             description: "Variable used without being declared"
         );
@@ -431,6 +430,39 @@ namespace Yarn.Compiler
             description: "An internal error was detected by the compiler. Please file an issue."
         );
 
+        /// <summary>
+        /// YSXXX4: Unknown line ID {0} for shadow line.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: line ID.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor UnknownLineIDForShadowLine = new DiagnosticDescriptor(
+            code: "YSXXX4",
+            messageTemplate: "Unknown line ID {0} for shadow line",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "Shadow lines must map to existing line IDs."
+        );
+
+        /// <summary>
+        /// YSXXX5: Shadow lines must not have expressions
+        /// </summary>
+        public static readonly DiagnosticDescriptor ShadowLinesCantHaveExpressions = new DiagnosticDescriptor(
+            code: "YSXXX5",
+            messageTemplate: "Shadow lines must not have expressions",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "Shadow lines must be text, and not contain any expressions."
+        );
+
+        /// <summary>
+        /// YSXXX6: Shadow lines must have the same text as their source
+        /// </summary>
+        public static readonly DiagnosticDescriptor ShadowLinesMustHaveSameTextAsSource = new DiagnosticDescriptor(
+            code: "YSXXX6",
+            messageTemplate: "Shadow lines must have the same text as their source",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "Shadow lines are copies of their source lines, and must have the exact same text as their source line."
+        );
+
         // Registry for lookup by code
         private static readonly Dictionary<string, DiagnosticDescriptor> descriptorsByCode = new Dictionary<string, DiagnosticDescriptor>
         {
@@ -459,6 +491,9 @@ namespace Yarn.Compiler
             { RedeclarationOfExistingVariable.Code, RedeclarationOfExistingVariable },
             { RedeclarationOfExistingType.Code, RedeclarationOfExistingType },
             { InternalError.Code, InternalError },
+            { UnknownLineIDForShadowLine.Code, UnknownLineIDForShadowLine },
+            { ShadowLinesCantHaveExpressions.Code, ShadowLinesCantHaveExpressions },
+            { ShadowLinesMustHaveSameTextAsSource.Code, ShadowLinesMustHaveSameTextAsSource },
         };
 
         /// <summary>

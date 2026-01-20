@@ -157,9 +157,7 @@ namespace Yarn.Compiler
                 if (stringTableManager.LineContexts.TryGetValue(shadowLineID, out var sourceLineContext) == false)
                 {
                     // No source line found
-                    diagnostics.Add(new Diagnostic(
-                        sourceFile, shadowLineContext, $"\"{shadowLineID}\" is not a known line ID."
-                    ) { Code = "YS0014" });
+                    diagnostics.Add(DiagnosticDescriptor.UnknownLineIDForShadowLine.Create(sourceFile, shadowLineContext, shadowLineID));
                     continue;
                 }
 
@@ -176,17 +174,15 @@ namespace Yarn.Compiler
                 if (sourceContext.line_formatted_text().expression().Length > 0)
                 {
                     // Lines must not have inline expressions
-                    diagnostics.Add(new Diagnostic(
-                        sourceFile, shadowLineContext, $"Shadow lines must not have expressions"
-                    ) { Code = "YS0016" });
+                    diagnostics.Add(DiagnosticDescriptor.ShadowLinesCantHaveExpressions.Create(sourceFile, shadowLineContext));
                 }
 
                 if (sourceText.Equals(shadowText, StringComparison.CurrentCulture) == false)
                 {
                     // Lines must be identical
-                    diagnostics.Add(new Diagnostic(
-                        sourceFile, shadowLineContext, $"Shadow lines must have the same text as their source lines"
-                    ) { Code = "YS0015" });
+                    diagnostics.Add(
+                        DiagnosticDescriptor.ShadowLinesMustHaveSameTextAsSource.Create(sourceFile, shadowLineContext)
+                    );
                 }
 
                 // The shadow line is valid. Strip the text from its StringInfo,
@@ -234,12 +230,7 @@ namespace Yarn.Compiler
                     if (!string.IsNullOrWhiteSpace(jump.DestinationTitle) && !allNodeTitles.Contains(jump.DestinationTitle))
                     {
                         // Use the jump's precise range for accurate error highlighting
-                        diagnostics.Add(new Diagnostic(
-                            node.Uri,
-                            jump.Range,
-                            $"Node '{jump.DestinationTitle}' does not exist. Check spelling or create the node.",
-                            Diagnostic.DiagnosticSeverity.Warning
-                        ) { Code = "YS0002" });
+                        diagnostics.Add(DiagnosticDescriptor.UndefinedNode.Create(jump.Uri, jump.Range));
                     }
                 }
             }
@@ -308,12 +299,7 @@ namespace Yarn.Compiler
             // YS0001: Variable used without being declared
             foreach (var declaration in declarations.Where(d => d.IsImplicit))
             {
-                diagnostics.Add(new Diagnostic(
-                    declaration.SourceFileName,
-                    declaration.Range,
-                    $"Variable '{declaration.Name}' is used but not declared. Declare it with: <<declare {declaration.Name} = value>>",
-                    Diagnostic.DiagnosticSeverity.Warning
-                ) { Code = "YS0001" });
+                diagnostics.Add(DiagnosticDescriptor.UndefinedVariable.Create(declaration.SourceFileName, declaration.Range, declaration.Name));
             }
 
             if (failingConstraints.Count > 0)

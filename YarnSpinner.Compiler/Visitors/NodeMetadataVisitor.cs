@@ -116,6 +116,7 @@ namespace Yarn.Compiler
 
                 currentNode.Jumps.Add(new JumpInfo
                 {
+                    Uri = fileUri,
                     DestinationTitle = destinationName,
                     Type = JumpType.Jump,
                     Range = Utility.GetRange(destinationToken, destinationToken)
