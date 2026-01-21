@@ -1,164 +1,232 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$ref": "#/definitions/Ysls",
+  "$ref": "#/definitions/ysls",
   "examples": [],
   "definitions": {
-    "Ysls": {
+    "ysls": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "Commands": {
+        "version": {
+          "type":"integer"
+        },
+        "commands": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Command"
+            "$ref": "#/definitions/command"
           },
           "description": "List of commands to make available in Yarn scripts"
         },
-        "Functions": {
+        "functions": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Function"
+            "$ref": "#/definitions/function"
           },
           "description": "List of functions to make available in Yarn scripts"
         }
       },
-      "title": "Ysls"
+      "title": "ysls",
+      "required": [
+        "version"
+      ]
     },
-    "Type": {
+    "type": {
       "description": "A Yarn type.",
       "type": "string",
       "enum": [
         "number",
         "string",
         "bool",
+        "instance",
+        "node",
+        "enum",
         "any"
       ]
     },
-    "Command": {
+    "command": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "YarnName": {
+        "yarnName": {
           "type": "string",
           "description": "Name of this method in Yarn Spinner scripts"
         },
-        "DefinitionName": {
+        "definitionName": {
           "type": "string",
           "description": "Name of this method in code"
         },
-        "FileName": {
+        "fileName": {
           "type": "string",
           "description": "Name of the file this method is defined in.\nPrimarily used when 'Deep Command Lookup' is disabled to make sure the source file is still found (doesn't need to be the full path, even 'foo.cs' is helpful)."
         },
-        "Language": {
+        "language": {
           "type": "string",
-          "description": "Language id of the method definition.\nMust be 'csharp' to override/merge with methods found in C# files.",
+          "description": "Language id of the method definition.",
           "default": "text",
-          "examples": [ "csharp", "gml", "wren" ]
+          "examples": [ "csharp", "c++", "gdscript" ]
         },
-        "Documentation": {
+        "documentation": {
           "type": "string",
           "description": "Description that shows up in suggestions and hover tooltips."
         },
-        "Signature": {
-          "type": "string",
-          "description": "Method signature of the method definition. Good way to show parameters, especially if they have default values or are params[]."
-        },
-        "Parameters": {
+        "parameters": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Parameter"
+            "$ref": "#/definitions/parameter"
           },
           "description": "Method parameters.\nNote that if you are overriding information for a method found via parsing code, setting this in json will completely override that parameter information."
+        },
+        "async": {
+          "type": "boolean",
+          "description": "True if the command will be calling a coroutine or task based method."
+        },
+        "location": {
+          "$ref": "#/definitions/location"
         }
       },
       "required": [
-        "YarnName",
-        "Parameters"
+        "yarnName",
+        "parameters"
       ],
-      "title": "Command"
+      "title": "command"
     },
-    "Function": {
+    "function": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "YarnName": {
+        "yarnName": {
           "type": "string",
           "description": "Name of this method in Yarn Spinner scripts"
         },
-        "DefinitionName": {
+        "definitionName": {
           "type": "string",
           "description": "Name of this method in code"
         },
-        "FileName": {
+        "fileName": {
           "type": "string",
           "description": "Name of the file this method is defined in.\nPrimarily used when 'Deep Command Lookup' is disabled to make sure the source file is still found (doesn't need to be the full path, even 'foo.cs' is helpful)."
         },
-        "Language": {
+        "language": {
           "type": "string",
-          "description": "Language id of the method definition.\nMust be 'csharp' to override/merge with methods found in C# files.",
+          "description": "Language id of the method definition.",
           "default": "text",
-          "examples": [ "csharp", "gml", "wren" ]
+          "examples": [ "csharp", "c++", "gdscript" ]
         },
-        "Documentation": {
+        "documentation": {
           "type": "string",
           "description": "Description that shows up in suggestions and hover tooltips."
         },
-        "Signature": {
-          "type": "string",
-          "description": "Method signature of the method definition. Good way to show parameters, especially if they have default values or are params[]."
-        },
-        "Parameters": {
+        "parameters": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Parameter"
+            "$ref": "#/definitions/parameter"
           },
           "description": "Method parameters.\nNote that if you are overriding information for a method found via parsing code, setting this in json will completely override that parameter information."
         },
-        "VariadicParameterType": {
-          "$ref": "#/definitions/Type",
-          "description": "If set, the type of values that are accepted after the last required parameter.",
-          "default": null
+        "return": {
+          "$ref": "#/definitions/return"
         },
-        "ReturnType": {
-          "$ref": "#/definitions/Type"
+        "async": {
+          "type": "boolean",
+          "description": "True if the function will be calling a task based method."
+        },
+        "location": {
+          "$ref": "#/definitions/location"
         }
       },
       "required": [
-        "YarnName",
-        "ReturnType",
-        "Parameters"
+        "yarnName",
+        "return",
+        "parameters"
       ],
-      "title": "Command"
+      "title": "function"
     },
-    "Parameter": {
+    "parameter": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "Name": {
+        "name": {
           "type": "string"
         },
-        "Type": {
-          "$ref": "#/definitions/Type"
+        "type": {
+          "$ref": "#/definitions/type"
         },
-        "Documentation": {
+        "subtype": {
           "type": "string",
-          "description": "Parameter Documentation, used in method signature hinting."
+          "description": "Subtype only exists when \"type\" has been set to be instance and represents the in-engine type that will be forwarded this command.\nIn Unity this will nearly always be a monobehaviour subclass"
         },
-        "DefaultValue": {
+        "documentation": {
+          "type": "string",
+          "description": "Parameter documentation, used in method signature hinting."
+        },
+        "defaultValue": {
           "type": "string",
           "description": "Default value if it exists. Also will make this parameter optional for parameter count validation."
         },
-        "IsParamsArray": {
+        "isParamsArray": {
           "type": "boolean",
           "description": "Corresponds to the params keyword in C#. Makes this parameter optional, and further parameters will use the information from this parameter.\nUndefined behavior if true for any parameter except for the last."
-
         }
       },
       "required": [
-        "Name"
+        "name",
+        "type"
       ],
-      "title": "Parameter"
+      "title": "parameter"
+    },
+    "return": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/type"
+        },
+        "subtype": {
+          "type":"string"
+        },
+        "description": {
+          "type": "string",
+          "description": "Return documentation."
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "return"
+    },
+    "location": {
+      "title": "location",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "$ref": "#/definitions/position"
+        },
+        "end": {
+          "$ref": "#/definitions/position"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ]
+    },
+    "position": {
+      "title": "position",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "line": {
+          "type": "integer"
+        },
+        "character": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "line",
+        "character"
+      ]
     }
   }
 }
