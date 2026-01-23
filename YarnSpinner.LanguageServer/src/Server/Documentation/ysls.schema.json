@@ -82,6 +82,10 @@
         },
         "location": {
           "$ref": "#/definitions/location"
+        },
+        "containsErrors": {
+          "type": "boolean",
+          "description": "True if the command implementation contains errors that will prevent the command functioning correctly at run time."
         }
       },
       "required": [
@@ -132,6 +136,10 @@
         },
         "location": {
           "$ref": "#/definitions/location"
+        },
+        "containsErrors": {
+          "type": "boolean",
+          "description": "True if the function implementation contains errors that will prevent the function functioning correctly at run time."
         }
       },
       "required": [
