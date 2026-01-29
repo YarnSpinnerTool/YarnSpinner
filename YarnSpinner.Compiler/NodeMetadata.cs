@@ -17,6 +17,11 @@ namespace Yarn.Compiler
         public string Title { get; set; } = string.Empty;
 
         /// <summary>
+        /// the subtitle of the node (optional)
+        /// </summary>
+        public string? Subtitle { get; set; } = null;
+
+        /// <summary>
         /// the file uri where this node is defined
         /// </summary>
         public string Uri { get; set; } = string.Empty;

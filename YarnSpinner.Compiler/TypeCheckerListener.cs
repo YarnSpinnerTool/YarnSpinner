@@ -1472,15 +1472,18 @@ namespace Yarn.Compiler
                     }
                 }
 
-                // Add all children to the search.
-                var childContexts = item.children
-                    .Where(tree => tree.Payload is ParserRuleContext)
-                    .Select(tree => tree.Payload as ParserRuleContext)
-                    .NotNull();
-
-                foreach (var child in childContexts)
+                // Add all children to the search (if there are any).
+                if (item.children != null)
                 {
-                    searchStack.Push((child, level + 1));
+                    var childContexts = item.children
+                        .Where(tree => tree.Payload is ParserRuleContext)
+                        .Select(tree => tree.Payload as ParserRuleContext)
+                        .NotNull();
+
+                    foreach (var child in childContexts)
+                    {
+                        searchStack.Push((child, level + 1));
+                    }
                 }
             }
 

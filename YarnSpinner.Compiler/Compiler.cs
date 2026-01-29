@@ -230,7 +230,7 @@ namespace Yarn.Compiler
                     if (!string.IsNullOrWhiteSpace(jump.DestinationTitle) && !allNodeTitles.Contains(jump.DestinationTitle))
                     {
                         // Use the jump's precise range for accurate error highlighting
-                        diagnostics.Add(DiagnosticDescriptor.UndefinedNode.Create(jump.Uri, jump.Range));
+                        diagnostics.Add(DiagnosticDescriptor.UndefinedNode.Create(jump.Uri, jump.Range, jump.DestinationTitle));
                     }
                 }
             }
