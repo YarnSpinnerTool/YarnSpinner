@@ -1458,11 +1458,14 @@ namespace Yarn.Compiler
                 subtreeCount += 1;
             }
 
-            foreach (var child in context.children)
+            if (context.children != null)
             {
-                if (child is ParserRuleContext childContext)
+                foreach (var child in context.children)
                 {
-                    subtreeCount += GetBooleanOperatorCountInExpression(childContext);
+                    if (child is ParserRuleContext childContext)
+                    {
+                        subtreeCount += GetBooleanOperatorCountInExpression(childContext);
+                    }
                 }
             }
 
@@ -1530,8 +1533,8 @@ namespace Yarn.Compiler
         /// <inheritdoc/>
         public partial class When_headerContext
         {
-            internal bool IsOnce => this.header_expression.once != null;
-            internal bool IsAlways => this.header_expression.always != null;
+            internal bool IsOnce => this.header_expression?.once != null;
+            internal bool IsAlways => this.header_expression?.always != null;
 
             /// <summary>
             /// Gets the complexity of this line's condition.
@@ -1540,6 +1543,12 @@ namespace Yarn.Compiler
             {
                 get
                 {
+                    // If header_expression is null (malformed when: header), treat as no complexity
+                    if (this.header_expression == null)
+                    {
+                        return 0;
+                    }
+
                     if (IsAlways)
                     {
                         // This header is a 'when: always' header - it has a complexity of 0
