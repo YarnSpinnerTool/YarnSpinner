@@ -296,8 +296,9 @@ namespace Yarn.Compiler
 
             // After all files are type-checked, check for variables that are still implicitly declared
             // (i.e., were used but never had a <<declare>> statement in any file)
-            // YS0001: Variable used without being declared
-            foreach (var declaration in declarations.Where(d => d.IsImplicit))
+            // YS0003: Variable used without being declared
+            // Only warn about variables, not functions (functions can be implicitly declared)
+            foreach (var declaration in declarations.Where(d => d.IsImplicit && d.IsVariable))
             {
                 diagnostics.Add(DiagnosticDescriptor.UndefinedVariable.Create(declaration.SourceFileName, declaration.Range, declaration.Name));
             }
@@ -1448,8 +1449,13 @@ namespace Yarn.Compiler
         /// <param name="context">An expression.</param>
         /// <returns>The total number of binary boolean operations in the
         /// expression.</returns>
-        private static int GetBooleanOperatorCountInExpression(ParserRuleContext context)
+        private static int GetBooleanOperatorCountInExpression(ParserRuleContext? context)
         {
+            if (context == null)
+            {
+                return 0;
+            }
+
             var subtreeCount = 0;
 
             if (context is ExpAndOrXorContext)
