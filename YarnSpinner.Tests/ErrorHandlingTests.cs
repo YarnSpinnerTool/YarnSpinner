@@ -7,7 +7,7 @@ namespace YarnSpinner.Tests
 {
 
 
-    public class ErrorHandlingTests : TestBase
+    public class ErrorHandlingTests : AsyncTestBase
     {
         public ErrorHandlingTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {

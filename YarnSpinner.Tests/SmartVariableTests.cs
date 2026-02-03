@@ -1,5 +1,6 @@
 using FluentAssertions;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 using Yarn;
@@ -7,7 +8,7 @@ using Yarn.Compiler;
 
 namespace YarnSpinner.Tests
 {
-    public class SmartVariableTests : TestBase
+    public class SmartVariableTests : AsyncTestBase
     {
         public SmartVariableTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
@@ -55,7 +56,7 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestSmartVariablesCanReferenceOtherSmartVariables()
+        public async Task TestSmartVariablesCanReferenceOtherSmartVariables()
         {
             // Given
             var source = CreateTestNode(new[] {
@@ -73,7 +74,7 @@ namespace YarnSpinner.Tests
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
             // Then
-            RunTestPlan(result, testPlan);
+            await RunTestPlan(result, testPlan);
         }
 
         [InlineData("1 + 1")]
@@ -103,7 +104,7 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestSmartVariablesCanBeEvaluatedInScript()
+        public async Task TestSmartVariablesCanBeEvaluatedInScript()
         {
             // Given
             this.testPlan = new TestPlanBuilder()
@@ -126,7 +127,7 @@ namespace YarnSpinner.Tests
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
             // Then
-            RunTestPlan(result, testPlan);
+            await RunTestPlan(result, testPlan);
         }
 
         [Fact]
@@ -157,7 +158,7 @@ namespace YarnSpinner.Tests
             // Given
             var source = CreateTestNode("<<declare $smart_var = 1 + 1>>");
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            this.dialogue.SetProgram(result.Program);
+            this.dialogue.Program = result.Program;
 
             // When
             bool success = this.dialogue.VariableStorage.TryGetValue<int>("$smart_var", out var evaluationResult);
@@ -198,7 +199,7 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestSmartVariablesCanBeChained()
+        public async Task TestSmartVariablesCanBeChained()
         {
             // Given
             var source = CreateTestNode(new[] {
@@ -217,7 +218,7 @@ namespace YarnSpinner.Tests
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
             // Then
-            RunTestPlan(result, testPlan);
+            await RunTestPlan(result, testPlan);
         }
 
         [Fact]
@@ -358,7 +359,7 @@ namespace YarnSpinner.Tests
 
             job.Library = this.dialogue.Library;
             var result = Compiler.Compile(job);
-            this.dialogue.SetProgram(result.Program);
+            this.dialogue.Program = result.Program;
             result.ContainsErrors.Should().BeFalse();
 
             // When

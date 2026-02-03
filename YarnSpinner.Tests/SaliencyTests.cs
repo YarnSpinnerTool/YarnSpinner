@@ -3,6 +3,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 using Yarn;
@@ -13,30 +14,29 @@ namespace YarnSpinner.Tests
 {
 
 
-    public class SaliencyTests : TestBase
+    public class SaliencyTests : AsyncTestBase
     {
         public SaliencyTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
         }
 
-        private CompilationResult CompileAndPrepareDialogue(string source, string node = "Start")
+        private async Task<CompilationResult> CompileAndPrepareDialogue(string source, string node = "Start")
         {
             var job = CompilationJob.CreateFromString("input", source);
             var result = Compiler.Compile(job);
             result.Diagnostics.Should().BeEmpty();
 
-            this.dialogue.SetProgram(result.Program);
-            this.dialogue.SetNode(node);
+            this.dialogue.Program = result.Program;
+            await this.dialogue.SetNode(node);
 
-            this.dialogue.LineHandler = (line) => { };
-            this.dialogue.OptionsHandler = (opts) => this.dialogue.SetSelectedOption(opts.Options.First().ID);
-            this.dialogue.CommandHandler = (cmd) => { };
-            this.dialogue.NodeStartHandler = (node) => { };
-            this.dialogue.NodeCompleteHandler = (node) => { };
-            this.dialogue.DialogueCompleteHandler = () => { };
+            this.dialogue.OnReceivedLine = (_, _) => { return default; };
+            this.dialogue.OnReceivedOptions = (opts, _) => new ValueTask<int>(opts.Options.First().ID);
+            this.dialogue.OnReceivedCommand = (_, _) => { return default; };
+            this.dialogue.OnReceivedNodeStart = (_, _) => { return default; };
+            this.dialogue.OnReceivedNodeComplete = (_, _) => { return default;};
+            this.dialogue.OnReceivedDialogueComplete = () => { return default;};
 
             return result;
-
         }
 
         [Fact]
@@ -68,7 +68,7 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestConditionCounts()
+        public async Task TestConditionCounts()
         {
             // Given
             var source = @"
@@ -165,7 +165,7 @@ expected: 2
 
             dialogue.Library.RegisterFunction("demo_function", (bool a) => { return true; });
 
-            var result = CompileAndPrepareDialogue(source);
+            var result = await CompileAndPrepareDialogue(source);
 
             var expectedComplexities = new Dictionary<string, int>();
 
@@ -194,7 +194,7 @@ expected: 2
             this.dialogue.ContentSaliencyStrategy = mockSaliencyStrategy.Object;
 
             // When
-            this.dialogue.Continue();
+            await this.dialogue.StartDialogue("Start");
 
             // Then
             // The saliency strategy was invoked one time
@@ -222,7 +222,7 @@ expected: 2
         }
 
         [Fact]
-        public void TestQueryingCandidates()
+        public async Task TestQueryingCandidates()
         {
             // Given
             var source = @"
@@ -244,7 +244,7 @@ when: always
 ";
 
             // When
-            var result = CompileAndPrepareDialogue(source, "NodeGroup");
+            var result = await CompileAndPrepareDialogue(source, "NodeGroup");
             dialogue.VariableStorage.SetValue("$condition1", true);
 
             IEnumerable<ContentSaliencyOption> availableContent = dialogue.GetSaliencyOptionsForNodeGroup("NodeGroup");
@@ -263,7 +263,7 @@ when: always
         }
 
         [Fact]
-        public void TestNodesWithOnceHeaderOnlyAppearOnce()
+        public async Task TestNodesWithOnceHeaderOnlyAppearOnce()
         {
             // Given
 
@@ -275,7 +275,7 @@ This content is only seen once.
 ===
 ";
 
-            CompileAndPrepareDialogue(source);
+            await CompileAndPrepareDialogue(source);
 
             this.dialogue.ContentSaliencyStrategy = new FirstSaliencyStrategy();
 
@@ -284,7 +284,7 @@ This content is only seen once.
             availableContentBeforeRun.Where(c => c.FailingConditionValueCount == 0).Should().HaveCount(1);
 
             // When
-            this.dialogue.Continue();
+            await this.dialogue.StartDialogue("Start");
 
             // Then
             var availableContentAfterRun = this.dialogue.GetSaliencyOptionsForNodeGroup("Start");
@@ -292,7 +292,7 @@ This content is only seen once.
         }
 
         [Fact]
-        public void TestDialogueCanBeQueriedForNodeGroups()
+        public async Task TestDialogueCanBeQueriedForNodeGroups()
         {
             // Given
 
@@ -313,7 +313,7 @@ This node is not part of a node group.
 ===
 ";
 
-            CompileAndPrepareDialogue(source);
+            await CompileAndPrepareDialogue(source);
 
             this.dialogue.NodeExists("DoesntExist").Should().BeFalse();
 
@@ -335,7 +335,7 @@ This node is not part of a node group.
         }
 
         [Fact]
-        public void TestNodeGroupWithSparseSubtitles()
+        public async Task TestNodeGroupWithSparseSubtitles()
         {
             string source = @"
 title: Start
@@ -355,7 +355,7 @@ when: always
 This is a random start node which should get a UUID name.
 ===
 ";
-            var result = CompileAndPrepareDialogue(source);
+            var result = await CompileAndPrepareDialogue(source);
 
             this.dialogue.IsNodeGroup("Start").Should().BeTrue();
             this.dialogue.NodeExists("Start.Special").Should().BeTrue();
@@ -363,7 +363,7 @@ This is a random start node which should get a UUID name.
             // ["Start.Special", "Start.<UUID>", "Start.<a different UUID"]
             // (plus probably 4 generated internal nodes)
             var nodes = result.Program.Nodes.Values;
-            var numNodes = nodes.Where(n => n.Name.StartsWith("Start.")).Count();
+            var numNodes = nodes.Count(n => n.Name.StartsWith("Start."));
             (numNodes == 3).Should().BeTrue();
         }
     }

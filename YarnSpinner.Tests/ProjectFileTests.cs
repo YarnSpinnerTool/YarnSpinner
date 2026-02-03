@@ -10,7 +10,7 @@ using Yarn.Compiler;
 namespace YarnSpinner.Tests
 {
 
-    public class ProjectFileTests : TestBase
+    public class ProjectFileTests : AsyncTestBase
     {
         public ProjectFileTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {

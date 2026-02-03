@@ -72,7 +72,7 @@ namespace YarnLanguageServer.Tests
 
             var functions = workspace.Projects.Single().Functions;
 
-            var standardLibrary = new Dialogue.StandardLibrary();
+            var standardLibrary = new StandardLibrary();
 
             var functionsToOmit = new[] {
                 "visited",
@@ -101,7 +101,7 @@ namespace YarnLanguageServer.Tests
 
             var functions = workspace.Projects.Single().Functions;
 
-            var standardLibrary = new Dialogue.StandardLibrary();
+            var standardLibrary = new StandardLibrary();
 
             var patternsToOmit = new[] {
                 new Regex(@"^Number\."),

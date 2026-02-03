@@ -11,7 +11,7 @@ namespace YarnSpinner.Tests
 {
 
 
-    public class ProjectTests : TestBase
+    public class ProjectTests : AsyncTestBase
     {
         public ProjectTests(ITestOutputHelper outputHelper) : base(outputHelper) { }
 
@@ -24,7 +24,7 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
 
-            dialogue.SetProgram(result.Program);
+            dialogue.Program = result.Program;
             stringTable = result.StringTable;
 
             // high-level test: load the file, verify it has the nodes we want,

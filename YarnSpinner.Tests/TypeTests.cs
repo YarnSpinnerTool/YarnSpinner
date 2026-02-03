@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.WebSockets;
+using System.Threading.Tasks;
 using TypeChecker;
 using Xunit;
 using Xunit.Abstractions;
@@ -11,7 +12,7 @@ using Yarn.Compiler;
 
 namespace YarnSpinner.Tests
 {
-    public class TypeTests : TestBase
+    public class TypeTests : AsyncTestBase
     {
         public TypeTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
@@ -366,7 +367,7 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestInitialValues()
+        public async Task TestInitialValues()
         {
             var source = CreateTestNode(@"
             <<declare $int = 42>>
@@ -421,10 +422,10 @@ namespace YarnSpinner.Tests
             this.storage.SetValue("$external_int", 42);
             this.storage.SetValue("$external_bool", true);
 
-            dialogue.SetProgram(result.Program);
+            dialogue.Program = result.Program;
             stringTable = result.StringTable;
 
-            RunStandardTestcase();
+            await RunStandardTestcase();
 
         }
 
@@ -589,7 +590,7 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestTypeConversion()
+        public async Task TestTypeConversion()
         {
             var source = CreateTestNode(@"
             string + string(number): {""1"" + string(1)}
@@ -615,40 +616,43 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().BeEmpty();
 
-            dialogue.SetProgram(result.Program);
+            dialogue.Program = result.Program;
             stringTable = result.StringTable;
-            RunStandardTestcase();
+            await RunStandardTestcase();
         }
 
         [Theory]
         [InlineData(@"{number(""hello"")}")]
         [InlineData(@"{bool(""hello"")}")]
-        public void TestTypeConversionFailure(string test)
+        public async Task TestTypeConversionFailure(string test)
         {
             var source = CreateTestNode(test);
             testPlan = new TestPlanBuilder()
                 .AddLine("test failure if seen")
                 .GetPlan();
 
-            Action act = () =>
+            try
             {
-
                 var compilationJob = CompilationJob.CreateFromString("input", source, dialogue.Library);
                 var result = Compiler.Compile(compilationJob);
 
                 result.Diagnostics.Should().BeEmpty();
 
-                dialogue.SetProgram(result.Program);
+                dialogue.Program = result.Program;
                 stringTable = result.StringTable;
 
-                RunStandardTestcase();
-            };
+                await RunStandardTestcase();
+                throw new Xunit.Sdk.XunitException("This point should not be reached");
 
-            act.Should().ThrowExactly<FormatException>();
+            }
+            catch (System.Exception ex)
+            {
+                ex.Should().BeOfType<FormatException>();
+            }
         }
 
         [Fact]
-        public void TestImplicitFunctionDeclarations()
+        public async Task TestImplicitFunctionDeclarations()
         {
             var source = CreateTestNode(@"
             {func_void_bool()}
@@ -719,10 +723,10 @@ namespace YarnSpinner.Tests
             dialogue.Library.RegisterFunction("func_bool_bool", (bool b) => true);
             dialogue.Library.RegisterFunction("func_str_bool", (string s) => true);
 
-            dialogue.SetProgram(result.Program);
+            dialogue.Program = result.Program;
             stringTable = result.StringTable;
 
-            RunStandardTestcase();
+            await RunStandardTestcase();
         }
 
         [Theory]
@@ -744,7 +748,7 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestNestedImplicitFunctionDeclarations()
+        public async Task TestNestedImplicitFunctionDeclarations()
         {
             var source = CreateTestNode(@"
             {func_bool_bool(func_int_bool(1) and true) and true}
@@ -774,11 +778,10 @@ namespace YarnSpinner.Tests
                 .Which.Type.Should().BeEquivalentTo(expectedBoolBoolFunctionType);
 
 
-            dialogue.SetProgram(result.Program);
+            dialogue.Program = result.Program;
             stringTable = result.StringTable;
 
-            RunStandardTestcase();
-
+            await RunStandardTestcase();
         }
 
         [Fact]

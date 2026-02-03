@@ -8,7 +8,7 @@ using Yarn.Markup;
 
 namespace YarnSpinner.Tests
 {
-    public class MarkupTests : TestBase, IAttributeMarkerProcessor
+    public class MarkupTests : AsyncTestBase, IAttributeMarkerProcessor
     {
         public MarkupTests(ITestOutputHelper outputHelper) : base(outputHelper) { }
 

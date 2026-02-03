@@ -261,7 +261,7 @@ namespace YarnLanguageServer.Tests
             var builtInActionDecls = Workspace.GetPredefinedActions().Where(a => a.Type == ActionType.Function).Select(f => f.Declaration).ToDictionary(d => d!.Name);
 
             var storage = new Yarn.MemoryVariableStore();
-            var dialogue = new Yarn.Dialogue(storage);
+            var dialogue = new Yarn.AsyncDialogue(storage);
             var library = dialogue.Library;
 
             var libraryDecls = Yarn.Compiler.Compiler.GetDeclarationsFromLibrary(library).Item1.ToDictionary(d => d.Name);

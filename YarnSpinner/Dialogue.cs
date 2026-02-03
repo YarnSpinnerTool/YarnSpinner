@@ -1642,11 +1642,90 @@ namespace Yarn
             return this.OnReceivedDialogueComplete();
         }
 
+        public delegate ValueTask PrepareForLinesHandler(List<string> lines, CancellationToken token);
+        public PrepareForLinesHandler OnPrepareForLines;
         public ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token)
         {
             LogDebugMessage?.Invoke($"preparing for {lineIDs.Count} lines");
-            return default;
+
+            if (this.OnPrepareForLines == null)
+            {
+                LogErrorMessage?.Invoke("No prepare for lines handler set");
+                return default;
+            }
+
+            return this.OnPrepareForLines(lineIDs, token);
+        }
+        
+        public void UnloadAll()
+        {
+            Program = null;
+        }
+
+        public string? CurrentNode
+        {
+            get
+            {
+                if (this.vm == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return this.vm.CurrentNodeName;
+                }
+            }
+        }
+        public async ValueTask SetNode(string node)
+        {
+            await this.vm.SetNode(node, clearState: true);
+        }
+        internal void Analyse(Analysis.Context context)
+        {
+            if (context == null || this.Program == null)
+            {
+                // can't perform analysis on nothing
+                return;
+            }
+            context.AddProgramToAnalysis(this.Program);
+        }
+        public async ValueTask Stop()
+        {
+            await this.vm.Stop();
+        }
+        public string? GetHeaderValue(string nodeName, string headerName)
+        {
+            if (this.Program == null)
+            {
+                throw new InvalidOperationException($"Can't get headers for node {nodeName}, because no program is set");
+            }
+
+            if (this.Program.Nodes.Count == 0)
+            {
+                throw new InvalidOperationException($"Can't get headers for node {nodeName}, because the program contains no nodes");
+            }
+
+            if (this.Program.Nodes.TryGetValue(nodeName, out var node) == false)
+            {
+                throw new InvalidOperationException($"Can't get headers for node {nodeName}: no node with this name was found");
+            }
+
+            foreach (var header in node.Headers)
+            {
+                if (header.Key == headerName)
+                {
+                    return header.Value.Trim();
+                }
+            }
+            return null;
+        }
+
+        public IEnumerable<string> NodeNames
+        {
+            get
+            {
+                return this.Program?.Nodes.Keys ?? Array.Empty<string>();
+            }
         }
     }
-
 }

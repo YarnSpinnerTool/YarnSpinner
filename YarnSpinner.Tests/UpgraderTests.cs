@@ -2,6 +2,7 @@ using FluentAssertions;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 using Yarn.Compiler;
@@ -10,7 +11,7 @@ using Yarn.Compiler.Upgrader;
 namespace YarnSpinner.Tests
 {
 
-    public class UpgraderTests : TestBase
+    public class UpgraderTests : AsyncTestBase
     {
         public UpgraderTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
@@ -19,9 +20,8 @@ namespace YarnSpinner.Tests
         // Test every file in Tests/TestCases
         [Theory(Skip = "Language upgrader has been removed.")]
         [MemberData(nameof(DirectorySources), "Upgrader/V1toV2")]
-        public void TestUpgradingFiles(string directory)
+        public async Task TestUpgradingFiles(string directory)
         {
-
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"INFO: Loading file {directory}");
 
@@ -106,7 +106,7 @@ namespace YarnSpinner.Tests
 
             // Execute the program and verify thats output matches the test
             // plan
-            dialogue.SetProgram(result.Program);
+            dialogue.Program = result.Program;
 
             // Load the test plan
             LoadTestPlan(testPlanPath);
@@ -116,7 +116,7 @@ namespace YarnSpinner.Tests
             // in the last line)
             if (dialogue.NodeExists("Start"))
             {
-                RunStandardTestcase();
+                await RunStandardTestcase();
             }
         }
 

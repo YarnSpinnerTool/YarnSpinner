@@ -236,19 +236,20 @@ namespace Yarn
 
         public async ValueTask Stop()
         {
+            currentNode = null;
+            ResetState();
+
             // we have already cancelled dialogue, no reason to do it again
             if (dialogueCancellationSource == null || dialogueCancellationSource.IsCancellationRequested)
             {
                 LogDebugMessage?.Invoke("Dialogue has already been cancelled");
                 return;
             }
-
-            await Responder.HandleDialogueComplete();
-
-            currentNode = null;
+            
             dialogueCancellationSource.Cancel();
             dialogueCancellationSource = null;
-            ResetState();
+
+            await Responder.HandleDialogueComplete();
         }
 
         public async ValueTask Start()
