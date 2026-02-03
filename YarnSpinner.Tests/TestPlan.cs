@@ -85,7 +85,9 @@ namespace YarnSpinner.Tests
 
         public class ExpectStop : Step { }
 
-        public class ActionSelectStep : Step
+        public abstract class ActionStep : Step { }
+
+        public class ActionSelectStep : ActionStep
         {
             public int SelectedIndex { get; init; }
 
@@ -95,7 +97,7 @@ namespace YarnSpinner.Tests
             }
         }
 
-        public class ActionSetSaliencyStep : Step
+        public class ActionSetSaliencyStep : ActionStep
         {
             public string SaliencyMode { get; init; }
 
@@ -105,7 +107,7 @@ namespace YarnSpinner.Tests
             }
         }
 
-        public class ActionSetVariableStep : Step
+        public class ActionSetVariableStep : ActionStep
         {
             public string VariableName { get; init; }
             public object Value { get; init; }
@@ -117,7 +119,7 @@ namespace YarnSpinner.Tests
             }
         }
 
-        public class ActionJumpToNodeStep : Step
+        public class ActionJumpToNodeStep : ActionStep
         {
             public string NodeName { get; init; }
 

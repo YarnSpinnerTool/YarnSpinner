@@ -66,7 +66,7 @@ namespace Yarn.Compiler
             var diagnostics = new List<Diagnostic>();
             {
                 // Get function declarations from the Standard Library
-                (IEnumerable<Declaration> newDeclarations, IEnumerable<Diagnostic> declarationDiagnostics) = GetDeclarationsFromLibrary(new Dialogue.StandardLibrary());
+                (IEnumerable<Declaration> newDeclarations, IEnumerable<Diagnostic> declarationDiagnostics) = GetDeclarationsFromLibrary(new StandardLibrary());
 
                 diagnostics.AddRange(declarationDiagnostics);
 

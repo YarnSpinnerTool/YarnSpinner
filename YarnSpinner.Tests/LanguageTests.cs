@@ -8,6 +8,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 using Yarn;
@@ -15,7 +16,7 @@ using Yarn.Compiler;
 
 namespace YarnSpinner.Tests
 {
-    public class LanguageTests : TestBase
+    public class LanguageTests : AsyncTestBase
     {
         public LanguageTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
@@ -31,50 +32,51 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestExampleScript()
+        public async Task TestExampleScript()
         {
             runtimeErrorsCauseFailures = false;
-            var path = Path.Combine(TestDataPath, "Example.yarn");
+            var path = Path.Combine(TestBase.TestDataPath, "Example.yarn");
             var testPath = Path.ChangeExtension(path, ".testplan");
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
             result.Diagnostics.Should().BeEmpty();
 
-            dialogue.SetProgram(result.Program);
+            dialogue.Program = result.Program;
             stringTable = result.StringTable;
 
             this.LoadTestPlan(testPath);
 
-            RunStandardTestcase();
+            await RunStandardTestcase();
         }
 
         [Fact]
-        public void TestEndOfNotesWithOptionsNotAdded()
+        public async Task TestEndOfNotesWithOptionsNotAdded()
         {
-            var path = Path.Combine(TestDataPath, "SkippedOptions.yarn");
+            var path = Path.Combine(TestBase.TestDataPath, "SkippedOptions.yarn");
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
             result.Diagnostics.Should().BeEmpty();
 
-            dialogue.SetProgram(result.Program);
+            dialogue.Program = result.Program;
             stringTable = result.StringTable;
 
-            dialogue.OptionsHandler = delegate (OptionSet optionSets)
+            dialogue.OnReceivedNodeComplete = (node, token) => { return default; };
+            dialogue.OnReceivedDialogueComplete = () => { return default; };
+
+            dialogue.OnReceivedOptions = (optionSets, token) =>
             {
                 throw new InvalidOperationException("Options should not be shown to the user in this test.");
             };
 
-            dialogue.SetNode();
-            dialogue.Continue();
-
+            await dialogue.StartDialogue("Start");
         }
 
         [Fact]
         public void TestNodeHeaders()
         {
-            var path = Path.Combine(TestDataPath, "Headers.yarn");
+            var path = Path.Combine(TestBase.TestDataPath, "Headers.yarn");
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
             result.Diagnostics.Should().BeEmpty();
@@ -150,7 +152,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestInvalidCharactersInNodeTitle()
         {
-            var path = Path.Combine(TestDataPath, "InvalidNodeTitle.yarn");
+            var path = Path.Combine(TestBase.TestDataPath, "InvalidNodeTitle.yarn");
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
@@ -267,7 +269,7 @@ title: Start
         [MemberData(nameof(FileSources), "Issues")]
         public void TestCompilationShouldNotBeCultureDependent(string file)
         {
-            var path = Path.Combine(TestDataPath, file);
+            var path = Path.Combine(TestBase.TestDataPath, file);
 
             var source = File.ReadAllText(path);
 
@@ -335,7 +337,7 @@ title: Start
         [MemberData(nameof(FileSources), "TestCases")]
         [MemberData(nameof(FileSources), "TestCases/ParseFailures")]
         [MemberData(nameof(FileSources), "Issues")]
-        public void TestSources(string file)
+        public async Task TestSources(string file)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"INFO: Loading file {file}");
@@ -388,7 +390,7 @@ title: Start
 
                 LoadTestPlan(testPlanFilePath);
 
-                dialogue.SetProgram(result.Program);
+                dialogue.Program = result.Program;
                 stringTable = result.StringTable;
 
                 // three basic dummy functions that can be used to test inference
@@ -401,7 +403,7 @@ title: Start
                 // we did in the last line)
                 if (dialogue.NodeExists("Start"))
                 {
-                    RunStandardTestcase();
+                    await RunStandardTestcase();
                 }
             }
 

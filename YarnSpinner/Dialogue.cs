@@ -30,7 +30,10 @@ namespace Yarn
     using System.Collections.Generic;
     using System.IO;
     using System.Text.RegularExpressions;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Yarn.Markup;
+    using static Yarn.AsyncVirtualMachine;
 
 #nullable enable
 
@@ -1266,141 +1269,382 @@ namespace Yarn
 
             return node.IsNodeGroupHub;
         }
+    }
 
-        // The standard, built-in library of functions and operators.
-        internal class StandardLibrary : Library
+    // The standard, built-in library of functions and operators.
+    internal class StandardLibrary : Library
+    {
+        /// <summary>
+        /// The internal random number generator used by functions like
+        /// 'random' and 'dice'.
+        /// </summary>
+        private static readonly System.Random Random = new Random();
+
+        public StandardLibrary()
         {
-            /// <summary>
-            /// The internal random number generator used by functions like
-            /// 'random' and 'dice'.
-            /// </summary>
-            private static readonly System.Random Random = new Random();
+            #region Operators
 
-            public StandardLibrary()
+            // Register the in-built conversion functions
+            this.RegisterFunction("string", delegate (object v)
             {
-                #region Operators
+                return Convert.ToString(v, System.Globalization.CultureInfo.CurrentCulture);
+            });
 
-                // Register the in-built conversion functions
-                this.RegisterFunction("string", delegate (object v)
-                {
-                    return Convert.ToString(v, System.Globalization.CultureInfo.CurrentCulture);
-                });
+            this.RegisterFunction("number", delegate (object v)
+            {
+                return Convert.ToSingle(v, System.Globalization.CultureInfo.CurrentCulture);
+            });
 
-                this.RegisterFunction("number", delegate (object v)
-                {
-                    return Convert.ToSingle(v, System.Globalization.CultureInfo.CurrentCulture);
-                });
+            this.RegisterFunction("format_invariant", delegate (float v)
+            {
+                return v.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            });
 
-                this.RegisterFunction("format_invariant", delegate (float v)
-                {
-                    return v.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                });
+            this.RegisterFunction("bool", delegate (object v)
+            {
+                return Convert.ToBoolean(v, System.Globalization.CultureInfo.CurrentCulture);
+            });
 
-                this.RegisterFunction("bool", delegate (object v)
-                {
-                    return Convert.ToBoolean(v, System.Globalization.CultureInfo.CurrentCulture);
-                });
+            // Register the built-in types.
+            this.RegisterMethods((TypeBase)Types.Number);
+            this.RegisterMethods((TypeBase)Types.String);
+            this.RegisterMethods((TypeBase)Types.Boolean);
 
-                // Register the built-in types.
-                this.RegisterMethods((TypeBase)Types.Number);
-                this.RegisterMethods((TypeBase)Types.String);
-                this.RegisterMethods((TypeBase)Types.Boolean);
+            // NOTE: This is part of a workaround for supporting 'EqualTo'
+            // in Enums. See note in TypeUtil.GetCanonicalNameForMethod.
+            this.RegisterMethods(new EnumType("Enum", "default", new AnyType()));
 
-                // NOTE: This is part of a workaround for supporting 'EqualTo'
-                // in Enums. See note in TypeUtil.GetCanonicalNameForMethod.
-                this.RegisterMethods(new EnumType("Enum", "default", new AnyType()));
-
-                // Register the built-in utility functions
+            // Register the built-in utility functions
 
 #pragma warning disable CA5394 // System.Random is cryptographically insecure
-                this.RegisterFunction<float>("random", () =>
-                {
-                    return (float)Random.NextDouble();
-                });
+            this.RegisterFunction<float>("random", () =>
+            {
+                return (float)Random.NextDouble();
+            });
 
-                this.RegisterFunction("random_range", (float min, float max) =>
-                {
-                    return Random.Next((int)max - (int)min + 1) + min;
-                });
+            this.RegisterFunction("random_range", (float min, float max) =>
+            {
+                return Random.Next((int)max - (int)min + 1) + min;
+            });
 
-                this.RegisterFunction("random_range_float", delegate (float minInclusive, float maxInclusive)
-                {
-                    return Random.Next((int)maxInclusive - (int)minInclusive + 1) + minInclusive;
-                });
+            this.RegisterFunction("random_range_float", delegate (float minInclusive, float maxInclusive)
+            {
+                return Random.Next((int)maxInclusive - (int)minInclusive + 1) + minInclusive;
+            });
 
-                this.RegisterFunction<int, int>("dice", (int sides) =>
-                {
-                    return Random.Next(sides) + 1;
-                });
+            this.RegisterFunction<int, int>("dice", (int sides) =>
+            {
+                return Random.Next(sides) + 1;
+            });
 #pragma warning restore CA5394 // System.Random is cryptographically insecure
 
-                this.RegisterFunction("min", (float a, float b) => Math.Min(a, b));
-                this.RegisterFunction("max", (float a, float b) => Math.Max(a, b));
+            this.RegisterFunction("min", (float a, float b) => Math.Min(a, b));
+            this.RegisterFunction("max", (float a, float b) => Math.Max(a, b));
 
-                this.RegisterFunction<float, int>("round", (float num) =>
-                {
-                    return (int)Math.Round(num);
-                });
-
-                this.RegisterFunction<float, int, float>("round_places", (float num, int places) =>
-                {
-                    return (float)Math.Round(num, places);
-                });
-
-                this.RegisterFunction<float, int>("floor", (float num) =>
-                {
-                    return (int)Math.Floor(num);
-                });
-
-                this.RegisterFunction<float, int>("ceil", (float num) =>
-                {
-                    return (int)Math.Ceiling(num);
-                });
-
-                this.RegisterFunction<float, int>("inc", (float value) =>
-                {
-                    if (Decimal(value) == 0)
-                    {
-                        return (int)(value + 1);
-                    }
-                    else
-                    {
-                        return (int)Math.Ceiling(value);
-                    }
-                });
-
-                this.RegisterFunction<float, int>("dec", (float value) =>
-                {
-                    if (Decimal(value) == 0)
-                    {
-                        return (int)value - 1;
-                    }
-                    else
-                    {
-                        return (int)Math.Floor(value);
-                    }
-                });
-
-                this.RegisterFunction<float, float>("decimal", Decimal);
-                this.RegisterFunction<float, int>("int", Integer);
-
-                this.RegisterFunction("format", delegate (string formatString, object argument)
-                {
-                    return string.Format(System.Globalization.CultureInfo.CurrentCulture, formatString, argument);
-                });
-
-                #endregion Operators
-            }
-
-            private static float Decimal(float value)
+            this.RegisterFunction<float, int>("round", (float num) =>
             {
-                return value - Integer(value);
+                return (int)Math.Round(num);
+            });
 
-            }
-            private static int Integer(float value)
+            this.RegisterFunction<float, int, float>("round_places", (float num, int places) =>
             {
-                return (int)Math.Truncate(value);
-            }
+                return (float)Math.Round(num, places);
+            });
+
+            this.RegisterFunction<float, int>("floor", (float num) =>
+            {
+                return (int)Math.Floor(num);
+            });
+
+            this.RegisterFunction<float, int>("ceil", (float num) =>
+            {
+                return (int)Math.Ceiling(num);
+            });
+
+            this.RegisterFunction<float, int>("inc", (float value) =>
+            {
+                if (Decimal(value) == 0)
+                {
+                    return (int)(value + 1);
+                }
+                else
+                {
+                    return (int)Math.Ceiling(value);
+                }
+            });
+
+            this.RegisterFunction<float, int>("dec", (float value) =>
+            {
+                if (Decimal(value) == 0)
+                {
+                    return (int)value - 1;
+                }
+                else
+                {
+                    return (int)Math.Floor(value);
+                }
+            });
+
+            this.RegisterFunction<float, float>("decimal", Decimal);
+            this.RegisterFunction<float, int>("int", Integer);
+
+            this.RegisterFunction("format", delegate (string formatString, object argument)
+            {
+                return string.Format(System.Globalization.CultureInfo.CurrentCulture, formatString, argument);
+            });
+
+            #endregion Operators
+        }
+
+        private static float Decimal(float value)
+        {
+            return value - Integer(value);
+
+        }
+        private static int Integer(float value)
+        {
+            return (int)Math.Truncate(value);
         }
     }
+
+    public class AsyncDialogue: ISmartVariableEvaluator, DialogueResponder
+    {
+        public AsyncDialogue(IVariableStorage variableStorage)
+        {
+            Library = new Library();
+
+            this.VariableStorage = variableStorage ?? throw new ArgumentNullException(nameof(variableStorage));
+            this.VariableStorage.SmartVariableEvaluator = this;
+            this.VariableStorage.Program = this.Program;
+
+            this.vm = new AsyncVirtualMachine(this.Library, this.VariableStorage);
+            this.vm.Responder = this;
+            this.smartVariableVM = new VirtualMachine(this.Library, this.VariableStorage);
+
+            Library.ImportLibrary(new StandardLibrary());
+
+            Library.RegisterFunction("visited", delegate (string node)
+            {
+                return IsNodeVisited(node);
+            });
+            Library.RegisterFunction("visited_count", delegate (string node)
+            {
+                return GetNodeVisitCount(node);
+            });
+            Library.RegisterFunction("has_any_content", delegate (string nodeGroup)
+            {
+                if (this.Program == null)
+                {
+                    // we somehow don't have a program, so we don't have ANY
+                    // content, let alone this specific content
+                    return false;
+                }
+
+                if (this.Program.Nodes.TryGetValue(nodeGroup, out var node) == false)
+                {
+                    // No node with this name
+                    return false;
+                }
+
+                if (!node.IsNodeGroupHub)
+                {
+                    // Not a node group hub, so it always has content available
+                    return true;
+                }
+
+                var options = this.GetSaliencyOptionsForNodeGroup(nodeGroup);
+                var bestOption = this.ContentSaliencyStrategy.QueryBestContent(options);
+
+                // Did the saliency strategy indicate that an option could be selected?
+                return bestOption != null;
+            });
+        }
+
+        public Logger? LogDebugMessage
+        {
+            get => vm.LogDebugMessage;
+            set => vm.LogDebugMessage = value;
+        }
+        public Logger? LogErrorMessage
+        {
+            get => vm.LogErrorMessage;
+            set => vm.LogErrorMessage = value;
+        }
+
+        public IVariableStorage VariableStorage { get; set; }
+        public Library Library { get; set; }
+
+        internal Program? Program
+        {
+            get => vm?.Program;
+            set
+            {
+                vm.Program = value;
+                vm.ResetState();
+
+                smartVariableVM.Program = value;
+                smartVariableVM.ResetState();
+            }
+        }
+        private readonly VirtualMachine smartVariableVM;
+
+        public Saliency.IContentSaliencyStrategy ContentSaliencyStrategy
+        {
+            get => this.vm.ContentSaliencyStrategy;
+            set => this.vm.ContentSaliencyStrategy = value;
+        }
+
+        public delegate ValueTask ReceivedLineHandle(Line line, CancellationToken token);
+        public ReceivedLineHandle OnReceivedLine;
+        public delegate ValueTask<int> ReceivedOptionsHandle(OptionSet options, CancellationToken token);
+        public ReceivedOptionsHandle OnReceivedOptions;
+        public delegate ValueTask ReceivedCommandHandle(Command command, CancellationToken token);
+        public ReceivedCommandHandle OnReceivedCommand;
+        public delegate ValueTask ReceivedNodeStartHandle(string node, CancellationToken token);
+        public ReceivedNodeStartHandle OnReceivedNodeStart;
+        public delegate ValueTask ReceivedNodeCompleteHandle(string node, CancellationToken token);
+        public ReceivedNodeCompleteHandle OnReceivedNodeComplete;
+        public delegate ValueTask ReceivedDialogueCompleteHandle();
+        public ReceivedDialogueCompleteHandle OnReceivedDialogueComplete;
+
+        private AsyncVirtualMachine vm;
+
+        public async ValueTask StartDialogue(string node)
+        {
+            await vm.SetNode(node);
+            await vm.Start();
+        }
+
+        public bool IsNodeGroup(string nodeName)
+        {
+            if (this.Program == null)
+            {
+                LogErrorMessage?.Invoke($"Can't determine if {nodeName} is a hub node, because no program has been set.");
+                throw new InvalidOperationException($"Can't determine if {nodeName} is a hub node, because no program has been set.");
+            }
+
+            if (this.Program.Nodes.TryGetValue(nodeName, out var node) == false)
+            {
+                // Not a valid node, so not a valid node group.
+                return false;
+            }
+
+            return node.IsNodeGroupHub;
+        }
+        private bool IsNodeVisited(string nodeName)
+        {
+            return GetNodeVisitCount(nodeName) > 0;
+        }
+        private float GetNodeVisitCount(string nodeName)
+        {
+            VariableStorage.TryGetValue(Library.GenerateUniqueVisitedVariableForNode(nodeName), out float count);
+            return count;
+        }
+        public IEnumerable<Saliency.ContentSaliencyOption> GetSaliencyOptionsForNodeGroup(string nodeGroup)
+        {
+            if (NodeExists(nodeGroup) == false)
+            {
+                // This node doesn't exist - it can't be a node OR a node group,
+                // and we've been asked for an invalid value.
+                LogErrorMessage?.Invoke($"{nodeGroup} is not a valid node name");
+                throw new ArgumentException($"{nodeGroup} is not a valid node name");
+            }
+
+            if (IsNodeGroup(nodeGroup) == false)
+            {
+                // This is not a node group, it's a plain node. Return a single
+                // content saliency "option" that represents this node.
+                return new[] {
+                    new Saliency.ContentSaliencyOption(nodeGroup) {
+                        ComplexityScore = 0,
+                        ContentType = Saliency.ContentSaliencyContentType.Node,
+                        PassingConditionValueCount = 1,
+                        FailingConditionValueCount = 0,
+                    }
+                };
+            }
+
+            // This is a valid node group name. Ask the saliency system to
+            // produce the collection of options that could run.
+            return SmartVariableEvaluationVirtualMachine.GetSaliencyOptionsForNodeGroup(nodeGroup, this.VariableStorage, this.Library);
+        }
+
+        public bool NodeExists(string nodeName)
+        {
+            if (this.Program == null)
+            {
+                LogDebugMessage?.Invoke("Tried to call NodeExists, but no program has been loaded!");
+                return false;
+            }
+
+            if (this.Program.Nodes == null || this.Program.Nodes.Count == 0)
+            {
+                // No nodes? Then this node doesn't exist.
+                return false;
+            }
+
+            return this.Program.Nodes.ContainsKey(nodeName);
+        }
+
+        public bool TryGetSmartVariable<T>(string name, out T result)
+        {
+            return SmartVariableEvaluationVirtualMachine.TryGetSmartVariable(
+                name,
+                this.VariableStorage,
+                this.Library,
+                out result);
+        }
+
+        public ValueTask HandleLine(Line line, CancellationToken token)
+        {
+            LogDebugMessage?.Invoke($"Got line: {line.ID}");
+
+            return this.OnReceivedLine.Invoke(line, token);
+        }
+
+        public ValueTask<int> HandleOptions(OptionSet options, CancellationToken token)
+        {
+            LogDebugMessage?.Invoke("Got Options");
+            foreach (var option in options.Options)
+            {
+                LogDebugMessage?.Invoke($"Got option: {option.ID}");
+            }
+            return this.OnReceivedOptions(options, token);
+        }
+
+        public ValueTask HandleCommand(Command command, CancellationToken token)
+        {
+            LogDebugMessage?.Invoke($"Got a coomand: {command.Text}");
+
+            return this.OnReceivedCommand(command, token);
+        }
+
+        public ValueTask HandleNodeStart(string node, CancellationToken token)
+        {
+            LogDebugMessage?.Invoke($"node started: {node}");
+            
+            return this.OnReceivedNodeStart(node, token);
+        }
+
+        public ValueTask HandleNodeComplete(string node, CancellationToken token)
+        {
+            LogDebugMessage?.Invoke($"node completed: {node}");
+            
+            return this.OnReceivedNodeComplete(node, token);
+        }
+
+        public ValueTask HandleDialogueComplete()
+        {
+            LogDebugMessage?.Invoke($"dialogue completed");
+            
+            return this.OnReceivedDialogueComplete();
+        }
+
+        public ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token)
+        {
+            LogDebugMessage?.Invoke($"preparing for {lineIDs.Count} lines");
+            return default;
+        }
+    }
+
 }

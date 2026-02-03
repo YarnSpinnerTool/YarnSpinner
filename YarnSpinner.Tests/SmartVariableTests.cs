@@ -319,7 +319,7 @@ namespace YarnSpinner.Tests
         public void TestCanEvaluateSmartVariable()
         {
             var library = new Library();
-            library.ImportLibrary(new Dialogue.StandardLibrary());
+            library.ImportLibrary(new StandardLibrary());
 
             var source = CreateTestNode(new[] {
                 "<<declare $smart_var = 3 + 2>>",

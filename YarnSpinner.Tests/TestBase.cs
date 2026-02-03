@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 using Yarn;
@@ -13,6 +14,261 @@ using Yarn.Saliency;
 
 namespace YarnSpinner.Tests
 {
+    public class AsyncTestBase: TestBase
+    {
+        protected new AsyncDialogue dialogue;
+
+        private async System.Threading.Tasks.Task EvaluateCurrentRun(TestPlan.Run currentRun)
+        {
+            if (dialogue.Program == null)
+            {
+                throw new Xunit.Sdk.XunitException("Cannot run test: dialogue does not have a program.");
+            }
+
+            var saliencyStrategies = new Dictionary<string, IContentSaliencyStrategy> {
+                { "first", new FirstSaliencyStrategy() },
+                { "best", new BestSaliencyStrategy() },
+                { "best_least_recently_seen", new BestLeastRecentlyViewedSaliencyStrategy(dialogue.VariableStorage)}
+            };
+
+            var selections = new Queue<int>();
+            foreach (var step in currentRun.Steps)
+            {
+                if (step is not TestPlan.ActionStep)
+                {
+                    continue;
+                }
+
+                // this is a selection
+                // we store it for later use
+                if (step is TestPlan.ActionSelectStep)
+                {
+                    var selection = step as TestPlan.ActionSelectStep;
+                    selections.Enqueue(selection.SelectedIndex);
+                }
+                else if (step is TestPlan.ActionSetVariableStep set)
+                {
+                    if (dialogue.Program.InitialValues.TryGetValue(set.VariableName, out var operand) == false)
+                    {
+                        throw new ArgumentException($"Variable {set.VariableName} is not valid in program");
+                    }
+                    switch (set.Value)
+                    {
+                        case bool BoolValue:
+                            dialogue.VariableStorage.SetValue(set.VariableName, BoolValue);
+                            break;
+                        case int IntValue:
+                            dialogue.VariableStorage.SetValue(set.VariableName, IntValue);
+                            break;
+                    }
+                }
+                else if (step is TestPlan.ActionSetSaliencyStep setSaliency)
+                {
+                    if (saliencyStrategies.TryGetValue(setSaliency.SaliencyMode, out var saliencyStrategy))
+                    {
+                        dialogue.ContentSaliencyStrategy = saliencyStrategy;
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException($"Unknown saliency strategy '{setSaliency.SaliencyMode}'");
+                    }
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Unhandled step type :{step.GetType()}");
+                }
+            }
+
+            var moments = new Queue<TestPlan.Step>();
+            // set up the handlers
+            AsyncDialogue.ReceivedLineHandle LineHandler = (line, token) =>
+            {
+                // getting the text of the line
+                var text = GetComposedTextForLine(line);
+                // getting it's metadata
+                var metadata = stringTable[line.ID].metadata;
+                // building the step and storing it for later use
+                var step = new TestPlan.ExpectLineStep(text, metadata);
+
+                moments.Enqueue(step);
+                return default;
+            };
+            AsyncDialogue.ReceivedCommandHandle CommandHandler = (command, token) =>
+            {
+                // building the step and storing it for later use
+                var step = new TestPlan.ExpectCommandStep(command.Text);
+                moments.Enqueue(step);
+
+                return default;
+            };
+            AsyncDialogue.ReceivedOptionsHandle OptionsHandler = (options, token) =>
+            {
+                foreach (var option in options.Options)
+                {
+                    // getting the text of the option
+                    var text = GetComposedTextForLine(option.Line);
+                    // getting it's metadata
+                    var metadata = stringTable[option.Line.ID].metadata;
+                    
+                    // building the step and storing it for later use
+                    var step = new TestPlan.ExpectOptionStep(text, metadata, option.IsAvailable);
+                    moments.Enqueue(step);
+                }
+
+                var selection = selections.Dequeue();
+                return new System.Threading.Tasks.ValueTask<int>(selection);
+            };
+
+            dialogue.OnReceivedLine = LineHandler;
+            dialogue.OnReceivedCommand = CommandHandler;
+            dialogue.OnReceivedOptions = OptionsHandler;
+
+            // kick off the dialogue and await it finishing
+            await dialogue.StartDialogue(currentRun.StartNode);
+
+            // now we go through every moment and see if matches the test plan
+            foreach (var step in currentRun.Steps)
+            {
+                // if the step is a set, select, or set saliency we ignore it
+                // these will have been handled at runtime
+                if (step is TestPlan.ActionStep)
+                {
+                    continue;
+                }
+
+                if (step is TestPlan.ExpectStop)
+                {
+                    // we early out
+                    // if there are unprocessed moments this will get caught a bit later when we check the moments queue is empty
+                    break;
+                }
+
+                // ok we are now a content step of some sort
+                // so we want to dequeue it
+                // ensure it's the same
+                if (step is TestPlan.ExpectLineStep expectedLine)
+                {
+                    moments.Peek().Should().BeOfType<TestPlan.ExpectLineStep>();
+                    var yarnStep = moments.Dequeue() as TestPlan.ExpectLineStep;
+                    yarnStep.Should().NotBeNull();
+
+                    yarnStep.ExpectedText.Should().Be(expectedLine.ExpectedText);
+
+                    // checking we have all the expected hashtags
+                    // we may (and often will have more because they can be synthesised like the lineID tag)
+                    if (expectedLine.ExpectedHashtags.Count > 0)
+                    {
+                        foreach (var expectedTag in expectedLine.ExpectedHashtags)
+                        {
+                            yarnStep.ExpectedHashtags.Should().Contain(expectedTag);
+                        }
+                    }
+                }
+                else if (step is TestPlan.ExpectOptionStep expectedOption)
+                {
+                    moments.Peek().Should().BeOfType<TestPlan.ExpectOptionStep>();
+                    var yarnStep = moments.Dequeue() as TestPlan.ExpectOptionStep;
+                    yarnStep.Should().NotBeNull();
+
+                    yarnStep.ExpectedText.Should().Be(expectedOption.ExpectedText);
+                    yarnStep.ExpectedAvailability.Should().Be(expectedOption.ExpectedAvailability);
+
+                    if (expectedOption.ExpectedHashtags.Count > 0)
+                    {
+                        foreach (var expectedTag in expectedOption.ExpectedHashtags)
+                        {
+                            yarnStep.ExpectedHashtags.Should().Contain(expectedTag);
+                        }
+                    }
+                }
+                else if (step is TestPlan.ExpectCommandStep expectedCommand)
+                {
+                    moments.Peek().Should().BeOfType<TestPlan.ExpectCommandStep>();
+                    var yarnStep = moments.Dequeue() as TestPlan.ExpectCommandStep;
+                    yarnStep.Should().NotBeNull();
+
+                    yarnStep.ExpectedText.Should().Be(expectedCommand.ExpectedText);
+                }
+                else
+                {
+                    throw new Xunit.Sdk.XunitException($"Encountered an unknown step: {step.GetType()}");
+                }
+            }
+
+            // ensure the current step is now the "we are done" step
+            moments.Should().BeEmpty();
+        }
+
+        protected new async Task RunTestPlan(CompilationResult compilationResult, TestPlan plan, Action<Dialogue> config = null)
+        {
+            compilationResult.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+
+            dialogue.Program = compilationResult.Program;
+            stringTable = compilationResult.StringTable;
+            testPlan = plan ?? throw new ArgumentNullException(nameof(plan));
+
+            await RunStandardTestcase();
+        }
+
+        protected new async System.Threading.Tasks.Task RunStandardTestcase()
+        {
+            if (testPlan == null)
+            {
+                throw new Xunit.Sdk.XunitException("Cannot run test: no test plan provided.");
+            }
+
+            if (dialogue.Program == null)
+            {
+                throw new Xunit.Sdk.XunitException("Cannot run test: dialogue does not have a program.");
+            }
+
+            dialogue.OnReceivedNodeStart = (_, _) => { return default; };
+            dialogue.OnReceivedNodeComplete = (_, _) => { return default; };
+            dialogue.OnReceivedDialogueComplete = () => { return default; };
+
+            foreach (var run in testPlan.Runs)
+            {
+                await EvaluateCurrentRun(run);
+            }
+        }
+
+        public AsyncTestBase(ITestOutputHelper outputHelper) : base(outputHelper)
+        {
+            dialogue = new AsyncDialogue(storage);
+
+            dialogue.ContentSaliencyStrategy = new Yarn.Saliency.BestLeastRecentlyViewedSaliencyStrategy(storage);
+
+            dialogue.LogDebugMessage = delegate (string message)
+            {
+                output.WriteLine(message);
+
+                Console.ResetColor();
+                Console.WriteLine(message);
+            };
+
+            dialogue.LogErrorMessage = delegate (string message)
+            {
+                output.WriteLine("ERROR: " + message);
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("ERROR: " + message);
+                Console.ResetColor();
+
+                if (runtimeErrorsCauseFailures == true)
+                {
+                    message.Should().NotBeNull();
+                }
+
+            };
+
+            dialogue.Library.RegisterFunction("assert", delegate (bool value)
+            {
+                value.Should().BeTrue("assertion should pass");
+                return true;
+            });
+        }
+    }
+
     class DebugMemoryVariableStore : MemoryVariableStore
     {
         public override bool TryGetValue<T>(string variableName, out T result)
@@ -104,7 +360,6 @@ namespace YarnSpinner.Tests
 
         public string GetComposedTextForLine(Line line)
         {
-
             stringTable.Should().ContainKey(line.ID);
 
             var stringInfo = stringTable[line.ID];
