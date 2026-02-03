@@ -1484,6 +1484,8 @@ namespace Yarn
 
                 smartVariableVM.Program = value;
                 smartVariableVM.ResetState();
+
+                VariableStorage.Program = value;
             }
         }
         private readonly VirtualMachine smartVariableVM;

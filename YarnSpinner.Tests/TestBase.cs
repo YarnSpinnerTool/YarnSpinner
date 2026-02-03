@@ -73,6 +73,10 @@ namespace YarnSpinner.Tests
                         throw new InvalidOperationException($"Unknown saliency strategy '{setSaliency.SaliencyMode}'");
                     }
                 }
+                else if (step is TestPlan.ActionJumpToNodeStep jumpStep)
+                {
+                    currentRun.StartNode = jumpStep.NodeName;
+                }
                 else
                 {
                     throw new InvalidOperationException($"Unhandled step type :{step.GetType()}");
@@ -115,6 +119,7 @@ namespace YarnSpinner.Tests
                     moments.Enqueue(step);
                 }
 
+                selections.Should().NotBeEmpty();
                 var selection = selections.Dequeue();
                 return new System.Threading.Tasks.ValueTask<int>(selection);
             };

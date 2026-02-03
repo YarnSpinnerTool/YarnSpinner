@@ -537,7 +537,7 @@ Line 2
         }
 
         [Fact]
-        public void TestTestPlanThrowsErrorOnFailure()
+        public async Task TestTestPlanThrowsErrorOnFailure()
         {
             var source = CreateTestNode(@"
 title: Start
@@ -551,22 +551,19 @@ Line 2
 <<command>>
             ");
 
-
-            void RunTest(string source, TestPlan plan)
-            {
+            try
+            {    
+                var failingPlan = TestPlan.FromString(@"line: `Line 1`");
                 var job = CompilationJob.CreateFromString("input", source, this.dialogue.Library);
                 var result = Compiler.Compile(job);
-                RunTestPlan(result, plan);
+                await RunTestPlan(result, failingPlan);
+
+                throw new System.InvalidOperationException("Should not reach this point");
             }
-
-            // When
-            // Create a plan that expects the first line to be "Line 2" (which
-            // it won't get)
-            var failingPlan = TestPlan.FromString(@"line: `Line 2`");
-
-            // Then
-            Action act = () => RunTest(source, failingPlan);
-            act.Should().Throw<Exception>();
+            catch (System.Exception ex)
+            {
+                ex.Should().BeOfType<Xunit.Sdk.XunitException>();
+            }
         }
 
         [Fact]
