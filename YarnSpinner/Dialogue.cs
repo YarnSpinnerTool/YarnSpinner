@@ -545,6 +545,7 @@ namespace Yarn
     /// <summary>
     /// Co-ordinates the execution of Yarn programs.
     /// </summary>
+    [Obsolete("Dialogue class has been superseded by the async dialogue")]
     public class Dialogue : ISmartVariableEvaluator
     {
 
