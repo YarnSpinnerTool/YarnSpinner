@@ -1461,6 +1461,11 @@ namespace Yarn
             });
         }
 
+        /// <summary>
+        /// The value to indicate to the dialogue runner that no option was selected and dialogue should fall through to the rest of the program.
+        /// </summary>
+        public const int NoOptionSelected = -1;
+
         public Logger? LogDebugMessage
         {
             get => vm.LogDebugMessage;
@@ -1475,7 +1480,7 @@ namespace Yarn
         public IVariableStorage VariableStorage { get; set; }
         public Library Library { get; set; }
 
-        internal Program? Program
+        public Program? Program
         {
             get => vm?.Program;
             set
@@ -1512,9 +1517,20 @@ namespace Yarn
 
         private AsyncVirtualMachine vm;
 
+        public bool IsActive => vm.IsDialogueRunning;
+
         public async ValueTask StartDialogue(string node)
         {
             await vm.SetNode(node);
+            await vm.Start();
+        }
+
+        public async ValueTask Start()
+        {
+            if (CurrentNode == null)
+            {
+                throw new InvalidOperationException("Asked to start dialogue but a start node has not been set");
+            }
             await vm.Start();
         }
 
@@ -1612,6 +1628,7 @@ namespace Yarn
             {
                 LogDebugMessage?.Invoke($"Got option: {option.ID}");
             }
+
             return this.OnReceivedOptions(options, token);
         }
 
