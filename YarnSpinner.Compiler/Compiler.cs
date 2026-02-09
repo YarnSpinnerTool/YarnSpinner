@@ -954,8 +954,13 @@ namespace Yarn.Compiler
                 // that Yarn Spinner can use?
                 if (Types.TypeMappings.TryGetValue(method.ReturnType, out var yarnReturnType) == false)
                 {
-                    diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: {method.ReturnType} is not a valid return type."));
-                    continue;
+                    // ok we aren't one of the basic types
+                    // but we might be one of our allowed async types
+                    if (library.AllowedTypes.TryGetValue(method.ReturnType, out yarnReturnType) == false)
+                    {
+                        diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: {method.ReturnType} is not a valid return type."));
+                        continue;
+                    }
                 }
 
                 // Define a new type for this function

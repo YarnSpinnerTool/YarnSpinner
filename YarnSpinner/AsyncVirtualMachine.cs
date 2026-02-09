@@ -118,17 +118,6 @@ namespace Yarn
             state = new State();
         }
 
-        // ok so the thinking is start doesnt do the callback thing
-        // because you started it, you must have done your setup alread surely
-        // but I do still need to call into the infrastructure right?
-        // so basically the flow will be:
-        // player clicks on start
-        // dialogue sets the start node up
-        // dialogue sets itself up as the responder
-        // dialogue calls continue
-        // dialogue returns
-        // the vm when start is called (which will call continue as a forget)
-
         public interface DialogueResponder
         {
             ValueTask HandleLine(Line line, CancellationToken token);
@@ -138,6 +127,7 @@ namespace Yarn
             ValueTask HandleNodeComplete(string node, CancellationToken token);
             ValueTask HandleDialogueComplete();
             ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token);
+            ValueTask<object> thunk(Delegate func, object[] parameters, CancellationToken token);
         }
         private DialogueResponder? dialogueResponder;
         public DialogueResponder Responder
@@ -517,7 +507,8 @@ namespace Yarn
                     state.PopValue();
                     return true;
                 case Instruction.InstructionTypeOneofCase.CallFunc:
-                    CallFunction(i, Library, state.stack);
+                    // ok so this becomes async
+                    await CallFunction(i, Library, state.stack);
                     return true;
 
                 case Instruction.InstructionTypeOneofCase.PushVariable:
@@ -827,14 +818,14 @@ namespace Yarn
             throw new System.InvalidOperationException($"Smart node execution nodes must not run lines");
         }
 
-        public static void CallFunction(Instruction i, Library Library, Stack<Value> stack)
+        public async ValueTask CallFunction(Instruction i, Library Library, Stack<Value> stack)
         {
             // Call a function, whose parameters are expected to
             // be on the stack. Pushes the function's return value,
             // if it returns one.
             var functionName = i.CallFunc.FunctionName;
 
-            var function = Library.GetFunction(functionName);
+            Delegate function = Library.GetFunction(functionName);
 
             var parameterInfos = function.Method.GetParameters();
 
@@ -903,21 +894,29 @@ namespace Yarn
                 parametersToUse[expectedRequiredParamCount] = variadicParameters;
             }
 
+            // if the last parameter is of type CancellationToken
+            // make a new cancelation token
+            // give it to the function
+            // where does this come from?
+            // ok so the thinking is being the thunk is the job of the dialogue responder
+            // which means this token is the managed by that right?
+            // hmm
+
             // Invoke the function
             try
             {
-                IConvertible returnValue = (IConvertible)function.DynamicInvoke(parametersToUse);
-                // If the function returns a value, push it
-                bool functionReturnsValue = function.Method.ReturnType != typeof(void);
-
-                if (functionReturnsValue)
+                var task = this.Responder.thunk(function, parametersToUse, CancellationToken.None);
+                IConvertible returnValue = (IConvertible)await task;
+                
+                if (Types.TypeMappings.TryGetValue(returnValue.GetType(), out var yarnType))
                 {
-                    if (Types.TypeMappings.TryGetValue(returnValue.GetType(), out var yarnType))
-                    {
-                        Value yarnValue = new Value(yarnType, returnValue);
+                    Value yarnValue = new Value(yarnType, returnValue);
 
-                        stack.Push(yarnValue);
-                    }
+                    stack.Push(yarnValue);
+                }
+                else
+                {
+                    throw new System.InvalidOperationException($"Internal error: Return value of the function is not convertible to a Yarn type.");
                 }
             }
             catch (System.Reflection.TargetInvocationException ex)
@@ -925,6 +924,67 @@ namespace Yarn
                 // The function threw an exception. Re-throw the exception it threw.
                 throw ex.InnerException;
             }
+        }
+
+        public async static ValueTask<object> BasicThunk(Delegate func, object[] parameters, CancellationToken token)
+        {
+            var functionName = func.Method.Name;
+            var returnType = func.Method.ReturnType;
+
+            // if the method is void we want to early out
+            if (returnType == typeof(void))
+            {
+                throw new System.InvalidOperationException($"Internal error: Functions are required to return a Yarn value but {functionName} is a void function");
+            }
+
+            // if the delegate returns a non-async type
+            // and the return type is a type yarn intrinsically understands
+            // we just immediately run the function and return that, no need to wait around
+            if (Types.TypeMappings.TryGetValue(returnType, out _))
+            {
+                return func.DynamicInvoke(parameters);
+            }
+
+            // ok so we aren't a basic type
+            // which means we are either a type that can be awaited with a yarn compatible subtype, or we are an unsupported type
+            // regardless the next step is the same
+            // we invoke the method knowing it will be possible to cast it to something we can await
+            // and if it can't then it's an error
+            var uncast = func.DynamicInvoke(parameters);
+
+            return uncast switch
+            {
+                ValueTask<int> task => await task,
+                ValueTask<float> task => await task,
+                ValueTask<double> task => await task,
+                ValueTask<sbyte> task => await task,
+                ValueTask<byte> task => await task,
+                ValueTask<short> task => await task,
+                ValueTask<ushort> task => await task,
+                ValueTask<uint> task => await task,
+                ValueTask<long> task => await task,
+                ValueTask<ulong> task => await task,
+                ValueTask<decimal> task => await task,
+                ValueTask<string> task => await task,
+                ValueTask<bool> task => await task,
+
+                Task<int> task => await task,
+                Task<float> task => await task,
+                Task<double> task => await task,
+                Task<sbyte> task => await task,
+                Task<byte> task => await task,
+                Task<short> task => await task,
+                Task<ushort> task => await task,
+                Task<uint> task => await task,
+                Task<long> task => await task,
+                Task<ulong> task => await task,
+                Task<decimal> task => await task,
+                Task<string> task => await task,
+                Task<bool> task => await task,
+
+                // at this point we are something we don't really understand
+                _ => throw new System.InvalidOperationException($"Internal error: Functions are required to return a Yarn value but {functionName} return type is {returnType}"),
+            };
         }
     }
 }

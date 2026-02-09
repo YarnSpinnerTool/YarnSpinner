@@ -29,6 +29,18 @@ namespace YarnSpinner.Tests
 
             dialogue.Library.RegisterFunction("set_objective_complete", (string objective) => true);
             dialogue.Library.RegisterFunction("is_objective_active", (string objective) => true);
+
+            dialogue.Library.RegisterFunction("adds_two", TestValueTaskInt);
+            dialogue.Library.RegisterFunction("adds_one", TestSystemTaskInt);
+        }
+
+        private ValueTask<int> TestValueTaskInt(int testParam)
+        {
+            return new ValueTask<int>(testParam + 2);
+        }
+        private Task<int> TestSystemTaskInt(int testParam)
+        {
+            return Task.FromResult(testParam + 1);
         }
 
         [Fact]

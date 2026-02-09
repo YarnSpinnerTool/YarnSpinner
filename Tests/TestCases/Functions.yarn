@@ -9,4 +9,8 @@ title: Start
 // function calls as parameters
 
 {add_three_operands(1, 2, add_three_operands(1,2,3))}
+
+// calling async some functions
+{adds_two(1)}
+{adds_one(1)}
 ===

@@ -1745,5 +1745,10 @@ namespace Yarn
                 return this.Program?.Nodes.Keys ?? Array.Empty<string>();
             }
         }
+
+        public ValueTask<object> thunk(Delegate func, object[] parameters, CancellationToken token)
+        {
+            return AsyncVirtualMachine.BasicThunk(func, parameters, token);
+        }
     }
 }

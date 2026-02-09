@@ -8,7 +8,7 @@
 set -e
 
 YARNSPINNER_FOLDER=$(readlink -f "$(dirname $0)")
-YARNSPINNER_DLLS_DIR=$1/Packages/dev.yarnspinner.unity/Runtime/DLLs/
+YARNSPINNER_DLLS_DIR=$1/Runtime/DLLs/
 
 pushd $1
 

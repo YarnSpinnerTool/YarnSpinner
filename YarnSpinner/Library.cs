@@ -40,6 +40,38 @@ namespace Yarn
 
         }
 
+        public static IReadOnlyDictionary<System.Type, Yarn.IType> BaseAsyncTypeMappings { get; } = new Dictionary<System.Type, Yarn.IType>
+        {
+            {typeof(System.Threading.Tasks.ValueTask<int>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.ValueTask<float>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.ValueTask<double>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.ValueTask<sbyte>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.ValueTask<byte>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.ValueTask<short>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.ValueTask<ushort>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.ValueTask<uint>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.ValueTask<long>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.ValueTask<ulong>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.ValueTask<decimal>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.ValueTask<string>), Yarn.Types.String},
+            {typeof(System.Threading.Tasks.ValueTask<bool>), Yarn.Types.Boolean},
+
+            {typeof(System.Threading.Tasks.Task<int>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.Task<float>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.Task<double>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.Task<sbyte>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.Task<byte>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.Task<short>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.Task<ushort>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.Task<uint>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.Task<long>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.Task<ulong>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.Task<decimal>), Yarn.Types.Number},
+            {typeof(System.Threading.Tasks.Task<string>), Yarn.Types.String},
+            {typeof(System.Threading.Tasks.Task<bool>), Yarn.Types.Boolean},
+        };
+        public Dictionary<System.Type, Yarn.IType> AllowedTypes { get; set; } = new Dictionary<System.Type, Yarn.IType>(BaseAsyncTypeMappings);
+
         /// <summary>
         /// Loads functions from another <see cref="Library"/>.
         /// </summary>
