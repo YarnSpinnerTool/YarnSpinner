@@ -720,6 +720,7 @@ namespace Yarn.Compiler
             base.ExitValueFunc(context);
         }
 
+        // this will need to change such that if we don't have a function definition instead of creating an implication one we report this as an error
         public override void ExitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context)
         {
             // If we already have a declaration for this function, then use
@@ -731,39 +732,16 @@ namespace Yarn.Compiler
 
             if (functionDecl == null)
             {
-                // We don't know about this function. We'll need to create a new
-                // declaration.
-
-                TypeVariable returnType = this.GenerateTypeVariable($"return from {functionName}", context);
-
-                functionType = new FunctionType(returnType);
-
-                int count = 1;
-                foreach (var expression in context.expression())
-                {
-                    var parameterType = this.GenerateTypeVariable($"{functionName} param {count}", context);
-                    functionType.AddParameter(parameterType);
-
-                    count++;
-                }
-
-                functionDecl = new Declaration
-                {
-                    Name = functionName ?? "<unknown>",
-                    IsImplicit = true,
-                    SourceFileName = this.sourceFileName,
-                    Range = GetRange(context),
-                    Type = functionType,
-                };
-
-                this.AddDeclaration(functionDecl);
+                // if we don't have a definition for this function we can't ensure it's the right type
+                // so we will have to bail out and just add a diagnostic for this function call
+                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"Was unable to find a declaration for {functionName}."));
+                base.ExitFunction_call(context);
+                return;
             }
             else
             {
                 functionType = (FunctionType)functionDecl.Type;
             }
-
-            context.Type = this.GenerateTypeVariable(null, context);
 
             int actualParameters = context.expression()?.Count() ?? 0;
             int expectedParameters = functionType.Parameters.Count();
@@ -776,32 +754,24 @@ namespace Yarn.Compiler
                 // We don't! Create a diagnostic message and make this
                 // expression be the Error type.
 
-                string message;
-
                 var expectedEnglishPlural = expectedParameters != 1;
                 var actualEnglishPlural = actualParameters != 1;
 
-                // If the function declaration is implicit, give a message here
-                // that hedges a bit - we don't know if _this_ call is the
-                // incorrect one.
-                if (functionDecl.IsImplicit)
-                {
-                    message = $"{functionName} was called elsewhere with {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, but is called with {actualParameters} {(actualEnglishPlural ? "parameters" : "parameter")} here";
-                }
-                else
-                {
-                    message = $"{functionName} expects {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, not {actualParameters}";
-                }
-
+                string message = $"{functionName} expects {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, not {actualParameters}";
                 this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
+
+                // at this point there is no point in attempting to validate them
+                base.ExitFunction_call(context);
+                return;
             }
 
+            context.Type = this.GenerateTypeVariable(null, context);
             for (int paramID = 0; paramID < actualParameters; paramID++)
             {
                 var parameterExpression = context.expression()[paramID];
                 try
                 {
-                    var expectedType = functionType.GetParameterAt(paramID); //functionType.Parameters[paramID];
+                    var expectedType = functionType.GetParameterAt(paramID);
                     var actualType = parameterExpression.Type;
 
                     this.AddConvertibleConstraint(actualType, expectedType, parameterExpression, s => $"{parameterExpression.GetText()} ({parameterExpression.Type.Substitute(s)}) is not convertible to {expectedType.Substitute(s)}");

@@ -651,84 +651,6 @@ namespace YarnSpinner.Tests
             }
         }
 
-        [Fact]
-        public async Task TestImplicitFunctionDeclarations()
-        {
-            var source = CreateTestNode(@"
-            {func_void_bool()}
-            {func_void_bool() and bool(func_void_bool())}
-            { 1 + func_void_int() }
-            { ""he"" + func_void_str() }
-
-            {func_int_bool(1)}
-            {true and func_int_bool(1)}
-
-            {func_bool_bool(false)}
-            {true and func_bool_bool(false)}
-
-            {func_str_bool(""hello"")}
-            {true and func_str_bool(""hello"")}
-            ");
-
-            testPlan = new TestPlanBuilder()
-                .AddLine("True")
-                .AddLine("True")
-                .AddLine("2")
-                .AddLine("hello")
-                .AddLine("True")
-                .AddLine("True")
-                .AddLine("True")
-                .AddLine("True")
-                .AddLine("True")
-                .AddLine("True")
-                .GetPlan();
-
-            // A list of function names that are referred to in the above source
-            // code, and the method signatures that should be inferred for them
-            var expectedFunctions = new (string Name, string Description)[]{
-                ("func_void_bool", "() -> Bool"),
-                ("func_void_int", "() -> Number"),
-                ("func_void_str", "() -> String"),
-                ("func_int_bool", "(Number) -> Bool"),
-                ("func_bool_bool", "(Bool) -> Bool"),
-                ("func_str_bool", "(String) -> Bool"),
-            };
-
-            // all functions will be implicitly declared
-            var compilationJob = CompilationJob.CreateFromString("input", source);
-            var result = Compiler.Compile(compilationJob);
-
-            var functions = result.Declarations.Where(d => d.Type is FunctionType);
-
-
-            foreach (var expectedFunction in expectedFunctions)
-            {
-                functions.Should().ContainEquivalentOf(new
-                {
-                    Name = expectedFunction.Name,
-                    Type = new
-                    {
-                        Description = expectedFunction.Description
-                    }
-                });
-            }
-
-            result.Diagnostics.Should().BeEmpty();
-
-            dialogue.Library.RegisterFunction("func_void_bool", () => true);
-            dialogue.Library.RegisterFunction("func_void_int", () => 1);
-            dialogue.Library.RegisterFunction("func_void_str", () => "llo");
-
-            dialogue.Library.RegisterFunction("func_int_bool", (int i) => true);
-            dialogue.Library.RegisterFunction("func_bool_bool", (bool b) => true);
-            dialogue.Library.RegisterFunction("func_str_bool", (string s) => true);
-
-            dialogue.Program = result.Program;
-            stringTable = result.StringTable;
-
-            await RunStandardTestcase();
-        }
-
         [Theory]
         [InlineData("1", "Number")]
         [InlineData("\"hello\"", "String")]
@@ -748,53 +670,17 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public async Task TestNestedImplicitFunctionDeclarations()
-        {
-            var source = CreateTestNode(@"
-            {func_bool_bool(func_int_bool(1) and true) and true}
-            ");
-
-            dialogue.Library.RegisterFunction("func_int_bool", (int i) => i == 1);
-            dialogue.Library.RegisterFunction("func_bool_bool", (bool b) => b);
-
-            testPlan = new TestPlanBuilder()
-               .AddLine("True")
-               .GetPlan();
-
-            // the library is NOT attached to this compilation job; all
-            // functions will be implicitly declared
-            var compilationJob = CompilationJob.CreateFromString("input", source);
-            var result = Compiler.Compile(compilationJob);
-
-            result.Diagnostics.Should().BeEmpty();
-
-            var expectedIntBoolFunctionType = new FunctionTypeBuilder().WithParameter(Types.Number).WithReturnType(Types.Boolean).FunctionType;
-            var expectedBoolBoolFunctionType = new FunctionTypeBuilder().WithParameter(Types.Boolean).WithReturnType(Types.Boolean).FunctionType;
-
-            result.Declarations.Should().ContainSingle(d => d.Name == "func_int_bool")
-                .Which.Type.Should().BeEquivalentTo(expectedIntBoolFunctionType);
-
-            result.Declarations.Should().ContainSingle(d => d.Name == "func_bool_bool")
-                .Which.Type.Should().BeEquivalentTo(expectedBoolBoolFunctionType);
-
-
-            dialogue.Program = result.Program;
-            stringTable = result.StringTable;
-
-            await RunStandardTestcase();
-        }
-
-        [Fact]
-        public void TestMultipleImplicitRedeclarationsOfFunctionParameterCountFail()
+        public void TestMultipleFunctionCallsWithDifferentParameterCountsFail()
         {
             var source = CreateTestNode(@"
             {func(1)}
             {func(2, 2)} // wrong number of parameters (previous decl had 1)
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            dialogue.Library.RegisterFunction<int,int>("func", (input) => 1);
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("func was called elsewhere with 1 parameter, but is called with 2 parameters here");
+            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("func expects 1 parameter, not 2");
         }
 
         [Fact]

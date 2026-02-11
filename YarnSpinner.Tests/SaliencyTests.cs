@@ -22,7 +22,7 @@ namespace YarnSpinner.Tests
 
         private async Task<CompilationResult> CompileAndPrepareDialogue(string source, string node = "Start")
         {
-            var job = CompilationJob.CreateFromString("input", source);
+            var job = CompilationJob.CreateFromString("input", source, dialogue.Library);
             var result = Compiler.Compile(job);
             result.Diagnostics.Should().BeEmpty();
 
