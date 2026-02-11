@@ -507,8 +507,17 @@ namespace Yarn
                     state.PopValue();
                     return true;
                 case Instruction.InstructionTypeOneofCase.CallFunc:
-                    // ok so this becomes async
-                    await CallFunction(i, Library, state.stack);
+                    if (Library.TryGetFunction(i.CallFunc.FunctionName, out var function))
+                    {
+                        var value = await CallFunc(function, state.stack, cancellationToken);
+                        state.stack.Push(value);
+                    }
+                    else
+                    {
+                        // for now just running the function the old way
+                        // but this will have to change later to throwing an exception
+                        await CallFunction(i, Library, state.stack);
+                    }
                     return true;
 
                 case Instruction.InstructionTypeOneofCase.PushVariable:
@@ -818,6 +827,111 @@ namespace Yarn
             throw new System.InvalidOperationException($"Smart node execution nodes must not run lines");
         }
 
+        private async ValueTask<Value> InvokeThunk(Delegate func, object[] parameters, CancellationToken token)
+        {
+            var task = this.Responder.thunk(func, parameters, token);
+            IConvertible returnValue = (IConvertible)await task;
+            
+            if (Types.TypeMappings.TryGetValue(returnValue.GetType(), out var yarnType))
+            {
+                Value yarnValue = new Value(yarnType, returnValue);
+                return yarnValue;
+            }
+            else
+            {
+                throw new System.InvalidOperationException($"Internal error: Return value of the function is not convertible to a Yarn type.");
+            }
+        }
+
+        private async ValueTask<Yarn.Value> CallFunc(FunctionDefinition function, Stack<Value> stack, CancellationToken token)
+        {
+            var actualParamCount = stack.Pop().ConvertTo<int>();
+            var expectedCount = function.Parameters.Length;
+
+            if (actualParamCount == 0)
+            {
+                if (expectedCount != 0)
+                {
+                    throw new System.InvalidOperationException($"Internal error: {function.Name}'s expects {expectedCount} parameters but has 0");
+                }
+
+                // can sidestep a lot of this stuff now
+                // because we have no parameters can just invoke the thunk
+                return await InvokeThunk(Library.GetFunction(function.Name), Array.Empty<object>(), token);
+            }
+
+            // check if the last parameter is variadic and if it is what type?
+            Type? lastParameterVariadicType = function.Parameters.Length > 0 ? function.Parameters[^1].isVariadic ? function.Parameters[^1].subType : null : null;
+            
+            var variadicParamCount = lastParameterVariadicType == null ? 0 : actualParamCount - (expectedCount - 1);
+            var regularParamCount = actualParamCount - variadicParamCount;
+
+            // one last sanity check if we have the right number of parameters
+            if (variadicParamCount > 0)
+            {
+                if (regularParamCount != expectedCount - 1)
+                {
+                    throw new System.InvalidOperationException($"Internal error: {function.Name}'s expects {expectedCount} parameters but has {regularParamCount + 1}");
+                }
+            }
+            else
+            {
+                if (regularParamCount != expectedCount)
+                {
+                    throw new System.InvalidOperationException($"Internal error: {function.Name}'s expects {expectedCount} parameters but has {regularParamCount}");
+                }
+            }
+
+            Array? variadicParameters = null;
+            // then pop off the number of variadic parameters and jam them into an array
+            if (variadicParamCount > 0)
+            {
+                if (lastParameterVariadicType == null)
+                {
+                    throw new System.InvalidOperationException($"Internal error: {function.Name} expects a variadic parameter but the type of this parameter wasn't able to be determined");
+                }
+
+                variadicParameters = Array.CreateInstance(lastParameterVariadicType, variadicParamCount);
+
+                for (int i = 0; i < variadicParamCount; i++)
+                {
+                    var value = stack.Pop();
+                    variadicParameters.SetValue(value.ConvertTo(lastParameterVariadicType), variadicParamCount - 1 - i);
+                }
+            }
+
+            // at this point we only have the remaining expected values
+            // so we want to pop these off, convert them, and stuff them into an array for delivery
+            var parametersToUse = new object[regularParamCount + ((lastParameterVariadicType != null) ? 1 : 0)];
+            
+            // if we ended up with a variadic parameter we want to include that now also
+            // but it goes at the end as variadics are always the last paramter
+            if (variadicParamCount > 0)
+            {
+                if (variadicParameters == null)
+                {
+                    throw new System.InvalidOperationException($"Internal error: {function.Name} expects variadic parameters but were unable to identify any");
+                }
+                parametersToUse[^1] = variadicParameters;
+            }
+
+            for (int i = 0; i < regularParamCount; i++)
+            {
+                var index = expectedCount - 1 - i - (variadicParamCount == 0 ? 0 : 1);
+                if (function.Parameters[index].isVariadic)
+                {
+                    throw new System.InvalidOperationException($"Internal error: encountered an unexpected variadic parameter");
+                }
+                var value = stack.Pop();
+                var paramType = function.Parameters[index].subType;
+
+                parametersToUse[index] = value.ConvertTo(paramType);
+            }
+
+            // at this stage we now have an array of converted values that is good to send over to be invoked
+            return await InvokeThunk(Library.GetFunction(function.Name), parametersToUse, token);
+        }
+
         public async ValueTask CallFunction(Instruction i, Library Library, Stack<Value> stack)
         {
             // Call a function, whose parameters are expected to
@@ -851,9 +965,6 @@ namespace Yarn
             }
 
             var variadicParamCount = actualParamCount - expectedRequiredParamCount;
-
-            // Get the parameters, which were pushed in reverse
-            Value[] parameters = new Value[actualParamCount];
 
             // Create an array for storing the parameters we'll
             // submit. If the function accepts variadic parameters,
@@ -893,14 +1004,6 @@ namespace Yarn
             {
                 parametersToUse[expectedRequiredParamCount] = variadicParameters;
             }
-
-            // if the last parameter is of type CancellationToken
-            // make a new cancelation token
-            // give it to the function
-            // where does this come from?
-            // ok so the thinking is being the thunk is the job of the dialogue responder
-            // which means this token is the managed by that right?
-            // hmm
 
             // Invoke the function
             try

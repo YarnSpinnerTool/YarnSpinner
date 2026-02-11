@@ -206,6 +206,19 @@ namespace Yarn
     }
 #pragma warning restore CA1815
 
+    public struct FunctionDefinition
+    {
+        public string Name { get; set; }
+
+        public FunctionDefinitionParameter[] Parameters {get; set; }
+    }
+    public struct FunctionDefinitionParameter
+    {
+        public Type mainType;
+        public Type subType; // should make it that if you don't have a subtype set then we return the main type, essentially it's a convenience mechanism
+        public bool isVariadic;
+    }
+
     /// <summary>
     /// Represents a method that receives diagnostic messages and error
     /// information from a <see cref="Dialogue"/>.

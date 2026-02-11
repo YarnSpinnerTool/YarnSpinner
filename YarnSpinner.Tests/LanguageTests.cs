@@ -32,6 +32,44 @@ namespace YarnSpinner.Tests
 
             dialogue.Library.RegisterFunction("adds_two", TestValueTaskInt);
             dialogue.Library.RegisterFunction("adds_one", TestSystemTaskInt);
+
+            // manually defining this function
+            var adds_two_definition = new FunctionDefinition();
+            adds_two_definition.Name = "adds_two";
+            var adds_two_param = new FunctionDefinitionParameter();
+            adds_two_param.mainType = typeof(int);
+            adds_two_param.subType = typeof(int);
+            adds_two_param.isVariadic = false;
+            adds_two_definition.Parameters = [adds_two_param];
+            dialogue.Library.functions.Add("adds_two", adds_two_definition);
+
+            var add_all_def = new FunctionDefinition();
+            add_all_def.Name = "adds_all";
+            var adds_all_p1 = new FunctionDefinitionParameter();
+            adds_all_p1.mainType = typeof(int);
+            adds_all_p1.subType = typeof(int);
+            adds_all_p1.isVariadic = false;
+            var adds_all_p2 = new FunctionDefinitionParameter();
+            adds_all_p2.mainType = typeof(int);
+            adds_all_p2.subType = typeof(int);
+            adds_all_p2.isVariadic = false;
+            var adds_all_p3 = new FunctionDefinitionParameter();
+            adds_all_p3.mainType = typeof(int);
+            adds_all_p3.subType = typeof(int);
+            adds_all_p3.isVariadic = true;
+            add_all_def.Parameters = [adds_all_p1, adds_all_p2, adds_all_p3];
+            dialogue.Library.functions.Add("adds_all", add_all_def);
+            dialogue.Library.RegisterFunction("adds_all", TestValueTaskIntWithVariadics);
+        }
+
+        private ValueTask<int> TestValueTaskIntWithVariadics(int p1, int p2, params int[] p3)
+        {
+            var total = p1 + p2;
+            foreach (var p in p3)
+            {
+                total += p;
+            }
+            return new ValueTask<int>(total);
         }
 
         private ValueTask<int> TestValueTaskInt(int testParam)

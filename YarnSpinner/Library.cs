@@ -40,6 +40,13 @@ namespace Yarn
 
         }
 
+        // later make this private but for testing it's easier to be public
+        public Dictionary<string, FunctionDefinition> functions = new();
+        public bool TryGetFunction(string name, out FunctionDefinition function)
+        {
+            return functions.TryGetValue(name, out function);
+        }
+
         public static IReadOnlyDictionary<System.Type, Yarn.IType> BaseAsyncTypeMappings { get; } = new Dictionary<System.Type, Yarn.IType>
         {
             {typeof(System.Threading.Tasks.ValueTask<int>), Yarn.Types.Number},
