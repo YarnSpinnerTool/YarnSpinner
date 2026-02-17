@@ -399,14 +399,14 @@ namespace YarnSpinner.Tests
             ((LineParser.MarkupTextNode)Descendant(tree, 1, 0)).text.Should().Be("ab");
 
             // b has two kids
-            Descendant(tree, 1,1).children.Should().HaveCount(2);
+            Descendant(tree, 1, 1).children.Should().HaveCount(2);
 
             // first is text
-            ((LineParser.MarkupTextNode)Descendant(tree, 1,1,0)).text.Should().Be("bc");
+            ((LineParser.MarkupTextNode)Descendant(tree, 1, 1, 0)).text.Should().Be("bc");
 
             // c has one child and it's text
-            Descendant(tree, 1,1,1).children.Should().HaveCount(1);
-            ((LineParser.MarkupTextNode)Descendant(tree, 1,1,1,0)).text.Should().Be("cb");
+            Descendant(tree, 1, 1, 1).children.Should().HaveCount(1);
+            ((LineParser.MarkupTextNode)Descendant(tree, 1, 1, 1, 0)).text.Should().Be("cb");
         }
 
         [Fact]
@@ -785,12 +785,12 @@ namespace YarnSpinner.Tests
         }
 
         [Theory]
-        [InlineData("this is a line with non-replacement[a/]  markup", "this is a line with non-replacement markup", new string[] { "a" },new int[] { 35 })]
+        [InlineData("this is a line with non-replacement[a/]  markup", "this is a line with non-replacement markup", new string[] { "a" }, new int[] { 35 })]
         [InlineData("this is a line [bold]with some replacement[/bold] markup and a non-replacement[a/]  markup", "this is a line <b>with some replacement</b> markup and a non-replacement markup", new string[] { "a" }, new int[] { 65 })]
         [InlineData("this is a [bold]line with some [italics]nested[a trimwhitespace=false /] tags[/italics][b trimwhitespace=false /][/bold] in[c trimwhitespace=false /] it", "this is a <b>line with some <i>nested tags</i></b> in it", new string[] { "a", "b", "c" }, new int[] { 31, 36, 39 })]
         [InlineData("this is a line with [blocky]markup[/blocky] that actually has[a trimwhitespace=false /] visible characters", "this is a line with [markup] that actually has visible characters", new string[] { "a" }, new int[] { 46 })]
         [InlineData("this is a line with [wacky]markup[/wacky] that actually has[a trimwhitespace=false /] both", "this is a line with <b>[markup]</b> that actually has both", new string[] { "a" }, new int[] { 46 })]
-        [InlineData("this is a line with [wacky]internal[a trimwhitespace=false /] both[/wacky] markup","this is a line with <b>[internal both]</b> markup", new string[] { "a" }, new int[] { 29 })]
+        [InlineData("this is a line with [wacky]internal[a trimwhitespace=false /] both[/wacky] markup", "this is a line with <b>[internal both]</b> markup", new string[] { "a" }, new int[] { 29 })]
         [InlineData("this is a [wacky]line with some [blocky]nested[a trimwhitespace=false /] tags[/blocky][b trimwhitespace=false /][/wacky] in[c trimwhitespace=false /] it", "this is a <b>[line with some [nested tags]]</b> in it", new string[] { "a", "b", "c" }, new int[] { 33, 39, 43 })]
         void TestSquishedMarkupStringsWithInvisibleCharactersAreValid(string line, string comparison, string[] markerNames, int[] markerPositions)
         {
@@ -1253,7 +1253,7 @@ namespace YarnSpinner.Tests
             };
 
             foreach (var culture in targetCultures)
-            {    
+            {
                 System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo(culture);
                 var lineParser = new LineParser();
                 var markup = lineParser.ParseStringWithDiagnostics(input, culture);
@@ -1263,7 +1263,7 @@ namespace YarnSpinner.Tests
 
         [Theory]
         [InlineData("[p=1.1 /]", 1.1)]
-        [InlineData("[p=-1.1 /]",-1.1)]
+        [InlineData("[p=-1.1 /]", -1.1)]
         public void TestMarkupPropertyParsingUsesInvariantNumber(string input, float propertyValue)
         {
             var targetCultures = new[] {
@@ -1284,7 +1284,7 @@ namespace YarnSpinner.Tests
             };
 
             foreach (var culture in targetCultures)
-            {    
+            {
                 System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo(culture);
                 var lineParser = new LineParser();
                 var markup = lineParser.ParseStringWithDiagnostics(input, culture);
@@ -1520,9 +1520,9 @@ namespace YarnSpinner.Tests
         }
 
         [Theory]
-        [InlineData("a line with a self-closing[scr /] replacement tag","a line with a self-closingscr replacement tag")]
-        [InlineData("a line with a self-closing[scnr /] -non-replacement tag","a line with a self-closing-non-replacement tag")]
-        [InlineData("a line with a self-closing[scnr trimwhitespace=false /] non-replacement tag","a line with a self-closing non-replacement tag")]
+        [InlineData("a line with a self-closing[scr /] replacement tag", "a line with a self-closingscr replacement tag")]
+        [InlineData("a line with a self-closing[scnr /] -non-replacement tag", "a line with a self-closing-non-replacement tag")]
+        [InlineData("a line with a self-closing[scnr trimwhitespace=false /] non-replacement tag", "a line with a self-closing non-replacement tag")]
         public void TestSelfclosingReplacementMarkersDoNotConsumeWhitespace(string line, string expected)
         {
             var lineParser = new LineParser();

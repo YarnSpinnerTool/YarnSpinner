@@ -49,6 +49,15 @@ namespace Yarn.Compiler
         public DiagnosticSeverity Severity { get; set; } = DiagnosticSeverity.Error;
 
         /// <summary>
+        /// Gets or sets the error code for this diagnostic.
+        /// </summary>
+        /// <remarks>
+        /// Error codes help users look up documentation and categorize issues.
+        /// Follows the format YS0001, YS0002, etc.
+        /// </remarks>
+        public string? Code { get; set; } = null;
+
+        /// <summary>
         /// Gets the zero-indexed line number in FileName at which the issue
         /// begins.
         /// </summary>
@@ -101,6 +110,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
+        [Obsolete("Use " + nameof(CreateDiagnostic) + " to create diagnostics.")]
         public Diagnostic(string fileName, ParserRuleContext? context, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
@@ -133,6 +143,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
+        [Obsolete("Use " + nameof(CreateDiagnostic) + " to create diagnostics.")]
         public Diagnostic(string fileName, IToken token, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
@@ -159,6 +170,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
+        [Obsolete("Use " + nameof(CreateDiagnostic) + " to create diagnostics.")]
         public Diagnostic(string fileName, Range range, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
@@ -166,6 +178,79 @@ namespace Yarn.Compiler
             this.Message = message;
             this.Severity = severity;
         }
+
+        // 'Identifier' is obsolete (TODO: re enable this after we finish making
+        // the constructor for Diagnostic private, so that the only way to
+        // create a diagnostic is via a DiagnosticDescriptor)
+#pragma warning disable CS0618
+
+        // ===== FACTORY METHODS USING DIAGNOSTICDESCRIPTOR =====
+        // These methods ensure error codes and messages are always correctly paired
+
+        /// <summary>
+        /// Creates a new <see cref="Diagnostic"/> using a <see cref="DiagnosticDescriptor"/>.
+        /// </summary>
+        /// <param name="fileName">The file where the diagnostic occurred.</param>
+        /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
+        /// <param name="args">Arguments to format the message template.</param>
+        /// <returns>A new diagnostic instance.</returns>
+        public static Diagnostic CreateDiagnostic(string fileName, DiagnosticDescriptor descriptor, params object[] args)
+        {
+            return new Diagnostic(fileName, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
+            {
+                Code = descriptor.Code
+            };
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="Diagnostic"/> using a <see cref="DiagnosticDescriptor"/> with range information.
+        /// </summary>
+        /// <param name="fileName">The file where the diagnostic occurred.</param>
+        /// <param name="range">The range in the file where the diagnostic occurred.</param>
+        /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
+        /// <param name="args">Arguments to format the message template.</param>
+        /// <returns>A new diagnostic instance.</returns>
+        public static Diagnostic CreateDiagnostic(string fileName, Range range, DiagnosticDescriptor descriptor, params object[] args)
+        {
+            return new Diagnostic(fileName, range, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
+            {
+                Code = descriptor.Code
+            };
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="Diagnostic"/> using a <see cref="DiagnosticDescriptor"/> with parser context.
+        /// </summary>
+        /// <param name="fileName">The file where the diagnostic occurred.</param>
+        /// <param name="context">The parser context where the diagnostic occurred.</param>
+        /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
+        /// <param name="args">Arguments to format the message template.</param>
+        /// <returns>A new diagnostic instance.</returns>
+        public static Diagnostic CreateDiagnostic(string fileName, ParserRuleContext? context, DiagnosticDescriptor descriptor, params object[] args)
+        {
+            return new Diagnostic(fileName, context, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
+            {
+                Code = descriptor.Code
+            };
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="Diagnostic"/> using a <see cref="DiagnosticDescriptor"/> with token information.
+        /// </summary>
+        /// <param name="fileName">The file where the diagnostic occurred.</param>
+        /// <param name="token">The token where the diagnostic occurred.</param>
+        /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
+        /// <param name="args">Arguments to format the message template.</param>
+        /// <returns>A new diagnostic instance.</returns>
+        public static Diagnostic CreateDiagnostic(string fileName, IToken token, DiagnosticDescriptor descriptor, params object[] args)
+        {
+            return new Diagnostic(fileName, token, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
+            {
+                Code = descriptor.Code
+            };
+        }
+#pragma warning restore CS0618
+
 
         /// <summary>
         /// The severity of the issue.
@@ -182,7 +267,7 @@ namespace Yarn.Compiler
             Info = 1,
 
             /// <summary>
-            /// An warning.
+            /// A warning.
             /// </summary>
             /// <remarks>
             /// Warnings represent possible problems that the user should fix,
@@ -259,7 +344,29 @@ namespace Yarn.Compiler
         public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
             Range range = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
-            this.diagnostics.Add(new Diagnostic(this.fileName, range, msg));
+            var diagnostic = new Diagnostic(this.fileName, range, msg);
+
+            // Assign error code for lexer errors
+            if (msg.ToLowerInvariant().Contains("token recognition error"))
+            {
+                // Check if we're in CommandMode or ExpressionMode - this indicates an unclosed command
+                if (recognizer is Lexer lexer && lexer.ModeStack != null && lexer.ModeStack.Count > 0)
+                {
+                    // If we have a mode stack, we're likely inside an unclosed command
+                    diagnostic.Code = "YS0006";
+                    var descriptor = DiagnosticDescriptor.GetDescriptor("YS0006");
+                    if (descriptor != null)
+                    {
+                        diagnostic.Message = descriptor.MessageTemplate;
+                    }
+                }
+                else
+                {
+                    diagnostic.Code = "YS0005";
+                }
+            }
+
+            this.diagnostics.Add(diagnostic);
         }
     }
 
@@ -319,7 +426,67 @@ namespace Yarn.Compiler
                 diagnostic.Range = new Range(offendingSymbol.Line - 1, offendingSymbol.Column, offendingSymbol.Line - 1, offendingSymbol.Column + offendingSymbol.Text.Length);
             }
 
+            // Assign error codes based on ANTLR message patterns
+            diagnostic.Code = CategorizeParserError(msg);
+
+            // If we assigned a code, update the message to be user-friendly
+            if (!string.IsNullOrEmpty(diagnostic.Code))
+            {
+                var descriptor = DiagnosticDescriptor.GetDescriptor(diagnostic.Code);
+                if (descriptor != null)
+                {
+                    diagnostic.Message = descriptor.MessageTemplate;
+                }
+            }
+
             this.diagnostics.Add(diagnostic);
+        }
+
+        /// <summary>
+        /// Categorizes parser errors from ANTLR messages and assigns appropriate error codes
+        /// </summary>
+        private string? CategorizeParserError(string message)
+        {
+            var msg = message.ToLowerInvariant();
+
+            // YS0004: Missing delimiter (=== or ---)
+            if (msg.Contains("missing") && (msg.Contains("===") || msg.Contains("'==='") || msg.Contains("delimiter")))
+            {
+                return "YS0004";
+            }
+
+            // YS0006: Unclosed command (missing >>)
+            // Match direct "missing >>" messages
+            if (msg.Contains("missing") && (msg.Contains("'>'") || msg.Contains(">>")))
+            {
+                return "YS0006";
+            }
+            // Match "unexpected" errors with command keywords
+            // Pattern: "unexpected 'keyword'" or "unexpected 'keyword'" (different quote styles)
+            if (msg.Contains("unexpected"))
+            {
+                // Check for command keywords with word boundaries
+                if (System.Text.RegularExpressions.Regex.IsMatch(msg, @"\b(set|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)\b") ||
+                    System.Text.RegularExpressions.Regex.IsMatch(msg, @"'(set|if|elseif|else|endif|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)'"))
+                {
+                    return "YS0006";
+                }
+            }
+
+            // YS0007: Unclosed scope (missing endif, endonce, etc)
+            if (msg.Contains("missing") && (msg.Contains("endif") || msg.Contains("endonce") || msg.Contains("end")))
+            {
+                return "YS0007";
+            }
+
+            // YS0005: Malformed dialogue / syntax error
+            if (msg.Contains("extraneous input") || msg.Contains("mismatched input"))
+            {
+                return "YS0005";
+            }
+
+            // Default: no specific code for other ANTLR errors
+            return null;
         }
     }
 }

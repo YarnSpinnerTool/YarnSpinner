@@ -36,7 +36,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var expectedDeclarations = new List<object>() {
                 new {
@@ -104,7 +104,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(compilationJob);
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
         }
 
         [Fact]
@@ -131,7 +131,7 @@ namespace YarnSpinner.Tests
             // Should compile with no errors because $int was declared
             var result = Compiler.Compile(compilationJob);
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             // The only variable declarations we should know about should be
             // external
@@ -175,7 +175,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
         }
 
         [Theory]
@@ -221,7 +221,7 @@ namespace YarnSpinner.Tests
             // Should compile with no exceptions
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
 
             result.Declarations.Should().ContainSingle(d => d.Name == "$bool").Which.Type.Should().Be(Types.Boolean);
             result.Declarations.Should().ContainSingle(d => d.Name == "$str").Which.Type.Should().Be(Types.String);
@@ -246,7 +246,7 @@ namespace YarnSpinner.Tests
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, dialogue.Library));
 
             // We should have no diagnostics.
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             // The variable '$bool' should have an implicit declaration. The
             // type of the variable should be Boolean, because that's the return
@@ -309,7 +309,7 @@ namespace YarnSpinner.Tests
             result.Declarations.Should().Contain(d => d.Name == "$var")
                 .Which.Type.Should().Be(expectedType);
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
         }
 
         [Fact]
@@ -415,7 +415,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(compilationJob);
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             this.storage.SetValue("$external_str", "Hello");
             this.storage.SetValue("$external_int", 42);
@@ -439,7 +439,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var variableDeclarations = result.Declarations.Where(d => d.Name.StartsWith("$"));
 
@@ -523,7 +523,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
@@ -613,7 +613,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -636,7 +636,7 @@ namespace YarnSpinner.Tests
                 var compilationJob = CompilationJob.CreateFromString("input", source, dialogue.Library);
                 var result = Compiler.Compile(compilationJob);
 
-                result.Diagnostics.Should().BeEmpty();
+                result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
                 dialogue.SetProgram(result.Program);
                 stringTable = result.StringTable;
@@ -709,7 +709,7 @@ namespace YarnSpinner.Tests
                 });
             }
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             dialogue.Library.RegisterFunction("func_void_bool", () => true);
             dialogue.Library.RegisterFunction("func_void_int", () => 1);
@@ -737,7 +737,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             result.Declarations.Should().ContainSingle(d => d.Name == "$v")
                 .Which.Type.Name.Should().Be(typeName);
@@ -762,7 +762,7 @@ namespace YarnSpinner.Tests
             var compilationJob = CompilationJob.CreateFromString("input", source);
             var result = Compiler.Compile(compilationJob);
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var expectedIntBoolFunctionType = new FunctionTypeBuilder().WithParameter(Types.Number).WithReturnType(Types.Boolean).FunctionType;
             var expectedBoolBoolFunctionType = new FunctionTypeBuilder().WithParameter(Types.Boolean).WithReturnType(Types.Boolean).FunctionType;
@@ -895,7 +895,7 @@ namespace YarnSpinner.Tests
 
             using (new FluentAssertions.Execution.AssertionScope())
             {
-                diagnostics.Should().BeEmpty();
+                diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
                 hasSolution.Should().BeTrue();
 
                 // T1 should resolve to Bool

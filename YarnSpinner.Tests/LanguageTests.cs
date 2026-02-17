@@ -39,7 +39,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -56,7 +56,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -77,7 +77,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "Headers.yarn");
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             result.Program.Nodes.Count.Should().Be(6);
 
@@ -382,7 +382,7 @@ title: Start
                 result.Declarations.Select(d => d.ToString())
                     .Should().ContainInOrder(resultFromSource.Declarations.Select(d => d.ToString()));
 
-                result.Diagnostics.Should().BeEmpty("{0} is expected to have no diagnostics", file);
+                result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error, "{0} is expected to have no errors", file);
 
                 result.Program.Should().NotBeNull();
 

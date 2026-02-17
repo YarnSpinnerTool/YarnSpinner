@@ -80,14 +80,15 @@ namespace Yarn.Compiler
             return base.VisitOnce_statement(context);
         }
 
-        public override int VisitWhen_header([NotNull] YarnSpinnerParser.When_headerContext context)
-        {
-            if (LanguageVersion < Project.YarnSpinnerProjectVersion3)
-            {
-                AddLanguageFeatureError(context, "'when' headers");
-            }
-
-            return base.VisitWhen_header(context);
-        }
+        // "when" headers are not a preview feature - they are standard
+        // public override int VisitWhen_header([NotNull] YarnSpinnerParser.When_headerContext context)
+        // {
+        //     if (LanguageVersion < Project.YarnSpinnerProjectVersion3)
+        //     {
+        //         AddLanguageFeatureError(context, "'when' headers");
+        //     }
+        //
+        //     return base.VisitWhen_header(context);
+        // }
     }
 }

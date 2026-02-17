@@ -217,9 +217,9 @@ namespace Yarn.Compiler
 
         private readonly Dictionary<string, Declaration> declarationLookup = new Dictionary<string, Declaration>();
 
-        private void AddDiagnostic(ParserRuleContext context, string message, Diagnostic.DiagnosticSeverity severity = Diagnostic.DiagnosticSeverity.Error)
+        private void AddDiagnostic(DiagnosticDescriptor descriptor, ParserRuleContext context, params string[] args)
         {
-            this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message, severity));
+            this.diagnostics.Add(descriptor.Create(this.sourceFileName, context, args));
         }
 
         private TypeEqualityConstraint AddEqualityConstraint(IType a, IType b, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
@@ -355,7 +355,7 @@ namespace Yarn.Compiler
             // this name? It's an error if we do.
             if (declaration != null && declaration.IsImplicit == false)
             {
-                this.AddDiagnostic(context, $"Redeclaration of existing variable {name}");
+                this.AddDiagnostic(DiagnosticDescriptor.RedeclarationOfExistingVariable, context, name ?? "unknown");
                 return;
             }
 
@@ -544,13 +544,21 @@ namespace Yarn.Compiler
                     Name = name,
                     Type = typeVariable,
                     Description = $"Implicitly declared in {this.sourceFileName}, node {this.currentNodeName}",
-                    Range = GetRange(context),
+                    // Use the variable token's position directly to avoid issues with
+                    // error recovery affecting the context's range
+                    Range = Utility.GetRange(variableID.Symbol, variableID.Symbol),
                     IsImplicit = true,
                     IsInlineExpansion = false,
                     SourceFileName = this.sourceFileName,
                     SourceNodeName = this.currentNodeName,
                 };
                 this.AddDeclaration(declaration);
+
+                // NOTE: We don't emit YS0001 (implicit variable type conflict) here because this
+                // variable might be explicitly declared in a different file that hasn't been
+                // type-checked yet. YS0001 indicates that a variable has been implicitly declared
+                // with multiple conflicting types across different files or contexts. We check for
+                // these conflicts after all files are processed and emit warnings then.
             }
 
             context.Type = declaration.Type;
@@ -793,7 +801,7 @@ namespace Yarn.Compiler
                     message = $"{functionName} expects {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, not {actualParameters}";
                 }
 
-                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
+                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message) { Code = "YS0009" });
             }
 
             for (int paramID = 0; paramID < actualParameters; paramID++)
@@ -808,7 +816,7 @@ namespace Yarn.Compiler
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, parameterExpression, "Unexpected parameter in call to function " + functionName ?? "<unknown>"));
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, parameterExpression, "Unexpected parameter in call to function " + functionName ?? "<unknown>") { Code = "YS0009" });
                 }
             }
 
@@ -883,7 +891,7 @@ namespace Yarn.Compiler
             {
                 // If we're here, we've somehow generated the same 'once'
                 // variable for more than one piece of content.
-                this.AddDiagnostic(context, $"Internal error: redeclaration of existing 'once' variable {onceVariableName}");
+                this.AddDiagnostic(DiagnosticDescriptor.InternalError, context, $"Redeclaration of existing 'once' variable {onceVariableName}");
             }
         }
 
@@ -1464,15 +1472,18 @@ namespace Yarn.Compiler
                     }
                 }
 
-                // Add all children to the search.
-                var childContexts = item.children
-                    .Where(tree => tree.Payload is ParserRuleContext)
-                    .Select(tree => tree.Payload as ParserRuleContext)
-                    .NotNull();
-
-                foreach (var child in childContexts)
+                // Add all children to the search (if there are any).
+                if (item.children != null)
                 {
-                    searchStack.Push((child, level + 1));
+                    var childContexts = item.children
+                        .Where(tree => tree.Payload is ParserRuleContext)
+                        .Select(tree => tree.Payload as ParserRuleContext)
+                        .NotNull();
+
+                    foreach (var child in childContexts)
+                    {
+                        searchStack.Push((child, level + 1));
+                    }
                 }
             }
 
