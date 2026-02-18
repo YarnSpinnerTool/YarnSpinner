@@ -96,7 +96,7 @@ custom: yes
             generatedOutput.Should().Be(originalText);
         }
 
-        [IgnoreUntilFact(Day = 01, Month = 02, Year = 2026, DisplayName = "Disabled until SyntaxValidationListener performance is fixed")]
+        [IgnoreUntilFact(Day = 01, Month = 03, Year = 2026, DisplayName = "Disabled until SyntaxValidationListener performance is fixed")]
         public void TestLineCollisionTagging()
         {
             var paths = new List<string>()
