@@ -243,7 +243,6 @@ namespace Yarn.Compiler
                 else if (headerKey == "subtitle" && !string.IsNullOrWhiteSpace(headerValue))
                 {
                     currentNode.Subtitle = headerValue;
-                    System.Console.Error.WriteLine($"[DEBUG] Extracted subtitle: '{headerValue}' for node");
                 }
             }
 
