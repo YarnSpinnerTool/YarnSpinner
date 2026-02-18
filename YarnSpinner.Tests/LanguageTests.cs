@@ -28,6 +28,8 @@ namespace YarnSpinner.Tests
 
             dialogue.Library.RegisterFunction("set_objective_complete", (string objective) => true);
             dialogue.Library.RegisterFunction("is_objective_active", (string objective) => true);
+            dialogue.Library.RegisterFunction("get_quest_status", (string questName) => "InProgress");
+
         }
 
         [Fact]
