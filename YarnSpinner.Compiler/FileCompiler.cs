@@ -189,6 +189,7 @@ namespace Yarn.Compiler
                         context,
                         "Missing title header for node"
                     )
+                    { Code = DiagnosticDescriptor.DuplicateNodeTitle.Code }
                 );
             }
             else

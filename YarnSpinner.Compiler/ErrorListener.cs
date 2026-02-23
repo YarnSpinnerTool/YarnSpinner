@@ -353,8 +353,8 @@ namespace Yarn.Compiler
                 if (recognizer is Lexer lexer && lexer.ModeStack != null && lexer.ModeStack.Count > 0)
                 {
                     // If we have a mode stack, we're likely inside an unclosed command
-                    diagnostic.Code = "YS0006";
-                    var descriptor = DiagnosticDescriptor.GetDescriptor("YS0006");
+                    diagnostic.Code = DiagnosticDescriptor.UnclosedCommand.Code;
+                    var descriptor = DiagnosticDescriptor.GetDescriptor(DiagnosticDescriptor.UnclosedCommand.Code);
                     if (descriptor != null)
                     {
                         diagnostic.Message = descriptor.MessageTemplate;
@@ -362,7 +362,7 @@ namespace Yarn.Compiler
                 }
                 else
                 {
-                    diagnostic.Code = "YS0005";
+                    diagnostic.Code = DiagnosticDescriptor.SyntaxError.Code;
                 }
             }
 
@@ -452,14 +452,14 @@ namespace Yarn.Compiler
             // YS0004: Missing delimiter (=== or ---)
             if (msg.Contains("missing") && (msg.Contains("===") || msg.Contains("'==='") || msg.Contains("delimiter")))
             {
-                return "YS0004";
+                return DiagnosticDescriptor.MissingDelimiter.Code;
             }
 
             // YS0006: Unclosed command (missing >>)
             // Match direct "missing >>" messages
             if (msg.Contains("missing") && (msg.Contains("'>'") || msg.Contains(">>")))
             {
-                return "YS0006";
+                return DiagnosticDescriptor.UnclosedCommand.Code;
             }
             // Match "unexpected" errors with command keywords
             // Pattern: "unexpected 'keyword'" or "unexpected 'keyword'" (different quote styles)
@@ -469,20 +469,20 @@ namespace Yarn.Compiler
                 if (System.Text.RegularExpressions.Regex.IsMatch(msg, @"\b(set|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)\b") ||
                     System.Text.RegularExpressions.Regex.IsMatch(msg, @"'(set|if|elseif|else|endif|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)'"))
                 {
-                    return "YS0006";
+                    return DiagnosticDescriptor.UnclosedCommand.Code;
                 }
             }
 
             // YS0007: Unclosed scope (missing endif, endonce, etc)
             if (msg.Contains("missing") && (msg.Contains("endif") || msg.Contains("endonce") || msg.Contains("end")))
             {
-                return "YS0007";
+                return DiagnosticDescriptor.UnclosedScope.Code;
             }
 
             // YS0005: Malformed dialogue / syntax error
             if (msg.Contains("extraneous input") || msg.Contains("mismatched input"))
             {
-                return "YS0005";
+                return DiagnosticDescriptor.SyntaxError.Code;
             }
 
             // Default: no specific code for other ANTLR errors

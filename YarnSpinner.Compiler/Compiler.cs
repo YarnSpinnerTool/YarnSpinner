@@ -331,7 +331,7 @@ namespace Yarn.Compiler
                         // diagnostics for the affected expressions.
                         foreach (var constraint in failingConstraints)
                         {
-                            diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceContext, $"Expression failed to resolve in a reasonable time ({TypeSolverTimeLimit}). Try simplifying this expression."));
+                            diagnostics.Add(DiagnosticDescriptor.TypeSolverTimeout.Create(constraint.SourceFileName, constraint.SourceContext, TypeSolverTimeLimit.ToString()));
                         }
                         break;
                     }
@@ -356,7 +356,7 @@ namespace Yarn.Compiler
                 {
                     foreach (var failureMessage in constraint.GetFailureMessages(typeSolution))
                     {
-                        diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceRange, failureMessage) { Code = "YS0010" });
+                        diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceRange, failureMessage) { Code = DiagnosticDescriptor.TypeMismatch.Code });
                     }
                 }
                 watchdog.Stop();
@@ -416,7 +416,7 @@ namespace Yarn.Compiler
                 {
                     var suggestion = decl.Name.StartsWith("$") ? $" For example: <<declare {decl.Name} = (initial value) >>" : string.Empty;
 
-                    diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.Range, $"Can't determine type of {decl.Name} given its usage. Manually specify its type with a declare statement.{suggestion}"));
+                    diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.Range, $"Can't determine type of {decl.Name} given its usage. Manually specify its type with a declare statement.{suggestion}") { Code = DiagnosticDescriptor.TypeInferenceFailure.Code });
 
                     decl.Type = Types.Error;
                 }
@@ -452,7 +452,7 @@ namespace Yarn.Compiler
                             // Compile error!
                             if (typedContext is ParserRuleContext parserRuleContext)
                             {
-                                diagnostics.Add(new Diagnostic(parsedFile.Name, parserRuleContext, $"Can't determine the type of this expression."));
+                                diagnostics.Add(DiagnosticDescriptor.ExpressionTypeUndetermined.Create(parsedFile.Name, parserRuleContext));
                             }
                             else
                             {
@@ -637,7 +637,7 @@ namespace Yarn.Compiler
 
                 if (declaration.DefaultValue == null)
                 {
-                    diagnostics.Add(new Diagnostic($"Variable declaration {declaration.Name} (type {declaration.Type?.Name ?? "undefined"}) has a null default value. This is not allowed."));
+                    diagnostics.Add(DiagnosticDescriptor.NullDefaultValue.Create("(unknown)", declaration.Name, declaration.Type?.Name ?? "undefined"));
                     continue;
                 }
 
@@ -743,7 +743,8 @@ namespace Yarn.Compiler
                                 file.Name,
                                 setStatement.variable(),
                                 $"{variableName} cannot be modified (it's a smart variable and is always equal to " +
-                                $"{smartVariables[variableName]?.InitialValueParserContext?.GetTextWithWhitespace() ?? "(unknown)"})"));
+                                $"{smartVariables[variableName]?.InitialValueParserContext?.GetTextWithWhitespace() ?? "(unknown)"})")
+                                { Code = DiagnosticDescriptor.SmartVariableReadOnly.Code });
                         }
                     }
                 });
@@ -820,7 +821,7 @@ namespace Yarn.Compiler
 
             foreach (var node in nodesWithIllegalTitleCharacters)
             {
-                diagnostics.Add(new Diagnostic(node.File.Name, node.TitleHeader, $"The node '{node.Name}' contains illegal characters."));
+                diagnostics.Add(DiagnosticDescriptor.InvalidNodeName.Create(node.File.Name, node.TitleHeader, "title", node.Name));
             }
 
             var nodesByTitle = nodesWithNames.GroupBy(n => n.Name);
@@ -852,7 +853,7 @@ namespace Yarn.Compiler
                         // don't. Create errors for these others.
                         foreach (var entry in group.Where(n => n.Node.GetWhenHeaders().Any() == false))
                         {
-                            var d = new Diagnostic(entry.File.Name, entry.TitleHeader, $"All nodes in the group '{entry.Node.NodeTitle}' must have a 'when' clause (use 'when: always' if you want this node to not have any conditions)");
+                            var d = DiagnosticDescriptor.NodeGroupMissingWhen.Create(entry.File.Name, entry.TitleHeader, entry.Node.NodeTitle);
                             diagnostics.Add(d);
                         }
                     }
@@ -878,7 +879,7 @@ namespace Yarn.Compiler
                         {
                             foreach (var entry in group)
                             {
-                                var d = new Diagnostic(entry.File.Name, entry.Node.GetHeader("subtitle"), $"More than one node in group {entry.Name} has subtitle {subtitle}");
+                                var d = DiagnosticDescriptor.DuplicateSubtitle.Create(entry.File.Name, entry.Node.GetHeader("subtitle"), entry.Name, subtitle);
                                 diagnostics.Add(d);
                             }
                         }
@@ -886,7 +887,7 @@ namespace Yarn.Compiler
                         {
                             foreach (var entry in group)
                             {
-                                diagnostics.Add(new Diagnostic(entry.File.Name, entry.Node.GetHeader("subtitle"), $"The node subtitle '{subtitle}' contains illegal characters."));
+                                diagnostics.Add(DiagnosticDescriptor.InvalidNodeName.Create(entry.File.Name, entry.Node.GetHeader("subtitle"), "subtitle", subtitle));
                             }
                         }
                     }
@@ -897,7 +898,7 @@ namespace Yarn.Compiler
                 // More than one node has this name! Report an error on both.
                 foreach (var entry in group)
                 {
-                    var d = new Diagnostic(entry.File.Name, entry.TitleHeader, $"More than one node is named {entry.Name}") { Code = "YS0003" };
+                    var d = new Diagnostic(entry.File.Name, entry.TitleHeader, $"More than one node is named {entry.Name}") { Code = DiagnosticDescriptor.DuplicateNodeTitle.Code };
                     diagnostics.Add(d);
                 }
             }
@@ -907,11 +908,11 @@ namespace Yarn.Compiler
             {
                 if (node.Node.NodeTitle == null)
                 {
-                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.body(), $"Nodes must have a title") { Code = "YS0011" });
+                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.body(), $"Nodes must have a title") { Code = DiagnosticDescriptor.DuplicateNodeTitle.Code });
                 }
                 if (node.Node.title_header().Length > 1)
                 {
-                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.title_header()[1], $"Nodes must have a single title node") { Code = "YS0011" });
+                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.title_header()[1], $"Nodes must have a single title node") { Code = DiagnosticDescriptor.DuplicateNodeTitle.Code });
                 }
             }
         }
@@ -933,7 +934,7 @@ namespace Yarn.Compiler
             foreach (var entry in empties)
             {
                 var title = entry.Node.NodeTitle;
-                var d = new Diagnostic(entry.File.Name, entry.Node, $"Node \"{title ?? "(missing title)"}\" is empty and will not be included in the compiled output.", Diagnostic.DiagnosticSeverity.Warning);
+                var d = DiagnosticDescriptor.EmptyNode.Create(entry.File.Name, entry.Node, title ?? "(missing title)");
                 diagnostics.Add(d);
                 if (title != null)
                 {
@@ -1000,7 +1001,7 @@ namespace Yarn.Compiler
                 // that Yarn Spinner can use?
                 if (Types.TypeMappings.TryGetValue(method.ReturnType, out var yarnReturnType) == false)
                 {
-                    diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: {method.ReturnType} is not a valid return type."));
+                    diagnostics.Add(DiagnosticDescriptor.InvalidLibraryFunction.Create("(unknown)", function.Key, $"{method.ReturnType} is not a valid return type."));
                     continue;
                 }
 
@@ -1024,13 +1025,13 @@ namespace Yarn.Compiler
 
                     if (paramInfo.IsOptional)
                     {
-                        diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is optional, which isn't supported."));
+                        diagnostics.Add(DiagnosticDescriptor.InvalidLibraryFunction.Create("(unknown)", function.Key, $"parameter {paramInfo.Name} is optional, which isn't supported."));
                         continue;
                     }
 
                     if (paramInfo.IsOut)
                     {
-                        diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is an out parameter, which isn't supported."));
+                        diagnostics.Add(DiagnosticDescriptor.InvalidLibraryFunction.Create("(unknown)", function.Key, $"parameter {paramInfo.Name} is an out parameter, which isn't supported."));
                         continue;
                     }
 
@@ -1051,12 +1052,12 @@ namespace Yarn.Compiler
                         }
                         else
                         {
-                            diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: params array {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used in Yarn functions"));
+                            diagnostics.Add(DiagnosticDescriptor.InvalidLibraryFunction.Create("(unknown)", function.Key, $"params array {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used in Yarn functions"));
                         }
                     }
                     else if (Types.TypeMappings.TryGetValue(paramInfo.ParameterType, out var yarnParameterType) == false)
                     {
-                        diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used in Yarn functions"));
+                        diagnostics.Add(DiagnosticDescriptor.InvalidLibraryFunction.Create("(unknown)", function.Key, $"parameter {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used in Yarn functions"));
                     }
                     else
                     {

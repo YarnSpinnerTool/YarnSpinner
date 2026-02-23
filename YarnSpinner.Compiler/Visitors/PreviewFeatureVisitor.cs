@@ -21,7 +21,7 @@ namespace Yarn.Compiler
 
         private void AddError(ParserRuleContext context, string message)
         {
-            var d = new Diagnostic(File.Name, context, message, Diagnostic.DiagnosticSeverity.Error);
+            var d = DiagnosticDescriptor.PreviewFeatureRequired.Create(File.Name, context, message);
             this.Diagnostics.Add(d);
         }
 

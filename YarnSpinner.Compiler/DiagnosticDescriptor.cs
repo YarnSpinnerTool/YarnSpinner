@@ -389,6 +389,19 @@ namespace Yarn.Compiler
             description: "Command keyword appearing outside of command markers"
         );
 
+        /// <summary>
+        /// YS0027: Node title or subtitle contains invalid characters.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: "title" or "subtitle", 1: the invalid name.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor InvalidNodeName = new DiagnosticDescriptor(
+            code: "YS0027",
+            messageTemplate: "The node {0} '{1}' contains invalid characters. Titles can only contain letters, numbers, and underscores.",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "Node titles and subtitles can only contain letters, numbers, and underscores."
+        );
+
         #endregion
 
         /// <summary>
@@ -463,6 +476,189 @@ namespace Yarn.Compiler
             description: "Shadow lines are copies of their source lines, and must have the exact same text as their source line."
         );
 
+        /// <summary>
+        /// YSXXX7: Smart variables cannot contain reference loops.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: variable reference, 1: smart variable name.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor SmartVariableLoop = new DiagnosticDescriptor(
+            code: "YSXXX7",
+            messageTemplate: "Smart variables cannot contain reference loops (referencing {0} here creates a loop for the smart variable {1}).",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "A smart variable's expression references itself through a chain of other smart variables."
+        );
+
+        /// <summary>
+        /// YSXXX8: Variable declaration has a null default value.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: variable name, 1: type name.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor NullDefaultValue = new DiagnosticDescriptor(
+            code: "YSXXX8",
+            messageTemplate: "Variable declaration {0} (type {1}) has a null default value. This is not allowed.",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "A variable declaration must have a non-null default value."
+        );
+
+        /// <summary>
+        /// YSXXX9: Expression failed to resolve in a reasonable time.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: time limit in seconds.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor TypeSolverTimeout = new DiagnosticDescriptor(
+            code: "YSXXX9",
+            messageTemplate: "Expression failed to resolve in a reasonable time ({0}). Try simplifying this expression.",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "The type solver exceeded its time limit while resolving this expression."
+        );
+
+        #region Additional Semantic Codes
+
+        /// <summary>
+        /// YS0028: Can't determine type of variable given its usage.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: variable name.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor TypeInferenceFailure = new DiagnosticDescriptor(
+            code: "YS0028",
+            messageTemplate: "Can't determine type of {0} given its usage. Manually specify its type with a declare statement.",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "The compiler could not infer the type of this variable from how it is used."
+        );
+
+        /// <summary>
+        /// YS0029: Can't determine the type of an expression.
+        /// </summary>
+        public static readonly DiagnosticDescriptor ExpressionTypeUndetermined = new DiagnosticDescriptor(
+            code: "YS0029",
+            messageTemplate: "Can't determine the type of this expression.",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "The compiler could not resolve the type of this expression."
+        );
+
+        /// <summary>
+        /// YS0030: Smart variable cannot be modified.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: variable name.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor SmartVariableReadOnly = new DiagnosticDescriptor(
+            code: "YS0030",
+            messageTemplate: "{0} cannot be modified (it's a smart variable).",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "Smart variables are read-only computed values and cannot be assigned to."
+        );
+
+        /// <summary>
+        /// YS0031: All nodes in a group must have a 'when' clause.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: node group title.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor NodeGroupMissingWhen = new DiagnosticDescriptor(
+            code: "YS0031",
+            messageTemplate: "All nodes in the group '{0}' must have a 'when' clause (use 'when: always' if you want this node to not have any conditions).",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "When some nodes in a group have 'when' clauses, all must have them."
+        );
+
+        /// <summary>
+        /// YS0032: Duplicate subtitle in a node group.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: group name, 1: subtitle.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor DuplicateSubtitle = new DiagnosticDescriptor(
+            code: "YS0032",
+            messageTemplate: "More than one node in group {0} has subtitle {1}.",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "Subtitles within a node group must be unique."
+        );
+
+        /// <summary>
+        /// YS0033: Node is empty and will not be compiled.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: node title.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor EmptyNode = new DiagnosticDescriptor(
+            code: "YS0033",
+            messageTemplate: "Node \"{0}\" is empty and will not be included in the compiled output.",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
+            description: "An empty node has no statements and will be excluded from compilation."
+        );
+
+        /// <summary>
+        /// YS0034: Function cannot be used in Yarn Spinner scripts.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: function name, 1: reason.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor InvalidLibraryFunction = new DiagnosticDescriptor(
+            code: "YS0034",
+            messageTemplate: "Function {0} cannot be used in Yarn Spinner scripts: {1}",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "A library function has an incompatible signature for use in Yarn scripts."
+        );
+
+        /// <summary>
+        /// YS0035: Enum declaration error.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: error message.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor EnumDeclarationError = new DiagnosticDescriptor(
+            code: "YS0035",
+            messageTemplate: "{0}",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "An error occurred while validating an enum declaration."
+        );
+
+        /// <summary>
+        /// YS0036: Preview feature not enabled.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: error message.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor PreviewFeatureRequired = new DiagnosticDescriptor(
+            code: "YS0036",
+            messageTemplate: "{0}",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "A preview language feature was used but preview features are not enabled."
+        );
+
+        /// <summary>
+        /// YS0037: Invalid literal value.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: error message.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor InvalidLiteralValue = new DiagnosticDescriptor(
+            code: "YS0037",
+            messageTemplate: "{0}",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "A constant literal value could not be parsed or is of an unexpected type."
+        );
+
+        /// <summary>
+        /// YS0038: Invalid member access.
+        /// </summary>
+        /// <remarks>
+        /// <para>Format placeholders: 0: error message.</para>
+        /// </remarks>
+        public static readonly DiagnosticDescriptor InvalidMemberAccess = new DiagnosticDescriptor(
+            code: "YS0038",
+            messageTemplate: "{0}",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "A type member access could not be resolved."
+        );
+
+        #endregion
+
         // Registry for lookup by code
         private static readonly Dictionary<string, DiagnosticDescriptor> descriptorsByCode = new Dictionary<string, DiagnosticDescriptor>
         {
@@ -488,12 +684,27 @@ namespace Yarn.Compiler
             { LineContentBeforeCommand.Code, LineContentBeforeCommand },
             { StrayCommandEnd.Code, StrayCommandEnd },
             { UnenclosedCommand.Code, UnenclosedCommand },
+            { InvalidNodeName.Code, InvalidNodeName },
             { RedeclarationOfExistingVariable.Code, RedeclarationOfExistingVariable },
             { RedeclarationOfExistingType.Code, RedeclarationOfExistingType },
             { InternalError.Code, InternalError },
             { UnknownLineIDForShadowLine.Code, UnknownLineIDForShadowLine },
             { ShadowLinesCantHaveExpressions.Code, ShadowLinesCantHaveExpressions },
             { ShadowLinesMustHaveSameTextAsSource.Code, ShadowLinesMustHaveSameTextAsSource },
+            { SmartVariableLoop.Code, SmartVariableLoop },
+            { NullDefaultValue.Code, NullDefaultValue },
+            { TypeSolverTimeout.Code, TypeSolverTimeout },
+            { TypeInferenceFailure.Code, TypeInferenceFailure },
+            { ExpressionTypeUndetermined.Code, ExpressionTypeUndetermined },
+            { SmartVariableReadOnly.Code, SmartVariableReadOnly },
+            { NodeGroupMissingWhen.Code, NodeGroupMissingWhen },
+            { DuplicateSubtitle.Code, DuplicateSubtitle },
+            { EmptyNode.Code, EmptyNode },
+            { InvalidLibraryFunction.Code, InvalidLibraryFunction },
+            { EnumDeclarationError.Code, EnumDeclarationError },
+            { PreviewFeatureRequired.Code, PreviewFeatureRequired },
+            { InvalidLiteralValue.Code, InvalidLiteralValue },
+            { InvalidMemberAccess.Code, InvalidMemberAccess },
         };
 
         /// <summary>

@@ -38,7 +38,7 @@ namespace Yarn.Compiler
             get
             {
                 string message = $"Expected a constant type";
-                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
+                this.diagnostics.Add(DiagnosticDescriptor.InvalidLiteralValue.Create(this.sourceFileName, context, message));
                 return new Value(Types.Error, "<ERROR>");
             }
         }
@@ -52,7 +52,7 @@ namespace Yarn.Compiler
             else
             {
                 string message = $"Failed to parse {context.GetText()} as a float";
-                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
+                this.diagnostics.Add(DiagnosticDescriptor.InvalidLiteralValue.Create(this.sourceFileName, context, message));
                 return new Value(Types.Number, 0f);
             }
         }
