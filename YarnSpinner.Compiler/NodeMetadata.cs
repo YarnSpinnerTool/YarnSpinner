@@ -17,6 +17,21 @@ namespace Yarn.Compiler
         public string Title { get; set; } = string.Empty;
 
         /// <summary>
+        /// the original title as written in source (before any rewriting by NodeGroupVisitor)
+        /// </summary>
+        public string? SourceTitle { get; set; } = null;
+
+        /// <summary>
+        /// the rewritten unique title (e.g. "Meeting.happy" or "Meeting.checksum"), set by NodeGroupVisitor
+        /// </summary>
+        public string? UniqueTitle { get; set; } = null;
+
+        /// <summary>
+        /// the node group name (equals sourceTitle when when: headers exist, null otherwise)
+        /// </summary>
+        public string? NodeGroup { get; set; } = null;
+
+        /// <summary>
         /// the subtitle of the node (optional)
         /// </summary>
         public string? Subtitle { get; set; } = null;

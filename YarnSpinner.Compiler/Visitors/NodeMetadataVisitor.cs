@@ -78,6 +78,12 @@ namespace Yarn.Compiler
             // Visit children to extract all the metadata.
             base.VisitNode(context);
 
+            // Populate node group fields from the parse context.
+            // NodeGroupVisitor runs before NodeMetadataVisitor, so these are already set.
+            currentNode.SourceTitle = currentNode.Title;      // Always the original title: header value
+            currentNode.UniqueTitle = context.NodeTitle;       // Rewritten by NodeGroupVisitor
+            currentNode.NodeGroup = context.NodeGroup;         // Set by NodeGroupVisitor (null if not grouped)
+
             // Only add nodes that have a title.
             if (!string.IsNullOrWhiteSpace(currentNode.Title))
             {
