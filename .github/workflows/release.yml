@@ -24,7 +24,16 @@ jobs:
 
       - name: Update version
         id: version
-        run: ./get-version.sh
+        run: |
+          ./get-version.sh
+
+          echo
+          echo "Generated Version Info:"
+          for infoFile in $(find . -name "AssemblyInfo.cs"); do
+            echo "$infoFile :"
+            cat $infoFile
+            echo
+          done
 
       - name: Restore dependencies
         run: dotnet restore
