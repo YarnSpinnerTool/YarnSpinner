@@ -619,16 +619,16 @@ namespace Yarn.Compiler
         );
 
         /// <summary>
-        /// YS0036: Preview feature not enabled.
+        /// YS0036: Language version too low for feature.
         /// </summary>
         /// <remarks>
         /// <para>Format placeholders: 0: error message.</para>
         /// </remarks>
-        public static readonly DiagnosticDescriptor PreviewFeatureRequired = new DiagnosticDescriptor(
+        public static readonly DiagnosticDescriptor LanguageVersionTooLow = new DiagnosticDescriptor(
             code: "YS0036",
             messageTemplate: "{0}",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "A preview language feature was used but preview features are not enabled."
+            description: "A language feature was used that requires a newer Yarn Spinner project version."
         );
 
         /// <summary>
@@ -702,7 +702,7 @@ namespace Yarn.Compiler
             { EmptyNode.Code, EmptyNode },
             { InvalidLibraryFunction.Code, InvalidLibraryFunction },
             { EnumDeclarationError.Code, EnumDeclarationError },
-            { PreviewFeatureRequired.Code, PreviewFeatureRequired },
+            { LanguageVersionTooLow.Code, LanguageVersionTooLow },
             { InvalidLiteralValue.Code, InvalidLiteralValue },
             { InvalidMemberAccess.Code, InvalidMemberAccess },
         };

@@ -16,12 +16,12 @@ namespace Yarn.Compiler
 
         private void AddLanguageFeatureError(ParserRuleContext context, string featureType)
         {
-            AddError(context, $"Language feature \"{featureType}\" is only available when preview features are enabled");
+            AddError(context, $"Language feature \"{featureType}\" is not available at language version {LanguageVersion}; it requires version {Project.YarnSpinnerProjectVersion3} or later");
         }
 
         private void AddError(ParserRuleContext context, string message)
         {
-            var d = DiagnosticDescriptor.PreviewFeatureRequired.Create(File.Name, context, message);
+            var d = DiagnosticDescriptor.LanguageVersionTooLow.Create(File.Name, context, message);
             this.Diagnostics.Add(d);
         }
 
