@@ -37,7 +37,6 @@ namespace YarnSpinner.Tests
             dialogue.UnloadAll();
 
             dialogue.NodeExists("Sally").Should().BeFalse();
-
         }
 
         [Fact]

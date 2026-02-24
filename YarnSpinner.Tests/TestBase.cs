@@ -243,6 +243,8 @@ namespace YarnSpinner.Tests
 
             dialogue.ContentSaliencyStrategy = new Yarn.Saliency.BestLeastRecentlyViewedSaliencyStrategy(storage);
 
+            this.output = outputHelper;
+
             dialogue.LogDebugMessage = delegate (string message)
             {
                 output.WriteLine(message);
