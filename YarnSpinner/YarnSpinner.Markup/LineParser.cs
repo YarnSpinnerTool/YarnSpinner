@@ -777,9 +777,9 @@ namespace Yarn.Markup
         private MarkupTreeNode? sibling = null;
         // this keeps track of all accumulated invisible characters added by any replacement markup.
         // this is necessary to prevent a bug with the following:
-            // "this is a line [bold]with some replacement[/bold] markup and a non-replacement[a/]  markup"
+        // "this is a line [bold]with some replacement[/bold] markup and a non-replacement[a/]  markup"
         // assuming that this is intended to replace the [bold] with <b> in unity we would end up as though we had written:
-            // "this is a line <b>with some replacement</b> markup and a non-replacement[a/]  markup"
+        // "this is a line <b>with some replacement</b> markup and a non-replacement[a/]  markup"
         // but this has now pushed the [a] markup down by 7 invisible characters
         // so each replacement markup processor needs to let us know how many (if any) invisible characters there are so we can backshift any sibling attributes after a replacement markup
         private int invisibleCharacters = 0;
@@ -1486,8 +1486,11 @@ namespace Yarn.Markup
             return ParseStringWithDiagnostics(input, localeCode, squish, sort, addImplicitCharacterAttribute).markup;
         }
 
-        private static readonly char[] trimChars = { ':', ' ' };
-        private static readonly System.Text.RegularExpressions.Regex implicitCharacterRegex = new(@"^[^:]*:\s*");
+        private static readonly System.Text.RegularExpressions.Regex implicitCharacterRegex = new(@"^(?<name>[^"":]+)(?<suffix>:\s*)");
+
+        // Matches a "[character" at the start of the string, which means that
+        // the string contains an explicit character marker.
+        private static readonly System.Text.RegularExpressions.Regex characterMarkerRegex = new(@"^\s*\[character");
 
         internal (MarkupParseResult markup, List<MarkupDiagnostic> diagnostics) ParseStringWithDiagnostics(string input, string localeCode, bool squish = true, bool sort = true, bool addImplicitCharacterAttribute = true)
         {
@@ -1497,6 +1500,19 @@ namespace Yarn.Markup
             }
 
             input = input.Normalize();
+
+            if (addImplicitCharacterAttribute && characterMarkerRegex.IsMatch(input) == false)
+            {
+                // The line does not already contain a [character] marker at the
+                // start, and we've been asked to add an implicit character
+                // attribute. Attempt to find a character at the start, and
+                // replace it with markup that indicates the character name.
+                input = implicitCharacterRegex.Replace(
+                    input,
+                    (match) => $"[character name=\"{match.Groups["name"]}\"]{match.Groups["name"]}{match.Groups["suffix"]}[/character]"
+                );
+            }
+
             var tokens = LexMarkup(input);
             var parseResult = BuildMarkupTreeFromTokens(tokens, input);
 
@@ -1524,33 +1540,6 @@ namespace Yarn.Markup
             }
 
             var finalText = builder.ToString();
-
-            if (addImplicitCharacterAttribute)
-            {
-                var hasCharacterAttributeAlready = false;
-                foreach (var attribute in attributes)
-                {
-                    if (attribute.Name == "character")
-                    {
-                        hasCharacterAttributeAlready = true;
-                        break;
-                    }
-                }
-                if (!hasCharacterAttributeAlready)
-                {
-                    var match = implicitCharacterRegex.Match(finalText);
-                    if (match.Success)
-                    {
-                        var characterName = match.Value.TrimEnd(trimChars);
-                        var propertyList = new List<MarkupProperty>
-                        {
-                            new MarkupProperty("name", characterName),
-                        };
-                        var characterMarker = new MarkupAttribute(0, 0, match.Length, "character", propertyList);
-                        attributes.Add(characterMarker);
-                    }
-                }
-            }
 
             if (sort)
             {

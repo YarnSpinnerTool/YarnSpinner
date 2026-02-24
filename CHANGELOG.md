@@ -8,10 +8,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- Marker processors can now process implicit `[character/]` markers.
+  - Yarn Spinner automatically adds `[character]` markers to lines that begin with a character name. For example, `Mae: Hello!` gets implicitly rewritten to `[character name="Mae"]Mae: [/character]Hello!`. This allows games to know what character is speaking, as well as being able to trim off the character name.
+  - With this update, marker processors are able to register to handle this implicit marker, allowing games to customise the way that the name is handled.
+
 ### Changed
 
 - Fixed a bug where unbalanced markup without text siblings or children would cause an error
 - Fixed a bug where numbers inside markup properties were being parsed in a culture variant manner.
+- The implicit `[character/]` marker is now generated before all other markup processing takes place. As a result, replacement markers like `[select/]` that produce text that would have been identified as a character name won't have their output recognised as a character name.
+  - If you need this to keep working, manually add your own `[character name=etc] ... [/character]` markup around your content.
 
 ### Removed
 

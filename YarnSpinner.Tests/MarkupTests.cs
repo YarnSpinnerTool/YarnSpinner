@@ -1532,6 +1532,20 @@ namespace YarnSpinner.Tests
             markup.diagnostics.Should().BeEmpty();
             markup.markup.Text.Should().Be(expected);
         }
+
+        [Fact]
+        public void TestMarkerProcessorsCanProcessCharacterNames()
+        {
+            var lineParser = new LineParser();
+            lineParser.RegisterMarkerProcessor("character", new MarkerUppercaseReplacer());
+
+            var markup = lineParser.ParseString("Mae: I'm talkin' here", "en-AU");
+            markup.Text.Should().Be("MAE: I'm talkin' here", "the character marker should be processed");
+            markup.Attributes.Should().Contain(m => m.Name == "character", "the marker should be left in place")
+                .Which.Properties.Should().Contain(
+                    kv => kv.Key == "name" && kv.Value.StringValue == "Mae", "the marker's properties should be unmodified"
+                );
+        }
     }
 
     public class BBCodeChevronReplacer : IAttributeMarkerProcessor
@@ -1554,6 +1568,21 @@ namespace YarnSpinner.Tests
             childBuilder.Insert(0, $"<{tag}>");
             childBuilder.Append($"</{tag}>");
             return new ReplacementMarkerResult(diagnostics, 5 + tag.Length * 2);
+        }
+    }
+
+    /// <summary>
+    /// An <see cref="IAttributeMarkerProcessor"/> that makes markers uppercase. 
+    /// </summary>
+    public class MarkerUppercaseReplacer : IAttributeMarkerProcessor
+    {
+        public ReplacementMarkerResult ProcessReplacementMarker(MarkupAttribute marker, StringBuilder childBuilder, List<MarkupAttribute> childAttributes, string localeCode)
+        {
+            var contents = childBuilder.ToString();
+            childBuilder.Clear();
+            childBuilder.Append(contents.ToUpperInvariant());
+            childAttributes.Add(marker);
+            return new ReplacementMarkerResult([], 0);
         }
     }
 }
