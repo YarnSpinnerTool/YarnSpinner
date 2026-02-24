@@ -27,7 +27,7 @@ namespace YarnSpinner.Tests
 
             storage.Clear();
 
-            directory = Path.Combine(TestBase.TestDataPath, directory);
+            directory = Path.Combine(AsyncTestBase.TestDataPath, directory);
 
             if (Directory.Exists(directory) == false)
             {

@@ -9,6 +9,90 @@ namespace Yarn
     using System.Threading.Tasks;
     using Yarn.Saliency;
 
+    /// <summary>
+    /// Contains methods for evaluating the value of smart variables
+    /// </summary>
+    public interface ISmartVariableEvaluator
+    {
+        /// <summary>
+        /// Evaluate the value of a smart variable named <paramref
+        /// name="name"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the returned value.</typeparam>
+        /// <param name="name">The name of the variable.</param>
+        /// <param name="result">On return, contains the returned value of the
+        /// smart variable, or the <see langword="default"/> value of
+        /// <typeparamref name="T"/> if a smart variable named <paramref
+        /// name="name"/> could not be found or its value could not be returned
+        /// as type <typeparamref name="T"/>.</param>
+        /// <returns><see langword="true"/> if the smart variable was evaluated,
+        /// <see langword="false"/> otherwise.</returns>
+        bool TryGetSmartVariable<T>(string name, out T result);
+    }
+
+    public interface DialogueResponder: Library
+    {
+        ValueTask HandleLine(Line line, CancellationToken token);
+        ValueTask<int> HandleOptions(OptionSet options, CancellationToken token);
+        ValueTask HandleCommand(Command command, CancellationToken token);
+        ValueTask HandleNodeStart(string node, CancellationToken token);
+        ValueTask HandleNodeComplete(string node, CancellationToken token);
+        ValueTask HandleDialogueComplete();
+        ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token);
+        ValueTask<IConvertible> thunk(string functionName, Value[] parameters, CancellationToken token);
+        bool TryGetFunctionDefinition(string functionName, out FunctionDefinition functionDefinition);
+        Dictionary<string, FunctionDefinition> allDefinitions { get; }
+    }
+
+    internal struct PendingOption
+    {
+        public Line line;
+        public int destination;
+        public bool enabled;
+    }
+
+    /// <summary>
+    /// A value used by an Instruction.
+    /// </summary>
+    public partial class Operand
+    {
+        /// <summary>
+        /// Convenience constructor for the Operand type.
+        /// </summary>
+        /// <remarks>
+        /// so that we don't need to have two separate steps for creating and then preparing the Operand
+        /// </remarks>
+        /// <param name="value">The boolean value to be made into the operand</param>
+        public Operand(bool value) : base()
+        {
+            this.BoolValue = value;
+        }
+
+        /// <summary>
+        /// Convenience constructor for the Operand type.
+        /// </summary>
+        /// <remarks>
+        /// so that we don't need to have two separate steps for creating and then preparing the Operand
+        /// </remarks>
+        /// <param name="value">The string value to be made into the operand</param>
+        public Operand(string value) : base()
+        {
+            this.StringValue = value;
+        }
+
+        /// <summary>
+        /// Convenience constructor for the Operand type.
+        /// </summary>
+        /// <remarks>
+        /// so that we don't need to have two separate steps for creating and then preparing the Operand
+        /// </remarks>
+        /// <param name="value">The float value to be made into the operand</param>
+        public Operand(float value) : base()
+        {
+            this.FloatValue = value;
+        }
+    }
+
     internal class AsyncVirtualMachine
     {
         internal class State
@@ -104,9 +188,8 @@ namespace Yarn
             }
         }
 
-        internal AsyncVirtualMachine(Library library, IVariableStorage storage)
+        internal AsyncVirtualMachine(IVariableStorage storage)
         {
-            this.Library = library;
             this.VariableStorage = storage;
             this.ContentSaliencyStrategy = new RandomBestLeastRecentlyViewedSaliencyStrategy(storage);
             state = new State();
@@ -118,17 +201,6 @@ namespace Yarn
             state = new State();
         }
 
-        public interface DialogueResponder
-        {
-            ValueTask HandleLine(Line line, CancellationToken token);
-            ValueTask<int> HandleOptions(OptionSet options, CancellationToken token);
-            ValueTask HandleCommand(Command command, CancellationToken token);
-            ValueTask HandleNodeStart(string node, CancellationToken token);
-            ValueTask HandleNodeComplete(string node, CancellationToken token);
-            ValueTask HandleDialogueComplete();
-            ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token);
-            ValueTask<object> thunk(Delegate func, object[] parameters, CancellationToken token);
-        }
         private DialogueResponder? dialogueResponder;
         public DialogueResponder Responder
         {
@@ -159,7 +231,6 @@ namespace Yarn
         }
 
         public IVariableStorage VariableStorage { get; set; }
-        public Library Library { get; set; }
         public Logger? LogDebugMessage { get; set; }
         public Logger? LogErrorMessage { get; set; }
 
@@ -459,7 +530,7 @@ namespace Yarn
 
                         var chosenOption = await Responder.HandleOptions(new OptionSet(optionChoices.ToArray()), cancellationToken);
                         
-                        if (chosenOption == Dialogue.NoOptionSelected)
+                        if (chosenOption == AsyncDialogue.NoOptionSelected)
                         {
                             // Push a flag indicating that no option was selected.
                             // this means the jump if false will pass taking us to the end of the option statement
@@ -507,18 +578,11 @@ namespace Yarn
                     state.PopValue();
                     return true;
                 case Instruction.InstructionTypeOneofCase.CallFunc:
-                    if (Library.TryGetFunction(i.CallFunc.FunctionName, out var function))
                     {
-                        var value = await CallFunc(function, state.stack, cancellationToken);
+                        var value = await CallFunction(i.CallFunc.FunctionName, state.stack, this.Responder, cancellationToken);
                         state.stack.Push(value);
+                        return true;
                     }
-                    else
-                    {
-                        // for now just running the function the old way
-                        // but this will have to change later to throwing an exception
-                        await CallFunction(i, Library, state.stack);
-                    }
-                    return true;
 
                 case Instruction.InstructionTypeOneofCase.PushVariable:
                     {
@@ -807,287 +871,63 @@ namespace Yarn
             state.programCounter -= 1;
         }
 
-        private static void DummyCommandHandler(Command command)
+        public static Value[] ParametersForFunction(FunctionDefinition function, Stack<Value> stack)
         {
-            throw new System.InvalidOperationException($"Smart node execution nodes must not run commands");
-        }
-
-        private static void DummyOptionsHandler(OptionSet options)
-        {
-            throw new System.InvalidOperationException($"Smart node execution nodes must not run options");
-        }
-
-        private static void DummyPrepareForLinesHandler(IEnumerable<string> lineIDs)
-        {
-            throw new System.InvalidOperationException($"Smart node execution nodes must not run lines");
-        }
-
-        private static void DummyLineHandler(Yarn.Line line)
-        {
-            throw new System.InvalidOperationException($"Smart node execution nodes must not run lines");
-        }
-
-        private async ValueTask<Value> InvokeThunk(Delegate func, object[] parameters, CancellationToken token)
-        {
-            var task = this.Responder.thunk(func, parameters, token);
-            IConvertible returnValue = (IConvertible)await task;
-            
-            if (Types.TypeMappings.TryGetValue(returnValue.GetType(), out var yarnType))
-            {
-                Value yarnValue = new Value(yarnType, returnValue);
-                return yarnValue;
-            }
-            else
-            {
-                throw new System.InvalidOperationException($"Internal error: Return value of the function is not convertible to a Yarn type.");
-            }
-        }
-
-        private async ValueTask<Yarn.Value> CallFunc(FunctionDefinition function, Stack<Value> stack, CancellationToken token)
-        {
+            // we are gonna do a basic check, we assume our responder will make sure it's all perfect
+            // we could do more here but then we'd have to deal with the issues of unknown types again
+            // much easier to let the responder who has them deal with it
+            // we all need here to have the minimum number of parameters we'd expect
             var actualParamCount = stack.Pop().ConvertTo<int>();
-            var expectedCount = function.Parameters.Length;
+            var expectedCount = function.functionType.Parameters.Count + (function.functionType.VariadicParameterType == null ? 0 : 1);
 
-            if (actualParamCount == 0)
+            var minimumCount = expectedCount - (function.functionType.VariadicParameterType == null ? 0 : 1);
+            if (actualParamCount < minimumCount)
             {
-                if (expectedCount != 0)
-                {
-                    throw new System.InvalidOperationException($"Internal error: {function.Name}'s expects {expectedCount} parameters but has 0");
-                }
-
-                // can sidestep a lot of this stuff now
-                // because we have no parameters can just invoke the thunk
-                return await InvokeThunk(Library.GetFunction(function.Name), Array.Empty<object>(), token);
+                throw new System.InvalidOperationException($"Internal error: {function.Name}'s expects {expectedCount} parameters but has {actualParamCount}");
             }
 
-            // check if the last parameter is variadic and if it is what type?
-            Type? lastParameterVariadicType = function.Parameters.Length > 0 ? function.Parameters[^1].isVariadic ? function.Parameters[^1].subType : null : null;
-            
-            var variadicParamCount = lastParameterVariadicType == null ? 0 : actualParamCount - (expectedCount - 1);
-            var regularParamCount = actualParamCount - variadicParamCount;
-
-            // one last sanity check if we have the right number of parameters
-            if (variadicParamCount > 0)
+            // make a single array of yarnvalues of the appropriate size
+            var parameters = new Yarn.Value[actualParamCount];
+            for (int i = actualParamCount - 1; i > -1; i--)
             {
-                if (regularParamCount != expectedCount - 1)
-                {
-                    throw new System.InvalidOperationException($"Internal error: {function.Name}'s expects {expectedCount} parameters but has {regularParamCount + 1}");
-                }
+                parameters[i] = stack.Pop();
             }
-            else
-            {
-                if (regularParamCount != expectedCount)
-                {
-                    throw new System.InvalidOperationException($"Internal error: {function.Name}'s expects {expectedCount} parameters but has {regularParamCount}");
-                }
-            }
-
-            Array? variadicParameters = null;
-            // then pop off the number of variadic parameters and jam them into an array
-            if (variadicParamCount > 0)
-            {
-                if (lastParameterVariadicType == null)
-                {
-                    throw new System.InvalidOperationException($"Internal error: {function.Name} expects a variadic parameter but the type of this parameter wasn't able to be determined");
-                }
-
-                variadicParameters = Array.CreateInstance(lastParameterVariadicType, variadicParamCount);
-
-                for (int i = 0; i < variadicParamCount; i++)
-                {
-                    var value = stack.Pop();
-                    variadicParameters.SetValue(value.ConvertTo(lastParameterVariadicType), variadicParamCount - 1 - i);
-                }
-            }
-
-            // at this point we only have the remaining expected values
-            // so we want to pop these off, convert them, and stuff them into an array for delivery
-            var parametersToUse = new object[regularParamCount + ((lastParameterVariadicType != null) ? 1 : 0)];
-            
-            // if we ended up with a variadic parameter we want to include that now also
-            // but it goes at the end as variadics are always the last paramter
-            if (variadicParamCount > 0)
-            {
-                if (variadicParameters == null)
-                {
-                    throw new System.InvalidOperationException($"Internal error: {function.Name} expects variadic parameters but were unable to identify any");
-                }
-                parametersToUse[^1] = variadicParameters;
-            }
-
-            for (int i = 0; i < regularParamCount; i++)
-            {
-                var index = expectedCount - 1 - i - (variadicParamCount == 0 ? 0 : 1);
-                if (function.Parameters[index].isVariadic)
-                {
-                    throw new System.InvalidOperationException($"Internal error: encountered an unexpected variadic parameter");
-                }
-                var value = stack.Pop();
-                var paramType = function.Parameters[index].subType;
-
-                parametersToUse[index] = value.ConvertTo(paramType);
-            }
-
-            // at this stage we now have an array of converted values that is good to send over to be invoked
-            return await InvokeThunk(Library.GetFunction(function.Name), parametersToUse, token);
+            return parameters;
         }
 
-        public async ValueTask CallFunction(Instruction i, Library Library, Stack<Value> stack)
+        public static async ValueTask<Yarn.Value> CallFunction(string functionName, Stack<Value> state, DialogueResponder? responder, CancellationToken token)
         {
-            // Call a function, whose parameters are expected to
-            // be on the stack. Pushes the function's return value,
-            // if it returns one.
-            var functionName = i.CallFunc.FunctionName;
-
-            Delegate function = Library.GetFunction(functionName);
-
-            var parameterInfos = function.Method.GetParameters();
-
-            System.Reflection.ParameterInfo? lastParameter = parameterInfos.Length > 0 ? parameterInfos[parameterInfos.Length - 1] : null;
-            Type? variadicParameterType = (lastParameter?.ParameterType.IsArray ?? false) ? lastParameter.ParameterType.GetElementType() : null;
-
-            var expectedRequiredParamCount = parameterInfos.Length;
-
-            if (variadicParameterType != null)
+            if (responder != null && responder.TryGetFunctionDefinition(functionName, out var function))
             {
-                // The last parameter of the C# function is the
-                // params array
-                expectedRequiredParamCount -= 1;
-            }
-
-            // Expect the compiler to have placed the number of parameters
-            // actually passed at the top of the stack.
-            var actualParamCount = (int)stack.Pop().ConvertTo<int>();
-
-            if (expectedRequiredParamCount != actualParamCount && variadicParameterType == null)
-            {
-                throw new InvalidOperationException($"Function {functionName} expected {expectedRequiredParamCount} parameters, but received {actualParamCount}");
-            }
-
-            var variadicParamCount = actualParamCount - expectedRequiredParamCount;
-
-            // Create an array for storing the parameters we'll
-            // submit. If the function accepts variadic parameters,
-            // add space for the params array.
-            var parametersToUse = new object[expectedRequiredParamCount + ((variadicParameterType != null) ? 1 : 0)];
-            Array? variadicParameters = null;
-            if (variadicParameterType != null)
-            {
-                variadicParameters = Array.CreateInstance(variadicParameterType, variadicParamCount);
-            }
-
-            for (int param = actualParamCount - 1; param >= 0; param--)
-            {
-                var value = stack.Pop();
-
-                bool isVariadicParameter = param >= expectedRequiredParamCount;
-
-                if (isVariadicParameter && variadicParameters != null)
-                {
-                    if (variadicParameterType == null)
-                    {
-                        throw new System.InvalidOperationException($"Internal error: Variadic parameter encounted but {nameof(variadicParameterType)} was null");
-                    }
-
-                    // Perform type checking on this parameter
-                    variadicParameters.SetValue(value.ConvertTo(variadicParameterType), param - expectedRequiredParamCount);
-                }
-                else
-                {
-                    var parameterType = parameterInfos[param].ParameterType;
-                    // Perform type checking on this parameter
-                    parametersToUse[param] = value.ConvertTo(parameterType);
-                }
-            }
-
-            if (variadicParameters != null)
-            {
-                parametersToUse[expectedRequiredParamCount] = variadicParameters;
-            }
-
-            // Invoke the function
-            try
-            {
-                var task = this.Responder.thunk(function, parametersToUse, CancellationToken.None);
-                IConvertible returnValue = (IConvertible)await task;
+                var parameters = ParametersForFunction(function, state);
                 
-                if (Types.TypeMappings.TryGetValue(returnValue.GetType(), out var yarnType))
+                var result = await responder.thunk(function.Name, parameters, token);
+                if (result == null)
                 {
-                    Value yarnValue = new Value(yarnType, returnValue);
+                    throw new System.InvalidOperationException($"Internal error: Return value of the function is not convertible to a Yarn type.");
+                }
 
-                    stack.Push(yarnValue);
+                if (Types.TypeMappings.TryGetValue(result.GetType(), out var yarnType))
+                {
+                    Value yarnValue = new Value(yarnType, result);
+                    return yarnValue;
                 }
                 else
                 {
                     throw new System.InvalidOperationException($"Internal error: Return value of the function is not convertible to a Yarn type.");
                 }
             }
-            catch (System.Reflection.TargetInvocationException ex)
+            else if (StandardLibrary.TryGetFunction(functionName, out function))
             {
-                // The function threw an exception. Re-throw the exception it threw.
-                throw ex.InnerException;
+                var parameters = ParametersForFunction(function, state);
+                var value = await StandardLibrary.CallFunc(function, parameters, token);
+
+                return value;
             }
-        }
-
-        public async static ValueTask<object> BasicThunk(Delegate func, object[] parameters, CancellationToken token)
-        {
-            var functionName = func.Method.Name;
-            var returnType = func.Method.ReturnType;
-
-            // if the method is void we want to early out
-            if (returnType == typeof(void))
+            else
             {
-                throw new System.InvalidOperationException($"Internal error: Functions are required to return a Yarn value but {functionName} is a void function");
+                throw new System.ArgumentException($"Encountered a function call to \"{functionName}\", this does not match a function we know about");
             }
-
-            // if the delegate returns a non-async type
-            // and the return type is a type yarn intrinsically understands
-            // we just immediately run the function and return that, no need to wait around
-            if (Types.TypeMappings.TryGetValue(returnType, out _))
-            {
-                return func.DynamicInvoke(parameters);
-            }
-
-            // ok so we aren't a basic type
-            // which means we are either a type that can be awaited with a yarn compatible subtype, or we are an unsupported type
-            // regardless the next step is the same
-            // we invoke the method knowing it will be possible to cast it to something we can await
-            // and if it can't then it's an error
-            var uncast = func.DynamicInvoke(parameters);
-
-            return uncast switch
-            {
-                ValueTask<int> task => await task,
-                ValueTask<float> task => await task,
-                ValueTask<double> task => await task,
-                ValueTask<sbyte> task => await task,
-                ValueTask<byte> task => await task,
-                ValueTask<short> task => await task,
-                ValueTask<ushort> task => await task,
-                ValueTask<uint> task => await task,
-                ValueTask<long> task => await task,
-                ValueTask<ulong> task => await task,
-                ValueTask<decimal> task => await task,
-                ValueTask<string> task => await task,
-                ValueTask<bool> task => await task,
-
-                Task<int> task => await task,
-                Task<float> task => await task,
-                Task<double> task => await task,
-                Task<sbyte> task => await task,
-                Task<byte> task => await task,
-                Task<short> task => await task,
-                Task<ushort> task => await task,
-                Task<uint> task => await task,
-                Task<long> task => await task,
-                Task<ulong> task => await task,
-                Task<decimal> task => await task,
-                Task<string> task => await task,
-                Task<bool> task => await task,
-
-                // at this point we are something we don't really understand
-                _ => throw new System.InvalidOperationException($"Internal error: Functions are required to return a Yarn value but {functionName} return type is {returnType}"),
-            };
         }
     }
 }

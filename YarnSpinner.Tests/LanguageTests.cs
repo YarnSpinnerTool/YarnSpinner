@@ -32,33 +32,6 @@ namespace YarnSpinner.Tests
 
             dialogue.Library.RegisterFunction("adds_two", TestValueTaskInt);
             dialogue.Library.RegisterFunction("adds_one", TestSystemTaskInt);
-
-            // manually defining this function
-            var adds_two_definition = new FunctionDefinition();
-            adds_two_definition.Name = "adds_two";
-            var adds_two_param = new FunctionDefinitionParameter();
-            adds_two_param.mainType = typeof(int);
-            adds_two_param.subType = typeof(int);
-            adds_two_param.isVariadic = false;
-            adds_two_definition.Parameters = [adds_two_param];
-            dialogue.Library.functions.Add("adds_two", adds_two_definition);
-
-            var add_all_def = new FunctionDefinition();
-            add_all_def.Name = "adds_all";
-            var adds_all_p1 = new FunctionDefinitionParameter();
-            adds_all_p1.mainType = typeof(int);
-            adds_all_p1.subType = typeof(int);
-            adds_all_p1.isVariadic = false;
-            var adds_all_p2 = new FunctionDefinitionParameter();
-            adds_all_p2.mainType = typeof(int);
-            adds_all_p2.subType = typeof(int);
-            adds_all_p2.isVariadic = false;
-            var adds_all_p3 = new FunctionDefinitionParameter();
-            adds_all_p3.mainType = typeof(int);
-            adds_all_p3.subType = typeof(int);
-            adds_all_p3.isVariadic = true;
-            add_all_def.Parameters = [adds_all_p1, adds_all_p2, adds_all_p3];
-            dialogue.Library.functions.Add("adds_all", add_all_def);
             dialogue.Library.RegisterFunction("adds_all", TestValueTaskIntWithVariadics);
         }
 
@@ -85,7 +58,7 @@ namespace YarnSpinner.Tests
         public async Task TestExampleScript()
         {
             runtimeErrorsCauseFailures = false;
-            var path = Path.Combine(TestBase.TestDataPath, "Example.yarn");
+            var path = Path.Combine(AsyncTestBase.TestDataPath, "Example.yarn");
             var testPath = Path.ChangeExtension(path, ".testplan");
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
@@ -103,7 +76,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public async Task TestEndOfNotesWithOptionsNotAdded()
         {
-            var path = Path.Combine(TestBase.TestDataPath, "SkippedOptions.yarn");
+            var path = Path.Combine(AsyncTestBase.TestDataPath, "SkippedOptions.yarn");
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
@@ -126,7 +99,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestNodeHeaders()
         {
-            var path = Path.Combine(TestBase.TestDataPath, "Headers.yarn");
+            var path = Path.Combine(AsyncTestBase.TestDataPath, "Headers.yarn");
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
             result.Diagnostics.Should().BeEmpty();
@@ -202,7 +175,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestInvalidCharactersInNodeTitle()
         {
-            var path = Path.Combine(TestBase.TestDataPath, "InvalidNodeTitle.yarn");
+            var path = Path.Combine(AsyncTestBase.TestDataPath, "InvalidNodeTitle.yarn");
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
@@ -319,7 +292,7 @@ title: Start
         [MemberData(nameof(FileSources), "Issues")]
         public void TestCompilationShouldNotBeCultureDependent(string file)
         {
-            var path = Path.Combine(TestBase.TestDataPath, file);
+            var path = Path.Combine(AsyncTestBase.TestDataPath, file);
 
             var source = File.ReadAllText(path);
 

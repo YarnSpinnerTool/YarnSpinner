@@ -57,7 +57,6 @@ namespace Yarn
     /// </summary>
     public abstract class TypeBase : IType, IEquatable<TypeBase>
     {
-
         internal static readonly IReadOnlyDictionary<string, ITypeMember> EmptyTypeMemberDictionary = new Dictionary<string, ITypeMember>();
 
         /// <summary>

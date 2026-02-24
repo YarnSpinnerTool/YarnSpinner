@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace Yarn
 {
@@ -37,11 +38,7 @@ namespace Yarn
         /// name="name"/> is null or empty.</exception>
         /// <exception cref="InvalidOperationException">Thrown if an error
         /// occurs during the evaluation of the variable.</exception>
-        public static bool TryGetSmartVariable<T>(
-            string name,
-            IVariableAccess variableAccess,
-            Library library,
-            out T result)
+        public static bool TryGetSmartVariable<T>(string name, IVariableAccess variableAccess, DialogueResponder library, out T result)
         {
             if (variableAccess is null)
             {
@@ -130,11 +127,7 @@ namespace Yarn
         /// <exception cref="ArgumentException">Thrown when the provided
         /// <paramref name="nodeGroupName"/> is not a valid node group name in
         /// the program.</exception>
-        internal static IEnumerable<Saliency.ContentSaliencyOption> GetSaliencyOptionsForNodeGroup(
-            string nodeGroupName,
-            IVariableAccess variableAccess,
-            Library library
-            )
+        internal static IEnumerable<Saliency.ContentSaliencyOption> GetSaliencyOptionsForNodeGroup(string nodeGroupName, IVariableAccess variableAccess, DialogueResponder library)
         {
             // Retrieve the program from the variable access.
             var program = variableAccess.Program
@@ -220,12 +213,7 @@ namespace Yarn
             }
         }
 
-        private static bool EvaluateInstruction(
-            Instruction instruction,
-            IVariableAccess variableAccess,
-            Library library,
-            Stack<Value> stack,
-            ref int programCounter)
+        private static bool EvaluateInstruction(Instruction instruction, IVariableAccess variableAccess, DialogueResponder library, Stack<Value> stack, ref int programCounter)
         {
             switch (instruction.InstructionTypeCase)
             {
@@ -242,7 +230,15 @@ namespace Yarn
                     stack.Pop();
                     break;
                 case Instruction.InstructionTypeOneofCase.CallFunc:
-                    VirtualMachine.CallFunction(instruction, library, stack);
+                    var task = AsyncVirtualMachine.CallFunction(instruction.CallFunc.FunctionName, stack, library, System.Threading.CancellationToken.None);
+                    if (task.IsCompletedSuccessfully)
+                    {
+                        stack.Push(task.Result);
+                    }
+                    else
+                    {
+                        return false;
+                    }
 
                     break;
                 case Instruction.InstructionTypeOneofCase.PushVariable:

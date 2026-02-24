@@ -298,16 +298,14 @@ namespace Yarn
                         break;
                     }
 
-                    var function = library.GetFunction(this.CallFunc.FunctionName);
-
-                    pops = function.Method.GetParameters().Length;
-
-                    var returnsValue = function.Method.ReturnType != typeof(void);
-
-                    if (returnsValue)
+                    if (!library.TryGetFunctionDefinition(this.CallFunc.FunctionName, out _))
                     {
-                        pushes = 1;
+                        pushes = -1;
+                        pops = -1;
+                        break;
                     }
+
+                    pushes = 1;
 
                     break;
 

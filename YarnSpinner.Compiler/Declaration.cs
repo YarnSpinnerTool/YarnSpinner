@@ -390,6 +390,5 @@ namespace Yarn.Compiler
                 return result + $" (\"{this.Description}\")";
             }
         }
-
     }
 }

@@ -224,7 +224,7 @@ namespace Yarn.Compiler
                     hubNode.Headers.Add(new Header
                     {
                         Key = Node.TrackingVariableNameHeader,
-                        Value = Library.GenerateUniqueVisitedVariableForNode(NodeGroupName)
+                        Value = StandardLibrary.GenerateUniqueVisitedVariableForNode(NodeGroupName)
                     });
                 }
             }

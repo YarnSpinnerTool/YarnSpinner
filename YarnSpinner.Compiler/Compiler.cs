@@ -64,29 +64,13 @@ namespace Yarn.Compiler
             }
 
             var diagnostics = new List<Diagnostic>();
-            {
-                // Get function declarations from the Standard Library
-                (IEnumerable<Declaration> newDeclarations, IEnumerable<Diagnostic> declarationDiagnostics) = GetDeclarationsFromLibrary(new StandardLibrary());
 
-                diagnostics.AddRange(declarationDiagnostics);
-
-                // Add declarations, as long as they don't conflict with existing entries
-                declarations.AddRange(
-                    newDeclarations.Where(d => declarations.Any(other => other.Name == d.Name) == false)
-                );
-            }
-
+            // add in all the standard library functions
+            declarations.AddRange(GetDeclarationsFromLibrary(StandardLibrary.AllFunctions()));
             // Get function declarations from the library, if provided
             if (compilationJob.Library != null)
             {
-                (IEnumerable<Declaration> newDeclarations, IEnumerable<Diagnostic> declarationDiagnostics) = GetDeclarationsFromLibrary(compilationJob.Library);
-
-                // Add declarations, as long as they don't conflict with existing entries
-                declarations.AddRange(
-                    newDeclarations.Where(d => declarations.Any(other => other.Name == d.Name) == false)
-                );
-
-                diagnostics.AddRange(declarationDiagnostics);
+                declarations.AddRange(GetDeclarationsFromLibrary(compilationJob.Library.allDefinitions));
             }
 
             var parsedFiles = new List<FileParseResult>();
@@ -335,7 +319,7 @@ namespace Yarn.Compiler
             var trackingDeclarations = new List<Declaration>();
             foreach (var node in trackingNodes)
             {
-                trackingDeclarations.Add(Declaration.CreateVariable(Yarn.Library.GenerateUniqueVisitedVariableForNode(node), Types.Number, 0, $"The generated variable for tracking visits of node {node}"));
+                trackingDeclarations.Add(Declaration.CreateVariable(Yarn.StandardLibrary.GenerateUniqueVisitedVariableForNode(node), Types.Number, 0, $"The generated variable for tracking visits of node {node}"));
             }
 
             // adding the generated tracking variables into the declaration list
@@ -921,120 +905,16 @@ namespace Yarn.Compiler
 
             return compiler.Compile();
         }
-
-        /// <summary>
-        /// Returns a collection of <see cref="Declaration"/> structs that
-        /// describe the functions present in <paramref name="library"/>.
-        /// </summary>
-        /// <param name="library">The <see cref="Library"/> to get declarations
-        /// from.</param>
-        /// <returns>The <see cref="Declaration"/> structs found.</returns>
-        internal static (IEnumerable<Declaration>, IEnumerable<Diagnostic>) GetDeclarationsFromLibrary(Library library)
+        internal static List<Declaration> GetDeclarationsFromLibrary(Dictionary<string, FunctionDefinition> library)
         {
             var declarations = new List<Declaration>();
 
-            var diagnostics = new List<Diagnostic>();
-
-            foreach (var function in library.Delegates)
+            foreach (var pair in library)
             {
-                var method = function.Value.Method;
-
-                if (method.ReturnType == typeof(Value))
-                {
-                    // Functions that return the internal type Values are
-                    // operators, and are type checked by
-                    // ExpressionTypeVisitor. (Future work: define each
-                    // polymorph of each operator as a separate function
-                    // that returns a concrete type, rather than the
-                    // current method of having a 'Value' wrapper type).
-                    continue;
-                }
-
-                // Does the return type of this delegate map to a value
-                // that Yarn Spinner can use?
-                if (Types.TypeMappings.TryGetValue(method.ReturnType, out var yarnReturnType) == false)
-                {
-                    // ok we aren't one of the basic types
-                    // but we might be one of our allowed async types
-                    if (library.AllowedTypes.TryGetValue(method.ReturnType, out yarnReturnType) == false)
-                    {
-                        diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: {method.ReturnType} is not a valid return type."));
-                        continue;
-                    }
-                }
-
-                // Define a new type for this function
-                var functionType = new FunctionType(Types.Any);
-
-                var includeMethod = true;
-
-                System.Reflection.ParameterInfo[] array = method.GetParameters();
-                for (int i = 0; i < array.Length; i++)
-                {
-                    var isLast = i == array.Length - 1;
-
-                    System.Reflection.ParameterInfo? paramInfo = array[i];
-                    if (paramInfo.ParameterType == typeof(Value))
-                    {
-                        // Don't type-check this method - it's an operator
-                        includeMethod = false;
-                        break;
-                    }
-
-                    if (paramInfo.IsOptional)
-                    {
-                        diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is optional, which isn't supported."));
-                        continue;
-                    }
-
-                    if (paramInfo.IsOut)
-                    {
-                        diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is an out parameter, which isn't supported."));
-                        continue;
-                    }
-
-                    var isLastParamArray = isLast
-                        && paramInfo.ParameterType.IsArray;
-                    // Normally, we'd check for the presence of a
-                    // System.ParamArrayAttribute, but C# doesn't generate
-                    // them for local functions. Instead, assume that if the
-                    // last parameter is an array of a valid type, it's a
-                    // params array.
-
-                    if (isLastParamArray)
-                    {
-                        // This is a params array. Is the type of the array valid?
-                        if (Types.TypeMappings.TryGetValue(paramInfo.ParameterType.GetElementType(), out var yarnParamsElementType))
-                        {
-                            functionType.VariadicParameterType = yarnParamsElementType;
-                        }
-                        else
-                        {
-                            diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: params array {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used in Yarn functions"));
-                        }
-                    }
-                    else if (Types.TypeMappings.TryGetValue(paramInfo.ParameterType, out var yarnParameterType) == false)
-                    {
-                        diagnostics.Add(new Diagnostic($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used in Yarn functions"));
-                    }
-                    else
-                    {
-                        functionType.AddParameter(yarnParameterType);
-                    }
-
-                }
-
-                if (includeMethod == false)
-                {
-                    continue;
-                }
-
-                functionType.ReturnType = yarnReturnType;
-
                 var declaration = new Declaration
                 {
-                    Name = function.Key,
-                    Type = functionType,
+                    Name = pair.Key,
+                    Type = pair.Value.functionType,
                     Range = { },
                     SourceFileName = Declaration.ExternalDeclaration,
                     SourceNodeName = null,
@@ -1042,8 +922,7 @@ namespace Yarn.Compiler
 
                 declarations.Add(declaration);
             }
-
-            return (declarations, diagnostics);
+            return declarations;
         }
 
         private static FileParseResult ParseSyntaxTree(CompilationJob.File file)

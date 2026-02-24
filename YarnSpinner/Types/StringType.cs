@@ -15,10 +15,7 @@ namespace Yarn
         /// Initializes a new instance of the <see cref="StringType"/>
         /// class.
         /// </summary>
-        public StringType()
-            : base(StringType.DefaultMethods)
-        {
-        }
+        public StringType(): base(null) { }
 
         /// <inheritdoc/>
         public override string Name => "String";
@@ -31,13 +28,6 @@ namespace Yarn
 
         /// <inheritdoc/>
         internal override System.IConvertible DefaultValue => string.Empty;
-
-        private static MethodCollection DefaultMethods => new Dictionary<string, System.Delegate>
-        {
-            { Operator.EqualTo.ToString(), TypeUtil.GetMethod(MethodEqualTo) },
-            { Operator.NotEqualTo.ToString(), TypeUtil.GetMethod((a, b) => !MethodEqualTo(a, b)) },
-            { Operator.Add.ToString(), TypeUtil.GetMethod(MethodConcatenate) },
-        };
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
@@ -55,16 +45,6 @@ namespace Yarn
         public override string ToString()
         {
             return base.ToString();
-        }
-
-        private static string MethodConcatenate(Value arg1, Value arg2)
-        {
-            return string.Concat(arg1.ConvertTo<string>(), arg2.ConvertTo<string>());
-        }
-
-        private static bool MethodEqualTo(Value a, Value b)
-        {
-            return a.ConvertTo<string>().Equals(b.ConvertTo<string>(), System.StringComparison.Ordinal);
         }
     }
 }

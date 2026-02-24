@@ -827,13 +827,11 @@ namespace Yarn.Compiler
 
         internal static string GetFunctionName(IType type, Operator op)
         {
-            TypeBase? implementingType = TypeUtil.FindImplementingTypeForMethod(type, op.ToString());
-            if (implementingType == null)
+            var functionName = StandardLibrary.GetCanonicalNameForMethod(type, op.ToString());
+            if (functionName == null)
             {
-                throw new InvalidOperationException($"Internal error: Codegen failed to get implementation type for {op} given input type {type}.");
+                throw new InvalidOperationException($"Internal error: Codegen failed to get implementation type for {op} given input type {type.Name}.");
             }
-
-            string functionName = TypeUtil.GetCanonicalNameForMethod(implementingType, op.ToString());
             return functionName;
         }
 
@@ -895,18 +893,11 @@ namespace Yarn.Compiler
                 this.Visit(operand);
             }
 
-            // Figure out the canonical name for the method that the VM should
-            // invoke in order to perform this work
-            TypeBase? implementingType = TypeUtil.FindImplementingTypeForMethod(type, op.ToString());
-
-            // Couldn't find an implementation method? That's an error! The type
-            // checker should have caught this.
-            if (implementingType == null)
+            var functionName = StandardLibrary.GetCanonicalNameForMethod(type, op.ToString());
+            if (functionName == null)
             {
                 throw new InvalidOperationException($"Internal error: Codegen failed to get implementation type for {op} given input type {type.Name}.");
             }
-
-            string functionName = TypeUtil.GetCanonicalNameForMethod(implementingType, op.ToString());
 
             this.compiler.Emit(
                 operatorToken,

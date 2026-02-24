@@ -212,7 +212,7 @@ namespace Yarn.Compiler
                         new Header
                         {
                             Key = Node.TrackingVariableNameHeader,
-                            Value = Library.GenerateUniqueVisitedVariableForNode(CurrentNode.Name)
+                            Value = StandardLibrary.GenerateUniqueVisitedVariableForNode(CurrentNode.Name)
                         }
                     );
                 }

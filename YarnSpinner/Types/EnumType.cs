@@ -46,8 +46,7 @@ namespace Yarn
         /// <param name="description">A string that describes this
         /// method.</param>
         /// <param name="rawType"></param>
-        public EnumType(string name, string description, TypeBase rawType)
-            : base(DefaultMethods)
+        public EnumType(string name, string description, TypeBase rawType): base(null)
         {
             this.name = name;
             this.description = description;
@@ -87,12 +86,6 @@ namespace Yarn
             }
         }
 
-        private static MethodCollection DefaultMethods => new Dictionary<string, System.Delegate>
-        {
-            { Operator.EqualTo.ToString(), TypeUtil.GetMethod(MethodEqualTo) },
-            { Operator.NotEqualTo.ToString(), TypeUtil.GetMethod((a, b) => !MethodEqualTo(a, b)) },
-        };
-
         internal override IConvertible DefaultValue
         {
             get
@@ -119,18 +112,6 @@ namespace Yarn
         internal void AddMember(string name, ConstantTypeProperty member)
         {
             this._typeMembers.Add(name, member);
-        }
-
-        private static bool MethodEqualTo(Value a, Value b)
-        {
-            if (a.InternalValue is string)
-            {
-                return a.ConvertTo<string>() == b.ConvertTo<string>();
-            }
-            else
-            {
-                return a.ConvertTo<int>() == b.ConvertTo<int>();
-            }
         }
     }
 }

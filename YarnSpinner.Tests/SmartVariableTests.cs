@@ -1,5 +1,8 @@
 using FluentAssertions;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -319,9 +322,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestCanEvaluateSmartVariable()
         {
-            var library = new Library();
-            library.ImportLibrary(new StandardLibrary());
-
+            var responder = new TestResponder();
             var source = CreateTestNode(new[] {
                 "<<declare $smart_var = 3 + 2>>",
             });
@@ -336,12 +337,11 @@ namespace YarnSpinner.Tests
             var canGetSmartVariable = SmartVariableEvaluationVirtualMachine.TryGetSmartVariable<int>(
                 "$smart_var",
                 storage,
-                library,
+                responder,
                 out var variableValue);
 
             canGetSmartVariable.Should().BeTrue();
             variableValue.Should().Be(5);
-
         }
 
         [Fact]
@@ -369,5 +369,57 @@ namespace YarnSpinner.Tests
             success.Should().BeTrue();
             evaluationResult.Should().Be(6);
         }
+    }
+
+    class TestResponder: DialogueResponder
+    {
+        public ValueTask HandleLine(Line line, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask<int> HandleOptions(OptionSet options, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask HandleCommand(Command command, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask HandleNodeStart(string node, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask HandleNodeComplete(string node, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask HandleDialogueComplete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask<IConvertible> thunk(string functionName, Value[] parameters, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryGetFunctionDefinition(string functionName, out FunctionDefinition functionDefinition)
+        {
+            // return StandardLibrary.TryGetFunction(functionName, out functionDefinition);
+            functionDefinition = default;
+            return false;
+        }
+
+        public Dictionary<string, FunctionDefinition> allDefinitions => StandardLibrary.AllFunctions();
     }
 }
