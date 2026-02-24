@@ -518,22 +518,22 @@ Line 2
             resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new
             {
                 Severity = Diagnostic.DiagnosticSeverity.Error,
-                Message = "Language feature \"enums\" is only available when preview features are enabled"
-            }, "enums are a preview feature");
+                Message = $"Language feature \"enums\" is not available at language version {Project.YarnSpinnerProjectVersion2}; it requires version {Project.YarnSpinnerProjectVersion3} or later"
+            }, "enums require version 3");
 
             resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new
             {
                 Severity = Diagnostic.DiagnosticSeverity.Error,
-                Message = "Language feature \"smart variables\" is only available when preview features are enabled"
-            }, "smart variables are a preview feature");
+                Message = $"Language feature \"smart variables\" is not available at language version {Project.YarnSpinnerProjectVersion2}; it requires version {Project.YarnSpinnerProjectVersion3} or later"
+            }, "smart variables require version 3");
 
             resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new
             {
                 Severity = Diagnostic.DiagnosticSeverity.Error,
-                Message = "Language feature \"line groups\" is only available when preview features are enabled"
-            }, "line groups are a preview feature");
+                Message = $"Language feature \"line groups\" is not available at language version {Project.YarnSpinnerProjectVersion2}; it requires version {Project.YarnSpinnerProjectVersion3} or later"
+            }, "line groups require version 3");
 
-            resultWithPreviewFeatures.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error, "preview features are allowed, so no errors are produced");
+            resultWithPreviewFeatures.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error, "version 3 features are allowed, so no errors are produced");
         }
 
         [Fact]
