@@ -62,9 +62,6 @@ namespace Yarn
                     isVariadic = false;
                     return false;
                 }
-                types = Array.Empty<System.Type>();
-                isVariadic = false;
-                return false;
             }
 
             System.Reflection.ParameterInfo[] methodParameters = method.GetParameters();
@@ -132,7 +129,7 @@ namespace Yarn
             }
             
             types = parameterTypes ?? Array.Empty<System.Type>();
-            return false;
+            return true;
         }
 
         private bool TryMakeFunctionFromDelegate(string name, Delegate func, out FunctionDefinition functionDefinition)
@@ -389,9 +386,9 @@ namespace Yarn
                 throw new System.ArgumentException($"Unable to locate the delegate for {functionName}");
             }
 
-            if (this.TryGetConcreteTypesFromDelegate(func, out var concreteParameterTypes, out var isVariadic))
+            if (!this.TryGetConcreteTypesFromDelegate(func, out var concreteParameterTypes, out var isVariadic))
             {
-                throw new System.ArgumentException($"Unable to determine the concrete parmater types for {functionName}");
+                throw new System.ArgumentException($"Unable to determine the concrete parameter types for {functionName}");
             }
 
             int expectedParameterCount = concreteParameterTypes.Length;

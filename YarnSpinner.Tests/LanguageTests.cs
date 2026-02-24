@@ -579,8 +579,9 @@ Line 2
 <<command>>
             ");
 
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
             try
-            {    
+            {
                 var failingPlan = TestPlan.FromString(@"line: `Line 1`");
                 var job = CompilationJob.CreateFromString("input", source, this.testBaseResponder.Library);
                 var result = Compiler.Compile(job);
