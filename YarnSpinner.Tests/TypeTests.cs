@@ -236,15 +236,15 @@ namespace YarnSpinner.Tests
         [InlineData(@"<<set $bool = func_string_string_bool(""1"", ""2"")>>")]
         public void TestFunctionSignatures(string source)
         {
-            dialogue.Library.RegisterFunction("func_void_bool", () => true);
-            dialogue.Library.RegisterFunction("func_int_bool", (int i) => true);
-            dialogue.Library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
-            dialogue.Library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
+            testBaseResponder.Library.RegisterFunction("func_void_bool", () => true);
+            testBaseResponder.Library.RegisterFunction("func_int_bool", (int i) => true);
+            testBaseResponder.Library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
+            testBaseResponder.Library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
 
             var correctSource = CreateTestNode(source);
 
             // Should compile with no exceptions
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, dialogue.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, testBaseResponder.Library));
 
             // We should have no diagnostics.
             result.Diagnostics.Should().BeEmpty();
@@ -305,7 +305,7 @@ namespace YarnSpinner.Tests
 
         private void TestOperationIsChecked(string source, IType expectedType)
         {
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
             result.Declarations.Should().Contain(d => d.Name == "$var")
                 .Which.Type.Should().Be(expectedType);
@@ -316,11 +316,11 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestFailingFunctionDeclarationReturnType()
         {
-            dialogue.Library.RegisterFunction("func_invalid_return", () => new List<int> { 1, 2, 3 });
+            testBaseResponder.Library.RegisterFunction("func_invalid_return", () => new List<int> { 1, 2, 3 });
 
             var source = CreateTestNode(@"Hello");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
             result.Diagnostics.Select(d => d.Message).Should().ContainMatch("*not a valid return type*");
         }
@@ -328,11 +328,11 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestFailingFunctionDeclarationParameterType()
         {
-            dialogue.Library.RegisterFunction("func_invalid_param", (List<int> listOfInts) => true);
+            testBaseResponder.Library.RegisterFunction("func_invalid_param", (List<int> listOfInts) => true);
 
             var source = CreateTestNode(@"Hello");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
             result.Diagnostics.Select(d => d.Message).Should().ContainMatch("*parameter listOfInts's type (System.Collections.Generic.List`1[System.Int32]) cannot be used in Yarn functions");
         }
@@ -347,11 +347,11 @@ namespace YarnSpinner.Tests
         [InlineData("<<set $bool = func_void_int()>>", @"$bool (Bool) cannot be assigned a Number")]
         public void TestFailingFunctionSignatures(string source, string expectedExceptionMessage)
         {
-            dialogue.Library.RegisterFunction("func_void_int", () => 1);
-            dialogue.Library.RegisterFunction("func_void_bool", () => true);
-            dialogue.Library.RegisterFunction("func_int_bool", (int i) => true);
-            dialogue.Library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
-            dialogue.Library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
+            testBaseResponder.Library.RegisterFunction("func_void_int", () => 1);
+            testBaseResponder.Library.RegisterFunction("func_void_bool", () => true);
+            testBaseResponder.Library.RegisterFunction("func_int_bool", (int i) => true);
+            testBaseResponder.Library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
+            testBaseResponder.Library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
 
             var failingSource = CreateTestNode($@"
                 <<declare $bool = false>>
@@ -359,7 +359,7 @@ namespace YarnSpinner.Tests
                 {source}
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, dialogue.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, testBaseResponder.Library));
 
             var diagnosticMessages = result.Diagnostics.Select(d => d.Message);
 
@@ -394,7 +394,8 @@ namespace YarnSpinner.Tests
                 .AddLine("True")
                 .GetPlan();
 
-            CompilationJob compilationJob = CompilationJob.CreateFromString("input", source, dialogue.Library);
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
+            CompilationJob compilationJob = CompilationJob.CreateFromString("input", source, testBaseResponder.Library);
 
             compilationJob.VariableDeclarations = new[] {
                 new Declaration {
@@ -438,7 +439,7 @@ namespace YarnSpinner.Tests
             <<declare $bool = false as bool>>
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
             result.Diagnostics.Should().BeEmpty();
 
@@ -457,7 +458,7 @@ namespace YarnSpinner.Tests
         {
             var source = CreateTestNode(test);
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
             result.Diagnostics
                 .Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error)
@@ -471,7 +472,7 @@ namespace YarnSpinner.Tests
             <<jump {$x}>>
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
             result.Diagnostics
                 .Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error)
@@ -488,7 +489,7 @@ namespace YarnSpinner.Tests
             <<jump {TestEnum.A}>>
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
             result.Diagnostics
                 .Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
@@ -522,7 +523,7 @@ namespace YarnSpinner.Tests
 
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
             result.Diagnostics.Should().BeEmpty();
 
@@ -612,7 +613,8 @@ namespace YarnSpinner.Tests
                 .AddLine("bool and bool(number): True")
                 .GetPlan();
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
             result.Diagnostics.Should().BeEmpty();
 
@@ -633,7 +635,7 @@ namespace YarnSpinner.Tests
 
             try
             {
-                var compilationJob = CompilationJob.CreateFromString("input", source, dialogue.Library);
+                var compilationJob = CompilationJob.CreateFromString("input", source, testBaseResponder.Library);
                 var result = Compiler.Compile(compilationJob);
 
                 result.Diagnostics.Should().BeEmpty();
@@ -677,8 +679,8 @@ namespace YarnSpinner.Tests
             {func(2, 2)} // wrong number of parameters (previous decl had 1)
             ");
 
-            dialogue.Library.RegisterFunction<int,int>("func", (input) => 1);
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            testBaseResponder.Library.RegisterFunction<int,int>("func", (input) => 1);
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
             result.Diagnostics.Select(d => d.Message).Should().ContainMatch("func expects 1 parameter, not 2");
         }

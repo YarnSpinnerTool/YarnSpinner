@@ -22,19 +22,19 @@ namespace YarnSpinner.Tests
 
         private async Task<CompilationResult> CompileAndPrepareDialogue(string source, string node = "Start")
         {
-            var job = CompilationJob.CreateFromString("input", source, dialogue.Library);
+            var job = CompilationJob.CreateFromString("input", source, testBaseResponder.Library);
             var result = Compiler.Compile(job);
             result.Diagnostics.Should().BeEmpty();
 
             this.dialogue.Program = result.Program;
             await this.dialogue.SetNode(node);
 
-            this.dialogue.OnReceivedLine = (_, _) => { return default; };
-            this.dialogue.OnReceivedOptions = (opts, _) => new ValueTask<int>(opts.Options.First().ID);
-            this.dialogue.OnReceivedCommand = (_, _) => { return default; };
-            this.dialogue.OnReceivedNodeStart = (_, _) => { return default; };
-            this.dialogue.OnReceivedNodeComplete = (_, _) => { return default;};
-            this.dialogue.OnReceivedDialogueComplete = () => { return default;};
+            this.testBaseResponder.OnReceivedLine = (_, _) => { return default; };
+            this.testBaseResponder.OnReceivedOptions = (opts, _) => new ValueTask<int>(opts.Options.First().ID);
+            this.testBaseResponder.OnReceivedCommand = (_, _) => { return default; };
+            this.testBaseResponder.OnReceivedNodeStart = (_, _) => { return default; };
+            this.testBaseResponder.OnReceivedNodeComplete = (_, _) => { return default;};
+            this.testBaseResponder.OnReceivedDialogueComplete = () => { return default;};
 
             return result;
         }
@@ -163,7 +163,8 @@ expected: 2
             mockSaliencyStrategy.Setup(
                 (s) => s.ContentWasSelected(It.IsAny<ContentSaliencyOption>()));
 
-            dialogue.Library.RegisterFunction("demo_function", (bool a) => { return true; });
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
+            testBaseResponder.Library.RegisterFunction("demo_function", (bool a) => { return true; });
 
             var result = await CompileAndPrepareDialogue(source);
 
@@ -244,6 +245,7 @@ when: always
 ";
 
             // When
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
             var result = await CompileAndPrepareDialogue(source, "NodeGroup");
             dialogue.VariableStorage.SetValue("$condition1", true);
 
@@ -274,7 +276,7 @@ when: once
 This content is only seen once.
 ===
 ";
-
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
             await CompileAndPrepareDialogue(source);
 
             this.dialogue.ContentSaliencyStrategy = new FirstSaliencyStrategy();
@@ -313,6 +315,7 @@ This node is not part of a node group.
 ===
 ";
 
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
             await CompileAndPrepareDialogue(source);
 
             this.dialogue.NodeExists("DoesntExist").Should().BeFalse();
@@ -355,6 +358,7 @@ when: always
 This is a random start node which should get a UUID name.
 ===
 ";
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
             var result = await CompileAndPrepareDialogue(source);
 
             this.dialogue.IsNodeGroup("Start").Should().BeTrue();

@@ -535,22 +535,10 @@ namespace Yarn
                 _ => throw new System.InvalidOperationException($"Internal error: Functions are required to return a Yarn value but {functionName} return type is {returnType}"),
             };
         }
+        public void Clear()
+        {
+            functions.Clear();
+            delegates.Clear();
+        }
     }
 }
-
-// ok so what if Library changes to an interface
-// it has a way to de/register functions
-// a way to get the shape of a function
-// a way to invoke a function
-// is there anything else?
-// oh and the dialogueresponder is also a library
-
-// hmm so the issue is that the library is sorta intrinsically tied to registering things as a delegate
-// and all the test systems just directly talk to it to register stuff
-// which I guess is fine, I can just make it that that is required?
-// or do I want to make it more restrictive?
-// but if I do then where will these sorta hot applied functions live?
-
-// so I am thinking the way this should work should be that the library is definitions only, you add definitions to it it and it will tell you about them
-// actually why am I wasting so much time here, just blast away the old library, remove any reference to it
-// and make the responder handle this, each responder can have their own way of registering/deregistering functions that is appropriate for their own needs

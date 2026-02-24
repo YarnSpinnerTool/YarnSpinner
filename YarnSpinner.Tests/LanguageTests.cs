@@ -22,17 +22,17 @@ namespace YarnSpinner.Tests
         {
 
             // Register some additional functions
-            dialogue.Library.RegisterFunction("add_three_operands", delegate (int a, int b, int c)
+            testBaseResponder.Library.RegisterFunction("add_three_operands", delegate (int a, int b, int c)
             {
                 return a + b + c;
             });
 
-            dialogue.Library.RegisterFunction("set_objective_complete", (string objective) => true);
-            dialogue.Library.RegisterFunction("is_objective_active", (string objective) => true);
+            testBaseResponder.Library.RegisterFunction("set_objective_complete", (string objective) => true);
+            testBaseResponder.Library.RegisterFunction("is_objective_active", (string objective) => true);
 
-            dialogue.Library.RegisterFunction("adds_two", TestValueTaskInt);
-            dialogue.Library.RegisterFunction("adds_one", TestSystemTaskInt);
-            dialogue.Library.RegisterFunction("adds_all", TestValueTaskIntWithVariadics);
+            testBaseResponder.Library.RegisterFunction("adds_two", TestValueTaskInt);
+            testBaseResponder.Library.RegisterFunction("adds_one", TestSystemTaskInt);
+            testBaseResponder.Library.RegisterFunction("adds_all", TestValueTaskIntWithVariadics);
         }
 
         private ValueTask<int> TestValueTaskIntWithVariadics(int p1, int p2, params int[] p3)
@@ -61,6 +61,8 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(AsyncTestBase.TestDataPath, "Example.yarn");
             var testPath = Path.ChangeExtension(path, ".testplan");
 
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
+
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
             result.Diagnostics.Should().BeEmpty();
@@ -85,10 +87,11 @@ namespace YarnSpinner.Tests
             dialogue.Program = result.Program;
             stringTable = result.StringTable;
 
-            dialogue.OnReceivedNodeComplete = (node, token) => { return default; };
-            dialogue.OnReceivedDialogueComplete = () => { return default; };
+            testBaseResponder.OnReceivedNodeComplete = (node, token) => { return default; };
+            testBaseResponder.OnReceivedDialogueComplete = () => { return default; };
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
 
-            dialogue.OnReceivedOptions = (optionSets, token) =>
+            testBaseResponder.OnReceivedOptions = (optionSets, token) =>
             {
                 throw new InvalidOperationException("Options should not be shown to the user in this test.");
             };
@@ -319,7 +322,7 @@ title: Start
 
             var invariantCompilationJob = CompilationJob.CreateFromString("input", source);
             invariantCompilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
-            invariantCompilationJob.Library = dialogue.Library;
+            invariantCompilationJob.Library = testBaseResponder.Library;
 
             var invariantResult = Compiler.Compile(invariantCompilationJob);
 
@@ -336,7 +339,7 @@ title: Start
 
                 var targetCompilationJob = CompilationJob.CreateFromString("input", source);
                 invariantCompilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
-                targetCompilationJob.Library = dialogue.Library;
+                targetCompilationJob.Library = testBaseResponder.Library;
 
                 var targetResult = Compiler.Compile(targetCompilationJob);
 
@@ -372,7 +375,7 @@ title: Start
             // Attempt to compile this. If there are errors, we do not expect an
             // exception to be thrown.
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
-            compilationJob.Library = dialogue.Library;
+            compilationJob.Library = testBaseResponder.Library;
 
             compilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
 
@@ -417,9 +420,11 @@ title: Start
                 stringTable = result.StringTable;
 
                 // three basic dummy functions that can be used to test inference
-                dialogue.Library.RegisterFunction("dummy_bool", () => true);
-                dialogue.Library.RegisterFunction("dummy_number", () => 1);
-                dialogue.Library.RegisterFunction("dummy_string", () => "string");
+                testBaseResponder.Library.RegisterFunction("dummy_bool", () => true);
+                testBaseResponder.Library.RegisterFunction("dummy_number", () => 1);
+                testBaseResponder.Library.RegisterFunction("dummy_string", () => "string");
+
+                testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
 
                 // If this file contains a Start node, run the test case
                 // (otherwise, we're just testing its parsability, which
@@ -446,7 +451,7 @@ title: Start
             // Attempt to compile this. If there are errors, we do not expect an
             // exception to be thrown.
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
-            compilationJob.Library = dialogue.Library;
+            compilationJob.Library = testBaseResponder.Library;
 
             compilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
 
@@ -489,7 +494,7 @@ Line 2
 ===
 ";
             CompilationJob compilationJob = CompilationJob.CreateFromString("input", source);
-            compilationJob.Library = dialogue.Library;
+            compilationJob.Library = testBaseResponder.Library;
 
             compilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
 
@@ -577,7 +582,7 @@ Line 2
             try
             {    
                 var failingPlan = TestPlan.FromString(@"line: `Line 1`");
-                var job = CompilationJob.CreateFromString("input", source, this.dialogue.Library);
+                var job = CompilationJob.CreateFromString("input", source, this.testBaseResponder.Library);
                 var result = Compiler.Compile(job);
                 await RunTestPlan(result, failingPlan);
 
@@ -852,7 +857,7 @@ Line in a node group
             // exception to be thrown.
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
 
-            compilationJob.Library = dialogue.Library;
+            compilationJob.Library = testBaseResponder.Library;
 
             compilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
 

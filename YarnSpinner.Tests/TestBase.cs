@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit.Abstractions;
 using Xunit.Sdk;
@@ -17,6 +18,8 @@ namespace YarnSpinner.Tests
     public class AsyncTestBase
     {
         protected AsyncDialogue dialogue;
+
+        protected TestBaseResponder testBaseResponder;
 
         private async System.Threading.Tasks.Task EvaluateCurrentRun(TestPlan.Run currentRun)
         {
@@ -85,7 +88,7 @@ namespace YarnSpinner.Tests
 
             var moments = new Queue<TestPlan.Step>();
             // set up the handlers
-            AsyncDialogue.ReceivedLineHandle LineHandler = (line, token) =>
+            TestBaseResponder.ReceivedLineHandle LineHandler = (line, token) =>
             {
                 // getting the text of the line
                 var text = GetComposedTextForLine(line);
@@ -97,7 +100,7 @@ namespace YarnSpinner.Tests
                 moments.Enqueue(step);
                 return default;
             };
-            AsyncDialogue.ReceivedCommandHandle CommandHandler = (command, token) =>
+            TestBaseResponder.ReceivedCommandHandle CommandHandler = (command, token) =>
             {
                 // building the step and storing it for later use
                 var step = new TestPlan.ExpectCommandStep(command.Text);
@@ -105,7 +108,7 @@ namespace YarnSpinner.Tests
 
                 return default;
             };
-            AsyncDialogue.ReceivedOptionsHandle OptionsHandler = (options, token) =>
+            TestBaseResponder.ReceivedOptionsHandle OptionsHandler = (options, token) =>
             {
                 foreach (var option in options.Options)
                 {
@@ -124,9 +127,9 @@ namespace YarnSpinner.Tests
                 return new System.Threading.Tasks.ValueTask<int>(selection);
             };
 
-            dialogue.OnReceivedLine = LineHandler;
-            dialogue.OnReceivedCommand = CommandHandler;
-            dialogue.OnReceivedOptions = OptionsHandler;
+            testBaseResponder.OnReceivedLine = LineHandler;
+            testBaseResponder.OnReceivedCommand = CommandHandler;
+            testBaseResponder.OnReceivedOptions = OptionsHandler;
 
             // kick off the dialogue and await it finishing
             await dialogue.StartDialogue(currentRun.StartNode);
@@ -227,9 +230,9 @@ namespace YarnSpinner.Tests
                 throw new Xunit.Sdk.XunitException("Cannot run test: dialogue does not have a program.");
             }
 
-            dialogue.OnReceivedNodeStart = (_, _) => { return default; };
-            dialogue.OnReceivedNodeComplete = (_, _) => { return default; };
-            dialogue.OnReceivedDialogueComplete = () => { return default; };
+            testBaseResponder.OnReceivedNodeStart = (_, _) => { return default; };
+            testBaseResponder.OnReceivedNodeComplete = (_, _) => { return default; };
+            testBaseResponder.OnReceivedDialogueComplete = () => { return default; };
 
             foreach (var run in testPlan.Runs)
             {
@@ -240,6 +243,22 @@ namespace YarnSpinner.Tests
         public AsyncTestBase(ITestOutputHelper outputHelper)
         {
             dialogue = new AsyncDialogue(storage);
+
+            testBaseResponder = new TestBaseResponder();
+            testBaseResponder.Library.RegisterFunction("visited", delegate (string node)
+            {
+                return dialogue.IsNodeVisited(node);
+            });
+            testBaseResponder.Library.RegisterFunction("visited_count", delegate (string node)
+            {
+                return dialogue.GetNodeVisitCount(node);
+            });
+            testBaseResponder.Library.RegisterFunction("has_any_content", delegate (string nodeGroup)
+            {
+                return dialogue.HasAnyContent(nodeGroup);
+            });
+
+            dialogue.Responder = testBaseResponder;
 
             dialogue.ContentSaliencyStrategy = new Yarn.Saliency.BestLeastRecentlyViewedSaliencyStrategy(storage);
 
@@ -268,7 +287,7 @@ namespace YarnSpinner.Tests
 
             };
 
-            dialogue.Library.RegisterFunction("assert", delegate (bool value)
+            testBaseResponder.Library.RegisterFunction("assert", delegate (bool value)
             {
                 value.Should().BeTrue("assertion should pass");
                 return true;
@@ -378,7 +397,6 @@ namespace YarnSpinner.Tests
         // Tests/<directory> directory.
         public static IEnumerable<object[]> FileSources(string directoryComponents)
         {
-
             var allowedExtensions = new[] { ".node", ".yarn" };
 
             var directory = Path.Combine(directoryComponents.Split('/'));
@@ -549,6 +567,112 @@ namespace YarnSpinner.Tests
             Console.WriteLine($"Set var {variableName} to {stringValue}");
             base.SetValue(variableName, stringValue);
         }
+    }
+
+    public class TestBaseResponder: DialogueResponder
+    {
+        public BasicFunctionLibrary Library = new();
+        public delegate ValueTask ReceivedLineHandle(Line line, CancellationToken token);
+        public ReceivedLineHandle OnReceivedLine;
+        public delegate ValueTask<int> ReceivedOptionsHandle(OptionSet options, CancellationToken token);
+        public ReceivedOptionsHandle OnReceivedOptions;
+        public delegate ValueTask ReceivedCommandHandle(Command command, CancellationToken token);
+        public ReceivedCommandHandle OnReceivedCommand;
+        public delegate ValueTask ReceivedNodeStartHandle(string node, CancellationToken token);
+        public ReceivedNodeStartHandle OnReceivedNodeStart;
+        public delegate ValueTask ReceivedNodeCompleteHandle(string node, CancellationToken token);
+        public ReceivedNodeCompleteHandle OnReceivedNodeComplete;
+        public delegate ValueTask ReceivedDialogueCompleteHandle();
+        public ReceivedDialogueCompleteHandle OnReceivedDialogueComplete;
+        public delegate ValueTask PrepareForLinesHandler(List<string> lineIDs, CancellationToken token);
+        public PrepareForLinesHandler OnPrepareForLines;
+
+        public void Reset()
+        {
+            Library.Clear();
+            OnReceivedLine = null;
+            OnReceivedOptions = null;
+            OnReceivedCommand = null;
+            OnReceivedNodeStart = null;
+            OnReceivedNodeComplete = null;
+            OnReceivedDialogueComplete = null;
+            OnPrepareForLines = null;
+        }
+
+        public ValueTask HandleLine(Line line, CancellationToken token)
+        {
+            if (OnReceivedLine != null)
+            {
+                return OnReceivedLine(line, token);
+            }
+            throw new NotImplementedException();
+        }
+
+        public ValueTask<int> HandleOptions(OptionSet options, CancellationToken token)
+        {
+            if (OnReceivedOptions != null)
+            {
+                return OnReceivedOptions(options, token);
+            }
+            throw new NotImplementedException();
+        }
+
+        public ValueTask HandleCommand(Command command, CancellationToken token)
+        {
+            if (OnReceivedCommand != null)
+            {
+                return OnReceivedCommand(command, token);
+            }
+            throw new NotImplementedException();
+        }
+
+        public ValueTask HandleNodeStart(string node, CancellationToken token)
+        {
+            if (OnReceivedNodeStart != null)
+            {
+                return OnReceivedNodeStart(node, token);
+            }
+            throw new NotImplementedException();
+        }
+
+        public ValueTask HandleNodeComplete(string node, CancellationToken token)
+        {
+            if (OnReceivedNodeComplete != null)
+            {
+                return OnReceivedNodeComplete(node, token);
+            }
+            throw new NotImplementedException();
+        }
+
+        public ValueTask HandleDialogueComplete()
+        {
+            if (OnReceivedDialogueComplete != null)
+            {
+                return OnReceivedDialogueComplete();
+            }
+            throw new NotImplementedException();
+        }
+
+        public ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token)
+        {
+            if (OnPrepareForLines != null)
+            {
+                return OnPrepareForLines(lineIDs, token);
+            }
+            throw new NotImplementedException();
+        }
+
+        public ValueTask<IConvertible> thunk(string functionName, IConvertible[] parameters, CancellationToken token)
+        {
+            return Library.Invoke(functionName, parameters, token);
+        }
+
+        public bool TryGetFunctionDefinition(string functionName, out FunctionDefinition functionDefinition)
+        {
+            return Library.TryGetFunctionDefinition(functionName, out functionDefinition);
+        }
+
+        public Dictionary<string, FunctionDefinition> allDefinitions => Library.allDefinitions;
     }
 }
 

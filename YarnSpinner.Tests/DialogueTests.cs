@@ -23,7 +23,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
 
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
-            compilationJob.Library = dialogue.Library;
+            compilationJob.Library = testBaseResponder;
 
             var result = Compiler.Compile(compilationJob);
 
@@ -54,7 +54,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "AnalysisTest.yarn");
 
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
-            compilationJob.Library = dialogue.Library;
+            compilationJob.Library = testBaseResponder;
 
             var result = Compiler.Compile(compilationJob);
 
@@ -76,7 +76,7 @@ namespace YarnSpinner.Tests
             result = Compiler.Compile(CompilationJob.CreateFromFiles(new[] {
                 Path.Combine(SpaceDemoScriptsPath, "Ship.yarn"),
                 Path.Combine(SpaceDemoScriptsPath, "Sally.yarn"),
-            }, dialogue.Library));
+            }, testBaseResponder));
 
             result.Diagnostics.Should().BeEmpty();
 
@@ -133,18 +133,18 @@ namespace YarnSpinner.Tests
             string path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
 
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
-            compilationJob.Library = dialogue.Library;
+            compilationJob.Library = testBaseResponder;
 
             var result = Compiler.Compile(compilationJob);
             result.Diagnostics.Should().BeEmpty();
             
-            dialogue.OnReceivedLine = (line, token) => { return default; };
-            dialogue.OnReceivedOptions = (options, token) => { return new ValueTask<int>(0); };
-            dialogue.OnReceivedCommand = (command, token) => { return default; };
-            dialogue.OnReceivedNodeStart = (_,_) => { return default; };
-            dialogue.OnReceivedNodeComplete = (_,_) => { return default; };
-            dialogue.OnReceivedDialogueComplete = () => { return default; };
-            dialogue.OnPrepareForLines = (_, _) => { return default; };
+            testBaseResponder.OnReceivedLine = (line, token) => { return default; };
+            testBaseResponder.OnReceivedOptions = (options, token) => { return new ValueTask<int>(0); };
+            testBaseResponder.OnReceivedCommand = (command, token) => { return default; };
+            testBaseResponder.OnReceivedNodeStart = (_,_) => { return default; };
+            testBaseResponder.OnReceivedNodeComplete = (_,_) => { return default; };
+            testBaseResponder.OnReceivedDialogueComplete = () => { return default; };
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
 
             dialogue.Program = result.Program;
 
@@ -193,7 +193,7 @@ namespace YarnSpinner.Tests
 
             bool prepareForLinesWasCalled = false;
 
-            dialogue.OnPrepareForLines = (lines, token) =>
+            testBaseResponder.OnPrepareForLines = (lines, token) =>
             {
                 // When the Dialogue realises it's about to run the Start
                 // node, it will tell us that it's about to run these two
@@ -218,10 +218,10 @@ namespace YarnSpinner.Tests
         public async Task TestFunctionArgumentTypeInference()
         {
             // Register some functions
-            dialogue.Library.RegisterFunction("ConcatString", (string a, string b) => a + b);
-            dialogue.Library.RegisterFunction("AddInt", (int a, int b) => a + b);
-            dialogue.Library.RegisterFunction("AddFloat", (float a, float b) => a + b);
-            dialogue.Library.RegisterFunction("NegateBool", (bool a) => !a);
+            testBaseResponder.Library.RegisterFunction("ConcatString", (string a, string b) => a + b);
+            testBaseResponder.Library.RegisterFunction("AddInt", (int a, int b) => a + b);
+            testBaseResponder.Library.RegisterFunction("AddFloat", (float a, float b) => a + b);
+            testBaseResponder.Library.RegisterFunction("NegateBool", (bool a) => !a);
 
             // Run some code to exercise these functions
             var source = CreateTestNode(@"
@@ -236,19 +236,19 @@ namespace YarnSpinner.Tests
             <<set $bool = NegateBool(true)>>
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
             result.Diagnostics.Should().BeEmpty();
 
             stringTable = result.StringTable;
 
-            dialogue.OnReceivedLine = (line, token) => { return default; };
-            dialogue.OnReceivedOptions = (options, token) => { return new ValueTask<int>(0); };
-            dialogue.OnReceivedCommand = (command, token) => { return default; };
-            dialogue.OnReceivedNodeStart = (_,_) => { return default; };
-            dialogue.OnReceivedNodeComplete = (_,_) => { return default; };
-            dialogue.OnReceivedDialogueComplete = () => { return default; };
-            dialogue.OnPrepareForLines = (_, _) => { return default; };
+            testBaseResponder.OnReceivedLine = (line, token) => { return default; };
+            testBaseResponder.OnReceivedOptions = (options, token) => { return new ValueTask<int>(0); };
+            testBaseResponder.OnReceivedCommand = (command, token) => { return default; };
+            testBaseResponder.OnReceivedNodeStart = (_,_) => { return default; };
+            testBaseResponder.OnReceivedNodeComplete = (_,_) => { return default; };
+            testBaseResponder.OnReceivedDialogueComplete = () => { return default; };
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
 
             dialogue.Program = result.Program;
             await dialogue.StartDialogue("Start");
@@ -312,8 +312,10 @@ namespace YarnSpinner.Tests
                 return s + a.Sum().ToString();
             }
 
-            this.dialogue.Library.RegisterFunction("variadic_add", VariadicAdd);
-            this.dialogue.Library.RegisterFunction("variadic_string_add", VariadicStringAdd);
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
+
+            this.testBaseResponder.Library.RegisterFunction("variadic_add", VariadicAdd);
+            this.testBaseResponder.Library.RegisterFunction("variadic_string_add", VariadicStringAdd);
 
             var testPlan = new TestPlanBuilder()
                 .AddLine("6")
@@ -347,7 +349,7 @@ namespace YarnSpinner.Tests
 
             // When
             var job = CompilationJob.CreateFromString("input", source);
-            job.Library = this.dialogue.Library;
+            job.Library = this.testBaseResponder.Library;
 
             var result = Compiler.Compile(job);
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
@@ -399,8 +401,8 @@ namespace YarnSpinner.Tests
                 return s + a.Sum().ToString();
             }
 
-            this.dialogue.Library.RegisterFunction("variadic_add", VariadicAdd);
-            this.dialogue.Library.RegisterFunction("variadic_string_add", VariadicStringAdd);
+            this.testBaseResponder.Library.RegisterFunction("variadic_add", VariadicAdd);
+            this.testBaseResponder.Library.RegisterFunction("variadic_string_add", VariadicStringAdd);
 
             var source = @"title: Start
 ---
@@ -410,7 +412,7 @@ namespace YarnSpinner.Tests
 
             // When
             var job = CompilationJob.CreateFromString("input", source);
-            job.Library = this.dialogue.Library;
+            job.Library = this.testBaseResponder;
 
             var result = Compiler.Compile(job);
 

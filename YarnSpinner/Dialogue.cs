@@ -448,116 +448,12 @@ namespace Yarn
     }
 
     /// <summary>
-    /// Represents the method that is called when the Dialogue delivers a <see
-    /// cref="Line"/>.
-    /// </summary>
-    /// <param name="line">The <see cref="Line"/> that has been
-    /// delivered.</param>
-    /// <seealso cref="OptionsHandler"/>
-    /// <seealso cref="CommandHandler"/>
-    /// <seealso cref="NodeStartHandler"/>
-    /// <seealso cref="NodeCompleteHandler"/>
-    /// <seealso cref="DialogueCompleteHandler"/>
-    public delegate void LineHandler(Line line);
-
-    /// <summary>
-    /// Represents the method that is called when the Dialogue delivers an <see
-    /// cref="OptionSet"/>.
-    /// </summary>
-    /// <param name="options">The <see cref="OptionSet"/> that has been
-    /// delivered.</param>
-    /// <seealso cref="LineHandler"/>
-    /// <seealso cref="CommandHandler"/>
-    /// <seealso cref="NodeStartHandler"/>
-    /// <seealso cref="NodeCompleteHandler"/>
-    /// <seealso cref="DialogueCompleteHandler"/>
-    public delegate void OptionsHandler(OptionSet options);
-
-    /// <summary>
-    /// Represents the method that is called when the Dialogue delivers a <see
-    /// cref="Command"/>.
-    /// </summary>
-    /// <param name="command">The <see cref="Command"/> that has been
-    /// delivered.</param>
-    /// <seealso cref="LineHandler"/>
-    /// <seealso cref="OptionsHandler"/>
-    /// <seealso cref="NodeStartHandler"/>
-    /// <seealso cref="NodeCompleteHandler"/>
-    /// <seealso cref="DialogueCompleteHandler"/>
-    public delegate void CommandHandler(Command command);
-
-    /// <summary>
-    /// Represents the method that is called when the Dialogue reaches the end
-    /// of a node.
-    /// </summary>
-    /// <param name="completedNodeName">The name of the node.</param>
-    /// <remarks>
-    /// This method may be called multiple times over the course of code
-    /// execution. A node being complete does not necessarily represent the end
-    /// of the conversation.
-    /// </remarks>
-    /// <seealso cref="LineHandler"/>
-    /// <seealso cref="OptionsHandler"/>
-    /// <seealso cref="CommandHandler"/>
-    /// <seealso cref="NodeStartHandler"/>
-    /// <seealso cref="DialogueCompleteHandler"/>
-    public delegate void NodeCompleteHandler(string completedNodeName);
-
-    /// <summary>
-    /// Represents the method that is called when the Dialogue begins executing
-    /// a node.
-    /// </summary>
-    /// <param name="startedNodeName">The name of the node.</param>
-    /// <seealso cref="LineHandler"/>
-    /// <seealso cref="OptionsHandler"/>
-    /// <seealso cref="CommandHandler"/>
-    /// <seealso cref="NodeCompleteHandler"/>
-    /// <seealso cref="DialogueCompleteHandler"/>
-    public delegate void NodeStartHandler(string startedNodeName);
-
-    /// <summary>
-    /// Represents the method that is called when the dialogue has reached its
-    /// end, and no more code remains to be run.
-    /// </summary>
-    /// <seealso cref="LineHandler"/>
-    /// <seealso cref="OptionsHandler"/>
-    /// <seealso cref="CommandHandler"/>
-    /// <seealso cref="NodeStartHandler"/>
-    /// <seealso cref="NodeCompleteHandler"/>
-    public delegate void DialogueCompleteHandler();
-
-    /// <summary>
-    /// Represents the method that is called when the dialogue anticipates that
-    /// it will deliver lines.
-    /// </summary>
-    /// <remarks>
-    /// <para>
-    /// This method should begin preparing to run the lines. For example, if a
-    /// game delivers dialogue via voice-over, the appropriate audio files
-    /// should be loaded.
-    /// </para>
-    /// <para>
-    /// This method serves to provide a hint to the game that a line _may_ be
-    /// run. Not every line indicated in <paramref name="lineIDs"/> may end up
-    /// actually running.
-    /// </para>
-    /// <para>
-    /// This method may be called any number of times during a dialogue session.
-    /// </para>
-    /// </remarks>
-    /// <param name="lineIDs">The collection of line IDs that may be delivered
-    /// at some point soon.</param>
-    public delegate void PrepareForLinesHandler(IEnumerable<string> lineIDs);
-
-    /// <summary>
     /// Co-ordinates the execution of Yarn programs.
     /// </summary>
     public class AsyncDialogue: ISmartVariableEvaluator, DialogueResponder
     {
         public AsyncDialogue(IVariableStorage variableStorage)
         {
-            Library = new BasicFunctionLibrary();
-
             this.VariableStorage = variableStorage ?? throw new ArgumentNullException(nameof(variableStorage));
             this.VariableStorage.SmartVariableEvaluator = this;
             this.VariableStorage.Program = this.Program;
@@ -565,42 +461,6 @@ namespace Yarn
             this.vm = new AsyncVirtualMachine(this.VariableStorage);
             this.vm.Responder = this;
             this.smartVariableVM = new AsyncVirtualMachine(this.VariableStorage);
-
-            Library.RegisterFunction("visited", delegate (string node)
-            {
-                return IsNodeVisited(node);
-            });
-            Library.RegisterFunction("visited_count", delegate (string node)
-            {
-                return GetNodeVisitCount(node);
-            });
-            Library.RegisterFunction("has_any_content", delegate (string nodeGroup)
-            {
-                if (this.Program == null)
-                {
-                    // we somehow don't have a program, so we don't have ANY
-                    // content, let alone this specific content
-                    return false;
-                }
-
-                if (this.Program.Nodes.TryGetValue(nodeGroup, out var node) == false)
-                {
-                    // No node with this name
-                    return false;
-                }
-
-                if (!node.IsNodeGroupHub)
-                {
-                    // Not a node group hub, so it always has content available
-                    return true;
-                }
-
-                var options = this.GetSaliencyOptionsForNodeGroup(nodeGroup);
-                var bestOption = this.ContentSaliencyStrategy.QueryBestContent(options);
-
-                // Did the saliency strategy indicate that an option could be selected?
-                return bestOption != null;
-            });
         }
 
         /// <summary>
@@ -620,8 +480,8 @@ namespace Yarn
         }
 
         public IVariableStorage VariableStorage { get; set; }
-        // public Library Library { get; set; }
-        public BasicFunctionLibrary Library { get; set; }
+
+        public DialogueResponder Responder { get; set; }
 
         public Program? Program
         {
@@ -644,19 +504,6 @@ namespace Yarn
             get => this.vm.ContentSaliencyStrategy;
             set => this.vm.ContentSaliencyStrategy = value;
         }
-
-        public delegate ValueTask ReceivedLineHandle(Line line, CancellationToken token);
-        public ReceivedLineHandle OnReceivedLine;
-        public delegate ValueTask<int> ReceivedOptionsHandle(OptionSet options, CancellationToken token);
-        public ReceivedOptionsHandle OnReceivedOptions;
-        public delegate ValueTask ReceivedCommandHandle(Command command, CancellationToken token);
-        public ReceivedCommandHandle OnReceivedCommand;
-        public delegate ValueTask ReceivedNodeStartHandle(string node, CancellationToken token);
-        public ReceivedNodeStartHandle OnReceivedNodeStart;
-        public delegate ValueTask ReceivedNodeCompleteHandle(string node, CancellationToken token);
-        public ReceivedNodeCompleteHandle OnReceivedNodeComplete;
-        public delegate ValueTask ReceivedDialogueCompleteHandle();
-        public ReceivedDialogueCompleteHandle OnReceivedDialogueComplete;
 
         private AsyncVirtualMachine vm;
 
@@ -693,14 +540,41 @@ namespace Yarn
 
             return node.IsNodeGroupHub;
         }
-        private bool IsNodeVisited(string nodeName)
+        public bool IsNodeVisited(string nodeName)
         {
             return GetNodeVisitCount(nodeName) > 0;
         }
-        private float GetNodeVisitCount(string nodeName)
+        public float GetNodeVisitCount(string nodeName)
         {
             VariableStorage.TryGetValue(StandardLibrary.GenerateUniqueVisitedVariableForNode(nodeName), out float count);
             return count;
+        }
+        public bool HasAnyContent(string nodeGroup)
+        {
+            if (this.Program == null)
+            {
+                // we somehow don't have a program, so we don't have ANY
+                // content, let alone this specific content
+                return false;
+            }
+
+            if (this.Program.Nodes.TryGetValue(nodeGroup, out var node) == false)
+            {
+                // No node with this name
+                return false;
+            }
+
+            if (!node.IsNodeGroupHub)
+            {
+                // Not a node group hub, so it always has content available
+                return true;
+            }
+
+            var options = this.GetSaliencyOptionsForNodeGroup(nodeGroup);
+            var bestOption = this.ContentSaliencyStrategy.QueryBestContent(options);
+
+            // Did the saliency strategy indicate that an option could be selected?
+            return bestOption != null;
         }
         public IEnumerable<Saliency.ContentSaliencyOption> GetSaliencyOptionsForNodeGroup(string nodeGroup)
         {
@@ -761,7 +635,7 @@ namespace Yarn
         {
             LogDebugMessage?.Invoke($"Got line: {line.ID}");
 
-            return this.OnReceivedLine.Invoke(line, token);
+            return Responder.HandleLine(line, token);
         }
 
         public ValueTask<int> HandleOptions(OptionSet options, CancellationToken token)
@@ -772,50 +646,42 @@ namespace Yarn
                 LogDebugMessage?.Invoke($"Got option: {option.ID}");
             }
 
-            return this.OnReceivedOptions(options, token);
+            return Responder.HandleOptions(options, token);
         }
 
         public ValueTask HandleCommand(Command command, CancellationToken token)
         {
             LogDebugMessage?.Invoke($"Got a coomand: {command.Text}");
 
-            return this.OnReceivedCommand(command, token);
+            return Responder.HandleCommand(command, token);
         }
 
         public ValueTask HandleNodeStart(string node, CancellationToken token)
         {
             LogDebugMessage?.Invoke($"node started: {node}");
             
-            return this.OnReceivedNodeStart(node, token);
+            return Responder.HandleNodeStart(node, token);
         }
 
         public ValueTask HandleNodeComplete(string node, CancellationToken token)
         {
             LogDebugMessage?.Invoke($"node completed: {node}");
             
-            return this.OnReceivedNodeComplete(node, token);
+            return Responder.HandleNodeComplete(node, token);
         }
 
         public ValueTask HandleDialogueComplete()
         {
             LogDebugMessage?.Invoke($"dialogue completed");
             
-            return this.OnReceivedDialogueComplete();
+            return Responder.HandleDialogueComplete();
         }
 
-        public delegate ValueTask PrepareForLinesHandler(List<string> lines, CancellationToken token);
-        public PrepareForLinesHandler OnPrepareForLines;
         public ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token)
         {
             LogDebugMessage?.Invoke($"preparing for {lineIDs.Count} lines");
 
-            if (this.OnPrepareForLines == null)
-            {
-                LogErrorMessage?.Invoke("No prepare for lines handler set");
-                return default;
-            }
-
-            return this.OnPrepareForLines(lineIDs, token);
+            return Responder.PrepareForLines(lineIDs, token);
         }
         
         public void UnloadAll()
@@ -891,14 +757,14 @@ namespace Yarn
 
         public ValueTask<IConvertible> thunk(string functionName, IConvertible[] parameters, CancellationToken token)
         {
-            return Library.Invoke(functionName, parameters, token);
+            return Responder.thunk(functionName, parameters, token);
         }
 
         public bool TryGetFunctionDefinition(string functionName, out FunctionDefinition functionDefinition)
         {
-            return Library.TryGetFunctionDefinition(functionName, out functionDefinition);
+            return Responder.TryGetFunctionDefinition(functionName, out functionDefinition);
         }
 
-        public Dictionary<string, FunctionDefinition> allDefinitions => Library.allDefinitions;
+        public Dictionary<string, FunctionDefinition> allDefinitions => Responder.allDefinitions;
     }
 }

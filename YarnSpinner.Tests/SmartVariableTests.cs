@@ -74,6 +74,7 @@ namespace YarnSpinner.Tests
                 .GetPlan();
 
             // When
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
             // Then
@@ -125,6 +126,8 @@ namespace YarnSpinner.Tests
                 "pass",
                 "<<endif>>",
             });
+
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
 
             // When
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
@@ -216,6 +219,8 @@ namespace YarnSpinner.Tests
                 .AddLine("2")
                 .AddStop()
                 .GetPlan();
+            
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
 
             // When
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
@@ -352,12 +357,12 @@ namespace YarnSpinner.Tests
             var source = CreateTestNode("<<declare $smart_var = add_three_operands(1,2,3)>>");
             var job = CompilationJob.CreateFromString("input", source);
 
-            this.dialogue.Library.RegisterFunction("add_three_operands", delegate (int a, int b, int c)
+            this.testBaseResponder.Library.RegisterFunction("add_three_operands", delegate (int a, int b, int c)
             {
                 return a + b + c;
             });
 
-            job.Library = this.dialogue.Library;
+            job.Library = this.testBaseResponder.Library;
             var result = Compiler.Compile(job);
             this.dialogue.Program = result.Program;
             result.ContainsErrors.Should().BeFalse();
