@@ -382,7 +382,7 @@ namespace Yarn
             }
         }
 
-        public async ValueTask<IConvertible> Invoke(string functionName, Yarn.Value[] parameters, CancellationToken token)
+        public async ValueTask<IConvertible> Invoke(string functionName, IConvertible[] parameters, CancellationToken token)
         {
             if (!delegates.TryGetValue(functionName, out var func))
             {
@@ -450,7 +450,7 @@ namespace Yarn
             {
                 if (i < requiredParameterCount)
                 {
-                    delegateParameters[i] = parameters[i].ConvertTo(concreteParameterTypes[i]);
+                    delegateParameters[i] = Convert.ChangeType(parameters[i], concreteParameterTypes[i], System.Globalization.CultureInfo.InvariantCulture);
                 }
                 else
                 {
@@ -458,7 +458,7 @@ namespace Yarn
                     {
                         throw new System.InvalidOperationException($"Internal error: attempting to convert and add parameter {i} to the variadic function \"{functionName}\" but the variadic array is null.");
                     }
-                    var variadicValue = parameters[i].ConvertTo(concreteParameterTypes[^1]);
+                    var variadicValue = Convert.ChangeType(parameters[i], concreteParameterTypes[^1], System.Globalization.CultureInfo.InvariantCulture);
                     variadicParameters.SetValue(variadicValue, i - requiredParameterCount);
                 }
             }

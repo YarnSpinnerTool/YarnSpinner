@@ -39,7 +39,7 @@ namespace Yarn
         ValueTask HandleNodeComplete(string node, CancellationToken token);
         ValueTask HandleDialogueComplete();
         ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token);
-        ValueTask<IConvertible> thunk(string functionName, Value[] parameters, CancellationToken token);
+        ValueTask<IConvertible> thunk(string functionName, IConvertible[] parameters, CancellationToken token);
         bool TryGetFunctionDefinition(string functionName, out FunctionDefinition functionDefinition);
         Dictionary<string, FunctionDefinition> allDefinitions { get; }
     }

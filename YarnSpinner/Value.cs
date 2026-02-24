@@ -23,7 +23,7 @@ namespace Yarn
     /// <summary>
     /// A value from inside Yarn.
     /// </summary>
-    public partial class Value : IYarnValue
+    public partial class Value : IYarnValue, IConvertible
     {
         public Yarn.IType Type { get; internal set; }
 
@@ -138,6 +138,91 @@ namespace Yarn
             {
                 throw new ArgumentException($"Can't convert value of type {convertible} to a Yarn value");
             }
+        }
+
+        public TypeCode GetTypeCode()
+        {
+            return this.InternalValue.GetTypeCode();
+        }
+
+        public bool ToBoolean(IFormatProvider provider)
+        {
+            return this.InternalValue.ToBoolean(provider);
+        }
+
+        public byte ToByte(IFormatProvider provider)
+        {
+            return this.InternalValue.ToByte(provider);
+        }
+
+        public char ToChar(IFormatProvider provider)
+        {
+            return this.InternalValue.ToChar(provider);
+        }
+
+        public DateTime ToDateTime(IFormatProvider provider)
+        {
+            return this.InternalValue.ToDateTime(provider);
+        }
+
+        public decimal ToDecimal(IFormatProvider provider)
+        {
+            return this.InternalValue.ToDecimal(provider);
+        }
+
+        public double ToDouble(IFormatProvider provider)
+        {
+            return this.InternalValue.ToDouble(provider);
+        }
+
+        public short ToInt16(IFormatProvider provider)
+        {
+            return this.InternalValue.ToInt16(provider);
+        }
+
+        public int ToInt32(IFormatProvider provider)
+        {
+            return this.InternalValue.ToInt32(provider);
+        }
+
+        public long ToInt64(IFormatProvider provider)
+        {
+            return this.InternalValue.ToInt64(provider);
+        }
+
+        public sbyte ToSByte(IFormatProvider provider)
+        {
+            return this.InternalValue.ToSByte(provider);
+        }
+
+        public float ToSingle(IFormatProvider provider)
+        {
+            return this.InternalValue.ToSingle(provider);
+        }
+
+        public string ToString(IFormatProvider provider)
+        {
+            return this.InternalValue.ToString(provider);
+        }
+
+        public object ToType(Type conversionType, IFormatProvider provider)
+        {
+            return this.InternalValue.ToType(conversionType, provider);
+        }
+
+        public ushort ToUInt16(IFormatProvider provider)
+        {
+            return this.InternalValue.ToUInt16(provider);
+        }
+
+        public uint ToUInt32(IFormatProvider provider)
+        {
+            return this.InternalValue.ToUInt32(provider);
+        }
+
+        public ulong ToUInt64(IFormatProvider provider)
+        {
+            return this.InternalValue.ToUInt64(provider);
         }
     }
 }

@@ -889,7 +889,7 @@ namespace Yarn
             }
         }
 
-        public ValueTask<IConvertible> thunk(string functionName, Value[] parameters, CancellationToken token)
+        public ValueTask<IConvertible> thunk(string functionName, IConvertible[] parameters, CancellationToken token)
         {
             return Library.Invoke(functionName, parameters, token);
         }
