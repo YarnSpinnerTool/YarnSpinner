@@ -314,27 +314,62 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestFailingFunctionDeclarationReturnType()
+        public async Task TestFailingFunctionDeclarationReturnType()
         {
-            testBaseResponder.Library.RegisterFunction("func_invalid_return", () => new List<int> { 1, 2, 3 });
+            // this is a function that returns a valid type so it will compile just fine
+            testBaseResponder.Library.RegisterFunction("func_invalid_return", () => 0);
 
-            var source = CreateTestNode(@"Hello");
-
+            var source = CreateTestNode(@"Hello: {func_invalid_return()}");
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
+            result.Diagnostics.Should().BeEmpty();
 
-            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("*not a valid return type*");
+            // change the delegate under the hood after compilation
+            // essentially breaking the promise that the library made earlier on
+            testBaseResponder.Library.delegates["func_invalid_return"] = () => { new List<int> {0,1}; };
+
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
+            dialogue.Program = result.Program;
+            
+            // now if we attempt to run it it should throw when it hits the function
+            // because we broke the definition promise
+            try
+            {
+                await dialogue.StartDialogue("Start");
+                throw new System.InvalidOperationException("Should not reach this point");
+            }
+            catch (System.Exception ex)
+            {
+                ex.Should().BeOfType<ArgumentException>();
+            }
         }
 
         [Fact]
-        public void TestFailingFunctionDeclarationParameterType()
+        public async Task TestFailingFunctionDeclarationParameterType()
         {
-            testBaseResponder.Library.RegisterFunction("func_invalid_param", (List<int> listOfInts) => true);
+            testBaseResponder.Library.RegisterFunction("func_invalid_param", (int parameter) => true);
 
-            var source = CreateTestNode(@"Hello");
-
+            var source = CreateTestNode(@"Hello: {func_invalid_param(0)}");
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
+            result.Diagnostics.Select(d => d.Message).Should().BeEmpty();
 
-            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("*parameter listOfInts's type (System.Collections.Generic.List`1[System.Int32]) cannot be used in Yarn functions");
+            // change the delegate under the hood after compilation
+            // essentially breaking the promise that the library made earlier on
+            testBaseResponder.Library.delegates["func_invalid_param"] = (List<int> listOfInts) => { return true; };
+
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
+            dialogue.Program = result.Program;
+
+            // now if we attempt to run it it should throw when it hits the function
+            // because we broke the definition promise
+            try
+            {
+                await dialogue.StartDialogue("Start");
+                throw new System.InvalidOperationException("Should not reach this point");
+            }
+            catch (System.Exception ex)
+            {
+                ex.Should().BeOfType<ArgumentException>();
+            }
         }
 
         [Theory]
@@ -642,6 +677,7 @@ namespace YarnSpinner.Tests
 
                 dialogue.Program = result.Program;
                 stringTable = result.StringTable;
+                testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
 
                 await RunStandardTestcase();
                 throw new Xunit.Sdk.XunitException("This point should not be reached");

@@ -26,8 +26,8 @@ namespace Yarn
     public class BasicFunctionLibrary: Library
     {
         // later make this private but for testing it's easier to be public
-        private Dictionary<string, FunctionDefinition> functions = new();
-        private Dictionary<string, Delegate> delegates = new();
+        internal Dictionary<string, FunctionDefinition> functions = new();
+        internal Dictionary<string, Delegate> delegates = new();
 
         public Dictionary<string, FunctionDefinition> allDefinitions
         {
