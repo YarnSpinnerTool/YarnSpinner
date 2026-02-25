@@ -262,9 +262,8 @@ namespace YarnLanguageServer.Tests
 
             var storage = new Yarn.MemoryVariableStore();
             var dialogue = new Yarn.AsyncDialogue(storage);
-            var library = dialogue.Library;
-
-            var libraryDecls = Yarn.Compiler.Compiler.GetDeclarationsFromLibrary(library).Item1.ToDictionary(d => d.Name);
+            var library = dialogue.Responder;
+            var libraryDecls = Yarn.Compiler.Compiler.GetDeclarationsFromLibrary(library.allDefinitions).ToDictionary(d => d.Name);
 
             // Then
 

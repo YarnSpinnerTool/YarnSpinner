@@ -80,17 +80,18 @@ namespace YarnLanguageServer.Tests
                 "has_any_content",
             };
 
-            foreach (var decl in functions)
-            {
-                if (functionsToOmit.Contains(decl.YarnName))
-                {
-                    continue;
-                }
+            // foreach (var decl in functions)
+            // {
+            //     if (functionsToOmit.Contains(decl.YarnName))
+            //     {
+            //         continue;
+            //     }
 
-                var functionImpl = standardLibrary.GetFunction(decl.YarnName);
+            //     var functionImpl = standardLibrary.GetFunction(decl.YarnName);
 
-                CheckImplementationMatchesDeclaration(functionImpl, decl);
-            }
+            //     CheckImplementationMatchesDeclaration(functionImpl, decl);
+            // }
+            throw new System.NotImplementedException("This test hasn't been updated yet");
         }
 
         [Fact]
@@ -110,20 +111,21 @@ namespace YarnLanguageServer.Tests
                 new Regex(@"^Enum\."),
             };
 
-            foreach (var registeredFunction in standardLibrary.Delegates)
-            {
-                var name = registeredFunction.Key;
-                var impl = registeredFunction.Value;
+            // foreach (var registeredFunction in standardLibrary.Delegates)
+            // {
+            //     var name = registeredFunction.Key;
+            //     var impl = registeredFunction.Value;
 
-                if (patternsToOmit.Any(pattern => pattern.IsMatch(name)))
-                {
-                    continue;
-                }
+            //     if (patternsToOmit.Any(pattern => pattern.IsMatch(name)))
+            //     {
+            //         continue;
+            //     }
 
-                var decl = functions.Should().ContainSingle(f => f.YarnName == name).Subject;
+            //     var decl = functions.Should().ContainSingle(f => f.YarnName == name).Subject;
 
-                CheckImplementationMatchesDeclaration(impl, decl);
-            }
+            //     CheckImplementationMatchesDeclaration(impl, decl);
+            // }
+            throw new System.NotImplementedException("This test hasn't been updated yet");
         }
 
         private static void CheckImplementationMatchesDeclaration(System.Delegate impl, Action decl)
