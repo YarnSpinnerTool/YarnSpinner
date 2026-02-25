@@ -596,7 +596,7 @@ namespace Yarn.Compiler
         /// <param name="l"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public static string GetCompiledCodeAsString(Program program, Library? l = null, CompilationResult? result = null)
+        public static string GetCompiledCodeAsString(Program program, ILibrary? l = null, CompilationResult? result = null)
         {
             return program.DumpCode(l, result);
         }

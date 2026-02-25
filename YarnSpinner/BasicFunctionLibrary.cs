@@ -8,7 +8,7 @@ namespace Yarn
     using System.Threading;
     using System.Threading.Tasks;
 
-    public interface Library
+    public interface ILibrary
     {
         public Dictionary<string, FunctionDefinition> allDefinitions { get; }
         public bool TryGetFunctionDefinition(string name, out FunctionDefinition function);
@@ -23,7 +23,7 @@ namespace Yarn
     /// access via the <see cref="Dialogue.Library"/> property.
     /// </remarks>
     /// <seealso cref="Dialogue"/>
-    public class BasicFunctionLibrary: Library
+    public class BasicFunctionLibrary: ILibrary
     {
         // later make this private but for testing it's easier to be public
         internal Dictionary<string, FunctionDefinition> functions = new();
@@ -279,7 +279,7 @@ namespace Yarn
         /// function.</typeparam>
         /// <exception cref="ArgumentException">Thrown when a function
         /// named <paramref name="name"/> already exists in the <see
-        /// cref="Library"/>.</exception>
+        /// cref="ILibrary"/>.</exception>
         /// <exception cref="ArgumentNullException">Thrown when name is
         /// null.</exception>
         public void RegisterFunction<TResult>(string name, Func<TResult> implementation)
@@ -353,7 +353,7 @@ namespace Yarn
         }
 
         /// <summary>
-        /// Gets a value indicating whether this <see cref="Library"/> contains a function named <c>name</c>.
+        /// Gets a value indicating whether this <see cref="ILibrary"/> contains a function named <c>name</c>.
         /// </summary>
         /// <param name="name">The name of the function to look for.</param>
         /// <returns><c>true</c> if a function exists in this Library; <c>false</c> otherwise.</returns>

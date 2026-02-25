@@ -30,7 +30,7 @@ namespace Yarn
         bool TryGetSmartVariable<T>(string name, out T result);
     }
 
-    public interface DialogueResponder: Library
+    public interface IDialogueResponder: ILibrary
     {
         ValueTask HandleLine(Line line, CancellationToken token);
         ValueTask<int> HandleOptions(OptionSet options, CancellationToken token);
@@ -201,8 +201,8 @@ namespace Yarn
             state = new State();
         }
 
-        private DialogueResponder? dialogueResponder;
-        public DialogueResponder Responder
+        private IDialogueResponder? dialogueResponder;
+        public IDialogueResponder Responder
         {
             get
             {
@@ -895,7 +895,7 @@ namespace Yarn
             return parameters;
         }
 
-        public static async ValueTask<Yarn.Value> CallFunction(string functionName, Stack<Value> state, DialogueResponder? responder, CancellationToken token)
+        public static async ValueTask<Yarn.Value> CallFunction(string functionName, Stack<Value> state, IDialogueResponder? responder, CancellationToken token)
         {
             if (responder != null && responder.TryGetFunctionDefinition(functionName, out var function))
             {

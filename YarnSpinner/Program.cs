@@ -44,7 +44,7 @@ namespace Yarn
     {
         internal const string SmartVariableNodeTag = "Yarn.SmartVariable";
 
-        internal string DumpCode(Library? library, ICodeDumpHelper? helper)
+        internal string DumpCode(ILibrary? library, ICodeDumpHelper? helper)
         {
             var sb = new System.Text.StringBuilder();
 
@@ -268,7 +268,7 @@ namespace Yarn
 
         }
 
-        internal (string Type, IEnumerable<object> Operands, IEnumerable<string> Comments) ToDescription(Node? containingNode, Library? library, ICodeDumpHelper? helper)
+        internal (string Type, IEnumerable<object> Operands, IEnumerable<string> Comments) ToDescription(Node? containingNode, ILibrary? library, ICodeDumpHelper? helper)
         {
 
             // Generate a comment, if the instruction warrants it
@@ -471,7 +471,7 @@ namespace Yarn
             );
         }
 
-        internal string ToString(Node? containingNode, Library? library, ICodeDumpHelper? helper)
+        internal string ToString(Node? containingNode, ILibrary? library, ICodeDumpHelper? helper)
         {
             var result = ToDescription(containingNode, library, helper);
 

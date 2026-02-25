@@ -569,7 +569,7 @@ namespace YarnSpinner.Tests
         }
     }
 
-    public class TestBaseResponder: DialogueResponder
+    public class TestBaseResponder: IDialogueResponder
     {
         public BasicFunctionLibrary Library = new();
         public delegate ValueTask ReceivedLineHandle(Line line, CancellationToken token);

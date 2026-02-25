@@ -450,7 +450,7 @@ namespace Yarn
     /// <summary>
     /// Co-ordinates the execution of Yarn programs.
     /// </summary>
-    public class AsyncDialogue: ISmartVariableEvaluator, DialogueResponder
+    public class AsyncDialogue: ISmartVariableEvaluator, IDialogueResponder
     {
         public AsyncDialogue(IVariableStorage variableStorage)
         {
@@ -481,7 +481,7 @@ namespace Yarn
 
         public IVariableStorage VariableStorage { get; set; }
 
-        public DialogueResponder Responder { get; set; }
+        public IDialogueResponder Responder { get; set; }
 
         public Program? Program
         {

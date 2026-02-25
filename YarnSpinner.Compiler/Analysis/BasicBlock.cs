@@ -64,13 +64,13 @@ namespace Yarn.Compiler
         /// Gets a string containing the textual description of the instructions
         /// in this <see cref="BasicBlock"/>.
         /// </summary>
-        /// <param name="library">The <see cref="Library"/> to use when
+        /// <param name="library">The <see cref="ILibrary"/> to use when
         /// converting instructions to strings.</param>
         /// <param name="compilationResult">The <see cref="CompilationResult"/>
         /// that produced <see cref="Node"/>.</param>
         /// <returns>A string containing the text version of the
         /// instructions.</returns>
-        public string ToString(Library? library, CompilationResult? compilationResult)
+        public string ToString(ILibrary? library, CompilationResult? compilationResult)
         {
             var sb = new StringBuilder();
             foreach (var i in this.Instructions)

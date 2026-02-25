@@ -108,7 +108,7 @@ namespace Yarn.Compiler
         /// The <see cref="Library"/> that contains declarations for
         /// functions.
         /// </summary>
-        public Library? Library;
+        public ILibrary? Library;
 
         /// <summary>
         /// The type of compilation to perform.
@@ -155,7 +155,7 @@ namespace Yarn.Compiler
         /// <param name="library">The <see cref="Library"/> containing functions
         /// to use for this compilation.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromFiles(IEnumerable<string> paths, Library? library = null)
+        public static CompilationJob CreateFromFiles(IEnumerable<string> paths, ILibrary? library = null)
         {
             var fileList = new List<ISourceInput>();
 
@@ -177,9 +177,9 @@ namespace Yarn.Compiler
             };
         }
 
-        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, Library)" path="/summary"/>
-        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, Library)" path="/param[@name='paths']"/>
-        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, Library)" path="/returns"/>
+        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, ILibrary)" path="/summary"/>
+        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, ILibrary)" path="/param[@name='paths']"/>
+        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, ILibrary)" path="/returns"/>
         public static CompilationJob CreateFromFiles(params string[] paths)
         {
             return CreateFromFiles((IEnumerable<string>)paths);
@@ -193,7 +193,7 @@ namespace Yarn.Compiler
         /// <param name="library">The <see cref="Library"/> containing functions
         /// to use for this compilation.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromInputs(IEnumerable<ISourceInput> inputs, Library? library = null, int languageVersion = Project.CurrentProjectFileVersion)
+        public static CompilationJob CreateFromInputs(IEnumerable<ISourceInput> inputs, ILibrary? library = null, int languageVersion = Project.CurrentProjectFileVersion)
         {
             return new CompilationJob
             {
@@ -216,7 +216,7 @@ namespace Yarn.Compiler
         /// <param name="languageVersion">The version of the Yarn language to
         /// use.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromString(string fileName, string source, Library? library = null, int languageVersion = Project.CurrentProjectFileVersion)
+        public static CompilationJob CreateFromString(string fileName, string source, ILibrary? library = null, int languageVersion = Project.CurrentProjectFileVersion)
         {
             return new CompilationJob
             {

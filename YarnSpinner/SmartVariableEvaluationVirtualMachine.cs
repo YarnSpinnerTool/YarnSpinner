@@ -24,7 +24,7 @@ namespace Yarn
         /// <param name="name">The name of the smart variable.</param>
         /// <param name="variableAccess">An <see cref="IVariableAccess"/> object
         /// that can be used for fetching variable values.</param>
-        /// <param name="library">A <see cref="Library"/> containing functions
+        /// <param name="library">A <see cref="ILibrary"/> containing functions
         /// to use while evaluating the variable.</param>
         /// <param name="result">On return, the computed value of the smart
         /// variable.</param>
@@ -38,7 +38,7 @@ namespace Yarn
         /// name="name"/> is null or empty.</exception>
         /// <exception cref="InvalidOperationException">Thrown if an error
         /// occurs during the evaluation of the variable.</exception>
-        public static bool TryGetSmartVariable<T>(string name, IVariableAccess variableAccess, DialogueResponder library, out T result)
+        public static bool TryGetSmartVariable<T>(string name, IVariableAccess variableAccess, IDialogueResponder library, out T result)
         {
             if (variableAccess is null)
             {
@@ -127,7 +127,7 @@ namespace Yarn
         /// <exception cref="ArgumentException">Thrown when the provided
         /// <paramref name="nodeGroupName"/> is not a valid node group name in
         /// the program.</exception>
-        internal static IEnumerable<Saliency.ContentSaliencyOption> GetSaliencyOptionsForNodeGroup(string nodeGroupName, IVariableAccess variableAccess, DialogueResponder library)
+        internal static IEnumerable<Saliency.ContentSaliencyOption> GetSaliencyOptionsForNodeGroup(string nodeGroupName, IVariableAccess variableAccess, IDialogueResponder library)
         {
             // Retrieve the program from the variable access.
             var program = variableAccess.Program
@@ -213,7 +213,7 @@ namespace Yarn
             }
         }
 
-        private static bool EvaluateInstruction(Instruction instruction, IVariableAccess variableAccess, DialogueResponder library, Stack<Value> stack, ref int programCounter)
+        private static bool EvaluateInstruction(Instruction instruction, IVariableAccess variableAccess, IDialogueResponder library, Stack<Value> stack, ref int programCounter)
         {
             switch (instruction.InstructionTypeCase)
             {

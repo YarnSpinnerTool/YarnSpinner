@@ -376,7 +376,7 @@ namespace YarnSpinner.Tests
         }
     }
 
-    class TestResponder: DialogueResponder
+    class TestResponder: IDialogueResponder
     {
         public ValueTask HandleLine(Line line, CancellationToken token)
         {

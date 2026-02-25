@@ -17,7 +17,7 @@ namespace Yarn.Compiler
 
         internal struct CompilationContext
         {
-            internal Library? Library;
+            internal ILibrary? Library;
             internal FileParseResult FileParseResult;
             internal HashSet<string> TrackingNodes;
             internal Dictionary<string, Declaration> VariableDeclarations;
@@ -58,7 +58,7 @@ namespace Yarn.Compiler
         /// <remarks>
         /// This is supplied as part of a <see cref="CompilationJob"/>.
         /// </remarks>
-        internal Library? Library { get; set; }
+        internal ILibrary? Library { get; set; }
 
         NodeDebugInfo? ICodeEmitter.CurrentNodeDebugInfo => this.CurrentNodeDebugInfo;
 

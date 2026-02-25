@@ -361,15 +361,8 @@ namespace YarnSpinner.Tests
 
             // now if we attempt to run it it should throw when it hits the function
             // because we broke the definition promise
-            try
-            {
-                await dialogue.StartDialogue("Start");
-                throw new System.InvalidOperationException("Should not reach this point");
-            }
-            catch (System.Exception ex)
-            {
-                ex.Should().BeOfType<ArgumentException>();
-            }
+            var myAction = new System.Func<Task>(async () => { await dialogue.StartDialogue("Start"); });
+            await myAction.Should().ThrowAsync<ArgumentException>();
         }
 
         [Theory]

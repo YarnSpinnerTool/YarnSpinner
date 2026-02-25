@@ -14,7 +14,7 @@ namespace Yarn
     /// Functions have parameters and a return type, and can be called from
     /// script. Instances of this type are created when the host
     /// application registers new functions (such as through using the <see
-    /// cref="Library.RegisterFunction"/> methods or similar.)
+    /// cref="ILibrary.RegisterFunction"/> methods or similar.)
     /// </remarks>
     public class FunctionType : IType, IEquatable<IType>
     {
