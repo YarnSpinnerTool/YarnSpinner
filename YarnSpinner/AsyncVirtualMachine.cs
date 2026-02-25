@@ -40,8 +40,6 @@ namespace Yarn
         ValueTask HandleDialogueComplete();
         ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token);
         ValueTask<IConvertible> thunk(string functionName, IConvertible[] parameters, CancellationToken token);
-        bool TryGetFunctionDefinition(string functionName, out FunctionDefinition functionDefinition);
-        Dictionary<string, FunctionDefinition> allDefinitions { get; }
     }
 
     internal struct PendingOption
