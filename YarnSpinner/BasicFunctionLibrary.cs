@@ -12,6 +12,7 @@ namespace Yarn
     {
         public Dictionary<string, FunctionDefinition> allDefinitions { get; }
         public bool TryGetFunctionDefinition(string name, out FunctionDefinition function);
+        public void DeregisterFunction(string name);
     }
 
     /// <summary>

@@ -28,12 +28,9 @@ namespace Yarn
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
-    using System.Text.RegularExpressions;
     using System.Threading;
     using System.Threading.Tasks;
     using Yarn.Markup;
-    using static Yarn.AsyncVirtualMachine;
 
 #nullable enable
 
@@ -766,5 +763,10 @@ namespace Yarn
         }
 
         public Dictionary<string, FunctionDefinition> allDefinitions => Responder.allDefinitions;
+
+        public void DeregisterFunction(string name)
+        {
+            Responder.DeregisterFunction(name);
+        }
     }
 }

@@ -673,6 +673,11 @@ namespace YarnSpinner.Tests
         }
 
         public Dictionary<string, FunctionDefinition> allDefinitions => Library.allDefinitions;
+
+        public void DeregisterFunction(string name)
+        {
+            Library.DeregisterFunction(name);
+        }
     }
 }
 
