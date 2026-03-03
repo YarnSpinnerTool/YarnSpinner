@@ -280,14 +280,16 @@ namespace Yarn
 
             state.currentNodeName = nodeName;
             state.programCounter = 0;
-
-            // figure out what lines we anticipate running
-            var stringIDs = Program.LineIDsForNode(nodeName);
-
+            
             // if we are already running dialogue we have a specific token ready for this
             // but this can be called before starting dialogue
             // and in those cases we won't yet have a token so we fall back to using the global one
             var token = dialogueCancellationSource?.Token ?? GlobalToken;
+
+            await Responder.HandleNodeStart(nodeName, token);
+
+            // figure out what lines we anticipate running
+            var stringIDs = Program.LineIDsForNode(nodeName);
 
             // Deliver the string ID
             await Responder.PrepareForLines(stringIDs ?? new List<string>(), token);
@@ -304,11 +306,9 @@ namespace Yarn
                 LogDebugMessage?.Invoke("Dialogue has already been cancelled");
                 return;
             }
-            
+
             dialogueCancellationSource.Cancel();
             dialogueCancellationSource = null;
-
-            await Responder.HandleDialogueComplete();
         }
 
         public async ValueTask Start()
@@ -357,6 +357,8 @@ namespace Yarn
                     LogDebugMessage?.Invoke("Run complete.");
                 }
             }
+
+            await Responder.HandleDialogueComplete();
         }
 
 
@@ -526,34 +528,40 @@ namespace Yarn
                             optionChoices.Add(new OptionSet.Option(option.line, optionIndex, option.destination, option.enabled));
                         }
 
-                        var chosenOption = await Responder.HandleOptions(new OptionSet(optionChoices.ToArray()), cancellationToken);
-                        
-                        if (chosenOption == AsyncDialogue.NoOptionSelected)
+                        try
                         {
-                            // Push a flag indicating that no option was selected.
-                            // this means the jump if false will pass taking us to the end of the option statement
-                            this.state.PushValue(false);
-                        }
-                        else
-                        {
-                            if (chosenOption < 0 || chosenOption >= state.currentOptions.Count)
+                            var chosenOption = await Responder.HandleOptions(new OptionSet(optionChoices.ToArray()), cancellationToken);
+                            if (chosenOption == AsyncDialogue.NoOptionSelected)
                             {
-                                throw new ArgumentOutOfRangeException($"{chosenOption} is not a valid option ID (expected a number between 0 and {state.currentOptions.Count - 1}.");
+                                // Push a flag indicating that no option was selected.
+                                // this means the jump if false will pass taking us to the end of the option statement
+                                this.state.PushValue(false);
                             }
+                            else
+                            {
+                                if (chosenOption < 0 || chosenOption >= state.currentOptions.Count)
+                                {
+                                    throw new ArgumentOutOfRangeException($"{chosenOption} is not a valid option ID (expected a number between 0 and {state.currentOptions.Count - 1}.");
+                                }
 
-                            // We now know what number option was selected; push the
-                            // corresponding node name to the stack
-                            var destinationInstruction = state.currentOptions[chosenOption].destination;
-                            state.PushValue(destinationInstruction);
-                            // pushing a true to indicate that an option was selected
-                            state.PushValue(true);
+                                // We now know what number option was selected; push the
+                                // corresponding node name to the stack
+                                var destinationInstruction = state.currentOptions[chosenOption].destination;
+                                state.PushValue(destinationInstruction);
+                                // pushing a true to indicate that an option was selected
+                                state.PushValue(true);
+                            }
+                            // We no longer need the accumulated list of options; clear it
+                            // so that it's ready for the next one
+                            state.currentOptions.Clear();
+                            return true;
                         }
-
-                        // We no longer need the accumulated list of options; clear it
-                        // so that it's ready for the next one
-                        state.currentOptions.Clear();
-
-                        return true;
+                        catch (OperationCanceledException)
+                        {
+                            LogDebugMessage?.Invoke("Aborting option selection because dialogue was cancelled during selection.");
+                            state.currentOptions.Clear();
+                            return false;
+                        }
                     }
                 case Instruction.InstructionTypeOneofCase.PushString:
                     state.PushValue(i.PushString.Value);
