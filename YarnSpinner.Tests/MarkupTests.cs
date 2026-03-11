@@ -1403,6 +1403,39 @@ namespace YarnSpinner.Tests
         }
 
         [Theory]
+        [InlineData("Mae: Wow!", "Mae")]
+        [InlineData("Mae\\: Wow!: Wow!", "Mae: Wow!")]
+        [InlineData("Mae\\: Wow!: \\:Wow!", "Mae: Wow!")]
+        [InlineData("Mae\\: Wow!: :Wow!", "Mae: Wow!")]
+        public void TestImplicitCharacterAttributeParsingCanBeEscaped(string input, string character)
+        {
+            var lineParser = new LineParser();
+            var markup = lineParser.ParseString(input, "en");
+
+            markup.Attributes.Should().ContainSingle();
+
+            markup.Attributes[0].Name.Should().Be("character");
+            markup.Attributes[0].Position.Should().Be(0);
+            markup.Attributes[0].Properties.Count.Should().Be(1);
+            markup.Attributes[0].Properties["name"].StringValue.Should().Be(character);
+        }
+
+        [Theory]
+        [InlineData("Mae\\: Wow!", "Mae: Wow!")]
+        [InlineData("\\:Mae\\: Wow!", ":Mae: Wow!")]
+        [InlineData("\\:", ":")]
+        public void TestEscapedCharacterlessLinesAreAllowed(string input, string output)
+        {
+            var lineParser = new LineParser();
+            var markup = lineParser.ParseString(input, "en");
+
+            markup.Attributes.Should().BeEmpty();
+
+            markup.Text.Should().Be(output);
+        }
+
+
+        [Theory]
         // character attribute can be implicit and will only grab the first instance of :
         // otherwise should be nigh identical to the above
         [InlineData("Mae: Incredible: Wow!")]
