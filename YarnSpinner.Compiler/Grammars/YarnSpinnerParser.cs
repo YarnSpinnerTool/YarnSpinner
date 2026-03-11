@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from /Users/desplesda/Work/YarnSpinner/YarnSpinner.Compiler/Grammars/YarnSpinnerParser.g4 by ANTLR 4.13.1
+// Generated from /Users/timnugent/Development/YarnSpinner/YarnSpinner.Compiler/Grammars/YarnSpinnerParser.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -59,8 +59,8 @@ public partial class YarnSpinnerParser : Parser {
 		COMMAND_DETOUR=77, COMMAND_RETURN=78, COMMAND_ENUM=79, COMMAND_CASE=80, 
 		COMMAND_ENDENUM=81, COMMAND_ONCE=82, COMMAND_ENDONCE=83, COMMAND_LOCAL=84, 
 		COMMAND_END=85, COMMAND_TEXT_NEWLINE=86, COMMAND_TEXT=87, COMMAND_ID_WS=88, 
-		COMMAND_ID_NEWLINE=89, COMMAND_ID_OR_EXPRESSION_WS=90, TYPE_STRING=91, 
-		TYPE_NUMBER=92, TYPE_BOOL=93;
+		COMMAND_ID_NEWLINE=89, COMMAND_ID_OR_EXPRESSION_WS=90, TEXT_ESCAPED_SPEAKER=91, 
+		TYPE_STRING=92, TYPE_NUMBER=93, TYPE_BOOL=94;
 	public const int
 		RULE_dialogue = 0, RULE_file_hashtag = 1, RULE_node = 2, RULE_title_header = 3, 
 		RULE_when_header = 4, RULE_header = 5, RULE_header_when_expression = 6, 
@@ -97,7 +97,7 @@ public partial class YarnSpinnerParser : Parser {
 		"'+'", "'-'", "'*'", "'/'", "'%'", "'('", "')'", "','", "'as'", null, 
 		null, "'}'", null, "'.'", null, null, null, null, "'else'", null, "'endif'", 
 		null, null, null, null, "'return'", null, null, "'endenum'", "'once'", 
-		"'endonce'", "'local'", null, null, null, null, null, null, "'string'", 
+		"'endonce'", "'local'", null, null, null, null, null, null, "'\\:'", "'string'", 
 		"'number'", "'bool'"
 	};
 	private static readonly string[] _SymbolicNames = {
@@ -122,8 +122,8 @@ public partial class YarnSpinnerParser : Parser {
 		"COMMAND_JUMP", "COMMAND_DETOUR", "COMMAND_RETURN", "COMMAND_ENUM", "COMMAND_CASE", 
 		"COMMAND_ENDENUM", "COMMAND_ONCE", "COMMAND_ENDONCE", "COMMAND_LOCAL", 
 		"COMMAND_END", "COMMAND_TEXT_NEWLINE", "COMMAND_TEXT", "COMMAND_ID_WS", 
-		"COMMAND_ID_NEWLINE", "COMMAND_ID_OR_EXPRESSION_WS", "TYPE_STRING", "TYPE_NUMBER", 
-		"TYPE_BOOL"
+		"COMMAND_ID_NEWLINE", "COMMAND_ID_OR_EXPRESSION_WS", "TEXT_ESCAPED_SPEAKER", 
+		"TYPE_STRING", "TYPE_NUMBER", "TYPE_BOOL"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -4120,7 +4120,7 @@ public partial class YarnSpinnerParser : Parser {
 	}
 
 	private static int[] _serializedATN = {
-		4,1,93,487,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		4,1,94,487,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
 		7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,14,
 		2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,7,20,2,21,7,21,
 		2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,2,27,7,27,2,28,7,28,

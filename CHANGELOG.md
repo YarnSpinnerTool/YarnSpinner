@@ -11,6 +11,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Marker processors can now process implicit `[character/]` markers.
   - Yarn Spinner automatically adds `[character]` markers to lines that begin with a character name. For example, `Mae: Hello!` gets implicitly rewritten to `[character name="Mae"]Mae: [/character]Hello!`. This allows games to know what character is speaking, as well as being able to trim off the character name.
   - With this update, marker processors are able to register to handle this implicit marker, allowing games to customise the way that the name is handled.
+- Can now escape the implicit character separator `:`
+  - technically can now escape any `:` but this only really has a user-facing impact on using it to escape the character name
 
 ### Changed
 

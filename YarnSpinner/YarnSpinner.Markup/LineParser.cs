@@ -1486,7 +1486,7 @@ namespace Yarn.Markup
             return ParseStringWithDiagnostics(input, localeCode, squish, sort, addImplicitCharacterAttribute).markup;
         }
 
-        private static readonly System.Text.RegularExpressions.Regex implicitCharacterRegex = new(@"^(?<name>[^"":]+)(?<suffix>:\s*)");
+        private static readonly System.Text.RegularExpressions.Regex implicitCharacterRegex = new(@"^(?<name>((?:[^:\\]|\\.)*?(?<!\\)))(?<suffix>:\s*)");
 
         // Matches a "[character" at the start of the string, which means that
         // the string contains an explicit character marker.
@@ -1512,6 +1512,10 @@ namespace Yarn.Markup
                     (match) => $"[character name=\"{match.Groups["name"]}\"]{match.Groups["name"]}{match.Groups["suffix"]}[/character]"
                 );
             }
+
+            // now need to replace any instance of \: with just :
+            // is it worth making it so that unnecesary escaping is a warning?
+            input = input.Replace("\\:", ":");
 
             var tokens = LexMarkup(input);
             var parseResult = BuildMarkupTreeFromTokens(tokens, input);
