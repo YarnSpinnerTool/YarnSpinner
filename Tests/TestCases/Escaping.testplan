@@ -47,6 +47,6 @@ line: `// escaped comment`
 line: `[a]escaped markup[/a]`
 
 line: `Character: Here is a line with a character`
-line: `Character\: Here is a line without a character`
+line: `Character: Here is a line without a character`
 
 stop

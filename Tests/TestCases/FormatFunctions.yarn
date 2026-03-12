@@ -47,7 +47,7 @@ Ordinal: [ordinal value={$ord} one="one" two="two" few="few" many="many" other="
 <<set $ord to 1>>
 
 // Value insertion
-[select value={$gender} male="male: %" female="female: %" other="other: %"/]
+[select value={$gender} male="male\: %" female="female\: %" other="other\: %"/]
 
 <<set $race_position = 3>>
 Mae: Wow, I came [ordinal value={$race_position} one="%st" two="%nd" few="%rd" other="%th"/]!
