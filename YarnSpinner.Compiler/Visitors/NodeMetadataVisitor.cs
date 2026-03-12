@@ -5,8 +5,8 @@ namespace Yarn.Compiler
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text.RegularExpressions;
     using Antlr4.Runtime.Misc;
+    using Yarn.Markup;
 
     /// <summary>
     /// Extracts node metadata during compilation for language server features.
@@ -20,6 +20,7 @@ namespace Yarn.Compiler
         private readonly List<NodeMetadata> nodes = new List<NodeMetadata>();
         private NodeMetadata? currentNode = null;
         private readonly string fileUri;
+        private readonly LineParser lineParser;
         private int previewLineCount = 0;
         private const int MaxPreviewLines = 3;
 
@@ -31,18 +32,10 @@ namespace Yarn.Compiler
         private int lastOptionIndent = -1;
         private int lastLineNumber = -1;
 
-        /// <summary>
-        /// Regex for detecting implicit character names in dialogue lines.
-        /// </summary>
-        /// <remarks>
-        /// Matches the pattern "characterName: " at the start of a line.
-        /// This uses the same logic as LineParser for consistency.
-        /// </remarks>
-        private static readonly Regex implicitCharacterRegex = new Regex(@"^((?:[^:\\]|\\.)*?(?<!\\)):\s*");
-
         public NodeMetadataVisitor(string fileUri)
         {
             this.fileUri = fileUri;
+            this.lineParser = new LineParser();
         }
 
         /// <summary>
@@ -280,18 +273,19 @@ namespace Yarn.Compiler
             var lineText = context.line_formatted_text()?.GetText();
             if (!string.IsNullOrWhiteSpace(lineText))
             {
-                // Use the same regex logic as LineParser for consistency.
-                var match = implicitCharacterRegex.Match(lineText);
-                if (match.Success)
+                // TODO: receive locale code from invoker instead of hard-coding
+                // "en" - it's not relevant to extracting characters but we
+                // shouldn't be hard-coding locales. It _will_ impact the
+                // diagnostics (which this current code doesn't use, but it
+                // should.)
+                var (markup, diagnostics) = lineParser.ParseStringWithDiagnostics(lineText, "en");
+                var charAttr = markup.Attributes.SingleOrDefault(a => a.Name == "character");
+
+                if (charAttr.Properties != null && charAttr.TryGetProperty("name", out string? characterName))
                 {
-                    // Extract character name from capture group, unescaping \: to :
-                    var characterName = match.Groups[1].Value.Trim().Replace("\\:", ":");
-                    if (!string.IsNullOrWhiteSpace(characterName))
+                    if (!currentNode.CharacterNames.Contains(characterName))
                     {
-                        if (!currentNode.CharacterNames.Contains(characterName))
-                        {
-                            currentNode.CharacterNames.Add(characterName);
-                        }
+                        currentNode.CharacterNames.Add(characterName);
                     }
                 }
 
