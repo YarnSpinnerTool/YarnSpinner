@@ -38,7 +38,7 @@ namespace Yarn.Compiler
         /// Matches the pattern "characterName: " at the start of a line.
         /// This uses the same logic as LineParser for consistency.
         /// </remarks>
-        private static readonly Regex implicitCharacterRegex = new Regex(@"^[^:]*:\s*");
+        private static readonly Regex implicitCharacterRegex = new Regex(@"^((?:[^:\\]|\\.)*?(?<!\\)):\s*");
 
         public NodeMetadataVisitor(string fileUri)
         {
@@ -284,8 +284,8 @@ namespace Yarn.Compiler
                 var match = implicitCharacterRegex.Match(lineText);
                 if (match.Success)
                 {
-                    // Extract character name by removing the colon and trailing whitespace.
-                    var characterName = match.Value.TrimEnd(':', ' ', '\t');
+                    // Extract character name from capture group, unescaping \: to :
+                    var characterName = match.Groups[1].Value.Trim().Replace("\\:", ":");
                     if (!string.IsNullOrWhiteSpace(characterName))
                     {
                         if (!currentNode.CharacterNames.Contains(characterName))
