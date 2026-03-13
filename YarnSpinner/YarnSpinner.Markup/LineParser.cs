@@ -1486,7 +1486,7 @@ namespace Yarn.Markup
             return ParseStringWithDiagnostics(input, localeCode, squish, sort, addImplicitCharacterAttribute).markup;
         }
 
-        private static readonly System.Text.RegularExpressions.Regex implicitCharacterRegex = new(@"^(?<name>((?:[^:\\]|\\.)*?(?<!\\)))(?<suffix>:\s*)");
+        private static readonly System.Text.RegularExpressions.Regex implicitCharacterRegex = new(@"^((?:[^:\\]|\\.)*):\s*");
 
         // Matches a "[character" at the start of the string, which means that
         // the string contains an explicit character marker.
@@ -1509,7 +1509,7 @@ namespace Yarn.Markup
                 // replace it with markup that indicates the character name.
                 input = implicitCharacterRegex.Replace(
                     input,
-                    (match) => $"[character name=\"{match.Groups["name"]}\"]{match.Groups["name"]}{match.Groups["suffix"]}[/character]"
+                    (match) => $"[character name=\"{match.Groups[0]}\"]{match.Value}[/character]"
                 );
             }
 
