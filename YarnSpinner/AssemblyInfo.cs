@@ -11,4 +11,3 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("YarnSpinner.Compiler")]
 [assembly: InternalsVisibleTo("LanguageServer.Tests")]
 [assembly: InternalsVisibleTo("YarnLanguageServer.Tests")]
-[assembly: InternalsVisibleTo("Backend.Compiler")]
