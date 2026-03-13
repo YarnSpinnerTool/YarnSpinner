@@ -872,6 +872,33 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestEnumTypeBuilderCanBuildTypes()
+        {
+            // Given
+
+            var expectedEnumType = new EnumType("MyEnum", "Test Enum", (TypeBase)Types.String);
+            expectedEnumType.AddMember("One", new ConstantTypeProperty(Types.String, "one", "first case"));
+            expectedEnumType.AddMember("Two", new ConstantTypeProperty(Types.String, "two", "second case"));
+            expectedEnumType.AddMember("Three", new ConstantTypeProperty(Types.String, "three", "third case"));
+
+            var enumType = new EnumTypeBuilder()
+                .WithName("MyEnum")
+                .WithDescription("Test Enum")
+                .WithRawType(Types.String)
+                .WithCase("One", "one", "first case")
+                .WithCase("Two", "two", "second case")
+                .WithCase("Three", "three", "third case")
+                .EnumType;
+
+            // Then
+            enumType.Name.Should().Be(expectedEnumType.Name);
+            enumType.Description.Should().Be(expectedEnumType.Description);
+            enumType.RawType.Should().Be(expectedEnumType.RawType);
+
+            enumType.EnumCases.Should().BeEquivalentTo(expectedEnumType.EnumCases);
+        }
+
+        [Fact]
         public void TestSolverCanResolveConvertabilityConstraints()
         {
             var boolType = Types.Boolean;
