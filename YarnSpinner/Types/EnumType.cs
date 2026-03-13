@@ -46,7 +46,7 @@ namespace Yarn
         /// <param name="description">A string that describes this
         /// method.</param>
         /// <param name="rawType"></param>
-        public EnumType(string name, string description, TypeBase rawType)
+        internal EnumType(string name, string description, TypeBase rawType)
             : base(DefaultMethods)
         {
             this.name = name;
