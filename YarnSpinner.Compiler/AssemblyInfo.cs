@@ -6,3 +6,4 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyFileVersion("0.0.0.0")]
 
 [assembly: InternalsVisibleTo("YarnLanguageServer.Tests")]
+[assembly: InternalsVisibleTo("YarnSpinner.CompilerService")]

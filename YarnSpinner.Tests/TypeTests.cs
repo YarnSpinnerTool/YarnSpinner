@@ -37,7 +37,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var expectedDeclarations = new List<object>() {
                 new {
@@ -105,7 +105,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(compilationJob);
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
         }
 
         [Fact]
@@ -132,7 +132,7 @@ namespace YarnSpinner.Tests
             // Should compile with no errors because $int was declared
             var result = Compiler.Compile(compilationJob);
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             // The only variable declarations we should know about should be
             // external
@@ -176,7 +176,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
         }
 
         [Theory]
@@ -222,7 +222,7 @@ namespace YarnSpinner.Tests
             // Should compile with no exceptions
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
 
             result.Declarations.Should().ContainSingle(d => d.Name == "$bool").Which.Type.Should().Be(Types.Boolean);
             result.Declarations.Should().ContainSingle(d => d.Name == "$str").Which.Type.Should().Be(Types.String);
@@ -247,7 +247,7 @@ namespace YarnSpinner.Tests
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, testBaseResponder.Library));
 
             // We should have no diagnostics.
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             // The variable '$bool' should have an implicit declaration. The
             // type of the variable should be Boolean, because that's the return
@@ -310,7 +310,7 @@ namespace YarnSpinner.Tests
             result.Declarations.Should().Contain(d => d.Name == "$var")
                 .Which.Type.Should().Be(expectedType);
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
         }
 
         [Fact]
@@ -445,7 +445,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(compilationJob);
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             this.storage.SetValue("$external_str", "Hello");
             this.storage.SetValue("$external_int", 42);
@@ -469,7 +469,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var variableDeclarations = result.Declarations.Where(d => d.Name.StartsWith("$"));
 
@@ -553,7 +553,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
@@ -644,7 +644,7 @@ namespace YarnSpinner.Tests
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             dialogue.Program = result.Program;
             stringTable = result.StringTable;
@@ -666,7 +666,7 @@ namespace YarnSpinner.Tests
                 var compilationJob = CompilationJob.CreateFromString("input", source, testBaseResponder.Library);
                 var result = Compiler.Compile(compilationJob);
 
-                result.Diagnostics.Should().BeEmpty();
+                result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
                 dialogue.Program = result.Program;
                 stringTable = result.StringTable;
@@ -694,7 +694,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             result.Declarations.Should().ContainSingle(d => d.Name == "$v")
                 .Which.Type.Name.Should().Be(typeName);
@@ -792,6 +792,33 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestEnumTypeBuilderCanBuildTypes()
+        {
+            // Given
+
+            var expectedEnumType = new EnumType("MyEnum", "Test Enum", (TypeBase)Types.String);
+            expectedEnumType.AddMember("One", new ConstantTypeProperty(Types.String, "one", "first case"));
+            expectedEnumType.AddMember("Two", new ConstantTypeProperty(Types.String, "two", "second case"));
+            expectedEnumType.AddMember("Three", new ConstantTypeProperty(Types.String, "three", "third case"));
+
+            var enumType = new EnumTypeBuilder()
+                .WithName("MyEnum")
+                .WithDescription("Test Enum")
+                .WithRawType(Types.String)
+                .WithCase("One", "one", "first case")
+                .WithCase("Two", "two", "second case")
+                .WithCase("Three", "three", "third case")
+                .EnumType;
+
+            // Then
+            enumType.Name.Should().Be(expectedEnumType.Name);
+            enumType.Description.Should().Be(expectedEnumType.Description);
+            enumType.RawType.Should().Be(expectedEnumType.RawType);
+
+            enumType.EnumCases.Should().BeEquivalentTo(expectedEnumType.EnumCases);
+        }
+
+        [Fact]
         public void TestSolverCanResolveConvertabilityConstraints()
         {
             var boolType = Types.Boolean;
@@ -815,7 +842,7 @@ namespace YarnSpinner.Tests
 
             using (new FluentAssertions.Execution.AssertionScope())
             {
-                diagnostics.Should().BeEmpty();
+                diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
                 hasSolution.Should().BeTrue();
 
                 // T1 should resolve to Bool

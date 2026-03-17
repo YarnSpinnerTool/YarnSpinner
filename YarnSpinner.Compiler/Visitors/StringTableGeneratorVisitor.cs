@@ -90,7 +90,7 @@ namespace Yarn.Compiler
 
                 diagnosticContext = lineIDTag ?? (ParserRuleContext)context;
 
-                this.diagnostics.Add(new Diagnostic(fileName, diagnosticContext, $"Duplicate line ID {lineID}"));
+                this.diagnostics.Add(DiagnosticDescriptor.DuplicateLineID.Create(fileName, diagnosticContext, lineID));
 
                 return 0;
             }
@@ -106,13 +106,9 @@ namespace Yarn.Compiler
             // It's illegal for a shadow line to have an explicit line ID.
             if (shadowTag != null && lineIDTag != null)
             {
-                var message = "Lines cannot have both a '#line' tag and a '#shadow' tag.";
-
-                this.diagnostics.Add(new Diagnostic(
-                    fileName, shadowTag, message));
-
-                this.diagnostics.Add(new Diagnostic(
-                    fileName, lineIDTag, message));
+                // "Lines cannot have both a '#line' tag and a '#shadow' tag.";
+                this.diagnostics.Add(DiagnosticDescriptor.LinesCantHaveLineAndShadowTag.Create(fileName, shadowTag));
+                this.diagnostics.Add(DiagnosticDescriptor.LinesCantHaveLineAndShadowTag.Create(fileName, lineIDTag));
             }
 
             lineID = stringTableManager.RegisterString(

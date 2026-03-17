@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Debug Current Grammar",
             "input": "Test.yarn",
-            "grammar": "YarnSpinner.Compiler/YarnSpinnerParser.g4",
+            "grammar": "YarnSpinner.Compiler/Grammars/YarnSpinnerParser.g4",
              "visualParseTree": true,
             "printParseTree": true
         },

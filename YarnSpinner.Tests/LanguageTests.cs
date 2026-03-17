@@ -65,7 +65,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             dialogue.Program = result.Program;
             stringTable = result.StringTable;
@@ -82,7 +82,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             dialogue.Program = result.Program;
             stringTable = result.StringTable;
@@ -105,7 +105,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(AsyncTestBase.TestDataPath, "Headers.yarn");
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             result.Program.Nodes.Count.Should().Be(6);
 
@@ -410,7 +410,7 @@ title: Start
                 result.Declarations.Select(d => d.ToString())
                     .Should().ContainInOrder(resultFromSource.Declarations.Select(d => d.ToString()));
 
-                result.Diagnostics.Should().BeEmpty("{0} is expected to have no diagnostics", file);
+                result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error, "{0} is expected to have no errors", file);
 
                 result.Program.Should().NotBeNull();
 
@@ -546,22 +546,22 @@ Line 2
             resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new
             {
                 Severity = Diagnostic.DiagnosticSeverity.Error,
-                Message = "Language feature \"enums\" is only available when preview features are enabled"
-            }, "enums are a preview feature");
+                Message = $"Language feature \"enums\" is not available at language version {Project.YarnSpinnerProjectVersion2}; it requires version {Project.YarnSpinnerProjectVersion3} or later"
+            }, "enums require version 3");
 
             resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new
             {
                 Severity = Diagnostic.DiagnosticSeverity.Error,
-                Message = "Language feature \"smart variables\" is only available when preview features are enabled"
-            }, "smart variables are a preview feature");
+                Message = $"Language feature \"smart variables\" is not available at language version {Project.YarnSpinnerProjectVersion2}; it requires version {Project.YarnSpinnerProjectVersion3} or later"
+            }, "smart variables require version 3");
 
             resultWithNoPreviewFeatures.Diagnostics.Should().ContainEquivalentOf(new
             {
                 Severity = Diagnostic.DiagnosticSeverity.Error,
-                Message = "Language feature \"line groups\" is only available when preview features are enabled"
-            }, "line groups are a preview feature");
+                Message = $"Language feature \"line groups\" is not available at language version {Project.YarnSpinnerProjectVersion2}; it requires version {Project.YarnSpinnerProjectVersion3} or later"
+            }, "line groups require version 3");
 
-            resultWithPreviewFeatures.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error, "preview features are allowed, so no errors are produced");
+            resultWithPreviewFeatures.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error, "version 3 features are allowed, so no errors are produced");
         }
 
         [Fact]

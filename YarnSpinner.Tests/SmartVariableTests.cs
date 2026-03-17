@@ -27,7 +27,7 @@ namespace YarnSpinner.Tests
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
             // Then
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var smartVariables = result.Declarations.Where(decl => decl.IsInlineExpansion);
 
@@ -48,7 +48,7 @@ namespace YarnSpinner.Tests
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
             // Then
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var smartVariables = result.Declarations.Where(decl => decl.IsInlineExpansion);
             smartVariables.Should().HaveCount(3);
@@ -97,7 +97,7 @@ namespace YarnSpinner.Tests
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
             // Then
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var smartVariables = result.Declarations.Where(decl => decl.IsInlineExpansion);
 

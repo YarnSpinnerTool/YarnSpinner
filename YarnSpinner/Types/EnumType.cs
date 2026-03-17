@@ -33,9 +33,9 @@ namespace Yarn
     /// </summary>
     public class EnumType : TypeBase
     {
-        private readonly string name;
-        private readonly string description;
-        private readonly TypeBase rawType;
+        private string name;
+        private string description;
+        private TypeBase rawType;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EnumType"/> class that
@@ -46,7 +46,8 @@ namespace Yarn
         /// <param name="description">A string that describes this
         /// method.</param>
         /// <param name="rawType"></param>
-        public EnumType(string name, string description, TypeBase rawType): base(null)
+        internal EnumType(string name, string description, TypeBase rawType)
+            : base(DefaultMethods)
         {
             this.name = name;
             this.description = description;
@@ -112,6 +113,22 @@ namespace Yarn
         internal void AddMember(string name, ConstantTypeProperty member)
         {
             this._typeMembers.Add(name, member);
+        }
+
+        internal void SetName(string name) => this.name = name;
+        internal void SetDescription(string description) => this.description = description;
+        internal void SetRawType(TypeBase rawType) => this.rawType = rawType;
+
+        private static bool MethodEqualTo(Value a, Value b)
+        {
+            if (a.InternalValue is string)
+            {
+                return a.ConvertTo<string>() == b.ConvertTo<string>();
+            }
+            else
+            {
+                return a.ConvertTo<int>() == b.ConvertTo<int>();
+            }
         }
     }
 }

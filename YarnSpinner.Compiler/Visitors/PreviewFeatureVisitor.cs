@@ -16,12 +16,12 @@ namespace Yarn.Compiler
 
         private void AddLanguageFeatureError(ParserRuleContext context, string featureType)
         {
-            AddError(context, $"Language feature \"{featureType}\" is only available when preview features are enabled");
+            AddError(context, $"Language feature \"{featureType}\" is not available at language version {LanguageVersion}; it requires version {Project.YarnSpinnerProjectVersion3} or later");
         }
 
         private void AddError(ParserRuleContext context, string message)
         {
-            var d = new Diagnostic(File.Name, context, message, Diagnostic.DiagnosticSeverity.Error);
+            var d = DiagnosticDescriptor.LanguageVersionTooLow.Create(File.Name, context, message);
             this.Diagnostics.Add(d);
         }
 
@@ -80,14 +80,15 @@ namespace Yarn.Compiler
             return base.VisitOnce_statement(context);
         }
 
-        public override int VisitWhen_header([NotNull] YarnSpinnerParser.When_headerContext context)
-        {
-            if (LanguageVersion < Project.YarnSpinnerProjectVersion3)
-            {
-                AddLanguageFeatureError(context, "'when' headers");
-            }
-
-            return base.VisitWhen_header(context);
-        }
+        // "when" headers are not a preview feature - they are standard
+        // public override int VisitWhen_header([NotNull] YarnSpinnerParser.When_headerContext context)
+        // {
+        //     if (LanguageVersion < Project.YarnSpinnerProjectVersion3)
+        //     {
+        //         AddLanguageFeatureError(context, "'when' headers");
+        //     }
+        //
+        //     return base.VisitWhen_header(context);
+        // }
     }
 }

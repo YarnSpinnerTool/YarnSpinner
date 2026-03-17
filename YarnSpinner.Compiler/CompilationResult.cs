@@ -188,5 +188,11 @@ namespace Yarn.Compiler
         /// </summary>
         public IEnumerable<FileParseResult> ParseResults { get; internal set; } = Array.Empty<FileParseResult>();
 
+        /// <summary>
+        /// contains metadata about all nodes extracted during compilation for use by language server features
+        /// includes information about jumps, function calls, commands, variables, character names, tags, and structural information
+        /// </summary>
+        public IEnumerable<NodeMetadata> NodeMetadata { get; internal set; } = Array.Empty<NodeMetadata>();
+
     }
 }

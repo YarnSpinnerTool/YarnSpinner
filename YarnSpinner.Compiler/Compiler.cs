@@ -141,9 +141,7 @@ namespace Yarn.Compiler
                 if (stringTableManager.LineContexts.TryGetValue(shadowLineID, out var sourceLineContext) == false)
                 {
                     // No source line found
-                    diagnostics.Add(new Diagnostic(
-                        sourceFile, shadowLineContext, $"\"{shadowLineID}\" is not a known line ID."
-                    ));
+                    diagnostics.Add(DiagnosticDescriptor.UnknownLineIDForShadowLine.Create(sourceFile, shadowLineContext, shadowLineID));
                     continue;
                 }
 
@@ -160,17 +158,15 @@ namespace Yarn.Compiler
                 if (sourceContext.line_formatted_text().expression().Length > 0)
                 {
                     // Lines must not have inline expressions
-                    diagnostics.Add(new Diagnostic(
-                        sourceFile, shadowLineContext, $"Shadow lines must not have expressions"
-                    ));
+                    diagnostics.Add(DiagnosticDescriptor.ShadowLinesCantHaveExpressions.Create(sourceFile, shadowLineContext));
                 }
 
                 if (sourceText.Equals(shadowText, StringComparison.CurrentCulture) == false)
                 {
                     // Lines must be identical
-                    diagnostics.Add(new Diagnostic(
-                        sourceFile, shadowLineContext, $"Shadow lines must have the same text as their source lines"
-                    ));
+                    diagnostics.Add(
+                        DiagnosticDescriptor.ShadowLinesMustHaveSameTextAsSource.Create(sourceFile, shadowLineContext)
+                    );
                 }
 
                 // The shadow line is valid. Strip the text from its StringInfo,
@@ -197,6 +193,32 @@ namespace Yarn.Compiler
                 nodeGroupVisitor.Visit(file.Tree);
             }
 
+            // extract node metadata for language server features
+            // this includes jumps, function calls, commands, variables, character names, tags, and structural info
+            var nodeMetadata = new List<NodeMetadata>();
+            foreach (var file in parsedFiles)
+            {
+                if (file.Tree.Payload is YarnSpinnerParser.DialogueContext dialogueContext)
+                {
+                    var metadata = NodeMetadataVisitor.Extract(file.Name, dialogueContext);
+                    nodeMetadata.AddRange(metadata);
+                }
+            }
+
+            // validate jump targets - YS0002: warn about jumps to non-existent nodes
+            var allNodeTitles = new HashSet<string>(nodeMetadata.Select(n => n.Title));
+            foreach (var node in nodeMetadata)
+            {
+                foreach (var jump in node.Jumps)
+                {
+                    if (!string.IsNullOrWhiteSpace(jump.DestinationTitle) && !allNodeTitles.Contains(jump.DestinationTitle))
+                    {
+                        // Use the jump's precise range for accurate error highlighting
+                        diagnostics.Add(DiagnosticDescriptor.UndefinedNode.Create(jump.Uri, jump.Range, jump.DestinationTitle));
+                    }
+                }
+            }
+
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
             {
                 // Stop at this point
@@ -208,6 +230,7 @@ namespace Yarn.Compiler
                     StringTable = stringTableManager.StringTable,
                     Diagnostics = diagnostics,
                     ParseResults = parsedFiles,
+                    NodeMetadata = nodeMetadata,
                 };
             }
 
@@ -226,6 +249,8 @@ namespace Yarn.Compiler
             var failingConstraints = new HashSet<TypeConstraint>();
 
             var walker = new Antlr4.Runtime.Tree.ParseTreeWalker();
+
+            // Type check all files
             foreach (var parsedFile in parsedFiles)
             {
                 compilationJob.CancellationToken.ThrowIfCancellationRequested();
@@ -241,6 +266,25 @@ namespace Yarn.Compiler
                 typeSolution = typeCheckerListener.TypeSolution;
 
                 failingConstraints = new HashSet<TypeConstraint>(TypeCheckerListener.ApplySolution(typeSolution, failingConstraints));
+            }
+
+            // Validate syntax patterns (stray >>, unenclosed commands, line content after commands)
+            foreach (var parsedFile in parsedFiles)
+            {
+                compilationJob.CancellationToken.ThrowIfCancellationRequested();
+
+                var syntaxValidator = new SyntaxValidationListener(parsedFile.Name, parsedFile.Tokens);
+                walker.Walk(syntaxValidator, parsedFile.Tree);
+                diagnostics.AddRange(syntaxValidator.Diagnostics);
+            }
+
+            // After all files are type-checked, check for variables that are still implicitly declared
+            // (i.e., were used but never had a <<declare>> statement in any file)
+            // YS0003: Variable used without being declared
+            // Only warn about variables, not functions (functions can be implicitly declared)
+            foreach (var declaration in declarations.Where(d => d.IsImplicit && d.IsVariable))
+            {
+                diagnostics.Add(DiagnosticDescriptor.UndefinedVariable.Create(declaration.SourceFileName, declaration.Range, declaration.Name));
             }
 
             if (failingConstraints.Count > 0)
@@ -271,7 +315,7 @@ namespace Yarn.Compiler
                         // diagnostics for the affected expressions.
                         foreach (var constraint in failingConstraints)
                         {
-                            diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceContext, $"Expression failed to resolve in a reasonable time ({TypeSolverTimeLimit}). Try simplifying this expression."));
+                            diagnostics.Add(DiagnosticDescriptor.TypeSolverTimeout.Create(constraint.SourceFileName, constraint.SourceContext, TypeSolverTimeLimit.ToString()));
                         }
                         break;
                     }
@@ -296,7 +340,7 @@ namespace Yarn.Compiler
                 {
                     foreach (var failureMessage in constraint.GetFailureMessages(typeSolution))
                     {
-                        diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceRange, failureMessage));
+                        diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceRange, failureMessage) { Code = DiagnosticDescriptor.TypeMismatch.Code });
                     }
                 }
                 watchdog.Stop();
@@ -356,7 +400,7 @@ namespace Yarn.Compiler
                 {
                     var suggestion = decl.Name.StartsWith("$") ? $" For example: <<declare {decl.Name} = (initial value) >>" : string.Empty;
 
-                    diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.Range, $"Can't determine type of {decl.Name} given its usage. Manually specify its type with a declare statement.{suggestion}"));
+                    diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.Range, $"Can't determine type of {decl.Name} given its usage. Manually specify its type with a declare statement.{suggestion}") { Code = DiagnosticDescriptor.TypeInferenceFailure.Code });
 
                     decl.Type = Types.Error;
                 }
@@ -392,7 +436,7 @@ namespace Yarn.Compiler
                             // Compile error!
                             if (typedContext is ParserRuleContext parserRuleContext)
                             {
-                                diagnostics.Add(new Diagnostic(parsedFile.Name, parserRuleContext, $"Can't determine the type of this expression."));
+                                diagnostics.Add(DiagnosticDescriptor.ExpressionTypeUndetermined.Create(parsedFile.Name, parserRuleContext));
                             }
                             else
                             {
@@ -467,6 +511,7 @@ namespace Yarn.Compiler
                     Diagnostics = diagnostics,
                     UserDefinedTypes = userDefinedTypes,
                     ParseResults = parsedFiles,
+                    NodeMetadata = nodeMetadata,
                 };
             }
 
@@ -576,7 +621,7 @@ namespace Yarn.Compiler
 
                 if (declaration.DefaultValue == null)
                 {
-                    diagnostics.Add(new Diagnostic($"Variable declaration {declaration.Name} (type {declaration.Type?.Name ?? "undefined"}) has a null default value. This is not allowed."));
+                    diagnostics.Add(DiagnosticDescriptor.NullDefaultValue.Create("(unknown)", declaration.Name, declaration.Type?.Name ?? "undefined"));
                     continue;
                 }
 
@@ -637,6 +682,7 @@ namespace Yarn.Compiler
                 ProjectDebugInfo = projectDebugInfo,
                 UserDefinedTypes = userDefinedTypes,
                 ParseResults = parsedFiles,
+                NodeMetadata = nodeMetadata,
             };
 
             return finalResult;
@@ -681,7 +727,8 @@ namespace Yarn.Compiler
                                 file.Name,
                                 setStatement.variable(),
                                 $"{variableName} cannot be modified (it's a smart variable and is always equal to " +
-                                $"{smartVariables[variableName]?.InitialValueParserContext?.GetTextWithWhitespace() ?? "(unknown)"})"));
+                                $"{smartVariables[variableName]?.InitialValueParserContext?.GetTextWithWhitespace() ?? "(unknown)"})")
+                                { Code = DiagnosticDescriptor.SmartVariableReadOnly.Code });
                         }
                     }
                 });
@@ -758,7 +805,7 @@ namespace Yarn.Compiler
 
             foreach (var node in nodesWithIllegalTitleCharacters)
             {
-                diagnostics.Add(new Diagnostic(node.File.Name, node.TitleHeader, $"The node '{node.Name}' contains illegal characters."));
+                diagnostics.Add(DiagnosticDescriptor.InvalidNodeName.Create(node.File.Name, node.TitleHeader, "title", node.Name));
             }
 
             var nodesByTitle = nodesWithNames.GroupBy(n => n.Name);
@@ -790,7 +837,7 @@ namespace Yarn.Compiler
                         // don't. Create errors for these others.
                         foreach (var entry in group.Where(n => n.Node.GetWhenHeaders().Any() == false))
                         {
-                            var d = new Diagnostic(entry.File.Name, entry.TitleHeader, $"All nodes in the group '{entry.Node.NodeTitle}' must have a 'when' clause (use 'when: always' if you want this node to not have any conditions)");
+                            var d = DiagnosticDescriptor.NodeGroupMissingWhen.Create(entry.File.Name, entry.TitleHeader, entry.Node.NodeTitle);
                             diagnostics.Add(d);
                         }
                     }
@@ -816,7 +863,7 @@ namespace Yarn.Compiler
                         {
                             foreach (var entry in group)
                             {
-                                var d = new Diagnostic(entry.File.Name, entry.Node.GetHeader("subtitle"), $"More than one node in group {entry.Name} has subtitle {subtitle}");
+                                var d = DiagnosticDescriptor.DuplicateSubtitle.Create(entry.File.Name, entry.Node.GetHeader("subtitle"), entry.Name, subtitle);
                                 diagnostics.Add(d);
                             }
                         }
@@ -824,7 +871,7 @@ namespace Yarn.Compiler
                         {
                             foreach (var entry in group)
                             {
-                                diagnostics.Add(new Diagnostic(entry.File.Name, entry.Node.GetHeader("subtitle"), $"The node subtitle '{subtitle}' contains illegal characters."));
+                                diagnostics.Add(DiagnosticDescriptor.InvalidNodeName.Create(entry.File.Name, entry.Node.GetHeader("subtitle"), "subtitle", subtitle));
                             }
                         }
                     }
@@ -835,7 +882,7 @@ namespace Yarn.Compiler
                 // More than one node has this name! Report an error on both.
                 foreach (var entry in group)
                 {
-                    var d = new Diagnostic(entry.File.Name, entry.TitleHeader, $"More than one node is named {entry.Name}");
+                    var d = new Diagnostic(entry.File.Name, entry.TitleHeader, $"More than one node is named {entry.Name}") { Code = DiagnosticDescriptor.DuplicateNodeTitle.Code };
                     diagnostics.Add(d);
                 }
             }
@@ -845,11 +892,11 @@ namespace Yarn.Compiler
             {
                 if (node.Node.NodeTitle == null)
                 {
-                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.body(), $"Nodes must have a title"));
+                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.body(), $"Nodes must have a title") { Code = DiagnosticDescriptor.DuplicateNodeTitle.Code });
                 }
                 if (node.Node.title_header().Length > 1)
                 {
-                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.title_header()[1], $"Nodes must have a single title node"));
+                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.title_header()[1], $"Nodes must have a single title node") { Code = DiagnosticDescriptor.DuplicateNodeTitle.Code });
                 }
             }
         }
@@ -871,7 +918,7 @@ namespace Yarn.Compiler
             foreach (var entry in empties)
             {
                 var title = entry.Node.NodeTitle;
-                var d = new Diagnostic(entry.File.Name, entry.Node, $"Node \"{title ?? "(missing title)"}\" is empty and will not be included in the compiled output.", Diagnostic.DiagnosticSeverity.Warning);
+                var d = DiagnosticDescriptor.EmptyNode.Create(entry.File.Name, entry.Node, title ?? "(missing title)");
                 diagnostics.Add(d);
                 if (title != null)
                 {
@@ -1287,8 +1334,13 @@ namespace Yarn.Compiler
         /// <param name="context">An expression.</param>
         /// <returns>The total number of binary boolean operations in the
         /// expression.</returns>
-        private static int GetBooleanOperatorCountInExpression(ParserRuleContext context)
+        private static int GetBooleanOperatorCountInExpression(ParserRuleContext? context)
         {
+            if (context == null)
+            {
+                return 0;
+            }
+
             var subtreeCount = 0;
 
             if (context is ExpAndOrXorContext)
@@ -1297,11 +1349,14 @@ namespace Yarn.Compiler
                 subtreeCount += 1;
             }
 
-            foreach (var child in context.children)
+            if (context.children != null)
             {
-                if (child is ParserRuleContext childContext)
+                foreach (var child in context.children)
                 {
-                    subtreeCount += GetBooleanOperatorCountInExpression(childContext);
+                    if (child is ParserRuleContext childContext)
+                    {
+                        subtreeCount += GetBooleanOperatorCountInExpression(childContext);
+                    }
                 }
             }
 
@@ -1369,8 +1424,8 @@ namespace Yarn.Compiler
         /// <inheritdoc/>
         public partial class When_headerContext
         {
-            internal bool IsOnce => this.header_expression.once != null;
-            internal bool IsAlways => this.header_expression.always != null;
+            internal bool IsOnce => this.header_expression?.once != null;
+            internal bool IsAlways => this.header_expression?.always != null;
 
             /// <summary>
             /// Gets the complexity of this line's condition.
@@ -1379,6 +1434,12 @@ namespace Yarn.Compiler
             {
                 get
                 {
+                    // If header_expression is null (malformed when: header), treat as no complexity
+                    if (this.header_expression == null)
+                    {
+                        return 0;
+                    }
+
                     if (IsAlways)
                     {
                         // This header is a 'when: always' header - it has a complexity of 0

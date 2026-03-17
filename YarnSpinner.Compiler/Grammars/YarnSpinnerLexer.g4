@@ -125,6 +125,8 @@ EXPRESSION_START: '{' -> pushMode(TextMode), pushMode(ExpressionMode);
 // which will attempt to match a valid escape character and fail because the \ has been eaten
 ESCAPED_BRACKET_START: '\\[' -> type(TEXT), pushMode(TextMode) ;
 
+ESCAPED_SPEAKER_START: '\\:' -> type(TEXT), pushMode(TextMode) ;
+
 // Any other text means this is a Line. Lex this first character as
 // TEXT, and enter TextMode.
 //
@@ -147,6 +149,8 @@ TEXT_NEWLINE: NEWLINE -> type(NEWLINE), popMode;
 // directly through, so we'll match this and report it as TEXT before
 // matching the more general 'escaped character' rule.
 TEXT_ESCAPED_MARKUP_BRACKET: ('\\[' | '\\]') -> type(TEXT);
+
+TEXT_ESCAPED_SPEAKER: '\\:' -> type(TEXT);
 
 // An escape marker. Hide this token and enter escaped text mode, which 
 // allows escaping characters that would otherwise be syntactically 

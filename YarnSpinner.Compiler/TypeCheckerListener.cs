@@ -217,9 +217,9 @@ namespace Yarn.Compiler
 
         private readonly Dictionary<string, Declaration> declarationLookup = new Dictionary<string, Declaration>();
 
-        private void AddDiagnostic(ParserRuleContext context, string message, Diagnostic.DiagnosticSeverity severity = Diagnostic.DiagnosticSeverity.Error)
+        private void AddDiagnostic(DiagnosticDescriptor descriptor, ParserRuleContext context, params string[] args)
         {
-            this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message, severity));
+            this.diagnostics.Add(descriptor.Create(this.sourceFileName, context, args));
         }
 
         private TypeEqualityConstraint AddEqualityConstraint(IType a, IType b, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
@@ -355,7 +355,7 @@ namespace Yarn.Compiler
             // this name? It's an error if we do.
             if (declaration != null && declaration.IsImplicit == false)
             {
-                this.AddDiagnostic(context, $"Redeclaration of existing variable {name}");
+                this.AddDiagnostic(DiagnosticDescriptor.RedeclarationOfExistingVariable, context, name ?? "unknown");
                 return;
             }
 
@@ -544,13 +544,21 @@ namespace Yarn.Compiler
                     Name = name,
                     Type = typeVariable,
                     Description = $"Implicitly declared in {this.sourceFileName}, node {this.currentNodeName}",
-                    Range = GetRange(context),
+                    // Use the variable token's position directly to avoid issues with
+                    // error recovery affecting the context's range
+                    Range = Utility.GetRange(variableID.Symbol, variableID.Symbol),
                     IsImplicit = true,
                     IsInlineExpansion = false,
                     SourceFileName = this.sourceFileName,
                     SourceNodeName = this.currentNodeName,
                 };
                 this.AddDeclaration(declaration);
+
+                // NOTE: We don't emit YS0001 (implicit variable type conflict) here because this
+                // variable might be explicitly declared in a different file that hasn't been
+                // type-checked yet. YS0001 indicates that a variable has been implicitly declared
+                // with multiple conflicting types across different files or contexts. We check for
+                // these conflicts after all files are processed and emit warnings then.
             }
 
             context.Type = declaration.Type;
@@ -757,12 +765,19 @@ namespace Yarn.Compiler
                 var expectedEnglishPlural = expectedParameters != 1;
                 var actualEnglishPlural = actualParameters != 1;
 
-                string message = $"{functionName} expects {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, not {actualParameters}";
-                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
+                // If the function declaration is implicit, give a message here
+                // that hedges a bit - we don't know if _this_ call is the
+                // incorrect one.
+                if (functionDecl.IsImplicit)
+                {
+                    message = $"{functionName} was called elsewhere with {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, but is called with {actualParameters} {(actualEnglishPlural ? "parameters" : "parameter")} here";
+                }
+                else
+                {
+                    message = $"{functionName} expects {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, not {actualParameters}";
+                }
 
-                // at this point there is no point in attempting to validate them
-                base.ExitFunction_call(context);
-                return;
+                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message) { Code = DiagnosticDescriptor.InvalidFunctionCall.Code });
             }
 
             context.Type = this.GenerateTypeVariable(null, context);
@@ -778,7 +793,7 @@ namespace Yarn.Compiler
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, parameterExpression, "Unexpected parameter in call to function " + functionName ?? "<unknown>"));
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, parameterExpression, "Unexpected parameter in call to function " + functionName ?? "<unknown>") { Code = DiagnosticDescriptor.InvalidFunctionCall.Code });
                 }
             }
 
@@ -853,7 +868,7 @@ namespace Yarn.Compiler
             {
                 // If we're here, we've somehow generated the same 'once'
                 // variable for more than one piece of content.
-                this.AddDiagnostic(context, $"Internal error: redeclaration of existing 'once' variable {onceVariableName}");
+                this.AddDiagnostic(DiagnosticDescriptor.InternalError, context, $"Redeclaration of existing 'once' variable {onceVariableName}");
             }
         }
 
@@ -915,7 +930,7 @@ namespace Yarn.Compiler
             {
                 // There is! That's not allowed. Issue a diagnostic and return
                 // without registering the new type.
-                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"Cannot declare new enum {context.name.Text}: a type with this name already exists"));
+                this.diagnostics.Add(DiagnosticDescriptor.EnumDeclarationError.Create(this.sourceFileName, context, $"Cannot declare new enum {context.name.Text}: a type with this name already exists"));
                 return;
             }
 
@@ -973,7 +988,7 @@ namespace Yarn.Compiler
 
                 // Issue a diagnostic and return without registering the new
                 // type.
-                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context.name, $"Enum member raw values may only be of a single type (they can't be a combination of {string.Join(" and ", allRawTypes)})"));
+                this.diagnostics.Add(DiagnosticDescriptor.EnumDeclarationError.Create(this.sourceFileName, context.name, $"Enum member raw values may only be of a single type (they can't be a combination of {string.Join(" and ", allRawTypes)})"));
                 return;
             }
             else if (allRawTypes.Count() == 1)
@@ -1005,7 +1020,7 @@ namespace Yarn.Compiler
                     // The type is not one of our allowed ones! That's not
                     // allowed. Generate a diagnostic and return without
                     // registering the type.
-                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"Enum raw values must be {string.Join(" or ", (IEnumerable<TypeBase?>)permittedRawTypes)}, not {rawType}"));
+                    this.diagnostics.Add(DiagnosticDescriptor.EnumDeclarationError.Create(this.sourceFileName, context, $"Enum raw values must be {string.Join(" or ", (IEnumerable<TypeBase?>)permittedRawTypes)}, not {rawType}"));
                     return;
                 }
 
@@ -1023,7 +1038,7 @@ namespace Yarn.Compiler
                     // value and return without registering the type.
                     foreach (var @case in casesMissingValues)
                     {
-                        this.diagnostics.Add(new Diagnostic(this.sourceFileName, @case, $"Enum case {@case.name.Text} must also have a raw value (if any cases have a value, then they all must have one)"));
+                        this.diagnostics.Add(DiagnosticDescriptor.EnumDeclarationError.Create(this.sourceFileName, @case, $"Enum case {@case.name.Text} must also have a raw value (if any cases have a value, then they all must have one)"));
                     }
 
                     return;
@@ -1043,7 +1058,7 @@ namespace Yarn.Compiler
                         anyDuplicateValues = true;
                         foreach (var duplicateCase in group)
                         {
-                            this.diagnostics.Add(new Diagnostic(this.sourceFileName, duplicateCase, $"Enum case {@duplicateCase.name.Text} must have a unique raw value ({duplicateCase.RawValue?.InternalValue} is used by {group.Count() - 1} other case(s).)"));
+                            this.diagnostics.Add(DiagnosticDescriptor.EnumDeclarationError.Create(this.sourceFileName, duplicateCase, $"Enum case {@duplicateCase.name.Text} must have a unique raw value ({duplicateCase.RawValue?.InternalValue} is used by {group.Count() - 1} other case(s).)"));
                         }
                     }
                 }
@@ -1064,7 +1079,7 @@ namespace Yarn.Compiler
                         if ((int)(number) != number)
                         {
                             // Not an integer!
-                            this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"Number raw values on enum cases must be integers"));
+                            this.diagnostics.Add(DiagnosticDescriptor.EnumDeclarationError.Create(this.sourceFileName, context, $"Number raw values on enum cases must be integers"));
                         }
                     }
                 }
@@ -1091,7 +1106,7 @@ namespace Yarn.Compiler
                     // one
                     foreach (var duplicateCase in group.Skip(1))
                     {
-                        this.diagnostics.Add(new Diagnostic(this.sourceFileName, duplicateCase, $"Enum case {@duplicateCase.name.Text} must have a unique name."));
+                        this.diagnostics.Add(DiagnosticDescriptor.EnumDeclarationError.Create(this.sourceFileName, duplicateCase, $"Enum case {@duplicateCase.name.Text} must have a unique name."));
                     }
                 }
             }
@@ -1302,19 +1317,19 @@ namespace Yarn.Compiler
 
                         if (!(type is TypeBase actualType))
                         {
-                            diagnostics.Add(new Diagnostic(decl.SourceFileName, valueContext.value(), $"Can't determine the type of {valueContext.value().GetTextWithWhitespace()}"));
+                            diagnostics.Add(DiagnosticDescriptor.InvalidMemberAccess.Create(decl.SourceFileName, valueContext.value(), $"Can't determine the type of {valueContext.value().GetTextWithWhitespace()}"));
                             continue;
                         }
 
                         if (!actualType.TypeMembers.TryGetValue(memberName, out var member))
                         {
-                            diagnostics.Add(new Diagnostic(decl.SourceFileName, valueContext.value(), $"{actualType.Name} doesn't have a member named {memberName}"));
+                            diagnostics.Add(DiagnosticDescriptor.InvalidMemberAccess.Create(decl.SourceFileName, valueContext.value(), $"{actualType.Name} doesn't have a member named {memberName}"));
                             continue;
                         }
 
                         if (!(member is ConstantTypeProperty property))
                         {
-                            diagnostics.Add(new Diagnostic(decl.SourceFileName, valueContext.value(), $"{actualType.Name}.{memberName} is not a constant property"));
+                            diagnostics.Add(DiagnosticDescriptor.InvalidMemberAccess.Create(decl.SourceFileName, valueContext.value(), $"{actualType.Name}.{memberName} is not a constant property"));
                             continue;
                         }
 
@@ -1409,7 +1424,7 @@ namespace Yarn.Compiler
                         if (seenDecls.Any(i => i.decl == dependencyDecl && i.level != level))
                         {
                             // We've found a dependency loop!
-                            loopError = new Diagnostic(startDecl.SourceFileName, variable, $"Smart variables cannot contain reference loops (referencing {variable.GetTextWithWhitespace()} here creates a loop for the smart variable {startDecl.Name})");
+                            loopError = DiagnosticDescriptor.SmartVariableLoop.Create(startDecl.SourceFileName, variable, variable.GetTextWithWhitespace(), startDecl.Name);
                             return Enumerable.Empty<Declaration>();
                         }
 
@@ -1434,15 +1449,18 @@ namespace Yarn.Compiler
                     }
                 }
 
-                // Add all children to the search.
-                var childContexts = item.children
-                    .Where(tree => tree.Payload is ParserRuleContext)
-                    .Select(tree => tree.Payload as ParserRuleContext)
-                    .NotNull();
-
-                foreach (var child in childContexts)
+                // Add all children to the search (if there are any).
+                if (item.children != null)
                 {
-                    searchStack.Push((child, level + 1));
+                    var childContexts = item.children
+                        .Where(tree => tree.Payload is ParserRuleContext)
+                        .Select(tree => tree.Payload as ParserRuleContext)
+                        .NotNull();
+
+                    foreach (var child in childContexts)
+                    {
+                        searchStack.Push((child, level + 1));
+                    }
                 }
             }
 

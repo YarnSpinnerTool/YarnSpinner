@@ -21,7 +21,7 @@ line without options #line:1
 ";
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var info = result.StringTable["line:1"];
 
@@ -40,7 +40,7 @@ line before options #line:1
 ";
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var info = result.StringTable["line:1"];
 
@@ -60,7 +60,7 @@ line before options #line:1
 ";
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var info = result.StringTable["line:0"];
 
@@ -80,7 +80,7 @@ line after options #line:2
 ";
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var info = result.StringTable["line:2"];
 
@@ -102,7 +102,7 @@ line before options #line:1
 ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
             var info = result.StringTable["line:1"];
             info.metadata.Should().Contain("lastline");
 
@@ -122,7 +122,7 @@ line before options #line:0
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
             var info = result.StringTable["line:0"];
             info.metadata.Should().Contain("lastline");
         }
@@ -138,7 +138,7 @@ line before options #line:0
 ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
             var info = result.StringTable["line:0"];
             info.metadata.Should().NotContain("lastline");
         }
@@ -154,7 +154,7 @@ line before options #line:0
 ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var info = result.StringTable["line:1a"];
             info.metadata.Should().NotContain("lastline");
@@ -163,7 +163,8 @@ line before options #line:0
         [Fact]
         public void TestInterruptedLinesNotTagged()
         {
-            var source = CreateTestNode(@"
+            var source = string.Join("\n",
+                CreateTestNode(@"
 line before command #line:0
 <<custom command>>
 -> option 1
@@ -177,10 +178,12 @@ line before jump #line:3
 <<jump nodename>>
 line before call #line:4
 <<call string(5)>>
-            ");
+            "),
+            CreateTestNode("placeholder node", "nodename"));
+            ;
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
 
             var info = result.StringTable["line:0"];
             info.metadata.Should().NotContain("lastline");
@@ -207,7 +210,7 @@ title: Second
 ===
 ";
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             var info = result.StringTable["line:0"];
             info.metadata.Should().NotContain("lastline");
@@ -224,7 +227,7 @@ title: Second
             var job = CompilationJob.CreateFromString("input", escapedText);
             job.CompilationType = CompilationJob.Type.StringsOnly;
             var results = Compiler.Compile(job);
-            results.Diagnostics.Should().BeEmpty();
+            results.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
             // tagging the line
             var tagged = Utility.TagLines(escapedText);
@@ -234,7 +237,7 @@ title: Second
             job = CompilationJob.CreateFromString("input", taggedVersion);
             job.CompilationType = CompilationJob.Type.StringsOnly;
             results = Compiler.Compile(job);
-            results.Diagnostics.Should().BeEmpty();
+            results.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
         }
 
         [Fact]

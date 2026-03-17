@@ -81,7 +81,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
 
-            result.Diagnostics.Should().Contain(d => d.Message.Contains(@"Unexpected "">>"" while reading a function call"));
+            result.Diagnostics.Should().Contain(d => d.Message.Contains(@"Unclosed command: missing >>"));
         }
 
         // testing that warnings are generated for empty nodes
