@@ -1509,13 +1509,13 @@ namespace Yarn.Markup
                 // replace it with markup that indicates the character name.
                 input = implicitCharacterRegex.Replace(
                     input,
-                    (match) => $"[character name=\"{match.Groups[0]}\"]{match.Value}[/character]"
+                    (match) => $"[character name=\"{match.Groups[1]}\"]{match.Value}[/character]"
                 );
             }
 
             // now need to replace any instance of \: with just :
             // is it worth making it so that unnecesary escaping is a warning?
-            input = input.Replace("\\:", ":");
+            input = input.Replace("\\:", ":", StringComparison.InvariantCulture);
 
             var tokens = LexMarkup(input);
             var parseResult = BuildMarkupTreeFromTokens(tokens, input);

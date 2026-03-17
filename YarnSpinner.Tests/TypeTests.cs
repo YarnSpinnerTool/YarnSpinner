@@ -328,6 +328,7 @@ namespace YarnSpinner.Tests
             testBaseResponder.Library.delegates["func_invalid_return"] = () => { new List<int> {0,1}; };
 
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
+            testBaseResponder.OnReceivedNodeStart = (node, token) => { return default; };
             dialogue.Program = result.Program;
             
             // now if we attempt to run it it should throw when it hits the function
@@ -357,6 +358,7 @@ namespace YarnSpinner.Tests
             testBaseResponder.Library.delegates["func_invalid_param"] = (List<int> listOfInts) => { return true; };
 
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
+            testBaseResponder.OnReceivedNodeStart = (node, token) => { return default; };
             dialogue.Program = result.Program;
 
             // now if we attempt to run it it should throw when it hits the function

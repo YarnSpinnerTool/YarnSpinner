@@ -192,7 +192,8 @@ namespace YarnSpinner.Tests
             stringTable = result.StringTable;
 
             bool prepareForLinesWasCalled = false;
-
+            
+            testBaseResponder.OnReceivedNodeStart = (node, token) => { return default; };
             testBaseResponder.OnPrepareForLines = (lines, token) =>
             {
                 // When the Dialogue realises it's about to run the Start

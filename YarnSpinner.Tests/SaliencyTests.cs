@@ -163,6 +163,7 @@ expected: 2
             mockSaliencyStrategy.Setup(
                 (s) => s.ContentWasSelected(It.IsAny<ContentSaliencyOption>()));
 
+            testBaseResponder.OnReceivedNodeStart = (node, token) => { return default; };
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
             testBaseResponder.Library.RegisterFunction("demo_function", (bool a) => { return true; });
 
@@ -245,6 +246,7 @@ when: always
 ";
 
             // When
+            testBaseResponder.OnReceivedNodeStart = (node, token) => { return default; };
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
             var result = await CompileAndPrepareDialogue(source, "NodeGroup");
             dialogue.VariableStorage.SetValue("$condition1", true);
@@ -277,6 +279,7 @@ This content is only seen once.
 ===
 ";
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
+            testBaseResponder.OnReceivedNodeStart = (node, token) => { return default; };
             await CompileAndPrepareDialogue(source);
 
             this.dialogue.ContentSaliencyStrategy = new FirstSaliencyStrategy();
@@ -316,6 +319,7 @@ This node is not part of a node group.
 ";
 
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
+            testBaseResponder.OnReceivedNodeStart = (node, token) => { return default; };
             await CompileAndPrepareDialogue(source);
 
             this.dialogue.NodeExists("DoesntExist").Should().BeFalse();
@@ -359,6 +363,7 @@ This is a random start node which should get a UUID name.
 ===
 ";
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
+            testBaseResponder.OnReceivedNodeStart = (node, token) => { return default; };
             var result = await CompileAndPrepareDialogue(source);
 
             this.dialogue.IsNodeGroup("Start").Should().BeTrue();

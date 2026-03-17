@@ -29,6 +29,7 @@ namespace YarnSpinner.Tests
 
             testBaseResponder.Library.RegisterFunction("set_objective_complete", (string objective) => true);
             testBaseResponder.Library.RegisterFunction("is_objective_active", (string objective) => true);
+            testBaseResponder.Library.RegisterFunction("get_quest_status", (string questName) => "InProgress");
 
             testBaseResponder.Library.RegisterFunction("adds_two", TestValueTaskInt);
             testBaseResponder.Library.RegisterFunction("adds_one", TestSystemTaskInt);
@@ -87,6 +88,7 @@ namespace YarnSpinner.Tests
             dialogue.Program = result.Program;
             stringTable = result.StringTable;
 
+            testBaseResponder.OnReceivedNodeStart = (_,_) => { return default; };
             testBaseResponder.OnReceivedNodeComplete = (node, token) => { return default; };
             testBaseResponder.OnReceivedDialogueComplete = () => { return default; };
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };

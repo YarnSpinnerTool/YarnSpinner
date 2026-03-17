@@ -765,19 +765,12 @@ namespace Yarn.Compiler
                 var expectedEnglishPlural = expectedParameters != 1;
                 var actualEnglishPlural = actualParameters != 1;
 
-                // If the function declaration is implicit, give a message here
-                // that hedges a bit - we don't know if _this_ call is the
-                // incorrect one.
-                if (functionDecl.IsImplicit)
-                {
-                    message = $"{functionName} was called elsewhere with {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, but is called with {actualParameters} {(actualEnglishPlural ? "parameters" : "parameter")} here";
-                }
-                else
-                {
-                    message = $"{functionName} expects {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, not {actualParameters}";
-                }
+                string message = $"{functionName} expects {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, not {actualParameters}";
+                this.AddDiagnostic(DiagnosticDescriptor.InvalidFunctionCall, context, message);
 
-                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message) { Code = DiagnosticDescriptor.InvalidFunctionCall.Code });
+                // at this point there is no point in attempting to validate them
+                base.ExitFunction_call(context);
+                return;
             }
 
             context.Type = this.GenerateTypeVariable(null, context);
@@ -793,7 +786,7 @@ namespace Yarn.Compiler
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, parameterExpression, "Unexpected parameter in call to function " + functionName ?? "<unknown>") { Code = DiagnosticDescriptor.InvalidFunctionCall.Code });
+                    this.AddDiagnostic(DiagnosticDescriptor.InvalidFunctionCall, parameterExpression, "Unexpected parameter in call to function " + functionName ?? "<unknown>");
                 }
             }
 
