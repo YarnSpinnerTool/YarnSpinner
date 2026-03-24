@@ -385,7 +385,7 @@ namespace Yarn.Compiler
         public static readonly DiagnosticDescriptor UnenclosedCommand = new DiagnosticDescriptor(
             code: "YS0022",
             messageTemplate: "'{0}' command must be enclosed in '<<' and '>>'. Did you mean '<<{0} ...'?",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
             description: "Command keyword appearing outside of command markers"
         );
 
