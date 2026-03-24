@@ -1,5 +1,5 @@
 {
-    "projectFileVersion": 3,
+    "projectFileVersion": 4,
     "sourceFiles": [
         "**/*.yarn"
     ],
