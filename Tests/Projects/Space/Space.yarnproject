@@ -13,5 +13,5 @@
             "assets": "../LocalisedAssets/German"
         }
     },
-    "definitions": "Functions.ysls.json"
+    "definitions": "Commands.ysls.json"
 }
