@@ -1,25 +1,16 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://yarnspinner.dev/schemas/yarnproject.schema.json",
     "title": "Yarn Spinner Project",
     "description": "Configuration file for a Yarn Spinner project (.yarnproject)",
     "type": "object",
-    "anyOf": [
-        { "required": ["projectFileVersion"] },
-        { "required": ["fileVersion"] }
-    ],
+    "required": ["projectFileVersion"],
     "properties": {
         "projectFileVersion": {
             "type": "integer",
             "description": "The version of the project file format. Current version is 4. Versions 2 and 3 are also supported for legacy projects.",
             "enum": [2, 3, 4],
             "default": 4
-        },
-        "fileVersion": {
-            "type": "integer",
-            "description": "Legacy name for projectFileVersion. Use projectFileVersion for new projects.",
-            "enum": [2, 3],
-            "default": 2
         },
         "sourceFiles": {
             "type": "array",
@@ -40,13 +31,13 @@
             "type": "string",
             "description": "The base language code for the project (e.g., 'en', 'en-US', 'zh-Hans').",
             "default": "en",
-            "pattern": "^[a-z]{2}(-[A-Za-z]{2,4})?(-[A-Z]{2})?$"
+            "pattern": "^[a-zA-Z]{2,8}(-[a-zA-Z0-9]{1,8})*$"
         },
         "localisation": {
             "type": "object",
             "description": "Localization configuration mapping language codes to their string tables and asset directories.",
             "patternProperties": {
-                "^[a-z]{2}(-[A-Za-z]{2,4})?(-[A-Z]{2})?$": {
+                "^[a-zA-Z]{2,8}(-[a-zA-Z0-9]{1,8})*$": {
                     "type": "object",
                     "properties": {
                         "strings": {
