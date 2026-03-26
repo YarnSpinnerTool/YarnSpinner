@@ -1509,7 +1509,7 @@ namespace Yarn.Markup
                 // replace it with markup that indicates the character name.
                 input = implicitCharacterRegex.Replace(
                     input,
-                    (match) => $"[character name=\"{match.Groups[0]}\"]{match.Value}[/character]"
+                    (match) => $"[character name=\"{match.Groups[1]}\"]{match.Value}[/character]"
                 );
             }
 
