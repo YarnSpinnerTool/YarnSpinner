@@ -4,7 +4,7 @@
     "title": "Yarn Spinner Project",
     "description": "Configuration file for a Yarn Spinner project (.yarnproject)",
     "type": "object",
-    "required": ["projectFileVersion"],
+    "required": ["projectFileVersion", "sourceFiles", "baseLanguage"],
     "properties": {
         "projectFileVersion": {
             "type": "integer",
@@ -27,17 +27,20 @@
                 "type": "string"
             }
         },
+        "authorName": {
+            "type": "string"
+        },
+        "projectName": {
+            "type": "string"
+        },
         "baseLanguage": {
             "type": "string",
-            "description": "The base language code for the project (e.g., 'en', 'en-US', 'zh-Hans').",
-            "default": "en",
-            "pattern": "^[a-zA-Z]{2,8}(-[a-zA-Z0-9]{1,8})*$"
+            "default": "en"
         },
         "localisation": {
             "type": "object",
             "description": "Localization configuration mapping language codes to their string tables and asset directories.",
-            "patternProperties": {
-                "^[a-zA-Z]{2,8}(-[a-zA-Z0-9]{1,8})*$": {
+            "additionalProperties": {
                     "type": "object",
                     "properties": {
                         "strings": {
@@ -75,98 +78,45 @@
                     "type": "boolean",
                     "default": false
                 },
-                "requireNodeTags": {
-                    "type": "boolean",
-                    "default": false
-                },
                 "allowPreviewFeatures": {
                     "type": "boolean",
                     "default": false
-                },
-                "disableSpellcheck": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "spellcheckWords": {
+                }
+            },
+            "additionalProperties": true
+        },
+        "editorOptions": {
+            "type": "object",
+            "description": "Editor and tooling configuration.",
+            "properties": {
+                "disableSpellcheck": { "type": "boolean", "default": false },
+                "spellcheckWords": { "type": "array", "items": { "type": "string" }, "default": [] },
+                "defaultPresenter": { "type": "string", "default": "try" },
+                "editorCharacterColors": {
                     "type": "array",
                     "items": {
-                        "type": "string"
-                    },
-                    "default": []
-                },
-                "playgroundOptions": {
-                    "type": "object",
-                    "description": "Configuration for the Yarn Spinner Playground and VSCode preview.",
-                    "properties": {
-                        "projectName": {
-                            "type": "string"
-                        },
-                        "authorName": {
-                            "type": "string"
-                        },
-                        "defaultPresenter": {
-                            "type": "string",
-                            "enum": [
-                                "try",
-                                "default",
-                                "director",
-                                "classic",
-                                "barebones"
-                            ],
-                            "default": "try"
-                        },
-                        "editorCharacterColors": {
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "id": {
-                                        "type": "string"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "colour": {
-                                        "type": "string",
-                                        "pattern": "^#[0-9A-Fa-f]{6}$"
-                                    },
-                                    "portraitPath": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        },
-                        "editorFontSize": {
-                            "type": "number",
-                            "minimum": 8,
-                            "maximum": 72
-                        },
-                        "previewFontSize": {
-                            "type": "number",
-                            "minimum": 8,
-                            "maximum": 72
-                        },
-                        "startNode": {
-                            "type": "string"
-                        },
-                        "projectGraphPositions": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "object",
-                                "properties": {
-                                    "x": { "type": "number" },
-                                    "y": { "type": "number" }
-                                }
-                            }
-                        },
-                        "projectGraphColours": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": ["string", "null"]
-                            }
+                        "type": "object",
+                        "properties": {
+                            "id": { "type": "string" },
+                            "name": { "type": "string" },
+                            "colour": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+                            "portraitPath": { "type": "string" }
                         }
-                    },
-                    "additionalProperties": false
+                    }
+                },
+                "editorFontSize": { "type": "number", "minimum": 8, "maximum": 72 },
+                "previewFontSize": { "type": "number", "minimum": 8, "maximum": 72 },
+                "startNode": { "type": "string" },
+                "projectGraphPositions": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "properties": { "x": { "type": "number" }, "y": { "type": "number" } }
+                    }
+                },
+                "projectGraphColours": {
+                    "type": "object",
+                    "additionalProperties": { "type": ["string", "null"] }
                 }
             },
             "additionalProperties": true
@@ -213,5 +163,5 @@
             "default": "bestLeastRecentlyViewed"
         }
     },
-    "additionalProperties": true
+    "additionalProperties": false
 }
