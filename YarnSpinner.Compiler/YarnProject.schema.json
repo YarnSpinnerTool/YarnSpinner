@@ -1,49 +1,226 @@
 {
-    "$schema": "http://json-schema.org/draft-06/schema#",
-    "$ref": "#/definitions/YarnProject",
-    "definitions": {
-        "YarnProject": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://yarnspinner.dev/schemas/yarnproject.schema.json",
+    "title": "Yarn Spinner Project",
+    "description": "Configuration file for a Yarn Spinner project (.yarnproject)",
+    "type": "object",
+    "anyOf": [
+        { "required": ["projectFileVersion"] },
+        { "required": ["fileVersion"] }
+    ],
+    "properties": {
+        "projectFileVersion": {
+            "type": "integer",
+            "description": "The version of the project file format. Current version is 4. Versions 2 and 3 are also supported for legacy projects.",
+            "enum": [2, 3, 4],
+            "default": 4
+        },
+        "fileVersion": {
+            "type": "integer",
+            "description": "Legacy name for projectFileVersion. Use projectFileVersion for new projects.",
+            "enum": [2, 3],
+            "default": 2
+        },
+        "sourceFiles": {
+            "type": "array",
+            "description": "Array of glob patterns specifying which .yarn files to include in this project.",
+            "items": {
+                "type": "string"
+            },
+            "default": ["**/*.yarn"]
+        },
+        "excludeFiles": {
+            "type": "array",
+            "description": "Array of glob patterns specifying which files to exclude from the project.",
+            "items": {
+                "type": "string"
+            }
+        },
+        "baseLanguage": {
+            "type": "string",
+            "description": "The base language code for the project (e.g., 'en', 'en-US', 'zh-Hans').",
+            "default": "en",
+            "pattern": "^[a-z]{2}(-[A-Za-z]{2,4})?(-[A-Z]{2})?$"
+        },
+        "localisation": {
             "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "projectFileVersion": {
-                    "type": "integer"
+            "description": "Localization configuration mapping language codes to their string tables and asset directories.",
+            "patternProperties": {
+                "^[a-z]{2}(-[A-Za-z]{2,4})?(-[A-Z]{2})?$": {
+                    "type": "object",
+                    "properties": {
+                        "strings": {
+                            "type": "string",
+                            "description": "Path to the CSV file containing translated strings for this language."
+                        },
+                        "assets": {
+                            "type": "string",
+                            "description": "Path to the directory containing localized assets for this language."
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            }
+        },
+        "definitions": {
+            "description": "Path(s) to .ysls.json files containing custom command and function definitions.",
+            "oneOf": [
+                {
+                    "type": "string"
                 },
-                "sourceFiles": {
+                {
                     "type": "array",
                     "items": {
                         "type": "string"
                     }
+                }
+            ]
+        },
+        "compilerOptions": {
+            "type": "object",
+            "description": "Compiler configuration options.",
+            "properties": {
+                "requireVariableDeclarations": {
+                    "type": "boolean",
+                    "default": false
                 },
-                "localisation": {
-                    "$ref": "#/definitions/Localisation"
+                "requireNodeTags": {
+                    "type": "boolean",
+                    "default": false
                 },
-                "baseLanguage": {
-                    "type": "string"
+                "allowPreviewFeatures": {
+                    "type": "boolean",
+                    "default": false
                 },
-                "compilerOptions": {
-                    "$ref": "#/definitions/CompilerOptions"
+                "disableSpellcheck": {
+                    "type": "boolean",
+                    "default": false
                 },
-                "definitions": {
-                    "type": "string"
+                "spellcheckWords": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": []
+                },
+                "playgroundOptions": {
+                    "type": "object",
+                    "description": "Configuration for the Yarn Spinner Playground and VSCode preview.",
+                    "properties": {
+                        "projectName": {
+                            "type": "string"
+                        },
+                        "authorName": {
+                            "type": "string"
+                        },
+                        "defaultPresenter": {
+                            "type": "string",
+                            "enum": [
+                                "try",
+                                "default",
+                                "director",
+                                "classic",
+                                "barebones"
+                            ],
+                            "default": "try"
+                        },
+                        "editorCharacterColors": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "colour": {
+                                        "type": "string",
+                                        "pattern": "^#[0-9A-Fa-f]{6}$"
+                                    },
+                                    "portraitPath": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "editorFontSize": {
+                            "type": "number",
+                            "minimum": 8,
+                            "maximum": 72
+                        },
+                        "previewFontSize": {
+                            "type": "number",
+                            "minimum": 8,
+                            "maximum": 72
+                        },
+                        "startNode": {
+                            "type": "string"
+                        },
+                        "projectGraphPositions": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object",
+                                "properties": {
+                                    "x": { "type": "number" },
+                                    "y": { "type": "number" }
+                                }
+                            }
+                        },
+                        "projectGraphColours": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": ["string", "null"]
+                            }
+                        }
+                    },
+                    "additionalProperties": false
                 }
             },
-            "required": [
-                "baseLanguage",
-                "projectFileVersion",
-                "sourceFiles"
-            ],
-            "title": "YarnProject"
+            "additionalProperties": true
         },
-        "CompilerOptions": {
-            "type": "object",
-            "additionalProperties": true,
-            "title": "CompilerOptions"
+        "characters": {
+            "type": "array",
+            "description": "List of character definitions for the project.",
+            "items": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "displayName": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9A-Fa-f]{6}$"
+                    },
+                    "colour": {
+                        "type": "string",
+                        "pattern": "^#[0-9A-Fa-f]{6}$"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "portraitPath": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            }
         },
-        "Localisation": {
-            "type": "object",
-            "additionalProperties": true,   
-            "title": "Localisation"
+        "imagePath": {
+            "type": "string",
+            "description": "Path to a directory containing image files referenced by node 'image' headers."
+        },
+        "saliencyStrategy": {
+            "type": "string",
+            "description": "Strategy for selecting dialogue when multiple options are available.",
+            "enum": ["first", "best", "bestLeastRecentlyViewed", "bestLeastRecentlyViewedRandom"],
+            "default": "bestLeastRecentlyViewed"
         }
-    }
+    },
+    "additionalProperties": true
 }
