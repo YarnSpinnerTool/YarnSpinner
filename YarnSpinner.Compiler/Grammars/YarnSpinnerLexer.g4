@@ -325,8 +325,6 @@ COMMAND_ELSE: 'else'  {IsEndOfCommandKeyword()}?;
 COMMAND_SET : 'set'  {IsEndOfCommandKeyword()}? -> pushMode(ExpressionMode);
 COMMAND_ENDIF: 'endif' {IsEndOfCommandKeyword()}?;
 
-COMMAND_CALL: 'call'  {IsEndOfCommandKeyword()}? -> pushMode(ExpressionMode);
-
 COMMAND_DECLARE: 'declare'  {IsEndOfCommandKeyword()}? -> pushMode(ExpressionMode);
 
 COMMAND_JUMP: 'jump'  {IsEndOfCommandKeyword()}? -> pushMode(CommandIDOrExpressionMode);

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from /Users/desplesda/Work/YarnSpinner/YarnSpinner.Compiler/Grammars/YarnSpinnerParser.g4 by ANTLR 4.13.1
+// Generated from /Users/timnugent/Development/YarnSpinner/YarnSpinner.Compiler/Grammars/YarnSpinnerParser.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -278,12 +278,6 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.call_statement"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCall_statement([NotNull] YarnSpinnerParser.Call_statementContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.command_statement"/>.
 	/// </summary>

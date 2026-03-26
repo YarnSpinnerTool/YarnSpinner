@@ -43,7 +43,6 @@ statement
     | if_statement
     | set_statement
     | shortcut_option_statement
-    | call_statement
     | command_statement
     | declare_statement
     | enum_statement
@@ -131,10 +130,6 @@ else_clause
 
 set_statement
     : COMMAND_START COMMAND_SET variable op=(OPERATOR_ASSIGNMENT | '*=' | '/=' | '%=' | '+=' | '-=') expression COMMAND_END 
-    ;
-
-call_statement
-    : COMMAND_START COMMAND_CALL function_call COMMAND_END
     ;
 
 command_statement
