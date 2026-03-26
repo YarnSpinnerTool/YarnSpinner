@@ -96,12 +96,12 @@ namespace Yarn.Compiler
 
             // Check for command keywords in text (outside of << >>)
             // This catches "set $foo" or "declare $bar" appearing as dialogue
-            var commandKeywords = new[] { "set", "declare", "jump", "call", "local" };
+            var commandKeywords = new[] { "set", "declare" };
 
             foreach (var keyword in commandKeywords)
             {
                 // Look for keyword followed by whitespace and $
-                var pattern = new Regex($@"\b{keyword}\s+\$", RegexOptions.IgnoreCase);
+                var pattern = new Regex($@"^\b{keyword}\s+\$", RegexOptions.IgnoreCase);
                 var match = pattern.Match(lineText);
 
                 if (match.Success)
