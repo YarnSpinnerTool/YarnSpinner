@@ -184,17 +184,6 @@ namespace Yarn.Compiler
             return 0;
         }
 
-        public override int VisitCall_statement(YarnSpinnerParser.Call_statementContext context)
-        {
-            // Visit our function call, which will invoke the function
-            this.Visit(context.function_call());
-
-            // TODO: if this function returns a value, it will be pushed onto
-            // the stack, but there's no way for the compiler to know that, so
-            // the stack will not be tidied up. is there a way for that to work?
-            return 0;
-        }
-
         // semi-free form text that gets passed along to the game for things
         // like <<turn fred left>> or <<unlockAchievement FacePlant>>
         public override int VisitCommand_statement(YarnSpinnerParser.Command_statementContext context)

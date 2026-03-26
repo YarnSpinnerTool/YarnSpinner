@@ -713,7 +713,7 @@ namespace YarnSpinner.Tests
             testBaseResponder.Library.RegisterFunction<int,int>("func", (input) => 1);
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
-            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("func expects 1 parameter, not 2");
+            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("Invalid function call: func expects 1 parameter, not 2");
         }
 
         [Fact]
