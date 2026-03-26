@@ -29,6 +29,10 @@ namespace Yarn.Compiler
         /// range.</param>
         /// <param name="endCharacter">The zero-indexed character number of the
         /// end of the range.</param>
+        /// <remarks>
+        /// A range is comparable to a selection in an editor.
+        /// Therefore, the end position is exclusive.
+        /// </remarks>
         public Range(int startLine, int startCharacter, int endLine, int endCharacter)
         {
             this.Start = new Position(startLine, startCharacter);

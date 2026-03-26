@@ -329,20 +329,28 @@ namespace Yarn.Compiler
         }
     }
 
-    internal sealed class LexerErrorListener : IAntlrErrorListener<int>
+    internal sealed class YarnErrorListener: IAntlrErrorListener<int>, IAntlrErrorListener<IToken>
     {
         private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
         private readonly string fileName;
 
         public IEnumerable<Diagnostic> Diagnostics => this.diagnostics;
 
-        public LexerErrorListener(string fileName) : base()
+        public YarnErrorListener(string fileName) : base()
         {
             this.fileName = fileName;
         }
 
+        private HashSet<int> cursedLines = new();
+        
+        // this is the lexer error event
         public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
+            if (cursedLines.Contains(line))
+            {
+                return;
+            }
+
             Range range = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
             var diagnostic = new Diagnostic(this.fileName, range, msg);
 
@@ -359,6 +367,7 @@ namespace Yarn.Compiler
                     {
                         diagnostic.Message = descriptor.MessageTemplate;
                     }
+                    cursedLines.Add(line);
                 }
                 else
                 {
@@ -368,23 +377,95 @@ namespace Yarn.Compiler
 
             this.diagnostics.Add(diagnostic);
         }
-    }
 
-    internal sealed class ParserErrorListener : BaseErrorListener
-    {
-        private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
-        private readonly string fileName;
-
-        public IEnumerable<Diagnostic> Diagnostics => this.diagnostics;
-
-        public ParserErrorListener(string fileName) : base()
+        // this is the parser error event
+        public void SyntaxError(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
-            this.fileName = fileName;
-        }
+            if (cursedLines.Contains(line))
+            {
+                return;
+            }
 
-        public override void SyntaxError(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
-        {
-            Range range = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
+            Range range = new(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
+            if (recognizer is not Parser parser)
+            {
+                this.diagnostics.Add(new Diagnostic(this.fileName, range, "ARGH")); // this needs to change lol
+                return;
+            }
+
+            var name = ErrorUtility.GetFriendlyNameForRuleContext(parser.RuleContext, false);
+
+            if (parser.RuleContext.RuleIndex == YarnSpinnerParser.RULE_line_condition)
+            {
+                // we are a borked line condition
+                // which means either it isn't an if
+                // or the expression inside the if is wrong
+                // or we are missing the end >> ?
+
+                // this means we have text inside the line condition that isn't an if
+                // this isn't allowed, we have a command on the same line after a line
+                // so we want to generate that type of diagnostic
+                if (offendingSymbol.Type != YarnSpinnerLexer.COMMAND_IF)
+                {
+                    var rightMostTerminators = new HashSet<int>
+                    {
+                        YarnSpinnerLexer.COMMAND_END,
+                    };
+                    var diagInfo = ErrorUtility.DiagnosticInfo(parser, rightMostTerminators, line, charPositionInLine);
+
+                    var diag = Diagnostic.CreateDiagnostic(
+                        this.fileName,
+                        diagInfo.range,
+                        DiagnosticDescriptor.CommandFollowingLine,
+                        diagInfo.tokenText
+                    );
+
+                    var fullLine = ErrorUtility.LineOfCurrentToken(parser);
+                    if (fullLine != null)
+                    {
+                        diag.Context = ErrorUtility.GenerateContextMessage(fullLine, diagInfo.range.Start.Character, diagInfo.range.End.Character);
+                    }
+
+                    this.diagnostics.Add(diag);
+                    cursedLines.Add(line);
+                    return;
+                }
+            }
+            else if (parser.RuleContext.RuleIndex == YarnSpinnerParser.RULE_command_statement)
+            {
+                // we are a borked command
+                // which means many different things
+                // for now we are just looking at if they missed the close of the command
+                if (offendingSymbol.Type == YarnSpinnerLexer.COMMAND_TEXT_NEWLINE)
+                {
+                    // in this case because we intend on using the command start as the point of our diagnostic we can just use the start and end of that token
+                    // indexes are 0 indexed but ranges are 1 indexed hence the +1
+                    // at some point if I keep telling myself this I will manage to actually remember it
+                    // a mans reach should exceed his grasp
+                    var end = parser.RuleContext.Start.StopIndex - parser.RuleContext.Start.StartIndex + 1;
+                    Range validRange = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
+                    // Range validRange = new Range(line - 1, parser.RuleContext.Start.Column, line - 1, end);
+
+                    var diag = Diagnostic.CreateDiagnostic(
+                        this.fileName,
+                        validRange,
+                        DiagnosticDescriptor.UnclosedCommand
+                    );
+
+                    this.diagnostics.Add(diag);
+                    cursedLines.Add(line);
+                    return;
+                }
+            }
+
+            if (e is NoViableAltException exn)
+            {
+                msg = ErrorUtility.ReportNoViableAlternative(parser, exn);
+            }
+            else if (e is InputMismatchException exi)
+            {
+                msg = ErrorUtility.ReportInputMismatch(parser, exi);
+            }
 
             var diagnostic = new Diagnostic(this.fileName, range, msg);
 
@@ -393,9 +474,7 @@ namespace Yarn.Compiler
                 StringBuilder builder = new StringBuilder();
 
                 // the line with the error on it
-                string input = offendingSymbol.TokenSource.InputStream.ToString();
-                string[] lines = input.Split('\n');
-                string errorLine = lines[line - 1];
+                string errorLine = ErrorUtility.LineOfCurrentToken(parser);
                 builder.AppendLine(errorLine);
 
                 // adding indicator symbols pointing out where the error is
@@ -487,6 +566,301 @@ namespace Yarn.Compiler
 
             // Default: no specific code for other ANTLR errors
             return null;
+        }
+    }
+
+    internal static class ErrorUtility
+    {
+        internal static string ReportNoViableAlternative(Parser recognizer, NoViableAltException e)
+        {
+            string? msg = null;
+
+            if (ErrorUtility.IsInsideRule<YarnSpinnerParser.If_statementContext>(recognizer)
+                && recognizer.RuleContext is YarnSpinnerParser.StatementContext
+                && e.StartToken.Type == YarnSpinnerLexer.COMMAND_START
+                && e.OffendingToken.Type == YarnSpinnerLexer.COMMAND_ELSE)
+            {
+                // We are inside an if statement, we're attempting to parse a
+                // statement, and we got an '<<', 'else', and we weren't able
+                // to match that. The programmer included an extra '<<else>>'.
+                _ = ErrorUtility.GetEnclosingRule<YarnSpinnerParser.If_statementContext>(recognizer);
+
+                msg = $"More than one <<else>> statement in an <<if>> statement isn't allowed";
+            }
+            else if (e.StartToken.Type == YarnSpinnerLexer.COMMAND_START
+                && e.OffendingToken.Type == YarnSpinnerLexer.COMMAND_END)
+            {
+                // We saw a << immediately followed by a >>. The programmer
+                // forgot to include command text.
+                msg = $"Command text expected";
+            }
+            else if (recognizer.RuleContext is YarnSpinnerParser.Declare_statementContext
+                && e.OffendingToken.Type == YarnSpinnerLexer.FUNC_ID
+                && recognizer.TokenStream.Get(e.OffendingToken.TokenIndex - 1).Type == YarnSpinnerLexer.COMMAND_DECLARE)
+            {
+                // We're in a <<declare>> statement, and we saw a FUNC_ID
+                // immediately after the 'declare' keyword. The user forgot to
+                // include a '$' before the variable name (which is why the lexer
+                // matched a function ID, rather than a variable ID).
+                msg = "Variable names need to start with a $";
+            }
+
+            msg ??= $"Unexpected \"{e.OffendingToken.Text}\" while reading {ErrorUtility.GetFriendlyNameForRuleContext(recognizer.RuleContext, true)}";
+
+            return msg;
+        }
+
+        internal static string ReportInputMismatch(Parser recognizer, InputMismatchException e)
+        {
+            string? msg = null;
+
+            switch (recognizer.RuleContext)
+            {
+                case YarnSpinnerParser.If_statementContext ifStatement:
+                    if (e.OffendingToken.Type == YarnSpinnerLexer.BODY_END)
+                    {
+                        // We have exited a body in the middle of an if
+                        // statement. The programmer forgot to include an
+                        // <<endif>>.
+                        msg = $"Expected an <<endif>> to match the <<if>> statement on line {ifStatement.Start.Line}";
+                    }
+                    else if (e.OffendingToken.Type == YarnSpinnerLexer.COMMAND_ELSE && recognizer.GetExpectedTokens().Contains(YarnSpinnerLexer.COMMAND_ENDIF))
+                    {
+                        // We saw an else, but we expected to see an endif. The
+                        // programmer wrote an additional <<else>>.
+                        msg = $"More than one <<else>> statement in an <<if>> statement isn't allowed";
+                    }
+
+                    break;
+                case YarnSpinnerParser.VariableContext _:
+                    if (e.OffendingToken.Type == YarnSpinnerLexer.FUNC_ID)
+                    {
+                        // We're parsing a variable (which starts with a '$'),
+                        // but we encountered a FUNC_ID (which doesn't). The
+                        // programmer forgot to include the '$'.
+                        msg = "Variable names need to start with a $";
+                    }
+
+                    break;
+            }
+
+            msg ??= $"Unexpected \"{e.OffendingToken.Text}\" while reading {ErrorUtility.GetFriendlyNameForRuleContext(recognizer.RuleContext, true)}";
+
+            return msg;
+        }
+
+        internal static bool IsInsideRule<TRuleType>(Parser recognizer) where TRuleType : RuleContext
+        {
+            RuleContext currentContext = recognizer.RuleContext;
+
+            while (currentContext != null)
+            {
+                if (currentContext.GetType() == typeof(TRuleType))
+                {
+                    return true;
+                }
+
+                currentContext = currentContext.Parent;
+            }
+
+            return false;
+        }
+        internal static TRuleType? GetEnclosingRule<TRuleType>(Parser recognizer) where TRuleType : RuleContext
+        {
+            RuleContext currentContext = recognizer.RuleContext;
+
+            while (currentContext != null)
+            {
+                if (currentContext.GetType() == typeof(TRuleType))
+                {
+                    return currentContext as TRuleType;
+                }
+
+                currentContext = currentContext.Parent;
+            }
+
+            return null;
+        }
+        internal static string GetFriendlyNameForRuleContext(RuleContext context, bool withArticle = false)
+        {
+            string ruleName = YarnSpinnerParser.ruleNames[context.RuleIndex];
+
+            string friendlyName = ruleName.Replace("_", " ");
+
+            if (withArticle)
+            {
+                // If the friendly name's first character is a vowel, the
+                // article is 'an'; otherwise, 'a'.
+                char firstLetter = System.Linq.Enumerable.First(friendlyName);
+
+                string article;
+
+                char[] englishVowels = new[] { 'a', 'e', 'i', 'o', 'u' };
+
+                article = System.Linq.Enumerable.Contains(englishVowels, firstLetter) ? "an" : "a";
+
+                return $"{article} {friendlyName}";
+            }
+            else
+            {
+                return friendlyName;
+            }
+        }
+
+        // walks backwards along the token stream until we hit one of the terminators in the provided set
+        // then it returns the token immediately before hitting the terminator
+        // if we walk backwards to depth and still haven't hit a terminator token we give up
+        internal static IToken? WalkBackwardsUntilTerminator(ITokenStream tokens, HashSet<int> terminators, bool inclusive = false, int depth = 10)
+        {
+            int rollingTokenIndex = -1;
+            bool foundToken = false;
+            for (int i = 0; i < depth; i++)
+            {
+                var token = tokens.LA(-1 -i);
+                if (terminators.Contains(token))
+                {
+                    foundToken = true;
+                    if (inclusive)
+                    {
+                        rollingTokenIndex = i;
+                    }
+                    break;
+                }
+                rollingTokenIndex = i;
+            }
+
+            if (rollingTokenIndex == -1 || !foundToken)
+            {
+                return null;
+            }
+
+            return tokens.LT(-1 - rollingTokenIndex);
+        }
+        internal static IToken? WalkForwardsUntilTerminator(ITokenStream tokens, HashSet<int> terminators, bool inclusive = false, int depth = 10)
+        {
+            int rollingTokenIndex = -1;
+            bool foundToken = false;
+            for (int i = 0; i < depth; i++)
+            {
+                var token = tokens.LA(i + 2);
+                if (terminators.Contains(token))
+                {
+                    foundToken = true;
+                    if (inclusive)
+                    {
+                        rollingTokenIndex = i;
+                    }
+                    break;
+                }
+                rollingTokenIndex = i;
+            }
+
+            if (rollingTokenIndex == -1 || !foundToken)
+            {
+                return null;
+            }
+            
+            return tokens.LT(rollingTokenIndex + 2);
+        }
+        internal static (Range range, string tokenText) DiagnosticInfo(Parser parser, HashSet<int> endTerminal, int line, int charPositionInLine)
+        {
+            var stopLine = parser.RuleContext.Stop?.Line - 1 ?? line - 1;
+            var stopColumn = charPositionInLine;
+            var text = parser.RuleContext.GetText();
+
+            // we don't really have an end position
+            if (parser.RuleContext.Stop == null)
+            {
+                // we don't have a valid stop token
+                // so we don't know the range of the statement
+                // which means we need to find it ourselves
+                // this also means the text is invalid and we'll have to get that ourselves
+                var token = ErrorUtility.WalkForwardsUntilTerminator(parser.TokenStream, endTerminal, true);
+                if (token == null)
+                {
+                    // this means we couldn't walk to the end of the token
+                    // basically have to just give up at this point
+                    text = "<unknown>";
+                    stopColumn = charPositionInLine;
+                }
+                else
+                {
+                    var interval = new Antlr4.Runtime.Misc.Interval(parser.RuleContext.Start.StartIndex, token.StopIndex);
+                    text = parser.RuleContext.Start.InputStream.GetText(interval);
+                    stopColumn = parser.RuleContext.Start.Column + text.Length;
+                }
+            }
+
+            var range = new Range(line -1, parser.RuleContext.Start.Column, stopLine, stopColumn);
+            return (range, text);
+        }
+        internal static string LineOfCurrentToken(Parser parser)
+        {
+            return LineOfCurrentToken(parser.TokenStream, parser.CurrentToken.InputStream);
+        }
+        internal static string LineOfCurrentToken(ITokenStream tokenStream, ICharStream inputStream)
+        {
+            var line = string.Empty;
+
+            var leftMostTerminators = new HashSet<int>
+            {
+                YarnSpinnerLexer.NEWLINE,
+                YarnSpinnerLexer.BODY_START,
+            };
+            var rightMostTerminators = new HashSet<int>
+            {
+                YarnSpinnerLexer.NEWLINE,
+                YarnSpinnerLexer.BODY_END,
+            };
+
+            int leftMostNewLine = ErrorUtility.WalkBackwardsUntilTerminator(tokenStream, leftMostTerminators)?.StartIndex ?? -1;
+            int rightMostNewLine = ErrorUtility.WalkForwardsUntilTerminator(tokenStream, rightMostTerminators)?.StopIndex ?? -1;
+
+            if (leftMostNewLine > -1 && rightMostNewLine > -1)
+            {
+                var interval = new Antlr4.Runtime.Misc.Interval(leftMostNewLine, rightMostNewLine);
+                line = inputStream.GetText(interval);
+            }
+
+            return line;
+        }
+
+        internal static string? GenerateContextMessage(string line, int start, int stop)
+        {
+            // this generates strings like the following:
+            // this is the line before a command <<after command>>
+            //                                   ^^^^^^^^^^^^^^^^^
+
+            // just quickly doing some bounds checks
+            // we need the start to be <= stop
+            // and we need the start and stop to be within the range of the string
+            if (start > stop)
+            {
+                return null;
+            }
+            if (start < 0)
+            {
+                return null;
+            }
+            if (stop > line.Length)
+            {
+                return null;
+            }
+
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine(line);
+            for (int i = 0; i < line.Length; i++)
+            {
+                if (i >= start && i <= stop)
+                {
+                    builder.Append('^');
+                }
+                else
+                {
+                    builder.Append(' ');
+                }
+            }
+            return builder.ToString();
         }
     }
 }

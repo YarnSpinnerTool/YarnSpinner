@@ -354,19 +354,19 @@ namespace Yarn.Compiler
         /// </summary>
         public static readonly DiagnosticDescriptor LineContentAfterCommand = new DiagnosticDescriptor(
             code: "YS0019",
-            messageTemplate: "Line content after '<<{0}>>' command. Commands should be on their own line.",
+            messageTemplate: "Dialogue \"{0}\" content found following a command. Commands should be on their own line.",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
-            description: "Non-flow-control commands should be on their own line"
+            description: "Commands must start on their own line and should not have dialogue following them, this is often indicative of a mistake."
         );
 
         /// <summary>
         /// YS0020: Line content before a non-flow-control command.
         /// </summary>
-        public static readonly DiagnosticDescriptor LineContentBeforeCommand = new DiagnosticDescriptor(
+        public static readonly DiagnosticDescriptor CommandFollowingLine = new DiagnosticDescriptor(
             code: "YS0020",
-            messageTemplate: "Line content before '<<{0}>>' command. Commands should start on a new line.",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
-            description: "Non-flow-control commands should start on their own line"
+            messageTemplate: "Command \"{0}\" found following a line of dialogue. Commands should start on a new line.",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "Commands must start on their own line, only line conditions are allowed to follow a line of dialogue."
         );
 
         /// <summary>
@@ -374,9 +374,19 @@ namespace Yarn.Compiler
         /// </summary>
         public static readonly DiagnosticDescriptor StrayCommandEnd = new DiagnosticDescriptor(
             code: "YS0021",
-            messageTemplate: "Stray '>>' without matching '<<'. Did you forget to open the command?",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            messageTemplate: "Stray '{0}' without matching '<<'. Did you forget to open the command?",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
             description: "Command end marker without corresponding start marker"
+        );
+
+        /// <summary>
+        /// YS0048: Stray command end marker without matching start marker.
+        /// </summary>
+        public static readonly DiagnosticDescriptor SingularCommandWrap = new DiagnosticDescriptor(
+            code: "YS0048",
+            messageTemplate: "Line {0} has single '<' and '> wrapping it. Did you mean to make this a command?",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
+            description: "Dialogue begins and ends with single chevrons"
         );
 
         /// <summary>
@@ -384,8 +394,8 @@ namespace Yarn.Compiler
         /// </summary>
         public static readonly DiagnosticDescriptor UnenclosedCommand = new DiagnosticDescriptor(
             code: "YS0022",
-            messageTemplate: "'{0}' command must be enclosed in '<<' and '>>'. Did you mean '<<{0} ...'?",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            messageTemplate: "'{0}' command must be enclosed in '<<' and '>>'. Did you mean '<<{1}>>'?",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
             description: "Command keyword appearing outside of command markers"
         );
 
@@ -405,111 +415,111 @@ namespace Yarn.Compiler
         #endregion
 
         /// <summary>
-        /// YSXXX1: Redeclaration of existing variable
+        /// YS0039: Redeclaration of existing variable
         /// </summary>
         /// <remarks>
         /// <para>Format placeholders: 0: variable name.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor RedeclarationOfExistingVariable = new DiagnosticDescriptor(
-            code: "YSXXX1",
+            code: "YS0039",
             messageTemplate: "Redeclaration of existing variable {0}",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "Variables can only have a single declaration."
         );
 
         /// <summary>
-        /// YSXXX2: Redeclaration of existing type
+        /// YS0040: Redeclaration of existing type
         /// </summary>
         /// <remarks>
         /// <para>Format placeholders: 0: type name.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor RedeclarationOfExistingType = new DiagnosticDescriptor(
-            code: "YSXXX2",
+            code: "YS0040",
             messageTemplate: "Redeclaration of existing type {0}",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "A type with this name already exists."
         );
 
         /// <summary>
-        /// YSXXX3: Internal error.
+        /// YS0041: Internal error.
         /// </summary>
         /// <remarks>
         /// <para>Format placeholders: 0: error description.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor InternalError = new DiagnosticDescriptor(
-            code: "YSXXX3",
+            code: "YS0041",
             messageTemplate: "Internal compiler error: {0}",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "An internal error was detected by the compiler. Please file an issue."
         );
 
         /// <summary>
-        /// YSXXX4: Unknown line ID {0} for shadow line.
+        /// YS0042: Unknown line ID {0} for shadow line.
         /// </summary>
         /// <remarks>
         /// <para>Format placeholders: 0: line ID.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor UnknownLineIDForShadowLine = new DiagnosticDescriptor(
-            code: "YSXXX4",
+            code: "YS0042",
             messageTemplate: "Unknown line ID {0} for shadow line",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "Shadow lines must map to existing line IDs."
         );
 
         /// <summary>
-        /// YSXXX5: Shadow lines must not have expressions
+        /// YS0043: Shadow lines must not have expressions
         /// </summary>
         public static readonly DiagnosticDescriptor ShadowLinesCantHaveExpressions = new DiagnosticDescriptor(
-            code: "YSXXX5",
+            code: "YS0043",
             messageTemplate: "Shadow lines must not have expressions",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "Shadow lines must be text, and not contain any expressions."
         );
 
         /// <summary>
-        /// YSXXX6: Shadow lines must have the same text as their source
+        /// YS0044: Shadow lines must have the same text as their source
         /// </summary>
         public static readonly DiagnosticDescriptor ShadowLinesMustHaveSameTextAsSource = new DiagnosticDescriptor(
-            code: "YSXXX6",
+            code: "YS0044",
             messageTemplate: "Shadow lines must have the same text as their source",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "Shadow lines are copies of their source lines, and must have the exact same text as their source line."
         );
 
         /// <summary>
-        /// YSXXX7: Smart variables cannot contain reference loops.
+        /// YS0045: Smart variables cannot contain reference loops.
         /// </summary>
         /// <remarks>
         /// <para>Format placeholders: 0: variable reference, 1: smart variable name.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor SmartVariableLoop = new DiagnosticDescriptor(
-            code: "YSXXX7",
+            code: "YS0045",
             messageTemplate: "Smart variables cannot contain reference loops (referencing {0} here creates a loop for the smart variable {1}).",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "A smart variable's expression references itself through a chain of other smart variables."
         );
 
         /// <summary>
-        /// YSXXX8: Variable declaration has a null default value.
+        /// YS0046: Variable declaration has a null default value.
         /// </summary>
         /// <remarks>
         /// <para>Format placeholders: 0: variable name, 1: type name.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor NullDefaultValue = new DiagnosticDescriptor(
-            code: "YSXXX8",
+            code: "YS0046",
             messageTemplate: "Variable declaration {0} (type {1}) has a null default value. This is not allowed.",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "A variable declaration must have a non-null default value."
         );
 
         /// <summary>
-        /// YSXXX9: Expression failed to resolve in a reasonable time.
+        /// YS0047: Expression failed to resolve in a reasonable time.
         /// </summary>
         /// <remarks>
         /// <para>Format placeholders: 0: time limit in seconds.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor TypeSolverTimeout = new DiagnosticDescriptor(
-            code: "YSXXX9",
+            code: "YS0047",
             messageTemplate: "Expression failed to resolve in a reasonable time ({0}). Try simplifying this expression.",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "The type solver exceeded its time limit while resolving this expression."
@@ -681,7 +691,7 @@ namespace Yarn.Compiler
             { LinesCantHaveLineAndShadowTag.Code, LinesCantHaveLineAndShadowTag },
             { DuplicateLineID.Code, DuplicateLineID },
             { LineContentAfterCommand.Code, LineContentAfterCommand },
-            { LineContentBeforeCommand.Code, LineContentBeforeCommand },
+            { CommandFollowingLine.Code, CommandFollowingLine },
             { StrayCommandEnd.Code, StrayCommandEnd },
             { UnenclosedCommand.Code, UnenclosedCommand },
             { InvalidNodeName.Code, InvalidNodeName },

@@ -149,14 +149,13 @@ namespace YarnSpinner.Tests
             var parser = new YarnSpinnerTestPlanParser(tokenStream);
             lexer.RemoveErrorListeners();
             parser.RemoveErrorListeners();
-            var lexerErrorListener = new LexerErrorListener("testplan");
-            var parserErrorListener = new ParserErrorListener("testplan");
-            lexer.AddErrorListener(lexerErrorListener);
-            parser.AddErrorListener(parserErrorListener);
+            var yarnErrorListener = new YarnErrorListener("testplan");
+            lexer.AddErrorListener(yarnErrorListener);
+            parser.AddErrorListener(yarnErrorListener);
 
             var testPlanTree = parser.testplan();
 
-            var allDiagnostics = lexerErrorListener.Diagnostics.Concat(parserErrorListener.Diagnostics);
+            var allDiagnostics = yarnErrorListener.Diagnostics;
             if (allDiagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {
                 throw new XunitException("Syntax errors in test plan: " + string.Join("\n", allDiagnostics));

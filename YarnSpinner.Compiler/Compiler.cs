@@ -487,8 +487,6 @@ namespace Yarn.Compiler
             // Filter out any duplicate diagnostics
             diagnostics = diagnostics.Distinct().ToList();
 
-            AddDiagnosticsForStyleIssues(parsedFiles, ref diagnostics);
-
             // adding in the warnings about empty nodes
             var empties = AddDiagnosticsForEmptyNodes(parsedFiles, ref diagnostics);
 
@@ -686,16 +684,6 @@ namespace Yarn.Compiler
             };
 
             return finalResult;
-        }
-
-        private static void AddDiagnosticsForStyleIssues(List<FileParseResult> parsedFiles, ref List<Diagnostic> diagnostics)
-        {
-            foreach (var file in parsedFiles)
-            {
-                var styleIssuesVisitor = new StyleWarningsVisitor(file.Name, file.Tokens);
-                styleIssuesVisitor.Visit(file.Tree);
-                diagnostics.AddRange(styleIssuesVisitor.Diagnostics);
-            }
         }
 
         private static void AddErrorsForSettingReadonlyVariables(List<FileParseResult> parsedFiles, IEnumerable<Declaration> declarations, List<Diagnostic> diagnostics)
@@ -990,22 +978,19 @@ namespace Yarn.Compiler
             YarnSpinnerParser parser = new YarnSpinnerParser(tokens);
 
             // turning off the normal error listener and using ours
-            var parserErrorListener = new ParserErrorListener(fileName);
-            var lexerErrorListener = new LexerErrorListener(fileName);
-
-            parser.ErrorHandler = new ErrorStrategy();
-
-            parser.RemoveErrorListeners();
-            parser.AddErrorListener(parserErrorListener);
+            var yarnErrorListener = new YarnErrorListener(fileName);
 
             lexer.RemoveErrorListeners();
-            lexer.AddErrorListener(lexerErrorListener);
+            lexer.AddErrorListener(yarnErrorListener);
+
+            parser.RemoveErrorListeners();
+            parser.AddErrorListener(yarnErrorListener);
 
             YarnSpinnerParser.DialogueContext tree;
 
             tree = parser.dialogue();
 
-            var newDiagnostics = lexerErrorListener.Diagnostics.Concat(parserErrorListener.Diagnostics);
+            var newDiagnostics = yarnErrorListener.Diagnostics;
 
             // Now that we've parsed the file, we'll go through all of the nodes
             // and record which file they came from.
