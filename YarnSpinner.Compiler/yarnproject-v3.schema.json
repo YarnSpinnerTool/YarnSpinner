@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://yarnspinner.dev/schemas/yarnproject.schema.json",
+    "$id": "https://schemas.yarnspinner.dev/yarnproject-v3.schema.json",
     "$comment": "Yarn Spinner project file schema, version 3.",
     "version": 3,
     "title": "Yarn Spinner Project",
