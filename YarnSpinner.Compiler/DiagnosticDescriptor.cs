@@ -217,19 +217,6 @@ namespace Yarn.Compiler
         );
 
         /// <summary>
-        /// YS0009: Node is never referenced.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: node title.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor UnusedNode = new DiagnosticDescriptor(
-            code: "YS0009",
-            messageTemplate: "Node '{0}' is never referenced",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Info,
-            description: "Node exists but is never jumped to"
-        );
-
-        /// <summary>
         /// YS0010: Variable is declared but never used.
         /// </summary>
         /// <remarks>
@@ -670,7 +657,6 @@ namespace Yarn.Compiler
             { UnclosedCommand.Code, UnclosedCommand },
             { UnclosedScope.Code, UnclosedScope },
             { UnreachableCode.Code, UnreachableCode },
-            { UnusedNode.Code, UnusedNode },
             { UnusedVariable.Code, UnusedVariable },
             { DuplicateNodeTitle.Code, DuplicateNodeTitle },
             { UndefinedNode.Code, UndefinedNode },
