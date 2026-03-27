@@ -72,7 +72,11 @@
         "projectGraphColours": {
             "type": "object",
             "description": "Saved file container colours in the project-wide graph view. Managed automatically.",
-            "additionalProperties": { "$ref": "colour.schema.json"
+            "additionalProperties": {
+                "oneOf": [
+                    { "$ref": "colour.schema.json" },
+                    { "type": "string" }
+                ]
             }
         }
     },
