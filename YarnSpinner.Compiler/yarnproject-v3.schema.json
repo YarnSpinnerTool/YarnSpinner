@@ -1,38 +1,39 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://schemas.yarnspinner.dev/yarnproject.schema.json",
-    "$comment": "Yarn Spinner project file schema, version 4.",
-    "version": 4,
+    "$id": "https://yarnspinner.dev/schemas/yarnproject.schema.json",
+    "$comment": "Yarn Spinner project file schema, version 3.",
+    "version": 3,
     "title": "Yarn Spinner Project",
     "description": "Configuration file for a Yarn Spinner project (.yarnproject)",
     "type": "object",
-    "required": ["projectFileVersion", "sourceFiles", "baseLanguage"],
+    "required": [
+        "projectFileVersion",
+        "sourceFiles",
+        "baseLanguage"
+    ],
     "properties": {
         "projectFileVersion": {
             "type": "integer",
             "description": "The version of the project file format.",
             "minimum": 2,
-            "default": 4
-        },
-        "projectName": {
-            "type": "string",
-            "description": "The display name of the project."
-        },
-        "authorName": {
-            "type": "array",
-            "description": "The author(s) of the project.",
-            "items": { "type": "string" }
+            "default": 3
         },
         "sourceFiles": {
             "type": "array",
             "description": "Glob patterns specifying which .yarn files to include. Relative to the .yarnproject location.",
-            "items": { "type": "string" },
-            "default": ["**/*.yarn"]
+            "items": {
+                "type": "string"
+            },
+            "default": [
+                "**/*.yarn"
+            ]
         },
         "excludeFiles": {
             "type": "array",
             "description": "Glob patterns specifying files to exclude, even if they match sourceFiles.",
-            "items": { "type": "string" }
+            "items": {
+                "type": "string"
+            }
         },
         "baseLanguage": {
             "type": "string",
@@ -59,36 +60,23 @@
         },
         "definitions": {
             "description": "Path(s) to .ysls.json definition files for custom commands and functions.",
-            "oneOf": [
-                { "type": "string" },
-                { "type": "array", "items": { "type": "string" } }
-            ]
+            "type": "string"
         },
         "compilerOptions": {
             "type": "object",
             "description": "Options that affect compilation. Used by all parts of the Yarn Spinner pipeline.",
             "properties": {
-                "requireVariableDeclarations": {
-                    "type": "boolean",
-                    "description": "If true, all variables must be declared with <<declare>> before use.",
-                    "default": false
-                },
                 "allowPreviewFeatures": {
                     "type": "boolean",
                     "description": "If true, enables experimental language features that may change.",
                     "default": false
+                },
+                "yarnScriptEditor": {
+                    "$ref": "yarnscripteditor.schema.json"
                 }
-            },
-            "additionalProperties": true
-        },
-        "editorOptions": {
-            "type": "object",
-            "description": "Editor and tooling configuration. Each editor/engine gets its own sub-object.",
-            "properties": {
-                "yarnScriptEditor": { "$ref": "yarnscripteditor.schema.json" }
             },
             "additionalProperties": true
         }
     },
-    "additionalProperties": false
+    "additionalProperties": true
 }

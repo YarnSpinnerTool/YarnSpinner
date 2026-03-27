@@ -1,0 +1,80 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://schemas.yarnspinner.dev/yarnscripteditor.schema.json",
+    "title": "Yarn Script Editor Options",
+    "description": "Options for Yarn Script Editors (e.g. Try, Playground, Yarn Spinner for VS Code).",
+    "type": "object",
+    "properties": {
+        "saliencyStrategy": {
+            "type": "string",
+            "description": "Strategy for selecting which node group member to run when multiple are available.",
+            "default": "bestLeastRecentlyViewed"
+        },
+        "startNode": {
+            "type": "string",
+            "description": "The node to start dialogue from in the preview. Defaults to 'Start'."
+        },
+        "characters": {
+            "type": "array",
+            "description": "Character definitions for highlighting, autocomplete, and preview colours.",
+            "items": { "$ref": "character.schema.json" }
+        },
+        "presenter": {
+            "type": "string",
+            "description": "The dialogue presenter to use in the preview panel.",
+            "default": "try"
+        },
+        "previewFontSize": {
+            "type": "number",
+            "description": "Font size in pixels for the dialogue preview panel.",
+            "minimum": 8,
+            "maximum": 72
+        },
+        "editorFontSize": {
+            "type": "number",
+            "description": "Font size in pixels for the project editor panel.",
+            "minimum": 8,
+            "maximum": 72
+        },
+        "spellcheck": {
+            "type": "object",
+            "description": "Spell checking configuration for this project.",
+            "properties": {
+                "enable": {
+                    "type": "boolean",
+                    "description": "Whether spell checking is enabled for this project's .yarn files.",
+                    "default": true
+                },
+                "words": {
+                    "type": "array",
+                    "description": "Custom words to add to the spell checker dictionary.",
+                    "items": { "type": "string" },
+                    "default": []
+                }
+            },
+            "additionalProperties": false
+        },
+        "imagePath": {
+            "type": "string",
+            "description": "Path to a directory containing images referenced by node 'image' headers, relative to the .yarnproject."
+        },
+        "projectGraphPositions": {
+            "type": "object",
+            "description": "Saved file container positions in the project-wide graph view. Managed automatically.",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "x": { "type": "number" },
+                    "y": { "type": "number" }
+                }
+            }
+        },
+        "projectGraphColours": {
+            "type": "object",
+            "description": "Saved file container colours in the project-wide graph view. Managed automatically.",
+            "additionalProperties": { "$ref": "colour.schema.json"
+            }
+        }
+    },
+    "additionalProperties": true
+}

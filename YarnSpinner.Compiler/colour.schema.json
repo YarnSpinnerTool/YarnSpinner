@@ -1,0 +1,8 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://schemas.yarnspinner.dev/colour.schema.json",
+    "title": "Colour",
+    "description": "A hex colour code (e.g. #FF5733).",
+    "type": "string",
+    "pattern": "^#[0-9A-Fa-f]{6}$"
+}
