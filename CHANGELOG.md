@@ -8,21 +8,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [3.2.0] 2026-03-27
+
+### Added
+
 - Marker processors can now process implicit `[character/]` markers.
   - Yarn Spinner automatically adds `[character]` markers to lines that begin with a character name. For example, `Mae: Hello!` gets implicitly rewritten to `[character name="Mae"]Mae: [/character]Hello!`. This allows games to know what character is speaking, as well as being able to trim off the character name.
   - With this update, marker processors are able to register to handle this implicit marker, allowing games to customise the way that the name is handled.
-- Can now escape the implicit character separator `:`
-  - technically can now escape any `:` but this only really has a user-facing impact on using it to escape the character name
+- Yarn Spinner scripts can now escape the implicit character separator `:`
+  - Technically, you can now escape _any_ `:` in the line, but this only really has a user-facing impact on using it to escape the character name.
 - Added `Yarn.Compiler.EnumTypeBuilder`, a helper for constructing new Yarn Spinner enum types in C#.
 
 ### Changed
 
+- Diagnostics (errors, warnings, and so on) now have stable error codes, for use with editor tools like Yarn Spinner for Visual Studio Code. A list of errors that the compiler can produce is available on the [Yarn Spinner docs site](https://docs.yarnspinner.dev/3.2/write-yarn-scripts/yarn-spinner-editor/errors).
 - Fixed a bug where unbalanced markup without text siblings or children would cause an error
 - Fixed a bug where numbers inside markup properties were being parsed in a culture variant manner.
 - The implicit `[character/]` marker is now generated before all other markup processing takes place. As a result, replacement markers like `[select/]` that produce text that would have been identified as a character name won't have their output recognised as a character name.
   - If you need this to keep working, manually add your own `[character name=etc] ... [/character]` markup around your content.
-
-### Removed
 
 ## [3.1.0] 2025-12-02
 
