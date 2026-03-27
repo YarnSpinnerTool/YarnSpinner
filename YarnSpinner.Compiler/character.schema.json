@@ -4,7 +4,9 @@
     "title": "Character",
     "description": "A character definition.",
     "type": "object",
-    "required": ["name"],
+    "required": [
+        "name"
+    ],
     "properties": {
         "name": {
             "type": "string",
@@ -14,7 +16,9 @@
             "type": "string",
             "description": "The name shown to players in the game UI. Defaults to name if not set."
         },
-        "colour": { "$ref": "colour.schema.json" },
+        "colour": {
+            "$ref": "colour.schema.json"
+        },
         "description": {
             "type": "string",
             "description": "Notes about this character for documentation purposes."
