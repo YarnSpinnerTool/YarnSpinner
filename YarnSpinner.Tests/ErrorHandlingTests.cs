@@ -493,8 +493,8 @@ This is a line
         }
 
         [Theory]
-        [InlineData("<<detour B>>", "B", 2, 10)]
-        [InlineData("<<jump B>>", "B", 2, 8)]
+        [InlineData("<<detour B>>", "B", 2, 9)]
+        [InlineData("<<jump B>>", "B", 2, 7)]
         public void TestUnknownNodeJumpsGenerateDiagnostics(string input, string nodeName, params int[] rangeValues)
         {
             rangeValues.Should().HaveCount(2);
@@ -512,6 +512,337 @@ This is a line
             diag.Message.Should().Be($"Jump to undefined node: '{nodeName}'");
 
             diag.Range.Should().Be(range);
+        }
+
+        private void PerformCommonSingleDiagLineTest(string input, string code, string message, Diagnostic.DiagnosticSeverity severity, Range range)
+        {
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            var diag = result.Diagnostics.Should().ContainSingle().Subject;
+            diag.Code.Should().Be(code);
+
+            diag.Severity.Should().Be(severity);
+
+            diag.Message.Should().Be(message);
+
+            diag.Range.Should().Be(range);
+        }
+        private void PerformCommonSingleDiagNodeTest(string input, string code, string message, Diagnostic.DiagnosticSeverity severity, Range range)
+        {
+            var job = CompilationJob.CreateFromString("<input>", input);
+            var result = Compiler.Compile(job);
+
+            var diag = result.Diagnostics.Should().ContainSingle().Subject;
+            diag.Code.Should().Be(code);
+
+            diag.Severity.Should().Be(severity);
+
+            diag.Message.Should().Be(message);
+
+            diag.Range.Should().Be(range);
+        }
+
+        [Theory]
+        [InlineData("{made_up_function()}", "made_up_function", 2, 1)]
+        [InlineData("{made_up_function(1,2,3,4)}", "made_up_function", 2, 1)] // the range shouldn't change from the above as it's still an unknown function
+        [InlineData("<<if made_up_function()>>\n\tnormal line\n<<endif>>", "made_up_function", 2, 5)]
+        public void TestUnknownFunctionGeneratesDiagnostic(string input, string functionName, params int[] rangeValues)
+        {
+            rangeValues.Should().HaveCount(2);
+            var range = new Range(rangeValues[0], rangeValues[1], rangeValues[0], rangeValues[1] + functionName.Length);
+
+            PerformCommonSingleDiagLineTest(input, "YS0013", $"Invalid function call: {functionName}", Diagnostic.DiagnosticSeverity.Error, range);
+        }
+
+        [Theory]
+        [InlineData(
+@"title: A
+when: made_up_function()
+---
+normal line
+===", "made_up_function", 1, 6)]
+        [InlineData(
+@"title: A
+when: made_up_function(1,2,3,4)
+---
+normal line
+===", "made_up_function", 1, 6)]
+        public void TestUnknownFunctionInWhensGenerateDiagnostics(string input, string functionName, params int[] rangeValues)
+        {
+            rangeValues.Should().HaveCount(2);
+            var range = new Range(rangeValues[0], rangeValues[1], rangeValues[0], rangeValues[1] + functionName.Length);
+
+            PerformCommonSingleDiagNodeTest(input, "YS0013", $"Invalid function call: {functionName}", Diagnostic.DiagnosticSeverity.Error, range);
+        }
+
+        [Theory]
+        [InlineData("{visited()}", "visited", 2, 1)]
+        [InlineData("{visited(1)}", "visited", 2, 1)]
+        [InlineData("{visited(true)}", "visited", 2, 1)]
+        [InlineData("{visited(\"node\", 1)}", "visited", 2, 1)]
+        [InlineData("{visited(\"node\", true)}", "visited", 2, 1)]
+        [InlineData("{visited(\"node\", \"node\")}", "visited", 2, 1)]
+        public void TestKnownFunctionWithIncorrectNumberOfParametersGeneratesDiagnostic(string input, string functionName, params int[] rangeValues)
+        {
+            rangeValues.Should().HaveCount(2);
+            var range = new Range(rangeValues[0], rangeValues[1], rangeValues[0], rangeValues[1] + functionName.Length);
+
+            PerformCommonSingleDiagLineTest(input, "YS0013", $"Invalid function call: {functionName}", Diagnostic.DiagnosticSeverity.Error, range);
+        }
+
+        [Theory]
+        [InlineData(
+@"title: A
+when: visited()
+---
+line
+===", "visited", 1, 6)]
+        [InlineData(
+@"title: A
+when: visited(1)
+---
+line
+===", "visited", 1, 6)]
+        [InlineData(
+@"title: A
+when: visited(true)
+---
+line
+===", "visited", 1, 6)]
+        [InlineData(
+@"title: A
+when: visited(""node"", 1)
+---
+line
+===", "visited", 1, 6)]
+        [InlineData(
+@"title: A
+when: visited(""node"", true)
+---
+line
+===", "visited", 1, 6)]
+        [InlineData(
+@"title: A
+when: visited(""node"", ""node"")
+---
+line
+===", "visited", 1, 6)]
+        public void TestKnownFunctionWithIncorrectNumberOfParametersInWhenGeneratesDiagnostic(string input, string functionName, params int[] rangeValues)
+        {
+            rangeValues.Should().HaveCount(2);
+            var range = new Range(rangeValues[0], rangeValues[1], rangeValues[0], rangeValues[1] + functionName.Length);
+
+            PerformCommonSingleDiagNodeTest(input, "YS0013", $"Invalid function call: {functionName}", Diagnostic.DiagnosticSeverity.Error, range);
+        }
+
+        [Theory]
+        [InlineData("<<made up command>>", "made", 2, 3)]
+        [InlineData("<<made {1}>>", "made", 2, 2)]
+        public void TestUnknownCommandGeneratesDiag(string input, string commandName, params int[] rangeValues)
+        {
+            rangeValues.Should().HaveCount(2);
+            var range = new Range(rangeValues[0], rangeValues[1], rangeValues[0], rangeValues[1] + commandName.Length);
+
+            PerformCommonSingleDiagLineTest(input, "YS0014", $"Invalid command: {commandName}", Diagnostic.DiagnosticSeverity.Error, range);
+        }
+
+        [Theory]
+        [InlineData("<<wait 1 2>>", "wait", 2, 2)]
+        [InlineData("<<wait \"hello\">>", "wait", 2, 2)]
+        [InlineData("<<wait true>>", "wait", 2, 2)]
+        public void TestKnownCommandWithWrongParametersGeneratesDiag(string input, string commandName, params int[] rangeValues)
+        {
+            rangeValues.Should().HaveCount(2);
+            var range = new Range(rangeValues[0], rangeValues[1], rangeValues[0], rangeValues[1] + commandName.Length);
+
+            PerformCommonSingleDiagLineTest(input, "YS0014", $"Invalid command: {commandName}", Diagnostic.DiagnosticSeverity.Error, range);
+        }
+        [Fact]
+        public void TestEscapedUnknownCommandsDontGenerateDiagnostics()
+        {
+            var source = CreateTestNode("\\<<made up command>>", "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+            result.Diagnostics.Should().BeEmpty();
+        }
+        // how to handle interpolated command names and how to handle interpolated parameters?
+
+        [Theory]
+        [InlineData(
+@"title: A
+---
+<<jump B>>
+===
+title: B
+---
+<<jump C>>
+===
+title: C
+---
+<<jump A>>
+===", "A -> B -> C", 8, 0, 8, 9)]
+        [InlineData(
+@"title: A
+---
+<<detour B>>
+===
+title: B
+---
+<<detour C>>
+===
+title: C
+---
+<<detour A>>
+===", "A -> B -> C", 8, 0, 8, 9)]
+        public void TestCyclicNodesGenerateDiagnostic(string input, string cycle, params int[] rangeValues)
+        {
+            rangeValues.Should().HaveCount(4);
+            var range = new Range(rangeValues[0], rangeValues[1], rangeValues[2], rangeValues[3]);
+
+            PerformCommonSingleDiagNodeTest(input, "YS0015", $"Cyclic dependency detected: {cycle}", Diagnostic.DiagnosticSeverity.Warning, range);
+        }
+
+        [Fact]
+        public void TestDialogueWithBothLineAndShadowIDGenerateDiag()
+        {
+            var input = "this line has both a line id and a shadow #line:abc123 #shadow:def123\nthis line has both a line id and a shadow #line:def123";
+
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().HaveCount(2);
+
+            var ranges = new HashSet<Range>()
+            {
+                new(2, 42, 2, 54),
+                new(2, 55, 2, 69),
+            };
+
+            foreach (var diag in result.Diagnostics)
+            {
+                diag.Code.Should().Be("YS0017");
+
+                diag.Message.Should().Be("Lines cannot have both a '#line' tag and a '#shadow' tag.");
+
+                diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+                ranges.Should().Contain(diag.Range);
+                ranges.Remove(diag.Range);
+            }
+        }
+
+        [Fact]
+        public void TestDuplicateLineIdsGeneratesWarnings()
+        {
+            var input = "first line #line:abc123\nsecond line #line:abc123";
+
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().HaveCount(2);
+
+            var ranges = new HashSet<Range>()
+            {
+                new(2, 1, 2, 23),
+                new(3, 12, 3, 24),
+            };
+
+            foreach (var diag in result.Diagnostics)
+            {
+                diag.Code.Should().Be("YS0018");
+
+                diag.Message.Should().Be("Duplicate line ID 'line:abc123'");
+
+                diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+                ranges.Should().Contain(diag.Range);
+                ranges.Remove(diag.Range);
+            }
+        }
+
+        [Theory]
+        [InlineData("$abc", 7)]
+        [InlineData(".abc", 7)]
+        [InlineData("123abc", 7)]
+        [InlineData("abc.123", 7)]
+        public void TestInvalidNodeNamesGenerateDiagnostics(string input, int column)
+        {
+            var content = $"title:{input}\n---\nline of text\n===";
+            var message = $"The node title '{input}' contains invalid characters. Titles can only contain letters, numbers, and underscores.";
+            var range = new Range(0, column, 0, column + input.Length);
+
+            PerformCommonSingleDiagNodeTest(content, "YS0027", message, Diagnostic.DiagnosticSeverity.Error, range);
+        }
+        [Theory]
+        [InlineData("ḀBC")]
+        [InlineData("_abc")]
+        [InlineData("_")]
+        public void TestValidButNotBasicAsFuckTitlesDoesNotGenerateDiagnostic(string input)
+        {
+            var content = $"title:{input}\n---\nline of text\n===";
+            var job = CompilationJob.CreateFromString("<input>", content);
+            var result = Compiler.Compile(job);
+            result.Diagnostics.Should().BeEmpty();
+        }
+        
+        // same as the above but it's for subtitles
+        [Theory]
+        [InlineData("$abc", 7)]
+        [InlineData(".abc", 7)]
+        [InlineData("123abc", 7)]
+        [InlineData("abc.123", 7)]
+        public void TestInvalidSubtitleNamesGenerateDiagnostics(string input, int column)
+        {
+            var content = $"title:start\nsubtitle:{input}\n---\nline of text\n===";
+            var message = $"The node subtitle '{input}' contains invalid characters. Titles can only contain letters, numbers, and underscores.";
+            var range = new Range(0, column, 0, column + input.Length);
+
+            PerformCommonSingleDiagNodeTest(content, "YS0027", message, Diagnostic.DiagnosticSeverity.Error, range);
+        }
+        [Theory]
+        [InlineData("ḀBC")]
+        [InlineData("_abc")]
+        [InlineData("_")]
+        public void TestValidButNotBasicAsFuckSubtitlesDoesNotGenerateDiagnostic(string input)
+        {
+            var content = $"title:start\nsubtitle:{input}\n---\nline of text\n===";
+            var job = CompilationJob.CreateFromString("<input>", content);
+            var result = Compiler.Compile(job);
+            result.Diagnostics.Should().BeEmpty();
+        }
+
+        [Fact]
+        public void TestRedeclaredVariablesGeneratesDiagnostics()
+        {
+            var input = "<<declare $var = 5>>\n<<declare $var = true>>";
+
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().HaveCount(2);
+
+            var ranges = new HashSet<Range>()
+            {
+                new(2, 0, 2, 20),
+                new(3, 0, 3, 23),
+            };
+
+            foreach (var diag in result.Diagnostics)
+            {
+                diag.Code.Should().Be("YS0039");
+
+                diag.Message.Should().Be("Redeclaration of existing variable $var");
+
+                diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+                ranges.Should().Contain(diag.Range);
+                ranges.Remove(diag.Range);
+            }
         }
     }
 }
