@@ -10,6 +10,10 @@ namespace Yarn.Compiler
     using System.Text.Json.Nodes;
     using System.Text.Json.Serialization;
 
+    [JsonSourceGenerationOptions(WriteIndented = true)]
+    [JsonSerializable(typeof(Project))]
+    internal partial class SourceGenerationContext : JsonSerializerContext { }
+
     /// <summary>
     /// Yarn Projects represent instructions on where to find Yarn scripts and
     /// associated assets, and how they should be compiled.
@@ -57,6 +61,7 @@ namespace Yarn.Compiler
             WriteIndented = true,
             PropertyNameCaseInsensitive = true,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            TypeInfoResolver = SourceGenerationContext.Default,
         };
 
         /// <summary>
