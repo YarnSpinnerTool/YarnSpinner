@@ -99,7 +99,7 @@ namespace Yarn.Compiler
                 }
                 numberOfStartingChevrons += 1;
             }
-            for (int i = 1; i < lineText.Length -1; i++)
+            for (int i = 1; i < lineText.Length - 1; i++)
             {
                 if (lineText[^i] != '>')
                 {
@@ -186,7 +186,7 @@ namespace Yarn.Compiler
         {
             None, Set, Declare, Jump, Detour,
         }
-        internal class AnyErrorsDetectedErrorListener: IAntlrErrorListener<int>, IAntlrErrorListener<IToken>
+        internal class AnyErrorsDetectedErrorListener : IAntlrErrorListener<int>, IAntlrErrorListener<IToken>
         {
             internal bool hasErrors = false;
             public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)

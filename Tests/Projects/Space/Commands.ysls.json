@@ -1,0 +1,15 @@
+{
+    "version": 1,
+    "commands": [
+        {
+            "yarnName": "test_command",
+            "parameters": [
+                {
+                    "name": "param_1",
+                    "type": "string"
+                }
+            ]
+        }
+    ],
+    "functions": []
+}

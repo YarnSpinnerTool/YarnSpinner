@@ -28,12 +28,12 @@ namespace YarnSpinner.Tests
             // Then
             using (new FluentAssertions.Execution.AssertionScope())
             {
-                project.FileVersion.Should().Be(3);
+                project.FileVersion.Should().Be(4);
                 project.Path.Should().Be(ProjectFilePath);
                 project.SourceFilePatterns.Should().ContainSingle("**/*.yarn");
 
                 project.BaseLanguage.Should().Be("en");
-                project.Definitions.Should().Be("Functions.ysls.json");
+                project.Definitions.Should().BeEquivalentTo(["Commands.ysls.json"]);
 
                 project.Localisation.Should().ContainKey("en").WhoseValue.Assets.Should().Be("../LocalisedAssets/English");
                 project.Localisation.Should().ContainKey("en").WhoseValue.Strings.Should().BeNull();
@@ -124,6 +124,8 @@ namespace YarnSpinner.Tests
                     .Excluding(o => o.Path) // paths will be different
                     .Excluding(o => o.SourceFiles) // source files will be different (because paths are different)
                     .Excluding(o => o.DefinitionsFiles) // path is different
+                    .Excluding(o => o.DefinitionsPath) // path is different
+                    .Excluding(o => o.Definitions) // path is different
             );
         }
 
@@ -143,6 +145,32 @@ namespace YarnSpinner.Tests
             var project = Project.LoadFromString(projectSource, "");
 
             project.AllowLanguagePreviewFeatures.Should().BeTrue();
+        }
+
+        [Fact]
+        public void TestProjectFilesCanSpecifyDefinitionsAsStringOrList()
+        {
+            var projectSourceV3 = @"
+            {
+                ""projectFileVersion"": 3,
+                ""sourceFiles"": [""**/*.yarn""],
+                ""baseLanguage"": ""en"",
+                ""definitions"": ""A.ysls.json""
+            }";
+
+            var projectSourceV4 = @"
+            {
+                ""projectFileVersion"": 4,
+                ""sourceFiles"": [""**/*.yarn""],
+                ""baseLanguage"": ""en"",
+                ""definitions"": [""A.ysls.json""]
+            }";
+
+            var projectV3 = Project.LoadFromString(projectSourceV3, ".");
+            var projectV4 = Project.LoadFromString(projectSourceV4, ".");
+
+            projectV3.Definitions.Should().BeEquivalentTo(projectV4.Definitions);
+
         }
     }
 }

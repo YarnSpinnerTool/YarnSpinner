@@ -10,6 +10,10 @@ namespace Yarn.Compiler
     using System.Text.Json.Nodes;
     using System.Text.Json.Serialization;
 
+    [JsonSourceGenerationOptions(WriteIndented = true)]
+    [JsonSerializable(typeof(Project))]
+    internal partial class SourceGenerationContext : JsonSerializerContext { }
+
     /// <summary>
     /// Yarn Projects represent instructions on where to find Yarn scripts and
     /// associated assets, and how they should be compiled.
@@ -27,17 +31,27 @@ namespace Yarn.Compiler
         /// <summary>
         /// The current version of <c>.yarnproject</c> file format.
         /// </summary>
-        public const int CurrentProjectFileVersion = YarnSpinnerProjectVersion3;
+        public const int CurrentProjectFileVersion = YarnSpinnerProjectVersion4;
+
+        // There isn't a Yarn Spinner project version 1 representable in
+        // JSON-based Yarn Spinner projects, because the first version of Yarn
+        // Spinner stored its Yarn Projects as special .yarn files that had
+        // extra Unity-specific metadata.
 
         /// <summary>
-        ///  A version number representing Yarn Spinner 2.
+        ///  A version number representing project version 2 (released with Yarn Spinner 2.0)
         /// </summary>
         public const int YarnSpinnerProjectVersion2 = 2;
 
         /// <summary>
-        ///  A version number representing Yarn Spinner 3.
+        ///  A version number representing project version 3 (released with Yarn Spinner 3.0).
         /// </summary>
         public const int YarnSpinnerProjectVersion3 = 3;
+
+        /// <summary>
+        ///  A version number representing project version 4 (released with Yarn Spinner 3.2.0).
+        /// </summary>
+        public const int YarnSpinnerProjectVersion4 = 4;
 
         private static readonly JsonSerializerOptions SerializationOptions = new JsonSerializerOptions
         {
@@ -47,6 +61,7 @@ namespace Yarn.Compiler
             WriteIndented = true,
             PropertyNameCaseInsensitive = true,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            TypeInfoResolver = SourceGenerationContext.Default,
         };
 
         /// <summary>
@@ -131,15 +146,17 @@ namespace Yarn.Compiler
         public string BaseLanguage { get; set; } = CurrentNeutralCulture.Name;
 
         /// <summary>
-        /// Gets or sets the path to a JSON file containing command and function
-        /// definitions that this project references.
+        /// Gets or sets the patterns for matching paths to JSON files that
+        /// contain command and function definitions that this project
+        /// references.
         /// </summary>
         /// <remarks>
         /// Definitions files are used by editing tools to provide type
         /// information and other externally-defined data used by the Yarn
         /// scripts.
         /// </remarks>
-        public string? Definitions { get; set; }
+        [JsonConverter(typeof(StringOrListOfStringsConverter))]
+        public List<string>? Definitions { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether this Project is an 'implicit'
@@ -235,7 +252,7 @@ namespace Yarn.Compiler
         /// </summary>
         /// <seealso cref="DefinitionsFiles"/>
         [JsonIgnore]
-        [Obsolete("Use " + nameof(DefinitionsFilesPattern))]
+        [Obsolete("Use " + nameof(Definitions))]
         public string? DefinitionsPath
         {
             get
@@ -253,117 +270,126 @@ namespace Yarn.Compiler
         }
 
         [JsonIgnore]
-        private string? DefinitionsFilesPattern
+        private List<string> DefinitionsFilesPatterns
         {
             get
             {
                 if (this.Definitions == null)
                 {
-                    return null;
+                    return new();
                 }
-                else if (this.Definitions.IndexOf(WorkspaceRootPlaceholder) != -1)
+
+                List<string> result = new();
+                foreach (var pattern in Definitions)
                 {
-                    if (this.WorkspaceRootPath != null
-                        && System.IO.Directory.Exists(WorkspaceRootPath))
+
+                    if (pattern.IndexOf(WorkspaceRootPlaceholder) != -1)
                     {
-                        return this.Definitions.Replace(WorkspaceRootPlaceholder, WorkspaceRootPath);
+                        if (this.WorkspaceRootPath != null
+                            && System.IO.Directory.Exists(WorkspaceRootPath))
+                        {
+                            result.Add(pattern.Replace(WorkspaceRootPlaceholder, WorkspaceRootPath));
+                        }
+                        else
+                        {
+                            // The path contains the placeholder, but we have no
+                            // value to insert it with. Early out here.
+                            continue;
+                        }
                     }
-                    else
+                    else if (this.SearchDirectoryPath != null)
                     {
-                        // The path contains the placeholder, but we have no
-                        // value to insert it with. Early out here.
-                        return null;
+                        result.Add(System.IO.Path.Combine(this.SearchDirectoryPath, pattern));
                     }
+
                 }
-                else if (this.SearchDirectoryPath != null)
-                {
-                    return System.IO.Path.Combine(this.SearchDirectoryPath, this.Definitions);
-                }
-                else
-                {
-                    return null;
-                }
+                return result;
             }
         }
 
         /// <summary>
         /// Gets the absolute paths to the project's Definitions files.
         /// </summary>
+        [JsonIgnore]
         public IEnumerable<string> DefinitionsFiles
         {
             get
             {
-                if (DefinitionsFilesPattern == null)
+                if (DefinitionsFilesPatterns.Count == 0)
                 {
                     return Array.Empty<string>();
                 }
 
                 Matcher m = new Matcher(StringComparison.OrdinalIgnoreCase);
 
+                var result = new List<string>();
 
-                if (System.IO.Path.IsPathRooted(DefinitionsFilesPattern))
+                foreach (var DefinitionsFilesPattern in this.DefinitionsFilesPatterns)
                 {
-                    if (System.IO.File.Exists(DefinitionsFilesPattern))
+                    if (System.IO.Path.IsPathRooted(DefinitionsFilesPattern))
                     {
-                        // The path is to an absolute path that exists on disk; return it as-is
-                        return new[] { DefinitionsFilesPattern };
+                        if (System.IO.File.Exists(DefinitionsFilesPattern))
+                        {
+                            // The path is to an absolute path that exists on disk; add it as-is
+                            result.Add(DefinitionsFilesPattern);
+                        }
+                        else
+                        {
+                            // The path is absolute but doesn't exist; it may be a
+                            // pattern. Split the pattern into an absolute path and
+                            // the pattern, and attempt to match from there.
+
+                            var fullPath = System.IO.Path.GetFullPath(DefinitionsFilesPattern);
+                            var pathRoot = System.IO.Path.GetPathRoot(fullPath);
+
+                            var pathRelativeToRoot = fullPath.Substring(pathRoot.Length);
+
+                            var allSegments = new Queue<string>(
+                                pathRelativeToRoot
+                                    .Split(new[] { System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar })
+                            );
+
+                            var absoluteSegments = new List<string>();
+                            while (allSegments.Count > 0)
+                            {
+                                var segment = allSegments.Peek();
+                                if (segment.Contains("*"))
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    allSegments.Dequeue();
+                                    absoluteSegments.Add(segment);
+                                }
+                            }
+
+                            var searchBasePath = pathRoot + System.IO.Path.Combine(absoluteSegments.ToArray());
+                            var searchPattern = System.IO.Path.Combine(allSegments.ToArray());
+
+                            m.AddInclude(searchPattern);
+                            result.AddRange(m.GetResultsInFullPath(searchBasePath));
+                        }
                     }
                     else
                     {
-                        // The path is absolute but doesn't exist; it may be a
-                        // pattern. Split the pattern into an absolute path and
-                        // the pattern, and attempt to match from there.
+                        // The path is not absolute, so we can use the matcher
+                        // directly to find paths, starting from our
 
-                        var fullPath = System.IO.Path.GetFullPath(DefinitionsFilesPattern);
-                        var pathRoot = System.IO.Path.GetPathRoot(fullPath);
-
-                        var pathRelativeToRoot = fullPath.Substring(pathRoot.Length);
-
-                        var allSegments = new Queue<string>(
-                            pathRelativeToRoot
-                                .Split(new[] { System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar })
-                        );
-
-                        var absoluteSegments = new List<string>();
-                        while (allSegments.Count > 0)
+                        if (SearchDirectoryPath == null)
                         {
-                            var segment = allSegments.Peek();
-                            if (segment.Contains("*"))
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                allSegments.Dequeue();
-                                absoluteSegments.Add(segment);
-                            }
+                            // We don't know where to start searching from.
+                            continue;
                         }
 
-                        var searchBasePath = pathRoot + System.IO.Path.Combine(absoluteSegments.ToArray());
-                        var searchPattern = System.IO.Path.Combine(allSegments.ToArray());
+                        m.AddInclude(DefinitionsFilesPattern);
 
-                        m.AddInclude(searchPattern);
-                        return m.GetResultsInFullPath(searchBasePath);
+                        result.AddRange(m.GetResultsInFullPath(SearchDirectoryPath));
+
                     }
                 }
-                else
-                {
-                    // The path is not absolute, so we can use the matcher
-                    // directly to find paths, starting from our
 
-                    if (SearchDirectoryPath == null)
-                    {
-                        // We don't know where to start searching from.
-                        return Array.Empty<string>();
-                    }
-
-                    m.AddInclude(DefinitionsFilesPattern);
-
-                    IEnumerable<string> results;
-                    results = m.GetResultsInFullPath(SearchDirectoryPath);
-
-                    return results;
-                }
+                return result;
             }
         }
 
@@ -558,4 +584,60 @@ namespace Yarn.Compiler
             public string? Strings { get; set; }
         }
     }
+
+
+    // Starting in Yarn Spinner Project version 4, 'Definitions' is permitted to
+    // be either a single string, or an array of strings. This converter can
+    // read a string or list of strings (returning an array of strings), and
+    // writes a list of strings as an array of strings.
+    class StringOrListOfStringsConverter : JsonConverter<List<string>>
+    {
+        public override List<string>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            switch (reader.TokenType)
+            {
+                case JsonTokenType.String:
+                    // Just a single string; return a new list with a single
+                    // element
+                    return new List<string> { reader.GetString() ?? "" };
+                case JsonTokenType.StartArray:
+                    // An array; read strings out of it. If we encounter
+                    // something that's not a string, that's an error.
+                    {
+                        reader.Read();
+                        var result = new List<string>();
+
+                        while (reader.TokenType == JsonTokenType.String)
+                        {
+                            result.Add(reader.GetString() ?? "");
+                            reader.Read();
+                        }
+                        if (reader.TokenType == JsonTokenType.EndArray)
+                        {
+                            return result;
+                        }
+                        else
+                        {
+                            throw new JsonException($"Unexpected {reader.TokenType} in list of strings");
+                        }
+                    }
+
+                default:
+                    // Neither a string nor a list; error.
+                    throw new JsonException("Expected a string, or a list of strings");
+            }
+        }
+
+        public override void Write(Utf8JsonWriter writer, List<string> value, JsonSerializerOptions options)
+        {
+            // Write the list of strings as an array of strings.
+            writer.WriteStartArray();
+            foreach (var str in value)
+            {
+                writer.WriteStringValue(str);
+            }
+            writer.WriteEndArray();
+        }
+    }
+
 }

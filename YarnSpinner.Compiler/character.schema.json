@@ -1,0 +1,28 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://schemas.yarnspinner.dev/character.schema.json",
+    "title": "Character",
+    "description": "A character definition.",
+    "type": "object",
+    "required": ["name"],
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The name of the character as it appears before the colon in dialogue lines (e.g. 'Sally', 'Guard')."
+        },
+        "displayName": {
+            "type": "string",
+            "description": "The name shown to players in the game UI. Defaults to name if not set."
+        },
+        "colour": { "$ref": "colour.schema.json" },
+        "description": {
+            "type": "string",
+            "description": "Notes about this character for documentation purposes."
+        },
+        "portraitPath": {
+            "type": "string",
+            "description": "Path to this character's portrait image file, relative to the .yarnproject."
+        }
+    },
+    "additionalProperties": false
+}

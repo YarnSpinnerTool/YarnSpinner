@@ -217,19 +217,6 @@ namespace Yarn.Compiler
         );
 
         /// <summary>
-        /// YS0009: Node is never referenced.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: node title.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor UnusedNode = new DiagnosticDescriptor(
-            code: "YS0009",
-            messageTemplate: "Node '{0}' is never referenced",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Info,
-            description: "Node exists but is never jumped to"
-        );
-
-        /// <summary>
         /// YS0010: Variable is declared but never used.
         /// </summary>
         /// <remarks>
@@ -374,7 +361,7 @@ namespace Yarn.Compiler
         /// </summary>
         public static readonly DiagnosticDescriptor StrayCommandEnd = new DiagnosticDescriptor(
             code: "YS0021",
-            messageTemplate: "Stray '{0}' without matching '<<'. Did you forget to open the command?",
+            messageTemplate: "Stray '>>' without matching '<<'. Did you forget to open the command?",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
             description: "Command end marker without corresponding start marker"
         );
@@ -394,7 +381,7 @@ namespace Yarn.Compiler
         /// </summary>
         public static readonly DiagnosticDescriptor UnenclosedCommand = new DiagnosticDescriptor(
             code: "YS0022",
-            messageTemplate: "'{0}' command must be enclosed in '<<' and '>>'. Did you mean '<<{1}>>'?",
+            messageTemplate: "'{0}' command must be enclosed in '<<' and '>>'. Did you mean '<<{0} ...'?",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
             description: "Command keyword appearing outside of command markers"
         );
@@ -680,7 +667,6 @@ namespace Yarn.Compiler
             { UnclosedCommand.Code, UnclosedCommand },
             { UnclosedScope.Code, UnclosedScope },
             { UnreachableCode.Code, UnreachableCode },
-            { UnusedNode.Code, UnusedNode },
             { UnusedVariable.Code, UnusedVariable },
             { DuplicateNodeTitle.Code, DuplicateNodeTitle },
             { UndefinedNode.Code, UndefinedNode },
