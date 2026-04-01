@@ -469,7 +469,7 @@ namespace Yarn.Compiler
 
             var diagnostic = new Diagnostic(this.fileName, range, msg);
 
-            if (offendingSymbol.TokenSource != null)
+            if (offendingSymbol.TokenSource != null && offendingSymbol.Type != -1) // -1 token type means it isn't actually a token at all so we can't trust it's values
             {
                 StringBuilder builder = new StringBuilder();
 
