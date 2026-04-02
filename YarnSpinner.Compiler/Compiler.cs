@@ -504,7 +504,7 @@ namespace Yarn.Compiler
                     Declarations = declarations,
                     ContainsImplicitStringTags = false,
                     Program = null,
-                    StringTable = null,
+                    StringTable = stringTableManager.StringTable,
                     FileTags = fileTags,
                     Diagnostics = diagnostics,
                     UserDefinedTypes = userDefinedTypes,
