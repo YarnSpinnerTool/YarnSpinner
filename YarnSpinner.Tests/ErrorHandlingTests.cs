@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
@@ -114,7 +115,7 @@ namespace YarnSpinner.Tests
             you will only get the error, and no warning because the line with "<<before command>> this is a line following a command" will be lexed in command mode
             and basically come out as gobbledygook of tokens which we can't trust and therefore can't reliably make an error for them
             */
-            var originalText = 
+            var originalText =
 @"title: Program
 ---
 this is a line with a valid conditional <<if true>>
@@ -132,9 +133,9 @@ this is the line before a command <<after command>>
             // the command after line warning
             var diagnostic = result.Diagnostics.Should().ContainSingle(d => d.Code == "YS0020").Subject;
             diagnostic.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
-            
+
             diagnostic.Message.Should().Be($"Command \"<<after command>>\" found following a line of dialogue. Commands should start on a new line.");
-            
+
             var range = new Range(4, 34, 4, 51);
             diagnostic.Range.Should().Be(range);
 
@@ -144,9 +145,9 @@ this is the line before a command <<after command>>
             // our command before line warning
             diagnostic = result.Diagnostics.Should().ContainSingle(d => d.Code == "YS0019").Subject;
             diagnostic.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Warning);
-            
+
             diagnostic.Message.Should().Be($"Dialogue \"this is a line following a command\" content found following a command. Commands should be on their own line.");
-            
+
             range = new Range(3, 19, 3, 53);
             diagnostic.Range.Should().Be(range);
 
@@ -158,12 +159,12 @@ this is the line before a command <<after command>>
         }
 
         [Theory]
-        [InlineData("some command>>",     "YS0021", Diagnostic.DiagnosticSeverity.Warning, new int[] {2, 12, 2, 14})]
-        [InlineData("<some command>>",    "YS0021", Diagnostic.DiagnosticSeverity.Warning, new int[] {2, 13, 2, 15})]
-        [InlineData("some command>",      "YS0021", Diagnostic.DiagnosticSeverity.Warning, new int[] {2, 12, 2, 13})]
-        [InlineData("<some command>",     "YS0048", Diagnostic.DiagnosticSeverity.Warning, new int[] {2, 0,  2, 14})]
-        [InlineData("<<some command",     "YS0006", Diagnostic.DiagnosticSeverity.Error, new int[] {2, 14,  2, 15})]
-        [InlineData("<<some command>",    "YS0006", Diagnostic.DiagnosticSeverity.Error, new int[] {2, 14,  2, 15})]
+        [InlineData("some command>>", "YS0021", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 12, 2, 14 })]
+        [InlineData("<some command>>", "YS0021", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 13, 2, 15 })]
+        [InlineData("some command>", "YS0021", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 12, 2, 13 })]
+        [InlineData("<some command>", "YS0048", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 0, 2, 14 })]
+        [InlineData("<<some command", "YS0006", Diagnostic.DiagnosticSeverity.Error, new int[] { 2, 14, 2, 15 })]
+        [InlineData("<<some command>", "YS0006", Diagnostic.DiagnosticSeverity.Error, new int[] { 2, 14, 2, 15 })]
         public void TestUnbalancedCommandTerminalsGenerateDiagnostics(string input, string code, Diagnostic.DiagnosticSeverity severity, int[] rangeValues)
         {
             var source = CreateTestNode(input, "Start");
@@ -179,12 +180,12 @@ this is the line before a command <<after command>>
         }
 
         [Theory]
-        [InlineData("set $foo = 5",       "YS0022", Diagnostic.DiagnosticSeverity.Warning, new int[] {2, 0,  2, 3})]
-        [InlineData("declare $foo = 5",   "YS0022", Diagnostic.DiagnosticSeverity.Warning, new int[] {2, 0,  2, 7})]
-        [InlineData("jump here",          "YS0022", Diagnostic.DiagnosticSeverity.Warning, new int[] {2, 0,  2, 4})]
-        [InlineData("jump {$here}",       "YS0022", Diagnostic.DiagnosticSeverity.Warning, new int[] {2, 0,  2, 4})]
-        [InlineData("detour here",        "YS0022", Diagnostic.DiagnosticSeverity.Warning, new int[] {2, 0,  2, 6})]
-        [InlineData("detour {$here}",     "YS0022", Diagnostic.DiagnosticSeverity.Warning, new int[] {2, 0,  2, 6})]
+        [InlineData("set $foo = 5", "YS0022", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 0, 2, 3 })]
+        [InlineData("declare $foo = 5", "YS0022", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 0, 2, 7 })]
+        [InlineData("jump here", "YS0022", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 0, 2, 4 })]
+        [InlineData("jump {$here}", "YS0022", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 0, 2, 4 })]
+        [InlineData("detour here", "YS0022", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 0, 2, 6 })]
+        [InlineData("detour {$here}", "YS0022", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 0, 2, 6 })]
         public void TestBuiltInCommandsMissingTerminalsGenerateDiagnostics(string input, string code, Diagnostic.DiagnosticSeverity severity, int[] rangeValues)
         {
             var source = CreateTestNode(input, "Start");
@@ -234,7 +235,7 @@ this is the line before a command <<after command>>
 
             diagnostic.Message.Should().Be(message);
         }
-        
+
         [Theory]
         [InlineData("<<set $x = 5>>", "Variable '$x' is used but not declared. Declare it with: <<declare $x = value>>")]
         [InlineData("<<set $x = true>>", "Variable '$x' is used but not declared. Declare it with: <<declare $x = value>>")]
@@ -297,24 +298,24 @@ This node is missing it's end of body terminator===
 ---
 <<if true>>
     internal line
-===", 4,0,4,3)]
-    [InlineData(
+===", 4, 0, 4, 3)]
+        [InlineData(
 @"title: Program
 ---
 <<if true>>
     internal line
 <<else>>
     second internal line
-===", 6,0,6,3)]
-    [InlineData(
+===", 6, 0, 6, 3)]
+        [InlineData(
 @"title: Program
 ---
 <<if true>>
     internal line
 <<elseif 5 < 3>>
     second internal line
-===", 6,0,6,3)]
-    [InlineData(
+===", 6, 0, 6, 3)]
+        [InlineData(
 @"title: Program
 ---
 <<if true>>
@@ -323,14 +324,14 @@ This node is missing it's end of body terminator===
     second internal line
 <<else>>
     third internal line
-===", 8,0,8,3)]
-    [InlineData(
+===", 8, 0, 8, 3)]
+        [InlineData(
 @"title: Program
 ---
 <<if true>>
     internal line
     \<<endif>>
-===", 5,0,5,3)]
+===", 5, 0, 5, 3)]
         public void TestMissingClosingScopeGeneratesDiagnostic(string input, params int[] rangeValues)
         {
             rangeValues.Should().HaveCount(4);
@@ -378,14 +379,14 @@ This node has a single jump reference to it
             diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Info);
 
             diag.Message.Should().Be($"Node 'A' is never referenced");
-            
+
             diag.Range.Should().Be(range);
         }
 
         [Theory]
-        [InlineData("<<declare $somevar = 123>>", "$somevar", 1,0,1,27)]
-        [InlineData("<<declare $somevar = \"hello\">>", "$somevar", 1,0,1,31)]
-        [InlineData("<<declare $somevar = false>>", "$somevar", 1,0,1,29)]
+        [InlineData("<<declare $somevar = 123>>", "$somevar", 1, 0, 1, 27)]
+        [InlineData("<<declare $somevar = \"hello\">>", "$somevar", 1, 0, 1, 31)]
+        [InlineData("<<declare $somevar = false>>", "$somevar", 1, 0, 1, 29)]
         public void TestUnusedDeclaredVarsGenerateDiagnostic(string input, string varName, params int[] rangeValues)
         {
             rangeValues.Should().HaveCount(4);
@@ -439,7 +440,7 @@ the value is {$somevar}
         [Fact]
         public void TestDuplicateNonNodeGroupsShouldGenerateDiagnostics()
         {
-            var input = 
+            var input =
 @"title: A
 ---
 This is a line
@@ -451,7 +452,7 @@ This is a line
 
             var job = CompilationJob.CreateFromString("input", input);
             var result = Compiler.Compile(job);
-            
+
             result.Diagnostics.Should().HaveCount(2);
 
             var ranges = new HashSet<Range>()
@@ -474,7 +475,7 @@ This is a line
         [Fact]
         public void TestDuplicateNodeGroupsShouldNotGenerateDiagnostics()
         {
-            var input = 
+            var input =
 @"title: A
 when: always
 ---
@@ -488,7 +489,7 @@ This is a line
 
             var job = CompilationJob.CreateFromString("input", input);
             var result = Compiler.Compile(job);
-            
+
             result.Diagnostics.Should().BeEmpty();
         }
 
@@ -519,7 +520,6 @@ This is a line
             var source = CreateTestNode(input, "Start");
             var job = CompilationJob.CreateFromString("<input>", source);
             var result = Compiler.Compile(job);
-
             var diag = result.Diagnostics.Should().ContainSingle().Subject;
             diag.Code.Should().Be(code);
 
@@ -788,7 +788,7 @@ title: C
             var result = Compiler.Compile(job);
             result.Diagnostics.Should().BeEmpty();
         }
-        
+
         // same as the above but it's for subtitles
         [Theory]
         [InlineData("$abc", 7)]
@@ -843,6 +843,190 @@ title: C
                 ranges.Should().Contain(diag.Range);
                 ranges.Remove(diag.Range);
             }
+        }
+
+        [Theory]
+        [InlineData("{$undeclared}", "$undeclared", 2, 1)]
+        public void TestLinesWithUndeclaredVariablesGenerateDiagnostics(string input, string invalidExpression, int diagLine, int diagColumn)
+        {
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+            var diag = result.Diagnostics.Where(s => s.Code == DiagnosticDescriptor.TypeInferenceFailure.Code).Should().ContainSingle().Subject;
+            diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+            var expectedRange = new Range(diagLine, diagColumn, diagLine, diagColumn + invalidExpression.Length);
+            diag.Message.Should().Be($"Can't determine the type of the expression {invalidExpression}.");
+            diag.Range.Should().Be(expectedRange);
+        }
+
+        [Theory]
+        [InlineData("<<set $x = unknown()>>", "$x", 2, 6)]
+        public void TestLinesWithVariablesSetToValuesOfUnknownTypeGenerateDiagnostic(string input, string invalidExpression, int diagLine, int diagColumn)
+        {
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            var diag = result.Diagnostics.Where(s => s.Severity == Diagnostic.DiagnosticSeverity.Error).Should().ContainSingle().Subject;
+            diag.Code.Should().Be(DiagnosticDescriptor.ExpressionTypeUndetermined.Code);
+        }
+
+        [Theory]
+        [InlineData("<<declare $x = (1)>>\n<<set $x = 2>>", "$x", 3, 6)]
+        public void TestAttemptingToAssignValuesToSmartVariablesGeneratesDiagnostic(string input, string invalidExpression, int diagLine, int diagColumn)
+        {
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            var diag = result.Diagnostics.Where(s => s.Code == DiagnosticDescriptor.SmartVariableReadOnly.Code).Should().ContainSingle().Subject;
+            diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+            var expectedRange = new Range(diagLine, diagColumn, diagLine, diagColumn + invalidExpression.Length);
+            diag.Message.Should().Match($"{invalidExpression} cannot be modified (it's a smart variable and is always equal to *)");
+            diag.Range.Should().Be(expectedRange);
+        }
+
+        [Fact]
+        public void TestNodeInGroupWithMissingWhenClauseGeneratesDiagnostic()
+        {
+            var source = @"title: Group
+when: always
+---
+Content
+===
+title: Group
+---
+Content
+===";
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            var diag = result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.NodeGroupMissingWhen.Code).Subject;
+            diag.Range.Should().Be(new Range(5, 0, 5, 13));
+            diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+            diag.Message.Should().Be("All nodes in the group 'Group' must have a 'when' clause (use 'when: always' if you want this node to not have any conditions).");
+
+        }
+
+        [Fact]
+        public void TestNodeInGroupWithDuplicateSubtitleGeneratesDiagnostic()
+        {
+            var source = @"title: Group
+when: always
+subtitle: x
+---
+Content
+===
+title: Group
+when: always
+subtitle: x
+---
+Content
+===";
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            var diags = result.Diagnostics.Where(d => d.Code == DiagnosticDescriptor.DuplicateSubtitle.Code).ToList();
+            diags.Should().HaveCount(2);
+
+            diags.Should().AllSatisfy(d => d.Message.Should().Be("More than one node in group Group has subtitle x."));
+            diags.Should().AllSatisfy(d => d.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error));
+            diags[0].Range.Should().Be(new Range(2, 0, 2, "subtitle: x".Length));
+            diags[1].Range.Should().Be(new Range(8, 0, 8, "subtitle: x".Length));
+
+        }
+
+        [Fact]
+        public void TestEmptyNodesGenerateDiagnostics()
+        {
+            var source = @"title: NonEmpty
+---
+Not empty, so included
+===
+title: Empty
+---
+===
+title: EmptyWithComment
+---
+// only has a comment
+===
+";
+
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            var diags = result.Diagnostics.Where(d => d.Code == DiagnosticDescriptor.EmptyNode.Code).ToList();
+            diags.Should().HaveCount(2);
+
+            diags.Should().AllSatisfy(d => d.Message.Should().Match("Node \"*\" is empty and will not be included in the compiled output."));
+            diags.Should().AllSatisfy(d => d.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Warning));
+            diags[0].Range.Should().Be(new Range(4, 0, 6, "===".Length));
+            diags[1].Range.Should().Be(new Range(7, 0, 10, "===".Length));
+        }
+
+        [Theory]
+        [InlineData("<<enum Example>>\n<<case Test>>\n<<endenum>>", 3, 2, 0, 4, 11, "enums")]
+        [InlineData("=> Line 1\n=> Line 2", 3, 2, 0, 3, 10, "line groups")]
+        [InlineData("Here's a line <<once>>", 3, 2, 14, 2, 22, "'once' conditions")]
+        [InlineData("<<once>>\nLine\n<<endonce>>", 3, 2, 0, 4, 11, "'once' statements")]
+        public void TestUsingLanguageFeaturesFromFutureLanguageVersionGeneratesDiagnostic(string source, int minLanguageVersion, int diagStartLine, int diagStartColumn, int diagEndLine, int diagEndColumn, string diagMessage)
+        {
+            // Test on a version before the minimum version; we should see the expected error
+            var expectedFailingJob = CompilationJob.CreateFromString("<input>", CreateTestNode(source));
+            expectedFailingJob.LanguageVersion = minLanguageVersion - 1;
+            var expectedFailingResult = Compiler.Compile(expectedFailingJob);
+
+            var diag = expectedFailingResult.Diagnostics.Should()
+                .ContainSingle(d => d.Code == DiagnosticDescriptor.LanguageVersionTooLow.Code, "we are below the minimum version for this language feature")
+                .Subject;
+            diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+            var expectedRange = new Range(diagStartLine, diagStartColumn, diagEndLine, diagEndColumn);
+            diag.Range.Should().Be(expectedRange);
+            diag.Message.Should().Match($"Language feature \"{diagMessage}\" is not available at language version {expectedFailingJob.LanguageVersion}; it requires version {minLanguageVersion} or later");
+
+            // Test on a version that IS at the minimum version; we should NOT see the expected error
+            var expectedPassingJob = CompilationJob.CreateFromString("<input>", CreateTestNode(source));
+            expectedPassingJob.LanguageVersion = minLanguageVersion;
+            var expectedPassingResult = Compiler.Compile(expectedPassingJob);
+            expectedPassingResult.Diagnostics.Should()
+                .NotContain(d => d.Code == DiagnosticDescriptor.LanguageVersionTooLow.Code, "we are at the minimum version for this language feature");
+        }
+
+        [Theory]
+        [InlineData("<<enum Example>>\n<<case Test = max(1,2)>>\n<<endenum>>", 2, 0, 4, 11)]
+        public void TestEnumsWithNonConstantRawValuesGenerateDiagnostic(string source, int diagStartLine, int diagStartColumn, int diagEndLine, int diagEndColumn)
+        {
+
+            var expectedFailingJob = CompilationJob.CreateFromString("<input>", CreateTestNode(source));
+            var expectedFailingResult = Compiler.Compile(expectedFailingJob);
+
+            var diag = expectedFailingResult.Diagnostics.Should()
+                .ContainSingle(d => d.Code == DiagnosticDescriptor.InvalidLiteralValue.Code)
+                .Subject;
+            diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+            var expectedRange = new Range(diagStartLine, diagStartColumn, diagEndLine, diagEndColumn);
+            diag.Range.Should().Be(expectedRange);
+            diag.Message.Should().Match($"Expected a constant type");
+        }
+
+        [Theory]
+        [InlineData("<<set $x = Test.Failure>>", "", 0, 0, 0, 0)]
+        [InlineData("<<declare $x = Test.Failure>>", "", 0, 0, 0, 0)]
+        public void TestEnumsWithInvalidCasesGenerateDiagnostics(string source, string messagePattern, int diagStartLine, int diagStartColumn, int diagEndLine, int diagEndColumn)
+        {
+            var preamble = @"<<enum Test>>
+<<case Item>>
+<<endenum>>
+";
+            PerformCommonSingleDiagLineTest(input: preamble + source,
+                                            code: DiagnosticDescriptor.InvalidMemberAccess.Code,
+                                            message: messagePattern,
+                                            severity: Diagnostic.DiagnosticSeverity.Error,
+                                            range: new Range(diagStartLine, diagStartColumn, diagEndLine, diagEndColumn));
         }
     }
 }
