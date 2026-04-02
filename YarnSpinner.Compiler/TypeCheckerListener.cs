@@ -217,9 +217,9 @@ namespace Yarn.Compiler
 
         private readonly Dictionary<string, Declaration> declarationLookup = new Dictionary<string, Declaration>();
 
-        private void AddDiagnostic(DiagnosticDescriptor descriptor, ParserRuleContext context, params string[] args)
+        private void AddDiagnostic(DiagnosticDescriptor.DiagnosticDescriptor1 descriptor, ParserRuleContext context, string message)
         {
-            this.diagnostics.Add(descriptor.Create(this.sourceFileName, context, args));
+            this.diagnostics.Add(descriptor.Create(this.sourceFileName, context, message));
         }
 
         private TypeEqualityConstraint AddEqualityConstraint(IType a, IType b, ParserRuleContext context, FailureMessageProvider failureMessageProvider)
