@@ -184,12 +184,7 @@ namespace Yarn.Compiler
                 // We don't have a name for this node. We can't emit code for
                 // it.
                 this.CompilationResult.Diagnostics.Add(
-                    new Diagnostic(
-                        this.FileParseResult.Name,
-                        context,
-                        "Missing title header for node"
-                    )
-                    { Code = DiagnosticDescriptor.DuplicateNodeTitle.Code }
+                    DiagnosticDescriptor.NodeMissingTitle.Create(this.FileParseResult.Name, context)
                 );
             }
             else

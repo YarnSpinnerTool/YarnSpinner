@@ -262,6 +262,18 @@ namespace Yarn.Compiler
         );
 
         /// <summary>
+        /// YS0050: An error occurred in resolving this expression's type.
+        /// </summary>
+        /// <remarks>This is a catch-all error for handling type checking
+        /// errors. Format placeholders: 0: The error message.</remarks>
+        public static readonly DiagnosticDescriptor1 TypeCheckerError = new(
+            code: "YS0050",
+            messageTemplate: "{0}",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "An error occurred in resolving this expression's type."
+        );
+
+        /// <summary>
         /// YS0003: An undefined variable was referenced.
         /// </summary>
         /// <remarks>
@@ -295,7 +307,7 @@ namespace Yarn.Compiler
         /// </remarks>
         public static readonly DiagnosticDescriptor1 SyntaxError = new(
             code: "YS0005",
-            messageTemplate: "{0}",
+            messageTemplate: "Syntax error: {0}",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "Syntax error in Yarn script"
         );
@@ -663,9 +675,9 @@ namespace Yarn.Compiler
         /// <remarks>
         /// <para>Format placeholders: 0: variable name.</para>
         /// </remarks>
-        public static readonly DiagnosticDescriptor1 SmartVariableReadOnly = new(
-            code: "YS0030",
-            messageTemplate: "{0} cannot be modified (it's a smart variable).",
+        public static readonly DiagnosticDescriptor2 SmartVariableReadOnly = new(
+            code: "YS0049",
+            messageTemplate: "{0} cannot be modified (it's a smart variable and is always equal to {1})",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "Smart variables are read-only computed values and cannot be assigned to."
         );
@@ -773,6 +785,26 @@ namespace Yarn.Compiler
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "A type member access could not be resolved."
         );
+
+        /// <summary>
+        /// YS0051: Node is missing its title
+        /// </summary>
+        public static readonly DiagnosticDescriptor0 NodeMissingTitle = new(
+            code: "YS0051",
+            messageTemplate: "Nodes must have a title",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "A node is missing its title header."
+        );
+        /// <summary>
+        /// YS0052: Node has more than one title
+        /// </summary>
+        public static readonly DiagnosticDescriptor0 NodeHasMoreThanOneTitle = new(
+            code: "YS0052",
+            messageTemplate: "Nodes must have a single title header",
+            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
+            description: "A node has more than one title."
+        );
+
 
         #endregion
 

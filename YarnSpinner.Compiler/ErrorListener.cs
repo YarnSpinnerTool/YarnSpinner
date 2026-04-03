@@ -80,7 +80,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
-        public Diagnostic(string fileName, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        private Diagnostic(string fileName, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
             this.Message = message;
@@ -94,7 +94,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
-        public Diagnostic(string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        private Diagnostic(string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         : this("(unknown)", message, severity)
         {
         }
@@ -110,8 +110,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
-        [Obsolete("Use " + nameof(CreateDiagnostic) + " to create diagnostics.")]
-        public Diagnostic(string fileName, ParserRuleContext? context, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        private Diagnostic(string fileName, ParserRuleContext? context, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
 
@@ -143,8 +142,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
-        [Obsolete("Use " + nameof(CreateDiagnostic) + " to create diagnostics.")]
-        public Diagnostic(string fileName, IToken token, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        private Diagnostic(string fileName, IToken token, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
 
@@ -170,19 +168,13 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
-        [Obsolete("Use " + nameof(CreateDiagnostic) + " to create diagnostics.")]
-        public Diagnostic(string fileName, Range range, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        private Diagnostic(string fileName, Range range, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
             this.Range = range ?? Range.InvalidRange;
             this.Message = message;
             this.Severity = severity;
         }
-
-        // 'Identifier' is obsolete (TODO: re enable this after we finish making
-        // the constructor for Diagnostic private, so that the only way to
-        // create a diagnostic is via a DiagnosticDescriptor)
-#pragma warning disable CS0618
 
         // ===== FACTORY METHODS USING DIAGNOSTICDESCRIPTOR =====
         // These methods ensure error codes and messages are always correctly paired
@@ -329,7 +321,7 @@ namespace Yarn.Compiler
         }
     }
 
-    internal sealed class YarnErrorListener: IAntlrErrorListener<int>, IAntlrErrorListener<IToken>
+    internal sealed class YarnErrorListener : IAntlrErrorListener<int>, IAntlrErrorListener<IToken>
     {
         private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
         private readonly string fileName;
@@ -342,7 +334,7 @@ namespace Yarn.Compiler
         }
 
         private HashSet<int> cursedLines = new();
-        
+
         // this is the lexer error event
         public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
@@ -352,7 +344,7 @@ namespace Yarn.Compiler
             }
 
             Range range = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
-            var diagnostic = new Diagnostic(this.fileName, range, msg);
+            Diagnostic diagnostic;
 
             // Assign error code for lexer errors
             if (msg.ToLowerInvariant().Contains("token recognition error"))
@@ -361,18 +353,18 @@ namespace Yarn.Compiler
                 if (recognizer is Lexer lexer && lexer.ModeStack != null && lexer.ModeStack.Count > 0)
                 {
                     // If we have a mode stack, we're likely inside an unclosed command
-                    diagnostic.Code = DiagnosticDescriptor.UnclosedCommand.Code;
-                    var descriptor = DiagnosticDescriptor.GetDescriptor(DiagnosticDescriptor.UnclosedCommand.Code);
-                    if (descriptor != null)
-                    {
-                        diagnostic.Message = descriptor.MessageTemplate;
-                    }
+                    diagnostic = DiagnosticDescriptor.UnclosedCommand.Create(this.fileName, range);
+
                     cursedLines.Add(line);
                 }
                 else
                 {
-                    diagnostic.Code = DiagnosticDescriptor.SyntaxError.Code;
+                    diagnostic = DiagnosticDescriptor.SyntaxError.Create(this.fileName, range, msg);
                 }
+            }
+            else
+            {
+                diagnostic = DiagnosticDescriptor.SyntaxError.Create(this.fileName, range, msg);
             }
 
             this.diagnostics.Add(diagnostic);
@@ -389,7 +381,7 @@ namespace Yarn.Compiler
             Range range = new(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
             if (recognizer is not Parser parser)
             {
-                this.diagnostics.Add(new Diagnostic(this.fileName, range, "ARGH")); // this needs to change lol
+                this.diagnostics.Add(DiagnosticDescriptor.InternalError.Create(this.fileName, range, "Recognizer is not a Parser"));
                 return;
             }
 
@@ -467,7 +459,7 @@ namespace Yarn.Compiler
                 msg = ErrorUtility.ReportInputMismatch(parser, exi);
             }
 
-            var diagnostic = new Diagnostic(this.fileName, range, msg);
+            string? context = null;
 
             if (offendingSymbol.TokenSource != null && offendingSymbol.Type != -1) // -1 token type means it isn't actually a token at all so we can't trust it's values
             {
@@ -500,13 +492,15 @@ namespace Yarn.Compiler
                     }
                 }
 
-                diagnostic.Context = builder.ToString();
+                context = builder.ToString();
 
-                diagnostic.Range = new Range(offendingSymbol.Line - 1, offendingSymbol.Column, offendingSymbol.Line - 1, offendingSymbol.Column + offendingSymbol.Text.Length);
+
+                range = new Range(offendingSymbol.Line - 1, offendingSymbol.Column, offendingSymbol.Line - 1, offendingSymbol.Column + offendingSymbol.Text.Length);
             }
 
             // Assign error codes based on ANTLR message patterns
-            diagnostic.Code = CategorizeParserError(msg);
+            var diagnostic = GetDiagnosticForParserError(this.fileName, range, msg);
+            diagnostic.Context = context;
 
             // If we assigned a code, update the message to be user-friendly
             if (!string.IsNullOrEmpty(diagnostic.Code))
@@ -524,21 +518,21 @@ namespace Yarn.Compiler
         /// <summary>
         /// Categorizes parser errors from ANTLR messages and assigns appropriate error codes
         /// </summary>
-        private string? CategorizeParserError(string message)
+        private Diagnostic GetDiagnosticForParserError(string fileName, Range range, string message)
         {
             var msg = message.ToLowerInvariant();
 
             // YS0004: Missing delimiter (=== or ---)
             if (msg.Contains("missing") && (msg.Contains("===") || msg.Contains("'==='") || msg.Contains("delimiter")))
             {
-                return DiagnosticDescriptor.MissingDelimiter.Code;
+                return DiagnosticDescriptor.MissingDelimiter.Create(fileName, range);
             }
 
             // YS0006: Unclosed command (missing >>)
             // Match direct "missing >>" messages
             if (msg.Contains("missing") && (msg.Contains("'>'") || msg.Contains(">>")))
             {
-                return DiagnosticDescriptor.UnclosedCommand.Code;
+                return DiagnosticDescriptor.UnclosedCommand.Create(fileName, range);
             }
             // Match "unexpected" errors with command keywords
             // Pattern: "unexpected 'keyword'" or "unexpected 'keyword'" (different quote styles)
@@ -548,24 +542,24 @@ namespace Yarn.Compiler
                 if (System.Text.RegularExpressions.Regex.IsMatch(msg, @"\b(set|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)\b") ||
                     System.Text.RegularExpressions.Regex.IsMatch(msg, @"'(set|if|elseif|else|endif|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)'"))
                 {
-                    return DiagnosticDescriptor.UnclosedCommand.Code;
+                    return DiagnosticDescriptor.UnclosedCommand.Create(fileName, range);
                 }
             }
 
             // YS0007: Unclosed scope (missing endif, endonce, etc)
             if (msg.Contains("missing") && (msg.Contains("endif") || msg.Contains("endonce") || msg.Contains("end")))
             {
-                return DiagnosticDescriptor.UnclosedScope.Code;
+                return DiagnosticDescriptor.UnclosedScope.Create(fileName, range, msg);
             }
 
             // YS0005: Malformed dialogue / syntax error
             if (msg.Contains("extraneous input") || msg.Contains("mismatched input"))
             {
-                return DiagnosticDescriptor.SyntaxError.Code;
+                return DiagnosticDescriptor.SyntaxError.Create(fileName, range, msg);
             }
 
             // Default: no specific code for other ANTLR errors
-            return null;
+            return DiagnosticDescriptor.SyntaxError.Create(fileName, range, msg);
         }
     }
 
@@ -716,7 +710,7 @@ namespace Yarn.Compiler
             bool foundToken = false;
             for (int i = 0; i < depth; i++)
             {
-                var token = tokens.LA(-1 -i);
+                var token = tokens.LA(-1 - i);
                 if (terminators.Contains(token))
                 {
                     foundToken = true;
@@ -759,7 +753,7 @@ namespace Yarn.Compiler
             {
                 return null;
             }
-            
+
             return tokens.LT(rollingTokenIndex + 2);
         }
         internal static (Range range, string tokenText) DiagnosticInfo(Parser parser, HashSet<int> endTerminal, int line, int charPositionInLine)
@@ -791,7 +785,7 @@ namespace Yarn.Compiler
                 }
             }
 
-            var range = new Range(line -1, parser.RuleContext.Start.Column, stopLine, stopColumn);
+            var range = new Range(line - 1, parser.RuleContext.Start.Column, stopLine, stopColumn);
             return (range, text);
         }
         internal static string LineOfCurrentToken(Parser parser)

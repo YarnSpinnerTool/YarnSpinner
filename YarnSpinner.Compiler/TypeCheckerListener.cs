@@ -742,7 +742,9 @@ namespace Yarn.Compiler
             {
                 // if we don't have a definition for this function we can't ensure it's the right type
                 // so we will have to bail out and just add a diagnostic for this function call
-                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"Was unable to find a declaration for {functionName}."));
+
+                this.diagnostics.Add(DiagnosticDescriptor.InvalidFunctionCall.Create(this.sourceFileName, context, functionName ?? "<unknown>"));
+
                 base.ExitFunction_call(context);
                 return;
             }

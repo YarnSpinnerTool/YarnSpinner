@@ -529,12 +529,22 @@ This is a line
 
             diag.Range.Should().Be(range);
         }
-        private void PerformCommonSingleDiagNodeTest(string input, string code, string message, Diagnostic.DiagnosticSeverity severity, Range range)
+        private void PerformCommonSingleDiagNodeTest(string input, string code, string message, Diagnostic.DiagnosticSeverity severity, Range range, bool allowOthers = false)
         {
             var job = CompilationJob.CreateFromString("<input>", input);
             var result = Compiler.Compile(job);
 
-            var diag = result.Diagnostics.Should().ContainSingle().Subject;
+
+            Diagnostic diag;
+
+            if (allowOthers)
+            {
+                diag = result.Diagnostics.Should().ContainSingle(d => d.Code == code).Subject;
+            }
+            else
+            {
+                diag = result.Diagnostics.Should().ContainSingle().Subject;
+            }
             diag.Code.Should().Be(code);
 
             diag.Severity.Should().Be(severity);
@@ -1027,6 +1037,44 @@ title: EmptyWithComment
                                             message: messagePattern,
                                             severity: Diagnostic.DiagnosticSeverity.Error,
                                             range: new Range(diagStartLine, diagStartColumn, diagEndLine, diagEndColumn));
+        }
+
+        [Fact]
+        public void TestNodesWithMissingHeadersGenerateDiagnostics()
+        {
+            PerformCommonSingleDiagNodeTest("test: something\n---\ncontent\n===",
+                                            DiagnosticDescriptor.NodeMissingTitle.Code,
+                                            "Nodes must have a title",
+                                            Diagnostic.DiagnosticSeverity.Error,
+                                            new Range(2, 0, 2, 8));
+
+        }
+
+        [Fact]
+        public void TestNodesWithMultipleHeadersGenerateDiagnostics()
+        {
+            PerformCommonSingleDiagNodeTest("title: Test\ntitle: Test2\n---\ncontent\n===",
+                                            DiagnosticDescriptor.NodeHasMoreThanOneTitle.Code,
+                                            "Nodes must have a single title header",
+                                            Diagnostic.DiagnosticSeverity.Error,
+                                            new Range(1, 0, 1, 13));
+
+        }
+
+        [Fact]
+        public void TestFunctionCallsToUndeclaredFunctionsGenerateDiagnostics()
+        {
+            PerformCommonSingleDiagNodeTest(@"title: Test
+---
+<<declare $x = 1>>
+<<set $x = undeclared()>>
+===",
+                DiagnosticDescriptor.InvalidFunctionCall.Code,
+                "Invalid function call: undeclared",
+                Diagnostic.DiagnosticSeverity.Error, new Range(3, 11, 3, 23),
+                allowOthers: true
+            );
+
         }
     }
 }
