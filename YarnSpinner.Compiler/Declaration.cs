@@ -100,6 +100,32 @@ namespace Yarn.Compiler
                 return this.Start.IsValid && this.End.IsValid && this.End >= this.Start;
             }
         }
+
+        /// <summary>
+        /// Compares two <see cref="Range"/> objects and returns true if they
+        /// represent the same range.
+        /// </summary>
+        /// <param name="a">The first range.</param>
+        /// <param name="b">The second range.</param>
+        /// <returns><see langword="true"/> if the ranges are
+        /// identical.</returns>
+        public static bool operator ==(Range a, Range b)
+        {
+            return a.Start == b.Start && a.End == b.End;
+        }
+
+        /// <summary>
+        /// Compares two <see cref="Range"/> objects and returns true if they do
+        /// not represent the same range.
+        /// </summary>
+        /// <param name="a">The first range.</param>
+        /// <param name="b">The second range.</param>
+        /// <returns><see langword="true"/> if the ranges are not
+        /// identical.</returns>
+        public static bool operator !=(Range a, Range b)
+        {
+            return !(a == b);
+        }
     }
 
     /// <summary>
@@ -207,6 +233,33 @@ namespace Yarn.Compiler
         public static Position operator +(Position a, Position b)
         {
             return new Position(a.Line + b.Line, a.Character + b.Character);
+        }
+
+
+        /// <summary>
+        /// Compares two <see cref="Position"/> objects and returns true if they
+        /// represent the same position.
+        /// </summary>
+        /// <param name="a">The first position.</param>
+        /// <param name="b">The second position.</param>
+        /// <returns><see langword="true"/> if the positions are
+        /// identical.</returns>
+        public static bool operator ==(Position a, Position b)
+        {
+            return a.Line == b.Line && a.Character == b.Character;
+        }
+
+        /// <summary>
+        /// Compares two <see cref="Position"/> objects and returns true if they
+        /// do not represent the same position.
+        /// </summary>
+        /// <param name="a">The first position.</param>
+        /// <param name="b">The second position.</param>
+        /// <returns><see langword="true"/> if the positions are not
+        /// identical.</returns>
+        public static bool operator !=(Position a, Position b)
+        {
+            return !(a == b);
         }
     }
 
