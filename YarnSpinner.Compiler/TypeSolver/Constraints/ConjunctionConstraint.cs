@@ -31,7 +31,7 @@ namespace TypeChecker
             Constraints = constraints;
         }
 
-        public override IEnumerable<string> GetFailureMessages(Substitution subst)
+        public override IEnumerable<Yarn.Compiler.Diagnostic> GetFailureMessages(Substitution subst)
         {
             return this.Constraints.SelectMany(c => c.GetFailureMessages(subst));
         }

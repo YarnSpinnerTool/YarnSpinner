@@ -340,7 +340,7 @@ namespace Yarn.Compiler
                 {
                     foreach (var failureMessage in constraint.GetFailureMessages(typeSolution))
                     {
-                        diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceRange, failureMessage) { Code = DiagnosticDescriptor.TypeMismatch.Code });
+                        diagnostics.Add(failureMessage);
                     }
                 }
                 watchdog.Stop();

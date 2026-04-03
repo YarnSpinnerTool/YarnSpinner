@@ -51,7 +51,11 @@ namespace TypeChecker
 
         public ParserRuleContext? SourceContext { get; internal set; }
 
-        public virtual IEnumerable<string> GetFailureMessages(Substitution subst) => new[] { FailureMessageProvider?.Invoke(subst) ?? this.ToString() };
+        public virtual IEnumerable<Yarn.Compiler.Diagnostic> GetFailureMessages(Substitution subst)
+        {
+            var message = FailureMessageProvider?.Invoke(subst) ?? "An unknown error occurred when resolving this expression's type.";
+            return new[] { Yarn.Compiler.DiagnosticDescriptor.TypeCheckerError.Create(this.SourceFileName, this.SourceRange, message) };
+        }
 
         public FailureMessageProvider? FailureMessageProvider;
 
