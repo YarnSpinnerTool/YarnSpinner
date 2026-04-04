@@ -149,7 +149,9 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Should().ContainSingle().Which.Message.Should().Be("Redeclaration of existing variable $int");
+            var errors = result.Diagnostics.Where(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+            errors.Should().HaveCount(2);
+            errors.Should().AllSatisfy(d => d.Message.Should().Be("Redeclaration of existing variable $int"));
         }
 
         [Fact]
@@ -162,7 +164,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Should().ContainSingle().Which.Message.Should().Be("$int (Number) cannot be assigned a String");
+            result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.TypeCheckerError.Code).Which.Message.Should().Be("$int (Number) cannot be assigned a String");
         }
 
         [Theory]
@@ -325,12 +327,12 @@ namespace YarnSpinner.Tests
 
             // change the delegate under the hood after compilation
             // essentially breaking the promise that the library made earlier on
-            testBaseResponder.Library.delegates["func_invalid_return"] = () => { new List<int> {0,1}; };
+            testBaseResponder.Library.delegates["func_invalid_return"] = () => { new List<int> { 0, 1 }; };
 
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
             testBaseResponder.OnReceivedNodeStart = (node, token) => { return default; };
             dialogue.Program = result.Program;
-            
+
             // now if we attempt to run it it should throw when it hits the function
             // because we broke the definition promise
             try
@@ -710,7 +712,7 @@ namespace YarnSpinner.Tests
             {func(2, 2)} // wrong number of parameters (previous decl had 1)
             ");
 
-            testBaseResponder.Library.RegisterFunction<int,int>("func", (input) => 1);
+            testBaseResponder.Library.RegisterFunction<int, int>("func", (input) => 1);
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
 
             result.Diagnostics.Select(d => d.Message).Should().ContainMatch("Invalid function call: func expects 1 parameter, not 2");

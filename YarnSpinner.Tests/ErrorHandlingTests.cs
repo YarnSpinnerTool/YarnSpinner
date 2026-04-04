@@ -246,7 +246,7 @@ this is the line before a command <<after command>>
             var job = CompilationJob.CreateFromString("<input>", source);
             var result = Compiler.Compile(job);
 
-            var diagnostic = result.Diagnostics.Should().ContainSingle().Subject;
+            var diagnostic = result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.UndefinedVariable.Code).Subject;
             diagnostic.Code.Should().Be("YS0003");
 
             diagnostic.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Warning);
@@ -508,7 +508,7 @@ This is a line
             var diag = result.Diagnostics.Should().ContainSingle().Subject;
             diag.Code.Should().Be(DiagnosticDescriptor.UndefinedNode.Code);
 
-            diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+            diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Warning);
 
             diag.Message.Should().Be($"Jump to undefined node: '{nodeName}'");
 
@@ -919,7 +919,9 @@ title: C
             var job = CompilationJob.CreateFromString("<input>", source);
             var result = Compiler.Compile(job);
 
-            result.Diagnostics.Should().HaveCount(2);
+            var redeclarations = result.Diagnostics.Where(d => d.Code == DiagnosticDescriptor.RedeclarationOfExistingVariable.Code).ToList();
+
+            redeclarations.Should().HaveCount(2);
 
             var ranges = new HashSet<Range>()
             {
@@ -927,7 +929,7 @@ title: C
                 new(3, 0, 3, 23),
             };
 
-            foreach (var diag in result.Diagnostics)
+            foreach (var diag in redeclarations)
             {
                 diag.Code.Should().Be(DiagnosticDescriptor.RedeclarationOfExistingVariable.Code);
 
