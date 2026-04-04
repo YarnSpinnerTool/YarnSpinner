@@ -356,6 +356,18 @@ namespace Yarn.Compiler
             if (declaration != null && declaration.IsImplicit == false)
             {
                 this.AddDiagnostic(DiagnosticDescriptor.RedeclarationOfExistingVariable, context, name ?? "unknown");
+
+                if (declaration.DeclarationParserContext != null)
+                {
+                    // Add a diagnostic on the source declaration as well - we
+                    // don't want to assume that _this_ declaration was the
+                    // wrong one.
+                    this.diagnostics.Add(
+                        DiagnosticDescriptor.RedeclarationOfExistingVariable.Create(
+                            declaration.SourceFileName,
+                            declaration.DeclarationParserContext,
+                            name ?? "unknown"));
+                }
                 return;
             }
 
@@ -404,7 +416,7 @@ namespace Yarn.Compiler
                 // We're replacing an implicit declaration with an explicit one.
                 // Before we replace it, we need to make sure that the type
                 // variable (which other constraints might rely on!) is
-                // connected to the type of the new declaration.
+                // connected to the type of the new declaration.                
                 this.AddEqualityConstraint(declaration.Type, typeIdentifier, context, s => $"{name} was declared to be a {typeIdentifier.Substitute(s)}, but it was used elsewhere as a {declaration.Type.Substitute(s)}");
 
                 // Remove the implicit declaration from the known declarations
@@ -424,6 +436,7 @@ namespace Yarn.Compiler
                 IsImplicit = false,
                 IsInlineExpansion = false,
                 InitialValueParserContext = context.expression(),
+                DeclarationParserContext = context,
             };
 
             this.AddDeclaration(declaration);
@@ -728,7 +741,6 @@ namespace Yarn.Compiler
             base.ExitValueFunc(context);
         }
 
-        // this will need to change such that if we don't have a function definition instead of creating an implication one we report this as an error
         public override void ExitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context)
         {
             // If we already have a declaration for this function, then use
@@ -743,7 +755,10 @@ namespace Yarn.Compiler
                 // if we don't have a definition for this function we can't ensure it's the right type
                 // so we will have to bail out and just add a diagnostic for this function call
 
-                this.diagnostics.Add(DiagnosticDescriptor.InvalidFunctionCall.Create(this.sourceFileName, context, functionName ?? "<unknown>"));
+                this.diagnostics.Add(DiagnosticDescriptor.InvalidFunctionCall.Create(
+                    this.sourceFileName,
+                    Utility.GetRange(context.FUNC_ID()),
+                    $"no declaration found for {functionName ?? "(unknown function)"}"));
 
                 base.ExitFunction_call(context);
                 return;
@@ -768,7 +783,7 @@ namespace Yarn.Compiler
                 var actualEnglishPlural = actualParameters != 1;
 
                 string message = $"{functionName} expects {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, not {actualParameters}";
-                this.AddDiagnostic(DiagnosticDescriptor.InvalidFunctionCall, context, message);
+                this.diagnostics.Add(DiagnosticDescriptor.InvalidFunctionCall.Create(this.sourceFileName, Utility.GetRange(context.FUNC_ID()), message));
 
                 // at this point there is no point in attempting to validate them
                 base.ExitFunction_call(context);

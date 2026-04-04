@@ -403,6 +403,14 @@ namespace Yarn.Compiler
         public YarnSpinnerParser.ExpressionContext? InitialValueParserContext { get; set; }
 
         /// <summary>
+        /// Gets or sets the parser context for the declaration statement
+        /// provided for this variable, if any. This is only valid for variable
+        /// declarations, not functions (because functions aren't declared
+        /// inside Yarn scripts.)
+        /// </summary>
+        public YarnSpinnerParser.Declare_statementContext? DeclarationParserContext { get; internal set; }
+
+        /// <summary>
         /// Gets the collection of <see cref="Declaration"/> objects whose value
         /// depends upon this <see cref="Declaration"/>.
         /// </summary>
@@ -419,6 +427,8 @@ namespace Yarn.Compiler
         /// variable, and not a function.
         /// </summary>
         public bool IsVariable => !(this.Type is FunctionType);
+
+
 
         /// <inheritdoc/>
         public override string ToString()

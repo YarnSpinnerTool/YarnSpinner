@@ -93,6 +93,7 @@ namespace Yarn.Compiler
 #endif
         }
 
+
         /// <inheritdoc cref="DiagnosticDescriptor"/>
         public sealed class DiagnosticDescriptor0 : DiagnosticDescriptor
         {
@@ -522,11 +523,11 @@ namespace Yarn.Compiler
         /// YS0027: Node title or subtitle contains invalid characters.
         /// </summary>
         /// <remarks>
-        /// <para>Format placeholders: 0: "title" or "subtitle", 1: the invalid name.</para>
+        /// <para>Format placeholders: 0: "title" or "subtitle", 1: the invalid character.</para>
         /// </remarks>
         public static readonly DiagnosticDescriptor2 InvalidNodeName = new(
             code: "YS0027",
-            messageTemplate: "The node {0} '{1}' contains invalid characters. Titles can only contain letters, numbers, and underscores.",
+            messageTemplate: "Unexpected '{1}' in node {0}. Titles can only contain letters, numbers, and underscores.",
             defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
             description: "Node titles and subtitles can only contain letters, numbers, and underscores."
         );

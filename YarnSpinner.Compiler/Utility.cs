@@ -282,6 +282,34 @@ namespace Yarn.Compiler
             return tag;
         }
 
+        internal static Range GetRange(IToken token)
+        {
+            if (token.Type == -1)
+            { // EOF 
+                return new Range(token.Line - 1, token.Column, token.Line - 1, token.Column + 1);
+            }
+            else
+            {
+                return new Range(token.Line - 1, token.Column, token.Line - 1, token.Column + token.Text.Length);
+            }
+        }
+
+        internal static Range GetRange(ITerminalNode terminalNode)
+        {
+            if (terminalNode.Payload is IToken token)
+            {
+                return GetRange(token);
+            }
+            else if (terminalNode.Payload is ParserRuleContext context)
+            {
+                return GetRange(context);
+            }
+            else
+            {
+                throw new ArgumentException("Unhandled terminal node payload type " + terminalNode.Payload.GetType());
+            }
+        }
+
         internal static Range GetRange(IToken? startToken, IToken? endToken)
         {
             var startPosition = startToken != null ? new Position(startToken.Line - 1, startToken.Column) : null;

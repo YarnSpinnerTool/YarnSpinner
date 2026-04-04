@@ -23,14 +23,27 @@ namespace Yarn.Compiler
 
             if (functionName.Equals("visited") || functionName.Equals("visited_count"))
             {
-                // we aren't bothering to test anything about the value itself
-                // if it isn't a static string we'll get back null so can ignore it
-                // if the func has more than one parameter later on it will cause an error so again can ignore
-                var result = Visit(context.expression()[0]);
-
-                if (result != null)
+                var parameters = context.expression();
+                if (parameters.Length < 1)
                 {
-                    TrackingNode.Add(result);
+                    // No actual parameter provided to this function call -
+                    // that's a semantic error, and there'll be a diagnostic for
+                    // this issued elsewhere. For our purposes here, there's
+                    // nothing to do.
+                }
+                else
+                {
+                    // We aren't bothering to test anything about the value
+                    // itself. If it isn't a static string we'll get back null
+                    // so we can ignore it; if the func has more than one
+                    // parameter later on it will cause an error so again, can
+                    // ignore.
+                    var result = Visit(parameters[0]);
+
+                    if (result != null)
+                    {
+                        TrackingNode.Add(result);
+                    }
                 }
             }
 

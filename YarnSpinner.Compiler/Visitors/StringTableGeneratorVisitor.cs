@@ -90,7 +90,11 @@ namespace Yarn.Compiler
 
                 diagnosticContext = lineIDTag ?? (ParserRuleContext)context;
 
+                var existingContext = stringTableManager.LineContexts[lineID];
+                var existingIDTag = Compiler.GetContentIDTag(ContentIdentifierType.Line, existingContext.hashtag()) ?? (ParserRuleContext)existingContext;
+
                 this.diagnostics.Add(DiagnosticDescriptor.DuplicateLineID.Create(fileName, diagnosticContext, lineID));
+                this.diagnostics.Add(DiagnosticDescriptor.DuplicateLineID.Create(fileName, existingIDTag, lineID));
 
                 return 0;
             }

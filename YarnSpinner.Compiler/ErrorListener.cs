@@ -338,6 +338,11 @@ namespace Yarn.Compiler
         // this is the lexer error event
         public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
+            if (!(recognizer is Lexer lexer))
+            {
+                throw new ArgumentException("Expected recogniser to be a Lexer");
+            }
+
             if (cursedLines.Contains(line))
             {
                 return;
@@ -349,13 +354,37 @@ namespace Yarn.Compiler
             // Assign error code for lexer errors
             if (msg.ToLowerInvariant().Contains("token recognition error"))
             {
-                // Check if we're in CommandMode or ExpressionMode - this indicates an unclosed command
-                if (recognizer is Lexer lexer && lexer.ModeStack != null && lexer.ModeStack.Count > 0)
+                // Check if we're in CommandMode - this indicates an unclosed command
+                if (lexer.CurrentMode == YarnSpinnerLexer.CommandMode || lexer.CurrentMode == YarnSpinnerLexer.CommandTextMode)
                 {
                     // If we have a mode stack, we're likely inside an unclosed command
                     diagnostic = DiagnosticDescriptor.UnclosedCommand.Create(this.fileName, range);
+                }
+                else if (lexer.CurrentMode == YarnSpinnerLexer.HeaderTitleMode)
+                {
+                    // We failed to match a token while in title mode - this
+                    // must be an invalid title.
 
-                    cursedLines.Add(line);
+                    char unexpectedCharacter = (char)lexer.InputStream.LA(1);
+                    string result;
+
+                    bool unexpectedIsNewLine = unexpectedCharacter == '\n' || unexpectedCharacter == '\r';
+                    if (unexpectedIsNewLine)
+                    {
+                        // We had a newline when we didn't expect it. Given that
+                        // newlines are what end the title under normal
+                        // circumstances, the only way this can happen is if we
+                        // got a newline and nothing else. In this situation,
+                        // the parser will return an error about a missing ID,
+                        // so we don't have to.
+                        return;
+                    }
+                    else
+                    {
+                        result = $"{unexpectedCharacter}";
+                    }
+
+                    diagnostic = DiagnosticDescriptor.InvalidNodeName.Create(this.fileName, range, "title", result);
                 }
                 else
                 {
@@ -367,6 +396,7 @@ namespace Yarn.Compiler
                 diagnostic = DiagnosticDescriptor.SyntaxError.Create(this.fileName, range, msg);
             }
 
+            cursedLines.Add(line);
             this.diagnostics.Add(diagnostic);
         }
 
@@ -438,16 +468,20 @@ namespace Yarn.Compiler
                     Range validRange = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
                     // Range validRange = new Range(line - 1, parser.RuleContext.Start.Column, line - 1, end);
 
-                    var diag = Diagnostic.CreateDiagnostic(
-                        this.fileName,
-                        validRange,
-                        DiagnosticDescriptor.UnclosedCommand
-                    );
+                    var diag = DiagnosticDescriptor.UnclosedCommand.Create(this.fileName, validRange);
 
                     this.diagnostics.Add(diag);
                     cursedLines.Add(line);
                     return;
                 }
+            }
+            else if (ErrorUtility.IsInsideRule<YarnSpinnerParser.NodeContext>(parser) && offendingSymbol.Type == YarnSpinnerLexer.Eof)
+            {
+                // We're inside a node, but we hit an EOF. We must be missing
+                // the closing delimiter.
+                this.diagnostics.Add(DiagnosticDescriptor.MissingDelimiter.Create(this.fileName, Utility.GetRange(offendingSymbol)));
+                cursedLines.Add(line);
+                return;
             }
 
             if (e is NoViableAltException exn)
@@ -502,16 +536,6 @@ namespace Yarn.Compiler
             var diagnostic = GetDiagnosticForParserError(this.fileName, range, msg);
             diagnostic.Context = context;
 
-            // If we assigned a code, update the message to be user-friendly
-            if (!string.IsNullOrEmpty(diagnostic.Code))
-            {
-                var descriptor = DiagnosticDescriptor.GetDescriptor(diagnostic.Code);
-                if (descriptor != null)
-                {
-                    diagnostic.Message = descriptor.MessageTemplate;
-                }
-            }
-
             this.diagnostics.Add(diagnostic);
         }
 
@@ -520,46 +544,46 @@ namespace Yarn.Compiler
         /// </summary>
         private Diagnostic GetDiagnosticForParserError(string fileName, Range range, string message)
         {
-            var msg = message.ToLowerInvariant();
+            var loweredMsg = message.ToLowerInvariant();
 
             // YS0004: Missing delimiter (=== or ---)
-            if (msg.Contains("missing") && (msg.Contains("===") || msg.Contains("'==='") || msg.Contains("delimiter")))
+            if (loweredMsg.Contains("missing") && (loweredMsg.Contains("===") || loweredMsg.Contains("'==='") || loweredMsg.Contains("delimiter")))
             {
                 return DiagnosticDescriptor.MissingDelimiter.Create(fileName, range);
             }
 
             // YS0006: Unclosed command (missing >>)
             // Match direct "missing >>" messages
-            if (msg.Contains("missing") && (msg.Contains("'>'") || msg.Contains(">>")))
+            if (loweredMsg.Contains("missing") && (loweredMsg.Contains("'>'") || loweredMsg.Contains(">>")))
             {
                 return DiagnosticDescriptor.UnclosedCommand.Create(fileName, range);
             }
             // Match "unexpected" errors with command keywords
             // Pattern: "unexpected 'keyword'" or "unexpected 'keyword'" (different quote styles)
-            if (msg.Contains("unexpected"))
+            if (loweredMsg.Contains("unexpected"))
             {
                 // Check for command keywords with word boundaries
-                if (System.Text.RegularExpressions.Regex.IsMatch(msg, @"\b(set|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)\b") ||
-                    System.Text.RegularExpressions.Regex.IsMatch(msg, @"'(set|if|elseif|else|endif|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)'"))
+                if (System.Text.RegularExpressions.Regex.IsMatch(loweredMsg, @"\b(set|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)\b") ||
+                    System.Text.RegularExpressions.Regex.IsMatch(loweredMsg, @"'(set|if|elseif|else|endif|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)'"))
                 {
                     return DiagnosticDescriptor.UnclosedCommand.Create(fileName, range);
                 }
             }
 
             // YS0007: Unclosed scope (missing endif, endonce, etc)
-            if (msg.Contains("missing") && (msg.Contains("endif") || msg.Contains("endonce") || msg.Contains("end")))
+            if (loweredMsg.Contains("missing") && (loweredMsg.Contains("endif") || loweredMsg.Contains("endonce") || loweredMsg.Contains("end")))
             {
-                return DiagnosticDescriptor.UnclosedScope.Create(fileName, range, msg);
+                return DiagnosticDescriptor.UnclosedScope.Create(fileName, range, message);
             }
 
             // YS0005: Malformed dialogue / syntax error
-            if (msg.Contains("extraneous input") || msg.Contains("mismatched input"))
+            if (loweredMsg.Contains("extraneous input") || loweredMsg.Contains("mismatched input"))
             {
-                return DiagnosticDescriptor.SyntaxError.Create(fileName, range, msg);
+                return DiagnosticDescriptor.SyntaxError.Create(fileName, range, message);
             }
 
             // Default: no specific code for other ANTLR errors
-            return DiagnosticDescriptor.SyntaxError.Create(fileName, range, msg);
+            return DiagnosticDescriptor.SyntaxError.Create(fileName, range, message);
         }
     }
 
@@ -710,6 +734,11 @@ namespace Yarn.Compiler
             bool foundToken = false;
             for (int i = 0; i < depth; i++)
             {
+                if (tokens.Index - i <= 0)
+                {
+                    // We've reached the start of the token stream. We must be on the first line. Stop here.
+                    break;
+                }
                 var token = tokens.LA(-1 - i);
                 if (terminators.Contains(token))
                 {

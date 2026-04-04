@@ -488,6 +488,13 @@ namespace Yarn.Compiler
             // adding in the warnings about empty nodes
             var empties = AddDiagnosticsForEmptyNodes(parsedFiles, ref diagnostics);
 
+            // Add diagnostics for unreferenced variables
+            HashSet<string> referencedVariables = new(nodeMetadata.SelectMany(n => n.VariableReferences));
+            foreach (var decl in declarations.Where(d => d.IsVariable && referencedVariables.Contains(d.Name) == false))
+            {
+                diagnostics.Add(DiagnosticDescriptor.UnusedVariable.Create(decl.SourceFileName, decl.Range, decl.Name));
+            }
+
             // The user-defined types are all types that we know about, minus
             // all types that were pre-defined.
             var userDefinedTypes = knownTypes.Except(Types.AllBuiltinTypes).ToList();
@@ -758,7 +765,7 @@ namespace Yarn.Compiler
         {
             // A regular expression used to detect illegal characters
             // in node titles.
-            System.Text.RegularExpressions.Regex invalidTitleCharacters = new System.Text.RegularExpressions.Regex(@"[\[<>\]{}\|:\s#\$]");
+            System.Text.RegularExpressions.Regex invalidTitleCharacters = new System.Text.RegularExpressions.Regex(@"(^[0-9]|[\.\[<>\]{}\|:\s#\$])");
 
             var allNodes = parseResults.SelectMany(r =>
             {
@@ -794,16 +801,6 @@ namespace Yarn.Compiler
                         File: n.File);
                 }
             }).Where(kv => kv.Name != null);
-
-            // Find nodes whose titles have invalid characters, and generate
-            // diagnostics for them
-
-            var nodesWithIllegalTitleCharacters = nodesWithNames.Where(n => invalidTitleCharacters.IsMatch(n.Name));
-
-            foreach (var node in nodesWithIllegalTitleCharacters)
-            {
-                diagnostics.Add(DiagnosticDescriptor.InvalidNodeName.Create(node.File.Name, (ParserRuleContext?)node.TitleHeader ?? node.Node, "title", node.Name ?? "<unknown>"));
-            }
 
             var nodesByTitle = nodesWithNames.GroupBy(n => n.Name);
 
@@ -867,17 +864,9 @@ namespace Yarn.Compiler
                                 diagnostics.Add(d);
                             }
                         }
-                        if (invalidTitleCharacters.IsMatch(subtitle))
-                        {
-                            foreach (var entry in group)
-                            {
-                                diagnostics.Add(DiagnosticDescriptor.InvalidNodeName.Create(
-                                    entry.File.Name,
-                                    (ParserRuleContext?)entry.Node.GetHeader("subtitle") ?? entry.Node,
-                                    "subtitle",
-                                    subtitle));
-                            }
-                        }
+
+
+
                     }
 
                     continue;
@@ -894,7 +883,7 @@ namespace Yarn.Compiler
                 }
             }
 
-            // Find nodes that have either zero title headers, or more than one title header
+            // Find nodes that have either zero title headers, or more than one title header, or have an invalid subtitle
             foreach (var node in allNodes)
             {
                 if (node.Node.NodeTitle == null)
@@ -905,7 +894,40 @@ namespace Yarn.Compiler
                 {
                     diagnostics.Add(DiagnosticDescriptor.NodeHasMoreThanOneTitle.Create(node.File.Name, node.Node.title_header()[1]));
                 }
+
+                // Find nodes that have an invalid subtitle
+                var subtitleValue = node.Node.GetHeader("subtitle")?.header_value;
+
+                if (subtitleValue != null)
+                {
+                    var subtitle = subtitleValue.Text;
+
+                    var invalidCharacterMatch = invalidTitleCharacters.Match(subtitle);
+                    if (invalidCharacterMatch.Success)
+                    {
+                        var unexpectedCharacter = invalidCharacterMatch.Value;
+                        var indexOfUnexpected = invalidCharacterMatch.Index;
+
+
+                        var errorRange = new Range(
+                            subtitleValue.Line - 1,
+                            subtitleValue.Column + indexOfUnexpected,
+                            subtitleValue.Line - 1,
+                            subtitleValue.Column + indexOfUnexpected + 1);
+
+                        diagnostics.Add(
+                            DiagnosticDescriptor.InvalidNodeName.Create(node.File.Name,
+                                                                        errorRange,
+                                                                        "subtitle",
+                                                                        unexpectedCharacter)
+                        );
+                    }
+
+                }
             }
+
+
+
         }
 
         private static HashSet<string> AddDiagnosticsForEmptyNodes(List<FileParseResult> parseResults, ref List<Diagnostic> diagnostics)
