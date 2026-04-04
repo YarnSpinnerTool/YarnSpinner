@@ -1,0 +1,10 @@
+---
+name: InvalidCommand
+code: YS0014
+tags: ["semantic"]
+description: Command is not recognized or has invalid syntax
+messageTemplate: "Invalid command: {0}"
+messageValues: 
+    - Command name
+severity: warning
+---
