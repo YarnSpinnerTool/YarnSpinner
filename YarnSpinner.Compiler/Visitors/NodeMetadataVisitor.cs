@@ -219,6 +219,21 @@ namespace Yarn.Compiler
             return base.VisitValueVar(context);
         }
 
+        public override object VisitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context)
+        {
+            // When we encounter a place where a variable is being assigned, record the fact that this node refers to that value.
+            if (currentNode == null)
+            {
+                return base.VisitSet_statement(context);
+            }
+            var variableName = context.variable()?.GetText();
+            if (string.IsNullOrWhiteSpace(variableName) == false && !currentNode.VariableReferences.Contains(variableName))
+            {
+                currentNode.VariableReferences.Add(variableName);
+            }
+            return base.VisitSet_statement(context);
+        }
+
         public override object VisitHeader([NotNull] YarnSpinnerParser.HeaderContext context)
         {
             if (currentNode != null)
