@@ -490,7 +490,9 @@ namespace Yarn.Compiler
 
             // Add diagnostics for unreferenced variables
             HashSet<string> referencedVariables = new(nodeMetadata.SelectMany(n => n.VariableReferences));
-            foreach (var decl in declarations.Where(d => d.IsVariable && referencedVariables.Contains(d.Name) == false))
+            foreach (var decl in declarations.Where(d => d.IsVariable
+                                                         && d.Name.StartsWith("$Yarn.Internal") == false
+                                                         && referencedVariables.Contains(d.Name) == false))
             {
                 diagnostics.Add(DiagnosticDescriptor.UnusedVariable.Create(decl.SourceFileName, decl.Range, decl.Name));
             }
