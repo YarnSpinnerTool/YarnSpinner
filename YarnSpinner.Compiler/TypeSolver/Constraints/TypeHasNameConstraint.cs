@@ -40,7 +40,7 @@ namespace TypeChecker
             typeConstraint.SourceExpression = this.SourceExpression;
             typeConstraint.SourceRange = this.SourceRange;
             typeConstraint.SourceFileName = this.SourceFileName;
-            typeConstraint.FailureMessageProvider = this.FailureMessageProvider;
+            typeConstraint.DiagnosticProvider = this.DiagnosticProvider;
             return typeConstraint;
         }
 

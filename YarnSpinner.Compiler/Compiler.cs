@@ -338,10 +338,7 @@ namespace Yarn.Compiler
                 // the constraint, and we should produce diagnostics for them.
                 foreach (var constraint in failingConstraints)
                 {
-                    foreach (var failureMessage in constraint.GetFailureMessages(typeSolution))
-                    {
-                        diagnostics.Add(failureMessage);
-                    }
+                    diagnostics.AddRange(constraint.GetFailureDiagnostics(typeSolution));
                 }
                 watchdog.Stop();
             }
