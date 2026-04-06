@@ -186,7 +186,7 @@ namespace Yarn.Compiler
         /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
         /// <param name="args">Arguments to format the message template.</param>
         /// <returns>A new diagnostic instance.</returns>
-        public static Diagnostic CreateDiagnostic(string fileName, DiagnosticDescriptor descriptor, params object[] args)
+        public static Diagnostic CreateDiagnostic(string fileName, DiagnosticDescriptor descriptor, params string[] args)
         {
             return new Diagnostic(fileName, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
             {
@@ -202,7 +202,7 @@ namespace Yarn.Compiler
         /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
         /// <param name="args">Arguments to format the message template.</param>
         /// <returns>A new diagnostic instance.</returns>
-        public static Diagnostic CreateDiagnostic(string fileName, Range range, DiagnosticDescriptor descriptor, params object[] args)
+        public static Diagnostic CreateDiagnostic(string fileName, Range range, DiagnosticDescriptor descriptor, params string[] args)
         {
             return new Diagnostic(fileName, range, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
             {
@@ -218,7 +218,7 @@ namespace Yarn.Compiler
         /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
         /// <param name="args">Arguments to format the message template.</param>
         /// <returns>A new diagnostic instance.</returns>
-        public static Diagnostic CreateDiagnostic(string fileName, ParserRuleContext? context, DiagnosticDescriptor descriptor, params object[] args)
+        public static Diagnostic CreateDiagnostic(string fileName, ParserRuleContext? context, DiagnosticDescriptor descriptor, params string[] args)
         {
             return new Diagnostic(fileName, context, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
             {
@@ -234,7 +234,7 @@ namespace Yarn.Compiler
         /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
         /// <param name="args">Arguments to format the message template.</param>
         /// <returns>A new diagnostic instance.</returns>
-        public static Diagnostic CreateDiagnostic(string fileName, IToken token, DiagnosticDescriptor descriptor, params object[] args)
+        public static Diagnostic CreateDiagnostic(string fileName, IToken token, DiagnosticDescriptor descriptor, params string[] args)
         {
             return new Diagnostic(fileName, token, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
             {
