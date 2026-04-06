@@ -523,7 +523,7 @@ namespace Yarn.Compiler
                     DiagnosticDescriptor.TypeCheckerError.Create(s.source, s.range, $"No type called {typeName} could be found"));
 
                 this.AddHasEnumMemberConstraint(context.Type, memberName, context.typeMemberReference(), s =>
-                    DiagnosticDescriptor.TypeCheckerError.Create(s.source, s.range, $"{typeName} does not have a member named {memberName}"));
+                    DiagnosticDescriptor.InvalidMemberAccess.Create(s.source, s.range, $"{typeName} doesn't have a member named {memberName}"));
             }
             else
             {
@@ -1382,19 +1382,19 @@ namespace Yarn.Compiler
 
                         if (!(type is TypeBase actualType))
                         {
-                            diagnostics.Add(DiagnosticDescriptor.InvalidMemberAccess.Create(decl.SourceFileName, valueContext.value(), $"Can't determine the type of {valueContext.value().GetTextWithWhitespace()}"));
+                            diagnostics.Add(DiagnosticDescriptor.InvalidMemberAccess.Create(decl.SourceFileName, memberReference, $"Can't determine the type of {valueContext.value().GetTextWithWhitespace()}"));
                             continue;
                         }
 
                         if (!actualType.TypeMembers.TryGetValue(memberName, out var member))
                         {
-                            diagnostics.Add(DiagnosticDescriptor.InvalidMemberAccess.Create(decl.SourceFileName, valueContext.value(), $"{actualType.Name} doesn't have a member named {memberName}"));
+                            diagnostics.Add(DiagnosticDescriptor.InvalidMemberAccess.Create(decl.SourceFileName, memberReference, $"{actualType.Name} doesn't have a member named {memberName}"));
                             continue;
                         }
 
                         if (!(member is ConstantTypeProperty property))
                         {
-                            diagnostics.Add(DiagnosticDescriptor.InvalidMemberAccess.Create(decl.SourceFileName, valueContext.value(), $"{actualType.Name}.{memberName} is not a constant property"));
+                            diagnostics.Add(DiagnosticDescriptor.InvalidMemberAccess.Create(decl.SourceFileName, memberReference, $"{actualType.Name}.{memberName} is not a constant property"));
                             continue;
                         }
 

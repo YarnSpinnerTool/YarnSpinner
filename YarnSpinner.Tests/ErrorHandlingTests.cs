@@ -1114,7 +1114,7 @@ title: EmptyWithComment
         }
 
         [Theory]
-        [InlineData("<<set $x = Test.Failure>>", "Test doesn't have a member named Failure", 5, 15, 5, 27)]
+        [InlineData("<<set $x = Test.Failure>>", "Test doesn't have a member named Failure", 5, 11, 5, 23)]
         [InlineData("<<declare $x = Test.Failure>>", "Test doesn't have a member named Failure", 5, 15, 5, 27)]
         public void TestEnumsWithInvalidCasesGenerateDiagnostics(string source, string messagePattern, int diagStartLine, int diagStartColumn, int diagEndLine, int diagEndColumn)
         {
