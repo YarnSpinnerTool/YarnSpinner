@@ -300,7 +300,7 @@ namespace Yarn.Compiler
                    this.FileName == problem.FileName &&
                    this.Range.Equals(problem.Range) &&
                    this.Message == problem.Message &&
-                   this.Context == problem.Context &&
+                   this.Code == problem.Code &&
                    this.Severity == problem.Severity;
         }
 
@@ -310,12 +310,8 @@ namespace Yarn.Compiler
             int hashCode = -1856104752;
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.FileName);
             hashCode = (hashCode * -1521134295) + this.Range.GetHashCode();
+            hashCode = (hashCode * -1521134295) + (this.Code ?? string.Empty).GetHashCode();
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Message);
-
-            if (this.Context != null)
-            {
-                hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Context);
-            }
             hashCode = (hashCode * -1521134295) + this.Severity.GetHashCode();
             return hashCode;
         }
