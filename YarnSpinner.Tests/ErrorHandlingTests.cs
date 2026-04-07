@@ -209,21 +209,21 @@ this is the line before a command <<after command>>
             result.Diagnostics.Should().BeEmpty();
         }
 
-        [Theory(Skip = "Currently emits YS0050 type checker error, we should make it more specific")]
-        [InlineData("<<declare $x = \"hello\" as Number>>", "Type mismatch: expected Number, got string")]
-        [InlineData("<<declare $x = true as Number>>", "Type mismatch: expected Number, got bool")]
-        [InlineData("<<declare $x = \"true\" as bool>>", "Type mismatch: expected bool, got string")]
-        [InlineData("<<declare $x = 123 as bool>>", "Type mismatch: expected bool, got Number")]
-        [InlineData("<<declare $x = 123 as string>>", "Type mismatch: expected string, got Number")]
-        [InlineData("<<declare $x = true as string>>", "Type mismatch: expected string, got bool")]
+        [Theory]
+        [InlineData("<<declare $x = \"hello\" as Number>>", "$x is declared to be a Number, but its initial value '\"hello\"' is a String")]
+        [InlineData("<<declare $x = true as Number>>", "$x is declared to be a Number, but its initial value 'true' is a Bool")]
+        [InlineData("<<declare $x = \"true\" as bool>>", "$x is declared to be a Bool, but its initial value '\"true\"' is a String")]
+        [InlineData("<<declare $x = 123 as bool>>", "$x is declared to be a Bool, but its initial value '123' is a Number")]
+        [InlineData("<<declare $x = 123 as string>>", "$x is declared to be a String, but its initial value '123' is a Number")]
+        [InlineData("<<declare $x = true as string>>", "$x is declared to be a String, but its initial value 'true' is a Bool")]
         public void TestDeclaredValueIsDifferentFromExplicitType(string input, string message)
         {
             var source = CreateTestNode(input, "Start");
             var job = CompilationJob.CreateFromString("<input>", source);
             var result = Compiler.Compile(job);
 
-            var diagnostic = result.Diagnostics.Should().ContainSingle().Subject;
-            diagnostic.Code.Should().Be(DiagnosticDescriptor.TypeMismatch.Code);
+            var diagnostic = result.Diagnostics.Where(d => d.Severity == Diagnostic.DiagnosticSeverity.Error).Should().ContainSingle().Subject;
+            diagnostic.Code.Should().Be(DiagnosticDescriptor.DeclarationValueDoesntMatchType.Code);
 
             diagnostic.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
 

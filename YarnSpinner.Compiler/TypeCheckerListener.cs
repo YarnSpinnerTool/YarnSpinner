@@ -401,8 +401,13 @@ namespace Yarn.Compiler
                 {
                     // Constrain the type of this variable to the named type.
                     this.AddEqualityConstraint(typeIdentifier, type, context, s =>
-                        DiagnosticDescriptor.TypeCheckerError.Create(s.source, s.range,
-                            $"{name}'s type ({typeIdentifier.Substitute(s.subst)}) must be {type.Substitute(s.subst)}"));
+                        DiagnosticDescriptor.DeclarationValueDoesntMatchType.Create(
+                            s.source,
+                            s.range,
+                            name ?? "unknown",
+                            type.Substitute(s.subst).Name,
+                            context.expression().GetTextWithWhitespace(),
+                            typeIdentifier.Substitute(s.subst).Name));
                 }
                 else
                 {
@@ -411,8 +416,13 @@ namespace Yarn.Compiler
                     // variable is, the type's name is equal to what's specified
                     // here.
                     this.AddHasNameConstraint(typeIdentifier, typeName, context, s =>
-                        DiagnosticDescriptor.TypeCheckerError.Create(s.source, s.range,
-                             $"{name}'s type must be {typeName}"));
+                        DiagnosticDescriptor.DeclarationValueDoesntMatchType.Create(
+                            s.source,
+                            s.range,
+                            name ?? "unknown",
+                            typeName,
+                            context.expression().GetTextWithWhitespace(),
+                            typeIdentifier.Substitute(s.subst).Name));
                 }
             }
 
