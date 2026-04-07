@@ -282,7 +282,7 @@ namespace Yarn.Compiler
             // (i.e., were used but never had a <<declare>> statement in any file)
             // YS0003: Variable used without being declared
             // Only warn about variables, not functions (functions can be implicitly declared)
-            foreach (var declaration in declarations.Where(d => d.IsImplicit && d.IsVariable))
+            foreach (var declaration in declarations.Where(d => d.IsImplicit && d.IsVariable && d.Name.StartsWith("$Yarn.Internal") == false))
             {
                 diagnostics.Add(DiagnosticDescriptor.UndefinedVariable.Create(declaration.SourceFileName, declaration.Range, declaration.Name));
             }
