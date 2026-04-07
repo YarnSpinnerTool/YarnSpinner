@@ -54,6 +54,16 @@ public static class MarkdownExtensions
     }
 
     /// <summary>
+    /// Replaces XML-unsafe characters (&lt; and &gt;) with HTML entities.
+    /// </summary>
+    /// <param name="str">The string to escape.</param>
+    /// <returns>The escaped string.</returns>
+    public static string EscapeXML(this string str)
+    {
+        return str.Replace("<", "&lt;").Replace(">", "&gt;");
+    }
+
+    /// <summary>
     /// Parses a document containing markdown to get its front matter, and
     /// returns the parsed result and the remaining markdown.
     /// </summary>
@@ -153,6 +163,15 @@ public class DiagnosticFrontMatter
 
     [YamlMember(Alias = "severity")]
     public Severity DefaultSeverity { get; set; } = Severity.Error;
+
+    [YamlMember(Alias = "published")]
+    public string? PublishedVersion { get; set; }
+
+    [YamlMember(Alias = "deprecated")]
+    public string? DeprecatedVersion { get; set; }
+
+    [YamlMember(Alias = "deprecation_note")]
+    public string? DeprecationNote { get; set; }
 }
 
 /// <summary>
@@ -229,12 +248,12 @@ public class Generator : IIncrementalGenerator
             );";
 
             var commentSB = new StringBuilder();
-            commentSB.AppendLine($"/// <summary>{diagnosticInfo.Code}: {diagnosticInfo.Description?.UnwrapAndTrim()}</summary>");
+            commentSB.AppendLine($"/// <summary>{diagnosticInfo.Code}: {diagnosticInfo.Description?.UnwrapAndTrim().EscapeXML()}</summary>");
 
             commentSB.AppendLine("/// <remarks>");
             if (string.IsNullOrEmpty(diagnosticInfo.Summary) == false)
             {
-                commentSB.AppendLine($"/// <para>{diagnosticInfo.Summary?.UnwrapAndTrim()}</para>");
+                commentSB.AppendLine($"/// <para>{diagnosticInfo.Summary?.UnwrapAndTrim().EscapeXML()}</para>");
             }
             if (diagnosticInfo.MessageValues.Count > 0)
             {
@@ -242,7 +261,7 @@ public class Generator : IIncrementalGenerator
                 commentSB.AppendLine("/// <list type=\"number\">");
                 foreach (var value in diagnosticInfo.MessageValues)
                 {
-                    commentSB.AppendLine("/// <item>" + value.UnwrapAndTrim() + "</item>");
+                    commentSB.AppendLine("/// <item>" + value.UnwrapAndTrim().EscapeXML() + "</item>");
                 }
                 commentSB.AppendLine("/// </list></para>");
 
@@ -250,12 +269,27 @@ public class Generator : IIncrementalGenerator
             }
             commentSB.AppendLine("/// </remarks>");
 
+            var deprecationSB = new StringBuilder();
+
+            if (string.IsNullOrWhiteSpace(diagnosticInfo.DeprecatedVersion) == false)
+            {
+                // The diagnostic is deprecated; add an Obsolete attribute to it
+                deprecationSB.Append("[System.Obsolete");
+                if (diagnosticInfo.DeprecationNote != null)
+                {
+                    // We have text we can include to explain the deprecation
+                    deprecationSB.Append("(\"" + diagnosticInfo.DeprecationNote.Escape() + "\")");
+                }
+                deprecationSB.AppendLine("]");
+            }
+
             spc.AddSource($"DiagnosticDescriptors.{nameAndContent.name}", $@"
             namespace Yarn.Compiler {{
 
                 public partial class DiagnosticDescriptor
                 {{
                     {commentSB}
+                    {deprecationSB}
                     {diagnosticType}
                 }}
             }}");
@@ -270,6 +304,8 @@ public class Generator : IIncrementalGenerator
 
             var sourceSB = new StringBuilder();
             sourceSB.AppendLine("using System.Collections.Generic;");
+            // dict may reference obsolete diagnostics, we don't want it to complain about that
+            sourceSB.AppendLine("#pragma warning disable CS0618");
             sourceSB.AppendLine("namespace Yarn.Compiler { public partial class DiagnosticDescriptor {");
             sourceSB.AppendLine("/// <summary>Returns a dictionary mapping diagnostic codes to their corresponding descriptor object.</summary>");
             sourceSB.AppendLine("/// <remarks>This method is automatically generated.</remarks>");
