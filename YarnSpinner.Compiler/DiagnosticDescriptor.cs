@@ -167,6 +167,29 @@ namespace Yarn.Compiler
             public Diagnostic Create(string sourceFile, Range range, string message1, string message2)
                 => base.Create(sourceFile, range, message1, message2);
         }
+
+        /// <inheritdoc cref="DiagnosticDescriptor"/>
+        public sealed class DiagnosticDescriptor3 : DiagnosticDescriptor
+        {
+            internal DiagnosticDescriptor3(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, string description)
+                : base(code, messageTemplate, defaultSeverity, description) { }
+
+            /// <inheritdoc/>
+            protected override int MessageParameterCount => 3;
+
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, string[])"/>
+            public Diagnostic Create(string sourceFile, string message1, string message2, string message3)
+                => base.Create(sourceFile, message1, message2, message3);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string,Antlr4.Runtime.ParserRuleContext, string[])"/>
+            public Diagnostic Create(string sourceFile, Antlr4.Runtime.ParserRuleContext context, string message1, string message2, string message3)
+                => base.Create(sourceFile, context, message1, message2, message3);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, Antlr4.Runtime.IToken, string[])"/>
+            public Diagnostic Create(string sourceFile, Antlr4.Runtime.IToken token, string message1, string message2, string message3)
+                => base.Create(sourceFile, token, message1, message2, message3);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, Range, string[])"/>
+            public Diagnostic Create(string sourceFile, Range range, string message1, string message2, string message3)
+                => base.Create(sourceFile, range, message1, message2, message3);
+        }
 #pragma warning restore
 
         /// <summary>
