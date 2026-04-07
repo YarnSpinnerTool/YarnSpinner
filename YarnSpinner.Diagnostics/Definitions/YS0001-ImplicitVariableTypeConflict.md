@@ -13,5 +13,7 @@ summary: |
     compiler cannot determine which type is correct.
 severity: error
 published: v3.2.0
+deprecated: v3.2.1
+deprecation_note: This diagnostic is never emitted, because it's impossible for a variable to be implicitly declared more than once (the compiler will only create an implicit declaration for a variable the first time it sees it)
 ---
 
