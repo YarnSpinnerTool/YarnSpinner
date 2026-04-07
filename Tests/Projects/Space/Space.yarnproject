@@ -1,5 +1,5 @@
 {
-    "projectFileVersion": 3,
+    "projectFileVersion": 4,
     "sourceFiles": [
         "**/*.yarn"
     ],
@@ -13,5 +13,5 @@
             "assets": "../LocalisedAssets/German"
         }
     },
-    "definitions": "Functions.ysls.json"
+    "definitions": "Commands.ysls.json"
 }

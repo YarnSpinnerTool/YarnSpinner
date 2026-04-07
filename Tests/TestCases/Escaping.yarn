@@ -45,4 +45,7 @@ Here's some escaped markup: \[a\]hello\[/a\]
 \/\/ escaped comment
 \[a]escaped markup\[/a]
 
+Character: Here is a line with a character
+Character\: Here is a line without a character
+
 ===

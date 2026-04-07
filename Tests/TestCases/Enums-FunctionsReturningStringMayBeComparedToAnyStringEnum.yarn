@@ -1,0 +1,16 @@
+title: Start
+---
+
+<<enum QuestStatus>>
+<<case NotStarted = "NotStarted">>
+<<case InProgress = "InProgress">>
+<<case Completed = "Completed">>
+<<endenum>>
+
+<<if get_quest_status("MyQuest") == string(QuestStatus.InProgress)>>
+// TODO: Should allow this:
+// <<if get_quest_status("MyQuest") == QuestStatus.InProgress>>
+    success
+<<endif>>
+
+===

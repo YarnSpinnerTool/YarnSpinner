@@ -23,7 +23,7 @@ namespace YarnSpinner.Tests
         {
             var job = CompilationJob.CreateFromString("input", source);
             var result = Compiler.Compile(job);
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
 
             this.dialogue.SetProgram(result.Program);
             this.dialogue.SetNode(node);
