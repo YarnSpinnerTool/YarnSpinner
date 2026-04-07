@@ -7,4 +7,5 @@ messageTemplate: "Invalid function call: {0}"
 messageValues: 
     - Function name
 severity: error
+published: v3.2.0
 ---

@@ -9,5 +9,6 @@ messageValues:
 summary: |
     An empty node has no statements and will be excluded from compilation.
 severity: warning
+published: v3.2.0
 ---
         

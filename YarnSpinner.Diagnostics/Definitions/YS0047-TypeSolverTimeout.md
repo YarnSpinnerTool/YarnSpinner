@@ -9,4 +9,5 @@ messageValues:
 summary: |
     The type solver exceeded its time limit while resolving this expression.
 severity: error
+published: v3.2.0
 ---

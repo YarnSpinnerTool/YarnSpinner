@@ -9,4 +9,5 @@ messageValues:
 summary: |
     A language feature was used that requires a newer Yarn Spinner project version.
 severity: error
+published: v3.2.0
 ---

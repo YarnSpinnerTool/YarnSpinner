@@ -9,4 +9,5 @@ messageValues:
 summary: |
     All line IDs in a Yarn Spinner project must be unique.
 severity: error
+published: v3.2.0
 ---

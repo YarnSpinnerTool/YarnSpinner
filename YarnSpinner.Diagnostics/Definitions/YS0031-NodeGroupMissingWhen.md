@@ -9,4 +9,5 @@ messageValues:
 summary: |
     When some nodes in a group have 'when' clauses, all must have them.
 severity: error
+published: v3.2.0
 ---

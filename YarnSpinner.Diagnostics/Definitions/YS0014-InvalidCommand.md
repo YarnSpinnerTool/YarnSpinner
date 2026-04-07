@@ -7,4 +7,5 @@ messageTemplate: "Invalid command: {0}"
 messageValues: 
     - Command name
 severity: warning
+published: v3.2.0
 ---

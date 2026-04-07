@@ -9,4 +9,5 @@ messageValues:
 summary: |
     Unclosed control flow scope (missing endif, endonce, etc.)
 severity: error
+published: v3.2.0
 ---

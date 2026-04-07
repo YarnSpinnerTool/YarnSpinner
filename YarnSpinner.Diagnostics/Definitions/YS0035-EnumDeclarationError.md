@@ -9,4 +9,5 @@ messageValues:
 summary: |
     This is a catch-all message for issues related to enums.
 severity: error
+published: v3.2.0
 ---

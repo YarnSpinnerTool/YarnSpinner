@@ -9,5 +9,6 @@ messageValues:
 summary: |
     The compiler could not resolve the type of this expression.
 severity: error
+published: v3.2.0
 ---
    

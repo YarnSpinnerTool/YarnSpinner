@@ -8,4 +8,5 @@ messageValues:
     - Variable name
     - Type name
 severity: error
+published: v3.2.0
 ---

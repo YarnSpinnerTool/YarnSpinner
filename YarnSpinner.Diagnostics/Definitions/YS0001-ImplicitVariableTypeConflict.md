@@ -12,5 +12,6 @@ summary: |
     different files or contexts without an explicit declaration, and the
     compiler cannot determine which type is correct.
 severity: error
+published: v3.2.0
 ---
 

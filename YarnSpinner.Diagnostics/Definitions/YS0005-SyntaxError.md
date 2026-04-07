@@ -7,6 +7,7 @@ messageTemplate: "Syntax error: {0}"
 messageValues: 
     - The error
 severity: error
+published: v3.2.0
 ---
 
 A syntax error exists in the Yarn script.

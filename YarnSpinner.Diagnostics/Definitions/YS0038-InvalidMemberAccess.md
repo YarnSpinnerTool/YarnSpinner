@@ -9,4 +9,5 @@ messageValues:
 summary: |
     A type member access could not be resolved.
 severity: error
+published: v3.2.0
 ---

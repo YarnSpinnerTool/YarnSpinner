@@ -8,4 +8,5 @@ messageValues:
     - Expected type
     - Actual type
 severity: error
+published: v3.2.0
 ---

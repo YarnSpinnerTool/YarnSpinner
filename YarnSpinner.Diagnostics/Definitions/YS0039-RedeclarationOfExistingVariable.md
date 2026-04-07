@@ -9,4 +9,5 @@ messageValues:
 summary: |
     Variables can only have a single declaration.
 severity: error
+published: v3.2.0
 ---

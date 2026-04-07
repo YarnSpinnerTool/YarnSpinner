@@ -9,5 +9,6 @@ messageValues:
 summary: |
     This is a catch-all error for handling type checking errors.
 severity: error
+published: v3.2.1
 
 ---

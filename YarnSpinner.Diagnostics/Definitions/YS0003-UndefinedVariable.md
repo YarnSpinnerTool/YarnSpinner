@@ -7,4 +7,5 @@ messageTemplate: "Variable '{0}' is used but not declared. Declare it with: <<de
 messageValues: 
     - Variable name
 severity: warning
+published: v3.2.0
 ---

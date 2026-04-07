@@ -10,4 +10,5 @@ summary: |
     This diagnostic is not emitted for node groups where nodes
     share a title but have different `when:` clauses.
 severity: error
+published: v3.2.0
 ---

@@ -7,5 +7,6 @@ messageTemplate: "Jump to undefined node: '{0}'"
 messageValues: 
     - Node title
 severity: warning
+published: v3.2.0
 ---
         

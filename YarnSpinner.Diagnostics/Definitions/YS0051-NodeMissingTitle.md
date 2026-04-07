@@ -7,4 +7,5 @@ messageTemplate: "Nodes must have a title"
 summary: |
     A node is missing its title header.
 severity: error
+published: v3.2.1
 ---

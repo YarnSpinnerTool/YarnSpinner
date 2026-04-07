@@ -7,4 +7,5 @@ messageTemplate: "Variable '{0}' is declared but never used"
 messageValues: 
     - Variable name
 severity: info
+published: v3.2.0
 ---

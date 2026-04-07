@@ -7,4 +7,5 @@ messageTemplate: "Line {0} has single '<' and '> wrapping it. Did you mean to ma
 messageValues: 
     - Line content
 severity: warning
+published: v3.2.1
 ---

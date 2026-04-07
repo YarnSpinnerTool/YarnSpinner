@@ -7,4 +7,5 @@ messageTemplate: "Unknown line ID {0} for shadow line"
 messageValues: 
     - Line ID
 severity: error
+published: v3.2.0
 ---

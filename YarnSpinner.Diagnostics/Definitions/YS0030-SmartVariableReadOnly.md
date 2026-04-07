@@ -10,4 +10,5 @@ messageValues:
 summary: |
     Smart variables are read-only computed values and cannot be assigned to.
 severity: error
+published: v3.2.0
 ---

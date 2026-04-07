@@ -7,4 +7,5 @@ messageTemplate: "Unknown character: '{0}'"
 messageValues: 
     - Character name
 severity: info
+published: v3.2.0
 ---

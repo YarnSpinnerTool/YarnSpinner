@@ -10,4 +10,5 @@ messageValues:
 summary: |
     A library function has an incompatible signature for use in Yarn scripts.
 severity: error
+published: v3.2.0
 ---

@@ -10,4 +10,5 @@ messageValues:
 summary: |
     Node titles and subtitles can only contain letters, numbers, and underscores.
 severity: error
+published: v3.2.0
 ---

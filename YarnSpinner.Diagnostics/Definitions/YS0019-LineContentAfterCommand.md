@@ -9,5 +9,6 @@ messageValues:
 summary: |
     Commands must start on their own line and should not have dialogue following them. This is often indicative of a mistake.
 severity: warning
+published: v3.2.0
 ---
         

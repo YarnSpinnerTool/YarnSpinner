@@ -8,4 +8,5 @@ messageValues:
     - Variable reference
     - Smart variable
 severity: error
+published: v3.2.0
 ---

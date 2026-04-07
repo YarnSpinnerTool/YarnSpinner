@@ -7,4 +7,5 @@ messageTemplate: "Cyclic dependency detected: {0}"
 messageValues: 
     - Error message
 severity: info
+published: v3.2.0
 ---

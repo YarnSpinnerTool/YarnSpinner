@@ -9,4 +9,5 @@ messageValues:
 summary: |
     A type with this name already exists.
 severity: error
+published: v3.2.0
 ---
