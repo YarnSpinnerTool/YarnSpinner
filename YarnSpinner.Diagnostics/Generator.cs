@@ -229,6 +229,7 @@ public class Generator : IIncrementalGenerator
                 1 => "DiagnosticDescriptor1",
                 2 => "DiagnosticDescriptor2",
                 3 => "DiagnosticDescriptor3",
+                4 => "DiagnosticDescriptor4",
                 _ => throw new Exception($"Diagnostic {diagnosticInfo.Code} has too many message values ({diagnosticInfo.MessageValues.Count})"),
             };
 
