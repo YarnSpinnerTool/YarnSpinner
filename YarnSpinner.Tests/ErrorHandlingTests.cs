@@ -538,7 +538,7 @@ This is a line
 
             if (allowOthers)
             {
-                diag = result.Diagnostics.Should().ContainSingle(d => d.Code == code, $"{input} should produce this diagnostic").Subject;
+                diag = result.Diagnostics.Should().ContainSingle(d => d.Code == code, $"{input} should produce this diagnostic and no others").Subject;
             }
             else
             {
