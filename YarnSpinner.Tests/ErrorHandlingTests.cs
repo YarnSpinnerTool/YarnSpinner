@@ -125,7 +125,7 @@ this is the line before a command <<after command>>
             result.Diagnostics.Should().HaveCount(2);
 
             // the command after line warning
-            var diagnostic = result.Diagnostics.Should().ContainSingle(d => d.Code == "YS0020").Subject;
+            var diagnostic = result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.CommandFollowingLine.Code).Subject;
             diagnostic.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
 
             diagnostic.Message.Should().Be($"Command \"<<after command>>\" found following a line of dialogue. Commands should start on a new line.");
@@ -137,7 +137,7 @@ this is the line before a command <<after command>>
             diagnostic.Context.Should().Be(context);
 
             // our command before line warning
-            diagnostic = result.Diagnostics.Should().ContainSingle(d => d.Code == "YS0019").Subject;
+            diagnostic = result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.LineContentAfterCommand.Code).Subject;
             diagnostic.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Warning);
 
             diagnostic.Message.Should().Be($"Dialogue \"this is a line following a command\" content found following a command. Commands should be on their own line.");
@@ -223,7 +223,7 @@ this is the line before a command <<after command>>
             var result = Compiler.Compile(job);
 
             var diagnostic = result.Diagnostics.Should().ContainSingle().Subject;
-            diagnostic.Code.Should().Be("YS0002");
+            diagnostic.Code.Should().Be(DiagnosticDescriptor.TypeMismatch.Code);
 
             diagnostic.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
 
@@ -241,7 +241,7 @@ this is the line before a command <<after command>>
             var result = Compiler.Compile(job);
 
             var diagnostic = result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.UndefinedVariable.Code).Subject;
-            diagnostic.Code.Should().Be("YS0003");
+            diagnostic.Code.Should().Be(DiagnosticDescriptor.UndefinedVariable.Code);
 
             diagnostic.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Warning);
 
@@ -470,7 +470,7 @@ This is a line
 
             foreach (var diag in result.Diagnostics)
             {
-                diag.Code.Should().Be("YS0011");
+                diag.Code.Should().Be(DiagnosticDescriptor.DuplicateNodeTitle.Code);
 
                 diag.Message.Should().Be("Duplicate node title: 'A'");
 
@@ -595,7 +595,7 @@ This is a line
 
             PerformCommonSingleDiagLineTest(
                 input,
-                "YS0013",
+                DiagnosticDescriptor.InvalidFunctionCall.Code,
                 $"Invalid function call: no declaration found for {functionName}",
                 Diagnostic.DiagnosticSeverity.Error,
                 range,
@@ -736,7 +736,7 @@ line
             rangeValues.Should().HaveCount(2);
             var range = new Range(rangeValues[0], rangeValues[1], rangeValues[0], rangeValues[1] + commandName.Length);
 
-            PerformCommonSingleDiagLineTest(input, "YS0014", $"Invalid command: {commandName}", Diagnostic.DiagnosticSeverity.Error, range);
+            PerformCommonSingleDiagLineTest(input, DiagnosticDescriptor.InvalidCommand.Code, $"Invalid command: {commandName}", Diagnostic.DiagnosticSeverity.Error, range);
         }
 
         [Theory(Skip = "Must be handled by Language Server because the compiler doesn't know about valid commands")]
@@ -748,7 +748,7 @@ line
             rangeValues.Should().HaveCount(2);
             var range = new Range(rangeValues[0], rangeValues[1], rangeValues[0], rangeValues[1] + commandName.Length);
 
-            PerformCommonSingleDiagLineTest(input, "YS0014", $"Invalid command: {commandName}", Diagnostic.DiagnosticSeverity.Error, range);
+            PerformCommonSingleDiagLineTest(input, DiagnosticDescriptor.InvalidCommand.Code, $"Invalid command: {commandName}", Diagnostic.DiagnosticSeverity.Error, range);
         }
         [Fact]
         public void TestEscapedUnknownCommandsDontGenerateDiagnostics()
@@ -793,7 +793,12 @@ title: C
             rangeValues.Should().HaveCount(4);
             var range = new Range(rangeValues[0], rangeValues[1], rangeValues[2], rangeValues[3]);
 
-            PerformCommonSingleDiagNodeTest(input, "YS0015", $"Cyclic dependency detected: {cycle}", Diagnostic.DiagnosticSeverity.Warning, range);
+            PerformCommonSingleDiagNodeTest(
+                input: input,
+                code: DiagnosticDescriptor.CyclicDependency.Code,
+                message: $"Cyclic dependency detected: {cycle}",
+                severity: Diagnostic.DiagnosticSeverity.Warning,
+                range: range);
         }
 
         [Fact]
@@ -815,7 +820,7 @@ title: C
 
             foreach (var diag in result.Diagnostics)
             {
-                diag.Code.Should().Be("YS0017");
+                diag.Code.Should().Be(DiagnosticDescriptor.LinesCantHaveLineAndShadowTag.Code);
 
                 diag.Message.Should().Be("Lines cannot have both a '#line' tag and a '#shadow' tag.");
 
@@ -847,7 +852,7 @@ title: C
 
             foreach (var diag in result.Diagnostics)
             {
-                diag.Code.Should().Be("YS0018");
+                diag.Code.Should().Be(DiagnosticDescriptor.DuplicateLineID.Code);
 
                 diag.Message.Should().Be("Duplicate line ID 'line:abc123'");
 
