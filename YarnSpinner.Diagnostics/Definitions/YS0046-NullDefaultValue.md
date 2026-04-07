@@ -9,4 +9,6 @@ messageValues:
     - Type name
 severity: error
 published: v3.2.0
+deprecated: v3.2.1
+deprecation_note: This error is an internal error - the compiler will not reach a point where it produces default values for variables if there is a syntax error, and that's the only way you could have 'no default value'.
 ---

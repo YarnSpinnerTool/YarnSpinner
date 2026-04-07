@@ -635,7 +635,7 @@ namespace Yarn.Compiler
 
                 if (declaration.DefaultValue == null)
                 {
-                    diagnostics.Add(DiagnosticDescriptor.NullDefaultValue.Create("(unknown)", declaration.Name, declaration.Type?.Name ?? "undefined"));
+                    diagnostics.Add(DiagnosticDescriptor.InternalError.Create(declaration.SourceFileName, declaration.Range, $"Declaration for {declaration.Name} has no default value, which is a syntax error"));
                     continue;
                 }
 
