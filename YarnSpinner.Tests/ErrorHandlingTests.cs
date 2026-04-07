@@ -61,24 +61,18 @@ namespace YarnSpinner.Tests
             result.Diagnostics.Should().Contain(d => d.Message.Contains("Command text expected"));
         }
 
-        [Fact]
-        public void TestInvalidVariableNameInSetOrDeclare()
+        [Theory]
+        [InlineData("<<set test = 1>>", 2, 6, 2, 10)]
+        [InlineData("<<declare test = 1>>", 2, 10, 2, 14)]
+        public void TestInvalidVariableNameInSetOrDeclare(string source, params int[] range)
         {
-            var source1 = CreateTestNode(@"
-            <<set test = 1>>
-            ");
-
-            var source2 = CreateTestNode(@"
-            <<declare test = 1>>
-            ");
-
-            foreach (var source in new[] { source1, source2 })
-            {
-
-                var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
-
-                result.Diagnostics.Should().Contain(d => d.Message == "Syntax error: Variable names need to start with a $");
-            }
+            PerformCommonSingleDiagLineTest(
+                input: source,
+                code: DiagnosticDescriptor.SyntaxError.Code,
+                message: "Syntax error: Variable names need to start with a $",
+                severity: Diagnostic.DiagnosticSeverity.Error,
+                range: new Range(range[0], range[1], range[2], range[3]),
+                allowOthers: true);
         }
 
         [Fact]
