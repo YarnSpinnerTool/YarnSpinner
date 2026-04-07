@@ -27,7 +27,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
 
-            result.Diagnostics.Should().Contain(d => d.Message.Contains("Expected an <<endif>> to match the <<if>> statement on line 3"));
+            result.Diagnostics.Should().Contain(d => d.Message.Contains("Unclosed scope: expected an <<endif>> to match the <<if>> statement on line 3"));
         }
 
         [Fact]
@@ -292,13 +292,26 @@ This node is missing it's end of body terminator===
             diag.Range.End.Character.Should().Be(character + 1);
         }
 
-        [Theory(Skip = "Missing endif currently provides a special-cased 'you forgot the endif to match the if on line X' diagnostic. It's arguably friendlier. Should we keep it and make it its own unique error code?")]
+        [Theory()]
+        [InlineData(
+@"title: Program
+---
+<<once>>
+    internal line
+===", "once", 4, 0, 4, 3)]
+        [InlineData(
+@"title: Program
+---
+<<once>>
+    internal line
+<<else>>
+===", "once", 5, 0, 5, 3)]
         [InlineData(
 @"title: Program
 ---
 <<if true>>
     internal line
-===", 4, 0, 4, 3)]
+===", "if", 4, 0, 4, 3)]
         [InlineData(
 @"title: Program
 ---
@@ -306,7 +319,7 @@ This node is missing it's end of body terminator===
     internal line
 <<else>>
     second internal line
-===", 6, 0, 6, 3)]
+===", "if", 6, 0, 6, 3)]
         [InlineData(
 @"title: Program
 ---
@@ -314,7 +327,7 @@ This node is missing it's end of body terminator===
     internal line
 <<elseif 5 < 3>>
     second internal line
-===", 6, 0, 6, 3)]
+===", "if", 6, 0, 6, 3)]
         [InlineData(
 @"title: Program
 ---
@@ -324,15 +337,15 @@ This node is missing it's end of body terminator===
     second internal line
 <<else>>
     third internal line
-===", 8, 0, 8, 3)]
+===", "if", 8, 0, 8, 3)]
         [InlineData(
 @"title: Program
 ---
 <<if true>>
     internal line
     \<<endif>>
-===", 5, 0, 5, 3)]
-        public void TestMissingClosingScopeGeneratesDiagnostic(string input, params int[] rangeValues)
+===", "if", 5, 0, 5, 3)]
+        public void TestMissingClosingScopeGeneratesDiagnostic(string input, string type, params int[] rangeValues)
         {
             rangeValues.Should().HaveCount(4);
             var range = new Range(rangeValues[0], rangeValues[1], rangeValues[2], rangeValues[3]);
@@ -345,7 +358,7 @@ This node is missing it's end of body terminator===
 
             diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
 
-            diag.Message.Should().Be($"Unclosed scope: missing <<endif>>");
+            diag.Message.Should().Be($"Unclosed scope: expected an <<end{type}>> to match the <<{type}>> statement on line 3");
 
             diag.Range.Should().Be(range);
         }

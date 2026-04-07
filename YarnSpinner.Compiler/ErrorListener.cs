@@ -480,6 +480,24 @@ namespace Yarn.Compiler
                 return;
             }
 
+            if (parser.RuleContext is YarnSpinnerParser.If_statementContext ifStatement && offendingSymbol.Type == YarnSpinnerLexer.BODY_END)
+            {
+                // We have exited a body in the middle of an if statement. The
+                // programmer forgot to include an <<endif>>.
+                this.diagnostics.Add(DiagnosticDescriptor.UnclosedScope.Create(this.fileName, Utility.GetRange(offendingSymbol), "endif", "if", ifStatement.Start.Line.ToString()));
+                cursedLines.Add(line);
+                return;
+            }
+
+            if (parser.RuleContext is YarnSpinnerParser.Once_statementContext onceStatement && offendingSymbol.Type == YarnSpinnerLexer.BODY_END)
+            {
+                // We have exited a body in the middle of a once statement. The
+                // programmer forgot to include an <<endonce>>.
+                this.diagnostics.Add(DiagnosticDescriptor.UnclosedScope.Create(this.fileName, Utility.GetRange(offendingSymbol), "endonce", "once", onceStatement.Start.Line.ToString()));
+                cursedLines.Add(line);
+                return;
+            }
+
             if (e is NoViableAltException exn)
             {
                 msg = ErrorUtility.ReportNoViableAlternative(parser, exn);
@@ -564,12 +582,6 @@ namespace Yarn.Compiler
                 {
                     return DiagnosticDescriptor.UnclosedCommand.Create(fileName, range);
                 }
-            }
-
-            // YS0007: Unclosed scope (missing endif, endonce, etc)
-            if (loweredMsg.Contains("missing") && (loweredMsg.Contains("endif") || loweredMsg.Contains("endonce") || loweredMsg.Contains("end")))
-            {
-                return DiagnosticDescriptor.UnclosedScope.Create(fileName, range, message);
             }
 
             // YS0005: Malformed dialogue / syntax error
