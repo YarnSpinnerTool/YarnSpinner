@@ -494,7 +494,7 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics
                 .Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error)
-                .Which.Message.Should().MatchRegex(@"\$(.+?)'s type \(.+?\) must be .+?");
+                .Which.Message.Should().MatchRegex(@"\$(.+?) is declared to be (.+?), but its initial value (.+?) is a (.+?)");
         }
 
         [Fact]

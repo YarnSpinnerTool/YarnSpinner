@@ -186,6 +186,7 @@ namespace Yarn.Compiler
                 this.CompilationResult.Diagnostics.Add(
                     DiagnosticDescriptor.NodeMissingTitle.Create(this.FileParseResult.Name, context)
                 );
+
             }
             else
             {

@@ -6,7 +6,11 @@
     "title": "Yarn Spinner Project",
     "description": "Configuration file for a Yarn Spinner project (.yarnproject)",
     "type": "object",
-    "required": ["projectFileVersion", "sourceFiles", "baseLanguage"],
+    "required": [
+        "projectFileVersion",
+        "sourceFiles",
+        "baseLanguage"
+    ],
     "properties": {
         "projectFileVersion": {
             "type": "integer",
@@ -21,18 +25,26 @@
         "authorName": {
             "type": "array",
             "description": "The author(s) of the project.",
-            "items": { "type": "string" }
+            "items": {
+                "type": "string"
+            }
         },
         "sourceFiles": {
             "type": "array",
             "description": "Glob patterns specifying which .yarn files to include. Relative to the .yarnproject location.",
-            "items": { "type": "string" },
-            "default": ["**/*.yarn"]
+            "items": {
+                "type": "string"
+            },
+            "default": [
+                "**/*.yarn"
+            ]
         },
         "excludeFiles": {
             "type": "array",
             "description": "Glob patterns specifying files to exclude, even if they match sourceFiles.",
-            "items": { "type": "string" }
+            "items": {
+                "type": "string"
+            }
         },
         "baseLanguage": {
             "type": "string",
@@ -60,8 +72,15 @@
         "definitions": {
             "description": "Path(s) to .ysls.json definition files for custom commands and functions.",
             "oneOf": [
-                { "type": "string" },
-                { "type": "array", "items": { "type": "string" } }
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
             ]
         },
         "compilerOptions": {
@@ -85,7 +104,9 @@
             "type": "object",
             "description": "Editor and tooling configuration. Each editor/engine gets its own sub-object.",
             "properties": {
-                "yarnScriptEditor": { "$ref": "yarnscripteditor.schema.json" }
+                "yarnScriptEditor": {
+                    "$ref": "yarnscripteditor.schema.json"
+                }
             },
             "additionalProperties": true
         }
