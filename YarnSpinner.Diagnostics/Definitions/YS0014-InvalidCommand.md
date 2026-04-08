@@ -8,4 +8,6 @@ messageValues:
     - Command name
 severity: warning
 published: v3.2.0
+
+# TODO: split into 'unknown command' and 'wrong parameter count' diags
 ---

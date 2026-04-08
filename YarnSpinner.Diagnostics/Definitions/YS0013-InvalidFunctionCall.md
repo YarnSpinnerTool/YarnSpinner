@@ -8,4 +8,5 @@ messageValues:
     - Function name
 severity: error
 published: v3.2.0
+# TODO: split into 'unknown function' and 'wrong parameter count' diags
 ---

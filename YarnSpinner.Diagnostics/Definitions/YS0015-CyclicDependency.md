@@ -8,4 +8,6 @@ messageValues:
     - Error message
 severity: info
 published: v3.2.0
+# TODO: set minimum and default severity to None
+# TODO: move this into a 'stylistic diagnostics' group?
 ---

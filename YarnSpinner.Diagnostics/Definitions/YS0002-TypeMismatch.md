@@ -9,4 +9,7 @@ messageValues:
     - Actual type
 severity: error
 published: v3.2.0
+
+# TODO: consider using 'additional information' objects to indicate extra info about this mismatch
+# see LSP 'diagnostic related information'
 ---

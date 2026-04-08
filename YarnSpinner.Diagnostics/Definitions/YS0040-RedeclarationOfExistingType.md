@@ -3,7 +3,7 @@ name: RedeclarationOfExistingType
 code: YS0040
 tags: ["semantic"]
 description: Redeclaration of existing type
-messageTemplate: "Redeclaration of existing type {0}"
+messageTemplate: "Can't create a new type {0}: a type with this name already exists"
 messageValues: 
     - Type name
 summary: |

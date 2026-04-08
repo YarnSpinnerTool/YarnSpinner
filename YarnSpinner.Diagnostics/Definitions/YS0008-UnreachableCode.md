@@ -8,4 +8,6 @@ summary: |
     Code that will never be executed has been detected.
 severity: warning
 published: v3.2.0
+
+# TODO: run basic block analysis to produce it; add a flag to project that disables these checks
 ---
