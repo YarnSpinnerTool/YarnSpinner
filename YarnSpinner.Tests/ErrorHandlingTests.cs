@@ -358,6 +358,7 @@ This node is missing it's end of body terminator===
         }
 
         [Theory(Skip = "This diagnostic should be moved to the language server - whether or not a it's a problem that a node is unreferenced depends on the use case; additionally, at least one node will almost always be unreferenced, being the entry point")]
+        //  TODO: default this severity to severity=none, have a way to modify severity per-project
         [InlineData(
 @"title: A
 ---
@@ -743,6 +744,7 @@ line
         [InlineData("<<wait 1 2>>", "wait", 2, 2)]
         [InlineData("<<wait \"hello\">>", "wait", 2, 2)]
         [InlineData("<<wait true>>", "wait", 2, 2)]
+        // TODO: move to LSP
         public void TestKnownCommandWithWrongParametersGeneratesDiag(string input, string commandName, params int[] rangeValues)
         {
             rangeValues.Should().HaveCount(2);
