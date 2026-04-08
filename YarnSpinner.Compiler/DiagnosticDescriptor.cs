@@ -15,7 +15,7 @@ namespace Yarn.Compiler
     /// All diagnostics should be created using the predefined descriptors
     /// in this class.
     /// </remarks>
-    public sealed class DiagnosticDescriptor
+    public abstract partial class DiagnosticDescriptor
     {
         /// <summary>
         /// Gets the unique error code for this diagnostic (e.g., "YS0001").
@@ -41,13 +41,179 @@ namespace Yarn.Compiler
         /// </summary>
         public string Description { get; }
 
+        /// <summary>
+        /// The number of parameters this descriptor has in its messages.
+        /// </summary>
+        protected abstract int MessageParameterCount { get; }
+
         private DiagnosticDescriptor(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, string description)
         {
             Code = code;
             MessageTemplate = messageTemplate;
             DefaultSeverity = defaultSeverity;
             Description = description;
+
+#if DEBUG
+            // In debug builds, we'll do additional checking to make sure that
+            // our descriptors are doing what they should be. (This isn't
+            // included in release builds, because this information is
+            // irrelevant to end users.)
+            for (int i = 0; i < this.MessageParameterCount; i++)
+            {
+                if (MessageTemplate.Contains("{" + i + "}") == false)
+                {
+                    // This descriptor is invalid - its type indicates it needs
+                    // N parameters, but not all of them are used in the message
+                    throw new ArgumentException($"Message template for error {code} does not make use of message parameter {i}", nameof(messageTemplate));
+                }
+            }
+
+            try
+            {
+
+                var matches = System.Text.RegularExpressions.Regex.Matches(MessageTemplate, @"\{(\d+)\}");
+                foreach (System.Text.RegularExpressions.Match match in matches)
+                {
+                    var number = int.Parse(match.Groups[1].Value);
+
+                    if (number >= MessageParameterCount)
+                    {
+                        // This descriptor is invalid - its type indicates it
+                        // needs N parameters, but its message references more
+                        // than N unique values
+                        throw new ArgumentException($"Message template for error {code} refers to message parameter {number}, but this descriptor only uses {MessageParameterCount}", nameof(messageTemplate));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException("Failed to parse message for error code " + code, nameof(messageTemplate), e);
+            }
+
+#endif
         }
+
+
+        /// <inheritdoc cref="DiagnosticDescriptor"/>
+        public sealed class DiagnosticDescriptor0 : DiagnosticDescriptor
+        {
+            internal DiagnosticDescriptor0(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, string description)
+                : base(code, messageTemplate, defaultSeverity, description) { }
+
+            /// <inheritdoc/>
+            protected override int MessageParameterCount => 0;
+
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, string[])"/>
+            public Diagnostic Create(string sourceFile)
+                => base.Create(sourceFile);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string,Antlr4.Runtime.ParserRuleContext, string[])"/>
+            public Diagnostic Create(string sourceFile, Antlr4.Runtime.ParserRuleContext context)
+                => base.Create(sourceFile, context);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, Antlr4.Runtime.IToken, string[])"/>
+            public Diagnostic Create(string sourceFile, Antlr4.Runtime.IToken token)
+                => base.Create(sourceFile, token);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, Range, string[])"/>
+            public Diagnostic Create(string sourceFile, Range range)
+                => base.Create(sourceFile, range);
+        }
+
+#pragma warning disable CS1573 // parameter has no documentation but others do; suppressed because we inherit docs from elsewhere
+        /// <inheritdoc cref="DiagnosticDescriptor"/>
+        public sealed class DiagnosticDescriptor1 : DiagnosticDescriptor
+        {
+            internal DiagnosticDescriptor1(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, string description)
+                : base(code, messageTemplate, defaultSeverity, description) { }
+
+            /// <inheritdoc/>
+            protected override int MessageParameterCount => 1;
+
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, string[])"/>
+            /// <param name="message">The value to use for the first parameter in this diagnostic's message.</param>
+            public Diagnostic Create(string sourceFile, string message)
+                => base.Create(sourceFile, message);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string,Antlr4.Runtime.ParserRuleContext, string[])"/>
+            /// <param name="message">The value to use for the first parameter in this diagnostic's message.</param>
+            public Diagnostic Create(string sourceFile, Antlr4.Runtime.ParserRuleContext context, string message)
+                => base.Create(sourceFile, context, message);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, Antlr4.Runtime.IToken, string[])"/>
+            /// <param name="message">The value to use for the first parameter in this diagnostic's message.</param>
+            public Diagnostic Create(string sourceFile, Antlr4.Runtime.IToken token, string message)
+                => base.Create(sourceFile, token, message);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, Range, string[])"/>
+            /// <param name="message">The value to use for the first parameter in this diagnostic's message.</param>
+            public Diagnostic Create(string sourceFile, Range range, string message)
+                => base.Create(sourceFile, range, message);
+        }
+
+        /// <inheritdoc cref="DiagnosticDescriptor"/>
+        public sealed class DiagnosticDescriptor2 : DiagnosticDescriptor
+        {
+            internal DiagnosticDescriptor2(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, string description)
+                : base(code, messageTemplate, defaultSeverity, description) { }
+
+            /// <inheritdoc/>
+            protected override int MessageParameterCount => 2;
+
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, string[])"/>
+            public Diagnostic Create(string sourceFile, string message1, string message2)
+                => base.Create(sourceFile, message1, message2);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string,Antlr4.Runtime.ParserRuleContext, string[])"/>
+            public Diagnostic Create(string sourceFile, Antlr4.Runtime.ParserRuleContext context, string message1, string message2)
+                => base.Create(sourceFile, context, message1, message2);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, Antlr4.Runtime.IToken, string[])"/>
+            public Diagnostic Create(string sourceFile, Antlr4.Runtime.IToken token, string message1, string message2)
+                => base.Create(sourceFile, token, message1, message2);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, Range, string[])"/>
+            public Diagnostic Create(string sourceFile, Range range, string message1, string message2)
+                => base.Create(sourceFile, range, message1, message2);
+        }
+
+        /// <inheritdoc cref="DiagnosticDescriptor"/>
+        public sealed class DiagnosticDescriptor3 : DiagnosticDescriptor
+        {
+            internal DiagnosticDescriptor3(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, string description)
+                : base(code, messageTemplate, defaultSeverity, description) { }
+
+            /// <inheritdoc/>
+            protected override int MessageParameterCount => 3;
+
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, string[])"/>
+            public Diagnostic Create(string sourceFile, string message1, string message2, string message3)
+                => base.Create(sourceFile, message1, message2, message3);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string,Antlr4.Runtime.ParserRuleContext, string[])"/>
+            public Diagnostic Create(string sourceFile, Antlr4.Runtime.ParserRuleContext context, string message1, string message2, string message3)
+                => base.Create(sourceFile, context, message1, message2, message3);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, Antlr4.Runtime.IToken, string[])"/>
+            public Diagnostic Create(string sourceFile, Antlr4.Runtime.IToken token, string message1, string message2, string message3)
+                => base.Create(sourceFile, token, message1, message2, message3);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, Range, string[])"/>
+            public Diagnostic Create(string sourceFile, Range range, string message1, string message2, string message3)
+                => base.Create(sourceFile, range, message1, message2, message3);
+        }
+
+        /// <inheritdoc cref="DiagnosticDescriptor"/>
+        public sealed class DiagnosticDescriptor4 : DiagnosticDescriptor
+        {
+            internal DiagnosticDescriptor4(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, string description)
+                : base(code, messageTemplate, defaultSeverity, description) { }
+
+            /// <inheritdoc/>
+            protected override int MessageParameterCount => 4;
+
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, string[])"/>
+            public Diagnostic Create(string sourceFile, string message1, string message2, string message3, string message4)
+                => base.Create(sourceFile, message1, message2, message3, message4);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string,Antlr4.Runtime.ParserRuleContext, string[])"/>
+            public Diagnostic Create(string sourceFile, Antlr4.Runtime.ParserRuleContext context, string message1, string message2, string message3, string message4)
+                => base.Create(sourceFile, context, message1, message2, message3, message4);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, Antlr4.Runtime.IToken, string[])"/>
+            public Diagnostic Create(string sourceFile, Antlr4.Runtime.IToken token, string message1, string message2, string message3, string message4)
+                => base.Create(sourceFile, token, message1, message2, message3, message4);
+            /// <inheritdoc cref="DiagnosticDescriptor.Create(string, Range, string[])"/>
+            public Diagnostic Create(string sourceFile, Range range, string message1, string message2, string message3, string message4)
+                => base.Create(sourceFile, range, message1, message2, message3, message4);
+        }
+#pragma warning restore
 
         /// <summary>
         /// Creates a new Diagnostic using this descriptor.
@@ -57,7 +223,7 @@ namespace Yarn.Compiler
         /// <param name="args">The arguments to use when composing the
         /// diagnostic's message.</param>
         /// <returns>The diagnostic.</returns>
-        public Diagnostic Create(string sourceFile, params string[] args)
+        private Diagnostic Create(string sourceFile, params string[] args)
             => Diagnostic.CreateDiagnostic(sourceFile, this, args);
 
         /// <summary>
@@ -69,8 +235,9 @@ namespace Yarn.Compiler
         /// <param name="args">The arguments to use when composing the
         /// diagnostic's message.</param>
         /// <returns>The diagnostic.</returns>
-        public Diagnostic Create(string sourceFile, Antlr4.Runtime.ParserRuleContext context, params string[] args)
+        private Diagnostic Create(string sourceFile, Antlr4.Runtime.ParserRuleContext context, params string[] args)
             => Diagnostic.CreateDiagnostic(sourceFile, context, this, args);
+
 
         /// <summary>
         /// Creates a new Diagnostic using this descriptor.
@@ -81,7 +248,7 @@ namespace Yarn.Compiler
         /// <param name="args">The arguments to use when composing the
         /// diagnostic's message.</param>
         /// <returns>The diagnostic.</returns>
-        public Diagnostic Create(string sourceFile, Antlr4.Runtime.IToken token, params string[] args)
+        private Diagnostic Create(string sourceFile, Antlr4.Runtime.IToken token, params string[] args)
             => Diagnostic.CreateDiagnostic(sourceFile, token, this, args);
 
         /// <summary>
@@ -93,7 +260,7 @@ namespace Yarn.Compiler
         /// <param name="args">The arguments to use when composing the
         /// diagnostic's message.</param>
         /// <returns>The diagnostic.</returns>
-        public Diagnostic Create(string sourceFile, Range range, params string[] args)
+        private Diagnostic Create(string sourceFile, Range range, params string[] args)
             => Diagnostic.CreateDiagnostic(sourceFile, range, this, args);
 
         /// <summary>
@@ -110,588 +277,13 @@ namespace Yarn.Compiler
             return string.Format(MessageTemplate, args);
         }
 
-        #region Type Checking Errors
-
-        /// <summary>
-        /// YS0001: A variable has been implicitly declared with multiple conflicting types.
-        /// </summary>
-        /// <remarks>
-        /// <para>This error occurs when a variable is used with different types across
-        /// different files or contexts without an explicit declaration, and the
-        /// compiler cannot determine which type is correct.</para>
-        /// <para>Format placeholders: 0: variable name, 1: type names.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor ImplicitVariableTypeConflict = new DiagnosticDescriptor(
-            code: "YS0001",
-            messageTemplate: "Variable {0} has been implicitly declared with multiple types: {1}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Variable has conflicting implicit type declarations"
-        );
-
-        /// <summary>
-        /// YS0002: A type mismatch occurred during type checking.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: expected type, 1: actual type.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor TypeMismatch = new DiagnosticDescriptor(
-            code: "YS0002",
-            messageTemplate: "Type mismatch: expected {0}, got {1}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Expression type does not match expected type"
-        );
-
-        /// <summary>
-        /// YS0003: An undefined variable was referenced.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: variable name.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor UndefinedVariable = new DiagnosticDescriptor(
-            code: "YS0003",
-            messageTemplate: "Variable '{0}' is used but not declared. Declare it with: <<declare {0} = value>>",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
-            description: "Variable used without being declared"
-        );
-        #endregion
-
-        #region Syntax Errors
-
-        /// <summary>
-        /// YS0004: Missing node delimiter (=== or ---).
-        /// </summary>
-        public static readonly DiagnosticDescriptor MissingDelimiter = new DiagnosticDescriptor(
-            code: "YS0004",
-            messageTemplate: "Missing node delimiter",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Node is missing required === delimiter"
-        );
-
-        /// <summary>
-        /// YS0005: Malformed dialogue or syntax error.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: specific syntax error message.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor SyntaxError = new DiagnosticDescriptor(
-            code: "YS0005",
-            messageTemplate: "{0}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Syntax error in Yarn script"
-        );
-
-        /// <summary>
-        /// YS0006: Unclosed command (missing >>).
-        /// </summary>
-        public static readonly DiagnosticDescriptor UnclosedCommand = new DiagnosticDescriptor(
-            code: "YS0006",
-            messageTemplate: "Unclosed command: missing >>",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Command started with << but not closed with >>"
-        );
-
-        /// <summary>
-        /// YS0007: Unclosed control flow scope (missing endif, endonce, etc.).
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: missing token.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor UnclosedScope = new DiagnosticDescriptor(
-            code: "YS0007",
-            messageTemplate: "Unclosed scope: missing {0}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Control flow block not properly closed"
-        );
-        #endregion
-
-        #region Semantic Warnings
-
-        /// <summary>
-        /// YS0008: Unreachable code detected.
-        /// </summary>
-        public static readonly DiagnosticDescriptor UnreachableCode = new DiagnosticDescriptor(
-            code: "YS0008",
-            messageTemplate: "Unreachable code detected",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
-            description: "Code that will never be executed"
-        );
-
-        /// <summary>
-        /// YS0010: Variable is declared but never used.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: variable name.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor UnusedVariable = new DiagnosticDescriptor(
-            code: "YS0010",
-            messageTemplate: "Variable '{0}' is declared but never used",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Info,
-            description: "Variable declaration that is not referenced"
-        );
-
-        #region Additional Codes
-
-        /// <summary>
-        /// YS0011: Duplicate node title.
-        /// </summary>
-        /// <remarks>
-        /// <para>This diagnostic is not emitted for node groups where nodes
-        /// share a title but have different `when:` clauses.</para>
-        /// <para>Format placeholders: 0: node title.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor DuplicateNodeTitle = new DiagnosticDescriptor(
-            code: "YS0011",
-            messageTemplate: "Duplicate node title: '{0}'",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Multiple nodes have the same title without when: clauses"
-        );
-
-        /// <summary>
-        /// YS0012: Jump to undefined node.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: node title.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor UndefinedNode = new DiagnosticDescriptor(
-            code: "YS0012",
-            messageTemplate: "Jump to undefined node: '{0}'",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Jump target node does not exist"
-        );
-
-        /// <summary>
-        /// YS0013: Invalid function call.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: function name.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor InvalidFunctionCall = new DiagnosticDescriptor(
-            code: "YS0013",
-            messageTemplate: "Invalid function call: {0}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Function called with incorrect parameters or does not exist"
-        );
-
-        /// <summary>
-        /// YS0014: Invalid command.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: command name</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor InvalidCommand = new DiagnosticDescriptor(
-            code: "YS0014",
-            messageTemplate: "Invalid command: {0}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Command is not recognized or has invalid syntax"
-        );
-
-        /// <summary>
-        /// YS0015: Cyclic dependency detected.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: error message.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor CyclicDependency = new DiagnosticDescriptor(
-            code: "YS0015",
-            messageTemplate: "Cyclic dependency detected: {0}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
-            description: "Circular reference between nodes or files"
-        );
-
-        /// <summary>
-        /// YS0016: Unknown character name.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: character name.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor UnknownCharacter = new DiagnosticDescriptor(
-            code: "YS0016",
-            messageTemplate: "Unknown character: '{0}'",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
-            description: "Character name not defined in project configuration"
-        );
-
-        #endregion
-
-        /// <summary>
-        /// YS0017: Lines cannot have both a '#line' tag and a '#shadow' tag.
-        /// </summary>
-        public static readonly DiagnosticDescriptor LinesCantHaveLineAndShadowTag = new DiagnosticDescriptor(
-            code: "YS0017",
-            messageTemplate: "Lines cannot have both a '#line' tag and a '#shadow' tag.",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Shadow tags represent copies of another line elsewhere, and don't get their own line ID."
-        );
-
-        /// <summary>
-        /// YS0018: Lines cannot have both a '#line' tag and a '#shadow' tag.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: line ID.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor DuplicateLineID = new DiagnosticDescriptor(
-            code: "YS0018",
-            messageTemplate: "Duplicate line ID '{0}'",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "All line IDs in a Yarn Spinner project must be unique."
-        );
-
-        /// <summary>
-        /// YS0019: Line content after a non-flow-control command.
-        /// </summary>
-        public static readonly DiagnosticDescriptor LineContentAfterCommand = new DiagnosticDescriptor(
-            code: "YS0019",
-            messageTemplate: "Dialogue \"{0}\" content found following a command. Commands should be on their own line.",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
-            description: "Commands must start on their own line and should not have dialogue following them, this is often indicative of a mistake."
-        );
-
-        /// <summary>
-        /// YS0020: Line content before a non-flow-control command.
-        /// </summary>
-        public static readonly DiagnosticDescriptor LineContentBeforeCommand = new DiagnosticDescriptor(
-            code: "YS0020",
-            messageTemplate: "Command \"{0}\" found following a line of dialogue. Commands should start on a new line.",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Commands must start on their own line, only line conditions are allowed to follow a line of dialogue."
-        );
-
-        /// <summary>
-        /// YS0021: Stray command end marker without matching start marker.
-        /// </summary>
-        public static readonly DiagnosticDescriptor StrayCommandEnd = new DiagnosticDescriptor(
-            code: "YS0021",
-            messageTemplate: "Stray '>>' without matching '<<'. Did you forget to open the command?",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
-            description: "Command end marker without corresponding start marker"
-        );
-
-        /// <summary>
-        /// YS0022: Command keyword outside of command block.
-        /// </summary>
-        public static readonly DiagnosticDescriptor UnenclosedCommand = new DiagnosticDescriptor(
-            code: "YS0022",
-            messageTemplate: "'{0}' command must be enclosed in '<<' and '>>'. Did you mean '<<{0} ...'?",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
-            description: "Command keyword appearing outside of command markers"
-        );
-
-        /// <summary>
-        /// YS0027: Node title or subtitle contains invalid characters.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: "title" or "subtitle", 1: the invalid name.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor InvalidNodeName = new DiagnosticDescriptor(
-            code: "YS0027",
-            messageTemplate: "The node {0} '{1}' contains invalid characters. Titles can only contain letters, numbers, and underscores.",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Node titles and subtitles can only contain letters, numbers, and underscores."
-        );
-
-        #endregion
-
-        /// <summary>
-        /// YS0039: Redeclaration of existing variable
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: variable name.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor RedeclarationOfExistingVariable = new DiagnosticDescriptor(
-            code: "YS0039",
-            messageTemplate: "Redeclaration of existing variable {0}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Variables can only have a single declaration."
-        );
-
-        /// <summary>
-        /// YS0040: Redeclaration of existing type
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: type name.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor RedeclarationOfExistingType = new DiagnosticDescriptor(
-            code: "YS0040",
-            messageTemplate: "Redeclaration of existing type {0}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "A type with this name already exists."
-        );
-
-        /// <summary>
-        /// YS0041: Internal error.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: error description.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor InternalError = new DiagnosticDescriptor(
-            code: "YS0041",
-            messageTemplate: "Internal compiler error: {0}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "An internal error was detected by the compiler. Please file an issue."
-        );
-
-        /// <summary>
-        /// YS0042: Unknown line ID {0} for shadow line.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: line ID.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor UnknownLineIDForShadowLine = new DiagnosticDescriptor(
-            code: "YS0042",
-            messageTemplate: "Unknown line ID {0} for shadow line",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Shadow lines must map to existing line IDs."
-        );
-
-        /// <summary>
-        /// YS0043: Shadow lines must not have expressions
-        /// </summary>
-        public static readonly DiagnosticDescriptor ShadowLinesCantHaveExpressions = new DiagnosticDescriptor(
-            code: "YS0043",
-            messageTemplate: "Shadow lines must not have expressions",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Shadow lines must be text, and not contain any expressions."
-        );
-
-        /// <summary>
-        /// YS0044: Shadow lines must have the same text as their source
-        /// </summary>
-        public static readonly DiagnosticDescriptor ShadowLinesMustHaveSameTextAsSource = new DiagnosticDescriptor(
-            code: "YS0044",
-            messageTemplate: "Shadow lines must have the same text as their source",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Shadow lines are copies of their source lines, and must have the exact same text as their source line."
-        );
-
-        /// <summary>
-        /// YS0045: Smart variables cannot contain reference loops.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: variable reference, 1: smart variable name.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor SmartVariableLoop = new DiagnosticDescriptor(
-            code: "YS0045",
-            messageTemplate: "Smart variables cannot contain reference loops (referencing {0} here creates a loop for the smart variable {1}).",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "A smart variable's expression references itself through a chain of other smart variables."
-        );
-
-        /// <summary>
-        /// YS0046: Variable declaration has a null default value.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: variable name, 1: type name.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor NullDefaultValue = new DiagnosticDescriptor(
-            code: "YS0046",
-            messageTemplate: "Variable declaration {0} (type {1}) has a null default value. This is not allowed.",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "A variable declaration must have a non-null default value."
-        );
-
-        /// <summary>
-        /// YS0047: Expression failed to resolve in a reasonable time.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: time limit in seconds.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor TypeSolverTimeout = new DiagnosticDescriptor(
-            code: "YS0047",
-            messageTemplate: "Expression failed to resolve in a reasonable time ({0}). Try simplifying this expression.",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "The type solver exceeded its time limit while resolving this expression."
-        );
-
-        #region Additional Semantic Codes
-
-        /// <summary>
-        /// YS0028: Can't determine type of variable given its usage.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: variable name.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor TypeInferenceFailure = new DiagnosticDescriptor(
-            code: "YS0028",
-            messageTemplate: "Can't determine type of {0} given its usage. Manually specify its type with a declare statement.",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "The compiler could not infer the type of this variable from how it is used."
-        );
-
-        /// <summary>
-        /// YS0029: Can't determine the type of an expression.
-        /// </summary>
-        public static readonly DiagnosticDescriptor ExpressionTypeUndetermined = new DiagnosticDescriptor(
-            code: "YS0029",
-            messageTemplate: "Can't determine the type of this expression.",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "The compiler could not resolve the type of this expression."
-        );
-
-        /// <summary>
-        /// YS0030: Smart variable cannot be modified.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: variable name.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor SmartVariableReadOnly = new DiagnosticDescriptor(
-            code: "YS0030",
-            messageTemplate: "{0} cannot be modified (it's a smart variable).",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Smart variables are read-only computed values and cannot be assigned to."
-        );
-
-        /// <summary>
-        /// YS0031: All nodes in a group must have a 'when' clause.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: node group title.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor NodeGroupMissingWhen = new DiagnosticDescriptor(
-            code: "YS0031",
-            messageTemplate: "All nodes in the group '{0}' must have a 'when' clause (use 'when: always' if you want this node to not have any conditions).",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "When some nodes in a group have 'when' clauses, all must have them."
-        );
-
-        /// <summary>
-        /// YS0032: Duplicate subtitle in a node group.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: group name, 1: subtitle.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor DuplicateSubtitle = new DiagnosticDescriptor(
-            code: "YS0032",
-            messageTemplate: "More than one node in group {0} has subtitle {1}.",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "Subtitles within a node group must be unique."
-        );
-
-        /// <summary>
-        /// YS0033: Node is empty and will not be compiled.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: node title.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor EmptyNode = new DiagnosticDescriptor(
-            code: "YS0033",
-            messageTemplate: "Node \"{0}\" is empty and will not be included in the compiled output.",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Warning,
-            description: "An empty node has no statements and will be excluded from compilation."
-        );
-
-        /// <summary>
-        /// YS0034: Function cannot be used in Yarn Spinner scripts.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: function name, 1: reason.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor InvalidLibraryFunction = new DiagnosticDescriptor(
-            code: "YS0034",
-            messageTemplate: "Function {0} cannot be used in Yarn Spinner scripts: {1}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "A library function has an incompatible signature for use in Yarn scripts."
-        );
-
-        /// <summary>
-        /// YS0035: Enum declaration error.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: error message.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor EnumDeclarationError = new DiagnosticDescriptor(
-            code: "YS0035",
-            messageTemplate: "{0}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "An error occurred while validating an enum declaration."
-        );
-
-        /// <summary>
-        /// YS0036: Language version too low for feature.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: error message.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor LanguageVersionTooLow = new DiagnosticDescriptor(
-            code: "YS0036",
-            messageTemplate: "{0}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "A language feature was used that requires a newer Yarn Spinner project version."
-        );
-
-        /// <summary>
-        /// YS0037: Invalid literal value.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: error message.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor InvalidLiteralValue = new DiagnosticDescriptor(
-            code: "YS0037",
-            messageTemplate: "{0}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "A constant literal value could not be parsed or is of an unexpected type."
-        );
-
-        /// <summary>
-        /// YS0038: Invalid member access.
-        /// </summary>
-        /// <remarks>
-        /// <para>Format placeholders: 0: error message.</para>
-        /// </remarks>
-        public static readonly DiagnosticDescriptor InvalidMemberAccess = new DiagnosticDescriptor(
-            code: "YS0038",
-            messageTemplate: "{0}",
-            defaultSeverity: Diagnostic.DiagnosticSeverity.Error,
-            description: "A type member access could not be resolved."
-        );
-
-        #endregion
-
         // Registry for lookup by code
-        private static readonly Dictionary<string, DiagnosticDescriptor> descriptorsByCode = new Dictionary<string, DiagnosticDescriptor>
+        private static readonly Dictionary<string, DiagnosticDescriptor> descriptorsByCode;
+
+        static DiagnosticDescriptor()
         {
-            { ImplicitVariableTypeConflict.Code, ImplicitVariableTypeConflict },
-            { TypeMismatch.Code, TypeMismatch },
-            { UndefinedVariable.Code, UndefinedVariable },
-            { MissingDelimiter.Code, MissingDelimiter },
-            { SyntaxError.Code, SyntaxError },
-            { UnclosedCommand.Code, UnclosedCommand },
-            { UnclosedScope.Code, UnclosedScope },
-            { UnreachableCode.Code, UnreachableCode },
-            { UnusedVariable.Code, UnusedVariable },
-            { DuplicateNodeTitle.Code, DuplicateNodeTitle },
-            { UndefinedNode.Code, UndefinedNode },
-            { InvalidFunctionCall.Code, InvalidFunctionCall },
-            { InvalidCommand.Code, InvalidCommand },
-            { CyclicDependency.Code, CyclicDependency },
-            { UnknownCharacter.Code, UnknownCharacter },
-            { LinesCantHaveLineAndShadowTag.Code, LinesCantHaveLineAndShadowTag },
-            { DuplicateLineID.Code, DuplicateLineID },
-            { LineContentAfterCommand.Code, LineContentAfterCommand },
-            { LineContentBeforeCommand.Code, LineContentBeforeCommand },
-            { StrayCommandEnd.Code, StrayCommandEnd },
-            { UnenclosedCommand.Code, UnenclosedCommand },
-            { InvalidNodeName.Code, InvalidNodeName },
-            { RedeclarationOfExistingVariable.Code, RedeclarationOfExistingVariable },
-            { RedeclarationOfExistingType.Code, RedeclarationOfExistingType },
-            { InternalError.Code, InternalError },
-            { UnknownLineIDForShadowLine.Code, UnknownLineIDForShadowLine },
-            { ShadowLinesCantHaveExpressions.Code, ShadowLinesCantHaveExpressions },
-            { ShadowLinesMustHaveSameTextAsSource.Code, ShadowLinesMustHaveSameTextAsSource },
-            { SmartVariableLoop.Code, SmartVariableLoop },
-            { NullDefaultValue.Code, NullDefaultValue },
-            { TypeSolverTimeout.Code, TypeSolverTimeout },
-            { TypeInferenceFailure.Code, TypeInferenceFailure },
-            { ExpressionTypeUndetermined.Code, ExpressionTypeUndetermined },
-            { SmartVariableReadOnly.Code, SmartVariableReadOnly },
-            { NodeGroupMissingWhen.Code, NodeGroupMissingWhen },
-            { DuplicateSubtitle.Code, DuplicateSubtitle },
-            { EmptyNode.Code, EmptyNode },
-            { InvalidLibraryFunction.Code, InvalidLibraryFunction },
-            { EnumDeclarationError.Code, EnumDeclarationError },
-            { LanguageVersionTooLow.Code, LanguageVersionTooLow },
-            { InvalidLiteralValue.Code, InvalidLiteralValue },
-            { InvalidMemberAccess.Code, InvalidMemberAccess },
-        };
+            descriptorsByCode = GetDescriptorDictionary();
+        }
 
         /// <summary>
         /// Gets a diagnostic descriptor by its code.

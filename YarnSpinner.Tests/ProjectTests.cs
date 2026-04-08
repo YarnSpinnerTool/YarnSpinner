@@ -45,7 +45,7 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
-            dialogue.SetProgram(result.Program);
+            dialogue.Program = result.Program;
             stringTable = result.StringTable;
 
             // high-level test: load the file, verify it has the nodes we want,
@@ -96,7 +96,7 @@ custom: yes
             generatedOutput.Should().Be(originalText);
         }
 
-        [IgnoreUntilFact(Day = 01, Month = 06, Year = 2026, DisplayName = "Disabled until SyntaxValidationListener performance is fixed")]
+        [Fact]
         public void TestLineCollisionTagging()
         {
             var paths = new List<string>()
@@ -114,7 +114,7 @@ custom: yes
 
             result.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error).Should().Be(false);
 
-            var totalUntaggedLines = result.StringTable.Where(i => i.Value.isImplicitTag).Count();
+            var totalUntaggedLines = result.StringTable.Count(i => i.Value.isImplicitTag);
             var totalLines = result.StringTable.Count();
             // at this stage these should be the same
             totalUntaggedLines.Should().Be(totalLines);
@@ -130,9 +130,6 @@ custom: yes
             {
                 var content = File.ReadAllText(path);
 
-                // this is the older failing version
-                // var taggedVersion = Utility.AddTagsToLines(content, existingTags);
-
                 var tagged = Utility.TagLines(content, existingTags);
                 var taggedVersion = tagged.Item1;
 
@@ -147,13 +144,14 @@ custom: yes
             var taggedContent = string.Join("\n", taggedLineContent);
 
             compilationJob = CompilationJob.CreateFromString("tagged", taggedContent);
+            compilationJob.CompilationType = CompilationJob.Type.StringsOnly;
             result = Compiler.Compile(compilationJob);
 
             // we should have no errors
             result.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error).Should().Be(false);
 
             // we should have as many lines as we did originally
-            var taggedLinesCount = result.StringTable.Count();
+            var taggedLinesCount = result.StringTable.Count;
             taggedLinesCount.Should().Be(totalLines);
 
             // we should have no untagged lines

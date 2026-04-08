@@ -15,7 +15,7 @@ namespace TypeChecker
     {
         public FalseConstraint(TypeConstraint source)
         {
-            this.FailureMessageProvider = source.FailureMessageProvider;
+            this.DiagnosticProvider = source.DiagnosticProvider;
             this.SourceContext = source.SourceContext;
             this.SourceExpression = source.SourceExpression;
             this.SourceFileName = source.SourceFileName;

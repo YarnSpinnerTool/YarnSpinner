@@ -148,7 +148,9 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Should().ContainSingle().Which.Message.Should().Be("Redeclaration of existing variable $int");
+            var errors = result.Diagnostics.Where(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+            errors.Should().HaveCount(2);
+            errors.Should().AllSatisfy(d => d.Message.Should().Be("Redeclaration of existing variable $int"));
         }
 
         [Fact]
@@ -460,7 +462,7 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics
                 .Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error)
-                .Which.Message.Should().MatchRegex(@"\$(.+?)'s type \(.+?\) must be .+?");
+                .Which.Message.Should().MatchRegex(@"\$(.+?) is declared to be (.+?), but its initial value (.+?) is a (.+?)");
         }
 
         [Fact]
@@ -791,7 +793,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("func was called elsewhere with 1 parameter, but is called with 2 parameters here");
+            result.Diagnostics.Select(d => d.Message).Should().ContainMatch("Invalid function call: func was called elsewhere with 1 parameter, but is called with 2 parameters here");
         }
 
         [Fact]

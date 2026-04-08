@@ -298,7 +298,7 @@ namespace Yarn.Compiler
             // (i.e., were used but never had a <<declare>> statement in any file)
             // YS0003: Variable used without being declared
             // Only warn about variables, not functions (functions can be implicitly declared)
-            foreach (var declaration in declarations.Where(d => d.IsImplicit && d.IsVariable))
+            foreach (var declaration in declarations.Where(d => d.IsImplicit && d.IsVariable && d.Name.StartsWith("$Yarn.Internal") == false))
             {
                 diagnostics.Add(DiagnosticDescriptor.UndefinedVariable.Create(declaration.SourceFileName, declaration.Range, declaration.Name));
             }
@@ -354,10 +354,7 @@ namespace Yarn.Compiler
                 // the constraint, and we should produce diagnostics for them.
                 foreach (var constraint in failingConstraints)
                 {
-                    foreach (var failureMessage in constraint.GetFailureMessages(typeSolution))
-                    {
-                        diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceRange, failureMessage) { Code = DiagnosticDescriptor.TypeMismatch.Code });
-                    }
+                    diagnostics.AddRange(constraint.GetFailureDiagnostics(typeSolution));
                 }
                 watchdog.Stop();
             }
@@ -415,9 +412,7 @@ namespace Yarn.Compiler
                 if (decl.Type is TypeChecker.TypeVariable)
                 {
                     var suggestion = decl.Name.StartsWith("$") ? $" For example: <<declare {decl.Name} = (initial value) >>" : string.Empty;
-
-                    diagnostics.Add(new Diagnostic(decl.SourceFileName, decl.Range, $"Can't determine type of {decl.Name} given its usage. Manually specify its type with a declare statement.{suggestion}") { Code = DiagnosticDescriptor.TypeInferenceFailure.Code });
-
+                    DiagnosticDescriptor.TypeInferenceFailure.Create(decl.SourceFileName, decl.Range, DiagnosticDescriptor.TypeInferenceFailure.Code);
                     decl.Type = Types.Error;
                 }
             }
@@ -452,7 +447,7 @@ namespace Yarn.Compiler
                             // Compile error!
                             if (typedContext is ParserRuleContext parserRuleContext)
                             {
-                                diagnostics.Add(DiagnosticDescriptor.ExpressionTypeUndetermined.Create(parsedFile.Name, parserRuleContext));
+                                diagnostics.Add(DiagnosticDescriptor.ExpressionTypeUndetermined.Create(parsedFile.Name, parserRuleContext, parserRuleContext.GetTextWithWhitespace()));
                             }
                             else
                             {
@@ -503,10 +498,17 @@ namespace Yarn.Compiler
             // Filter out any duplicate diagnostics
             diagnostics = diagnostics.Distinct().ToList();
 
-            AddDiagnosticsForStyleIssues(parsedFiles, ref diagnostics);
-
             // adding in the warnings about empty nodes
             var empties = AddDiagnosticsForEmptyNodes(parsedFiles, ref diagnostics);
+
+            // Add diagnostics for unreferenced variables
+            HashSet<string> referencedVariables = new(nodeMetadata.SelectMany(n => n.VariableReferences));
+            foreach (var decl in declarations.Where(d => d.IsVariable
+                                                         && d.Name.StartsWith("$Yarn.Internal") == false
+                                                         && referencedVariables.Contains(d.Name) == false))
+            {
+                diagnostics.Add(DiagnosticDescriptor.UnusedVariable.Create(decl.SourceFileName, decl.Range, decl.Name));
+            }
 
             // The user-defined types are all types that we know about, minus
             // all types that were pre-defined.
@@ -522,7 +524,7 @@ namespace Yarn.Compiler
                     Declarations = declarations,
                     ContainsImplicitStringTags = false,
                     Program = null,
-                    StringTable = null,
+                    StringTable = stringTableManager.StringTable,
                     FileTags = fileTags,
                     Diagnostics = diagnostics,
                     UserDefinedTypes = userDefinedTypes,
@@ -538,7 +540,19 @@ namespace Yarn.Compiler
 
             if (diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {
-                // We have errors, so we can't safely generate code.
+                // We have errors, so we can't safely generate code. Return the result.
+                return new CompilationResult
+                {
+                    Declarations = declarations,
+                    ContainsImplicitStringTags = false,
+                    Program = null,
+                    StringTable = stringTableManager.StringTable,
+                    FileTags = fileTags,
+                    Diagnostics = diagnostics,
+                    UserDefinedTypes = userDefinedTypes,
+                    ParseResults = parsedFiles,
+                    NodeMetadata = nodeMetadata,
+                };
             }
             else
             {
@@ -637,7 +651,7 @@ namespace Yarn.Compiler
 
                 if (declaration.DefaultValue == null)
                 {
-                    diagnostics.Add(DiagnosticDescriptor.NullDefaultValue.Create("(unknown)", declaration.Name, declaration.Type?.Name ?? "undefined"));
+                    diagnostics.Add(DiagnosticDescriptor.InternalError.Create(declaration.SourceFileName, declaration.Range, $"Declaration for {declaration.Name} has no default value, which is a syntax error"));
                     continue;
                 }
 
@@ -704,16 +718,6 @@ namespace Yarn.Compiler
             return finalResult;
         }
 
-        private static void AddDiagnosticsForStyleIssues(List<FileParseResult> parsedFiles, ref List<Diagnostic> diagnostics)
-        {
-            foreach (var file in parsedFiles)
-            {
-                var styleIssuesVisitor = new StyleWarningsVisitor(file.Name, file.Tokens);
-                styleIssuesVisitor.Visit(file.Tree);
-                diagnostics.AddRange(styleIssuesVisitor.Diagnostics);
-            }
-        }
-
         private static void AddErrorsForSettingReadonlyVariables(List<FileParseResult> parsedFiles, IEnumerable<Declaration> declarations, List<Diagnostic> diagnostics)
         {
             var smartVariables = declarations.Where(d => d.IsInlineExpansion).ToDictionary(d => d.Name, d => d);
@@ -739,12 +743,11 @@ namespace Yarn.Compiler
                             // This set statement is attempting to set a value
                             // to a smart variable. That's not allowed, because
                             // smart variables are read-only.
-                            diagnostics.Add(new Diagnostic(
+                            diagnostics.Add(DiagnosticDescriptor.SmartVariableReadOnly.Create(
                                 file.Name,
                                 setStatement.variable(),
-                                $"{variableName} cannot be modified (it's a smart variable and is always equal to " +
-                                $"{smartVariables[variableName]?.InitialValueParserContext?.GetTextWithWhitespace() ?? "(unknown)"})")
-                                { Code = DiagnosticDescriptor.SmartVariableReadOnly.Code });
+                                variableName,
+                                 smartVariables[variableName]?.InitialValueParserContext?.GetTextWithWhitespace() ?? "(unknown)"));
                         }
                     }
                 });
@@ -777,7 +780,7 @@ namespace Yarn.Compiler
         {
             // A regular expression used to detect illegal characters
             // in node titles.
-            System.Text.RegularExpressions.Regex invalidTitleCharacters = new System.Text.RegularExpressions.Regex(@"[\[<>\]{}\|:\s#\$]");
+            System.Text.RegularExpressions.Regex invalidTitleCharacters = new System.Text.RegularExpressions.Regex(@"(^[0-9]|[\.\[<>\]{}\|:\s#\$])");
 
             var allNodes = parseResults.SelectMany(r =>
             {
@@ -814,16 +817,6 @@ namespace Yarn.Compiler
                 }
             }).Where(kv => kv.Name != null);
 
-            // Find nodes whose titles have invalid characters, and generate
-            // diagnostics for them
-
-            var nodesWithIllegalTitleCharacters = nodesWithNames.Where(n => invalidTitleCharacters.IsMatch(n.Name));
-
-            foreach (var node in nodesWithIllegalTitleCharacters)
-            {
-                diagnostics.Add(DiagnosticDescriptor.InvalidNodeName.Create(node.File.Name, node.TitleHeader, "title", node.Name));
-            }
-
             var nodesByTitle = nodesWithNames.GroupBy(n => n.Name);
 
             // Find groups of nodes with the same name and generate diagnostics
@@ -853,7 +846,7 @@ namespace Yarn.Compiler
                         // don't. Create errors for these others.
                         foreach (var entry in group.Where(n => n.Node.GetWhenHeaders().Any() == false))
                         {
-                            var d = DiagnosticDescriptor.NodeGroupMissingWhen.Create(entry.File.Name, entry.TitleHeader, entry.Node.NodeTitle);
+                            var d = DiagnosticDescriptor.NodeGroupMissingWhen.Create(entry.File.Name, (ParserRuleContext?)entry.TitleHeader ?? entry.Node, entry.Node.NodeTitle ?? "<unknown>");
                             diagnostics.Add(d);
                         }
                     }
@@ -879,17 +872,16 @@ namespace Yarn.Compiler
                         {
                             foreach (var entry in group)
                             {
-                                var d = DiagnosticDescriptor.DuplicateSubtitle.Create(entry.File.Name, entry.Node.GetHeader("subtitle"), entry.Name, subtitle);
+                                var d = DiagnosticDescriptor.DuplicateSubtitle.Create(
+                                    entry.File.Name,
+                                    (ParserRuleContext?)entry.Node.GetHeader("subtitle") ?? entry.Node,
+                                    entry.Name ?? "<unknown>", subtitle);
                                 diagnostics.Add(d);
                             }
                         }
-                        if (invalidTitleCharacters.IsMatch(subtitle))
-                        {
-                            foreach (var entry in group)
-                            {
-                                diagnostics.Add(DiagnosticDescriptor.InvalidNodeName.Create(entry.File.Name, entry.Node.GetHeader("subtitle"), "subtitle", subtitle));
-                            }
-                        }
+
+
+
                     }
 
                     continue;
@@ -898,23 +890,59 @@ namespace Yarn.Compiler
                 // More than one node has this name! Report an error on both.
                 foreach (var entry in group)
                 {
-                    var d = new Diagnostic(entry.File.Name, entry.TitleHeader, $"More than one node is named {entry.Name}") { Code = DiagnosticDescriptor.DuplicateNodeTitle.Code };
-                    diagnostics.Add(d);
+                    if (entry.TitleHeader != null)
+                    {
+                        var d = DiagnosticDescriptor.DuplicateNodeTitle.Create(entry.File.Name, entry.TitleHeader, entry.Name ?? "<unknown>");
+                        diagnostics.Add(d);
+                    }
                 }
             }
 
-            // Find nodes that have either zero title headers, or more than one title header
+            // Find nodes that have either zero title headers, or more than one title header, or have an invalid subtitle
             foreach (var node in allNodes)
             {
                 if (node.Node.NodeTitle == null)
                 {
-                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.body(), $"Nodes must have a title") { Code = DiagnosticDescriptor.DuplicateNodeTitle.Code });
+                    diagnostics.Add(DiagnosticDescriptor.NodeMissingTitle.Create(node.File.Name, node.Node.body()));
                 }
                 if (node.Node.title_header().Length > 1)
                 {
-                    diagnostics.Add(new Diagnostic(node.File.Name, node.Node.title_header()[1], $"Nodes must have a single title node") { Code = DiagnosticDescriptor.DuplicateNodeTitle.Code });
+                    diagnostics.Add(DiagnosticDescriptor.NodeHasMoreThanOneTitle.Create(node.File.Name, node.Node.title_header()[1]));
+                }
+
+                // Find nodes that have an invalid subtitle
+                var subtitleValue = node.Node.GetHeader("subtitle")?.header_value;
+
+                if (subtitleValue != null)
+                {
+                    var subtitle = subtitleValue.Text;
+
+                    var invalidCharacterMatch = invalidTitleCharacters.Match(subtitle);
+                    if (invalidCharacterMatch.Success)
+                    {
+                        var unexpectedCharacter = invalidCharacterMatch.Value;
+                        var indexOfUnexpected = invalidCharacterMatch.Index;
+
+
+                        var errorRange = new Range(
+                            subtitleValue.Line - 1,
+                            subtitleValue.Column + indexOfUnexpected,
+                            subtitleValue.Line - 1,
+                            subtitleValue.Column + indexOfUnexpected + 1);
+
+                        diagnostics.Add(
+                            DiagnosticDescriptor.InvalidNodeName.Create(node.File.Name,
+                                                                        errorRange,
+                                                                        "subtitle",
+                                                                        unexpectedCharacter)
+                        );
+                    }
+
                 }
             }
+
+
+
         }
 
         private static HashSet<string> AddDiagnosticsForEmptyNodes(List<FileParseResult> parseResults, ref List<Diagnostic> diagnostics)
@@ -1106,22 +1134,19 @@ namespace Yarn.Compiler
             YarnSpinnerParser parser = new YarnSpinnerParser(tokens);
 
             // turning off the normal error listener and using ours
-            var parserErrorListener = new ParserErrorListener(fileName);
-            var lexerErrorListener = new LexerErrorListener(fileName);
-
-            parser.ErrorHandler = new ErrorStrategy();
-
-            parser.RemoveErrorListeners();
-            parser.AddErrorListener(parserErrorListener);
+            var yarnErrorListener = new YarnErrorListener(fileName);
 
             lexer.RemoveErrorListeners();
-            lexer.AddErrorListener(lexerErrorListener);
+            lexer.AddErrorListener(yarnErrorListener);
+
+            parser.RemoveErrorListeners();
+            parser.AddErrorListener(yarnErrorListener);
 
             YarnSpinnerParser.DialogueContext tree;
 
             tree = parser.dialogue();
 
-            var newDiagnostics = lexerErrorListener.Diagnostics.Concat(parserErrorListener.Diagnostics);
+            var newDiagnostics = yarnErrorListener.Diagnostics;
 
             // Now that we've parsed the file, we'll go through all of the nodes
             // and record which file they came from.

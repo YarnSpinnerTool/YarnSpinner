@@ -2,11 +2,19 @@
 
 using Antlr4.Runtime;
 using System.Collections.Generic;
+using Yarn.Compiler;
 
 namespace TypeChecker
 {
 
-    delegate string FailureMessageProvider(Substitution subst);
+    internal struct FailureContext
+    {
+        internal string source;
+        internal Range range;
+        internal Substitution subst;
+    }
+
+    delegate Yarn.Compiler.Diagnostic DiagnosticProvider(FailureContext context);
 
     /// <summary>
     /// Stores information that a Solver can use to solve a system of type
@@ -51,9 +59,24 @@ namespace TypeChecker
 
         public ParserRuleContext? SourceContext { get; internal set; }
 
-        public virtual IEnumerable<string> GetFailureMessages(Substitution subst) => new[] { FailureMessageProvider?.Invoke(subst) ?? this.ToString() };
+        public virtual IEnumerable<Yarn.Compiler.Diagnostic> GetFailureDiagnostics(Substitution subst)
+        {
+            if (DiagnosticProvider == null)
+            {
+                return new[] { Yarn.Compiler.DiagnosticDescriptor.InternalError.Create(this.SourceFileName, this.SourceRange, "An unknown error occurred when resolving this expression's type.") };
+            }
 
-        public FailureMessageProvider? FailureMessageProvider;
+            return new[] {
+                DiagnosticProvider.Invoke(new()
+                {
+                    source = this.SourceFileName,
+                    range = this.SourceRange,
+                    subst = subst
+                })
+            };
+        }
+
+        public DiagnosticProvider? DiagnosticProvider;
 
         /// <summary>
         /// Gets the collection of all variables involved in this constraint.

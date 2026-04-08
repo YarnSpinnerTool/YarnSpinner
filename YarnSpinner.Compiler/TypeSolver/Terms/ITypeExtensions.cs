@@ -96,7 +96,7 @@ namespace TypeChecker
                                     equalityConstraint.Right.Substitute(substitution)
                                 )
                 {
-                    FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    DiagnosticProvider = typeConstraint.DiagnosticProvider,
                     SourceContext = typeConstraint.SourceContext,
                     SourceExpression = typeConstraint.SourceExpression,
                     SourceFileName = typeConstraint.SourceFileName,
@@ -110,7 +110,7 @@ namespace TypeChecker
                     typeConvertibleConstraint.ToType.Substitute(substitution)
                 )
                 {
-                    FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    DiagnosticProvider = typeConstraint.DiagnosticProvider,
                     SourceContext = typeConstraint.SourceContext,
                     SourceExpression = typeConstraint.SourceExpression,
                     SourceFileName = typeConstraint.SourceFileName,
@@ -121,7 +121,7 @@ namespace TypeChecker
             {
                 return new TypeHasNameConstraint(hasNameConstraint.Type.Substitute(substitution), hasNameConstraint.Name)
                 {
-                    FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    DiagnosticProvider = typeConstraint.DiagnosticProvider,
                     SourceContext = typeConstraint.SourceContext,
                     SourceExpression = typeConstraint.SourceExpression,
                     SourceFileName = typeConstraint.SourceFileName,
@@ -132,7 +132,7 @@ namespace TypeChecker
             {
                 return new TypeHasMemberConstraint(hasMemberConstraint.Type.Substitute(substitution), hasMemberConstraint.MemberName)
                 {
-                    FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    DiagnosticProvider = typeConstraint.DiagnosticProvider,
                     SourceContext = typeConstraint.SourceContext,
                     SourceExpression = typeConstraint.SourceExpression,
                     SourceFileName = typeConstraint.SourceFileName,
@@ -145,7 +145,7 @@ namespace TypeChecker
                     conjunctionConstraint.Select(c => c.ApplySubstitution(substitution))
                 )
                 {
-                    FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    DiagnosticProvider = typeConstraint.DiagnosticProvider,
                     SourceContext = typeConstraint.SourceContext,
                     SourceExpression = typeConstraint.SourceExpression,
                     SourceFileName = typeConstraint.SourceFileName,
@@ -158,7 +158,7 @@ namespace TypeChecker
                     disjunctionConstraint.Select(c => c.ApplySubstitution(substitution))
                 )
                 {
-                    FailureMessageProvider = typeConstraint.FailureMessageProvider,
+                    DiagnosticProvider = typeConstraint.DiagnosticProvider,
                     SourceContext = typeConstraint.SourceContext,
                     SourceExpression = typeConstraint.SourceExpression,
                     SourceFileName = typeConstraint.SourceFileName,

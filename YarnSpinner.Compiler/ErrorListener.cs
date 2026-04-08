@@ -80,7 +80,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
-        public Diagnostic(string fileName, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        private Diagnostic(string fileName, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
             this.Message = message;
@@ -94,7 +94,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
-        public Diagnostic(string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        private Diagnostic(string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         : this("(unknown)", message, severity)
         {
         }
@@ -110,8 +110,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
-        [Obsolete("Use " + nameof(CreateDiagnostic) + " to create diagnostics.")]
-        public Diagnostic(string fileName, ParserRuleContext? context, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        private Diagnostic(string fileName, ParserRuleContext? context, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
 
@@ -143,8 +142,7 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
-        [Obsolete("Use " + nameof(CreateDiagnostic) + " to create diagnostics.")]
-        public Diagnostic(string fileName, IToken token, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        private Diagnostic(string fileName, IToken token, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
 
@@ -170,19 +168,13 @@ namespace Yarn.Compiler
         /// path="/summary/node()"/></param>
         /// <param name="severity"><inheritdoc cref="Severity"
         /// path="/summary/node()"/></param>
-        [Obsolete("Use " + nameof(CreateDiagnostic) + " to create diagnostics.")]
-        public Diagnostic(string fileName, Range range, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
+        private Diagnostic(string fileName, Range range, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
             this.Range = range ?? Range.InvalidRange;
             this.Message = message;
             this.Severity = severity;
         }
-
-        // 'Identifier' is obsolete (TODO: re enable this after we finish making
-        // the constructor for Diagnostic private, so that the only way to
-        // create a diagnostic is via a DiagnosticDescriptor)
-#pragma warning disable CS0618
 
         // ===== FACTORY METHODS USING DIAGNOSTICDESCRIPTOR =====
         // These methods ensure error codes and messages are always correctly paired
@@ -194,7 +186,7 @@ namespace Yarn.Compiler
         /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
         /// <param name="args">Arguments to format the message template.</param>
         /// <returns>A new diagnostic instance.</returns>
-        public static Diagnostic CreateDiagnostic(string fileName, DiagnosticDescriptor descriptor, params object[] args)
+        public static Diagnostic CreateDiagnostic(string fileName, DiagnosticDescriptor descriptor, params string[] args)
         {
             return new Diagnostic(fileName, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
             {
@@ -210,7 +202,7 @@ namespace Yarn.Compiler
         /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
         /// <param name="args">Arguments to format the message template.</param>
         /// <returns>A new diagnostic instance.</returns>
-        public static Diagnostic CreateDiagnostic(string fileName, Range range, DiagnosticDescriptor descriptor, params object[] args)
+        public static Diagnostic CreateDiagnostic(string fileName, Range range, DiagnosticDescriptor descriptor, params string[] args)
         {
             return new Diagnostic(fileName, range, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
             {
@@ -226,7 +218,7 @@ namespace Yarn.Compiler
         /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
         /// <param name="args">Arguments to format the message template.</param>
         /// <returns>A new diagnostic instance.</returns>
-        public static Diagnostic CreateDiagnostic(string fileName, ParserRuleContext? context, DiagnosticDescriptor descriptor, params object[] args)
+        public static Diagnostic CreateDiagnostic(string fileName, ParserRuleContext? context, DiagnosticDescriptor descriptor, params string[] args)
         {
             return new Diagnostic(fileName, context, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
             {
@@ -242,7 +234,7 @@ namespace Yarn.Compiler
         /// <param name="descriptor">The diagnostic descriptor defining the error code and message template.</param>
         /// <param name="args">Arguments to format the message template.</param>
         /// <returns>A new diagnostic instance.</returns>
-        public static Diagnostic CreateDiagnostic(string fileName, IToken token, DiagnosticDescriptor descriptor, params object[] args)
+        public static Diagnostic CreateDiagnostic(string fileName, IToken token, DiagnosticDescriptor descriptor, params string[] args)
         {
             return new Diagnostic(fileName, token, descriptor.FormatMessage(args), descriptor.DefaultSeverity)
             {
@@ -308,7 +300,7 @@ namespace Yarn.Compiler
                    this.FileName == problem.FileName &&
                    this.Range.Equals(problem.Range) &&
                    this.Message == problem.Message &&
-                   this.Context == problem.Context &&
+                   this.Code == problem.Code &&
                    this.Severity == problem.Severity;
         }
 
@@ -318,84 +310,211 @@ namespace Yarn.Compiler
             int hashCode = -1856104752;
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.FileName);
             hashCode = (hashCode * -1521134295) + this.Range.GetHashCode();
+            hashCode = (hashCode * -1521134295) + (this.Code ?? string.Empty).GetHashCode();
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Message);
-
-            if (this.Context != null)
-            {
-                hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Context);
-            }
             hashCode = (hashCode * -1521134295) + this.Severity.GetHashCode();
             return hashCode;
         }
     }
 
-    internal sealed class LexerErrorListener : IAntlrErrorListener<int>
+    internal sealed class YarnErrorListener : IAntlrErrorListener<int>, IAntlrErrorListener<IToken>
     {
         private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
         private readonly string fileName;
 
         public IEnumerable<Diagnostic> Diagnostics => this.diagnostics;
 
-        public LexerErrorListener(string fileName) : base()
+        public YarnErrorListener(string fileName) : base()
         {
             this.fileName = fileName;
         }
 
+        private HashSet<int> cursedLines = new();
+
+        // this is the lexer error event
         public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
+            if (!(recognizer is Lexer lexer))
+            {
+                throw new ArgumentException("Expected recogniser to be a Lexer");
+            }
+
+            if (cursedLines.Contains(line))
+            {
+                return;
+            }
+
             Range range = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
-            var diagnostic = new Diagnostic(this.fileName, range, msg);
+            Diagnostic diagnostic;
 
             // Assign error code for lexer errors
             if (msg.ToLowerInvariant().Contains("token recognition error"))
             {
-                // Check if we're in CommandMode or ExpressionMode - this indicates an unclosed command
-                if (recognizer is Lexer lexer && lexer.ModeStack != null && lexer.ModeStack.Count > 0)
+                // Check if we're in CommandMode - this indicates an unclosed command
+                if (lexer.CurrentMode == YarnSpinnerLexer.CommandMode || lexer.CurrentMode == YarnSpinnerLexer.CommandTextMode)
                 {
                     // If we have a mode stack, we're likely inside an unclosed command
-                    diagnostic.Code = DiagnosticDescriptor.UnclosedCommand.Code;
-                    var descriptor = DiagnosticDescriptor.GetDescriptor(DiagnosticDescriptor.UnclosedCommand.Code);
-                    if (descriptor != null)
+                    diagnostic = DiagnosticDescriptor.UnclosedCommand.Create(this.fileName, range);
+                }
+                else if (lexer.CurrentMode == YarnSpinnerLexer.HeaderTitleMode)
+                {
+                    // We failed to match a token while in title mode - this
+                    // must be an invalid title.
+
+                    char unexpectedCharacter = (char)lexer.InputStream.LA(1);
+                    string result;
+
+                    bool unexpectedIsNewLine = unexpectedCharacter == '\n' || unexpectedCharacter == '\r';
+                    if (unexpectedIsNewLine)
                     {
-                        diagnostic.Message = descriptor.MessageTemplate;
+                        // We had a newline when we didn't expect it. Given that
+                        // newlines are what end the title under normal
+                        // circumstances, the only way this can happen is if we
+                        // got a newline and nothing else. In this situation,
+                        // the parser will return an error about a missing ID,
+                        // so we don't have to.
+                        return;
                     }
+                    else
+                    {
+                        result = $"{unexpectedCharacter}";
+                    }
+
+                    diagnostic = DiagnosticDescriptor.InvalidNodeName.Create(this.fileName, range, "title", result);
                 }
                 else
                 {
-                    diagnostic.Code = DiagnosticDescriptor.SyntaxError.Code;
+                    diagnostic = DiagnosticDescriptor.SyntaxError.Create(this.fileName, range, msg);
                 }
             }
+            else
+            {
+                diagnostic = DiagnosticDescriptor.SyntaxError.Create(this.fileName, range, msg);
+            }
 
+            cursedLines.Add(line);
             this.diagnostics.Add(diagnostic);
         }
-    }
 
-    internal sealed class ParserErrorListener : BaseErrorListener
-    {
-        private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
-        private readonly string fileName;
-
-        public IEnumerable<Diagnostic> Diagnostics => this.diagnostics;
-
-        public ParserErrorListener(string fileName) : base()
+        // this is the parser error event
+        public void SyntaxError(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
-            this.fileName = fileName;
-        }
+            if (cursedLines.Contains(line))
+            {
+                return;
+            }
 
-        public override void SyntaxError(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
-        {
-            Range range = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
+            Range range = new(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
+            if (recognizer is not Parser parser)
+            {
+                this.diagnostics.Add(DiagnosticDescriptor.InternalError.Create(this.fileName, range, "Recognizer is not a Parser"));
+                return;
+            }
 
-            var diagnostic = new Diagnostic(this.fileName, range, msg);
+            var name = ErrorUtility.GetFriendlyNameForRuleContext(parser.RuleContext, false);
 
-            if (offendingSymbol.TokenSource != null)
+            if (parser.RuleContext.RuleIndex == YarnSpinnerParser.RULE_line_condition)
+            {
+                // we are a borked line condition
+                // which means either it isn't an if
+                // or the expression inside the if is wrong
+                // or we are missing the end >> ?
+
+                // this means we have text inside the line condition that isn't an if
+                // this isn't allowed, we have a command on the same line after a line
+                // so we want to generate that type of diagnostic
+                if (offendingSymbol.Type != YarnSpinnerLexer.COMMAND_IF)
+                {
+                    var rightMostTerminators = new HashSet<int>
+                    {
+                        YarnSpinnerLexer.COMMAND_END,
+                    };
+                    var diagInfo = ErrorUtility.DiagnosticInfo(parser, rightMostTerminators, line, charPositionInLine);
+
+                    var diag = Diagnostic.CreateDiagnostic(
+                        this.fileName,
+                        diagInfo.range,
+                        DiagnosticDescriptor.CommandFollowingLine,
+                        diagInfo.tokenText
+                    );
+
+                    var fullLine = ErrorUtility.LineOfCurrentToken(parser);
+                    if (fullLine != null)
+                    {
+                        diag.Context = ErrorUtility.GenerateContextMessage(fullLine, diagInfo.range.Start.Character, diagInfo.range.End.Character);
+                    }
+
+                    this.diagnostics.Add(diag);
+                    cursedLines.Add(line);
+                    return;
+                }
+            }
+            else if (parser.RuleContext.RuleIndex == YarnSpinnerParser.RULE_command_statement)
+            {
+                // we are a borked command
+                // which means many different things
+                // for now we are just looking at if they missed the close of the command
+                if (offendingSymbol.Type == YarnSpinnerLexer.COMMAND_TEXT_NEWLINE)
+                {
+                    // in this case because we intend on using the command start as the point of our diagnostic we can just use the start and end of that token
+                    // indexes are 0 indexed but ranges are 1 indexed hence the +1
+                    // at some point if I keep telling myself this I will manage to actually remember it
+                    // a mans reach should exceed his grasp
+                    var end = parser.RuleContext.Start.StopIndex - parser.RuleContext.Start.StartIndex + 1;
+                    Range validRange = new Range(line - 1, charPositionInLine, line - 1, charPositionInLine + 1);
+                    // Range validRange = new Range(line - 1, parser.RuleContext.Start.Column, line - 1, end);
+
+                    var diag = DiagnosticDescriptor.UnclosedCommand.Create(this.fileName, validRange);
+
+                    this.diagnostics.Add(diag);
+                    cursedLines.Add(line);
+                    return;
+                }
+            }
+            else if (ErrorUtility.IsInsideRule<YarnSpinnerParser.NodeContext>(parser) && offendingSymbol.Type == YarnSpinnerLexer.Eof)
+            {
+                // We're inside a node, but we hit an EOF. We must be missing
+                // the closing delimiter.
+                this.diagnostics.Add(DiagnosticDescriptor.MissingDelimiter.Create(this.fileName, Utility.GetRange(offendingSymbol)));
+                cursedLines.Add(line);
+                return;
+            }
+
+            if (parser.RuleContext is YarnSpinnerParser.If_statementContext ifStatement && offendingSymbol.Type == YarnSpinnerLexer.BODY_END)
+            {
+                // We have exited a body in the middle of an if statement. The
+                // programmer forgot to include an <<endif>>.
+                this.diagnostics.Add(DiagnosticDescriptor.UnclosedScope.Create(this.fileName, Utility.GetRange(offendingSymbol), "endif", "if", ifStatement.Start.Line.ToString()));
+                cursedLines.Add(line);
+                return;
+            }
+
+            if (parser.RuleContext is YarnSpinnerParser.Once_statementContext onceStatement && offendingSymbol.Type == YarnSpinnerLexer.BODY_END)
+            {
+                // We have exited a body in the middle of a once statement. The
+                // programmer forgot to include an <<endonce>>.
+                this.diagnostics.Add(DiagnosticDescriptor.UnclosedScope.Create(this.fileName, Utility.GetRange(offendingSymbol), "endonce", "once", onceStatement.Start.Line.ToString()));
+                cursedLines.Add(line);
+                return;
+            }
+
+            if (e is NoViableAltException exn)
+            {
+                msg = ErrorUtility.ReportNoViableAlternative(parser, exn);
+            }
+            else if (e is InputMismatchException exi)
+            {
+                msg = ErrorUtility.ReportInputMismatch(parser, exi);
+            }
+
+            string? context = null;
+
+            if (offendingSymbol.TokenSource != null && offendingSymbol.Type != -1) // -1 token type means it isn't actually a token at all so we can't trust it's values
             {
                 StringBuilder builder = new StringBuilder();
 
                 // the line with the error on it
-                string input = offendingSymbol.TokenSource.InputStream.ToString();
-                string[] lines = input.Split('\n');
-                string errorLine = lines[line - 1];
+                string errorLine = ErrorUtility.LineOfCurrentToken(parser);
                 builder.AppendLine(errorLine);
 
                 // adding indicator symbols pointing out where the error is
@@ -421,23 +540,15 @@ namespace Yarn.Compiler
                     }
                 }
 
-                diagnostic.Context = builder.ToString();
+                context = builder.ToString();
 
-                diagnostic.Range = new Range(offendingSymbol.Line - 1, offendingSymbol.Column, offendingSymbol.Line - 1, offendingSymbol.Column + offendingSymbol.Text.Length);
+
+                range = new Range(offendingSymbol.Line - 1, offendingSymbol.Column, offendingSymbol.Line - 1, offendingSymbol.Column + offendingSymbol.Text.Length);
             }
 
             // Assign error codes based on ANTLR message patterns
-            diagnostic.Code = CategorizeParserError(msg);
-
-            // If we assigned a code, update the message to be user-friendly
-            if (!string.IsNullOrEmpty(diagnostic.Code))
-            {
-                var descriptor = DiagnosticDescriptor.GetDescriptor(diagnostic.Code);
-                if (descriptor != null)
-                {
-                    diagnostic.Message = descriptor.MessageTemplate;
-                }
-            }
+            var diagnostic = GetDiagnosticForParserError(this.fileName, range, msg);
+            diagnostic.Context = context;
 
             this.diagnostics.Add(diagnostic);
         }
@@ -445,48 +556,342 @@ namespace Yarn.Compiler
         /// <summary>
         /// Categorizes parser errors from ANTLR messages and assigns appropriate error codes
         /// </summary>
-        private string? CategorizeParserError(string message)
+        private Diagnostic GetDiagnosticForParserError(string fileName, Range range, string message)
         {
-            var msg = message.ToLowerInvariant();
+            var loweredMsg = message.ToLowerInvariant();
 
             // YS0004: Missing delimiter (=== or ---)
-            if (msg.Contains("missing") && (msg.Contains("===") || msg.Contains("'==='") || msg.Contains("delimiter")))
+            if (loweredMsg.Contains("missing") && (loweredMsg.Contains("===") || loweredMsg.Contains("'==='") || loweredMsg.Contains("delimiter")))
             {
-                return DiagnosticDescriptor.MissingDelimiter.Code;
+                return DiagnosticDescriptor.MissingDelimiter.Create(fileName, range);
             }
 
             // YS0006: Unclosed command (missing >>)
             // Match direct "missing >>" messages
-            if (msg.Contains("missing") && (msg.Contains("'>'") || msg.Contains(">>")))
+            if (loweredMsg.Contains("missing") && (loweredMsg.Contains("'>'") || loweredMsg.Contains(">>")))
             {
-                return DiagnosticDescriptor.UnclosedCommand.Code;
+                return DiagnosticDescriptor.UnclosedCommand.Create(fileName, range);
             }
             // Match "unexpected" errors with command keywords
             // Pattern: "unexpected 'keyword'" or "unexpected 'keyword'" (different quote styles)
-            if (msg.Contains("unexpected"))
+            if (loweredMsg.Contains("unexpected"))
             {
                 // Check for command keywords with word boundaries
-                if (System.Text.RegularExpressions.Regex.IsMatch(msg, @"\b(set|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)\b") ||
-                    System.Text.RegularExpressions.Regex.IsMatch(msg, @"'(set|if|elseif|else|endif|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)'"))
+                if (System.Text.RegularExpressions.Regex.IsMatch(loweredMsg, @"\b(set|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)\b") ||
+                    System.Text.RegularExpressions.Regex.IsMatch(loweredMsg, @"'(set|if|elseif|else|endif|call|jump|detour|return|declare|once|endonce|enum|endenum|case|local)'"))
                 {
-                    return DiagnosticDescriptor.UnclosedCommand.Code;
+                    return DiagnosticDescriptor.UnclosedCommand.Create(fileName, range);
                 }
             }
 
-            // YS0007: Unclosed scope (missing endif, endonce, etc)
-            if (msg.Contains("missing") && (msg.Contains("endif") || msg.Contains("endonce") || msg.Contains("end")))
-            {
-                return DiagnosticDescriptor.UnclosedScope.Code;
-            }
-
             // YS0005: Malformed dialogue / syntax error
-            if (msg.Contains("extraneous input") || msg.Contains("mismatched input"))
+            if (loweredMsg.Contains("extraneous input") || loweredMsg.Contains("mismatched input"))
             {
-                return DiagnosticDescriptor.SyntaxError.Code;
+                return DiagnosticDescriptor.SyntaxError.Create(fileName, range, message);
             }
 
             // Default: no specific code for other ANTLR errors
+            return DiagnosticDescriptor.SyntaxError.Create(fileName, range, message);
+        }
+    }
+
+    internal static class ErrorUtility
+    {
+        internal static string ReportNoViableAlternative(Parser recognizer, NoViableAltException e)
+        {
+            string? msg = null;
+
+            if (ErrorUtility.IsInsideRule<YarnSpinnerParser.If_statementContext>(recognizer)
+                && recognizer.RuleContext is YarnSpinnerParser.StatementContext
+                && e.StartToken.Type == YarnSpinnerLexer.COMMAND_START
+                && e.OffendingToken.Type == YarnSpinnerLexer.COMMAND_ELSE)
+            {
+                // We are inside an if statement, we're attempting to parse a
+                // statement, and we got an '<<', 'else', and we weren't able
+                // to match that. The programmer included an extra '<<else>>'.
+                _ = ErrorUtility.GetEnclosingRule<YarnSpinnerParser.If_statementContext>(recognizer);
+
+                msg = $"More than one <<else>> statement in an <<if>> statement isn't allowed";
+            }
+            else if (e.StartToken.Type == YarnSpinnerLexer.COMMAND_START
+                && e.OffendingToken.Type == YarnSpinnerLexer.COMMAND_END)
+            {
+                // We saw a << immediately followed by a >>. The programmer
+                // forgot to include command text.
+                msg = $"Command text expected";
+            }
+            else if (recognizer.RuleContext is YarnSpinnerParser.Declare_statementContext
+                && e.OffendingToken.Type == YarnSpinnerLexer.FUNC_ID
+                && recognizer.TokenStream.Get(e.OffendingToken.TokenIndex - 1).Type == YarnSpinnerLexer.COMMAND_DECLARE)
+            {
+                // We're in a <<declare>> statement, and we saw a FUNC_ID
+                // immediately after the 'declare' keyword. The user forgot to
+                // include a '$' before the variable name (which is why the lexer
+                // matched a function ID, rather than a variable ID).
+                msg = "Variable names need to start with a $";
+            }
+
+            msg ??= $"Unexpected \"{e.OffendingToken.Text}\" while reading {ErrorUtility.GetFriendlyNameForRuleContext(recognizer.RuleContext, true)}";
+
+            return msg;
+        }
+
+        internal static string ReportInputMismatch(Parser recognizer, InputMismatchException e)
+        {
+            string? msg = null;
+
+            switch (recognizer.RuleContext)
+            {
+                case YarnSpinnerParser.If_statementContext ifStatement:
+                    if (e.OffendingToken.Type == YarnSpinnerLexer.BODY_END)
+                    {
+                        // We have exited a body in the middle of an if
+                        // statement. The programmer forgot to include an
+                        // <<endif>>.
+                        msg = $"Expected an <<endif>> to match the <<if>> statement on line {ifStatement.Start.Line}";
+                    }
+                    else if (e.OffendingToken.Type == YarnSpinnerLexer.COMMAND_ELSE && recognizer.GetExpectedTokens().Contains(YarnSpinnerLexer.COMMAND_ENDIF))
+                    {
+                        // We saw an else, but we expected to see an endif. The
+                        // programmer wrote an additional <<else>>.
+                        msg = $"More than one <<else>> statement in an <<if>> statement isn't allowed";
+                    }
+
+                    break;
+                case YarnSpinnerParser.VariableContext _:
+                    if (e.OffendingToken.Type == YarnSpinnerLexer.FUNC_ID)
+                    {
+                        // We're parsing a variable (which starts with a '$'),
+                        // but we encountered a FUNC_ID (which doesn't). The
+                        // programmer forgot to include the '$'.
+                        msg = "Variable names need to start with a $";
+                    }
+
+                    break;
+            }
+
+            msg ??= $"Unexpected \"{e.OffendingToken.Text}\" while reading {ErrorUtility.GetFriendlyNameForRuleContext(recognizer.RuleContext, true)}";
+
+            return msg;
+        }
+
+        internal static bool IsInsideRule<TRuleType>(Parser recognizer) where TRuleType : RuleContext
+        {
+            RuleContext currentContext = recognizer.RuleContext;
+
+            while (currentContext != null)
+            {
+                if (currentContext.GetType() == typeof(TRuleType))
+                {
+                    return true;
+                }
+
+                currentContext = currentContext.Parent;
+            }
+
+            return false;
+        }
+        internal static TRuleType? GetEnclosingRule<TRuleType>(Parser recognizer) where TRuleType : RuleContext
+        {
+            RuleContext currentContext = recognizer.RuleContext;
+
+            while (currentContext != null)
+            {
+                if (currentContext.GetType() == typeof(TRuleType))
+                {
+                    return currentContext as TRuleType;
+                }
+
+                currentContext = currentContext.Parent;
+            }
+
             return null;
+        }
+        internal static string GetFriendlyNameForRuleContext(RuleContext context, bool withArticle = false)
+        {
+            string ruleName = YarnSpinnerParser.ruleNames[context.RuleIndex];
+
+            string friendlyName = ruleName.Replace("_", " ");
+
+            if (withArticle)
+            {
+                // If the friendly name's first character is a vowel, the
+                // article is 'an'; otherwise, 'a'.
+                char firstLetter = System.Linq.Enumerable.First(friendlyName);
+
+                string article;
+
+                char[] englishVowels = new[] { 'a', 'e', 'i', 'o', 'u' };
+
+                article = System.Linq.Enumerable.Contains(englishVowels, firstLetter) ? "an" : "a";
+
+                return $"{article} {friendlyName}";
+            }
+            else
+            {
+                return friendlyName;
+            }
+        }
+
+        // walks backwards along the token stream until we hit one of the terminators in the provided set
+        // then it returns the token immediately before hitting the terminator
+        // if we walk backwards to depth and still haven't hit a terminator token we give up
+        internal static IToken? WalkBackwardsUntilTerminator(ITokenStream tokens, HashSet<int> terminators, bool inclusive = false, int depth = 10)
+        {
+            int rollingTokenIndex = -1;
+            bool foundToken = false;
+            for (int i = 0; i < depth; i++)
+            {
+                if (tokens.Index - i <= 0)
+                {
+                    // We've reached the start of the token stream. We must be on the first line. Stop here.
+                    break;
+                }
+                var token = tokens.LA(-1 - i);
+                if (terminators.Contains(token))
+                {
+                    foundToken = true;
+                    if (inclusive)
+                    {
+                        rollingTokenIndex = i;
+                    }
+                    break;
+                }
+                rollingTokenIndex = i;
+            }
+
+            if (rollingTokenIndex == -1 || !foundToken)
+            {
+                return null;
+            }
+
+            return tokens.LT(-1 - rollingTokenIndex);
+        }
+        internal static IToken? WalkForwardsUntilTerminator(ITokenStream tokens, HashSet<int> terminators, bool inclusive = false, int depth = 10)
+        {
+            int rollingTokenIndex = -1;
+            bool foundToken = false;
+            for (int i = 0; i < depth; i++)
+            {
+                var token = tokens.LA(i + 2);
+                if (terminators.Contains(token))
+                {
+                    foundToken = true;
+                    if (inclusive)
+                    {
+                        rollingTokenIndex = i;
+                    }
+                    break;
+                }
+                rollingTokenIndex = i;
+            }
+
+            if (rollingTokenIndex == -1 || !foundToken)
+            {
+                return null;
+            }
+
+            return tokens.LT(rollingTokenIndex + 2);
+        }
+        internal static (Range range, string tokenText) DiagnosticInfo(Parser parser, HashSet<int> endTerminal, int line, int charPositionInLine)
+        {
+            var stopLine = parser.RuleContext.Stop?.Line - 1 ?? line - 1;
+            var stopColumn = charPositionInLine;
+            var text = parser.RuleContext.GetText();
+
+            // we don't really have an end position
+            if (parser.RuleContext.Stop == null)
+            {
+                // we don't have a valid stop token
+                // so we don't know the range of the statement
+                // which means we need to find it ourselves
+                // this also means the text is invalid and we'll have to get that ourselves
+                var token = ErrorUtility.WalkForwardsUntilTerminator(parser.TokenStream, endTerminal, true);
+                if (token == null)
+                {
+                    // this means we couldn't walk to the end of the token
+                    // basically have to just give up at this point
+                    text = "<unknown>";
+                    stopColumn = charPositionInLine;
+                }
+                else
+                {
+                    var interval = new Antlr4.Runtime.Misc.Interval(parser.RuleContext.Start.StartIndex, token.StopIndex);
+                    text = parser.RuleContext.Start.InputStream.GetText(interval);
+                    stopColumn = parser.RuleContext.Start.Column + text.Length;
+                }
+            }
+
+            var range = new Range(line - 1, parser.RuleContext.Start.Column, stopLine, stopColumn);
+            return (range, text);
+        }
+        internal static string LineOfCurrentToken(Parser parser)
+        {
+            return LineOfCurrentToken(parser.TokenStream, parser.CurrentToken.InputStream);
+        }
+        internal static string LineOfCurrentToken(ITokenStream tokenStream, ICharStream inputStream)
+        {
+            var line = string.Empty;
+
+            var leftMostTerminators = new HashSet<int>
+            {
+                YarnSpinnerLexer.NEWLINE,
+                YarnSpinnerLexer.BODY_START,
+            };
+            var rightMostTerminators = new HashSet<int>
+            {
+                YarnSpinnerLexer.NEWLINE,
+                YarnSpinnerLexer.BODY_END,
+            };
+
+            int leftMostNewLine = ErrorUtility.WalkBackwardsUntilTerminator(tokenStream, leftMostTerminators)?.StartIndex ?? -1;
+            int rightMostNewLine = ErrorUtility.WalkForwardsUntilTerminator(tokenStream, rightMostTerminators)?.StopIndex ?? -1;
+
+            if (leftMostNewLine > -1 && rightMostNewLine > -1)
+            {
+                var interval = new Antlr4.Runtime.Misc.Interval(leftMostNewLine, rightMostNewLine);
+                line = inputStream.GetText(interval);
+            }
+
+            return line;
+        }
+
+        internal static string? GenerateContextMessage(string line, int start, int stop)
+        {
+            // this generates strings like the following:
+            // this is the line before a command <<after command>>
+            //                                   ^^^^^^^^^^^^^^^^^
+
+            // just quickly doing some bounds checks
+            // we need the start to be <= stop
+            // and we need the start and stop to be within the range of the string
+            if (start > stop)
+            {
+                return null;
+            }
+            if (start < 0)
+            {
+                return null;
+            }
+            if (stop > line.Length)
+            {
+                return null;
+            }
+
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine(line);
+            for (int i = 0; i < line.Length; i++)
+            {
+                if (i >= start && i <= stop)
+                {
+                    builder.Append('^');
+                }
+                else
+                {
+                    builder.Append(' ');
+                }
+            }
+            return builder.ToString();
         }
     }
 }

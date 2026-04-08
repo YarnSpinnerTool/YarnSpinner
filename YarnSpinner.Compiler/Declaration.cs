@@ -29,6 +29,10 @@ namespace Yarn.Compiler
         /// range.</param>
         /// <param name="endCharacter">The zero-indexed character number of the
         /// end of the range.</param>
+        /// <remarks>
+        /// A range is comparable to a selection in an editor.
+        /// Therefore, the end position is exclusive.
+        /// </remarks>
         public Range(int startLine, int startCharacter, int endLine, int endCharacter)
         {
             this.Start = new Position(startLine, startCharacter);
@@ -95,6 +99,32 @@ namespace Yarn.Compiler
             {
                 return this.Start.IsValid && this.End.IsValid && this.End >= this.Start;
             }
+        }
+
+        /// <summary>
+        /// Compares two <see cref="Range"/> objects and returns true if they
+        /// represent the same range.
+        /// </summary>
+        /// <param name="a">The first range.</param>
+        /// <param name="b">The second range.</param>
+        /// <returns><see langword="true"/> if the ranges are
+        /// identical.</returns>
+        public static bool operator ==(Range a, Range b)
+        {
+            return a.Start == b.Start && a.End == b.End;
+        }
+
+        /// <summary>
+        /// Compares two <see cref="Range"/> objects and returns true if they do
+        /// not represent the same range.
+        /// </summary>
+        /// <param name="a">The first range.</param>
+        /// <param name="b">The second range.</param>
+        /// <returns><see langword="true"/> if the ranges are not
+        /// identical.</returns>
+        public static bool operator !=(Range a, Range b)
+        {
+            return !(a == b);
         }
     }
 
@@ -203,6 +233,33 @@ namespace Yarn.Compiler
         public static Position operator +(Position a, Position b)
         {
             return new Position(a.Line + b.Line, a.Character + b.Character);
+        }
+
+
+        /// <summary>
+        /// Compares two <see cref="Position"/> objects and returns true if they
+        /// represent the same position.
+        /// </summary>
+        /// <param name="a">The first position.</param>
+        /// <param name="b">The second position.</param>
+        /// <returns><see langword="true"/> if the positions are
+        /// identical.</returns>
+        public static bool operator ==(Position a, Position b)
+        {
+            return a.Line == b.Line && a.Character == b.Character;
+        }
+
+        /// <summary>
+        /// Compares two <see cref="Position"/> objects and returns true if they
+        /// do not represent the same position.
+        /// </summary>
+        /// <param name="a">The first position.</param>
+        /// <param name="b">The second position.</param>
+        /// <returns><see langword="true"/> if the positions are not
+        /// identical.</returns>
+        public static bool operator !=(Position a, Position b)
+        {
+            return !(a == b);
         }
     }
 
@@ -346,6 +403,14 @@ namespace Yarn.Compiler
         public YarnSpinnerParser.ExpressionContext? InitialValueParserContext { get; set; }
 
         /// <summary>
+        /// Gets or sets the parser context for the declaration statement
+        /// provided for this variable, if any. This is only valid for variable
+        /// declarations, not functions (because functions aren't declared
+        /// inside Yarn scripts.)
+        /// </summary>
+        public YarnSpinnerParser.Declare_statementContext? DeclarationParserContext { get; internal set; }
+
+        /// <summary>
         /// Gets the collection of <see cref="Declaration"/> objects whose value
         /// depends upon this <see cref="Declaration"/>.
         /// </summary>
@@ -362,6 +427,8 @@ namespace Yarn.Compiler
         /// variable, and not a function.
         /// </summary>
         public bool IsVariable => !(this.Type is FunctionType);
+
+
 
         /// <inheritdoc/>
         public override string ToString()
@@ -390,6 +457,5 @@ namespace Yarn.Compiler
                 return result + $" (\"{this.Description}\")";
             }
         }
-
     }
 }

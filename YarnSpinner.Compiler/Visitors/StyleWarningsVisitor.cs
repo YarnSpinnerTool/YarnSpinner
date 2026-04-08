@@ -42,7 +42,7 @@ namespace Yarn.Compiler
                     var diagnostic = Diagnostic.CreateDiagnostic(
                         this.FileName,
                         context.Start,
-                        DiagnosticDescriptor.LineContentBeforeCommand,
+                        DiagnosticDescriptor.CommandFollowingLine,
                         commandName ?? "command"
                     );
                     AddDiagnostic(diagnostic);

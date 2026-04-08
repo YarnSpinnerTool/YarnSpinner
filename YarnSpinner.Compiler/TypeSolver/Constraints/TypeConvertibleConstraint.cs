@@ -80,7 +80,7 @@ namespace TypeChecker
                         SourceExpression = this.SourceExpression,
                         SourceFileName = this.SourceFileName,
                         SourceRange = this.SourceRange,
-                        FailureMessageProvider = this.FailureMessageProvider
+                        DiagnosticProvider = this.DiagnosticProvider
                     };
                     return equality;
                 }
@@ -94,7 +94,7 @@ namespace TypeChecker
                         SourceExpression = this.SourceExpression,
                         SourceFileName = this.SourceFileName,
                         SourceRange = this.SourceRange,
-                        FailureMessageProvider = this.FailureMessageProvider
+                        DiagnosticProvider = this.DiagnosticProvider
                     };
                     return equality;
                 }
@@ -140,7 +140,7 @@ namespace TypeChecker
                     constraint.SourceExpression = this.SourceExpression;
                     constraint.SourceFileName = this.SourceFileName;
                     constraint.SourceRange = this.SourceRange;
-                    constraint.FailureMessageProvider = this.FailureMessageProvider;
+                    constraint.DiagnosticProvider = this.DiagnosticProvider;
                 }
 
                 var constraints = new[]
@@ -154,7 +154,7 @@ namespace TypeChecker
                     SourceExpression = this.SourceExpression,
                     SourceFileName = this.SourceFileName,
                     SourceRange = this.SourceRange,
-                    FailureMessageProvider = this.FailureMessageProvider
+                    DiagnosticProvider = this.DiagnosticProvider
                 };
                 return conjunction;
 
@@ -168,7 +168,7 @@ namespace TypeChecker
                 equality.SourceExpression = this.SourceExpression;
                 equality.SourceFileName = this.SourceFileName;
                 equality.SourceRange = this.SourceRange;
-                equality.FailureMessageProvider = this.FailureMessageProvider;
+                equality.DiagnosticProvider = this.DiagnosticProvider;
                 return equality;
             }
             else
@@ -180,7 +180,7 @@ namespace TypeChecker
                     SourceExpression = this.SourceExpression,
                     SourceFileName = this.SourceFileName,
                     SourceRange = this.SourceRange,
-                    FailureMessageProvider = this.FailureMessageProvider
+                    DiagnosticProvider = this.DiagnosticProvider
                 };
                 return disjunction;
             }

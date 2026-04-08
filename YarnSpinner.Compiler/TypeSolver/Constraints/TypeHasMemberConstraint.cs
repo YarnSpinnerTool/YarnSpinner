@@ -39,14 +39,14 @@ namespace TypeChecker
                     SourceExpression = this.SourceExpression,
                     SourceRange = this.SourceRange,
                     SourceFileName = this.SourceFileName,
-                    FailureMessageProvider = this.FailureMessageProvider,
+                    DiagnosticProvider = this.DiagnosticProvider,
                 }))
             .Simplify(subst, knownTypes);
 
             typeConstraint.SourceExpression = this.SourceExpression;
             typeConstraint.SourceRange = this.SourceRange;
             typeConstraint.SourceFileName = this.SourceFileName;
-            typeConstraint.FailureMessageProvider = this.FailureMessageProvider;
+            typeConstraint.DiagnosticProvider = this.DiagnosticProvider;
             return typeConstraint;
         }
 

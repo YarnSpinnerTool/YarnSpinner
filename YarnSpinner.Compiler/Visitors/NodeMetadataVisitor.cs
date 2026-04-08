@@ -118,7 +118,7 @@ namespace Yarn.Compiler
                     Uri = fileUri,
                     DestinationTitle = destinationName,
                     Type = JumpType.Jump,
-                    Range = Utility.GetRange(destinationToken, destinationToken)
+                    Range = Utility.GetRange(destinationToken)
                 });
             }
 
@@ -135,17 +135,15 @@ namespace Yarn.Compiler
             var destinationName = context.destination.Text;
             if (!string.IsNullOrWhiteSpace(destinationName))
             {
-                // Get the range of the entire detour command (from << to >>)
-                var commandStart = context.COMMAND_START()?.Symbol;
-                var commandEnd = context.COMMAND_END()?.Symbol;
+                // Use the destination token itself for the range
+                // This ensures we highlight exactly where the problematic node name is
+                var destinationToken = context.destination;
 
                 currentNode.Jumps.Add(new JumpInfo
                 {
                     DestinationTitle = destinationName,
                     Type = JumpType.Detour,
-                    Range = commandStart != null && commandEnd != null
-                        ? Utility.GetRange(commandStart, commandEnd)
-                        : Utility.GetRange(context)
+                    Range = Utility.GetRange(destinationToken)
                 });
             }
 
@@ -203,11 +201,13 @@ namespace Yarn.Compiler
             return base.VisitCommand_statement(context);
         }
 
-        public override object VisitVariable([NotNull] YarnSpinnerParser.VariableContext context)
+        public override object VisitValueVar([NotNull] YarnSpinnerParser.ValueVarContext context)
         {
+            // When we encounter a place where a variable is being used as a
+            // value, record the fact that this node refers to that value.
             if (currentNode == null)
             {
-                return base.VisitVariable(context);
+                return base.VisitValueVar(context);
             }
 
             var variableName = context.GetText();
@@ -216,7 +216,22 @@ namespace Yarn.Compiler
                 currentNode.VariableReferences.Add(variableName);
             }
 
-            return base.VisitVariable(context);
+            return base.VisitValueVar(context);
+        }
+
+        public override object VisitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context)
+        {
+            // When we encounter a place where a variable is being assigned, record the fact that this node refers to that value.
+            if (currentNode == null)
+            {
+                return base.VisitSet_statement(context);
+            }
+            var variableName = context.variable()?.GetText();
+            if (string.IsNullOrWhiteSpace(variableName) == false && !currentNode.VariableReferences.Contains(variableName))
+            {
+                currentNode.VariableReferences.Add(variableName);
+            }
+            return base.VisitSet_statement(context);
         }
 
         public override object VisitHeader([NotNull] YarnSpinnerParser.HeaderContext context)
