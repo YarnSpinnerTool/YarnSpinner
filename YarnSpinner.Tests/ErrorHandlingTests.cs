@@ -1000,10 +1000,8 @@ title: C
             diag.Range.Should().Be(expectedRange);
         }
 
-        [Fact]
-        public void TestNodeInGroupWithMissingWhenClauseGeneratesDiagnostic()
-        {
-            var source = @"title: Group
+        [Theory]
+        [InlineData(@"title: Group
 when: always
 ---
 Content
@@ -1011,12 +1009,24 @@ Content
 title: Group
 ---
 Content
-===";
+===", 5, 0, 5, 13)]
+        [InlineData(@"title: Group
+---
+Content
+===
+title: Group
+when: always
+---
+Content
+===", 0, 0, 0, 13)]
+        public void TestNodeInGroupWithMissingWhenClauseGeneratesDiagnostic(string source, params int[] range)
+        {
+
             var job = CompilationJob.CreateFromString("<input>", source);
             var result = Compiler.Compile(job);
 
             var diag = result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.NodeGroupMissingWhen.Code).Subject;
-            diag.Range.Should().Be(new Range(5, 0, 5, 13));
+            diag.Range.Should().Be(new Range(range[0], range[1], range[2], range[3]));
             diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
             diag.Message.Should().Be("All nodes in the group 'Group' must have a 'when' clause (use 'when: always' if you want this node to not have any conditions).");
 
