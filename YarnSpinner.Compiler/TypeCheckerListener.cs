@@ -1001,7 +1001,7 @@ namespace Yarn.Compiler
             {
                 // There is! That's not allowed. Issue a diagnostic and return
                 // without registering the new type.
-                this.diagnostics.Add(DiagnosticDescriptor.EnumDeclarationError.Create(this.sourceFileName, context, $"Cannot declare new enum {context.name.Text}: a type with this name already exists"));
+                this.diagnostics.Add(DiagnosticDescriptor.RedeclarationOfExistingType.Create(this.sourceFileName, context, context.name.Text));
                 return;
             }
 
