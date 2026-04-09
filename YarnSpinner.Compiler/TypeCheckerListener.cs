@@ -858,7 +858,7 @@ namespace Yarn.Compiler
                     message = $"{functionName} expects {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, not {actualParameters}";
                 }
 
-                this.diagnostics.Add(DiagnosticDescriptor.InvalidFunctionCall.Create(this.sourceFileName, Utility.GetRange(context.FUNC_ID()), message));
+                this.diagnostics.Add(DiagnosticDescriptor.WrongFunctionParameters.Create(this.sourceFileName, Utility.GetRange(context.FUNC_ID()), message));
 
                 // at this point there is no point in attempting to validate them
                 base.ExitFunction_call(context);
@@ -880,7 +880,7 @@ namespace Yarn.Compiler
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    this.AddDiagnostic(DiagnosticDescriptor.InvalidFunctionCall, parameterExpression, "Unexpected parameter in call to function " + functionName ?? "<unknown>");
+                    this.AddDiagnostic(DiagnosticDescriptor.WrongFunctionParameters, parameterExpression, "Unexpected parameter in call to function " + functionName ?? "<unknown>");
                 }
             }
 
