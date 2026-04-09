@@ -1129,5 +1129,30 @@ title: EmptyWithComment
                                             new Range(1, 0, 1, 13));
 
         }
+
+        [Theory]
+        [InlineData(Diagnostic.DiagnosticSeverity.Error)]
+        [InlineData(Diagnostic.DiagnosticSeverity.Warning)]
+        [InlineData(Diagnostic.DiagnosticSeverity.Info)]
+        [InlineData(Diagnostic.DiagnosticSeverity.None)]
+        public void TestDiagnosticsCanHaveOverriddenSeverities(Diagnostic.DiagnosticSeverity severity)
+        {
+            // Create code that causes a warning
+            var source = CreateTestNode("<<declare $x = 1>>");
+
+            var job = CompilationJob.CreateFromString("<input>", source);
+
+            // Specify that this diagnostic has this severity
+            job.DiagnosticSeverities = new Dictionary<string, Diagnostic.DiagnosticSeverity>()
+            {
+                {DiagnosticDescriptor.UnusedVariable.Code, severity}
+            };
+
+            // Compile; the diagnostic shuold have this severity
+            var result = Compiler.Compile(job);
+            var diag = result.Diagnostics.Should().Contain(d => d.Code == DiagnosticDescriptor.UnusedVariable.Code).Subject;
+
+            diag.Severity.Should().Be(severity);
+        }
     }
 }

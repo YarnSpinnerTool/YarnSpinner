@@ -148,6 +148,13 @@ namespace Yarn.Compiler
         public CancellationToken CancellationToken { get; set; }
 
         /// <summary>
+        /// A dictionary mapping diagnostic codes to overridden diagnostic
+        /// severities.
+        /// </summary>
+        /// <see cref="Project.CompilerOptionsData.DiagnosticsSeverity"/> 
+        public IDictionary<string, Diagnostic.DiagnosticSeverity>? DiagnosticSeverities { get; internal set; }
+
+        /// <summary>
         /// Creates a new <see cref="CompilationJob"/> using the contents of a
         /// collection of files.
         /// </summary>

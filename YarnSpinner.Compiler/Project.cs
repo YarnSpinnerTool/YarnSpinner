@@ -12,6 +12,8 @@ namespace Yarn.Compiler
 
     [JsonSourceGenerationOptions(WriteIndented = true)]
     [JsonSerializable(typeof(Project))]
+    [JsonSerializable(typeof(Diagnostic.DiagnosticSeverity))]
+    [JsonSerializable(typeof(bool))]
     internal partial class SourceGenerationContext : JsonSerializerContext { }
 
     /// <summary>
@@ -62,6 +64,10 @@ namespace Yarn.Compiler
             PropertyNameCaseInsensitive = true,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             TypeInfoResolver = SourceGenerationContext.Default,
+            Converters =
+            {
+                new JsonStringEnumConverter<Diagnostic.DiagnosticSeverity>(),
+            }
         };
 
         /// <summary>
@@ -174,6 +180,7 @@ namespace Yarn.Compiler
         /// Gets or sets an object containing instructions that control how
         /// the Yarn Spinner compiler should compile a project.
         /// </summary>
+        [JsonPropertyName("compilerOptions")]
         public CompilerOptionsData CompilerOptions { get; set; } = new();
 
         private bool GetCompilerOptionsFlag(string key)
@@ -591,6 +598,15 @@ namespace Yarn.Compiler
         public class CompilerOptionsData
         {
             /// <summary>
+            /// Contains overridden severity levels for diagnostics. When a
+            /// diagnostic is issued, and its code appears in this dictionary,
+            /// its severity will be overridden to be the given value.
+            /// </summary>
+            [JsonPropertyName("diagnosticsSeverity")]
+            // [JsonConverter(typeof(DictionaryOfSeveritiesConverter))]
+            public Dictionary<string, Diagnostic.DiagnosticSeverity> DiagnosticsSeverity { get; set; } = new();
+
+            /// <summary>
             /// Contains any data parsed from the source file that was not matched
             /// to a property on this type.
             /// </summary>
@@ -598,7 +614,6 @@ namespace Yarn.Compiler
             public Dictionary<string, JsonElement> ExtensionData { get; set; } = new();
         }
     }
-
 
     // Starting in Yarn Spinner Project version 4, 'Definitions' is permitted to
     // be either a single string, or an array of strings. This converter can
