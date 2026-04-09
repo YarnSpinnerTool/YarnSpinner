@@ -133,7 +133,7 @@ custom: yes
                 // this is the older failing version
                 // var taggedVersion = Utility.AddTagsToLines(content, existingTags);
 
-                var tagged = Utility.TagLines(content, existingTags);
+                var tagged = Utility.TagLines(content);
                 var taggedVersion = tagged.Item1;
 
                 // if it is null it means we have an error
@@ -257,7 +257,7 @@ A single line, with a line tag. #shadow:expected_abc123
 
             // Act
 
-            var (output, newTags) = Utility.TagLines(originalText, []);
+            var (output, newTags) = Utility.TagLines(originalText);
 
             var compilationJob = CompilationJob.CreateFromString("input", output);
             compilationJob.CompilationType = CompilationJob.Type.StringsOnly;

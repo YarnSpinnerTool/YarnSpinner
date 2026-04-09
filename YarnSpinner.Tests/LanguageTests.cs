@@ -920,7 +920,6 @@ Shelley: hmph apropos hmph
                 FileName = "TestLineIDs.yarn",
                 Source = source,
             },
-                existingLineTags: null,
                 lineTagGenerator: new DescriptiveLineTagGenerator()
             );
 

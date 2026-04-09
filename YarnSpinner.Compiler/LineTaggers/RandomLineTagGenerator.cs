@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 
 namespace Yarn.Compiler
 {
@@ -14,10 +15,24 @@ namespace Yarn.Compiler
         private static readonly Random Random = new();
         static readonly TimeSpan MaxSearchTime = TimeSpan.FromMilliseconds(500);
 
+        private HashSet<string>? allKeys;
+        
         /// <inheritdoc/>
-        public string GenerateLineTag(ILineTagGenerator.LineTagContext context)
+        public void PrepareForLines(Dictionary<string, List<ILineTagGenerator.LineTagContext>> LineContexts)
+        {
+            allKeys = new();
+            allKeys.UnionWith(LineContexts.SelectMany(a => a.Value).Select(b => b.LineID).OfType<string>());
+        }
+
+        /// <inheritdoc/>
+        public string GenerateLineTag(string node, int lineIndex)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
+
+            if (allKeys == null)
+            {
+                throw new ArgumentException("Asked to generate a line tag but haven't been given the context");
+            }
 
             string tag;
             do
@@ -29,8 +44,10 @@ namespace Yarn.Compiler
 
                 tag = string.Format(CultureInfo.InvariantCulture, "line:{0:x7}", Random.Next(0x1000000));
             }
-            while (context.ExistingLineIDs != null && context.ExistingLineIDs.Contains(tag));
+            while (allKeys.Contains(tag));
             stopwatch.Stop();
+
+            allKeys.Add(tag);
 
             return tag;
         }
