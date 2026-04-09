@@ -6,6 +6,6 @@ description: "Shadow lines contains an expression"
 messageTemplate: "Shadow lines must not have expressions"
 summary: |
     Shadow lines must be text, and not contain any expressions.
-severity: error
+defaultSeverity: error
 published: v3.2.0
 ---

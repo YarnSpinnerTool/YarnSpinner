@@ -8,6 +8,6 @@ messageValues:
     - Content
 summary: |
     Commands must start on their own line. Only line conditions are allowed to follow a line of dialogue.
-severity: error
+defaultSeverity: error
 published: v3.2.0
 ---

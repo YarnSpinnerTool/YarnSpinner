@@ -8,6 +8,6 @@ messageValues:
     - Variable name
 summary: |
     Variables can only have a single declaration.
-severity: error
+defaultSeverity: error
 published: v3.2.0
 ---

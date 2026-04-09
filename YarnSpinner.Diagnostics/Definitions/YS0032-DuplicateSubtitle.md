@@ -9,6 +9,6 @@ messageValues:
     - Subtitle
 summary: |
     Subtitles within a node group must be unique.
-severity: error
+defaultSeverity: error
 published: v3.2.0
 ---

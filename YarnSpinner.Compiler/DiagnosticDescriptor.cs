@@ -34,7 +34,13 @@ namespace Yarn.Compiler
         /// <summary>
         /// Gets the default severity for this diagnostic.
         /// </summary>
-        public Diagnostic.DiagnosticSeverity DefaultSeverity { get; }
+        public Diagnostic.DiagnosticSeverity DefaultSeverity { get; } = Diagnostic.DiagnosticSeverity.Error;
+
+        /// <summary>
+        /// Gets the minimum severity for this diagnostic. Diagnostics produced
+        /// from this descriptor may not have a severity less than this value.
+        /// </summary>
+        public Diagnostic.DiagnosticSeverity MinimumSeverity { get; } = Diagnostic.DiagnosticSeverity.Error;
 
         /// <summary>
         /// Gets a brief description of what this diagnostic means.
@@ -46,11 +52,12 @@ namespace Yarn.Compiler
         /// </summary>
         protected abstract int MessageParameterCount { get; }
 
-        private DiagnosticDescriptor(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, string description)
+        private DiagnosticDescriptor(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, Diagnostic.DiagnosticSeverity minimumSeverity, string description)
         {
             Code = code;
             MessageTemplate = messageTemplate;
             DefaultSeverity = defaultSeverity;
+            MinimumSeverity = minimumSeverity;
             Description = description;
 
 #if DEBUG
@@ -97,8 +104,8 @@ namespace Yarn.Compiler
         /// <inheritdoc cref="DiagnosticDescriptor"/>
         public sealed class DiagnosticDescriptor0 : DiagnosticDescriptor
         {
-            internal DiagnosticDescriptor0(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, string description)
-                : base(code, messageTemplate, defaultSeverity, description) { }
+            internal DiagnosticDescriptor0(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, Diagnostic.DiagnosticSeverity minimumSeverity, string description)
+                : base(code, messageTemplate, defaultSeverity, minimumSeverity, description) { }
 
             /// <inheritdoc/>
             protected override int MessageParameterCount => 0;
@@ -121,8 +128,8 @@ namespace Yarn.Compiler
         /// <inheritdoc cref="DiagnosticDescriptor"/>
         public sealed class DiagnosticDescriptor1 : DiagnosticDescriptor
         {
-            internal DiagnosticDescriptor1(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, string description)
-                : base(code, messageTemplate, defaultSeverity, description) { }
+            internal DiagnosticDescriptor1(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, Diagnostic.DiagnosticSeverity minimumSeverity, string description)
+                : base(code, messageTemplate, defaultSeverity, minimumSeverity, description) { }
 
             /// <inheritdoc/>
             protected override int MessageParameterCount => 1;
@@ -148,8 +155,8 @@ namespace Yarn.Compiler
         /// <inheritdoc cref="DiagnosticDescriptor"/>
         public sealed class DiagnosticDescriptor2 : DiagnosticDescriptor
         {
-            internal DiagnosticDescriptor2(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, string description)
-                : base(code, messageTemplate, defaultSeverity, description) { }
+            internal DiagnosticDescriptor2(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, Diagnostic.DiagnosticSeverity minimumSeverity, string description)
+                : base(code, messageTemplate, defaultSeverity, minimumSeverity, description) { }
 
             /// <inheritdoc/>
             protected override int MessageParameterCount => 2;
@@ -171,8 +178,8 @@ namespace Yarn.Compiler
         /// <inheritdoc cref="DiagnosticDescriptor"/>
         public sealed class DiagnosticDescriptor3 : DiagnosticDescriptor
         {
-            internal DiagnosticDescriptor3(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, string description)
-                : base(code, messageTemplate, defaultSeverity, description) { }
+            internal DiagnosticDescriptor3(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, Diagnostic.DiagnosticSeverity minimumSeverity, string description)
+                : base(code, messageTemplate, defaultSeverity, minimumSeverity, description) { }
 
             /// <inheritdoc/>
             protected override int MessageParameterCount => 3;
@@ -194,8 +201,8 @@ namespace Yarn.Compiler
         /// <inheritdoc cref="DiagnosticDescriptor"/>
         public sealed class DiagnosticDescriptor4 : DiagnosticDescriptor
         {
-            internal DiagnosticDescriptor4(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, string description)
-                : base(code, messageTemplate, defaultSeverity, description) { }
+            internal DiagnosticDescriptor4(string code, string messageTemplate, Diagnostic.DiagnosticSeverity defaultSeverity, Diagnostic.DiagnosticSeverity minimumSeverity, string description)
+                : base(code, messageTemplate, defaultSeverity, minimumSeverity, description) { }
 
             /// <inheritdoc/>
             protected override int MessageParameterCount => 4;

@@ -9,6 +9,6 @@ messageValues:
     - The invalid character
 summary: |
     Node titles and subtitles can only contain letters, numbers, and underscores.
-severity: error
+defaultSeverity: error
 published: v3.2.0
 ---

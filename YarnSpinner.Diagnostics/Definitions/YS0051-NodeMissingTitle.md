@@ -6,6 +6,6 @@ description: Node is missing its title
 messageTemplate: "Nodes must have a title"
 summary: |
     A node is missing its title header.
-severity: error
+defaultSeverity: error
 published: v3.2.1
 ---

@@ -30,6 +30,6 @@ messageValues:
 #     compiler cannot determine which type is correct.
 
 # The default severity of the diagnostic. Allowed values are 'error', 'warning' and 'info'; default is 'error'.
-severity: error
+defaultSeverity: error
 ---
 

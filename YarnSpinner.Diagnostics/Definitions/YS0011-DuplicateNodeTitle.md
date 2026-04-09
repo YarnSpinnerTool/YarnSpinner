@@ -9,6 +9,6 @@ messageValues:
 summary: |
     This diagnostic is not emitted for node groups where nodes
     share a title but have different `when:` clauses.
-severity: error
+defaultSeverity: error
 published: v3.2.0
 ---

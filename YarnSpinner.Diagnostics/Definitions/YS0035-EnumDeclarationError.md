@@ -8,7 +8,7 @@ messageValues:
     - Error message
 summary: |
     This is a catch-all message for issues related to enums.
-severity: error
+defaultSeverity: error
 published: v3.2.0
 # TODO: split up into multiple smaller diags
 ---

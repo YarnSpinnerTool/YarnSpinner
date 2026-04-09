@@ -6,6 +6,6 @@ description:  Unknown line ID for shadow line.
 messageTemplate: "Unknown line ID {0} for shadow line"
 messageValues: 
     - Line ID
-severity: error
+defaultSeverity: error
 published: v3.2.0
 ---

@@ -8,6 +8,6 @@ messageValues:
     - Message
 summary: |
     A language feature was used that requires a newer Yarn Spinner project version.
-severity: error
+defaultSeverity: error
 published: v3.2.0
 ---

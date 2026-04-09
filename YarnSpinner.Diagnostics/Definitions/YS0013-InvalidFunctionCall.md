@@ -6,7 +6,7 @@ description: Function called with incorrect parameters or does not exist
 messageTemplate: "Invalid function call: {0}"
 messageValues: 
     - Function name
-severity: error
+defaultSeverity: error
 published: v3.2.0
 # TODO: split into 'unknown function' and 'wrong parameter count' diags
 ---

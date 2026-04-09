@@ -9,6 +9,6 @@ messageValues:
     - Reason
 summary: |
     A library function has an incompatible signature for use in Yarn scripts.
-severity: error
+defaultSeverity: error
 published: v3.2.0
 ---

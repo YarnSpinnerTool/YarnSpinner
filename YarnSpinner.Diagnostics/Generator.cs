@@ -136,12 +136,15 @@ public class DiagnosticFrontMatter
     /// </summary>
     public enum Severity
     {
+        NotSet,
         [YamlMember(Alias = "error")]
         Error,
         [YamlMember(Alias = "warning")]
         Warning,
         [YamlMember(Alias = "info")]
-        Info
+        Info,
+        [YamlMember(Alias = "none")]
+        None,
     }
     [YamlMember(Alias = "name")]
     public string? Name { get; set; }
@@ -161,8 +164,11 @@ public class DiagnosticFrontMatter
     [YamlMember(Alias = "messageValues")]
     public List<string> MessageValues { get; set; } = [];
 
-    [YamlMember(Alias = "severity")]
+    [YamlMember(Alias = "defaultSeverity")]
     public Severity DefaultSeverity { get; set; } = Severity.Error;
+
+    [YamlMember(Alias = "minimumSeverity")]
+    public Severity MinimumSeverity { get; set; } = Severity.NotSet;
 
     [YamlMember(Alias = "published")]
     public string? PublishedVersion { get; set; }
@@ -233,19 +239,32 @@ public class Generator : IIncrementalGenerator
                 _ => throw new Exception($"Diagnostic {diagnosticInfo.Code} has too many message values ({diagnosticInfo.MessageValues.Count})"),
             };
 
-            var descriptorSeverity = diagnosticInfo.DefaultSeverity switch
+            static string GetSeverityName(DiagnosticFrontMatter.Severity severity)
             {
-                DiagnosticFrontMatter.Severity.Error => "Error",
-                DiagnosticFrontMatter.Severity.Warning => "Warning",
-                DiagnosticFrontMatter.Severity.Info => "Info",
-                _ => throw new Exception($"Diagnostic {diagnosticInfo.Code} has an unknown severity {diagnosticInfo.DefaultSeverity}")
-            };
+                return severity switch
+                {
+                    DiagnosticFrontMatter.Severity.Error => "Error",
+                    DiagnosticFrontMatter.Severity.Warning => "Warning",
+                    DiagnosticFrontMatter.Severity.Info => "Info",
+                    DiagnosticFrontMatter.Severity.None => "None",
+                    _ => throw new Exception($"Unknown severity {severity}")
+                };
+            }
+
+            var defaultSeverity = diagnosticInfo.DefaultSeverity;
+            var minimumSeverity = diagnosticInfo.MinimumSeverity;
+
+            if (minimumSeverity == DiagnosticFrontMatter.Severity.NotSet)
+            {
+                minimumSeverity = defaultSeverity;
+            }
 
             var diagnosticType = @$"
             public static readonly {descriptorType} {diagnosticInfo.Name} = new(
                 code: ""{diagnosticInfo.Code?.Escape()}"",
                 messageTemplate: ""{diagnosticInfo.MessageTemplate?.Escape()}"",
-                defaultSeverity: Diagnostic.DiagnosticSeverity.{descriptorSeverity},
+                defaultSeverity: Diagnostic.DiagnosticSeverity.{GetSeverityName(defaultSeverity)},
+                minimumSeverity: Diagnostic.DiagnosticSeverity.{GetSeverityName(minimumSeverity)},
                 description: ""{diagnosticInfo.Description?.Escape()}""
             );";
 

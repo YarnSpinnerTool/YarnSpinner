@@ -7,7 +7,7 @@ messageTemplate: "Type mismatch: expected {0}, got {1}"
 messageValues: 
     - Expected type
     - Actual type
-severity: error
+defaultSeverity: error
 published: v3.2.0
 
 # TODO: consider using 'additional information' objects to indicate extra info about this mismatch

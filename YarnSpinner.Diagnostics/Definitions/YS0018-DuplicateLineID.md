@@ -8,6 +8,6 @@ messageValues:
     - Line ID
 summary: |
     All line IDs in a Yarn Spinner project must be unique.
-severity: error
+defaultSeverity: error
 published: v3.2.0
 ---
