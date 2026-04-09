@@ -27,7 +27,10 @@ summary: |
     different files or contexts without an explicit declaration, and the
     compiler cannot determine which type is correct.
 
-# The default severity of the diagnostic. Allowed values are 'error', 'warning' and 'info'; default is 'error'.
-severity: error
+# The default severity of the diagnostic. Allowed values are 'error', 'warning', 'info', 'none'; default is 'error'.
+defaultSeverity: error
+
+# The minimum severity of the diagnostic. Allowed values are 'error', 'warning', 'info', 'none'; default is the value of defaultSeverity.
+minimumSeverity: error
 ---
 
