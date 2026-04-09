@@ -171,18 +171,18 @@ namespace Yarn.Compiler
         internal bool IsImplicit => Path != null && !System.IO.File.Exists(this.Path);
 
         /// <summary>
-        /// Gets or sets a dictionary containing instructions that control how
+        /// Gets or sets an object containing instructions that control how
         /// the Yarn Spinner compiler should compile a project.
         /// </summary>
-        public Dictionary<string, JsonValue> CompilerOptions { get; set; } = new Dictionary<string, JsonValue>();
+        public CompilerOptionsData CompilerOptions { get; set; } = new();
 
         private bool GetCompilerOptionsFlag(string key)
         {
-            return CompilerOptions.TryGetValue(key, out var value) && value.GetValue<bool>();
+            return CompilerOptions.ExtensionData.TryGetValue(key, out var value) && value.GetBoolean();
         }
         private void SetCompilerOptionsFlag(string key, bool value)
         {
-            CompilerOptions[key] = JsonValue.Create(value);
+            CompilerOptions.ExtensionData[key] = JsonSerializer.SerializeToElement(true);
         }
 
         /// <summary>
@@ -582,6 +582,20 @@ namespace Yarn.Compiler
             /// may be found.
             /// </summary>
             public string? Strings { get; set; }
+        }
+
+        /// <summary>
+        /// Stores additional information that describes to the compiler how the
+        /// project should be compiled.
+        /// </summary>
+        public class CompilerOptionsData
+        {
+            /// <summary>
+            /// Contains any data parsed from the source file that was not matched
+            /// to a property on this type.
+            /// </summary>
+            [JsonExtensionData]
+            public Dictionary<string, JsonElement> ExtensionData { get; set; } = new();
         }
     }
 
