@@ -360,7 +360,6 @@ This node is missing it's end of body terminator===
         }
 
         [Theory(Skip = "This diagnostic should be moved to the language server - whether or not a it's a problem that a node is unreferenced depends on the use case; additionally, at least one node will almost always be unreferenced, being the entry point")]
-        //  TODO: default this severity to severity=none, have a way to modify severity per-project
         [InlineData(
 @"title: A
 ---
@@ -384,9 +383,8 @@ This node has a single jump reference to it
             var result = Compiler.Compile(job);
 
             var diag = result.Diagnostics.Should().ContainSingle().Subject;
-            diag.Code.Should().Be("YS0009");
-
-            diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Info);
+            diag.Code.Should().Be(DiagnosticDescriptor.UnreferencedNode.Code);
+            diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.None);
 
             diag.Message.Should().Be($"Node 'A' is never referenced");
 
