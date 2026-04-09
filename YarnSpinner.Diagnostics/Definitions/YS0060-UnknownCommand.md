@@ -1,14 +1,12 @@
 ---
-name: InvalidCommand
-code: YS0014
+name: UnknownCommand
+code: YS0060
 tags: ["semantic"]
 description: Command is not recognized or has invalid syntax
-messageTemplate: "Invalid command: {0}"
+messageTemplate: "Unknown command: {0}"
 messageValues: 
     - Command name
 defaultSeverity: warning
 minimumSeverity: none
 published: v3.2.0
-
-# TODO: split into 'unknown command' and 'wrong parameter count' diags
 ---

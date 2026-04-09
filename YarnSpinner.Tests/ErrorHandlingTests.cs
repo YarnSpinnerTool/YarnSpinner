@@ -609,7 +609,7 @@ This is a line
 
             PerformCommonSingleDiagLineTest(
                 input,
-                DiagnosticDescriptor.InvalidFunctionCall.Code,
+                DiagnosticDescriptor.WrongFunctionParameters.Code,
                 $"Invalid function call: {functionName} expects 1 parameter, not {paramCount}",
                 Diagnostic.DiagnosticSeverity.Error,
                 range);
@@ -675,7 +675,7 @@ line
 
             PerformCommonSingleDiagNodeTest(
                 input,
-                DiagnosticDescriptor.InvalidFunctionCall.Code,
+                DiagnosticDescriptor.WrongFunctionParameters.Code,
                 $"Invalid function call: {functionName} expects 1 parameter, not {paramCount}",
                 Diagnostic.DiagnosticSeverity.Error,
                 range, allowOthers: true);
@@ -689,7 +689,7 @@ line
             rangeValues.Should().HaveCount(2);
             var range = new Range(rangeValues[0], rangeValues[1], rangeValues[0], rangeValues[1] + commandName.Length);
 
-            PerformCommonSingleDiagLineTest(input, DiagnosticDescriptor.InvalidCommand.Code, $"Invalid command: {commandName}", Diagnostic.DiagnosticSeverity.Error, range);
+            PerformCommonSingleDiagLineTest(input, DiagnosticDescriptor.UnknownCommand.Code, $"Invalid command: {commandName}", Diagnostic.DiagnosticSeverity.Error, range);
         }
 
         [Theory(Skip = "Must be handled by Language Server because the compiler doesn't know about valid commands")]
@@ -702,7 +702,7 @@ line
             rangeValues.Should().HaveCount(2);
             var range = new Range(rangeValues[0], rangeValues[1], rangeValues[0], rangeValues[1] + commandName.Length);
 
-            PerformCommonSingleDiagLineTest(input, DiagnosticDescriptor.InvalidCommand.Code, $"Invalid command: {commandName}", Diagnostic.DiagnosticSeverity.Error, range);
+            PerformCommonSingleDiagLineTest(input, DiagnosticDescriptor.WrongCommandParameterCount.Code, $"Invalid command: {commandName}", Diagnostic.DiagnosticSeverity.Error, range);
         }
         [Fact]
         public void TestEscapedUnknownCommandsDontGenerateDiagnostics()
