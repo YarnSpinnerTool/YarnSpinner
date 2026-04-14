@@ -25,7 +25,8 @@ fi
 cd $YARNSPINNER_FOLDER
 dotnet-gitversion /updateAssemblyInfo
 mkdir -p .build-tmp
-dotnet build -p:TargetFrameworks=netstandard2.0 --configuration Debug -o .build-tmp YarnSpinner.Compiler
+dotnet build --configuration Debug YarnSpinner.Compiler
+cp -v YarnSpinner.Compiler/bin/Debug/netstandard2.0/* .build-tmp
 
 # some types we are going to want to use externally but the rest should be fully internal to Yarn Spinner itself
 assemblyalias --target-directory ".build-tmp" --prefix "Yarn." --assemblies-to-alias "Antlr*;Csv*;Google*;"
