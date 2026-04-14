@@ -39,7 +39,8 @@ namespace Yarn.Compiler
             {
                 if (stopwatch.Elapsed >= MaxSearchTime)
                 {
-                    throw new TimeoutException($"Failed to find a unique line ID within {MaxSearchTime.TotalMilliseconds}ms");
+                    var inner = new TimeoutException($"Failed to find a unique line ID within {MaxSearchTime.TotalMilliseconds}ms");
+                    throw new ILineTagGenerator.LineTaggingException("Unable to tag the line due to running out of time.", inner);
                 }
 
                 tag = string.Format(CultureInfo.InvariantCulture, "line:{0:x7}", Random.Next(0x1000000));
