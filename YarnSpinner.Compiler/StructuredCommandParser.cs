@@ -56,15 +56,14 @@ namespace Yarn.Compiler
 
             // Define custom error listeners to capture lexical and parsing
             // errors during these phases.
-            LexerErrorListener lexerErrorListener = new LexerErrorListener("<generated>");
-            ParserErrorListener parseErrorListener = new ParserErrorListener("<generated>");
+            YarnErrorListener yarnErrorListener = new("<generated>");
 
             // Remove default error listeners from lexer and parser to avoid
             // automatic error reporting, then add our custom listeners.
             lexer.RemoveErrorListeners();
             parser.RemoveErrorListeners();
-            lexer.AddErrorListener(lexerErrorListener);
-            parser.AddErrorListener(parseErrorListener);
+            lexer.AddErrorListener(yarnErrorListener);
+            parser.AddErrorListener(yarnErrorListener);
 
             // Parse the source string into a structured command context. During
             // this parse, the lexer and parser error listeners will collect any
@@ -76,7 +75,7 @@ namespace Yarn.Compiler
             return new ParseResult
             {
                 context = command,
-                diagnostics = lexerErrorListener.Diagnostics.Concat(parseErrorListener.Diagnostics),
+                diagnostics = yarnErrorListener.Diagnostics,
             };
         }
     }

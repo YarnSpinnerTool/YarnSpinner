@@ -163,7 +163,7 @@ namespace TypeChecker
                     // resolved type is ambiguous!
                     foreach (var constraint in typeConstraints)
                     {
-                        diagnostics.Add(new Yarn.Compiler.Diagnostic(constraint.SourceFileName, constraint.SourceRange, "The type of this expression is ambiguous."));
+                        diagnostics.Add(Yarn.Compiler.DiagnosticDescriptor.TypeInferenceFailure.Create(constraint.SourceFileName, constraint.SourceRange, "The type of this expression is ambiguous."));
                     }
                     return false;
                 }

@@ -170,7 +170,36 @@ namespace YarnSpinner.Tests
             var projectV4 = Project.LoadFromString(projectSourceV4, ".");
 
             projectV3.Definitions.Should().BeEquivalentTo(projectV4.Definitions);
+        }
 
+        [Fact]
+        public void TestProjectFilesCanSpecifyDiagnosticSeverityOverrides()
+        {
+            var projectSource = @"{
+             ""projectFileVersion"": 4,
+                ""sourceFiles"": [""**/*.yarn""],
+                ""baseLanguage"": ""en"",
+                ""compilerOptions"": {
+                    ""diagnosticsSeverity"": {
+                        ""YS0001"": ""error"",
+                        ""YS0002"": ""warning"",
+                        ""YS0003"": ""info"",
+                        ""YS0004"": ""none"",
+                    }
+                }
+            }";
+
+            var project = Project.LoadFromString(projectSource, ".");
+
+            project.CompilerOptions.DiagnosticsSeverity.Should().HaveCount(4);
+            project.CompilerOptions.DiagnosticsSeverity.Should().ContainKey("YS0001")
+                .WhoseValue.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+            project.CompilerOptions.DiagnosticsSeverity.Should().ContainKey("YS0002")
+                .WhoseValue.Should().Be(Diagnostic.DiagnosticSeverity.Warning);
+            project.CompilerOptions.DiagnosticsSeverity.Should().ContainKey("YS0003")
+                .WhoseValue.Should().Be(Diagnostic.DiagnosticSeverity.Info);
+            project.CompilerOptions.DiagnosticsSeverity.Should().ContainKey("YS0004")
+                .WhoseValue.Should().Be(Diagnostic.DiagnosticSeverity.None);
         }
     }
 }

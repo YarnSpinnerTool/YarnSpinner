@@ -17,7 +17,7 @@ namespace YarnSpinner.Tests
 
         public class Run : IEnumerable<Step>
         {
-            public string StartNode { get; private set; } = "Start";
+            public string StartNode { get; set; } = "Start";
 
             public List<Step> Steps { get; init; } = new();
 
@@ -85,7 +85,9 @@ namespace YarnSpinner.Tests
 
         public class ExpectStop : Step { }
 
-        public class ActionSelectStep : Step
+        public abstract class ActionStep : Step { }
+
+        public class ActionSelectStep : ActionStep
         {
             public int SelectedIndex { get; init; }
 
@@ -95,7 +97,7 @@ namespace YarnSpinner.Tests
             }
         }
 
-        public class ActionSetSaliencyStep : Step
+        public class ActionSetSaliencyStep : ActionStep
         {
             public string SaliencyMode { get; init; }
 
@@ -105,7 +107,7 @@ namespace YarnSpinner.Tests
             }
         }
 
-        public class ActionSetVariableStep : Step
+        public class ActionSetVariableStep : ActionStep
         {
             public string VariableName { get; init; }
             public object Value { get; init; }
@@ -117,7 +119,7 @@ namespace YarnSpinner.Tests
             }
         }
 
-        public class ActionJumpToNodeStep : Step
+        public class ActionJumpToNodeStep : ActionStep
         {
             public string NodeName { get; init; }
 
@@ -147,14 +149,13 @@ namespace YarnSpinner.Tests
             var parser = new YarnSpinnerTestPlanParser(tokenStream);
             lexer.RemoveErrorListeners();
             parser.RemoveErrorListeners();
-            var lexerErrorListener = new LexerErrorListener("testplan");
-            var parserErrorListener = new ParserErrorListener("testplan");
-            lexer.AddErrorListener(lexerErrorListener);
-            parser.AddErrorListener(parserErrorListener);
+            var yarnErrorListener = new YarnErrorListener("testplan");
+            lexer.AddErrorListener(yarnErrorListener);
+            parser.AddErrorListener(yarnErrorListener);
 
             var testPlanTree = parser.testplan();
 
-            var allDiagnostics = lexerErrorListener.Diagnostics.Concat(parserErrorListener.Diagnostics);
+            var allDiagnostics = yarnErrorListener.Diagnostics;
             if (allDiagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {
                 throw new XunitException("Syntax errors in test plan: " + string.Join("\n", allDiagnostics));

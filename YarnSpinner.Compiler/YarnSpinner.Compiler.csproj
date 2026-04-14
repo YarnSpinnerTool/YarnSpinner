@@ -20,6 +20,7 @@
     <Authors>Secret Lab Pty. Ltd. and Yarn Spinner contributors</Authors>
     <Company>Secret Lab Pty. Ltd.</Company>
     <RepositoryUrl>https://github.com/YarnSpinnerTool/YarnSpinner</RepositoryUrl>
+    <JsonSerializerIsReflectionEnabledByDefault>false</JsonSerializerIsReflectionEnabledByDefault>
     <PackageDescription><![CDATA[Yarn Spinner is a tool for creating interactive dialogue for games.
 
 This package provides support for compiling Yarn source code, so that you can execute it using the YarnSpinner package.]]></PackageDescription>
@@ -35,6 +36,14 @@ This package provides support for compiling Yarn source code, so that you can ex
 
   <ItemGroup>
     <ProjectReference Include="..\YarnSpinner\YarnSpinner.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YarnSpinner.Diagnostics\YarnSpinner.Diagnostics.csproj"
+      OutputItemType="Analyzer"
+      ReferenceOutputAssembly="false" />
+    <AdditionalFiles Include="..\YarnSpinner.Diagnostics\Definitions\*.md" />
+    <AdditionalFiles Include="..\YarnSpinner.Diagnostics\*.txt" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

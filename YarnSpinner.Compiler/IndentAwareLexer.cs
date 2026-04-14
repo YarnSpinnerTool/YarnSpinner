@@ -444,5 +444,14 @@ namespace Yarn.Compiler
             /// </summary>
             public string Message;
         }
+
+        public override void PushMode(int m)
+        {
+            base.PushMode(m);
+        }
+        public override int PopMode()
+        {
+            return base.PopMode();
+        }
     }
 }

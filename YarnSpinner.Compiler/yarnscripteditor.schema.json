@@ -17,7 +17,9 @@
         "characters": {
             "type": "array",
             "description": "Character definitions for highlighting, autocomplete, and preview colours.",
-            "items": { "$ref": "character.schema.json" }
+            "items": {
+                "$ref": "character.schema.json"
+            }
         },
         "presenter": {
             "type": "string",
@@ -48,7 +50,9 @@
                 "words": {
                     "type": "array",
                     "description": "Custom words to add to the spell checker dictionary.",
-                    "items": { "type": "string" },
+                    "items": {
+                        "type": "string"
+                    },
                     "default": []
                 }
             },
@@ -64,8 +68,12 @@
             "additionalProperties": {
                 "type": "object",
                 "properties": {
-                    "x": { "type": "number" },
-                    "y": { "type": "number" }
+                    "x": {
+                        "type": "number"
+                    },
+                    "y": {
+                        "type": "number"
+                    }
                 }
             }
         },
@@ -74,8 +82,12 @@
             "description": "Saved file container colours in the project-wide graph view. Managed automatically.",
             "additionalProperties": {
                 "oneOf": [
-                    { "$ref": "colour.schema.json" },
-                    { "type": "string" }
+                    {
+                        "$ref": "colour.schema.json"
+                    },
+                    {
+                        "type": "string"
+                    }
                 ]
             }
         }

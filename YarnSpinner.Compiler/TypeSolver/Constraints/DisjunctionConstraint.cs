@@ -70,7 +70,7 @@ namespace TypeChecker
                     this.Constraints.Distinct()
                                     .Select(c => c.Simplify(subst, knownTypes))
                                     .Where(t => t.GetType() != typeof(FalseConstraint)));
-                disjunct.FailureMessageProvider = this.FailureMessageProvider;
+                disjunct.DiagnosticProvider = this.DiagnosticProvider;
                 disjunct.SourceContext = this.SourceContext;
                 disjunct.SourceFileName = this.SourceFileName;
                 disjunct.SourceRange = this.SourceRange;

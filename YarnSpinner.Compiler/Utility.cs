@@ -219,6 +219,34 @@ namespace Yarn.Compiler
         }
 
 
+        internal static Range GetRange(IToken token)
+        {
+            if (token.Type == -1)
+            { // EOF 
+                return new Range(token.Line - 1, token.Column, token.Line - 1, token.Column + 1);
+            }
+            else
+            {
+                return new Range(token.Line - 1, token.Column, token.Line - 1, token.Column + token.Text.Length);
+            }
+        }
+
+        internal static Range GetRange(ITerminalNode terminalNode)
+        {
+            if (terminalNode.Payload is IToken token)
+            {
+                return GetRange(token);
+            }
+            else if (terminalNode.Payload is ParserRuleContext context)
+            {
+                return GetRange(context);
+            }
+            else
+            {
+                throw new ArgumentException("Unhandled terminal node payload type " + terminalNode.Payload.GetType());
+            }
+        }
+
         internal static Range GetRange(IToken? startToken, IToken? endToken)
         {
             var startPosition = startToken != null ? new Position(startToken.Line - 1, startToken.Column) : null;
@@ -802,6 +830,58 @@ namespace Yarn.Compiler
 
                 return $"{title}.{checksum}";
             }
+        }
+
+        /// <summary>
+        /// Returns a collection of <see cref="Diagnostic"/> objects with
+        /// overridden severities.
+        /// </summary>
+        /// <param name="diagnostics">The collection of <see cref="Diagnostic"/>
+        /// objects to override the severities of.</param>
+        /// <param name="overrides">A dictionary of diagnostic codes to
+        /// diagnostic severities.</param>
+        /// <returns>The updated collection.</returns>
+        public static IEnumerable<Diagnostic> WithSeverityOverrides(this IEnumerable<Diagnostic> diagnostics, IDictionary<string, Diagnostic.DiagnosticSeverity>? overrides)
+        {
+            if (overrides == null || overrides.Count == 0)
+            {
+                // No overrides; return the original collection
+                return diagnostics;
+            }
+
+            return diagnostics.Select(d =>
+            {
+                if (d.Code == null || overrides.TryGetValue(d.Code, out var overrideSeverity) == false)
+                {
+                    // No override for this diagnostic, or failed to get its code. No op.
+                    return d;
+                }
+
+                if (d.Severity == overrideSeverity)
+                {
+                    // The override severity is the same as the current severity. Nothing to do.
+                    return d;
+                }
+
+                var descriptorForDiag = DiagnosticDescriptor.GetDescriptor(d.Code);
+                if (descriptorForDiag == null)
+                {
+                    // Failed to find the descriptor for this diagnostic. Return it as is.
+                    return d;
+                }
+
+                if (descriptorForDiag.MinimumSeverity > overrideSeverity)
+                {
+                    // The minimum severity is higher than the override severity.
+                    overrideSeverity = descriptorForDiag.MinimumSeverity;
+                }
+
+                // Return a clone of the diagnostic with the updated severity.
+                return new Diagnostic(d)
+                {
+                    Severity = overrideSeverity
+                };
+            });
         }
     }
 
