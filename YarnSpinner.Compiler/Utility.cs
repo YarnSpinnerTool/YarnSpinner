@@ -135,11 +135,12 @@ namespace Yarn.Compiler
         /// </para>
         /// </remarks>
         /// <param name="contents">The source code to add line tags to.</param>
+        /// <param name="excludedLineIDs">A collection of line IDs that should not be used for generation. Primarily intended for other line tags from a different compilation job.</param>
         /// <param name="lineTagGenerator">The line tag generator to use when generating a new line ID.</param>
-        /// <param name="tagAbortBehaviour"></param>
+        /// <param name="tagAbortBehaviour">Controls how the line tagging should handle encountering issues while tagging.</param>
         /// <returns>Tuple of the modified source code, with line tags added, an updated list of line IDs that were added, and any tagging exceptions that were encountered during tagging.
         /// </returns>
-        public static (string ModifiedSource, ICollection<string> LineIDs, List<ILineTagGenerator.LineTaggingException> TagExceptions) TagLines(CompilationJob.File contents, ILineTagGenerator? lineTagGenerator = null, ILineTagGenerator.TagAbortBehaviour tagAbortBehaviour = ILineTagGenerator.TagAbortBehaviour.CurrentNode)
+        public static (string ModifiedSource, ICollection<string> LineIDs, List<ILineTagGenerator.LineTaggingException> TagExceptions) TagLines(CompilationJob.File contents, HashSet<string>? excludedLineIDs = null, ILineTagGenerator? lineTagGenerator = null, ILineTagGenerator.TagAbortBehaviour tagAbortBehaviour = ILineTagGenerator.TagAbortBehaviour.CurrentNode)
         {
             // First, get the parse tree for this source code.
             var parseSource = ParseSourceText(contents.Source);
@@ -152,15 +153,17 @@ namespace Yarn.Compiler
                 return (contents.Source, new List<string>(), new List<ILineTagGenerator.LineTaggingException>());
             }
 
-            // Make sure we have a list of line tags to work with.
-            var existingLineTags = new List<string>();
-
             // Create the line listener, which will produce TextReplacements for
             // each new line tag.
 
             lineTagGenerator ??= new RandomLineTagGenerator();
 
-            var untaggedLineListener = new UntaggedLineListener(lineTagGenerator, parseSource.Tokens, contents.FileName);
+            if (excludedLineIDs == null)
+            {
+                excludedLineIDs = new();
+            }
+
+            var untaggedLineListener = new UntaggedLineListener(lineTagGenerator, excludedLineIDs, parseSource.Tokens, contents.FileName);
 
             // Walk the tree with this listener, and generate text replacements
             // containing line tags.
@@ -174,14 +177,15 @@ namespace Yarn.Compiler
             return untaggedLineListener.RewrittenNodes();
         }
 
-        /// <inheritdoc cref="Utility.TagLines(CompilationJob.File, ILineTagGenerator?, ILineTagGenerator.TagAbortBehaviour)" />
-        public static (string ModifiedSource, ICollection<string> LineIDs, List<ILineTagGenerator.LineTaggingException> TagExceptions) TagLines(string contents, ILineTagGenerator? lineTagGenerator = null, ILineTagGenerator.TagAbortBehaviour tagAbortBehaviour = ILineTagGenerator.TagAbortBehaviour.CurrentNode)
+        /// <inheritdoc cref="TagLines(CompilationJob.File, System.Collections.Generic.HashSet{string}, ILineTagGenerator?, ILineTagGenerator.TagAbortBehaviour)"/>
+        public static (string ModifiedSource, ICollection<string> LineIDs, List<ILineTagGenerator.LineTaggingException> TagExceptions) TagLines(string contents, HashSet<string>? excludedLineIDs = null, ILineTagGenerator? lineTagGenerator = null, ILineTagGenerator.TagAbortBehaviour tagAbortBehaviour = ILineTagGenerator.TagAbortBehaviour.CurrentNode)
         {
             return TagLines(new CompilationJob.File
             {
                 FileName = "<input>",
                 Source = contents,
             },
+            excludedLineIDs,
             lineTagGenerator,
             tagAbortBehaviour);
         }
@@ -298,10 +302,17 @@ namespace Yarn.Compiler
             /// <see cref="IParseTree"/> this instance is operating on.</param>
             /// <param name="sourceFileName">The name of the source file that is
             /// being operated on.</param>
-            public UntaggedLineListener(ILineTagGenerator lineTagGenerator, CommonTokenStream tokenStream, string sourceFileName)
+            public UntaggedLineListener(ILineTagGenerator lineTagGenerator, HashSet<string> existingStrings, CommonTokenStream tokenStream, string sourceFileName)
             {
                 this.lineTagger = lineTagGenerator;
-                this.knownLineIDs = new();
+                if (existingStrings.Count > 0)
+                {
+                    this.knownLineIDs = new(existingStrings);
+                }
+                else
+                {
+                    this.knownLineIDs = new();
+                }
                 this.taggingExceptions = new();
                 this.TokenStream = tokenStream;
                 this.sourceFileName = sourceFileName;
@@ -436,10 +447,10 @@ namespace Yarn.Compiler
 
             internal void RunLineTagger(ILineTagGenerator.TagAbortBehaviour exceptionBehaviour)
             {
-                this.lineTagger.PrepareForLines(lineContext);
-
                 var fullKnownIDs = new HashSet<string>(knownLineIDs);
                 var fullRewrites = new List<(IToken, string)>();
+                
+                this.lineTagger.PrepareForLines(lineContext, knownLineIDs);
 
                 try
                 {

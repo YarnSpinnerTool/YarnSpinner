@@ -8,12 +8,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- `ILineTagGenerator` interface defines a way adding in your own custom line tagging
+  - The old tagging approach now exists as `RandomLineTagGenerator`
+  - A new, more human readable, tagger `DescriptiveLineTagGenerator`
+
 ### Changed
 
 - Fixed an issue where `.yarnproject` files couldn't be loaded if the C# project was trimmed.
 - Compiling a `CompilationJob` in type-check-only mode now includes the generated string table in its results.
+- When tagging lines can now define what `ILineTagGenerator` you want to use
+  - defaults to using `RandomLineTagGenerator` if you don't set one
 
 ### Removed
+
+- The obsolete `AddTagsToLines` call from `YarnSpinner.Compiler.Utility`
+  - now use the newer `TagLines` which supports using custom `ILineTagGenerator`
 
 ## [3.2.0] 2026-03-27
 

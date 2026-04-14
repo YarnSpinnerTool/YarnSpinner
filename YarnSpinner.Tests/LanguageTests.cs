@@ -915,11 +915,12 @@ Shelley: hmph apropos hmph
 ===
 ";
 
-            var (taggedSource, updatedLines) = Utility.TagLines(new CompilationJob.File
+            var (taggedSource, updatedLines, tagExceptions) = Utility.TagLines(new CompilationJob.File
             {
                 FileName = "TestLineIDs.yarn",
                 Source = source,
             },
+            null,
                 lineTagGenerator: new DescriptiveLineTagGenerator()
             );
 

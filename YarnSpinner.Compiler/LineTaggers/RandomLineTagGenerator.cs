@@ -18,9 +18,9 @@ namespace Yarn.Compiler
         private HashSet<string>? allKeys;
         
         /// <inheritdoc/>
-        public void PrepareForLines(Dictionary<string, List<ILineTagGenerator.LineTagContext>> LineContexts)
+        public void PrepareForLines(Dictionary<string, List<ILineTagGenerator.LineTagContext>> LineContexts, HashSet<string> excludedIDs)
         {
-            allKeys = new();
+            allKeys = new(excludedIDs);
             allKeys.UnionWith(LineContexts.SelectMany(a => a.Value).Select(b => b.LineID).OfType<string>());
         }
 
@@ -46,10 +46,9 @@ namespace Yarn.Compiler
                 tag = string.Format(CultureInfo.InvariantCulture, "line:{0:x7}", Random.Next(0x1000000));
             }
             while (allKeys.Contains(tag));
+
             stopwatch.Stop();
-
             allKeys.Add(tag);
-
             return tag;
         }
     }

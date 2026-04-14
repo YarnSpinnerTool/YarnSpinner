@@ -157,6 +157,9 @@ custom: yes
             var taggedLinesCount = result.StringTable.Count;
             taggedLinesCount.Should().Be(totalLines);
 
+            var implicitTags = result.StringTable.Where(l => l.Value.isImplicitTag);
+            implicitTags.Count().Should().Be(0);
+
             // we should have no untagged lines
             result.StringTable.Where(l => l.Value.isImplicitTag).Should().BeEmpty();
         }
@@ -255,7 +258,7 @@ A single line, with a line tag. #shadow:expected_abc123
 
             // Act
 
-            var (output, newTags) = Utility.TagLines(originalText);
+            var (output, newTags, taggingExceptions) = Utility.TagLines(originalText);
 
             var compilationJob = CompilationJob.CreateFromString("input", output);
             compilationJob.CompilationType = CompilationJob.Type.StringsOnly;
@@ -263,6 +266,8 @@ A single line, with a line tag. #shadow:expected_abc123
             var compilationResult = Compiler.Compile(compilationJob);
 
             compilationResult.Diagnostics.Should().BeEmpty("adding line tags should not introduce compile errors");
+
+            taggingExceptions.Should().BeEmpty();
 
             // Assert
             var lineTagRegex = new Regex(@"#line:\w+");

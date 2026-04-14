@@ -95,12 +95,14 @@ namespace Yarn.Compiler
         // private readonly Regex isMatchingLineID = new ("#line:[^_]+_(?<number>[0-9]+)(?<generation>_g[0-9]+)?_?.*");
 
         private Dictionary<string, int[]>? numbers;
+        private HashSet<string> exclusions = new();
 
         /// <inheritdocs/>
-        public void PrepareForLines(Dictionary<string, List<ILineTagGenerator.LineTagContext>> LineContexts)
+        public void PrepareForLines(Dictionary<string, List<ILineTagGenerator.LineTagContext>> LineContexts, HashSet<string> excludedIDs)
         {
             lineContexts = LineContexts;
             numbers = new();
+            exclusions.UnionWith(excludedIDs);
 
             foreach (var pair in lineContexts)
             {
@@ -116,7 +118,9 @@ namespace Yarn.Compiler
 
                     if (!string.IsNullOrWhiteSpace(line.LineID))
                     {
+#pragma warning disable CS8602
                         var pieces = line.LineID.Split('_');
+#pragma warning restore CS8602
                         foreach (var piece in pieces)
                         {
                             if (isMatchingNumbers.IsMatch(piece))
@@ -182,34 +186,6 @@ namespace Yarn.Compiler
                 }
                 numbers[pair.Key] = elements;
             }
-        }
-
-        private int getGeneration(string node, int number)
-        {
-            if (generations.TryGetValue(node, out var numbers))
-            {
-                if (numbers.TryGetValue(number, out var generation))
-                {
-                    generations[node][number] = generation + 1;
-                    return generation + 1;
-                }
-                
-                // we have generation data on this node, but not for this number
-                numbers[number] = 0;
-            }
-            else
-            {
-                // we have no generational data at all for this node, need to create it and then add it
-                // this shouldnt occur outside of fully untagged lines where it generations won't happen
-                // but it doesn't hurt to be sure
-                var nodeData = new Dictionary<int, int>
-                {
-                    [number] = 0
-                };
-                generations[node] = nodeData;
-            }
-
-            return 0;
         }
 
         /// <inheritdoc/>
@@ -368,7 +344,7 @@ namespace Yarn.Compiler
 
             lineIDComponents.Add(string.Format("{0:D4}", finalIndex));
 
-            var generation = getGeneration(node, finalIndex);
+            var generation = GetGeneration(node, finalIndex);
             if (generation != 0)
             {
                 lineIDComponents.Add($"g{generation}");
@@ -383,6 +359,11 @@ namespace Yarn.Compiler
             }
 
             var id = "line:" + string.Join("_", lineIDComponents);
+
+            if (exclusions.Contains(id))
+            {
+                throw new ILineTagGenerator.LineTaggingException($"The generated id '{id}' conflicts with an id we were excluded from using.", context.SourceFileName, context.LineNumber);
+            }
 
             return id;
         }
@@ -418,6 +399,33 @@ namespace Yarn.Compiler
                 break;
             }
             return (lc, li, rc, ri);
+        }
+        private int GetGeneration(string node, int number)
+        {
+            if (generations.TryGetValue(node, out var numbers))
+            {
+                if (numbers.TryGetValue(number, out var generation))
+                {
+                    generations[node][number] = generation + 1;
+                    return generation + 1;
+                }
+                
+                // we have generation data on this node, but not for this number
+                numbers[number] = 0;
+            }
+            else
+            {
+                // we have no generational data at all for this node, need to create it and then add it
+                // this shouldnt occur outside of fully untagged lines where it generations won't happen
+                // but it doesn't hurt to be sure
+                var nodeData = new Dictionary<int, int>
+                {
+                    [number] = 0
+                };
+                generations[node] = nodeData;
+            }
+
+            return 0;
         }
     }
 }

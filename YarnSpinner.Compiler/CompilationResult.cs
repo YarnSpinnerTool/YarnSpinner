@@ -86,8 +86,7 @@ namespace Yarn.Compiler
         /// compilations when the source file does not change. If you want line
         /// IDs to remain the same when the source code may be modified in the
         /// future, add a <c>#line:</c> tag to the line. This may be done by
-        /// hand, or added using the <see cref="Utility.AddTagsToLines(string,
-        /// ICollection{string})"/> method.
+        /// hand, or added using the <see cref="Utility.TagLines(CompilationJob.File, HashSet{string}?, ILineTagGenerator?, ILineTagGenerator.TagAbortBehaviour)"/> method.
         /// </para>
         /// </remarks>
         public bool ContainsImplicitStringTags { get; internal set; }

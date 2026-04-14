@@ -150,5 +150,6 @@ public interface ILineTagGenerator
     /// Called by Yarn Spinner before any line generation is
     /// </summary>
     /// <param name="LineContexts">The combined information of all nodes and lines</param>
-    public void PrepareForLines(Dictionary<string, List<ILineTagGenerator.LineTagContext>> LineContexts);
+    /// <param name="excludedIDs">A collection of strings that should not be used for generation.</param>
+    public void PrepareForLines(Dictionary<string, List<ILineTagGenerator.LineTagContext>> LineContexts, HashSet<string> excludedIDs);
 }
