@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `ILineTagGenerator` interface defines a way adding in your own custom line tagging
   - The old tagging approach now exists as `RandomLineTagGenerator`
   - A new, more human readable, tagger `DescriptiveLineTagGenerator`
+- Multiple line or shadow IDs on a single line now generate a diagnostic
 
 ### Changed
 

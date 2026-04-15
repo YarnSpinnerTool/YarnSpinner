@@ -817,6 +817,154 @@ title: C
             }
         }
 
+        [Fact]
+        public void MultpleDuplicateLineIDsGeneratesWarning()
+        {
+            var input = "the line #line:abc123 #line:abc123";
+
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().HaveCount(2);
+
+            var ranges = new HashSet<Range>()
+            {
+                new(2, 9, 2, 21),
+                new(2, 22, 2, 34),
+            };
+
+            foreach (var diag in result.Diagnostics)
+            {
+                diag.Code.Should().Be(DiagnosticDescriptor.MultipleLineOrShadowIDsOnALine.Code);
+
+                diag.Message.Should().Be("Dialogue has multiple '#line' or '#shadow' IDs.");
+
+                diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+                ranges.Should().Contain(diag.Range);
+                ranges.Remove(diag.Range);
+            }
+        }
+        [Fact]
+        public void MultpleDifferentLineIDsGeneratesWarning()
+        {
+            var input = "the line #line:abc123 #line:def456";
+
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().HaveCount(2);
+
+            var ranges = new HashSet<Range>()
+            {
+                new(2, 9, 2, 21),
+                new(2, 22, 2, 34),
+            };
+
+            foreach (var diag in result.Diagnostics)
+            {
+                diag.Code.Should().Be(DiagnosticDescriptor.MultipleLineOrShadowIDsOnALine.Code);
+
+                diag.Message.Should().Be("Dialogue has multiple '#line' or '#shadow' IDs.");
+
+                diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+                ranges.Should().Contain(diag.Range);
+                ranges.Remove(diag.Range);
+            }
+        }
+        [Fact]
+        public void MultpleDuplicateShadowIDsGeneratesWarning()
+        {
+            var input = "the line #shadow:abc123 #shadow:abc123";
+
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().HaveCount(2);
+
+            var ranges = new HashSet<Range>()
+            {
+                new(2, 9, 2, 23),
+                new(2, 24, 2, 38),
+            };
+
+            foreach (var diag in result.Diagnostics)
+            {
+                diag.Code.Should().Be(DiagnosticDescriptor.MultipleLineOrShadowIDsOnALine.Code);
+
+                diag.Message.Should().Be("Dialogue has multiple '#line' or '#shadow' IDs.");
+
+                diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+                ranges.Should().Contain(diag.Range);
+                ranges.Remove(diag.Range);
+            }
+        }
+        [Fact]
+        public void MultpleDifferentShadowIDsGeneratesWarning()
+        {
+            var input = "the line #shadow:abc123 #shadow:def456";
+
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().HaveCount(2);
+
+            var ranges = new HashSet<Range>()
+            {
+                new(2, 9, 2, 23),
+                new(2, 24, 2, 38),
+            };
+
+            foreach (var diag in result.Diagnostics)
+            {
+                diag.Code.Should().Be(DiagnosticDescriptor.MultipleLineOrShadowIDsOnALine.Code);
+
+                diag.Message.Should().Be("Dialogue has multiple '#line' or '#shadow' IDs.");
+
+                diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+                ranges.Should().Contain(diag.Range);
+                ranges.Remove(diag.Range);
+            }
+        }
+        [Fact]
+        public void MultipleConflictingIssuesAroundIDsGeneratesWarning()
+        {
+            var input = "this line has both a line id and a shadow #line:abc123 #shadow:def123 #shadow:ghi123";
+
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().HaveCount(3);
+
+            var ranges = new HashSet<Range>()
+            {
+                new(2, 42, 2, 54),
+                new(2, 55, 2, 69),
+                new(2, 70, 2, 84)
+            };
+
+            foreach (var diag in result.Diagnostics)
+            {
+                diag.Code.Should().Be(DiagnosticDescriptor.LinesCantHaveLineAndShadowTag.Code);
+
+                diag.Message.Should().Be("Lines cannot have both a '#line' tag and a '#shadow' tag.");
+
+                diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+                ranges.Should().Contain(diag.Range);
+                ranges.Remove(diag.Range);
+            }
+            ranges.Should().BeEmpty();
+        }
+
         [Theory]
         [InlineData("$abc", "$", 6)]
         [InlineData(".abc", ".", 6)]

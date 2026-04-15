@@ -63,7 +63,52 @@ namespace Yarn.Compiler
             int lineNumber = context.Start.Line;
 
             YarnSpinnerParser.HashtagContext[] hashtags = context.hashtag();
-            var lineIDTag = Compiler.GetContentIDTag(ContentIdentifierType.Line, hashtags);
+            var (lineIDs, shadowIDs) = Compiler.GetContentIDTags(hashtags);
+            if ((lineIDs?.Count ?? 0) + (shadowIDs?.Count ?? 0) > 1)
+            {
+                // we have multiple line/shadow id tags on this line
+                // regardless of it being multiple line ids, shadow ids, or both, this is a bug
+                
+                // we have both line and shadow ids on this line
+                if (lineIDs != null && shadowIDs != null)
+                {
+                    foreach (var a in lineIDs)
+                    {
+                        foreach (var b in shadowIDs)
+                        {
+                            this.diagnostics.Add(DiagnosticDescriptor.LinesCantHaveLineAndShadowTag.Create(fileName, b));
+                            this.diagnostics.Add(DiagnosticDescriptor.LinesCantHaveLineAndShadowTag.Create(fileName, a));
+                        }
+                    }
+                    // because this will also cause one of the below issues we bail out now
+                    // rather than just creating even more issues
+                    return 0;
+                }
+                
+                // we have multiple regular ids on this line
+                if (lineIDs?.Count > 1)
+                {
+                    foreach (var id in lineIDs)
+                    {
+                        this.diagnostics.Add(DiagnosticDescriptor.MultipleLineOrShadowIDsOnALine.Create(fileName, id));
+                    }
+                }
+
+                // we have multiple shadow ids on this line
+                if (shadowIDs?.Count > 1)
+                {
+                    foreach (var id in shadowIDs)
+                    {
+                        this.diagnostics.Add(DiagnosticDescriptor.MultipleLineOrShadowIDsOnALine.Create(fileName, id));
+                    }
+                }
+
+                return 0;
+            }
+
+            // ok now at this point we have a valid line/shadow ID and can continue
+            // or we don't have one at all and we have an implicit one
+            var lineIDTag = lineIDs?[0] ?? null;
             var lineID = lineIDTag?.text.Text ?? null;
 
             var hashtagTexts = new List<string>(GetHashtagTexts(hashtags));
@@ -99,20 +144,11 @@ namespace Yarn.Compiler
                 return 0;
             }
 
-
             // If the line has a '#shadow:' ID, record that fact.
-            var shadowTag = Compiler.GetContentIDTag(ContentIdentifierType.Shadow, hashtags);
+            var shadowTag = shadowIDs?[0] ?? null;
             if (shadowTag != null)
             {
                 context.ShadowLineID = "line:" + shadowTag.text.Text.Substring("shadow:".Length);
-            }
-
-            // It's illegal for a shadow line to have an explicit line ID.
-            if (shadowTag != null && lineIDTag != null)
-            {
-                // "Lines cannot have both a '#line' tag and a '#shadow' tag.";
-                this.diagnostics.Add(DiagnosticDescriptor.LinesCantHaveLineAndShadowTag.Create(fileName, shadowTag));
-                this.diagnostics.Add(DiagnosticDescriptor.LinesCantHaveLineAndShadowTag.Create(fileName, lineIDTag));
             }
 
             lineID = stringTableManager.RegisterString(

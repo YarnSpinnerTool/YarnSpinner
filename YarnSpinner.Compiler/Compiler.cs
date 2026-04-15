@@ -1255,6 +1255,39 @@ namespace Yarn.Compiler
             return null;
         }
 
+        internal static (List<YarnSpinnerParser.HashtagContext>? lineIDs, List<YarnSpinnerParser.HashtagContext>? shadowIDs) GetContentIDTags(YarnSpinnerParser.HashtagContext[] hashtagContexts)
+        {
+            if (hashtagContexts != null)
+            {
+                List<YarnSpinnerParser.HashtagContext>? lineIDs = null;
+                List<YarnSpinnerParser.HashtagContext>? shadowIDs = null;
+                foreach (var hashtagContext in hashtagContexts)
+                {
+                    string tagText = hashtagContext.text.Text;
+                    if (tagText.StartsWith("line:", StringComparison.InvariantCulture))
+                    {
+                        if (lineIDs == null)
+                        {
+                            lineIDs = new();
+                        }
+                        lineIDs.Add(hashtagContext);
+                        continue;
+                    }
+                    if (tagText.StartsWith("shadow:", StringComparison.InvariantCulture))
+                    {
+                        if (shadowIDs == null)
+                        {
+                            shadowIDs = new();
+                        }
+                        shadowIDs.Add(hashtagContext);
+                        continue;
+                    }
+                }
+                return (lineIDs, shadowIDs);
+            }
+            return (null, null);
+        }
+
         /// <summary>
         /// Gets a string containing the line ID from a line statement parser
         /// context.
