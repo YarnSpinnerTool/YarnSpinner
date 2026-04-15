@@ -298,6 +298,12 @@ namespace Yarn.Markup
 
         internal List<LexerToken> LexMarkup(string input)
         {
+            HashSet<char> allowedIdentifierPunctuation = new()
+            {
+                '_',
+                '|'
+            };
+
             List<LexerToken> tokens = new List<LexerToken>();
             if (string.IsNullOrEmpty(input))
             {
@@ -433,12 +439,14 @@ namespace Yarn.Markup
                                 {
                                     var start = currentPosition;
 
-                                    // keep reading characters until the NEXT character is not a letter or digit
+                                    // keep reading characters until the NEXT character is not a letter or digit or allowed punctuation symbol
                                     // when that happens we will stop at that point, emit an id token
-                                    while (char.IsLetterOrDigit((char)this.stringReader.Peek()))
+                                    char peek = (char)this.stringReader.Peek();
+                                    while (char.IsLetterOrDigit(peek) || allowedIdentifierPunctuation.Contains(peek))
                                     {
                                         _ = this.stringReader.Read();
                                         currentPosition += 1;
+                                        peek = (char)this.stringReader.Peek();
                                     }
 
                                     last = new LexerToken(LexerTokenTypes.Identifier)
@@ -1466,6 +1474,13 @@ namespace Yarn.Markup
         public MarkupParseResult ParseString(string input, string localeCode, bool addImplicitCharacterAttribute = true)
         {
             return ParseString(input, localeCode, squish: true, sort: true, addImplicitCharacterAttribute);
+        }
+        
+        /// <returns>A markup parse result and a collection of diagnostics encountered while parsing the markup.</returns>
+        /// <inheritdoc cref="ParseString(string, string, bool, bool, bool)" />
+        public (MarkupParseResult markup, List<MarkupDiagnostic> diagnostics) ParseStringAndIncludeMarkupDiagnostics(string input, string localeCode, bool addImplicitCharacterAttribute = true)
+        {
+            return ParseStringWithDiagnostics(input, localeCode, squish: true, sort: true, addImplicitCharacterAttribute);
         }
 
         /// <summary>

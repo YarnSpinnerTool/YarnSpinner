@@ -235,6 +235,25 @@ namespace Yarn.Compiler
                 }
             }
 
+            // we run through each line and parse it looking for any markup
+            // this way we can send over diagnostics at the same time
+            // later might want to make this a different compilation job type
+            // or maybe be a different flow entirely
+            var lineParser = new Yarn.Markup.LineParser();
+            foreach (var line in stringTableManager.StringTable)
+            {
+                if (line.Value.text == null)
+                {
+                    continue;
+                }
+                var result = lineParser.ParseStringAndIncludeMarkupDiagnostics(line.Value.text, System.Globalization.CultureInfo.InvariantCulture.TwoLetterISOLanguageName);
+                foreach (var diag in result.diagnostics)
+                {
+                    diagnostics.Add(DiagnosticDescriptor.MarkupFailedToParse.Create(line.Value.fileName, diag.Message));
+                }
+            }
+
+
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
             {
                 // Stop at this point

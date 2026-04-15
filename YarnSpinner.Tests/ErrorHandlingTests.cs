@@ -1300,5 +1300,19 @@ title: EmptyWithComment
 
             diag.Severity.Should().Be(severity);
         }
+
+
+        [Fact]
+        public void TestCompilerGeneratesMarkupDiagnostics()
+        {
+            // this is just checking a single diag comes over
+            // ensuring the right diags are generated is over in the markuptests
+            var source = CreateTestNode("A line with [a]invalid markup");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            job.CompilationType = CompilationJob.Type.StringsOnly;
+
+            var result = Compiler.Compile(job);
+            var diag = result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.MarkupFailedToParse.Code);
+        }
     }
 }
