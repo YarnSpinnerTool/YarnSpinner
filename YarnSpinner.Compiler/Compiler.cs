@@ -774,16 +774,10 @@ namespace Yarn.Compiler
         }
 
 
-        /// <summary>
-        /// Gets the name of the boolean variable that stores whether the
-        /// content identified by lineID has been seen by the player before.
-        /// </summary>
-        /// <param name="lineID">The line ID to generate a variable name
-        /// for.</param>
-        /// <returns>A variable name.</returns>
+        /// <inheritdoc cref="Library.GenerateUniqueContentViewedVariableName(string)"/>
         internal static string GetContentViewedVariableName(string lineID)
         {
-            return $"$Yarn.Internal.Once.{lineID}";
+            return Library.GenerateUniqueContentViewedVariableName(lineID);
         }
 
         /// <summary>
