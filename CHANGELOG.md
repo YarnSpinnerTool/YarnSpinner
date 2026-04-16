@@ -33,7 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
     ```
   - This works for once statements with or without a variable associated with them
 - `Library.GenerateUniqueCommandBlockViewedVariableName()` that returns the same unique valued to generate the `<<once>>` block variables.
-  - This is inherently unstable and should only be used either after editing of Yarn has finished or with an unerstanding of it's instability.
+  - This is inherently unstable and should only be used either after editing of Yarn has finished or with an understanding of it's instability.
   - This is something we want to improve
 
 ### Changed

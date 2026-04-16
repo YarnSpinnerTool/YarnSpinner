@@ -39,7 +39,7 @@ public partial class YarnSpinnerParser : Parser {
 	public const int
 		INDENT=1, DEDENT=2, BLANK_LINE_FOLLOWING_OPTION=3, WS=4, COMMENT=5, NEWLINE=6, 
 		HEADER_WHEN=7, HEADER_TITLE=8, ID=9, BODY_START=10, HEADER_DELIMITER=11, 
-		HASHTAG=12, HEADER_WHEN_UNKNOWN=13, REST_OF_LINE=14, BODY_WS=15, BODY_END=16, 
+		HASHTAG=12, HEADER_WHEN_UNKNOWN=13, HEADER_TEXT=14, BODY_WS=15, BODY_END=16, 
 		SHORTCUT_ARROW=17, LINE_GROUP_ARROW=18, COMMAND_START=19, EXPRESSION_START=20, 
 		ESCAPED_ANY=21, TEXT_ESCAPE=22, TEXT_COMMENT=23, TEXT=24, UNESCAPABLE_CHARACTER=25, 
 		TEXT_COMMANDHASHTAG_WS=26, TEXT_COMMANDHASHTAG_COMMENT=27, TEXT_COMMANDHASHTAG_ERROR=28, 
@@ -103,7 +103,7 @@ public partial class YarnSpinnerParser : Parser {
 	private static readonly string[] _SymbolicNames = {
 		null, "INDENT", "DEDENT", "BLANK_LINE_FOLLOWING_OPTION", "WS", "COMMENT", 
 		"NEWLINE", "HEADER_WHEN", "HEADER_TITLE", "ID", "BODY_START", "HEADER_DELIMITER", 
-		"HASHTAG", "HEADER_WHEN_UNKNOWN", "REST_OF_LINE", "BODY_WS", "BODY_END", 
+		"HASHTAG", "HEADER_WHEN_UNKNOWN", "HEADER_TEXT", "BODY_WS", "BODY_END", 
 		"SHORTCUT_ARROW", "LINE_GROUP_ARROW", "COMMAND_START", "EXPRESSION_START", 
 		"ESCAPED_ANY", "TEXT_ESCAPE", "TEXT_COMMENT", "TEXT", "UNESCAPABLE_CHARACTER", 
 		"TEXT_COMMANDHASHTAG_WS", "TEXT_COMMANDHASHTAG_COMMENT", "TEXT_COMMANDHASHTAG_ERROR", 
@@ -524,7 +524,7 @@ public partial class YarnSpinnerParser : Parser {
 		public IToken header_value;
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEADER_DELIMITER() { return GetToken(YarnSpinnerParser.HEADER_DELIMITER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ID() { return GetToken(YarnSpinnerParser.ID, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REST_OF_LINE() { return GetToken(YarnSpinnerParser.REST_OF_LINE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEADER_TEXT() { return GetToken(YarnSpinnerParser.HEADER_TEXT, 0); }
 		public HeaderContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -563,10 +563,10 @@ public partial class YarnSpinnerParser : Parser {
 			State = 118;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if (_la==REST_OF_LINE) {
+			if (_la==HEADER_TEXT) {
 				{
 				State = 117;
-				_localctx.header_value = Match(REST_OF_LINE);
+				_localctx.header_value = Match(HEADER_TEXT);
 				}
 			}
 

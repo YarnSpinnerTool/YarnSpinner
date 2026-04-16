@@ -78,13 +78,18 @@ mode HeaderTitleMode;
 // title clause, where we expect to see a single ID.
 HEADER_TITLE_DELIMITER: WS? ':' WS? -> type(HEADER_DELIMITER);
 HEADER_TITLE_ID: WS? ID WS? -> type(ID);
+HEADER_TITLE_COMMENT: '//' ~('\r'|'\n')* -> type(COMMENT), channel(COMMENTS);
 HEADER_TITLE_NEWLINE : NEWLINE -> type(NEWLINE), popMode;
 
 // Headers before a node.
 mode HeaderMode;
 // Allow arbitrary text up to the end of the line.
-REST_OF_LINE : ~('\r'|'\n')+;
+
+HEADER_COMMENT: '//' ~('\r'|'\n')* -> type(COMMENT), channel(COMMENTS);
+
 HEADER_NEWLINE : NEWLINE -> type(NEWLINE), channel(WHITESPACE), popMode;
+HEADER_TEXT: HEADER_FRAG+ | '/' ;
+fragment HEADER_FRAG: ~[\r\n/];
 
 // The main body of a node.
 mode BodyMode;
@@ -297,6 +302,9 @@ DOT : '.' ;
 //
 // Mark that we are no longer in a 'when' clause, and pop the mode.
 EXPRESSION_NEWLINE: [\r\n]+ {IsInWhenClause();}? {SetInWhenClause(false);} -> type(NEWLINE), popMode;
+// Comments likewise only make sense as existing inside of a when clause
+// unlike newlines though they don't pop the mode, they eat everything up to a newline which means when it finishes gobbling up to the new line then the above will handle the NL
+EXPRESSION_COMMENT: '//' ~('\r'|'\n')* {IsInWhenClause();}? -> type(COMMENT), channel(COMMENTS);
 
 fragment INT: DIGIT+ ;
 fragment DIGIT: [0-9];

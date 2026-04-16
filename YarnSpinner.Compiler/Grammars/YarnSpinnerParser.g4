@@ -24,8 +24,7 @@ when_header:
     ;
 
 header 
-    // : header_key=ID HEADER_DELIMITER (header_value=REST_OF_LINE|header_expression=header_when_expression NEWLINE)?
-    : header_key=ID HEADER_DELIMITER (header_value=REST_OF_LINE)?
+    : header_key=ID HEADER_DELIMITER (header_value=HEADER_TEXT)?
     ;
 
 header_when_expression
