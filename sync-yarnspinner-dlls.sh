@@ -25,6 +25,7 @@ fi
 cd $YARNSPINNER_FOLDER
 dotnet-gitversion /updateAssemblyInfo
 mkdir -p .build-tmp
+dotnet clean --configuration Debug
 dotnet build --configuration Debug YarnSpinner.Compiler
 cp -v YarnSpinner.Compiler/bin/Debug/netstandard2.0/* .build-tmp
 
