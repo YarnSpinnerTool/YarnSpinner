@@ -38,3 +38,11 @@ not:
 ---
 body empty
 ===
+title: HeaderWith // comment on the title line
+subtitle: Comments // comment on the subtitle line
+when: always // comment on the when line
+another: header // with a comment
+also: /
+---
+body empty
+===

@@ -823,7 +823,7 @@ namespace Yarn.Compiler
                 else
                 {
                     return (
-                        Name: title,
+                        Name: title?.Trim(),
                         TitleHeader: titleHeader ?? null,
                         Node: n.Node,
                         File: n.File);
@@ -869,7 +869,7 @@ namespace Yarn.Compiler
 
                     // If subtitles will be used to disambiguate node names then check
                     // if those are unique
-                    var nodesBySubtitle = group.GroupBy(n => n.Node.GetHeader("subtitle")?.header_value?.Text ?? null);
+                    var nodesBySubtitle = group.GroupBy(n => n.Node.GetHeader("subtitle")?.header_value?.Text?.Trim() ?? null);
 
                     foreach (var subgroup in nodesBySubtitle)
                     {
@@ -928,7 +928,10 @@ namespace Yarn.Compiler
 
                 if (subtitleValue != null)
                 {
-                    var subtitle = subtitleValue.Text;
+                    // subtitles are just normal headers that go through an additional validation step afterwards
+                    // as such they can often have leading/trailing whitespace
+                    // that technically is against the rules but is more a quirk of parsing than an intentional decision
+                    var subtitle = subtitleValue.Text.Trim();
 
                     var invalidCharacterMatch = invalidTitleCharacters.Match(subtitle);
                     if (invalidCharacterMatch.Success)

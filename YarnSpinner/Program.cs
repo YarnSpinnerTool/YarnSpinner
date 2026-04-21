@@ -616,7 +616,7 @@ namespace Yarn
             {
                 if (header.Key == headerName)
                 {
-                    return header.Value;
+                    return header.Value.Trim();
                 }
             }
             return null;

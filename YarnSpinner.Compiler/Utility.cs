@@ -782,7 +782,7 @@ namespace Yarn.Compiler
             )
         {
             // Try and find the current title, if present.
-            uniqueTitle = nodeContext.title_header()?.FirstOrDefault()?.title?.Text;
+            uniqueTitle = nodeContext.title_header()?.FirstOrDefault()?.title?.Text?.Trim();
 
             if (string.IsNullOrEmpty(uniqueTitle))
             {
@@ -795,7 +795,7 @@ namespace Yarn.Compiler
             // source.
             sourceTitle = uniqueTitle!;
 
-            subtitle = nodeContext.GetHeader("subtitle")?.header_value?.Text;
+            subtitle = nodeContext.GetHeader("subtitle")?.header_value?.Text?.Trim();
 
             nodeGroupName = null;
 
