@@ -314,7 +314,15 @@ namespace Yarn.Compiler
                     // TODO: see above comment
                     //
                     // this.InsertToken($"<indent to {currentIndentationLength}>", YarnSpinnerLexer.INDENT);
-                    this.InsertToken(string.Empty, YarnSpinnerLexer.INDENT);
+
+                    // We're about to emit an indentation. Trim off the
+                    // whitespace from the previous newline token, and emit a
+                    // new INDENT token with that trimmed whitespace as its text.
+                    var mutableToken = currentToken as CommonToken ?? throw new InvalidOperationException($"Expected newline token to be a {nameof(CommonToken)}");
+                    mutableToken.Text = "\n";
+                    var indentationString = new string(' ', currentIndentationLength);
+
+                    this.InsertToken(indentationString, YarnSpinnerLexer.INDENT);
                 }
 
                 // we've now started tracking the indentation, or ignored it, so can turn this off
