@@ -227,13 +227,20 @@ public class Generator : IIncrementalGenerator
             textFiles.Select(static (text, cancellationToken) =>
             {
                 var contents = text.GetText(cancellationToken)!.ToString();
-                var (data, markdown) = contents.GetFrontMatter<DiagnosticFrontMatter>();
+                try
+                {
+                    var (data, markdown) = contents.GetFrontMatter<DiagnosticFrontMatter>();
 
-                return (
-                    name: Path.GetFileNameWithoutExtension(text.Path),
-                    diagnosticInfo: data,
-                    content: markdown
-                );
+                    return (
+                        name: Path.GetFileNameWithoutExtension(text.Path),
+                        diagnosticInfo: data,
+                        content: markdown
+                    );
+                }
+                catch (YamlDotNet.Core.YamlException e)
+                {
+                    throw new YamlDotNet.Core.YamlException(text.Path + ": " + e.Message);
+                }
             });
 
         var diagnosticNames = namesAndContents.Collect();
