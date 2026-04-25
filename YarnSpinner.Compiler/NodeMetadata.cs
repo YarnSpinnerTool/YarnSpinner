@@ -138,7 +138,7 @@ namespace Yarn.Compiler
 
         /// <summary>
         /// the source location of this jump statement in the file
-        /// used for precise error reporting (YS0002)
+        /// used for precise error reporting
         /// </summary>
         public Range Range { get; set; } = Range.InvalidRange;
     }

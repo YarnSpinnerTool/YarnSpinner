@@ -221,7 +221,7 @@ namespace Yarn.Compiler
                 }
             }
 
-            // validate jump targets - YS0002: warn about jumps to non-existent nodes
+            // validate jump targets - warn about jumps to non-existent nodes
             var allNodeTitles = new HashSet<string>(nodeMetadata.Select(n => n.Title));
             foreach (var node in nodeMetadata)
             {
@@ -315,7 +315,6 @@ namespace Yarn.Compiler
 
             // After all files are type-checked, check for variables that are still implicitly declared
             // (i.e., were used but never had a <<declare>> statement in any file)
-            // YS0003: Variable used without being declared
             // Only warn about variables, not functions (functions can be implicitly declared)
             foreach (var declaration in declarations.Where(d => d.IsImplicit && d.IsVariable && d.Name.StartsWith("$Yarn.Internal") == false))
             {
