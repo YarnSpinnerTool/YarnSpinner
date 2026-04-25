@@ -180,6 +180,20 @@ public class DiagnosticFrontMatter
     public string? DeprecationNote { get; set; }
 }
 
+public sealed class GeneratorOptions
+{
+    public GeneratorOptions(bool generateDescriptors, bool generateTests)
+    {
+        this.GenerateTests = generateTests;
+        this.GenerateDescriptors = generateDescriptors;
+    }
+
+    public bool GenerateTests { get; }
+    public bool GenerateDescriptors { get; }
+
+
+}
+
 /// <summary>
 /// An incremental source generator that takes a collection of markdown
 /// documents provided as additional files, extracts diagnostic descriptor
@@ -191,6 +205,18 @@ public class Generator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext initContext)
     {
+        // Get options
+        var options = initContext.AnalyzerConfigOptionsProvider.Select((options, _) =>
+        {
+            bool IsEnabled(string property) => options.GlobalOptions.TryGetValue(property, out var propertyEnabled) &&
+                 IsFeatureEnabled(propertyEnabled);
+
+            return new GeneratorOptions(
+                IsEnabled("build_property.YarnSpinnerDiagnostics_GenerateDescriptors"),
+                IsEnabled("build_property.YarnSpinnerDiagnostics_GenerateTests")
+            );
+        });
+
         // Get all .md files provided to us
         IncrementalValuesProvider<AdditionalText> textFiles =
             initContext.AdditionalTextsProvider.Where(static file => file.Path.EndsWith(".md"));
@@ -214,52 +240,58 @@ public class Generator : IIncrementalGenerator
 
         // For each document that describes a diagnostic, produce code that
         // instantiates a descriptor for that diagnostic.
-        initContext.RegisterSourceOutput(namesAndContents, (spc, nameAndContent) =>
-        {
-            var (name, diagnosticInfo, content) = nameAndContent;
-
-            if (diagnosticInfo == null)
+        initContext.RegisterSourceOutput(namesAndContents.Combine(options), (spc, input) =>
             {
-                return;
-            }
+                var (nameAndContent, options) = input;
+                var (name, diagnosticInfo, content) = nameAndContent;
 
-            if (string.IsNullOrEmpty(diagnosticInfo.Code) || string.IsNullOrEmpty(diagnosticInfo.Name))
-            {
-                // TODO: report a diagnostic
-                return;
-            }
-
-            var descriptorType = diagnosticInfo.MessageValues.Count switch
-            {
-                0 => "DiagnosticDescriptor0",
-                1 => "DiagnosticDescriptor1",
-                2 => "DiagnosticDescriptor2",
-                3 => "DiagnosticDescriptor3",
-                4 => "DiagnosticDescriptor4",
-                _ => throw new Exception($"Diagnostic {diagnosticInfo.Code} has too many message values ({diagnosticInfo.MessageValues.Count})"),
-            };
-
-            static string GetSeverityName(DiagnosticFrontMatter.Severity severity)
-            {
-                return severity switch
+                if (diagnosticInfo == null)
                 {
-                    DiagnosticFrontMatter.Severity.Error => "Error",
-                    DiagnosticFrontMatter.Severity.Warning => "Warning",
-                    DiagnosticFrontMatter.Severity.Info => "Info",
-                    DiagnosticFrontMatter.Severity.None => "None",
-                    _ => throw new Exception($"Unknown severity {severity}")
+                    return;
+                }
+
+                if (options != null && options.GenerateDescriptors == false)
+                {
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(diagnosticInfo.Code) || string.IsNullOrEmpty(diagnosticInfo.Name))
+                {
+                    // TODO: report a diagnostic
+                    return;
+                }
+
+                var descriptorType = diagnosticInfo.MessageValues.Count switch
+                {
+                    0 => "DiagnosticDescriptor0",
+                    1 => "DiagnosticDescriptor1",
+                    2 => "DiagnosticDescriptor2",
+                    3 => "DiagnosticDescriptor3",
+                    4 => "DiagnosticDescriptor4",
+                    _ => throw new Exception($"Diagnostic {diagnosticInfo.Code} has too many message values ({diagnosticInfo.MessageValues.Count})"),
                 };
-            }
 
-            var defaultSeverity = diagnosticInfo.DefaultSeverity;
-            var minimumSeverity = diagnosticInfo.MinimumSeverity;
+                static string GetSeverityName(DiagnosticFrontMatter.Severity severity)
+                {
+                    return severity switch
+                    {
+                        DiagnosticFrontMatter.Severity.Error => "Error",
+                        DiagnosticFrontMatter.Severity.Warning => "Warning",
+                        DiagnosticFrontMatter.Severity.Info => "Info",
+                        DiagnosticFrontMatter.Severity.None => "None",
+                        _ => throw new Exception($"Unknown severity {severity}")
+                    };
+                }
 
-            if (minimumSeverity == DiagnosticFrontMatter.Severity.NotSet)
-            {
-                minimumSeverity = defaultSeverity;
-            }
+                var defaultSeverity = diagnosticInfo.DefaultSeverity;
+                var minimumSeverity = diagnosticInfo.MinimumSeverity;
 
-            var diagnosticType = @$"
+                if (minimumSeverity == DiagnosticFrontMatter.Severity.NotSet)
+                {
+                    minimumSeverity = defaultSeverity;
+                }
+
+                var diagnosticType = @$"
             public static readonly {descriptorType} {diagnosticInfo.Name} = new(
                 code: ""{diagnosticInfo.Code?.Escape()}"",
                 messageTemplate: ""{diagnosticInfo.MessageTemplate?.Escape()}"",
@@ -268,43 +300,43 @@ public class Generator : IIncrementalGenerator
                 description: ""{diagnosticInfo.Description?.Escape()}""
             );";
 
-            var commentSB = new StringBuilder();
-            commentSB.AppendLine($"/// <summary>{diagnosticInfo.Code}: {diagnosticInfo.Description?.UnwrapAndTrim().EscapeXML()}</summary>");
+                var commentSB = new StringBuilder();
+                commentSB.AppendLine($"/// <summary>{diagnosticInfo.Code}: {diagnosticInfo.Description?.UnwrapAndTrim().EscapeXML()}</summary>");
 
-            commentSB.AppendLine("/// <remarks>");
-            if (string.IsNullOrEmpty(diagnosticInfo.Summary) == false)
-            {
-                commentSB.AppendLine($"/// <para>{diagnosticInfo.Summary?.UnwrapAndTrim().EscapeXML()}</para>");
-            }
-            if (diagnosticInfo.MessageValues.Count > 0)
-            {
-                commentSB.AppendLine("/// <para>Format placeholders:");
-                commentSB.AppendLine("/// <list type=\"number\">");
-                foreach (var value in diagnosticInfo.MessageValues)
+                commentSB.AppendLine("/// <remarks>");
+                if (string.IsNullOrEmpty(diagnosticInfo.Summary) == false)
                 {
-                    commentSB.AppendLine("/// <item>" + value.UnwrapAndTrim().EscapeXML() + "</item>");
+                    commentSB.AppendLine($"/// <para>{diagnosticInfo.Summary?.UnwrapAndTrim().EscapeXML()}</para>");
                 }
-                commentSB.AppendLine("/// </list></para>");
-
-
-            }
-            commentSB.AppendLine("/// </remarks>");
-
-            var deprecationSB = new StringBuilder();
-
-            if (string.IsNullOrWhiteSpace(diagnosticInfo.DeprecatedVersion) == false)
-            {
-                // The diagnostic is deprecated; add an Obsolete attribute to it
-                deprecationSB.Append("[System.Obsolete");
-                if (diagnosticInfo.DeprecationNote != null)
+                if (diagnosticInfo.MessageValues.Count > 0)
                 {
-                    // We have text we can include to explain the deprecation
-                    deprecationSB.Append("(\"" + diagnosticInfo.DeprecationNote.Escape() + "\")");
-                }
-                deprecationSB.AppendLine("]");
-            }
+                    commentSB.AppendLine("/// <para>Format placeholders:");
+                    commentSB.AppendLine("/// <list type=\"number\">");
+                    foreach (var value in diagnosticInfo.MessageValues)
+                    {
+                        commentSB.AppendLine("/// <item>" + value.UnwrapAndTrim().EscapeXML() + "</item>");
+                    }
+                    commentSB.AppendLine("/// </list></para>");
 
-            spc.AddSource($"DiagnosticDescriptors.{nameAndContent.name}", $@"
+
+                }
+                commentSB.AppendLine("/// </remarks>");
+
+                var deprecationSB = new StringBuilder();
+
+                if (string.IsNullOrWhiteSpace(diagnosticInfo.DeprecatedVersion) == false)
+                {
+                    // The diagnostic is deprecated; add an Obsolete attribute to it
+                    deprecationSB.Append("[System.Obsolete");
+                    if (diagnosticInfo.DeprecationNote != null)
+                    {
+                        // We have text we can include to explain the deprecation
+                        deprecationSB.Append("(\"" + diagnosticInfo.DeprecationNote.Escape() + "\")");
+                    }
+                    deprecationSB.AppendLine("]");
+                }
+
+                spc.AddSource($"DiagnosticDescriptors.{nameAndContent.name}", $@"
             namespace Yarn.Compiler {{
 
                 public partial class DiagnosticDescriptor
@@ -314,11 +346,17 @@ public class Generator : IIncrementalGenerator
                     {diagnosticType}
                 }}
             }}");
-        });
+            });
 
         // Additionally, provide code that creates a dictionary mapping codes to the descriptor object.
-        initContext.RegisterSourceOutput(diagnosticNames, (spc, value) =>
+        initContext.RegisterSourceOutput(diagnosticNames.Combine(options), (spc, input) =>
         {
+            var (value, options) = input;
+
+            if (options != null && options.GenerateDescriptors == false)
+            {
+                return;
+            }
             var allValidDiagnostics = value.Where(v => v.diagnosticInfo != null
                                                        && !string.IsNullOrEmpty(v.diagnosticInfo.Code)
                                                        && !string.IsNullOrEmpty(v.diagnosticInfo.Name));
@@ -344,5 +382,15 @@ public class Generator : IIncrementalGenerator
 
             spc.AddSource("DiagnosticDescriptors.Dictionary", sourceSB.ToString());
         });
+    }
+
+    private static bool IsFeatureEnabled(string enabledValue)
+    {
+        return StringComparer.OrdinalIgnoreCase.Equals("enable", enabledValue)
+               || StringComparer.OrdinalIgnoreCase.Equals("enabled", enabledValue)
+               || StringComparer.OrdinalIgnoreCase.Equals("true", enabledValue)
+               || StringComparer.OrdinalIgnoreCase.Equals("yes", enabledValue)
+               || StringComparer.OrdinalIgnoreCase.Equals("y", enabledValue)
+               || StringComparer.OrdinalIgnoreCase.Equals("1", enabledValue);
     }
 }
