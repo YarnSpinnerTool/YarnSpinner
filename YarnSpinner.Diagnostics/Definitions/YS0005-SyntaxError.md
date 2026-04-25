@@ -8,6 +8,14 @@ messageValues:
     - The error
 defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        // Missing '1'
+        <<if (1 + ) == 2>>
+        <<endif>>
+        ===
 ---
 
 A syntax error exists in the Yarn script.

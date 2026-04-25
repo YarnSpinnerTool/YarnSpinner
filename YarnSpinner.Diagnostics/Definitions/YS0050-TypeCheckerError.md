@@ -10,5 +10,10 @@ summary: |
     This is a catch-all error for handling type checking errors.
 defaultSeverity: error
 published: v3.2.1
-
+examples:
+    - script: |
+        title: Start
+        -=-
+        {visited(true)}
+        ===
 ---

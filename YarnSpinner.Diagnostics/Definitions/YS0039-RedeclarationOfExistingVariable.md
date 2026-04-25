@@ -10,4 +10,11 @@ summary: |
     Variables can only have a single declaration.
 defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        <<declare $var = 5>>
+        <<declare $var = true>>
+        ===
 ---

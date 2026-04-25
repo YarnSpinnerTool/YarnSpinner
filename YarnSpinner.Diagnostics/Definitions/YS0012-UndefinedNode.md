@@ -9,5 +9,17 @@ messageValues:
 defaultSeverity: warning
 minimumSeverity: none
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        <<detour madeUp>>
+        ===
+    - script: |
+        title: Start
+        -=-
+        <<jump madeUp>>
+        ===
+
 ---
         

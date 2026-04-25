@@ -13,5 +13,11 @@ summary: |
 
 defaultSeverity: warning
 minimumSeverity: none
+examples:
+    - script: |
+        title: Start
+        -=-
+        A line with [a]invalid markup
+        ===
 ---
 

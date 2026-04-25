@@ -11,4 +11,18 @@ summary: |
     Subtitles within a node group must be unique.
 defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Group
+        when: always
+        subtitle: x
+        -=-
+        Content
+        ===
+        title: Group
+        when: always
+        subtitle: x
+        -=-
+        Content
+        ===
 ---

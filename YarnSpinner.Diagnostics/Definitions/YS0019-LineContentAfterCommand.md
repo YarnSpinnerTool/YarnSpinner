@@ -11,5 +11,11 @@ summary: |
 defaultSeverity: warning
 minimumSeverity: none
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        <<wait 1>> this is a line following a command
+        ===
 ---
         

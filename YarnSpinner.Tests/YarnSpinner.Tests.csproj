@@ -8,6 +8,8 @@
     <CoverletOutputFormat>lcov</CoverletOutputFormat>
     <CoverletOutput>./coverage/coverage.info</CoverletOutput>
     <JsonSerializerIsReflectionEnabledByDefault>false</JsonSerializerIsReflectionEnabledByDefault>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <YarnSpinnerDiagnostics_GenerateTestData>enable</YarnSpinnerDiagnostics_GenerateTestData>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,6 +33,18 @@
   <ItemGroup>
     <ProjectReference Include="..\YarnSpinner\YarnSpinner.csproj" />
     <ProjectReference Include="..\YarnSpinner.Compiler\YarnSpinner.Compiler.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YarnSpinner.Diagnostics\YarnSpinner.Diagnostics.csproj"
+      OutputItemType="Analyzer"
+      ReferenceOutputAssembly="false" />
+    <AdditionalFiles Include="..\YarnSpinner.Diagnostics\Definitions\*.md" />
+    <AdditionalFiles Include="..\YarnSpinner.Diagnostics\*.txt" />
+
+    <!-- Make our 'generate descriptors' property visible to the compiler, so
+    that it can know whether or not to generate descriptors  -->
+    <CompilerVisibleProperty Include="YarnSpinnerDiagnostics_GenerateTestData" />
   </ItemGroup>
 
 </Project>

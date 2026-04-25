@@ -31,5 +31,13 @@ messageValues:
 
 # The default severity of the diagnostic. Allowed values are 'error', 'warning' and 'info'; default is 'error'.
 defaultSeverity: error
+
+examples:
+    - script: |
+        title: Start
+        -=-
+        <<declare $x = true as Number>>
+        ===
+
 ---
 

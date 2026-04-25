@@ -146,6 +146,14 @@ public class DiagnosticFrontMatter
         [YamlMember(Alias = "none")]
         None,
     }
+
+    public enum Source
+    {
+        [YamlMember(Alias = "compiler")]
+        Compiler,
+        [YamlMember(Alias = "languageserver")]
+        LanguageServer,
+    }
     [YamlMember(Alias = "name")]
     public string? Name { get; set; }
 
@@ -178,6 +186,20 @@ public class DiagnosticFrontMatter
 
     [YamlMember(Alias = "deprecation_note")]
     public string? DeprecationNote { get; set; }
+
+    [YamlMember(Alias = "examples")]
+    public List<DiagnosticExample> Examples { get; set; } = [];
+
+    [YamlMember(Alias = "generated_in")]
+    public Source GeneratedIn { get; set; } = Source.Compiler;
+
+    public bool SkipTestGeneration => this.Examples.Any(e => e.Script == "skip_test_generation");
+}
+
+public class DiagnosticExample
+{
+    [YamlMember(Alias = "script")]
+    public string Script { get; set; } = string.Empty;
 }
 
 public sealed class GeneratorOptions
@@ -213,7 +235,7 @@ public class Generator : IIncrementalGenerator
 
             return new GeneratorOptions(
                 IsEnabled("build_property.YarnSpinnerDiagnostics_GenerateDescriptors"),
-                IsEnabled("build_property.YarnSpinnerDiagnostics_GenerateTests")
+                IsEnabled("build_property.YarnSpinnerDiagnostics_GenerateTestData")
             );
         });
 
@@ -360,13 +382,21 @@ public class Generator : IIncrementalGenerator
         {
             var (value, options) = input;
 
+
+
+            var allValidDiagnostics = value.Where(v => v.diagnosticInfo != null
+                                                       && !string.IsNullOrEmpty(v.diagnosticInfo.Code)
+                                                       && !string.IsNullOrEmpty(v.diagnosticInfo.Name));
+
+            if (options != null && options.GenerateTests)
+            {
+                GenerateTestDataForDiagnostics(spc, allValidDiagnostics.Select(d => d.diagnosticInfo!));
+            }
+
             if (options != null && options.GenerateDescriptors == false)
             {
                 return;
             }
-            var allValidDiagnostics = value.Where(v => v.diagnosticInfo != null
-                                                       && !string.IsNullOrEmpty(v.diagnosticInfo.Code)
-                                                       && !string.IsNullOrEmpty(v.diagnosticInfo.Name));
 
             var sourceSB = new StringBuilder();
             sourceSB.AppendLine("using System.Collections.Generic;");
@@ -389,6 +419,67 @@ public class Generator : IIncrementalGenerator
 
             spc.AddSource("DiagnosticDescriptors.Dictionary", sourceSB.ToString());
         });
+    }
+
+    public void GenerateTestDataForDiagnostics(SourceProductionContext spc, IEnumerable<DiagnosticFrontMatter> diagnostics)
+    {
+        string GetSourceForDiagnostic(DiagnosticFrontMatter diagnosticFrontMatter)
+        {
+            var sb = new StringBuilder();
+            int i = 0;
+            foreach (var example in diagnosticFrontMatter.Examples)
+            {
+                i++;
+                var script = example.Script;
+
+                // YamlDotNet is, for some reason, stripping the --- out of our
+                // block strings, so our terrible workaround is to use "-=-" as
+                // a placeholder for "---" in the YAML, and swap it out here. I
+                // hate it!
+                script = script.Replace("-=-", "---");
+
+                sb.AppendLine($@"new object[] {{
+                ""{diagnosticFrontMatter.Code}"",
+                """"""
+{script}"""""",
+               }},");
+            }
+            return sb.ToString();
+        }
+        var source = @$"
+        using System.Collections.Generic;
+using System.Linq;
+using FluentAssertions;
+using Xunit;
+using Xunit.Abstractions;
+using Yarn.Compiler;
+namespace YarnSpinner.Tests {{
+
+public partial class GeneratedDiagnosticTests : TestBase {{
+    public static IEnumerable<object[]> GetGeneratedTestData()
+    {{
+        return new List<object[]>() {{
+            {string.Join("\n", diagnostics
+                .Where(d => d.GeneratedIn == DiagnosticFrontMatter.Source.Compiler && d.SkipTestGeneration == false)
+                .Select(d => GetSourceForDiagnostic(d)).Where(s => s.Length > 0))}
+        }};
+    }}
+
+    public static IEnumerable<object[]> GetCompilerDiagnosticCodes()
+    {{
+        return new List<object[]>() {{
+            {string.Join(",\n", diagnostics
+                .Where(d => d.GeneratedIn == DiagnosticFrontMatter.Source.Compiler
+                    && d.DeprecatedVersion == null
+                    && d.SkipTestGeneration == false)
+                .Select(d => $"new object[] {{\"{d.Code}\"}}"))}
+        }};
+    }}
+}}
+
+}}";
+
+        spc.AddSource("YarnSpinner.Diagnostics.GeneratedTestData.cs", source);
     }
 
     private static bool IsFeatureEnabled(string enabledValue)

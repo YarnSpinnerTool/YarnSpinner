@@ -15,5 +15,12 @@ summary: |
 defaultSeverity: error
 
 minimumSeverity: error
+
+examples:
+    - script: |
+        title: Start
+        -=-
+        the line #line:abc123 #line:abc123
+        ===
 ---
 

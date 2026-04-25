@@ -10,5 +10,11 @@ summary: |
     The compiler could not infer the type of this variable from how it is used.
 defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        {number($x)}
+        ===
 # TODO: possibly merge this with YS0029?
 ---

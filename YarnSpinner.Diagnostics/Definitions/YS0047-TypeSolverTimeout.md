@@ -10,4 +10,7 @@ summary: |
     The type solver exceeded its time limit while resolving this expression.
 defaultSeverity: error
 published: v3.2.0
+examples:
+    # Testing a timeout is unfeasible in CI
+    - script: skip_test_generation
 ---

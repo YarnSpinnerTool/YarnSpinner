@@ -8,4 +8,12 @@ messageValues:
     - Line ID
 defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        this is the normal line #line:abc123
+        this is the normal line #shadow:abc123
+        this is the normal line #shadow:abc124
+        ===
 ---

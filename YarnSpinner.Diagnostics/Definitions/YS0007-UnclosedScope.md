@@ -12,4 +12,10 @@ summary: |
     Unclosed control flow scope (missing endif, endonce, etc.)
 defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        <<if $x>>
+        ===
 ---

@@ -10,5 +10,7 @@ summary: |
     An internal error was detected by the compiler. Please file an issue.
 defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: skip_test_generation
 ---
        
