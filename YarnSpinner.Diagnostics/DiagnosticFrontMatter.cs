@@ -70,5 +70,6 @@ public class DiagnosticFrontMatter
     [YamlMember(Alias = "generated_in")]
     public Source GeneratedIn { get; set; } = Source.Compiler;
 
-    public bool SkipTestGeneration => this.Examples.Any(e => e.Script == "skip_test_generation");
+    [YamlMember(Alias = "skip_test_generation")]
+    public bool SkipTestGeneration { get; set; } = false;
 }
