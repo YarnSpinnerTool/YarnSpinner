@@ -1,220 +1,7 @@
-﻿using Markdig;
-using Markdig.Extensions.Yaml;
-using Markdig.Syntax;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using System.Text;
-using System.Text.RegularExpressions;
-using YamlDotNet.Serialization;
 
 namespace YarnSpinner.Diagnostics;
-
-/// <summary>
-/// Utility methods for working with Markdown and YAML frontmatter
-/// </summary>
-public static class MarkdownExtensions
-{
-    private static readonly IDeserializer YamlDeserializer =
-        new DeserializerBuilder()
-        .IgnoreUnmatchedProperties()
-        .Build();
-
-    private static readonly MarkdownPipeline Pipeline
-        = new MarkdownPipelineBuilder()
-        .UseYamlFrontMatter()
-        .Build();
-
-    private static readonly Regex EscapedCharactersRegex = new(@"[\n\r""]");
-    private static readonly Regex NewlinesRegex = new(@"[\n\r]");
-    private static readonly Regex MultipleSpacesRegex = new(@"\s{2,}");
-
-    /// <summary>
-    /// Escapes a string by adding a backslash \ in front of characters that
-    /// can't appear inside a string literal in C#
-    /// </summary>
-    /// <param name="str">The string to escape</param>
-    /// <returns>The escaped string</returns>
-    public static string Escape(this string str)
-    {
-        return EscapedCharactersRegex.Replace(str, d => "\\" + d.Value);
-    }
-
-    /// <summary>
-    /// Unwraps a string into a single line by replacing all newlines with
-    /// spaces, and collapsing multiple spaces into a single space, and then
-    /// trimming it.
-    /// </summary>
-    /// <param name="str">The string to unwrap.</param>
-    /// <returns>The unwrapped string.</returns>
-    public static string UnwrapAndTrim(this string str)
-    {
-
-        var working = NewlinesRegex.Replace(str, " ");
-        working = MultipleSpacesRegex.Replace(working, " ");
-        return working.Trim();
-    }
-
-    /// <summary>
-    /// Replaces XML-unsafe characters (&lt; and &gt;) with HTML entities.
-    /// </summary>
-    /// <param name="str">The string to escape.</param>
-    /// <returns>The escaped string.</returns>
-    public static string EscapeXML(this string str)
-    {
-        return str.Replace("<", "&lt;").Replace(">", "&gt;");
-    }
-
-    /// <summary>
-    /// Parses a document containing markdown to get its front matter, and
-    /// returns the parsed result and the remaining markdown.
-    /// </summary>
-    /// <typeparam name="T">The type of frontmatter to parse.</typeparam>
-    /// <param name="markdown">The markdown to parse.</param>
-    /// <returns>A tuple containing the parsed frontmatter and the remaining
-    /// markdown text.</returns>
-    /// <exception cref="YamlDotNet.Core.YamlException">Thrown when there is an
-    /// exception encountered when parsing the frontmatter.</exception>
-    public static (T?, string) GetFrontMatter<T>(this string markdown)
-    {
-        var document = Markdown.Parse(markdown, Pipeline);
-        var block = document
-            .Descendants<YamlFrontMatterBlock>()
-            .FirstOrDefault();
-
-        var writer = new StringWriter();
-        var renderer = new Markdig.Renderers.Normalize.NormalizeRenderer(writer);
-        Pipeline.Setup(renderer);
-
-        if (block == null)
-        {
-            renderer.Render(document);
-            // No frontmatter, so no YAML
-            return (default, writer.ToString());
-        }
-
-        // Extract the YAML from the frontmatter...
-        var yaml =
-            block
-            // this is not a mistake
-            // we have to call .Lines 2x
-            .Lines // StringLineGroup[]
-            .Lines // StringLine[]
-            .OrderByDescending(x => x.Line)
-            .Select(x => $"{x}\n")
-            .ToList()
-            .Select(x => x.Replace("---", string.Empty))
-            .Where(x => !string.IsNullOrWhiteSpace(x))
-            .Aggregate((s, agg) => agg + s);
-
-        // ...and deserialize it
-        try
-        {
-
-            var frontmatter = YamlDeserializer.Deserialize<T>(yaml);
-
-            // Remove the frontmatter from the markdown
-            block.Remove();
-
-            renderer.Render(document);
-
-            // Finally, return our frontmatter alongside the normalised markdown
-            return (frontmatter, writer.ToString());
-        }
-        catch (YamlDotNet.Core.YamlException e)
-        {
-            throw new YamlDotNet.Core.YamlException($"Exception when parsing markdown: line {e.Start.Line}: {e.Message}", e);
-        }
-    }
-}
-
-/// <summary>
-/// Stores information extracted from a markdown document about a diagnostic.
-/// </summary>
-public class DiagnosticFrontMatter
-{
-    /// <summary>
-    /// The severity of the diagnostic.
-    /// </summary>
-    public enum Severity
-    {
-        NotSet,
-        [YamlMember(Alias = "error")]
-        Error,
-        [YamlMember(Alias = "warning")]
-        Warning,
-        [YamlMember(Alias = "info")]
-        Info,
-        [YamlMember(Alias = "none")]
-        None,
-    }
-
-    public enum Source
-    {
-        [YamlMember(Alias = "compiler")]
-        Compiler,
-        [YamlMember(Alias = "languageserver")]
-        LanguageServer,
-    }
-    [YamlMember(Alias = "name")]
-    public string? Name { get; set; }
-
-    [YamlMember(Alias = "description")]
-    public string? Description { get; set; }
-
-    [YamlMember(Alias = "summary")]
-    public string? Summary { get; set; }
-
-    [YamlMember(Alias = "code")]
-    public string? Code { get; set; }
-
-    [YamlMember(Alias = "messageTemplate")]
-    public string? MessageTemplate { get; set; }
-
-    [YamlMember(Alias = "messageValues")]
-    public List<string> MessageValues { get; set; } = [];
-
-    [YamlMember(Alias = "defaultSeverity")]
-    public Severity DefaultSeverity { get; set; } = Severity.Error;
-
-    [YamlMember(Alias = "minimumSeverity")]
-    public Severity MinimumSeverity { get; set; } = Severity.NotSet;
-
-    [YamlMember(Alias = "published")]
-    public string? PublishedVersion { get; set; }
-
-    [YamlMember(Alias = "deprecated")]
-    public string? DeprecatedVersion { get; set; }
-
-    [YamlMember(Alias = "deprecation_note")]
-    public string? DeprecationNote { get; set; }
-
-    [YamlMember(Alias = "examples")]
-    public List<DiagnosticExample> Examples { get; set; } = [];
-
-    [YamlMember(Alias = "generated_in")]
-    public Source GeneratedIn { get; set; } = Source.Compiler;
-
-    public bool SkipTestGeneration => this.Examples.Any(e => e.Script == "skip_test_generation");
-}
-
-public class DiagnosticExample
-{
-    [YamlMember(Alias = "script")]
-    public string Script { get; set; } = string.Empty;
-}
-
-public sealed class GeneratorOptions
-{
-    public GeneratorOptions(bool generateDescriptors, bool generateTests)
-    {
-        this.GenerateTests = generateTests;
-        this.GenerateDescriptors = generateDescriptors;
-    }
-
-    public bool GenerateTests { get; }
-    public bool GenerateDescriptors { get; }
-
-
-}
 
 /// <summary>
 /// An incremental source generator that takes a collection of markdown
@@ -227,18 +14,6 @@ public class Generator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext initContext)
     {
-        // Get options
-        var options = initContext.AnalyzerConfigOptionsProvider.Select((options, _) =>
-        {
-            bool IsEnabled(string property) => options.GlobalOptions.TryGetValue(property, out var propertyEnabled) &&
-                 IsFeatureEnabled(propertyEnabled);
-
-            return new GeneratorOptions(
-                IsEnabled("build_property.YarnSpinnerDiagnostics_GenerateDescriptors"),
-                IsEnabled("build_property.YarnSpinnerDiagnostics_GenerateTestData")
-            );
-        });
-
         // Get all .md files provided to us
         IncrementalValuesProvider<AdditionalText> textFiles =
             initContext.AdditionalTextsProvider.Where(static file => file.Path.EndsWith(".md"));
@@ -269,17 +44,11 @@ public class Generator : IIncrementalGenerator
 
         // For each document that describes a diagnostic, produce code that
         // instantiates a descriptor for that diagnostic.
-        initContext.RegisterSourceOutput(namesAndContents.Combine(options), (spc, input) =>
+        initContext.RegisterSourceOutput(namesAndContents, (spc, input) =>
             {
-                var (nameAndContent, options) = input;
-                var (name, diagnosticInfo, content) = nameAndContent;
+                var (name, diagnosticInfo, content) = input;
 
                 if (diagnosticInfo == null)
-                {
-                    return;
-                }
-
-                if (options != null && options.GenerateDescriptors == false)
                 {
                     return;
                 }
@@ -365,7 +134,7 @@ public class Generator : IIncrementalGenerator
                     deprecationSB.AppendLine("]");
                 }
 
-                spc.AddSource($"DiagnosticDescriptors.{nameAndContent.name}", $@"
+                spc.AddSource($"DiagnosticDescriptors.{name}", $@"
             namespace Yarn.Compiler {{
 
                 public partial class DiagnosticDescriptor
@@ -378,25 +147,13 @@ public class Generator : IIncrementalGenerator
             });
 
         // Additionally, provide code that creates a dictionary mapping codes to the descriptor object.
-        initContext.RegisterSourceOutput(diagnosticNames.Combine(options), (spc, input) =>
+        initContext.RegisterSourceOutput(diagnosticNames, (spc, input) =>
         {
-            var (value, options) = input;
 
-
-
-            var allValidDiagnostics = value.Where(v => v.diagnosticInfo != null
+            var allValidDiagnostics = input.Where(v => v.diagnosticInfo != null
                                                        && !string.IsNullOrEmpty(v.diagnosticInfo.Code)
                                                        && !string.IsNullOrEmpty(v.diagnosticInfo.Name));
 
-            if (options != null && options.GenerateTests)
-            {
-                GenerateTestDataForDiagnostics(spc, allValidDiagnostics.Select(d => d.diagnosticInfo!));
-            }
-
-            if (options != null && options.GenerateDescriptors == false)
-            {
-                return;
-            }
 
             var sourceSB = new StringBuilder();
             sourceSB.AppendLine("using System.Collections.Generic;");
@@ -419,76 +176,5 @@ public class Generator : IIncrementalGenerator
 
             spc.AddSource("DiagnosticDescriptors.Dictionary", sourceSB.ToString());
         });
-    }
-
-    public void GenerateTestDataForDiagnostics(SourceProductionContext spc, IEnumerable<DiagnosticFrontMatter> diagnostics)
-    {
-        string GetSourceForDiagnostic(DiagnosticFrontMatter diagnosticFrontMatter)
-        {
-            var sb = new StringBuilder();
-            int i = 0;
-            foreach (var example in diagnosticFrontMatter.Examples)
-            {
-                i++;
-                var script = example.Script;
-
-                // YamlDotNet is, for some reason, stripping the --- out of our
-                // block strings, so our terrible workaround is to use "-=-" as
-                // a placeholder for "---" in the YAML, and swap it out here. I
-                // hate it!
-                script = script.Replace("-=-", "---");
-
-                sb.AppendLine($@"new object[] {{
-                ""{diagnosticFrontMatter.Code}"",
-                """"""
-{script}"""""",
-               }},");
-            }
-            return sb.ToString();
-        }
-        var source = @$"
-        using System.Collections.Generic;
-using System.Linq;
-using FluentAssertions;
-using Xunit;
-using Xunit.Abstractions;
-using Yarn.Compiler;
-namespace YarnSpinner.Tests {{
-
-public partial class GeneratedDiagnosticTests : TestBase {{
-    public static IEnumerable<object[]> GetGeneratedTestData()
-    {{
-        return new List<object[]>() {{
-            {string.Join("\n", diagnostics
-                .Where(d => d.GeneratedIn == DiagnosticFrontMatter.Source.Compiler && d.SkipTestGeneration == false)
-                .Select(d => GetSourceForDiagnostic(d)).Where(s => s.Length > 0))}
-        }};
-    }}
-
-    public static IEnumerable<object[]> GetCompilerDiagnosticCodes()
-    {{
-        return new List<object[]>() {{
-            {string.Join(",\n", diagnostics
-                .Where(d => d.GeneratedIn == DiagnosticFrontMatter.Source.Compiler
-                    && d.DeprecatedVersion == null
-                    && d.SkipTestGeneration == false)
-                .Select(d => $"new object[] {{\"{d.Code}\"}}"))}
-        }};
-    }}
-}}
-
-}}";
-
-        spc.AddSource("YarnSpinner.Diagnostics.GeneratedTestData.cs", source);
-    }
-
-    private static bool IsFeatureEnabled(string enabledValue)
-    {
-        return StringComparer.OrdinalIgnoreCase.Equals("enable", enabledValue)
-               || StringComparer.OrdinalIgnoreCase.Equals("enabled", enabledValue)
-               || StringComparer.OrdinalIgnoreCase.Equals("true", enabledValue)
-               || StringComparer.OrdinalIgnoreCase.Equals("yes", enabledValue)
-               || StringComparer.OrdinalIgnoreCase.Equals("y", enabledValue)
-               || StringComparer.OrdinalIgnoreCase.Equals("1", enabledValue);
     }
 }

@@ -9,7 +9,6 @@
     <CoverletOutput>./coverage/coverage.info</CoverletOutput>
     <JsonSerializerIsReflectionEnabledByDefault>false</JsonSerializerIsReflectionEnabledByDefault>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <YarnSpinnerDiagnostics_GenerateTestData>enable</YarnSpinnerDiagnostics_GenerateTestData>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,15 +35,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\YarnSpinner.Diagnostics\YarnSpinner.Diagnostics.csproj"
-      OutputItemType="Analyzer"
-      ReferenceOutputAssembly="false" />
-    <AdditionalFiles Include="..\YarnSpinner.Diagnostics\Definitions\*.md" />
-    <AdditionalFiles Include="..\YarnSpinner.Diagnostics\*.txt" />
-
-    <!-- Make our 'generate descriptors' property visible to the compiler, so
-    that it can know whether or not to generate descriptors  -->
-    <CompilerVisibleProperty Include="YarnSpinnerDiagnostics_GenerateTestData" />
+    <ProjectReference Include="..\YarnSpinner.Diagnostics\YarnSpinner.Diagnostics.csproj" />
+    <PackageReference Include="Markdig" Version="1.1.2" />
+    <PackageReference Include="YamlDotNet" Version="16.3.0" />
   </ItemGroup>
 
 </Project>
