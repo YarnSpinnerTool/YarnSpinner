@@ -381,7 +381,7 @@ title: Start
             // exception to be thrown.
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
             compilationJob.Library = dialogue.Library;
-
+            compilationJob.Options = new Dictionary<string, string>() { { Compiler.Options.GenerateBlockGraph, "true" } };
             compilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
 
             var testPlanFilePath = Path.ChangeExtension(scriptFilePath, ".testplan");
@@ -404,6 +404,8 @@ title: Start
                 var resultFromSource = Compiler.Compile(compilationJob);
 
                 var jobFromInputs = CompilationJob.CreateFromInputs(resultFromSource.ParseResults.OfType<ISourceInput>(), compilationJob.Library, compilationJob.LanguageVersion);
+                jobFromInputs.Options = new Dictionary<string, string>() { { Compiler.Options.GenerateBlockGraph, "true" } };
+
                 var result = Compiler.Compile(jobFromInputs);
 
                 // Re-use the parsed tree from the compile; it should produce an

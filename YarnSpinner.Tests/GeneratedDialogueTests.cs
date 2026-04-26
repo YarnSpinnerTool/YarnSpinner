@@ -20,6 +20,7 @@ namespace YarnSpinner.Tests
         {
             var job = CompilationJob.CreateFromString("<input>", source);
             job.Library = new Yarn.Dialogue.StandardLibrary();
+            job.Options = new Dictionary<string, string>() { { Compiler.Options.GenerateBlockGraph, "true" } };
             job.Library.RegisterFunction("visited", (string nodeName) => true);
 
             var result = Compiler.Compile(job);
