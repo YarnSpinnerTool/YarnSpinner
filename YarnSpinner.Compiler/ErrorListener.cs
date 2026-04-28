@@ -585,13 +585,13 @@ namespace Yarn.Compiler
         {
             var loweredMsg = message.ToLowerInvariant();
 
-            // YS0004: Missing delimiter (=== or ---)
+            // Missing delimiter (=== or ---)
             if (loweredMsg.Contains("missing") && (loweredMsg.Contains("===") || loweredMsg.Contains("'==='") || loweredMsg.Contains("delimiter")))
             {
                 return DiagnosticDescriptor.MissingDelimiter.Create(fileName, range);
             }
 
-            // YS0006: Unclosed command (missing >>)
+            // Unclosed command (missing >>)
             // Match direct "missing >>" messages
             if (loweredMsg.Contains("missing") && (loweredMsg.Contains("'>'") || loweredMsg.Contains(">>")))
             {

@@ -8,4 +8,10 @@ summary: |
     A command was started with <<, but not closed with >>.
 defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        <<some_command
+        ===
 ---

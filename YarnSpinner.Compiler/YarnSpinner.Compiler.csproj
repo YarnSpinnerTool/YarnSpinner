@@ -24,6 +24,8 @@
     <PackageDescription><![CDATA[Yarn Spinner is a tool for creating interactive dialogue for games.
 
 This package provides support for compiling Yarn source code, so that you can execute it using the YarnSpinner package.]]></PackageDescription>
+
+    <YarnSpinnerDiagnostics_GenerateDescriptors>enable</YarnSpinnerDiagnostics_GenerateDescriptors>
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,6 +46,10 @@ This package provides support for compiling Yarn source code, so that you can ex
       ReferenceOutputAssembly="false" />
     <AdditionalFiles Include="..\YarnSpinner.Diagnostics\Definitions\*.md" />
     <AdditionalFiles Include="..\YarnSpinner.Diagnostics\*.txt" />
+
+    <!-- Make our 'generate descriptors' property visible to the compiler, so
+    that it can know whether or not to generate descriptors  -->
+    <CompilerVisibleProperty Include="YarnSpinnerDiagnostics_GenerateDescriptors" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

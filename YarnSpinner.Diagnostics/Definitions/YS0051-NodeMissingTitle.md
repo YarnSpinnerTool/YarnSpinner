@@ -8,4 +8,11 @@ summary: |
     A node is missing its title header.
 defaultSeverity: error
 published: v3.2.1
+examples:
+    - script: |
+        subtitle: Start
+        -=-
+        empty node
+        ===
+
 ---

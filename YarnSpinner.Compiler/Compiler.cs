@@ -37,6 +37,11 @@ namespace Yarn.Compiler
         /// </summary>
         const int TypeSolverTimeLimit = 10;
 
+        internal static class Options
+        {
+            internal const string GenerateBlockGraph = "GenerateBlockGraph";
+        }
+
         /// <summary>
         /// Compiles Yarn code, as specified by a compilation job.
         /// </summary>
@@ -221,7 +226,7 @@ namespace Yarn.Compiler
                 }
             }
 
-            // validate jump targets - YS0002: warn about jumps to non-existent nodes
+            // validate jump targets - warn about jumps to non-existent nodes
             var allNodeTitles = new HashSet<string>(nodeMetadata.Select(n => n.Title));
             foreach (var node in nodeMetadata)
             {
@@ -315,7 +320,6 @@ namespace Yarn.Compiler
 
             // After all files are type-checked, check for variables that are still implicitly declared
             // (i.e., were used but never had a <<declare>> statement in any file)
-            // YS0003: Variable used without being declared
             // Only warn about variables, not functions (functions can be implicitly declared)
             foreach (var declaration in declarations.Where(d => d.IsImplicit && d.IsVariable && d.Name.StartsWith("$Yarn.Internal") == false))
             {
@@ -637,6 +641,10 @@ namespace Yarn.Compiler
                 }
             }
 
+            if (compilationJob.Options != null && compilationJob.Options.ContainsKey(Options.GenerateBlockGraph))
+            {
+                AddUnreachableCodeDiagnostics(compiledNodes, nodeDebugInfos, diagnostics);
+            }
 
             var initialValues = new Dictionary<string, Operand>();
 
@@ -735,6 +743,68 @@ namespace Yarn.Compiler
             };
 
             return finalResult;
+        }
+
+        private static void AddUnreachableCodeDiagnostics(List<Node> compiledNodes, List<NodeDebugInfo> nodeDebugInfos, List<Diagnostic> diagnostics)
+        {
+            var debugInfos = nodeDebugInfos.ToDictionary(kv => kv.NodeName);
+            var allBlocks = new List<BasicBlock>();
+
+            // Perform basic block analysis and get every block in the program
+            foreach (var node in compiledNodes)
+            {
+                var debugInfo = debugInfos[node.Name];
+                allBlocks.AddRange(node.GetBasicBlocks(debugInfo));
+            }
+
+            // Get all blocks that are the start of a node
+            var initialBlocks = allBlocks
+                .Where(b => b.FirstInstructionIndex == 0)
+                .ToDictionary(k => k.NodeName);
+            var reachableBlocks = new HashSet<BasicBlock>();
+
+            foreach (var block in allBlocks)
+            {
+                foreach (var destination in block.Destinations)
+                {
+                    if (destination is BasicBlock.BlockDestination blockDestination)
+                    {
+                        reachableBlocks.Add(blockDestination.Block);
+                    }
+                    else if (destination is BasicBlock.NodeDestination nodeDestination)
+                    {
+                        if (initialBlocks.TryGetValue(nodeDestination.NodeName, out var nodeEntryBlock))
+                        {
+                            reachableBlocks.Add(nodeEntryBlock);
+                        }
+                    }
+                }
+            }
+
+            // Find all blocks that are not an entry block, and are not marked as reachable
+            var unreachableBlocks = allBlocks
+                .Where(b => b.FirstInstructionIndex != 0 && reachableBlocks.Contains(b) == false);
+
+            // For each unreachable block, add a diagnostic on the first
+            // line of that block indicating that it's unreachable
+            foreach (var unreachableBlock in unreachableBlocks)
+            {
+                if (unreachableBlock.Node?.IsNodeGroupHub ?? false)
+                {
+                    // Don't emit diagnostics for node group hubs, because
+                    // they're compiler-generated and the user can't do
+                    // anything about them
+                    continue;
+                }
+
+                var debugInfo = debugInfos[unreachableBlock.NodeName];
+                var line = debugInfo.GetLineInfo(unreachableBlock.FirstInstructionIndex);
+                if (line.FileName == null)
+                {
+                    throw new InvalidOperationException("Internal error: Lineinfo has no filename");
+                }
+                diagnostics.Add(DiagnosticDescriptor.UnreachableCode.Create(line.FileName!, line.Range));
+            }
         }
 
         private static void AddErrorsForSettingReadonlyVariables(List<FileParseResult> parsedFiles, IEnumerable<Declaration> declarations, List<Diagnostic> diagnostics)

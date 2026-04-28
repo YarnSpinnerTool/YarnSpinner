@@ -11,4 +11,10 @@ summary: |
     Node titles and subtitles can only contain letters, numbers, and underscores.
 defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: abc.123
+        -=-
+        empty node
+        ===
 ---

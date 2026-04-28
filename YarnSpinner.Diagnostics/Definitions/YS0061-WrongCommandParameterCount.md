@@ -11,4 +11,11 @@ messageValues:
 defaultSeverity: warning
 minimumSeverity: none
 published: v3.2.0
+generated_in: languageserver
+examples:
+    - script: |
+        title: Start
+        -=-
+        <<wait 1 2>>
+        ===
 ---

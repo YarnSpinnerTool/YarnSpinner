@@ -10,5 +10,12 @@ summary: |
     The compiler could not resolve the type of this expression.
 defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        Using {$undeclared} in a line
+        ===
+
 ---
    

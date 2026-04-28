@@ -9,4 +9,11 @@ messageValues:
 defaultSeverity: warning
 minimumSeverity: none
 published: v3.2.1
+examples:
+    - script: |
+        title: Start
+        -=-
+        <some command>
+        ===
+
 ---

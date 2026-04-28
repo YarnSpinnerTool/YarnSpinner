@@ -9,4 +9,11 @@ messageValues:
 defaultSeverity: warning
 minimumSeverity: none
 published: v3.2.0
+generated_in: languageserver
+examples:
+    - script: |
+        title: Start
+        -=-
+        <<made up command>>
+        ===
 ---

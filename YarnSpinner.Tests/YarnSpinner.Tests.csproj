@@ -8,6 +8,7 @@
     <CoverletOutputFormat>lcov</CoverletOutputFormat>
     <CoverletOutput>./coverage/coverage.info</CoverletOutput>
     <JsonSerializerIsReflectionEnabledByDefault>false</JsonSerializerIsReflectionEnabledByDefault>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,6 +32,12 @@
   <ItemGroup>
     <ProjectReference Include="..\YarnSpinner\YarnSpinner.csproj" />
     <ProjectReference Include="..\YarnSpinner.Compiler\YarnSpinner.Compiler.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YarnSpinner.Diagnostics\YarnSpinner.Diagnostics.csproj" />
+    <PackageReference Include="Markdig" Version="1.1.2" />
+    <PackageReference Include="YamlDotNet" Version="16.3.0" />
   </ItemGroup>
 
 </Project>

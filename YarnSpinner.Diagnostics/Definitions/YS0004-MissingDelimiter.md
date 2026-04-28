@@ -8,4 +8,9 @@ summary: |
     Node is missing its start or end delimiter.
 defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        Line
 ---

@@ -7,5 +7,11 @@ messageTemplate: "Stray '>>' without matching '<<'. Did you forget to open the c
 defaultSeverity: warning
 minimumSeverity: none
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        <some command>>
+        ===
 ---
    

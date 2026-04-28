@@ -113,6 +113,12 @@ namespace Yarn.Compiler
         public Type CompilationType;
 
         /// <summary>
+        /// A dictionary describing additional internal options for the
+        /// compilation job. 
+        /// </summary>
+        internal Dictionary<string, string>? Options;
+
+        /// <summary>
         /// The declarations for variables.
         /// </summary>
         [Obsolete("Use " + nameof(Declarations))]

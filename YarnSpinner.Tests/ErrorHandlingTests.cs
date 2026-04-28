@@ -1314,5 +1314,25 @@ title: EmptyWithComment
             var result = Compiler.Compile(job);
             var diag = result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.MarkupFailedToParse.Code);
         }
+
+        [Fact]
+        public void TestCompilerGeneratesUnreachableCodeDiagnostics()
+        {
+            // Given
+            var source = CreateTestNode("""
+                <<return>>
+                Here's a line of dialogue
+                """);
+
+            // When
+            var job = CompilationJob.CreateFromString("<input>", source);
+            job.CompilationType = CompilationJob.Type.FullCompilation;
+            job.Options = new Dictionary<string, string>() { { Compiler.Options.GenerateBlockGraph, "true" } };
+
+            var result = Compiler.Compile(job);
+
+            // Then
+            result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.UnreachableCode.Code);
+        }
     }
 }

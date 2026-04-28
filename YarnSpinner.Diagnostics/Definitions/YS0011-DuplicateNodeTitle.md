@@ -11,4 +11,15 @@ summary: |
     share a title but have different `when:` clauses.
 defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        empty node
+        ===
+
+        title: Start
+        -=-
+        empty node
+        ===
 ---

@@ -9,4 +9,12 @@ messageValues:
     - Smart variable
 defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        <<declare $a = $b + 1>>
+        <<declare $b = $a - 1>>
+        ===
+
 ---

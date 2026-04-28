@@ -32,5 +32,29 @@ defaultSeverity: error
 
 # The minimum severity of the diagnostic. Allowed values are 'error', 'warning', 'info', 'none'; default is the value of defaultSeverity.
 minimumSeverity: error
+
+# The version of Yarn Spinner in which this diagnostic was added.
+published: v3.2.0
+
+# The version of Yarn Spinner in which this diagnostic was deprecated.
+# deprecated: v3.2.1
+# An explanatory note that details why the diagnostic was deprecated.
+# deprecation_note: This diagnostic is no longer emitted, and is replaced by YS0050.
+
+# The part of the toolchain that the diagnostic is generated in. Allowed values are 'compiler' and 'languageserver'; default is 'compiler'.
+generated_in: compiler
+
+# A boolean value indicating that this diagnostic should not have tests generated from its examples
+skip_test_generation: false
+
+# A list of examples of Yarn Spinner scripts that produce this diagnostic.
+examples:
+    - script: |
+        title: Start
+        -=-
+        // Missing '1'
+        <<if (1 + ) == 2>>
+        <<endif>>
+        ===
 ---
 

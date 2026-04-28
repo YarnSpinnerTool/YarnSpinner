@@ -9,6 +9,8 @@ messageValues:
     - Actual type
 defaultSeverity: error
 published: v3.2.0
+deprecated: v3.2.1
+deprecation_note: This diagnostic is no longer emitted, and is replaced by YS0050.
 
 # TODO: consider using 'additional information' objects to indicate extra info about this mismatch
 # see LSP 'diagnostic related information'
