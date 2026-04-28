@@ -91,6 +91,41 @@ namespace Yarn
             return $"$Yarn.Internal.Visiting.{nodeName}";
         }
 
+        /// <summary>
+        /// Gets the name of the boolean variable that stores whether the
+        /// content identified by lineID has been seen by the player before.
+        /// </summary>
+        /// <remarks>
+        /// The value provided should be the full line ID without the #.
+        /// So if you have a line <c>Alice: this is my once line &lt;&lt;once&gt;&gt; #line:abc123</c> the input should be <c>"line:abc123"</c>.
+        /// </remarks>
+        /// <param name="lineID">The line ID to generate a variable name
+        /// for.</param>
+        /// <returns>A variable name.</returns>
+        public static string GenerateUniqueContentViewedVariableName(string lineID)
+        {
+            return $"$Yarn.Internal.Once.{lineID}";
+        }
+
+        /// <summary>
+        /// Gets the name of the boolean variable that stores whether or not the content inside a once block has been seen by the player before.
+        /// </summary>
+        /// <remarks>
+        /// This is an inherently unstable identifer as it relies of layout attributes of the yarn code.
+        /// Later versions of Yarn Spinner will likely change how this works to be more stable.
+        /// Moreso than GenerateUniqueContentViewedVariableName this is only really useful during development.
+        /// Sorry.
+        /// </remarks>
+        /// <param name="sourceFileName">The absolute path to the yarn file that contains the once block.</param>
+        /// <param name="node">the node that contains the once block.</param>
+        /// <param name="lineNumber">The line number in the editor that opens the once block.</param>
+        /// <returns>A variable name.</returns>
+        public static string GenerateUniqueCommandBlockViewedVariableName(string sourceFileName, string node, int lineNumber)
+        {
+            var description = $"'once' statement in file {sourceFileName}, node {node}, line {lineNumber.ToString(System.Globalization.CultureInfo.InvariantCulture)}";
+            return StandardLibrary.GenerateUniqueContentViewedVariableName(Yarn.Utility.CRC32.GetChecksumString(description));
+        }
+
         internal static string? GetCanonicalNameForMethod(IType implementingType, string methodName)
         {
             if (implementingType is null)

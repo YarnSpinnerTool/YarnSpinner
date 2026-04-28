@@ -594,8 +594,8 @@ This is a line
 
             PerformCommonSingleDiagLineTest(
                 input,
-                DiagnosticDescriptor.InvalidFunctionCall.Code,
-                $"Invalid function call: no declaration found for {functionName}",
+                DiagnosticDescriptor.UnknownFunction.Code,
+                $"Unknown function call: no declaration found for {functionName}",
                 Diagnostic.DiagnosticSeverity.Error,
                 range,
                 allowOthers: true
@@ -620,7 +620,13 @@ normal line
             rangeValues.Should().HaveCount(2);
             var range = new Range(rangeValues[0], rangeValues[1], rangeValues[0], rangeValues[1] + functionName.Length);
 
-            PerformCommonSingleDiagNodeTest(input, DiagnosticDescriptor.InvalidFunctionCall.Code, $"Invalid function call: no declaration found for {functionName}", Diagnostic.DiagnosticSeverity.Error, range, allowOthers: true);
+            PerformCommonSingleDiagNodeTest(
+                input,
+                DiagnosticDescriptor.UnknownFunction.Code,
+                $"Unknown function call: no declaration found for {functionName}",
+                Diagnostic.DiagnosticSeverity.Error,
+                range,
+                allowOthers: true);
         }
 
         [Theory]
@@ -1327,12 +1333,11 @@ title: EmptyWithComment
         {
             PerformCommonSingleDiagNodeTest(@"title: Test
 ---
-<<declare $x = 1>>
-<<set $x = undeclared()>>
+{undeclared()}
 ===",
-                DiagnosticDescriptor.InvalidFunctionCall.Code,
-                "Invalid function call: no declaration found for undeclared",
-                Diagnostic.DiagnosticSeverity.Error, new Range(3, 11, 3, 21),
+                DiagnosticDescriptor.UnknownFunction.Code,
+                "Unknown function call: no declaration found for undeclared",
+                Diagnostic.DiagnosticSeverity.Error, new Range(2, 1, 2, 11),
                 allowOthers: true
             );
         }

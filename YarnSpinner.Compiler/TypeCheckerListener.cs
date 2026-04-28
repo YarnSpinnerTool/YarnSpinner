@@ -802,10 +802,10 @@ namespace Yarn.Compiler
                 // if we don't have a definition for this function we can't ensure it's the right type
                 // so we will have to bail out and just add a diagnostic for this function call
 
-                this.diagnostics.Add(DiagnosticDescriptor.InvalidFunctionCall.Create(
+                this.diagnostics.Add(DiagnosticDescriptor.UnknownFunction.Create(
                     this.sourceFileName,
                     Utility.GetRange(context.FUNC_ID()),
-                    $"no declaration found for {functionName ?? "(unknown function)"}"));
+                    functionName ?? "(unknown function)"));
 
                 base.ExitFunction_call(context);
                 return;

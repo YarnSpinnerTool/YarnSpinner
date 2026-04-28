@@ -3,7 +3,7 @@ name: UnknownFunction
 code: YS0013
 tags: ["type-checker"]
 description: Unknown function
-messageTemplate: "Unknown function {0}"
+messageTemplate: "Unknown function call: no declaration found for {0}"
 messageValues: 
     - Function name
 defaultSeverity: error

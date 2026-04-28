@@ -12,7 +12,7 @@ using YarnSpinner.Diagnostics;
 namespace YarnSpinner.Tests
 {
 
-    public partial class GeneratedDiagnosticTests : TestBase
+    public partial class GeneratedDiagnosticTests : AsyncTestBase
     {
         public GeneratedDiagnosticTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
@@ -30,10 +30,9 @@ namespace YarnSpinner.Tests
             // '-=-' as a placeholder. I hate it!
             var source = example.Script.Replace("-=-", "---");
 
-            var job = CompilationJob.CreateFromString("<input>", source);
-            job.Library = new Yarn.Dialogue.StandardLibrary();
+            var job = CompilationJob.CreateFromString("<input>", source);            
+            job.Library = testBaseResponder.Library;
             job.Options = new Dictionary<string, string>() { { Compiler.Options.GenerateBlockGraph, "true" } };
-            job.Library.RegisterFunction("visited", (string nodeName) => true);
 
             var result = Compiler.Compile(job);
 

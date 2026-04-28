@@ -828,10 +828,10 @@ namespace Yarn.Compiler
         }
 
 
-        /// <inheritdoc cref="Library.GenerateUniqueContentViewedVariableName(string)"/>
+        /// <inheritdoc cref="StandardLibrary.GenerateUniqueContentViewedVariableName(string)"/>
         internal static string GetContentViewedVariableName(string lineID)
         {
-            return Library.GenerateUniqueContentViewedVariableName(lineID);
+            return StandardLibrary.GenerateUniqueContentViewedVariableName(lineID);
         }
 
         /// <summary>
@@ -1007,12 +1007,8 @@ namespace Yarn.Compiler
                                                                         unexpectedCharacter)
                         );
                     }
-
                 }
             }
-
-
-
         }
 
         private static HashSet<string> AddDiagnosticsForEmptyNodes(List<FileParseResult> parseResults, ref List<Diagnostic> diagnostics)

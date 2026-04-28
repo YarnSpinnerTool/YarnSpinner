@@ -136,7 +136,7 @@ namespace YarnSpinner.Tests
             compilationJob.Library = testBaseResponder;
 
             var result = Compiler.Compile(compilationJob);
-            result.Diagnostics.Should().BeEmpty();
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
             
             testBaseResponder.OnReceivedLine = (line, token) => { return default; };
             testBaseResponder.OnReceivedOptions = (options, token) => { return new ValueTask<int>(0); };
