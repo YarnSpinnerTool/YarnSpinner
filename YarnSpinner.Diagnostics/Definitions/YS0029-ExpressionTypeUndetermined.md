@@ -8,7 +8,14 @@ messageValues:
     - Expression
 summary: |
     The compiler could not resolve the type of this expression.
-severity: error
+defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        Using {$undeclared} in a line
+        ===
+
 ---
    

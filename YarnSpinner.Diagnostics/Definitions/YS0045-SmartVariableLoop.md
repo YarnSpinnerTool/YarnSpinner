@@ -7,6 +7,14 @@ messageTemplate: "Smart variables cannot contain reference loops (referencing {0
 messageValues: 
     - Variable reference
     - Smart variable
-severity: error
+defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        <<declare $a = $b + 1>>
+        <<declare $b = $a - 1>>
+        ===
+
 ---

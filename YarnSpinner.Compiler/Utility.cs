@@ -124,110 +124,70 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
-        /// Given Yarn source code, adds line tags to the ends of all lines
-        /// that need one and do not already have one.
-        /// </summary>
-        /// <remarks><para>
-        /// This method ensures that it does not generate line
-        /// tags that are already present in the file, or present in the
-        /// <paramref name="existingLineTags"/> collection.
-        /// </para>
-        /// <para>
-        /// Line tags are added to any line of source code that contains
-        /// user-visible text: lines, options, and shortcut options.
-        /// </para>
-        /// </remarks>
-        /// <param name="contents">The source code to add line tags
-        /// to.</param>
-        /// <param name="existingLineTags">The collection of line tags
-        /// already exist elsewhere in the source code; the newly added
-        /// line tags will not be duplicates of any in this
-        /// collection.</param>
-        /// <returns>The modified source code, with line tags
-        /// added.</returns>
-        [Obsolete("This method doesn't return the new tags, just the modified text which can cause issues with multiple files. Please use TagLines instead")]
-        public static string AddTagsToLines(string contents, ICollection<string>? existingLineTags = null)
-        {
-            // First, get the parse tree for this source code.
-            var parseSource = ParseSourceText(contents);
-
-            // Were there any error-level diagnostics?
-            if (parseSource.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
-            {
-                // We encountered a parse error. Bail here; we aren't confident
-                // in our ability to correctly insert a line tag.
-                return contents;
-            }
-
-            // Make sure we have a list of line tags to work with.
-            if (existingLineTags == null)
-            {
-                existingLineTags = new List<string>();
-            }
-
-            // Create the line listener, which will produce TextReplacements for
-            // each new line tag.
-            var untaggedLineListener = new UntaggedLineListener(new List<string>(existingLineTags), parseSource.Tokens);
-
-            // Walk the tree with this listener, and generate text replacements
-            // containing line tags.
-            var walker = new Antlr4.Runtime.Tree.ParseTreeWalker();
-            walker.Walk(untaggedLineListener, parseSource.Tree);
-
-            // Apply these text replacements to the original source and return
-            // it.
-            return untaggedLineListener.RewrittenNodes().ModifiedSource;
-        }
-
-        /// <summary>
         /// Given Yarn source code, adds line tags to the ends of all lines that
         /// need one and do not already have one.
         /// </summary>
         /// <remarks><para>
-        /// This method ensures that it does not generate line tags that are
-        /// already present in the file, or present in the <paramref
-        /// name="existingLineTags"/> collection.
+        /// This method ensures that it does not generate line tags that are already present in the file.
         /// </para>
         /// <para>
-        /// Line tags are added to any line of source code that contains
-        /// user-visible text: lines, options, and shortcut options.
+        /// Line tags are added to any line of source code that contains user-visible text: lines, options, and shortcut options.
         /// </para>
         /// </remarks>
         /// <param name="contents">The source code to add line tags to.</param>
-        /// <param name="existingLineTags">The collection of line tags already
-        /// exist elsewhere in the source code; the newly added line tags will
-        /// not be duplicates of any in this collection.</param>
-        /// <returns>Tuple of the modified source code, with line tags added and
-        /// an updated list of line IDs.
+        /// <param name="excludedLineIDs">A collection of line IDs that should not be used for generation. Primarily intended for other line tags from a different compilation job.</param>
+        /// <param name="lineTagGenerator">The line tag generator to use when generating a new line ID.</param>
+        /// <param name="tagAbortBehaviour">Controls how the line tagging should handle encountering issues while tagging.</param>
+        /// <returns>Tuple of the modified source code, with line tags added, an updated list of line IDs that were added, and any tagging exceptions that were encountered during tagging.
         /// </returns>
-        public static (string ModifiedSource, IList<string> LineIDs) TagLines(string contents, ICollection<string>? existingLineTags = null)
+        public static (string ModifiedSource, ICollection<string> LineIDs, List<ILineTagGenerator.LineTaggingException> TagExceptions) TagLines(CompilationJob.File contents, HashSet<string>? excludedLineIDs = null, ILineTagGenerator? lineTagGenerator = null, ILineTagGenerator.TagAbortBehaviour tagAbortBehaviour = ILineTagGenerator.TagAbortBehaviour.CurrentNode)
         {
             // First, get the parse tree for this source code.
-            var parseSource = ParseSourceText(contents);
+            var parseSource = ParseSourceText(contents.Source);
 
             // Were there any error-level diagnostics?
             if (parseSource.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {
                 // We encountered a parse error. Bail here; we aren't confident
                 // in our ability to correctly insert a line tag.
-                return (contents, existingLineTags.ToList() ?? new List<string>());
+                return (contents.Source, new List<string>(), new List<ILineTagGenerator.LineTaggingException>());
             }
-
-            // Make sure we have a list of line tags to work with.
-            existingLineTags ??= new List<string>();
 
             // Create the line listener, which will produce TextReplacements for
             // each new line tag.
-            var untaggedLineListener = new UntaggedLineListener(new List<string>(existingLineTags), parseSource.Tokens);
+
+            lineTagGenerator ??= new RandomLineTagGenerator();
+
+            if (excludedLineIDs == null)
+            {
+                excludedLineIDs = new();
+            }
+
+            var untaggedLineListener = new UntaggedLineListener(lineTagGenerator, excludedLineIDs, parseSource.Tokens, contents.FileName);
 
             // Walk the tree with this listener, and generate text replacements
             // containing line tags.
             var walker = new Antlr4.Runtime.Tree.ParseTreeWalker();
+
             walker.Walk(untaggedLineListener, parseSource.Tree);
+            untaggedLineListener.RunLineTagger(tagAbortBehaviour);
 
             // Apply these text replacements to the original source and return
             // it.
             return untaggedLineListener.RewrittenNodes();
+        }
+
+        /// <inheritdoc cref="TagLines(CompilationJob.File, System.Collections.Generic.HashSet{string}, ILineTagGenerator?, ILineTagGenerator.TagAbortBehaviour)"/>
+        public static (string ModifiedSource, ICollection<string> LineIDs, List<ILineTagGenerator.LineTaggingException> TagExceptions) TagLines(string contents, HashSet<string>? excludedLineIDs = null, ILineTagGenerator? lineTagGenerator = null, ILineTagGenerator.TagAbortBehaviour tagAbortBehaviour = ILineTagGenerator.TagAbortBehaviour.CurrentNode)
+        {
+            return TagLines(new CompilationJob.File
+            {
+                FileName = "<input>",
+                Source = contents,
+            },
+            excludedLineIDs,
+            lineTagGenerator,
+            tagAbortBehaviour);
         }
 
         /// <summary>
@@ -262,25 +222,6 @@ namespace Yarn.Compiler
             return result;
         }
 
-        /// <summary>
-        /// Generates a new unique line tag that is not present in
-        /// <c>existingKeys</c>.
-        /// </summary>
-        /// <param name="existingKeys">The collection of keys that should be
-        /// considered when generating a new, unique line tag.</param>
-        /// <returns>A unique line tag that is not already present in <paramref
-        /// name="existingKeys"/>.</returns>
-        private static string GenerateString(ICollection<string> existingKeys)
-        {
-            string tag;
-            do
-            {
-                tag = string.Format(CultureInfo.InvariantCulture, "line:{0:x7}", Random.Next(0x1000000));
-            }
-            while (existingKeys.Contains(tag));
-
-            return tag;
-        }
 
         internal static Range GetRange(IToken token)
         {
@@ -337,31 +278,84 @@ namespace Yarn.Compiler
         /// </summary>
         private class UntaggedLineListener : YarnSpinnerParserBaseListener
         {
-            private readonly IList<string> knownLineIDs;
+            private readonly ILineTagGenerator lineTagger;
+            private readonly HashSet<string> knownLineIDs;
 
             private readonly CommonTokenStream TokenStream;
-
+            private readonly string sourceFileName;
             private readonly TokenStreamRewriter rewriter;
+            private List<ILineTagGenerator.LineTagContext>? currentLines;
+            private Dictionary<string, List<ILineTagGenerator.LineTagContext>> lineContext;
+
+            private List<ILineTagGenerator.LineTaggingException> taggingExceptions;
 
             /// <summary>
             /// Initializes a new instance of the <see
             /// cref="UntaggedLineListener"/> class.
             /// </summary>
+            /// <param name="lineTagGenerator">The line tag generator to use
+            /// when determining line IDs.</param>
             /// <param name="existingStrings">A collection of line IDs that
             /// should not be used. This list will be added to as this instance
             /// works.</param>
             /// <param name="tokenStream">The token stream used to generate the
             /// <see cref="IParseTree"/> this instance is operating on.</param>
-            public UntaggedLineListener(IList<string> existingStrings, CommonTokenStream tokenStream)
+            /// <param name="sourceFileName">The name of the source file that is
+            /// being operated on.</param>
+            public UntaggedLineListener(ILineTagGenerator lineTagGenerator, HashSet<string> existingStrings, CommonTokenStream tokenStream, string sourceFileName)
             {
-                this.knownLineIDs = existingStrings;
+                this.lineTagger = lineTagGenerator;
+                if (existingStrings.Count > 0)
+                {
+                    this.knownLineIDs = new(existingStrings);
+                }
+                else
+                {
+                    this.knownLineIDs = new();
+                }
+                this.taggingExceptions = new();
                 this.TokenStream = tokenStream;
+                this.sourceFileName = sourceFileName;
                 this.rewriter = new TokenStreamRewriter(TokenStream);
+                this.lineContext = new();
             }
 
-            /// <inheritdoc/>
+            public override void EnterNode([NotNull] YarnSpinnerParser.NodeContext context)
+            {
+                // if we enter a node and we have current nodes this is also an error
+                if (currentLines != null)
+                {
+                    throw new System.InvalidOperationException($"Entering a node but we still have lines recorded.");
+                }
+
+                currentLines = new();
+            }
+            public override void ExitNode([NotNull] YarnSpinnerParser.NodeContext context)
+            {
+                Utility.TryGetNodeTitle(context.SourceFileName, context, out _, out var currentNode, out _, out _);
+                if (currentNode == null)
+                {
+                    throw new System.InvalidOperationException($"Exiting node \"{context.NodeTitle?.Trim()}\" but the current node is null.");
+                }
+                if (currentLines == null)
+                {
+                    throw new System.InvalidOperationException($"Exiting node \"{context.NodeTitle?.Trim()}\" but we have no line collection.");
+                }
+                if (currentLines.Count > 0)
+                {
+                    lineContext.Add(currentNode, currentLines);
+                }
+
+                currentLines = null;
+            }
+
             public override void ExitLine_statement([NotNull] YarnSpinnerParser.Line_statementContext context)
             {
+                if (currentLines == null)
+                {
+                    throw new System.InvalidOperationException($"Exiting line \"{context.GetText()}\" but we have no list of line context.");
+                }
+                
                 // We're looking at a complete line statement.
 
                 // First, figure out if this line statement already has a line
@@ -371,50 +365,30 @@ namespace Yarn.Compiler
                 // Get the text for all of these hashtags...
                 var hashtagTexts = StringTableGeneratorVisitor.GetHashtagTexts(hashtags);
 
+                string? lineID = null;
                 // And then look for a line ID hashtag.
                 foreach (var hashtag in hashtagTexts)
                 {
                     if (hashtag.StartsWith("line:"))
                     {
-                        // This line contains a line code. Nothing left to do.
-                        return;
+                        // This line contains a line code.
+                        lineID = hashtag;
                     }
                     if (hashtag.StartsWith("shadow:"))
                     {
                         // This line contains a shadow line tag, which aren't
                         // allowed to have line IDs of their own.
-                        return;
+                        lineID = hashtag;
                     }
                 }
 
-                // Find the index of the first token on the default channel to
-                // the left of the newline.
-                var previousTokenIndex = IndexOfPreviousTokenOnChannel(
-                    TokenStream,
-                    context.NEWLINE().Symbol.TokenIndex,
-                    YarnSpinnerLexer.DefaultTokenChannel
-                );
-
-                // Did we find one?
-                if (previousTokenIndex == -1)
+                var lineContext = new ILineTagGenerator.LineTagContext()
                 {
-                    // No token was found before this newline. This is an
-                    // internal error - there must be at least one symbol
-                    // besides the terminating newline.
-                    throw new InvalidOperationException($"Internal error: failed to find any tokens before the newline in line statement on line {context.Start.Line}");
-                }
-
-                // Get the token at this index. We'll put our tag after it.
-                var previousToken = TokenStream.Get(previousTokenIndex);
-
-                // Generate a new, unique line ID.
-                string newLineID = Utility.GenerateString(knownLineIDs);
-
-                // Record that we've used this new line ID, so that we don't
-                // accidentally use it twice.
-                knownLineIDs.Add(newLineID);
-
-                this.rewriter.InsertAfter(previousToken, $" #{newLineID} ");
+                    Line = context,
+                    SourceFileName = this.sourceFileName,
+                    LineID = lineID,
+                };
+                currentLines.Add(lineContext);
             }
 
             /// <summary>
@@ -466,9 +440,135 @@ namespace Yarn.Compiler
                 return -1;
             }
 
-            public (string ModifiedSource, IList<string> KnownLineIDs) RewrittenNodes()
+            public (string ModifiedSource, ICollection<string> KnownLineIDs, List<ILineTagGenerator.LineTaggingException> exceptions) RewrittenNodes()
             {
-                return (this.rewriter.GetText(), knownLineIDs);
+                return (this.rewriter.GetText(), knownLineIDs, this.taggingExceptions);
+            }
+
+            internal void RunLineTagger(ILineTagGenerator.TagAbortBehaviour exceptionBehaviour)
+            {
+                var fullKnownIDs = new HashSet<string>(knownLineIDs);
+                var fullRewrites = new List<(IToken, string)>();
+                
+                this.lineTagger.PrepareForLines(lineContext, knownLineIDs);
+
+                try
+                {
+                    foreach (var pair in lineContext)
+                    {
+                        var nodeKnownIDs = new HashSet<string>();
+                        var nodeRewrites = new List<(IToken, string)>();
+
+                        try
+                        {
+                            for (int i = 0; i < pair.Value.Count; i++)
+                            {
+                                var context = pair.Value[i];
+                                if (context.LineID == null)
+                                {
+                                    // Find the index of the first token on the default channel to
+                                    // the left of the newline.
+                                    var previousTokenIndex = IndexOfPreviousTokenOnChannel(
+                                        TokenStream,
+                                        context.Line.NEWLINE().Symbol.TokenIndex,
+                                        YarnSpinnerLexer.DefaultTokenChannel
+                                    );
+
+                                    // Did we find one?
+                                    if (previousTokenIndex == -1)
+                                    {
+                                        // No token was found before this newline. This is an
+                                        // internal error - there must be at least one symbol
+                                        // besides the terminating newline.
+                                        throw new InvalidOperationException($"Internal error: failed to find any tokens before the newline in line statement on line {context.Line.Start.Line}");
+                                    }
+
+                                    // Get the token at this index. We'll put our tag after it.
+                                    var previousToken = TokenStream.Get(previousTokenIndex);
+
+                                    // Generate a new, unique line ID.
+                                    try
+                                    {
+                                        var newLineID = this.lineTagger.GenerateLineTag(pair.Key, i);
+                                    
+                                        if (string.IsNullOrWhiteSpace(newLineID))
+                                        {
+                                            throw new InvalidOperationException($"Line ID generator returned a null or empty line ID");
+                                        }
+
+                                        if (fullKnownIDs.Contains(newLineID) || nodeKnownIDs.Contains(newLineID))
+                                        {
+                                            throw new InvalidOperationException($"Line ID generator returned a duplicate line tag {newLineID}");
+                                        }
+
+                                        if (newLineID.StartsWith("line:") == false)
+                                        {
+                                            throw new InvalidOperationException($"Line IDs must start with #line: - line ID generator returned '{newLineID}'");
+                                        }
+
+                                        // Record that we've used this new line ID, so that we don't
+                                        // accidentally use it twice.
+                                        nodeKnownIDs.Add(newLineID);
+                                        // and keep it's write around for later
+                                        nodeRewrites.Add((previousToken, $" #{newLineID} "));
+                                    }
+                                    catch (ILineTagGenerator.LineTaggingException ex)
+                                    {
+                                        // regardless of error handling technique we write there was an error here and record that error
+                                        this.rewriter.InsertBefore(context.Line.Stop, $" // ERROR: {ex.Message}");
+                                        taggingExceptions.Add(ex);
+
+                                        // if we are are in current line behviour that means we are ok to just keep progressing
+                                        // with only this line being flagged as being bad
+                                        // otherwise we rethrow and let another piece of the puzzle handle it
+                                        if (exceptionBehaviour != ILineTagGenerator.TagAbortBehaviour.CurrentLine)
+                                        {
+                                            throw ex;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (ILineTagGenerator.LineTaggingException ex)
+                        {
+                            // if this has been thrown it was thrown at the lower level
+                            // which means either it's a bug and oh no
+                            // or we want to work out if we need to skip over this node or not
+
+                            switch (exceptionBehaviour)
+                            {
+                                case ILineTagGenerator.TagAbortBehaviour.EntireTagging:
+                                    // we rethrow and let the final outer scope handle it because we need it to roll back ALL changes so far
+                                    throw ex;
+                                case ILineTagGenerator.TagAbortBehaviour.CurrentNode:
+                                    // we skip over this current node
+                                    // essentially wiping the current changes
+                                    continue;
+                                case ILineTagGenerator.TagAbortBehaviour.CurrentLine:
+                                    throw new InvalidOperationException($"Encountered an {nameof(ILineTagGenerator.LineTaggingException)} inside the node handling code but have set exception handling to be {nameof(ILineTagGenerator.TagAbortBehaviour.CurrentLine)}");
+                            }
+                        }
+
+                        // done with this node so we add the tags and writes into our overall collections
+                        fullKnownIDs.UnionWith(nodeKnownIDs);
+                        fullRewrites.AddRange(nodeRewrites);
+                    }
+                }
+                catch (ILineTagGenerator.LineTaggingException)
+                {
+                    if (exceptionBehaviour != ILineTagGenerator.TagAbortBehaviour.EntireTagging)
+                    {
+                        throw new InvalidOperationException($"Encountered an {nameof(ILineTagGenerator.LineTaggingException)} inside the full tag process handling code but have set exception handling to be {exceptionBehaviour}");
+                    }
+                    return;
+                }
+
+                // done with all nodes so now we add the tags and writes into the global collection and apply the writes
+                knownLineIDs.UnionWith(fullKnownIDs);
+                foreach (var write in fullRewrites)
+                {
+                    this.rewriter.InsertAfter(write.Item1, write.Item2);
+                }
             }
         }
 
@@ -682,7 +782,7 @@ namespace Yarn.Compiler
             )
         {
             // Try and find the current title, if present.
-            uniqueTitle = nodeContext.title_header()?.FirstOrDefault()?.title?.Text;
+            uniqueTitle = nodeContext.title_header()?.FirstOrDefault()?.title?.Text?.Trim();
 
             if (string.IsNullOrEmpty(uniqueTitle))
             {
@@ -695,7 +795,7 @@ namespace Yarn.Compiler
             // source.
             sourceTitle = uniqueTitle!;
 
-            subtitle = nodeContext.GetHeader("subtitle")?.header_value?.Text;
+            subtitle = nodeContext.GetHeader("subtitle")?.header_value?.Text?.Trim();
 
             nodeGroupName = null;
 
@@ -741,6 +841,58 @@ namespace Yarn.Compiler
 
                 return $"{title}.{checksum}";
             }
+        }
+
+        /// <summary>
+        /// Returns a collection of <see cref="Diagnostic"/> objects with
+        /// overridden severities.
+        /// </summary>
+        /// <param name="diagnostics">The collection of <see cref="Diagnostic"/>
+        /// objects to override the severities of.</param>
+        /// <param name="overrides">A dictionary of diagnostic codes to
+        /// diagnostic severities.</param>
+        /// <returns>The updated collection.</returns>
+        public static IEnumerable<Diagnostic> WithSeverityOverrides(this IEnumerable<Diagnostic> diagnostics, IDictionary<string, Diagnostic.DiagnosticSeverity>? overrides)
+        {
+            if (overrides == null || overrides.Count == 0)
+            {
+                // No overrides; return the original collection
+                return diagnostics;
+            }
+
+            return diagnostics.Select(d =>
+            {
+                if (d.Code == null || overrides.TryGetValue(d.Code, out var overrideSeverity) == false)
+                {
+                    // No override for this diagnostic, or failed to get its code. No op.
+                    return d;
+                }
+
+                if (d.Severity == overrideSeverity)
+                {
+                    // The override severity is the same as the current severity. Nothing to do.
+                    return d;
+                }
+
+                var descriptorForDiag = DiagnosticDescriptor.GetDescriptor(d.Code);
+                if (descriptorForDiag == null)
+                {
+                    // Failed to find the descriptor for this diagnostic. Return it as is.
+                    return d;
+                }
+
+                if (descriptorForDiag.MinimumSeverity > overrideSeverity)
+                {
+                    // The minimum severity is higher than the override severity.
+                    overrideSeverity = descriptorForDiag.MinimumSeverity;
+                }
+
+                // Return a clone of the diagnostic with the updated severity.
+                return new Diagnostic(d)
+                {
+                    Severity = overrideSeverity
+                };
+            });
         }
     }
 

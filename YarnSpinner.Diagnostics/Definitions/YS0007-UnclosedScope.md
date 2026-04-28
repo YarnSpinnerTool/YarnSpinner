@@ -10,6 +10,12 @@ messageValues:
     - line number of opening context
 summary: |
     Unclosed control flow scope (missing endif, endonce, etc.)
-severity: error
+defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        <<if $x>>
+        ===
 ---

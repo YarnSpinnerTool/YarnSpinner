@@ -11,7 +11,7 @@ summary: |
     This error occurs when a variable is used with different types across
     different files or contexts without an explicit declaration, and the
     compiler cannot determine which type is correct.
-severity: error
+defaultSeverity: error
 published: v3.2.0
 deprecated: v3.2.1
 deprecation_note: This diagnostic is never emitted, because it's impossible for a variable to be implicitly declared more than once (the compiler will only create an implicit declaration for a variable the first time it sees it)

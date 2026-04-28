@@ -358,7 +358,6 @@ This node is missing it's end of body terminator===
         }
 
         [Theory(Skip = "This diagnostic should be moved to the language server - whether or not a it's a problem that a node is unreferenced depends on the use case; additionally, at least one node will almost always be unreferenced, being the entry point")]
-        //  TODO: default this severity to severity=none, have a way to modify severity per-project
         [InlineData(
 @"title: A
 ---
@@ -382,9 +381,8 @@ This node has a single jump reference to it
             var result = Compiler.Compile(job);
 
             var diag = result.Diagnostics.Should().ContainSingle().Subject;
-            diag.Code.Should().Be("YS0009");
-
-            diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Info);
+            diag.Code.Should().Be(DiagnosticDescriptor.UnreferencedNode.Code);
+            diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.None);
 
             diag.Message.Should().Be($"Node 'A' is never referenced");
 
@@ -657,7 +655,7 @@ normal line
 
             PerformCommonSingleDiagLineTest(
                 input,
-                DiagnosticDescriptor.InvalidFunctionCall.Code,
+                DiagnosticDescriptor.WrongFunctionParameters.Code,
                 $"Invalid function call: {functionName} expects 1 parameter, not {paramCount}",
                 Diagnostic.DiagnosticSeverity.Error,
                 range);
@@ -723,7 +721,7 @@ line
 
             PerformCommonSingleDiagNodeTest(
                 input,
-                DiagnosticDescriptor.InvalidFunctionCall.Code,
+                DiagnosticDescriptor.WrongFunctionParameters.Code,
                 $"Invalid function call: {functionName} expects 1 parameter, not {paramCount}",
                 Diagnostic.DiagnosticSeverity.Error,
                 range, allowOthers: true);
@@ -737,7 +735,7 @@ line
             rangeValues.Should().HaveCount(2);
             var range = new Range(rangeValues[0], rangeValues[1], rangeValues[0], rangeValues[1] + commandName.Length);
 
-            PerformCommonSingleDiagLineTest(input, DiagnosticDescriptor.InvalidCommand.Code, $"Invalid command: {commandName}", Diagnostic.DiagnosticSeverity.Error, range);
+            PerformCommonSingleDiagLineTest(input, DiagnosticDescriptor.UnknownCommand.Code, $"Invalid command: {commandName}", Diagnostic.DiagnosticSeverity.Error, range);
         }
 
         [Theory(Skip = "Must be handled by Language Server because the compiler doesn't know about valid commands")]
@@ -750,7 +748,7 @@ line
             rangeValues.Should().HaveCount(2);
             var range = new Range(rangeValues[0], rangeValues[1], rangeValues[0], rangeValues[1] + commandName.Length);
 
-            PerformCommonSingleDiagLineTest(input, DiagnosticDescriptor.InvalidCommand.Code, $"Invalid command: {commandName}", Diagnostic.DiagnosticSeverity.Error, range);
+            PerformCommonSingleDiagLineTest(input, DiagnosticDescriptor.WrongCommandParameterCount.Code, $"Invalid command: {commandName}", Diagnostic.DiagnosticSeverity.Error, range);
         }
         [Fact]
         public void TestEscapedUnknownCommandsDontGenerateDiagnostics()
@@ -863,6 +861,154 @@ title: C
                 ranges.Should().Contain(diag.Range);
                 ranges.Remove(diag.Range);
             }
+        }
+
+        [Fact]
+        public void MultpleDuplicateLineIDsGeneratesWarning()
+        {
+            var input = "the line #line:abc123 #line:abc123";
+
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().HaveCount(2);
+
+            var ranges = new HashSet<Range>()
+            {
+                new(2, 9, 2, 21),
+                new(2, 22, 2, 34),
+            };
+
+            foreach (var diag in result.Diagnostics)
+            {
+                diag.Code.Should().Be(DiagnosticDescriptor.MultipleLineOrShadowIDsOnALine.Code);
+
+                diag.Message.Should().Be("Dialogue has multiple '#line' or '#shadow' IDs.");
+
+                diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+                ranges.Should().Contain(diag.Range);
+                ranges.Remove(diag.Range);
+            }
+        }
+        [Fact]
+        public void MultpleDifferentLineIDsGeneratesWarning()
+        {
+            var input = "the line #line:abc123 #line:def456";
+
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().HaveCount(2);
+
+            var ranges = new HashSet<Range>()
+            {
+                new(2, 9, 2, 21),
+                new(2, 22, 2, 34),
+            };
+
+            foreach (var diag in result.Diagnostics)
+            {
+                diag.Code.Should().Be(DiagnosticDescriptor.MultipleLineOrShadowIDsOnALine.Code);
+
+                diag.Message.Should().Be("Dialogue has multiple '#line' or '#shadow' IDs.");
+
+                diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+                ranges.Should().Contain(diag.Range);
+                ranges.Remove(diag.Range);
+            }
+        }
+        [Fact]
+        public void MultpleDuplicateShadowIDsGeneratesWarning()
+        {
+            var input = "the line #shadow:abc123 #shadow:abc123";
+
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().HaveCount(2);
+
+            var ranges = new HashSet<Range>()
+            {
+                new(2, 9, 2, 23),
+                new(2, 24, 2, 38),
+            };
+
+            foreach (var diag in result.Diagnostics)
+            {
+                diag.Code.Should().Be(DiagnosticDescriptor.MultipleLineOrShadowIDsOnALine.Code);
+
+                diag.Message.Should().Be("Dialogue has multiple '#line' or '#shadow' IDs.");
+
+                diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+                ranges.Should().Contain(diag.Range);
+                ranges.Remove(diag.Range);
+            }
+        }
+        [Fact]
+        public void MultpleDifferentShadowIDsGeneratesWarning()
+        {
+            var input = "the line #shadow:abc123 #shadow:def456";
+
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().HaveCount(2);
+
+            var ranges = new HashSet<Range>()
+            {
+                new(2, 9, 2, 23),
+                new(2, 24, 2, 38),
+            };
+
+            foreach (var diag in result.Diagnostics)
+            {
+                diag.Code.Should().Be(DiagnosticDescriptor.MultipleLineOrShadowIDsOnALine.Code);
+
+                diag.Message.Should().Be("Dialogue has multiple '#line' or '#shadow' IDs.");
+
+                diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+                ranges.Should().Contain(diag.Range);
+                ranges.Remove(diag.Range);
+            }
+        }
+        [Fact]
+        public void MultipleConflictingIssuesAroundIDsGeneratesWarning()
+        {
+            var input = "this line has both a line id and a shadow #line:abc123 #shadow:def123 #shadow:ghi123";
+
+            var source = CreateTestNode(input, "Start");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().HaveCount(3);
+
+            var ranges = new HashSet<Range>()
+            {
+                new(2, 42, 2, 54),
+                new(2, 55, 2, 69),
+                new(2, 70, 2, 84)
+            };
+
+            foreach (var diag in result.Diagnostics)
+            {
+                diag.Code.Should().Be(DiagnosticDescriptor.LinesCantHaveLineAndShadowTag.Code);
+
+                diag.Message.Should().Be("Lines cannot have both a '#line' tag and a '#shadow' tag.");
+
+                diag.Severity.Should().Be(Diagnostic.DiagnosticSeverity.Error);
+
+                ranges.Should().Contain(diag.Range);
+                ranges.Remove(diag.Range);
+            }
+            ranges.Should().BeEmpty();
         }
 
         [Theory]
@@ -1189,7 +1335,65 @@ title: EmptyWithComment
                 Diagnostic.DiagnosticSeverity.Error, new Range(3, 11, 3, 21),
                 allowOthers: true
             );
+        }
 
+        [Theory]
+        [InlineData(Diagnostic.DiagnosticSeverity.Error)]
+        [InlineData(Diagnostic.DiagnosticSeverity.Warning)]
+        [InlineData(Diagnostic.DiagnosticSeverity.Info)]
+        [InlineData(Diagnostic.DiagnosticSeverity.None)]
+        public void TestDiagnosticsCanHaveOverriddenSeverities(Diagnostic.DiagnosticSeverity severity)
+        {
+            // Create code that causes a warning
+            var source = CreateTestNode("<<declare $x = 1>>");
+
+            var job = CompilationJob.CreateFromString("<input>", source);
+
+            // Specify that this diagnostic has this severity
+            job.DiagnosticSeverities = new Dictionary<string, Diagnostic.DiagnosticSeverity>()
+            {
+                {DiagnosticDescriptor.UnusedVariable.Code, severity}
+            };
+
+            // Compile; the diagnostic shuold have this severity
+            var result = Compiler.Compile(job);
+            var diag = result.Diagnostics.Should().Contain(d => d.Code == DiagnosticDescriptor.UnusedVariable.Code).Subject;
+
+            diag.Severity.Should().Be(severity);
+        }
+
+
+        [Fact]
+        public void TestCompilerGeneratesMarkupDiagnostics()
+        {
+            // this is just checking a single diag comes over
+            // ensuring the right diags are generated is over in the markuptests
+            var source = CreateTestNode("A line with [a]invalid markup");
+            var job = CompilationJob.CreateFromString("<input>", source);
+            job.CompilationType = CompilationJob.Type.StringsOnly;
+
+            var result = Compiler.Compile(job);
+            var diag = result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.MarkupFailedToParse.Code);
+        }
+
+        [Fact]
+        public void TestCompilerGeneratesUnreachableCodeDiagnostics()
+        {
+            // Given
+            var source = CreateTestNode("""
+                <<return>>
+                Here's a line of dialogue
+                """);
+
+            // When
+            var job = CompilationJob.CreateFromString("<input>", source);
+            job.CompilationType = CompilationJob.Type.FullCompilation;
+            job.Options = new Dictionary<string, string>() { { Compiler.Options.GenerateBlockGraph, "true" } };
+
+            var result = Compiler.Compile(job);
+
+            // Then
+            result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.UnreachableCode.Code);
         }
     }
 }

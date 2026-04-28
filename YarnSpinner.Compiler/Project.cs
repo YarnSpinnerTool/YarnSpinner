@@ -12,6 +12,8 @@ namespace Yarn.Compiler
 
     [JsonSourceGenerationOptions(WriteIndented = true)]
     [JsonSerializable(typeof(Project))]
+    [JsonSerializable(typeof(Diagnostic.DiagnosticSeverity))]
+    [JsonSerializable(typeof(bool))]
     internal partial class SourceGenerationContext : JsonSerializerContext { }
 
     /// <summary>
@@ -62,6 +64,10 @@ namespace Yarn.Compiler
             PropertyNameCaseInsensitive = true,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             TypeInfoResolver = SourceGenerationContext.Default,
+            Converters =
+            {
+                new JsonStringEnumConverter<Diagnostic.DiagnosticSeverity>(),
+            }
         };
 
         /// <summary>
@@ -171,18 +177,19 @@ namespace Yarn.Compiler
         internal bool IsImplicit => Path != null && !System.IO.File.Exists(this.Path);
 
         /// <summary>
-        /// Gets or sets a dictionary containing instructions that control how
+        /// Gets or sets an object containing instructions that control how
         /// the Yarn Spinner compiler should compile a project.
         /// </summary>
-        public Dictionary<string, JsonValue> CompilerOptions { get; set; } = new Dictionary<string, JsonValue>();
+        [JsonPropertyName("compilerOptions")]
+        public CompilerOptionsData CompilerOptions { get; set; } = new();
 
         private bool GetCompilerOptionsFlag(string key)
         {
-            return CompilerOptions.TryGetValue(key, out var value) && value.GetValue<bool>();
+            return CompilerOptions.ExtensionData.TryGetValue(key, out var value) && value.GetBoolean();
         }
         private void SetCompilerOptionsFlag(string key, bool value)
         {
-            CompilerOptions[key] = JsonValue.Create(value);
+            CompilerOptions.ExtensionData[key] = JsonSerializer.SerializeToElement(true);
         }
 
         /// <summary>
@@ -583,8 +590,30 @@ namespace Yarn.Compiler
             /// </summary>
             public string? Strings { get; set; }
         }
-    }
 
+        /// <summary>
+        /// Stores additional information that describes to the compiler how the
+        /// project should be compiled.
+        /// </summary>
+        public class CompilerOptionsData
+        {
+            /// <summary>
+            /// Contains overridden severity levels for diagnostics. When a
+            /// diagnostic is issued, and its code appears in this dictionary,
+            /// its severity will be overridden to be the given value.
+            /// </summary>
+            [JsonPropertyName("diagnosticsSeverity")]
+            // [JsonConverter(typeof(DictionaryOfSeveritiesConverter))]
+            public Dictionary<string, Diagnostic.DiagnosticSeverity> DiagnosticsSeverity { get; set; } = new();
+
+            /// <summary>
+            /// Contains any data parsed from the source file that was not matched
+            /// to a property on this type.
+            /// </summary>
+            [JsonExtensionData]
+            public Dictionary<string, JsonElement> ExtensionData { get; set; } = new();
+        }
+    }
 
     // Starting in Yarn Spinner Project version 4, 'Definitions' is permitted to
     // be either a single string, or an array of strings. This converter can

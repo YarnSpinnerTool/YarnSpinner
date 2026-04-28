@@ -6,6 +6,13 @@ description: Command keyword appearing outside of command markers
 messageTemplate: "'{0}' command must be enclosed in '<<' and '>>'. Did you mean '<<{0} ...'?"
 messageValues: 
     - Command keyword
-severity: warning
+defaultSeverity: warning
+minimumSeverity: none
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        declare $foo = 5
+        ===
 ---

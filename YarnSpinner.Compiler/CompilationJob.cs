@@ -45,15 +45,13 @@ namespace Yarn.Compiler
             /// between. This is useful for diagnostics, and for attributing
             /// <see cref="Line"/> objects to their original source
             /// files.</remarks>
-            public string FileName { get; set; }
+            public string FileName { get; set; } = "<unknown>";
 
             /// <summary>
             /// The source code of this file.
             /// </summary>
-            public string Source;
+            public string Source = string.Empty;
         }
-
-
 
         /// <summary>
         /// The type of compilation that the compiler will do.
@@ -101,7 +99,6 @@ namespace Yarn.Compiler
             }
         }
 
-
         public IEnumerable<ISourceInput> Inputs;
 
         /// <summary>
@@ -114,6 +111,12 @@ namespace Yarn.Compiler
         /// The type of compilation to perform.
         /// </summary>
         public Type CompilationType;
+
+        /// <summary>
+        /// A dictionary describing additional internal options for the
+        /// compilation job. 
+        /// </summary>
+        internal Dictionary<string, string>? Options;
 
         /// <summary>
         /// The declarations for variables.
@@ -146,6 +149,13 @@ namespace Yarn.Compiler
         /// should be cancelled.
         /// </summary>
         public CancellationToken CancellationToken { get; set; }
+
+        /// <summary>
+        /// A dictionary mapping diagnostic codes to overridden diagnostic
+        /// severities.
+        /// </summary>
+        /// <see cref="Project.CompilerOptionsData.DiagnosticsSeverity"/> 
+        public IDictionary<string, Diagnostic.DiagnosticSeverity>? DiagnosticSeverities { get; internal set; }
 
         /// <summary>
         /// Creates a new <see cref="CompilationJob"/> using the contents of a

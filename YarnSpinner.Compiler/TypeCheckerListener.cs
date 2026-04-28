@@ -829,8 +829,20 @@ namespace Yarn.Compiler
                 var expectedEnglishPlural = expectedParameters != 1;
                 var actualEnglishPlural = actualParameters != 1;
 
-                string message = $"{functionName} expects {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, not {actualParameters}";
-                this.diagnostics.Add(DiagnosticDescriptor.InvalidFunctionCall.Create(this.sourceFileName, Utility.GetRange(context.FUNC_ID()), message));
+                // If the function declaration is implicit, give a message here
+                // that hedges a bit - we don't know if _this_ call is the
+                // incorrect one.
+                string message;
+                if (functionDecl.IsImplicit)
+                {
+                    message = $"{functionName} was called elsewhere with {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, but is called with {actualParameters} {(actualEnglishPlural ? "parameters" : "parameter")} here";
+                }
+                else
+                {
+                    message = $"{functionName} expects {expectedParameters} {(expectedEnglishPlural ? "parameters" : "parameter")}, not {actualParameters}";
+                }
+
+                this.diagnostics.Add(DiagnosticDescriptor.WrongFunctionParameters.Create(this.sourceFileName, Utility.GetRange(context.FUNC_ID()), message));
 
                 // at this point there is no point in attempting to validate them
                 base.ExitFunction_call(context);
@@ -852,7 +864,7 @@ namespace Yarn.Compiler
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    this.AddDiagnostic(DiagnosticDescriptor.InvalidFunctionCall, parameterExpression, "Unexpected parameter in call to function " + functionName ?? "<unknown>");
+                    this.AddDiagnostic(DiagnosticDescriptor.WrongFunctionParameters, parameterExpression, "Unexpected parameter in call to function " + functionName ?? "<unknown>");
                 }
             }
 

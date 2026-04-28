@@ -8,6 +8,13 @@ messageValues:
     - Content
 summary: |
     Commands must start on their own line. Only line conditions are allowed to follow a line of dialogue.
-severity: error
+defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        this is the line before a command <<wait 1>>
+        ===
+
 ---

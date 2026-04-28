@@ -9,6 +9,14 @@ messageValues:
     - Variable definition expression
 summary: |
     Smart variables are read-only computed values and cannot be assigned to.
-severity: error
+defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        <<declare $x = (1)>>
+        <<set $x = 2>>
+        ===
+
 ---

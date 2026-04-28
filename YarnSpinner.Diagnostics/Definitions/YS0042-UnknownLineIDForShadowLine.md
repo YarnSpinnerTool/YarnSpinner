@@ -6,6 +6,14 @@ description:  Unknown line ID for shadow line.
 messageTemplate: "Unknown line ID {0} for shadow line"
 messageValues: 
     - Line ID
-severity: error
+defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        this is the normal line #line:abc123
+        this is the normal line #shadow:abc123
+        this is the normal line #shadow:abc124
+        ===
 ---

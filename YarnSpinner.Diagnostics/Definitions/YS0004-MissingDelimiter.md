@@ -6,6 +6,11 @@ description: Missing node delimiter (=== or ---)
 messageTemplate: "Missing node delimiter"
 summary: |
     Node is missing its start or end delimiter.
-severity: error
+defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        Line
 ---

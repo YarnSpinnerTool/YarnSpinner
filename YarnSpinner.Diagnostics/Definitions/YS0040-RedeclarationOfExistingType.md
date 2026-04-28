@@ -8,6 +8,23 @@ messageValues:
     - Type name
 summary: |
     A type with this name already exists.
-severity: error
+defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        <<enum Fish>>
+            <<case Shark>>
+            <<case Tuna>>
+        <<endenum>>
+        ===
+
+        title: Another
+        -=-
+        <<enum Fish>>
+            <<case Salmon>>
+            <<case Hagfish>>
+        <<endenum>>
+        ===
 ---

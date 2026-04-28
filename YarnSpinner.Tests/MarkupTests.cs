@@ -1579,6 +1579,38 @@ namespace YarnSpinner.Tests
                     kv => kv.Key == "name" && kv.Value.StringValue == "Mae", "the marker's properties should be unmodified"
                 );
         }
+
+        [Fact]
+        public void TestUnderscoreCanBeIdentifiers()
+        {
+            var lineParser = new LineParser();
+
+            // checking self-closing tags can have underscores in their name
+            var markup = lineParser.ParseString("Narrator: Self-closing tag [under_tag /]with an underscore.", "en-AU");
+            markup.Text.Should().Be("Narrator: Self-closing tag with an underscore.");
+
+            markup.Attributes.Should().HaveCount(2);
+            markup.Attributes.Should().Contain(m => m.Name == "under_tag");
+            markup.Attributes.Should().Contain(m => m.Name == "character")
+                .Which.Properties.Should().Contain(kv => kv.Key == "name" && kv.Value.StringValue == "Narrator");
+
+            // checking regular markup can have underscores in their name
+            markup = lineParser.ParseString("Narrator: This is a [under_tag]regular markup[/under_tag] with underscores", "en-AU");
+            markup.Text.Should().Be("Narrator: This is a regular markup with underscores");
+
+            markup.Attributes.Should().HaveCount(2);
+            markup.Attributes.Should().Contain(m => m.Name == "under_tag");
+            markup.Attributes.Should().Contain(m => m.Name == "character")
+                .Which.Properties.Should().Contain(kv => kv.Key == "name" && kv.Value.StringValue == "Narrator");
+
+            // checking markup can have properties with underscores
+            markup = lineParser.ParseString("Line with a regular [under_tag under_property=\"hello\"]underscored tag with an underscored property also[/under_tag] in it.", "en-AU");
+            markup.Text.Should().Be("Line with a regular underscored tag with an underscored property also in it.");
+            
+            markup.Attributes.Should().HaveCount(1);
+            markup.Attributes.Should().Contain(m => m.Name == "under_tag")
+                .Which.Properties.Should().Contain(kv => kv.Key == "under_property" && kv.Value.StringValue == "hello");
+        }
     }
 
     public class BBCodeChevronReplacer : IAttributeMarkerProcessor

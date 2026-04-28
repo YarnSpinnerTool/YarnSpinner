@@ -109,54 +109,85 @@ namespace YarnSpinner.Tests
 
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
-            result.Program.Nodes.Count.Should().Be(6);
-
             foreach (var tag in new[] { "one", "two", "three" })
             {
                 result.Program.Nodes["Tags"].Tags.Should().Contain(tag);
             }
 
-            var headers = new Dictionary<string, List<(string, string)>>();
-            headers.Add("EmptyTags", new List<(string, string)>{
-                ("title","EmptyTags"),
-                ("tags", null)
-            });
-            headers.Add("ArbitraryHeaderWithValue", new List<(string, string)>{
-                ("title", "ArbitraryHeaderWithValue"),
-                ("arbitraryheader", "some-arbitrary-text")
-            });
-            headers.Add("Tags", new List<(string, string)>{
-                ("title", "Tags"),("tags",
-                 "one two three")
-            });
-            headers.Add("SingleTagOnly", new List<(string, string)>{
-                ("title", "SingleTagOnly")
-            });
-            headers.Add("Comments", new List<(string, string)>{
-                ("title", "Comments"),
-                ("tags", "one two three")
-            });
-            headers.Add("LotsOfHeaders", new List<(string, string)>{
-                ("contains", "lots"),
-                ("title", "LotsOfHeaders"),
-                ("this", "node"),
-                ("of", null),
-                ("blank", null),
-                ("others", "are"),
-                ("headers", ""),
-                ("some", "are"),
-                ("not", "")
-            });
+            var headers = new Dictionary<string, List<(string, string)>>
+            {
+                {
+                    "EmptyTags",
+                    new List<(string, string)>{
+                        ("title","EmptyTags"),
+                        ("tags", null)
+                    }
+                },
+                {
+                    "ArbitraryHeaderWithValue",
+                    new List<(string, string)>{
+                        ("title", "ArbitraryHeaderWithValue"),
+                        ("arbitraryheader", "some-arbitrary-text")
+                    }
+                },
+                {
+                    "Tags",
+                    new List<(string, string)>{
+                        ("title", "Tags"),
+                        ("tags","one two three")
+                    }
+                },
+                {
+                    "SingleTagOnly",
+                    new List<(string, string)>{
+                        ("title", "SingleTagOnly")
+                    }
+                },
+                {
+                    "Comments",
+                    new List<(string, string)>{
+                        ("title", "Comments"),
+                        ("tags", "one two three")
+                    }
+                },
+                {
+                    "LotsOfHeaders",
+                    new List<(string, string)>{
+                        ("contains", "lots"),
+                        ("title", "LotsOfHeaders"),
+                        ("this", "node"),
+                        ("of", null),
+                        ("blank", null),
+                        ("others", "are"),
+                        ("headers", ""),
+                        ("some", "are"),
+                        ("not", "")
+                    }
+                },
+                {
+                    "HeaderWith.Comments",
+                    new List<(string, string)>{
+                        ("title", "HeaderWith.Comments"),
+                        ("subtitle", "Comments"),
+                        ("another", "header"),
+                        ("also", "/"),
+                    }
+                },
+            };
 
-            headers.Count.Should().Be(result.Program.Nodes.Count);
+            // because we are using node groups it is gonna synthesise some nodes we don't care about
+            // so all we need to do is make sure we have at least as many node as our test cases
+            headers.Count.Should().BeLessThanOrEqualTo(result.Program.Nodes.Count);
             foreach (var pair in headers)
             {
-                result.Program.Nodes[pair.Key].Headers.Count.Should().Be(pair.Value.Count);
+                // we want to ignore any headers that start with $Yarn.Internal, they are added by us and shouldn't be something to test for
+                var testingHeaders = result.Program.Nodes[pair.Key].Headers.Where(h => !h.Key.StartsWith("$Yarn.Internal"));
+                testingHeaders.Count().Should().Be(pair.Value.Count);
 
                 // go through each item in the headers and ensure they are in the header list
-                foreach (var header in result.Program.Nodes[pair.Key].Headers)
+                foreach (var header in testingHeaders)
                 {
-                    var match = pair.Value.Where(t => t.Item1.Equals(header.Key)).First();
+                    var match = pair.Value.First(t => t.Item1.Equals(header.Key));
                     match.Item1.Should().Be(header.Key);
 
                     if (match.Item2 == null)
@@ -165,7 +196,7 @@ namespace YarnSpinner.Tests
                     }
                     else
                     {
-                        match.Item2.Should().Be(header.Value);
+                        match.Item2.Should().Be(header.Value.Trim());
                     }
                 }
             }
@@ -378,6 +409,7 @@ title: Start
             // exception to be thrown.
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
             compilationJob.Library = testBaseResponder.Library;
+            compilationJob.Options = new Dictionary<string, string>() { { Compiler.Options.GenerateBlockGraph, "true" } };
 
             compilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
 
@@ -401,6 +433,8 @@ title: Start
                 var resultFromSource = Compiler.Compile(compilationJob);
 
                 var jobFromInputs = CompilationJob.CreateFromInputs(resultFromSource.ParseResults.OfType<ISourceInput>(), compilationJob.Library, compilationJob.LanguageVersion);
+                jobFromInputs.Options = new Dictionary<string, string>() { { Compiler.Options.GenerateBlockGraph, "true" } };
+
                 var result = Compiler.Compile(jobFromInputs);
 
                 // Re-use the parsed tree from the compile; it should produce an
@@ -912,6 +946,52 @@ Line in a node group
             node.Links.Should().HaveCount(2);
             node.Links.Should().Contain(l => l.LinkType == BasicNodeInfo.Link.Type.Jump && l.Destination == "DemoJump");
             node.Links.Should().Contain(l => l.LinkType == BasicNodeInfo.Link.Type.Detour && l.Destination == "DemoDetour");
+        }
+
+        [Fact]
+        public void TestCustomLineTags()
+        {
+            var source = @"title: Node1
+---
+Carlton: immediately although unlike
+Carlton: schematise enfranchise enthusiastically now
+Shelley: a grizzled fold
+===
+title: Node2
+---
+Shelley: to comfortable mare
+Carlton: ew pain boo joyfully so
+Shelley: amidst forewarn notwithstanding aha yum
+-> of potentially intent
+-> district incommode soon
+===
+title: NodeGroup
+when: always
+---
+Shelley: vacantly failing yowza an
+===
+title: NodeGroup
+when: always
+---
+Shelley: hmph apropos hmph
+===
+";
+
+            var (taggedSource, updatedLines, tagExceptions) = Utility.TagLines(new CompilationJob.File
+            {
+                FileName = "TestLineIDs.yarn",
+                Source = source,
+            },
+            null,
+                lineTagGenerator: new DescriptiveLineTagGenerator()
+            );
+
+            var job = CompilationJob.CreateFromString("TestLineIDs.yarn", taggedSource);
+
+            var result = Compiler.Compile(job);
+
+
+
         }
     }
     // Copyright (c) Microsoft Corporation.

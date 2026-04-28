@@ -6,6 +6,14 @@ description: Node has more than one title
 messageTemplate: "Nodes must have a single title header"
 summary: |
     A node has more than one title.
-severity: error
+defaultSeverity: error
 published: v3.2.1
+examples:
+    - script: |
+        title: Start
+        title: AlsoStart
+        -=-
+        empty node
+        ===
+
 ---

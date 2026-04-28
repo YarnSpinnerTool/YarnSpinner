@@ -8,7 +8,12 @@ messageValues:
     - The error message
 summary: |
     This is a catch-all error for handling type checking errors.
-severity: error
+defaultSeverity: error
 published: v3.2.1
-
+examples:
+    - script: |
+        title: Start
+        -=-
+        {visited(true)}
+        ===
 ---

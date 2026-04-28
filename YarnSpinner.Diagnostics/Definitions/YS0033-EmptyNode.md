@@ -8,7 +8,13 @@ messageValues:
     - Node title
 summary: |
     An empty node has no statements and will be excluded from compilation.
-severity: warning
+defaultSeverity: warning
+minimumSeverity: none
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        ===
 ---
         

@@ -8,6 +8,17 @@ messageValues:
     - Error message
 summary: |
     A type member access could not be resolved.
-severity: error
+defaultSeverity: error
 published: v3.2.0
+examples:
+    - script: |
+        title: Start
+        -=-
+        <<enum Test>>
+            <<case Item>>
+        <<endenum>>
+
+        <<set $x = Test.Failure>>
+        ===
+
 ---

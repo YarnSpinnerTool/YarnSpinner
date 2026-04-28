@@ -239,7 +239,7 @@ namespace Yarn.Compiler
             if (currentNode != null)
             {
                 var headerKey = context.header_key?.Text?.ToLowerInvariant();
-                var headerValue = context.header_value?.Text;
+                var headerValue = context.header_value?.Text.Trim();
 
                 // Extract tags from tags header.
                 if (headerKey == "tags" && !string.IsNullOrWhiteSpace(headerValue))

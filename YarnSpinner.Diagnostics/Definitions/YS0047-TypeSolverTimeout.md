@@ -8,6 +8,7 @@ messageValues:
     - Time limit in seconds
 summary: |
     The type solver exceeded its time limit while resolving this expression.
-severity: error
+defaultSeverity: error
 published: v3.2.0
+skip_test_generation: true # Testing a timeout is unfeasible in CI
 ---

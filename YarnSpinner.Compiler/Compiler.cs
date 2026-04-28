@@ -37,6 +37,11 @@ namespace Yarn.Compiler
         /// </summary>
         const int TypeSolverTimeLimit = 10;
 
+        internal static class Options
+        {
+            internal const string GenerateBlockGraph = "GenerateBlockGraph";
+        }
+
         /// <summary>
         /// Compiles Yarn code, as specified by a compilation job.
         /// </summary>
@@ -205,7 +210,7 @@ namespace Yarn.Compiler
                 }
             }
 
-            // validate jump targets - YS0002: warn about jumps to non-existent nodes
+            // validate jump targets - warn about jumps to non-existent nodes
             var allNodeTitles = new HashSet<string>(nodeMetadata.Select(n => n.Title));
             foreach (var node in nodeMetadata)
             {
@@ -219,6 +224,25 @@ namespace Yarn.Compiler
                 }
             }
 
+            // we run through each line and parse it looking for any markup
+            // this way we can send over diagnostics at the same time
+            // later might want to make this a different compilation job type
+            // or maybe be a different flow entirely
+            var lineParser = new Yarn.Markup.LineParser();
+            foreach (var line in stringTableManager.StringTable)
+            {
+                if (line.Value.text == null)
+                {
+                    continue;
+                }
+                var result = lineParser.ParseStringAndIncludeMarkupDiagnostics(line.Value.text, System.Globalization.CultureInfo.InvariantCulture.TwoLetterISOLanguageName);
+                foreach (var diag in result.diagnostics)
+                {
+                    diagnostics.Add(DiagnosticDescriptor.MarkupFailedToParse.Create(line.Value.fileName, diag.Message));
+                }
+            }
+
+
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
             {
                 // Stop at this point
@@ -228,7 +252,7 @@ namespace Yarn.Compiler
                     ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
                     Program = null,
                     StringTable = stringTableManager.StringTable,
-                    Diagnostics = diagnostics,
+                    Diagnostics = diagnostics.WithSeverityOverrides(compilationJob.DiagnosticSeverities),
                     ParseResults = parsedFiles,
                     NodeMetadata = nodeMetadata,
                 };
@@ -280,7 +304,6 @@ namespace Yarn.Compiler
 
             // After all files are type-checked, check for variables that are still implicitly declared
             // (i.e., were used but never had a <<declare>> statement in any file)
-            // YS0003: Variable used without being declared
             // Only warn about variables, not functions (functions can be implicitly declared)
             foreach (var declaration in declarations.Where(d => d.IsImplicit && d.IsVariable && d.Name.StartsWith("$Yarn.Internal") == false))
             {
@@ -510,7 +533,7 @@ namespace Yarn.Compiler
                     Program = null,
                     StringTable = stringTableManager.StringTable,
                     FileTags = fileTags,
-                    Diagnostics = diagnostics,
+                    Diagnostics = diagnostics.WithSeverityOverrides(compilationJob.DiagnosticSeverities),
                     UserDefinedTypes = userDefinedTypes,
                     ParseResults = parsedFiles,
                     NodeMetadata = nodeMetadata,
@@ -532,7 +555,7 @@ namespace Yarn.Compiler
                     Program = null,
                     StringTable = stringTableManager.StringTable,
                     FileTags = fileTags,
-                    Diagnostics = diagnostics,
+                    Diagnostics = diagnostics.WithSeverityOverrides(compilationJob.DiagnosticSeverities),
                     UserDefinedTypes = userDefinedTypes,
                     ParseResults = parsedFiles,
                     NodeMetadata = nodeMetadata,
@@ -602,6 +625,10 @@ namespace Yarn.Compiler
                 }
             }
 
+            if (compilationJob.Options != null && compilationJob.Options.ContainsKey(Options.GenerateBlockGraph))
+            {
+                AddUnreachableCodeDiagnostics(compiledNodes, nodeDebugInfos, diagnostics);
+            }
 
             var initialValues = new Dictionary<string, Operand>();
 
@@ -690,7 +717,7 @@ namespace Yarn.Compiler
                 Program = program,
                 StringTable = stringTableManager.StringTable,
                 Declarations = declarations,
-                Diagnostics = diagnostics.Distinct(),
+                Diagnostics = diagnostics.Distinct().WithSeverityOverrides(compilationJob.DiagnosticSeverities),
                 FileTags = fileTags,
                 ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
                 ProjectDebugInfo = projectDebugInfo,
@@ -700,6 +727,68 @@ namespace Yarn.Compiler
             };
 
             return finalResult;
+        }
+
+        private static void AddUnreachableCodeDiagnostics(List<Node> compiledNodes, List<NodeDebugInfo> nodeDebugInfos, List<Diagnostic> diagnostics)
+        {
+            var debugInfos = nodeDebugInfos.ToDictionary(kv => kv.NodeName);
+            var allBlocks = new List<BasicBlock>();
+
+            // Perform basic block analysis and get every block in the program
+            foreach (var node in compiledNodes)
+            {
+                var debugInfo = debugInfos[node.Name];
+                allBlocks.AddRange(node.GetBasicBlocks(debugInfo));
+            }
+
+            // Get all blocks that are the start of a node
+            var initialBlocks = allBlocks
+                .Where(b => b.FirstInstructionIndex == 0)
+                .ToDictionary(k => k.NodeName);
+            var reachableBlocks = new HashSet<BasicBlock>();
+
+            foreach (var block in allBlocks)
+            {
+                foreach (var destination in block.Destinations)
+                {
+                    if (destination is BasicBlock.BlockDestination blockDestination)
+                    {
+                        reachableBlocks.Add(blockDestination.Block);
+                    }
+                    else if (destination is BasicBlock.NodeDestination nodeDestination)
+                    {
+                        if (initialBlocks.TryGetValue(nodeDestination.NodeName, out var nodeEntryBlock))
+                        {
+                            reachableBlocks.Add(nodeEntryBlock);
+                        }
+                    }
+                }
+            }
+
+            // Find all blocks that are not an entry block, and are not marked as reachable
+            var unreachableBlocks = allBlocks
+                .Where(b => b.FirstInstructionIndex != 0 && reachableBlocks.Contains(b) == false);
+
+            // For each unreachable block, add a diagnostic on the first
+            // line of that block indicating that it's unreachable
+            foreach (var unreachableBlock in unreachableBlocks)
+            {
+                if (unreachableBlock.Node?.IsNodeGroupHub ?? false)
+                {
+                    // Don't emit diagnostics for node group hubs, because
+                    // they're compiler-generated and the user can't do
+                    // anything about them
+                    continue;
+                }
+
+                var debugInfo = debugInfos[unreachableBlock.NodeName];
+                var line = debugInfo.GetLineInfo(unreachableBlock.FirstInstructionIndex);
+                if (line.FileName == null)
+                {
+                    throw new InvalidOperationException("Internal error: Lineinfo has no filename");
+                }
+                diagnostics.Add(DiagnosticDescriptor.UnreachableCode.Create(line.FileName!, line.Range));
+            }
         }
 
         private static void AddErrorsForSettingReadonlyVariables(List<FileParseResult> parsedFiles, IEnumerable<Declaration> declarations, List<Diagnostic> diagnostics)
@@ -739,16 +828,10 @@ namespace Yarn.Compiler
         }
 
 
-        /// <summary>
-        /// Gets the name of the boolean variable that stores whether the
-        /// content identified by lineID has been seen by the player before.
-        /// </summary>
-        /// <param name="lineID">The line ID to generate a variable name
-        /// for.</param>
-        /// <returns>A variable name.</returns>
+        /// <inheritdoc cref="Library.GenerateUniqueContentViewedVariableName(string)"/>
         internal static string GetContentViewedVariableName(string lineID)
         {
-            return $"$Yarn.Internal.Once.{lineID}";
+            return Library.GenerateUniqueContentViewedVariableName(lineID);
         }
 
         /// <summary>
@@ -794,7 +877,7 @@ namespace Yarn.Compiler
                 else
                 {
                     return (
-                        Name: title,
+                        Name: title?.Trim(),
                         TitleHeader: titleHeader ?? null,
                         Node: n.Node,
                         File: n.File);
@@ -840,7 +923,7 @@ namespace Yarn.Compiler
 
                     // If subtitles will be used to disambiguate node names then check
                     // if those are unique
-                    var nodesBySubtitle = group.GroupBy(n => n.Node.GetHeader("subtitle")?.header_value?.Text ?? null);
+                    var nodesBySubtitle = group.GroupBy(n => n.Node.GetHeader("subtitle")?.header_value?.Text?.Trim() ?? null);
 
                     foreach (var subgroup in nodesBySubtitle)
                     {
@@ -899,7 +982,10 @@ namespace Yarn.Compiler
 
                 if (subtitleValue != null)
                 {
-                    var subtitle = subtitleValue.Text;
+                    // subtitles are just normal headers that go through an additional validation step afterwards
+                    // as such they can often have leading/trailing whitespace
+                    // that technically is against the rules but is more a quirk of parsing than an intentional decision
+                    var subtitle = subtitleValue.Text.Trim();
 
                     var invalidCharacterMatch = invalidTitleCharacters.Match(subtitle);
                     if (invalidCharacterMatch.Success)
@@ -1137,6 +1223,39 @@ namespace Yarn.Compiler
             }
 
             return null;
+        }
+
+        internal static (List<YarnSpinnerParser.HashtagContext>? lineIDs, List<YarnSpinnerParser.HashtagContext>? shadowIDs) GetContentIDTags(YarnSpinnerParser.HashtagContext[] hashtagContexts)
+        {
+            if (hashtagContexts != null)
+            {
+                List<YarnSpinnerParser.HashtagContext>? lineIDs = null;
+                List<YarnSpinnerParser.HashtagContext>? shadowIDs = null;
+                foreach (var hashtagContext in hashtagContexts)
+                {
+                    string tagText = hashtagContext.text.Text;
+                    if (tagText.StartsWith("line:", StringComparison.InvariantCulture))
+                    {
+                        if (lineIDs == null)
+                        {
+                            lineIDs = new();
+                        }
+                        lineIDs.Add(hashtagContext);
+                        continue;
+                    }
+                    if (tagText.StartsWith("shadow:", StringComparison.InvariantCulture))
+                    {
+                        if (shadowIDs == null)
+                        {
+                            shadowIDs = new();
+                        }
+                        shadowIDs.Add(hashtagContext);
+                        continue;
+                    }
+                }
+                return (lineIDs, shadowIDs);
+            }
+            return (null, null);
         }
 
         /// <summary>
