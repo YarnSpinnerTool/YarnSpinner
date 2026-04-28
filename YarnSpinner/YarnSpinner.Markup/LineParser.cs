@@ -1289,7 +1289,6 @@ namespace Yarn.Markup
                                 {
                                     var message = $"failed to convert the value {OG.Substring(stream.LookAhead(2).Start, stream.LookAhead(2).Range)} into a valid property";
                                     diagnostics.Add(new MarkupDiagnostic(message, stream.LookAhead(2).Start));
-                                    break;
                                 }
                             }
                             else if (stream.ComparePattern(booleanPropertyPattern))
@@ -1302,7 +1301,6 @@ namespace Yarn.Markup
                                 {
                                     var message = $"failed to convert the value {OG.Substring(stream.LookAhead(2).Start, stream.LookAhead(2).Range)} into a valid property";
                                     diagnostics.Add(new MarkupDiagnostic(message, stream.LookAhead(2).Start));
-                                    break;
                                 }
                             }
                             else if (stream.ComparePattern(stringPropertyPattern))
@@ -1322,7 +1320,6 @@ namespace Yarn.Markup
                             {
                                 var message = $"Expected to find a property and it's value, but instead found \"{id} {OG.Substring(stream.Peek().Start, stream.Peek().Range)} {OG.Substring(stream.LookAhead(2).Start, stream.LookAhead(2).Range)}\".";
                                 diagnostics.Add(new MarkupDiagnostic(message, stream.Peek().Start));
-                                break;
                             }
 
                             stream.Consume(2);

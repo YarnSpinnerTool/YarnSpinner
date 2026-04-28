@@ -408,7 +408,6 @@ namespace YarnSpinner.Tests
             result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error && d.Range.Start.Line == 2);
             result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error && d.Range.Start.Line == 3);
         }
-
     }
 }
 

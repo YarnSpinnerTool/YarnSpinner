@@ -1611,6 +1611,15 @@ namespace YarnSpinner.Tests
             markup.Attributes.Should().Contain(m => m.Name == "under_tag")
                 .Which.Properties.Should().Contain(kv => kv.Key == "under_property" && kv.Value.StringValue == "hello");
         }
+
+        [Fact]
+        public void TestUnclosedMarkupWithAnInvalidProperyGeneratesDiagnostic()
+        {
+            var lineParser = new LineParser();
+            var (_, diagnostics) = lineParser.ParseStringWithDiagnostics("[attribute property", "en-AU");
+            diagnostics.Should().NotBeEmpty();
+            diagnostics.Should().ContainSingle(m => m.Message.StartsWith("Expected to find a property and it's value, but instead found \"property"));
+        }
     }
 
     public class BBCodeChevronReplacer : IAttributeMarkerProcessor
