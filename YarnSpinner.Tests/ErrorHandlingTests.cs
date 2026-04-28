@@ -1312,7 +1312,12 @@ title: EmptyWithComment
             job.CompilationType = CompilationJob.Type.StringsOnly;
 
             var result = Compiler.Compile(job);
-            var diag = result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.MarkupFailedToParse.Code);
+            var diag = result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.MarkupFailedToParse.Code).Subject;
+
+            diag.Range.Start.Line.Should().Be(2);
+            diag.Range.End.Line.Should().Be(2);
+            diag.Range.Start.Character.Should().Be(0);
+            diag.Range.End.Character.Should().Be(29);
         }
 
         [Fact]
