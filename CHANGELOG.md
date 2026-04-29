@@ -46,6 +46,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Comments in headers are now correctly being determined
   - in predefined headers like `title` this fixes a parsing error
   - in free-form headers this fixes comments being part of the value of the header
+- fixed a crash in some weeeeeeird markup structures
 
 ### Removed
 

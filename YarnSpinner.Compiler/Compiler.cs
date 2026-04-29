@@ -254,15 +254,27 @@ namespace Yarn.Compiler
                 var result = lineParser.ParseStringAndIncludeMarkupDiagnostics(line.Value.text, System.Globalization.CultureInfo.InvariantCulture.TwoLetterISOLanguageName);
                 foreach (var diag in result.diagnostics)
                 {
-                    // TODO: Markup diagnostic column information is currently
-                    // not set; default the range to the entirety of the line
-                    // for now
-                    var range = new Range(
-                        line.Value.lineNumber - 1,
-                        0,
-                        line.Value.lineNumber - 1,
-                        line.Value.text.Length
-                    );
+                    // TODO: change how markup presents it's diagnostics so we can get more useful diagnostics
+                    // if the position is -1 we want the whole line, otherwise we want to just say where the problem began
+                    Range range;
+                    if (diag.Column == -1)
+                    {
+                        range = new Range(
+                            line.Value.lineNumber - 1,
+                            0,
+                            line.Value.lineNumber - 1,
+                            line.Value.text.Length
+                        );
+                    }
+                    else
+                    {
+                        range = new Range(
+                            line.Value.lineNumber - 1,
+                            diag.Column,
+                            line.Value.lineNumber - 1,
+                            diag.Column
+                        );
+                    }
                     diagnostics.Add(DiagnosticDescriptor.MarkupFailedToParse.Create(line.Value.fileName, range, diag.Message));
                 }
             }
