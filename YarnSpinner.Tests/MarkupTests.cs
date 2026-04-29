@@ -1620,7 +1620,45 @@ namespace YarnSpinner.Tests
             diagnostics.Should().NotBeEmpty();
             diagnostics.Should().ContainSingle(m => m.Message.StartsWith("Expected to find a property and it's value, but instead found \"property"));
         }
-    }
+
+        [Theory]
+        [InlineData("[attribute")]
+        [InlineData("[.")]
+        [InlineData("[attribute text [/attribute]")]
+        public void TestHalfFormedMarkupGeneratesDiagnostic(string input)
+        {
+            var lineParser = new LineParser();
+            var (_, diagnostics) = lineParser.ParseStringWithDiagnostics(input, "en-AU");
+            diagnostics.Should().NotBeEmpty();
+        }
+
+        [Fact]
+        public void TestIsolatedCloseMarkerGeneratesDiagnostic()
+        {
+            var lineParser = new LineParser();
+            var (_, diagnostics) = lineParser.ParseStringWithDiagnostics("normal line [/close]", "en-AU");
+            diagnostics.Should().NotBeEmpty();
+        }
+
+        [Fact]
+        public void TestIsolatedOpenMarkerGeneratesDiagnostic()
+        {
+            var lineParser = new LineParser();
+            var (_, diagnostics) = lineParser.ParseStringWithDiagnostics("[open]normal line", "en-AU");
+            diagnostics.Should().NotBeEmpty();
+        }
+
+        [Theory]
+        [InlineData("normal line [/a]", 14, "Asked to close \"a\"")]
+        [InlineData("[invalid.name]normal text[/invalid.name]", 1, "Error parsing markup, invalid name:")]
+        public void TestDiagnosticPositionIsValid(string input, int column, string messageStart)
+        {
+            var lineParser = new LineParser();
+            var (_, diagnostics) = lineParser.ParseStringWithDiagnostics(input, "en-AU");
+            var diag = diagnostics.Should().ContainSingle(d => d.Message.StartsWith(messageStart)).Subject;
+            diag.Column.Should().Be(column);
+        }
+    }    
 
     public class BBCodeChevronReplacer : IAttributeMarkerProcessor
     {

@@ -743,8 +743,6 @@ namespace Yarn.Markup
 #pragma warning disable CA1307 // Specify StringComparison for clarity (not available in .NET Standard 2.0)
                 return Message.GetHashCode() ^ Column.GetHashCode();
 #pragma warning restore CA1307 // Specify StringComparison for clarity
-
-
             }
 
             /// <inheritdoc/>
@@ -1105,7 +1103,7 @@ namespace Yarn.Markup
                                 }
                                 foreach (var remaining in unmatchedCloses)
                                 {
-                                    diagnostics.Add(new MarkupDiagnostic($"asked to close {remaining} markup but there is no corresponding opening. Is [/{remaining}] a typo?"));
+                                    diagnostics.Add(new MarkupDiagnostic($"asked to close \"{remaining}\" markup but there is no corresponding opening. Is [/{remaining}] a typo?", stream.Current.Start));
                                 }
                                 unmatchedCloses.Clear();
                                 break;
@@ -1123,7 +1121,7 @@ namespace Yarn.Markup
                                 if (openNodes.Count == 1)
                                 {
                                     // this is an error, we can't close something when we only have the root node
-                                    diagnostics.Add(new MarkupDiagnostic($"Asked to close {closeID}, but we don't have an open marker for it.", closeIDToken.Start));
+                                    diagnostics.Add(new MarkupDiagnostic($"Asked to close \"{closeID}\", but we don't have an open marker for it.", closeIDToken.Start));
                                 }
                                 else
                                 {
@@ -1248,9 +1246,23 @@ namespace Yarn.Markup
                             // ok so we are now one of two options
                             // a regular open marker (best case): [ ID (ID = Value)+ ]
                             // or an open marker with a nameless property: [ (ID = Value)+ ]
-                            var marker = new MarkupTreeNode();
-                            marker.name = id;
-                            marker.firstToken = stream.Current;
+
+                            // and one edge case of [ ID ERROR
+                            if (stream.LookAhead(2).Type == LexerTokenTypes.Error)
+                            {
+                                var invalidName = OG.Substring(idToken.Start, stream.LookAhead(2).End);
+                                diagnostics.Add(new MarkupDiagnostic($"Error parsing markup, invalid name: \"{invalidName}\"", idToken.Start));
+
+                                // now we need to consume the ID and ERROR tokens
+                                stream.Consume(2);
+                                break;
+                            }
+
+                            var marker = new MarkupTreeNode
+                            {
+                                name = id,
+                                firstToken = stream.Current
+                            };
 
                             openNodes.Peek().children.Add(marker);
                             openNodes.Push(marker);
@@ -1377,18 +1389,21 @@ namespace Yarn.Markup
             if (openNodes.Count > 1)
             {
                 var line = "parsing finished with unclosed attributes still on the stack: ";
+                List<string> nodeNames = new();
                 foreach (var node in openNodes)
                 {
+                    // this is only possible when the implict root of the tree is still sticking around when you start adding nodes
+                    // or a critical error I guess, but something else should have caught that by now
                     if (string.IsNullOrEmpty(node.name))
                     {
-                        line += " NULL";
+                        continue;
                     }
                     else
                     {
-                        line += " [" + node.name + "]";
+                        nodeNames.Add("[" + node.name + "]");
                     }
                 }
-                diagnostics.Add(new MarkupDiagnostic(line));
+                diagnostics.Add(new MarkupDiagnostic(line + string.Join(", ", nodeNames)));
             }
             if (unmatchedCloses.Count > 1)
             {
@@ -1447,7 +1462,7 @@ namespace Yarn.Markup
             {
                 foreach (var unmatched in unmatchedCloseNames)
                 {
-                    var message = $"asked to close {unmatched} markup but there is no corresponding opening. Is [/{unmatched}] a typo?";
+                    var message = $"asked to close \"{unmatched}\" markup but there is no corresponding opening. Is [/{unmatched}] a typo?";
                     errors.Add(new MarkupDiagnostic(message));
                 }
                 unmatchedCloseNames.Clear();
@@ -1638,7 +1653,7 @@ namespace Yarn.Markup
 
             if (!marker.TryGetProperty(value, out MarkupValue replacementProp))
             {
-                diagnostics.Add(new LineParser.MarkupDiagnostic($"no replacement value for {value} was found"));
+                diagnostics.Add(new LineParser.MarkupDiagnostic($"no replacement value for {value} was found", marker.Position));
                 return diagnostics;
             }
 
@@ -1695,7 +1710,7 @@ namespace Yarn.Markup
                     pluralCase = CLDRPlurals.NumberPlurals.GetOrdinalPluralCase(languageCode, numericValue);
                     break;
                 default:
-                    diagnostics.Add(new LineParser.MarkupDiagnostic($"Unexpected pluralisation marker name {marker.Name}"));
+                    diagnostics.Add(new LineParser.MarkupDiagnostic($"Unexpected pluralisation marker name {marker.Name}", marker.Position));
                     return diagnostics;
             }
 
@@ -1705,7 +1720,7 @@ namespace Yarn.Markup
             // appropriate replacement text for it
             if (!marker.TryGetProperty(pluralCaseName, out MarkupValue replacementValue))
             {
-                diagnostics.Add(new LineParser.MarkupDiagnostic($"no replacement for {numericValue}'s plural case of {pluralCaseName} was found."));
+                diagnostics.Add(new LineParser.MarkupDiagnostic($"no replacement for {numericValue}'s plural case of {pluralCaseName} was found.", marker.Position));
                 return diagnostics;
             }
 
@@ -1736,7 +1751,7 @@ namespace Yarn.Markup
             {
                 List<LineParser.MarkupDiagnostic> diagnostics = new()
                 {
-                    new LineParser.MarkupDiagnostic($"'{marker.Name}' markup only works on self-closing tags.")
+                    new LineParser.MarkupDiagnostic($"'{marker.Name}' markup only works on self-closing tags.", marker.Position)
                 };
                 return new ReplacementMarkerResult(diagnostics, 0);
             }
@@ -1744,7 +1759,7 @@ namespace Yarn.Markup
             {
                 List<LineParser.MarkupDiagnostic> diagnostics = new()
                 {
-                    new LineParser.MarkupDiagnostic($"no 'value' property was found on the marker, {marker.Name} requires this to exist.")
+                    new LineParser.MarkupDiagnostic($"no 'value' property was found on the marker, {marker.Name} requires this to exist.", marker.Position)
                 };
                 return new ReplacementMarkerResult(diagnostics, 0);
             }
@@ -1766,7 +1781,7 @@ namespace Yarn.Markup
                                 {
                                     List<LineParser.MarkupDiagnostic> diagnostics = new()
                                     {
-                                        new LineParser.MarkupDiagnostic($"Asked to pluralise '{valueProp}' but this is a type that does not support pluralisation."),
+                                        new LineParser.MarkupDiagnostic($"Asked to pluralise '{valueProp}' but this is a type that does not support pluralisation.", marker.Position),
                                     };
                                     return new ReplacementMarkerResult(diagnostics, 0);
                                 }
@@ -1776,7 +1791,7 @@ namespace Yarn.Markup
                     {
                         List<LineParser.MarkupDiagnostic> diagnostics = new()
                         {
-                            new LineParser.MarkupDiagnostic($"Asked to perform replacement for {marker.Name}, a marker we don't handle."),
+                            new LineParser.MarkupDiagnostic($"Asked to perform replacement for {marker.Name}, a marker we don't handle.", marker.Position),
                         };
                         return new ReplacementMarkerResult(diagnostics, 0);
                     }
