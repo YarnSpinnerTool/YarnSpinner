@@ -254,7 +254,16 @@ namespace Yarn.Compiler
                 var result = lineParser.ParseStringAndIncludeMarkupDiagnostics(line.Value.text, System.Globalization.CultureInfo.InvariantCulture.TwoLetterISOLanguageName);
                 foreach (var diag in result.diagnostics)
                 {
-                    diagnostics.Add(DiagnosticDescriptor.MarkupFailedToParse.Create(line.Value.fileName, diag.Message));
+                    // TODO: Markup diagnostic column information is currently
+                    // not set; default the range to the entirety of the line
+                    // for now
+                    var range = new Range(
+                        line.Value.lineNumber - 1,
+                        0,
+                        line.Value.lineNumber - 1,
+                        line.Value.text.Length
+                    );
+                    diagnostics.Add(DiagnosticDescriptor.MarkupFailedToParse.Create(line.Value.fileName, range, diag.Message));
                 }
             }
 
