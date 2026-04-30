@@ -964,6 +964,18 @@ Shelley: hmph apropos hmph
 
 
         }
+
+        [Fact]
+        public void TestCompletelyInvalidTokenStreamDoesNotCrashCompiler()
+        {
+            var input = "This is invalid yarn script, and will not compile.";
+            var job = CompilationJob.CreateFromString("<input>", input);
+            Action compile = () =>
+            {
+                _ = Compiler.Compile(job);
+            };
+            compile.Should().NotThrow();
+        }
     }
     // Copyright (c) Microsoft Corporation.
     // Licensed under the MIT License.
