@@ -157,7 +157,6 @@ this is the line before a command <<after command>>
         [Theory]
         [InlineData("some command>>", "YS0021", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 12, 2, 14 })]
         [InlineData("<some command>>", "YS0021", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 13, 2, 15 })]
-        [InlineData("some command>", "YS0021", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 12, 2, 13 })]
         [InlineData("<some command>", "YS0048", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 0, 2, 14 })]
         [InlineData("<<some command", "YS0006", Diagnostic.DiagnosticSeverity.Error, new int[] { 2, 14, 2, 15 })]
         [InlineData("<<some command>", "YS0006", Diagnostic.DiagnosticSeverity.Error, new int[] { 2, 14, 2, 15 })]
@@ -1338,6 +1337,17 @@ title: EmptyWithComment
 
             // Then
             result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.UnreachableCode.Code);
+        }
+
+        [Fact]
+        public void TestTMPStyleTagsDontGenerateWarnings()
+        {
+            var input = CreateTestNode("Player: <bold>Example</bold>");
+            var job = CompilationJob.CreateFromString("<input>", input);
+            job.CompilationType = CompilationJob.Type.FullCompilation;
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().BeEmpty();
         }
     }
 }

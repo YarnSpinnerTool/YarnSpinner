@@ -125,9 +125,8 @@ namespace Yarn.Compiler
             }
 
             // some actual command>>
-            // some actual command>
             // <some actual command>>
-            if ((numberOfStartingChevrons == 0 || numberOfStartingChevrons == 1) && (numberOfClosingChevrons == 2 || numberOfClosingChevrons == 1))
+            if ((numberOfStartingChevrons == 0 || numberOfStartingChevrons == 1) && (numberOfClosingChevrons == 2))
             {
                 var start = context.line_formatted_text().Start;
                 var stop = context.line_formatted_text().Stop;
