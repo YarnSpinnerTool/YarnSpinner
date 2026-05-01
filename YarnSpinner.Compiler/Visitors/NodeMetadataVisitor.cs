@@ -141,6 +141,7 @@ namespace Yarn.Compiler
 
                 currentNode.Jumps.Add(new JumpInfo
                 {
+                    Uri = fileUri,
                     DestinationTitle = destinationName,
                     Type = JumpType.Detour,
                     Range = Utility.GetRange(destinationToken)

@@ -763,34 +763,45 @@ namespace Yarn.Compiler
         // if we walk backwards to depth and still haven't hit a terminator token we give up
         internal static IToken? WalkBackwardsUntilTerminator(ITokenStream tokens, HashSet<int> terminators, bool inclusive = false, int depth = 10)
         {
-            int rollingTokenIndex = -1;
-            bool foundToken = false;
-            for (int i = 0; i < depth; i++)
+            try
             {
-                if (tokens.Index - i <= 0)
+                int rollingTokenIndex = -1;
+                bool foundToken = false;
+                for (int i = 0; i < depth; i++)
                 {
-                    // We've reached the start of the token stream. We must be on the first line. Stop here.
-                    break;
-                }
-                var token = tokens.LA(-1 - i);
-                if (terminators.Contains(token))
-                {
-                    foundToken = true;
-                    if (inclusive)
+                    if (tokens.Index - i <= 0)
                     {
-                        rollingTokenIndex = i;
+                        // We've reached the start of the token stream. We must be on the first line. Stop here.
+                        break;
                     }
-                    break;
+                    var token = tokens.LA(-i -i);
+                    if (terminators.Contains(token))
+                    {
+                        foundToken = true;
+                        if (inclusive)
+                        {
+                            rollingTokenIndex = i;
+                        }
+                        break;
+                    }
+                    rollingTokenIndex = i;
                 }
-                rollingTokenIndex = i;
-            }
 
-            if (rollingTokenIndex == -1 || !foundToken)
+                if (rollingTokenIndex == -1 || !foundToken)
+                {
+                    return null;
+                }
+
+                return tokens.LT(-1 - rollingTokenIndex);
+            }
+            catch (System.NullReferenceException)
             {
+                // due to how LA(i) works it is possible that even though there are tokens we could see, we may not be able to look back depending on how many tokens have been consumed
+                // in which case it null refs which honestly fair enough
+                // because this is only for finding the point to report errors and this occurring means the input structure is so terrible that we can't work out anything about it based on tokens
+                // so we catch the nullref and return null as the "identified" token and the rest of the system can take it from there
                 return null;
             }
-
-            return tokens.LT(-1 - rollingTokenIndex);
         }
         internal static IToken? WalkForwardsUntilTerminator(ITokenStream tokens, HashSet<int> terminators, bool inclusive = false, int depth = 10)
         {
