@@ -22,6 +22,7 @@ namespace Yarn.Compiler
         private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
         private int mostRecentLineStatementLine = -1;
         private int mostRecentCommandStatementLine = -1;
+        private YarnSpinnerParser.Command_statementContext? mostRecentCommandContext = null;
 
         public IEnumerable<Diagnostic> Diagnostics => diagnostics;
 
@@ -40,22 +41,61 @@ namespace Yarn.Compiler
                 var dialogue = context.GetTextWithWhitespace().Trim();
                 // this means we have entered a line statement that is on the same line as a command we have previously exited
                 // ergo the line statement is AFTER a command on the same line, which we do not want
-                var diagnostic = Diagnostic.CreateDiagnostic(
-                    fileName,
-                    new Range(
-                        context.Start.Line - 1,
-                        context.Start.Column,
-                        context.Stop.Line - 1,
-                        context.Stop.Column
-                    ),
-                    DiagnosticDescriptor.LineContentAfterCommand,
-                    dialogue
+                // but there are two forms of this
+                // one is you have a normal line following the command which is poor form
+                // the other you have extra trailing chevrons which can occur due to autocarrot being autocarrotey
+
+                // in all cases the range is just the whole line after the command
+                // so we can set that up now
+                var range = new Range(
+                    context.Start.Line - 1,
+                    context.Start.Column,
+                    context.Stop.Line - 1,
+                    context.Stop.Column
                 );
 
-                var fullLine = ErrorUtility.LineOfCurrentToken(tokens, context.Start.InputStream);
-                diagnostic.Context = ErrorUtility.GenerateContextMessage(fullLine, diagnostic.Range.Start.Character, diagnostic.Range.End.Character);
+                // basically if the line content is just >'s then it gets it's own special error code
+                int numberOfTrailingChevrons;
+                for (numberOfTrailingChevrons = 0; numberOfTrailingChevrons < dialogue.Length; numberOfTrailingChevrons++)
+                {
+                    if (dialogue[numberOfTrailingChevrons] != '>')
+                    {
+                        break;
+                    }
+                }
+                
+                if (numberOfTrailingChevrons == dialogue.Length)
+                {
+                    // we are following a command but somehow don't have a command context?!
+                    if (mostRecentCommandContext == null)
+                    {
+                        var impossibleDiag = Diagnostic.CreateDiagnostic(fileName, range, DiagnosticDescriptor.InternalError, "While attempting to warn about line content following commands found a line following a command but we have no command context!");
+                        diagnostics.Add(impossibleDiag);
+                        return;
+                    }
 
-                diagnostics.Add(diagnostic);
+                    var diagnostic = Diagnostic.CreateDiagnostic(
+                        fileName,
+                        range,
+                        DiagnosticDescriptor.RogueChevronWithCommand,
+                        mostRecentCommandContext.command_formatted_text().GetTextWithWhitespace().Trim()
+                    );
+                    diagnostics.Add(diagnostic);
+                }
+                else
+                {
+                    var diagnostic = Diagnostic.CreateDiagnostic(
+                        fileName,
+                        range,
+                        DiagnosticDescriptor.LineContentAfterCommand,
+                        dialogue
+                    );
+
+                    var fullLine = ErrorUtility.LineOfCurrentToken(tokens, context.Start.InputStream);
+                    diagnostic.Context = ErrorUtility.GenerateContextMessage(fullLine, diagnostic.Range.Start.Character, diagnostic.Range.End.Character);
+
+                    diagnostics.Add(diagnostic);
+                }
             }
             else
             {
@@ -66,6 +106,33 @@ namespace Yarn.Compiler
         public override void EnterCommand_statement([NotNull] YarnSpinnerParser.Command_statementContext context)
         {
             mostRecentCommandStatementLine = context.Start.Line;
+            mostRecentCommandContext = context;
+
+            // do a check to see if the command name is <blah
+            // if it is then it is a command with extra chevrons
+            // which is almost certainly indicative of an error
+            var commandName = context.command_formatted_text().GetTextWithWhitespace().Trim();
+            if (commandName.StartsWith("<"))
+            {
+                var fullLine = context.GetTextWithWhitespace().Trim();
+                int i;
+                for (i = 0; i < fullLine.Length; i++)
+                {
+                    if (fullLine[i] != '<')
+                    {
+                        break;
+                    }
+                }
+                // range = the first start of the first token of the command as many chevrons as there are -2 because we want those as they are required for the command
+                var range = new Range(
+                    context.Start.Line - 1,
+                    context.Start.Column,
+                    context.Start.Line - 1,
+                    context.Start.Column + i - 2
+                );
+                var diagnostic = Diagnostic.CreateDiagnostic(fileName, range, DiagnosticDescriptor.RogueChevronWithCommand, commandName.TrimStart('<'));
+                diagnostics.Add(diagnostic);
+            }
         }
 
         private void CheckMalformedCommandsInText(YarnSpinnerParser.Line_statementContext context)

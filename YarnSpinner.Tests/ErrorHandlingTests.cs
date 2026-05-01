@@ -1349,5 +1349,26 @@ title: EmptyWithComment
 
             result.Diagnostics.Should().BeEmpty();
         }
+
+        [Theory]
+        [InlineData("<<<wait 1>>", 0, 1)]
+        [InlineData("<<<<wait 1>>", 0, 2)]
+        [InlineData("<<<<<<<<wait 1>>", 0, 6)]
+        [InlineData("<<wait 1>>>", 10, 11)]
+        [InlineData("<<wait 1>>>>", 10, 12)]
+        [InlineData("<<wait 1>> >>", 11, 13)] // this edge case can be handled but I don't think it's worth it as it's almost certainly the same cause
+        public void TestSuperfluousChevronsAroundCommandsGeneratesWarning(string input, int startColumn, int endColumn)
+        {
+            var node = CreateTestNode(input);
+            var job = CompilationJob.CreateFromString("<input>", node);
+            job.CompilationType = CompilationJob.Type.FullCompilation;
+            var result = Compiler.Compile(job);
+
+            var diag = result.Diagnostics.Should().ContainSingle().Subject;
+            diag.Code.Should().Be(DiagnosticDescriptor.RogueChevronWithCommand.Code);
+            
+            diag.Range.Start.Character.Should().Be(startColumn);
+            diag.Range.End.Character.Should().Be(endColumn);
+        }
     }
 }

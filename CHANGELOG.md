@@ -35,6 +35,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `Library.GenerateUniqueCommandBlockViewedVariableName()` that returns the same unique valued to generate the `<<once>>` block variables.
   - This is inherently unstable and should only be used either after editing of Yarn has finished or with an understanding of it's instability.
   - This is something we want to improve
+- Following or trailing chevrons on the same line as a command now get their own diagnostic
 
 ### Changed
 
@@ -46,8 +47,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Comments in headers are now correctly being determined
   - in predefined headers like `title` this fixes a parsing error
   - in free-form headers this fixes comments being part of the value of the header
-- fixed a crash in some weeeeeeird markup structures
+- Fixed a crash in some weeeeeeird markup structures
 - Fixed a bug where highly-invalid-but-not-impossible-to lex inputs to the compiler could cause it to nullref
+- Reduced the aggression of the stray command end marker diagnostic
 
 ### Removed
 
