@@ -464,7 +464,7 @@ namespace Yarn.Compiler
                     );
 
                     var fullLine = ErrorUtility.LineOfCurrentToken(parser);
-                    if (fullLine != null)
+                    if (!string.IsNullOrWhiteSpace(fullLine))
                     {
                         diag.Context = ErrorUtility.GenerateContextMessage(fullLine, diagInfo.range.Start.Character, diagInfo.range.End.Character);
                     }
@@ -774,7 +774,7 @@ namespace Yarn.Compiler
                         // We've reached the start of the token stream. We must be on the first line. Stop here.
                         break;
                     }
-                    var token = tokens.LA(-i -i);
+                    var token = tokens.LA(-1 -i);
                     if (terminators.Contains(token))
                     {
                         foundToken = true;

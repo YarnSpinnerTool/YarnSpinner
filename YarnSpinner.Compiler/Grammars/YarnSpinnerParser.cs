@@ -563,7 +563,7 @@ public partial class YarnSpinnerParser : Parser {
 			_la = TokenStream.LA(1);
 			if (_la==HEADER_TEXT) {
 				{
-				State = 117;
+				State = 115;
 				_localctx.header_value = Match(HEADER_TEXT);
 				}
 			}
