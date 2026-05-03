@@ -279,6 +279,28 @@ namespace Yarn.Compiler
                 }
             }
 
+            if (compilationJob.CustomDiagnosticProviders?.Count > 0)
+            {
+                // We have custom diagnostic providers. Now that we've gathered
+                // information about the lines, we'll execute the providers and
+                // add the resulting diagnostics to our collection.
+
+                // Get all syntax trees from our files
+                var trees = parsedFiles.Select(f => SyntaxNode.VisitTree(f));
+
+                // Get all line statements in the trees
+                var allLineStatements = trees.SelectMany(t => t.RootNode.GetDescendants<LineStatementSyntaxNode>());
+
+                // Construct the build context from the statements
+                var buildContext = new LineDiagnosticsBuildContext(allLineStatements.ToList(), diagnostics);
+
+                // Finally, run the diagnostics providers, given the context
+                foreach (var provider in compilationJob.CustomDiagnosticProviders)
+                {
+                    provider.ProvideDiagnostics(buildContext);
+                }
+            }
+
 
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
             {
@@ -1744,5 +1766,36 @@ namespace Yarn.Compiler
             }
         }
     }
+
+    class LineDiagnosticsBuildContext : IBuildContext
+    {
+        public List<LineStatementSyntaxNode> lineStatements;
+        public List<Diagnostic> diagnostics;
+
+        public LineDiagnosticsBuildContext(List<LineStatementSyntaxNode> lineStatements, List<Diagnostic> diagnostics)
+        {
+            this.lineStatements = lineStatements;
+            this.diagnostics = diagnostics;
+        }
+
+        public IEnumerable<LineStatementSyntaxNode> LineStatements => lineStatements;
+
+        public void EmitDiagnostic(SyntaxNode node, string message, Diagnostic.DiagnosticSeverity severity = Diagnostic.DiagnosticSeverity.Warning)
+        {
+            if (node.Context == null)
+            {
+                // Eventually, we'll want to be able to handle syntax nodes that
+                // were created after ANTLR finished its parsing (and therefore
+                // don't have a Context object available that ANTLR produced);
+                // for now, we'll require that all syntax nodes have an ANTLR
+                // context we can use to get the range from
+                throw new ArgumentException("Node has no ANTLR context!");
+            }
+
+            var range = Utility.GetRange(node.Context);
+            var diag = DiagnosticDescriptor.CustomDiagnostic.Create(node.SyntaxTree.Name, range, message);
+            diag.Severity = severity;
+            diagnostics.Add(diag);
+        }
+    }
 }
-;

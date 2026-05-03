@@ -29,5 +29,9 @@ defaultSeverity: warning
 
 # The minimum severity of the diagnostic. Allowed values are 'error', 'warning', 'info', 'none'; default is the value of defaultSeverity.
 minimumSeverity: none
+
+# Custom diagnostics are user-defined ones we don't ship as part of Yarn
+# Spinner; as a result, there's no built-in code that would produce them
+skip_test_generation: true
 ---
 

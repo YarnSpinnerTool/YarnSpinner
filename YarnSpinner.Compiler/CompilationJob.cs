@@ -155,7 +155,12 @@ namespace Yarn.Compiler
         /// severities.
         /// </summary>
         /// <see cref="Project.CompilerOptionsData.DiagnosticsSeverity"/> 
-        public IDictionary<string, Diagnostic.DiagnosticSeverity>? DiagnosticSeverities { get; internal set; }
+        public IDictionary<string, Diagnostic.DiagnosticSeverity>? DiagnosticSeverities { get; set; }
+
+        /// <summary>
+        /// A collection of custom diagnostics providers.
+        /// </summary>
+        public IReadOnlyList<ICustomDiagnosticProvider>? CustomDiagnosticProviders { get; set; }
 
         /// <summary>
         /// Creates a new <see cref="CompilationJob"/> using the contents of a
