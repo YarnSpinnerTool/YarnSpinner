@@ -1487,7 +1487,7 @@ namespace Yarn.Markup
         {
             return ParseString(input, localeCode, squish: true, sort: true, addImplicitCharacterAttribute);
         }
-        
+
         /// <returns>A markup parse result and a collection of diagnostics encountered while parsing the markup.</returns>
         /// <inheritdoc cref="ParseString(string, string, bool, bool, bool)" />
         public (MarkupParseResult markup, List<MarkupDiagnostic> diagnostics) ParseStringAndIncludeMarkupDiagnostics(string input, string localeCode, bool addImplicitCharacterAttribute = true)
@@ -1512,6 +1512,22 @@ namespace Yarn.Markup
         internal MarkupParseResult ParseString(string input, string localeCode, bool squish, bool sort, bool addImplicitCharacterAttribute)
         {
             return ParseStringWithDiagnostics(input, localeCode, squish, sort, addImplicitCharacterAttribute).markup;
+        }
+
+        /// <summary>
+        /// Gets the character name from the line, or null if no character name
+        /// is present.
+        /// </summary>
+        /// <param name="line">The line.</param>
+        /// <returns>The character name if present, or <see langword="null"/> if
+        /// none is present.</returns>
+        public static string? GetCharacter(string line)
+        {
+            // TODO: this is currently just finding the implicit character name;
+            // it should also detect the [character] markup.
+            var match = implicitCharacterRegex.Match(line);
+            if (!match.Success) { return null; }
+            return match.Groups[1].Value;
         }
 
         private static readonly System.Text.RegularExpressions.Regex implicitCharacterRegex = new(@"^((?:[^:\\]|\\.)*):\s*");
