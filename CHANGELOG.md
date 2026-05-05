@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [3.2.1] 2026-05-05
+
+### Added
+
 - `ILineTagGenerator` interface defines a way adding in your own custom line tagging.
   - The old tagging approach now exists as `RandomLineTagGenerator`.
   - A new, more human readable tagger, `DescriptiveLineTagGenerator`, has been added.
