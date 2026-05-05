@@ -1543,7 +1543,12 @@ namespace Yarn.Markup
 
             // now need to replace any instance of \: with just :
             // is it worth making it so that unnecesary escaping is a warning?
-            input = input.Replace("\\:", ":", StringComparison.InvariantCulture);
+#pragma warning disable CA1307
+            // we can't use the invariant version of string replace because different versions of Unity don't have this call and it crashes them
+            // if we ever drop support to just 6000 we should be able to go back to the invariant (better) call
+            // but for now we are stuck with this
+            input = input.Replace("\\:", ":");
+#pragma warning restore CA1307
 
             var tokens = LexMarkup(input);
             var parseResult = BuildMarkupTreeFromTokens(tokens, input);

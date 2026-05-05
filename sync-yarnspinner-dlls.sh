@@ -26,17 +26,22 @@ cd $YARNSPINNER_FOLDER
 dotnet-gitversion /updateAssemblyInfo
 mkdir -p .build-tmp
 dotnet clean --configuration Debug
-dotnet build -p:TargetFrameworks=netstandard2.1 --configuration Debug YarnSpinner.Compiler
+dotnet build --configuration Debug YarnSpinner.Compiler
 cp -v YarnSpinner.Compiler/bin/Debug/netstandard2.1/* .build-tmp
-
-# some types we are going to want to use externally but the rest should be fully internal to Yarn Spinner itself
-assemblyalias --target-directory ".build-tmp" --prefix "Yarn." --assemblies-to-alias "Antlr*;Csv*;Google*;"
-assemblyalias --target-directory ".build-tmp" --internalize --prefix "Yarn." --assemblies-to-alias "System*;Microsoft.Bcl*;Microsoft.Extensions*"
 
 cp -v .build-tmp/*.dll $YARNSPINNER_DLLS_DIR
 cp -v .build-tmp/*.pdb $YARNSPINNER_DLLS_DIR || true
 cp -v .build-tmp/*.xml $YARNSPINNER_DLLS_DIR || true
+
+# we never need Microsoft.CSharp so can delete it
 rm -fv $YARNSPINNER_DLLS_DIR/Microsoft.CSharp.dll
+# because of Unity changes we also don't need any of these
+rm -fv $YARNSPINNER_DLLS_DIR/System.Buffers.dll
+rm -fv $YARNSPINNER_DLLS_DIR/System.Memory.dll
+rm -fv $YARNSPINNER_DLLS_DIR/System.Numerics.Vectors.dll
+rm -fv $YARNSPINNER_DLLS_DIR/System.Reflection.TypeExtensions.dll
+rm -fv $YARNSPINNER_DLLS_DIR/System.Runtime.CompilerServices.Unsafe.dll
+rm -fv $YARNSPINNER_DLLS_DIR/System.Threading.Tasks.Extensions.dll
 
 rm -rf .build-tmp
 
