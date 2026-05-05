@@ -422,6 +422,68 @@ namespace YarnSpinner.Tests
             result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error && d.Range.Start.Line == 2);
             result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error && d.Range.Start.Line == 3);
         }
+
+        
+        [Fact]
+        public void TestHeadersAreAccessible()
+        {
+            var source = @"title: LotsOfHeaders
+this: node
+contains: lots
+of:
+headers:
+some: are
+blank:
+others: are
+not:
+repeat: tag1
+repeat: tag2
+repeat: tag3
+tags: one two three
+// test
+arbitraryheader: some-arbitrary-text
+finalblank:
+---
+body empty
+===";
+
+            // When
+            var job = CompilationJob.CreateFromString("<input>", source);
+            job.Library = this.testBaseResponder;
+
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().BeEmpty();
+
+            var headers = new HashSet<(string, string)>
+            {
+                ("title", "LotsOfHeaders"),
+                ("this", "node"),
+                ("contains", "lots"),
+                ("of", ""),
+                ("headers", ""),
+                ("some", "are"),
+                ("blank", ""),
+                ("others", "are"),
+                ("not", ""),
+                ("repeat", "tag1"),
+                ("repeat", "tag2"),
+                ("repeat", "tag3"),
+                ("tags", "one two three"),
+                ("arbitraryheader", "some-arbitrary-text"),
+                ("finalblank", ""),
+            };
+
+            this.dialogue.Program = result.Program;
+
+            var nodeHeaders = this.dialogue.GetHeaders("LotsOfHeaders");
+            nodeHeaders.Should().HaveSameCount(headers);
+
+            foreach (var nodeHeader in nodeHeaders)
+            {
+                headers.Should().Contain((nodeHeader.Key, nodeHeader.Value));
+            }
+        }
     }
 }
 

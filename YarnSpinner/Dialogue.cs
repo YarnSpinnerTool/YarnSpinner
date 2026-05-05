@@ -717,6 +717,33 @@ namespace Yarn
         {
             await this.vm.Stop();
         }
+        
+        public IEnumerable<KeyValuePair<string, string>> GetHeaders(string nodeName)
+        {
+            if (this.Program == null)
+            {
+                throw new InvalidOperationException($"Can't get headers for node {nodeName}, because no program is set");
+            }
+
+            if (this.Program.Nodes.Count == 0)
+            {
+                throw new InvalidOperationException($"Can't get headers for node {nodeName}, because the program contains no nodes");
+            }
+
+            if (this.Program.Nodes.TryGetValue(nodeName, out var node) == false)
+            {
+                throw new InvalidOperationException($"Can't get headers for node {nodeName}: no node with this name was found");
+            }
+            var result = new List<KeyValuePair<string, string>>(node.Headers.Count);
+
+            foreach (var header in node.Headers)
+            {
+                result.Add(new KeyValuePair<string, string>(header.Key.Trim(), header.Value.Trim()));
+            }
+
+            return result;
+        }
+
         public string? GetHeaderValue(string nodeName, string headerName)
         {
             if (this.Program == null)
