@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Fixed some logic errors in the type checker.
+
 ### Removed
 
 ## [3.2.1] 2026-05-05
