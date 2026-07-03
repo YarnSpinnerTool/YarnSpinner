@@ -1328,7 +1328,7 @@ namespace Yarn.Compiler
                 var otherConstraints = this.typeEquations.Except(equalities);
                 if (Solver.TrySolve(otherConstraints, knownTypes, this.diagnostics, ref typeSolution) == false)
                 {
-                    foreach (var constraint in equalities)
+                    foreach (var constraint in otherConstraints)
                     {
                         failingTypeConstraints.Add(constraint);
                     }
