@@ -1439,6 +1439,19 @@ namespace Yarn.Compiler
                         decl.DefaultValue = property.Value;
                     }
                 }
+                else if (decl.InitialValueParserContext is YarnSpinnerParser.ExpNegativeContext negative
+                    && negative.expression() is YarnSpinnerParser.ExpValueContext negativeValue
+                    && negativeValue.value() is YarnSpinnerParser.ValueNumberContext)
+                {
+                    // The value of the expression is a negative number literal.
+                    // Parse it and turn it into a value we can store.
+
+                    var literalVisitor = new LiteralValueVisitor(negative, decl.SourceFileName, diagnostics);
+
+                    var value = literalVisitor.Visit(negative);
+
+                    decl.DefaultValue = value.InternalValue;
+                }
                 else if (decl.InitialValueParserContext is YarnSpinnerParser.ExpressionContext)
                 {
                     // The value of the expression is runtime-evaluated. This

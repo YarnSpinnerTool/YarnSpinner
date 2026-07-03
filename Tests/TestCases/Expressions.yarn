@@ -36,5 +36,14 @@ title: Start
 <<call assert(1 / 2 == 0.5)>>
 <<call assert(0.1 + 0.1 == 0.2)>>
 
+// Test parsing subtractions without spaces (YarnSpinnerTool/IssuesDiscussion#139)
+
+<<declare $val = 0>>
+
+// With surrounding spaces
+<<set $val = max(1,2) - 1>>
+
+// Without surrounding spaces
+<<set $val = max(1,2)-1>>
 
 ===

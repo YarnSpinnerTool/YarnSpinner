@@ -4,6 +4,8 @@ title: Start
 // is a boolean value that is 'true' when the player has
 // more than 10 money
 
+<<declare $player_money = 0>>
+
 <<declare $player_can_afford_pie = $player_money > 10>>
 
 <<if $player_can_afford_pie>>

@@ -57,6 +57,28 @@ namespace Yarn.Compiler
             }
         }
 
+        public override Value VisitExpNegative(YarnSpinnerParser.ExpNegativeContext context)
+        {
+            // Negation expressions are allowed, as long as the thing they're
+            // negating is a literal value
+            if (!(context.expression() is YarnSpinnerParser.ExpValueContext valueChild))
+            {
+                // Child is not a value, so it can't be a literal
+                return DefaultResult;
+            }
+
+            var result = Visit(valueChild.value());
+            if (result.Type != Yarn.Types.Number)
+            {
+                // Expected value to be a number
+                return DefaultResult;
+            }
+            else
+            {
+                return new Value(Types.Number, -(float)result.InternalValue);
+            }
+        }
+
         public override Value VisitValueString(YarnSpinnerParser.ValueStringContext context)
         {
             return new Value(Types.String, context.STRING().GetText().Trim('"'));

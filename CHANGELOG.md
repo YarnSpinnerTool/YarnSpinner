@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Fixed some logic errors in the type checker.
+- Fixed an issue where negative numbers would fail to parse if they had no whitespace before them.
 
 ### Removed
 
