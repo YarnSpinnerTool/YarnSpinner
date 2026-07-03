@@ -1315,7 +1315,7 @@ namespace Yarn.Compiler
                 // Run the solver on type equalities. (Doing this gets us useful
                 // type information that guides other, more complex constraints
                 // like convertability.)
-                var equalities = this.typeEquations.OfType<TypeEqualityConstraint>();
+                var equalities = this.typeEquations.OfType<TypeEqualityConstraint>().Where(eq => eq.Left != Types.Error && eq.Right != Types.Error);
                 if (Solver.TrySolve(equalities, knownTypes, this.diagnostics, ref typeSolution) == false)
                 {
                     foreach (var constraint in equalities)
