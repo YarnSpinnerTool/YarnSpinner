@@ -440,5 +440,62 @@ A single line, with a line tag. #shadow:expected_abc123
             firstLineInfo.Range.Start.Line.Should().Be(2);
             firstLineInfo.Range.Start.Character.Should().Be(0);
         }
+
+        [Fact]
+        public void TestYarnProjectCanCreateCompilation()
+        {
+            var testProjectPath = Path.Combine(ProjectRootPath, "Tests", "Projects", "Compilation", "test.yarnproject");
+            var compilationJob = CompilationJob.CreateFromProject(testProjectPath);
+            compilationJob.CompilationType = CompilationJob.Type.FullCompilation;
+
+            var result = Compiler.Compile(compilationJob);
+            result.ContainsErrors.Should().BeFalse();
+        }
+
+        [Fact]
+        public void TestYarnProjectProvidesDeclarations()
+        {
+            var testWithoutProjectPath = Path.Combine(ProjectRootPath, "Tests", "Projects", "Compilation", "test-without.yarnproject");
+            var compilationJob = CompilationJob.CreateFromProject(testWithoutProjectPath);
+            compilationJob.CompilationType = CompilationJob.Type.FullCompilation;
+            
+            var result = Compiler.Compile(compilationJob);
+            result.ContainsErrors.Should().BeTrue();
+            result.Diagnostics.Should().ContainSingle(d => d.Code == "YS0013"); // dont know the function
+            result.Diagnostics.Should().ContainSingle(d => d.Code == "YS0050"); // invalid if expression types
+        }
+
+        [Fact]
+        public void TestYarnProjectProvidesCorrectDeclarations()
+        {
+            var testWithoutProjectPath = Path.Combine(ProjectRootPath, "Tests", "Projects", "Compilation", "test-with-bad-yarn.yarnproject");
+            var compilationJob = CompilationJob.CreateFromProject(testWithoutProjectPath);
+            compilationJob.CompilationType = CompilationJob.Type.FullCompilation;
+            
+            var result = Compiler.Compile(compilationJob);
+            result.ContainsErrors.Should().BeTrue();
+            result.Diagnostics.Should().ContainSingle(d => d.Code == "YS0050"); // invalid if expression types
+        }
+
+        [Fact]
+        public async System.Threading.Tasks.Task TestYSLSProvidesResolvableFunctionsAtRuntime()
+        {
+            var testProjectPath = Path.Combine(ProjectRootPath, "Tests", "Projects", "Compilation", "test.yarnproject");
+            var compilationJob = CompilationJob.CreateFromProject(testProjectPath);
+            compilationJob.CompilationType = CompilationJob.Type.FullCompilation;
+
+            var result = Compiler.Compile(compilationJob);
+            result.ContainsErrors.Should().BeFalse();
+
+            var testPlanPath = Path.Combine(ProjectRootPath, "Tests", "Projects", "Compilation", "test.testplan");
+            LoadTestPlan(testPlanPath);
+
+            dialogue.Program = result.Program;
+            stringTable = result.StringTable;
+
+            testBaseResponder.Library.RegisterFunction("BasicFunction", () => { return 1; });
+            testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
+            await RunStandardTestcase();
+        }
     }
 }

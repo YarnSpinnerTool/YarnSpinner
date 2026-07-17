@@ -1,0 +1,18 @@
+{
+    "projectFileVersion": 4,
+    "sourceFiles": [
+        "test-bad.yarn"
+    ],
+    "excludeFiles": [
+        "**/*~/*",
+        "./Samples/Yarn Spinner*/*"
+    ],
+    "localisation": {},
+    "baseLanguage": "en",
+    "compilerOptions": {
+        "diagnosticsSeverity": {}
+    },
+    "definitions": [
+        "./test.ysls.json"
+    ]
+}

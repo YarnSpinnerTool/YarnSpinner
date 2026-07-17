@@ -1,0 +1,55 @@
+{
+    "version": 3,
+    "commands": [],
+    "functions": [
+        {
+            "yarnName": "BasicFunction",
+            "definitionName": "global::Test.BasicFunction",
+            "language": "csharp",
+            "async": false,
+            "containsErrors": false,
+            "location": {
+                "start": {
+                    "line": 20,
+                    "character": 22
+                },
+                "end": {
+                    "line": 20,
+                    "character": 35
+                }
+            },
+            "parameters": [],
+            "return": {
+                "type": "number"
+            }
+        },
+        {
+            "yarnName": "BasicAsyncFunction",
+            "definitionName": "global::Test.BasicAsyncFunction",
+            "language": "csharp",
+            "async": true,
+            "containsErrors": false,
+            "location": {
+                "start": {
+                    "line": 23,
+                    "character": 38
+                },
+                "end": {
+                    "line": 23,
+                    "character": 56
+                }
+            },
+            "parameters": [
+                {
+                    "name": "delay",
+                    "defaultValue": "2000",
+                    "isParamsArray": false,
+                    "type": "number"
+                }
+            ],
+            "return": {
+                "type": "number"
+            }
+        }
+    ]
+}

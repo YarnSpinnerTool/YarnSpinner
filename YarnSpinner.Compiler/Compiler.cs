@@ -72,11 +72,6 @@ namespace Yarn.Compiler
 
             // add in all the standard library functions
             declarations.AddRange(GetDeclarationsFromLibrary(StandardLibrary.AllFunctions()));
-            // Get function declarations from the library, if provided
-            if (compilationJob.Library != null)
-            {
-                declarations.AddRange(GetDeclarationsFromLibrary(compilationJob.Library.allDefinitions));
-            }
 
             var parsedFiles = new List<FileParseResult>();
 
@@ -1068,12 +1063,10 @@ namespace Yarn.Compiler
 
         private static FileCompilationResult GenerateCode(FileParseResult fileParseResult, IEnumerable<Declaration> variableDeclarations, CompilationJob job, HashSet<string> trackingNodes, HashSet<string> nodesToSkip)
         {
-
             FileCompiler compiler = new FileCompiler(new FileCompiler.CompilationContext
             {
                 FileParseResult = fileParseResult,
                 TrackingNodes = trackingNodes,
-                Library = job.Library,
                 NodesToSkip = nodesToSkip,
                 VariableDeclarations = variableDeclarations
                 .Where(d => d.Type is FunctionType == false)
@@ -1587,7 +1580,6 @@ namespace Yarn.Compiler
         {
             internal bool IsOnce => this.header_expression?.once != null;
             internal bool IsAlways => this.header_expression?.always != null;
-
             /// <summary>
             /// Gets the complexity of this line's condition.
             /// </summary>

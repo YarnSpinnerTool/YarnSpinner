@@ -524,13 +524,30 @@ This is a line
         private void PerformCommonSingleDiagLineTest(string input, string code, string message, Diagnostic.DiagnosticSeverity severity, Range range, bool allowOthers = false)
         {
             var source = CreateTestNode(input, "Start");
-            var job = CompilationJob.CreateFromString("<input>", source);
-            job.Library = new Yarn.BasicFunctionLibrary();
-            job.Library.allDefinitions.Add("visited", new Yarn.FunctionDefinition
+            List<Declaration> declarations = new();
+            foreach (var pair in new Yarn.BasicFunctionLibrary().allDefinitions)
+            {
+                var declaration = new Declaration
+                {
+                    Name = pair.Key,
+                    Type = pair.Value.functionType,
+                    Range = { },
+                    SourceFileName = Declaration.ExternalDeclaration,
+                    SourceNodeName = null,
+                };
+
+                declarations.Add(declaration);
+            }
+            declarations.Add(new Declaration
             {
                 Name = "visited",
-                functionType = new Yarn.Compiler.FunctionTypeBuilder().WithParameter(Yarn.Types.String).WithReturnType(Yarn.Types.Boolean).FunctionType
+                Type = new Yarn.Compiler.FunctionTypeBuilder().WithParameter(Yarn.Types.String).WithReturnType(Yarn.Types.Boolean).FunctionType,
+                Range = { },
+                SourceFileName = Declaration.ExternalDeclaration,
+                SourceNodeName = null,
             });
+
+            var job = CompilationJob.CreateFromString("<input>", source, declarations);
 
             var result = Compiler.Compile(job);
             Diagnostic diag;
@@ -553,13 +570,29 @@ This is a line
         }
         private void PerformCommonSingleDiagNodeTest(string input, string code, string message, Diagnostic.DiagnosticSeverity severity, Range range, bool allowOthers = false)
         {
-            var job = CompilationJob.CreateFromString("<input>", input);
-            job.Library = new Yarn.BasicFunctionLibrary();
-            job.Library.allDefinitions.Add("visited", new Yarn.FunctionDefinition
+            List<Declaration> declarations = new();
+            foreach (var pair in new Yarn.BasicFunctionLibrary().allDefinitions)
+            {
+                var declaration = new Declaration
+                {
+                    Name = pair.Key,
+                    Type = pair.Value.functionType,
+                    Range = { },
+                    SourceFileName = Declaration.ExternalDeclaration,
+                    SourceNodeName = null,
+                };
+
+                declarations.Add(declaration);
+            }
+            declarations.Add(new Declaration
             {
                 Name = "visited",
-                functionType = new Yarn.Compiler.FunctionTypeBuilder().WithParameter(Yarn.Types.String).WithReturnType(Yarn.Types.Boolean).FunctionType
+                Type = new Yarn.Compiler.FunctionTypeBuilder().WithParameter(Yarn.Types.String).WithReturnType(Yarn.Types.Boolean).FunctionType,
+                Range = { },
+                SourceFileName = Declaration.ExternalDeclaration,
+                SourceNodeName = null,
             });
+            var job = CompilationJob.CreateFromString("<input>", input, declarations);
 
             var result = Compiler.Compile(job);
 

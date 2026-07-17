@@ -22,7 +22,7 @@ namespace YarnSpinner.Tests
 
         private async Task<CompilationResult> CompileAndPrepareDialogue(string source, string node = "Start")
         {
-            var job = CompilationJob.CreateFromString("input", source, testBaseResponder.Library);
+            var job = CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations);
             var result = Compiler.Compile(job);
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
 

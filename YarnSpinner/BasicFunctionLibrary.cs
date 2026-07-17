@@ -47,7 +47,7 @@ namespace Yarn
         {
             if (func == null)
             {
-                throw new ArgumentNullException($"The delegate cannot be null!");
+                throw new ArgumentNullException(nameof(func), $"The delegate cannot be null!");
             }
             var method = func.Method;
 

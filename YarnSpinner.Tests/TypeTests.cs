@@ -124,10 +124,7 @@ namespace YarnSpinner.Tests
                 }
             };
 
-            CompilationJob compilationJob = CompilationJob.CreateFromString("input", source);
-
-            // Provide the declarations
-            compilationJob.VariableDeclarations = declarations;
+            CompilationJob compilationJob = CompilationJob.CreateFromString("input", source, declarations);
 
             // Should compile with no errors because $int was declared
             var result = Compiler.Compile(compilationJob);
@@ -246,7 +243,7 @@ namespace YarnSpinner.Tests
             var correctSource = CreateTestNode(source);
 
             // Should compile with no exceptions
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, testBaseResponder.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, testBaseResponder.Declarations));
 
             // We should have no diagnostics.
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
@@ -307,7 +304,7 @@ namespace YarnSpinner.Tests
 
         private void TestOperationIsChecked(string source, IType expectedType)
         {
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations));
 
             result.Declarations.Should().Contain(d => d.Name == "$var")
                 .Which.Type.Should().Be(expectedType);
@@ -322,7 +319,7 @@ namespace YarnSpinner.Tests
             testBaseResponder.Library.RegisterFunction("func_invalid_return", () => 0);
 
             var source = CreateTestNode(@"Hello: {func_invalid_return()}");
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations));
             result.Diagnostics.Should().BeEmpty();
 
             // change the delegate under the hood after compilation
@@ -352,7 +349,7 @@ namespace YarnSpinner.Tests
             testBaseResponder.Library.RegisterFunction("func_invalid_param", (int parameter) => true);
 
             var source = CreateTestNode(@"Hello: {func_invalid_param(0)}");
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations));
             result.Diagnostics.Select(d => d.Message).Should().BeEmpty();
 
             // change the delegate under the hood after compilation
@@ -391,7 +388,7 @@ namespace YarnSpinner.Tests
                 {source}
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, testBaseResponder.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, testBaseResponder.Declarations));
 
             var diagnosticMessages = result.Diagnostics.Select(d => d.Message);
 
@@ -427,7 +424,7 @@ namespace YarnSpinner.Tests
                 .GetPlan();
 
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
-            CompilationJob compilationJob = CompilationJob.CreateFromString("input", source, testBaseResponder.Library);
+            CompilationJob compilationJob = CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations);
 
             compilationJob.VariableDeclarations = new[] {
                 new Declaration {
@@ -471,7 +468,7 @@ namespace YarnSpinner.Tests
             <<declare $bool = false as bool>>
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations));
 
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
@@ -490,7 +487,7 @@ namespace YarnSpinner.Tests
         {
             var source = CreateTestNode(test);
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations));
 
             result.Diagnostics
                 .Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error)
@@ -504,7 +501,7 @@ namespace YarnSpinner.Tests
             <<jump {$x}>>
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations));
 
             result.Diagnostics
                 .Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error)
@@ -521,7 +518,7 @@ namespace YarnSpinner.Tests
             <<jump {TestEnum.A}>>
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations));
 
             result.Diagnostics
                 .Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
@@ -555,7 +552,7 @@ namespace YarnSpinner.Tests
 
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations));
 
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
@@ -646,7 +643,7 @@ namespace YarnSpinner.Tests
                 .GetPlan();
 
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations));
 
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
@@ -667,7 +664,7 @@ namespace YarnSpinner.Tests
 
             try
             {
-                var compilationJob = CompilationJob.CreateFromString("input", source, testBaseResponder.Library);
+                var compilationJob = CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations);
                 var result = Compiler.Compile(compilationJob);
 
                 result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
@@ -713,7 +710,7 @@ namespace YarnSpinner.Tests
             ");
 
             testBaseResponder.Library.RegisterFunction<int, int>("func", (input) => 1);
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations));
 
             result.Diagnostics.Select(d => d.Message).Should().ContainMatch("Invalid function call: func expects 1 parameter, not 2");
         }

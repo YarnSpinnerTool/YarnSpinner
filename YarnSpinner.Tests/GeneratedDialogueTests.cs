@@ -30,8 +30,7 @@ namespace YarnSpinner.Tests
             // '-=-' as a placeholder. I hate it!
             var source = example.Script.Replace("-=-", "---");
 
-            var job = CompilationJob.CreateFromString("<input>", source);            
-            job.Library = testBaseResponder.Library;
+            var job = CompilationJob.CreateFromString("<input>", source, testBaseResponder.Declarations);
             job.Options = new Dictionary<string, string>() { { Compiler.Options.GenerateBlockGraph, "true" } };
 
             var result = Compiler.Compile(job);

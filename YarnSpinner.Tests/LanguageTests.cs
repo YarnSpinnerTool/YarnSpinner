@@ -355,7 +355,7 @@ title: Start
 
             var invariantCompilationJob = CompilationJob.CreateFromString("input", source);
             invariantCompilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
-            invariantCompilationJob.Library = testBaseResponder.Library;
+            invariantCompilationJob.Declarations = testBaseResponder.Declarations;
 
             var invariantResult = Compiler.Compile(invariantCompilationJob);
 
@@ -372,7 +372,7 @@ title: Start
 
                 var targetCompilationJob = CompilationJob.CreateFromString("input", source);
                 invariantCompilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
-                targetCompilationJob.Library = testBaseResponder.Library;
+                targetCompilationJob.Declarations = testBaseResponder.Declarations;
 
                 var targetResult = Compiler.Compile(targetCompilationJob);
 
@@ -408,7 +408,7 @@ title: Start
             // Attempt to compile this. If there are errors, we do not expect an
             // exception to be thrown.
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
-            compilationJob.Library = testBaseResponder.Library;
+            compilationJob.Declarations = testBaseResponder.Declarations;
             compilationJob.Options = new Dictionary<string, string>() { { Compiler.Options.GenerateBlockGraph, "true" } };
 
             compilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
@@ -432,7 +432,7 @@ title: Start
                 // Compile the job, and expect it to succeed.
                 var resultFromSource = Compiler.Compile(compilationJob);
 
-                var jobFromInputs = CompilationJob.CreateFromInputs(resultFromSource.ParseResults.OfType<ISourceInput>(), compilationJob.Library, compilationJob.LanguageVersion);
+                var jobFromInputs = CompilationJob.CreateFromInputs(resultFromSource.ParseResults.OfType<ISourceInput>(), compilationJob.Declarations, compilationJob.LanguageVersion);
                 jobFromInputs.Options = new Dictionary<string, string>() { { Compiler.Options.GenerateBlockGraph, "true" } };
 
                 var result = Compiler.Compile(jobFromInputs);
@@ -487,7 +487,7 @@ title: Start
             // Attempt to compile this. If there are errors, we do not expect an
             // exception to be thrown.
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
-            compilationJob.Library = testBaseResponder.Library;
+            compilationJob.Declarations = testBaseResponder.Declarations;
 
             compilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
 
@@ -529,8 +529,7 @@ title: NodeB
 Line 2
 ===
 ";
-            CompilationJob compilationJob = CompilationJob.CreateFromString("input", source);
-            compilationJob.Library = testBaseResponder.Library;
+            CompilationJob compilationJob = CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations);
 
             compilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
 
@@ -619,7 +618,7 @@ Line 2
             try
             {
                 var failingPlan = TestPlan.FromString(@"line: `Line 1`");
-                var job = CompilationJob.CreateFromString("input", source, this.testBaseResponder.Library);
+                var job = CompilationJob.CreateFromString("input", source, this.testBaseResponder.Declarations);
                 var result = Compiler.Compile(job);
                 await RunTestPlan(result, failingPlan);
 
@@ -893,8 +892,7 @@ Line in a node group
             // Attempt to compile this. If there are errors, we do not expect an
             // exception to be thrown.
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
-
-            compilationJob.Library = testBaseResponder.Library;
+            compilationJob.Declarations = testBaseResponder.Declarations;
 
             compilationJob.LanguageVersion = Project.CurrentProjectFileVersion;
 

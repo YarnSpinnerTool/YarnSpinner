@@ -51,15 +51,6 @@ namespace Yarn.Compiler
 
         public HashSet<string> NodesToSkip { get; }
 
-        /// <summary>
-        /// The Library, which contains the function declarations known to the
-        /// compiler.
-        /// </summary>
-        /// <remarks>
-        /// This is supplied as part of a <see cref="CompilationJob"/>.
-        /// </remarks>
-        internal ILibrary? Library { get; set; }
-
         NodeDebugInfo? ICodeEmitter.CurrentNodeDebugInfo => this.CurrentNodeDebugInfo;
 
         // the list of nodes we have to ensure we track visitation
@@ -72,7 +63,6 @@ namespace Yarn.Compiler
         {
             this.CompilationResult = new FileCompilationResult();
             this.FileParseResult = compilationContext.FileParseResult;
-            this.Library = compilationContext.Library;
             this.TrackingNodes = compilationContext.TrackingNodes;
             this.VariableDeclarations = compilationContext.VariableDeclarations;
             this.NodesToSkip = compilationContext.NodesToSkip;

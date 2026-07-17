@@ -23,7 +23,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
 
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
-            compilationJob.Library = testBaseResponder;
+            compilationJob.Declarations = testBaseResponder.Declarations;
 
             var result = Compiler.Compile(compilationJob);
 
@@ -54,7 +54,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "AnalysisTest.yarn");
 
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
-            compilationJob.Library = testBaseResponder;
+            compilationJob.Declarations = testBaseResponder.Declarations;
 
             var result = Compiler.Compile(compilationJob);
 
@@ -73,10 +73,12 @@ namespace YarnSpinner.Tests
 
             context = new Yarn.Analysis.Context(typeof(Yarn.Analysis.UnusedVariableChecker));
 
-            result = Compiler.Compile(CompilationJob.CreateFromFiles(new[] {
+            var job = CompilationJob.CreateFromFiles(new[] {
                 Path.Combine(SpaceDemoScriptsPath, "Ship.yarn"),
                 Path.Combine(SpaceDemoScriptsPath, "Sally.yarn"),
-            }, testBaseResponder));
+            });
+            job.Declarations = testBaseResponder.Declarations;
+            result = Compiler.Compile(job);
 
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
@@ -133,7 +135,7 @@ namespace YarnSpinner.Tests
             string path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
 
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
-            compilationJob.Library = testBaseResponder;
+            compilationJob.Declarations = testBaseResponder.Declarations;
 
             var result = Compiler.Compile(compilationJob);
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
@@ -237,7 +239,7 @@ namespace YarnSpinner.Tests
             <<set $bool = NegateBool(true)>>
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations));
 
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
 
@@ -349,8 +351,7 @@ namespace YarnSpinner.Tests
 ===";
 
             // When
-            var job = CompilationJob.CreateFromString("input", source);
-            job.Library = this.testBaseResponder.Library;
+            var job = CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations);
 
             var result = Compiler.Compile(job);
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
@@ -412,8 +413,7 @@ namespace YarnSpinner.Tests
 ===";
 
             // When
-            var job = CompilationJob.CreateFromString("input", source);
-            job.Library = this.testBaseResponder;
+            var job = CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations);
 
             var result = Compiler.Compile(job);
 
@@ -448,8 +448,7 @@ body empty
 ===";
 
             // When
-            var job = CompilationJob.CreateFromString("<input>", source);
-            job.Library = this.testBaseResponder;
+            var job = CompilationJob.CreateFromString("<input>", source, testBaseResponder.Declarations);
 
             var result = Compiler.Compile(job);
 

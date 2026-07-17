@@ -362,7 +362,7 @@ namespace YarnSpinner.Tests
                 return a + b + c;
             });
 
-            job.Library = this.testBaseResponder.Library;
+            job.Declarations = this.testBaseResponder.Declarations;
             var result = Compiler.Compile(job);
             this.dialogue.Program = result.Program;
             result.ContainsErrors.Should().BeFalse();

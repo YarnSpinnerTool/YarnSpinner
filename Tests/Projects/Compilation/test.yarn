@@ -1,0 +1,9 @@
+﻿title: Start
+---
+This is an example of a Yarn Spinner script. Write your dialogue here!
+<<if BasicFunction() == 1>>
+    It equals 1!
+<<else>>
+    It equals something else
+<<endif>>
+===

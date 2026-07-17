@@ -678,6 +678,30 @@ namespace YarnSpinner.Tests
         {
             Library.DeregisterFunction(name);
         }
+
+        public List<Declaration> Declarations
+        {
+            get
+            {
+                var declarations = new List<Declaration>();
+
+                foreach (var pair in Library.allDefinitions)
+                {
+                    var declaration = new Declaration
+                    {
+                        Name = pair.Key,
+                        Type = pair.Value.functionType,
+                        Range = { },
+                        SourceFileName = Declaration.ExternalDeclaration,
+                        SourceNodeName = null,
+                    };
+
+                    declarations.Add(declaration);
+                }
+
+                return declarations;
+            }
+        }
     }
 }
 

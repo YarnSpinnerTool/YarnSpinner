@@ -102,12 +102,6 @@ namespace Yarn.Compiler
         public IEnumerable<ISourceInput> Inputs;
 
         /// <summary>
-        /// The <see cref="Library"/> that contains declarations for
-        /// functions.
-        /// </summary>
-        public ILibrary? Library;
-
-        /// <summary>
         /// The type of compilation to perform.
         /// </summary>
         public Type CompilationType;
@@ -162,10 +156,8 @@ namespace Yarn.Compiler
         /// collection of files.
         /// </summary>
         /// <param name="paths">The paths to the files.</param>
-        /// <param name="library">The <see cref="Library"/> containing functions
-        /// to use for this compilation.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromFiles(IEnumerable<string> paths, ILibrary? library = null)
+        public static CompilationJob CreateFromFiles(IEnumerable<string> paths)
         {
             var fileList = new List<ISourceInput>();
 
@@ -182,8 +174,6 @@ namespace Yarn.Compiler
             return new CompilationJob
             {
                 Inputs = fileList,
-                Library = library,
-                Declarations = Array.Empty<Declaration>(),
             };
         }
 
@@ -200,16 +190,13 @@ namespace Yarn.Compiler
         /// collection of source inputs.
         /// </summary>
         /// <param name="inputs">The inputs to the compilation.</param>
-        /// <param name="library">The <see cref="Library"/> containing functions
-        /// to use for this compilation.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromInputs(IEnumerable<ISourceInput> inputs, ILibrary? library = null, int languageVersion = Project.CurrentProjectFileVersion)
+        public static CompilationJob CreateFromInputs(IEnumerable<ISourceInput> inputs, IEnumerable<Declaration>? declarations = null, int languageVersion = Project.CurrentProjectFileVersion)
         {
             return new CompilationJob
             {
                 Inputs = inputs,
-                Library = library,
-                Declarations = Array.Empty<Declaration>(),
+                Declarations = declarations ?? Array.Empty<Declaration>(),
                 LanguageVersion = languageVersion,
             };
         }
@@ -221,12 +208,10 @@ namespace Yarn.Compiler
         /// <param name="fileName">The name to assign to the compiled
         /// file.</param>
         /// <param name="source">The text to compile.</param>
-        /// <param name="library">Library of function definitions to use during
-        /// compilation.</param>
         /// <param name="languageVersion">The version of the Yarn language to
         /// use.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromString(string fileName, string source, ILibrary? library = null, int languageVersion = Project.CurrentProjectFileVersion)
+        public static CompilationJob CreateFromString(string fileName, string source, IEnumerable<Declaration>? declarations = null, int languageVersion = Project.CurrentProjectFileVersion)
         {
             return new CompilationJob
             {
@@ -237,8 +222,116 @@ namespace Yarn.Compiler
                         Source = source, FileName = fileName,
                     },
                 },
-                Library = library,
                 LanguageVersion = languageVersion,
+                Declarations = declarations ?? Array.Empty<Declaration>(),
+            };
+        }
+
+        // ok so for now grab the json
+        // load it
+        // manually find the definitions
+        // later make it so this can be actually deserialised magically
+        // and stored on the project correctly
+        public static CompilationJob CreateFromProject(string projectPath)
+        {
+            List<Declaration> definitions = new();
+            var project = Project.LoadFromFile(projectPath);
+            foreach (var definitionPath in project.DefinitionsFiles)
+            {
+                var span = System.IO.File.ReadAllBytes(definitionPath);
+                using (var document = System.Text.Json.JsonDocument.Parse(span))
+                {
+                    var root = document.RootElement;
+
+                    var funcsElement = root.GetProperty("functions");
+                    foreach (var funcElement in funcsElement.EnumerateArray())
+                    {
+                        var yarnName = funcElement.GetProperty("yarnName").GetString();
+                        if (yarnName == null)
+                        {
+                            continue;
+                        }
+                        var returnType = funcElement.GetProperty("return").GetProperty("type").GetString();
+
+                        FunctionType functionType;
+                        switch (returnType)
+                        {
+                            case "number":
+                                functionType = new FunctionType(Types.Number);
+                                break;
+                            case "string":
+                                functionType = new FunctionType(Types.String);
+                                break;
+                            case "bool":
+                                functionType = new FunctionType(Types.Boolean);
+                                break;
+                            default:
+                                continue;
+                        }
+
+                        foreach (var parameterElement in funcElement.GetProperty("parameters").EnumerateArray())
+                        {
+                            var isArray = parameterElement.GetProperty("isParamsArray").GetBoolean();
+                            var paramType = parameterElement.GetProperty("type").GetString();
+
+                            IType parameterYarnType;
+                            switch (paramType)
+                            {
+                                case "number":
+                                    parameterYarnType = Types.Number;
+                                    break;
+                                case "string":
+                                    parameterYarnType = Types.String;
+                                    break;
+                                case "bool":
+                                    parameterYarnType = Types.Boolean;
+                                    break;
+                                default:
+                                    continue;
+                            }
+
+                            if (isArray)
+                            {
+                                functionType.VariadicParameterType = parameterYarnType;
+                            }
+                            else
+                            {
+                                functionType.AddParameter(parameterYarnType);
+                            }
+                        }
+
+
+                        var declaration = new Declaration
+                        {
+                            Name = yarnName,
+                            Type = functionType,
+                            Range = { },
+                            SourceFileName = Declaration.ExternalDeclaration,
+                            SourceNodeName = null,
+                        };
+                        definitions.Add(declaration);
+                    }
+                }
+            }
+
+            // ok now I have all the function definitions from the various ysls files
+            var inputs = new List<File>();
+            foreach (var source in project.SourceFiles)
+            {
+                inputs.Add(
+                    new File
+                    {
+                        Source = System.IO.File.ReadAllText(source),
+                        FileName = System.IO.Path.GetFileName(source),
+                    }
+                );
+            }
+
+            return new CompilationJob
+            {
+                Inputs = inputs,
+                Declarations = definitions,
+                LanguageVersion = project.FileVersion
             };
         }
     }
