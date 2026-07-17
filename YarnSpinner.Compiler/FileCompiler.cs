@@ -17,7 +17,6 @@ namespace Yarn.Compiler
 
         internal struct CompilationContext
         {
-            internal ILibrary? Library;
             internal FileParseResult FileParseResult;
             internal HashSet<string> TrackingNodes;
             internal Dictionary<string, Declaration> VariableDeclarations;

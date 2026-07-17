@@ -30,7 +30,7 @@ namespace Yarn
         bool TryGetSmartVariable<T>(string name, out T result);
     }
 
-    public interface IDialogueResponder: ILibrary
+    public interface IDialogueResponder
     {
         ValueTask HandleLine(Line line, CancellationToken token);
         ValueTask<int> HandleOptions(OptionSet options, CancellationToken token);
@@ -40,6 +40,10 @@ namespace Yarn
         ValueTask HandleDialogueComplete();
         ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token);
         ValueTask<IConvertible> thunk(string functionName, IConvertible[] parameters, CancellationToken token);
+
+        public Dictionary<string, FunctionDefinition> allDefinitions { get; }
+        public bool TryGetFunctionDefinition(string name, out FunctionDefinition function);
+        public void DeregisterFunction(string name);
     }
 
     internal struct PendingOption

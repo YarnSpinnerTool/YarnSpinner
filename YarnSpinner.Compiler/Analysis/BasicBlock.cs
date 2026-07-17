@@ -70,7 +70,7 @@ namespace Yarn.Compiler
         /// that produced <see cref="Node"/>.</param>
         /// <returns>A string containing the text version of the
         /// instructions.</returns>
-        public string ToString(ILibrary? library, CompilationResult? compilationResult)
+        public string ToString(IDialogueResponder? library, CompilationResult? compilationResult)
         {
             var sb = new StringBuilder();
             foreach (var i in this.Instructions)

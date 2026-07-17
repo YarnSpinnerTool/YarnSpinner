@@ -524,28 +524,17 @@ This is a line
         private void PerformCommonSingleDiagLineTest(string input, string code, string message, Diagnostic.DiagnosticSeverity severity, Range range, bool allowOthers = false)
         {
             var source = CreateTestNode(input, "Start");
-            List<Declaration> declarations = new();
-            foreach (var pair in new Yarn.BasicFunctionLibrary().allDefinitions)
-            {
-                var declaration = new Declaration
+            List<Declaration> declarations =
+            [
+                new Declaration
                 {
-                    Name = pair.Key,
-                    Type = pair.Value.functionType,
+                    Name = "visited",
+                    Type = new Yarn.Compiler.FunctionTypeBuilder().WithParameter(Yarn.Types.String).WithReturnType(Yarn.Types.Boolean).FunctionType,
                     Range = { },
                     SourceFileName = Declaration.ExternalDeclaration,
                     SourceNodeName = null,
-                };
-
-                declarations.Add(declaration);
-            }
-            declarations.Add(new Declaration
-            {
-                Name = "visited",
-                Type = new Yarn.Compiler.FunctionTypeBuilder().WithParameter(Yarn.Types.String).WithReturnType(Yarn.Types.Boolean).FunctionType,
-                Range = { },
-                SourceFileName = Declaration.ExternalDeclaration,
-                SourceNodeName = null,
-            });
+                },
+            ];
 
             var job = CompilationJob.CreateFromString("<input>", source, declarations);
 
@@ -570,28 +559,17 @@ This is a line
         }
         private void PerformCommonSingleDiagNodeTest(string input, string code, string message, Diagnostic.DiagnosticSeverity severity, Range range, bool allowOthers = false)
         {
-            List<Declaration> declarations = new();
-            foreach (var pair in new Yarn.BasicFunctionLibrary().allDefinitions)
-            {
-                var declaration = new Declaration
+            List<Declaration> declarations =
+            [
+                new Declaration
                 {
-                    Name = pair.Key,
-                    Type = pair.Value.functionType,
+                    Name = "visited",
+                    Type = new Yarn.Compiler.FunctionTypeBuilder().WithParameter(Yarn.Types.String).WithReturnType(Yarn.Types.Boolean).FunctionType,
                     Range = { },
                     SourceFileName = Declaration.ExternalDeclaration,
                     SourceNodeName = null,
-                };
-
-                declarations.Add(declaration);
-            }
-            declarations.Add(new Declaration
-            {
-                Name = "visited",
-                Type = new Yarn.Compiler.FunctionTypeBuilder().WithParameter(Yarn.Types.String).WithReturnType(Yarn.Types.Boolean).FunctionType,
-                Range = { },
-                SourceFileName = Declaration.ExternalDeclaration,
-                SourceNodeName = null,
-            });
+                },
+            ];
             var job = CompilationJob.CreateFromString("<input>", input, declarations);
 
             var result = Compiler.Compile(job);

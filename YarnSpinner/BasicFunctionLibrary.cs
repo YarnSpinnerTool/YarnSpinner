@@ -8,13 +8,6 @@ namespace Yarn
     using System.Threading;
     using System.Threading.Tasks;
 
-    public interface ILibrary
-    {
-        public Dictionary<string, FunctionDefinition> allDefinitions { get; }
-        public bool TryGetFunctionDefinition(string name, out FunctionDefinition function);
-        public void DeregisterFunction(string name);
-    }
-
     /// <summary>
     /// A collection of functions that can be called from Yarn programs.
     /// </summary>
@@ -24,7 +17,7 @@ namespace Yarn
     /// access via the <see cref="Dialogue.Library"/> property.
     /// </remarks>
     /// <seealso cref="Dialogue"/>
-    public class BasicFunctionLibrary: ILibrary
+    public class BasicFunctionLibrary
     {
         // later make this private but for testing it's easier to be public
         internal Dictionary<string, FunctionDefinition> functions = new();
