@@ -203,13 +203,6 @@ namespace Yarn
     }
 #pragma warning restore CA1815
 
-    public struct FunctionDefinition
-    {
-        public string Name { get; set; }
-
-        public FunctionType functionType {get; set;}
-    }
-
     /// <summary>
     /// Represents a method that receives diagnostic messages and error
     /// information from a <see cref="Dialogue"/>.

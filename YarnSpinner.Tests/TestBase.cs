@@ -687,7 +687,7 @@ namespace YarnSpinner.Tests
                     var declaration = new Declaration
                     {
                         Name = pair.Key,
-                        Type = pair.Value.functionType,
+                        Type = pair.Value,
                         Range = { },
                         SourceFileName = Declaration.ExternalDeclaration,
                         SourceNodeName = null,

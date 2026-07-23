@@ -26,10 +26,10 @@ namespace Yarn
     public class BasicFunctionLibrary
     {
         // later make this private but for testing it's easier to be public
-        internal Dictionary<string, FunctionDefinition> functions = new();
+        internal Dictionary<string, FunctionType> functions = new();
         internal Dictionary<string, Delegate> delegates = new();
 
-        public Dictionary<string, FunctionDefinition> allDefinitions
+        public Dictionary<string, FunctionType> allDefinitions
         {
             get
             {
@@ -132,7 +132,7 @@ namespace Yarn
             return true;
         }
 
-        private bool TryMakeFunctionFromDelegate(string name, Delegate func, out FunctionDefinition functionDefinition)
+        private bool TryMakeFunctionFromDelegate(string name, Delegate func, out FunctionType functionDefinition)
         {
             if (func == null)
             {
@@ -147,7 +147,7 @@ namespace Yarn
                 // polymorph of each operator as a separate function
                 // that returns a concrete type, rather than the
                 // current method of having a 'Value' wrapper type).
-                functionDefinition = new();
+                functionDefinition = new(Types.Any);
                 return true;
             }
 
@@ -159,7 +159,7 @@ namespace Yarn
                 // but we might be one of our allowed async types
                 if (BaseAsyncTypeMappings.TryGetValue(method.ReturnType, out yarnReturnType) == false)
                 {
-                    functionDefinition = new();
+                    functionDefinition = new(Types.Any);
                     return false;
                 }
             }
@@ -225,15 +225,11 @@ namespace Yarn
 
             if (includeMethod == false)
             {
-                functionDefinition = new();
+                functionDefinition = new(Types.Any);
                 return false;
             }
 
-            functionDefinition = new()
-            {
-                Name = name,
-                functionType = functionType,
-            };
+            functionDefinition = functionType;
             return true;
         }
 

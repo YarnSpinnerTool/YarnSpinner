@@ -60,9 +60,9 @@ namespace Yarn
             "format",
         };
 
-        public static Dictionary<string, FunctionDefinition> AllFunctions()
+        public static Dictionary<string, FunctionType> AllFunctions()
         {
-            Dictionary<string, FunctionDefinition> functions = new();
+            Dictionary<string, FunctionType> functions = new();
             foreach (var key in keys)
             {
                 if (TryGetFunction(key, out var definition))
@@ -169,510 +169,300 @@ namespace Yarn
             }
         }
 
-        public static bool TryGetFunction(string functionName, out FunctionDefinition function)
+        public static bool TryGetFunction(string functionName, out FunctionType function)
         {
             switch (functionName)
             {
                 case "Number.EqualTo":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "Number.NotEqualTo":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "Number.Add":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "Number.Minus":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "Number.Divide":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "Number.Multiply":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "Number.Modulo":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "Number.UnaryMinus":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "Number.GreaterThan":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "Number.GreaterThanOrEqualTo":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "Number.LessThan":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "Number.LessThanOrEqualTo":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "String.EqualTo":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.String);
-                    functionType.AddParameter(Types.String);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.String);
+                    function.AddParameter(Types.String);
                     return true;
                 }
                 case "String.NotEqualTo":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.String);
-                    functionType.AddParameter(Types.String);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.String);
+                    function.AddParameter(Types.String);
                     return true;
                 }
                 case "String.Add":
                 {
-                    var functionType = new FunctionType(Types.String);
-                    functionType.AddParameter(Types.String);
-                    functionType.AddParameter(Types.String);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.String);
+                    function.AddParameter(Types.String);
+                    function.AddParameter(Types.String);
                     return true;
                 }
                 case "Bool.EqualTo":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Boolean);
-                    functionType.AddParameter(Types.Boolean);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Boolean);
+                    function.AddParameter(Types.Boolean);
                     return true;
                 }
                 case "Bool.NotEqualTo":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Boolean);
-                    functionType.AddParameter(Types.Boolean);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Boolean);
+                    function.AddParameter(Types.Boolean);
                     return true;
                 }
                 case "Bool.And":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Boolean);
-                    functionType.AddParameter(Types.Boolean);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Boolean);
+                    function.AddParameter(Types.Boolean);
                     return true;
                 }
                 case "Bool.Or":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Boolean);
-                    functionType.AddParameter(Types.Boolean);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Boolean);
+                    function.AddParameter(Types.Boolean);
                     return true;
                 }
                 case "Bool.Xor":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Boolean);
-                    functionType.AddParameter(Types.Boolean);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Boolean);
+                    function.AddParameter(Types.Boolean);
                     return true;
                 }
                 case "Bool.Not":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Boolean);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Boolean);
                     return true;
                 }
                 case "Enum.EqualTo":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Enum);
-                    functionType.AddParameter(Types.Enum);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Enum);
+                    function.AddParameter(Types.Enum);
                     return true;
                 }
                 case "Enum.NotEqualTo":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Enum);
-                    functionType.AddParameter(Types.Enum);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Enum);
+                    function.AddParameter(Types.Enum);
                     return true;
                 }
                 case "random":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
                     return true;
                 }
                 case "random_range":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "random_range_float":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "dice":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "min":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "max":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "round":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "round_places":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "floor":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "ceil":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "inc":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "dec":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "decimal":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "int":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Number);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Number);
                     return true;
                 }
                 case "string":
                 {
-                    var functionType = new FunctionType(Types.String);
-                    functionType.AddParameter(Types.Any);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.String);
+                    function.AddParameter(Types.Any);
                     return true;
                 }
                 case "number":
                 {
-                    var functionType = new FunctionType(Types.Number);
-                    functionType.AddParameter(Types.Any);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Number);
+                    function.AddParameter(Types.Any);
                     return true;
                 }
                 case "bool":
                 {
-                    var functionType = new FunctionType(Types.Boolean);
-                    functionType.AddParameter(Types.Any);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.Boolean);
+                    function.AddParameter(Types.Any);
                     return true;
                 }
                 case "format_invariant":
                 {
-                    var functionType = new FunctionType(Types.String);
-                    functionType.AddParameter(Types.Any);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.String);
+                    function.AddParameter(Types.Any);
                     return true;
                 }
                 case "format":
                 {
-                    var functionType = new FunctionType(Types.String);
-                    functionType.AddParameter(Types.String);
-                    functionType.AddParameter(Types.Any);
-                    function = new()
-                    {
-                        Name = functionName,
-                        functionType = functionType,
-                    };
+                    function = new FunctionType(Types.String);
+                    function.AddParameter(Types.String);
+                    function.AddParameter(Types.Any);
                     return true;
                 }
             }
 
-            function = new();
+            function = new(Types.Any);
             return false;
         }
 
-        public static ValueTask<Yarn.Value> CallFunc(FunctionDefinition function, Value[] parameters, CancellationToken token)
+        public static ValueTask<Yarn.Value> CallFunc(string functionName, Value[] parameters, CancellationToken token)
         {
             // all the standard library functions are synchronous
             // but we'll still have this operate as if it were async because later on we might add some
             // and the rest of the codebase is all async anyways so because we are changing it might as well just change it once
-            switch (function.Name)
+            switch (functionName)
             {
                 // the number operators
                 case "Number.EqualTo":
@@ -680,7 +470,7 @@ namespace Yarn
                     // we need exactly two parameters
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<float>() == parameters[1].ConvertTo<float>());
                 }
@@ -689,7 +479,7 @@ namespace Yarn
                     // we need exactly two parameters
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<float>() != parameters[1].ConvertTo<float>());
                 }
@@ -698,7 +488,7 @@ namespace Yarn
                     // we need exactly two parameters
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<float>() + parameters[1].ConvertTo<float>());
                 }
@@ -707,7 +497,7 @@ namespace Yarn
                     // we need exactly two parameters
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<float>() - parameters[1].ConvertTo<float>());
                 }
@@ -716,7 +506,7 @@ namespace Yarn
                     // we need exactly two parameters
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<float>() / parameters[1].ConvertTo<float>());
                 }
@@ -725,7 +515,7 @@ namespace Yarn
                     // we need exactly two parameters
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<float>() * parameters[1].ConvertTo<float>());
                 }
@@ -734,7 +524,7 @@ namespace Yarn
                     // we need exactly two parameters
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<float>() % parameters[1].ConvertTo<float>());
                 }
@@ -743,7 +533,7 @@ namespace Yarn
                     // we need exactly two parameters
                     if (parameters.Length != 1)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects one parameter but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(-parameters[0].ConvertTo<float>());
                 }
@@ -752,7 +542,7 @@ namespace Yarn
                     // we need exactly two parameters
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<float>() > parameters[1].ConvertTo<float>());
                 }
@@ -761,7 +551,7 @@ namespace Yarn
                     // we need exactly two parameters
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<float>() >= parameters[1].ConvertTo<float>());
                 }
@@ -770,7 +560,7 @@ namespace Yarn
                     // we need exactly two parameters
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<float>() < parameters[1].ConvertTo<float>());
                 }
@@ -779,7 +569,7 @@ namespace Yarn
                     // we need exactly two parameters
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<float>() <= parameters[1].ConvertTo<float>());
                 }
@@ -789,7 +579,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<string>() == parameters[1].ConvertTo<string>());
                 }
@@ -797,7 +587,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<string>() != parameters[1].ConvertTo<string>());
                 }
@@ -805,7 +595,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<string>() + parameters[1].ConvertTo<string>());
                 }
@@ -815,7 +605,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<bool>() == parameters[1].ConvertTo<bool>());
                 }
@@ -823,7 +613,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<bool>() != parameters[1].ConvertTo<bool>());
                 }
@@ -831,7 +621,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<bool>() && parameters[1].ConvertTo<bool>());
                 }
@@ -839,7 +629,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<bool>() || parameters[1].ConvertTo<bool>());
                 }
@@ -847,7 +637,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(parameters[0].ConvertTo<bool>() ^ parameters[1].ConvertTo<bool>());
                 }
@@ -855,7 +645,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 1)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects one parameter but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(!parameters[0].ConvertTo<bool>());
                 }
@@ -865,7 +655,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(EnumEqualTo(parameters[0], parameters[1]));
                 }
@@ -873,7 +663,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(!EnumEqualTo(parameters[0], parameters[1]));
                 }
@@ -883,7 +673,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 0)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects no parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects no parameters but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>((float)Random.NextDouble());
                 }
@@ -891,7 +681,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     
                     var min = parameters[0].ConvertTo<int>();
@@ -902,7 +692,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
 
                     var minInclusive = parameters[0].ConvertTo<int>();
@@ -913,7 +703,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects one parameter but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
 
                     var sides = parameters[0].ConvertTo<int>();
@@ -926,7 +716,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
 
                     return new ValueTask<Value>(Math.Min(parameters[0].ConvertTo<float>(), parameters[1].ConvertTo<float>()));
@@ -935,7 +725,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
 
                     return new ValueTask<Value>(Math.Max(parameters[0].ConvertTo<float>(), parameters[1].ConvertTo<float>()));
@@ -944,7 +734,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 1)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects one parameter but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
 
                     return new ValueTask<Value>((int)Math.Round(parameters[0].ConvertTo<float>()));
@@ -953,7 +743,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
 
                     var number = parameters[0].ConvertTo<float>();
@@ -964,7 +754,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 1)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects one parameter but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
 
                     return new ValueTask<Value>((int)Math.Floor(parameters[0].ConvertTo<float>()));
@@ -973,7 +763,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 1)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects one parameter but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
 
                     return new ValueTask<Value>((int)Math.Ceiling(parameters[0].ConvertTo<float>()));
@@ -982,7 +772,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 1)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects one parameter but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
 
                     int inc(float value)
@@ -1003,7 +793,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 1)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects one parameter but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
 
                     int dec(float value)
@@ -1024,7 +814,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 1)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects one parameter but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
 
                     return new ValueTask<Value>(Decimal(parameters[0].ConvertTo<float>()));
@@ -1033,7 +823,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 1)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects one parameter but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
 
                     return new ValueTask<Value>(Integer(parameters[0].ConvertTo<float>()));
@@ -1044,7 +834,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 1)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects one parameter but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(Convert.ToString(parameters[0], System.Globalization.CultureInfo.CurrentCulture));
                 }
@@ -1052,7 +842,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 1)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects one parameter but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(Convert.ToSingle(parameters[0], System.Globalization.CultureInfo.CurrentCulture));
                 }
@@ -1060,7 +850,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 1)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects one parameter but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(Convert.ToBoolean(parameters[0], System.Globalization.CultureInfo.CurrentCulture));
                 }
@@ -1070,7 +860,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 1)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects one parameter but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
                     return new ValueTask<Value>(Convert.ToString(parameters[0], System.Globalization.CultureInfo.InvariantCulture));
                 }
@@ -1078,7 +868,7 @@ namespace Yarn
                 {
                     if (parameters.Length != 2)
                     {
-                        throw new System.ArgumentException($"Internal error: The function {function.Name} expects two parameters but was given {parameters.Length}");
+                        throw new System.ArgumentException($"Internal error: The function {functionName} expects two parameters but was given {parameters.Length}");
                     }
                     
                     var formatString = parameters[0].ConvertTo<string>();
@@ -1087,7 +877,7 @@ namespace Yarn
                 }
                 
                 default:
-                    throw new System.ArgumentException($"Internal error: The function {function.Name} is not known to the standard library");
+                    throw new System.ArgumentException($"Internal error: The function {functionName} is not known to the standard library");
             }
         }
 

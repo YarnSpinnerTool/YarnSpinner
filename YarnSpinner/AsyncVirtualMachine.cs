@@ -902,9 +902,9 @@ namespace Yarn
                     throw new System.InvalidOperationException($"Internal error: Return value of the function is not convertible to a Yarn type.");
                 }
             }
-            else if (StandardLibrary.TryGetFunction(functionName, out var function))
+            else if (StandardLibrary.TryGetFunction(functionName, out _))
             {
-                var value = await StandardLibrary.CallFunc(function, parameters, token);
+                var value = await StandardLibrary.CallFunc(functionName, parameters, token);
                 return value;
             }
             else

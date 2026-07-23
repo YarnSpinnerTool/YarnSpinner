@@ -1080,7 +1080,7 @@ namespace Yarn.Compiler
 
             return compiler.Compile();
         }
-        internal static List<Declaration> GetDeclarationsFromLibrary(Dictionary<string, FunctionDefinition> library)
+        internal static List<Declaration> GetDeclarationsFromLibrary(Dictionary<string, FunctionType> library)
         {
             var declarations = new List<Declaration>();
 
@@ -1089,7 +1089,7 @@ namespace Yarn.Compiler
                 var declaration = new Declaration
                 {
                     Name = pair.Key,
-                    Type = pair.Value.functionType,
+                    Type = pair.Value,
                     Range = { },
                     SourceFileName = Declaration.ExternalDeclaration,
                     SourceNodeName = null,
