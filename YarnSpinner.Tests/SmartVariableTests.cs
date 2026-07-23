@@ -413,23 +413,13 @@ namespace YarnSpinner.Tests
             throw new NotImplementedException();
         }
 
-        public ValueTask<IConvertible> thunk(string functionName, IConvertible[] parameters, CancellationToken token)
+        public bool CanCallFunction(string functionName)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool TryGetFunctionDefinition(string functionName, out FunctionDefinition functionDefinition)
-        {
-            // return StandardLibrary.TryGetFunction(functionName, out functionDefinition);
-            functionDefinition = default;
             return false;
         }
-
-        public Dictionary<string, FunctionDefinition> allDefinitions => StandardLibrary.AllFunctions();
-
-        public void DeregisterFunction(string name)
+        public ValueTask<IConvertible> InvokeFunction(string functionName, IConvertible[] parameters, CancellationToken token)
         {
-            return;
+            throw new NotImplementedException();
         }
     }
 }

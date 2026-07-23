@@ -662,21 +662,18 @@ namespace YarnSpinner.Tests
             throw new NotImplementedException();
         }
 
-        public ValueTask<IConvertible> thunk(string functionName, IConvertible[] parameters, CancellationToken token)
+        bool IDialogueResponder.CanCallFunction(string functionName)
+        {
+            if (!Library.HasFunction(functionName))
+            {
+                return false;
+            }
+
+            return true;
+        }
+        ValueTask<IConvertible> IDialogueResponder.InvokeFunction(string functionName, IConvertible[] parameters, CancellationToken token)
         {
             return Library.Invoke(functionName, parameters, token);
-        }
-
-        public bool TryGetFunctionDefinition(string functionName, out FunctionDefinition functionDefinition)
-        {
-            return Library.TryGetFunctionDefinition(functionName, out functionDefinition);
-        }
-
-        public Dictionary<string, FunctionDefinition> allDefinitions => Library.allDefinitions;
-
-        public void DeregisterFunction(string name)
-        {
-            Library.DeregisterFunction(name);
         }
 
         public List<Declaration> Declarations

@@ -70,12 +70,12 @@ namespace Yarn.Compiler
         /// that produced <see cref="Node"/>.</param>
         /// <returns>A string containing the text version of the
         /// instructions.</returns>
-        public string ToString(IDialogueResponder? library, CompilationResult? compilationResult)
+        public string ToString(CompilationResult? compilationResult)
         {
             var sb = new StringBuilder();
             foreach (var i in this.Instructions)
             {
-                var desc = i.ToDescription(this.Node, library, compilationResult);
+                var desc = i.ToDescription(this.Node, compilationResult);
                 sb.Append($"{desc.Type} {string.Join(",", desc.Operands)}");
                 if (desc.Comments.Count() > 0)
                 {

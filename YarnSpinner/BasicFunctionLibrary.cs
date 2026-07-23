@@ -3,6 +3,12 @@
 
 namespace Yarn
 {
+    // I can probably massively simplify this class now
+    // and rename it to DelegateTestLibrary
+    // and move it into the test space
+    // and then in unity make a unity specific one
+    // which will be able to handle all the weirdness around types
+
     using System;
     using System.Collections.Generic;
     using System.Threading;
@@ -31,9 +37,9 @@ namespace Yarn
             }
         }
 
-        public bool TryGetFunctionDefinition(string name, out FunctionDefinition function)
+        public bool HasFunction(string name)
         {
-            return functions.TryGetValue(name, out function);
+            return functions.ContainsKey(name);
         }
 
         private bool TryGetConcreteTypesFromDelegate(Delegate func, out System.Type[] types, out bool isVariadic)

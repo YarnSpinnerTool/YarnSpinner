@@ -39,11 +39,8 @@ namespace Yarn
         ValueTask HandleNodeComplete(string node, CancellationToken token);
         ValueTask HandleDialogueComplete();
         ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token);
-        ValueTask<IConvertible> thunk(string functionName, IConvertible[] parameters, CancellationToken token);
-
-        public Dictionary<string, FunctionDefinition> allDefinitions { get; }
-        public bool TryGetFunctionDefinition(string name, out FunctionDefinition function);
-        public void DeregisterFunction(string name);
+        bool CanCallFunction(string functionName);
+        ValueTask<IConvertible> InvokeFunction(string functionName, IConvertible[] parameters, CancellationToken token);
     }
 
     internal struct PendingOption
@@ -881,41 +878,19 @@ namespace Yarn
             state.programCounter -= 1;
         }
 
-        public static Value[] ParametersForFunction(FunctionDefinition function, Stack<Value> stack)
-        {
-            // we are gonna do a basic check, we assume our responder will make sure it's all perfect
-            // we could do more here but then we'd have to deal with the issues of unknown types again
-            // much easier to let the responder who has them deal with it
-            // we all need here to have the minimum number of parameters we'd expect
-            var actualParamCount = stack.Pop().ConvertTo<int>();
-            var expectedCount = function.functionType.Parameters.Count + (function.functionType.VariadicParameterType == null ? 0 : 1);
-
-            var minimumCount = expectedCount - (function.functionType.VariadicParameterType == null ? 0 : 1);
-            if (actualParamCount < minimumCount)
-            {
-                throw new System.InvalidOperationException($"Internal error: {function.Name}'s expects {expectedCount} parameters but has {actualParamCount}");
-            }
-
-            // make a single array of yarnvalues of the appropriate size
-            var parameters = new Yarn.Value[actualParamCount];
-            for (int i = actualParamCount - 1; i > -1; i--)
-            {
-                parameters[i] = stack.Pop();
-            }
-            return parameters;
-        }
-
         public static async ValueTask<Yarn.Value> CallFunction(string functionName, Stack<Value> state, IDialogueResponder? responder, CancellationToken token)
         {
-            if (responder != null && responder.TryGetFunctionDefinition(functionName, out var function))
+            var paramCount = state.Pop().ConvertTo<int>();
+            // make a single array of yarnvalues of the appropriate size
+            var parameters = new Yarn.Value[paramCount];
+            for (int i = paramCount - 1; i > -1; i--)
             {
-                var parameters = ParametersForFunction(function, state);
-                
-                var result = await responder.thunk(function.Name, parameters, token);
-                if (result == null)
-                {
-                    throw new System.InvalidOperationException($"Internal error: Return value of the function is not convertible to a Yarn type.");
-                }
+                parameters[i] = state.Pop();
+            }
+
+            if (responder?.CanCallFunction(functionName) ?? false)
+            {
+                var result = await responder.InvokeFunction(functionName, parameters, token) ?? throw new System.InvalidOperationException($"Internal error: The function was unable to be invoked.");
 
                 if (Types.TypeMappings.TryGetValue(result.GetType(), out var yarnType))
                 {
@@ -927,11 +902,9 @@ namespace Yarn
                     throw new System.InvalidOperationException($"Internal error: Return value of the function is not convertible to a Yarn type.");
                 }
             }
-            else if (StandardLibrary.TryGetFunction(functionName, out function))
+            else if (StandardLibrary.TryGetFunction(functionName, out var function))
             {
-                var parameters = ParametersForFunction(function, state);
                 var value = await StandardLibrary.CallFunc(function, parameters, token);
-
                 return value;
             }
             else

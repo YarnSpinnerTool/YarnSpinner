@@ -779,21 +779,13 @@ namespace Yarn
             }
         }
 
-        public ValueTask<IConvertible> thunk(string functionName, IConvertible[] parameters, CancellationToken token)
+        bool IDialogueResponder.CanCallFunction(string functionName)
         {
-            return Responder.thunk(functionName, parameters, token);
+            return Responder.CanCallFunction(functionName);
         }
-
-        public bool TryGetFunctionDefinition(string functionName, out FunctionDefinition functionDefinition)
+        ValueTask<IConvertible> IDialogueResponder.InvokeFunction(string functionName, IConvertible[] parameters, CancellationToken token)
         {
-            return Responder.TryGetFunctionDefinition(functionName, out functionDefinition);
-        }
-
-        public Dictionary<string, FunctionDefinition> allDefinitions => Responder.allDefinitions;
-
-        public void DeregisterFunction(string name)
-        {
-            Responder.DeregisterFunction(name);
+            return Responder.InvokeFunction(functionName, parameters, token);
         }
     }
 }

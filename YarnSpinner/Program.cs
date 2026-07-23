@@ -44,7 +44,7 @@ namespace Yarn
     {
         internal const string SmartVariableNodeTag = "Yarn.SmartVariable";
 
-        internal string DumpCode(IDialogueResponder? library, ICodeDumpHelper? helper)
+        internal string DumpCode(ICodeDumpHelper? helper)
         {
             var sb = new System.Text.StringBuilder();
 
@@ -65,7 +65,7 @@ namespace Yarn
                     }
                     string instructionText;
 
-                    instructionText = "    " + instruction.ToString(entry.Value, library, helper);
+                    instructionText = "    " + instruction.ToString(entry.Value, helper);
 
                     string preface;
 
@@ -268,74 +268,14 @@ namespace Yarn
 
         }
 
-        internal (string Type, IEnumerable<object> Operands, IEnumerable<string> Comments) ToDescription(Node? containingNode, IDialogueResponder? library, ICodeDumpHelper? helper)
+        internal (string Type, IEnumerable<object> Operands, IEnumerable<string> Comments) ToDescription(Node? containingNode, ICodeDumpHelper? helper)
         {
-
             // Generate a comment, if the instruction warrants it
             List<string> comments = new List<string>();
 
-            // Stack manipulation comments
-            var pops = 0;
-            var pushes = 0;
-
-            switch (InstructionTypeCase)
+            if (InstructionTypeCase == InstructionTypeOneofCase.RunNode)
             {
-                // These operations all push a single value to the stack
-                case InstructionTypeOneofCase.PushBool:
-                case InstructionTypeOneofCase.PushFloat:
-                case InstructionTypeOneofCase.PushString:
-                case InstructionTypeOneofCase.PushVariable:
-                case InstructionTypeOneofCase.ShowOptions:
-                    pushes = 1;
-                    break;
-
-                // Functions pop 0 or more values, and pop 0 or 1
-                case InstructionTypeOneofCase.CallFunc:
-                    if (library == null)
-                    {
-                        pops = -1;
-                        pushes = -1;
-                        break;
-                    }
-
-                    if (!library.TryGetFunctionDefinition(this.CallFunc.FunctionName, out _))
-                    {
-                        pushes = -1;
-                        pops = -1;
-                        break;
-                    }
-
-                    pushes = 1;
-
-                    break;
-
-                case InstructionTypeOneofCase.AddSaliencyCandidate:
-                    pops = 1;
-                    break;
-
-                // Pop always pops a single value
-                case InstructionTypeOneofCase.Pop:
-                    pops = 1;
-                    break;
-
-                // Switching to a different node will always clear the stack
-                case InstructionTypeOneofCase.RunNode:
-                    comments.Add("Clears stack");
-                    break;
-            }
-
-            // If we had any pushes or pops, report them
-            if (pops > 0 && pushes > 0)
-            {
-                comments.Add(string.Format(CultureInfo.InvariantCulture, "Pops {0}, Pushes {1}", pops, pushes));
-            }
-            else if (pops > 0)
-            {
-                comments.Add(string.Format(CultureInfo.InvariantCulture, "Pops {0}", pops));
-            }
-            else if (pushes > 0)
-            {
-                comments.Add(string.Format(CultureInfo.InvariantCulture, "Pushes {0}", pushes));
+                comments.Add("Clears stack");
             }
 
             // String lookup comments
@@ -381,7 +321,6 @@ namespace Yarn
                 case InstructionTypeOneofCase.StoreVariable:
                     comments.Add(helper?.GetDescriptionForVariable(StoreVariable.VariableName) ?? "<no variable info available>");
                     break;
-
             }
 
 
@@ -471,9 +410,9 @@ namespace Yarn
             );
         }
 
-        internal string ToString(Node? containingNode, IDialogueResponder? library, ICodeDumpHelper? helper)
+        internal string ToString(Node? containingNode, ICodeDumpHelper? helper)
         {
-            var result = ToDescription(containingNode, library, helper);
+            var result = ToDescription(containingNode, helper);
 
             string operandText = string.Join(", ", result.Operands);
             string commentText = string.Join(", ", result.Comments);
