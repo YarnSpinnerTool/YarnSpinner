@@ -201,5 +201,15 @@ namespace YarnSpinner.Tests
             project.CompilerOptions.DiagnosticsSeverity.Should().ContainKey("YS0004")
                 .WhoseValue.Should().Be(Diagnostic.DiagnosticSeverity.None);
         }
+
+        [Fact]
+        public void TestProjectDefintionPatternsResolveToAbsolutePaths()
+        {
+            var testProjectPath = Path.Combine(ProjectRootPath, "Tests", "Projects", "Compilation", "test.yarnproject");
+            var project = Project.LoadFromFile(testProjectPath);
+            
+            project.Definitions.Should().ContainSingle().Subject.Should().Be("./test.ysls.json");
+            project.DefinitionsFiles.Should().ContainSingle().Subject.Should().Be(Path.Combine(ProjectRootPath, "Tests", "Projects", "Compilation", "test.ysls.json"));
+        }
     }
 }

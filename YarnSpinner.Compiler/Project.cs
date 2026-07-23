@@ -7,8 +7,8 @@ namespace Yarn.Compiler
     using System;
     using System.Collections.Generic;
     using System.Text.Json;
-    using System.Text.Json.Nodes;
     using System.Text.Json.Serialization;
+    using System.Linq;
 
     [JsonSourceGenerationOptions(WriteIndented = true)]
     [JsonSerializable(typeof(Project))]
@@ -276,44 +276,6 @@ namespace Yarn.Compiler
             }
         }
 
-        [JsonIgnore]
-        private List<string> DefinitionsFilesPatterns
-        {
-            get
-            {
-                if (this.Definitions == null)
-                {
-                    return new();
-                }
-
-                List<string> result = new();
-                foreach (var pattern in Definitions)
-                {
-
-                    if (pattern.IndexOf(WorkspaceRootPlaceholder) != -1)
-                    {
-                        if (this.WorkspaceRootPath != null
-                            && System.IO.Directory.Exists(WorkspaceRootPath))
-                        {
-                            result.Add(pattern.Replace(WorkspaceRootPlaceholder, WorkspaceRootPath));
-                        }
-                        else
-                        {
-                            // The path contains the placeholder, but we have no
-                            // value to insert it with. Early out here.
-                            continue;
-                        }
-                    }
-                    else if (this.SearchDirectoryPath != null)
-                    {
-                        result.Add(System.IO.Path.Combine(this.SearchDirectoryPath, pattern));
-                    }
-
-                }
-                return result;
-            }
-        }
-
         /// <summary>
         /// Gets the absolute paths to the project's Definitions files.
         /// </summary>
@@ -322,7 +284,7 @@ namespace Yarn.Compiler
         {
             get
             {
-                if (DefinitionsFilesPatterns.Count == 0)
+                if (this.Definitions == null || this.Definitions.Count == 0)
                 {
                     return Array.Empty<string>();
                 }
@@ -331,7 +293,7 @@ namespace Yarn.Compiler
 
                 var result = new List<string>();
 
-                foreach (var DefinitionsFilesPattern in this.DefinitionsFilesPatterns)
+                foreach (var DefinitionsFilesPattern in this.Definitions)
                 {
                     if (System.IO.Path.IsPathRooted(DefinitionsFilesPattern))
                     {
@@ -669,4 +631,135 @@ namespace Yarn.Compiler
         }
     }
 
+    public class Definitions
+    {
+        public List<Declaration> functions;
+
+        // doing it this way for now because I haven't worked out how the diagnostics stuff will sit in the space
+        // need to probably sit down with Jon and work that out properly
+        public struct TempCommand
+        {
+            public string name;
+            public (string, string, bool)[] parameters;
+
+            public string UsageString
+            {
+                get
+                {
+                    return $"{name} {string.Join(' ', parameters.Select(p => p.Item1))}";
+                }
+            }
+        }
+        public List<TempCommand> commands;
+        
+        public Definitions(string source): this(System.Text.Encoding.UTF8.GetBytes(source)){}
+        public Definitions(ReadOnlyMemory<byte> source)
+        {
+            functions = new();
+            commands = new();
+            using (var document = JsonDocument.Parse(source))
+            {
+                var root = document.RootElement;
+
+                var funcsElement = root.GetProperty("functions");
+                foreach (var funcElement in funcsElement.EnumerateArray())
+                {
+                    var yarnName = funcElement.GetProperty("yarnName").GetString();
+                    if (yarnName == null)
+                    {
+                        continue;
+                    }
+                    var returnType = funcElement.GetProperty("return").GetProperty("type").GetString();
+
+                    FunctionType functionType;
+                    switch (returnType)
+                    {
+                        case "number":
+                            functionType = new FunctionType(Types.Number);
+                            break;
+                        case "string":
+                            functionType = new FunctionType(Types.String);
+                            break;
+                        case "bool":
+                            functionType = new FunctionType(Types.Boolean);
+                            break;
+                        default:
+                            continue;
+                    }
+
+                    foreach (var parameterElement in funcElement.GetProperty("parameters").EnumerateArray())
+                    {
+                        var isArray = parameterElement.GetProperty("isParamsArray").GetBoolean();
+                        var paramType = parameterElement.GetProperty("type").GetString();
+
+                        IType parameterYarnType;
+                        switch (paramType)
+                        {
+                            case "number":
+                                parameterYarnType = Types.Number;
+                                break;
+                            case "string":
+                                parameterYarnType = Types.String;
+                                break;
+                            case "bool":
+                                parameterYarnType = Types.Boolean;
+                                break;
+                            default:
+                                continue;
+                        }
+
+                        if (isArray)
+                        {
+                            functionType.VariadicParameterType = parameterYarnType;
+                        }
+                        else
+                        {
+                            functionType.AddParameter(parameterYarnType);
+                        }
+                    }
+
+                    var declaration = new Declaration
+                    {
+                        Name = yarnName,
+                        Type = functionType,
+                        Range = { },
+                        SourceFileName = Declaration.ExternalDeclaration,
+                        SourceNodeName = null,
+                    };
+                    functions.Add(declaration);
+                }
+
+                var commandsElement = root.GetProperty("commands");
+                foreach (var commandElement in commandsElement.EnumerateArray())
+                {
+                    var yarnName = commandElement.GetProperty("yarnName").GetString();
+                    if (yarnName == null)
+                    {
+                        continue;
+                    }
+
+                    List<(string, string, bool)> parameters = new();
+                    foreach (var parameterElement in commandElement.GetProperty("parameters").EnumerateArray())
+                    {
+                        var isArray = parameterElement.GetProperty("isParamsArray").GetBoolean();
+                        var paramType = parameterElement.GetProperty("type").GetString();
+                        var paramName = parameterElement.GetProperty("name").GetString();
+
+                        if (paramType == null || paramName == null)
+                        {
+                            continue;
+                        }
+
+                        parameters.Add((paramName, paramType, isArray));
+                    }
+                    var command = new TempCommand()
+                    {
+                        parameters = parameters.ToArray(),
+                        name = yarnName
+                    };
+                    commands.Add(command);
+                }
+            }
+        }
+    }
 }

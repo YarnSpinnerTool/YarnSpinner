@@ -25,9 +25,6 @@ namespace Yarn.Compiler
         /// </summary>
         public string Name { get; }
 
-        /// <inheritdoc/>>
-        public string FileName => Name;
-
         /// <summary>
         /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream, IEnumerable{Diagnostic})" path="/param[@name='tree']"/>
         /// </summary>

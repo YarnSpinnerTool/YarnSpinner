@@ -65,7 +65,9 @@ namespace Yarn.Compiler
 
             if (compilationJob.Declarations != null)
             {
-                declarations.AddRange(compilationJob.Declarations);
+                // there is nothing stopping you declaring a gazillion functions or variables all with the same name
+                // if you do this we only keep one, basically at random
+                declarations.AddRange(compilationJob.Declarations.GroupBy(d => d.Name).Select(g => g.First()));
             }
 
             var diagnostics = new List<Diagnostic>();
@@ -78,6 +80,13 @@ namespace Yarn.Compiler
             // First pass: parse all files, generate their syntax trees,
             // and figure out what variables they've declared
             var stringTableManager = new StringTableManager();
+
+            foreach (var rawInput in compilationJob.Inputs.OfType<CompilationJob.Raw>())
+            {
+                var parseResult = ParseSyntaxTree(rawInput);
+                diagnostics.AddRange(parseResult.Diagnostics);
+                parsedFiles.Add(parseResult);
+            }
 
             foreach (var file in compilationJob.Inputs.OfType<CompilationJob.File>())
             {
@@ -120,7 +129,7 @@ namespace Yarn.Compiler
             {
                 var lastLineTagger = new LastLineBeforeOptionsVisitor();
                 lastLineTagger.Visit(parsedInput.Tree);
-                RegisterStrings(parsedInput.FileName, stringTableManager, parsedInput.Tree, ref diagnostics);
+                RegisterStrings(parsedInput.Name, stringTableManager, parsedInput.Tree, ref diagnostics);
             }
 
             // Check to see if any lines that shadow another have a valid source
@@ -175,8 +184,6 @@ namespace Yarn.Compiler
                 StringInfo shadowLineTableEntry = stringTableManager.StringTable[shadowLineContext.LineID];
                 shadowLineTableEntry.text = null;
                 stringTableManager.StringTable[shadowLineContext.LineID] = shadowLineTableEntry;
-
-
             }
 
             // Ensure that all nodes names in this compilation are unique. Node
@@ -822,7 +829,7 @@ namespace Yarn.Compiler
                 }
 
                 // Visit every 'set' statement in the parse tree.
-                ParseTreeWalker.WalkTree<YarnSpinnerParser.Set_statementContext>(dialogueContext, (setStatement) =>
+                ParseTreeWalker.WalkTree<YarnSpinnerParser.Set_statementContext>(dialogueContext, (Action<YarnSpinnerParser.Set_statementContext>)((setStatement) =>
                 {
                     if (setStatement.variable() != null && setStatement.variable().VAR_ID() != null)
                     {
@@ -833,13 +840,13 @@ namespace Yarn.Compiler
                             // to a smart variable. That's not allowed, because
                             // smart variables are read-only.
                             diagnostics.Add(DiagnosticDescriptor.SmartVariableReadOnly.Create(
-                                file.Name,
+                                (string)file.Name,
                                 setStatement.variable(),
                                 variableName,
                                  smartVariables[variableName]?.InitialValueParserContext?.GetTextWithWhitespace() ?? "(unknown)"));
                         }
                     }
-                });
+                }));
             }
         }
 
@@ -962,9 +969,6 @@ namespace Yarn.Compiler
                                 diagnostics.Add(d);
                             }
                         }
-
-
-
                     }
 
                     continue;
@@ -1096,10 +1100,18 @@ namespace Yarn.Compiler
             return declarations;
         }
 
+        private static FileParseResult ParseSyntaxTree(CompilationJob.Raw file)
+        {
+            string source = file.Source;
+            string fileName = file.Name;
+
+            return ParseSyntaxTree(fileName, source);
+        }
+
         private static FileParseResult ParseSyntaxTree(CompilationJob.File file)
         {
             string source = file.Source;
-            string fileName = file.FileName;
+            string fileName = file.Name;
 
             return ParseSyntaxTree(fileName, source);
         }

@@ -140,17 +140,35 @@ namespace Yarn.Compiler
         /// <param name="tagAbortBehaviour">Controls how the line tagging should handle encountering issues while tagging.</param>
         /// <returns>Tuple of the modified source code, with line tags added, an updated list of line IDs that were added, and any tagging exceptions that were encountered during tagging.
         /// </returns>
-        public static (string ModifiedSource, ICollection<string> LineIDs, List<ILineTagGenerator.LineTaggingException> TagExceptions) TagLines(CompilationJob.File contents, HashSet<string>? excludedLineIDs = null, ILineTagGenerator? lineTagGenerator = null, ILineTagGenerator.TagAbortBehaviour tagAbortBehaviour = ILineTagGenerator.TagAbortBehaviour.CurrentNode)
+        public static (string ModifiedSource, ICollection<string> LineIDs, List<ILineTagGenerator.LineTaggingException> TagExceptions) TagLines(ISourceInput contents, HashSet<string>? excludedLineIDs = null, ILineTagGenerator? lineTagGenerator = null, ILineTagGenerator.TagAbortBehaviour tagAbortBehaviour = ILineTagGenerator.TagAbortBehaviour.CurrentNode)
         {
+            FileParseResult parseSource;
             // First, get the parse tree for this source code.
-            var parseSource = ParseSourceText(contents.Source);
+            // var parseSource = ParseSourceText(contents.Source);
+
+            if (contents is CompilationJob.File cjf)
+            {
+                parseSource = ParseSourceText(cjf.Source);
+            }
+            else if (contents is CompilationJob.Raw cjr)
+            {
+                parseSource = ParseSourceText(cjr.Source);
+            }
+            else if (contents is FileParseResult fpr)
+            {
+                parseSource = fpr;
+            }
+            else
+            {
+                throw new ArgumentException("unable to determine the ISourceType of the content");
+            }
 
             // Were there any error-level diagnostics?
             if (parseSource.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {
                 // We encountered a parse error. Bail here; we aren't confident
                 // in our ability to correctly insert a line tag.
-                return (contents.Source, new List<string>(), new List<ILineTagGenerator.LineTaggingException>());
+                return (string.Empty, new List<string>(), new List<ILineTagGenerator.LineTaggingException>());
             }
 
             // Create the line listener, which will produce TextReplacements for
@@ -163,7 +181,7 @@ namespace Yarn.Compiler
                 excludedLineIDs = new();
             }
 
-            var untaggedLineListener = new UntaggedLineListener(lineTagGenerator, excludedLineIDs, parseSource.Tokens, contents.FileName);
+            var untaggedLineListener = new UntaggedLineListener(lineTagGenerator, excludedLineIDs, parseSource.Tokens, contents.Name);
 
             // Walk the tree with this listener, and generate text replacements
             // containing line tags.
@@ -180,9 +198,9 @@ namespace Yarn.Compiler
         /// <inheritdoc cref="TagLines(CompilationJob.File, System.Collections.Generic.HashSet{string}, ILineTagGenerator?, ILineTagGenerator.TagAbortBehaviour)"/>
         public static (string ModifiedSource, ICollection<string> LineIDs, List<ILineTagGenerator.LineTaggingException> TagExceptions) TagLines(string contents, HashSet<string>? excludedLineIDs = null, ILineTagGenerator? lineTagGenerator = null, ILineTagGenerator.TagAbortBehaviour tagAbortBehaviour = ILineTagGenerator.TagAbortBehaviour.CurrentNode)
         {
-            return TagLines(new CompilationJob.File
+            return TagLines(new CompilationJob.Raw
             {
-                FileName = "<input>",
+                Name = "<input>",
                 Source = contents,
             },
             excludedLineIDs,
@@ -724,9 +742,9 @@ namespace Yarn.Compiler
         /// <param name="l"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public static string GetCompiledCodeAsString(Program program, IDialogueResponder? l = null, CompilationResult? result = null)
+        public static string GetCompiledCodeAsString(Program program, CompilationResult? result = null)
         {
-            return program.DumpCode(l, result);
+            return program.DumpCode(result);
         }
 
         /// <summary>

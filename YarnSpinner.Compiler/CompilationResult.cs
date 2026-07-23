@@ -95,7 +95,7 @@ namespace Yarn.Compiler
         /// Gets the collection of file-level tags found in the source code.
         /// </summary>
         /// <remarks>The keys of this dictionary are the file names (as
-        /// indicated by the <see cref="CompilationJob.File.FileName"/> property
+        /// indicated by the <see cref="CompilationJob.File.Name"/> property
         /// of the <see cref="CompilationJob"/>'s <see
         /// cref="CompilationJob.Files"/> collection), and the values are the
         /// file tags associated with that file.
@@ -179,7 +179,7 @@ namespace Yarn.Compiler
 
         internal string DumpProgram()
         {
-            return this.Program?.DumpCode(null, this) ?? "<no program>";
+            return this.Program?.DumpCode(this) ?? "<no program>";
         }
 
         /// <summary>

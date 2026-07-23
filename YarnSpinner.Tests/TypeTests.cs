@@ -98,8 +98,8 @@ namespace YarnSpinner.Tests
             var compilationJob = new CompilationJob
             {
                 Inputs = [
-                    new CompilationJob.File { FileName = "sourceA", Source = sourceA  },
-                    new CompilationJob.File { FileName = "sourceB", Source = sourceB  },
+                    new CompilationJob.Raw { Name = "sourceA", Source = sourceA  },
+                    new CompilationJob.Raw { Name = "sourceB", Source = sourceB  },
                 ],
             };
 

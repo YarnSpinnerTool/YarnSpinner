@@ -975,21 +975,22 @@ Shelley: hmph apropos hmph
 ===
 ";
 
-            var (taggedSource, updatedLines, tagExceptions) = Utility.TagLines(new CompilationJob.File
+            var (taggedSource, updatedLines, tagExceptions) = Utility.TagLines(new CompilationJob.Raw
             {
-                FileName = "TestLineIDs.yarn",
+                Name = "TestLineIDs.yarn",
                 Source = source,
             },
             null,
                 lineTagGenerator: new DescriptiveLineTagGenerator()
             );
 
+            updatedLines.Should().HaveCount(10);
+            tagExceptions.Should().BeEmpty();
+
             var job = CompilationJob.CreateFromString("TestLineIDs.yarn", taggedSource);
 
             var result = Compiler.Compile(job);
-
-
-
+            result.Diagnostics.Should().BeEmpty();
         }
 
         [Fact]

@@ -49,11 +49,7 @@ namespace YarnSpinner.Tests
 
             var upgradeJob = new UpgradeJob(
                 UpgradeType.Version1to2,
-                allInputYarnFiles.Select(path => new CompilationJob.File
-                {
-                    FileName = path,
-                    Source = File.ReadAllText(path)
-                }));
+                allInputYarnFiles.Select(path => new CompilationJob.File(path)));
 
             var upgradeResult = LanguageUpgrader.Upgrade(upgradeJob);
 

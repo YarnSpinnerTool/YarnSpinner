@@ -17,8 +17,9 @@ namespace Yarn.Compiler
     {
         /// <summary>
         /// The name of the input.
+        /// Must be unique across the entire list of all inputs.
         /// </summary>
-        public string FileName { get; }
+        public string Name { get; }
     }
 
     /// <summary>
@@ -37,21 +38,42 @@ namespace Yarn.Compiler
         /// </summary>
         public class File : ISourceInput
         {
+            /// <inheritdoc/>
+            public string Name => Path;
+
             /// <summary>
-            /// The name of the file.
+            /// The path of the file
             /// </summary>
-            /// <remarks>
-            /// This may be a full path, or just the filename or anything in
-            /// between. This is useful for diagnostics, and for attributing
-            /// <see cref="Line"/> objects to their original source
-            /// files.</remarks>
-            public string FileName { get; set; } = "<unknown>";
+            /// <remarks> 
+            /// This can be a relative or absolute path provided other pieces of the pipeline can manage to process it for diagnostic and debug purposes
+            /// </remarks>
+            public string Path { get; set; }
 
             /// <summary>
             /// The source code of this file.
             /// </summary>
             public string Source = string.Empty;
+
+            public File(string path)
+            {
+                Path = path;
+                Source = System.IO.File.ReadAllText(path);
+            }
         }
+
+        /// <summary>
+        /// Represents a <see langword="string"/> being passed in directly for the compiler to use.
+        /// This is in constrast to loading it from a file.   
+        /// Mostly used internally for testing.
+        /// </summary>
+        public class Raw :  ISourceInput
+        {
+            public string Name { get; set; } = "<unknown>";
+
+            public string Source = string.Empty;
+        }
+
+        // maek a new ISourceInput that is a stringinput instead of a file input
 
         /// <summary>
         /// The type of compilation that the compiler will do.
@@ -164,11 +186,7 @@ namespace Yarn.Compiler
             // Read every file and add it to the file list
             foreach (var path in paths)
             {
-                fileList.Add(new File
-                {
-                    FileName = path,
-                    Source = System.IO.File.ReadAllText(path),
-                });
+                fileList.Add(new File(path));
             }
 
             return new CompilationJob
@@ -205,21 +223,22 @@ namespace Yarn.Compiler
         /// Creates a new <see cref="CompilationJob"/> using the contents of a
         /// string.
         /// </summary>
-        /// <param name="fileName">The name to assign to the compiled
+        /// <param name="inputName">The name to assign to the compiled
         /// file.</param>
         /// <param name="source">The text to compile.</param>
         /// <param name="languageVersion">The version of the Yarn language to
         /// use.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromString(string fileName, string source, IEnumerable<Declaration>? declarations = null, int languageVersion = Project.CurrentProjectFileVersion)
+        public static CompilationJob CreateFromString(string inputName, string source, IEnumerable<Declaration>? declarations = null, int languageVersion = Project.CurrentProjectFileVersion)
         {
             return new CompilationJob
             {
                 Inputs = new List<ISourceInput>
                 {
-                    new File
+                    new Raw
                     {
-                        Source = source, FileName = fileName,
+                        Source = source,
+                        Name = inputName,
                     },
                 },
                 LanguageVersion = languageVersion,
@@ -232,99 +251,21 @@ namespace Yarn.Compiler
         // manually find the definitions
         // later make it so this can be actually deserialised magically
         // and stored on the project correctly
-        public static CompilationJob CreateFromProject(string projectPath)
+        public static CompilationJob CreateFromProject(Project project)
         {
             List<Declaration> definitions = new();
-            var project = Project.LoadFromFile(projectPath);
             foreach (var definitionPath in project.DefinitionsFiles)
             {
                 var span = System.IO.File.ReadAllBytes(definitionPath);
-                using (var document = System.Text.Json.JsonDocument.Parse(span))
-                {
-                    var root = document.RootElement;
-
-                    var funcsElement = root.GetProperty("functions");
-                    foreach (var funcElement in funcsElement.EnumerateArray())
-                    {
-                        var yarnName = funcElement.GetProperty("yarnName").GetString();
-                        if (yarnName == null)
-                        {
-                            continue;
-                        }
-                        var returnType = funcElement.GetProperty("return").GetProperty("type").GetString();
-
-                        FunctionType functionType;
-                        switch (returnType)
-                        {
-                            case "number":
-                                functionType = new FunctionType(Types.Number);
-                                break;
-                            case "string":
-                                functionType = new FunctionType(Types.String);
-                                break;
-                            case "bool":
-                                functionType = new FunctionType(Types.Boolean);
-                                break;
-                            default:
-                                continue;
-                        }
-
-                        foreach (var parameterElement in funcElement.GetProperty("parameters").EnumerateArray())
-                        {
-                            var isArray = parameterElement.GetProperty("isParamsArray").GetBoolean();
-                            var paramType = parameterElement.GetProperty("type").GetString();
-
-                            IType parameterYarnType;
-                            switch (paramType)
-                            {
-                                case "number":
-                                    parameterYarnType = Types.Number;
-                                    break;
-                                case "string":
-                                    parameterYarnType = Types.String;
-                                    break;
-                                case "bool":
-                                    parameterYarnType = Types.Boolean;
-                                    break;
-                                default:
-                                    continue;
-                            }
-
-                            if (isArray)
-                            {
-                                functionType.VariadicParameterType = parameterYarnType;
-                            }
-                            else
-                            {
-                                functionType.AddParameter(parameterYarnType);
-                            }
-                        }
-
-
-                        var declaration = new Declaration
-                        {
-                            Name = yarnName,
-                            Type = functionType,
-                            Range = { },
-                            SourceFileName = Declaration.ExternalDeclaration,
-                            SourceNodeName = null,
-                        };
-                        definitions.Add(declaration);
-                    }
-                }
+                var ysls = new Definitions(span);
+                definitions.AddRange(ysls.functions);
             }
 
             // ok now I have all the function definitions from the various ysls files
             var inputs = new List<File>();
-            foreach (var source in project.SourceFiles)
+            foreach (var path in project.SourceFiles)
             {
-                inputs.Add(
-                    new File
-                    {
-                        Source = System.IO.File.ReadAllText(source),
-                        FileName = System.IO.Path.GetFileName(source),
-                    }
-                );
+                inputs.Add(new File(path));
             }
 
             return new CompilationJob
@@ -333,6 +274,11 @@ namespace Yarn.Compiler
                 Declarations = definitions,
                 LanguageVersion = project.FileVersion
             };
+        }
+        public static CompilationJob CreateFromProject(string projectPath)
+        {
+            var project = Project.LoadFromFile(projectPath);
+            return CreateFromProject(project);
         }
     }
 }
