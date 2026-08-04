@@ -25,17 +25,7 @@ namespace Yarn
     /// <seealso cref="Dialogue"/>
     public class BasicFunctionLibrary
     {
-        // later make this private but for testing it's easier to be public
-        internal Dictionary<string, FunctionType> functions = new();
-        internal Dictionary<string, Delegate> delegates = new();
-
-        public Dictionary<string, FunctionType> allDefinitions
-        {
-            get
-            {
-                return functions;
-            }
-        }
+        internal Dictionary<string, (FunctionType definition, Delegate implementation)> functions = new();
 
         public bool HasFunction(string name)
         {
@@ -339,23 +329,12 @@ namespace Yarn
         {
             if (TryMakeFunctionFromDelegate(name, implementation, out var functionDefinition))
             {
-                functions.Add(name, functionDefinition);
-                delegates.Add(name, implementation);
+                functions.Add(name, (functionDefinition, implementation));
             }
             else
             {
                 throw new System.ArgumentException($"Unable to convert the delegate of {name} into a function definition");
             }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether this <see cref="ILibrary"/> contains a function named <c>name</c>.
-        /// </summary>
-        /// <param name="name">The name of the function to look for.</param>
-        /// <returns><c>true</c> if a function exists in this Library; <c>false</c> otherwise.</returns>
-        public bool FunctionExists(string name)
-        {
-            return functions.ContainsKey(name);
         }
 
         /// <summary>
@@ -368,21 +347,17 @@ namespace Yarn
         /// </remarks>
         public void DeregisterFunction(string name)
         {
-            if (FunctionExists(name))
-            {
-                functions.Remove(name);
-                delegates.Remove(name);
-            }
+            functions.Remove(name);
         }
 
         public async ValueTask<IConvertible> Invoke(string functionName, IConvertible[] parameters, CancellationToken token)
         {
-            if (!delegates.TryGetValue(functionName, out var func))
+            if (!functions.TryGetValue(functionName, out var tuple))
             {
                 throw new System.ArgumentException($"Unable to locate the delegate for {functionName}");
             }
 
-            if (!this.TryGetConcreteTypesFromDelegate(func, out var concreteParameterTypes, out var isVariadic))
+            if (!this.TryGetConcreteTypesFromDelegate(tuple.implementation, out var concreteParameterTypes, out var isVariadic))
             {
                 throw new System.ArgumentException($"Unable to determine the concrete parameter types for {functionName}");
             }
@@ -456,7 +431,7 @@ namespace Yarn
                 }
             }
 
-            var task = BasicThunk(func, delegateParameters, token);
+            var task = BasicThunk(tuple.implementation, delegateParameters, token);
             IConvertible returnValue = (IConvertible)await task;
             
             if ( returnValue != null)
@@ -531,7 +506,6 @@ namespace Yarn
         public void Clear()
         {
             functions.Clear();
-            delegates.Clear();
         }
     }
 }

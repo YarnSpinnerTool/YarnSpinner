@@ -635,22 +635,7 @@ namespace Yarn.Compiler
     {
         public List<Declaration> functions;
 
-        // doing it this way for now because I haven't worked out how the diagnostics stuff will sit in the space
-        // need to probably sit down with Jon and work that out properly
-        public struct TempCommand
-        {
-            public string name;
-            public (string, string, bool)[] parameters;
-
-            public string UsageString
-            {
-                get
-                {
-                    return $"{name} {string.Join(' ', parameters.Select(p => p.Item1))}";
-                }
-            }
-        }
-        public List<TempCommand> commands;
+        public List<Yarn.Shared.Action> commands;
         
         public Definitions(string source): this(System.Text.Encoding.UTF8.GetBytes(source)){}
         public Definitions(ReadOnlyMemory<byte> source)
@@ -704,6 +689,12 @@ namespace Yarn.Compiler
                             case "bool":
                                 parameterYarnType = Types.Boolean;
                                 break;
+                            case "enum":
+                                parameterYarnType = Types.Number;
+                                break;
+                            case "instance":
+                                parameterYarnType = Types.String;
+                                break;
                             default:
                                 continue;
                         }
@@ -732,33 +723,268 @@ namespace Yarn.Compiler
                 var commandsElement = root.GetProperty("commands");
                 foreach (var commandElement in commandsElement.EnumerateArray())
                 {
-                    var yarnName = commandElement.GetProperty("yarnName").GetString();
-                    if (yarnName == null)
+                    var action = ActionExtensions.CommandActionFromJSON(commandElement);
+                    if (action == null)
                     {
                         continue;
                     }
-
-                    List<(string, string, bool)> parameters = new();
-                    foreach (var parameterElement in commandElement.GetProperty("parameters").EnumerateArray())
-                    {
-                        var isArray = parameterElement.GetProperty("isParamsArray").GetBoolean();
-                        var paramType = parameterElement.GetProperty("type").GetString();
-                        var paramName = parameterElement.GetProperty("name").GetString();
-
-                        if (paramType == null || paramName == null)
-                        {
-                            continue;
-                        }
-
-                        parameters.Add((paramName, paramType, isArray));
-                    }
-                    var command = new TempCommand()
-                    {
-                        parameters = parameters.ToArray(),
-                        name = yarnName
-                    };
-                    commands.Add(command);
+                    commands.Add(action);
                 }
+            }
+        }
+    }
+
+    public static class ActionExtensions
+    {
+        public static Declaration? GetDeclaration(this Shared.Action action)
+        {
+            if (action.Type == Shared.ActionType.Command)
+            {
+                return null;
+            }
+
+            FunctionType functionType;
+            switch (action.Return)
+            {
+                case Shared.ReturnType.AsyncString:
+                case Shared.ReturnType.String:
+                    functionType = new FunctionType(Types.String);
+                    break;
+                
+                case Shared.ReturnType.AsyncNumber:
+                case Shared.ReturnType.Number:
+                    functionType = new FunctionType(Types.Number);
+                    break;
+
+                case Shared.ReturnType.AsyncBoolean:
+                case Shared.ReturnType.Boolean:
+                    functionType = new FunctionType(Types.Boolean);
+                    break;
+                
+                default: return null;
+            }
+
+            foreach (var param in action.Parameters)
+            {
+                // we ignore tokens as they don't form part of the action as far as Yarn Spinner is concerned
+                if (param is Shared.TokenParameter)
+                {
+                    continue;
+                }
+                
+                IType parameterYarnType;
+
+                if (param is Shared.BasicParameter bp)
+                {
+                    switch (bp.SpecialType)
+                    {
+                        case Shared.YarnSpecialType.Other:
+                            return null;
+                        
+                        case Shared.YarnSpecialType.Boolean:
+                            parameterYarnType = Types.Boolean;
+                            break;
+                        case Shared.YarnSpecialType.String:
+                            parameterYarnType = Types.String;
+                            break;
+                        default:
+                            parameterYarnType = Types.Number;
+                            break;
+                    }
+                }
+                else if (param is Shared.ComponentParameter || param is Shared.ConverterParameter || param is Shared.GameObjectParameter)
+                {
+                    parameterYarnType = Types.String;
+                }
+                else if (param is Shared.EnumParameter)
+                {
+                    parameterYarnType = Types.Number;
+                }
+                else
+                {
+                    return null;
+                }
+
+                if (param.IsArray)
+                {
+                    functionType.VariadicParameterType = parameterYarnType;
+                }
+                else
+                {
+                    functionType.AddParameter(parameterYarnType);
+                }
+            }
+
+            var declaration = new Declaration
+            {
+                Name = action.Name,
+                Type = functionType,
+                Range = { },
+                SourceFileName = Declaration.ExternalDeclaration,
+                SourceNodeName = null,
+            };
+            return declaration;
+        }
+
+        public static Shared.Action? CommandActionFromJSON(JsonElement commandElement)
+        {
+            // name of the command itself
+            if (!commandElement.TryGetProperty("yarnName", out var nameProperty))
+            {
+                return null;
+            }
+            var yarnName = nameProperty.GetString();
+            if (yarnName == null)
+            {
+                return null;
+            }
+
+            // the name of the method it invokes
+            // from this can generally also work out the class
+            if (!commandElement.TryGetProperty("definitionName", out var defProperty))
+            {
+                return null;
+            }
+            var fullName = defProperty.GetString();
+            if (fullName == null)
+            {
+                return null;
+            }
+
+            // determining asynchronicity of the command
+            bool isAsync = false;
+
+            List<Shared.Parameter> parameters = new();
+            if (commandElement.TryGetProperty("parameters", out var parametersElement))
+            {
+                foreach (var parameterElement in parametersElement.EnumerateArray())
+                {
+                    var p = parameterFromJSON(parameterElement);
+                    if (p != null)
+                    {
+                        parameters.Add(p);
+                    }
+                }
+            }
+
+            string longType = fullName;
+            string shortType = fullName;
+            string ShortMethodName = fullName;
+            var lastIndex = fullName.LastIndexOf(".");
+            var firstIndex = fullName.IndexOf(".");
+            if (fullName.StartsWith("global::") && lastIndex != -1 && firstIndex != -1)
+            {
+                // long type is everything after the global:: -> last .
+                longType = fullName[7..lastIndex];
+                if (firstIndex != lastIndex)
+                {
+                    // short type is everything between the first and last index
+                    shortType = fullName[firstIndex..lastIndex];
+                    // short method is everything from last . -> end
+                    ShortMethodName = fullName[lastIndex..];
+                }
+            }
+            var nt = new Shared.NamedType(fullName, shortType, longType, Shared.YarnSpecialType.Other, true);
+            return new Shared.Action(yarnName, fullName, ShortMethodName, Shared.ActionType.Command, true, isAsync ? Shared.ReturnType.Void : Shared.ReturnType.AsyncVoid, nt, parameters.ToArray());
+        }
+
+        private static Shared.Parameter? parameterFromJSON(JsonElement parameterElement)
+        {
+            string paramName;
+            if (!parameterElement.TryGetProperty("name", out var nameProperty))
+            {
+                return null;
+            }
+            else
+            {
+                var temp = nameProperty.GetString();
+                if (temp == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    paramName = temp;
+                }
+            }
+
+            string paramType;
+            if (!parameterElement.TryGetProperty("type", out var typeProperty))
+            {
+                return null;
+            }
+            else
+            {
+                var temp = typeProperty.GetString();
+                if (temp == null)
+                {
+                    return null;
+                }
+                paramType = temp;
+            }
+
+            bool isArray = false;
+            if (parameterElement.TryGetProperty("isParamsArray", out var arrayProperty))
+            {
+                isArray = arrayProperty.GetBoolean();
+            }
+
+            string? defaultValue = null;
+            if (parameterElement.TryGetProperty("defaultValue", out var defaultProperty))
+            {
+                defaultValue = defaultProperty.GetString();
+            }
+
+            Shared.Parameter parameter;
+            switch (paramType)
+            {
+                case "number":
+                    parameter = new Shared.BasicParameter(paramName, Shared.YarnSpecialType.Single, isArray, false, defaultValue != null, defaultValue, false, null);
+                    return parameter;
+
+                case "string":
+                    parameter = new Shared.BasicParameter(paramName, Shared.YarnSpecialType.String, isArray, false, defaultValue != null, defaultValue, false, null);
+                    return parameter;
+
+                case "bool":
+                    parameter = new Shared.BasicParameter(paramName, Shared.YarnSpecialType.Boolean, isArray, false, defaultValue != null, defaultValue, false, null);
+                    return parameter;
+                
+                case "enum":
+                    {
+                        // ok so how do I handle enum backed values?
+                        // actually isn't it always an int?
+                        // for now assume that
+                        if (parameterElement.TryGetProperty("subtype", out var subProperty))
+                        {
+                            
+                            parameter = new Shared.EnumParameter(paramName, subProperty.GetString() ?? "(INVALID)", Shared.YarnEnum.BackingType.Int, isArray, false, false, null, false, null);
+                            return parameter;
+                        }
+                        return null;
+                    }
+                
+                case "instance":
+                    {
+                        if (parameterElement.TryGetProperty("subtype", out var subProperty))
+                        {    
+                            var fullName = subProperty.GetString() ?? "(INVALID)";
+                            var nt = new Shared.NamedType(fullName, fullName, fullName, Shared.YarnSpecialType.String, true);
+                            parameter = new Shared.ComponentParameter(fullName, nt, isArray, false, defaultValue != null, defaultValue, false, null);
+                            return parameter;
+                        }
+                        return null;
+                    }
+                    // how do I know if an instance type is a converter or game object or component?
+                    // I am not sure if it matters here because it is a reflection of an already processed element
+                    // something to consider for an update to the ysls though?
+                
+                case "node":
+                    parameter = new Shared.BasicParameter(paramName, Shared.YarnSpecialType.String, isArray, false, defaultValue != null, defaultValue, true, null);
+                    return parameter;
+
+                default:
+                    return null;
             }
         }
     }
