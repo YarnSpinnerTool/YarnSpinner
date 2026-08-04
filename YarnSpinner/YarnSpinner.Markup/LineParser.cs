@@ -1250,7 +1250,7 @@ namespace Yarn.Markup
                             // and one edge case of [ ID ERROR
                             if (stream.LookAhead(2).Type == LexerTokenTypes.Error)
                             {
-                                var invalidName = OG.Substring(idToken.Start, stream.LookAhead(2).End);
+                                var invalidName = OG.Substring(idToken.Start, stream.LookAhead(2).End - idToken.Start);
                                 diagnostics.Add(new MarkupDiagnostic($"Error parsing markup, invalid name: \"{invalidName}\"", idToken.Start));
 
                                 // now we need to consume the ID and ERROR tokens

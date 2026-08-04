@@ -1658,6 +1658,15 @@ namespace YarnSpinner.Tests
             var diag = diagnostics.Should().ContainSingle(d => d.Message.StartsWith(messageStart)).Subject;
             diag.Column.Should().Be(column);
         }
+
+        [Fact]
+        public void TestInvalidPeriodMarkupDoesNotThrow()
+        {
+            var lineParser = new LineParser();
+            // we should expect a single diagnostic
+            var (_, diagnostics) = lineParser.ParseStringWithDiagnostics("Normal line with invalid markup at the [end.]", "en-AU");
+            diagnostics.Should().ContainSingle();
+        }
     }    
 
     public class BBCodeChevronReplacer : IAttributeMarkerProcessor
