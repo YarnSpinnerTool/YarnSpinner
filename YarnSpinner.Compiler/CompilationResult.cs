@@ -192,6 +192,5 @@ namespace Yarn.Compiler
         /// includes information about jumps, function calls, commands, variables, character names, tags, and structural information
         /// </summary>
         public IEnumerable<NodeMetadata> NodeMetadata { get; internal set; } = Array.Empty<NodeMetadata>();
-
     }
 }

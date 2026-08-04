@@ -37,6 +37,10 @@ This package provides support for compiling Yarn source code, so that you can ex
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\YarnSpinner.Shared\YarnSpinner.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\YarnSpinner\YarnSpinner.csproj" />
   </ItemGroup>
 

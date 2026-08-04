@@ -682,12 +682,12 @@ namespace YarnSpinner.Tests
             {
                 var declarations = new List<Declaration>();
 
-                foreach (var pair in Library.allDefinitions)
+                foreach (var pair in Library.functions)
                 {
                     var declaration = new Declaration
                     {
                         Name = pair.Key,
-                        Type = pair.Value,
+                        Type = pair.Value.definition,
                         Range = { },
                         SourceFileName = Declaration.ExternalDeclaration,
                         SourceNodeName = null,

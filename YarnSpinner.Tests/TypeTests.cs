@@ -324,7 +324,9 @@ namespace YarnSpinner.Tests
 
             // change the delegate under the hood after compilation
             // essentially breaking the promise that the library made earlier on
-            testBaseResponder.Library.delegates["func_invalid_return"] = () => { new List<int> { 0, 1 }; };
+            var tuple = testBaseResponder.Library.functions["func_invalid_return"];
+            tuple.implementation = () => { new List<int> { 0, 1 }; };
+            testBaseResponder.Library.functions["func_invalid_return"] = tuple;
 
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
             testBaseResponder.OnReceivedNodeStart = (node, token) => { return default; };
@@ -354,7 +356,9 @@ namespace YarnSpinner.Tests
 
             // change the delegate under the hood after compilation
             // essentially breaking the promise that the library made earlier on
-            testBaseResponder.Library.delegates["func_invalid_param"] = (List<int> listOfInts) => { return true; };
+            var tuple = testBaseResponder.Library.functions["func_invalid_param"];
+            tuple.implementation = (List<int> listOfInts) => { return true; };
+            testBaseResponder.Library.functions["func_invalid_param"] = tuple;
 
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
             testBaseResponder.OnReceivedNodeStart = (node, token) => { return default; };
