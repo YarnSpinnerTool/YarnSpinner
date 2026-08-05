@@ -1666,6 +1666,12 @@ namespace YarnSpinner.Tests
             // we should expect a single diagnostic
             var (_, diagnostics) = lineParser.ParseStringWithDiagnostics("Normal line with invalid markup at the [end.]", "en-AU");
             diagnostics.Should().ContainSingle();
+
+            (_, diagnostics) = lineParser.ParseStringWithDiagnostics("[end.] invalid markup at start.", "en-AU");
+            diagnostics.Should().ContainSingle();
+
+            (_, diagnostics) = lineParser.ParseStringWithDiagnostics("invalid markup in the [end.] middle of the line.", "en-AU");
+            diagnostics.Should().ContainSingle();
         }
     }    
 
