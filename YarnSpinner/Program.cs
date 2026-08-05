@@ -528,7 +528,7 @@ namespace Yarn
                     case InstructionTypeOneofCase.AddSaliencyCandidate:
                         return this.AddSaliencyCandidate.Destination;
                     case InstructionTypeOneofCase.AddSaliencyCandidateFromNode:
-                        return this.AddSaliencyCandidate.Destination;
+                        return this.AddSaliencyCandidateFromNode.Destination;
                     default:
                         throw new ArgumentOutOfRangeException($"Instruction {this} does not have a Destination");
                 }

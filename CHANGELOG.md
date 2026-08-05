@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fixed some logic errors in the type checker.
 - Fixed an issue where negative numbers would fail to parse if they had no whitespace before them.
 - Fixed a bug in `BestSaliencyStrategy` where an exception would be thrown if there were no available content candidates.
+- Fixed a bug in `Instruction.Destination` where the wrong result would be returned for instructions of type `AddSaliencyCandidateFromNode`.
 
 ### Removed
 
