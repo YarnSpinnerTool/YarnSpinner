@@ -16,6 +16,17 @@ public interface ILogger
     void Dec();
     void SetDepth(int depth);
 }
+public class NullLogger: ILogger
+{
+    public void Write(object obj){}
+    public void WriteLine(object obj){}
+    public void WriteException(Exception ex, string? message = null){}
+    public void Inc(){}
+    public void Dec(){}
+    public void SetDepth(int depth){}
+
+    public void Dispose() {}
+}
 
 public record Action
 {
