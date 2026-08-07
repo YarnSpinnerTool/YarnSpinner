@@ -10,6 +10,8 @@ set -e
 YARNSPINNER_FOLDER=$(readlink -f "$(dirname $0)")
 YARNSPINNER_DLLS_DIR=$1/Packages/dev.yarnspinner.unity/Runtime/DLLs/
 
+CONFIGURATION=Release
+
 pushd $1
 
 if [ ! -d $YARNSPINNER_DLLS_DIR ]; then
@@ -25,9 +27,9 @@ fi
 cd $YARNSPINNER_FOLDER
 dotnet-gitversion /updateAssemblyInfo
 mkdir -p .build-tmp
-dotnet clean --configuration Debug
-dotnet build --configuration Debug YarnSpinner.Compiler
-cp -v YarnSpinner.Compiler/bin/Debug/netstandard2.1/* .build-tmp
+dotnet clean --configuration $CONFIGURATION
+dotnet build -p:UseVendoredProtobuf=true --configuration $CONFIGURATION YarnSpinner.Compiler
+cp -v YarnSpinner.Compiler/bin/$CONFIGURATION/netstandard2.1/* .build-tmp
 
 # cp /Users/desplesda/Work/protobuf/csharp/src/Google.Protobuf/bin/Debug/netstandard2.1/Google.Protobuf.dll .build-tmp
 

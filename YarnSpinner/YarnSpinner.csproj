@@ -20,10 +20,17 @@ Write your conversations in Yarn, a simple programming language that's designed 
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisLevel>latest</AnalysisLevel>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <UseVendoredProtobuf>false</UseVendoredProtobuf>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition=" '$(UseVendoredProtobuf)' != 'true' ">
     <PackageReference Include="Google.Protobuf" Version="3.25.2" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(UseVendoredProtobuf)' == 'true' ">
+    <Reference Include="Google.Protobuf">
+      <HintPath>Dependencies\Dependencies\Google.Protobuf.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

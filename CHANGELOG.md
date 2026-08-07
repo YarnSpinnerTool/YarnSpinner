@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fixed a bug in `BestSaliencyStrategy` where an exception would be thrown if there were no available content candidates.
 - Fixed a bug in `Instruction.Destination` where the wrong result would be returned for instructions of type `AddSaliencyCandidateFromNode`.
 - Yarn Spinner now targets .NET Standard 2.1.
+- When building for use in Unity, Yarn Spinner now uses a modified version of Google.Protobuf that doesn't require a reference to System.Memory. This was causing build failures in Unity 6.5 and newer.
 
 ### Removed
 
