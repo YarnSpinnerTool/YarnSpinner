@@ -27,15 +27,17 @@ dotnet-gitversion /updateAssemblyInfo
 mkdir -p .build-tmp
 dotnet clean --configuration Debug
 dotnet build --configuration Debug YarnSpinner.Compiler
-cp -v YarnSpinner.Compiler/bin/Debug/netstandard2.0/* .build-tmp
+cp -v YarnSpinner.Compiler/bin/Debug/netstandard2.1/* .build-tmp
+
+# cp /Users/desplesda/Work/protobuf/csharp/src/Google.Protobuf/bin/Debug/netstandard2.1/Google.Protobuf.dll .build-tmp
 
 # some types we are going to want to use externally but the rest should be fully internal to Yarn Spinner itself
-assemblyalias --target-directory ".build-tmp" --prefix "Yarn." --assemblies-to-alias "Antlr*;Csv*;Google*;"
-assemblyalias --target-directory ".build-tmp" --internalize --prefix "Yarn." --assemblies-to-alias "System*;Microsoft.Bcl*;Microsoft.Extensions*"
+assemblyalias --target-directory ".build-tmp" --prefix "Yarn." --assemblies-to-alias "Antlr*;Csv*;Google*"
+assemblyalias --target-directory ".build-tmp" --internalize --prefix "Yarn." --assemblies-to-alias "Microsoft.Extensions*;System.Text.Json;System.Text.Encodings.Web;System.Runtime.CompilerServices.Unsafe;Microsoft.Bcl.AsyncInterfaces;System.Runtime.CompilerServices.Unsafe"
 
-cp -v .build-tmp/*.dll $YARNSPINNER_DLLS_DIR
-cp -v .build-tmp/*.pdb $YARNSPINNER_DLLS_DIR || true
-cp -v .build-tmp/*.xml $YARNSPINNER_DLLS_DIR || true
+cp -v .build-tmp/Yarn*.dll $YARNSPINNER_DLLS_DIR
+cp -v .build-tmp/Yarn*.pdb $YARNSPINNER_DLLS_DIR || true
+cp -v .build-tmp/Yarn*.xml $YARNSPINNER_DLLS_DIR || true
 rm -fv $YARNSPINNER_DLLS_DIR/Microsoft.CSharp.dll
 
 rm -rf .build-tmp
