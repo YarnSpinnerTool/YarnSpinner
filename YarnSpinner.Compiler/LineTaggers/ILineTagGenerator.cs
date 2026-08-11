@@ -65,6 +65,15 @@ public interface ILineTagGenerator
     }
 
     /// <summary>
+    /// Represents the specific situation where tagging didn't even begin due to compilation errors in the script.
+    /// </summary>
+    public class CompilationTagException: LineTaggingException
+    {
+        /// <inheritdoc/>
+        public override string? Message => "Unable to begin tagging due to compilation issues in the script!";
+    }
+
+    /// <summary>
     /// Represents how Yarn Spinner should handle encountering a <cref name="LineTaggingException"/> exception during tagging.
     /// </summary>
     public enum TagAbortBehaviour

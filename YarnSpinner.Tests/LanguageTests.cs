@@ -946,6 +946,16 @@ when: always
 ---
 Shelley: hmph apropos hmph
 ===
+title: NodeGroup
+subtitle: Test
+when: always
+---
+Shelley: I can't generate lines like Jon can apparently.
+===
+title: NameTest
+---
+Mr Name: I am Mr Name!
+===
 ";
 
             var (taggedSource, updatedLines, tagExceptions) = Utility.TagLines(new CompilationJob.File
@@ -956,13 +966,22 @@ Shelley: hmph apropos hmph
             null,
                 lineTagGenerator: new DescriptiveLineTagGenerator()
             );
+            
+            // we expect no errors and there to be as many new line tags as there are 
+            tagExceptions.Should().BeEmpty();
+            updatedLines.Should().HaveCount(12);
+
+            // now do some quick checks of tags we expect to see
+            // these two test the most common specific edge cases
+            updatedLines.Should().ContainSingle(t => t == "line:NameTest_0100_MrName");
+            updatedLines.Should().ContainSingle(t => t == "line:NodeGroup.Test_0100_Shelley");
+            // and this one tests lines without a speaker
+            updatedLines.Should().ContainSingle(t => t == "line:Node2_0400");
 
             var job = CompilationJob.CreateFromString("TestLineIDs.yarn", taggedSource);
 
             var result = Compiler.Compile(job);
-
-
-
+            result.Diagnostics.Should().BeEmpty();
         }
 
         [Fact]

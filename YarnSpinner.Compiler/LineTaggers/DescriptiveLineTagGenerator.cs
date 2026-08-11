@@ -355,7 +355,8 @@ namespace Yarn.Compiler
                 && characterNameMarkup.Type == MarkupValueType.String
                 )
             {
-                lineIDComponents.Add(characterNameMarkup.StringValue);
+                // this will run every time which isn't ideal but line tagging happens infrequently enough it's probably fine
+                lineIDComponents.Add(Regex.Replace(characterNameMarkup.StringValue, @"\s+", ""));
             }
 
             var id = "line:" + string.Join("_", lineIDComponents);

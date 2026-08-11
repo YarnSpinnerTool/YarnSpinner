@@ -150,7 +150,12 @@ namespace Yarn.Compiler
             {
                 // We encountered a parse error. Bail here; we aren't confident
                 // in our ability to correctly insert a line tag.
-                return (contents.Source, new List<string>(), new List<ILineTagGenerator.LineTaggingException>());
+                var exs = new List<ILineTagGenerator.LineTaggingException>
+                {
+                    new ILineTagGenerator.CompilationTagException()
+                };
+
+                return (contents.Source, new List<string>(), exs);
             }
 
             // Create the line listener, which will produce TextReplacements for
