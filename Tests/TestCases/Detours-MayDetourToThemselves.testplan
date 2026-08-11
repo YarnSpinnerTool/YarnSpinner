@@ -1,0 +1,35 @@
+line: `Start of the node`
+
+option: `Stay here`
+option: `Go elsewhere`
+option: `Exit`
+select: 1
+
+line: `End of the node`
+line: `Start of the node`
+
+option: `Stay here`
+option: `Go elsewhere`
+option: `Exit`
+select: 2
+
+line: `Line from elsewhere`
+option: `Stay here`
+option: `Return`
+select: 1
+
+line: `Line from elsewhere`
+option: `Stay here`
+option: `Return`
+select: 2
+
+line: `End of the node`
+
+line: `Start of the node`
+
+option: `Stay here`
+option: `Go elsewhere`
+option: `Exit`
+select: 3
+
+stop
