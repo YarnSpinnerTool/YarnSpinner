@@ -295,7 +295,7 @@ public record Action
     // all it really checks is "do we have a finalised type for each parameter"
     // but it should do a full check of everything
     // it early outs at all stages so shouldn't hurt
-    public static bool TryValidateAction(Action action, IReadOnlyList<YarnConverter> converters, ILogger? logger = null)
+    public static bool TryValidateAction(Action action, IReadOnlyList<YarnConverter> converters, ILogger? logger = null, bool isUnknownParameterInvalid = true)
     {
         logger?.WriteLine($"Validating {action.Name}");
         
@@ -348,7 +348,10 @@ public record Action
                 else
                 {
                     logger?.WriteLine($"Parameter could not be resolved");
-                    return false;
+                    if (isUnknownParameterInvalid)
+                    {
+                        return false;
+                    }
                 }
             }
             else

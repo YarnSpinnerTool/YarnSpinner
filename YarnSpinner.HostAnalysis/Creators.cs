@@ -65,18 +65,25 @@ public static partial class Creators
 
         logger?.WriteLine("validated and made parameters");
 
-        if (Validators.TryValidateMethodAsAction(method, yarnName, actionType, declarationType, out var actionDiags, nameLocation, invocationLocation, earlyOut, logger) != Validators.ActionValidation.Succeeded)
-        {
-            logger?.WriteLine($"Failed to validate '{yarnName}' as an action, we have {actionDiags.Count} diagnostics");
-
-            if (earlyOut)
-            {
-                return new InvalidAction(yarnName, actionType);
-            }
-        }
-
+        // now we validate the action itself
+        // this tells us if the action is valid for compile time invocation, runtime invocation, or invalid to invoke for some reason
+        // if invalid we can just leave right then and there
+        // but if it is valid for runtime invoke then we need to change our behaviour
+        // because if we are in the mode for source gen we instead want to just early out of all of this because we can't gen for runtime actions
+        // neither can we report diagnostics there
+        var validAction = Validators.TryValidateMethodAsAction(method, yarnName, actionType, declarationType, out var actionDiags, nameLocation, invocationLocation, logger);
         diagnostics.AddRange(paramDiags);
         diagnostics.AddRange(actionDiags);
+
+        if (validAction == Validators.ActionValidation.FailedValidation)
+        {
+            return new InvalidAction(yarnName, actionType);
+        }
+
+        if (validAction == Validators.ActionValidation.RunTimeValid && earlyOut)
+        {
+            return new InvalidAction(yarnName, actionType);
+        }
 
         if (method.ContainingType != null)
         {

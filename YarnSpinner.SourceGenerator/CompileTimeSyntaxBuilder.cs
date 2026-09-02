@@ -5,7 +5,7 @@ namespace Yarn.Analyser;
 using System.Collections.Immutable;
 using Yarn.Shared;
 
-public class SyntaxBuilder
+public class CompileTimeSyntaxBuilder
 {
     private const string usings = """
     #pragma warning disable CS1998
@@ -224,7 +224,7 @@ public class SyntaxBuilder
                                     builder.AppendLine("var gameObjectTarget = GameObject.Find(gameObjectTargetName);");
                                     using(builder.EnterBlock("if (gameObjectTarget == null)"))
                                     {
-                                        builder.AppendLine("""throw new System.ArgumentException($"Unable to identify a game object called '{{gameObjectTargetName}}'");""");
+                                        builder.AppendLine("""throw new System.ArgumentException($"Unable to identify a game object called '{gameObjectTargetName}'");""");
                                     }
                                     builder.AppendLine($"var target = gameObjectTarget.GetComponentInChildren<{action.containingTypeShortName}>();");
                                     using(builder.EnterBlock("if (target == null)"))
@@ -397,7 +397,7 @@ public class SyntaxBuilder
                                     builder.AppendLine("var gameObjectTarget = GameObject.Find(gameObjectTargetName);");
                                     using(builder.EnterBlock("if (gameObjectTarget == null)"))
                                     {
-                                        builder.AppendLine("""throw new System.ArgumentException($"Unable to identify a game object called '{{gameObjectTargetName}}'");""");
+                                        builder.AppendLine("""throw new System.ArgumentException($"Unable to identify a game object called '{gameObjectTargetName}'");""");
                                     }
                                     builder.AppendLine($"var target = gameObjectTarget.GetComponentInChildren<{action.containingTypeShortName}>();");
                                     using(builder.EnterBlock("if (target == null)"))

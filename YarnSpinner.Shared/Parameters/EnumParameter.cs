@@ -16,7 +16,7 @@ public record EnumParameter(string Name, string EnumTypeName, YarnEnum.BackingTy
             {{
                 var pCi = parameters[i + {3}].To{2}(System.Globalization.CultureInfo.InvariantCulture);
 
-                if (!{1}.TryGet{1}FromBacking(pCi, out var pi))
+                if (!{1}EnumHelper.TryGet{1}FromBacking(pCi, out var pi))
                 {{
                     throw new System.ArgumentException($"was unable to create a {1} enum from {{pCi}}");
                 }}
@@ -30,7 +30,7 @@ public record EnumParameter(string Name, string EnumTypeName, YarnEnum.BackingTy
         {
             var format = """
             var pC{0} = parameters[{3}].To{1}(System.Globalization.CultureInfo.InvariantCulture);
-            if (!{2}.TryGet{2}FromBacking(pC{0}, out var p{0}))
+            if (!{2}EnumHelper.TryGet{2}FromBacking(pC{0}, out var p{0}))
             {{
                 throw new System.ArgumentException($"was unable to create a {2} enum from {{pC{0}}}");
             }}

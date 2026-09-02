@@ -10,95 +10,219 @@ using Yarn.Shared;
 
 public static class Validators
 {
+    private enum MethodType
+    {
+        Method, LocalMethod, Lambda,
+    }
     public enum ActionValidation
     {
-        // failed in a way where it doesn't matter, there is nothing more we can from it
-        FailedUnrecoverably,
-        // Failed but in a way where we want the invoker to intercept the call
-        FailedStatically,
-        // Failed in a way where we don't want the invoker to intercept the call
-        FailedDynamically,
-        // Passed validation
-        Succeeded,
+        /// <summary>
+        /// Represent an action which based on it's method signature and how it was registered is able to be run through the compile time pipeline
+        /// </summary>
+        CompileTimeValid,
+        /// <summary>
+        /// Represent an action which based on it's method signature and how it was registered is able to be run through the runtime pipleine
+        /// </summary>
+        RunTimeValid,
+        /// <summary>
+        /// Represent an action which based on it's method signature and how it was registered is unable to be invoked.
+        /// </summary>
+        FailedValidation,
     }
-
-    public static ActionValidation TryValidateMethodAsAction(IMethodSymbol methodSymbol, string yarnName, ActionType type, DeclarationType declarationType, out List<Diagnostic> diagnostics, Location? nameLocation = null, Location? invocationLocation = null, bool earlyOut = false, ILogger? logger = null)
+    public static ActionValidation TryValidateMethodAsAction(IMethodSymbol methodSymbol, string yarnName, ActionType type, DeclarationType declarationType, out List<Diagnostic> diagnostics, Location? nameLocation = null, Location? invocationLocation = null, ILogger? logger = null)
     {
         diagnostics = new List<Diagnostic>();
         var location = methodSymbol.Locations.First();
-        // ok so basically I need to do the validation NOW
 
-        if (yarnName.Any(x => char.IsWhiteSpace(x)))
+        // these two are universal, all actions need these
+        // so we can check them now ahead of time
+        // we need a valid name
+        var isValidName = !yarnName.Any(x => char.IsWhiteSpace(x));
+        if (!isValidName)
         {
             logger?.WriteLine("Method name is invalid");
-            if (earlyOut)
-            {
-                return ActionValidation.FailedStatically;
-            }
             diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1002ActionMethodsMustHaveAValidName, nameLocation ?? location, yarnName));
+            return ActionValidation.FailedValidation;
         }
-
-        if (methodSymbol.ContainingType == null)
+        // we need to be contained within a type
+        var hasContainingType = methodSymbol.ContainingType != null;
+        if (!hasContainingType)
         {
             logger?.WriteLine("Method has no containing type");
-            if (earlyOut)
-            {
-                return ActionValidation.FailedStatically;
-            }
             diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1000InternalErrorProcessingAction, location, $"Was unable to resolve the containing type of the method {methodSymbol.Name}"));
+            return ActionValidation.FailedValidation;
         }
 
-        // if it is a lambda that is fine (mostly) but generates it's own diagnostic
-        if (methodSymbol.MethodKind == MethodKind.AnonymousFunction)
+        // determing what type of method symbol we are
+        // this is necessary as different action types and different registrations handle this differently
+        MethodType methodType;
+        switch (methodSymbol.MethodKind)
         {
-            logger?.WriteLine($"{yarnName} on at {location.GetLineSpan().StartLinePosition} is a lambda, this is also dodge");
-            // we can't process lamdbas in the source gen as we can't call them
-            // so we can early out here and prevent any more processing
-            if (earlyOut)
-            {
-                return ActionValidation.FailedDynamically;
-            }
-            diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location));
-        }
-        // likewise if it is a local method that is mostly fine, but also generates it's own diagnostic
-        if (methodSymbol.MethodKind == MethodKind.LocalFunction)
-        {
-            logger?.WriteLine($"{yarnName} on {methodSymbol.Name} at {location.GetLineSpan().StartLinePosition} is a local method, this is dodge");
-            // we can't process local methods in the source gen as we can't call them
-            // so we can early out here and prevent any more processing
-            if (earlyOut)
-            {
-                return ActionValidation.FailedDynamically;
-            }
-            diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1024ActionIsALocalFunction, invocationLocation ?? location));
+            case MethodKind.Ordinary:
+                methodType = MethodType.Method;
+                break;
+            case MethodKind.AnonymousFunction:
+                methodType = MethodType.Lambda;
+                break;
+            case MethodKind.LocalFunction:
+                methodType = MethodType.LocalMethod;
+                break;
+            default:
+                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1000InternalErrorProcessingAction, location, $"Attempted to register an action that is not a method, lambda, or local function, it's a {methodSymbol.MethodKind}"));
+                return ActionValidation.FailedValidation;
         }
 
+        // what type the action returns
         var returnType = methodSymbol.ReturnType.UnityReturnType();
-        if (type == ActionType.Command)
+
+        // is the action publicly accessible?
+        var methodIsPublic = methodSymbol.DeclaredAccessibility == Accessibility.Public;
+        var classIsPublic = methodSymbol.ContainingType?.DeclaredAccessibility == Accessibility.Public;
+        var actionIsPublic = methodIsPublic && classIsPublic;
+
+        if (type == ActionType.Command && declarationType == DeclarationType.Attribute)
         {
+            // we are an attributed command
+            
+            // we must be a method
+            switch (methodType)
+            {
+                case MethodType.Method:
+                    break;
+                case MethodType.LocalMethod:
+                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1024ActionIsALocalFunction, invocationLocation ?? location)); // this needs to be upgraded to a warning here?
+                    return ActionValidation.FailedValidation;
+                case MethodType.Lambda:
+                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location)); // this needs to be upgraded to a warning here?
+                    return ActionValidation.FailedValidation;
+            }
+
+            // we should be publicly accessible
+            if (!actionIsPublic)
+            {
+                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1001ActionMethodsMustBePublic, location, DiagnosticSeverity.Info, null, null, yarnName, methodSymbol.DeclaredAccessibility));
+            }
+
+            // we must return a void-alike
             switch (returnType)
             {
                 case ReturnType.Void:
                 case ReturnType.AsyncVoid:
+                    return actionIsPublic ? ActionValidation.CompileTimeValid : ActionValidation.RunTimeValid;
+                
                 case ReturnType.CoroutineVoid:
                 case ReturnType.IEnumeratorVoid:
-                    break;
+                    logger?.WriteLine("Method is a coroutine, these can't be compile time invoked");
+                    return ActionValidation.RunTimeValid;
                 
                 default:
                 {
                     logger?.WriteLine("Method has an invalid return");
-                    if (earlyOut)
-                    {
-                        return ActionValidation.FailedStatically;
-                    }
                     diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1003CommandMethodsMustHaveAValidReturnType, location, yarnName, returnType));
-                    break;
+                    return ActionValidation.FailedValidation;
                 }
             }
         }
-        else if (type == ActionType.Function)
+        else if (type == ActionType.Command && declarationType == DeclarationType.DirectRegistration)
         {
-            // functions must return a yarn type or one of the async yarn types
+            // we are a direct registered command
+            
+            // we can be any type
+            // but we do grumble about being a lambda or local function
+            switch (methodType)
+            {
+                case MethodType.Method:
+                    break;
+                case MethodType.LocalMethod:
+                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1024ActionIsALocalFunction, invocationLocation ?? location));
+                    break;
+                case MethodType.Lambda:
+                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location));
+                    break;
+            }
+
+            // we can be private
+            // but do grumble about this
+            if (!actionIsPublic)
+            {
+                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1025DirectActionIsPrivate, invocationLocation));
+            }
+
+            // we must still return a valid void-alike
+            switch (returnType)
+            {
+                case ReturnType.Void:
+                case ReturnType.AsyncVoid:
+                    if (actionIsPublic)
+                    {
+                        return ActionValidation.CompileTimeValid;
+                    }
+                    return ActionValidation.RunTimeValid;
+                
+                case ReturnType.CoroutineVoid:
+                case ReturnType.IEnumeratorVoid:
+                    logger?.WriteLine("Method is a coroutine, these can't be compile time invoked");
+                    return ActionValidation.RunTimeValid;
+                
+                default:
+                {
+                    logger?.WriteLine("Method has an invalid return");
+                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1003CommandMethodsMustHaveAValidReturnType, location, yarnName, returnType));
+                    return ActionValidation.FailedValidation;
+                }
+            }
+        }
+        else if (type == ActionType.Function && declarationType == DeclarationType.Attribute)
+        {
+            // we are an attributed function
+
+            // we need a non-void return type
+            // we need to be on a method
+            // we need to be a public method
+
+            // we must be a method
+            switch (methodType)
+            {
+                case MethodType.Method:
+                    break;
+                case MethodType.LocalMethod:
+                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1024ActionIsALocalFunction, invocationLocation ?? location)); // this needs to be upgraded to a warning here?
+                    return ActionValidation.FailedValidation;
+                case MethodType.Lambda:
+                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location)); // this needs to be upgraded to a warning here?
+                    return ActionValidation.FailedValidation;
+            }
+
+            // we can be private but we will grumble about it
+            if (!actionIsPublic)
+            {
+                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1001ActionMethodsMustBePublic, location, DiagnosticSeverity.Info, null, null, yarnName, methodSymbol.DeclaredAccessibility));
+            }
+
+            // we must return a value
+            switch (returnType)
+            {
+                case ReturnType.String:
+                case ReturnType.Number:
+                case ReturnType.Boolean:
+                case ReturnType.AsyncString:
+                case ReturnType.AsyncNumber:
+                case ReturnType.AsyncBoolean:
+                    return actionIsPublic ? ActionValidation.CompileTimeValid : ActionValidation.RunTimeValid;
+
+                default:
+                {
+                    logger?.WriteLine("Method has an invalid return");
+                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1004FunctionMethodsMustHaveAValidReturnType, location, yarnName, returnType));
+                    return ActionValidation.FailedValidation;
+                }
+            }
+        }
+        else if (type == ActionType.Function && declarationType == DeclarationType.DirectRegistration)
+        {
+            // we are a direct registered function
+
+            // we must return a value
             switch (returnType)
             {
                 case ReturnType.String:
@@ -112,79 +236,42 @@ public static class Validators
                 default:
                 {
                     logger?.WriteLine("Method has an invalid return");
-                    if (earlyOut)
-                    {
-                        return ActionValidation.FailedStatically;
-                    }
                     diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1004FunctionMethodsMustHaveAValidReturnType, location, yarnName, returnType));
+                    return ActionValidation.FailedValidation;
+                }
+            }
+
+            bool isRunTimeFunction = false;
+
+            // we can be any type
+            // but we do grumble about being a lambda or local function
+            switch (methodType)
+            {
+                case MethodType.Method:
                     break;
-                }
-            }
-        }
-        else
-        {
-            logger?.WriteLine("Method isn't a function or command");
-            if (earlyOut)
-            {
-                return ActionValidation.FailedUnrecoverably;
-            }
-            diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1000InternalErrorProcessingAction, location, $"{yarnName} is an invalid form of action. This isn't allowed."));
-        }
-
-        // if an action is registered via attribute it must be public
-        var methodIsPublic = methodSymbol.DeclaredAccessibility == Accessibility.Public;
-        var classIsPublic = methodSymbol.ContainingType?.DeclaredAccessibility == Accessibility.Public;
-        if (!(methodIsPublic && classIsPublic))
-        {
-            // the method is private
-            // this may or may not be an issue depending on if we are an attributed method
-            // if we are then it's a diag
-            // if we aren't it's not
-            // in both cases it's an early out
-            if (declarationType == DeclarationType.Attribute)
-            {
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1001ActionMethodsMustBePublic, location, yarnName, methodSymbol.DeclaredAccessibility));
-                if (earlyOut)
-                {
-                    return ActionValidation.FailedStatically;
-                }
-            }
-            else
-            {
-                if (earlyOut)
-                {
-                    return ActionValidation.FailedDynamically;
-                }
-                // we do however still issue an issue level diagnostic if this is an instance method
-                // because there are some quirks around doing this that aren't immediately obvious
-                if (!methodSymbol.IsStatic && methodSymbol.MethodKind == MethodKind.Ordinary)
-                {
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1025DirectActionIsPrivate, invocationLocation));
-                }
+                case MethodType.LocalMethod:
+                    isRunTimeFunction = true;
+                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1024ActionIsALocalFunction, invocationLocation ?? location));
+                    break;
+                case MethodType.Lambda:
+                    isRunTimeFunction = true;
+                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location));
+                    break;
             }
 
-            logger?.WriteLine("Method isn't public");
-            if (earlyOut)
+            // we can be private
+            // but do grumble about this
+            if (!actionIsPublic)
             {
-                // this isn't a critical error as it can still be called as a delegate it is still something that prevents it being used in the direct invocation approach
-                // so if early out is set we still leave at this point because we can't do any more in the source generator with it at this point
-                return ActionValidation.FailedDynamically;
+                isRunTimeFunction = true;
+                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1025DirectActionIsPrivate, invocationLocation));
             }
 
-            if (declarationType == DeclarationType.Attribute)
-            {
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1001ActionMethodsMustBePublic, location, yarnName, methodSymbol.DeclaredAccessibility));
-            }
+            return isRunTimeFunction ? ActionValidation.RunTimeValid : ActionValidation.CompileTimeValid;
         }
 
-        if (diagnostics.Count(d => d.Severity == DiagnosticSeverity.Warning || d.Severity == DiagnosticSeverity.Error) == 0)
-        {
-            return ActionValidation.Succeeded;
-        }
-        else
-        {
-            return ActionValidation.FailedStatically;
-        }
+        diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1000InternalErrorProcessingAction, location, $"Attempted to validate an action that we couldn't determine enough information about. Please file a bug."));
+        return ActionValidation.FailedValidation;
     }
 
     public static bool TryValidateConverter(IMethodSymbol? conversionMethodSymbol, INamedTypeSymbol? attributedConversionType, out List<Diagnostic> diagnostics, bool earlyOut = false, ILogger? logger = null)

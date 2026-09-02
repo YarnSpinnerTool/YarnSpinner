@@ -243,7 +243,7 @@ public static class ActionDiagnostics
     public static readonly DiagnosticDescriptor YS1025DirectActionIsPrivate = new(
         "YS1025",
         title: "Direct registered Action is private",
-        messageFormat: "Yarn actions can be directly registered as a private method but this generally isn't recommended. This is implicitly capturing the object performing the registration as part of the invocation, but non-instance actions in Yarn are global, so accidentally having two (or more) objects with this registration in the scene will lead to undefined behaviour.",
+        messageFormat: "Yarn actions can be directly registered as a private method but this generally isn't recommended. This will be creating a delegate from the captured method and invoking that via reflection as there is no other way to call into a private method.",
         category: "Yarn Spinner",
         defaultSeverity: DiagnosticSeverity.Info,
         isEnabledByDefault: true

@@ -8,6 +8,7 @@ using Yarn.Shared;
 using Yarn.HostAnalysis;
 
 #nullable enable
+
 namespace Yarn.Analyser;
 
 [Generator]
@@ -134,6 +135,30 @@ public class Generator : IIncrementalGenerator
                 var mergedFunctions = Merge(value.Right.Right.Left, value.Right.Right.Right);
                 RunFunctions(spc, assemblyName!, this.GetType().Assembly.GetName().Version.ToString(), converters, mergedFunctions, logger);
             });
+
+            // gobbling up any yarnenum attributed enums
+            logger.Inc();
+            var attributedYarnEnums = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.Attributes.YarnGeneratedEnumAttribute",
+                    predicate: (node,_) => node is EnumDeclarationSyntax,
+                    transform: (ctx, _) => GetAttributedEnums(ctx, logger)
+            ).Collect();
+            logger.Dec();
+            
+            var enumInfo = assemblyName.Combine(attributedYarnEnums.Combine(attributedconverters));
+            // now we generate the code for them
+            context.RegisterSourceOutput(enumInfo, (spc, value) =>
+            {
+                if (value.Left is null)
+                {
+                    return;
+                }
+                var code = RuntimeSyntaxBuilder.BuildSyntax(value.Right.Left, value.Right.Right, value.Left, this.GetType().Assembly.GetName().Version.ToString());
+                if (code != null)
+                {
+                    FileDebugWriter.WriteGeneratedFile(code, $"{value.Left}.dynamic.converter.g.cs");
+                    spc.AddSource($"{value.Left}.dynamic.converter.g.cs", code);
+                }
+            });
         }
         catch (System.Exception ex)
         {
@@ -144,6 +169,62 @@ public class Generator : IIncrementalGenerator
         {
             logger?.Dec();
         }
+    }
+
+    internal record class YarnEnumPayload(Shared.YarnEnum.BackingType Backing, Shared.NamedType NamedType){}
+
+    private YarnEnumPayload? GetAttributedEnums(GeneratorAttributeSyntaxContext context, ILogger? logger)
+    {
+        logger ??= new NullLogger();
+
+        // getting the bakcing type of the enum
+        // if any of these steps fail we bail out as we won't be able to resolve the enum
+        var attribute = context.Attributes.Where(a => a.ConstructorArguments.Length == 1).FirstOrDefault();
+        if (attribute == null)
+        {
+            logger.WriteLine("The attribute is somehow null");
+            return null;
+        }
+
+        var backingObject = attribute.ConstructorArguments.First().Value;
+        if (backingObject == null)
+        {
+            logger.WriteLine("It's lacking the backing type");
+            return null;
+        }
+
+        var backing = YarnEnum.BackingType.Int;
+        if (backingObject.GetType() == typeof(int))
+        {
+            var backingValue = (int)backingObject;
+            
+            if (backingValue == 1)
+            {
+                backing = YarnEnum.BackingType.String;
+            }
+            logger.WriteLine($"It's a valid yarn enum with a backing of : {backing}");
+        }
+        else
+        {
+            logger.WriteLine($"It has a backing type but it isn't an int and as such not an enum: {backingObject.GetType()}");
+            return null;
+        }
+        
+        // this will always pass because an earlier filter step has ensured that we are operating only on EnumDeclarationSyntax nodes
+        // but the compiler can't know that this is the case so we just force it to be so
+        if (context.TargetSymbol is not INamedTypeSymbol nt)
+        {
+            logger.WriteLine("attribute is somehow not attached to a named type!");
+            return null;
+        }
+        var ynt = nt.YarnNamedType();
+        if (ynt is null)
+        {
+            logger.WriteLine("Was unable to create a yarn named type for this enum!");
+            return null;
+        }
+
+        return new YarnEnumPayload(backing, ynt);
     }
 
     private static List<T> Merge<T>(ImmutableArray<T?> right, ImmutableArray<T?> left)
@@ -181,11 +262,11 @@ public class Generator : IIncrementalGenerator
             {
                 return;
             }
-            var code = SyntaxBuilder.BuildSyntaxStringForCommands(assembly, version, validCommands, validConverters, logger);
+            var code = CompileTimeSyntaxBuilder.BuildSyntaxStringForCommands(assembly, version, validCommands, validConverters, logger);
             if (code != null)
             {
                 logger?.WriteLine("generating command code");
-                FileDebugWriter.WriteGeneratedFile(code, assembly + ".commands");
+                FileDebugWriter.WriteGeneratedFile(code, $"{assembly}.commands.invoker.g.cs");
                 context.AddSource($"{assembly}.commands.invoker.g.cs", code);
             }
         }
@@ -223,14 +304,14 @@ public class Generator : IIncrementalGenerator
 
             logger.WriteLine("beginning building code");
             logger.Inc();
-            var code = SyntaxBuilder.BuildSyntaxStringForFunctions(assembly, version, validFunctions, validconverters, logger);
+            var code = CompileTimeSyntaxBuilder.BuildSyntaxStringForFunctions(assembly, version, validFunctions, validconverters, logger);
             logger.Dec();
 
             logger.WriteLine("finished building code");
             if (code != null)
             {
                 logger.WriteLine("generating function code");
-                FileDebugWriter.WriteGeneratedFile(code, assembly + ".functions");
+                FileDebugWriter.WriteGeneratedFile(code, $"{assembly}.functions.invoker.g.cs");
                 context.AddSource($"{assembly}.functions.invoker.g.cs", code);
             }
             logger.Dec();

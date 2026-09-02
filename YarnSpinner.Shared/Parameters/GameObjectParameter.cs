@@ -77,5 +77,5 @@ public record GameObjectParameter(string Name, NamedType NamedType, bool IsArray
         return string.Format(format, parameterIndex, arrayIndex);
     }
 
-    public override string ShortFormType => "GameOject";
+    public override string ShortFormType => "GameObject";
 }

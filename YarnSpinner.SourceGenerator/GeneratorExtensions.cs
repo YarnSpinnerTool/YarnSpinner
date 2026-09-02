@@ -61,7 +61,8 @@ public static class GeneratorExtensions
         result["language"] = "csharp";
         result["async"] = action.IsAsync;
 
-        result["containsErrors"] = diagnosticCodes?.Count > 0;
+        result["containsErrors"] = false;
+        // result["containsErrors"] = diagnosticCodes?.Count > 0; // quick hack for now until I work out a better way to say if a diagnostic is an error or a warning
         if (diagnosticCodes?.Count > 0)
         {
             result["errorCodes"] = diagnosticCodes;

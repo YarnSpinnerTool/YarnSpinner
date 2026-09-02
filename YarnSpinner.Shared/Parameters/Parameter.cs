@@ -23,11 +23,17 @@ namespace Yarn.Shared
 
     public record TokenParameter(string Name, bool IsYarnToken, bool IsArray, bool IsOut, bool HasDefaultValue, string? DefaultValueDisplay, bool IsNodeAttributed, string? AttributedEnumSubtype): Parameter(Name, IsArray, IsOut, HasDefaultValue, DefaultValueDisplay, IsNodeAttributed, AttributedEnumSubtype)
     {
-        public override string CreateFunctionParameterString(int parameterIndex, int arrayIndex)
+        private string CreateParameterString(int parameterIndex, int arrayIndex, bool isFunction)
         {
             if (IsArray)
             {
                 return "throw new System.ArgumentException(\"Asked to create a token array but this is forbidden, encountering this should be impossible at this point.\");";
+            }
+
+            // functions can't take a wombo cancellation token, just a normal token
+            if (isFunction)
+            {
+                return $"var p{parameterIndex} = token;";
             }
 
             if (IsYarnToken)
@@ -39,13 +45,17 @@ namespace Yarn.Shared
                 return $"var p{parameterIndex} = token.HurryUpToken;";
             }
         }
+        public override string CreateFunctionParameterString(int parameterIndex, int arrayIndex)
+        {
+            return CreateParameterString(parameterIndex, arrayIndex, true);
+        }
         public override string CreateCommandParameterString(int parameterIndex, int arrayIndex)
         {
             if (IsArray)
             {
                 return "throw new System.ArgumentException(\"Asked to create a token array but this is forbidden, encountering this should be impossible at this point.\");";
             }
-            return CreateFunctionParameterString(parameterIndex, 0);
+            return CreateParameterString(parameterIndex, arrayIndex, false);
         }
 
         public override string ShortFormType => IsYarnToken ? "LineCancellationToken" : "CancellationToken";

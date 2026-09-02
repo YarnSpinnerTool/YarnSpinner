@@ -29,7 +29,10 @@ public static partial class Creators
         parameters = new Parameter[parameterSymbols.Length];
         diagnostics = new();
 
-        for (int i = 0; i < parameterSymbols.Length; i++)
+        // ok gonna flip this so I calculate the last token first
+        // then if a parameter is an array but has a token param after it it is still ok
+        for (int i = parameterSymbols.Length -1; i > -1; i--)
+        // for (int i = 0; i < parameterSymbols.Length; i++)
         {
             var p = parameterSymbols[i];
             if (p == null)
@@ -269,11 +272,17 @@ public static partial class Creators
             {
                 if (i != parameters.Length - 1)
                 {
-                    if (earlyOut)
-                    {
-                        return false;
+                    // there is one exception to arrays being the last parameter
+                    // if they are second last and the last param is a token, then that is fine
+                    var isAllowedToBeNotLast = (i == parameters.Length - 2) && (parameters.Length == i + 2) && (parameters[i + 1] is TokenParameter);
+                    if (!isAllowedToBeNotLast)
+                    {    
+                        if (earlyOut)
+                        {
+                            return false;
+                        }
+                        diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1007ArrayInWrongLocation, location, param.Name, i));
                     }
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1007ArrayInWrongLocation, location, param.Name, i));
                 }
 
                 if (param is TokenParameter)
