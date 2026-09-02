@@ -9,516 +9,518 @@ using Yarn.HostAnalysis;
 
 #nullable enable
 
-namespace Yarn.Analyser;
-
-[Generator]
-public class Generator : IIncrementalGenerator
+namespace Yarn.Analyser
 {
-    // I want:
-    // - anything attributed [YarnCommand]
-    // - any calls to register command
-    // ---------
-    // - anything attributed [YarnFunction]
-    // - any call to add function
-    // ---------
-    // - anything attributed [Yarnconverter]
-
-    public void Initialize(IncrementalGeneratorInitializationContext context)
+    [Generator]
+    public class Generator : IIncrementalGenerator
     {
-        ILogger? logger = null;
+        // I want:
+        // - anything attributed [YarnCommand]
+        // - any calls to register command
+        // ---------
+        // - anything attributed [YarnFunction]
+        // - any call to add function
+        // ---------
+        // - anything attributed [Yarnconverter]
 
-        try
+        public void Initialize(IncrementalGeneratorInitializationContext context)
         {
-            logger = new BetterLogger("generator");
+            ILogger? logger = null;
 
-            // we need the compilation so we can filter via assembly name
-            var assemblyName = context.CompilationProvider.Select(static (c, _) => c.AssemblyName);
-
-            // grabbing any converters
-            logger.Inc();
-            var attributedconverters = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.YarnConverterAttribute",
-                    predicate: (_,_) => true,
-                    transform: (ctx, _) => GetAttributedConverters(ctx, logger)
-            ).Collect();
-            logger.Dec();
-
-            // attempting to find converters inside the referenced assembly
-            logger.Inc();
-            var otherConverters = context.CompilationProvider.SelectMany((ctx, _) => Creators.CollectAssemblyConverters(ctx, logger)).Collect();
-            var allConverters = otherConverters.Combine(attributedconverters);
-            logger.Dec();
-
-            // collecting all attributed commands
-            logger.Inc();
-            var attributedCommands = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.YarnCommandAttribute",
-                    predicate: (_,_) => true,
-                    transform: (ctx, _) => CreateActionsFromAttribute(ctx, ActionType.Command, logger)
-            ).Collect();
-            logger.Dec();
-
-            // collecting all non-attributed commands
-            logger.Inc();
-            var nonAttributedCommands = context.SyntaxProvider.CreateSyntaxProvider(
-                predicate: static (node, _) => node is InvocationExpressionSyntax,
-                transform: (context, _) => CreateActionFromSyntax(context, ActionType.Command, logger)
-            ).Where(static symbol => symbol is not null).Collect();
-            logger.Dec();
-
-            // merging the command info together
-            var commandInfo = assemblyName.Combine(allConverters.Combine(attributedCommands.Combine(nonAttributedCommands)));
-            context.RegisterSourceOutput(commandInfo, (spc, value) =>
+            try
             {
-                var assemblyName = value.Left;
-                // Don't generate source code for certain Yarn Spinner provided
-                // assemblies - these always manually register any actions in them.
-                var prefixesToIgnore = new List<string>()
+                logger = new BetterLogger("generator");
+
+                // we need the compilation so we can filter via assembly name
+                var assemblyName = context.CompilationProvider.Select(static (c, _) => c.AssemblyName);
+
+                // grabbing any converters
+                logger.Inc();
+                var attributedconverters = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.YarnConverterAttribute",
+                        predicate: (_,_) => true,
+                        transform: (ctx, _) => GetAttributedConverters(ctx, logger)
+                ).Collect();
+                logger.Dec();
+
+                // attempting to find converters inside the referenced assembly
+                logger.Inc();
+                var otherConverters = context.CompilationProvider.SelectMany((ctx, _) => Creators.CollectAssemblyConverters(ctx, logger)).Collect();
+                var allConverters = otherConverters.Combine(attributedconverters);
+                logger.Dec();
+
+                // collecting all attributed commands
+                logger.Inc();
+                var attributedCommands = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.YarnCommandAttribute",
+                        predicate: (_,_) => true,
+                        transform: (ctx, _) => CreateActionsFromAttribute(ctx, ActionType.Command, logger)
+                ).Collect();
+                logger.Dec();
+
+                // collecting all non-attributed commands
+                logger.Inc();
+                var nonAttributedCommands = context.SyntaxProvider.CreateSyntaxProvider(
+                    predicate: static (node, _) => node is InvocationExpressionSyntax,
+                    transform: (context, _) => CreateActionFromSyntax(context, ActionType.Command, logger)
+                ).Where(static symbol => symbol is not null).Collect();
+                logger.Dec();
+
+                // merging the command info together
+                var commandInfo = assemblyName.Combine(allConverters.Combine(attributedCommands.Combine(nonAttributedCommands)));
+                context.RegisterSourceOutput(commandInfo, (spc, value) =>
                 {
-                    "YarnSpinner.Unity",
-                    "YarnSpinner.Editor",
-                };
-                // But DO generate source code for the Samples assembly
-                var prefixesToKeep = new List<string>()
+                    var assemblyName = value.Left;
+                    // Don't generate source code for certain Yarn Spinner provided
+                    // assemblies - these always manually register any actions in them.
+                    var prefixesToIgnore = new List<string>()
+                    {
+                        "YarnSpinner.Unity",
+                        "YarnSpinner.Editor",
+                    };
+                    // But DO generate source code for the Samples assembly
+                    var prefixesToKeep = new List<string>()
+                    {
+                        "YarnSpinner.Unity.Samples",
+                    };
+                    if (prefixesToIgnore.Any(prefix => value.Left!.StartsWith(prefix)) && !prefixesToKeep.Any(prefix => value.Left!.StartsWith(prefix)))
+                    {
+                        return;
+                    }
+
+                    var converters = Merge(value.Right.Left.Left, value.Right.Left.Right).ToImmutableArray();
+                    var mergedCommands = Merge(value.Right.Right.Left, value.Right.Right.Right);
+                    RunCommands(spc, assemblyName!, this.GetType().Assembly.GetName().Version.ToString(), converters, mergedCommands, logger);
+                });
+
+                // getting all the attributed functions
+                logger.Inc();
+                var attributedFunctions = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.YarnFunctionAttribute",
+                        predicate: (_,_) => true,
+                        transform: (ctx, _) => CreateActionsFromAttribute(ctx, ActionType.Function, logger)
+                ).Collect();
+                logger.Dec();
+
+                // TODO: think about how to prevent something tagged as both command and function
+                
+                // collecting all non-attributed functions
+                logger.Inc();
+                var nonAttributedFunctions = context.SyntaxProvider.CreateSyntaxProvider(
+                    predicate: static (node, _) => node is InvocationExpressionSyntax,
+                    transform: (context, _) => CreateActionFromSyntax(context, ActionType.Function, logger)
+                ).Where(static symbol => symbol is not null).Collect();
+                logger.Dec();
+
+                // merging the command info together
+                var functionInfo = assemblyName.Combine(allConverters.Combine(attributedFunctions.Combine(nonAttributedFunctions)));
+                context.RegisterSourceOutput(functionInfo, (spc, value) =>
                 {
-                    "YarnSpinner.Unity.Samples",
-                };
-                if (prefixesToIgnore.Any(prefix => value.Left!.StartsWith(prefix)) && !prefixesToKeep.Any(prefix => value.Left!.StartsWith(prefix)))
+                    var assemblyName = value.Left;
+                    // Don't generate source code for certain Yarn Spinner provided
+                    // assemblies - these always manually register any actions in them.
+                    var prefixesToIgnore = new List<string>()
+                    {
+                        "YarnSpinner.Unity",
+                        "YarnSpinner.Editor",
+                    };
+                    // But DO generate source code for the Samples assembly
+                    var prefixesToKeep = new List<string>()
+                    {
+                        "YarnSpinner.Unity.Samples",
+                    };
+                    if (prefixesToIgnore.Any(prefix => value.Left!.StartsWith(prefix)) && !prefixesToKeep.Any(prefix => value.Left!.StartsWith(prefix)))
+                    {
+                        return;
+                    }
+
+                    var converters = Merge(value.Right.Left.Left, value.Right.Left.Right).ToImmutableArray();
+                    var mergedFunctions = Merge(value.Right.Right.Left, value.Right.Right.Right);
+                    RunFunctions(spc, assemblyName!, this.GetType().Assembly.GetName().Version.ToString(), converters, mergedFunctions, logger);
+                });
+
+                // gobbling up any yarnenum attributed enums
+                logger.Inc();
+                var attributedYarnEnums = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.Attributes.YarnGeneratedEnumAttribute",
+                        predicate: (node,_) => node is EnumDeclarationSyntax,
+                        transform: (ctx, _) => GetAttributedEnums(ctx, logger)
+                ).Collect();
+                logger.Dec();
+                
+                var enumInfo = assemblyName.Combine(attributedYarnEnums.Combine(attributedconverters));
+                // now we generate the code for them
+                context.RegisterSourceOutput(enumInfo, (spc, value) =>
                 {
-                    return;
+                    if (value.Left is null)
+                    {
+                        return;
+                    }
+                    var code = RuntimeSyntaxBuilder.BuildSyntax(value.Right.Left, value.Right.Right, value.Left, this.GetType().Assembly.GetName().Version.ToString());
+                    if (code != null)
+                    {
+                        FileDebugWriter.WriteGeneratedFile(code, $"{value.Left}.dynamic.converter.g.cs");
+                        spc.AddSource($"{value.Left}.dynamic.converter.g.cs", code);
+                    }
+                });
+            }
+            catch (System.Exception ex)
+            {
+                EmergencyLogger.ExceptionLog(ex, null, true);
+                logger?.WriteException(ex);
+            }
+            finally
+            {
+                logger?.Dec();
+            }
+        }
+
+        internal record class YarnEnumPayload(Shared.YarnEnum.BackingType Backing, Shared.NamedType NamedType){}
+
+        private YarnEnumPayload? GetAttributedEnums(GeneratorAttributeSyntaxContext context, ILogger? logger)
+        {
+            logger ??= new NullLogger();
+
+            // getting the bakcing type of the enum
+            // if any of these steps fail we bail out as we won't be able to resolve the enum
+            var attribute = context.Attributes.Where(a => a.ConstructorArguments.Length == 1).FirstOrDefault();
+            if (attribute == null)
+            {
+                logger.WriteLine("The attribute is somehow null");
+                return null;
+            }
+
+            var backingObject = attribute.ConstructorArguments.First().Value;
+            if (backingObject == null)
+            {
+                logger.WriteLine("It's lacking the backing type");
+                return null;
+            }
+
+            var backing = YarnEnum.BackingType.Int;
+            if (backingObject.GetType() == typeof(int))
+            {
+                var backingValue = (int)backingObject;
+                
+                if (backingValue == 1)
+                {
+                    backing = YarnEnum.BackingType.String;
                 }
-
-                var converters = Merge(value.Right.Left.Left, value.Right.Left.Right).ToImmutableArray();
-                var mergedCommands = Merge(value.Right.Right.Left, value.Right.Right.Right);
-                RunCommands(spc, assemblyName!, this.GetType().Assembly.GetName().Version.ToString(), converters, mergedCommands, logger);
-            });
-
-            // getting all the attributed functions
-            logger.Inc();
-            var attributedFunctions = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.YarnFunctionAttribute",
-                    predicate: (_,_) => true,
-                    transform: (ctx, _) => CreateActionsFromAttribute(ctx, ActionType.Function, logger)
-            ).Collect();
-            logger.Dec();
-
-            // TODO: think about how to prevent something tagged as both command and function
+                logger.WriteLine($"It's a valid yarn enum with a backing of : {backing}");
+            }
+            else
+            {
+                logger.WriteLine($"It has a backing type but it isn't an int and as such not an enum: {backingObject.GetType()}");
+                return null;
+            }
             
-            // collecting all non-attributed functions
-            logger.Inc();
-            var nonAttributedFunctions = context.SyntaxProvider.CreateSyntaxProvider(
-                predicate: static (node, _) => node is InvocationExpressionSyntax,
-                transform: (context, _) => CreateActionFromSyntax(context, ActionType.Function, logger)
-            ).Where(static symbol => symbol is not null).Collect();
-            logger.Dec();
-
-            // merging the command info together
-            var functionInfo = assemblyName.Combine(allConverters.Combine(attributedFunctions.Combine(nonAttributedFunctions)));
-            context.RegisterSourceOutput(functionInfo, (spc, value) =>
+            // this will always pass because an earlier filter step has ensured that we are operating only on EnumDeclarationSyntax nodes
+            // but the compiler can't know that this is the case so we just force it to be so
+            if (context.TargetSymbol is not INamedTypeSymbol nt)
             {
-                var assemblyName = value.Left;
-                // Don't generate source code for certain Yarn Spinner provided
-                // assemblies - these always manually register any actions in them.
-                var prefixesToIgnore = new List<string>()
+                logger.WriteLine("attribute is somehow not attached to a named type!");
+                return null;
+            }
+            var ynt = nt.YarnNamedType();
+            if (ynt is null)
+            {
+                logger.WriteLine("Was unable to create a yarn named type for this enum!");
+                return null;
+            }
+
+            return new YarnEnumPayload(backing, ynt);
+        }
+
+        private static List<T> Merge<T>(ImmutableArray<T?> right, ImmutableArray<T?> left)
+        {
+            List<T> merges = [];
+            foreach (var item in right)
+            {
+                if (item is not null)
                 {
-                    "YarnSpinner.Unity",
-                    "YarnSpinner.Editor",
-                };
-                // But DO generate source code for the Samples assembly
-                var prefixesToKeep = new List<string>()
+                    merges.Add(item);
+                }
+            }
+            foreach (var item in left)
+            {
+                if (item is not null)
                 {
-                    "YarnSpinner.Unity.Samples",
-                };
-                if (prefixesToIgnore.Any(prefix => value.Left!.StartsWith(prefix)) && !prefixesToKeep.Any(prefix => value.Left!.StartsWith(prefix)))
+                    merges.Add(item);
+                }
+            }
+            return merges;
+        }
+
+        private static void RunCommands(SourceProductionContext context, string assembly, string version, ImmutableArray<YarnConverter> converters, List<Action> commands, ILogger? logger)
+        {
+            try
+            {
+                logger?.WriteLine($"Doing command stuff for: {assembly}");
+                logger?.Inc();
+                var validConverters = Validators.ValidateConverters(converters, logger);
+                logger?.WriteLine($"after validation have {validConverters.Length} valid converters remaining");
+                var validCommands = ValidateActions(commands, validConverters, logger);
+                logger?.WriteLine($"after validation have {validCommands.Length} valid commands remaining");
+
+                if (validCommands.Length == 0)
                 {
                     return;
                 }
-
-                var converters = Merge(value.Right.Left.Left, value.Right.Left.Right).ToImmutableArray();
-                var mergedFunctions = Merge(value.Right.Right.Left, value.Right.Right.Right);
-                RunFunctions(spc, assemblyName!, this.GetType().Assembly.GetName().Version.ToString(), converters, mergedFunctions, logger);
-            });
-
-            // gobbling up any yarnenum attributed enums
-            logger.Inc();
-            var attributedYarnEnums = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.Attributes.YarnGeneratedEnumAttribute",
-                    predicate: (node,_) => node is EnumDeclarationSyntax,
-                    transform: (ctx, _) => GetAttributedEnums(ctx, logger)
-            ).Collect();
-            logger.Dec();
-            
-            var enumInfo = assemblyName.Combine(attributedYarnEnums.Combine(attributedconverters));
-            // now we generate the code for them
-            context.RegisterSourceOutput(enumInfo, (spc, value) =>
-            {
-                if (value.Left is null)
-                {
-                    return;
-                }
-                var code = RuntimeSyntaxBuilder.BuildSyntax(value.Right.Left, value.Right.Right, value.Left, this.GetType().Assembly.GetName().Version.ToString());
+                var code = CompileTimeSyntaxBuilder.BuildSyntaxStringForCommands(assembly, version, validCommands, validConverters, logger);
                 if (code != null)
                 {
-                    FileDebugWriter.WriteGeneratedFile(code, $"{value.Left}.dynamic.converter.g.cs");
-                    spc.AddSource($"{value.Left}.dynamic.converter.g.cs", code);
+                    logger?.WriteLine("generating command code");
+                    FileDebugWriter.WriteGeneratedFile(code, $"{assembly}.commands.invoker.g.cs");
+                    context.AddSource($"{assembly}.commands.invoker.g.cs", code);
                 }
-            });
+            }
+            catch (System.Exception ex)
+            {
+                EmergencyLogger.ExceptionLog(ex, null, true);
+            }
+            finally
+            {
+                logger?.Dec();
+            }
         }
-        catch (System.Exception ex)
+        private static void RunFunctions(SourceProductionContext context, string assembly, string version, ImmutableArray<YarnConverter> converters, List<Action> functions, ILogger? logger)
         {
-            EmergencyLogger.ExceptionLog(ex, null, true);
-            logger?.WriteException(ex);
+            if (logger == null)
+            {
+                logger = new NullLogger();
+            }
+            try
+            {
+                logger.WriteLine($"Doing function stuff for: {assembly}");
+                logger.Inc();
+                logger.WriteLine("Validating converters");
+                var validconverters = Validators.ValidateConverters(converters, logger);
+                logger.WriteLine("Validated converters");
+                logger.WriteLine("Validating actions");
+                var validFunctions = ValidateActions(functions, validconverters);
+                logger.WriteLine("Validated actions");
+
+                if (validFunctions.Length == 0)
+                {
+                    logger.WriteLine("Aborting due to no actions");
+                    return;
+                }
+
+                logger.WriteLine("beginning building code");
+                logger.Inc();
+                var code = CompileTimeSyntaxBuilder.BuildSyntaxStringForFunctions(assembly, version, validFunctions, validconverters, logger);
+                logger.Dec();
+
+                logger.WriteLine("finished building code");
+                if (code != null)
+                {
+                    logger.WriteLine("generating function code");
+                    FileDebugWriter.WriteGeneratedFile(code, $"{assembly}.functions.invoker.g.cs");
+                    context.AddSource($"{assembly}.functions.invoker.g.cs", code);
+                }
+                logger.Dec();
+            }
+            catch (System.Exception ex)
+            {
+                EmergencyLogger.ExceptionLog(ex, null, true);
+            }
         }
-        finally
+
+        private static Action? CreateActionFromSyntax(GeneratorSyntaxContext context, ActionType actionType, ILogger? logger)
         {
-            logger?.Dec();
-        }
-    }
-
-    internal record class YarnEnumPayload(Shared.YarnEnum.BackingType Backing, Shared.NamedType NamedType){}
-
-    private YarnEnumPayload? GetAttributedEnums(GeneratorAttributeSyntaxContext context, ILogger? logger)
-    {
-        logger ??= new NullLogger();
-
-        // getting the bakcing type of the enum
-        // if any of these steps fail we bail out as we won't be able to resolve the enum
-        var attribute = context.Attributes.Where(a => a.ConstructorArguments.Length == 1).FirstOrDefault();
-        if (attribute == null)
-        {
-            logger.WriteLine("The attribute is somehow null");
-            return null;
-        }
-
-        var backingObject = attribute.ConstructorArguments.First().Value;
-        if (backingObject == null)
-        {
-            logger.WriteLine("It's lacking the backing type");
-            return null;
-        }
-
-        var backing = YarnEnum.BackingType.Int;
-        if (backingObject.GetType() == typeof(int))
-        {
-            var backingValue = (int)backingObject;
+            if (context.Node is not InvocationExpressionSyntax invocation)
+            {
+                return null;
+            }
+            var symbolInfo = context.SemanticModel.GetSymbolInfo(invocation);
+            if (symbolInfo.Symbol is not IMethodSymbol methodSymbol)
+            {
+                return null;
+            }
             
-            if (backingValue == 1)
+            switch (actionType)
             {
-                backing = YarnEnum.BackingType.String;
+                case ActionType.Command:
+                    if (methodSymbol.Name != "AddCommandHandler")
+                    {
+                        return null;
+                    }
+                    break;
+                case ActionType.Function:
+                    if (methodSymbol.Name != "AddFunction")
+                    {
+                        return null;
+                    }
+                    break;
+                default:
+                    return null;
             }
-            logger.WriteLine($"It's a valid yarn enum with a backing of : {backing}");
-        }
-        else
-        {
-            logger.WriteLine($"It has a backing type but it isn't an int and as such not an enum: {backingObject.GetType()}");
-            return null;
-        }
-        
-        // this will always pass because an earlier filter step has ensured that we are operating only on EnumDeclarationSyntax nodes
-        // but the compiler can't know that this is the case so we just force it to be so
-        if (context.TargetSymbol is not INamedTypeSymbol nt)
-        {
-            logger.WriteLine("attribute is somehow not attached to a named type!");
-            return null;
-        }
-        var ynt = nt.YarnNamedType();
-        if (ynt is null)
-        {
-            logger.WriteLine("Was unable to create a yarn named type for this enum!");
-            return null;
-        }
 
-        return new YarnEnumPayload(backing, ynt);
-    }
-
-    private static List<T> Merge<T>(ImmutableArray<T?> right, ImmutableArray<T?> left)
-    {
-        List<T> merges = [];
-        foreach (var item in right)
-        {
-            if (item is not null)
+            if (!(methodSymbol.ReceiverType?.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) == "global::Yarn.Unity.DialogueRunner" ||
+                methodSymbol.ReceiverType?.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) == "global::Yarn.Unity.ActionRegistrationExtension" || 
+                methodSymbol.ReceiverType?.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) == "global::Yarn.Unity.IActionRegistration"))
             {
-                merges.Add(item);
+                return null;
             }
-        }
-        foreach (var item in left)
-        {
-            if (item is not null)
-            {
-                merges.Add(item);
-            }
-        }
-        return merges;
-    }
 
-    private static void RunCommands(SourceProductionContext context, string assembly, string version, ImmutableArray<YarnConverter> converters, List<Action> commands, ILogger? logger)
-    {
-        try
-        {
-            logger?.WriteLine($"Doing command stuff for: {assembly}");
+            logger?.WriteLine($"registration has {invocation.ArgumentList.Arguments.Count} args");
+            // just quickly logging these out
             logger?.Inc();
-            var validConverters = Validators.ValidateConverters(converters, logger);
-            logger?.WriteLine($"after validation have {validConverters.Length} valid converters remaining");
-            var validCommands = ValidateActions(commands, validConverters, logger);
-            logger?.WriteLine($"after validation have {validCommands.Length} valid commands remaining");
-
-            if (validCommands.Length == 0)
+            foreach (var arg in invocation.ArgumentList.Arguments)
             {
-                return;
+                logger?.WriteLine($"- {arg}");
             }
-            var code = CompileTimeSyntaxBuilder.BuildSyntaxStringForCommands(assembly, version, validCommands, validConverters, logger);
-            if (code != null)
-            {
-                logger?.WriteLine("generating command code");
-                FileDebugWriter.WriteGeneratedFile(code, $"{assembly}.commands.invoker.g.cs");
-                context.AddSource($"{assembly}.commands.invoker.g.cs", code);
-            }
-        }
-        catch (System.Exception ex)
-        {
-            EmergencyLogger.ExceptionLog(ex, null, true);
-        }
-        finally
-        {
             logger?.Dec();
-        }
-    }
-    private static void RunFunctions(SourceProductionContext context, string assembly, string version, ImmutableArray<YarnConverter> converters, List<Action> functions, ILogger? logger)
-    {
-        if (logger == null)
-        {
-            logger = new NullLogger();
-        }
-        try
-        {
-            logger.WriteLine($"Doing function stuff for: {assembly}");
-            logger.Inc();
-            logger.WriteLine("Validating converters");
-            var validconverters = Validators.ValidateConverters(converters, logger);
-            logger.WriteLine("Validated converters");
-            logger.WriteLine("Validating actions");
-            var validFunctions = ValidateActions(functions, validconverters);
-            logger.WriteLine("Validated actions");
 
-            if (validFunctions.Length == 0)
+            if (context.SemanticModel.GetConstantValue(invocation.ArgumentList.Arguments[0].Expression).Value is not string yarnName)
             {
-                logger.WriteLine("Aborting due to no actions");
-                return;
-            }
-
-            logger.WriteLine("beginning building code");
-            logger.Inc();
-            var code = CompileTimeSyntaxBuilder.BuildSyntaxStringForFunctions(assembly, version, validFunctions, validconverters, logger);
-            logger.Dec();
-
-            logger.WriteLine("finished building code");
-            if (code != null)
-            {
-                logger.WriteLine("generating function code");
-                FileDebugWriter.WriteGeneratedFile(code, $"{assembly}.functions.invoker.g.cs");
-                context.AddSource($"{assembly}.functions.invoker.g.cs", code);
-            }
-            logger.Dec();
-        }
-        catch (System.Exception ex)
-        {
-            EmergencyLogger.ExceptionLog(ex, null, true);
-        }
-    }
-
-    private static Action? CreateActionFromSyntax(GeneratorSyntaxContext context, ActionType actionType, ILogger? logger)
-    {
-        if (context.Node is not InvocationExpressionSyntax invocation)
-        {
-            return null;
-        }
-        var symbolInfo = context.SemanticModel.GetSymbolInfo(invocation);
-        if (symbolInfo.Symbol is not IMethodSymbol methodSymbol)
-        {
-            return null;
-        }
-        
-        switch (actionType)
-        {
-            case ActionType.Command:
-                if (methodSymbol.Name != "AddCommandHandler")
-                {
-                    return null;
-                }
-                break;
-            case ActionType.Function:
-                if (methodSymbol.Name != "AddFunction")
-                {
-                    return null;
-                }
-                break;
-            default:
-                return null;
-        }
-
-        if (!(methodSymbol.ReceiverType?.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) == "global::Yarn.Unity.DialogueRunner" ||
-            methodSymbol.ReceiverType?.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) == "global::Yarn.Unity.ActionRegistrationExtension" || 
-            methodSymbol.ReceiverType?.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) == "global::Yarn.Unity.IActionRegistration"))
-        {
-            return null;
-        }
-
-        logger?.WriteLine($"registration has {invocation.ArgumentList.Arguments.Count} args");
-        // just quickly logging these out
-        logger?.Inc();
-        foreach (var arg in invocation.ArgumentList.Arguments)
-        {
-            logger?.WriteLine($"- {arg}");
-        }
-        logger?.Dec();
-
-        if (context.SemanticModel.GetConstantValue(invocation.ArgumentList.Arguments[0].Expression).Value is not string yarnName)
-        {
-            logger?.WriteLine($"Unable to get the name of the method: {invocation.ToFullString()}");
-            return null;
-        }
-
-        // ok so once I have the yarn name I need to get the methodsymbol of the second parameter
-        if (context.SemanticModel.GetSymbolInfo(invocation.ArgumentList.Arguments[1].Expression).Symbol is not IMethodSymbol actionSymbol)
-        {
-            logger?.WriteLine($"Unable to get the method itself: {invocation.ToFullString()}");
-            return null;
-        }
-
-        var nameLocation = invocation.ArgumentList.Arguments[0].GetLocation();
-        var invocationLocation = invocation.ArgumentList.Arguments[1].GetLocation();
-
-        var action = Creators.ActionFromMethodSymbol(actionSymbol, yarnName, actionType, DeclarationType.DirectRegistration, out _, true, nameLocation, invocationLocation, logger);
-        return action;
-    }
-
-    private static Action? CreateActionsFromAttribute(GeneratorAttributeSyntaxContext context, ActionType actionType, ILogger? logger)
-    {
-        try
-        {
-            logger?.WriteLine($"Starting {(actionType == ActionType.Command ? "command" : "function")} collection: {context.SemanticModel.Compilation.AssemblyName ?? "(NULL ASSEMBLY)"}");
-            logger?.Inc();
-
-            if (context.TargetSymbol is not IMethodSymbol method)
-            {
-                logger?.WriteLine("the method is null?!");
+                logger?.WriteLine($"Unable to get the name of the method: {invocation.ToFullString()}");
                 return null;
             }
-            var methodName = method.Name;
-            logger?.WriteLine($"Collecting {methodName}");
 
-            // we are an attributed method with means we must have a YarnCommand attribute
-            // but we might have multiple
-            // regardless we find the first one that has a constructer value (aka a command name)
-            // and assume that one to be the name we want
-            // if none have a name we use the name of the method itself.
-            if (context.Attributes.Where(a => a.ConstructorArguments.Length == 1).First().ConstructorArguments.First().Value is not string yarnName)
+            // ok so once I have the yarn name I need to get the methodsymbol of the second parameter
+            if (context.SemanticModel.GetSymbolInfo(invocation.ArgumentList.Arguments[1].Expression).Symbol is not IMethodSymbol actionSymbol)
             {
-                yarnName = methodName;
+                logger?.WriteLine($"Unable to get the method itself: {invocation.ToFullString()}");
+                return null;
             }
 
-            // need to get the location of the attribute
-            Location? attributeLocation = context.Attributes.Where(a => a.ConstructorArguments.Length == 1).FirstOrDefault(a => a.ConstructorArguments.FirstOrDefault().Value is string)?.ApplicationSyntaxReference?.GetSyntax().GetLocation();
-            var action = Creators.ActionFromMethodSymbol(method, yarnName, actionType, DeclarationType.Attribute, out _, true, attributeLocation, null, logger);
+            var nameLocation = invocation.ArgumentList.Arguments[0].GetLocation();
+            var invocationLocation = invocation.ArgumentList.Arguments[1].GetLocation();
+
+            var action = Creators.ActionFromMethodSymbol(actionSymbol, yarnName, actionType, DeclarationType.DirectRegistration, out _, true, nameLocation, invocationLocation, logger);
             return action;
         }
-        catch (System.Exception ex)
-        {
-            EmergencyLogger.ExceptionLog(ex, null, true);
-            logger?.WriteException(ex);
-            throw;
-        }
-        finally
-        {
-            logger?.WriteLine("done creating actions from attribute");
-            logger?.Dec();
-        }
-    }
 
-    // ok so what is a converter?
-    // it's basically an attribute that has a type T
-    // and a method to call
-    // that method needs to be public in a public class
-    // return a bool
-    // have two parameters
-        // a string
-        // a type that is the same as T
-    // the second parameter needs to be an out
-    private static YarnConverter? GetAttributedConverters(GeneratorAttributeSyntaxContext context, ILogger? logger)
-    {
-        List<INamedTypeSymbol?> resolvedTypeSymbols = [];
-
-        var attributeConstructor = context.Attributes.Where(a => a.ConstructorArguments.Length == 1).First().ConstructorArguments.First();
-
-        var attributeValue = attributeConstructor.Value;
-        if (attributeValue == null)
+        private static Action? CreateActionsFromAttribute(GeneratorAttributeSyntaxContext context, ActionType actionType, ILogger? logger)
         {
-            logger?.WriteLine("attribute constructor null");
-            return null;
-        }
-        var attributeType = attributeConstructor.Type;
-        if (attributeType == null)
-        {
-            logger?.WriteLine("attribute has no type?!");
-            return null;
-        }
-
-        if (attributeType.Kind == SymbolKind.NamedType)
-        {
-            logger?.WriteLine($"Resolved the attribute as type value: {attributeValue}");
-            var resolvedTypeSymbol = context.SemanticModel.Compilation.GetTypeByMetadataName(attributeValue.ToString());
-            if (resolvedTypeSymbol == null)
+            try
             {
-                logger?.WriteLine("despite identifying the symbol was unable to get a type from the compilation");
+                logger?.WriteLine($"Starting {(actionType == ActionType.Command ? "command" : "function")} collection: {context.SemanticModel.Compilation.AssemblyName ?? "(NULL ASSEMBLY)"}");
+                logger?.Inc();
+
+                if (context.TargetSymbol is not IMethodSymbol method)
+                {
+                    logger?.WriteLine("the method is null?!");
+                    return null;
+                }
+                var methodName = method.Name;
+                logger?.WriteLine($"Collecting {methodName}");
+
+                // we are an attributed method with means we must have a YarnCommand attribute
+                // but we might have multiple
+                // regardless we find the first one that has a constructer value (aka a command name)
+                // and assume that one to be the name we want
+                // if none have a name we use the name of the method itself.
+                if (context.Attributes.Where(a => a.ConstructorArguments.Length == 1).First().ConstructorArguments.First().Value is not string yarnName)
+                {
+                    yarnName = methodName;
+                }
+
+                // need to get the location of the attribute
+                Location? attributeLocation = context.Attributes.Where(a => a.ConstructorArguments.Length == 1).FirstOrDefault(a => a.ConstructorArguments.FirstOrDefault().Value is string)?.ApplicationSyntaxReference?.GetSyntax().GetLocation();
+                var action = Creators.ActionFromMethodSymbol(method, yarnName, actionType, DeclarationType.Attribute, out _, true, attributeLocation, null, logger);
+                return action;
+            }
+            catch (System.Exception ex)
+            {
+                EmergencyLogger.ExceptionLog(ex, null, true);
+                logger?.WriteException(ex);
+                throw;
+            }
+            finally
+            {
+                logger?.WriteLine("done creating actions from attribute");
+                logger?.Dec();
+            }
+        }
+
+        // ok so what is a converter?
+        // it's basically an attribute that has a type T
+        // and a method to call
+        // that method needs to be public in a public class
+        // return a bool
+        // have two parameters
+            // a string
+            // a type that is the same as T
+        // the second parameter needs to be an out
+        private static YarnConverter? GetAttributedConverters(GeneratorAttributeSyntaxContext context, ILogger? logger)
+        {
+            List<INamedTypeSymbol?> resolvedTypeSymbols = [];
+
+            var attributeConstructor = context.Attributes.Where(a => a.ConstructorArguments.Length == 1).First().ConstructorArguments.First();
+
+            var attributeValue = attributeConstructor.Value;
+            if (attributeValue == null)
+            {
+                logger?.WriteLine("attribute constructor null");
+                return null;
+            }
+            var attributeType = attributeConstructor.Type;
+            if (attributeType == null)
+            {
+                logger?.WriteLine("attribute has no type?!");
+                return null;
             }
 
-            var method = context.TargetSymbol as IMethodSymbol;
-            if (resolvedTypeSymbol != null && method != null)
+            if (attributeType.Kind == SymbolKind.NamedType)
             {
-                var converter = Creators.ConverterFromMethodAndType(resolvedTypeSymbol, method);
-                if (Validators.TryValidateConverter(method, resolvedTypeSymbol, out _, true, logger))
+                logger?.WriteLine($"Resolved the attribute as type value: {attributeValue}");
+                var resolvedTypeSymbol = context.SemanticModel.Compilation.GetTypeByMetadataName(attributeValue.ToString());
+                if (resolvedTypeSymbol == null)
                 {
-                    return converter;
+                    logger?.WriteLine("despite identifying the symbol was unable to get a type from the compilation");
+                }
+
+                var method = context.TargetSymbol as IMethodSymbol;
+                if (resolvedTypeSymbol != null && method != null)
+                {
+                    var converter = Creators.ConverterFromMethodAndType(resolvedTypeSymbol, method);
+                    if (Validators.TryValidateConverter(method, resolvedTypeSymbol, out _, true, logger))
+                    {
+                        return converter;
+                    }
                 }
             }
+
+            logger?.WriteLine($"Failed to resolve the attribute: {attributeType.Kind}:{attributeType}:{attributeValue}");
+            return null;
         }
 
-        logger?.WriteLine($"Failed to resolve the attribute: {attributeType.Kind}:{attributeType}:{attributeValue}");
-        return null;
-    }
-
-    private static ImmutableArray<Action> ValidateActions(List<Action> actions, ImmutableArray<YarnConverter> converters, ILogger? logger = null)
-    {
-        logger?.WriteLine($"Beginning Validation, checking {actions.Count} commands");
-        
-        var validActions = new List<Action>();
-        HashSet<string> namedActions = new();
-
-        foreach (var action in actions)
+        private static ImmutableArray<Action> ValidateActions(List<Action> actions, ImmutableArray<YarnConverter> converters, ILogger? logger = null)
         {
-            if (action == null)
-            {
-                logger?.WriteLine("action is null?!");
-                continue;
-            }
+            logger?.WriteLine($"Beginning Validation, checking {actions.Count} commands");
+            
+            var validActions = new List<Action>();
+            HashSet<string> namedActions = new();
 
-            if (action is InvalidAction)
+            foreach (var action in actions)
             {
-                logger?.WriteLine($"{action.Name} is an invalid action, skipping validation but keeping it in the list");
-                validActions.Add(action);
-                continue;
-            }
-
-            // ok now that we have converters available am able to run the converter aware validation
-            if (Action.TryValidateAction(action, converters, logger))
-            {
-                if (namedActions.Add(action.Name))
+                if (action == null)
                 {
+                    logger?.WriteLine("action is null?!");
+                    continue;
+                }
+
+                if (action is InvalidAction)
+                {
+                    logger?.WriteLine($"{action.Name} is an invalid action, skipping validation but keeping it in the list");
                     validActions.Add(action);
+                    continue;
                 }
-                else
+
+                // ok now that we have converters available am able to run the converter aware validation
+                if (Action.TryValidateAction(action, converters, logger))
                 {
-                    logger?.WriteLine($"{action.Name} is a duplicate");
+                    if (namedActions.Add(action.Name))
+                    {
+                        validActions.Add(action);
+                    }
+                    else
+                    {
+                        logger?.WriteLine($"{action.Name} is a duplicate");
+                    }
                 }
             }
-        }
 
-        return validActions.ToImmutableArray();
+            return validActions.ToImmutableArray();
+        }
     }
 }
+namespace System.Runtime.CompilerServices { internal static class IsExternalInit {} }
