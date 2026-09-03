@@ -292,22 +292,17 @@ namespace Yarn.Analyser
                     logger.Dec();
 
                     // checking that if the method is an instance method it is one we can return a value for
-                    if (!action.IsStatic)
+                    if (action.IsInstance)
                     {
-                        // but if we are a lambda or local method that doesn't apply to us
-                        // because they are called solely via delegates
-                        if (symbol.MethodKind != MethodKind.AnonymousFunction && symbol.MethodKind != MethodKind.LocalFunction)
+                        var containingType = Yarn.Shared.Action.isValidYarnableTypeForUnity(action.containingNamedType, converters, logger);
+                        if (containingType == ParameterTypes.UnityComponent || containingType == ParameterTypes.Converter)
                         {
-                            var containingType = Yarn.Shared.Action.isValidYarnableTypeForUnity(action.containingNamedType, converters, logger);
-                            if (containingType == ParameterTypes.UnityComponent || containingType == ParameterTypes.Converter)
-                            {
-                                logger.WriteLine($"containing type is a valid one");
-                            }
-                            else
-                            {
-                                context.ReportDiagnostic(Diagnostic.Create(ActionDiagnostics.YS1009InstanceActionIsOnAnIncompatibleType, symbol.Locations.First(), yarnName, action.containingTypeShortName));
-                                codes.Add(ActionDiagnostics.YS1009InstanceActionIsOnAnIncompatibleType.Id);
-                            }
+                            logger.WriteLine($"containing type is a valid one");
+                        }
+                        else
+                        {
+                            context.ReportDiagnostic(Diagnostic.Create(ActionDiagnostics.YS1009InstanceActionIsOnAnIncompatibleType, symbol.Locations.First(), yarnName, action.containingTypeShortName));
+                            codes.Add(ActionDiagnostics.YS1009InstanceActionIsOnAnIncompatibleType.Id);
                         }
                     }
                 }

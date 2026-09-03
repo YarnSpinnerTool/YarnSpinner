@@ -84,9 +84,17 @@ public static class GeneratorExtensions
             {"end", endPosition},
         };
 
-        result["parameters"] = new List<Dictionary<string, object?>>(action.Parameters
-        .Where(p => p is not TokenParameter && p is not UnknownParameter)
-        .Select(p =>
+        List<Dictionary<string, object?>> parameters = new();
+        if (action.IsInstance)
+        {
+            var paramObject = new Dictionary<string, object?>();
+            paramObject["name"] = "target";
+            paramObject["type"] = "instance";
+            paramObject["subtype"] = action.containingTypeShortName;
+            paramObject["isParamsArray"] = false;
+            parameters.Add(paramObject);
+        }
+        foreach (var p in action.Parameters.Where(p => p is not UnknownParameter && p is not TokenParameter))
         {
             var paramObject = new Dictionary<string, object?>();
 
@@ -155,8 +163,9 @@ public static class GeneratorExtensions
                 paramObject["type"] = "node";
             }
 
-            return paramObject;
-        }).ToArray());
+            parameters.Add(paramObject);
+        }
+        result["parameters"] = parameters;
 
         if (action.Type == ActionType.Function)
         {

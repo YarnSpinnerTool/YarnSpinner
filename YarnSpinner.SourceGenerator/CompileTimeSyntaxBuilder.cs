@@ -135,8 +135,13 @@ public class CompileTimeSyntaxBuilder
         builder.Append("private static Dictionary<string, int> commands = new(){");
         for (int i = 0; i < actions.Length; i++)
         {
+            if (actions[i] is InvalidAction)
+            {
+                continue;
+            }
             values[i] = string.Format(template, actions[i].Name, i);
         }
+
         builder.Append(string.Join(",", values));
         builder.Append("};");
         builder.AppendLine();
@@ -153,6 +158,10 @@ public class CompileTimeSyntaxBuilder
         builder.Append("private static Dictionary<string, int> functions = new(){");
         for (int i = 0; i < actions.Length; i++)
         {
+            if (actions[i] is InvalidAction)
+            {
+                continue;
+            }
             values[i] = string.Format(template, actions[i].Name, i);
         }
         builder.Append(string.Join(",", values));
@@ -177,15 +186,13 @@ public class CompileTimeSyntaxBuilder
                     var (min, max) = action.NumberOfParameters;
                     var hasDefaultParameters = action.HasDefaultParameters;
 
+                    if (action is InvalidAction)
+                    {
+                        continue;
+                    }
+
                     using (builder.EnterBlock($"case {i}:"))
                     {
-                        if (action is InvalidAction)
-                        {
-                            builder.AppendFormat(invalidActionEncounteredAtRuntimeTemplate, action.Name, "function");
-
-                            continue;
-                        }
-
                         if (action.MethodName == null)
                         {
                             continue;
@@ -195,7 +202,7 @@ public class CompileTimeSyntaxBuilder
                         // the first parameter in the function is the name of the target we will do a lookup upon, so need to skip over it
                         // once we've determined that if the min and max are the same size this means that there are no arrays or optional parameters
                         // so we can do the simpler check, otherwise we need to do a full min and max check
-                        int skip = action.IsStatic ? 0: 1;
+                        int skip = action.IsInstance ? 1: 0;
                         if (min == max)
                         {
                             using(builder.EnterBlock($"if (parameters.Length != {min + skip})"))
@@ -211,7 +218,7 @@ public class CompileTimeSyntaxBuilder
                             }
                         }
 
-                        if (!action.IsStatic)
+                        if (action.IsInstance)
                         {
                             // then we need to convert the first parameter of the command into it's appropriate form
                             // this is different depending on if it's a component or converted type
@@ -315,7 +322,7 @@ public class CompileTimeSyntaxBuilder
 
                         // if it's a static method we call it via it's fully qualified name
                         // otherwise we call it on our target we found earlier
-                        if (action.IsStatic)
+                        if (!action.IsInstance)
                         {
                             builder.Append(action.MethodName);
                         }
@@ -354,6 +361,11 @@ public class CompileTimeSyntaxBuilder
                     var (min, max) = action.NumberOfParameters;
                     var hasDefaultParameters = action.HasDefaultParameters;
 
+                    if (action is InvalidAction)
+                    {
+                        continue;
+                    }
+
                     using(builder.EnterBlock($"case {i}:"))
                     {
                         if (action is InvalidAction)
@@ -367,7 +379,7 @@ public class CompileTimeSyntaxBuilder
                             continue;
                         }
 
-                        int skip = action.IsStatic ? 1 : 2;
+                        int skip = action.IsInstance ? 2 : 1;
                         // if the min and max are the same size this means that there are no arrays or optional parameters
                         // so we can do the simpler check
                         if (min == max)
@@ -385,7 +397,7 @@ public class CompileTimeSyntaxBuilder
                             }
                         }
 
-                        if (!action.IsStatic)
+                        if (action.IsInstance)
                         {
                             // then we need to convert the first parameter of the command into it's appropriate form
                             // this is different depending on if it's a component or converted type
@@ -483,7 +495,7 @@ public class CompileTimeSyntaxBuilder
 
                         // if it's a static method we call it via it's fully qualified name
                         // otherwise we call it on our target we found earlier
-                        if (action.IsStatic)
+                        if (!action.IsInstance)
                         {
                             builder.Append(action.MethodName);
                         }

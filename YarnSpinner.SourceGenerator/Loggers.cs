@@ -13,7 +13,7 @@ public class FileDebugWriter
 {
     public static void WriteGeneratedFile(string input, string name)
     {
-        var path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "TimsLogs", $"{name}.invoker.g.cs");
+        var path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "TimsLogs", name);
         File.WriteAllText(path, input);
     }
 }

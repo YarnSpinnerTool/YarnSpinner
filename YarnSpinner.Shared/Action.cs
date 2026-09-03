@@ -30,13 +30,13 @@ public class NullLogger: ILogger
 
 public record Action
 {
-    public Action(string Name, string FullMethodName, string ShortMethodName, ActionType Type, bool IsStatic, ReturnType ReturnType, NamedType Container, Parameter[] Parameters)
+    public Action(string Name, string FullMethodName, string ShortMethodName, ActionType Type, bool HasTarget, ReturnType ReturnType, NamedType Container, Parameter[] Parameters)
     {
         this.Name = Name;
         this.MethodName = FullMethodName;
         this.ShortMethodName = ShortMethodName;
         this.Type = Type;
-        this.IsStatic = IsStatic;
+        this.IsInstance = HasTarget;
         this.Return = ReturnType;
         this.containingNamedType = Container;
         this.Parameters = Parameters;
@@ -66,9 +66,12 @@ public record Action
     public string? ShortMethodName { get; set; }
 
     /// <summary>
-    /// Whether this action is a static method, or an instance method.
+    /// Whether this action requires a target upon which to be invoked.
     /// </summary>
-    public bool IsStatic { get; internal set; }
+    /// <remarks>
+    /// This is not the same as being not static, as lambdas and local functions aren't static but aren't called on an instance.
+    /// </remarks>
+    public bool IsInstance { get; internal set; }
 
     /// <summary>
     /// The declaration type of the action.
@@ -127,7 +130,7 @@ public record Action
                     // the below blog implies 8192 is the max anyways and that feels big enough to me!
                     // https://www.tabsoverspaces.com/233892-whats-the-maximum-number-of-arguments-for-method-in-csharp-and-in-net
                     
-                    if (IsStatic)
+                    if (!IsInstance)
                     {
                         return (min, this.Type == ActionType.Command ? 8191 : 8192);
                     }
@@ -362,7 +365,7 @@ public record Action
         }
         
         // the final check is if the action is an instance method we need to check that we have a converter for this action type
-        if (action.IsStatic)
+        if (!action.IsInstance)
         {
             logger?.WriteLine($"Action is static so needs no converter");
             return true;

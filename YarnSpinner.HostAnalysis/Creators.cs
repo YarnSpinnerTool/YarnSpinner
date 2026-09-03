@@ -85,6 +85,9 @@ public static partial class Creators
             return new InvalidAction(yarnName, actionType);
         }
 
+        // an instance method is any method that isn't a lambda, isn't a local function, and isn't static
+        var isInstanceMethod = method.MethodKind != MethodKind.AnonymousFunction && method.MethodKind != MethodKind.LocalFunction && !method.IsStatic;
+
         if (method.ContainingType != null)
         {
             var action = new Action(
@@ -92,7 +95,7 @@ public static partial class Creators
                 method.GetStaticCallingString(),
                 method.Name,
                 actionType,
-                method.IsStatic,
+                isInstanceMethod,
                 method.ReturnType.UnityReturnType(logger),
                 method.ContainingType.YarnNamedType(),
                 parameters
