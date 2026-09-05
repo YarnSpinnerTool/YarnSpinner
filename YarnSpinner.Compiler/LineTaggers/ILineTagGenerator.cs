@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
-using System.Linq;
-using Yarn.Compiler;
+
+namespace Yarn.Compiler {
 
 /// <summary>
 /// Line tag generators are responsible for producing unique line IDs in a Yarn
@@ -161,4 +161,6 @@ public interface ILineTagGenerator
     /// <param name="LineContexts">The combined information of all nodes and lines</param>
     /// <param name="excludedIDs">A collection of strings that should not be used for generation.</param>
     public void PrepareForLines(Dictionary<string, List<ILineTagGenerator.LineTagContext>> LineContexts, HashSet<string> excludedIDs);
+}
+
 }
