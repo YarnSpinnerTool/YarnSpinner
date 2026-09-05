@@ -1,4 +1,4 @@
-# lines
+// lines
 line: `Number: 1`
 line: `Expression: 2`
 line: `String: string`
@@ -7,7 +7,7 @@ line: `Variable: variable`
 
 line: `variable is great!`
 
-# options
+// options
 option: `Option Number: 1`
 option: `Option Expression: 2`
 option: `Option String: string`
@@ -15,7 +15,7 @@ option: `Option Bool: True`
 option: `Option Variable: variable`
 select: 1
 
-# commands
+// commands
 command: `number 1`
 command: `expression 2`
 command: `string string`

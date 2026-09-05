@@ -129,6 +129,8 @@ namespace YarnSpinner.Tests
             }
         }
 
+        public string? Environment { get; private set; }
+
         public List<Run> Runs { get; init; } = new();
 
         public TestPlan() { }
@@ -161,10 +163,19 @@ namespace YarnSpinner.Tests
                 throw new XunitException("Syntax errors in test plan: " + string.Join("\n", allDiagnostics));
             }
 
+
+            plan.Environment = testPlanTree.environment()?.GetText();
+
             foreach (var runContext in testPlanTree.run())
             {
                 var run = new Run();
                 Step step;
+                var start = runContext.start();
+                if (start != null)
+                {
+                    run.StartNode = start.nodeName.Text;
+                }
+
                 foreach (var stepContext in runContext.step())
                 {
                     if (stepContext.actionJumpToNode() != null)
@@ -210,14 +221,14 @@ namespace YarnSpinner.Tests
                         {
                             step = new ExpectLineStep(
                                 null,
-                                any.hashtag().Select(h => h.GetText())
+                                any.hashtag().Select(h => h.GetText().Substring(1))
                             );
                         }
                         else if (stepContext.lineExpected() is YarnSpinnerTestPlanParser.LineWithSpecificTextExpectedContext specific)
                         {
                             step = new ExpectLineStep(
                                 specific.TEXT().GetText().Trim('`'),
-                                specific.hashtag().Select(h => h.GetText())
+                                specific.hashtag().Select(h => h.GetText().Substring(1))
                             );
                         }
                         else
@@ -229,7 +240,7 @@ namespace YarnSpinner.Tests
                     {
                         step = new ExpectOptionStep(
                             stepContext.optionExpected().TEXT().GetText().Trim('`'),
-                            stepContext.optionExpected().hashtag().Select(h => h.GetText()),
+                            stepContext.optionExpected().hashtag().Select(h => h.GetText().Substring(1)),
                             stepContext.optionExpected().isDisabled == null
                         );
                     }

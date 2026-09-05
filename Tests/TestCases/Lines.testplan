@@ -3,6 +3,6 @@ line: `Mae: <shake=.01>HA HA HA HA HA NO I'M FINE.</shake>`
 
 line: `Mae: Testing comments after lines`
 line: `Mae: Testing comments after hashtags` #hashtag
-line: `Mae: Testing comments after line conditions` #hashtag
-line: `Mae: Testing comments after hashtags with no whitespace` #hashtag
+line: `Mae: Testing comments after line conditions` 
+line: `Mae: Testing comments after hashtags with no whitespace` #hashtag//comment
 stop
