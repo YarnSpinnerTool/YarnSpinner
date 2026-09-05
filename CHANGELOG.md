@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `DescriptiveLineTagGenerator` now removes whitespace from character names
   - This does technically mean if you have two characters with the same name but different spacing the tagger will consider them the same character
   - This felt uncommon enough to not handle
+- `<<call>>` commands now clean up the stack by discarding the returned value.
 
 ### Removed
 

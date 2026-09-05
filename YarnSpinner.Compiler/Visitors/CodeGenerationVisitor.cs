@@ -189,9 +189,12 @@ namespace Yarn.Compiler
             // Visit our function call, which will invoke the function
             this.Visit(context.function_call());
 
-            // TODO: if this function returns a value, it will be pushed onto
-            // the stack, but there's no way for the compiler to know that, so
-            // the stack will not be tidied up. is there a way for that to work?
+            // Functions always return a value, so clean up the stack
+            this.compiler.Emit(
+                context.COMMAND_CALL().Symbol,
+                context.COMMAND_CALL().Symbol,
+                new Instruction { Pop = new PopInstruction() }
+            );
             return 0;
         }
 
@@ -472,7 +475,7 @@ namespace Yarn.Compiler
                 // Make this option's AddOption instruction point at where we
                 // are now.
                 addOptionInstructions[optionCount].Destination = CurrentInstructionNumber;
-                
+
                 // top of the stack contains our jumped destination, popping that off the stack
                 compiler.Emit(new Instruction { Pop = new PopInstruction { } });
 
