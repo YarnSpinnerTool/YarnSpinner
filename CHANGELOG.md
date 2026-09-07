@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - This felt uncommon enough to not handle
 - `<<call>>` commands now clean up the stack by discarding the returned value.
 - `ILineTagGenerator` has been moved to the `Yarn.Compiler` namespace. (Previously, it was in the global namespace.)
+- Node titles now trim any trailing whitespace that might be present. (Fixes [#134](https://github.com/YarnSpinnerTool/IssuesDiscussion/issues/156); thanks to [@DontDieThankYou](https://github.com/DontDieThankYou))
 
 ### Removed
 

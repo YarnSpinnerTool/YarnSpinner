@@ -133,7 +133,7 @@ namespace Yarn.Compiler
                 var titleHeader = node.Node.title_header()?.FirstOrDefault();
                 if (titleHeader != null)
                 {
-                    node.Node.NodeTitle = titleHeader.title?.Text;
+                    node.Node.NodeTitle = titleHeader.title?.Text.Trim();
                 }
             }
 

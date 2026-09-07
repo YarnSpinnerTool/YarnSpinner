@@ -966,7 +966,7 @@ Mr Name: I am Mr Name!
             null,
                 lineTagGenerator: new DescriptiveLineTagGenerator()
             );
-            
+
             // we expect no errors and there to be as many new line tags as there are 
             tagExceptions.Should().BeEmpty();
             updatedLines.Should().HaveCount(12);
@@ -994,6 +994,25 @@ Mr Name: I am Mr Name!
                 _ = Compiler.Compile(job);
             };
             compile.Should().NotThrow();
+        }
+
+        [Fact]
+        public void TestNodeTitlesTrimTrailingWhitespace()
+        {
+            var source = """
+            title: ThisTitleHasASingleSpaceAfterIt 
+            ---
+            <<return>> // no-op
+            ===
+            """;
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
+
+            dialogue.Program = result.Program;
+            dialogue.NodeExists("ThisTitleHasASingleSpaceAfterIt ").Should().BeFalse(); //<- fails
+            dialogue.NodeExists("ThisTitleHasASingleSpaceAfterIt").Should().BeTrue(); //<- fails
         }
     }
     // Copyright (c) Microsoft Corporation.
