@@ -12,7 +12,7 @@ public static class Validators
 {
     private enum MethodType
     {
-        Method, LocalMethod, Lambda,
+        Method, LocalMethod, Lambda, Delegate,
     }
     public enum ActionValidation
     {
@@ -67,6 +67,10 @@ public static class Validators
             case MethodKind.LocalFunction:
                 methodType = MethodType.LocalMethod;
                 break;
+            case MethodKind.DelegateInvoke:
+                methodType = MethodType.Delegate;
+                break;
+
             default:
                 diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1000InternalErrorProcessingAction, location, $"Attempted to register an action that is not a method, lambda, or local function, it's a {methodSymbol.MethodKind}"));
                 return ActionValidation.FailedValidation;
@@ -94,6 +98,9 @@ public static class Validators
                     return ActionValidation.FailedValidation;
                 case MethodType.Lambda:
                     diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location)); // this needs to be upgraded to a warning here?
+                    return ActionValidation.FailedValidation;
+                case MethodType.Delegate:
+                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1027ActionIsRegisteredAsADelegate, invocationLocation ?? location)); // this needs to be upgraded to a warning here?
                     return ActionValidation.FailedValidation;
             }
 
@@ -139,11 +146,14 @@ public static class Validators
                 case MethodType.Lambda:
                     diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location));
                     break;
+                case MethodType.Delegate:
+                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1027ActionIsRegisteredAsADelegate, invocationLocation ?? location));
+                    break;
             }
 
-            // we can be private
+            // we can be a private method
             // but do grumble about this
-            if (!actionIsPublic)
+            if (!actionIsPublic && methodType == MethodType.Method)
             {
                 diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1025DirectActionIsPrivate, invocationLocation));
             }
@@ -190,6 +200,9 @@ public static class Validators
                     return ActionValidation.FailedValidation;
                 case MethodType.Lambda:
                     diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location)); // this needs to be upgraded to a warning here?
+                    return ActionValidation.FailedValidation;
+                case MethodType.Delegate:
+                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1027ActionIsRegisteredAsADelegate, invocationLocation ?? location)); // this needs to be upgraded to a warning here?
                     return ActionValidation.FailedValidation;
             }
 
@@ -256,6 +269,10 @@ public static class Validators
                 case MethodType.Lambda:
                     isRunTimeFunction = true;
                     diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location));
+                    break;
+                case MethodType.Delegate:
+                    isRunTimeFunction = true;
+                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1027ActionIsRegisteredAsADelegate, invocationLocation ?? location));
                     break;
             }
 

@@ -109,13 +109,24 @@ public record Action
         }
     }
 
-    // I think this should change to also take into account the target parameter (if required) and command name
+    // this returns the number of parameters that we should expect to see in the yarn itself
+    // understands that commands are always one more than functions due to the name of the command being part of the invocation itself
+    // also know that instance methods have an additional parameter which is the lookup of the target
+    // finally it handles the min and max changing if there are defaulted values or arrays
     public (int min, int max) NumberOfParameters
     {
         get
         {
-            int min = 0;
-            int max = 0;
+            // instance actions always have their target as a parameter
+            int min = this.IsInstance ? 1 : 0;
+            int max = this.IsInstance ? 1 : 0;
+
+            // commands always have their name as a parameter
+            if (this.Type == ActionType.Command)
+            {
+                min += 1;
+                max += 1;
+            }
 
             foreach (var param in Parameters)
             {
@@ -129,21 +140,13 @@ public record Action
                     // and +1 if it is a command (for the command name)
                     // the below blog implies 8192 is the max anyways and that feels big enough to me!
                     // https://www.tabsoverspaces.com/233892-whats-the-maximum-number-of-arguments-for-method-in-csharp-and-in-net
-                    
-                    if (!IsInstance)
-                    {
-                        return (min, this.Type == ActionType.Command ? 8191 : 8192);
-                    }
-                    else
-                    {
-                        return (min, this.Type == ActionType.Command ? 8190 : 8191);
-                    }
+                    return (min, 8192);
                 }
 
                 // tokens don't count as a parameter as far as the calling convention is concerned
                 // so for example: do(int, token)
                 // has 2 parameters as far as C# is concerned
-                // but only one in yarns view (<<do 4>>)
+                // but only one in yarns view (do(4))
                 // as the token is injected later by the invoker
                 if (param is TokenParameter)
                 {

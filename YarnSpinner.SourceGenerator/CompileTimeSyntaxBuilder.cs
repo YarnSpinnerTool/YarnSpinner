@@ -3,6 +3,7 @@ namespace Yarn.Analyser;
 #nullable enable
 
 using System.Collections.Immutable;
+using System.Linq;
 using Yarn.Shared;
 
 public class CompileTimeSyntaxBuilder
@@ -41,7 +42,8 @@ public class CompileTimeSyntaxBuilder
 
     public static string? BuildSyntaxStringForFunctions(string name, string version, ImmutableArray<Action> functions, ImmutableArray<YarnConverter> converters, ILogger? logger = null)
     {
-        if (functions.Length == 0)
+        // run through every function and make sure we don't only have invalids
+        if (functions.Where(f => f is not InvalidAction).Count() == 0)
         {
             logger?.WriteLine("we have no actions, so no code gen is necessary");
             return null;
@@ -83,7 +85,8 @@ public class CompileTimeSyntaxBuilder
 
     public static string? BuildSyntaxStringForCommands(string name, string version, ImmutableArray<Action> commands, ImmutableArray<YarnConverter> converters, ILogger? logger = null)
     {
-        if (commands.Length == 0)
+        // run through every function and make sure we don't only have invalids
+        if (commands.Where(c => c is not InvalidAction).Count() == 0)
         {
             logger?.WriteLine("we have no actions, so no code gen is necessary");
             return null;
@@ -125,10 +128,6 @@ public class CompileTimeSyntaxBuilder
 
     private static void BuildCommandsDictionary(ImmutableArray<Action> actions, IndentingStringBuilder builder, ILogger? logger)
     {
-        if (actions.Length == 0)
-        {
-            return;
-        }
         string template = "{{ \"{0}\", {1} }}";
         string[] values = new string[actions.Length];
 
@@ -148,10 +147,6 @@ public class CompileTimeSyntaxBuilder
     }
     private static void BuildFunctionsDictionary(ImmutableArray<Action> actions, IndentingStringBuilder builder, ILogger? logger)
     {
-        if (actions.Length == 0)
-        {
-            return;
-        }
         string template = "{{ \"{0}\", {1} }}";
         string[] values = new string[actions.Length];
 
@@ -171,11 +166,6 @@ public class CompileTimeSyntaxBuilder
 
     private static void BuildFunctionInvoker(ImmutableArray<Action> actions, ImmutableArray<YarnConverter> converters, IndentingStringBuilder builder, ILogger? logger)
     {
-        if (actions.Length == 0)
-        {
-            return;
-        }
-
         using(builder.EnterBlock("public static async YarnTask<IConvertible> InvokeFunction(string functionName, IConvertible[] parameters, CancellationToken token)"))
         {
             using (builder.EnterBlock("switch (functions[functionName])"))
@@ -205,14 +195,14 @@ public class CompileTimeSyntaxBuilder
                         int skip = action.IsInstance ? 1: 0;
                         if (min == max)
                         {
-                            using(builder.EnterBlock($"if (parameters.Length != {min + skip})"))
+                            using(builder.EnterBlock($"if (parameters.Length != {min})"))
                             {
                                 builder.AppendFormat("""throw new System.ArgumentException($"Invalid number of parameters {{parameters.Length}} for '{0}'");""", action.Name);
                             }
                         }
                         else
                         {
-                            using(builder.EnterBlock($"if (parameters.Length < {min + skip} || parameters.Length > {max + skip})"))
+                            using(builder.EnterBlock($"if (parameters.Length < {min} || parameters.Length > {max})"))
                             {
                                 builder.AppendFormat("""throw new System.ArgumentException($"Invalid number of parameters {{parameters.Length}} for '{0}'");""", action.Name);
                             }
@@ -342,12 +332,6 @@ public class CompileTimeSyntaxBuilder
 
     private static void BuildCommandInvoker(ImmutableArray<Action> actions, ImmutableArray<YarnConverter> converters, IndentingStringBuilder builder, ILogger? logger)
     {
-        if (actions.Length == 0)
-        {
-            logger?.WriteLine("Skipping this due to having not actions");
-            return;
-        }
-
         using(builder.EnterBlock("public static async YarnTask Invoke(Command command, LineCancellationToken token)"))
         {
             builder.AppendLine("var commandPieces = new List<string>(DialogueRunner.SplitCommandText(command.Text));");
@@ -384,14 +368,14 @@ public class CompileTimeSyntaxBuilder
                         // so we can do the simpler check
                         if (min == max)
                         {
-                            using(builder.EnterBlock($"if (commandPieces.Count != {min + skip})"))
+                            using(builder.EnterBlock($"if (commandPieces.Count != {min})"))
                             {
                                 builder.AppendFormat("""throw new System.ArgumentException($"Invalid number of parameters {{commandPieces.Count}} for '{0}'");""", action.Name);
                             }
                         }
                         else
                         {
-                            using(builder.EnterBlock($"if (commandPieces.Count < {min + skip} || commandPieces.Count > {max + skip})"))
+                            using(builder.EnterBlock($"if (commandPieces.Count < {min} || commandPieces.Count > {max})"))
                             {
                                 builder.AppendFormat("""throw new System.ArgumentException($"Invalid number of parameters {{commandPieces.Count}} for '{0}'");""", action.Name);
                             }

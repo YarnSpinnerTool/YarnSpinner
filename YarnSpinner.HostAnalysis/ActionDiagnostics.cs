@@ -22,10 +22,10 @@ public static class ActionDiagnostics
 
     public static readonly DiagnosticDescriptor YS1001ActionMethodsMustBePublic = new(
         "YS1001",
-        title: "Yarn action methods must be public",
-        messageFormat: "Attributed YarnCommand and YarnFunction methods must be public. \"{0}\" is \"{1}\".",
+        title: "Yarn action methods should be public",
+        messageFormat: "Attributed YarnCommand and YarnFunction methods should be public, \"{0}\" is \"{1}\". By being private this action will have to be invoked via reflection.",
         category: "Yarn Spinner",
-        defaultSeverity: DiagnosticSeverity.Warning,
+        defaultSeverity: DiagnosticSeverity.Info,
         isEnabledByDefault: true
     );
 
@@ -207,7 +207,7 @@ public static class ActionDiagnostics
     public static readonly DiagnosticDescriptor YS1021ActionIsALambda = new(
         "YS1021",
         title: "Action is a lambda",
-        messageFormat: "Yarn actions can be lambdas but this generally isn't recommended. Lambda based actions cannot be unregistered, are more difficult to debug and can't be directly invoked.",
+        messageFormat: "Yarn actions can be lambdas but this generally isn't recommended. Lambda based actions are more difficult to debug, can't be directly invoked, and implictly capture the target object they are registered upon.",
         category: "Yarn Spinner",
         defaultSeverity: DiagnosticSeverity.Info,
         isEnabledByDefault: true
@@ -255,6 +255,15 @@ public static class ActionDiagnostics
         messageFormat: "Making your actions use LineCancellationTokens are normally a good idea however due to the nature of how function invocation works there is no way to hurry up the function. Functions are always invoked by Yarn Spinner before their value is used so there is no concept of the current content to ask to hurry up.",
         category: "Yarn Spinner",
         defaultSeverity: DiagnosticSeverity.Warning,
+        isEnabledByDefault: true
+    );
+
+    public static readonly DiagnosticDescriptor YS1027ActionIsRegisteredAsADelegate = new(
+        "YS1027",
+        title: "Action is registered as a delegate",
+        messageFormat: "Registering actions as a delegate is not advised. This method exists as an implementation detail of the runtime of actions. Due to the nature of delegates it is difficult to know at runtime the expected behaviour of the delegate which makes deciding on the calling convention in Yarn tricky. Determining information such as documentation or where to jump to in-editor is also much harder and less reliable. In almost all circumstances you don't want to be doing this, if you need to capture a method group with an implicit this (which is most likely what you want) instead register a lambda.",
+        category: "Yarn Spinner",
+        defaultSeverity: DiagnosticSeverity.Error,
         isEnabledByDefault: true
     );
 }

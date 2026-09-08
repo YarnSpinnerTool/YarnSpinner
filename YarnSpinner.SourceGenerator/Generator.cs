@@ -52,7 +52,7 @@ namespace Yarn.Analyser
                 logger.Inc();
                 var attributedCommands = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.YarnCommandAttribute",
                         predicate: (_,_) => true,
-                        transform: (ctx, _) => CreateActionsFromAttribute(ctx, ActionType.Command, logger)
+                        transform: (ctx, _) => CreateCompileTimeActionsFromAttribute(ctx, ActionType.Command, logger)
                 ).Collect();
                 logger.Dec();
 
@@ -95,7 +95,7 @@ namespace Yarn.Analyser
                 logger.Inc();
                 var attributedFunctions = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.YarnFunctionAttribute",
                         predicate: (_,_) => true,
-                        transform: (ctx, _) => CreateActionsFromAttribute(ctx, ActionType.Function, logger)
+                        transform: (ctx, _) => CreateCompileTimeActionsFromAttribute(ctx, ActionType.Function, logger)
                 ).Collect();
                 logger.Dec();
 
@@ -136,6 +136,36 @@ namespace Yarn.Analyser
                     RunFunctions(spc, assemblyName!, this.GetType().Assembly.GetName().Version.ToString(), converters, mergedFunctions, logger);
                 });
 
+                // collecting all runtime attributed commands
+                var runtimeAttributedCommands = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.YarnCommandAttribute",
+                        predicate: (_,_) => true,
+                        transform: (ctx, _) => CreateRunTimeActionFromAttribute(ctx, ActionType.Command, logger)
+                ).Collect();
+                // collecting all runtime attributed functions
+                var runtimeAttributedFunctions = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.YarnFunctionAttribute",
+                        predicate: (_,_) => true,
+                        transform: (ctx, _) => CreateRunTimeActionFromAttribute(ctx, ActionType.Command, logger)
+                ).Collect();
+                // merging the two runtime attributed collection together
+                var runtimeAttributedActions = runtimeAttributedCommands.Combine(runtimeAttributedFunctions);
+                
+                // generating the reflection based linking code for these
+                context.RegisterSourceOutput(assemblyName.Combine(runtimeAttributedActions), (spc, value) =>
+                {
+                    var allActions = Merge(value.Right.Left, value.Right.Right);
+                    if (allActions == null)
+                    {
+                        return;
+                    }
+
+                    var code = RuntimeLinkerSyntaxBuilder.BuildSyntax(allActions, value.Left ?? "INVALID", this.GetType().Assembly.GetName().Version.ToString());
+                    if (code != null)
+                    {
+                        FileDebugWriter.WriteGeneratedFile(code, $"{value.Left}.runtime.linker.g.cs");
+                        spc.AddSource($"{value.Left}.runtime.linker.g.cs", code);
+                    }
+                });
+
                 // gobbling up any yarnenum attributed enums
                 logger.Inc();
                 var attributedYarnEnums = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.Attributes.YarnGeneratedEnumAttribute",
@@ -170,6 +200,12 @@ namespace Yarn.Analyser
                 logger?.Dec();
             }
         }
+
+        // ok so will need a new generator
+        // this one will:
+        // 1. scoop up all runtime attributed actions
+        // 2. generate a file which performs refelection on them to get the methodinfo
+        // 3. generate a file which takes that reflected methodinfo and registers
 
         internal record class YarnEnumPayload(Shared.YarnEnum.BackingType Backing, Shared.NamedType NamedType){}
 
@@ -281,10 +317,7 @@ namespace Yarn.Analyser
         }
         private static void RunFunctions(SourceProductionContext context, string assembly, string version, ImmutableArray<YarnConverter> converters, List<Action> functions, ILogger? logger)
         {
-            if (logger == null)
-            {
-                logger = new NullLogger();
-            }
+            logger ??= new NullLogger();
             try
             {
                 logger.WriteLine($"Doing function stuff for: {assembly}");
@@ -384,24 +417,26 @@ namespace Yarn.Analyser
             var nameLocation = invocation.ArgumentList.Arguments[0].GetLocation();
             var invocationLocation = invocation.ArgumentList.Arguments[1].GetLocation();
 
-            var action = Creators.ActionFromMethodSymbol(actionSymbol, yarnName, actionType, DeclarationType.DirectRegistration, out _, true, nameLocation, invocationLocation, logger);
+            var action = Creators.ActionFromMethodSymbol(actionSymbol, yarnName, actionType, DeclarationType.DirectRegistration, out _, true, false, nameLocation, invocationLocation, logger);
             return action;
         }
 
-        private static Action? CreateActionsFromAttribute(GeneratorAttributeSyntaxContext context, ActionType actionType, ILogger? logger)
+        private static (Action? action, Validators.ActionValidation validation) CreateActionFromAttribute(GeneratorAttributeSyntaxContext context, ActionType actionType, bool earlyOut, ILogger? logger)
         {
+            logger ??= new NullLogger();
+
             try
             {
-                logger?.WriteLine($"Starting {(actionType == ActionType.Command ? "command" : "function")} collection: {context.SemanticModel.Compilation.AssemblyName ?? "(NULL ASSEMBLY)"}");
-                logger?.Inc();
+                logger.WriteLine($"Starting {(actionType == ActionType.Command ? "command" : "function")} collection: {context.SemanticModel.Compilation.AssemblyName ?? "(NULL ASSEMBLY)"}");
+                logger.Inc();
 
                 if (context.TargetSymbol is not IMethodSymbol method)
                 {
-                    logger?.WriteLine("the method is null?!");
-                    return null;
+                    logger.WriteLine("the method is null?!");
+                    return (null, Validators.ActionValidation.FailedValidation);
                 }
                 var methodName = method.Name;
-                logger?.WriteLine($"Collecting {methodName}");
+                logger.WriteLine($"Collecting {methodName}");
 
                 // we are an attributed method with means we must have a YarnCommand attribute
                 // but we might have multiple
@@ -415,19 +450,44 @@ namespace Yarn.Analyser
 
                 // need to get the location of the attribute
                 Location? attributeLocation = context.Attributes.Where(a => a.ConstructorArguments.Length == 1).FirstOrDefault(a => a.ConstructorArguments.FirstOrDefault().Value is string)?.ApplicationSyntaxReference?.GetSyntax().GetLocation();
-                var action = Creators.ActionFromMethodSymbol(method, yarnName, actionType, DeclarationType.Attribute, out _, true, attributeLocation, null, logger);
-                return action;
+                var result = Creators.ValidActionFromMethodSymbol(method, yarnName, actionType, DeclarationType.Attribute, out _, earlyOut, false, attributeLocation, null, logger);
+                return result;
             }
             catch (System.Exception ex)
             {
                 EmergencyLogger.ExceptionLog(ex, null, true);
-                logger?.WriteException(ex);
+                logger.WriteException(ex);
                 throw;
             }
             finally
             {
-                logger?.WriteLine("done creating actions from attribute");
-                logger?.Dec();
+                logger.WriteLine("done creating actions from attribute");
+                logger.Dec();
+            }
+        }
+
+        private static Action? CreateCompileTimeActionsFromAttribute(GeneratorAttributeSyntaxContext context, ActionType actionType, ILogger? logger)
+        {
+            var result = CreateActionFromAttribute(context, actionType, true, logger);
+            if (result.validation == Validators.ActionValidation.CompileTimeValid)
+            {
+                return result.action;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        private static Action? CreateRunTimeActionFromAttribute(GeneratorAttributeSyntaxContext context, ActionType actionType, ILogger? logger)
+        {
+            var (action, validation) = CreateActionFromAttribute(context, actionType, false, logger);
+            if (validation == Validators.ActionValidation.RunTimeValid)
+            {
+                return action;
+            }
+            else
+            {
+                return null;
             }
         }
 

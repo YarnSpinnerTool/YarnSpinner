@@ -362,11 +362,66 @@ namespace Yarn.Analyser
                     return;
                 }
 
+                bool isDelegate = false;
                 // the second is a method
                 if (context.SemanticModel.GetSymbolInfo(syntax.ArgumentList.Arguments[1].Expression).Symbol is not IMethodSymbol methodSymbol)
                 {
-                    logger?.WriteLine($"Unable to get the method itself: {syntax.ToFullString()}");
-                    return;
+                    logger.Write($"Unable to get the method itself: {syntax.ToFullString().Trim()}");
+
+                    var symbolInfo = context.SemanticModel.GetSymbolInfo(syntax.ArgumentList.Arguments[1].Expression);
+                    logger.WriteLine($"It's a {symbolInfo.Symbol?.Kind}");
+
+                    var ti = context.SemanticModel.GetTypeInfo(syntax.ArgumentList.Arguments[1].Expression).Type;
+                    if (ti == null)
+                    {
+                        logger.WriteLine("The type info is null, have to abandon this");
+                        return;
+                    }
+
+                    logger.WriteLine($"The type is: {ti.TypeKind}");
+
+                    if (ti.TypeKind != TypeKind.Delegate)
+                    {
+                        logger.WriteLine("The type info is not a delegate, have to abandon this");
+                        return;
+                    }
+
+                    ITypeSymbol? resolvedTypeSymbol;
+                    if (symbolInfo.Symbol is ILocalSymbol ls)
+                    {
+                        logger.WriteLine($"The delegate is a local symbol");
+                        resolvedTypeSymbol = ls.Type;
+                    }
+                    else if (symbolInfo.Symbol is IFieldSymbol fs)
+                    {
+                        logger.WriteLine($"The delegate is a field symbol");
+                        resolvedTypeSymbol = fs.Type;
+                    }
+                    else if (symbolInfo.Symbol is IPropertySymbol ps)
+                    {
+                        logger.WriteLine($"The delegate is a local symbol");
+                        resolvedTypeSymbol = ps.Type;
+                    }
+                    else
+                    {
+                        logger.WriteLine($"Unable to resolve the delegate, it's a {symbolInfo.Symbol?.Kind}, will have to abandon this.");
+                        return;
+                    }
+
+                    if (resolvedTypeSymbol is not INamedTypeSymbol nts)
+                    {
+                        logger.WriteLine($"the delegate has no named type, gonna have to abando this!");
+                        return;
+                    }
+
+                    if (nts.DelegateInvokeMethod == null)
+                    {
+                        logger.WriteLine("the delegate doesn't have an invoke symbol, have to abandon this");
+                        return;
+                    }
+
+                    methodSymbol = nts.DelegateInvokeMethod;
+                    isDelegate = true;
                 }
 
                 logger.WriteLine($"invocation is a {methodSymbol.MethodKind}");
@@ -386,7 +441,15 @@ namespace Yarn.Analyser
 
                 // this generates our action and also makes the diganostics for it
                 // excluding converter diagnostics which need to happen at a later stage
-                var action = Creators.ActionFromMethodSymbol(methodSymbol, yarnName, actionType, DeclarationType.DirectRegistration, out var diagnostics, false, nameLocation, invocationLocation, logger);
+                var action = Creators.ActionFromMethodSymbol(methodSymbol, yarnName, actionType, DeclarationType.DirectRegistration, out var diagnostics, false, isDelegate, nameLocation, invocationLocation, logger);
+                if (action is InvalidAction)
+                {
+                    logger?.WriteLine($"after creating {yarnName} it came out invalid!");
+                }
+                else
+                {
+                    logger?.WriteLine($"after creating {yarnName} action created");
+                }
 
                 foreach (var diag in diagnostics)
                 {
@@ -459,7 +522,7 @@ namespace Yarn.Analyser
                 var actionType = actionAttributed.Any(a => a.AttributeClass?.ToDisplayString() == YarnCommandAttributeLongType) ? ActionType.Command : ActionType.Function;
 
                 HashSet<string> diagnosticCodes = [];
-                var action = Creators.ActionFromMethodSymbol(methodSymbol, yarnName, actionType, DeclarationType.Attribute, out var diagnostics, false, nameLocation, null, logger);
+                var action = Creators.ActionFromMethodSymbol(methodSymbol, yarnName, actionType, DeclarationType.Attribute, out var diagnostics, false, false, nameLocation, null, logger);
                 foreach (var diag in diagnostics)
                 {
                     context.ReportDiagnostic(diag);
@@ -589,7 +652,8 @@ namespace Yarn.Analyser
                     ActionDiagnostics.YS1023ActionsNodeAttributedParameterIsOfIncompatibleType,
                     ActionDiagnostics.YS1024ActionIsALocalFunction,
                     ActionDiagnostics.YS1025DirectActionIsPrivate,
-                    ActionDiagnostics.YS1026FunctionUsesMetaToken
+                    ActionDiagnostics.YS1026FunctionUsesMetaToken,
+                    ActionDiagnostics.YS1027ActionIsRegisteredAsADelegate
                 );
             }
         }
