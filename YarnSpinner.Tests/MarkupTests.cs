@@ -1673,7 +1673,48 @@ namespace YarnSpinner.Tests
             (_, diagnostics) = lineParser.ParseStringWithDiagnostics("invalid markup in the [end.] middle of the line.", "en-AU");
             diagnostics.Should().ContainSingle();
         }
-    }    
+
+        [Fact]
+        public void TestEscapedStringElementsInsideOfPropertiesAreValid()
+        {
+            var input = """This is a [tag name="\"value\""]normal[/tag] line without any markup""";
+            var lineParser = new LineParser();
+            var (markup, diagnostic) = lineParser.ParseStringAndIncludeMarkupDiagnostics(input, "en-AU");
+            diagnostic.Should().BeEmpty();
+
+            markup.TryGetAttributeWithName("tag", out var attribute).Should().BeTrue();
+            attribute.TryGetProperty("name", out string value).Should().BeTrue();
+            value.Should().Be("\"value\"");
+        }
+
+        [Fact]
+        public void TestImplicitCharacterNamesWithQuotesIsConvertedCorrectlyIntoMarkup()
+        {
+            var input = "\"TOM\": Yes, sir!";
+            var output = """[character name="\"TOM\""]"TOM": [/character]Yes, sir!""";
+            var characterNameValue = "\"TOM\"";
+
+            var converted = LineParser.AddImplictCharacterAttribute(input);
+            converted.Should().Be(output);
+
+            // both the original input and the converted input should parse fine
+            // and have the same markup inside of them
+            var lineParser = new LineParser();
+            var (markup, diagnostic) = lineParser.ParseStringAndIncludeMarkupDiagnostics(input, "en-AU");
+            diagnostic.Should().BeEmpty();
+
+            markup.TryGetAttributeWithName("character", out var attribute).Should().BeTrue();
+            attribute.TryGetProperty("name", out string value).Should().BeTrue();
+            value.Should().Be(characterNameValue);
+
+            (markup, diagnostic) = lineParser.ParseStringAndIncludeMarkupDiagnostics(converted, "en-AU");
+            diagnostic.Should().BeEmpty();
+
+            markup.TryGetAttributeWithName("character", out attribute).Should().BeTrue();
+            attribute.TryGetProperty("name", out value).Should().BeTrue();
+            value.Should().Be(characterNameValue);
+        }
+    }
 
     public class BBCodeChevronReplacer : IAttributeMarkerProcessor
     {
