@@ -3,6 +3,7 @@ namespace Yarn.Analyser;
 #nullable enable
 
 using System.Collections.Immutable;
+using System.Collections.Generic;
 using System.Linq;
 using Yarn.Shared;
 
@@ -129,7 +130,9 @@ public class CompileTimeSyntaxBuilder
     private static void BuildCommandsDictionary(ImmutableArray<Action> actions, IndentingStringBuilder builder, ILogger? logger)
     {
         string template = "{{ \"{0}\", {1} }}";
-        string[] values = new string[actions.Length];
+        // string[] values = new string[actions.Length];
+
+        List<string> values = new List<string>();
 
         builder.Append("private static Dictionary<string, int> commands = new(){");
         for (int i = 0; i < actions.Length; i++)
@@ -138,7 +141,7 @@ public class CompileTimeSyntaxBuilder
             {
                 continue;
             }
-            values[i] = string.Format(template, actions[i].Name, i);
+            values.Add(string.Format(template, actions[i].Name, i));
         }
 
         builder.Append(string.Join(",", values));

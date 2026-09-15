@@ -144,7 +144,7 @@ namespace Yarn.Analyser
                 // collecting all runtime attributed functions
                 var runtimeAttributedFunctions = context.SyntaxProvider.ForAttributeWithMetadataName("Yarn.Unity.YarnFunctionAttribute",
                         predicate: (_,_) => true,
-                        transform: (ctx, _) => CreateRunTimeActionFromAttribute(ctx, ActionType.Command, logger)
+                        transform: (ctx, _) => CreateRunTimeActionFromAttribute(ctx, ActionType.Function, logger)
                 ).Collect();
                 // merging the two runtime attributed collection together
                 var runtimeAttributedActions = runtimeAttributedCommands.Combine(runtimeAttributedFunctions);
@@ -152,11 +152,72 @@ namespace Yarn.Analyser
                 // generating the reflection based linking code for these
                 context.RegisterSourceOutput(assemblyName.Combine(runtimeAttributedActions), (spc, value) =>
                 {
-                    var allActions = Merge(value.Right.Left, value.Right.Right);
-                    if (allActions == null)
+                    // we have no actions so no need to do any more work
+                    if (value.Right.Left.Length + value.Right.Right.Length == 0)
                     {
                         return;
                     }
+
+                    var logger2 = new BetterLogger("linker-processing");
+                    logger2.WriteLine($"we have {value.Right.Left.Length} + {value.Right.Right.Length} premerged actions");
+                    logger2.Inc();
+                    foreach (var action in value.Right.Left)
+                    {
+                        if (action is null)
+                        {
+                            logger2.WriteLine("some how we have a null action");
+                            continue;
+                        }
+                        if (action is InvalidAction)
+                        {
+                            logger2.WriteLine($"{action.Name} is an invalid {action.Type}");
+                        }
+                        else
+                        {
+                            logger2.WriteLine($"{action.Name} is a valid {action.Type}");
+                        }
+                    }
+                    foreach (var action in value.Right.Right)
+                    {
+                        if (action is null)
+                        {
+                            logger2.WriteLine("some how we have a null action");
+                            continue;
+                        }
+                        if (action is InvalidAction)
+                        {
+                            logger2.WriteLine($"{action.Name} is an invalid {action.Type}");
+                        }
+                        else
+                        {
+                            logger2.WriteLine($"{action.Name} is a valid {action.Type}");
+                        }
+                    }
+                    logger2.Dec();
+
+                    var allActions = Merge(value.Right.Left, value.Right.Right);
+                    if (allActions == null || allActions.Count == 0)
+                    {
+                        logger2.WriteLine("we failed in the merge");
+                        logger2.Dec();
+                        logger2.WriteLine("--------");
+                        return;
+                    }
+                    logger2.WriteLine($"we have {allActions.Count} merged actions");
+                    logger2.Inc();
+                    foreach (var action in allActions)
+                    {
+                        if (action is InvalidAction)
+                        {
+                            logger2.WriteLine($"{action.Name} is an invalid {action.Type}");
+                        }
+                        else
+                        {
+                            logger2.WriteLine($"{action.Name} is a valid {action.Type}");
+                        }
+                    }
+                    logger2.Dec();
+                    logger2.WriteLine("--------");
 
                     var code = RuntimeLinkerSyntaxBuilder.BuildSyntax(allActions, value.Left ?? "INVALID", this.GetType().Assembly.GetName().Version.ToString());
                     if (code != null)
@@ -200,12 +261,6 @@ namespace Yarn.Analyser
                 logger?.Dec();
             }
         }
-
-        // ok so will need a new generator
-        // this one will:
-        // 1. scoop up all runtime attributed actions
-        // 2. generate a file which performs refelection on them to get the methodinfo
-        // 3. generate a file which takes that reflected methodinfo and registers
 
         internal record class YarnEnumPayload(Shared.YarnEnum.BackingType Backing, Shared.NamedType NamedType){}
 
@@ -436,7 +491,14 @@ namespace Yarn.Analyser
                     return (null, Validators.ActionValidation.FailedValidation);
                 }
                 var methodName = method.Name;
-                logger.WriteLine($"Collecting {methodName}");
+
+                if (methodName == "DoStaticPrivateAttributeFuncTest")
+                {
+                    logger = new BetterLogger("DoStaticPrivateAttributeFuncTest");
+                }
+
+                logger.WriteLine($"Collecting {methodName} as a {actionType}");
+                logger.Inc();
 
                 // we are an attributed method with means we must have a YarnCommand attribute
                 // but we might have multiple
@@ -451,6 +513,7 @@ namespace Yarn.Analyser
                 // need to get the location of the attribute
                 Location? attributeLocation = context.Attributes.Where(a => a.ConstructorArguments.Length == 1).FirstOrDefault(a => a.ConstructorArguments.FirstOrDefault().Value is string)?.ApplicationSyntaxReference?.GetSyntax().GetLocation();
                 var result = Creators.ValidActionFromMethodSymbol(method, yarnName, actionType, DeclarationType.Attribute, out _, earlyOut, false, attributeLocation, null, logger);
+                logger.WriteLine($"{methodName} finished validation: {result.validation}");
                 return result;
             }
             catch (System.Exception ex)
@@ -461,8 +524,8 @@ namespace Yarn.Analyser
             }
             finally
             {
-                logger.WriteLine("done creating actions from attribute");
                 logger.Dec();
+                logger.WriteLine("done creating actions from attribute");
             }
         }
 

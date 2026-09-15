@@ -47,7 +47,7 @@ public static partial class Creators
             }
 
             var name = p.Name;
-            logger?.WriteLine($"Processing: {name}");
+            logger?.WriteLine($"Processing: {name} as a parameter");
             logger?.Inc();
 
             var location = p.Locations.First();
@@ -79,6 +79,7 @@ public static partial class Creators
             {
                 if (earlyOut)
                 {
+                    logger?.Dec();
                     return false;
                 }
                 diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1008ActionsParameterIsAnIncompatibleType, location, name, "null"));
@@ -279,6 +280,7 @@ public static partial class Creators
                     {    
                         if (earlyOut)
                         {
+                            logger?.Dec();
                             return false;
                         }
                         diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1007ArrayInWrongLocation, location, param.Name, i));
@@ -289,6 +291,7 @@ public static partial class Creators
                 {
                     if (earlyOut)
                     {
+                        logger?.Dec();
                         return false;
                     }
                     diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1005ActionsParamsArraysMustBeOfYarnTypes, location, param.Name, "Cancellation Token"));
@@ -300,6 +303,7 @@ public static partial class Creators
             {
                 if (earlyOut)
                 {
+                    logger?.Dec();
                     return false;
                 }
                 diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1006CancellationTokenInWrongLocation, location, param.Name, i));
@@ -310,6 +314,7 @@ public static partial class Creators
             {
                 if (earlyOut)
                 {
+                    logger?.Dec();
                     return false;
                 }
                 diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1010ParameterIsAnOut, location, param.Name));
@@ -317,6 +322,7 @@ public static partial class Creators
             parameters[i] = param;
         }
 
+        logger?.Dec();
         logger?.WriteLine("Finished validating and creating the parameters");
 
         return diagnostics.Count(d => d.Severity == DiagnosticSeverity.Warning || d.Severity == DiagnosticSeverity.Error) == 0;

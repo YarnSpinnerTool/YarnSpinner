@@ -36,12 +36,18 @@ public class RuntimeLinkerSyntaxBuilder
             builder.AppendLine("[RuntimeInitializeOnLoadMethod]");
             using (builder.EnterBlock("static void Register()"))
             {
+                builder.AppendLine($"// we have {actions.Count} actions to add");
                 for (int i = 0; i < actions.Count; i++)
                 {
                     var action = actions[i];
                     if (action is InvalidAction)
                     {
+                        builder.AppendLine($"// {action.Name} is an invalid {action.Type}");
                         continue;
+                    }
+                    else
+                    {
+                        builder.AppendLine($"// {action.Name} is a {action.Type}");
                     }
 
                     // getting the method info itself
