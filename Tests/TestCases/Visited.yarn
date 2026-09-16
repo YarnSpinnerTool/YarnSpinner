@@ -1,9 +1,31 @@
 title: Start
 ---
+// The testplan will run this node twice - the second time, visited("Start") should return true
 entered start
 <<if visited("Start")>>
-we have visited Start before
+    we have visited Start before
 <<else>>
-we have not visited Start
+    we have not visited Start
 <<endif>>
+===
+title: ViaDetour
+---
+Visited={visited("Detour")}
+<<detour Detour>>
+Visited={visited("Detour")}
+===
+title: Detour
+---
+Detoured!
+===
+title: AsParameter
+---
+// Validating that 'visited' still works even if it's nested within another expression
+Visited={bool(visited("AsParameterDetour"))}
+<<detour AsParameterDetour>>
+Visited={bool(visited("AsParameterDetour"))}
+===
+title: AsParameterDetour
+---
+Secondary node!
 ===

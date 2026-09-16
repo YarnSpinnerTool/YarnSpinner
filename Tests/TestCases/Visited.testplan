@@ -5,3 +5,15 @@ stop
 line: `entered start`
 line: `we have visited Start before`
 stop
+---
+start: ViaDetour
+line: `Visited=False`
+line: `Detoured!`
+line: `Visited=True`
+stop
+---
+start: AsParameter
+line: `Visited=False`
+line: `Secondary node!`
+line: `Visited=True`
+stop
