@@ -8,24 +8,29 @@ using System.Collections.Generic;
 
 public interface ILogger
 {
-    void Write(object obj);
     void WriteLine(object obj);
     void WriteException(System.Exception ex, string? message = null);
 
     void Inc();
     void Dec();
-    void SetDepth(int depth);
 }
 public class NullLogger: ILogger
 {
-    public void Write(object obj){}
+    private NullLogger() {}
     public void WriteLine(object obj){}
     public void WriteException(Exception ex, string? message = null){}
     public void Inc(){}
     public void Dec(){}
     public void SetDepth(int depth){}
 
-    public void Dispose() {}
+    private static NullLogger defaultLogger = new NullLogger();
+    public static NullLogger Default
+    {
+        get
+        {
+            return defaultLogger;
+        }
+    }
 }
 
 public record Action

@@ -10,7 +10,7 @@ using Yarn.Shared;
 
 public static partial class Creators
 {
-    public static (Action action, Validators.ActionValidation validation) ValidActionFromMethodSymbol(IMethodSymbol method, string yarnName, ActionType actionType, DeclarationType declarationType, out List<Diagnostic> diagnostics, bool earlyOut, bool isDelegateRegistered, Location? nameLocation = null, Location? invocationLocation = null, ILogger? logger = null)
+    public static (Action action, Validators.ActionValidation validation) ValidActionFromMethodSymbol(IMethodSymbol method, string yarnName, ActionType actionType, DeclarationType declarationType, AnalysisConfiguration? configuration, out List<Diagnostic> diagnostics, bool earlyOut, bool isDelegateRegistered, Location? nameLocation = null, Location? invocationLocation = null, ILogger? logger = null)
     {
         // note to self:
         // nameLocation is the location of the name
@@ -22,11 +22,13 @@ public static partial class Creators
             // in the case runner.AddCommand("somename", somemethod) it is the second parameter
 
         diagnostics = [];
+
+        logger ??= NullLogger.Default;
         
         // if we fail to get the parameters we can't make an action
-        if (!TryCreateNewParameters(method.Parameters, yarnName, method.Locations.First(), out var parameters, out var paramDiags, earlyOut, logger))
+        if (!TryCreateNewParameters(method.Parameters, yarnName, method.Locations.First(), configuration, out var parameters, out var paramDiags, earlyOut, logger))
         {
-            logger?.WriteLine($"Failed to create parameters for {yarnName}");
+            logger.WriteLine($"Failed to create parameters for {yarnName}");
 
             if (earlyOut)
             {
@@ -56,14 +58,18 @@ public static partial class Creators
                         {
                             return (new InvalidAction(yarnName, actionType), Validators.ActionValidation.FailedValidation);
                         }
+                        if (configuration == null)
+                        {
+                            configuration = new AnalysisConfiguration(false, false, false);
+                        }
                         Location? pLoc = method.Parameters[i].Locations.FirstOrDefault();
-                        diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1026FunctionUsesMetaToken, pLoc));
+                        diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1026FunctionUsesMetaToken, pLoc));
                     }
                 }
             }
         }
 
-        logger?.WriteLine("validated and made parameters");
+        logger.WriteLine("validated and made parameters");
 
         // now we validate the action itself
         // this tells us if the action is valid for compile time invocation, runtime invocation, or invalid to invoke for some reason
@@ -71,7 +77,7 @@ public static partial class Creators
         // but if it is valid for runtime invoke then we need to change our behaviour
         // because if we are in the mode for source gen we instead want to just early out of all of this because we can't gen for runtime actions
         // neither can we report diagnostics there
-        var validAction = Validators.TryValidateMethodAsAction(method, yarnName, actionType, declarationType, out var actionDiags, nameLocation, invocationLocation, logger);
+        var validAction = Validators.TryValidateMethodAsAction(method, yarnName, actionType, declarationType, configuration, out var actionDiags, nameLocation, invocationLocation, logger);
         diagnostics.AddRange(paramDiags);
         diagnostics.AddRange(actionDiags);
 
@@ -99,12 +105,12 @@ public static partial class Creators
         }
         else
         {
-            logger?.WriteLine($"Failed to find the containing type for {yarnName}");
+            logger.WriteLine($"Failed to find the containing type for {yarnName}");
         }
 
         return (new InvalidAction(yarnName, actionType), Validators.ActionValidation.FailedValidation);
     }
-    public static Action ActionFromMethodSymbol(IMethodSymbol method, string yarnName, ActionType actionType, DeclarationType declarationType, out List<Diagnostic> diagnostics, bool earlyOut, bool isDelegateRegistered, Location? nameLocation = null, Location? invocationLocation = null, ILogger? logger = null)
+    public static Action ActionFromMethodSymbol(IMethodSymbol method, string yarnName, ActionType actionType, DeclarationType declarationType, out List<Diagnostic> diagnostics, bool earlyOut, bool isDelegateRegistered, AnalysisConfiguration? configuration, Location? nameLocation = null, Location? invocationLocation = null, ILogger? logger = null)
     {
         // note to self:
         // nameLocation is the location of the name
@@ -114,11 +120,16 @@ public static partial class Creators
         // invocationLocation is the location of the call itself
             // so in the case of [YarnCommand] it is null
             // in the case runner.AddCommand("somename", somemethod) it is the second parameter
+        
+        if (configuration == null)
+        {
+            configuration = new AnalysisConfiguration(false, false, false);
+        }
 
         diagnostics = [];
         
         // if we fail to get the parameters we can't make an action
-        if (!TryCreateNewParameters(method.Parameters, yarnName, method.Locations.First(), out var parameters, out var paramDiags, earlyOut, logger))
+        if (!TryCreateNewParameters(method.Parameters, yarnName, method.Locations.First(), configuration, out var parameters, out var paramDiags, earlyOut, logger))
         {
             logger?.WriteLine($"Failed to create parameters for {yarnName}");
 
@@ -151,7 +162,8 @@ public static partial class Creators
                             return new InvalidAction(yarnName, actionType);
                         }
                         Location? pLoc = method.Parameters[i].Locations.FirstOrDefault();
-                        diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1026FunctionUsesMetaToken, pLoc));
+                        var diag = configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1026FunctionUsesMetaToken, pLoc);
+                        diagnostics.Add(diag);
                     }
                 }
             }
@@ -165,7 +177,7 @@ public static partial class Creators
         // but if it is valid for runtime invoke then we need to change our behaviour
         // because if we are in the mode for source gen we instead want to just early out of all of this because we can't gen for runtime actions
         // neither can we report diagnostics there
-        var validAction = Validators.TryValidateMethodAsAction(method, yarnName, actionType, declarationType, out var actionDiags, nameLocation, invocationLocation, logger);
+        var validAction = Validators.TryValidateMethodAsAction(method, yarnName, actionType, declarationType, configuration, out var actionDiags, nameLocation, invocationLocation, logger);
         diagnostics.AddRange(paramDiags);
         diagnostics.AddRange(actionDiags);
 

@@ -676,6 +676,7 @@ namespace Yarn.Compiler
                     {
                         var isArray = parameterElement.GetProperty("isParamsArray").GetBoolean();
                         var paramType = parameterElement.GetProperty("type").GetString();
+                        var isOptional = parameterElement.TryGetProperty("defaultValue", out _);
 
                         IType parameterYarnType;
                         switch (paramType)
@@ -699,7 +700,7 @@ namespace Yarn.Compiler
                                 continue;
                         }
 
-                        if (isArray)
+                        if (isArray || isOptional)
                         {
                             functionType.VariadicParameterType = parameterYarnType;
                         }

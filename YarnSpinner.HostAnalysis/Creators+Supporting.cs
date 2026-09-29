@@ -79,18 +79,19 @@ public static partial class Creators
                 return ReturnType.AsyncVoid;
         };
 
+        logger ??= NullLogger.Default;
+        logger.WriteLine($"checking deeper against: {returnType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}");
+        logger.Inc();
+
         // the generic async types
-        logger?.Inc();
-        logger?.WriteLine($"checking deeper against: {returnType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}");
-        logger?.Dec();
         if (returnType is INamedTypeSymbol namedType)
         {
-            logger?.WriteLine("it is a named symbol, phew");
+            logger.WriteLine("it is a named symbol, phew");
             if (namedType.IsGenericType)
             {
                 string[] allowedBases = [ "global::Yarn.Unity.YarnTask<>", "global::System.Threading.Tasks.Task<>", "global::Cysharp.Threading.Tasks.UniTask<>", "global::UnityEngine.Awaitable<>"];
                 var baseType = namedType.ConstructUnboundGenericType();
-                logger?.WriteLine($"checking the base of the generic: {baseType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}");
+                logger.WriteLine($"checking the base of the generic: {baseType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}");
 
                 if (allowedBases.Contains(baseType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)))
                 {
@@ -115,35 +116,35 @@ public static partial class Creators
                     }
                     else
                     {
-                        logger?.Inc();
-                        logger?.WriteLine($"return type doesnt have a single type: {namedType.TypeArguments.Length}");
-                        logger?.Dec();
+                        logger.Inc();
+                        logger.WriteLine($"return type doesnt have a single type: {namedType.TypeArguments.Length}");
+                        logger.Dec();
                     }
                 }
                 else
                 {
-                    logger?.Inc();
-                    logger?.WriteLine("return type isn't a special type");
-                    logger?.Dec();
+                    logger.Inc();
+                    logger.WriteLine("return type isn't a special type");
+                    logger.Dec();
                 }
             }
             else
             {
-                logger?.Inc();
-                logger?.WriteLine("return type isn't generic");
-                logger?.Dec();
+                logger.Inc();
+                logger.WriteLine("return type isn't generic");
+                logger.Dec();
             }
         }
         else
         {
-            logger?.Inc();
-            logger?.WriteLine("return type isn't a named symbol?!");
-            logger?.Dec();
+            logger.Inc();
+            logger.WriteLine("return type isn't a named symbol?!");
+            logger.Dec();
         }
 
-        logger?.Inc();
-        logger?.WriteLine("unable to determine the return type");
-        logger?.Dec();
+        logger.Inc();
+        logger.WriteLine("unable to determine the return type");
+        logger.Dec();
         return ReturnType.Unknown;
     }
 

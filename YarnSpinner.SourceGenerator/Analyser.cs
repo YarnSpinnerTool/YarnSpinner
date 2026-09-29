@@ -23,7 +23,9 @@ namespace Yarn.Analyser
 
             context.RegisterCompilationStartAction(compilationContext =>
             {
-                var analyser = new NestedAnalyser(compilationContext.Compilation.AssemblyName ?? "ERROR", compilationContext.Compilation.ReferencedAssemblyNames);
+                var config = new AnalysisConfiguration(compilationContext.Options.AnalyzerConfigOptionsProvider.GlobalOptions);
+
+                var analyser = new NestedAnalyser(compilationContext.Compilation.AssemblyName ?? "ERROR", compilationContext.Compilation.ReferencedAssemblyNames, config);
 
                 compilationContext.RegisterAdditionalFileAction(analyser.AdditionalFileProcess);
                 compilationContext.RegisterSymbolAction(analyser.AnalyseConverterMethodSymbols, SymbolKind.Method);
@@ -47,11 +49,14 @@ namespace Yarn.Analyser
             private readonly List<(string yarnName, Action? action, IMethodSymbol symbol, Location? nameLocation, HashSet<string> codes)> allFunctions = [];
 
             private readonly bool referencesYS;
+            private readonly AnalysisConfiguration Configuration;
 
-            public NestedAnalyser(string assemblyName, IEnumerable<AssemblyIdentity> referencedAssemblies)
+            public NestedAnalyser(string assemblyName, IEnumerable<AssemblyIdentity> referencedAssemblies, AnalysisConfiguration configuration)
             {
                 referencesYS = referencedAssemblies.Any(a => a.Name == "YarnSpinner.Unity");
-                logger = new BetterLogger($"{assemblyName}-analyser");
+                // logger = new BetterLogger($"{assemblyName}-analyser");
+                logger = NullLogger.Default;
+                Configuration = configuration;
             }
 
             private ILogger logger;
@@ -93,7 +98,7 @@ namespace Yarn.Analyser
                 {
                     if (!converterNames.Add(converter.FullyQualifiedTypeName))
                     {
-                        context.ReportDiagnostic(Diagnostic.Create(ActionDiagnostics.YS1018DuplicateConverter, location, converter.StaticCallingString, converter.FullyQualifiedTypeName));
+                        context.ReportDiagnostic(Configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1018DuplicateConverter, location, converter.StaticCallingString, converter.FullyQualifiedTypeName));
                     }
                 }
 
@@ -130,7 +135,7 @@ namespace Yarn.Analyser
                             continue;
                         }
                         logger.WriteLine("found the duplicate converter!");
-                        context.ReportDiagnostic(Diagnostic.Create(ActionDiagnostics.YS1018DuplicateConverter, pair.Item2, pair.Item1.StaticCallingString, pair.Item1.FullyQualifiedTypeName));
+                        context.ReportDiagnostic(Configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1018DuplicateConverter, pair.Item2, pair.Item1.StaticCallingString, pair.Item1.FullyQualifiedTypeName));
                         break;
                     }
                 }
@@ -150,6 +155,11 @@ namespace Yarn.Analyser
                 ValidateActions(allFunctions, converters, context);
 
                 logger.WriteLine("done validating the actions");
+
+                if (Configuration.SkipYSLSGeneration)
+                {
+                    return;
+                }
 
                 // finally we add them to the json
                 foreach (var (yarnName, action, symbol, nameLocation, codes) in allCommands)
@@ -238,7 +248,10 @@ namespace Yarn.Analyser
                     if (!duplicateIDs.Add(yarnName))
                     {
                         logger.WriteLine($"found a duplicate of {yarnName} {(action.Type == ActionType.Command ? "command" : "function")}");
-                        context.ReportDiagnostic(Diagnostic.Create(ActionDiagnostics.YS1019DuplicateAction, nameLocation ?? symbol.Locations.First(), yarnName, action.Type == ActionType.Command ? "command" : "function"));
+
+                        var diag = Configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1019DuplicateAction, nameLocation ?? symbol.Locations.First(), yarnName, action.Type == ActionType.Command ? "command" : "function");
+                        context.ReportDiagnostic(diag);
+
                         codes.Add(ActionDiagnostics.YS1019DuplicateAction.Id);
                     }
 
@@ -280,7 +293,8 @@ namespace Yarn.Analyser
                             }
                             else
                             {
-                                context.ReportDiagnostic(Diagnostic.Create(ActionDiagnostics.YS1008ActionsParameterIsAnIncompatibleType, symbol.Parameters[i].Locations.First(), parameter.Name, parameter.ShortFormType));
+                                var diag = Configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1008ActionsParameterIsAnIncompatibleType, symbol.Parameters[i].Locations.First(), parameter.Name, parameter.ShortFormType);
+                                context.ReportDiagnostic(diag);
                             }
                         }
                         else
@@ -301,7 +315,8 @@ namespace Yarn.Analyser
                         }
                         else
                         {
-                            context.ReportDiagnostic(Diagnostic.Create(ActionDiagnostics.YS1009InstanceActionIsOnAnIncompatibleType, symbol.Locations.First(), yarnName, action.containingTypeShortName));
+                            var diag = Configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1009InstanceActionIsOnAnIncompatibleType, symbol.Locations.First(), yarnName, action.containingTypeShortName);
+                            context.ReportDiagnostic(diag);
                             codes.Add(ActionDiagnostics.YS1009InstanceActionIsOnAnIncompatibleType.Id);
                         }
                     }
@@ -366,7 +381,7 @@ namespace Yarn.Analyser
                 // the second is a method
                 if (context.SemanticModel.GetSymbolInfo(syntax.ArgumentList.Arguments[1].Expression).Symbol is not IMethodSymbol methodSymbol)
                 {
-                    logger.Write($"Unable to get the method itself: {syntax.ToFullString().Trim()}");
+                    logger.WriteLine($"Unable to get the method itself: {syntax.ToFullString().Trim()}");
 
                     var symbolInfo = context.SemanticModel.GetSymbolInfo(syntax.ArgumentList.Arguments[1].Expression);
                     logger.WriteLine($"It's a {symbolInfo.Symbol?.Kind}");
@@ -432,7 +447,8 @@ namespace Yarn.Analyser
                 Location nameLocation = syntax.ArgumentList.Arguments[0].GetLocation();
                 if (context.SemanticModel.GetConstantValue(syntax.ArgumentList.Arguments[0].Expression).Value is not string yarnName)
                 {
-                    context.ReportDiagnostic(Diagnostic.Create(ActionDiagnostics.YS1020UnableToResolveActionName, nameLocation));
+                    var diag = Configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1020UnableToResolveActionName, nameLocation);
+                    context.ReportDiagnostic(diag);
                     diagnosticCodes.Add(ActionDiagnostics.YS1020UnableToResolveActionName.Id);
                     yarnName = methodSymbol.Name;
                 }
@@ -441,7 +457,7 @@ namespace Yarn.Analyser
 
                 // this generates our action and also makes the diganostics for it
                 // excluding converter diagnostics which need to happen at a later stage
-                var action = Creators.ActionFromMethodSymbol(methodSymbol, yarnName, actionType, DeclarationType.DirectRegistration, out var diagnostics, false, isDelegate, nameLocation, invocationLocation, logger);
+                var action = Creators.ActionFromMethodSymbol(methodSymbol, yarnName, actionType, DeclarationType.DirectRegistration, out var diagnostics, false, isDelegate, Configuration, nameLocation, invocationLocation, logger);
                 if (action is InvalidAction)
                 {
                     logger?.WriteLine($"after creating {yarnName} it came out invalid!");
@@ -522,7 +538,7 @@ namespace Yarn.Analyser
                 var actionType = actionAttributed.Any(a => a.AttributeClass?.ToDisplayString() == YarnCommandAttributeLongType) ? ActionType.Command : ActionType.Function;
 
                 HashSet<string> diagnosticCodes = [];
-                var action = Creators.ActionFromMethodSymbol(methodSymbol, yarnName, actionType, DeclarationType.Attribute, out var diagnostics, false, false, nameLocation, null, logger);
+                var action = Creators.ActionFromMethodSymbol(methodSymbol, yarnName, actionType, DeclarationType.Attribute, out var diagnostics, false, false, Configuration, nameLocation, null, logger);
                 foreach (var diag in diagnostics)
                 {
                     context.ReportDiagnostic(diag);
@@ -605,7 +621,7 @@ namespace Yarn.Analyser
                 }
 
                 logger.WriteLine("found a converter, beginning validation");
-                Validators.TryValidateConverter(methodSymbol, resolvedTypeSymbol, out var diags, false, logger);
+                Validators.TryValidateConverter(methodSymbol, resolvedTypeSymbol, Configuration, out var diags, false, logger);
                 
                 var converter = Creators.ConverterFromMethodAndType(resolvedTypeSymbol, methodSymbol);
                 lock (allConverters)

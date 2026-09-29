@@ -14,7 +14,6 @@ namespace YarnSpinner.Tests
 {
     public class TestPlan : IEnumerable<TestPlan.Run>
     {
-
         public class Run : IEnumerable<Step>
         {
             public string StartNode { get; set; } = "Start";

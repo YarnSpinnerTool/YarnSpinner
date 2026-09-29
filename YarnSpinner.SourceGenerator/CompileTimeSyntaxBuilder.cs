@@ -130,7 +130,6 @@ public class CompileTimeSyntaxBuilder
     private static void BuildCommandsDictionary(ImmutableArray<Action> actions, IndentingStringBuilder builder, ILogger? logger)
     {
         string template = "{{ \"{0}\", {1} }}";
-        // string[] values = new string[actions.Length];
 
         List<string> values = new List<string>();
 
@@ -290,7 +289,7 @@ public class CompileTimeSyntaxBuilder
                             {
                                 // we are a defaulted parameter
                                 // which means we need to do some bounds checking before we can be added in
-                                builder.AppendMultilineFormat(defaultFunctionParameterCheckTemplate, paramIndex, paramString, $"p{paramIndex}");
+                                builder.AppendMultilineFormat(defaultFunctionParameterCheckTemplate, indexIntoParameterArray, paramString, $"p{paramIndex}");
                             }
                             else
                             {

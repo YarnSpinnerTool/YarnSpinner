@@ -11,10 +11,13 @@ using Yarn.Shared;
 
 public class FileDebugWriter
 {
-    public static void WriteGeneratedFile(string input, string name)
+    public static void WriteGeneratedFile(string input, string name, Yarn.HostAnalysis.AnalysisConfiguration configuration)
     {
-        var path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "TimsLogs", name);
-        File.WriteAllText(path, input);
+        if (configuration.WriteDebugFiles)
+        {
+            var path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "TimsLogs", name);
+            File.WriteAllText(path, input);
+        }
     }
 }
 
@@ -58,20 +61,11 @@ public class BetterLogger: ILogger
     {
         path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "TimsLogs", $"log-{name}.txt");
     }
-
-    public void Write(object text)
-    {
-        using (StreamWriter writer = File.AppendText(path))
-        {
-            var tabs = new String('\t', depth);
-            writer.Write(tabs + text);
-        }
-    }
     public void WriteLine(object text)
     {
         using (StreamWriter writer = File.AppendText(path))
         {
-            var tabs = new String('\t', depth);
+            var tabs = new String(' ', depth);
             writer.WriteLine(tabs + text);
         }
     }
@@ -79,7 +73,7 @@ public class BetterLogger: ILogger
     {
         using (StreamWriter writer = File.AppendText(path))
         {
-            var tabs = new String('\t', depth);
+            var tabs = new String(' ', depth);
             if (message == null)
             {
                 writer.WriteLine($"{tabs}Exception: {ex.Message}");
@@ -97,10 +91,6 @@ public class BetterLogger: ILogger
     public void Dec()
     {
         depth = Math.Max(depth - 1, 0);
-    }
-    public void SetDepth(int depth)
-    {
-        this.depth = Math.Max(depth, 0);
     }
 
     public void Dispose() {}

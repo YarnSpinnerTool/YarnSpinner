@@ -9,6 +9,8 @@ using Yarn.Shared;
 public class RuntimeSyntaxBuilder
 {
     private const string usings = """
+    #nullable enable
+    
     using System;
     using UnityEngine;
     using Yarn.Unity;

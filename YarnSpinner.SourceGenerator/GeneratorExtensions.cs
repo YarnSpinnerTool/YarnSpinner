@@ -184,7 +184,7 @@ public static class GeneratorExtensions
                 
                 case ReturnType.Boolean:
                 case ReturnType.AsyncBoolean:
-                    retvrn["type"] = "boolean";
+                    retvrn["type"] = "bool";
                     break;
             }
             result["return"] = retvrn;

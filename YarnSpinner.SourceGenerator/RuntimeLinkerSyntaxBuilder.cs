@@ -53,11 +53,11 @@ public class RuntimeLinkerSyntaxBuilder
                     // getting the method info itself
                     if (action.IsInstance)
                     {
-                        builder.AppendLine($"MethodInfo methodInfo{i} = typeof({action.containingTypeShortName}).GetMethod(\"{action.ShortMethodName}\", BindingFlags.NonPublic | BindingFlags.Instance);");
+                        builder.AppendLine($"MethodInfo methodInfo{i} = typeof({action.containingTypeShortName}).GetMethod(\"{action.ShortMethodName}\", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);");
                     }
                     else
                     {
-                        builder.AppendLine($"MethodInfo methodInfo{i} = typeof({action.containingTypeShortName}).GetMethod(\"{action.ShortMethodName}\", BindingFlags.NonPublic | BindingFlags.Static);");
+                        builder.AppendLine($"MethodInfo methodInfo{i} = typeof({action.containingTypeShortName}).GetMethod(\"{action.ShortMethodName}\", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);");
                     }
 
                     using (builder.EnterBlock($"if (methodInfo{i} == null)"))

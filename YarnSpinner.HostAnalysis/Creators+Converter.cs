@@ -17,60 +17,47 @@ public static partial class Creators
 
     public static ImmutableArray<YarnConverter?> CollectAssemblyConverters(Compilation compilation, ILogger? logger = null)
     {
-        try
+        logger ??= NullLogger.Default;
+
+        // ok so get all referenced assemblies
+        // remove any that don't reference yarnspinner (because they can't access the attribute)
+        // then visit each of those
+
+        // ok so first level of thinning is does this assembly reference reference Yarn Spinner
+        // if so then we can continue
+        if (!compilation.ReferencedAssemblyNames.Any(a => a.Name == "YarnSpinner.Unity"))
         {
-            // ok so get all referenced assemblies
-            // remove any that don't reference yarnspinner (because they can't access the attribute)
-            // then visit each of those
-            
-            logger?.WriteLine($"looking through {compilation.AssemblyName} references for the converter attribute");
-            logger?.Inc();
+            return ImmutableArray.Create<YarnConverter?>();
+        }
 
-            // ok so first level of thinning is does this assembly reference reference Yarn Spinner
-            // if so then we can continue
-            if (!compilation.ReferencedAssemblyNames.Any(a => a.Name == "YarnSpinner.Unity"))
+        var finder = new ConverterAssemblyFinder();
+        List<IMethodSymbol> attributedMethods = new();
+        logger.WriteLine($"checking {compilation.References.Count()} references");
+        foreach (MetadataReference metadataRef in compilation.References)
+        {
+            ISymbol? symbol = compilation.GetAssemblyOrModuleSymbol(metadataRef);
+            if (symbol is IAssemblySymbol assemblySymbol)
             {
-                logger?.WriteLine("Skipping this assembly due to it not referencing yarnspinner");
-                logger?.Dec();
-                return ImmutableArray.Create<YarnConverter?>();
-            }
-
-            var finder = new ConverterAssemblyFinder();
-            List<IMethodSymbol> attributedMethods = new();
-            logger?.WriteLine($"checking {compilation.References.Count()} references");
-            foreach (MetadataReference metadataRef in compilation.References)
-            {
-                ISymbol? symbol = compilation.GetAssemblyOrModuleSymbol(metadataRef);
-                if (symbol is IAssemblySymbol assemblySymbol)
+                if (assemblySymbol.Modules.Any(m => m.ReferencedAssemblies.Any(a => a.Name == "YarnSpinner.Unity")))
                 {
-                    if (assemblySymbol.Modules.Any(m => m.ReferencedAssemblies.Any(a => a.Name == "YarnSpinner.Unity")))
-                    {
-                        attributedMethods.AddRange(finder.FindMethods(assemblySymbol));
-                    }
+                    attributedMethods.AddRange(finder.FindMethods(assemblySymbol));
                 }
             }
-
-            logger?.WriteLine($"found {attributedMethods.Count} inside the referenced assemblies of {compilation.Assembly.Name}");
-            logger?.Inc();
-            foreach (var method in attributedMethods)
-            {
-                logger?.WriteLine($"found {method.Name}");
-                // now I need to convert these into Yarn Converters
-            }
-            logger?.Dec();
-            logger?.Dec();
-
-            var andThen = attributedMethods.Select(m => GetConverterFromMethodSymbol(m, compilation, logger)).ToImmutableArray();
-            logger?.WriteLine($"And then converted {andThen.Length} of them");
-
-            return andThen;
         }
-        catch (System.Exception ex)
+
+        logger.WriteLine($"found {attributedMethods.Count} inside the referenced assemblies of {compilation.Assembly.Name}");
+        logger.Inc();
+        foreach (var method in attributedMethods)
         {
-            logger?.WriteLine("oh no!");
-            // EmergencyLogger.ExceptionLog(ex, null, true);
-            throw;
+            logger.WriteLine($"found {method.Name}");
+            // now I need to convert these into Yarn Converters
         }
+        logger.Dec();
+
+        var andThen = attributedMethods.Select(m => GetConverterFromMethodSymbol(m, compilation, logger)).ToImmutableArray();
+        logger.WriteLine($"And then converted {andThen.Length} of them");
+
+        return andThen;
     }
 
     private static YarnConverter? GetConverterFromMethodSymbol(IMethodSymbol methodSymbol, Compilation compilation, ILogger? logger)
@@ -99,7 +86,7 @@ public static partial class Creators
         }
 
         // now make the converter, check if it's fine, return it
-        if (Validators.TryValidateConverter(methodSymbol, resolvedTypeSymbol, out _, true, logger))
+        if (Validators.TryValidateConverter(methodSymbol, resolvedTypeSymbol, null, out _, true, logger))
         {
             var converter = Creators.ConverterFromMethodAndType(resolvedTypeSymbol, methodSymbol);
             return converter;

@@ -29,10 +29,15 @@ public static class Validators
         /// </summary>
         FailedValidation,
     }
-    public static ActionValidation TryValidateMethodAsAction(IMethodSymbol methodSymbol, string yarnName, ActionType type, DeclarationType declarationType, out List<Diagnostic> diagnostics, Location? nameLocation = null, Location? invocationLocation = null, ILogger? logger = null)
+    public static ActionValidation TryValidateMethodAsAction(IMethodSymbol methodSymbol, string yarnName, ActionType type, DeclarationType declarationType, AnalysisConfiguration? configuration, out List<Diagnostic> diagnostics, Location? nameLocation = null, Location? invocationLocation = null, ILogger? logger = null)
     {
         diagnostics = new List<Diagnostic>();
         var location = methodSymbol.Locations.First();
+
+        if (configuration == null)
+        {
+            configuration = new AnalysisConfiguration(false, false, false);
+        }
 
         // these two are universal, all actions need these
         // so we can check them now ahead of time
@@ -41,7 +46,7 @@ public static class Validators
         if (!isValidName)
         {
             logger?.WriteLine("Method name is invalid");
-            diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1002ActionMethodsMustHaveAValidName, nameLocation ?? location, yarnName));
+            diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1002ActionMethodsMustHaveAValidName, nameLocation ?? location, yarnName));
             return ActionValidation.FailedValidation;
         }
         // we need to be contained within a type
@@ -49,7 +54,7 @@ public static class Validators
         if (!hasContainingType)
         {
             logger?.WriteLine("Method has no containing type");
-            diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1000InternalErrorProcessingAction, location, $"Was unable to resolve the containing type of the method {methodSymbol.Name}"));
+            diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1000InternalErrorProcessingAction, location, $"Was unable to resolve the containing type of the method {methodSymbol.Name}"));
             return ActionValidation.FailedValidation;
         }
 
@@ -72,7 +77,7 @@ public static class Validators
                 break;
 
             default:
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1000InternalErrorProcessingAction, location, $"Attempted to register an action that is not a method, lambda, or local function, it's a {methodSymbol.MethodKind}"));
+                diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1000InternalErrorProcessingAction, location, $"Attempted to register an action that is not a method, lambda, or local function, it's a {methodSymbol.MethodKind}"));
                 return ActionValidation.FailedValidation;
         }
 
@@ -94,20 +99,20 @@ public static class Validators
                 case MethodType.Method:
                     break;
                 case MethodType.LocalMethod:
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1024ActionIsALocalFunction, invocationLocation ?? location)); // this needs to be upgraded to a warning here?
+                    diagnostics.Add(configuration.CreateElevatedDiagnosticWithSeverity(ActionDiagnostics.YS1024ActionIsALocalFunction, DiagnosticSeverity.Warning, invocationLocation ?? location));
                     return ActionValidation.FailedValidation;
                 case MethodType.Lambda:
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location)); // this needs to be upgraded to a warning here?
+                    diagnostics.Add(configuration.CreateElevatedDiagnosticWithSeverity(ActionDiagnostics.YS1021ActionIsALambda, DiagnosticSeverity.Warning, invocationLocation ?? location));
                     return ActionValidation.FailedValidation;
                 case MethodType.Delegate:
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1027ActionIsRegisteredAsADelegate, invocationLocation ?? location)); // this needs to be upgraded to a warning here?
+                    diagnostics.Add(configuration.CreateElevatedDiagnosticWithSeverity(ActionDiagnostics.YS1027ActionIsRegisteredAsADelegate, DiagnosticSeverity.Warning, invocationLocation ?? location));
                     return ActionValidation.FailedValidation;
             }
 
             // we should be publicly accessible
             if (!actionIsPublic)
             {
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1001ActionMethodsMustBePublic, location, DiagnosticSeverity.Info, null, null, yarnName, methodSymbol.DeclaredAccessibility));
+                diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1001ActionMethodsMustBePublic, location, yarnName, methodSymbol.DeclaredAccessibility));
             }
 
             // we must return a void-alike
@@ -125,7 +130,7 @@ public static class Validators
                 default:
                 {
                     logger?.WriteLine("Method has an invalid return");
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1003CommandMethodsMustHaveAValidReturnType, location, yarnName, returnType));
+                    diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1003CommandMethodsMustHaveAValidReturnType, location, yarnName, returnType));
                     return ActionValidation.FailedValidation;
                 }
             }
@@ -141,13 +146,13 @@ public static class Validators
                 case MethodType.Method:
                     break;
                 case MethodType.LocalMethod:
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1024ActionIsALocalFunction, invocationLocation ?? location));
+                    diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1024ActionIsALocalFunction, invocationLocation ?? location));
                     break;
                 case MethodType.Lambda:
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location));
+                    diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location));
                     break;
                 case MethodType.Delegate:
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1027ActionIsRegisteredAsADelegate, invocationLocation ?? location));
+                    diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1027ActionIsRegisteredAsADelegate, invocationLocation ?? location));
                     break;
             }
 
@@ -155,7 +160,7 @@ public static class Validators
             // but do grumble about this
             if (!actionIsPublic && methodType == MethodType.Method)
             {
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1025DirectActionIsPrivate, invocationLocation));
+                diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1025DirectActionIsPrivate, invocationLocation ?? location));
             }
 
             // we must still return a valid void-alike
@@ -177,7 +182,7 @@ public static class Validators
                 default:
                 {
                     logger?.WriteLine("Method has an invalid return");
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1003CommandMethodsMustHaveAValidReturnType, location, yarnName, returnType));
+                    diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1003CommandMethodsMustHaveAValidReturnType, location, yarnName, returnType));
                     return ActionValidation.FailedValidation;
                 }
             }
@@ -196,20 +201,20 @@ public static class Validators
                 case MethodType.Method:
                     break;
                 case MethodType.LocalMethod:
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1024ActionIsALocalFunction, invocationLocation ?? location)); // this needs to be upgraded to a warning here?
+                    diagnostics.Add(configuration.CreateElevatedDiagnosticWithSeverity(ActionDiagnostics.YS1024ActionIsALocalFunction, DiagnosticSeverity.Warning, invocationLocation ?? location));
                     return ActionValidation.FailedValidation;
                 case MethodType.Lambda:
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location)); // this needs to be upgraded to a warning here?
+                    diagnostics.Add(configuration.CreateElevatedDiagnosticWithSeverity(ActionDiagnostics.YS1021ActionIsALambda, DiagnosticSeverity.Warning, invocationLocation ?? location));
                     return ActionValidation.FailedValidation;
                 case MethodType.Delegate:
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1027ActionIsRegisteredAsADelegate, invocationLocation ?? location)); // this needs to be upgraded to a warning here?
+                    diagnostics.Add(configuration.CreateElevatedDiagnosticWithSeverity(ActionDiagnostics.YS1027ActionIsRegisteredAsADelegate, DiagnosticSeverity.Warning, invocationLocation ?? location));
                     return ActionValidation.FailedValidation;
             }
 
             // we can be private but we will grumble about it
             if (!actionIsPublic)
             {
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1001ActionMethodsMustBePublic, location, DiagnosticSeverity.Info, null, null, yarnName, methodSymbol.DeclaredAccessibility));
+                diagnostics.Add(configuration.CreateElevatedDiagnosticWithSeverity(ActionDiagnostics.YS1001ActionMethodsMustBePublic, DiagnosticSeverity.Info, location, yarnName, methodSymbol.DeclaredAccessibility));
             }
 
             // we must return a value
@@ -226,7 +231,7 @@ public static class Validators
                 default:
                 {
                     logger?.WriteLine("Method has an invalid return");
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1004FunctionMethodsMustHaveAValidReturnType, location, yarnName, returnType));
+                    diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1004FunctionMethodsMustHaveAValidReturnType, location, yarnName, returnType));
                     return ActionValidation.FailedValidation;
                 }
             }
@@ -249,7 +254,7 @@ public static class Validators
                 default:
                 {
                     logger?.WriteLine("Method has an invalid return");
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1004FunctionMethodsMustHaveAValidReturnType, location, yarnName, returnType));
+                    diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1004FunctionMethodsMustHaveAValidReturnType, location, yarnName, returnType));
                     return ActionValidation.FailedValidation;
                 }
             }
@@ -264,15 +269,15 @@ public static class Validators
                     break;
                 case MethodType.LocalMethod:
                     isRunTimeFunction = true;
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1024ActionIsALocalFunction, invocationLocation ?? location));
+                    diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1024ActionIsALocalFunction, invocationLocation ?? location));
                     break;
                 case MethodType.Lambda:
                     isRunTimeFunction = true;
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location));
+                    diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1021ActionIsALambda, invocationLocation ?? location));
                     break;
                 case MethodType.Delegate:
                     isRunTimeFunction = true;
-                    diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1027ActionIsRegisteredAsADelegate, invocationLocation ?? location));
+                    diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1027ActionIsRegisteredAsADelegate, invocationLocation ?? location));
                     break;
             }
 
@@ -281,18 +286,22 @@ public static class Validators
             if (!actionIsPublic)
             {
                 isRunTimeFunction = true;
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1025DirectActionIsPrivate, invocationLocation));
+                diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1025DirectActionIsPrivate, invocationLocation ?? location));
             }
 
             return isRunTimeFunction ? ActionValidation.RunTimeValid : ActionValidation.CompileTimeValid;
         }
 
-        diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1000InternalErrorProcessingAction, location, $"Attempted to validate an action that we couldn't determine enough information about. Please file a bug."));
+        diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1000InternalErrorProcessingAction, location, $"Attempted to validate an action that we couldn't determine enough information about. Please file a bug."));
         return ActionValidation.FailedValidation;
     }
 
-    public static bool TryValidateConverter(IMethodSymbol? conversionMethodSymbol, INamedTypeSymbol? attributedConversionType, out List<Diagnostic> diagnostics, bool earlyOut = false, ILogger? logger = null)
+    public static bool TryValidateConverter(IMethodSymbol? conversionMethodSymbol, INamedTypeSymbol? attributedConversionType, AnalysisConfiguration? configuration, out List<Diagnostic> diagnostics, bool earlyOut = false, ILogger? logger = null)
     {
+        if (configuration == null)
+        {
+            configuration = new AnalysisConfiguration(false, false, false);
+        }
         diagnostics = new();
         if (conversionMethodSymbol == null)
         {
@@ -300,7 +309,7 @@ public static class Validators
 
             if (!earlyOut)
             {
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1000InternalErrorProcessingAction, null, $"Method symbol for a converter is null, this should be impossible and prevents further validation."));
+                diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1000InternalErrorProcessingAction, null, $"Method symbol for a converter is null, this should be impossible and prevents further validation."));
             }
 
             return false;
@@ -319,7 +328,7 @@ public static class Validators
             }
             else
             {
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1011ConverterMethodIsNotStatic, conversionMethodSymbol.Locations.First(), methodName));
+                diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1011ConverterMethodIsNotStatic, conversionMethodSymbol.Locations.First(), methodName));
             }
         }
 
@@ -334,7 +343,7 @@ public static class Validators
             }
             else
             {
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1012ConverterMethodIsNotPublic, conversionMethodSymbol.Locations.First(), methodName));
+                diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1012ConverterMethodIsNotPublic, conversionMethodSymbol.Locations.First(), methodName));
             }
         }
 
@@ -349,7 +358,7 @@ public static class Validators
             }
             else
             {
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1013ConverterReturnsInvalidType, conversionMethodSymbol.ReturnType.Locations.First(), methodName, conversionMethodSymbol.ReturnType.ToDisplayString()));
+                diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1013ConverterReturnsInvalidType, conversionMethodSymbol.ReturnType.Locations.First(), methodName, conversionMethodSymbol.ReturnType.ToDisplayString()));
             }
         }
 
@@ -364,7 +373,7 @@ public static class Validators
             }
             else
             {
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1014IncorrectNumberOfConverterParameters, conversionMethodSymbol.Locations.First(), methodName, conversionMethodSymbol.Parameters.Length));
+                diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1014IncorrectNumberOfConverterParameters, conversionMethodSymbol.Locations.First(), methodName, conversionMethodSymbol.Parameters.Length));
             }
         }
 
@@ -379,7 +388,7 @@ public static class Validators
             }
             else
             {
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1015ConverterHasInvalidInputParameter, conversionMethodSymbol.Parameters[0].Locations.First(), methodName, conversionMethodSymbol.Parameters[0].Type.ToDisplayString()));
+                diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1015ConverterHasInvalidInputParameter, conversionMethodSymbol.Parameters[0].Locations.First(), methodName, conversionMethodSymbol.Parameters[0].Type.ToDisplayString()));
             }
         }
 
@@ -395,7 +404,7 @@ public static class Validators
             }
             else
             {
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1016ConverterMissingOutParam, secondParameter.Locations.First()));
+                diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1016ConverterMissingOutParam, secondParameter.Locations.First()));
             }
         }
 
@@ -406,7 +415,7 @@ public static class Validators
 
             if (!earlyOut)
             {
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1000InternalErrorProcessingAction, conversionMethodSymbol.Locations.First(), $"{methodName} has no matching attributed type."));
+                diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1000InternalErrorProcessingAction, conversionMethodSymbol.Locations.First(), $"{methodName} has no matching attributed type."));
             }
             return false;
         }
@@ -421,7 +430,7 @@ public static class Validators
             }
             else
             {
-                diagnostics.Add(Diagnostic.Create(ActionDiagnostics.YS1017ConverterTypeMismatch, secondParameter.Locations.First(), attributedConversionType.Name, secondParameter.Type.Name));
+                diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1017ConverterTypeMismatch, secondParameter.Locations.First(), attributedConversionType.Name, secondParameter.Type.Name));
             }
         }
 
@@ -435,12 +444,6 @@ public static class Validators
         }
         return diagnostics.Count(d => d.Severity == DiagnosticSeverity.Warning || d.Severity == DiagnosticSeverity.Error) == 0;
     }
-
-    // ok so I probably want to beef up this method a bunch
-    // I also want to check that the param being created are allowed to be created
-    // mostly around their position in the list and any other similar stuff
-    // for now though I think just call it and not worry about it?
-    // actually does this live in the wrong spot?
 
     public static ImmutableArray<YarnConverter> ValidateConverters(ImmutableArray<YarnConverter> converters, ILogger? logger = null)
     {
