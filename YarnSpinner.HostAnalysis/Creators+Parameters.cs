@@ -31,7 +31,7 @@ public static partial class Creators
 
         if (configuration == null)
         {
-            configuration = new AnalysisConfiguration(false, false, false);
+            configuration = new AnalysisConfiguration();
         }
 
         // ok gonna flip this so I calculate the last token first

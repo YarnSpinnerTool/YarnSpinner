@@ -8,6 +8,8 @@ namespace Yarn.HostAnalysis
 
     public record class AnalysisConfiguration(bool SkipSourceGeneration, bool SkipYSLSGeneration, bool WriteDebugFiles)
     {
+        public AnalysisConfiguration(): this(false, false, false) { }
+
         public AnalysisConfiguration(Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions options): this(false, false, false)
         {
             if (options.TryGetValue("ys.should_write_debug_files", out var value))

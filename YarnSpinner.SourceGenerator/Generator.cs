@@ -33,7 +33,6 @@ namespace Yarn.Analyser
 
                 // the two pieces everything uses are the assembly name
                 // and the configuration file
-                // need to test if the config file is missing what happens?
                 var configPair = context.CompilationProvider.Select(static (c, _) => c.AssemblyName).Combine(context.AnalyzerConfigOptionsProvider.Select(static (options, cancellationToken) => {return new AnalysisConfiguration(options.GlobalOptions);}));
 
                 // grabbing any converters

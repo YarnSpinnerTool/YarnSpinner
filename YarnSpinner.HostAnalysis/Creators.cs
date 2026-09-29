@@ -60,7 +60,7 @@ public static partial class Creators
                         }
                         if (configuration == null)
                         {
-                            configuration = new AnalysisConfiguration(false, false, false);
+                            configuration = new AnalysisConfiguration();
                         }
                         Location? pLoc = method.Parameters[i].Locations.FirstOrDefault();
                         diagnostics.Add(configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1026FunctionUsesMetaToken, pLoc));
@@ -123,7 +123,7 @@ public static partial class Creators
         
         if (configuration == null)
         {
-            configuration = new AnalysisConfiguration(false, false, false);
+            configuration = new AnalysisConfiguration();
         }
 
         diagnostics = [];

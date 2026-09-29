@@ -36,7 +36,7 @@ public static class Validators
 
         if (configuration == null)
         {
-            configuration = new AnalysisConfiguration(false, false, false);
+            configuration = new AnalysisConfiguration();
         }
 
         // these two are universal, all actions need these
@@ -300,7 +300,7 @@ public static class Validators
     {
         if (configuration == null)
         {
-            configuration = new AnalysisConfiguration(false, false, false);
+            configuration = new AnalysisConfiguration();
         }
         diagnostics = new();
         if (conversionMethodSymbol == null)

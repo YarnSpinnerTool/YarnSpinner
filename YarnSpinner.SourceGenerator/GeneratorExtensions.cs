@@ -42,7 +42,7 @@ public static class GeneratorExtensions
         return relativePath;
     }
 
-    public static string ToJSON(this Yarn.Shared.Action action, Location location, string? projectRoot, HashSet<string>? diagnosticCodes)
+    public static string ToJSON(this Yarn.Shared.Action action, Location location, string? projectRoot, HashSet<string>? highSeverityDiagnosticCodes, HashSet<string>? lowSeverityDiagnosticCodes)
     {
         var result = new Dictionary<string, object?>();
 
@@ -61,11 +61,20 @@ public static class GeneratorExtensions
         result["language"] = "csharp";
         result["async"] = action.IsAsync;
 
-        result["containsErrors"] = false;
-        // result["containsErrors"] = diagnosticCodes?.Count > 0; // quick hack for now until I work out a better way to say if a diagnostic is an error or a warning
-        if (diagnosticCodes?.Count > 0)
+        if (highSeverityDiagnosticCodes?.Count > 0)
         {
-            result["errorCodes"] = diagnosticCodes;
+            result["containsErrors"] = true;
+        }
+        else
+        {
+            result["containsErrors"] = false;
+        }
+        
+        // regardless we also log all the diag codes just in case that is useful to the editor
+        highSeverityDiagnosticCodes?.UnionWith(lowSeverityDiagnosticCodes);
+        if (highSeverityDiagnosticCodes?.Count > 0)
+        {
+            result["errorCodes"] = highSeverityDiagnosticCodes;
         }
 
         var startPosition = new Dictionary<string, int>()

@@ -16,7 +16,7 @@ public static class ActionDiagnostics
         title: "An internal error was encountered while processing actions",
         messageFormat: "An internal error was encountered while processing actions and converters: {0}",
         category: "Yarn Spinner",
-        defaultSeverity: DiagnosticSeverity.Warning,
+        defaultSeverity: DiagnosticSeverity.Error,
         isEnabledByDefault: true
     );
 

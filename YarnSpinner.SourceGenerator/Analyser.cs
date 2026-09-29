@@ -45,8 +45,8 @@ namespace Yarn.Analyser
             private const string YarnAddFunctionShortInvoke = "AddFunction";
             
             private readonly List<(YarnConverter, Location)> allConverters = [];
-            private readonly List<(string yarnName, Action? action, IMethodSymbol symbol, Location? nameLocation, HashSet<string> codes)> allCommands = [];
-            private readonly List<(string yarnName, Action? action, IMethodSymbol symbol, Location? nameLocation, HashSet<string> codes)> allFunctions = [];
+            private readonly List<(string yarnName, Action? action, IMethodSymbol symbol, Location? nameLocation, HashSet<string> highSeverityCode, HashSet<string> lowSeverityCode)> allCommands = [];
+            private readonly List<(string yarnName, Action? action, IMethodSymbol symbol, Location? nameLocation, HashSet<string> highSeverityCode, HashSet<string> lowSeverityCode)> allFunctions = [];
 
             private readonly bool referencesYS;
             private readonly AnalysisConfiguration Configuration;
@@ -162,7 +162,7 @@ namespace Yarn.Analyser
                 }
 
                 // finally we add them to the json
-                foreach (var (yarnName, action, symbol, nameLocation, codes) in allCommands)
+                foreach (var (yarnName, action, symbol, nameLocation, errors, infos) in allCommands)
                 {
                     if (action == null)
                     {
@@ -175,7 +175,7 @@ namespace Yarn.Analyser
                     {
                         try
                         {
-                            commandJSON.Add(action.ToJSON(symbol.Locations.First(), projectRoot, codes));
+                            commandJSON.Add(action.ToJSON(symbol.Locations.First(), projectRoot, errors, infos));
                         }
                         catch (System.Exception ex)
                         {
@@ -185,7 +185,7 @@ namespace Yarn.Analyser
                 }
                 logger.WriteLine("created command json");
 
-                foreach (var (yarnName, action, symbol, nameLocation, codes) in allFunctions)
+                foreach (var (yarnName, action, symbol, nameLocation, errors, infos) in allFunctions)
                 {
                     if (action == null)
                     {
@@ -196,7 +196,7 @@ namespace Yarn.Analyser
                     }
                     else
                     {
-                        functionJSON.Add(action.ToJSON(symbol.Locations.First(), projectRoot, codes));
+                        functionJSON.Add(action.ToJSON(symbol.Locations.First(), projectRoot, errors, infos));
                     }
                 }
                 logger.WriteLine("created function json");
@@ -226,10 +226,10 @@ namespace Yarn.Analyser
                 logger.WriteLine($"done with {context.Compilation.AssemblyName}");
             }
 
-            private void ValidateActions(List<(string yarnName, Yarn.Shared.Action? action, IMethodSymbol symbol, Location? nameLocation, HashSet<string> codes)> actions, ImmutableArray<YarnConverter> converters, CompilationAnalysisContext context)
+            private void ValidateActions(List<(string yarnName, Yarn.Shared.Action? action, IMethodSymbol symbol, Location? nameLocation, HashSet<string> highSeverityCodes, HashSet<string> lowSeverityCodes)> actions, ImmutableArray<YarnConverter> converters, CompilationAnalysisContext context)
             {
                 HashSet<string> duplicateIDs = [];
-                foreach (var (yarnName, action, symbol, nameLocation, codes) in actions)
+                foreach (var (yarnName, action, symbol, nameLocation, highSeverityCodes, lowSeverityCodes) in actions)
                 {
                     if (action == null)
                     {
@@ -252,7 +252,7 @@ namespace Yarn.Analyser
                         var diag = Configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1019DuplicateAction, nameLocation ?? symbol.Locations.First(), yarnName, action.Type == ActionType.Command ? "command" : "function");
                         context.ReportDiagnostic(diag);
 
-                        codes.Add(ActionDiagnostics.YS1019DuplicateAction.Id);
+                        highSeverityCodes.Add(ActionDiagnostics.YS1019DuplicateAction.Id);
                     }
 
                     // checking if the parameter is a type we can actually handle
@@ -317,7 +317,7 @@ namespace Yarn.Analyser
                         {
                             var diag = Configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1009InstanceActionIsOnAnIncompatibleType, symbol.Locations.First(), yarnName, action.containingTypeShortName);
                             context.ReportDiagnostic(diag);
-                            codes.Add(ActionDiagnostics.YS1009InstanceActionIsOnAnIncompatibleType.Id);
+                            highSeverityCodes.Add(ActionDiagnostics.YS1009InstanceActionIsOnAnIncompatibleType.Id);
                         }
                     }
                 }
@@ -441,7 +441,8 @@ namespace Yarn.Analyser
 
                 logger.WriteLine($"invocation is a {methodSymbol.MethodKind}");
 
-                HashSet<string> diagnosticCodes = [];
+                HashSet<string> highSeverityDiagnosticCodes = [];
+                HashSet<string> lowSeverityDiagnosticCodes = [];
 
                 // the first is a constant string
                 Location nameLocation = syntax.ArgumentList.Arguments[0].GetLocation();
@@ -449,7 +450,7 @@ namespace Yarn.Analyser
                 {
                     var diag = Configuration.CreateElevatedDiagnostic(ActionDiagnostics.YS1020UnableToResolveActionName, nameLocation);
                     context.ReportDiagnostic(diag);
-                    diagnosticCodes.Add(ActionDiagnostics.YS1020UnableToResolveActionName.Id);
+                    highSeverityDiagnosticCodes.Add(ActionDiagnostics.YS1020UnableToResolveActionName.Id);
                     yarnName = methodSymbol.Name;
                 }
 
@@ -470,21 +471,28 @@ namespace Yarn.Analyser
                 foreach (var diag in diagnostics)
                 {
                     context.ReportDiagnostic(diag);
-                    diagnosticCodes.Add(diag.Id);
+                    if (diag.Severity == DiagnosticSeverity.Hidden || diag.Severity == DiagnosticSeverity.Info)
+                    {
+                        lowSeverityDiagnosticCodes.Add(diag.Id);
+                    }
+                    else
+                    {
+                        highSeverityDiagnosticCodes.Add(diag.Id);
+                    }
                 }
 
                 if (actionType == ActionType.Command)
                 {    
                     lock (allCommands)
                     {
-                        allCommands.Add((yarnName, action, methodSymbol, nameLocation, diagnosticCodes));
+                        allCommands.Add((yarnName, action, methodSymbol, nameLocation, highSeverityDiagnosticCodes, lowSeverityDiagnosticCodes));
                     }
                 }
                 else
                 {
                     lock (allFunctions)
                     {
-                        allFunctions.Add((yarnName, action, methodSymbol, nameLocation, diagnosticCodes));
+                        allFunctions.Add((yarnName, action, methodSymbol, nameLocation, highSeverityDiagnosticCodes, lowSeverityDiagnosticCodes));
                     }
                 }
             }
@@ -537,12 +545,20 @@ namespace Yarn.Analyser
 
                 var actionType = actionAttributed.Any(a => a.AttributeClass?.ToDisplayString() == YarnCommandAttributeLongType) ? ActionType.Command : ActionType.Function;
 
-                HashSet<string> diagnosticCodes = [];
+                HashSet<string> highSeverityDiagnosticCodes = [];
+                HashSet<string> lowSeverityDiagnosticCodes = [];
                 var action = Creators.ActionFromMethodSymbol(methodSymbol, yarnName, actionType, DeclarationType.Attribute, out var diagnostics, false, false, Configuration, nameLocation, null, logger);
                 foreach (var diag in diagnostics)
                 {
                     context.ReportDiagnostic(diag);
-                    diagnosticCodes.Add(diag.Id);
+                    if (diag.Severity == DiagnosticSeverity.Hidden || diag.Severity == DiagnosticSeverity.Info)
+                    {
+                        lowSeverityDiagnosticCodes.Add(diag.Id);
+                    }
+                    else
+                    {
+                        highSeverityDiagnosticCodes.Add(diag.Id);
+                    }
                 }
 
                 if (actionType == ActionType.Command)
@@ -550,7 +566,7 @@ namespace Yarn.Analyser
                     logger.WriteLine($"{methodName} added to commands");
                     lock (allCommands)
                     {
-                        allCommands.Add((yarnName, action, methodSymbol, nameLocation, diagnosticCodes));
+                        allCommands.Add((yarnName, action, methodSymbol, nameLocation, highSeverityDiagnosticCodes, lowSeverityDiagnosticCodes));
                     }
                 }
                 else
@@ -558,7 +574,7 @@ namespace Yarn.Analyser
                     logger.WriteLine($"{methodName} added to functions");
                     lock (allFunctions)
                     {
-                        allFunctions.Add((yarnName, action, methodSymbol, nameLocation, diagnosticCodes));
+                        allFunctions.Add((yarnName, action, methodSymbol, nameLocation, highSeverityDiagnosticCodes, lowSeverityDiagnosticCodes));
                     }
                 }
 

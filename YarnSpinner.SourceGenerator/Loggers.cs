@@ -15,7 +15,7 @@ public class FileDebugWriter
     {
         if (configuration.WriteDebugFiles)
         {
-            var path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "TimsLogs", name);
+            var path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "yarn.sourcegen.logs", name);
             File.WriteAllText(path, input);
         }
     }
@@ -25,7 +25,7 @@ public class EmergencyLogger
 {
     public static void ExceptionLog(Exception ex, string? message = null, bool fullEx = false)
     {
-        var path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "TimsLogs", $"{Path.GetRandomFileName()}.exception.txt");
+        var path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "yarn.sourcegen.logs", $"{Path.GetRandomFileName()}.exception.txt");
         
         List<string> lines = [];
         if (message == null)
@@ -54,12 +54,12 @@ public class BetterLogger: ILogger
 
     public BetterLogger()
     {
-        path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "TimsLogs", $"log.txt");
+        path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "yarn.sourcegen.logs", $"log.txt");
     }
 
     public BetterLogger(string name)
     {
-        path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "TimsLogs", $"log-{name}.txt");
+        path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "yarn.sourcegen.logs", $"log-{name}.txt");
     }
     public void WriteLine(object text)
     {
@@ -105,7 +105,7 @@ public class JSONWriter
 
         if (debugWrite)
         {
-            path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "TimsLogs", $"{assembly}.ysls.json");
+            path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "yarn.sourcegen.logs", $"{assembly}.ysls.json");
             File.WriteAllText(path, input);
         }
     }
