@@ -175,7 +175,8 @@ namespace Yarn.Analyser
                     {
                         try
                         {
-                            commandJSON.Add(action.ToJSON(symbol.Locations.First(), projectRoot, errors, infos));
+                            DocstringExtractor.TryCreateDocumentation(symbol, logger, out var documentation);
+                            commandJSON.Add(action.ToJSON(symbol.Locations.First(), projectRoot, errors, infos, documentation));
                         }
                         catch (System.Exception ex)
                         {
@@ -196,7 +197,8 @@ namespace Yarn.Analyser
                     }
                     else
                     {
-                        functionJSON.Add(action.ToJSON(symbol.Locations.First(), projectRoot, errors, infos));
+                        DocstringExtractor.TryCreateDocumentation(symbol, logger, out var documentation);
+                        functionJSON.Add(action.ToJSON(symbol.Locations.First(), projectRoot, errors, infos, documentation));
                     }
                 }
                 logger.WriteLine("created function json");

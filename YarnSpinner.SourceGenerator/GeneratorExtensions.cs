@@ -42,7 +42,7 @@ public static class GeneratorExtensions
         return relativePath;
     }
 
-    public static string ToJSON(this Yarn.Shared.Action action, Location location, string? projectRoot, HashSet<string>? highSeverityDiagnosticCodes, HashSet<string>? lowSeverityDiagnosticCodes)
+    public static string ToJSON(this Yarn.Shared.Action action, Location location, string? projectRoot, HashSet<string>? highSeverityDiagnosticCodes, HashSet<string>? lowSeverityDiagnosticCodes, DocumentationPayload? payload)
     {
         var result = new Dictionary<string, object?>();
 
@@ -172,9 +172,19 @@ public static class GeneratorExtensions
                 paramObject["type"] = "node";
             }
 
+            if (payload?.parameters?.TryGetValue(p.Name, out var description) == true)
+            {
+                paramObject["documentation"] = description;
+            }
+
             parameters.Add(paramObject);
         }
         result["parameters"] = parameters;
+
+        if (payload?.summary != null)
+        {
+            result["documentation"] = payload.summary;
+        }
 
         if (action.Type == ActionType.Function)
         {
@@ -196,6 +206,12 @@ public static class GeneratorExtensions
                     retvrn["type"] = "bool";
                     break;
             }
+
+            if (payload?.retvrn != null)
+            {
+                retvrn["description"] = payload.retvrn;
+            }
+
             result["return"] = retvrn;
         }
         return System.Text.Json.JsonSerializer.Serialize(result);

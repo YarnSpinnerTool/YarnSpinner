@@ -394,6 +394,11 @@ public record Action
 
 public record InvalidAction(string Name, ActionType Type): Action(Name, "invalid", "invalid", Type, false, ReturnType.Void, new NamedType(), []) { }
 
+public record class DocumentationPayload(string? summary, string? retvrn, Dictionary<string, string>? parameters)
+{
+    public DocumentationPayload(): this(null, null, null) { }
+}
+
 public record NamedType
 {
     // these represent different ways of looking at the type name
