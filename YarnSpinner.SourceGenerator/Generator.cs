@@ -151,7 +151,7 @@ namespace Yarn.Analyser
                     if (code != null)
                     {
                         FileDebugWriter.WriteGeneratedFile(code, $"{assemblyName}.runtime.linker.g.cs", config);
-                        spc.AddSource($"{value.Left}.runtime.linker.g.cs", code);
+                        spc.AddSource($"{assemblyName}.runtime.linker.g.cs", code);
                     }
                 });
 
