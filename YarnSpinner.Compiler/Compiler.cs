@@ -295,6 +295,21 @@ namespace Yarn.Compiler
                 };
             }
 
+            var walker = new Antlr4.Runtime.Tree.ParseTreeWalker();
+
+            // Identify any user-defined types in the source
+            foreach (var parsedFile in parsedFiles)
+            {
+                compilationJob.CancellationToken.ThrowIfCancellationRequested();
+
+                var userDefinedTypesVisitor = new UserDefinedTypesListener(
+                    parsedFile.Name, parsedFile.Tokens, knownTypes, compilationJob.CancellationToken);
+
+                walker.Walk(userDefinedTypesVisitor, parsedFile.Tree);
+
+                diagnostics.AddRange(userDefinedTypesVisitor.Diagnostics);
+            }
+
             // Run the type checker on the files, and produce type variables and constraints.
             List<TypeChecker.TypeConstraint> typeConstraints = new List<TypeChecker.TypeConstraint>();
 
@@ -308,8 +323,6 @@ namespace Yarn.Compiler
             // (We'll resolve as many of them as we can after finishing type
             // checking, and turn the rest into error messages.)
             var failingConstraints = new HashSet<TypeConstraint>();
-
-            var walker = new Antlr4.Runtime.Tree.ParseTreeWalker();
 
             // Type check all files
             foreach (var parsedFile in parsedFiles)

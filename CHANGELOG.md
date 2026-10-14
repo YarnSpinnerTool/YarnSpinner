@@ -18,6 +18,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Node titles now trim any trailing whitespace that might be present. (Fixes [#156](https://github.com/YarnSpinnerTool/IssuesDiscussion/issues/156); thanks to [@DontDieThankYou](https://github.com/DontDieThankYou))
 - Markup parsing now correctly handles character names that have "'s in their name
 - Calls to `visited` and `visited_count` now correctly cause tracking to occur when inside a nested function call (e.g. `max(visited_count("X"), visited_count("Y)))`)
+- User-defined types (for example, enums) are now detected and processed before the rest of the typechecking process begins.
+  - This fixes an issue where the compiler would take a very long time to type-check expressions whose value came from an enum that had not yet been processed. (Thanks to Discord user Talsidor for reporting the problem!)
 
 ### Removed
 
