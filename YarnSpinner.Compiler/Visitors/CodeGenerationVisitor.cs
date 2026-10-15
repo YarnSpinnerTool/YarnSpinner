@@ -15,6 +15,9 @@ namespace Yarn.Compiler
     // the visitor for the body of the node does not really return ints, just
     // has to return something might be worth later investigating returning
     // Instructions
+    /// <summary>
+    /// Visitor that performs actual the actual code generation, creating the final compiled form of the <see cref="Program"/>
+    /// </summary>
     internal partial class CodeGenerationVisitor : YarnSpinnerParserBaseVisitor<int>
     {
         private readonly ICodeEmitter compiler;

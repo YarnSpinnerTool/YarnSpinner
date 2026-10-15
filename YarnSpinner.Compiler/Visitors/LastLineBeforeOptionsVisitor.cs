@@ -6,6 +6,9 @@ namespace Yarn.Compiler
     using Antlr4.Runtime;
     using Antlr4.Runtime.Misc;
 
+    /// <summary>
+    /// Visitor for identifying and tagging lines which are preceeding an options group
+    /// </summary>
     class LastLineBeforeOptionsVisitor : YarnSpinnerParserBaseVisitor<byte>
     {
         // tags this line as being one that is the statement immediately before an option block, does this by adding a #lastline tag onto this line

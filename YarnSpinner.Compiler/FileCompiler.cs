@@ -92,6 +92,7 @@ namespace Yarn.Compiler
                           instruction);
         }
 
+        /// <inheritdoc />
         public void Emit(IToken startToken, IToken endToken, params Instruction[] instructions)
         {
             foreach (var i in instructions)
@@ -100,6 +101,7 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <inheritdoc />
         public void Emit(Instruction instruction)
         {
             this.Emit(null, null, instruction);

@@ -583,6 +583,7 @@ namespace Yarn.Compiler
     // writes a list of strings as an array of strings.
     class StringOrListOfStringsConverter : JsonConverter<List<string>>
     {
+        /// <inheritdoc />
         public override List<string>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             switch (reader.TokenType)
@@ -619,6 +620,7 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <inheritdoc />
         public override void Write(Utf8JsonWriter writer, List<string> value, JsonSerializerOptions options)
         {
             // Write the list of strings as an array of strings.
@@ -631,13 +633,30 @@ namespace Yarn.Compiler
         }
     }
 
+    /// <summary>
+    /// Definitions represent external actions that are part of the <see cref="Project" /> and are used in different ways by different parts of Yarn Spinner.
+    /// These are primarily constructed by providing the YSLS json file but you can manually create one for tests.
+    /// </summary>
     public class Definitions
     {
+        /// <summary>
+        /// Contains all the different function definitions externally provided by the definitions file.
+        /// May be empty
+        /// </summary>
         public List<Declaration> functions;
 
+        /// <summary>
+        /// Contains all the commands externally provided by the definitions file.
+        /// May be empty
+        /// </summary>
         public List<Yarn.Shared.Action> commands;
         
+        /// <inheritdoc cref="Definitions(ReadOnlyMemory&lt;byte&gt;)" />
         public Definitions(string source): this(System.Text.Encoding.UTF8.GetBytes(source)){}
+
+        /// <summary>
+        /// Creates a new definition from the provided json source
+        /// </summary>
         public Definitions(ReadOnlyMemory<byte> source)
         {
             functions = new();
@@ -735,9 +754,9 @@ namespace Yarn.Compiler
         }
     }
 
-    public static class ActionExtensions
+    internal static class ActionExtensions
     {
-        public static Declaration? GetDeclaration(this Shared.Action action)
+        internal static Declaration? GetDeclaration(this Shared.Action action)
         {
             if (action.Type == Shared.ActionType.Command)
             {
@@ -827,7 +846,7 @@ namespace Yarn.Compiler
             return declaration;
         }
 
-        public static Shared.Action? CommandActionFromJSON(JsonElement commandElement)
+        internal static Shared.Action? CommandActionFromJSON(JsonElement commandElement)
         {
             // name of the command itself
             if (!commandElement.TryGetProperty("yarnName", out var nameProperty))
@@ -860,7 +879,7 @@ namespace Yarn.Compiler
             {
                 foreach (var parameterElement in parametersElement.EnumerateArray())
                 {
-                    var p = parameterFromJSON(parameterElement);
+                    var p = ParameterFromJSON(parameterElement);
                     if (p != null)
                     {
                         parameters.Add(p);
@@ -889,7 +908,7 @@ namespace Yarn.Compiler
             return new Shared.Action(yarnName, fullName, ShortMethodName, Shared.ActionType.Command, true, isAsync ? Shared.ReturnType.Void : Shared.ReturnType.AsyncVoid, nt, parameters.ToArray());
         }
 
-        private static Shared.Parameter? parameterFromJSON(JsonElement parameterElement)
+        private static Shared.Parameter? ParameterFromJSON(JsonElement parameterElement)
         {
             string paramName;
             if (!parameterElement.TryGetProperty("name", out var nameProperty))

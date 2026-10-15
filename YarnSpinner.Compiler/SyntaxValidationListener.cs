@@ -11,9 +11,11 @@ namespace Yarn.Compiler
     /// <summary>
     /// Validates syntax patterns that the parser accepts but are semantically incorrect.
     /// This includes:
-    /// - Stray command end markers without matching start markers
-    /// - Command keywords outside of command blocks
-    /// - Line content on the same line as non-flow-control commands
+    /// <list type="bullet"> 
+    /// <item>Stray command end markers without matching start markers</item>
+    /// <item>Command keywords outside of command blocks</item>
+    /// <item>Line content on the same line as non-flow-control commands</item>
+    /// </list>
     /// </summary>
     internal class SyntaxValidationListener : YarnSpinnerParserBaseListener
     {
@@ -23,14 +25,23 @@ namespace Yarn.Compiler
         private int mostRecentLineStatementLine = -1;
         private int mostRecentCommandStatementLine = -1;
 
+        /// <summary>
+        /// Any diagnostics encountered during validation
+        /// </summary>
         public IEnumerable<Diagnostic> Diagnostics => diagnostics;
 
+        /// <summary>
+        /// Creates a new syntax validation listener for the given Yarn file
+        /// </summary>
+        /// <param name="fileName">the name of the yarn file</param>
+        /// <param name="tokens">the otken stream</param>
         public SyntaxValidationListener(string fileName, CommonTokenStream tokens)
         {
             this.fileName = fileName;
             this.tokens = tokens;
         }
 
+        /// <inheritdoc />
         public override void EnterLine_statement([NotNull] YarnSpinnerParser.Line_statementContext context)
         {
             mostRecentLineStatementLine = context.Start.Line;
@@ -63,6 +74,7 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <inheritdoc />
         public override void EnterCommand_statement([NotNull] YarnSpinnerParser.Command_statementContext context)
         {
             mostRecentCommandStatementLine = context.Start.Line;

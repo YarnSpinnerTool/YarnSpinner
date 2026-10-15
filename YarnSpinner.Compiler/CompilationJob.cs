@@ -54,6 +54,10 @@ namespace Yarn.Compiler
             /// </summary>
             public string Source = string.Empty;
 
+            /// <summary>
+            /// Creates a new File from a path, either from an absolute or relative path.
+            /// </summary>
+            /// <param name="path">The path to the file. Is mapped to <see cref="Path"/> property.</param>
             public File(string path)
             {
                 Path = path;
@@ -68,12 +72,14 @@ namespace Yarn.Compiler
         /// </summary>
         public class Raw :  ISourceInput
         {
+            /// <inheritdoc/>
             public string Name { get; set; } = "<unknown>";
 
+            /// <summary>
+            /// The raw string value passed into the compiler
+            /// </summary>
             public string Source = string.Empty;
         }
-
-        // maek a new ISourceInput that is a stringinput instead of a file input
 
         /// <summary>
         /// The type of compilation that the compiler will do.
@@ -121,6 +127,9 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <summary>
+        /// Collection of all the inputs that have been provided to the compilation job
+        /// </summary>
         public IEnumerable<ISourceInput> Inputs;
 
         /// <summary>
@@ -195,9 +204,9 @@ namespace Yarn.Compiler
             };
         }
 
-        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, ILibrary)" path="/summary"/>
-        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, ILibrary)" path="/param[@name='paths']"/>
-        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string}, ILibrary)" path="/returns"/>
+        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string})" path="/summary"/>
+        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string})" path="/param[@name='paths']"/>
+        /// <inheritdoc cref="CreateFromFiles(IEnumerable{string})" path="/returns"/>
         public static CompilationJob CreateFromFiles(params string[] paths)
         {
             return CreateFromFiles((IEnumerable<string>)paths);
@@ -208,6 +217,8 @@ namespace Yarn.Compiler
         /// collection of source inputs.
         /// </summary>
         /// <param name="inputs">The inputs to the compilation.</param>
+        /// <param name="declarations">Any external declarations necessary for the compilation</param>
+        /// <param name="languageVersion">The version of the Yarn language and project</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
         public static CompilationJob CreateFromInputs(IEnumerable<ISourceInput> inputs, IEnumerable<Declaration>? declarations = null, int languageVersion = Project.CurrentProjectFileVersion)
         {
@@ -226,6 +237,7 @@ namespace Yarn.Compiler
         /// <param name="inputName">The name to assign to the compiled
         /// file.</param>
         /// <param name="source">The text to compile.</param>
+        /// <param name="declarations">Any external declarations necessary for the compilation</param>
         /// <param name="languageVersion">The version of the Yarn language to
         /// use.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
@@ -245,12 +257,12 @@ namespace Yarn.Compiler
                 Declarations = declarations ?? Array.Empty<Declaration>(),
             };
         }
-
-        // ok so for now grab the json
-        // load it
-        // manually find the definitions
-        // later make it so this can be actually deserialised magically
-        // and stored on the project correctly
+        
+        /// <summary>
+        /// Creates a new <see cref="CompilationJob"/> using the contents of a <see cref="Project"/> as it's input
+        /// </summary>
+        /// <param name="project">The project to use for compilation</param>
+        /// <returns></returns>
         public static CompilationJob CreateFromProject(Project project)
         {
             List<Declaration> definitions = new();
@@ -275,6 +287,8 @@ namespace Yarn.Compiler
                 LanguageVersion = project.FileVersion
             };
         }
+        
+        /// <inheritdoc cref="CreateFromProject(Project)"/>
         public static CompilationJob CreateFromProject(string projectPath)
         {
             var project = Project.LoadFromFile(projectPath);

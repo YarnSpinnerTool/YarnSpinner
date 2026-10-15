@@ -1,9 +1,15 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using System.Linq;
 
 namespace Yarn.Compiler
 {
+    /// <summary>
+    /// A visitor that identifies which nodes are in a node group and rewrites them from their convenience name into their canonical name and associates the nodegroup with this new name
+    /// </summary>
     internal class NodeGroupVisitor : YarnSpinnerParserBaseVisitor<int>
     {
         public string SourceFile { get; set; }

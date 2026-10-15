@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,6 +8,10 @@ using Yarn;
 
 namespace TypeChecker
 {
+    /// <summary>
+    /// A <see cref="TypeConstraint"/> that represents a type with an explicit name.
+    /// The most common case of this is when encountering a declaration statement.
+    /// </summary>
     internal class TypeHasNameConstraint : TypeConstraint
     {
         public TypeHasNameConstraint(IType type, string name)

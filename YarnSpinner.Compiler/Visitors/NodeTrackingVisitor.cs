@@ -6,6 +6,9 @@ namespace Yarn.Compiler
     using Antlr4.Runtime.Misc;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Handles tracking calls to vist or visted_count in your Yarn to identify which need to nodes need their jumps tracked
+    /// </summary>
     class NodeTrackingVisitor : YarnSpinnerParserBaseVisitor<string?>
     {
         readonly HashSet<string> TrackingNode;

@@ -6,7 +6,6 @@ namespace Yarn.Compiler
 {
     internal class PreviewFeatureVisitor : YarnSpinnerParserBaseVisitor<int>
     {
-
         internal PreviewFeatureVisitor(FileParseResult file, int languageVersion, IList<Diagnostic> diagnostics)
         {
             this.File = file;

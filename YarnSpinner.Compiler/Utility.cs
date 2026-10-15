@@ -195,7 +195,7 @@ namespace Yarn.Compiler
             return untaggedLineListener.RewrittenNodes();
         }
 
-        /// <inheritdoc cref="TagLines(CompilationJob.File, System.Collections.Generic.HashSet{string}, ILineTagGenerator?, ILineTagGenerator.TagAbortBehaviour)"/>
+        /// <inheritdoc cref="TagLines(ISourceInput, HashSet&lt;string&gt;?, ILineTagGenerator?, ILineTagGenerator.TagAbortBehaviour)"/>
         public static (string ModifiedSource, ICollection<string> LineIDs, List<ILineTagGenerator.LineTaggingException> TagExceptions) TagLines(string contents, HashSet<string>? excludedLineIDs = null, ILineTagGenerator? lineTagGenerator = null, ILineTagGenerator.TagAbortBehaviour tagAbortBehaviour = ILineTagGenerator.TagAbortBehaviour.CurrentNode)
         {
             return TagLines(new CompilationJob.Raw
@@ -338,6 +338,7 @@ namespace Yarn.Compiler
                 this.lineContext = new();
             }
 
+            /// <inheritdoc />
             public override void EnterNode([NotNull] YarnSpinnerParser.NodeContext context)
             {
                 // if we enter a node and we have current nodes this is also an error
@@ -348,6 +349,7 @@ namespace Yarn.Compiler
 
                 currentLines = new();
             }
+            /// <inheritdoc />
             public override void ExitNode([NotNull] YarnSpinnerParser.NodeContext context)
             {
                 Utility.TryGetNodeTitle(context.SourceFileName, context, out _, out var currentNode, out _, out _);
@@ -367,6 +369,7 @@ namespace Yarn.Compiler
                 currentLines = null;
             }
 
+            /// <inheritdoc />
             public override void ExitLine_statement([NotNull] YarnSpinnerParser.Line_statementContext context)
             {
                 if (currentLines == null)
@@ -458,6 +461,10 @@ namespace Yarn.Compiler
                 return -1;
             }
 
+            /// <summary>
+            /// Runs the line rewritter and returns the rewritten content
+            /// </summary>
+            /// <returns>Tuple of the modified source, the identified line tags, and any exceptions encountered during tagging</returns>
             public (string ModifiedSource, ICollection<string> KnownLineIDs, List<ILineTagGenerator.LineTaggingException> exceptions) RewrittenNodes()
             {
                 return (this.rewriter.GetText(), knownLineIDs, this.taggingExceptions);
@@ -733,14 +740,12 @@ namespace Yarn.Compiler
 
             return cluster;
         }
-
+        
         /// <summary>
-        /// Gets a string containing a representation of the compiled bytecode
-        /// for a <see cref="Program"/>.
+        /// Gets a string containing a representation of the compiled bytecode for a <see cref="Program"/>.
         /// </summary>
-        /// <param name="program"></param>
-        /// <param name="l"></param>
-        /// <param name="result"></param>
+        /// <param name="program">The program to be dumped as a string</param>
+        /// <param name="result">The compilation result, needed for various elements of the dump like the lines</param>
         /// <returns></returns>
         public static string GetCompiledCodeAsString(Program program, CompilationResult? result = null)
         {

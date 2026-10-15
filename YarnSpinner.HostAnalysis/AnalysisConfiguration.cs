@@ -169,11 +169,11 @@ namespace Yarn.HostAnalysis
             }
             return !SkipSourceGeneration;
         }
-        public Diagnostic CreateElevatedDiagnostic(DiagnosticDescriptor descriptor, Location location, params object?[]? messageArguments)
+        public Diagnostic CreateElevatedDiagnostic(DiagnosticDescriptor descriptor, Location? location, params object?[]? messageArguments)
         {
             return CreateElevatedDiagnosticWithSeverity(descriptor, descriptor.DefaultSeverity, location, messageArguments);
         }
-        public Diagnostic CreateElevatedDiagnosticWithSeverity(DiagnosticDescriptor descriptor, DiagnosticSeverity severity, Location location, params object?[]? messageArguments)
+        public Diagnostic CreateElevatedDiagnosticWithSeverity(DiagnosticDescriptor descriptor, DiagnosticSeverity severity, Location? location, params object?[]? messageArguments)
         {
             // if there exists a modified severity we use that
             // otherwise we use the provided severity

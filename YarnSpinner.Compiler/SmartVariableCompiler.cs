@@ -12,10 +12,17 @@ namespace Yarn.Compiler
 
     internal class SmartVariableCompiler : ICodeEmitter
     {
+        /// <inheritdoc />
         public Node? CurrentNode { get; private set; }
+        /// <inheritdoc />
         public NodeDebugInfo? CurrentNodeDebugInfo { get; private set; }
+        /// <inheritdoc />
         public IDictionary<string, Declaration> VariableDeclarations { get; private set; }
 
+        /// <summary>
+        /// Creates a new smart variable compiler with the given collection of variable declarations
+        /// </summary>
+        /// <param name="variableDeclarations">The current variable declarations, assigned directly to <see cref="VariableDeclarations"/></param>
         public SmartVariableCompiler(IDictionary<string, Declaration> variableDeclarations)
         {
             this.VariableDeclarations = variableDeclarations;
@@ -40,6 +47,10 @@ namespace Yarn.Compiler
             return Compile(decl.SourceFileName, decl.Name, decl.InitialValueParserContext);
         }
 
+        /// <inheritdoc cref="Compile(Declaration)"/>
+        /// <param name="sourceFileName">name of the yarn file</param>
+        /// <param name="nodeName">name of the yarn node</param>
+        /// <param name="expression">the intial expression</param>
         public NodeCompilationResult Compile(string sourceFileName, string nodeName, YarnSpinnerParser.ExpressionContext? expression)
         {
             this.CurrentNode = new Node();
@@ -69,6 +80,7 @@ namespace Yarn.Compiler
             };
         }
 
+        /// <inheritdoc />
         public void Emit(IToken? startToken, IToken? endToken, Instruction instruction)
         {
             if (this.CurrentNode == null)
@@ -89,6 +101,7 @@ namespace Yarn.Compiler
             );
         }
 
+        /// <inheritdoc />
         public void Emit(IToken startToken, IToken endToken, params Instruction[] instructions)
         {
             foreach (var i in instructions)
@@ -97,6 +110,7 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <inheritdoc />
         public void Emit(Instruction instruction)
         {
             this.Emit(null, null, instruction);

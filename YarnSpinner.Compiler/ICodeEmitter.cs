@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Compiler
 {
     using Antlr4.Runtime;
@@ -12,9 +15,18 @@ namespace Yarn.Compiler
 
     internal interface ICodeEmitter
     {
+        /// <summary>
+        /// The Node within the emitted code lives
+        /// </summary>
         Node? CurrentNode { get; }
+        /// <summary>
+        /// Debug information for the <see cref="CurrentNode"/>
+        /// </summary>
         NodeDebugInfo? CurrentNodeDebugInfo { get; }
 
+        /// <summary>
+        /// Any variable declarations necessary for code emission
+        /// </summary>
         IDictionary<string, Declaration> VariableDeclarations { get; }
 
         /// <summary>

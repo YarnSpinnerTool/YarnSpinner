@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #define DISALLOW_NULL_EQUATION_TERMS
 
 namespace TypeChecker
@@ -7,6 +10,9 @@ namespace TypeChecker
     using System.Linq;
     using Yarn;
 
+    /// <summary>
+    /// A <see cref="TypeConstraint"/> that signifies one type is convertible to another and can be considered the same type
+    /// </summary>
     internal class TypeConvertibleConstraint : TypeConstraint
     {
         /// <summary>

@@ -64,8 +64,6 @@ namespace Yarn.Compiler
         /// Gets a string containing the textual description of the instructions
         /// in this <see cref="BasicBlock"/>.
         /// </summary>
-        /// <param name="library">The <see cref="ILibrary"/> to use when
-        /// converting instructions to strings.</param>
         /// <param name="compilationResult">The <see cref="CompilationResult"/>
         /// that produced <see cref="Node"/>.</param>
         /// <returns>A string containing the text version of the

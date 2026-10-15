@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 // Uncomment to ensure that all expressions have a known type at compile time
 // #define VALIDATE_ALL_EXPRESSIONS
 
@@ -338,13 +341,14 @@ namespace Yarn.Compiler
         {
             this.FileTags.Add(context.text.Text);
         }
+        /// <inheritdoc />
         public override void ExitTitle_header([NotNull] YarnSpinnerParser.Title_headerContext context)
         {
             // We don't do any type checking here, but we do store the name of
             // the current node we're in for diagnostic purposes.
             this.currentNodeName = context.title?.Text;
         }
-
+        /// <inheritdoc />
         public override void ExitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context)
         {
             YarnSpinnerParser.VariableContext variableContext = context.variable();
@@ -463,31 +467,37 @@ namespace Yarn.Compiler
 
         private static Range GetRange(ParserRuleContext context) => Utility.GetRange(context);
 
+        /// <inheritdoc />
         public override void ExitValueTrue([NotNull] YarnSpinnerParser.ValueTrueContext context)
         {
             context.Type = Types.Boolean;
         }
 
+        /// <inheritdoc />
         public override void ExitValueFalse([NotNull] YarnSpinnerParser.ValueFalseContext context)
         {
             context.Type = Types.Boolean;
         }
 
+        /// <inheritdoc />
         public override void ExitValueNumber([NotNull] YarnSpinnerParser.ValueNumberContext context)
         {
             context.Type = Types.Number;
         }
 
+        /// <inheritdoc />
         public override void ExitValueString([NotNull] YarnSpinnerParser.ValueStringContext context)
         {
             context.Type = Types.String;
         }
 
+        /// <inheritdoc />
         public override void ExitValueVar([NotNull] YarnSpinnerParser.ValueVarContext context)
         {
             context.Type = context.variable().Type;
         }
 
+        /// <inheritdoc />
         public override void ExitValueTypeMemberReference([NotNull] YarnSpinnerParser.ValueTypeMemberReferenceContext context)
         {
             var typeName = context.typeMemberReference()?.typeName?.Text ?? null;
@@ -555,6 +565,7 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <inheritdoc />
         public override void ExitVariable([NotNull] YarnSpinnerParser.VariableContext context)
         {
             var variableID = context.VAR_ID();
@@ -598,6 +609,7 @@ namespace Yarn.Compiler
             context.Type = declaration.Type;
         }
 
+        /// <inheritdoc />
         public override void ExitExpParens([NotNull] YarnSpinnerParser.ExpParensContext context)
         {
             // The type of a parentheses expression is equal to the type of its
@@ -605,6 +617,7 @@ namespace Yarn.Compiler
             context.Type = context.expression()?.Type ?? Types.Error;
         }
 
+        /// <inheritdoc />
         public override void ExitExpAddSub([NotNull] YarnSpinnerParser.ExpAddSubContext context)
         {
             var type = this.GenerateTypeVariable(null, context);
@@ -638,6 +651,7 @@ namespace Yarn.Compiler
                 DiagnosticDescriptor.TypeCheckerError.Create(s.source, s.range, $"Operation '{op}'s values must both be the same type, not {operandAType.Substitute(s.subst)} and {operandBType.Substitute(s.subst)}"));
         }
 
+        /// <inheritdoc />
         public override void ExitExpMultDivMod([NotNull] YarnSpinnerParser.ExpMultDivModContext context)
         {
             var type = this.GenerateTypeVariable(null, context);
@@ -657,6 +671,7 @@ namespace Yarn.Compiler
                 DiagnosticDescriptor.TypeCheckerError.Create(s.source, s.range, $"Operation '{op}'s values must both be the same type, not {operandAType.Substitute(s.subst)} and {operandBType.Substitute(s.subst)}"));
         }
 
+        /// <inheritdoc />
         public override void ExitExpComparison([NotNull] YarnSpinnerParser.ExpComparisonContext context)
         {
             // The result of a comparison is boolean; the types of the
@@ -672,6 +687,7 @@ namespace Yarn.Compiler
                 DiagnosticDescriptor.TypeCheckerError.Create(s.source, s.range, $"Operation '{op}'s values must both be the same type, not {operandAType.Substitute(s.subst)} and {operandBType.Substitute(s.subst)}"));
         }
 
+        /// <inheritdoc />
         public override void ExitExpEquality([NotNull] YarnSpinnerParser.ExpEqualityContext context)
         {
             // The result of an equality is boolean; the types of the
@@ -688,6 +704,7 @@ namespace Yarn.Compiler
                     $"Operation '{op}'s values must both be the same type, not {operandAType.Substitute(s.subst)} and {operandBType.Substitute(s.subst)}"));
         }
 
+        /// <inheritdoc />
         public override void ExitExpAndOrXor([NotNull] YarnSpinnerParser.ExpAndOrXorContext context)
         {
             // The result of a logical and, or, or xor is boolean; the types of
@@ -711,6 +728,7 @@ namespace Yarn.Compiler
                     $"{context.op.Text} operands must be the same type, not {type0} and {type1}"));
         }
 
+        /// <inheritdoc />
         public override void ExitExpNot([NotNull] YarnSpinnerParser.ExpNotContext context)
         {
             // The result of a logical not is boolean; the type of the operand
@@ -724,6 +742,7 @@ namespace Yarn.Compiler
                     $"{context.op.Text} operand must be {Types.Boolean}, not {type.Substitute(s.subst)}"));
         }
 
+        /// <inheritdoc />
         public override void ExitExpNegative([NotNull] YarnSpinnerParser.ExpNegativeContext context)
         {
             // The result of a negation is a number; the type of the operand
@@ -735,6 +754,7 @@ namespace Yarn.Compiler
                     $"{context.op.Text} operand must be {Types.Number}, not {type.Substitute(s.subst)}"));
         }
 
+        /// <inheritdoc />
         public override void ExitExpValue([NotNull] YarnSpinnerParser.ExpValueContext context)
         {
             // An expression containing a value has the same type as the value
@@ -742,6 +762,7 @@ namespace Yarn.Compiler
             context.Type = context.value()?.Type ?? Types.Error;
         }
 
+        /// <inheritdoc />
         public override void ExitIf_clause([NotNull] YarnSpinnerParser.If_clauseContext context)
         {
             // The condition for an if statement must be a boolean
@@ -754,6 +775,7 @@ namespace Yarn.Compiler
             base.ExitIf_clause(context);
         }
 
+        /// <inheritdoc />
         public override void ExitElse_if_clause([NotNull] YarnSpinnerParser.Else_if_clauseContext context)
         {
             // The condition for an elseif statement must be a boolean
@@ -766,6 +788,7 @@ namespace Yarn.Compiler
             base.ExitElse_if_clause(context);
         }
 
+        /// <inheritdoc />
         public override void ExitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context)
         {
             // The type of the expression must be convertible to the type of the
@@ -780,6 +803,7 @@ namespace Yarn.Compiler
             base.ExitSet_statement(context);
         }
 
+        /// <inheritdoc />
         public override void ExitValueFunc([NotNull] YarnSpinnerParser.ValueFuncContext context)
         {
             // ValueFunc is just a wrapper around a function call, so it just
@@ -788,6 +812,7 @@ namespace Yarn.Compiler
             base.ExitValueFunc(context);
         }
 
+        /// <inheritdoc />
         public override void ExitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context)
         {
             // If we already have a declaration for this function, then use
@@ -876,6 +901,7 @@ namespace Yarn.Compiler
             base.ExitFunction_call(context);
         }
 
+        /// <inheritdoc />
         public override void ExitLineCondition([NotNull] YarnSpinnerParser.LineConditionContext context)
         {
             if (context.expression() != null)
@@ -888,6 +914,7 @@ namespace Yarn.Compiler
             base.ExitLineCondition(context);
         }
 
+        /// <inheritdoc />
         public override void ExitLineOnceCondition([NotNull] YarnSpinnerParser.LineOnceConditionContext context)
         {
             if (context.expression() != null)
@@ -951,6 +978,7 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <inheritdoc />
         public override void ExitOnce_primary_clause([NotNull] YarnSpinnerParser.Once_primary_clauseContext context)
         {
             // If the once statement has an expression, it must be a boolean
@@ -980,6 +1008,7 @@ namespace Yarn.Compiler
             base.ExitOnce_primary_clause(context);
         }
 
+        /// <inheritdoc />
         public override void ExitJumpToExpression([NotNull] YarnSpinnerParser.JumpToExpressionContext context)
         {
             if (context.expression() != null)
@@ -996,6 +1025,7 @@ namespace Yarn.Compiler
             base.ExitJumpToExpression(context);
         }
 
+        /// <inheritdoc />
         public override void ExitEnum_statement([NotNull] YarnSpinnerParser.Enum_statementContext context)
         {
             // We've just finished walking an enum statement! We're almost ready
@@ -1221,6 +1251,7 @@ namespace Yarn.Compiler
             base.ExitEnum_statement(context);
         }
 
+        /// <inheritdoc />
         public override void ExitOnce_statement([NotNull] YarnSpinnerParser.Once_statementContext context)
         {
             YarnSpinnerParser.ExpressionContext? expressionContext = context.once_primary_clause()?.expression();
@@ -1237,6 +1268,7 @@ namespace Yarn.Compiler
             base.ExitOnce_statement(context);
         }
 
+        /// <inheritdoc />
         public override void ExitHeader_when_expression([NotNull] YarnSpinnerParser.Header_when_expressionContext context)
         {
             // A 'when' header contains either the keyword 'always' (indicating
@@ -1269,6 +1301,7 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <inheritdoc />
         public override void ExitStatement([NotNull] YarnSpinnerParser.StatementContext context)
         {
             this.CancellationToken.ThrowIfCancellationRequested();
@@ -1339,6 +1372,7 @@ namespace Yarn.Compiler
                 .ToList();
         }
 
+        /// <inheritdoc />
         public override void ExitDialogue([NotNull] YarnSpinnerParser.DialogueContext context)
         {
             if (typeEquations.Count > 0)

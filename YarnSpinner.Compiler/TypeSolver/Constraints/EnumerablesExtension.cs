@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #define DISALLOW_NULL_EQUATION_TERMS
 
 using System.Collections.Generic;

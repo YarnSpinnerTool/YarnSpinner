@@ -445,10 +445,12 @@ namespace Yarn.Compiler
             public string Message;
         }
 
+        /// <inheritdoc />
         public override void PushMode(int m)
         {
             base.PushMode(m);
         }
+        /// <inheritdoc />
         public override int PopMode()
         {
             return base.PopMode();

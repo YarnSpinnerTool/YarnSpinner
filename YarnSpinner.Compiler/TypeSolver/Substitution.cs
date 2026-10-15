@@ -1,10 +1,12 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 using System.Collections;
 using System.Collections.Generic;
 using Yarn;
 
 namespace TypeChecker
 {
-
     /// <summary>
     /// A substitution is a mapping between type variables and types (or other
     /// type variables). It is produced during the process of type resolution by

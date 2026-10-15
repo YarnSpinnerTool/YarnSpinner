@@ -317,7 +317,7 @@ namespace Yarn.Compiler
         /// <summary>
         /// Gets the default value of this <see cref="Declaration"/>, if no
         /// value has been specified in code or is available from a <see
-        /// cref="Dialogue"/>'s <see cref="IVariableStorage"/>.
+        /// cref="AsyncDialogue"/>'s <see cref="IVariableStorage"/>.
         /// </summary>
         public IConvertible? DefaultValue { get; internal set; }
 

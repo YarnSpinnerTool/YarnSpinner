@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #define DISALLOW_NULL_EQUATION_TERMS
 
 using System;
@@ -7,7 +10,10 @@ using Yarn;
 
 namespace TypeChecker
 {
-
+    /// <summary>
+    /// A <see cref="TypeConstraint"/> that represents a type with a member.
+    /// This is mostly used by Enum cases
+    /// </summary>
     internal class TypeHasMemberConstraint : TypeConstraint
     {
         public IType Type { get; private set; }

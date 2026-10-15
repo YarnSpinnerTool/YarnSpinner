@@ -1,5 +1,7 @@
-#define DISALLOW_NULL_EQUATION_TERMS
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
 
+#define DISALLOW_NULL_EQUATION_TERMS
 
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,9 @@ using Yarn;
 
 namespace TypeChecker
 {
-
+    /// <summary>
+    /// A <see cref="TypeConstraint"/> that represents an equality in an expression.
+    /// </summary>
     internal class TypeEqualityConstraint : TypeConstraint, IEquatable<TypeEqualityConstraint>
     {
         public IType Left { get; set; }

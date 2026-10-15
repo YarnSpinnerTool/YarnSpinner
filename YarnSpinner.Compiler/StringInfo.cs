@@ -100,6 +100,7 @@ namespace Yarn.Compiler
             }
         }
 
+        /// <inheritdoc />
         public bool Equals(StringInfo other)
         {
             return this.text == other.text
@@ -111,17 +112,22 @@ namespace Yarn.Compiler
 
         }
 
-        // override object.Equals
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
             return (obj is StringInfo otherStringInfo) && this.Equals(otherStringInfo);
         }
 
-
-        //     /// <inheritdoc/>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"{this.text} ({this.fileName}:{this.lineNumber})[Metadata:${string.Join(",", metadata)};Implicit:{isImplicitTag};ShadowLineID={shadowLineID}]";
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.text, this.nodeName, this.lineNumber, this.fileName, this.isImplicitTag, this.shadowLineID);
         }
     }
 }
