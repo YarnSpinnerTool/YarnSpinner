@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -12,9 +15,13 @@ using Yarn.HostAnalysis;
 
 namespace Yarn.Analyser
 {
+    /// <summary>
+    /// Provides diagnostics around the C# side of your yarn actions and also creates the YSLS file
+    /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class Analyser: DiagnosticAnalyzer
     {
+        /// <inheritdoc />
         public override void Initialize(AnalysisContext context)
         {
             // what are these and why did vscode say to add them?
@@ -310,7 +317,7 @@ namespace Yarn.Analyser
                     // checking that if the method is an instance method it is one we can return a value for
                     if (action.IsInstance)
                     {
-                        var containingType = Yarn.Shared.Action.isValidYarnableTypeForUnity(action.containingNamedType, converters, logger);
+                        var containingType = Yarn.Shared.Action.DetermineParameterTypeFromNamedTypeForUnity(action.containingNamedType, converters, logger);
                         if (containingType == ParameterTypes.UnityComponent || containingType == ParameterTypes.Converter)
                         {
                             logger.WriteLine($"containing type is a valid one");
@@ -655,6 +662,7 @@ namespace Yarn.Analyser
             }
         }
 
+        /// <inheritdoc />
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
         {
             get

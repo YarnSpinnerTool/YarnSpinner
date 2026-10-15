@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #nullable enable
 
 namespace Yarn.Analyser;
@@ -9,8 +12,20 @@ using Yarn.Shared;
 
 #pragma warning disable RS1035
 
-public class FileDebugWriter
+/// <summary>
+/// This class exists to provide a way to write the generated C# files to disk in a place they can be viewed.
+/// You almost certainly do not want or need this class.
+/// </summary>
+public static class FileDebugWriter
 {
+    /// <summary>
+    /// Writes the generated file to disk.
+    /// Technically just writes any provided string to disk...
+    /// You almost certainly do no want or need this method.
+    /// </summary>
+    /// <param name="input">contents of the file</param>
+    /// <param name="name">name of the file</param>
+    /// <param name="configuration">the config file that determins if it will or will not write the file to disk. Turning this on WILL fill your drive.</param>
     public static void WriteGeneratedFile(string input, string name, Yarn.HostAnalysis.AnalysisConfiguration configuration)
     {
         if (configuration.WriteDebugFiles)
@@ -21,8 +36,16 @@ public class FileDebugWriter
     }
 }
 
-public class EmergencyLogger
+/// <summary>
+/// Logs out a file with the contents of an exception encountered during source analysis and generation.
+/// You almost certainly do not want or need this class.
+/// </summary>
+public static class EmergencyLogger
 {
+    /// <summary>
+    /// Logs out the exception to disk.
+    /// You almost certainly do not want or need this method.
+    /// </summary>
     public static void ExceptionLog(Exception ex, string? message = null, bool fullEx = false)
     {
         var path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "yarn.sourcegen.logs", $"{Path.GetRandomFileName()}.exception.txt");
@@ -47,20 +70,26 @@ public class EmergencyLogger
     }
 }
 
-public class BetterLogger: ILogger
+/// <summary>
+/// Performs the most basic file logging during source analysis and generation.
+/// You almost certainly do not want or need this class.
+/// </summary>
+public class BasicFileLogger: ILogger
 {
     private int depth = 0;
-    private string path;
+    private readonly string path;
 
-    public BetterLogger()
+    public BasicFileLogger()
     {
         path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "yarn.sourcegen.logs", $"log.txt");
     }
 
-    public BetterLogger(string name)
+    public BasicFileLogger(string name)
     {
         path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "yarn.sourcegen.logs", $"log-{name}.txt");
     }
+    
+    /// <inheritdoc />
     public void WriteLine(object text)
     {
         using (StreamWriter writer = File.AppendText(path))
@@ -69,6 +98,7 @@ public class BetterLogger: ILogger
             writer.WriteLine(tabs + text);
         }
     }
+    /// <inheritdoc />
     public void WriteException(System.Exception ex, string? message = null)
     {
         using (StreamWriter writer = File.AppendText(path))
@@ -84,20 +114,31 @@ public class BetterLogger: ILogger
             }
         }
     }
+    /// <inheritdoc />
     public void Inc()
     {
-        depth +=1 ;
+        depth += 1;
     }
+    /// <inheritdoc />
     public void Dec()
     {
         depth = Math.Max(depth - 1, 0);
     }
-
-    public void Dispose() {}
 }
 
+/// <summary>
+/// Class for writing the YSLS JSON file to disk in the project setting directory.
+/// You almost certainly do not want or need this class.
+/// </summary>
 public class JSONWriter
 {
+    /// <summary>
+    /// Performs the actual writing of the provided JSON to the project settings folder
+    /// </summary>
+    /// <param name="assembly">the name of the current assembly. Each assembly gets its own YSLS file</param>
+    /// <param name="input">the contents of the json</param>
+    /// <param name="folder">the root folder of the unity project</param>
+    /// <param name="debugWrite">should a copy also be written to the debug location? This isn't really useful outside of developing the source analysers and generators.</param>
     public static void WriteJSON(string assembly, string input, string folder, bool debugWrite = false)
     {
         var path = System.IO.Path.Combine(folder, "ProjectSettings", "Packages", "dev.yarnspinner", $"{assembly}.generated.ysls.json");

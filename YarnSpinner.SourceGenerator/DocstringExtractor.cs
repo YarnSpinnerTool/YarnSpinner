@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 using System.Linq;
 using System.Xml.Linq;
 using Microsoft.CodeAnalysis;
@@ -11,8 +14,18 @@ using System.Collections.Generic;
 
 namespace Yarn.Analyser
 {
+    /// <summary>
+    /// Responsible for reading the documentation trivia attached to C# methods and returning it in a form that can then be more easily managed by other parts of the analyser
+    /// </summary>
     public static class DocstringExtractor
     {
+        /// <summary>
+        /// Attempts to read the docstrings from the target method and provide it as documentation payload for use in the YSLS generation.
+        /// </summary>
+        /// <param name="targetSymbol">The method whos docstrings we covet</param>
+        /// <param name="logger">Logger only used during development, will most likely be null</param>
+        /// <param name="documentation">the finalised form of the docstring</param>
+        /// <returns>true if the docstring was able to be found and recorded</returns>
         public static bool TryCreateDocumentation(IMethodSymbol targetSymbol, ILogger? logger, out DocumentationPayload documentation)
         {
             if (TryGetDocumentation(targetSymbol, logger, out var xml, out var summary))
@@ -57,6 +70,14 @@ namespace Yarn.Analyser
             return false;
         }
 
+        /// <summary>
+        /// Attempts to find and extract the XML docs from a method symbol
+        /// </summary>
+        /// <param name="targetSymbol">the method we want the docstrings from</param>
+        /// <param name="logger">logger to be used during debugging, will almost always be null</param>
+        /// <param name="documentationXML">the xml docstring</param>
+        /// <param name="summary">the value from the summary tag, as this most of the time is all you actually care about.</param>
+        /// <returns>True if it found the xml docstring</returns>
         public static bool TryGetDocumentation(IMethodSymbol targetSymbol, ILogger? logger, out XElement? documentationXML, out string? summary)
         {
             documentationXML = null;
@@ -143,7 +164,7 @@ namespace Yarn.Analyser
             }
         }
 
-        public static string? GetActionTrivia(MethodDeclarationSyntax method, ILogger? logger)
+        private static string? GetActionTrivia(MethodDeclarationSyntax method, ILogger? logger)
         {
             // The main string to use as the function's documentation.
             if (method.HasLeadingTrivia)

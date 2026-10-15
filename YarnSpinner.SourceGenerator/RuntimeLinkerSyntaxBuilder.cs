@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Analyser;
 
 #nullable enable
@@ -6,6 +9,10 @@ using System.Linq;
 using System.Collections.Generic;
 using Yarn.Shared;
 
+/// <summary>
+/// Creates the necessary code to find and register any runtime actions with Unity.
+/// This is essentially the otherside of registering actions, covering the situations (mostly private methods) that can't be done via compiletime invocation
+/// </summary>
 public class RuntimeLinkerSyntaxBuilder
 {
     private const string usings = """
@@ -15,6 +22,13 @@ public class RuntimeLinkerSyntaxBuilder
     using System.Reflection;
     """;
 
+    /// <summary>
+    /// Creates a valid C# string that registers all the actions provided as well as does the reflection necessary to actually have a reference to them.
+    /// </summary>
+    /// <param name="actions">the actions to be registered</param>
+    /// <param name="name">As each assembly gets its ownregistration file the assembly name is the only way we have to uniquely identify them</param>
+    /// <param name="version">The version of the generated file</param>
+    /// <returns></returns>
     internal static string? BuildSyntax(List<Action> actions, string name, string version)
     {
         // if we only have invalid actions we abort

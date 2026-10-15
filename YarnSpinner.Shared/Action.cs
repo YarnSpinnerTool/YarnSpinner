@@ -1,4 +1,7 @@
-﻿#nullable enable
+﻿// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
+#nullable enable
 
 namespace Yarn.Shared;
 
@@ -6,24 +9,67 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
+/// <summary>
+/// Provides a common interface to logging during source gen to support any different type of logger.
+/// Technically for the source gen system but I suppose anything can use it...
+/// </summary>
+/// <remarks>
+/// Logging is extremely intensive and will generate enormous logs very quickly due to the nature of how source generators and analysers work.
+/// You almost certainly do not need this interface, nor type conforming to it, and if you do beware here be dragons.
+/// </remarks>
 public interface ILogger
 {
+    /// <summary>
+    /// The standard "write a single line containing the value" of a logger.
+    /// </summary>
+    /// <remarks>
+    /// This line should be indented by the current depth of the logger
+    /// </remarks>
+    /// <param name="obj">The value to be written, will generally always be a string</param>
     void WriteLine(object obj);
+    
+    /// <summary>
+    /// Logs an exception encountered during
+    /// </summary>
+    /// <param name="ex">The exception to be logged</param>
+    /// <param name="message">An optional message to go along with it</param>
     void WriteException(System.Exception ex, string? message = null);
 
+    /// <summary>
+    /// Increment the current depth of the logger
+    /// </summary>
     void Inc();
+    /// <summary>
+    /// Decrement the current depth of the logger
+    /// </summary>
     void Dec();
 }
+
+/// <summary>
+/// The standard logger that is used when logging isn't necessary.
+/// This exists so that you don't have to null check every single instance of the logger.
+/// </summary>
+/// <remarks>
+/// You do not make your own instances of this but instead use the static <see cref="Default"/> instance.
+/// </remarks>
 public class NullLogger: ILogger
 {
     private NullLogger() {}
+    
+    /// <inheritdoc/>
     public void WriteLine(object obj){}
+    /// <inheritdoc/>
     public void WriteException(Exception ex, string? message = null){}
+    /// <inheritdoc/>
     public void Inc(){}
+    /// <inheritdoc/>
     public void Dec(){}
-    public void SetDepth(int depth){}
 
-    private static NullLogger defaultLogger = new NullLogger();
+    private static readonly NullLogger defaultLogger = new NullLogger();
+    
+    /// <summary>
+    /// The default and only instance of the logger, if you are using this class you want to use this
+    /// </summary>
     public static NullLogger Default
     {
         get
@@ -33,8 +79,32 @@ public class NullLogger: ILogger
     }
 }
 
+/// <summary>
+/// Represents the concept of a yarn action, so either a command or a function
+/// </summary>
 public record Action
 {
+    /// <summary>
+    /// Creates a new action representing a command or a function.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// Actions are a common shared type across numerous different parts of Yarn Spinner and it's not expected that you would be creating one yourself.
+    /// They are made by the source generator and analysers and used as part of the diagnostic system, the command and function invocation system, ysls generation, and compilation.
+    /// </para>
+    /// <para>
+    /// This class should be always kept in a form where it cache and comparison friendly as this type is a common output of a lot of other elements of the analysis pipeline which do caching.
+    /// Types contained within should always be either a basic type or a record basically.
+    /// </para>
+    /// </remarks>
+    /// <param name="Name">The name of the action itself. it's Yarn Name</param>
+    /// <param name="FullMethodName">The fully qualified name of the method that is being used to define this action</param>
+    /// <param name="ShortMethodName">A shorter convenience form of the full method name</param>
+    /// <param name="Type">Is the action a command or function?</param>
+    /// <param name="HasTarget">Is the action an instance action or not?</param>
+    /// <param name="ReturnType">What type the action returns</param>
+    /// <param name="Container">The type that the method lives within. This is necessary for other parts to verify and double check if the method can be called and how</param>
+    /// <param name="Parameters">The parameters of the action. The order of this array must reflect the order of both the yarn and c# side</param>
     public Action(string Name, string FullMethodName, string ShortMethodName, ActionType Type, bool HasTarget, ReturnType ReturnType, NamedType Container, Parameter[] Parameters)
     {
         this.Name = Name;
@@ -57,6 +127,11 @@ public record Action
     /// </summary>
     public ActionType Type { get; internal set; }
 
+    /// <summary>
+    /// What is the return type of the action.
+    /// </summary>
+    /// <remarks>
+    /// This is Yarn Normalised for lack of a better word, so a method that returns an int, and another that returns a float are both something that returns a <see cref="ReturnType.Number"/>
     public ReturnType Return { get; internal set; }
 
     /// <summary>
@@ -83,6 +158,10 @@ public record Action
     /// </summary>
     public DeclarationType DeclarationType { get; internal set; }
 
+    /// <summary>
+    /// An action is async if it returns an awaitable type.
+    /// In Unity coroutines and ienumerator are not async.
+    /// </summary>
     public bool IsAsync
     {
         get
@@ -95,10 +174,21 @@ public record Action
         }
     }
 
+    /// <summary>
+    /// The parameters of the action.
+    /// The order of this array must reflect the expected order of both the yarn and c# sides of the action.
+    /// </summary>
     public Parameter[] Parameters;
 
+    /// <summary>
+    /// The type that the method lives within.
+    /// This is necessary for other parts to verify and double check if the method can be called and how.
+    /// </summary>
     public NamedType containingNamedType;
 
+    /// <summary>
+    /// Convenience wrapper around <see cref="containingNamedType"/>
+    /// </summary>
     public string containingTypeFullName
     {
         get
@@ -106,6 +196,9 @@ public record Action
             return containingNamedType.fullyQualifiedType;
         }
     }
+    /// <summary>
+    /// Convenience wrapper around <see cref="containingNamedType"/>
+    /// </summary>
     public string containingTypeShortName
     {
         get
@@ -113,11 +206,30 @@ public record Action
             return containingNamedType.shortType;
         }
     }
-
-    // this returns the number of parameters that we should expect to see in the yarn itself
-    // understands that commands are always one more than functions due to the name of the command being part of the invocation itself
-    // also know that instance methods have an additional parameter which is the lookup of the target
-    // finally it handles the min and max changing if there are defaulted values or arrays
+    
+    /// <summary>
+    /// Calculates and returns the number of parameters that we should expect to see in the Yarn for this action.
+    /// </summary>
+    /// <remarks>
+    /// This property understands and handles:
+    /// <list type="bullet">
+        /// <item>
+        /// commands are always one parameter more than functions due to the name of the command being a part of the invocation.
+        /// </item>
+        /// 
+        /// <item>
+        /// instance methods have an additional parameter which is the lookup of the target of the action.
+        /// </item>
+        /// 
+        /// <item>
+        /// optional parameters and array parameters can change the minimum and maximum number of parameters to a minimum of 0 and maximum of 8196.
+        /// </item>
+        /// 
+        /// <item>
+        /// cancellation tokens aren't a parameter as far as yarn is concerned.
+        /// </item>
+    /// </list>
+    /// </remarks>
     public (int min, int max) NumberOfParameters
     {
         get
@@ -173,6 +285,10 @@ public record Action
             return (min, max);
         }
     }
+    
+    /// <summary>
+    /// Returns true if any parameter in the action has a default value
+    /// </summary>
     public bool HasDefaultParameters
     {
         get
@@ -187,6 +303,10 @@ public record Action
             return false;
         }
     }
+    
+    /// <summary>
+    /// Returns true if any parameter in the action is an array
+    /// </summary>
     public bool HasParameterArray
     {
         get
@@ -202,7 +322,19 @@ public record Action
         }
     }
 
-    public static ParameterTypes isValidYarnableTypeForUnity(NamedType namedType, IReadOnlyList<YarnConverter> converters, ILogger? logger = null)
+    /// <summary>
+    /// Given a named type and list of converters determines what type of parameter the named type is to be according to the needs of Unity.
+    /// </summary>
+    /// <remarks>
+    /// Each engine has their own specific quirks which means a parameter type that is perfectly fine for one engine may not be the case in another.
+    /// This method given a named type converts this into the Unity specific parameter form, or invalid if that isn't possible for this named type.
+    /// This is necessary because being able to detect something that is flagged as an action in code isn't the same thing as being able to bind it to an action in Yarn and then also be able to go the other way around.
+    /// </remarks>
+    /// <param name="namedType">The type to be converted and validated</param>
+    /// <param name="converters">The list of converters available to help determine the type</param>
+    /// <param name="logger">A logger, will almost certainly be null</param>
+    /// <returns>The type of the parameter of the named type depending on the whims and needs of Unity.</returns>
+    public static ParameterTypes DetermineParameterTypeFromNamedTypeForUnity(NamedType namedType, IReadOnlyList<YarnConverter> converters, ILogger? logger = null)
     {
         logger?.WriteLine($"Attempting to determine the specific type of {namedType.shortType}");
         switch (namedType.specialType)
@@ -260,6 +392,15 @@ public record Action
         return ParameterTypes.Invalid;
     }
 
+    
+    /// <summary>
+    /// Given a fully qualified type name finds the appropriate calling string of the converter for this type.
+    /// Essentially can be thought of as knows that for type Blah you need to call Blah.MakeBlah(input, output) and returns that method as a string so it can be used in the source generator.
+    /// </summary>
+    /// <param name="paramType">The fully qualified type name, it MUST be the fully qualified name!</param>
+    /// <param name="converters">The list of converters, one of which hopefully know about the type</param>
+    /// <param name="logger">The logger, will likely be null</param>
+    /// <returns>The string representation of a method call for the converter of the requested type, or null if it couldn't find one.</returns>
     public static string? ConverterCallingString(string paramType, IReadOnlyList<YarnConverter> converters, ILogger? logger)
     {
         logger?.WriteLine($"Checking {converters.Count} converters for {paramType}");
@@ -278,6 +419,9 @@ public record Action
         return null;
     }
 
+    /// <summary>
+    /// Returns a string of the appropriate usage of the action, understanding the parameters and the differences between calling a command or function in Yarn Spinner.
+    /// </summary>
     public string Usage
     {
         get
@@ -302,10 +446,24 @@ public record Action
         }
     }
 
-    // this should probably be beefed up to do more
-    // all it really checks is "do we have a finalised type for each parameter"
-    // but it should do a full check of everything
-    // it early outs at all stages so shouldn't hurt
+    /// <summary>
+    /// Attempts to validate if an action is valid.
+    /// This means all it's parameters and returns are of a type that is expected and possible to be called.
+    /// </summary>
+    /// <remarks>
+    /// This realistically should probably do more checking as all it currently does is validate that we have a finalised type for each parameter and the containing type is one that is possible to be constructed for instance methods.
+    /// This is mostly fine because other steps have done their own checking but it's probably worth having a single all encompassing validator.
+    /// A problem for later.
+    /// </remarks>
+    /// <param name="action">The action seeking validation</param>
+    /// <param name="converters">List of converters needed to validate any unknown parameters</param>
+    /// <param name="logger">The logger, most likely will be null</param>
+    /// <param name="isUnknownParameterInvalid">
+    /// If this is true an unknown parameter that doesn't eventually find a converter in the <see cref="converters"/> list will cause validation to fail.
+    /// If set to false the opposite is true, an unresolved param doesn't prevent validation.
+    /// This is needed because of runtime actions in Unity, we won't be able to guarantee they have a converter (because it might live in a different assembly) for them at compile time so have to trust that there will be one a runtime.
+    /// </param>
+    /// <returns>True if the action passed validation</returns>
     public static bool TryValidateAction(Action action, IReadOnlyList<YarnConverter> converters, ILogger? logger = null, bool isUnknownParameterInvalid = true)
     {
         logger?.WriteLine($"Validating {action.Name}");
@@ -380,7 +538,7 @@ public record Action
         }
         logger?.WriteLine($"Action is instance so needs a converter");
 
-        var actionType = Action.isValidYarnableTypeForUnity(action.containingNamedType, converters, logger);
+        var actionType = Action.DetermineParameterTypeFromNamedTypeForUnity(action.containingNamedType, converters, logger);
         if (actionType == ParameterTypes.UnityComponent || actionType == ParameterTypes.Converter)
         {
             logger?.WriteLine($"Found a converter for it");
@@ -392,22 +550,64 @@ public record Action
     }
 }
 
+/// <summary>
+/// Specific subtype of action that represents an action that is invalid.
+/// Why it is invalid could be to any number of reasons, but this action cannot be invoked.
+/// </summary>
 public record InvalidAction(string Name, ActionType Type): Action(Name, "invalid", "invalid", Type, false, ReturnType.Void, new NamedType(), []) { }
 
+/// <summary>
+/// Represents a more easily digestable form of the C# docstring.
+/// Intended to be used to populate the descriptions in ysls files
+/// </summary>
+/// <param name="summary">The value of the summary field in the docstring</param>
+/// <param name="retvrn">The value of the return field in the docstring</param>
+/// <param name="parameters">The value of the param field in the docstring, for each parameter</param>
 public record class DocumentationPayload(string? summary, string? retvrn, Dictionary<string, string>? parameters)
 {
+    /// <summary>
+    /// Convenience constructor for an empty or failed extraction docstring
+    /// </summary>
     public DocumentationPayload(): this(null, null, null) { }
 }
 
+/// <summary>
+/// Represents a simpler and more sourcegen cache friendly version of roslyns <see cref="INamedTypeSymbol"/>.
+/// This could be a lot more advanced but in practice we've seen this works well enough to give us the necessary functionality of the roslyn equivalent.
+/// </summary>
 public record NamedType
 {
-    // these represent different ways of looking at the type name
+    // these three represent different ways of looking at the type name
     // all kinda are the same thing but with different amounts of detail
-    public readonly string fullyQualifiedType;  // global::Yarn.Unity.LineCancellationToken
-    public readonly string shortType;           // LineCancellationToken
-    public readonly string longType;            // Yarn.Unity.LineCancellationToken
+
+    /// <summary>
+    /// the fully qualified name (so including the little global::) of the type.
+    /// So for a line cancellation token you'd expect to see <c>global::Yarn.Unity.LineCancellationToken</c> here
+    /// </summary>
+    public readonly string fullyQualifiedType;
+    
+    /// <summary>
+    /// The short form name of the type
+    /// So for a line cancellation token you'd expect to see <c>LineCancellationToken</c> here
+    /// </summary>
+    public readonly string shortType;
+    
+    /// <summary>
+    /// The long form name of the type, includes the namespace basically.
+    /// So for a line cancellation token you'd expect to see <c>Yarn.Unity.LineCancellationToken</c> here
+    /// </summary>
+    public readonly string longType;
+    
+    /// <summary>
+    /// The special type of this type, this is just a shorter and often more convenient way to filter a lot of types.
+    /// For basic types it will just be that type, for everything else (including tokens and enums and components) it will be other
+    /// </summary>
     public readonly YarnSpecialType specialType;
 
+    /// <summary>
+    /// From inside this layer we can't know if a type is actually a unity component type or not.
+    /// There are some tricks we could do to make an educated guess but its much easier to just be told by another layer with more insight
+    /// </summary>
     public readonly bool isUnityComponentType;
 
     public NamedType(string fullyQualifiedType, string shortType, string longType, YarnSpecialType specialType, bool isUnityComponentType)
@@ -429,6 +629,10 @@ public record NamedType
     }
 }
 
+/// <summary>
+/// Represents the types of actions we encounter while scanning code.
+/// Most of the time will be Command or Function
+/// </summary>
 public enum ActionType
 {
     /// <summary>
@@ -450,10 +654,15 @@ public enum ActionType
     NotAnAction,
 }
 
+/// <summary>
+/// A Yarn Normalised form of the allowed return types.
+/// In Yarn a function that returns a float or an int are effectively the same thing, they both return a number.
+/// This enum represents a simpler cutdown list of those types, additionally handles when
+/// </summary>
 public enum ReturnType
 {
     /// <summary>
-    /// 
+    /// Have been unable to determine this type of return
     /// </summary>
     Unknown,
 
@@ -512,25 +721,68 @@ public enum ReturnType
     AsyncBoolean,
 }
 
+/// <summary>
+/// Represents the type a parameter in an action can be.
+/// Is overly simplified and needs to go hand in hand with a <see cref="NamedType"/> to ge fully useful but there is loads of easier filtering that can be done with this simpler representation of a type.
+/// </summary>
 public enum ParameterTypes
 {
-    Unknown, // this represents the situation where we MAY be a converted type but are unsure at this stage
+    /// <summary>
+    /// represents the situation where we MAY be a converted type but are unsure at this stage
+    /// </summary>
+    Unknown,
+    
+    /// <summary>
+    /// The type is invalid to be a parameter
+    /// </summary>
     Invalid,
-    Basic, // I might need to change this into: string, number, token, etc etc
+
+    /// <summary>
+    /// The type is anything that boils down into a Yarn Number, Bool, or String.
+    /// </summary>
+    Basic,
+
+    /// <summary>
+    /// Is a cancellation token, could be a wombotoken or a regular one
+    /// </summary>
     Token,
+    
+    /// <summary>
+    /// Is a Unity GameObject
+    /// </summary>
     UnityGameObject,
+    
+    /// <summary>
+    /// Is a Unity component or subclass of one (such as MonoBehaviour)
+    /// </summary>
     UnityComponent,
+    
+    /// <summary>
+    /// Is a type that has a custom converter to handle it
+    /// </summary>
     Converter,
 }
 
+/// <summary>
+/// Represents the concept of a Yarn enum including it's backing type
+/// </summary>
+/// <param name="Name">The name of the enum (no it's cases)</param>
+/// <param name="Backing">The backing type of the enum, defaults to Int</param>
 public record YarnEnum(string Name, YarnEnum.BackingType Backing)
 {
+    /// <summary>
+    /// Unlike C# enums in Yarn can be numeric or string backed, and they have some slight differences depending on that
+    /// </summary>
     public enum BackingType
     {
         Int, String,
     }
 }
 
+/// <summary>
+/// Represents the way the action was registered.
+/// Necessary because there are some differences in diagnostics depending on how an action has been registered.
+/// </summary>
 public enum DeclarationType
 {
     /// <summary>
@@ -544,9 +796,23 @@ public enum DeclarationType
     DirectRegistration
 }
 
+/// <summary>
+/// Represents the concept of a yarn converter method, what type it supports and how to call it.
+/// </summary>
+/// <remarks>
+/// Because all converters have a fixed structure don't need to know the parameter names or types as these can be trivially derived.
+/// </remarks>
 public record YarnConverter
 {
+    /// <summary>
+    /// The fully qualified name of the type this converter supports
+    /// </summary>
     public string FullyQualifiedTypeName;
+    
+    /// <summary>
+    /// The string form of how you'd invoke this converter.
+    /// Because converters get called by the source generator knowing what actual characters to dump to disk is all oyu need
+    /// </summary>
     public string StaticCallingString;
 
     public YarnConverter(string FullyQualifiedTypeName, string StaticCallingString)
@@ -556,8 +822,15 @@ public record YarnConverter
     }
 }
 
+/// <summary>
+/// The Yarn source generator specific form of the Roslyn <see cref="SpecialType"/>.
+/// Has far less fields but we need less so it's fine.
+/// </summary>
 public enum YarnSpecialType
 {
+    /// <summary>
+    /// Handles everything else a type could be
+    /// </summary>
     Other,
     Boolean,
     SByte,

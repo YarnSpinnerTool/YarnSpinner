@@ -1,9 +1,19 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #nullable enable
 
 namespace Yarn.Shared;
 
+/// <summary>
+/// Represents a parameter that is a Unity Component subclass (often a MonoBehaviour).
+/// </summary>
+/// <remarks>
+/// These will always be found at runtime through a combination of a <c>Find</c> of the named game object and then a <c>GetComponentInChildren</c> call of the specific component subtype.
+/// </remarks>
 public record ComponentParameter(string Name, NamedType NamedType, bool IsArray, bool IsOut, bool HasDefaultValue, string? DefaultValueDisplay, bool IsNodeAttributed, string? AttributedEnumSubtype): Parameter(Name, IsArray, IsOut, HasDefaultValue, DefaultValueDisplay, IsNodeAttributed, AttributedEnumSubtype)
 {
+    /// <inheritdoc />
     public override string CreateFunctionParameterString(int parameterIndex, int arrayIndex)
     {
         string format;
@@ -49,6 +59,7 @@ public record ComponentParameter(string Name, NamedType NamedType, bool IsArray,
         return string.Format(format, parameterIndex, NamedType.shortType, arrayIndex);
     }
 
+    /// <inheritdoc />
     public override string CreateCommandParameterString(int parameterIndex, int arrayIndex)
     {
         string format;
@@ -94,5 +105,6 @@ public record ComponentParameter(string Name, NamedType NamedType, bool IsArray,
         return string.Format(format, parameterIndex, NamedType.shortType, arrayIndex);
     }
 
+    /// <inheritdoc />
     public override string ShortFormType => NamedType.shortType;
 }

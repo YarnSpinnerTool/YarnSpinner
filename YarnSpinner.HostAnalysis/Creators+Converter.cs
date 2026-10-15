@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #nullable enable
 
 namespace Yarn.HostAnalysis;
@@ -10,11 +13,24 @@ using Yarn.Shared;
 
 public static partial class Creators
 {
+    /// <summary>
+    /// Given a method symbol and a named type create a new Yarn Converter that can manage this.
+    /// Performs no validation so validation must be done externally.
+    /// </summary>
+    /// <param name="type">The type the converter supports</param>
+    /// <param name="method">The method symbol that is converter itself</param>
+    /// <returns>The new Yarn Converter</returns>
     public static YarnConverter ConverterFromMethodAndType(INamedTypeSymbol type, IMethodSymbol method)
     {
         return new YarnConverter(type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat), method.GetStaticCallingString());
     }
 
+    /// <summary>
+    /// Given a compilation will walk all methods inside all assemblies in that compilation and return any Yarn Converters it finds within those assemblies
+    /// </summary>
+    /// <param name="compilation">The compilation to explore for converters</param>
+    /// <param name="logger">The logger is only used during development</param>
+    /// <returns>A list of all yarn converter methods inside the compilation</returns>
     public static ImmutableArray<YarnConverter?> CollectAssemblyConverters(Compilation compilation, ILogger? logger = null)
     {
         logger ??= NullLogger.Default;

@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #nullable enable
 
 namespace Yarn.HostAnalysis;
@@ -9,21 +12,19 @@ using System.Collections.Immutable;
 using Yarn.Shared;
 
 public static partial class Creators
-{
-    // parameters need to be
-        // string
-        // numeric type
-        // boolean
-        // a cancellation token
-        // something we know how to convert
-    // parameter cannot be:
-        // an out
-        // null
-    // parameter can be:
-        // an array
-            // as long as it's the last parameter
-            // the array is made up of yarnable types
-        // a default valued type
+{    
+    /// <summary>
+    /// Given a collection of parameter symbols (from a method sybmol) will attempt to create the Parameter equivalents
+    /// </summary>
+    /// <param name="parameterSymbols">The collection of parameter symbols to convert into parameters</param>
+    /// <param name="methodName">The name of the method, used for diagnostics</param>
+    /// <param name="methodLocation">The location of the method, used for diagnostics</param>
+    /// <param name="configuration">The configuration for this, controls diagnostic severity</param>
+    /// <param name="parameters">The collection of the finalised parameters</param>
+    /// <param name="diagnostics">Any diagnostics encountered during creation</param>
+    /// <param name="earlyOut">If set encountering a warning or higher severity will abort parameter creation</param>
+    /// <param name="logger">The logger is used during development</param>
+    /// <returns>True if the creation of the parameters worked, false if an issue was encountered (or was early outed)</returns>
     public static bool TryCreateNewParameters(ImmutableArray<IParameterSymbol> parameterSymbols, string methodName, Location methodLocation, AnalysisConfiguration? configuration, out Parameter[] parameters, out List<Diagnostic> diagnostics, bool earlyOut = false, ILogger? logger = null)
     {
         parameters = new Parameter[parameterSymbols.Length];

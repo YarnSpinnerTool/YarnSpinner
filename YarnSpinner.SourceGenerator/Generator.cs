@@ -1,4 +1,7 @@
-﻿using Microsoft.CodeAnalysis;
+﻿// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
 using System.Collections.Generic;
@@ -11,6 +14,9 @@ using Yarn.HostAnalysis;
 
 namespace Yarn.Analyser
 {
+    /// <summary>
+    /// Source code generator that creates the various linking code for both the runtime and compiletime yarn actions detected in your C# projects
+    /// </summary>
     [Generator]
     public class Generator : IIncrementalGenerator
     {
@@ -23,14 +29,13 @@ namespace Yarn.Analyser
         // ---------
         // - anything attributed [Yarnconverter]
 
+        /// <inheritdoc />
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
             ILogger? logger = null;
 
             try
             {
-                // logger = new BetterLogger("generator");
-
                 // the two pieces everything uses are the assembly name
                 // and the configuration file
                 var configPair = context.CompilationProvider.Select(static (c, _) => c.AssemblyName).Combine(context.AnalyzerConfigOptionsProvider.Select(static (options, cancellationToken) => {return new AnalysisConfiguration(options.GlobalOptions);}));

@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #nullable enable
 
 namespace Yarn.HostAnalysis;
@@ -10,6 +13,11 @@ using Yarn.Shared;
 
 public static partial class Creators
 {
+    /// <summary>
+    /// Given a rosyln Named Type Symbol creates the Yarn Named Type equivalent
+    /// </summary>
+    /// <param name="namedTypeSymbol">the Roslyn named type symbol to convert</param>
+    /// <returns>The Yarn Named Type equivalent of Rosyln Named Type symbol</returns>
     public static NamedType YarnNamedType(this INamedTypeSymbol namedTypeSymbol)
     {
         var fullyQualifiedType = namedTypeSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
@@ -34,6 +42,16 @@ public static partial class Creators
         return new NamedType(fullyQualifiedType, shortType, longType, specialType, isUnityComponentType);
     }
 
+    /// <summary>
+    /// Given a roslyn type symbol will attempt to convert into the equivalent yarn return type.
+    /// </summary>
+    /// <remarks>
+    /// This is specific to Unity and follows the rules of return types so that Unity can make use of these actions.
+    /// Different engines will have different needs
+    /// </remarks>
+    /// <param name="returnType">The type symbol return type from a method</param>
+    /// <param name="logger">The logger is used during development</param>
+    /// <returns>If the type was one that is valid as a return will return the Yarn form of that, otherwise will return <see cref="ReturnType.Unknown"/> for all other situations</returns>
     public static ReturnType UnityReturnType(this ITypeSymbol returnType, ILogger? logger = null)
     {
         if (returnType.SpecialType == SpecialType.System_Void)
@@ -148,6 +166,11 @@ public static partial class Creators
         return ReturnType.Unknown;
     }
 
+    /// <summary>
+    /// Given a Rosyln Special Type converts it to the Yarn Special Type equivalent
+    /// </summary>
+    /// <param name="specialType">The Roslyn special type to convert</param>
+    /// <returns>The Yarn Special Type equivalent of the given Roslyn special type</returns>
     public static YarnSpecialType ToSpecialType(this SpecialType specialType)
     {
         return specialType switch

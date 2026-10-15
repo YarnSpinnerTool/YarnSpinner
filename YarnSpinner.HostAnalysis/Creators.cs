@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #nullable enable
 
 namespace Yarn.HostAnalysis;
@@ -8,19 +11,37 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using Yarn.Shared;
 
+/// <summary>
+/// A collection of useful methods for creating and validating actions, parameters, converters, and other elements necessary for completing source analysis
+/// </summary>
 public static partial class Creators
 {
+    /// <summary>
+    /// Creates and validates an action from a methodsymbol
+    /// </summary>
+    /// <param name="method">The method to convert and validate into an action</param>
+    /// <param name="yarnName">the name of the action in Yarn</param>
+    /// <param name="actionType">Is this a command or function because that alters the validation</param>
+    /// <param name="declarationType">Was it direct registerd via a method or registered via the attribute?</param>
+    /// <param name="configuration">The configuration file to adjust the analysis</param>
+    /// <param name="diagnostics">The list of any diagnostics encountered during creation</param>
+    /// <param name="earlyOut">If this is true then upon encountering a warning or higher diagnostic will abort creation</param>
+    /// <param name="isDelegateRegistered">Was the action registered via a delegate? This has some specific quirks around how we determine if a method is an instance method or not but often won't be something to think about</param>
+    /// <param name="nameLocation">
+        /// The location of where the yarn name of the method was set, necessary for diagnostics.
+        /// In case of a <c>[YarnCommand]</c> the nameLocation is null, it has no name.
+        /// In the case of <c>[YarnCommand("somename")]</c> is is the attribute.
+        /// In the case of <c>runner.AddCommand("somename", somemethod)</c> it is the first parameter.
+    /// </param>
+    /// <param name="invocationLocation">
+        /// The location of call itself, necessary for diagnostics.
+        /// In the case of <c>[YarnCommand]</c> it is null.
+        /// In the case <c>runner.AddCommand("somename", somemethod)</c> it is the second parameter.
+    /// </param>
+    /// <param name="logger">The logger will only be used during development</param>
+    /// <returns>a tuple of the action and it's validation state. If validation has failed the action will be an <see cref="InvalidAction"/> and it's values will be useless.</returns>
     public static (Action action, Validators.ActionValidation validation) ValidActionFromMethodSymbol(IMethodSymbol method, string yarnName, ActionType actionType, DeclarationType declarationType, AnalysisConfiguration? configuration, out List<Diagnostic> diagnostics, bool earlyOut, bool isDelegateRegistered, Location? nameLocation = null, Location? invocationLocation = null, ILogger? logger = null)
     {
-        // note to self:
-        // nameLocation is the location of the name
-            // so in case of a [YarnCommand] the nameLocation is null, it has no name
-            // in the case of [YarnCommand("somename")] is is the attribute
-            // in the case of runner.AddCommand("somename", somemethod) it is the first parameter
-        // invocationLocation is the location of the call itself
-            // so in the case of [YarnCommand] it is null
-            // in the case runner.AddCommand("somename", somemethod) it is the second parameter
-
         diagnostics = [];
 
         logger ??= NullLogger.Default;
@@ -110,17 +131,35 @@ public static partial class Creators
 
         return (new InvalidAction(yarnName, actionType), Validators.ActionValidation.FailedValidation);
     }
+    
+    /// <summary>
+    /// Creates and validates an action from a method symbol.
+    /// Similar to <see cref="ValidActionFromMethodSymbol"/> but does not return the validation information.
+    /// This may go away to be replaced by the <see cref="ValidActionFromMethodSymbol"/> in the future
+    /// </summary>
+    /// <param name="method">The method to convert and validate into an action</param>
+    /// <param name="yarnName">the name of the action in Yarn</param>
+    /// <param name="actionType">Is this a command or function because that alters the validation</param>
+    /// <param name="declarationType">Was it direct registerd via a method or registered via the attribute?</param>
+    /// <param name="configuration">The configuration file to adjust the analysis</param>
+    /// <param name="diagnostics">The list of any diagnostics encountered during creation</param>
+    /// <param name="earlyOut">If this is true then upon encountering a warning or higher diagnostic will abort creation</param>
+    /// <param name="isDelegateRegistered">Was the action registered via a delegate? This has some specific quirks around how we determine if a method is an instance method or not but often won't be something to think about</param>
+    /// <param name="nameLocation">
+        /// The location of where the yarn name of the method was set, necessary for diagnostics.
+        /// In case of a <c>[YarnCommand]</c> the nameLocation is null, it has no name.
+        /// In the case of <c>[YarnCommand("somename")]</c> is is the attribute.
+        /// In the case of <c>runner.AddCommand("somename", somemethod)</c> it is the first parameter.
+    /// </param>
+    /// <param name="invocationLocation">
+        /// The location of call itself, necessary for diagnostics.
+        /// In the case of <c>[YarnCommand]</c> it is null.
+        /// In the case <c>runner.AddCommand("somename", somemethod)</c> it is the second parameter.
+    /// </param>
+    /// <param name="logger">The logger will only be used during development</param>
+    /// <returns>The action if it validated or an InvalidAction if validation failed</returns>
     public static Action ActionFromMethodSymbol(IMethodSymbol method, string yarnName, ActionType actionType, DeclarationType declarationType, out List<Diagnostic> diagnostics, bool earlyOut, bool isDelegateRegistered, AnalysisConfiguration? configuration, Location? nameLocation = null, Location? invocationLocation = null, ILogger? logger = null)
-    {
-        // note to self:
-        // nameLocation is the location of the name
-            // so in case of a [YarnCommand] the nameLocation is null, it has no name
-            // in the case of [YarnCommand("somename")] is is the attribute
-            // in the case of runner.AddCommand("somename", somemethod) it is the first parameter
-        // invocationLocation is the location of the call itself
-            // so in the case of [YarnCommand] it is null
-            // in the case runner.AddCommand("somename", somemethod) it is the second parameter
-        
+    {        
         if (configuration == null)
         {
             configuration = new AnalysisConfiguration();

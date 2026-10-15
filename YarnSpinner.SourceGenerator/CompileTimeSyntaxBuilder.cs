@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Analyser;
 
 #nullable enable
@@ -7,6 +10,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Yarn.Shared;
 
+/// <summary>
+/// Responsible for the actual conversion from yarn actions into a valid C# file that can invoke them in Unity.
+/// </summary>
+/// <remarks>
+/// This is the compile time version of this feature.
+/// There is also a <see cref="RuntimeSyntaxBuilder"/> version that is functionally very similar but for the run time side of actions, those that can't be done at compile time.
+/// </remarks>
 public class CompileTimeSyntaxBuilder
 {
     private const string usings = """
@@ -41,6 +51,15 @@ public class CompileTimeSyntaxBuilder
     }}
     """;
 
+    /// <summary>
+    /// Creates the compile time C# generated class for invoking Yarn functions.
+    /// </summary>
+    /// <param name="name">The name of the assembly. As each assembly gets its own file this is the only way we have to uniquely name and identify the different generated classes</param>
+    /// <param name="version">the version of the generator</param>
+    /// <param name="functions">the list of all the actions identified and validated as functions</param>
+    /// <param name="converters">the list of all converters, which may or may not be needed</param>
+    /// <param name="logger">the logger of the source gen, only really useful during development</param>
+    /// <returns>Valid C# to use as a generated file, or null if an error was encountered</returns>
     public static string? BuildSyntaxStringForFunctions(string name, string version, ImmutableArray<Action> functions, ImmutableArray<YarnConverter> converters, ILogger? logger = null)
     {
         // run through every function and make sure we don't only have invalids
@@ -84,6 +103,15 @@ public class CompileTimeSyntaxBuilder
         return builder.ToString();
     }
 
+    /// <summary>
+    /// Creates the compile time C# generated class for invoking Yarn commands.
+    /// </summary>
+    /// <param name="name">The name of the assembly. As each assembly gets its own file this is the only way we have to uniquely name and identify the different generated classes</param>
+    /// <param name="version">the version of the generator</param>
+    /// <param name="commands">the list of all the actions identified and validated as commands</param>
+    /// <param name="converters">the list of all converters, which may or may not be needed</param>
+    /// <param name="logger">the logger of the source gen, only really useful during development</param>
+    /// <returns>Valid C# to use as a generated file, or null if an error was encountered</returns>
     public static string? BuildSyntaxStringForCommands(string name, string version, ImmutableArray<Action> commands, ImmutableArray<YarnConverter> converters, ILogger? logger = null)
     {
         // run through every function and make sure we don't only have invalids
@@ -214,7 +242,7 @@ public class CompileTimeSyntaxBuilder
                         {
                             // then we need to convert the first parameter of the command into it's appropriate form
                             // this is different depending on if it's a component or converted type
-                            var t = Action.isValidYarnableTypeForUnity(action.containingNamedType, converters, logger);
+                            var t = Action.DetermineParameterTypeFromNamedTypeForUnity(action.containingNamedType, converters, logger);
                             switch (t)
                             {
                                 case ParameterTypes.UnityComponent:
@@ -387,7 +415,7 @@ public class CompileTimeSyntaxBuilder
                         {
                             // then we need to convert the first parameter of the command into it's appropriate form
                             // this is different depending on if it's a component or converted type
-                            var t = Action.isValidYarnableTypeForUnity(action.containingNamedType, converters, logger);
+                            var t = Action.DetermineParameterTypeFromNamedTypeForUnity(action.containingNamedType, converters, logger);
                             switch (t)
                             {
                                 case ParameterTypes.UnityComponent:

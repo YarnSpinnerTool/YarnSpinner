@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #nullable enable
 
 namespace Yarn.Analyser;
@@ -8,10 +11,23 @@ using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 using Yarn.Shared;
 
+/// <summary>
+/// Collection of extensions and convenience methods for the source generator and analyser
+/// </summary>
 public static class GeneratorExtensions
 {
-    // System.IO.Path.GetRelativePath(projectRoot, SourceFileName); siiiiiiigh
-    // this is based on: https://stackoverflow.com/questions/275689/how-to-get-relative-path-from-absolute-path
+   
+    /// <summary>
+    /// gets the relative path of the file from the project root.
+    /// </summary>
+    /// <remarks>
+    /// is based on: https://stackoverflow.com/questions/275689/how-to-get-relative-path-from-absolute-path
+    /// only exists because we can't use System.IO.Path.GetRelativePath due to dotnet differences
+    /// </remarks>
+    /// <param name="projectRoot">path to the project root</param>
+    /// <param name="SourceFileName">the path to the file</param>
+    /// <returns>the relative path</returns>
+    /// <exception cref="ArgumentNullException">if they aren't paths or can't be rooted to one another</exception>
     public static string GetRelativePath(string projectRoot, string SourceFileName)
     {
         if (string.IsNullOrEmpty(projectRoot))
@@ -42,6 +58,16 @@ public static class GeneratorExtensions
         return relativePath;
     }
 
+    /// <summary>
+    /// Converts the action into a json serialised format suitable for saving into the ysls file
+    /// </summary>
+    /// <param name="action">the action to convert into ysls json</param>
+    /// <param name="location">where the action lives</param>
+    /// <param name="projectRoot">the root of the project, necessary for determining the relative location so we don't end up encoding whole paths which breaks when different people check in the ysls</param>
+    /// <param name="highSeverityDiagnosticCodes">The collection of high severity diagnostic codes, if this isn't empty the action is flagged as having errors</param>
+    /// <param name="lowSeverityDiagnosticCodes">The collection of low severity diagnostic codes</param>
+    /// <param name="payload">The associated documentation for this action</param>
+    /// <returns>The string form of the json of this action</returns>
     public static string ToJSON(this Yarn.Shared.Action action, Location location, string? projectRoot, HashSet<string>? highSeverityDiagnosticCodes, HashSet<string>? lowSeverityDiagnosticCodes, DocumentationPayload? payload)
     {
         var result = new Dictionary<string, object?>();

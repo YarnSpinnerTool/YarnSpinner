@@ -1,15 +1,19 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #nullable enable
 
 namespace Yarn.HostAnalysis;
 
-using System;
-using System.Linq;
-using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
-using Yarn.Shared;
 
 public static class HostAnalysisExtensions
 {
+    /// <summary>
+    /// Given a roslyn method symbol returns a string form that is how you would invoke it in C#
+    /// </summary>
+    /// <param name="symbol">The method you want the string invocation from</param>
+    /// <returns>the C# string form of invoking the method</returns>
     public static string GetStaticCallingString(this IMethodSymbol symbol)
     {
         var format = new SymbolDisplayFormat(
@@ -20,37 +24,5 @@ public static class HostAnalysisExtensions
             miscellaneousOptions: SymbolDisplayMiscellaneousOptions.UseSpecialTypes
         );
         return symbol.ToDisplayString(format);
-    }
-
-    // System.IO.Path.GetRelativePath(projectRoot, SourceFileName); siiiiiiigh
-    // this is based on: https://stackoverflow.com/questions/275689/how-to-get-relative-path-from-absolute-path
-    public static string GetRelativePath(string projectRoot, string SourceFileName)
-    {
-        if (string.IsNullOrEmpty(projectRoot))
-        {
-            throw new ArgumentNullException("root is null");
-        }
-        if (string.IsNullOrEmpty(SourceFileName))
-        {
-            throw new ArgumentNullException("absolute is null");
-        }
-
-        Uri from = new Uri(projectRoot);
-        Uri to = new Uri(SourceFileName);
-
-        if (from.Scheme != to.Scheme)
-        {
-            return SourceFileName;
-        }
-
-        Uri relativeUri = from.MakeRelativeUri(to);
-        string relativePath = Uri.UnescapeDataString(relativeUri.ToString());
-
-        if (to.Scheme.Equals("file", StringComparison.InvariantCultureIgnoreCase))
-        {
-            relativePath = relativePath.Replace(System.IO.Path.AltDirectorySeparatorChar, System.IO.Path.DirectorySeparatorChar);
-        }
-
-        return relativePath;
     }
 }

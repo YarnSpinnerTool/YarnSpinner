@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #nullable enable
 
 namespace Yarn.HostAnalysis
@@ -6,10 +9,60 @@ namespace Yarn.HostAnalysis
     using System.Linq;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Represents a config bundle for the source analyser and generator to make use of.
+    /// Currently has very limited functionality and is primarily for development but may be of use to some advanced users.
+    /// </summary>
+    /// <remarks>
+    /// To make use of this in Unity create a new file called <c>Default.globalconfig</c> in the root of the Assets folder.
+    /// The name and location of this file are not optional!
+    /// This file is an ini file and you can set various keys to control how the source generator and analyser work.
+    /// <para>
+    /// <c>ys.should_write_debug_files</c> will make it so the generated C# files are also written to disk in the temp folder.
+    /// You will have had to make the temporary folder first and it's location will change on an OS by OS basis.
+    /// </para>
+    /// <para>
+    /// <c>ys.should_skip_source_gen</c> will make it so source generation is skipped entirely.
+    /// This is probably not something you want to do...
+    /// </para>
+    /// <para>
+    /// <c>ys.should_skip_ysls_gen</c> will make it so YSLS generation is skipped.
+    /// This is probably not something you want to do...
+    /// </para>
+    /// <para>
+    /// <c>ys.severity.id</c> Allows you to raise or lower the severity of a diagnostic.
+    /// The id must be the replaced with the id of one of the <see cref="ActionDiagnostics"/> defined diagnostic codes.
+    /// Allowed values (in order of severity) are:
+    /// <list type="bullet">
+        /// <item>
+        /// Hidden
+        /// </item>
+        /// <item>
+        /// Info
+        /// </item>
+        /// <item>
+        /// Warning
+        /// </item>
+        /// <item>
+        /// Error
+        /// </item>
+    /// </list>
+    /// These values are case sensitive!
+    /// </para>
+    /// </remarks>
+    /// <param name="SkipSourceGeneration">Should source generation be skipped entirely?</param>
+    /// <param name="SkipYSLSGeneration"></param>
+    /// <param name="WriteDebugFiles"></param>
     public record class AnalysisConfiguration(bool SkipSourceGeneration, bool SkipYSLSGeneration, bool WriteDebugFiles)
     {
+        /// <inheritdoc cref="AnalysisConfiguration(Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions)"/>
         public AnalysisConfiguration(): this(false, false, false) { }
 
+        /// <summary>
+        /// Creates a new configuration record from a roslyn analyser configuration.
+        /// This is the way to make these because the config file made in Unity will be automatically provided without needing to hook up and additional file pipeline.
+        /// </summary>
+        /// <param name="options"></param>
         public AnalysisConfiguration(Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions options): this(false, false, false)
         {
             if (options.TryGetValue("ys.should_write_debug_files", out var value))
@@ -97,6 +150,10 @@ namespace Yarn.HostAnalysis
         {
             "YarnSpinner.Unity",
             "YarnSpinner.Editor",
+            "Unity.",
+            "UnityEditor.",
+            "UnityEngine.",
+            "UniTask",
         };
         // But DO generate source code for the Samples assembly
         private static readonly string[] prefixesToKeep = 

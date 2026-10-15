@@ -1,9 +1,16 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #nullable enable
 
 namespace Yarn.Shared;
 
+/// <summary>
+/// Represents a parameter that is one of the basic types, so string, numbers, bools.
+/// </summary>
 public record BasicParameter(string Name, YarnSpecialType SpecialType, bool IsArray, bool IsOut, bool HasDefaultValue, string? DefaultValueDisplay, bool IsNodeAttributed, string? AttributedEnumSubtype): Parameter(Name, IsArray, IsOut, HasDefaultValue, DefaultValueDisplay, IsNodeAttributed, AttributedEnumSubtype)
 {
+    /// <inheritdoc />
     public override string CreateFunctionParameterString(int parameterIndex, int arrayIndex)
     {
         if (!IsArray)
@@ -60,6 +67,7 @@ public record BasicParameter(string Name, YarnSpecialType SpecialType, bool IsAr
         }
     }
 
+    /// <inheritdoc />
     public override string CreateCommandParameterString(int parameterIndex, int arrayIndex)
     {
         if (!IsArray)
@@ -225,6 +233,7 @@ public record BasicParameter(string Name, YarnSpecialType SpecialType, bool IsAr
         return string.Format(tail, top, type, arrayIndex);
     }
 
+    /// <inheritdoc />
     public override string ShortFormType
     {
         get
