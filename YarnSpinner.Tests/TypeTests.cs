@@ -430,7 +430,7 @@ namespace YarnSpinner.Tests
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
             CompilationJob compilationJob = CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations);
 
-            compilationJob.VariableDeclarations = new[] {
+            compilationJob.Declarations = new[] {
                 new Declaration {
                     Name = "$external_str",
                     Type = Types.String,

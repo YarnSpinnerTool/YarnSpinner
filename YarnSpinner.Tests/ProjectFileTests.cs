@@ -117,6 +117,7 @@ namespace YarnSpinner.Tests
             project.SaveToFile(path);
             var newProject = Yarn.Compiler.Project.LoadFromFile(path);
 
+#pragma warning disable CS0618
             // Then
             newProject.Should().BeEquivalentTo(
                 project,
@@ -125,8 +126,8 @@ namespace YarnSpinner.Tests
                     .Excluding(o => o.SourceFiles) // source files will be different (because paths are different)
                     .Excluding(o => o.DefinitionsFiles) // path is different
                     .Excluding(o => o.DefinitionsPath) // path is different
-                    .Excluding(o => o.Definitions) // path is different
             );
+#pragma warning restore CS0618
         }
 
         [Fact]

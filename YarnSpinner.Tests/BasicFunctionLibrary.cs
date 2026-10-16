@@ -15,7 +15,9 @@ namespace YarnSpinner.Tests
     using System.Threading;
     using System.Threading.Tasks;
     using Yarn;
-    
+
+#nullable enable
+
     public class BasicFunctionLibrary
     {
         internal Dictionary<string, (FunctionType definition, Delegate implementation)> functions = new();
@@ -85,11 +87,19 @@ namespace YarnSpinner.Tests
 
                     if (isLastParamArray)
                     {
+                        var elementType = paramInfo.ParameterType.GetElementType();
+                        if (elementType is null)
+                        {
+                            types = Array.Empty<System.Type>();
+                            isVariadic = false;
+                            return false;
+                        }
+
                         // This is a params array. Is the type of the array valid?
-                        if (Types.TypeMappings.TryGetValue(paramInfo.ParameterType.GetElementType(), out _))
+                        if (Types.TypeMappings.TryGetValue(elementType, out _))
                         {
                             isVariadic = true;
-                            parameterTypes[i] = paramInfo.ParameterType.GetElementType();
+                            parameterTypes[i] = elementType;
                         }
                         else
                         {
@@ -185,8 +195,9 @@ namespace YarnSpinner.Tests
 
                     if (isLastParamArray)
                     {
+                        var elementType = paramInfo.ParameterType.GetElementType();
                         // This is a params array. Is the type of the array valid?
-                        if (Types.TypeMappings.TryGetValue(paramInfo.ParameterType.GetElementType(), out var yarnParamsElementType))
+                        if (elementType != null && Types.TypeMappings.TryGetValue(elementType, out var yarnParamsElementType))
                         {
                             functionType.VariadicParameterType = yarnParamsElementType;
                         }
@@ -452,7 +463,12 @@ namespace YarnSpinner.Tests
             // we just immediately run the function and return that, no need to wait around
             if (Types.TypeMappings.TryGetValue(returnType, out _))
             {
-                return func.DynamicInvoke(parameters);
+                var retvrn = func.DynamicInvoke(parameters);
+                if (retvrn is not null)
+                {
+                    return retvrn;
+                }
+                throw new System.InvalidOperationException($"Internal error: Functions are required to return a Yarn value but {functionName} returned null");
             }
 
             // ok so we aren't a basic type

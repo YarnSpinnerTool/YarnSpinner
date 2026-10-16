@@ -11,7 +11,7 @@ namespace Yarn.Saliency
     /// item in the list of available options.
     /// </summary>
     /// <remarks>
-    /// This saliency strategy is used when a <see cref="Dialogue"/> has no
+    /// This saliency strategy is used when a <see cref="AsyncDialogue"/> has no
     /// provided saliency strategy, but is required to make a decision.
     /// </remarks>
     public class FirstSaliencyStrategy : IContentSaliencyStrategy

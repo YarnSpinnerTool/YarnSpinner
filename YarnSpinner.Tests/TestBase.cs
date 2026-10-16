@@ -207,7 +207,7 @@ namespace YarnSpinner.Tests
             moments.Should().BeEmpty();
         }
 
-        protected new async Task RunTestPlan(CompilationResult compilationResult, TestPlan plan)
+        protected async Task RunTestPlan(CompilationResult compilationResult, TestPlan plan)
         {
             compilationResult.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
 
@@ -218,7 +218,7 @@ namespace YarnSpinner.Tests
             await RunStandardTestcase();
         }
 
-        protected new async System.Threading.Tasks.Task RunStandardTestcase()
+        protected async System.Threading.Tasks.Task RunStandardTestcase()
         {
             if (testPlan == null)
             {

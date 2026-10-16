@@ -85,7 +85,7 @@ namespace Yarn.Saliency
         /// this option is selected.
         /// </summary>
         /// <remarks>This property is internal to Yarn Spinner, and is used by
-        /// the <see cref="VirtualMachine"/> class.</remarks>
+        /// the <see cref="AsyncVirtualMachine"/> class.</remarks>
         internal int Destination { get; set; }
     }
 }

@@ -14,6 +14,7 @@ using Xunit.Abstractions;
 using Yarn;
 using Yarn.Compiler;
 
+#nullable enable
 namespace YarnSpinner.Tests
 {
     public class LanguageTests : AsyncTestBase
@@ -111,48 +112,48 @@ namespace YarnSpinner.Tests
 
             foreach (var tag in new[] { "one", "two", "three" })
             {
-                result.Program.Nodes["Tags"].Tags.Should().Contain(tag);
+                result.Program?.Nodes["Tags"].Tags.Should().Contain(tag);
             }
 
-            var headers = new Dictionary<string, List<(string, string)>>
+            var headers = new Dictionary<string, List<(string, string?)>>
             {
                 {
                     "EmptyTags",
-                    new List<(string, string)>{
+                    new List<(string, string?)>{
                         ("title","EmptyTags"),
                         ("tags", null)
                     }
                 },
                 {
                     "ArbitraryHeaderWithValue",
-                    new List<(string, string)>{
+                    new List<(string, string?)>{
                         ("title", "ArbitraryHeaderWithValue"),
                         ("arbitraryheader", "some-arbitrary-text")
                     }
                 },
                 {
                     "Tags",
-                    new List<(string, string)>{
+                    new List<(string, string?)>{
                         ("title", "Tags"),
                         ("tags","one two three")
                     }
                 },
                 {
                     "SingleTagOnly",
-                    new List<(string, string)>{
+                    new List<(string, string?)>{
                         ("title", "SingleTagOnly")
                     }
                 },
                 {
                     "Comments",
-                    new List<(string, string)>{
+                    new List<(string, string?)>{
                         ("title", "Comments"),
                         ("tags", "one two three")
                     }
                 },
                 {
                     "LotsOfHeaders",
-                    new List<(string, string)>{
+                    new List<(string, string?)>{
                         ("contains", "lots"),
                         ("title", "LotsOfHeaders"),
                         ("this", "node"),
@@ -166,7 +167,7 @@ namespace YarnSpinner.Tests
                 },
                 {
                     "HeaderWith.Comments",
-                    new List<(string, string)>{
+                    new List<(string, string?)>{
                         ("title", "HeaderWith.Comments"),
                         ("subtitle", "Comments"),
                         ("another", "header"),
@@ -177,26 +178,31 @@ namespace YarnSpinner.Tests
 
             // because we are using node groups it is gonna synthesise some nodes we don't care about
             // so all we need to do is make sure we have at least as many node as our test cases
-            headers.Count.Should().BeLessThanOrEqualTo(result.Program.Nodes.Count);
-            foreach (var pair in headers)
+            headers.Count.Should().BeLessThanOrEqualTo(result.Program?.Nodes.Count ?? -1);
+            
+            result.Program.Should().NotBeNull();
+            if (result.Program != null)
             {
-                // we want to ignore any headers that start with $Yarn.Internal, they are added by us and shouldn't be something to test for
-                var testingHeaders = result.Program.Nodes[pair.Key].Headers.Where(h => !h.Key.StartsWith("$Yarn.Internal"));
-                testingHeaders.Count().Should().Be(pair.Value.Count);
-
-                // go through each item in the headers and ensure they are in the header list
-                foreach (var header in testingHeaders)
+                foreach (var pair in headers)
                 {
-                    var match = pair.Value.First(t => t.Item1.Equals(header.Key));
-                    match.Item1.Should().Be(header.Key);
+                    // we want to ignore any headers that start with $Yarn.Internal, they are added by us and shouldn't be something to test for
+                    var testingHeaders = result.Program.Nodes[pair.Key].Headers.Where(h => !h.Key.StartsWith("$Yarn.Internal"));
+                    testingHeaders.Count().Should().Be(pair.Value.Count);
 
-                    if (match.Item2 == null)
+                    // go through each item in the headers and ensure they are in the header list
+                    foreach (var header in testingHeaders)
                     {
-                        header.Value.Should().BeNullOrEmpty();
-                    }
-                    else
-                    {
-                        match.Item2.Should().Be(header.Value.Trim());
+                        var match = pair.Value.First(t => t.Item1.Equals(header.Key));
+                        match.Item1.Should().Be(header.Key);
+
+                        if (match.Item2 == null)
+                        {
+                            header.Value.Should().BeNullOrEmpty();
+                        }
+                        else
+                        {
+                            match.Item2.Should().Be(header.Value.Trim());
+                        }
                     }
                 }
             }
@@ -361,7 +367,8 @@ title: Start
 
             var invariantDiagnostics = invariantResult.Diagnostics.Select(d => d.ToString());
             var invariantProgram = invariantResult.Program;
-            var invariantStringTable = invariantResult.StringTable.Values.Select(s => s.ToString());
+            
+            var invariantStringTable = invariantResult?.StringTable?.Values.Select(s => s.ToString());
             var invariantParseTree = FormatParseTreeAsText(invariantParseResult.Tree);
 
             foreach (var cultureName in targetCultures)
@@ -378,14 +385,13 @@ title: Start
 
                 var targetDiagnostics = targetResult.Diagnostics.Select(d => d.ToString());
                 var targetProgram = targetResult.Program;
-                var targetStringTable = targetResult.StringTable.Values.Select(s => s.ToString());
+                var targetStringTable = targetResult?.StringTable?.Values.Select(s => s.ToString());
                 var targetParseTree = FormatParseTreeAsText(targetParseResult.Tree);
 
                 targetParseTree.Should().Be(invariantParseTree);
                 targetDiagnostics.Should().ContainInOrder(invariantDiagnostics);
                 targetProgram.Should().Be(invariantProgram);
                 targetStringTable.Should().ContainInOrder(invariantStringTable);
-
             }
 
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
@@ -495,20 +501,27 @@ title: Start
 
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
 
-            result.Program.Nodes.Should().NotBeEmpty();
-
-            foreach (var (nodeName, node) in result.Program.Nodes)
+            result.Program.Should().NotBeNull();
+            if (result.Program is not null)
             {
-                var debugInfo = result.ProjectDebugInfo.GetNodeDebugInfo(nodeName);
-                debugInfo.Should().NotBeNull();
-                var blocks = node.GetBasicBlocks(debugInfo);
-                blocks.Should().NotBeEmpty();
+                result.Program.Nodes.Should().NotBeEmpty();
 
-                foreach (var block in blocks)
+                foreach (var (nodeName, node) in result.Program.Nodes)
                 {
-                    block.Instructions.Should().NotBeEmpty();
-                    block.Node.Should().Be(node);
-                    block.ToString().Should().NotBeNullOrWhiteSpace();
+                    var debugInfo = result.ProjectDebugInfo?.GetNodeDebugInfo(nodeName);
+                    debugInfo.Should().NotBeNull();
+                    if (debugInfo is not null)
+                    {
+                        var blocks = node.GetBasicBlocks(debugInfo);
+                        blocks.Should().NotBeEmpty();
+
+                        foreach (var block in blocks)
+                        {
+                            block.Instructions.Should().NotBeEmpty();
+                            block.Node.Should().Be(node);
+                            block.ToString().Should().NotBeNullOrWhiteSpace();
+                        }
+                    }
                 }
             }
         }
@@ -538,7 +551,7 @@ Line 2
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
 
             // When
-            var blocks = result.Program!.Nodes["NodeA"].GetBasicBlocks(result.ProjectDebugInfo.GetNodeDebugInfo("NodeA"));
+            var blocks = result.Program!.Nodes["NodeA"].GetBasicBlocks(result.ProjectDebugInfo!.GetNodeDebugInfo("NodeA")!);
 
             // Then
             blocks.Should().HaveCount(2);
@@ -548,7 +561,7 @@ Line 2
 
             destination.NodeName.Should().Be("NodeB", "the first block detours to NodeB");
             destination.ReturnTo.Should().NotBeNull("the first block is a detour");
-            destination.ReturnTo.NodeName.Should().Be("NodeA", "after detouring, the first block resumes in NodeA");
+            destination.ReturnTo!.NodeName.Should().Be("NodeA", "after detouring, the first block resumes in NodeA");
         }
 
         [Fact]
@@ -659,12 +672,12 @@ some_other_header2: $b + func_call(42, ""wow"")
 
             var textHeader1 = node.GetHeader("some_other_header1");
             textHeader1.Should().NotBeNull();
-            textHeader1.header_value.Should().NotBeNull();
+            textHeader1!.header_value.Should().NotBeNull();
             textHeader1.header_value.Text.Should().Be("$a");
 
             var textHeader2 = node.GetHeader("some_other_header2");
             textHeader2.Should().NotBeNull();
-            textHeader2.header_value.Should().NotBeNull();
+            textHeader2!.header_value.Should().NotBeNull();
             textHeader2.header_value.Text.Should().Be("$b + func_call(42, \"wow\")");
 
             var whenHeaders = node.GetWhenHeaders();
@@ -801,7 +814,8 @@ Line in a node group
             var result = Compiler.Compile(compilationJob);
 
             // Then
-            result.ProjectDebugInfo.Nodes.Should().HaveCount(6);
+            result.ProjectDebugInfo.Should().NotBeNull();
+            result.ProjectDebugInfo!.Nodes.Should().HaveCount(6);
 
             var nodeAInfo = result.ProjectDebugInfo.GetNodeDebugInfo("NodeA");
             var nodeBInfo = result.ProjectDebugInfo.GetNodeDebugInfo("NodeB");
@@ -817,19 +831,20 @@ Line in a node group
             nodeGroupItem.Should().NotBeNull();
             nodeGroupItemCondition.Should().NotBeNull();
 
-            new[] { nodeAInfo, nodeBInfo, smartVarInfo }.Should().AllSatisfy(i => i.FileName.Should().Be("input"));
-            nodeAInfo.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(0, 0, 5, 2));
-            nodeBInfo.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(6, 0, 9, 2));
-            smartVarInfo.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(4, 22, 4, 25),
+            new[] { nodeAInfo, nodeBInfo, smartVarInfo }.Should().AllSatisfy(i => i!.FileName.Should().Be("input"));
+
+            nodeAInfo!.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(0, 0, 5, 2));
+            nodeBInfo!.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(6, 0, 9, 2));
+            smartVarInfo!.Range.Should().BeEquivalentTo<Yarn.Compiler.Range>(new(4, 22, 4, 25),
                 "the position of the smart variable 'node' is defined by the expression");
 
             nodeAInfo.IsImplicit.Should().BeFalse();
             nodeBInfo.IsImplicit.Should().BeFalse();
             smartVarInfo.IsImplicit.Should().BeTrue();
 
-            nodeGroupHub.IsImplicit.Should().BeTrue("node group hubs are created by the compiler and do not appear in the input source code");
-            nodeGroupItem.IsImplicit.Should().BeFalse("nodes in a node group are present in the input source code");
-            nodeGroupItemCondition.IsImplicit.Should().BeTrue("node group condition smart variables are created by the compiler");
+            nodeGroupHub!.IsImplicit.Should().BeTrue("node group hubs are created by the compiler and do not appear in the input source code");
+            nodeGroupItem!.IsImplicit.Should().BeFalse("nodes in a node group are present in the input source code");
+            nodeGroupItemCondition!.IsImplicit.Should().BeTrue("node group condition smart variables are created by the compiler");
         }
 
         [Theory]
@@ -921,7 +936,7 @@ Line in a node group
             var fileContents = File.ReadAllText(scriptFilePath);
             var nodeInfos = BasicNodeParser.GetBasicNodeInfos(fileContents, scriptFilePath).ToList();
 
-            nodeInfos.Should().AllSatisfy(n => fullCompilationResult.Program.Nodes.Keys.Should().Contain(n.Title), "every node found by the fast parse should exist in the full parse");
+            nodeInfos.Should().AllSatisfy(n => fullCompilationResult?.Program?.Nodes.Keys.Should().Contain(n.Title), "every node found by the fast parse should exist in the full parse");
         }
 
         [Fact]
@@ -1193,10 +1208,11 @@ Shelley: hmph apropos hmph
                 }).ToArray();
 
                 var title = headers.FirstOrDefault(h => h.Key == "title").Value;
+                title.Should().NotBeNull();
                 var subtitle = headers.FirstOrDefault(h => h.Key == "subtitle").Value;
                 var hasWhenHeaders = headers.Any(h => h.Key == "when");
 
-                var uniqueTitle = hasWhenHeaders ? Utility.GetNodeUniqueName(inputName, title, subtitle, headerStartPosition.line + 1) : title;
+                var uniqueTitle = hasWhenHeaders ? Utility.GetNodeUniqueName(inputName, title!, subtitle, headerStartPosition.line + 1) : title;
 
                 var node = new BasicNodeInfo
                 {
