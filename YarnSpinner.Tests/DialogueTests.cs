@@ -40,58 +40,6 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestAnalysis()
-        {
-            ICollection<Yarn.Analysis.Diagnosis> diagnoses;
-            Yarn.Analysis.Context context;
-
-            // this script has the following variables:
-            // $foo is read from and written to
-            // $bar is written to but never read
-            // this means that there should be one diagnosis result
-            context = new Yarn.Analysis.Context(typeof(Yarn.Analysis.UnusedVariableChecker));
-
-            var path = Path.Combine(TestDataPath, "AnalysisTest.yarn");
-
-            CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
-            compilationJob.Declarations = testBaseResponder.Declarations;
-
-            var result = Compiler.Compile(compilationJob);
-
-            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
-
-            stringTable = result.StringTable;
-
-            dialogue.Program = result.Program;
-            dialogue.Analyse(context);
-            diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis());
-
-            diagnoses.Count.Should().Be(1);
-            diagnoses.First().message.Should().Contain("Variable $bar is assigned, but never read from");
-
-            dialogue.UnloadAll();
-
-            context = new Yarn.Analysis.Context(typeof(Yarn.Analysis.UnusedVariableChecker));
-
-            var job = CompilationJob.CreateFromFiles(new[] {
-                Path.Combine(SpaceDemoScriptsPath, "Ship.yarn"),
-                Path.Combine(SpaceDemoScriptsPath, "Sally.yarn"),
-            });
-            job.Declarations = testBaseResponder.Declarations;
-            result = Compiler.Compile(job);
-
-            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
-
-            dialogue.Program = result.Program;
-
-            dialogue.Analyse(context);
-            diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis());
-
-            // This script should contain no unused variables
-            diagnoses.Should().BeEmpty();
-        }
-
-        [Fact]
         public void TestDumpingCode()
         {
 

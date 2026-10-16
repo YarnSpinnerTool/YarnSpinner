@@ -1,28 +1,5 @@
-/*
-
-The MIT License (MIT)
-
-Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-*/
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
 
 namespace Yarn.Markup
 {
@@ -147,7 +124,7 @@ namespace Yarn.Markup
         /// text. This allows users of the <see cref="LineParser"/> class
         /// to dynamically replace text in a line. The <c>nomarkup</c> tag is
         /// implemented in this way by the <see cref="LineParser"/> class
-        /// directly; the <see cref="Dialogue"/> class uses this mechanism
+        /// directly; the <see cref="AsyncDialogue"/> class uses this mechanism
         /// to implement the <c>select</c>, <c>plural</c> and <c>ordinal</c> markers.
         /// </remarks>
         /// <param name="attributeName">The name of the marker that should
@@ -831,9 +808,13 @@ namespace Yarn.Markup
                     }
                 }
 
+// we disable CA1307 because while we SHOULD be doing this we can't due to dotnet differences in Unity
+#pragma warning disable CA1307
                 // finally if there are any escaped markup in the line we need to clean them up also
                 line = line.Replace("\\[", "[");
                 line = line.Replace("\\]", "]");
+#pragma warning restore CA1307
+
                 // then we add ourselves to the growing line
                 builder.Append(line);
                 // and make ourselve the new older sibling
@@ -1008,10 +989,13 @@ namespace Yarn.Markup
             string ValueFromToken(LexerToken token)
             {
                 var valueString = OG.Substring(token.Start, token.Range);
-                if (valueString.StartsWith("\"", StringComparison.Ordinal) && valueString.EndsWith("\"", StringComparison.Ordinal))
+                if (valueString.StartsWith('"') && valueString.EndsWith('"'))
                 {
+// we disable CA1307 because while we SHOULD be doing this we can't due to dotnet differences in Unity
+#pragma warning disable CA1307
                     // if we are inside delimiters we will also need to remove any escaped characters
                     valueString = valueString.Replace("\\", string.Empty).Trim('"');
+#pragma warning restore CA1307
                 }
                 return valueString;
             }
@@ -1631,7 +1615,10 @@ namespace Yarn.Markup
             for (int i = 0; i < substitutions.Count; i++)
             {
                 string substitution = substitutions[i];
+// we disable CA1307 because while we SHOULD be doing this we can't due to dotnet differences in Unity
+#pragma warning disable CA1307
                 text = text.Replace("{" + i + "}", substitution);
+#pragma warning restore CA1307
             }
 
             return text;

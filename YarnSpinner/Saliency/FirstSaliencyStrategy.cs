@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,9 +26,7 @@ namespace Yarn.Saliency
         /// <inheritdoc/>
         public ContentSaliencyOption? QueryBestContent(IEnumerable<ContentSaliencyOption> content)
         {
-            return content
-                .Where(c => c.FailingConditionValueCount == 0)
-                .FirstOrDefault();
+            return content.FirstOrDefault(c => c.FailingConditionValueCount == 0);
         }
     }
 }

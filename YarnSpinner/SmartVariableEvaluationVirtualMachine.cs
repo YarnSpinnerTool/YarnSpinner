@@ -1,3 +1,6 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -5,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Yarn
 {
-
     /// <summary>
     /// A lightweight, static 'virtual machine' designed for evaluating smart
     /// variables.
@@ -24,7 +26,7 @@ namespace Yarn
         /// <param name="name">The name of the smart variable.</param>
         /// <param name="variableAccess">An <see cref="IVariableAccess"/> object
         /// that can be used for fetching variable values.</param>
-        /// <param name="library">A <see cref="ILibrary"/> containing functions
+        /// <param name="library">A <see cref="IDialogueResponder"/> containing functions
         /// to use while evaluating the variable.</param>
         /// <param name="result">On return, the computed value of the smart
         /// variable.</param>

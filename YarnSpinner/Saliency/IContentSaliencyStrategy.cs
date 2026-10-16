@@ -1,7 +1,9 @@
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 namespace Yarn.Saliency
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     /// <summary>
     /// Contains methods for choosing a piece of content from a collection of

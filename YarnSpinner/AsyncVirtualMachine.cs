@@ -1,5 +1,6 @@
 // Copyright Yarn Spinner Pty Ltd
 // Licensed under the MIT License. See LICENSE.md in project root for license information.
+
 #pragma warning disable CA2007
 namespace Yarn
 {
@@ -30,16 +31,83 @@ namespace Yarn
         bool TryGetSmartVariable<T>(string name, out T result);
     }
 
+    /// <summary>
+    /// The responder is responsible for handling important dialogue events.
+    /// This includes all user facing content events (such as lines and options) as well as non-usesr facing events (such as node enters and exits)
+    /// </summary>
+    /// <remarks>
+    /// Without a responder the VM won't know when to continue along to the next piece of content or how to respond to user input.
+    /// The VM will always await the action of it's responder before continuining onwards.
+    /// The VM always has the <see cref="AsyncDialogue"/> as it's default responder but that just logs these events and otherwise forwards the calls onto it's responder on the <see cref="AsyncDialogue.Responder"/> field.
+    /// </remarks>
     public interface IDialogueResponder
     {
+        /// <summary>
+        /// Requests the responder handle the current line and inform the VM when it is done so.
+        /// </summary>
+        /// <param name="line">The line encountered</param>
+        /// <param name="token">The cancellation token for this task</param>
         ValueTask HandleLine(Line line, CancellationToken token);
+        
+        /// <summary>
+        /// Requests the responder handle the current option group and tell the VM which option was selected.
+        /// If <see cref="AsyncDialogue.NoOptionSelected"/> is returned the option group will be skipped over.
+        /// </summary>
+        /// <param name="options">The collection of options for the responder to use in it's selection</param>
+        /// <param name="token">The cancellation token for this task</param>
+        /// <returns>The id of the selected option</returns>
         ValueTask<int> HandleOptions(OptionSet options, CancellationToken token);
+        
+        /// <summary>
+        /// Requests the responder handle the current command and inform the VM when it is done so.
+        /// </summary>
+        /// <param name="command">The command encountered</param>
+        /// <param name="token">The cancellation token for this task</param>
         ValueTask HandleCommand(Command command, CancellationToken token);
+
+        /// <summary>
+        /// Informs the responder that a node has been entered and the VM will await it's processing of this.
+        /// </summary>
+        /// <param name="node">The name of the node entered</param>
+        /// <param name="token">The cancellation token for this task</param>
         ValueTask HandleNodeStart(string node, CancellationToken token);
+
+        /// <summary>
+        /// Informs the responder that a node has been exited and the VM will await it's processing of this.
+        /// </summary>
+        /// <param name="node">The name of the node exited</param>
+        /// <param name="token">The cancellation token for this task</param>
         ValueTask HandleNodeComplete(string node, CancellationToken token);
+
+        /// <summary>
+        /// Informs the responder that dialogue is finishing
+        /// </summary>
         ValueTask HandleDialogueComplete();
+
+        /// <summary>
+        /// Informs the responder that the following lines are likely soon to be encountered and it should perform any preparation for their presentation.
+        /// </summary>
+        /// <param name="lineIDs">The collection of line ids</param>
+        /// <param name="token">The cancellation token for this task</param>
         ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token);
+
+        /// <summary>
+        /// Asks the responder if it can handle the function by this name.
+        /// </summary>
+        /// <remarks>
+        /// For the in-built functions the VM will still ask it's responder if it would like to handle them instead allowing for engine specific overrides.
+        /// </remarks>
+        /// <param name="functionName">the name of the function</param>
+        /// <returns>true if the responder can handle the function</returns>
         bool CanCallFunction(string functionName);
+
+        /// <summary>
+        /// Asks the responder to run the function, and provides the parameters from the stack and awaits it's completion.
+        /// </summary>
+        /// <param name="functionName">the name of the function</param>
+        /// <param name="parameters">The collection of parameters for this function, the order is the order they were on the stack</param>
+        /// <param name="token">The cancellation token for this task</param>
+        /// <returns>The result of the function</returns>
         ValueTask<IConvertible> InvokeFunction(string functionName, IConvertible[] parameters, CancellationToken token);
     }
 
@@ -128,16 +196,19 @@ namespace Yarn
                 stack.Push(v);
             }
 
+            /// <inheritdoc cref="PushValue(Value)" />
             public void PushValue(string s)
             {
                 stack.Push(new Value(Types.String, s));
             }
 
+            /// <inheritdoc cref="PushValue(Value)" />
             public void PushValue(float f)
             {
                 stack.Push(new Value(Types.Number, f));
             }
 
+            /// <inheritdoc cref="PushValue(Value)" />
             public void PushValue(bool b)
             {
                 stack.Push(new Value(Types.Boolean, b));
@@ -165,6 +236,9 @@ namespace Yarn
                 stack.Clear();
             }
 
+            /// <summary>
+            /// Pushes the current node and counter as a callsite onto the call stack
+            /// </summary>
             internal void PushCallStack()
             {
                 if (currentNodeName == null)
@@ -201,6 +275,10 @@ namespace Yarn
         }
 
         private IDialogueResponder? dialogueResponder;
+        
+        /// <summary>
+        /// The VM's responder, responsible for handling all dialogue events
+        /// </summary>
         public IDialogueResponder Responder
         {
             get
@@ -229,8 +307,18 @@ namespace Yarn
             }
         }
 
+        /// <summary>
+        /// Current variable storage
+        /// </summary>
         public IVariableStorage VariableStorage { get; set; }
+        
+        /// <summary>
+        /// Logger for debug messages
+        /// </summary>
         public Logger? LogDebugMessage { get; set; }
+        /// <summary>
+        /// Logger for error messages
+        /// </summary>
         public Logger? LogErrorMessage { get; set; }
 
         /// <summary>
@@ -240,12 +328,22 @@ namespace Yarn
 
         internal State state = new State();
 
+        /// <summary>
+        /// The current node, or null if one hasn't been set
+        /// </summary>
         public string? CurrentNodeName => state.currentNodeName;
 
+        /// <summary>
+        /// the current saliency strategy
+        /// </summary>
         public IContentSaliencyStrategy ContentSaliencyStrategy { get; internal set; }
 
         internal Node? currentNode;
 
+        /// <summary>
+        /// when dialogue is initiated this will also be configured and when dialogue is requested to be ended this will also be cancelled.
+        /// This is the main source of all tokens provided from the VM upwards through the dialogue and responders
+        /// </summary>
         CancellationTokenSource? dialogueCancellationSource;
 
         // the global token exists so that the cancellation source can be linked into this token
@@ -253,6 +351,10 @@ namespace Yarn
         // in other tools they can use their equivalent but mostly exists for testing porpoises
         public CancellationToken GlobalToken;
 
+        /// <summary>
+        /// Sets the current node and clears the VMs internal state
+        /// </summary>
+        /// <param name="nodeName">The new node</param>
         public ValueTask SetNode(string nodeName)
         {
             return SetNode(nodeName, clearState: true);
@@ -296,6 +398,12 @@ namespace Yarn
             await Responder.PrepareForLines(stringIDs ?? new List<string>(), token);
         }
 
+        /// <summary>
+        /// Stops the current running dialogue and resets the VM state
+        /// </summary>
+        /// <remarks>
+        /// Does so by cancelling any existing tokens, so cancellation will ripple outwards from this call.
+        /// </remarks>
         public async ValueTask Stop()
         {
             currentNode = null;
@@ -312,6 +420,13 @@ namespace Yarn
             dialogueCancellationSource = null;
         }
 
+        /// <summary>
+        /// Starts the dialogue from the current node.
+        /// </summary>
+        /// <remarks>
+        /// This task will run until the dialogue finishes or is stopped.
+        /// </remarks>
+        /// <exception cref="DialogueException">Throws if there is already dialogue running</exception>
         public async ValueTask Start()
         {
             if (this.currentNode == null)
@@ -526,7 +641,7 @@ namespace Yarn
                         for (int optionIndex = 0; optionIndex < state.currentOptions.Count; optionIndex++)
                         {
                             var option = state.currentOptions[optionIndex];
-                            optionChoices.Add(new OptionSet.Option(option.line, optionIndex, option.destination, option.enabled));
+                            optionChoices.Add(new OptionSet.Option(option.line, optionIndex, option.enabled));
                         }
 
                         try
@@ -878,6 +993,19 @@ namespace Yarn
             state.programCounter -= 1;
         }
 
+        /// <summary>
+        /// Invokes the requested function and returns it's value back to the VM
+        /// </summary>
+        /// <remarks>
+        /// Will attempt to resolve the function through it's responder first so that if there are any engine specific function overloads they can be handled, and then uses the <see cref="StandardLibrary"/> which has the built in functions.
+        /// </remarks>
+        /// <param name="functionName">the name of the function</param>
+        /// <param name="state">The current VM stack</param>
+        /// <param name="responder">the responder of the VM</param>
+        /// <param name="token">The cancellation token for this task</param>
+        /// <returns>The new value to be pushed onto the stack</returns>
+        /// <exception cref="System.InvalidOperationException">thrown when the returned value is of a type we can't handle</exception>
+        /// <exception cref="System.ArgumentException">Thrown when the requested function is one we don't know about and neither does our responder</exception>
         public static async ValueTask<Yarn.Value> CallFunction(string functionName, Stack<Value> state, IDialogueResponder? responder, CancellationToken token)
         {
             var paramCount = state.Pop().ConvertTo<int>();

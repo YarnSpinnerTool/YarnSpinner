@@ -23,8 +23,12 @@ namespace Yarn
     /// <summary>
     /// A value from inside Yarn.
     /// </summary>
-    public partial class Value : IYarnValue, IConvertible
+    public class Value : IYarnValue, IConvertible
     {
+        /// <summary>
+        /// The type of this value.
+        /// Because Yarn has a much simpler list of supported types (numbers, bools, strings) and internally Yarn values are IConvertible without having an associated type we wouldn't know how to handle the value
+        /// </summary>
         public Yarn.IType Type { get; internal set; }
 
         internal IConvertible InternalValue;
@@ -45,10 +49,15 @@ namespace Yarn
         /// should contain.</param>
         public Value(Value value)
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
             this.Type = value.Type;
             this.InternalValue = value.InternalValue;
         }
-
+        
+        /// <inheritdoc cref="Value(Value)" />
         public Value(IType type, IConvertible internalValue)
         {
             this.Type = type;
@@ -73,14 +82,19 @@ namespace Yarn
             return ((IComparable<Value>)this).CompareTo(other);
         }
 
-        public T ConvertTo<T>()
-            where T : IConvertible
+        /// <inheritdoc cref="ConvertTo(Type)" />
+        public T ConvertTo<T>() where T : IConvertible
         {
             System.Type targetType = typeof(T);
 
             return (T)this.ConvertTo(targetType);
         }
 
+        /// <summary>
+        /// Converts a value from it's current form to the requested type
+        /// </summary>
+        /// <param name="targetType">The new type</param>
+        /// <returns>the value now as a converted object</returns>
         public object ConvertTo(System.Type targetType)
         {
             if (targetType == typeof(Yarn.Value))
@@ -103,33 +117,60 @@ namespace Yarn
                 this.ConvertTo<string>());
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             return InternalValue.GetHashCode();
         }
-
+        
+        /// <summary>
+        /// Implictly creates a Value from a string
+        /// </summary>
         public static implicit operator Value(string str)
         {
             return new Value(Types.String, str);
         }
+        /// <summary>
+        /// Implictly creates a Value from a float
+        /// </summary>
         public static implicit operator Value(float f)
         {
             return new Value(Types.Number, f);
         }
+        /// <summary>
+        /// Implictly creates a Value from a double
+        /// </summary>
         public static implicit operator Value(double d)
         {
             return new Value(Types.Number, d);
         }
+        /// <summary>
+        /// Implictly creates a Value from a int
+        /// </summary>
         public static implicit operator Value(int i)
         {
             return new Value(Types.Number, i);
         }
+        /// <summary>
+        /// Implictly creates a Value from a bool
+        /// </summary>
         public static implicit operator Value(bool b)
         {
             return new Value(Types.Boolean, b);
         }
+
+        /// <summary>
+        /// Creates a new value from any IConvertible
+        /// </summary>
+        /// <param name="convertible">The IConvertible desired to be converted into a Yarn value</param>
+        /// <returns>The Yarn value</returns>
         public static Value From(IConvertible convertible)
         {
+            if (convertible is null)
+            {
+                throw new ArgumentNullException(nameof(convertible));
+            }
+
             if (Types.TypeMappings.TryGetValue(convertible.GetType(), out var type))
             {
                 return new Value(type, convertible);
@@ -140,86 +181,87 @@ namespace Yarn
             }
         }
 
+        /// <inheritdoc />
         public TypeCode GetTypeCode()
         {
             return this.InternalValue.GetTypeCode();
         }
-
+        /// <inheritdoc />
         public bool ToBoolean(IFormatProvider provider)
         {
             return this.InternalValue.ToBoolean(provider);
         }
-
+        /// <inheritdoc />
         public byte ToByte(IFormatProvider provider)
         {
             return this.InternalValue.ToByte(provider);
         }
-
+        /// <inheritdoc />
         public char ToChar(IFormatProvider provider)
         {
             return this.InternalValue.ToChar(provider);
         }
-
+        /// <inheritdoc />
         public DateTime ToDateTime(IFormatProvider provider)
         {
             return this.InternalValue.ToDateTime(provider);
         }
-
+        /// <inheritdoc />
         public decimal ToDecimal(IFormatProvider provider)
         {
             return this.InternalValue.ToDecimal(provider);
         }
-
+        /// <inheritdoc />
         public double ToDouble(IFormatProvider provider)
         {
             return this.InternalValue.ToDouble(provider);
         }
-
+        /// <inheritdoc />
         public short ToInt16(IFormatProvider provider)
         {
             return this.InternalValue.ToInt16(provider);
         }
-
+        /// <inheritdoc />
         public int ToInt32(IFormatProvider provider)
         {
             return this.InternalValue.ToInt32(provider);
         }
-
+        /// <inheritdoc />
         public long ToInt64(IFormatProvider provider)
         {
             return this.InternalValue.ToInt64(provider);
         }
-
+        /// <inheritdoc />
         public sbyte ToSByte(IFormatProvider provider)
         {
             return this.InternalValue.ToSByte(provider);
         }
-
+        /// <inheritdoc />
         public float ToSingle(IFormatProvider provider)
         {
             return this.InternalValue.ToSingle(provider);
         }
-
+        /// <inheritdoc />
         public string ToString(IFormatProvider provider)
         {
             return this.InternalValue.ToString(provider);
         }
-
+        /// <inheritdoc />
         public object ToType(Type conversionType, IFormatProvider provider)
         {
             return this.InternalValue.ToType(conversionType, provider);
         }
-
+        /// <inheritdoc />
         public ushort ToUInt16(IFormatProvider provider)
         {
             return this.InternalValue.ToUInt16(provider);
         }
-
+        /// <inheritdoc />
         public uint ToUInt32(IFormatProvider provider)
         {
             return this.InternalValue.ToUInt32(provider);
         }
-
+        /// <inheritdoc />
         public ulong ToUInt64(IFormatProvider provider)
         {
             return this.InternalValue.ToUInt64(provider);

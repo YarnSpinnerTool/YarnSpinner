@@ -3,9 +3,6 @@
 
 namespace Yarn
 {
-    using System.Collections.Generic;
-    using MethodCollection = System.Collections.Generic.IReadOnlyDictionary<string, System.Delegate>;
-
     /// <summary>
     /// A type that represents floating-point number values.
     /// </summary>

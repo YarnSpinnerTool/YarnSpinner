@@ -9,6 +9,7 @@
 
 #pragma warning disable CS1591 // Missing documentation
 #pragma warning disable CS0162 // Unreachable code
+#pragma warning disable CA1307 // string.IndexOf(char, System.StringComparison) can't be used due to Unity dotnet versions
 
 namespace CLDRPlurals
 {

@@ -11,10 +11,8 @@ namespace Yarn
     /// A type that represents a function.
     /// </summary>
     /// <remarks>
-    /// Functions have parameters and a return type, and can be called from
-    /// script. Instances of this type are created when the host
-    /// application registers new functions (such as through using the <see
-    /// cref="ILibrary.RegisterFunction"/> methods or similar.)
+    /// Functions have parameters and a return type, and can be called from scripts.
+    /// These can be created directly or via the Definitions file.
     /// </remarks>
     public class FunctionType : IType, IEquatable<IType>
     {

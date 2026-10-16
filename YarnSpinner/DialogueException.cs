@@ -4,7 +4,7 @@
 namespace Yarn
 {
     /// <summary>
-    /// An exception that is thrown by <see cref="Dialogue"/> when there is an
+    /// An exception that is thrown by <see cref="AsyncDialogue"/> when there is an
     /// error in executing a <see cref="Program"/>.
     /// </summary>
     [System.Serializable]

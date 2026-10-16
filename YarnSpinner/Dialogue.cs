@@ -1,29 +1,7 @@
-/*
+// Copyright Yarn Spinner Pty Ltd
+// Licensed under the MIT License. See LICENSE.md in project root for license information.
 
-The MIT License (MIT)
-
-Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-*/
-
+#pragma warning disable CA2007
 namespace Yarn
 {
     using System;
@@ -35,7 +13,7 @@ namespace Yarn
 #nullable enable
 
     /// <summary>
-    /// A line of dialogue, sent from the <see cref="Dialogue"/> to the game.
+    /// A line of dialogue, sent from the <see cref="AsyncDialogue"/> to the game.
     /// </summary>
     /// <remarks>
     /// <para>When the game receives a <see cref="Line"/>, it should do the
@@ -53,10 +31,10 @@ namespace Yarn
     /// </list>
     ///
     /// <para>You typically do not create instances of this struct yourself.
-    /// They are created by the <see cref="Dialogue"/> during program
+    /// They are created by the <see cref="AsyncDialogue"/> during program
     /// execution.</para>
     /// </remarks>
-    /// <seealso cref="Dialogue.LineHandler"/>
+    /// <seealso cref="IDialogueResponder.HandleLine(Line, System.Threading.CancellationToken)"/>
 #pragma warning disable CA1815
     public struct Line
     {
@@ -88,13 +66,13 @@ namespace Yarn
 
     /// <summary>
     /// A set of <see cref="OptionSet.Option"/>s, sent from the <see
-    /// cref="Dialogue"/> to the game.
+    /// cref="AsyncDialogue"/> to the game.
     /// </summary>
     /// <remarks>
     /// You typically do not create instances of this struct yourself. They are
-    /// created by the <see cref="Dialogue"/> during program execution.
+    /// created by the <see cref="AsyncDialogue"/> during program execution.
     /// </remarks>
-    /// <seealso cref="Dialogue.OptionsHandler"/>
+    /// <seealso cref="IDialogueResponder.HandleOptions(OptionSet, CancellationToken)"/>
 #pragma warning disable CA1815
     public struct OptionSet
     {
@@ -109,11 +87,10 @@ namespace Yarn
         /// </summary>
         public struct Option
         {
-            internal Option(Line line, int id, int destinationInstruction, bool isAvailable)
+            internal Option(Line line, int id, bool isAvailable)
             {
                 Line = line;
                 ID = id;
-                DestinationInstruction = destinationInstruction;
                 IsAvailable = isAvailable;
             }
 
@@ -132,21 +109,9 @@ namespace Yarn
             /// Gets the identifying number for this option.
             /// </summary>
             /// <remarks>
-            /// When the user selects this option, this value should be
-            /// used as the parameter for <see
-            /// cref="Dialogue.SetSelectedOption(int)"/>.
+            /// You should not rely on this value being the same as the index of the option inside the <see cref="OptionSet"/>
             /// </remarks>
             public int ID { get; private set; }
-
-            /// <summary>
-            /// Gets the name of the node that will be run if this option
-            /// is selected.
-            /// </summary>
-            /// <remarks>
-            /// The value of this property not be valid if this is a
-            /// shortcut option.
-            /// </remarks>
-            internal int DestinationInstruction { get; set; }
 
             /// <summary>
             /// Gets a value indicating whether the player should be
@@ -181,13 +146,13 @@ namespace Yarn
 #pragma warning restore CA1815
 
     /// <summary>
-    /// A command, sent from the <see cref="Dialogue"/> to the game.
+    /// A command, sent from the <see cref="AsyncDialogue"/> to the game.
     /// </summary>
     /// <remarks>
     /// You do not create instances of this struct yourself. They are
-    /// created by the <see cref="Dialogue"/> during program execution.
+    /// created by the <see cref="AsyncDialogue"/> during program execution.
     /// </remarks>
-    /// <seealso cref="Dialogue.CommandHandler"/>    
+    /// <seealso cref="IDialogueResponder.HandleCommand(Command, CancellationToken)"/>
 #pragma warning disable CA1815
     public struct Command
     {
@@ -205,7 +170,7 @@ namespace Yarn
 
     /// <summary>
     /// Represents a method that receives diagnostic messages and error
-    /// information from a <see cref="Dialogue"/>.
+    /// information from a <see cref="AsyncDialogue"/>.
     /// </summary>
     /// <remarks>
     /// The text that this delegate receives may be output to a console, or
@@ -231,7 +196,7 @@ namespace Yarn
 
     /// <summary>
     /// Represents different kinds of variables that can be fetched from a <see
-    /// cref="Dialogue"/> using <see cref="IVariableAccess.TryGetValue{T}(string, out T)"/>.
+    /// cref="AsyncDialogue"/> using <see cref="IVariableAccess.TryGetValue{T}(string, out T)"/>.
     /// </summary>
     public enum VariableKind
     {
@@ -255,7 +220,6 @@ namespace Yarn
     /// <summary>Provides a mechanism for retrieving values.</summary>
     public interface IVariableAccess
     {
-
         /// <summary>
         /// Given a variable name, attempts to fetch a value for the variable,
         /// either from storage, initial values found in <see cref="Program"/>,
@@ -440,8 +404,16 @@ namespace Yarn
     /// <summary>
     /// Co-ordinates the execution of Yarn programs.
     /// </summary>
+    /// <remarks>
+    /// This type is basically a wrapper around the <see cref="AsyncVirtualMachine"/> and provides a nicer interface into manipulating the vm from the perspective of dialogue instead of a stack machine.
+    /// </remarks>
     public class AsyncDialogue: ISmartVariableEvaluator, IDialogueResponder
     {
+        /// <summary>
+        /// Creates a new AsyncDialogue
+        /// </summary>
+        /// <param name="variableStorage">The varstore for this dialogue</param>
+        /// <exception cref="ArgumentNullException">If the variable storage is null there is no way to create an a dialogue object</exception>
         public AsyncDialogue(IVariableStorage variableStorage)
         {
             this.VariableStorage = variableStorage ?? throw new ArgumentNullException(nameof(variableStorage));
@@ -458,21 +430,36 @@ namespace Yarn
         /// </summary>
         public const int NoOptionSelected = -1;
 
+        /// <summary>
+        /// The logger for debug messages, is forwarded to the VM
+        /// </summary>
         public Logger? LogDebugMessage
         {
             get => vm.LogDebugMessage;
             set => vm.LogDebugMessage = value;
         }
+        /// <summary>
+        /// The logger for error messages, is forwarded to the VM
+        /// </summary>
         public Logger? LogErrorMessage
         {
             get => vm.LogErrorMessage;
             set => vm.LogErrorMessage = value;
         }
 
+        /// <summary>
+        /// The variable storage used by the dialogue
+        /// </summary>
         public IVariableStorage VariableStorage { get; set; }
 
-        public IDialogueResponder Responder { get; set; }
+        /// <summary>
+        /// The Responder for this dialogue, this is how the dialogue informs the rest of the system of important events
+        /// </summary>
+        public IDialogueResponder? Responder { get; set; }
 
+        /// <summary>
+        /// The compiled Yarn program used by the dialogue.
+        /// </summary>
         public Program? Program
         {
             get => vm?.Program;
@@ -489,6 +476,9 @@ namespace Yarn
         }
         private readonly AsyncVirtualMachine smartVariableVM;
 
+        /// <summary>
+        /// What saliency content strategy does the dialogue use to select salient content?
+        /// </summary>
         public Saliency.IContentSaliencyStrategy ContentSaliencyStrategy
         {
             get => this.vm.ContentSaliencyStrategy;
@@ -497,14 +487,26 @@ namespace Yarn
 
         private AsyncVirtualMachine vm;
 
+        /// <summary>
+        /// Is true when dialogue is currently running, false otherwise.
+        /// </summary>
         public bool IsActive => vm.IsDialogueRunning;
 
+        /// <summary>
+        /// Starts dialogue from a specific entry node and will run until completion of dialogue.
+        /// </summary>
+        /// <param name="node">The node to use as the entry point for the dialogue</param>
         public async ValueTask StartDialogue(string node)
         {
             await vm.SetNode(node);
             await vm.Start();
         }
 
+        /// <summary>
+        /// Starts dialogue at the value of <see cref="CurrentNode"/>.
+        /// <seealso cref="StartDialogue(string)"/>
+        /// </summary>
+        /// <exception cref="InvalidOperationException">If there is no node currently set as the entry point this method throws</exception>
         public async ValueTask Start()
         {
             if (CurrentNode == null)
@@ -514,6 +516,13 @@ namespace Yarn
             await vm.Start();
         }
 
+        /// <summary>
+        /// Works out if the node is part of a node group or not.
+        /// If the node isn't a valid node will always return false.
+        /// </summary>
+        /// <param name="nodeName">The node whos node groupedipidty you are curious about</param>
+        /// <returns>true if the requested node is part of a node group</returns>
+        /// <exception cref="InvalidOperationException">Throws if there is no program set</exception>
         public bool IsNodeGroup(string nodeName)
         {
             if (this.Program == null)
@@ -530,15 +539,43 @@ namespace Yarn
 
             return node.IsNodeGroupHub;
         }
+        
+        /// <summary>
+        /// Works out if the node has been visited.
+        /// See also <seealso cref="GetNodeVisitCount(string)"/>
+        /// </summary>
+        /// <param name="nodeName">The node whos visitation you are curious about</param>
+        /// <returns>True if the node has been visited at least once</returns>
         public bool IsNodeVisited(string nodeName)
         {
             return GetNodeVisitCount(nodeName) > 0;
         }
+        /// <summary>
+        /// Works out how many times the node has been visited.
+        /// See also <seealso cref="IsNodeVisited(string)"/>
+        /// </summary>
+        /// <param name="nodeName">the node whos visitation count you are cirous about</param>
+        /// <returns>0 if the node has never been visited, otherwise the number of times the node has been visited</returns>
         public float GetNodeVisitCount(string nodeName)
         {
             VariableStorage.TryGetValue(StandardLibrary.GenerateUniqueVisitedVariableForNode(nodeName), out float count);
             return count;
         }
+        
+        /// <summary>
+        /// Determines if the requested node group has any content to show.
+        /// </summary>
+        /// <remarks>
+        /// This may return false for any number of reasons including:
+        /// <list type="bullet">
+        /// <item> the requested node is not a node or nodegroup </item>
+        /// <item> the node group has no elements </item>
+        /// <item> the node group has been fully exhausted according to the <see cref="ContentSaliencyStrategy"/> </item>
+        /// <item> there is only failing content according to the <see cref="ContentSaliencyStrategy"/> </item>
+        /// </list>
+        /// </remarks>
+        /// <param name="nodeGroup">The node group to check for content</param>
+        /// <returns>True if there is content to show, false otherwise</returns>
         public bool HasAnyContent(string nodeGroup)
         {
             if (this.Program == null)
@@ -566,6 +603,13 @@ namespace Yarn
             // Did the saliency strategy indicate that an option could be selected?
             return bestOption != null;
         }
+        
+        /// <summary>
+        /// Returns the list of salient options inside a node groups
+        /// </summary>
+        /// <param name="nodeGroup">The node group you want the salient content from</param>
+        /// <returns>Collection of salient content inside the node group, may be a single item if the requested nodegroup is just a single node</returns>
+        /// <exception cref="ArgumentException">If the requested nodegroup isn't a node</exception>
         public IEnumerable<Saliency.ContentSaliencyOption> GetSaliencyOptionsForNodeGroup(string nodeGroup)
         {
             if (NodeExists(nodeGroup) == false)
@@ -595,6 +639,11 @@ namespace Yarn
             return SmartVariableEvaluationVirtualMachine.GetSaliencyOptionsForNodeGroup(nodeGroup, this.VariableStorage, this);
         }
 
+        /// <summary>
+        /// Determins if the requested node exists in the dialogue
+        /// </summary>
+        /// <param name="nodeName">the node whos existence you are curious about</param>
+        /// <returns>True if the node exists, false otherwise</returns>
         public bool NodeExists(string nodeName)
         {
             if (this.Program == null)
@@ -612,6 +661,13 @@ namespace Yarn
             return this.Program.Nodes.ContainsKey(nodeName);
         }
 
+        /// <summary>
+        /// Attempts to retrieve the requested smart variable's current value
+        /// </summary>
+        /// <typeparam name="T">The type of the smart varible, must match the type of the variable itself or be convertible to that type</typeparam>
+        /// <param name="name">The name of the smart variable</param>
+        /// <param name="result">the smart variable itself</param>
+        /// <returns>True if it was possible to retrieve the smart variable</returns>
         public bool TryGetSmartVariable<T>(string name, out T result)
         {
             return SmartVariableEvaluationVirtualMachine.TryGetSmartVariable(
@@ -621,13 +677,21 @@ namespace Yarn
                 out result);
         }
 
+        /// <inheritdoc />
         public ValueTask HandleLine(Line line, CancellationToken token)
         {
             LogDebugMessage?.Invoke($"Got line: {line.ID}");
 
+            if (Responder is null)
+            {
+                LogErrorMessage?.Invoke("Asked to handle a line but have no responder set!");
+                throw new InvalidOperationException($"{nameof(Responder)} is null!");
+            }
+
             return Responder.HandleLine(line, token);
         }
 
+        /// <inheritdoc />
         public ValueTask<int> HandleOptions(OptionSet options, CancellationToken token)
         {
             LogDebugMessage?.Invoke("Got Options");
@@ -636,49 +700,121 @@ namespace Yarn
                 LogDebugMessage?.Invoke($"Got option: {option.ID}");
             }
 
+            if (Responder is null)
+            {
+                LogErrorMessage?.Invoke("Asked to handle options but have no responder set!");
+                throw new InvalidOperationException($"{nameof(Responder)} is null!");
+            }
+
             return Responder.HandleOptions(options, token);
         }
 
+        /// <inheritdoc />
         public ValueTask HandleCommand(Command command, CancellationToken token)
         {
             LogDebugMessage?.Invoke($"Got a coomand: {command.Text}");
 
+            if (Responder is null)
+            {
+                LogErrorMessage?.Invoke("Asked to handle a command but have no responder set!");
+                throw new InvalidOperationException($"{nameof(Responder)} is null!");
+            }
+
             return Responder.HandleCommand(command, token);
         }
 
+        /// <inheritdoc />
         public ValueTask HandleNodeStart(string node, CancellationToken token)
         {
             LogDebugMessage?.Invoke($"node started: {node}");
+
+            if (Responder is null)
+            {
+                LogErrorMessage?.Invoke("Asked to handle node start but have no responder set!");
+                throw new InvalidOperationException($"{nameof(Responder)} is null!");
+            }
             
             return Responder.HandleNodeStart(node, token);
         }
 
+        /// <inheritdoc />
         public ValueTask HandleNodeComplete(string node, CancellationToken token)
         {
             LogDebugMessage?.Invoke($"node completed: {node}");
+
+            if (Responder is null)
+            {
+                LogErrorMessage?.Invoke("Asked to handle node complete but have no responder set!");
+                throw new InvalidOperationException($"{nameof(Responder)} is null!");
+            }
             
             return Responder.HandleNodeComplete(node, token);
         }
 
+        /// <inheritdoc />
         public ValueTask HandleDialogueComplete()
         {
             LogDebugMessage?.Invoke($"dialogue completed");
+
+            if (Responder is null)
+            {
+                LogErrorMessage?.Invoke("Asked to handle dialogue complete but have no responder set!");
+                throw new InvalidOperationException($"{nameof(Responder)} is null!");
+            }
             
             return Responder.HandleDialogueComplete();
         }
 
+        /// <inheritdoc />
         public ValueTask PrepareForLines(List<string> lineIDs, CancellationToken token)
         {
+            if (lineIDs is null)
+            {
+                throw new ArgumentNullException(nameof(lineIDs));
+            }
             LogDebugMessage?.Invoke($"preparing for {lineIDs.Count} lines");
+
+            if (Responder is null)
+            {
+                LogErrorMessage?.Invoke("Asked to prepare for lines but have no responder set!");
+                throw new InvalidOperationException($"{nameof(Responder)} is null!");
+            }
 
             return Responder.PrepareForLines(lineIDs, token);
         }
+
+        /// <inheritdoc />
+        public bool CanCallFunction(string functionName)
+        {
+            if (Responder is null)
+            {
+                LogErrorMessage?.Invoke("Asked to see if we can handle a function but have no responder set!");
+                throw new InvalidOperationException($"{nameof(Responder)} is null!");
+            }
+            return Responder.CanCallFunction(functionName);
+        }
+        /// <inheritdoc />
+        public ValueTask<IConvertible> InvokeFunction(string functionName, IConvertible[] parameters, CancellationToken token)
+        {
+            if (Responder is null)
+            {
+                LogErrorMessage?.Invoke("Asked to invoke a function but have no responder set!");
+                throw new InvalidOperationException($"{nameof(Responder)} is null!");
+            }
+            return Responder.InvokeFunction(functionName, parameters, token);
+        }
         
+        /// <summary>
+        /// Wipes the current program
+        /// </summary>
         public void UnloadAll()
         {
             Program = null;
         }
 
+        /// <summary>
+        /// Returns the current node, or null if one hasn't been set
+        /// </summary>
         public string? CurrentNode
         {
             get
@@ -693,24 +829,36 @@ namespace Yarn
                 }
             }
         }
+        
+        /// <summary>
+        /// Sets the current node
+        /// </summary>
+        /// <param name="node">the requested node</param>
         public async ValueTask SetNode(string node)
         {
             await this.vm.SetNode(node, clearState: true);
         }
-        internal void Analyse(Analysis.Context context)
-        {
-            if (context == null || this.Program == null)
-            {
-                // can't perform analysis on nothing
-                return;
-            }
-            context.AddProgramToAnalysis(this.Program);
-        }
+        
+        /// <summary>
+        /// Requests the current dialogue stop
+        /// </summary>
+        /// <remarks>
+        /// This cancels the various tokens that are provided to all tasks so dialogue cancellation will percolate outwards from this point
+        /// </remarks>
         public async ValueTask Stop()
         {
             await this.vm.Stop();
         }
         
+        /// <summary>
+        /// Returns all headers on the requested node.
+        /// </summary>
+        /// <remarks>
+        /// This exists primarily so that you don't have to dig directly into the compiled protobuf types.
+        /// </remarks>
+        /// <param name="nodeName">The node whos headers you covet</param>
+        /// <returns>The collection of headers as key-value pairs</returns>
+        /// <exception cref="InvalidOperationException">Throws if there is no program set</exception>
         public IEnumerable<KeyValuePair<string, string>> GetHeaders(string nodeName)
         {
             if (this.Program == null)
@@ -737,6 +885,16 @@ namespace Yarn
             return result;
         }
 
+        /// <summary>
+        /// Returns a single value from a single node's header.
+        /// </summary>
+        /// <remarks>
+        /// If you are requesting multiple headers it would be better to use <see cref="GetHeaders(string)"/> and filter that collection.
+        /// </remarks>
+        /// <param name="nodeName">The node whos header you covet</param>
+        /// <param name="headerName">The header upon the requested node</param>
+        /// <returns>The value of the requested header on the requested node, or null if either the node or header doesn't exist</returns>
+        /// <exception cref="InvalidOperationException">Throws if there is no program set</exception>
         public string? GetHeaderValue(string nodeName, string headerName)
         {
             if (this.Program == null)
@@ -764,6 +922,12 @@ namespace Yarn
             return null;
         }
 
+        /// <summary>
+        /// Returns the names of all nodes in the program.
+        /// </summary>
+        /// <remarks>
+        /// Exists so that you don't have to go digging inside the protobuf yourself.
+        /// </remarks>
         public IEnumerable<string> NodeNames
         {
             get
@@ -771,14 +935,6 @@ namespace Yarn
                 return this.Program?.Nodes.Keys ?? Array.Empty<string>();
             }
         }
-
-        bool IDialogueResponder.CanCallFunction(string functionName)
-        {
-            return Responder.CanCallFunction(functionName);
-        }
-        ValueTask<IConvertible> IDialogueResponder.InvokeFunction(string functionName, IConvertible[] parameters, CancellationToken token)
-        {
-            return Responder.InvokeFunction(functionName, parameters, token);
-        }
     }
 }
+#pragma warning restore CA2007

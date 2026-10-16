@@ -91,9 +91,12 @@ namespace Yarn.Utility
             // Suppress CA1308 Use ToUpperInvariant; suppressed because the characters in the
             // output are always Latin (0-9A-F), and there's no risk of failing to
             // round-trip.
+            // Suppress CA1037 because of dotnet incompatibilities in Unity 
 #pragma warning disable CA1308
+#pragma warning disable CA1307
             return System.BitConverter.ToString(bytes).ToLowerInvariant().Replace("-", string.Empty);
 #pragma warning restore CA1308
+#pragma warning restore CA1307
         }
     }
 }

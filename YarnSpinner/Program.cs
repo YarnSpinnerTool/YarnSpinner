@@ -501,7 +501,6 @@ namespace Yarn
         }
     }
 
-
     /// <summary>
     /// A node of Yarn script, contained within a <see cref="Program"/>, and
     /// containing <see cref="Instruction"/>s.

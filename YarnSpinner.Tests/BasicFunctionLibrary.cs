@@ -1,7 +1,8 @@
 // Copyright Yarn Spinner Pty Ltd
 // Licensed under the MIT License. See LICENSE.md in project root for license information.
 
-namespace Yarn
+#pragma warning disable CA2007
+namespace YarnSpinner.Tests
 {
     // I can probably massively simplify this class now
     // and rename it to DelegateTestLibrary
@@ -13,16 +14,8 @@ namespace Yarn
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-
-    /// <summary>
-    /// A collection of functions that can be called from Yarn programs.
-    /// </summary>
-    /// <remarks>
-    /// You do not create instances of this class yourself. The <see
-    /// cref="Dialogue"/> class creates one of its own, which you can
-    /// access via the <see cref="Dialogue.Library"/> property.
-    /// </remarks>
-    /// <seealso cref="Dialogue"/>
+    using Yarn;
+    
     public class BasicFunctionLibrary
     {
         internal Dictionary<string, (FunctionType definition, Delegate implementation)> functions = new();
@@ -223,7 +216,7 @@ namespace Yarn
             return true;
         }
 
-        private static IReadOnlyDictionary<System.Type, Yarn.IType> BaseAsyncTypeMappings { get; } = new Dictionary<System.Type, Yarn.IType>
+        private static Dictionary<System.Type, Yarn.IType> BaseAsyncTypeMappings { get; } = new Dictionary<System.Type, Yarn.IType>
         {
             {typeof(System.Threading.Tasks.ValueTask<int>), Yarn.Types.Number},
             {typeof(System.Threading.Tasks.ValueTask<float>), Yarn.Types.Number},
@@ -509,3 +502,4 @@ namespace Yarn
         }
     }
 }
+#pragma warning restore CA2007

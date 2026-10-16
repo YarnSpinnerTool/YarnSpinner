@@ -243,7 +243,10 @@ namespace Yarn
         /// <inheritdoc/>
         public override int GetHashCode()
         {
+// need to suppress this one due to dotnet differences in Unity
+#pragma warning disable CA1307
             return this.Name.GetHashCode();
+#pragma warning restore CA1307
         }
     }
 }
