@@ -8,8 +8,10 @@ namespace Yarn
     using System.Threading;
     using System.Threading.Tasks;
 
-    // The standard, built-in library of functions and operators.
-    internal class StandardLibrary
+    /// <summary>
+    /// Provides definitions and implementations for all the built in functions and operators
+    /// </summary>
+    public sealed class StandardLibrary
     {
         /// <summary>
         /// The internal random number generator used by functions like
@@ -61,8 +63,15 @@ namespace Yarn
             "bool",
             "format_invariant",
             "format",
+            "visited",
+            "visited_count"
         };
 
+        /// <summary>
+        /// Creates all function definitions of the built in functions
+        /// </summary>
+        /// <returns>A dictionary of every function and it's definition keyed by name</returns>
+        /// <exception cref="ArgumentException">If an expected function doesn't exist</exception>
         public static Dictionary<string, FunctionType> AllFunctions()
         {
             Dictionary<string, FunctionType> functions = new();
@@ -172,6 +181,12 @@ namespace Yarn
             }
         }
 
+        /// <summary>
+        /// Finds the definition (so the parameters and return) for the requested function
+        /// </summary>
+        /// <param name="functionName">the name of the function</param>
+        /// <param name="function">The function definition</param>
+        /// <returns>true if the function has a definition</returns>
         public static bool TryGetFunction(string functionName, out FunctionType function)
         {
             switch (functionName)
@@ -454,12 +469,30 @@ namespace Yarn
                     function.AddParameter(Types.Any);
                     return true;
                 }
+                case "visited":
+                {
+                    function = new FunctionType(Types.Boolean, Types.String);
+                    return true;
+                }
+                case "visited_count":
+                {
+                    function = new FunctionType(Types.Number, Types.String);
+                    return true;
+                }
             }
 
             function = new(Types.Any);
             return false;
         }
 
+        /// <summary>
+        /// Invoke the function
+        /// </summary>
+        /// <param name="functionName">The name of the function</param>
+        /// <param name="parameters">the list of parameters the function needs</param>
+        /// <param name="token">Cancellation token to use</param>
+        /// <returns>The Yarn Value that is the result of the function</returns>
+        /// <exception cref="System.ArgumentException">If the function doesn't exist in the standard library</exception>
         public static ValueTask<Yarn.Value> CallFunc(string functionName, Value[] parameters, CancellationToken token)
         {
             // all the standard library functions are synchronous
@@ -878,6 +911,10 @@ namespace Yarn
                     var argument = parameters[1].ConvertTo<string>();
                     return new ValueTask<Value>(string.Format(System.Globalization.CultureInfo.CurrentCulture, formatString, argument));
                 }
+
+                case "visited":
+                case "visited_count":
+                    throw new System.ArgumentException($"Internal error: {functionName} cannot be invoked via the standard library, it must live in the game engine.");
                 
                 default:
                     throw new System.ArgumentException($"Internal error: The function {functionName} is not known to the standard library");
