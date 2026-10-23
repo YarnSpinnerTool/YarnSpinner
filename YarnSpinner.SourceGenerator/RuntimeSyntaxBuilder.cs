@@ -73,9 +73,9 @@ public class RuntimeSyntaxBuilder
                         continue;
                     }
 
-                    using (builder.EnterBlock($"if (type == typeof({yarnEnum.NamedType.shortType}))"))
+                    using (builder.EnterBlock($"if (type == typeof({yarnEnum.NamedType.fullyQualifiedType}))"))
                     {
-                        builder.AppendLine($"var result = {yarnEnum.NamedType.shortType}EnumHelper.TryGet{yarnEnum.NamedType.shortType}ByName(input, out var temp);");
+                        builder.AppendLine($"var result = {yarnEnum.NamedType.fullyQualifiedType}EnumHelper.TryGet{yarnEnum.NamedType.shortType}ByName(input, out var temp);");
                         builder.AppendLine("value = temp;");
                         builder.AppendLine("return result;");
                     }
@@ -113,7 +113,7 @@ public class RuntimeSyntaxBuilder
                         continue;
                     }
 
-                    using (builder.EnterBlock($"if (type == typeof({yarnEnum.NamedType.shortType}))"))
+                    using (builder.EnterBlock($"if (type == typeof({yarnEnum.NamedType.fullyQualifiedType}))"))
                     {
                         if (yarnEnum.Backing == YarnEnum.BackingType.Int)
                         {
@@ -124,7 +124,7 @@ public class RuntimeSyntaxBuilder
                             builder.AppendLine("var backing = input.ToString(System.Globalization.CultureInfo.InvariantCulture);");
                         }
 
-                        builder.AppendLine($"var result = {yarnEnum.NamedType.shortType}EnumHelper.TryGet{yarnEnum.NamedType.shortType}FromBacking(backing, out var temp);");
+                        builder.AppendLine($"var result = {yarnEnum.NamedType.fullyQualifiedType}EnumHelper.TryGet{yarnEnum.NamedType.shortType}FromBacking(backing, out var temp);");
                         builder.AppendLine("value = temp;");
                         builder.AppendLine("return result;");
                     }

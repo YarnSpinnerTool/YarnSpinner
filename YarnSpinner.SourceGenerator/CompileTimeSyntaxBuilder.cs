@@ -253,7 +253,7 @@ public class CompileTimeSyntaxBuilder
                                     {
                                         builder.AppendLine("""throw new System.ArgumentException($"Unable to identify a game object called '{gameObjectTargetName}'");""");
                                     }
-                                    builder.AppendLine($"var target = gameObjectTarget.GetComponentInChildren<{action.containingTypeShortName}>();");
+                                    builder.AppendLine($"var target = gameObjectTarget.GetComponentInChildren<{action.containingTypeFullName}>();");
                                     using(builder.EnterBlock("if (target == null)"))
                                     {
                                         builder.AppendFormat("""throw new System.ArgumentException($"Unable to find a '{0}' on '{{gameObjectTargetName}}'");""", action.containingTypeShortName);
@@ -425,7 +425,7 @@ public class CompileTimeSyntaxBuilder
                                     {
                                         builder.AppendLine("""throw new System.ArgumentException($"Unable to identify a game object called '{gameObjectTargetName}'");""");
                                     }
-                                    builder.AppendLine($"var target = gameObjectTarget.GetComponentInChildren<{action.containingTypeShortName}>();");
+                                    builder.AppendLine($"var target = gameObjectTarget.GetComponentInChildren<{action.containingTypeFullName}>();");
                                     using(builder.EnterBlock("if (target == null)"))
                                     {
                                         builder.AppendFormat("""throw new System.ArgumentException($"Unable to find a '{0}' on '{{gameObjectTargetName}}'");""", action.containingTypeShortName);
