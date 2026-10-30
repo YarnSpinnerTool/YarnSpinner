@@ -9,6 +9,7 @@ set -e
 
 YARNSPINNER_FOLDER=$(readlink -f "$(dirname $0)")
 YARNSPINNER_DLLS_DIR=$1/Runtime/DLLs/
+YARNSPINNER_SOURCE_GENERATOR_DIR=$1/SourceGenerator/
 
 pushd $1
 
@@ -43,8 +44,15 @@ rm -fv $YARNSPINNER_DLLS_DIR/System.Reflection.TypeExtensions.dll
 rm -fv $YARNSPINNER_DLLS_DIR/System.Runtime.CompilerServices.Unsafe.dll
 rm -fv $YARNSPINNER_DLLS_DIR/System.Threading.Tasks.Extensions.dll
 
-rm -rf .build-tmp
+# Build the source generator and copy it into place
+pushd YarnSpinner.SourceGenerator
+dotnet build
+ilrepack --out=YarnSpinner.Unity.SourceCodeGenerator.dll bin/Debug/netstandard2.0/Analyser.dll bin/Debug/netstandard2.0/YarnSpinner.HostAnalysis.dll bin/Debug/netstandard2.0/YarnSpinner.Shared.dll --lib=bin/Debug/netstandard2.0/
+cp YarnSpinner.Unity.SourceCodeGenerator.{dll,pdb} $YARNSPINNER_SOURCE_GENERATOR_DIR
+popd
 
+# Clean up
+rm -rf .build-tmp
 git checkout  "*/AssemblyInfo.cs"
 
 echo "Synced current working directory of Yarn Spinner from $YARNSPINNER_FOLDER"
