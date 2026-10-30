@@ -63,9 +63,24 @@ namespace Yarn
             "bool",
             "format_invariant",
             "format",
-            "visited",
-            "visited_count"
+            EngineProvidedFunctionNames.Visited,
+            EngineProvidedFunctionNames.VisitedCount,
         };
+
+        /// <summary>
+        /// Contains the names of standard library functions whose implementations are expected to be provided by the game engine.
+        /// </summary>
+        public static class EngineProvidedFunctionNames
+        {
+            /// <summary>
+            /// The name of the built-in 'visited' function.
+            /// </summary>
+            public const string Visited = "visited";
+            /// <summary>
+            /// The name of the built-in 'visited_count' function.
+            /// </summary>
+            public const string VisitedCount = "visited_count";
+        }
 
         /// <summary>
         /// Creates all function definitions of the built in functions
@@ -912,10 +927,11 @@ namespace Yarn
                     return new ValueTask<Value>(string.Format(System.Globalization.CultureInfo.CurrentCulture, formatString, argument));
                 }
 
-                case "visited":
-                case "visited_count":
+                // If we get here, the engine failed to handle a built-in function that we expected it to.
+                case EngineProvidedFunctionNames.Visited:
+                case EngineProvidedFunctionNames.VisitedCount:
                     throw new System.ArgumentException($"Internal error: {functionName} cannot be invoked via the standard library, it must live in the game engine.");
-                
+
                 default:
                     throw new System.ArgumentException($"Internal error: The function {functionName} is not known to the standard library");
             }
