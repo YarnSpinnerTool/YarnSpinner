@@ -2,8 +2,8 @@
 // Licensed under the MIT License. See LICENSE.md in project root for license information.
 
 using System.Collections.Generic;
-using System.Linq;
-using Yarn.Compiler;
+
+namespace Yarn.Compiler {
 
 /// <summary>
 /// Line tag generators are responsible for producing unique line IDs in a Yarn
@@ -64,6 +64,15 @@ public interface ILineTagGenerator
         /// The line number inside of <cref name="SourceFile"/> that caused the exception
         /// </summary>
         public int LineNumber = -1;
+    }
+
+    /// <summary>
+    /// Represents the specific situation where tagging didn't even begin due to compilation errors in the script.
+    /// </summary>
+    public class CompilationTagException: LineTaggingException
+    {
+        /// <inheritdoc/>
+        public override string? Message => "Unable to begin tagging due to compilation issues in the script!";
     }
 
     /// <summary>
@@ -154,4 +163,6 @@ public interface ILineTagGenerator
     /// <param name="LineContexts">The combined information of all nodes and lines</param>
     /// <param name="excludedIDs">A collection of strings that should not be used for generation.</param>
     public void PrepareForLines(Dictionary<string, List<ILineTagGenerator.LineTagContext>> LineContexts, HashSet<string> excludedIDs);
+}
+
 }

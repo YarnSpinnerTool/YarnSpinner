@@ -241,8 +241,8 @@ KEYWORD_NULL : 'null' ;
 
 // Integer or decimal numbers.
 NUMBER
-    : ('-')? INT
-    | ('-')? INT '.' INT
+    : INT
+    | INT '.' INT
     ;
 
 OPERATOR_ASSIGNMENT : '=' | 'to' ;

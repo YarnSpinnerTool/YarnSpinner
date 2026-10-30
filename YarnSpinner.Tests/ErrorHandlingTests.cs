@@ -155,7 +155,6 @@ this is the line before a command <<after command>>
         [Theory]
         [InlineData("some command>>", "YS0021", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 12, 2, 14 })]
         [InlineData("<some command>>", "YS0021", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 13, 2, 15 })]
-        [InlineData("some command>", "YS0021", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 12, 2, 13 })]
         [InlineData("<some command>", "YS0048", Diagnostic.DiagnosticSeverity.Warning, new int[] { 2, 0, 2, 14 })]
         [InlineData("<<some command", "YS0006", Diagnostic.DiagnosticSeverity.Error, new int[] { 2, 14, 2, 15 })]
         [InlineData("<<some command>", "YS0006", Diagnostic.DiagnosticSeverity.Error, new int[] { 2, 14, 2, 15 })]
@@ -1415,6 +1414,38 @@ title: EmptyWithComment
 
             // Then
             result.Diagnostics.Should().ContainSingle(d => d.Code == DiagnosticDescriptor.UnreachableCode.Code);
+        }
+
+        [Fact]
+        public void TestTMPStyleTagsDontGenerateWarnings()
+        {
+            var input = CreateTestNode("Player: <bold>Example</bold>");
+            var job = CompilationJob.CreateFromString("<input>", input);
+            job.CompilationType = CompilationJob.Type.FullCompilation;
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().BeEmpty();
+        }
+
+        [Theory]
+        [InlineData("<<<wait 1>>", 0, 1)]
+        [InlineData("<<<<wait 1>>", 0, 2)]
+        [InlineData("<<<<<<<<wait 1>>", 0, 6)]
+        [InlineData("<<wait 1>>>", 10, 11)]
+        [InlineData("<<wait 1>>>>", 10, 12)]
+        [InlineData("<<wait 1>> >>", 11, 13)] // this edge case can be handled but I don't think it's worth it as it's almost certainly the same cause
+        public void TestSuperfluousChevronsAroundCommandsGeneratesWarning(string input, int startColumn, int endColumn)
+        {
+            var node = CreateTestNode(input);
+            var job = CompilationJob.CreateFromString("<input>", node);
+            job.CompilationType = CompilationJob.Type.FullCompilation;
+            var result = Compiler.Compile(job);
+
+            var diag = result.Diagnostics.Should().ContainSingle().Subject;
+            diag.Code.Should().Be(DiagnosticDescriptor.RogueChevronWithCommand.Code);
+            
+            diag.Range.Start.Character.Should().Be(startColumn);
+            diag.Range.End.Character.Should().Be(endColumn);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Yarn.Saliency
             return content
                 .Where(o => o.FailingConditionValueCount == 0)
                 .OrderByDescending(o => o.ComplexityScore)
-                .First();
+                .FirstOrDefault();
         }
     }
 }

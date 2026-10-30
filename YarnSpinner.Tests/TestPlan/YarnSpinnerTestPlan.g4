@@ -2,11 +2,19 @@ grammar YarnSpinnerTestPlan;
 
 
 testplan
-    : run ('---' run)* EOF
+    : (environment '---')? run ('---' run)* EOF
     ;
 
 run
-    : step+
+    : start? step+
+    ;
+
+environment
+    : 'environment:' contextName=IDENTIFIER
+    ;
+
+start
+    : 'start:' nodeName=IDENTIFIER
     ;
 
 step
@@ -20,7 +28,7 @@ step
     | actionSetSaliencyMode
     ;
 
-hashtag: '#' .+? ;
+hashtag: HASHTAG_CONTENT ;
 
 lineExpected
     : 'line:' TEXT hashtag* #lineWithSpecificTextExpected
@@ -55,10 +63,11 @@ actionSetSaliencyMode
 actionJumpToNode
     : 'node:' nodeName=IDENTIFIER;
 
-COMMENT: '#' ~[\r\n]* -> skip;
+COMMENT: '//' ~[\r\n]* -> skip;
 WS: [ \t\r\n]+ -> skip;
 BOOL: 'true' | 'false';
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*;
+HASHTAG_CONTENT: '#' ~[ \t\r\n#]+ ;
 VARIABLE: '$' IDENTIFIER ;
 NUMBER: [0-9]+;
 TEXT: '`' .*? '`';

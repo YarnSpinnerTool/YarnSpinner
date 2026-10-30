@@ -11,6 +11,8 @@ YARNSPINNER_FOLDER=$(readlink -f "$(dirname $0)")
 YARNSPINNER_DLLS_DIR=$1/Runtime/DLLs/
 YARNSPINNER_SOURCE_GENERATOR_DIR=$1/SourceGenerator/
 
+CONFIGURATION=Release
+
 pushd $1
 
 if [ ! -d $YARNSPINNER_DLLS_DIR ]; then

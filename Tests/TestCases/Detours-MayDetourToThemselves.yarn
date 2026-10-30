@@ -1,0 +1,29 @@
+title: Start
+---
+
+Start of the node
+
+-> Stay here
+-> Go elsewhere
+    <<detour Elsewhere>>
+-> Exit
+    <<stop>>
+
+End of the node
+
+<<detour Start>>
+
+===
+
+title: Elsewhere
+---
+
+Line from elsewhere
+
+-> Stay here
+-> Return
+    <<return>>
+
+<<detour Elsewhere>>
+
+===

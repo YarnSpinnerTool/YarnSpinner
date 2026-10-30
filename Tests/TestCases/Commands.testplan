@@ -15,13 +15,12 @@ command: `cased`
 command: `locality`
 command: `detouring`
 command: `p`
-#command: `!@#$%^&*()⁄€‹›ﬁﬂ‡°·‚‘-=_+`
 command: `hide Collision:GermOnPorch`
 command: `show 1`
 command: `show 1`
 command: `0`
 command: `2 {0}`
 command: `regular old command`
-command: `zorp 2.1`
+command: `zorp 2.25`
 
 stop

@@ -3,12 +3,12 @@ saliency: best_least_recently_seen
 set: $knows_player = false
 set: $pies_bought = 0
 
-# First time seeing this so we get the intro line
+// First time seeing this so we get the intro line
 line: `Baker: Hey there! Fresh pies, right out of the oven!`
 
 line: `Baker: What d'ya say?`
 
-# Choose to not buy a pie
+// Choose to not buy a pie
 option: `Buy Pie`
 option: `Don't Buy Pie`
 select: 2
@@ -18,11 +18,11 @@ stop
 
 ---
 
-# On the second run, we skip the intro line and get a different opening line
+// On the second run, we skip the intro line and get a different opening line
 
 line: `Baker: How about it?`
 
-# This time, we'll buy a pie. This increments the 'number of pies bought' variable.
+// This time, we'll buy a pie. This increments the 'number of pies bought' variable.
 
 option: `Buy Pie`
 option: `Don't Buy Pie`
@@ -34,7 +34,7 @@ stop
 
 ---
 
-# On the third run, we've bought a pie, so we expect a different opening line
+// On the third run, we've bought a pie, so we expect a different opening line
 
 line: `Baker: Want another?`
 
@@ -48,7 +48,7 @@ stop
 
 ---
 
-# Now, let's set the 'knows player' variable, and we'll get a more specific one
+// Now, let's set the 'knows player' variable, and we'll get a more specific one
 
 set: $knows_player = true
 

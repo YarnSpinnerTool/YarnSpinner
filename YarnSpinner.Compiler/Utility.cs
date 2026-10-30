@@ -142,33 +142,33 @@ namespace Yarn.Compiler
         /// </returns>
         public static (string ModifiedSource, ICollection<string> LineIDs, List<ILineTagGenerator.LineTaggingException> TagExceptions) TagLines(ISourceInput contents, HashSet<string>? excludedLineIDs = null, ILineTagGenerator? lineTagGenerator = null, ILineTagGenerator.TagAbortBehaviour tagAbortBehaviour = ILineTagGenerator.TagAbortBehaviour.CurrentNode)
         {
-            FileParseResult parseSource;
-            // First, get the parse tree for this source code.
-            // var parseSource = ParseSourceText(contents.Source);
-
-            if (contents is CompilationJob.File cjf)
+            var parseSource = contents switch
             {
-                parseSource = ParseSourceText(cjf.Source);
-            }
-            else if (contents is CompilationJob.Raw cjr)
-            {
-                parseSource = ParseSourceText(cjr.Source);
-            }
-            else if (contents is FileParseResult fpr)
-            {
-                parseSource = fpr;
-            }
-            else
-            {
-                throw new ArgumentException("unable to determine the ISourceType of the content");
-            }
+                CompilationJob.File cjf => ParseSourceText(cjf.Source),
+                CompilationJob.Raw cjr => ParseSourceText(cjr.Source),
+                FileParseResult fpr => fpr,
+                _ => throw new ArgumentException("unable to determine the ISourceType of the content"),
+            };
 
             // Were there any error-level diagnostics?
             if (parseSource.Diagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
             {
                 // We encountered a parse error. Bail here; we aren't confident
                 // in our ability to correctly insert a line tag.
-                return (string.Empty, new List<string>(), new List<ILineTagGenerator.LineTaggingException>());
+                var exs = new List<ILineTagGenerator.LineTaggingException>
+                {
+                    new ILineTagGenerator.CompilationTagException()
+                };
+
+                string originalSource = contents switch
+                {
+                    CompilationJob.File cjf => cjf.Source,
+                    CompilationJob.Raw cjr => cjr.Source,
+                    FileParseResult fpr => fpr.Tree.GetText(),
+                    _ => "<unknown source type>"
+                };
+
+                return (originalSource, new List<string>(), exs);
             }
 
             // Create the line listener, which will produce TextReplacements for
@@ -376,7 +376,7 @@ namespace Yarn.Compiler
                 {
                     throw new System.InvalidOperationException($"Exiting line \"{context.GetText()}\" but we have no list of line context.");
                 }
-                
+
                 // We're looking at a complete line statement.
 
                 // First, figure out if this line statement already has a line
@@ -474,7 +474,7 @@ namespace Yarn.Compiler
             {
                 var fullKnownIDs = new HashSet<string>(knownLineIDs);
                 var fullRewrites = new List<(IToken, string)>();
-                
+
                 this.lineTagger.PrepareForLines(lineContext, knownLineIDs);
 
                 try
@@ -515,7 +515,7 @@ namespace Yarn.Compiler
                                     try
                                     {
                                         var newLineID = this.lineTagger.GenerateLineTag(pair.Key, i);
-                                    
+
                                         if (string.IsNullOrWhiteSpace(newLineID))
                                         {
                                             throw new InvalidOperationException($"Line ID generator returned a null or empty line ID");
@@ -740,7 +740,7 @@ namespace Yarn.Compiler
 
             return cluster;
         }
-        
+
         /// <summary>
         /// Gets a string containing a representation of the compiled bytecode for a <see cref="Program"/>.
         /// </summary>

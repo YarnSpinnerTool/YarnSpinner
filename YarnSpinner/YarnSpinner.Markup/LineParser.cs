@@ -407,7 +407,7 @@ namespace Yarn.Markup
                             {
                                 // this is a bit more specialised
                                 // because if we are inside tag mode and ARENT one of the above specific tokens we MUST be an identifier
-                                // and identifiers have a specific structure of [a-zA-Z0-9] and nothing else
+                                // and identifiers have a specific structure of [ a-z A-Z 0-9 | _ ] and nothing else
                                 // so this means we want to eat characters until we are no longer a valid identifier character
                                 // at which point we close off the identifier token and let lexing continue as normal
                                 // we don't change mode because the next character will determine what we need to do
@@ -459,6 +459,7 @@ namespace Yarn.Markup
 
                     // if it is a number we will read until we have no more numbers to read (or decimals)
                     // if it is a " we will read until we hit another "
+                    // unless the " is preceeded by a \ in which case it is just a normal character
                     // if it is a boolean (so true or false)
                     // otherwise we will read arbitrary non ] characters until we hit that or a whitespace
 
@@ -808,7 +809,7 @@ namespace Yarn.Markup
                     }
                 }
 
-// we disable CA1307 because while we SHOULD be doing this we can't due to dotnet differences in Unity
+                // we disable CA1307 because while we SHOULD be doing this we can't due to dotnet differences in Unity
 #pragma warning disable CA1307
                 // finally if there are any escaped markup in the line we need to clean them up also
                 line = line.Replace("\\[", "[");
@@ -991,11 +992,15 @@ namespace Yarn.Markup
                 var valueString = OG.Substring(token.Start, token.Range);
                 if (valueString.StartsWith('"') && valueString.EndsWith('"'))
                 {
-// we disable CA1307 because while we SHOULD be doing this we can't due to dotnet differences in Unity
+                    // we disable CA1307 because while we SHOULD be doing this we can't due to dotnet differences in Unity
 #pragma warning disable CA1307
                     // if we are inside delimiters we will also need to remove any escaped characters
                     valueString = valueString.Replace("\\", string.Empty).Trim('"');
 #pragma warning restore CA1307
+
+                    // because we are a string that is explictly delimited we need to strip those quotes off
+                    // but only those delimiter quotation marks and not any others that happen to be a part of it
+                    valueString = valueString[1..^1];
                 }
                 return valueString;
             }
@@ -1234,7 +1239,7 @@ namespace Yarn.Markup
                             // and one edge case of [ ID ERROR
                             if (stream.LookAhead(2).Type == LexerTokenTypes.Error)
                             {
-                                var invalidName = OG.Substring(idToken.Start, stream.LookAhead(2).End);
+                                var invalidName = OG.Substring(idToken.Start, stream.LookAhead(2).End - idToken.Start);
                                 diagnostics.Add(new MarkupDiagnostic($"Error parsing markup, invalid name: \"{invalidName}\"", idToken.Start));
 
                                 // now we need to consume the ID and ERROR tokens
@@ -1471,7 +1476,7 @@ namespace Yarn.Markup
         {
             return ParseString(input, localeCode, squish: true, sort: true, addImplicitCharacterAttribute);
         }
-        
+
         /// <returns>A markup parse result and a collection of diagnostics encountered while parsing the markup.</returns>
         /// <inheritdoc cref="ParseString(string, string, bool, bool, bool)" />
         public (MarkupParseResult markup, List<MarkupDiagnostic> diagnostics) ParseStringAndIncludeMarkupDiagnostics(string input, string localeCode, bool addImplicitCharacterAttribute = true)
@@ -1504,6 +1509,33 @@ namespace Yarn.Markup
         // the string contains an explicit character marker.
         private static readonly System.Text.RegularExpressions.Regex characterMarkerRegex = new(@"^\s*\[character");
 
+        internal static string AddImplictCharacterAttribute(string input)
+        {
+            if (characterMarkerRegex.IsMatch(input) == false)
+            {
+                // The line does not already contain a [character] marker at the
+                // start, and we've been asked to add an implicit character
+                // attribute. Attempt to find a character at the start, and
+                // replace it with markup that indicates the character name.
+
+                input = implicitCharacterRegex.Replace(
+                    input,
+                    (match) =>
+                    {
+                        var blork = match.Groups[1];
+                        var value = match.Groups[1].Value;
+                        if (value.Contains('"'))
+                        {
+                            // then we need to escape the quotes in the character name
+                            value = value.Replace("\"", "\\\"");
+                        }
+                        return $"[character name=\"{value}\"]{match.Value}[/character]";
+                    }
+                );
+            }
+            return input;
+        }
+
         internal (MarkupParseResult markup, List<MarkupDiagnostic> diagnostics) ParseStringWithDiagnostics(string input, string localeCode, bool squish = true, bool sort = true, bool addImplicitCharacterAttribute = true)
         {
             if (input is null)
@@ -1513,16 +1545,9 @@ namespace Yarn.Markup
 
             input = input.Normalize();
 
-            if (addImplicitCharacterAttribute && characterMarkerRegex.IsMatch(input) == false)
+            if (addImplicitCharacterAttribute)
             {
-                // The line does not already contain a [character] marker at the
-                // start, and we've been asked to add an implicit character
-                // attribute. Attempt to find a character at the start, and
-                // replace it with markup that indicates the character name.
-                input = implicitCharacterRegex.Replace(
-                    input,
-                    (match) => $"[character name=\"{match.Groups[1]}\"]{match.Value}[/character]"
-                );
+                input = AddImplictCharacterAttribute(input);
             }
 
             // now need to replace any instance of \: with just :
@@ -1615,7 +1640,7 @@ namespace Yarn.Markup
             for (int i = 0; i < substitutions.Count; i++)
             {
                 string substitution = substitutions[i];
-// we disable CA1307 because while we SHOULD be doing this we can't due to dotnet differences in Unity
+                // we disable CA1307 because while we SHOULD be doing this we can't due to dotnet differences in Unity
 #pragma warning disable CA1307
                 text = text.Replace("{" + i + "}", substitution);
 #pragma warning restore CA1307

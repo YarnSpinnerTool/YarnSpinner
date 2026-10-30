@@ -50,6 +50,13 @@ namespace Yarn.Compiler
                 }
             }
 
+            // We might have calls to 'visited' as children (i.e. arguments) of
+            // this function call, so recursively visit them
+            foreach (var param in context.expression())
+            {
+                Visit(param);
+            }
+
             return null;
         }
 

@@ -26,14 +26,24 @@
 This package provides support for compiling Yarn source code, so that you can execute it using the YarnSpinner package.]]></PackageDescription>
 
     <YarnSpinnerDiagnostics_GenerateDescriptors>enable</YarnSpinnerDiagnostics_GenerateDescriptors>
+    <UseVendoredProtobuf>false</UseVendoredProtobuf>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.1" />
     <PackageReference Include="CsvHelper" Version="12.2.2" />
-    <PackageReference Include="Google.Protobuf" Version="3.25.2" />
     <PackageReference Include="System.Text.Json" Version="8.0.5" />
     <PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(UseVendoredProtobuf)' != 'true' ">
+    <PackageReference Include="Google.Protobuf" Version="3.25.2" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(UseVendoredProtobuf)' == 'true' ">
+    <Reference Include="Google.Protobuf">
+      <HintPath>..\YarnSpinner\Dependencies\Google.Protobuf.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

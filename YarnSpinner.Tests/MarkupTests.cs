@@ -1658,7 +1658,63 @@ namespace YarnSpinner.Tests
             var diag = diagnostics.Should().ContainSingle(d => d.Message.StartsWith(messageStart)).Subject;
             diag.Column.Should().Be(column);
         }
-    }    
+
+        [Fact]
+        public void TestInvalidPeriodMarkupDoesNotThrow()
+        {
+            var lineParser = new LineParser();
+            // we should expect a single diagnostic
+            var (_, diagnostics) = lineParser.ParseStringWithDiagnostics("Normal line with invalid markup at the [end.]", "en-AU");
+            diagnostics.Should().ContainSingle();
+
+            (_, diagnostics) = lineParser.ParseStringWithDiagnostics("[end.] invalid markup at start.", "en-AU");
+            diagnostics.Should().ContainSingle();
+
+            (_, diagnostics) = lineParser.ParseStringWithDiagnostics("invalid markup in the [end.] middle of the line.", "en-AU");
+            diagnostics.Should().ContainSingle();
+        }
+
+        [Fact]
+        public void TestEscapedStringElementsInsideOfPropertiesAreValid()
+        {
+            var input = """This is a [tag name="\"value\""]normal[/tag] line without any markup""";
+            var lineParser = new LineParser();
+            var (markup, diagnostic) = lineParser.ParseStringAndIncludeMarkupDiagnostics(input, "en-AU");
+            diagnostic.Should().BeEmpty();
+
+            markup.TryGetAttributeWithName("tag", out var attribute).Should().BeTrue();
+            attribute.TryGetProperty("name", out string value).Should().BeTrue();
+            value.Should().Be("\"value\"");
+        }
+
+        [Fact]
+        public void TestImplicitCharacterNamesWithQuotesIsConvertedCorrectlyIntoMarkup()
+        {
+            var input = "\"TOM\": Yes, sir!";
+            var output = """[character name="\"TOM\""]"TOM": [/character]Yes, sir!""";
+            var characterNameValue = "\"TOM\"";
+
+            var converted = LineParser.AddImplictCharacterAttribute(input);
+            converted.Should().Be(output);
+
+            // both the original input and the converted input should parse fine
+            // and have the same markup inside of them
+            var lineParser = new LineParser();
+            var (markup, diagnostic) = lineParser.ParseStringAndIncludeMarkupDiagnostics(input, "en-AU");
+            diagnostic.Should().BeEmpty();
+
+            markup.TryGetAttributeWithName("character", out var attribute).Should().BeTrue();
+            attribute.TryGetProperty("name", out string value).Should().BeTrue();
+            value.Should().Be(characterNameValue);
+
+            (markup, diagnostic) = lineParser.ParseStringAndIncludeMarkupDiagnostics(converted, "en-AU");
+            diagnostic.Should().BeEmpty();
+
+            markup.TryGetAttributeWithName("character", out attribute).Should().BeTrue();
+            attribute.TryGetProperty("name", out value).Should().BeTrue();
+            value.Should().Be(characterNameValue);
+        }
+    }
 
     public class BBCodeChevronReplacer : IAttributeMarkerProcessor
     {

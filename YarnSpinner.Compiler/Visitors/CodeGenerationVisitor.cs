@@ -464,7 +464,7 @@ namespace Yarn.Compiler
                 // Make this option's AddOption instruction point at where we
                 // are now.
                 addOptionInstructions[optionCount].Destination = CurrentInstructionNumber;
-                
+
                 // top of the stack contains our jumped destination, popping that off the stack
                 compiler.Emit(new Instruction { Pop = new PopInstruction { } });
 

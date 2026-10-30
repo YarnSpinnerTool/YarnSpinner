@@ -26,7 +26,8 @@ namespace Yarn.Saliency
         /// <inheritdoc/>
         public ContentSaliencyOption? QueryBestContent(IEnumerable<ContentSaliencyOption> content)
         {
-            return content.FirstOrDefault(c => c.FailingConditionValueCount == 0);
+            return content
+                .FirstOrDefault(c => c.FailingConditionValueCount == 0);
         }
     }
 }

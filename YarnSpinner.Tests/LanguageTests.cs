@@ -89,7 +89,7 @@ namespace YarnSpinner.Tests
             dialogue.Program = result.Program;
             stringTable = result.StringTable;
 
-            testBaseResponder.OnReceivedNodeStart = (_,_) => { return default; };
+            testBaseResponder.OnReceivedNodeStart = (_, _) => { return default; };
             testBaseResponder.OnReceivedNodeComplete = (node, token) => { return default; };
             testBaseResponder.OnReceivedDialogueComplete = () => { return default; };
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
@@ -179,7 +179,7 @@ namespace YarnSpinner.Tests
             // because we are using node groups it is gonna synthesise some nodes we don't care about
             // so all we need to do is make sure we have at least as many node as our test cases
             headers.Count.Should().BeLessThanOrEqualTo(result.Program?.Nodes.Count ?? -1);
-            
+
             result.Program.Should().NotBeNull();
             if (result.Program != null)
             {
@@ -367,7 +367,7 @@ title: Start
 
             var invariantDiagnostics = invariantResult.Diagnostics.Select(d => d.ToString());
             var invariantProgram = invariantResult.Program;
-            
+
             var invariantStringTable = invariantResult?.StringTable?.Values.Select(s => s.ToString());
             var invariantParseTree = FormatParseTreeAsText(invariantParseResult.Tree);
 
@@ -988,6 +988,16 @@ when: always
 ---
 Shelley: hmph apropos hmph
 ===
+title: NodeGroup
+subtitle: Test
+when: always
+---
+Shelley: I can't generate lines like Jon can apparently.
+===
+title: NameTest
+---
+Mr Name: I am Mr Name!
+===
 ";
 
             var (taggedSource, updatedLines, tagExceptions) = Utility.TagLines(new CompilationJob.Raw
@@ -999,8 +1009,16 @@ Shelley: hmph apropos hmph
                 lineTagGenerator: new DescriptiveLineTagGenerator()
             );
 
-            updatedLines.Should().HaveCount(10);
+            // we expect no errors and there to be as many new line tags as there are 
             tagExceptions.Should().BeEmpty();
+            updatedLines.Should().HaveCount(12);
+
+            // now do some quick checks of tags we expect to see
+            // these two test the most common specific edge cases
+            updatedLines.Should().ContainSingle(t => t == "line:NameTest_0100_MrName");
+            updatedLines.Should().ContainSingle(t => t == "line:NodeGroup.Test_0100_Shelley");
+            // and this one tests lines without a speaker
+            updatedLines.Should().ContainSingle(t => t == "line:Node2_0400");
 
             var job = CompilationJob.CreateFromString("TestLineIDs.yarn", taggedSource);
 
@@ -1018,6 +1036,25 @@ Shelley: hmph apropos hmph
                 _ = Compiler.Compile(job);
             };
             compile.Should().NotThrow();
+        }
+
+        [Fact]
+        public void TestNodeTitlesTrimTrailingWhitespace()
+        {
+            var source = """
+            title: ThisTitleHasASingleSpaceAfterIt 
+            ---
+            <<return>> // no-op
+            ===
+            """;
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
+
+            dialogue.Program = result.Program;
+            dialogue.NodeExists("ThisTitleHasASingleSpaceAfterIt ").Should().BeFalse(); //<- fails
+            dialogue.NodeExists("ThisTitleHasASingleSpaceAfterIt").Should().BeTrue(); //<- fails
         }
     }
     // Copyright (c) Microsoft Corporation.
