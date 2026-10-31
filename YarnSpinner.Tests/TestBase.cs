@@ -244,15 +244,8 @@ namespace YarnSpinner.Tests
         {
             dialogue = new AsyncDialogue(storage);
 
-            testBaseResponder = new TestBaseResponder();
-            testBaseResponder.Library.RegisterFunction("visited", delegate (string node)
-            {
-                return dialogue.IsNodeVisited(node);
-            });
-            testBaseResponder.Library.RegisterFunction("visited_count", delegate (string node)
-            {
-                return dialogue.GetNodeVisitCount(node);
-            });
+            testBaseResponder = new TestBaseResponder(dialogue);
+
             testBaseResponder.Library.RegisterFunction("has_any_content", delegate (string nodeGroup)
             {
                 return dialogue.HasAnyContent(nodeGroup);
@@ -587,6 +580,13 @@ namespace YarnSpinner.Tests
         public delegate ValueTask PrepareForLinesHandler(List<string> lineIDs, CancellationToken token);
         public PrepareForLinesHandler OnPrepareForLines;
 
+        private AsyncDialogue asyncDialogue;
+
+        public TestBaseResponder(AsyncDialogue asyncDialogue)
+        {
+            this.asyncDialogue = asyncDialogue;
+        }
+
         public void Reset()
         {
             Library.Clear();
@@ -664,16 +664,21 @@ namespace YarnSpinner.Tests
 
         bool IDialogueResponder.CanCallFunction(string functionName)
         {
-            if (!Library.HasFunction(functionName))
+            return functionName switch
             {
-                return false;
-            }
-
-            return true;
+                StandardLibrary.EngineProvidedFunctionNames.Visited => true,
+                StandardLibrary.EngineProvidedFunctionNames.VisitedCount => true,
+                _ => Library.HasFunction(functionName),
+            };
         }
         ValueTask<IConvertible> IDialogueResponder.InvokeFunction(string functionName, IConvertible[] parameters, CancellationToken token)
         {
-            return Library.Invoke(functionName, parameters, token);
+            return functionName switch
+            {
+                StandardLibrary.EngineProvidedFunctionNames.Visited => ValueTask.FromResult((IConvertible)(asyncDialogue.GetNodeVisitCount(parameters[0].ToString(CultureInfo.InvariantCulture)) > 0)),
+                StandardLibrary.EngineProvidedFunctionNames.VisitedCount => ValueTask.FromResult((IConvertible)(int)asyncDialogue.GetNodeVisitCount(parameters[0].ToString(CultureInfo.InvariantCulture))),
+                _ => Library.Invoke(functionName, parameters, token)
+            };
         }
 
         public List<Declaration> Declarations
