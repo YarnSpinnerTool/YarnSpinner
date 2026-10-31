@@ -995,7 +995,7 @@ namespace Yarn.Markup
                     // we disable CA1307 because while we SHOULD be doing this we can't due to dotnet differences in Unity
 #pragma warning disable CA1307
                     // if we are inside delimiters we will also need to remove any escaped characters
-                    valueString = valueString.Replace("\\", string.Empty).Trim('"');
+                    valueString = valueString.Replace("\\", string.Empty);
 #pragma warning restore CA1307
 
                     // because we are a string that is explictly delimited we need to strip those quotes off
