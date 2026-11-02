@@ -752,7 +752,7 @@ namespace Yarn
                 }
                 case "dice":
                 {
-                    if (parameters.Length != 2)
+                    if (parameters.Length != 1)
                     {
                         throw new System.ArgumentException($"Internal error: The function {functionName} expects one parameter but was given {parameters.Length}");
                     }
