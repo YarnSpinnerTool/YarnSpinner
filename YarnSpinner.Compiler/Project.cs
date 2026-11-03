@@ -693,9 +693,11 @@ namespace Yarn.Compiler
 
                     foreach (var parameterElement in funcElement.GetProperty("parameters").EnumerateArray())
                     {
-                        var isArray = parameterElement.GetProperty("isParamsArray").GetBoolean();
+                        var isArray = parameterElement.TryGetProperty("isParamsArray", out var isParamsArrayProperty)
+                            ? isParamsArrayProperty.GetBoolean() : false;
                         var paramType = parameterElement.GetProperty("type").GetString();
-                        var paramSubType = parameterElement.TryGetProperty("subtype", out var subtypeProperty) ? subtypeProperty.GetString() : null;
+                        var paramSubType = parameterElement.TryGetProperty("subtype", out var subtypeProperty)
+                            ? subtypeProperty.GetString() : null;
                         var isOptional = parameterElement.TryGetProperty("defaultValue", out _);
 
                         IType parameterYarnType;
