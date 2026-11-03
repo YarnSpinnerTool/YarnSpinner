@@ -212,5 +212,76 @@ namespace YarnSpinner.Tests
             project.Definitions.Should().ContainSingle().Subject.Should().Be("./test.ysls.json");
             project.DefinitionsFiles.Should().ContainSingle().Subject.Should().Be(Path.Combine(ProjectRootPath, "Tests", "Projects", "Compilation", "test.ysls.json"));
         }
+
+        [Fact]
+        public void TestResolvesForwardDeclaredTypes()
+        {
+            // Create a YSLS file that declares the existence of a function 'has_inventory_item' that takes one parameter: an enum named 'InventoryItemType'. This is a type that isn't know before compilation - it's declared in the script we're about to compile.
+            var testProjectYSLS = """
+            {
+                "commands": [],
+                "functions": [
+                    {
+                        "yarnName": "has_inventory_item",
+                        "parameters": [
+                            {
+                                "name": "itemName",
+                                "type": "enum",
+                                "subtype": "InventoryItemType"
+                            }
+                        ],
+                        "return": {
+                            "type": "bool"
+                        }
+                    }
+                ]
+            }
+            """;
+
+            // Load this YSLS
+            var definitions = new Definitions(testProjectYSLS);
+
+            // We should have a declared function named "has_inventory_item"
+            var loadedAction = definitions.functions.Should().Contain(f => f.Name == "has_inventory_item").Subject;
+            var loadedActionType = loadedAction.Type.Should().BeOfType<Yarn.FunctionType>().Subject;
+
+            // The function should have a single parameter, whose type should be a forward-declaration for some type named "InventoryItemType" that we'll find out about later
+            var parameterType = loadedActionType.Parameters.Single()
+                .Should().BeOfType<Yarn.ForwardDeclaredType>()
+                .Which.Name.Should().Be("InventoryItemType");
+
+            // Write some code that makes use of this function
+            var compilationSource = """
+            title: Start
+            ---
+            <<enum InventoryItemType>>
+                <<case Apple = "apple">>
+                <<case Orange = "orange">>
+                <<case MythicSword = "mythic-sword">>
+            <<endenum>>
+
+            <<declare $has_sword = has_inventory_item(InventoryItemType.MythicSword)>>
+
+            You have the sword: {$has_sword}
+            ===
+            """;
+
+            var job = CompilationJob.CreateFromString("input", compilationSource, definitions.functions);
+            var result = Compiler.Compile(job);
+
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+
+            // The variable we declared in the source should be what we expect
+            result.Declarations.Should().Contain(d => d.Name == "$has_sword").Which.Type.Should().Be(Yarn.Types.Boolean);
+
+            // We should still have our has_inventory_item function
+            var resolvedFunctionType = result.Declarations.Should().Contain(d => d.Name == "has_inventory_item").Which.Type.Should().BeOfType<Yarn.FunctionType>().Subject;
+
+            // The parameter of the function should be resolved to be the user-defined InventoryItemType enum
+            resolvedFunctionType.Parameters.Single().Name.Should().Be("InventoryItemType");
+            resolvedFunctionType.Parameters.Single().Parent.Should().Be(Yarn.Types.Enum);
+            resolvedFunctionType.Parameters.Single().Should().BeOfType<Yarn.EnumType>().Which.TypeMembers.Should().ContainKey("MythicSword");
+
+        }
     }
 }

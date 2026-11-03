@@ -296,6 +296,45 @@ namespace Yarn.Compiler
                 diagnostics.AddRange(userDefinedTypesVisitor.Diagnostics);
             }
 
+            // Recursively resolves forward-declared types in a type given knowledge of the existing types
+            static IType ResolveForwardDeclaredType(IType type, IEnumerable<TypeBase> knownTypes)
+            {
+                switch (type)
+                {
+                    case FunctionType functionType:
+                        {
+                            // Return a fully-resolved clone
+                            return new FunctionType(functionType)
+                            {
+                                ReturnType = ResolveForwardDeclaredType(functionType.ReturnType, knownTypes),
+                                Parameters = functionType.Parameters.Select(p => ResolveForwardDeclaredType(p, knownTypes)).ToList(),
+                                VariadicParameterType = functionType.VariadicParameterType != null
+                                    ? ResolveForwardDeclaredType(functionType.VariadicParameterType, knownTypes)
+                                    : null,
+                            };
+                        }
+
+                    case ForwardDeclaredType forwardDeclaredType:
+                        {
+                            // Try and find the type in our known types
+                            var foundType = knownTypes.SingleOrDefault(t => t.Name == forwardDeclaredType.Name);
+                            return foundType switch
+                            {
+                                null => Types.Error, // failed to find it; resolve it as the 'error' type
+                                _ => foundType
+                            };
+
+                        }
+                    default: return type;
+                }
+            }
+
+            // Now that we know all types that might exist, resolve any declarations that had a forward-declared type
+            foreach (var decl in declarations)
+            {
+                decl.Type = ResolveForwardDeclaredType(decl.Type, knownTypes);
+            }
+
             // Run the type checker on the files, and produce type variables and constraints.
             List<TypeChecker.TypeConstraint> typeConstraints = new List<TypeChecker.TypeConstraint>();
 

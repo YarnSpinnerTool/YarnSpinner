@@ -695,6 +695,7 @@ namespace Yarn.Compiler
                     {
                         var isArray = parameterElement.GetProperty("isParamsArray").GetBoolean();
                         var paramType = parameterElement.GetProperty("type").GetString();
+                        var paramSubType = parameterElement.TryGetProperty("subtype", out var subtypeProperty) ? subtypeProperty.GetString() : null;
                         var isOptional = parameterElement.TryGetProperty("defaultValue", out _);
 
                         IType parameterYarnType;
@@ -709,7 +710,12 @@ namespace Yarn.Compiler
                             case "bool":
                                 parameterYarnType = Types.Boolean;
                                 break;
-                            case "enum":
+                            case "enum" when paramSubType != null:
+                                // It's an enum; we don't know enough about the underling type of it yet, so mark it with a placeholder, and the compiler will resolve it later.
+                                parameterYarnType = new ForwardDeclaredType(paramSubType);
+                                break;
+                            case "enum" when paramSubType == null:
+                                // It's something inheriting from enum, but we don't know what specific type. Default it to number.
                                 parameterYarnType = Types.Number;
                                 break;
                             case "instance":

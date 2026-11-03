@@ -65,7 +65,7 @@ namespace Yarn
         /// parameters this function accepts (also known as the function's
         /// <i>arity</i>).
         /// </remarks>
-        public List<IType> Parameters { get; } = new List<IType>();
+        public List<IType> Parameters { get; internal set; } = new List<IType>();
 
         /// <summary>
         /// Gets the type of the parameter at the given index.
@@ -126,6 +126,13 @@ namespace Yarn
             ReturnType = returnType ?? Types.Error;
             Parameters = parameterTypes.ToList();
             VariadicParameterType = null;
+        }
+
+        internal FunctionType(FunctionType other)
+        {
+            ReturnType = other.ReturnType;
+            Parameters = new(other.Parameters);
+            VariadicParameterType = other.VariadicParameterType;
         }
 
         /// <summary>
