@@ -32,7 +32,7 @@ namespace YarnSpinner.Tests
     }
 
 
-    public class ProjectTests : AsyncTestBase
+    public class ProjectTests : TestBase
     {
         public ProjectTests(ITestOutputHelper outputHelper) : base(outputHelper) { }
 
@@ -458,7 +458,7 @@ A single line, with a line tag. #shadow:expected_abc123
             var testWithoutProjectPath = Path.Combine(ProjectRootPath, "Tests", "Projects", "Compilation", "test-without.yarnproject");
             var compilationJob = CompilationJob.CreateFromProject(testWithoutProjectPath);
             compilationJob.CompilationType = CompilationJob.Type.FullCompilation;
-            
+
             var result = Compiler.Compile(compilationJob);
             result.ContainsErrors.Should().BeTrue();
             result.Diagnostics.Should().ContainSingle(d => d.Code == "YS0013"); // dont know the function
@@ -471,7 +471,7 @@ A single line, with a line tag. #shadow:expected_abc123
             var testWithoutProjectPath = Path.Combine(ProjectRootPath, "Tests", "Projects", "Compilation", "test-with-bad-yarn.yarnproject");
             var compilationJob = CompilationJob.CreateFromProject(testWithoutProjectPath);
             compilationJob.CompilationType = CompilationJob.Type.FullCompilation;
-            
+
             var result = Compiler.Compile(compilationJob);
             result.ContainsErrors.Should().BeTrue();
             result.Diagnostics.Should().ContainSingle(d => d.Code == "YS0050"); // invalid if expression types

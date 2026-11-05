@@ -5,7 +5,7 @@ using Yarn.Compiler;
 
 namespace YarnSpinner.Tests
 {
-    public class TagTests : AsyncTestBase
+    public class TagTests : TestBase
     {
         public TagTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {

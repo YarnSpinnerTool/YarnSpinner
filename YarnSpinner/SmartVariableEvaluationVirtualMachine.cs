@@ -232,7 +232,7 @@ namespace Yarn
                     stack.Pop();
                     break;
                 case Instruction.InstructionTypeOneofCase.CallFunc:
-                    var task = AsyncVirtualMachine.CallFunction(instruction.CallFunc.FunctionName, stack, library, System.Threading.CancellationToken.None);
+                    var task = VirtualMachine.CallFunction(instruction.CallFunc.FunctionName, stack, library, System.Threading.CancellationToken.None);
                     if (task.IsCompletedSuccessfully)
                     {
                         stack.Push(task.Result);

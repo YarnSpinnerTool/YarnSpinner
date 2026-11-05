@@ -124,7 +124,7 @@ namespace Yarn.Markup
         /// text. This allows users of the <see cref="LineParser"/> class
         /// to dynamically replace text in a line. The <c>nomarkup</c> tag is
         /// implemented in this way by the <see cref="LineParser"/> class
-        /// directly; the <see cref="AsyncDialogue"/> class uses this mechanism
+        /// directly; the <see cref="Dialogue"/> class uses this mechanism
         /// to implement the <c>select</c>, <c>plural</c> and <c>ordinal</c> markers.
         /// </remarks>
         /// <param name="attributeName">The name of the marker that should

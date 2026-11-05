@@ -11,7 +11,7 @@ using Yarn.Compiler.Upgrader;
 namespace YarnSpinner.Tests
 {
 
-    public class UpgraderTests : AsyncTestBase
+    public class UpgraderTests : TestBase
     {
         public UpgraderTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
@@ -27,7 +27,7 @@ namespace YarnSpinner.Tests
 
             storage.Clear();
 
-            directory = Path.Combine(AsyncTestBase.TestDataPath, directory);
+            directory = Path.Combine(TestBase.TestDataPath, directory);
 
             if (Directory.Exists(directory) == false)
             {

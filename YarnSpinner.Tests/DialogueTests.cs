@@ -13,7 +13,7 @@ namespace YarnSpinner.Tests
 {
 
 
-    public class DialogueTests : AsyncTestBase
+    public class DialogueTests : TestBase
     {
         public DialogueTests(ITestOutputHelper outputHelper) : base(outputHelper) { }
 
@@ -87,12 +87,12 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(compilationJob);
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
-            
+
             testBaseResponder.OnReceivedLine = (line, token) => { return default; };
             testBaseResponder.OnReceivedOptions = (options, token) => { return new ValueTask<int>(0); };
             testBaseResponder.OnReceivedCommand = (command, token) => { return default; };
-            testBaseResponder.OnReceivedNodeStart = (_,_) => { return default; };
-            testBaseResponder.OnReceivedNodeComplete = (_,_) => { return default; };
+            testBaseResponder.OnReceivedNodeStart = (_, _) => { return default; };
+            testBaseResponder.OnReceivedNodeComplete = (_, _) => { return default; };
             testBaseResponder.OnReceivedDialogueComplete = () => { return default; };
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
 
@@ -142,7 +142,7 @@ namespace YarnSpinner.Tests
             stringTable = result.StringTable;
 
             bool prepareForLinesWasCalled = false;
-            
+
             testBaseResponder.OnReceivedNodeStart = (node, token) => { return default; };
             testBaseResponder.OnPrepareForLines = (lines, token) =>
             {
@@ -196,8 +196,8 @@ namespace YarnSpinner.Tests
             testBaseResponder.OnReceivedLine = (line, token) => { return default; };
             testBaseResponder.OnReceivedOptions = (options, token) => { return new ValueTask<int>(0); };
             testBaseResponder.OnReceivedCommand = (command, token) => { return default; };
-            testBaseResponder.OnReceivedNodeStart = (_,_) => { return default; };
-            testBaseResponder.OnReceivedNodeComplete = (_,_) => { return default; };
+            testBaseResponder.OnReceivedNodeStart = (_, _) => { return default; };
+            testBaseResponder.OnReceivedNodeComplete = (_, _) => { return default; };
             testBaseResponder.OnReceivedDialogueComplete = () => { return default; };
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
 
@@ -371,7 +371,7 @@ namespace YarnSpinner.Tests
             result.Diagnostics.Should().Contain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error && d.Range.Start.Line == 3);
         }
 
-        
+
         [Fact]
         public void TestHeadersAreAccessible()
         {

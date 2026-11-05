@@ -14,7 +14,7 @@ namespace YarnSpinner.Tests
 {
 
 
-    public class SaliencyTests : AsyncTestBase
+    public class SaliencyTests : TestBase
     {
         public SaliencyTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
@@ -33,8 +33,8 @@ namespace YarnSpinner.Tests
             this.testBaseResponder.OnReceivedOptions = (opts, _) => new ValueTask<int>(opts.Options.First().ID);
             this.testBaseResponder.OnReceivedCommand = (_, _) => { return default; };
             this.testBaseResponder.OnReceivedNodeStart = (_, _) => { return default; };
-            this.testBaseResponder.OnReceivedNodeComplete = (_, _) => { return default;};
-            this.testBaseResponder.OnReceivedDialogueComplete = () => { return default;};
+            this.testBaseResponder.OnReceivedNodeComplete = (_, _) => { return default; };
+            this.testBaseResponder.OnReceivedDialogueComplete = () => { return default; };
 
             return result;
         }

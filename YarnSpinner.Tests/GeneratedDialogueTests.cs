@@ -12,7 +12,7 @@ using YarnSpinner.Diagnostics;
 namespace YarnSpinner.Tests
 {
 
-    public partial class GeneratedDiagnosticTests : AsyncTestBase
+    public partial class GeneratedDiagnosticTests : TestBase
     {
         public GeneratedDiagnosticTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {

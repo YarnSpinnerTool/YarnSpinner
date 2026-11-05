@@ -38,7 +38,7 @@ namespace Yarn
     /// <remarks>
     /// Without a responder the VM won't know when to continue along to the next piece of content or how to respond to user input.
     /// The VM will always await the action of it's responder before continuining onwards.
-    /// The VM always has the <see cref="AsyncDialogue"/> as it's default responder but that just logs these events and otherwise forwards the calls onto it's responder on the <see cref="AsyncDialogue.Responder"/> field.
+    /// The VM always has the <see cref="Dialogue"/> as it's default responder but that just logs these events and otherwise forwards the calls onto it's responder on the <see cref="Dialogue.Responder"/> field.
     /// </remarks>
     public interface IDialogueResponder
     {
@@ -48,16 +48,16 @@ namespace Yarn
         /// <param name="line">The line encountered</param>
         /// <param name="token">The cancellation token for this task</param>
         ValueTask HandleLine(Line line, CancellationToken token);
-        
+
         /// <summary>
         /// Requests the responder handle the current option group and tell the VM which option was selected.
-        /// If <see cref="AsyncDialogue.NoOptionSelected"/> is returned the option group will be skipped over.
+        /// If <see cref="Dialogue.NoOptionSelected"/> is returned the option group will be skipped over.
         /// </summary>
         /// <param name="options">The collection of options for the responder to use in it's selection</param>
         /// <param name="token">The cancellation token for this task</param>
         /// <returns>The id of the selected option</returns>
         ValueTask<int> HandleOptions(OptionSet options, CancellationToken token);
-        
+
         /// <summary>
         /// Requests the responder handle the current command and inform the VM when it is done so.
         /// </summary>
@@ -160,7 +160,7 @@ namespace Yarn
         }
     }
 
-    internal class AsyncVirtualMachine
+    internal class VirtualMachine
     {
         internal class State
         {
@@ -261,7 +261,7 @@ namespace Yarn
             }
         }
 
-        internal AsyncVirtualMachine(IVariableStorage storage)
+        internal VirtualMachine(IVariableStorage storage)
         {
             this.VariableStorage = storage;
             this.ContentSaliencyStrategy = new RandomBestLeastRecentlyViewedSaliencyStrategy(storage);
@@ -275,7 +275,7 @@ namespace Yarn
         }
 
         private IDialogueResponder? dialogueResponder;
-        
+
         /// <summary>
         /// The VM's responder, responsible for handling all dialogue events
         /// </summary>
@@ -311,7 +311,7 @@ namespace Yarn
         /// Current variable storage
         /// </summary>
         public IVariableStorage VariableStorage { get; set; }
-        
+
         /// <summary>
         /// Logger for debug messages
         /// </summary>
@@ -383,7 +383,7 @@ namespace Yarn
 
             state.currentNodeName = nodeName;
             state.programCounter = 0;
-            
+
             // if we are already running dialogue we have a specific token ready for this
             // but this can be called before starting dialogue
             // and in those cases we won't yet have a token so we fall back to using the global one
@@ -448,7 +448,7 @@ namespace Yarn
             // refreshing our dialogue cancellation token
             // the old one will have been cancelled either by dialogue finishing or being stopped
             dialogueCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(GlobalToken);
-            
+
             // kick off executing instructions
             var canContinue = true;
 
@@ -647,7 +647,7 @@ namespace Yarn
                         try
                         {
                             var chosenOption = await Responder.HandleOptions(new OptionSet(optionChoices.ToArray()), cancellationToken);
-                            if (chosenOption == AsyncDialogue.NoOptionSelected)
+                            if (chosenOption == Dialogue.NoOptionSelected)
                             {
                                 // Push a flag indicating that no option was selected.
                                 // this means the jump if false will pass taking us to the end of the option statement

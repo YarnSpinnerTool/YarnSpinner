@@ -17,7 +17,7 @@ using Yarn.Compiler;
 #nullable enable
 namespace YarnSpinner.Tests
 {
-    public class LanguageTests : AsyncTestBase
+    public class LanguageTests : TestBase
     {
         public LanguageTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
@@ -60,7 +60,7 @@ namespace YarnSpinner.Tests
         public async Task TestExampleScript()
         {
             runtimeErrorsCauseFailures = false;
-            var path = Path.Combine(AsyncTestBase.TestDataPath, "Example.yarn");
+            var path = Path.Combine(TestBase.TestDataPath, "Example.yarn");
             var testPath = Path.ChangeExtension(path, ".testplan");
 
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
@@ -80,7 +80,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public async Task TestEndOfNotesWithOptionsNotAdded()
         {
-            var path = Path.Combine(AsyncTestBase.TestDataPath, "SkippedOptions.yarn");
+            var path = Path.Combine(TestBase.TestDataPath, "SkippedOptions.yarn");
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
@@ -105,7 +105,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestNodeHeaders()
         {
-            var path = Path.Combine(AsyncTestBase.TestDataPath, "Headers.yarn");
+            var path = Path.Combine(TestBase.TestDataPath, "Headers.yarn");
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
             result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error); ;
@@ -217,7 +217,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestInvalidCharactersInNodeTitle()
         {
-            var path = Path.Combine(AsyncTestBase.TestDataPath, "InvalidNodeTitle.yarn");
+            var path = Path.Combine(TestBase.TestDataPath, "InvalidNodeTitle.yarn");
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
@@ -334,7 +334,7 @@ title: Start
         [MemberData(nameof(FileSources), "Issues")]
         public void TestCompilationShouldNotBeCultureDependent(string file)
         {
-            var path = Path.Combine(AsyncTestBase.TestDataPath, file);
+            var path = Path.Combine(TestBase.TestDataPath, file);
 
             var source = File.ReadAllText(path);
 

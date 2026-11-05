@@ -13,7 +13,7 @@ namespace Yarn
 #nullable enable
 
     /// <summary>
-    /// A line of dialogue, sent from the <see cref="AsyncDialogue"/> to the game.
+    /// A line of dialogue, sent from the <see cref="Dialogue"/> to the game.
     /// </summary>
     /// <remarks>
     /// <para>When the game receives a <see cref="Line"/>, it should do the
@@ -31,7 +31,7 @@ namespace Yarn
     /// </list>
     ///
     /// <para>You typically do not create instances of this struct yourself.
-    /// They are created by the <see cref="AsyncDialogue"/> during program
+    /// They are created by the <see cref="Dialogue"/> during program
     /// execution.</para>
     /// </remarks>
     /// <seealso cref="IDialogueResponder.HandleLine(Line, System.Threading.CancellationToken)"/>
@@ -66,11 +66,11 @@ namespace Yarn
 
     /// <summary>
     /// A set of <see cref="OptionSet.Option"/>s, sent from the <see
-    /// cref="AsyncDialogue"/> to the game.
+    /// cref="Dialogue"/> to the game.
     /// </summary>
     /// <remarks>
     /// You typically do not create instances of this struct yourself. They are
-    /// created by the <see cref="AsyncDialogue"/> during program execution.
+    /// created by the <see cref="Dialogue"/> during program execution.
     /// </remarks>
     /// <seealso cref="IDialogueResponder.HandleOptions(OptionSet, CancellationToken)"/>
 #pragma warning disable CA1815
@@ -146,11 +146,11 @@ namespace Yarn
 #pragma warning restore CA1815
 
     /// <summary>
-    /// A command, sent from the <see cref="AsyncDialogue"/> to the game.
+    /// A command, sent from the <see cref="Dialogue"/> to the game.
     /// </summary>
     /// <remarks>
     /// You do not create instances of this struct yourself. They are
-    /// created by the <see cref="AsyncDialogue"/> during program execution.
+    /// created by the <see cref="Dialogue"/> during program execution.
     /// </remarks>
     /// <seealso cref="IDialogueResponder.HandleCommand(Command, CancellationToken)"/>
 #pragma warning disable CA1815
@@ -170,7 +170,7 @@ namespace Yarn
 
     /// <summary>
     /// Represents a method that receives diagnostic messages and error
-    /// information from a <see cref="AsyncDialogue"/>.
+    /// information from a <see cref="Dialogue"/>.
     /// </summary>
     /// <remarks>
     /// The text that this delegate receives may be output to a console, or
@@ -196,7 +196,7 @@ namespace Yarn
 
     /// <summary>
     /// Represents different kinds of variables that can be fetched from a <see
-    /// cref="AsyncDialogue"/> using <see cref="IVariableAccess.TryGetValue{T}(string, out T)"/>.
+    /// cref="Dialogue"/> using <see cref="IVariableAccess.TryGetValue{T}(string, out T)"/>.
     /// </summary>
     public enum VariableKind
     {
@@ -405,24 +405,24 @@ namespace Yarn
     /// Co-ordinates the execution of Yarn programs.
     /// </summary>
     /// <remarks>
-    /// This type is basically a wrapper around the <see cref="AsyncVirtualMachine"/> and provides a nicer interface into manipulating the vm from the perspective of dialogue instead of a stack machine.
+    /// This type is basically a wrapper around the <see cref="VirtualMachine"/> and provides a nicer interface into manipulating the vm from the perspective of dialogue instead of a stack machine.
     /// </remarks>
-    public class AsyncDialogue: ISmartVariableEvaluator, IDialogueResponder
+    public class Dialogue : ISmartVariableEvaluator, IDialogueResponder
     {
         /// <summary>
         /// Creates a new AsyncDialogue
         /// </summary>
         /// <param name="variableStorage">The varstore for this dialogue</param>
         /// <exception cref="ArgumentNullException">If the variable storage is null there is no way to create an a dialogue object</exception>
-        public AsyncDialogue(IVariableStorage variableStorage)
+        public Dialogue(IVariableStorage variableStorage)
         {
             this.VariableStorage = variableStorage ?? throw new ArgumentNullException(nameof(variableStorage));
             this.VariableStorage.SmartVariableEvaluator = this;
             this.VariableStorage.Program = this.Program;
 
-            this.vm = new AsyncVirtualMachine(this.VariableStorage);
+            this.vm = new VirtualMachine(this.VariableStorage);
             this.vm.Responder = this;
-            this.smartVariableVM = new AsyncVirtualMachine(this.VariableStorage);
+            this.smartVariableVM = new VirtualMachine(this.VariableStorage);
         }
 
         /// <summary>
@@ -474,7 +474,7 @@ namespace Yarn
                 VariableStorage.Program = value;
             }
         }
-        private readonly AsyncVirtualMachine smartVariableVM;
+        private readonly VirtualMachine smartVariableVM;
 
         /// <summary>
         /// What saliency content strategy does the dialogue use to select salient content?
@@ -485,7 +485,7 @@ namespace Yarn
             set => this.vm.ContentSaliencyStrategy = value;
         }
 
-        private AsyncVirtualMachine vm;
+        private VirtualMachine vm;
 
         /// <summary>
         /// Is true when dialogue is currently running, false otherwise.
@@ -539,7 +539,7 @@ namespace Yarn
 
             return node.IsNodeGroupHub;
         }
-        
+
         /// <summary>
         /// Works out if the node has been visited.
         /// See also <seealso cref="GetNodeVisitCount(string)"/>
@@ -561,7 +561,7 @@ namespace Yarn
             VariableStorage.TryGetValue(StandardLibrary.GenerateUniqueVisitedVariableForNode(nodeName), out float count);
             return count;
         }
-        
+
         /// <summary>
         /// Determines if the requested node group has any content to show.
         /// </summary>
@@ -603,7 +603,7 @@ namespace Yarn
             // Did the saliency strategy indicate that an option could be selected?
             return bestOption != null;
         }
-        
+
         /// <summary>
         /// Returns the list of salient options inside a node groups
         /// </summary>
@@ -733,7 +733,7 @@ namespace Yarn
                 LogErrorMessage?.Invoke("Asked to handle node start but have no responder set!");
                 throw new InvalidOperationException($"{nameof(Responder)} is null!");
             }
-            
+
             return Responder.HandleNodeStart(node, token);
         }
 
@@ -747,7 +747,7 @@ namespace Yarn
                 LogErrorMessage?.Invoke("Asked to handle node complete but have no responder set!");
                 throw new InvalidOperationException($"{nameof(Responder)} is null!");
             }
-            
+
             return Responder.HandleNodeComplete(node, token);
         }
 
@@ -761,7 +761,7 @@ namespace Yarn
                 LogErrorMessage?.Invoke("Asked to handle dialogue complete but have no responder set!");
                 throw new InvalidOperationException($"{nameof(Responder)} is null!");
             }
-            
+
             return Responder.HandleDialogueComplete();
         }
 
@@ -803,7 +803,7 @@ namespace Yarn
             }
             return Responder.InvokeFunction(functionName, parameters, token);
         }
-        
+
         /// <summary>
         /// Wipes the current program
         /// </summary>
@@ -829,7 +829,7 @@ namespace Yarn
                 }
             }
         }
-        
+
         /// <summary>
         /// Sets the current node
         /// </summary>
@@ -838,7 +838,7 @@ namespace Yarn
         {
             await this.vm.SetNode(node, clearState: true);
         }
-        
+
         /// <summary>
         /// Requests the current dialogue stop
         /// </summary>
@@ -849,7 +849,7 @@ namespace Yarn
         {
             await this.vm.Stop();
         }
-        
+
         /// <summary>
         /// Returns all headers on the requested node.
         /// </summary>

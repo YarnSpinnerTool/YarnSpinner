@@ -10,7 +10,7 @@ using Yarn.Compiler;
 namespace YarnSpinner.Tests
 {
 
-    public class ProjectFileTests : AsyncTestBase
+    public class ProjectFileTests : TestBase
     {
         public ProjectFileTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
@@ -208,7 +208,7 @@ namespace YarnSpinner.Tests
         {
             var testProjectPath = Path.Combine(ProjectRootPath, "Tests", "Projects", "Compilation", "test.yarnproject");
             var project = Project.LoadFromFile(testProjectPath);
-            
+
             project.Definitions.Should().ContainSingle().Subject.Should().Be("./test.ysls.json");
             project.DefinitionsFiles.Should().ContainSingle().Subject.Should().Be(Path.Combine(ProjectRootPath, "Tests", "Projects", "Compilation", "test.ysls.json"));
         }

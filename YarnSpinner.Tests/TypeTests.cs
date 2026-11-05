@@ -12,7 +12,7 @@ using Yarn.Compiler;
 
 namespace YarnSpinner.Tests
 {
-    public class TypeTests : AsyncTestBase
+    public class TypeTests : TestBase
     {
         public TypeTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {

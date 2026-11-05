@@ -11,7 +11,7 @@ using Yarn.Compiler;
 
 namespace YarnSpinner.Tests
 {
-    public class SmartVariableTests : AsyncTestBase
+    public class SmartVariableTests : TestBase
     {
         public SmartVariableTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
@@ -219,7 +219,7 @@ namespace YarnSpinner.Tests
                 .AddLine("2")
                 .AddStop()
                 .GetPlan();
-            
+
             testBaseResponder.OnPrepareForLines = (_, _) => { return default; };
 
             // When
@@ -376,7 +376,7 @@ namespace YarnSpinner.Tests
         }
     }
 
-    class TestResponder: IDialogueResponder
+    class TestResponder : IDialogueResponder
     {
         public ValueTask HandleLine(Line line, CancellationToken token)
         {

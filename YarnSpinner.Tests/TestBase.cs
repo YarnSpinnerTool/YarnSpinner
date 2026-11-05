@@ -15,9 +15,9 @@ using Yarn.Saliency;
 
 namespace YarnSpinner.Tests
 {
-    public class AsyncTestBase
+    public class TestBase
     {
-        protected AsyncDialogue dialogue;
+        protected Dialogue dialogue;
 
         protected TestBaseResponder testBaseResponder;
 
@@ -116,7 +116,7 @@ namespace YarnSpinner.Tests
                     var text = GetComposedTextForLine(option.Line);
                     // getting it's metadata
                     var metadata = stringTable[option.Line.ID].metadata;
-                    
+
                     // building the step and storing it for later use
                     var step = new TestPlan.ExpectOptionStep(text, metadata, option.IsAvailable);
                     moments.Enqueue(step);
@@ -240,9 +240,9 @@ namespace YarnSpinner.Tests
             }
         }
 
-        public AsyncTestBase(ITestOutputHelper outputHelper)
+        public TestBase(ITestOutputHelper outputHelper)
         {
-            dialogue = new AsyncDialogue(storage);
+            dialogue = new Dialogue(storage);
 
             testBaseResponder = new TestBaseResponder(dialogue);
 
@@ -562,7 +562,7 @@ namespace YarnSpinner.Tests
         }
     }
 
-    public class TestBaseResponder: IDialogueResponder
+    public class TestBaseResponder : IDialogueResponder
     {
         public BasicFunctionLibrary Library = new();
         public delegate ValueTask ReceivedLineHandle(Line line, CancellationToken token);
@@ -580,9 +580,9 @@ namespace YarnSpinner.Tests
         public delegate ValueTask PrepareForLinesHandler(List<string> lineIDs, CancellationToken token);
         public PrepareForLinesHandler OnPrepareForLines;
 
-        private AsyncDialogue asyncDialogue;
+        private Dialogue asyncDialogue;
 
-        public TestBaseResponder(AsyncDialogue asyncDialogue)
+        public TestBaseResponder(Dialogue asyncDialogue)
         {
             this.asyncDialogue = asyncDialogue;
         }

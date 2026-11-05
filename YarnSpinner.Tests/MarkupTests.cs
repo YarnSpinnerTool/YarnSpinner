@@ -8,7 +8,7 @@ using Yarn.Markup;
 
 namespace YarnSpinner.Tests
 {
-    public class MarkupTests : AsyncTestBase, IAttributeMarkerProcessor
+    public class MarkupTests : TestBase, IAttributeMarkerProcessor
     {
         public MarkupTests(ITestOutputHelper outputHelper) : base(outputHelper) { }
 
@@ -1606,7 +1606,7 @@ namespace YarnSpinner.Tests
             // checking markup can have properties with underscores
             markup = lineParser.ParseString("Line with a regular [under_tag under_property=\"hello\"]underscored tag with an underscored property also[/under_tag] in it.", "en-AU");
             markup.Text.Should().Be("Line with a regular underscored tag with an underscored property also in it.");
-            
+
             markup.Attributes.Should().HaveCount(1);
             markup.Attributes.Should().Contain(m => m.Name == "under_tag")
                 .Which.Properties.Should().Contain(kv => kv.Key == "under_property" && kv.Value.StringValue == "hello");

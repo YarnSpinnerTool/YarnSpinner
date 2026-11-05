@@ -14,7 +14,7 @@ _         1.        2.        3.        4.        5.        6.        7.        
 */
 namespace YarnSpinner.Tests
 {
-    public class ErrorHandlingTests : AsyncTestBase
+    public class ErrorHandlingTests : TestBase
     {
         public ErrorHandlingTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
@@ -1443,7 +1443,7 @@ title: EmptyWithComment
 
             var diag = result.Diagnostics.Should().ContainSingle().Subject;
             diag.Code.Should().Be(DiagnosticDescriptor.RogueChevronWithCommand.Code);
-            
+
             diag.Range.Start.Character.Should().Be(startColumn);
             diag.Range.End.Character.Should().Be(endColumn);
         }
