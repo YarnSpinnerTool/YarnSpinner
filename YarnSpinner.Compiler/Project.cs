@@ -364,7 +364,7 @@ namespace Yarn.Compiler
                     }
                 }
 
-                return result;
+                return result.Distinct();
             }
         }
 
