@@ -75,6 +75,25 @@ namespace Yarn.Compiler
             // add in all the standard library functions
             declarations.AddRange(GetDeclarationsFromLibrary(StandardLibrary.AllFunctions()));
 
+            // Merge declarations together if they're the same name and type
+            declarations = declarations.Distinct(Declaration.NameAndTypeComparer.Default).ToList();
+
+            // Are there any declarations that have the same name but not the same type?
+            var duplicateFunctionNames = declarations.GroupBy(d => d.Name).Where(g => g.Count() > 1);
+            if (duplicateFunctionNames.Any())
+            {
+                // TODO: we should have some sort of way to create diagnostics that aren't attached to a location in a file
+
+                throw new InvalidOperationException("Multiple declarations with the same name but with different types: " +
+                    string.Join(
+                        ", ",
+                        duplicateFunctionNames.Select(
+                            dupe => $"{dupe.Key}({string.Join(", ", dupe.Select(d => d.Type.Description))})"
+                        )
+                    )
+                );
+            }
+
             var parsedFiles = new List<FileParseResult>();
 
             // First pass: parse all files, generate their syntax trees,

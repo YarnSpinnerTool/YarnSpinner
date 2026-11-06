@@ -457,5 +457,27 @@ namespace Yarn.Compiler
                 return result + $" (\"{this.Description}\")";
             }
         }
+
+        /// <summary>
+        /// A simple comparer for declarations that considers them equal if their name and type match
+        /// </summary>
+        internal class NameAndTypeComparer : IEqualityComparer<Declaration>
+        {
+            public bool Equals(Declaration x, Declaration y)
+            {
+                if (x.Name != y.Name) { return false; }
+                if (x.Type.Name != y.Type.Name) { return false; }
+                if (x.Type.Description != y.Type.Description) { return false; }
+                return true;
+            }
+
+            public int GetHashCode(Declaration obj)
+            {
+                return HashCode.Combine(obj.Name, obj.Type.Name, obj.Type.Description);
+            }
+
+            public static NameAndTypeComparer Default = new();
+        }
     }
+
 }
