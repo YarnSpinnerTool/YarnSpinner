@@ -75,6 +75,9 @@ $RECYCLE.BIN/
 Unity/Assets/YarnSpinner/Scripts/DLLs/*.dll*
 Unity/Assets/YarnSpinner/Scripts/DLLs/*.pdb*
 
+YarnSpinner.SourceGenerator/*.dll
+YarnSpinner.SourceGenerator/*.pdb
+
 .antlr
 
 Unity/Logs
