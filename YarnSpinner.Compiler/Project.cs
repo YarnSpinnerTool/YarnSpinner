@@ -474,6 +474,7 @@ namespace Yarn.Compiler
         /// The location of the root of the workspace in which this project is
         /// located.
         /// </summary>
+        [JsonIgnore]
         public string? WorkspaceRootPath { get; set; }
 
         /// <summary>
