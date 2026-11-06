@@ -300,12 +300,13 @@ namespace Yarn.Compiler
 
                 foreach (var DefinitionsFilesPattern in this.Definitions)
                 {
-                    if (System.IO.Path.IsPathRooted(DefinitionsFilesPattern))
+                    var expandedPath = DefinitionsFilesPattern.Replace(WorkspaceRootPlaceholder, WorkspaceRootPath);
+                    if (System.IO.Path.IsPathRooted(expandedPath))
                     {
-                        if (System.IO.File.Exists(DefinitionsFilesPattern))
+                        if (System.IO.File.Exists(expandedPath))
                         {
                             // The path is to an absolute path that exists on disk; add it as-is
-                            result.Add(DefinitionsFilesPattern);
+                            result.Add(expandedPath);
                         }
                         else
                         {
@@ -313,7 +314,7 @@ namespace Yarn.Compiler
                             // pattern. Split the pattern into an absolute path and
                             // the pattern, and attempt to match from there.
 
-                            var fullPath = System.IO.Path.GetFullPath(DefinitionsFilesPattern);
+                            var fullPath = System.IO.Path.GetFullPath(expandedPath);
                             var pathRoot = System.IO.Path.GetPathRoot(fullPath);
 
                             var pathRelativeToRoot = fullPath.Substring(pathRoot.Length);
@@ -356,7 +357,7 @@ namespace Yarn.Compiler
                             continue;
                         }
 
-                        m.AddInclude(DefinitionsFilesPattern);
+                        m.AddInclude(expandedPath);
 
                         result.AddRange(m.GetResultsInFullPath(SearchDirectoryPath));
 
