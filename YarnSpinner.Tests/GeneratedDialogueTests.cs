@@ -32,13 +32,14 @@ namespace YarnSpinner.Tests
 
             var job = CompilationJob.CreateFromString("<input>", source, testBaseResponder.Declarations);
             job.Options = new Dictionary<string, string>() { { Compiler.Options.GenerateBlockGraph, "true" } };
+            job.LanguageVersion = example.LanguageVersion >= 0 ? example.LanguageVersion : Project.CurrentProjectFileVersion;
 
             var result = Compiler.Compile(job);
 
             var diagnosticDescriptor = DiagnosticDescriptor.GetDescriptor(code);
             diagnosticDescriptor.Should().NotBeNull();
 
-            result.Diagnostics.Should().Contain(d => d.Code == diagnosticDescriptor.Code);
+            result.Diagnostics.Should().Contain(d => d.Code == code);
         }
 
         [Theory]

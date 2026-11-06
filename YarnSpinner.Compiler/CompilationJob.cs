@@ -269,7 +269,7 @@ namespace Yarn.Compiler
             foreach (var definitionPath in project.DefinitionsFiles)
             {
                 var span = System.IO.File.ReadAllBytes(definitionPath);
-                var ysls = new Definitions(span);
+                var ysls = new Definitions(span, project.FileVersion);
                 definitions.AddRange(ysls.functions);
             }
 

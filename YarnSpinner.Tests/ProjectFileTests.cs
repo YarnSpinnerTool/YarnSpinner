@@ -239,7 +239,7 @@ namespace YarnSpinner.Tests
             """;
 
             // Load this YSLS
-            var definitions = new Definitions(testProjectYSLS);
+            var definitions = new Definitions(testProjectYSLS, Project.CurrentProjectFileVersion);
 
             // We should have a declared function named "has_inventory_item"
             var loadedAction = definitions.functions.Should().Contain(f => f.Name == "has_inventory_item").Subject;

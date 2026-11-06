@@ -354,7 +354,15 @@ namespace Yarn.Compiler
             {
                 compilationJob.CancellationToken.ThrowIfCancellationRequested();
 
-                var typeCheckerListener = new TypeCheckerListener(parsedFile.Name, parsedFile.Tokens, declarations, knownTypes, typeSolution, failingConstraints, compilationJob.CancellationToken);
+                var typeCheckerListener = new TypeCheckerListener(
+                    parsedFile.Name,
+                    parsedFile.Tokens,
+                    declarations,
+                    knownTypes,
+                    typeSolution,
+                    failingConstraints,
+                    compilationJob.LanguageVersion,
+                    compilationJob.CancellationToken);
 
                 walker.Walk(typeCheckerListener, parsedFile.Tree);
 

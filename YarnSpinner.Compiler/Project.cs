@@ -33,7 +33,7 @@ namespace Yarn.Compiler
         /// <summary>
         /// The current version of <c>.yarnproject</c> file format.
         /// </summary>
-        public const int CurrentProjectFileVersion = YarnSpinnerProjectVersion4;
+        public const int CurrentProjectFileVersion = YarnSpinnerProjectVersion5;
 
         // There isn't a Yarn Spinner project version 1 representable in
         // JSON-based Yarn Spinner projects, because the first version of Yarn
@@ -54,6 +54,11 @@ namespace Yarn.Compiler
         ///  A version number representing project version 4 (released with Yarn Spinner 3.2.0).
         /// </summary>
         public const int YarnSpinnerProjectVersion4 = 4;
+
+        /// <summary>
+        ///  A version number representing project version 4 (released with Yarn Spinner 3.3.0).
+        /// </summary>
+        public const int YarnSpinnerProjectVersion5 = 5;
 
         private static readonly JsonSerializerOptions SerializationOptions = new JsonSerializerOptions
         {
@@ -650,14 +655,16 @@ namespace Yarn.Compiler
         /// May be empty
         /// </summary>
         public List<Yarn.Shared.Action> commands;
-        
-        /// <inheritdoc cref="Definitions(ReadOnlyMemory&lt;byte&gt;)" />
-        public Definitions(string source): this(System.Text.Encoding.UTF8.GetBytes(source)){}
+
+        /// <inheritdoc cref="Definitions(ReadOnlyMemory{byte}, int)" />
+        public Definitions(string source, int projectFileVersion) : this(System.Text.Encoding.UTF8.GetBytes(source), projectFileVersion) { }
 
         /// <summary>
         /// Creates a new definition from the provided json source
         /// </summary>
-        public Definitions(ReadOnlyMemory<byte> source)
+        /// <param name="source">The source JSON of the definitions</param>
+        /// <param name="projectFileVersion">The version number of the project file</param>
+        public Definitions(ReadOnlyMemory<byte> source, int projectFileVersion)
         {
             functions = new();
             commands = new();
@@ -712,14 +719,20 @@ namespace Yarn.Compiler
                             case "bool":
                                 parameterYarnType = Types.Boolean;
                                 break;
+                            case "enum" when projectFileVersion < Project.YarnSpinnerProjectVersion5:
+                                // Enums require file version 5
+                                throw new InvalidOperationException("Enum parameters in functions require project file version 5 or later");
                             case "enum" when paramSubType != null:
-                                // It's an enum; we don't know enough about the underling type of it yet, so mark it with a placeholder, and the compiler will resolve it later.
+                                // It's an enum; we don't know enough about the underlying type of it yet, so mark it with a placeholder, and the compiler will resolve it later.
                                 parameterYarnType = new ForwardDeclaredType(paramSubType);
                                 break;
                             case "enum" when paramSubType == null:
                                 // It's something inheriting from enum, but we don't know what specific type. Default it to number.
                                 parameterYarnType = Types.Number;
                                 break;
+                            case "instance" when projectFileVersion < Project.YarnSpinnerProjectVersion5:
+                                // Instances require file version 5
+                                throw new InvalidOperationException("Instance parameters in functions require project file version 5 or later");
                             case "instance":
                                 parameterYarnType = Types.String;
                                 break;
@@ -778,7 +791,7 @@ namespace Yarn.Compiler
                 case Shared.ReturnType.String:
                     functionType = new FunctionType(Types.String);
                     break;
-                
+
                 case Shared.ReturnType.AsyncNumber:
                 case Shared.ReturnType.Number:
                     functionType = new FunctionType(Types.Number);
@@ -788,7 +801,7 @@ namespace Yarn.Compiler
                 case Shared.ReturnType.Boolean:
                     functionType = new FunctionType(Types.Boolean);
                     break;
-                
+
                 default: return null;
             }
 
@@ -799,7 +812,7 @@ namespace Yarn.Compiler
                 {
                     continue;
                 }
-                
+
                 IType parameterYarnType;
 
                 if (param is Shared.BasicParameter bp)
@@ -808,7 +821,7 @@ namespace Yarn.Compiler
                     {
                         case Shared.YarnSpecialType.Other:
                             return null;
-                        
+
                         case Shared.YarnSpecialType.Boolean:
                             parameterYarnType = Types.Boolean;
                             break;
@@ -977,7 +990,7 @@ namespace Yarn.Compiler
                 case "bool":
                     parameter = new Shared.BasicParameter(paramName, Shared.YarnSpecialType.Boolean, isArray, false, defaultValue != null, defaultValue, false, null);
                     return parameter;
-                
+
                 case "enum":
                     {
                         // ok so how do I handle enum backed values?
@@ -985,17 +998,17 @@ namespace Yarn.Compiler
                         // for now assume that
                         if (parameterElement.TryGetProperty("subtype", out var subProperty))
                         {
-                            
+
                             parameter = new Shared.EnumParameter(paramName, subProperty.GetString() ?? "(INVALID)", Shared.YarnEnum.BackingType.Int, isArray, false, false, null, false, null);
                             return parameter;
                         }
                         return null;
                     }
-                
+
                 case "instance":
                     {
                         if (parameterElement.TryGetProperty("subtype", out var subProperty))
-                        {    
+                        {
                             var fullName = subProperty.GetString() ?? "(INVALID)";
                             var nt = new Shared.NamedType(fullName, fullName, fullName, Shared.YarnSpecialType.String, true);
                             parameter = new Shared.ComponentParameter(fullName, nt, isArray, false, defaultValue != null, defaultValue, false, null);
@@ -1003,10 +1016,10 @@ namespace Yarn.Compiler
                         }
                         return null;
                     }
-                    // how do I know if an instance type is a converter or game object or component?
-                    // I am not sure if it matters here because it is a reflection of an already processed element
-                    // something to consider for an update to the ysls though?
-                
+                // how do I know if an instance type is a converter or game object or component?
+                // I am not sure if it matters here because it is a reflection of an already processed element
+                // something to consider for an update to the ysls though?
+
                 case "node":
                     parameter = new Shared.BasicParameter(paramName, Shared.YarnSpecialType.String, isArray, false, defaultValue != null, defaultValue, true, null);
                     return parameter;

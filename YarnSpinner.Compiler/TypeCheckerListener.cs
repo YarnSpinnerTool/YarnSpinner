@@ -150,7 +150,16 @@ namespace Yarn.Compiler
         /// the end of a file.</param>
         /// <param name="cancellationToken">A token used to indicate that type
         /// checking should be cancelled.</param>
-        public TypeCheckerListener(string sourceFileName, CommonTokenStream tokens, List<Declaration> knownDeclarations, List<TypeBase> knownTypes, Substitution typeSolution, HashSet<TypeConstraint> failingTypeConstraints, CancellationToken cancellationToken) : base(cancellationToken)
+        /// <param name="projectFileVersion">The file version of the project that is being compiled.</param>
+        public TypeCheckerListener(
+            string sourceFileName,
+            CommonTokenStream tokens,
+            List<Declaration> knownDeclarations,
+            List<TypeBase> knownTypes,
+            Substitution typeSolution,
+            HashSet<TypeConstraint> failingTypeConstraints,
+            int projectFileVersion,
+            CancellationToken cancellationToken) : base(cancellationToken)
         {
             this.sourceFileName = sourceFileName;
             this.tokens = tokens;
@@ -158,6 +167,7 @@ namespace Yarn.Compiler
             this.knownTypes = knownTypes;
             this.typeSolution = typeSolution;
             this.failingTypeConstraints = failingTypeConstraints;
+            this.projectFileVersion = projectFileVersion;
 
             // Cache our declarations in our lookup table, to accelerate later
             // queries
@@ -219,6 +229,7 @@ namespace Yarn.Compiler
         }
 
         private readonly Dictionary<string, Declaration> declarationLookup = new Dictionary<string, Declaration>();
+        private readonly int projectFileVersion;
 
         private void AddDiagnostic(DiagnosticDescriptor.DiagnosticDescriptor1 descriptor, ParserRuleContext context, string message)
         {
@@ -824,16 +835,35 @@ namespace Yarn.Compiler
 
             if (functionDecl == null)
             {
-                // if we don't have a definition for this function we can't ensure it's the right type
-                // so we will have to bail out and just add a diagnostic for this function call
+                // If we don't have a definition for this function we can't ensure it's the right type. 
+                // Prior to project version 5, it wasn't an error to use a function that wasn't declared - we inferred the type of the function from this call, and used that type information going forward.
+                // From 5 onward, all functions must be declared or it's an error. 
+                // If we're on 5, emit an error saying we don't know its type.
+                // If we're on 4 or below, we'll create a fresh type variable to represent the return type, but otherwise won't assert any tpye information about it, leaving the solver to figure it out. We'll also emit a warning saying you really should declare this.
 
-                this.diagnostics.Add(DiagnosticDescriptor.UnknownFunction.Create(
-                    this.sourceFileName,
-                    Utility.GetRange(context.FUNC_ID()),
-                    functionName ?? "(unknown function)"));
+                if (this.projectFileVersion >= Project.YarnSpinnerProjectVersion5)
+                {
+                    this.diagnostics.Add(DiagnosticDescriptor.UnknownFunction.Create(
+                        this.sourceFileName,
+                        Utility.GetRange(context.FUNC_ID()),
+                        functionName ?? "(unknown function)"));
 
-                base.ExitFunction_call(context);
-                return;
+                    base.ExitFunction_call(context);
+                    return;
+
+                }
+                else
+                {
+                    context.Type = this.GenerateTypeVariable($"Return from unknown function {functionName ?? "(unknown)"}", context);
+
+                    this.diagnostics.Add(DiagnosticDescriptor.UseOfUndeclaredFunctionsInV4IsDeprecated.Create(
+                        this.sourceFileName,
+                        Utility.GetRange(context.FUNC_ID()),
+                        functionName ?? "(unknown function)"));
+                    base.ExitFunction_call(context);
+                    return;
+                }
+
             }
             else
             {
