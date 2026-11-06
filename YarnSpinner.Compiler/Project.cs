@@ -723,7 +723,7 @@ namespace Yarn.Compiler
                                 break;
                             case "enum" when projectFileVersion < Project.YarnSpinnerProjectVersion5:
                                 // Enums require file version 5
-                                throw new InvalidOperationException("Enum parameters in functions require project file version 5 or later");
+                                throw new InvalidOperationException($"Error in function {yarnName}: Enum parameters in functions require project file version 5 or later");
                             case "enum" when paramSubType != null:
                                 // It's an enum; we don't know enough about the underlying type of it yet, so mark it with a placeholder, and the compiler will resolve it later.
                                 parameterYarnType = new ForwardDeclaredType(paramSubType);
@@ -734,7 +734,7 @@ namespace Yarn.Compiler
                                 break;
                             case "instance" when projectFileVersion < Project.YarnSpinnerProjectVersion5:
                                 // Instances require file version 5
-                                throw new InvalidOperationException("Instance parameters in functions require project file version 5 or later");
+                                throw new InvalidOperationException($"Error in function {yarnName}: Instance parameters in functions require project file version 5 or later");
                             case "instance":
                                 parameterYarnType = Types.String;
                                 break;
