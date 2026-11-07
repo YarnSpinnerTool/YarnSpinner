@@ -19,7 +19,7 @@ namespace Yarn.Analyser
     /// Provides diagnostics around the C# side of your yarn actions and also creates the YSLS file
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class Analyser: DiagnosticAnalyzer
+    public class Analyser : DiagnosticAnalyzer
     {
         /// <inheritdoc />
         public override void Initialize(AnalysisContext context)
@@ -50,7 +50,7 @@ namespace Yarn.Analyser
             private const string YarnFunctionAttributeLongType = "Yarn.Unity.YarnFunctionAttribute";
             private const string YarnAddCommandShortInvoke = "AddCommandHandler";
             private const string YarnAddFunctionShortInvoke = "AddFunction";
-            
+
             private readonly List<(YarnConverter, Location)> allConverters = [];
             private readonly List<(string yarnName, Action? action, IMethodSymbol symbol, Location? nameLocation, HashSet<string> highSeverityCode, HashSet<string> lowSeverityCode)> allCommands = [];
             private readonly List<(string yarnName, Action? action, IMethodSymbol symbol, Location? nameLocation, HashSet<string> highSeverityCode, HashSet<string> lowSeverityCode)> allFunctions = [];
@@ -117,7 +117,7 @@ namespace Yarn.Analyser
                 var b = Creators.CollectAssemblyConverters(context.Compilation, logger);
                 a.AddRange(b);
                 var converters = a.ToImmutableArray();
-                
+
                 // doing one last check of all the converters for duplicates
                 // as we've added more converters into the mix it is possible we've now got duplicates that weren't previously handled
                 // we can't report errors on referenced converters but we can report on our own
@@ -169,7 +169,7 @@ namespace Yarn.Analyser
                 }
 
                 // finally we add them to the json
-                foreach (var (yarnName, action, symbol, nameLocation, errors, infos) in allCommands)
+                foreach (var (yarnName, action, symbol, nameLocation, errors, infos) in allCommands.OrderBy(c => c.yarnName))
                 {
                     if (action == null)
                     {
@@ -193,7 +193,7 @@ namespace Yarn.Analyser
                 }
                 logger.WriteLine("created command json");
 
-                foreach (var (yarnName, action, symbol, nameLocation, errors, infos) in allFunctions)
+                foreach (var (yarnName, action, symbol, nameLocation, errors, infos) in allFunctions.OrderBy(f => f.yarnName))
                 {
                     if (action == null)
                     {
@@ -220,12 +220,19 @@ namespace Yarn.Analyser
 
                 if (projectRoot != null)
                 {
-                    var ysls = "{" +
-                    @"""version"":3," +
-                    $@"""commands"":[{string.Join(",", commandJSON)}]," +
-                    $@"""functions"":[{string.Join(",", functionJSON)}]" +
-                    "}";
-                    JSONWriter.WriteJSON(context.Compilation.AssemblyName ?? "ERROR", ysls, projectRoot, true);
+                    List<string> ysls = [
+                        "\"version\":3" ,
+                        $"\"commands\":[\n{string.Join(",\n", commandJSON)}\n]" ,
+                        $"\"functions\":[\n{string.Join(",\n", functionJSON)}\n]" ,
+                    ];
+
+                    JSONWriter.WriteJSON(
+                        context.Compilation.AssemblyName ?? "ERROR",
+                        "{\n" +
+                            string.Join(",\n", ysls) +
+                        "\n}",
+                        projectRoot,
+                        debugWrite: true);
                 }
                 else
                 {
@@ -491,7 +498,7 @@ namespace Yarn.Analyser
                 }
 
                 if (actionType == ActionType.Command)
-                {    
+                {
                     lock (allCommands)
                     {
                         allCommands.Add((yarnName, action, methodSymbol, nameLocation, highSeverityDiagnosticCodes, lowSeverityDiagnosticCodes));
@@ -524,7 +531,7 @@ namespace Yarn.Analyser
                 }
 
                 var actionAttributed = methodSymbol.GetAttributes().Where(a => a.AttributeClass?.ToDisplayString() == YarnCommandAttributeLongType || a.AttributeClass?.ToDisplayString() == YarnFunctionAttributeLongType);
-                if(!actionAttributed.Any())
+                if (!actionAttributed.Any())
                 {
                     logger.WriteLine($"method: {methodSymbol.Name} is not action attributed");
                     logger.Dec();
@@ -647,7 +654,7 @@ namespace Yarn.Analyser
 
                 logger.WriteLine("found a converter, beginning validation");
                 Validators.TryValidateConverter(methodSymbol, resolvedTypeSymbol, Configuration, out var diags, false, logger);
-                
+
                 var converter = Creators.ConverterFromMethodAndType(resolvedTypeSymbol, methodSymbol);
                 lock (allConverters)
                 {
