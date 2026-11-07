@@ -6,13 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Added
+#### Async Yarn Spinner
 
-### Changed
+The API for `Dialogue` and `VirtualMachine` has been updated to be asynchronous. This is a **breaking change** for anyone directly using Yarn Spinner as a library.
 
+The main goal behind this change is to allow game engines to take time reacting to changes in the dialogue. Nearly every event that can be raised from Yarn Spinner, from lines to options to function calls to nodes starting and engine, is now handled asynchronously.
+
+
+- **Dialogue is now async.** `StartDialogue` and `Start` now return a `ValueTask` which completes when the dialogue has completed running.
+- **`IDialogueResponder` replaces handler delegates.** The `Dialogue` object no longer exposes raw delegates to invoke when events occur. Instead, implement the `IDialogueResponder` interface, and provide that to the `Dialogue`'s `Responder` property. The Dialogue Responder is responsible for mediating the `Dialogue`'s interactions with the outside world.
+- **`IDialogueResponder` also replaces the `Library`.** Previously, functions were handled by supplying a `Library` object that contained the implementations of the functions. This responsibility has been moved to the `IDialogueResponder` interface: the `CanCallFunction` method returns a boolean indicating whether the responder is capable of handling a function, and if it can, the `InvokeFunction` is called with the function name and parameters, as well as a cancellation token, and returns a `ValueTask` carrying the return value.
+- **Functions in Yarn Spinner are now async.** The task returned by your dialogue responder's `InvokeFunction` method is allowed to take as long as it needs, and doesn't need to return immediately. The virtual machine will suspend until it's finished.
+- **Functions in Yarn Spinner are now cancellable.** If the cancellation token that's passed to `InvokeFunction` becomes cancelled, the dialogue no longer needs the return result, and your method should return as soon as possible.
+- **Commands in Yarn Spinner are now cancellable.** In addition to functions, the corresponding command handling method in `IDialogueResponder`, `HandleCommand()`, takes a cancellation token. If the cancellation token becomes cancelled, the method should return as soon as possible.
+- **Undeclared functions are now errors.** In previous versions of Yarn Spinner, using a function that wasn't declared to the compiler was permitted, because the compiler would attempt to figure out the type of the function. This has been removed in Yarn Spinner 3.3.
+  - In order to assist with the migration from previous versions of Yarn Spinner, if your `.yarnproject` file was created by a previous version, undeclared functions will result in a warning and will prompt you to upgrade your project. Note that not all features from Yarn Spinner v3.3 may be available until you upgrade your project file.
+
+#### Other Changes
+
+- The C# source code generator that was originally written for use in Unity has been migrated to the core repo, so that it can be used in additional engines.
 - `DescriptiveLineTagGenerator` now removes whitespace from character names
-  - This does technically mean if you have two characters with the same name but different spacing the tagger will consider them the same character
-  - This felt uncommon enough to not handle
+  - This does _technically_ mean if you have two characters with the same name but different spacing, the tagger will consider them the same character. This felt uncommon enough to not handle.
 - `<<call>>` commands now clean up the stack by discarding the returned value.
 - `ILineTagGenerator` has been moved to the `Yarn.Compiler` namespace. (Previously, it was in the global namespace.)
 - Node titles now trim any trailing whitespace that might be present. (Fixes [#156](https://github.com/YarnSpinnerTool/IssuesDiscussion/issues/156); thanks to [@DontDieThankYou](https://github.com/DontDieThankYou))
@@ -20,8 +34,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Calls to `visited` and `visited_count` now correctly cause tracking to occur when inside a nested function call (e.g. `max(visited_count("X"), visited_count("Y)))`)
 - User-defined types (for example, enums) are now detected and processed before the rest of the typechecking process begins.
   - This fixes an issue where the compiler would take a very long time to type-check expressions whose value came from an enum that had not yet been processed. (Thanks to Discord user Talsidor for reporting the problem!)
-
-### Removed
 
 ## [3.2.2] 2026-08-07
 
