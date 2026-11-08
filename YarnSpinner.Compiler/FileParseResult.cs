@@ -21,22 +21,22 @@ namespace Yarn.Compiler
     public struct FileParseResult : ISourceInput
     {
         /// <summary>
-        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream, IEnumerable{Diagnostic})" path="/param[@name='name']"/>
+        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream, IEnumerable{Diagnostic})" path="/param[@name='name']/node()"/>
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream, IEnumerable{Diagnostic})" path="/param[@name='tree']"/>
+        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream, IEnumerable{Diagnostic})" path="/param[@name='tree']/node()"/>
         /// </summary>
         public IParseTree Tree { get; }
 
         /// <summary>
-        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream, IEnumerable{Diagnostic})" path="/param[@name='tokens']"/>
+        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream, IEnumerable{Diagnostic})" path="/param[@name='tokens']/node()"/>
         /// </summary>
         public CommonTokenStream Tokens { get; }
 
         /// <summary>
-        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream, IEnumerable{Diagnostic})" path="/param[@name='tokens']"/>
+        /// <inheritdoc cref="FileParseResult(string, IParseTree, CommonTokenStream, IEnumerable{Diagnostic})" path="/param[@name='tokens']/node()"/>
         /// </summary>
         public IEnumerable<Diagnostic> Diagnostics { get; }
 

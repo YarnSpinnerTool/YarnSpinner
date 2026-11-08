@@ -61,7 +61,7 @@ public interface ILineTagGenerator
         public string? SourceFile;
 
         /// <summary>
-        /// The line number inside of <cref name="SourceFile"/> that caused the exception
+        /// The line number inside of <see cref="SourceFile"/> that caused the exception
         /// </summary>
         public int LineNumber = -1;
     }
@@ -76,7 +76,7 @@ public interface ILineTagGenerator
     }
 
     /// <summary>
-    /// Represents how Yarn Spinner should handle encountering a <cref name="LineTaggingException"/> exception during tagging.
+    /// Represents how Yarn Spinner should handle encountering a <see cref="LineTaggingException"/> exception during tagging.
     /// </summary>
     public enum TagAbortBehaviour
     {

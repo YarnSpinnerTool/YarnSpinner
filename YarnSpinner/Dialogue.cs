@@ -504,9 +504,9 @@ namespace Yarn
 
         /// <summary>
         /// Starts dialogue at the value of <see cref="CurrentNode"/>.
-        /// <seealso cref="StartDialogue(string)"/>
         /// </summary>
         /// <exception cref="InvalidOperationException">If there is no node currently set as the entry point this method throws</exception>
+        /// <seealso cref="StartDialogue(string)"/>
         public async ValueTask Start()
         {
             if (CurrentNode == null)
@@ -542,20 +542,20 @@ namespace Yarn
 
         /// <summary>
         /// Works out if the node has been visited.
-        /// See also <seealso cref="GetNodeVisitCount(string)"/>
         /// </summary>
         /// <param name="nodeName">The node whos visitation you are curious about</param>
         /// <returns>True if the node has been visited at least once</returns>
+        /// <seealso cref="GetNodeVisitCount(string)"/>
         public bool IsNodeVisited(string nodeName)
         {
             return GetNodeVisitCount(nodeName) > 0;
         }
         /// <summary>
         /// Works out how many times the node has been visited.
-        /// See also <seealso cref="IsNodeVisited(string)"/>
         /// </summary>
         /// <param name="nodeName">the node whos visitation count you are cirous about</param>
         /// <returns>0 if the node has never been visited, otherwise the number of times the node has been visited</returns>
+        /// <seealso cref="IsNodeVisited(string)"/>
         public float GetNodeVisitCount(string nodeName)
         {
             VariableStorage.TryGetValue(StandardLibrary.GenerateUniqueVisitedVariableForNode(nodeName), out float count);
