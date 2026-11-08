@@ -13,45 +13,45 @@ namespace Yarn.Shared
     /// </remarks>
     /// <param name="Name">The name of the parameter, the little label of the parameter itself</param>
     /// <param name="IsArray">
-        /// Is the parameter an array? Unlike C# we don't treat array of type as a different type from the container. So this information needs to be provided ahead of time.
-        /// <remarks>
-        /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
-        /// </remarks>
+    /// Is the parameter an array? Unlike C# we don't treat array of type as a different type from the container. So this information needs to be provided ahead of time.
+    /// <remarks>
+    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
+    /// </remarks>
     /// </param>
     /// <param name="IsOut">
-        /// Is the parameter an out param? This is needed for diagnostics.
-        /// <remarks>
-        /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
-        /// </remarks>
+    /// Is the parameter an out param? This is needed for diagnostics.
+    /// <remarks>
+    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
+    /// </remarks>
     /// </param>
     /// <param name="HasDefaultValue">
-        /// Does the parameter have a default value provided?
-        /// <remarks>
-        /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
-        /// </remarks>
+    /// Does the parameter have a default value provided?
+    /// <remarks>
+    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
+    /// </remarks>
     /// </param>
     /// <param name="DefaultValueDisplay">
-        /// What is the string form of the default value? Because the default values are only needed during source gen we don't actually care what the resolved final type of the default value is, just how to write it in a text form.
-        /// <remarks>
-        /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
-        /// </remarks>
+    /// What is the string form of the default value? Because the default values are only needed during source gen we don't actually care what the resolved final type of the default value is, just how to write it in a text form.
+    /// <remarks>
+    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
+    /// </remarks>
     /// </param>
     /// <param name="IsNodeAttributed">
-        /// Has the parameter been attributed as being a node?
-        /// <remarks>
-        /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
-        /// </remarks>
+    /// Has the parameter been attributed as being a node?
+    /// <remarks>
+    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
+    /// </remarks>
     /// </param>
     /// <param name="AttributedEnumSubtype">
-        /// What enum subtype has the parameter been attributed as?
-        /// <remarks>
-        /// <p>
-        /// This field is optional, it's existence also implies that the parameter has been attributed as a node.
-        /// </p>
-        /// <p>
-        /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
-        /// </p>
-        /// </remarks>
+    /// What enum subtype has the parameter been attributed as?
+    /// <remarks>
+    /// <p>
+    /// This field is optional, it's existence also implies that the parameter has been attributed as a node.
+    /// </p>
+    /// <p>
+    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
+    /// </p>
+    /// </remarks>
     /// </param>
     public abstract record Parameter(string Name, bool IsArray, bool IsOut, bool HasDefaultValue, string? DefaultValueDisplay, bool IsNodeAttributed, string? AttributedEnumSubtype)
     {
@@ -73,33 +73,31 @@ namespace Yarn.Shared
         /// </param>
         /// <returns>The fully built function parameter string ready to be injected into the generated source.</returns>
         public abstract string CreateFunctionParameterString(int parameterIndex, int arrayIndex);
-        
+
         /// <summary>
         /// When it comes time to invoke a command all parameters need to convert their value from the strings provided by Yarn into their appropriate C# form.
         /// Because we use source gen to actually invoke the commands we need to know what the string representation of the C# to do this would look like.
         /// This is what this method does, given it's own understanding of the parameter and where it is in the action create valid C# to perform the conversion.
         /// </summary>
         /// <param name="parameterIndex">
-        /// what index is the current parameter?
+        /// What index is the current parameter?
         /// So if the method is something like <c>name(a,b)</c> then the <c>a</c> parameter will have an index here of 0.
         /// </param>
         /// <param name="arrayIndex">
-        /// what index is the current into the array of provided values from Yarn?
-        /// <remarks>
-        /// This seems similar to the <see cref="parameterIndex"/> but may not be the same, Commands have as element 0 the name of the command, and in the case of instance methods there is an implied <c>this</c> in c# which is explicit in the Yarn meaning the index values here will be shifted along one.
-        /// Relatedly some parameter types (such as tokens) have no corresponding values in the array of parameters provided from Yarn.
-        /// </remarks>
+        /// What index is the current into the array of provided values from Yarn?
+        /// This is superficially similar to the <see cref="parameterIndex"/>, but may not be the same: commands have as element 0 the name of the command, and in the case of instance methods there is an implied <c>this</c> in C#, which is explicit in the Yarn - meaning the index values here will be shifted along one.
+        /// Relatedly, some parameter types (such as tokens) have no corresponding values in the array of parameters provided from Yarn.
         /// </param>
         /// <returns>The fully built command parameter string ready to be injected into the generated source.</returns>
         public abstract string CreateCommandParameterString(int parameterIndex, int arrayIndex);
-        
+
         /// <summary>
         /// What is the short form for display and injection into generated scripts of this type?
         /// So for a boolean parameter this would return <c>"bool"</c>
         /// </summary>
         public abstract string ShortFormType { get; }
     }
-    
+
     /// <summary>
     /// Represents a parameter whos type either is something we can't handle in a Yarn action, or one whos conversion hasn't been resolved yet.
     /// </summary>
@@ -108,7 +106,7 @@ namespace Yarn.Shared
     /// This parameter type exists to represent them, maybe it will be resolved to something at a later stage, maybe it won't.
     /// In general if you encounter one of these at source gen it means something has failed.
     /// </remarks>
-    public record UnknownParameter(string Name, NamedType Type, bool IsArray, bool IsOut, bool HasDefaultValue, string? DefaultValueDisplay, bool IsNodeAttributed, string? AttributedEnumSubtype): Parameter(Name, IsArray, IsOut, HasDefaultValue, DefaultValueDisplay, IsNodeAttributed, AttributedEnumSubtype)
+    public record UnknownParameter(string Name, NamedType Type, bool IsArray, bool IsOut, bool HasDefaultValue, string? DefaultValueDisplay, bool IsNodeAttributed, string? AttributedEnumSubtype) : Parameter(Name, IsArray, IsOut, HasDefaultValue, DefaultValueDisplay, IsNodeAttributed, AttributedEnumSubtype)
     {
         /// <inheritdoc />
         /// <exception cref="System.ArgumentException">Because there is no concept of converting a value from Yarn into an unknown type this method always throws</exception>
@@ -116,7 +114,7 @@ namespace Yarn.Shared
         {
             throw new System.ArgumentException($"{Name} parameter at {parameterIndex} is still of an unresolved type, this should be impossible at this point!");
         }
-        
+
         /// <inheritdoc />
         /// <exception cref="System.ArgumentException">Because there is no concept of converting a value from Yarn into an unknown type this method always throws</exception>
         public override string CreateCommandParameterString(int parameterIndex, int arrayIndex)
@@ -127,11 +125,11 @@ namespace Yarn.Shared
         /// <inheritdoc />
         public override string ShortFormType => Type.shortType;
     }
-    
+
     /// <summary>
     /// Represents a parameter that is a cancellation token
     /// </summary>
-    public record TokenParameter(string Name, bool IsYarnToken, bool IsArray, bool IsOut, bool HasDefaultValue, string? DefaultValueDisplay, bool IsNodeAttributed, string? AttributedEnumSubtype): Parameter(Name, IsArray, IsOut, HasDefaultValue, DefaultValueDisplay, IsNodeAttributed, AttributedEnumSubtype)
+    public record TokenParameter(string Name, bool IsYarnToken, bool IsArray, bool IsOut, bool HasDefaultValue, string? DefaultValueDisplay, bool IsNodeAttributed, string? AttributedEnumSubtype) : Parameter(Name, IsArray, IsOut, HasDefaultValue, DefaultValueDisplay, IsNodeAttributed, AttributedEnumSubtype)
     {
         private string CreateParameterString(int parameterIndex, int arrayIndex, bool isFunction)
         {

@@ -672,7 +672,7 @@ namespace Yarn.Markup
         public int IntegerValue { get; internal set; }
 
         /// <summary>Gets the float value of this property.</summary>
-        /// /// <remarks>
+        /// <remarks>
         /// This property is only defined when the property's <see
         /// cref="Type"/> is <see cref="MarkupValueType.Float"/>.
         /// </remarks>
