@@ -101,11 +101,11 @@ public interface ILineTagGenerator
     {
         /// <summary>
         /// The current line parse statement.
+        /// </summary>
         /// <remarks>
         /// This gives your custom taggers access to the same information we use internally, unlikely you'll need this but it exists just in case.
         /// A lot of the information contained within the context is already derived from this.
         /// </remarks>
-        /// </summary>
         public YarnSpinnerParser.Line_statementContext Line { get; internal set; }
 
         /// <summary>
@@ -121,10 +121,10 @@ public interface ILineTagGenerator
 
         /// <summary>
         /// The name of the file currently being processed.
+        /// </summary>
         /// <remarks>
         /// If the tagging is requested as part of string based compilation instead of a file compilation this value will always be &lt;input&gt;.
         /// </remarks>
-        /// </summary>
         public string? SourceFileName { get; internal set; }
 
         /// <summary>

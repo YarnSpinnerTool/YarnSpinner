@@ -14,44 +14,32 @@ namespace Yarn.Shared
     /// <param name="Name">The name of the parameter, the little label of the parameter itself</param>
     /// <param name="IsArray">
     /// Is the parameter an array? Unlike C# we don't treat array of type as a different type from the container. So this information needs to be provided ahead of time.
-    /// <remarks>
-    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
-    /// </remarks>
+    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter.
     /// </param>
     /// <param name="IsOut">
     /// Is the parameter an out param? This is needed for diagnostics.
-    /// <remarks>
-    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
-    /// </remarks>
+    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter.
     /// </param>
     /// <param name="HasDefaultValue">
     /// Does the parameter have a default value provided?
-    /// <remarks>
-    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
-    /// </remarks>
+    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter.
     /// </param>
     /// <param name="DefaultValueDisplay">
     /// What is the string form of the default value? Because the default values are only needed during source gen we don't actually care what the resolved final type of the default value is, just how to write it in a text form.
-    /// <remarks>
-    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
-    /// </remarks>
+    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter.
     /// </param>
     /// <param name="IsNodeAttributed">
     /// Has the parameter been attributed as being a node?
-    /// <remarks>
-    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
-    /// </remarks>
+    /// This might change in the future to be part of a collection of attributes/modifiers on the parameter.
     /// </param>
     /// <param name="AttributedEnumSubtype">
     /// What enum subtype has the parameter been attributed as?
-    /// <remarks>
-    /// <p>
+    /// <para>
     /// This field is optional, it's existence also implies that the parameter has been attributed as a node.
-    /// </p>
-    /// <p>
+    /// </para>
+    /// <para>
     /// This might change in the future to be part of a collection of attributes/modifiers on the parameter
-    /// </p>
-    /// </remarks>
+    /// </para>
     /// </param>
     public abstract record Parameter(string Name, bool IsArray, bool IsOut, bool HasDefaultValue, string? DefaultValueDisplay, bool IsNodeAttributed, string? AttributedEnumSubtype)
     {
@@ -65,11 +53,9 @@ namespace Yarn.Shared
         /// So if the method is something like <c>name(a,b)</c> then the <c>a</c> parameter will have an index here of 0.
         /// </param>
         /// <param name="arrayIndex">
-        /// what index is the current into the array of provided values from Yarn?
-        /// <remarks>
-        /// This seems similar to the <paramref cref="parameterIndex"/> but may not be the same, in the case of instance methods there is an implied <c>this</c> in c# which is explicit in the Yarn meaning the index values here will be shifted along one.
-        /// Relatedly some parameter types (such as tokens) have no corresponding values in the array of parameters provided from Yarn.
-        /// </remarks>
+        /// What index is the current into the array of provided values from Yarn?
+        /// This is superficially similar to the <paramref cref="parameterIndex"/>, but may not be the same: in the case of instance methods, there is an implied <c>this</c> in C#, which is explicit in the Yarn - meaning the index values here will be shifted along one.
+        /// Relatedly, some parameter types (such as tokens) have no corresponding values in the array of parameters provided from Yarn.
         /// </param>
         /// <returns>The fully built function parameter string ready to be injected into the generated source.</returns>
         public abstract string CreateFunctionParameterString(int parameterIndex, int arrayIndex);
