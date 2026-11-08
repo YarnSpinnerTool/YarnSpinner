@@ -67,7 +67,7 @@ namespace Yarn.Shared
         /// <param name="arrayIndex">
         /// what index is the current into the array of provided values from Yarn?
         /// <remarks>
-        /// This seems similar to the <see cref="parameterIndex"/> but may not be the same, in the case of instance methods there is an implied <c>this</c> in c# which is explicit in the Yarn meaning the index values here will be shifted along one.
+        /// This seems similar to the <paramref cref="parameterIndex"/> but may not be the same, in the case of instance methods there is an implied <c>this</c> in c# which is explicit in the Yarn meaning the index values here will be shifted along one.
         /// Relatedly some parameter types (such as tokens) have no corresponding values in the array of parameters provided from Yarn.
         /// </remarks>
         /// </param>
@@ -85,7 +85,7 @@ namespace Yarn.Shared
         /// </param>
         /// <param name="arrayIndex">
         /// What index is the current into the array of provided values from Yarn?
-        /// This is superficially similar to the <see cref="parameterIndex"/>, but may not be the same: commands have as element 0 the name of the command, and in the case of instance methods there is an implied <c>this</c> in C#, which is explicit in the Yarn - meaning the index values here will be shifted along one.
+        /// This is superficially similar to the <paramref name="parameterIndex"/>, but may not be the same: commands have as element 0 the name of the command, and in the case of instance methods there is an implied <c>this</c> in C#, which is explicit in the Yarn - meaning the index values here will be shifted along one.
         /// Relatedly, some parameter types (such as tokens) have no corresponding values in the array of parameters provided from Yarn.
         /// </param>
         /// <returns>The fully built command parameter string ready to be injected into the generated source.</returns>
