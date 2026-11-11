@@ -43,7 +43,7 @@ rm -fv $YARNSPINNER_DLLS_DIR/System.Buffers.dll
 rm -fv $YARNSPINNER_DLLS_DIR/System.Memory.dll
 rm -fv $YARNSPINNER_DLLS_DIR/System.Numerics.Vectors.dll
 rm -fv $YARNSPINNER_DLLS_DIR/System.Reflection.TypeExtensions.dll
-rm -fv $YARNSPINNER_DLLS_DIR/System.Runtime.CompilerServices.Unsafe.dll
+# rm -fv $YARNSPINNER_DLLS_DIR/System.Runtime.CompilerServices.Unsafe.dll # required for Unity 2022.3
 rm -fv $YARNSPINNER_DLLS_DIR/System.Threading.Tasks.Extensions.dll
 
 # Build the source generator and copy it into place
