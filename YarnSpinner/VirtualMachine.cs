@@ -355,12 +355,13 @@ namespace Yarn
         /// Sets the current node and clears the VMs internal state
         /// </summary>
         /// <param name="nodeName">The new node</param>
-        public ValueTask SetNode(string nodeName)
+        /// <param name="cancellationToken">A token that can be used to cancel the setup task</param>
+        public ValueTask SetNode(string nodeName, CancellationToken cancellationToken = default)
         {
-            return SetNode(nodeName, clearState: true);
+            return SetNode(nodeName, clearState: true, cancellationToken);
         }
 
-        internal async ValueTask SetNode(string nodeName, bool clearState)
+        internal async ValueTask SetNode(string nodeName, bool clearState, CancellationToken cancellationToken)
         {
             if (Program == null || Program.Nodes.Count == 0)
             {
@@ -387,15 +388,16 @@ namespace Yarn
             // if we are already running dialogue we have a specific token ready for this
             // but this can be called before starting dialogue
             // and in those cases we won't yet have a token so we fall back to using the global one
-            var token = dialogueCancellationSource?.Token ?? GlobalToken;
 
-            await Responder.HandleNodeStart(nodeName, token);
+            using var cts = CancellationTokenSource.CreateLinkedTokenSource(dialogueCancellationSource?.Token ?? default, GlobalToken, cancellationToken);
+
+            await Responder.HandleNodeStart(nodeName, cts.Token);
 
             // figure out what lines we anticipate running
             var stringIDs = Program.LineIDsForNode(nodeName);
 
             // Deliver the string ID
-            await Responder.PrepareForLines(stringIDs ?? new List<string>(), token);
+            await Responder.PrepareForLines(stringIDs ?? new List<string>(), cts.Token);
         }
 
         /// <summary>
@@ -427,7 +429,7 @@ namespace Yarn
         /// This task will run until the dialogue finishes or is stopped.
         /// </remarks>
         /// <exception cref="DialogueException">Throws if there is already dialogue running</exception>
-        public async ValueTask Start()
+        public async ValueTask Start(CancellationToken cancellationToken)
         {
             if (this.currentNode == null)
             {
@@ -438,16 +440,19 @@ namespace Yarn
             LogDebugMessage?.Invoke($"Starting dialogue with {this.currentNode}");
 
             // need to see if we are already running
-            // if we are then we 
+            // if we are then that's a problem!
             if (dialogueCancellationSource != null && !dialogueCancellationSource.IsCancellationRequested)
             {
                 LogErrorMessage?.Invoke("Dialogue is already running, cannot start during this");
                 throw new DialogueException("Dialogue is already running, cannot start new dialogue while existing dialogue is in progress. Stop the current dialogue before starting anew");
             }
 
+            // Clean up the existing cancellation token source
+            dialogueCancellationSource?.Dispose();
+
             // refreshing our dialogue cancellation token
             // the old one will have been cancelled either by dialogue finishing or being stopped
-            dialogueCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(GlobalToken);
+            dialogueCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(GlobalToken, cancellationToken);
 
             // kick off executing instructions
             var canContinue = true;
@@ -468,7 +473,7 @@ namespace Yarn
 
                 if (currentNode != null && state.programCounter >= currentNode.Instructions.Count)
                 {
-                    await ReturnFromNode(currentNode);
+                    await ReturnFromNode(currentNode, dialogueCancellationSource.Token);
                     await Stop();
                     LogDebugMessage?.Invoke("Run complete.");
                 }
@@ -478,18 +483,18 @@ namespace Yarn
         }
 
 
-        private async ValueTask ReturnFromNode(Node? node)
+        private async ValueTask ReturnFromNode(Node? node, CancellationToken cancellationToken)
         {
             if (node == null)
             {
                 // Nothing to do.
                 return;
             }
-            if (dialogueCancellationSource == null || dialogueCancellationSource.IsCancellationRequested)
+            if (cancellationToken.IsCancellationRequested)
             {
                 return;
             }
-            await Responder.HandleNodeComplete(node.Name, dialogueCancellationSource.Token);
+            await Responder.HandleNodeComplete(node.Name, cancellationToken);
 
             string? nodeTrackingVariable = node.TrackingVariableName;
             if (nodeTrackingVariable != null)
@@ -798,13 +803,13 @@ namespace Yarn
                 case Instruction.InstructionTypeOneofCase.Stop:
                     {
                         // Immediately stop execution, and report that fact.
-                        await ReturnFromNode(currentNode);
+                        await ReturnFromNode(currentNode, cancellationToken);
 
                         // Unwind the call stack.
                         while (state.CanReturn)
                         {
                             var node = Program?.Nodes[state.PopCallStack().nodeName];
-                            await ReturnFromNode(node);
+                            await ReturnFromNode(node, cancellationToken);
                         }
 
                         await Stop();
@@ -812,20 +817,20 @@ namespace Yarn
                         return false;
                     }
                 case Instruction.InstructionTypeOneofCase.RunNode:
-                    await ExecuteJumpToNode(i.RunNode.NodeName, false);
+                    await ExecuteJumpToNode(i.RunNode.NodeName, isDetour: false, cancellationToken);
                     return true;
                 case Instruction.InstructionTypeOneofCase.PeekAndRunNode:
-                    await ExecuteJumpToNode(null, false);
+                    await ExecuteJumpToNode(null, isDetour: false, cancellationToken);
                     return true;
                 case Instruction.InstructionTypeOneofCase.DetourToNode:
-                    await ExecuteJumpToNode(i.DetourToNode.NodeName, true);
+                    await ExecuteJumpToNode(i.DetourToNode.NodeName, isDetour: true, cancellationToken);
                     return true;
                 case Instruction.InstructionTypeOneofCase.PeekAndDetourToNode:
-                    await ExecuteJumpToNode(null, true);
+                    await ExecuteJumpToNode(null, isDetour: true, cancellationToken);
                     return true;
                 case Instruction.InstructionTypeOneofCase.Return:
                     {
-                        await ReturnFromNode(currentNode);
+                        await ReturnFromNode(currentNode, cancellationToken);
 
                         State.CallSite returnSite = default;
                         if (state.CanReturn)
@@ -839,7 +844,7 @@ namespace Yarn
                             await Stop();
                             return false;
                         }
-                        await SetNode(returnSite.nodeName, clearState: false);
+                        await SetNode(returnSite.nodeName, clearState: false, cancellationToken);
                         state.programCounter = returnSite.instruction;
                     }
                     return true;
@@ -955,7 +960,7 @@ namespace Yarn
 
         private readonly List<ContentSaliencyOption> saliencyCandidateList = new List<ContentSaliencyOption>();
 
-        private async ValueTask ExecuteJumpToNode(string? nodeName, bool isDetour)
+        private async ValueTask ExecuteJumpToNode(string? nodeName, bool isDetour, CancellationToken cancellationToken)
         {
             if (isDetour)
             {
@@ -966,14 +971,14 @@ namespace Yarn
             {
                 // We are jumping straight to another node. Unwind the current
                 // call stack and issue a 'node complete' event for every node.
-                await ReturnFromNode(this.Program?.Nodes[CurrentNodeName]);
+                await ReturnFromNode(this.Program?.Nodes[CurrentNodeName], cancellationToken);
 
                 while (state.CanReturn)
                 {
                     var poppedNodeName = state.PopCallStack().nodeName;
                     if (poppedNodeName != null)
                     {
-                        await ReturnFromNode(this.Program?.Nodes[poppedNodeName]);
+                        await ReturnFromNode(this.Program?.Nodes[poppedNodeName], cancellationToken);
                     }
                 }
 
@@ -985,7 +990,7 @@ namespace Yarn
                 nodeName = state.PeekValue().ConvertTo<string>();
             }
 
-            await SetNode(nodeName, clearState: !isDetour);
+            await SetNode(nodeName, clearState: !isDetour, cancellationToken);
 
             // Decrement program counter here, because it will
             // be incremented when this function returns, and

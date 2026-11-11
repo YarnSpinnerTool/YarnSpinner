@@ -496,24 +496,25 @@ namespace Yarn
         /// Starts dialogue from a specific entry node and will run until completion of dialogue.
         /// </summary>
         /// <param name="node">The node to use as the entry point for the dialogue</param>
-        public async ValueTask StartDialogue(string node)
+        /// <param name="cancellationToken">An optional external cancellation source for the dialogue operation.</param>
+        public async ValueTask StartDialogue(string node, CancellationToken cancellationToken = default)
         {
-            await vm.SetNode(node);
-            await vm.Start();
+            await vm.SetNode(node, cancellationToken);
+            await vm.Start(cancellationToken);
         }
 
         /// <summary>
         /// Starts dialogue at the value of <see cref="CurrentNode"/>.
         /// </summary>
         /// <exception cref="InvalidOperationException">If there is no node currently set as the entry point this method throws</exception>
-        /// <seealso cref="StartDialogue(string)"/>
-        public async ValueTask Start()
+        /// <seealso cref="StartDialogue(string,CancellationToken)"/>
+        public async ValueTask Start(CancellationToken cancellationToken = default)
         {
             if (CurrentNode == null)
             {
                 throw new InvalidOperationException("Asked to start dialogue but a start node has not been set");
             }
-            await vm.Start();
+            await vm.Start(cancellationToken);
         }
 
         /// <summary>
@@ -834,9 +835,10 @@ namespace Yarn
         /// Sets the current node
         /// </summary>
         /// <param name="node">the requested node</param>
-        public async ValueTask SetNode(string node)
+        /// <param name="cancellationToken">A token that can be used to cancel the set node operation</param>
+        public async ValueTask SetNode(string node, CancellationToken cancellationToken = default)
         {
-            await this.vm.SetNode(node, clearState: true);
+            await this.vm.SetNode(node, clearState: true, cancellationToken);
         }
 
         /// <summary>
