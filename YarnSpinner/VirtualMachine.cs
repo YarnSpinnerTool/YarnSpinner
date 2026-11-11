@@ -460,7 +460,7 @@ namespace Yarn
             // Execute instructions until something forces us to stop
             while (currentNode != null && canContinue)
             {
-                if (dialogueCancellationSource.IsCancellationRequested)
+                if (dialogueCancellationSource.IsCancellationRequested || cancellationToken.IsCancellationRequested)
                 {
                     return;
                 }
