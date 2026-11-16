@@ -11,7 +11,7 @@ namespace Yarn.Shared;
 /// <remarks>
 /// This is exclusive to enums defined in Yarn who have had their game engine code generated also
 /// </remarks>
-public record EnumParameter(string Name, string EnumTypeName, YarnEnum.BackingType Backing, bool IsArray, bool IsOut, bool HasDefaultValue, string? DefaultValueDisplay, bool IsNodeAttributed, string? AttributedEnumSubtype): Parameter(Name, IsArray, IsOut, HasDefaultValue, DefaultValueDisplay, IsNodeAttributed, AttributedEnumSubtype)
+public record EnumParameter(string Name, string EnumTypeName, YarnEnum.BackingType Backing, bool IsArray, bool IsOut, bool HasDefaultValue, string? DefaultValueDisplay, bool IsNodeAttributed, string? AttributedEnumSubtype) : Parameter(Name, IsArray, IsOut, HasDefaultValue, DefaultValueDisplay, IsNodeAttributed, AttributedEnumSubtype)
 {
     /// <inheritdoc />
     public override string CreateFunctionParameterString(int parameterIndex, int arrayIndex)
@@ -60,7 +60,7 @@ public record EnumParameter(string Name, string EnumTypeName, YarnEnum.BackingTy
 
             for (int i = 0; i < length; i++)
             {{
-                if (!{1}EnumHelper.TryGet{1}ByName(commandPieces[{2}], out var pi))
+                if (!{1}EnumHelper.TryGet{1}ByName(commandPieces[{2}], out var pi) && !{1}EnumHelper.TryGet{1}FromBacking(commandPieces[{2}], out pi))
                 {{
                     throw new System.ArgumentException($"Was unable to create a {1} from {{commandPieces[{2}]}}");
                 }}
@@ -73,7 +73,7 @@ public record EnumParameter(string Name, string EnumTypeName, YarnEnum.BackingTy
         else
         {
             var format = """
-            if (!{0}EnumHelper.TryGet{0}ByName(commandPieces[{2}], out var p{1}))
+            if (!{0}EnumHelper.TryGet{0}ByName(commandPieces[{2}], out var p{1}) && !{0}EnumHelper.TryGet{0}FromBacking(commandPieces[{2}], out p{1}))
             {{
                 throw new System.ArgumentException($"Was unable to create a {0} from {{commandPieces[{2}]}}");
             }}
