@@ -57,7 +57,7 @@ jobs:
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         run: |
           dotnet pack -c Release /p:Version=${{ steps.version.outputs.SemVer }} -o "nuget"
-          dotnet nuget push nuget/*.nupkg --api-key ${{ steps.login.outputs.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push nuget/YarnSpinner*.nupkg --api-key ${{ steps.login.outputs.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
 
       - name: Extract release notes
         id: extract-release-notes
