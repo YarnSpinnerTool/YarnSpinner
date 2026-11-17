@@ -6,7 +6,6 @@
 # Usage: ./sync-yarnspinner-dlls.sh {PATH TO YARNSPINNER-UNITY PROJECT} --release
 
 set -e
-set -x
 
 YARNSPINNER_FOLDER=$(readlink -f "$(dirname $0)")
 YARNSPINNER_DLLS_DIR=$1/Runtime/DLLs/
