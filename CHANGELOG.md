@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+### Changed
+
+### Fixed
+
+### Removed
+
+## [3.3.0] 2026-11-17
+
 #### Async Yarn Spinner
 
 The API for `Dialogue` and `VirtualMachine` has been updated to be asynchronous. This is a **breaking change** for anyone directly using Yarn Spinner as a library.
