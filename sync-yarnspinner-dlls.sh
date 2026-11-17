@@ -62,8 +62,8 @@ pushd YarnSpinner.SourceGenerator
 dotnet clean --configuration $CONFIGURATION
 dotnet build --configuration $CONFIGURATION
 ilrepack --out=YarnSpinner.Unity.SourceCodeGenerator.dll bin/$CONFIGURATION/netstandard2.0/Analyser.dll bin/$CONFIGURATION/netstandard2.0/YarnSpinner.HostAnalysis.dll bin/$CONFIGURATION/netstandard2.0/YarnSpinner.Shared.dll --lib=bin/$CONFIGURATION/netstandard2.0/
-cp YarnSpinner.Unity.SourceCodeGenerator.{dll,pdb} $YARNSPINNER_SOURCE_GENERATOR_DIR
 popd
+cp YarnSpinner.SourceGenerator/YarnSpinner.Unity.SourceCodeGenerator.{dll,pdb} $YARNSPINNER_SOURCE_GENERATOR_DIR
 
 # Clean up
 rm -rf .build-tmp
