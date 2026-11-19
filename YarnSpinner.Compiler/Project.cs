@@ -738,8 +738,15 @@ namespace Yarn.Compiler
                             case "instance":
                                 parameterYarnType = Types.String;
                                 break;
+                            case "node":
+                                // this is technically a v5 thing but it costs us nothing to just magically make it a string
+                                // because it is still always going to be a string in the function so no real harm here
+                                parameterYarnType = Types.String;
+                                break;
+                            case "any":
+                                throw new InvalidOperationException($"Error in function {yarnName}: Parameter has an unresolved type of \"any\"");
                             default:
-                                continue;
+                                throw new InvalidOperationException($"Error in function {yarnName}: Encountered an unknown parameter type: {paramType}");
                         }
 
                         if (isArray || isOptional)
@@ -900,13 +907,17 @@ namespace Yarn.Compiler
             List<Shared.Parameter> parameters = new();
             if (commandElement.TryGetProperty("parameters", out var parametersElement))
             {
+                // any isn't being handled correctly and we need to do so there
                 foreach (var parameterElement in parametersElement.EnumerateArray())
                 {
                     var p = ParameterFromJSON(parameterElement);
-                    if (p != null)
+                    if (p == null)
                     {
-                        parameters.Add(p);
+                        // if we encountered a null parameter that means something went wrong processing the action
+                        // so we likewise need to return null because we can't trust the command is itself valid
+                        return null;
                     }
+                    parameters.Add(p);
                 }
             }
 
@@ -1000,7 +1011,6 @@ namespace Yarn.Compiler
                         // for now assume that
                         if (parameterElement.TryGetProperty("subtype", out var subProperty))
                         {
-
                             parameter = new Shared.EnumParameter(paramName, subProperty.GetString() ?? "(INVALID)", Shared.YarnEnum.BackingType.Int, isArray, false, false, null, false, null);
                             return parameter;
                         }
