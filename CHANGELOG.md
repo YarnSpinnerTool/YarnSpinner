@@ -14,6 +14,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Removed
 
+## [3.3.1] 2026-11-19
+
+### Changed
+
+- In `.ysls.json` files, the parameter types `node` and `any` are now correctly handled.
+
 ## [3.3.0] 2026-11-17
 
 #### Async Yarn Spinner
