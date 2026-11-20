@@ -98,6 +98,14 @@ namespace Yarn.Compiler
                 }
             }
 
+            foreach (var whenHeader in context.when_header())
+            {
+                if (whenHeader.header_expression != null)
+                {
+                    Visit(whenHeader.header_expression);
+                }
+            }
+
             if (context.body() != null)
             {
                 return Visit(context.body());
