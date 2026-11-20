@@ -77,6 +77,37 @@ namespace YarnSpinner.Tests
             }
         }
 
+        [Fact(Timeout = 5000)]
+        public async Task TestCancellingTheTokenStillCompletesDialogue()
+        {
+            var source = CreateTestNode("First line\nSecond line");
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, testBaseResponder.Declarations));
+            result.Diagnostics.Should().NotContain(d => d.Severity == Diagnostic.DiagnosticSeverity.Error);
+
+            using var cancellation = new System.Threading.CancellationTokenSource();
+            var completeCount = 0;
+
+            testBaseResponder.OnReceivedLine = (line, token) =>
+            {
+                cancellation.Cancel();
+                return default;
+            };
+            testBaseResponder.OnReceivedNodeStart = (_, _) => default;
+            testBaseResponder.OnReceivedNodeComplete = (_, _) => default;
+            testBaseResponder.OnReceivedDialogueComplete = () =>
+            {
+                completeCount++;
+                return default;
+            };
+            testBaseResponder.OnPrepareForLines = (_, _) => default;
+
+            dialogue.Program = result.Program;
+            await dialogue.StartDialogue("Start", cancellation.Token);
+
+            completeCount.Should().Be(1);
+            dialogue.CurrentNode.Should().BeNull();
+        }
+
         [Fact]
         public async Task TestGettingCurrentNodeName()
         {

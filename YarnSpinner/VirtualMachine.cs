@@ -82,6 +82,9 @@ namespace Yarn
         /// <summary>
         /// Informs the responder that dialogue is finishing
         /// </summary>
+        /// <remarks>
+        /// This is called however the dialogue ends: reaching the end, being stopped, or having its cancellation token cancelled.
+        /// </remarks>
         ValueTask HandleDialogueComplete();
 
         /// <summary>
@@ -462,7 +465,9 @@ namespace Yarn
             {
                 if (dialogueCancellationSource.IsCancellationRequested || cancellationToken.IsCancellationRequested)
                 {
-                    return;
+                    // cancelled from outside, so wrap up the same way stopping or reaching the end does
+                    await Stop();
+                    break;
                 }
 
                 Instruction currentInstruction = currentNode.Instructions[state.programCounter];

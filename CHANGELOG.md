@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Actions with `float` or `decimal` default parameters no long generate incorrect linking code
   - this bug would also have impacted languages with a different separator than English
+- Cancelling tehtoken passed to `Dialogue.Start` or `StartDialogue` now stops the dialogue properly and calls `HandleDialogueComplete`. Previously cancelling it while a line or command was running ended dialogue without ever telling the responder, so stuff like dialogue UI never got the chance to clean up...
 
 ### Removed
 
