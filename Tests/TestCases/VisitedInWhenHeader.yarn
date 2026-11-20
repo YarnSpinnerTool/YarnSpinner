@@ -1,0 +1,58 @@
+title: Start
+---
+<<detour Group>>
+<<detour Group>>
+<<detour Target>>
+<<detour Check>>
+<<detour Counted>>
+<<detour Counted>>
+<<detour CountCheck>>
+<<detour OnceIf>>
+<<detour OnceIf>>
+<<detour HubCheck>>
+===
+title: Group
+subtitle: first
+when: once
+---
+First group member
+===
+title: Group
+subtitle: second
+when: visited("Group.first")
+---
+Second group member
+===
+title: Target
+---
+Target node
+===
+title: Check
+when: visited("Target")
+---
+Target was visited
+===
+title: Counted
+---
+Counted node
+===
+title: CountCheck
+when: visited_count("Counted") == 2
+---
+Counted twice
+===
+title: OnceIf
+when: once if visited("Target")
+---
+Once if visited
+===
+title: OnceIf
+when: always
+---
+Fallback
+===
+title: HubCheck
+when: visited("Group")
+---
+Group hub was visited
+===
