@@ -109,17 +109,90 @@ public static partial class Creators
             {
                 perParamLogger.WriteLine($"{name} has a default value: {p.ExplicitDefaultValue?.ToString() ?? "null"}");
 
-                // there is one special case we need to handle here
-                // bools when ToString-ed come out as True/False and not true/false
-                // so we want to fix that right now
-                if (typeSymbol.SpecialType == SpecialType.System_Boolean)
+                // the docs sorta imply this should work but it doesn't seem to do what we need, alas
+                // defaultDisplay = SymbolDisplay.FormatPrimitive(p.ExplicitDefaultValue, false, false);
+
+                // for a bunch of these could be further special cased like int.MaxValue
+                // but in those cases it will just swap them out with their actual numeric value so it doesn't really matter
+                switch (p.ExplicitDefaultValue)
                 {
-                    var value = (bool)(p.ExplicitDefaultValue ?? false);
-                    defaultDisplay = value ? "true" : "false";
-                }
-                else
-                {
-                    defaultDisplay = p.ExplicitDefaultValue?.ToString();
+                    case bool b:
+                        defaultDisplay = b ? "true" : "false";
+                        break;
+                    
+                    case string s:
+                        defaultDisplay = $"\"{s.ToString(System.Globalization.CultureInfo.InvariantCulture)}\"";
+                        break;
+
+                    case float f:
+                        if (float.IsNaN(f))
+                        {
+                            defaultDisplay = "float.NaN";
+                            break;
+                        }
+                        if (float.IsNegativeInfinity(f))
+                        {
+                            defaultDisplay = "float.NegativeInfinity";
+                            break;
+                        }
+                        if (float.IsInfinity(f))
+                        {
+                            defaultDisplay = "float.PositiveInfinity";
+                            break;
+                        }
+                        defaultDisplay = $"{f.ToString(System.Globalization.CultureInfo.InvariantCulture)}f";
+                        break;
+                    
+                    case decimal d:
+                        defaultDisplay = $"{d.ToString(System.Globalization.CultureInfo.InvariantCulture)}m";
+                        break;
+                    
+                    case double dd:
+                        if (double.IsNaN(dd))
+                        {
+                            defaultDisplay = "double.NaN";
+                            break;
+                        }
+                        if (double.IsNegativeInfinity(dd))
+                        {
+                            defaultDisplay = "double.NegativeInfinity";
+                            break;
+                        }
+                        if (double.IsInfinity(dd))
+                        {
+                            defaultDisplay = "double.PositiveInfinity";
+                            break;
+                        }
+                        defaultDisplay = dd.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                        break;
+                    
+                    case byte bb:
+                        defaultDisplay = bb.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                        break;
+                    
+                    case sbyte sb:
+                        defaultDisplay = sb.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                        break;
+                    
+                    case int ii:
+                        defaultDisplay = ii.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                        break;
+                    
+                    case uint ui:
+                        defaultDisplay = ui.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                        break;
+                    
+                    case long l:
+                        defaultDisplay = l.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                        break;
+                    
+                    case ulong ul:
+                        defaultDisplay = ul.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                        break;
+                    
+                    default:
+                        defaultDisplay = p.ExplicitDefaultValue?.ToString();
+                        break;
                 }
             }
 

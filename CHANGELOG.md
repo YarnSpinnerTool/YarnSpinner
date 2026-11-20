@@ -10,7 +10,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- handling of actions with string paramers with default parameters has been simplified
+
 ### Fixed
+
+- Actions with `float` or `decimal` default parameters no long generate incorrect linking code
+  - this bug would also have impacted languages with a different separator than English
 
 ### Removed
 

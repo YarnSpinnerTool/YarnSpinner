@@ -568,24 +568,7 @@ public class CompileTimeSyntaxBuilder
 
             if (param.HasDefaultValue)
             {
-                // there is one special case: strings
-                // their default value doesn't have the quotation marks
-                // which would cause all sorts of issues, so we add those back in
-                if (param is BasicParameter bp && bp.SpecialType == YarnSpecialType.String)
-                {
-                    if (param.DefaultValueDisplay == null)
-                    {
-                        tupleValues[i] = "null";
-                    }
-                    else
-                    {
-                        tupleValues[i] = $"\"{param.DefaultValueDisplay}\"";
-                    }
-                }
-                else
-                {
-                    tupleValues[i] = param.DefaultValueDisplay?.ToString() ?? "null";
-                }
+                tupleValues[i] =  param.DefaultValueDisplay?.ToString() ?? "null";
             }
             else
             {
