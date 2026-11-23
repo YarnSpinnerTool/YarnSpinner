@@ -10,7 +10,7 @@ namespace Yarn.Compiler
     using System.Text.Json.Serialization;
     using System.Linq;
 
-    [JsonSourceGenerationOptions(WriteIndented = true)]
+    [JsonSourceGenerationOptions(WriteIndented = true, PropertyNameCaseInsensitive = true, UseStringEnumConverter = true)]
     [JsonSerializable(typeof(Project))]
     [JsonSerializable(typeof(Diagnostic.DiagnosticSeverity))]
     [JsonSerializable(typeof(bool))]
