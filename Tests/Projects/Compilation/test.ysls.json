@@ -1,6 +1,21 @@
 {
     "version": 3,
-    "commands": [],
+    "commands": [
+        {
+            "yarnName": "BasicCommand",
+            "definitionName": "global::Test.BasicCommand",
+            "parameters": [
+                {
+                    "name": "a",
+                    "type": "bool"
+                },
+                {
+                    "name": "b",
+                    "type": "number"
+                }
+            ]
+        }
+    ],
     "functions": [
         {
             "yarnName": "BasicFunction",

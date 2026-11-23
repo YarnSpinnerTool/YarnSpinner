@@ -13,6 +13,7 @@ namespace Yarn.Compiler
     [JsonSourceGenerationOptions(WriteIndented = true, PropertyNameCaseInsensitive = true, UseStringEnumConverter = true)]
     [JsonSerializable(typeof(Project))]
     [JsonSerializable(typeof(Diagnostic.DiagnosticSeverity))]
+    [JsonSerializable(typeof(DefinitionsFile))]
     [JsonSerializable(typeof(bool))]
     internal partial class SourceGenerationContext : JsonSerializerContext { }
 
@@ -60,7 +61,7 @@ namespace Yarn.Compiler
         /// </summary>
         public const int YarnSpinnerProjectVersion5 = 5;
 
-        private static readonly JsonSerializerOptions SerializationOptions = new JsonSerializerOptions
+        internal static readonly JsonSerializerOptions SerializationOptions = new JsonSerializerOptions
         {
             AllowTrailingCommas = true,
             ReadCommentHandling = JsonCommentHandling.Skip,
@@ -640,6 +641,79 @@ namespace Yarn.Compiler
         }
     }
 
+    internal class DefinitionsFile
+    {
+        [JsonRequired]
+        public int Version { get; set; } = 0;
+
+        public List<Command> Commands { get; set; } = new();
+
+        public List<Function> Functions { get; set; } = new();
+
+        public enum Type
+        {
+            Number,
+            String,
+            Bool,
+            Instance,
+            Node,
+            Enum,
+            Any,
+        }
+
+        public abstract class Action
+        {
+            public string YarnName { get; set; } = string.Empty;
+            public string? DefinitionName { get; set; } = null;
+            public string? FileName { get; set; } = null;
+            public string? Language { get; set; } = null;
+            public string? Documentation { get; set; } = null;
+            public List<Parameter> Parameters { get; set; } = new();
+            public bool Async { get; set; } = false;
+            public Location? Location { get; set; } = null;
+            public bool ContainsErrors { get; set; } = false;
+        }
+
+        public class Command : Action { }
+
+        public class Function : Action
+        {
+            public Return Return { get; set; } = new();
+
+            [Obsolete("Use " + nameof(Return))]
+            public Return ReturnType { set => Return = value; }
+        }
+
+        public class Parameter
+        {
+            public string Name { get; set; } = string.Empty;
+            public Type Type { get; set; }
+            public string? SubType { get; set; } = null;
+            public string? Documentation { get; set; } = null;
+            public string? DefaultValue { get; set; } = null;
+            public bool IsParamsArray { get; set; } = false;
+
+        }
+        public class Return
+        {
+            public Type Type { get; set; }
+            public string? SubType { get; set; }
+            public string? Description { get; set; }
+        }
+
+        public class Location
+        {
+            public Position Start { get; set; } = new();
+            public Position End { get; set; } = new();
+        }
+
+        public class Position
+        {
+            public int Line { get; set; }
+            public int Character { get; set; }
+        }
+    }
+
     /// <summary>
     /// Definitions represent external actions that are part of the <see cref="Project" /> and are used in different ways by different parts of Yarn Spinner.
     /// These are primarily constructed by providing the YSLS json file but you can manually create one for tests.
@@ -662,6 +736,14 @@ namespace Yarn.Compiler
         public Definitions(string source, int projectFileVersion) : this(System.Text.Encoding.UTF8.GetBytes(source), projectFileVersion) { }
 
         /// <summary>
+        /// The collection of <see cref="Diagnostic"/> objects representing issues found when loading the definitions.
+        /// </summary>
+        public List<Diagnostic> diagnostics;
+
+        // TODO: replace with actual path
+        internal static string DefinitionsFilePath => "definitions file";
+
+        /// <summary>
         /// Creates a new definition from the provided json source
         /// </summary>
         /// <param name="source">The source JSON of the definitions</param>
@@ -670,115 +752,136 @@ namespace Yarn.Compiler
         {
             functions = new();
             commands = new();
-            using (var document = JsonDocument.Parse(source))
+            diagnostics = new();
+
+            var definitionsData = JsonSerializer.Deserialize<DefinitionsFile>(source.Span, Project.SerializationOptions)
+                ?? throw new JsonException("Failed to parse definitions data");
+
+            static IType GetTypeForParameter(DefinitionsFile.Parameter param, DefinitionsFile.Action source, int projectFileVersion)
             {
-                var root = document.RootElement;
-
-                var funcsElement = root.GetProperty("functions");
-                foreach (var funcElement in funcsElement.EnumerateArray())
+                return param.Type switch
                 {
-                    var yarnName = funcElement.GetProperty("yarnName").GetString();
-                    if (yarnName == null)
-                    {
-                        continue;
-                    }
-                    var returnType = funcElement.GetProperty("return").GetProperty("type").GetString();
+                    DefinitionsFile.Type.Number => Types.Number,
+                    DefinitionsFile.Type.String => Types.String,
+                    DefinitionsFile.Type.Bool => Types.Boolean,
 
-                    FunctionType functionType;
-                    switch (returnType)
-                    {
-                        case "number":
-                            functionType = new FunctionType(Types.Number);
-                            break;
-                        case "string":
-                            functionType = new FunctionType(Types.String);
-                            break;
-                        case "bool":
-                            functionType = new FunctionType(Types.Boolean);
-                            break;
-                        default:
-                            continue;
-                    }
+                    // Enums require file version 5
+                    DefinitionsFile.Type.Enum when projectFileVersion < Project.YarnSpinnerProjectVersion5 =>
+                        throw new DiagnosticException(DefinitionsFilePath, DiagnosticDescriptor.LanguageVersionTooLow, $"Error in function {source.YarnName}: Enum parameters in functions require project file version 5 or later"),
 
-                    foreach (var parameterElement in funcElement.GetProperty("parameters").EnumerateArray())
-                    {
-                        var isArray = parameterElement.TryGetProperty("isParamsArray", out var isParamsArrayProperty)
-                            ? isParamsArrayProperty.GetBoolean() : false;
-                        var paramType = parameterElement.GetProperty("type").GetString();
-                        var paramSubType = parameterElement.TryGetProperty("subtype", out var subtypeProperty)
-                            ? subtypeProperty.GetString() : null;
-                        var isOptional = parameterElement.TryGetProperty("defaultValue", out _);
+                    // It's an enum; we don't know enough about the underlying type of it yet, so mark it with a placeholder, and the compiler will resolve it later.
+                    DefinitionsFile.Type.Enum when param.SubType != null =>
+                        new ForwardDeclaredType(param.SubType),
 
-                        IType parameterYarnType;
-                        switch (paramType)
-                        {
-                            case "number":
-                                parameterYarnType = Types.Number;
-                                break;
-                            case "string":
-                                parameterYarnType = Types.String;
-                                break;
-                            case "bool":
-                                parameterYarnType = Types.Boolean;
-                                break;
-                            case "enum" when projectFileVersion < Project.YarnSpinnerProjectVersion5:
-                                // Enums require file version 5
-                                throw new InvalidOperationException($"Error in function {yarnName}: Enum parameters in functions require project file version 5 or later");
-                            case "enum" when paramSubType != null:
-                                // It's an enum; we don't know enough about the underlying type of it yet, so mark it with a placeholder, and the compiler will resolve it later.
-                                parameterYarnType = new ForwardDeclaredType(paramSubType);
-                                break;
-                            case "enum" when paramSubType == null:
-                                // It's something inheriting from enum, but we don't know what specific type. Default it to number.
-                                parameterYarnType = Types.Number;
-                                break;
-                            case "instance" when projectFileVersion < Project.YarnSpinnerProjectVersion5:
-                                // Instances require file version 5
-                                throw new InvalidOperationException($"Error in function {yarnName}: Instance parameters in functions require project file version 5 or later");
-                            case "instance":
-                                parameterYarnType = Types.String;
-                                break;
-                            case "node":
-                                // this is technically a v5 thing but it costs us nothing to just magically make it a string
-                                // because it is still always going to be a string in the function so no real harm here
-                                parameterYarnType = Types.String;
-                                break;
-                            case "any":
-                                throw new InvalidOperationException($"Error in function {yarnName}: Parameter has an unresolved type of \"any\"");
-                            default:
-                                throw new InvalidOperationException($"Error in function {yarnName}: Encountered an unknown parameter type: {paramType}");
-                        }
+                    // It's something inheriting from enum, but we don't know what specific type. Default it to number.
+                    DefinitionsFile.Type.Enum when param.SubType == null => Types.Number,
 
-                        if (isArray || isOptional)
-                        {
-                            functionType.VariadicParameterType = parameterYarnType;
-                        }
-                        else
-                        {
-                            functionType.AddParameter(parameterYarnType);
-                        }
-                    }
+                    // Instances require file version 5
+                    DefinitionsFile.Type.Instance when projectFileVersion < Project.YarnSpinnerProjectVersion5 =>
+                        throw new DiagnosticException(DefinitionsFilePath, DiagnosticDescriptor.LanguageVersionTooLow, $"Error in function {source.YarnName}: Instance parameters in functions require project file version 5 or later"),
 
-                    var declaration = new Declaration
-                    {
-                        Name = yarnName,
-                        Type = functionType,
-                        Range = { },
-                        SourceFileName = Declaration.ExternalDeclaration,
-                        SourceNodeName = null,
-                    };
-                    functions.Add(declaration);
+                    DefinitionsFile.Type.Instance => Types.String,
+
+                    // this is technically a v5 thing but it costs us nothing to just magically make it a string
+                    // because it is still always going to be a string in the function so no real harm here
+                    DefinitionsFile.Type.Node => Types.String,
+
+                    DefinitionsFile.Type.Any =>
+                        throw new DiagnosticException(DefinitionsFilePath, DiagnosticDescriptor.LanguageVersionTooLow, $"Error in function {source.YarnName}: Parameter has an unresolved type of \"any\""),
+
+                    _ => throw new DiagnosticException(DefinitionsFilePath, DiagnosticDescriptor.InvalidParameterInDefinitionsFile, source.YarnName, param.Name, param.Type.ToString()),
+                };
+            }
+
+            foreach (var function in definitionsData.Functions)
+            {
+                if (function.ContainsErrors)
+                {
+                    // Ignore any function that is labelled as containing errors, and don't emit any declarations of our own.
+                    // The thinking here is that anything that produced an entry that contains errors will have logged its own diagnostics.
+                    continue;
                 }
 
-                var commandsElement = root.GetProperty("commands");
-                foreach (var commandElement in commandsElement.EnumerateArray())
+                if (string.IsNullOrEmpty(function.YarnName))
                 {
-                    var action = ActionExtensions.CommandActionFromJSON(commandElement);
-                    if (action == null)
+                    diagnostics.Add(DiagnosticDescriptor.MissingPropertyInDefinitionsFile.Create(DefinitionsFilePath, nameof(DefinitionsFile.Action.YarnName)));
+                    continue;
+                }
+
+                var returnType = function.Return.Type switch
+                {
+                    DefinitionsFile.Type.Bool => Types.Boolean,
+                    DefinitionsFile.Type.Number => Types.Number,
+                    DefinitionsFile.Type.String => Types.String,
+
+                    _ => Types.Error
+                };
+                if (returnType == Types.Error)
+                {
+                    diagnostics.Add(DiagnosticDescriptor.InvalidReturnTypeInDefinitionsFile.Create(DefinitionsFilePath, function.YarnName, function.Return.Type.ToString()));
+                    continue;
+                }
+
+                List<Yarn.IType> parameterTypes = new();
+                IType? variadicType = null;
+
+                foreach (var param in function.Parameters)
+                {
+                    var isArray = param.IsParamsArray;
+                    var isOptional = param.DefaultValue != null;
+
+                    IType parameterYarnType;
+                    try
                     {
+                        parameterYarnType = GetTypeForParameter(param, function, projectFileVersion);
+                    }
+                    catch (Exception e)
+                    {
+                        diagnostics.Add(DiagnosticDescriptor.InvalidParameterInDefinitionsFile.Create(DefinitionsFilePath, function.YarnName, param.Name, e.Message));
                         continue;
                     }
-                    commands.Add(action);
+
+                    if (isArray || isOptional)
+                    {
+                        variadicType = parameterYarnType;
+                    }
+                    else
+                    {
+                        parameterTypes.Add(parameterYarnType);
+                    }
+                }
+
+                var declaration = new Declaration
+                {
+                    Name = function.YarnName,
+                    Type = new FunctionType(returnType, parameterTypes.ToArray())
+                    {
+                        VariadicParameterType = variadicType
+                    },
+                    Range = { },
+                    SourceFileName = Declaration.ExternalDeclaration,
+                    SourceNodeName = null,
+                };
+
+                functions.Add(declaration);
+            }
+
+            foreach (var command in definitionsData.Commands)
+            {
+                if (command.ContainsErrors)
+                {
+                    // Ignore any function that is labelled as containing errors, and don't emit any declarations of our own.
+                    // The thinking here is that anything that produced an entry that contains errors will have logged its own diagnostics.
+                    continue;
+                }
+
+                try
+                {
+                    commands.Add(ActionExtensions.CommandActionFromJSON(command, projectFileVersion));
+                }
+                catch (DiagnosticException d)
+                {
+                    diagnostics.Add(d.Diagnostic);
                 }
             }
         }
@@ -876,49 +979,33 @@ namespace Yarn.Compiler
             return declaration;
         }
 
-        internal static Shared.Action? CommandActionFromJSON(JsonElement commandElement)
+        internal static Shared.Action CommandActionFromJSON(DefinitionsFile.Command command, int projectFileVersion)
         {
             // name of the command itself
-            if (!commandElement.TryGetProperty("yarnName", out var nameProperty))
-            {
-                return null;
-            }
-            var yarnName = nameProperty.GetString();
-            if (yarnName == null)
-            {
-                return null;
-            }
+
+            var yarnName = command.YarnName
+                ?? throw new DiagnosticException(
+                    Definitions.DefinitionsFilePath,
+                    DiagnosticDescriptor.MissingPropertyInDefinitionsFile,
+                    nameof(DefinitionsFile.Command.YarnName));
 
             // the name of the method it invokes
             // from this can generally also work out the class
-            if (!commandElement.TryGetProperty("definitionName", out var defProperty))
-            {
-                return null;
-            }
-            var fullName = defProperty.GetString();
-            if (fullName == null)
-            {
-                return null;
-            }
+
+            var fullName = command.DefinitionName ?? throw new DiagnosticException(
+                    Definitions.DefinitionsFilePath,
+                    DiagnosticDescriptor.MissingPropertyInDefinitionsFile,
+                    nameof(DefinitionsFile.Command.DefinitionName));
 
             // determining asynchronicity of the command
-            bool isAsync = false;
+            bool isAsync = command.Async;
 
             List<Shared.Parameter> parameters = new();
-            if (commandElement.TryGetProperty("parameters", out var parametersElement))
+
+            // any isn't being handled correctly and we need to do so there
+            foreach (var parameterElement in command.Parameters)
             {
-                // any isn't being handled correctly and we need to do so there
-                foreach (var parameterElement in parametersElement.EnumerateArray())
-                {
-                    var p = ParameterFromJSON(parameterElement);
-                    if (p == null)
-                    {
-                        // if we encountered a null parameter that means something went wrong processing the action
-                        // so we likewise need to return null because we can't trust the command is itself valid
-                        return null;
-                    }
-                    parameters.Add(p);
-                }
+                parameters.Add(ParameterFromJSON(command, parameterElement, projectFileVersion));
             }
 
             string longType = fullName;
@@ -942,103 +1029,98 @@ namespace Yarn.Compiler
             return new Shared.Action(yarnName, fullName, ShortMethodName, Shared.ActionType.Command, true, isAsync ? Shared.ReturnType.Void : Shared.ReturnType.AsyncVoid, nt, parameters.ToArray());
         }
 
-        private static Shared.Parameter? ParameterFromJSON(JsonElement parameterElement)
+        private static Shared.Parameter ParameterFromJSON(DefinitionsFile.Action action, DefinitionsFile.Parameter parameter, int projectFileVersion)
         {
-            string paramName;
-            if (!parameterElement.TryGetProperty("name", out var nameProperty))
+            Shared.Parameter result;
+            switch (parameter.Type)
             {
-                return null;
-            }
-            else
-            {
-                var temp = nameProperty.GetString();
-                if (temp == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    paramName = temp;
-                }
-            }
+                case DefinitionsFile.Type.Number:
+                    result = new Shared.BasicParameter(parameter.Name, Shared.YarnSpecialType.Single, parameter.IsParamsArray, false, parameter.DefaultValue != null, parameter.DefaultValue, false, null);
+                    return result;
 
-            string paramType;
-            if (!parameterElement.TryGetProperty("type", out var typeProperty))
-            {
-                return null;
-            }
-            else
-            {
-                var temp = typeProperty.GetString();
-                if (temp == null)
-                {
-                    return null;
-                }
-                paramType = temp;
-            }
+                case DefinitionsFile.Type.String:
+                    result = new Shared.BasicParameter(parameter.Name, Shared.YarnSpecialType.String, parameter.IsParamsArray, false, parameter.DefaultValue != null, parameter.DefaultValue, false, null);
+                    return result;
 
-            bool isArray = false;
-            if (parameterElement.TryGetProperty("isParamsArray", out var arrayProperty))
-            {
-                isArray = arrayProperty.GetBoolean();
-            }
+                case DefinitionsFile.Type.Bool:
+                    result = new Shared.BasicParameter(parameter.Name, Shared.YarnSpecialType.Boolean, parameter.IsParamsArray, false, parameter.DefaultValue != null, parameter.DefaultValue, false, null);
+                    return result;
 
-            string? defaultValue = null;
-            if (parameterElement.TryGetProperty("defaultValue", out var defaultProperty))
-            {
-                defaultValue = defaultProperty.GetString();
-            }
-
-            Shared.Parameter parameter;
-            switch (paramType)
-            {
-                case "number":
-                    parameter = new Shared.BasicParameter(paramName, Shared.YarnSpecialType.Single, isArray, false, defaultValue != null, defaultValue, false, null);
-                    return parameter;
-
-                case "string":
-                    parameter = new Shared.BasicParameter(paramName, Shared.YarnSpecialType.String, isArray, false, defaultValue != null, defaultValue, false, null);
-                    return parameter;
-
-                case "bool":
-                    parameter = new Shared.BasicParameter(paramName, Shared.YarnSpecialType.Boolean, isArray, false, defaultValue != null, defaultValue, false, null);
-                    return parameter;
-
-                case "enum":
+                case DefinitionsFile.Type.Enum:
                     {
                         // ok so how do I handle enum backed values?
                         // actually isn't it always an int?
                         // for now assume that
-                        if (parameterElement.TryGetProperty("subtype", out var subProperty))
+                        if (parameter.SubType != null)
                         {
-                            parameter = new Shared.EnumParameter(paramName, subProperty.GetString() ?? "(INVALID)", Shared.YarnEnum.BackingType.Int, isArray, false, false, null, false, null);
-                            return parameter;
+                            result = new Shared.EnumParameter(parameter.Name, parameter.SubType ?? "(INVALID)", Shared.YarnEnum.BackingType.Int, parameter.IsParamsArray, false, false, null, false, null);
+                            return result;
                         }
-                        return null;
+
+                        throw new DiagnosticException(Definitions.DefinitionsFilePath, DiagnosticDescriptor.InvalidParameterInDefinitionsFile, action.YarnName ?? "<unknown>", parameter.Name, "Enum type not specified");
                     }
 
-                case "instance":
+                case DefinitionsFile.Type.Instance:
                     {
-                        if (parameterElement.TryGetProperty("subtype", out var subProperty))
+                        if (parameter.SubType != null)
                         {
-                            var fullName = subProperty.GetString() ?? "(INVALID)";
+                            var fullName = parameter.SubType ?? "(INVALID)";
                             var nt = new Shared.NamedType(fullName, fullName, fullName, Shared.YarnSpecialType.String, true);
-                            parameter = new Shared.ComponentParameter(fullName, nt, isArray, false, defaultValue != null, defaultValue, false, null);
-                            return parameter;
+                            result = new Shared.ComponentParameter(fullName, nt, parameter.IsParamsArray, false, parameter.DefaultValue != null, parameter.DefaultValue, false, null);
+                            return result;
                         }
-                        return null;
+                        throw new DiagnosticException(Definitions.DefinitionsFilePath, DiagnosticDescriptor.InvalidParameterInDefinitionsFile, action.YarnName ?? "<unknown>", parameter.Name, "Instance type not specified");
+
                     }
                 // how do I know if an instance type is a converter or game object or component?
                 // I am not sure if it matters here because it is a reflection of an already processed element
                 // something to consider for an update to the ysls though?
 
-                case "node":
-                    parameter = new Shared.BasicParameter(paramName, Shared.YarnSpecialType.String, isArray, false, defaultValue != null, defaultValue, true, null);
-                    return parameter;
+                case DefinitionsFile.Type.Node:
+                    result = new Shared.BasicParameter(parameter.Name, Shared.YarnSpecialType.String, parameter.IsParamsArray, false, parameter.DefaultValue != null, parameter.DefaultValue, true, null);
+                    return result;
 
                 default:
-                    return null;
+                    throw new DiagnosticException(Definitions.DefinitionsFilePath, DiagnosticDescriptor.InvalidParameterInDefinitionsFile, action.YarnName, parameter.Name, "Invalid type " + parameter.Type);
             }
+        }
+    }
+
+    /// <summary>
+    /// An exception that represents a diagnostic being emitted.
+    /// Use this when you want to indicate a failure and provide additional context.
+    /// </summary>
+    [System.Serializable]
+    internal class DiagnosticException : System.Exception
+    {
+        public Diagnostic Diagnostic { get; private set; }
+
+        public override string Message => !string.IsNullOrEmpty(base.Message) ? Message : Diagnostic.Message;
+
+        public DiagnosticException(Diagnostic diagnostic) : base(diagnostic.Message)
+        {
+            this.Diagnostic = diagnostic;
+        }
+
+        public DiagnosticException(string source, DiagnosticDescriptor.DiagnosticDescriptor0 descriptor)
+            => this.Diagnostic = descriptor.Create(source);
+
+        public DiagnosticException(string source, DiagnosticDescriptor.DiagnosticDescriptor1 descriptor, string message1)
+            => this.Diagnostic = descriptor.Create(source, message1);
+
+        public DiagnosticException(string source, DiagnosticDescriptor.DiagnosticDescriptor2 descriptor, string message1, string message2)
+            => this.Diagnostic = descriptor.Create(source, message1, message2);
+
+        public DiagnosticException(string source, DiagnosticDescriptor.DiagnosticDescriptor3 descriptor, string message1, string message2, string message3)
+            => this.Diagnostic = descriptor.Create(source, message1, message2, message3);
+
+        public DiagnosticException(string source, DiagnosticDescriptor.DiagnosticDescriptor4 descriptor, string message1, string message2, string message3, string message4)
+            => this.Diagnostic = descriptor.Create(source, message1, message2, message3, message4);
+
+
+        public DiagnosticException(Diagnostic diagnostic, System.Exception inner) : base(diagnostic.Message, inner)
+        {
+            this.Diagnostic = diagnostic;
         }
     }
 }

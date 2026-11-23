@@ -204,6 +204,31 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestProjectsResolveActions()
+        {
+            var testProjectPath = Path.Combine(ProjectRootPath, "Tests", "Projects", "Compilation", "test.yarnproject");
+            var project = Project.LoadFromFile(testProjectPath);
+
+            var commands = project.DefinitionsFiles.SelectMany(f =>
+            {
+                var span = System.IO.File.ReadAllBytes(f);
+                var ysls = new Definitions(span, project.FileVersion);
+                return ysls.commands;
+            });
+            var functions = project.DefinitionsFiles.SelectMany(f =>
+            {
+                var span = System.IO.File.ReadAllBytes(f);
+                var ysls = new Definitions(span, project.FileVersion);
+                return ysls.functions;
+            });
+
+            var basicFunction = functions.Should().Contain(f => f.Name == "BasicFunction").Subject;
+
+            basicFunction.Type.Should().BeOfType<Yarn.FunctionType>().Which.ReturnType.Should().Be(Yarn.Types.Number);
+            basicFunction.Type.Should().BeOfType<Yarn.FunctionType>().Which.Parameters.Should().BeEmpty();
+        }
+
+        [Fact]
         public void TestProjectDefintionPatternsResolveToAbsolutePaths()
         {
             var testProjectPath = Path.Combine(ProjectRootPath, "Tests", "Projects", "Compilation", "test.yarnproject");
@@ -219,6 +244,7 @@ namespace YarnSpinner.Tests
             // Create a YSLS file that declares the existence of a function 'has_inventory_item' that takes one parameter: an enum named 'InventoryItemType'. This is a type that isn't know before compilation - it's declared in the script we're about to compile.
             var testProjectYSLS = """
             {
+                "version": 3,
                 "commands": [],
                 "functions": [
                     {
