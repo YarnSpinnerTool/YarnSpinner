@@ -106,18 +106,29 @@ public class Generator : IIncrementalGenerator
                 {
                     commentSB.AppendLine($"/// <para>{diagnosticInfo.Summary?.UnwrapAndTrim().EscapeXML()}</para>");
                 }
+                var exampleMessage = diagnosticInfo.MessageTemplate;
                 if (diagnosticInfo.MessageValues.Count > 0)
                 {
                     commentSB.AppendLine("/// <para>Format placeholders:");
                     commentSB.AppendLine("/// <list type=\"number\">");
+                    int i = 0;
                     foreach (var value in diagnosticInfo.MessageValues)
                     {
                         commentSB.AppendLine("/// <item>" + value.UnwrapAndTrim().EscapeXML() + "</item>");
+                        if (exampleMessage != null)
+                        {
+                            exampleMessage = exampleMessage.Replace($"{{{i}}}", $"({value})");
+                        }
+                        i++;
                     }
                     commentSB.AppendLine("/// </list></para>");
-
-
                 }
+
+                if (exampleMessage != null)
+                {
+                    commentSB.AppendLine($"/// <para>\"{exampleMessage}\"</para>");
+                }
+
                 commentSB.AppendLine("/// </remarks>");
 
                 var deprecationSB = new StringBuilder();
