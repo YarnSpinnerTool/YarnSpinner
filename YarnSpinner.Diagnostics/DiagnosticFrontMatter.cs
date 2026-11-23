@@ -30,6 +30,8 @@ public class DiagnosticFrontMatter
         Compiler,
         [YamlMember(Alias = "languageserver")]
         LanguageServer,
+        [YamlMember(Alias = "projectloader")]
+        ProjectLoader,
     }
     [YamlMember(Alias = "name")]
     public string? Name { get; set; }
