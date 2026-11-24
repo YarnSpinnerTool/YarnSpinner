@@ -465,8 +465,9 @@ namespace Yarn
             {
                 if (dialogueCancellationSource.IsCancellationRequested || cancellationToken.IsCancellationRequested)
                 {
-                    // cancelled from outside, so wrap up the same way stopping or reaching the end does
-                    await Stop();
+                    // cancelled from outside
+                    LogDebugMessage?.Invoke("Aborting dialogue due to cancellation");
+                    await ReturnFromNode(currentNode, dialogueCancellationSource.Token);
                     break;
                 }
 
@@ -478,12 +479,12 @@ namespace Yarn
 
                 if (currentNode != null && state.programCounter >= currentNode.Instructions.Count)
                 {
-                    await ReturnFromNode(currentNode, dialogueCancellationSource.Token);
-                    await Stop();
                     LogDebugMessage?.Invoke("Run complete.");
+                    await ReturnFromNode(currentNode, dialogueCancellationSource.Token);
                 }
             }
 
+            await Stop();
             await Responder.HandleDialogueComplete();
         }
 
@@ -493,13 +494,18 @@ namespace Yarn
             if (node == null)
             {
                 // Nothing to do.
+                LogDebugMessage?.Invoke("Attempting to return from a null node!");
                 return;
             }
+
+            // if we are cancelled it is still fine to have sent the HandleNodeComplete to the responder as cleaning up after being cancelled is perfectly sensible
+            await Responder.HandleNodeComplete(node.Name, cancellationToken);
+            // but we don't need to do anything else at this stage
             if (cancellationToken.IsCancellationRequested)
             {
+                LogDebugMessage?.Invoke("Returning from a node that has been cancelled.");
                 return;
             }
-            await Responder.HandleNodeComplete(node.Name, cancellationToken);
 
             string? nodeTrackingVariable = node.TrackingVariableName;
             if (nodeTrackingVariable != null)
