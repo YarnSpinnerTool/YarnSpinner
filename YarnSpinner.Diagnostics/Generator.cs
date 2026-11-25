@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace YarnSpinner.Diagnostics;
@@ -10,6 +11,7 @@ namespace YarnSpinner.Diagnostics;
 /// DiagnosticDescriptor object for each document.
 /// </summary>
 [Generator]
+[ExcludeFromCodeCoverage]
 public class Generator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext initContext)
