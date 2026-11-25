@@ -244,7 +244,7 @@ namespace YarnSpinner.Tests
             // Create a YSLS file that declares the existence of a function 'has_inventory_item' that takes one parameter: an enum named 'InventoryItemType'. This is a type that isn't know before compilation - it's declared in the script we're about to compile.
             var testProjectYSLS = """
             {
-                "version": 3,
+                "version": 5,
                 "commands": [],
                 "functions": [
                     {
