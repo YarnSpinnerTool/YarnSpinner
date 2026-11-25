@@ -23,6 +23,7 @@ namespace Yarn.Shared
             Node,
             Enum,
             Any,
+            Unknown,
         }
 
         public abstract class Action
@@ -36,6 +37,7 @@ namespace Yarn.Shared
             public bool Async { get; set; } = false;
             public Location? Location { get; set; } = null;
             public bool ContainsErrors { get; set; } = false;
+            public List<string>? ErrorCodes { get; set; } = null;
         }
 
         public class Command : Action { }
