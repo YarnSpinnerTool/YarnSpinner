@@ -54,7 +54,7 @@ namespace Yarn.Shared
         {
             public string Name { get; set; } = string.Empty;
             public Type Type { get; set; }
-            public string? SubType { get; set; } = null;
+            public string? Subtype { get; set; } = null;
             public string? Documentation { get; set; } = null;
             public string? DefaultValue { get; set; } = null;
             public bool IsParamsArray { get; set; } = false;
@@ -63,7 +63,7 @@ namespace Yarn.Shared
         public class Return
         {
             public Type Type { get; set; }
-            public string? SubType { get; set; }
+            public string? Subtype { get; set; }
             public string? Description { get; set; }
         }
 

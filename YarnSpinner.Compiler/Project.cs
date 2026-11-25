@@ -698,11 +698,11 @@ namespace Yarn.Compiler
                         throw new DiagnosticException(DefinitionsFilePath, DiagnosticDescriptor.LanguageVersionTooLow, $"Error in function {source.YarnName}: Enum parameters in functions require project file version 5 or later"),
 
                     // It's an enum; we don't know enough about the underlying type of it yet, so mark it with a placeholder, and the compiler will resolve it later.
-                    DefinitionsFile.Type.Enum when param.SubType != null =>
-                        new ForwardDeclaredType(param.SubType),
+                    DefinitionsFile.Type.Enum when param.Subtype != null =>
+                        new ForwardDeclaredType(param.Subtype),
 
                     // It's something inheriting from enum, but we don't know what specific type. Default it to number.
-                    DefinitionsFile.Type.Enum when param.SubType == null => Types.Number,
+                    DefinitionsFile.Type.Enum when param.Subtype == null => Types.Number,
 
                     // Instances require file version 5
                     DefinitionsFile.Type.Instance when projectFileVersion < Project.YarnSpinnerProjectVersion5 =>
@@ -979,9 +979,9 @@ namespace Yarn.Compiler
                         // ok so how do I handle enum backed values?
                         // actually isn't it always an int?
                         // for now assume that
-                        if (parameter.SubType != null)
+                        if (parameter.Subtype != null)
                         {
-                            result = new Shared.EnumParameter(parameter.Name, parameter.SubType ?? "(INVALID)", Shared.YarnEnum.BackingType.Int, parameter.IsParamsArray, false, false, null, false, null);
+                            result = new Shared.EnumParameter(parameter.Name, parameter.Subtype ?? "(INVALID)", Shared.YarnEnum.BackingType.Int, parameter.IsParamsArray, false, false, null, false, null);
                             return result;
                         }
 
@@ -990,9 +990,9 @@ namespace Yarn.Compiler
 
                 case DefinitionsFile.Type.Instance:
                     {
-                        if (parameter.SubType != null)
+                        if (parameter.Subtype != null)
                         {
-                            var fullName = parameter.SubType ?? "(INVALID)";
+                            var fullName = parameter.Subtype ?? "(INVALID)";
                             var nt = new Shared.NamedType(fullName, fullName, fullName, Shared.YarnSpecialType.String, true);
                             result = new Shared.ComponentParameter(fullName, nt, parameter.IsParamsArray, false, parameter.DefaultValue != null, parameter.DefaultValue, false, null);
                             return result;
