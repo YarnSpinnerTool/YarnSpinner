@@ -16,14 +16,14 @@ namespace Yarn.Shared
 
         public enum Type
         {
+            Unknown,
+            Any,
             Number,
             String,
             Bool,
             Instance,
             Node,
             Enum,
-            Any,
-            Unknown,
         }
 
         public abstract class Action
