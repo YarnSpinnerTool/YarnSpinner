@@ -12,8 +12,37 @@
                 {
                     "name": "b",
                     "type": "number"
+                },
+                {
+                    "name": "c",
+                    "type": "string"
+                },
+                {
+                    "name": "d",
+                    "type": "enum",
+                    "subtype": "MyCoolEnum"
+                },
+                {
+                    "name": "e",
+                    "type": "instance",
+                    "subtype": "MyComponentType"
+                },
+                {
+                    "name": "f",
+                    "type": "node"
+                },
+                {
+                    "name": "rest",
+                    "type": "node",
+                    "isParamsArray": true
                 }
             ]
+        },
+        {
+            "yarnName": "CommandContainingErrors",
+            "definitionName": "global::Test.CommandContainingErrors",
+            "parameters": [],
+            "containsErrors": true
         }
     ],
     "functions": [
