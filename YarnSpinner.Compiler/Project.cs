@@ -62,7 +62,10 @@ namespace Yarn.Compiler
         /// </summary>
         public const int YarnSpinnerProjectVersion5 = 5;
 
-        internal static readonly JsonSerializerOptions SerializationOptions = new JsonSerializerOptions
+        /// <summary>
+        /// The serialization options used for serializing and deserializing Yarn Projects and Definitions files.
+        /// </summary>
+        public static readonly JsonSerializerOptions SerializationOptions = new()
         {
             AllowTrailingCommas = true,
             ReadCommentHandling = JsonCommentHandling.Skip,
@@ -73,6 +76,7 @@ namespace Yarn.Compiler
             TypeInfoResolver = SourceGenerationContext.Default,
             Converters =
             {
+                new JsonStringEnumConverter<DefinitionsFile.Type>(JsonNamingPolicy.CamelCase),
                 new JsonStringEnumConverter<Diagnostic.DiagnosticSeverity>(),
             }
         };
