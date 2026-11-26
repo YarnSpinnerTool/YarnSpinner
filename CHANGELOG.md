@@ -13,17 +13,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
-- handling of actions with string paramers with default parameters has been simplified
 - When asking for visitation tracking of a subtitled node we also enable visitation tracking of the hub
 
 ### Fixed
 
-- Actions with `float` or `decimal` default parameters no long generate incorrect linking code
-  - this bug would also have impacted languages with a different separator than English
-- Cancelling tehtoken passed to `Dialogue.Start` or `StartDialogue` now stops the dialogue properly and calls `HandleDialogueComplete`. Previously cancelling it while a line or command was running ended dialogue without ever telling the responder, so stuff like dialogue UI never got the chance to clean up...
-- `visited()` an `visited_count()` calls inside a `when:` headers now cause the named node to be tracked.. previously the compiler only looked for these calls in node bodies so a node that was only checked from a `when:` header was never tracked, and the check was always false.
-
 ### Removed
+
+## [3.3.2] 2026-11-26
+
+### Changed
+
+- Handling of actions with string paramers with default parameters has been simplified.
+- `.yarnproject` and `.ysls.json` properties are now case-insensitive.
+
+### Fixed
+
+- Actions with `float` or `decimal` default parameters no longer generate incorrect linking code.
+  - This bug would also have impacted languages with a different separator than English.
+- Cancelling the token passed to `Dialogue.Start` or `StartDialogue` now stops the dialogue properly and calls `HandleDialogueComplete`. 
+  - Previously, cancelling it while a line or command was running ended dialogue without ever telling the responder, so stuff like dialogue UI never got the chance to clean up.
+- `visited()` and `visited_count()` calls inside a `when:` headers now cause the named node to be tracked. 
+  - Previously the compiler only looked for these calls in node bodies, so a node that was only checked from a `when:` header was never tracked, and the check was always false.
 
 ## [3.3.1] 2026-11-19
 
