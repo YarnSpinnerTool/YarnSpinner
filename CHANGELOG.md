@@ -9,10 +9,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - test plans can now start at subtitled node group nodes
+- can now request `visit` and `visited_count` of subtitled nodes within a node group.
 
 ### Changed
 
 - handling of actions with string paramers with default parameters has been simplified
+- When asking for visitation tracking of a subtitled node we also enable visitation tracking of the hub
 
 ### Fixed
 

@@ -1,0 +1,27 @@
+title: Start
+---
+Visited: {visited("NodeGroup")}
+Visit Count: {visited_count("NodeGroup")}
+
+<<detour NodeGroup>> // should detour to the subtitled node
+
+Visited: {visited("NodeGroup")}
+Visit Count: {visited_count("NodeGroup")}
+
+<<detour NodeGroup>> // should detour to the always node
+
+Final hub count: {visited_count("NodeGroup")}
+Final sub count: {visited_count("NodeGroup.Subtitle")}
+===
+title: NodeGroup
+when: always
+---
+I'm a node group
+===
+
+title: NodeGroup
+subtitle: Subtitle
+when: once
+---
+I'm the subtitled node group!
+===

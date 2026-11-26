@@ -1056,10 +1056,94 @@ Mr Name: I am Mr Name!
             dialogue.NodeExists("ThisTitleHasASingleSpaceAfterIt ").Should().BeFalse(); //<- fails
             dialogue.NodeExists("ThisTitleHasASingleSpaceAfterIt").Should().BeTrue(); //<- fails
         }
+
+        // with subtitles existing on nodegroups it's fairly reasonable to want to be able to query if an individual node within the group has been seen
+        // but the tracking requirements for nodegroups are a little weird because it's very reasonable to want to also know how many times the group has been visited.
+        // So by tracking a subtitled node you are also asking for the hub to be tracked and this test is ensuring that works as expected.
+        // As well as just making sure that node groups are visitable
+        [Fact]
+        public void TestNodeGroupsAreTrackedAsAGroupAndIndividually()
+        {
+            var source = """
+            title: NodeGroup
+            when: visited_count("NodeGroup") == 0
+            ---
+            This is the first entry in the NodeGroup group.
+            ===
+            
+            title: NodeGroup
+            when: visited_count("NodeGroup") == 1
+            ---
+            This is the second entry in the NodeGroup group.
+            ===
+
+            title: NodeGroup
+            subitle: Subtitle
+            when: always
+            ---
+            This is a fallback entry with a subtitle
+            ===
+
+            title: NodeGroup
+            when: visited("NodeGroup.Subtitle")
+            ---
+            This is the node that triggers a visit count synthesis for the subtitle node specifically
+            ===
+            """;
+
+            var job = CompilationJob.CreateFromString("<input>", source, testBaseResponder.Declarations);
+            var result = Compiler.Compile(job);
+            result.Diagnostics.Should().BeEmpty();
+
+            result.Declarations.Where(d => d.Name.StartsWith("$Yarn.Internal")).Should().HaveCount(2);
+
+            result.Declarations.Should().Contain(d => d.Name == "$Yarn.Internal.Visiting.NodeGroup");
+            result.Declarations.Should().Contain(d => d.Name == "$Yarn.Internal.Visiting.NodeGroup.Subtitle");
+
+            // now we make basically the same node group but all the tracking requests are for the subtitled node
+            // we should still see tracking for the hub as a call to track any child node group implies tracking the group itself
+            source = """
+            title: NodeGroup
+            when: visited_count("NodeGroup.Subtitle") == 0
+            ---
+            This is the first entry in the NodeGroup group.
+            ===
+            
+            title: NodeGroup
+            when: visited_count("NodeGroup.Subtitle") == 1
+            ---
+            This is the second entry in the NodeGroup group.
+            ===
+
+            title: NodeGroup
+            subitle: Subtitle
+            when: always
+            ---
+            This is a fallback entry with a subtitle
+            ===
+
+            title: NodeGroup
+            when: visited("NodeGroup.Subtitle")
+            ---
+            This is the node that triggers a visit count synthesis for the subtitle node specifically
+            ===
+            """;
+
+            job = CompilationJob.CreateFromString("<input>", source, testBaseResponder.Declarations);
+            result = Compiler.Compile(job);
+            result.Diagnostics.Should().BeEmpty();
+
+            result.Declarations.Where(d => d.Name.StartsWith("$Yarn.Internal")).Should().HaveCount(2);
+
+            result.Declarations.Should().Contain(d => d.Name == "$Yarn.Internal.Visiting.NodeGroup");
+            result.Declarations.Should().Contain(d => d.Name == "$Yarn.Internal.Visiting.NodeGroup.Subtitle");
+        }
     }
+
+    // The following is copied from Azure Bicep
+    // available at https://github.com/Azure/bicep/blob/024037d6a72d0a9f5e5573f314e3b43c28d08b3e/src/Bicep.Core/Text/TextCoordinateConverter.cs
     // Copyright (c) Microsoft Corporation.
     // Licensed under the MIT License.
-
     public static class TextCoordinateConverter
     {
         /// <summary>

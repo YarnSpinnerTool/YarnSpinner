@@ -14,6 +14,8 @@ namespace Yarn.Compiler
         readonly HashSet<string> TrackingNode;
         readonly HashSet<string> NeverVisitNodes;
 
+        private YarnSpinnerParser.NodeContext? currentNode = null;
+
         public NodeTrackingVisitor(HashSet<string> ExistingTrackedNodes, HashSet<string> ExistingBlockedNodes)
         {
             this.TrackingNode = ExistingTrackedNodes;
@@ -46,6 +48,14 @@ namespace Yarn.Compiler
                     if (result != null)
                     {
                         TrackingNode.Add(result);
+
+                        if (currentNode != null)
+                        {
+                            if (!string.IsNullOrWhiteSpace(currentNode.NodeGroup))
+                            {
+                                TrackingNode.Add(currentNode.NodeGroup);
+                            }
+                        }
                     }
                 }
             }
@@ -69,6 +79,8 @@ namespace Yarn.Compiler
         {
             string? title = context.NodeTitle;
             string? tracking = null;
+
+            currentNode = context;
 
             foreach (var header in context.header())
             {

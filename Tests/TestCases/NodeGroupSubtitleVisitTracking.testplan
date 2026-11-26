@@ -1,0 +1,29 @@
+start: NodeGroup.Subtitle
+saliency: best_least_recently_seen
+
+line: `I'm the subtitled node group!`
+
+stop
+---
+
+start: Start
+
+// because we start at the subtitle node but didn't go through the saliency system these should be false and 0
+// basically we haven't visited the nodegroup, just the individual node
+line: `Visited: False`
+line: `Visit Count: 0`
+
+// now we detour to the node group and again we will get the subtitled node because it has a higher score
+// but this time we will have visited the node group so do expect visitation values here
+line: `I'm the subtitled node group!`
+line: `Visited: True`
+line: `Visit Count: 1`
+
+// now we detour again but this time we will get the non-subtitled once
+// because the saliency system has now seen the node once
+line: `I'm a node group`
+
+line: `Final hub count: 2`
+line: `Final sub count: 2`
+
+stop
