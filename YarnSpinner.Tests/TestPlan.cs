@@ -150,18 +150,18 @@ namespace YarnSpinner.Tests
             var parser = new YarnSpinnerTestPlanParser(tokenStream);
             lexer.RemoveErrorListeners();
             parser.RemoveErrorListeners();
-            var yarnErrorListener = new YarnErrorListener("testplan");
-            lexer.AddErrorListener(yarnErrorListener);
-            parser.AddErrorListener(yarnErrorListener);
 
-            var testPlanTree = parser.testplan();
+            parser.ErrorHandler = new BailErrorStrategy();
 
-            var allDiagnostics = yarnErrorListener.Diagnostics;
-            if (allDiagnostics.Any(d => d.Severity == Diagnostic.DiagnosticSeverity.Error))
+            YarnSpinnerTestPlanParser.TestplanContext? testPlanTree = null;
+            try
             {
-                throw new XunitException("Syntax errors in test plan: " + string.Join("\n", allDiagnostics));
+                testPlanTree = parser.testplan();
             }
-
+            catch
+            {
+                throw new XunitException("Syntax errors in test plan");
+            }
 
             plan.Environment = testPlanTree.environment()?.GetText();
 
@@ -172,7 +172,16 @@ namespace YarnSpinner.Tests
                 var start = runContext.start();
                 if (start != null)
                 {
-                    run.StartNode = start.nodeName.Text;
+                    string? name = null;
+                    if (start.subtitleName?.Text != null)
+                    {
+                        name = start.nodeName.Text + '.' + start.subtitleName.Text;
+                    }
+                    else
+                    {
+                        name = start.nodeName.Text;
+                    }
+                    run.StartNode = name;
                 }
 
                 foreach (var stepContext in runContext.step())

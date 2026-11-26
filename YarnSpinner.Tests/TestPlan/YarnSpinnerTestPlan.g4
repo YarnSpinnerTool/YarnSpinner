@@ -14,7 +14,8 @@ environment
     ;
 
 start
-    : 'start:' nodeName=IDENTIFIER
+    : 'start:' nodeName=IDENTIFIER '.' subtitleName=IDENTIFIER
+    | 'start:' nodeName=IDENTIFIER
     ;
 
 step

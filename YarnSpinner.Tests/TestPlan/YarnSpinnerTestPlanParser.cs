@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from /Users/desplesda/Work/YarnSpinner/YarnSpinner.Tests/TestPlan/YarnSpinnerTestPlan.g4 by ANTLR 4.13.1
+// Generated from /Users/timnugent/Development/YarnSpinner/YarnSpinner.Tests/TestPlan/YarnSpinnerTestPlan.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -38,8 +38,9 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, COMMENT=15, WS=16, BOOL=17, 
-		IDENTIFIER=18, HASHTAG_CONTENT=19, VARIABLE=20, NUMBER=21, TEXT=22;
+		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, COMMENT=16, 
+		WS=17, BOOL=18, IDENTIFIER=19, HASHTAG_CONTENT=20, VARIABLE=21, NUMBER=22, 
+		TEXT=23;
 	public const int
 		RULE_testplan = 0, RULE_run = 1, RULE_environment = 2, RULE_start = 3, 
 		RULE_step = 4, RULE_hashtag = 5, RULE_lineExpected = 6, RULE_optionExpected = 7, 
@@ -52,13 +53,13 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "'---'", "'environment:'", "'start:'", "'line:'", "'*'", "'option:'", 
-		"'[disabled]'", "'command:'", "'stop'", "'select:'", "'set:'", "'='", 
-		"'saliency:'", "'node:'"
+		null, "'---'", "'environment:'", "'start:'", "'.'", "'line:'", "'*'", 
+		"'option:'", "'[disabled]'", "'command:'", "'stop'", "'select:'", "'set:'", 
+		"'='", "'saliency:'", "'node:'"
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, "COMMENT", "WS", "BOOL", "IDENTIFIER", "HASHTAG_CONTENT", 
+		null, null, null, null, "COMMENT", "WS", "BOOL", "IDENTIFIER", "HASHTAG_CONTENT", 
 		"VARIABLE", "NUMBER", "TEXT"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
@@ -109,6 +110,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_testplan; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterTestplan(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitTestplan(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTestplan(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -179,6 +196,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_run; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterRun(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitRun(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitRun(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -212,7 +245,7 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 				State = 49;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 28496L) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 56992L) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -234,6 +267,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_environment; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterEnvironment(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitEnvironment(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitEnvironment(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -262,12 +311,32 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 
 	public partial class StartContext : ParserRuleContext {
 		public IToken nodeName;
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(YarnSpinnerTestPlanParser.IDENTIFIER, 0); }
+		public IToken subtitleName;
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] IDENTIFIER() { return GetTokens(YarnSpinnerTestPlanParser.IDENTIFIER); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER(int i) {
+			return GetToken(YarnSpinnerTestPlanParser.IDENTIFIER, i);
+		}
 		public StartContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
 		public override int RuleIndex { get { return RULE_start; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterStart(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitStart(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitStart(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -275,12 +344,31 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		StartContext _localctx = new StartContext(Context, State);
 		EnterRule(_localctx, 6, RULE_start);
 		try {
-			EnterOuterAlt(_localctx, 1);
-			{
-			State = 54;
-			Match(T__2);
-			State = 55;
-			_localctx.nodeName = Match(IDENTIFIER);
+			State = 60;
+			ErrorHandler.Sync(this);
+			switch ( Interpreter.AdaptivePredict(TokenStream,4,Context) ) {
+			case 1:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 54;
+				Match(T__2);
+				State = 55;
+				_localctx.nodeName = Match(IDENTIFIER);
+				State = 56;
+				Match(T__3);
+				State = 57;
+				_localctx.subtitleName = Match(IDENTIFIER);
+				}
+				break;
+			case 2:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 58;
+				Match(T__2);
+				State = 59;
+				_localctx.nodeName = Match(IDENTIFIER);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -324,6 +412,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_step; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterStep(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitStep(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitStep(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -331,62 +435,62 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		StepContext _localctx = new StepContext(Context, State);
 		EnterRule(_localctx, 8, RULE_step);
 		try {
-			State = 65;
+			State = 70;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case T__3:
+			case T__4:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 57;
+				State = 62;
 				lineExpected();
 				}
 				break;
-			case T__5:
+			case T__6:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 58;
+				State = 63;
 				optionExpected();
 				}
 				break;
-			case T__7:
+			case T__8:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 59;
+				State = 64;
 				commandExpected();
 				}
 				break;
-			case T__8:
+			case T__9:
 				EnterOuterAlt(_localctx, 4);
 				{
-				State = 60;
+				State = 65;
 				stopExpected();
 				}
 				break;
-			case T__9:
+			case T__10:
 				EnterOuterAlt(_localctx, 5);
 				{
-				State = 61;
+				State = 66;
 				actionSelect();
 				}
 				break;
-			case T__10:
+			case T__11:
 				EnterOuterAlt(_localctx, 6);
 				{
-				State = 62;
+				State = 67;
 				actionSet();
 				}
 				break;
-			case T__13:
+			case T__14:
 				EnterOuterAlt(_localctx, 7);
 				{
-				State = 63;
+				State = 68;
 				actionJumpToNode();
 				}
 				break;
-			case T__12:
+			case T__13:
 				EnterOuterAlt(_localctx, 8);
 				{
-				State = 64;
+				State = 69;
 				actionSetSaliencyMode();
 				}
 				break;
@@ -412,6 +516,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_hashtag; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterHashtag(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitHashtag(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitHashtag(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -421,7 +541,7 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 67;
+			State = 72;
 			Match(HASHTAG_CONTENT);
 			}
 		}
@@ -456,6 +576,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 			return GetRuleContext<HashtagContext>(i);
 		}
 		public LineWithAnyTextExpectedContext(LineExpectedContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterLineWithAnyTextExpected(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitLineWithAnyTextExpected(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLineWithAnyTextExpected(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 	public partial class LineWithSpecificTextExpectedContext : LineExpectedContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXT() { return GetToken(YarnSpinnerTestPlanParser.TEXT, 0); }
@@ -466,6 +602,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 			return GetRuleContext<HashtagContext>(i);
 		}
 		public LineWithSpecificTextExpectedContext(LineExpectedContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterLineWithSpecificTextExpected(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitLineWithSpecificTextExpected(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLineWithSpecificTextExpected(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -474,28 +626,28 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		EnterRule(_localctx, 12, RULE_lineExpected);
 		int _la;
 		try {
-			State = 85;
+			State = 90;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,7,Context) ) {
+			switch ( Interpreter.AdaptivePredict(TokenStream,8,Context) ) {
 			case 1:
 				_localctx = new LineWithSpecificTextExpectedContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 69;
-				Match(T__3);
-				State = 70;
-				Match(TEXT);
 				State = 74;
+				Match(T__4);
+				State = 75;
+				Match(TEXT);
+				State = 79;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==HASHTAG_CONTENT) {
 					{
 					{
-					State = 71;
+					State = 76;
 					hashtag();
 					}
 					}
-					State = 76;
+					State = 81;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
@@ -505,21 +657,21 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 				_localctx = new LineWithAnyTextExpectedContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 77;
-				Match(T__3);
-				State = 78;
-				Match(T__4);
 				State = 82;
+				Match(T__4);
+				State = 83;
+				Match(T__5);
+				State = 87;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==HASHTAG_CONTENT) {
 					{
 					{
-					State = 79;
+					State = 84;
 					hashtag();
 					}
 					}
-					State = 84;
+					State = 89;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
@@ -552,6 +704,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_optionExpected; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterOptionExpected(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitOptionExpected(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitOptionExpected(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -562,31 +730,31 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 87;
-			Match(T__5);
-			State = 88;
-			Match(TEXT);
 			State = 92;
+			Match(T__6);
+			State = 93;
+			Match(TEXT);
+			State = 97;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==HASHTAG_CONTENT) {
 				{
 				{
-				State = 89;
+				State = 94;
 				hashtag();
 				}
 				}
-				State = 94;
+				State = 99;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
-			State = 96;
+			State = 101;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if (_la==T__6) {
+			if (_la==T__7) {
 				{
-				State = 95;
-				_localctx.isDisabled = Match(T__6);
+				State = 100;
+				_localctx.isDisabled = Match(T__7);
 				}
 			}
 
@@ -610,6 +778,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_commandExpected; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterCommandExpected(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitCommandExpected(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitCommandExpected(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -619,9 +803,9 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 98;
-			Match(T__7);
-			State = 99;
+			State = 103;
+			Match(T__8);
+			State = 104;
 			Match(TEXT);
 			}
 		}
@@ -642,6 +826,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_stopExpected; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterStopExpected(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitStopExpected(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitStopExpected(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -651,8 +851,8 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 101;
-			Match(T__8);
+			State = 106;
+			Match(T__9);
 			}
 		}
 		catch (RecognitionException re) {
@@ -674,6 +874,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_actionSelect; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterActionSelect(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitActionSelect(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitActionSelect(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -683,9 +899,9 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 103;
-			Match(T__9);
-			State = 104;
+			State = 108;
+			Match(T__10);
+			State = 109;
 			_localctx.option = Match(NUMBER);
 			}
 		}
@@ -718,6 +934,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VARIABLE() { return GetToken(YarnSpinnerTestPlanParser.VARIABLE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BOOL() { return GetToken(YarnSpinnerTestPlanParser.BOOL, 0); }
 		public ActionSetBoolContext(ActionSetContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterActionSetBool(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitActionSetBool(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitActionSetBool(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 	public partial class ActionSetNumberContext : ActionSetContext {
 		public IToken variable;
@@ -725,6 +957,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VARIABLE() { return GetToken(YarnSpinnerTestPlanParser.VARIABLE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUMBER() { return GetToken(YarnSpinnerTestPlanParser.NUMBER, 0); }
 		public ActionSetNumberContext(ActionSetContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterActionSetNumber(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitActionSetNumber(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitActionSetNumber(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -732,20 +980,20 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		ActionSetContext _localctx = new ActionSetContext(Context, State);
 		EnterRule(_localctx, 22, RULE_actionSet);
 		try {
-			State = 114;
+			State = 119;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,10,Context) ) {
+			switch ( Interpreter.AdaptivePredict(TokenStream,11,Context) ) {
 			case 1:
 				_localctx = new ActionSetBoolContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 106;
-				Match(T__10);
-				State = 107;
-				((ActionSetBoolContext)_localctx).variable = Match(VARIABLE);
-				State = 108;
+				State = 111;
 				Match(T__11);
-				State = 109;
+				State = 112;
+				((ActionSetBoolContext)_localctx).variable = Match(VARIABLE);
+				State = 113;
+				Match(T__12);
+				State = 114;
 				((ActionSetBoolContext)_localctx).value = Match(BOOL);
 				}
 				break;
@@ -753,13 +1001,13 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 				_localctx = new ActionSetNumberContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 110;
-				Match(T__10);
-				State = 111;
-				((ActionSetNumberContext)_localctx).variable = Match(VARIABLE);
-				State = 112;
+				State = 115;
 				Match(T__11);
-				State = 113;
+				State = 116;
+				((ActionSetNumberContext)_localctx).variable = Match(VARIABLE);
+				State = 117;
+				Match(T__12);
+				State = 118;
 				((ActionSetNumberContext)_localctx).value = Match(NUMBER);
 				}
 				break;
@@ -784,6 +1032,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_actionSetSaliencyMode; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterActionSetSaliencyMode(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitActionSetSaliencyMode(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitActionSetSaliencyMode(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -793,9 +1057,9 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 116;
-			Match(T__12);
-			State = 117;
+			State = 121;
+			Match(T__13);
+			State = 122;
 			_localctx.saliencyMode = Match(IDENTIFIER);
 			}
 		}
@@ -818,6 +1082,22 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_actionJumpToNode; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.EnterActionJumpToNode(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IYarnSpinnerTestPlanListener typedListener = listener as IYarnSpinnerTestPlanListener;
+			if (typedListener != null) typedListener.ExitActionJumpToNode(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IYarnSpinnerTestPlanVisitor<TResult> typedVisitor = visitor as IYarnSpinnerTestPlanVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitActionJumpToNode(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -827,9 +1107,9 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 119;
-			Match(T__13);
-			State = 120;
+			State = 124;
+			Match(T__14);
+			State = 125;
 			_localctx.nodeName = Match(IDENTIFIER);
 			}
 		}
@@ -845,42 +1125,44 @@ public partial class YarnSpinnerTestPlanParser : Parser {
 	}
 
 	private static int[] _serializedATN = {
-		4,1,22,123,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		4,1,23,128,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
 		7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,1,0,1,0,1,
 		0,3,0,32,8,0,1,0,1,0,1,0,5,0,37,8,0,10,0,12,0,40,9,0,1,0,1,0,1,1,3,1,45,
-		8,1,1,1,4,1,48,8,1,11,1,12,1,49,1,2,1,2,1,2,1,3,1,3,1,3,1,4,1,4,1,4,1,
-		4,1,4,1,4,1,4,1,4,3,4,66,8,4,1,5,1,5,1,6,1,6,1,6,5,6,73,8,6,10,6,12,6,
-		76,9,6,1,6,1,6,1,6,5,6,81,8,6,10,6,12,6,84,9,6,3,6,86,8,6,1,7,1,7,1,7,
-		5,7,91,8,7,10,7,12,7,94,9,7,1,7,3,7,97,8,7,1,8,1,8,1,8,1,9,1,9,1,10,1,
-		10,1,10,1,11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,3,11,115,8,11,1,12,1,12,
-		1,12,1,13,1,13,1,13,1,13,0,0,14,0,2,4,6,8,10,12,14,16,18,20,22,24,26,0,
-		0,125,0,31,1,0,0,0,2,44,1,0,0,0,4,51,1,0,0,0,6,54,1,0,0,0,8,65,1,0,0,0,
-		10,67,1,0,0,0,12,85,1,0,0,0,14,87,1,0,0,0,16,98,1,0,0,0,18,101,1,0,0,0,
-		20,103,1,0,0,0,22,114,1,0,0,0,24,116,1,0,0,0,26,119,1,0,0,0,28,29,3,4,
-		2,0,29,30,5,1,0,0,30,32,1,0,0,0,31,28,1,0,0,0,31,32,1,0,0,0,32,33,1,0,
-		0,0,33,38,3,2,1,0,34,35,5,1,0,0,35,37,3,2,1,0,36,34,1,0,0,0,37,40,1,0,
-		0,0,38,36,1,0,0,0,38,39,1,0,0,0,39,41,1,0,0,0,40,38,1,0,0,0,41,42,5,0,
-		0,1,42,1,1,0,0,0,43,45,3,6,3,0,44,43,1,0,0,0,44,45,1,0,0,0,45,47,1,0,0,
-		0,46,48,3,8,4,0,47,46,1,0,0,0,48,49,1,0,0,0,49,47,1,0,0,0,49,50,1,0,0,
-		0,50,3,1,0,0,0,51,52,5,2,0,0,52,53,5,18,0,0,53,5,1,0,0,0,54,55,5,3,0,0,
-		55,56,5,18,0,0,56,7,1,0,0,0,57,66,3,12,6,0,58,66,3,14,7,0,59,66,3,16,8,
-		0,60,66,3,18,9,0,61,66,3,20,10,0,62,66,3,22,11,0,63,66,3,26,13,0,64,66,
-		3,24,12,0,65,57,1,0,0,0,65,58,1,0,0,0,65,59,1,0,0,0,65,60,1,0,0,0,65,61,
-		1,0,0,0,65,62,1,0,0,0,65,63,1,0,0,0,65,64,1,0,0,0,66,9,1,0,0,0,67,68,5,
-		19,0,0,68,11,1,0,0,0,69,70,5,4,0,0,70,74,5,22,0,0,71,73,3,10,5,0,72,71,
-		1,0,0,0,73,76,1,0,0,0,74,72,1,0,0,0,74,75,1,0,0,0,75,86,1,0,0,0,76,74,
-		1,0,0,0,77,78,5,4,0,0,78,82,5,5,0,0,79,81,3,10,5,0,80,79,1,0,0,0,81,84,
-		1,0,0,0,82,80,1,0,0,0,82,83,1,0,0,0,83,86,1,0,0,0,84,82,1,0,0,0,85,69,
-		1,0,0,0,85,77,1,0,0,0,86,13,1,0,0,0,87,88,5,6,0,0,88,92,5,22,0,0,89,91,
-		3,10,5,0,90,89,1,0,0,0,91,94,1,0,0,0,92,90,1,0,0,0,92,93,1,0,0,0,93,96,
-		1,0,0,0,94,92,1,0,0,0,95,97,5,7,0,0,96,95,1,0,0,0,96,97,1,0,0,0,97,15,
-		1,0,0,0,98,99,5,8,0,0,99,100,5,22,0,0,100,17,1,0,0,0,101,102,5,9,0,0,102,
-		19,1,0,0,0,103,104,5,10,0,0,104,105,5,21,0,0,105,21,1,0,0,0,106,107,5,
-		11,0,0,107,108,5,20,0,0,108,109,5,12,0,0,109,115,5,17,0,0,110,111,5,11,
-		0,0,111,112,5,20,0,0,112,113,5,12,0,0,113,115,5,21,0,0,114,106,1,0,0,0,
-		114,110,1,0,0,0,115,23,1,0,0,0,116,117,5,13,0,0,117,118,5,18,0,0,118,25,
-		1,0,0,0,119,120,5,14,0,0,120,121,5,18,0,0,121,27,1,0,0,0,11,31,38,44,49,
-		65,74,82,85,92,96,114
+		8,1,1,1,4,1,48,8,1,11,1,12,1,49,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,3,1,3,3,
+		3,61,8,3,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,3,4,71,8,4,1,5,1,5,1,6,1,6,1,
+		6,5,6,78,8,6,10,6,12,6,81,9,6,1,6,1,6,1,6,5,6,86,8,6,10,6,12,6,89,9,6,
+		3,6,91,8,6,1,7,1,7,1,7,5,7,96,8,7,10,7,12,7,99,9,7,1,7,3,7,102,8,7,1,8,
+		1,8,1,8,1,9,1,9,1,10,1,10,1,10,1,11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,
+		3,11,120,8,11,1,12,1,12,1,12,1,13,1,13,1,13,1,13,0,0,14,0,2,4,6,8,10,12,
+		14,16,18,20,22,24,26,0,0,131,0,31,1,0,0,0,2,44,1,0,0,0,4,51,1,0,0,0,6,
+		60,1,0,0,0,8,70,1,0,0,0,10,72,1,0,0,0,12,90,1,0,0,0,14,92,1,0,0,0,16,103,
+		1,0,0,0,18,106,1,0,0,0,20,108,1,0,0,0,22,119,1,0,0,0,24,121,1,0,0,0,26,
+		124,1,0,0,0,28,29,3,4,2,0,29,30,5,1,0,0,30,32,1,0,0,0,31,28,1,0,0,0,31,
+		32,1,0,0,0,32,33,1,0,0,0,33,38,3,2,1,0,34,35,5,1,0,0,35,37,3,2,1,0,36,
+		34,1,0,0,0,37,40,1,0,0,0,38,36,1,0,0,0,38,39,1,0,0,0,39,41,1,0,0,0,40,
+		38,1,0,0,0,41,42,5,0,0,1,42,1,1,0,0,0,43,45,3,6,3,0,44,43,1,0,0,0,44,45,
+		1,0,0,0,45,47,1,0,0,0,46,48,3,8,4,0,47,46,1,0,0,0,48,49,1,0,0,0,49,47,
+		1,0,0,0,49,50,1,0,0,0,50,3,1,0,0,0,51,52,5,2,0,0,52,53,5,19,0,0,53,5,1,
+		0,0,0,54,55,5,3,0,0,55,56,5,19,0,0,56,57,5,4,0,0,57,61,5,19,0,0,58,59,
+		5,3,0,0,59,61,5,19,0,0,60,54,1,0,0,0,60,58,1,0,0,0,61,7,1,0,0,0,62,71,
+		3,12,6,0,63,71,3,14,7,0,64,71,3,16,8,0,65,71,3,18,9,0,66,71,3,20,10,0,
+		67,71,3,22,11,0,68,71,3,26,13,0,69,71,3,24,12,0,70,62,1,0,0,0,70,63,1,
+		0,0,0,70,64,1,0,0,0,70,65,1,0,0,0,70,66,1,0,0,0,70,67,1,0,0,0,70,68,1,
+		0,0,0,70,69,1,0,0,0,71,9,1,0,0,0,72,73,5,20,0,0,73,11,1,0,0,0,74,75,5,
+		5,0,0,75,79,5,23,0,0,76,78,3,10,5,0,77,76,1,0,0,0,78,81,1,0,0,0,79,77,
+		1,0,0,0,79,80,1,0,0,0,80,91,1,0,0,0,81,79,1,0,0,0,82,83,5,5,0,0,83,87,
+		5,6,0,0,84,86,3,10,5,0,85,84,1,0,0,0,86,89,1,0,0,0,87,85,1,0,0,0,87,88,
+		1,0,0,0,88,91,1,0,0,0,89,87,1,0,0,0,90,74,1,0,0,0,90,82,1,0,0,0,91,13,
+		1,0,0,0,92,93,5,7,0,0,93,97,5,23,0,0,94,96,3,10,5,0,95,94,1,0,0,0,96,99,
+		1,0,0,0,97,95,1,0,0,0,97,98,1,0,0,0,98,101,1,0,0,0,99,97,1,0,0,0,100,102,
+		5,8,0,0,101,100,1,0,0,0,101,102,1,0,0,0,102,15,1,0,0,0,103,104,5,9,0,0,
+		104,105,5,23,0,0,105,17,1,0,0,0,106,107,5,10,0,0,107,19,1,0,0,0,108,109,
+		5,11,0,0,109,110,5,22,0,0,110,21,1,0,0,0,111,112,5,12,0,0,112,113,5,21,
+		0,0,113,114,5,13,0,0,114,120,5,18,0,0,115,116,5,12,0,0,116,117,5,21,0,
+		0,117,118,5,13,0,0,118,120,5,22,0,0,119,111,1,0,0,0,119,115,1,0,0,0,120,
+		23,1,0,0,0,121,122,5,14,0,0,122,123,5,19,0,0,123,25,1,0,0,0,124,125,5,
+		15,0,0,125,126,5,19,0,0,126,27,1,0,0,0,12,31,38,44,49,60,70,79,87,90,97,
+		101,119
 	};
 
 	public static readonly ATN _ATN =
