@@ -58,7 +58,7 @@ namespace Yarn.Compiler
         public const int YarnSpinnerProjectVersion4 = 4;
 
         /// <summary>
-        ///  A version number representing project version 4 (released with Yarn Spinner 3.3.0).
+        ///  A version number representing project version 5 (released with Yarn Spinner 3.3.0).
         /// </summary>
         public const int YarnSpinnerProjectVersion5 = 5;
 
